@@ -1,0 +1,12 @@
+Remote files on westc-26893 (v3, exp-007 precise CI):
+- /root/autodl-tmp/gen-depth-contamination/artifacts/kstar_theta_curve.pdf
+- /root/autodl-tmp/gen-depth-contamination/artifacts/kstar_theta_curve.png
+
+Results at θ=0.60: 4/4 unanimous K*=2
+- Qwen-RW 1v2 ci_lower=0.6864 > 0.60
+- Pythia 1v2 ci_lower=0.6451 > 0.60
+- OLMo 1v2 ci_lower=0.6044 > 0.60
+- Qwen-cont 1v2 ci_lower=0.6013 > 0.60 (most marginal)
+
+Unanimous K*=2 range: θ∈[0.580, 0.600]
+K*∈{2,3} range: θ∈[0.535, 0.600]

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "28291c788c8d4cf72998",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "code arxiv bootstrap ci 3models",
+  "task_key": "worker_code_arxiv_bootstrap_ci_3models_20260523T030224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_arxiv_bootstrap_ci_3models_20260523T030224.log",
+    "occurrence": 1,
+    "bytes": 674813,
+    "sha256": "c597f613dc05f4adcc85fc37afd3793f78fa476f9c6006b3ca46beaae5567d62"
+  },
+  "statistics": {
+    "messages": 239,
+    "user_turns": 0,
+    "tool_calls": 82,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 71,
+      "tool_call": 82,
+      "tool_result": 82,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 239,
+      "chunks": [
+        {
+          "path": "28291c788c8d4cf72998-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "28291c788c8d4cf72998-part-0002.json",
+          "message_count": 59
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-arxiv-bootstrap-ci-3models.md"
+}

@@ -1,0 +1,17 @@
+{
+  "obd_n500_accuracy": {
+    "mean": 0.4556,
+    "std": 0.0242,
+    "ci_lower": 0.394,
+    "ci_upper": 0.518
+  },
+  "obd_full_accuracy": 0.4541,
+  "obd_n5000_accuracy_reported": 0.386,
+  "gpt55_n500_accuracy": 0.332,
+  "claude_n500_accuracy": 0.3307,
+  "n_bootstrap": 1000,
+  "n_repeats": 10,
+  "seeds": [42, 43, 44, 45, 46, 47, 48, 49, 50, 51],
+  "per_seed_accuracy": [0.44, 0.424, 0.488, 0.488, 0.478, 0.468, 0.424, 0.452, 0.466, 0.428],
+  "conclusion": "OBD at N=500 achieves 45.6% ± 2.4%, still above LLM baselines (GPT-5.5: 33.2%, Claude: 33.1%)"
+}

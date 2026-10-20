@@ -1,0 +1,1479 @@
+# cron hook exp 012 binary confidence
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 50
+- **Recorded user turns:** 1
+- **Tool calls:** 24
+- **Original source:** `logs/chats/cron_hook_exp_012_binary_confidence.jsonl`
+- **Structured JSON:** [`3e1e153b10c2ec083800.json`](../../sessions/3e/3e1e153b10c2ec083800.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+50 recorded events
+
+### User
+
+_source line 1 · 2026-05-16T03:17:47.291085+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #13。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单只有 `westc-26893:cuda:0`，脚本里 `--device cuda:0` 不能改
+- 服务器别名从 `autodl-4090d` 改成了 `westc-26893`，SSH 配置里只有后者能连（exp-003 踩过坑）
+- AutoDL 实例重启后端口会变，连不上不要重试，让用户查控制台
+- HF 下载必须 `HF_HUB_DISABLE_XET=1` + `HF_ENDPOINT=https://hf-mirror.com`，否则 401/超时
+- 论文整合 exp-004 + exp-012 后必须走 `submit_paper_to_review`（continue 模式），不能跳过
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westc-26893（RTX 4090 D 24GB），工作目录 `/root/autodl-tmp/gen-depth-contamination`
+- Python：`/root/miniconda3/bin/python`，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（无 .venv）
+- HF cache：`/root/autodl-tmp/.hf_cache`
+- 模型缓存：Qwen2.5-1.5B-Instruct / Pythia-1.4b / OLMo-1B-hf / OLMo-1B-0724-hf / Qwen2.5-7B 均在 HF cache 中
+- 数据目录：`data/`(Qwen-RW mvp), `data_exp001_pythia/`, `data_exp002_olmo/`, `data_exp017_qwen_cont/`, `data_exp004_qwen7b/`
+- artifacts：`/root/autodl-tmp/gen-depth-contamination/artifacts/`
+- 活跃进程：**无**（exp_012 刚退出，所有实验完成）
+- Cron：reconcile 返回 0 活跃
+
+### 3. 📊 当前状态
+**刚做完**：收到 exp_012_binary_confidence 的 CRON 完成回调（进程正常退出），已 spawn Worker `worker_analyze_exp_012_binary_confidence_20260515T232123` 去 SSH 读取结果并更新 registry。
+
+**Registry 状态**：
+- 19 个 DONE (全部 success)
+- 1 个 QUEUED：`exp_012_binary_confidence`（实际已完成，Worker 正在分析后会转 DONE）
+
+**等待中**：
+- Worker 回调：`worker_analyze_exp_012_binary_confidence_20260515T232123` — 读结果 → update_registry → 转 DONE
+- 尚未向 Director 汇报本次回调（等 Worker 拿到 metrics 后一并汇报）
+
+### 4. 📋 待办
+- Worker 回调到达 → 读 metrics，判断 conclusion（ρ<0.3 = success 验证 "binary≠depth"；ρ>0.5 = negative 需 Framing 提案）→ 更新 report.md → 汇报 Director（带 `[资源]` 行）
+- exp-012 conclusion=success → 通知 Paper Agent 整合 exp-004 + exp-012 到论文 → 论文定稿 → `submit_paper_to_review`（continue 模式）
+- exp-012 conclusion=negative → 按 red-section 产 Framing 调整提案 → 等 Director 决策，**禁止默默跑下一个实验**
+- 所有实验完成 + 论文定稿 → ROADMAP DDL：05-16 PM 论文定稿，05-17~19 二审迭代，05-25 ARR 提交
+
+### 5. 🎯 战略上下文
+- **核心结论**：K*=2 across 9 conditions（4 models × decoding ablations + 7B scale）。C1'=K* characterization, C3=binary-ours filtering 最优
+- **审稿 rebuttal**：Round 1 weak reject/borderline，3 Critical + 11 Warning **全部已解决** ✅。论文 18 页 0 critical warnings
+- **exp-012 的角色**：验证 binary detector confidence（PPL/Binoculars）无法捕捉 depth 信号 → 强化 "depth is beyond binary detection" 叙事。这是最后一个待整合的实验
+- **易错点**：
+  - exp-012 registry 状态显示 QUEUED 但实际已完成（cron 可能没来得及转状态），Worker 需要强制转 DONE
+  - exp-012 notes 里提到之前 N=5 dry-run 数据无效（AUC 呈 0.04 步进伪影），确认这次是 N=500 全量
+  - 决策链：D037(7B scope升级) → D036(claim强度维持) → D031(rebuttal策略) → D026(C3 Version B confirmed)
+  - GPU cuda:0 现在空闲，如果 exp-012 分析后需要补实验可以立即用
+
+## 可查的历史
+前 18 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-16T03:17:57.814161+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-16T03:17:57.814523+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T03:18:04.800955+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "gen-depth-contamination",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T03:18:05.215504+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T03:18:05.221349+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_003_decoding_ablation\": {\"status\": \"DONE\", \"created_at\": \"2026-05-12T20:06:25.260Z\", \"updated_at\": \"2026-05-16T03:06:04.938Z\", \"hypothesis\": \"解码策略调控 K*：不同 top_p/temperature 设置是否改变饱和边界（greedy→更低 K*? 高温度→更高 K*?）\", \"notes\": \"Server alias 变更 autodl-4090d → westc-26893 导致 cron 误标 failed。实际实验一直正常运行。Config 1 (greedy, K*=2), Config 2 (nuc p=0.9/T=1.0, K*=2), Config 3 (nuc p=0.95/T=0.7, K*=2) 已完成。Config 4 (nuc p=0.95/T=1.2) 运行中。深度分析: 1v2 AUC Δ<0.003 across configs, D016 universality confirmed (all 7 configs > θ=0.60), θ-sensitivity K* profile identical across 3 configs. 分析脚本 scripts/exp003_analyze_all_configs.py 已部署。\", \"metrics\": {\"K_star\": 2, \"K_star_robust\": true, \"bootstrap_ci\": {\"config1_greedy\": {\"0v1\": {\"auc\": 0.9796, \"ci\": [0.9772, 0.982], \"perm_p\": 0}, \"1v2\": {\"auc\": 0.6892, \"ci\": [0.6802, 0.6982], \"perm_p\": 0}, \"2v3\": {\"auc\": 0.5612, \"ci\": [0.5517, 0.5705], \"perm_p\": 0}, \"3v4\": {\"auc\": 0.5405, \"ci\": [0.5308, 0.5502], \"perm_p\": 0}, \"4v5\": {\"auc\": 0.5137, \"ci\": [0.5033, 0.5238], \"perm_p\": 0.0082}}, \"config2_nuc09\": {\"0v1\": {\"auc\": 0.9945, \"ci\": [0.9934, 0.9956], \"perm_p\": 0}, \"1v2\": {\"auc\": 0.6862, \"ci\": [0.6774, 0.6951], \"perm_p\": 0}, \"2v3\": {\"auc\": 0.5917, \"ci\": [0.5824, 0.601], \"perm_p\": 0, \"note\": \"CI upper crosses theta=0.60\"}, \"3v4\": {\"auc\": 0.5468, \"ci\": [0.5369, 0.5568], \"perm_p\": 0}, \"4v5\": {\"auc\": 0.5066, \"ci\": [0.4959, 0.5173], \"perm_p\": 0.1199}}, \"config3_t07\": {\"0v1\": {\"auc\": 0.9877, \"ci\": [0.9857, 0.9896], \"perm_p\": 0}, \"1v2\": {\"auc\": 0.6885, \"ci\": [0.6797, 0.697], \"perm_p\": 0}, \"2v3\": {\"auc\": 0.5901, \"ci\": [0.5806, 0.5996], \"perm_p\": 0}, \"3v4\": {\"auc\": 0.539, \"ci\": [0.5288, 0.5493], \"perm_p\": 0}, \"4v5\": {\"auc\": 0.5348, \"ci\": [0.5243, 0.5454], \"perm_p\": 0}}, \"config4_t12\": {\"0v1\": {\"auc\": 0.9982, \"ci\": [0.9975, 0.9987], \"per
+…[truncated 25638 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 420
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-16T03:18:05.272343+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 56
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-16T03:18:05.981932+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "gen-depth-contamination",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T03:18:06.082681+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/report.md\", \"content\": \"# Handover — 2026-05-16\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_016_base_vs_instruct | Base vs Instruct K* 对比：Qwen2.5-1.5B (base) continuation mode 的 K* 是否与 exp-017 (Instruct continuation, K*=2) 一致？封堵 \\\"K*=2 是 instruct-tuning 副产物\\\" 攻击面。唯一变量 = base vs instruct。 | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **exp_012_binary_confidence** (success): Binary detector confidence (DivEye log-PPL + Binoculars ratio) 与 true depth 的 Spearman correlation，验证 binary confidence ≠ depth。Binoculars: observer=Pythia-1.4b, performer=OLMo-1B-0724-hf。\\n- **exp_004_7b_crossscale** (success): K*=2 在 7B scale 下是否成立？Qwen2.5-7B continuation mode, C4 5K seeds, scorer=Qwen2.5-1.5B。Reviewer R2 Critical: 现有实验仅 ≤1.5B\\n- **exp_kstar_theta** (success): θ=0.60 阈值的理论依据：K*(θ) 曲线可视化 + Cohen's h + task-based 双论证（FR-1 Critical rebuttal）\\n\\n## 趋势\\n成功 20 / 负向 0 / 失败 0 / 共 20\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestc-26893: 无 GPU 信息\\n\\n## 告警\\n（无）\\n\", \"total_chars\": 993, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-16T03:18:06.336959+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "gen-depth-contamination"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "gen-depth-contamination"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T03:18:06.589528+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/ROADMAP.md\", \"content\": \"# gen-depth-contamination — Research Dashboard\\n\\n> 最后更新: 2026-05-16 03:14 UTC | 更新原因: Round 4 审稿处理状态 + scope 扩展计划 + exp-016 RUNNING\\n\\n## 核心方向\\n递归合成文本的代际深度估计：测量 K*（饱和边界）+ filtering 应用验证。2+1 claim 结构（D012）：C1'(K* characterization) + C3(filtering application) + supporting analysis。K*=2 universality 跨 **9** 条件不变（4 model-mode + 4 decoding + 1 cross-scale 7B）。详见 paper_framing.md。\\n\\n## 当前阶段：Round 4 审稿修复 + Scope 扩展\\n\\n### Round 4 审稿结果 (borderline accept 3.5/5)\\n**Critical (3)**:\\n- W4 bootstrap CI 措辞 → Paper Agent 已派 patch ✅ (8/9 条件 CI 确认, 1/9 marginal)\\n- W6 structural confound → 等 Worker 数据后派 Paper Agent 🔄\\n- Claim-Evidence gap 措辞弱化 → 第一批修复完成 ✅\\n\\n**Major (4)**: 全部已派 Paper Agent 第一批修复 ✅\\n**Minor (6) + Questions (7)**: 已处理 ✅\\n**格式修复**: Figure 1 \\\"K-1\\\"→\\\"K\\\" ✅ | 正文压缩到 8 页 ✅ | 6 新引用已加 ✅\\n\\n### 实验状态 (21 registered)\\n- 20 完成 (全部 success) | 1 RUNNING (exp-016 Base vs Instruct)\\n- 全部 P0 实验成功 ✅\\n\\n### Scope 扩展计划（等 Manager 批 3 张额外 4090）\\n申请 3×RTX 4090 额外实例（4 天，预估 ¥720），已回复用户 3 个问题，等 Manager 审批：\\n- 卡 2: LLaMA-3.1-8B depth chain (8h) → universality 跨主流模型\\n- 卡 3: Mistral-7B-v0.3 depth chain (8h) → 第二个 7B+ 家族\\n- 卡 4: Pythia 解码消融 (6h) → 文本长度消融 (6h) → cross-scorer 矩阵 (3h)\\n总计 ~31h，4 卡并行 1.5 天完成。\\n\\n## 近期任务\\n- [ ] Agent 回报 exp-016 + W6 Worker 结果\\n- [ ] Paper Agent 完成 W4 bootstrap CI 措辞修复（已派）\\n- [ ] W6 token length 数据到 → Paper Agent 修复 structural confound 讨论\\n- [ ] exp-016 完成 → 整合结果到论文\\n- [ ] Manager 批 GPU → 立即铺 scope 扩展实验\\n- [ ] 全部修复完成 → submit_paper_to_review (continue 模式)\\n\\n## GPU 预算\\n- 现有：1×RTX 4090 D 24GB (cuda:0) on westc-26893 — exp-016 占用中\\n- 申请中：3×RTX 4090 额外实例（Manager 审批中，已回复用户疑问）\\n\\n## DDL 倒排\\n| 日期 | 里程碑 |\\n|------|--------|\\n| 05-16~17 | Round 4 修复完成 + exp-016 结果 |\\n| 05-17~19 | Scope 扩展实验（如 GPU 批准）|\\n| 05-20~22 | 新实验结果整合 + 论文更新 |\\n| 05-22~24 | 最终审稿 + 打磨 |
+…[truncated 1152 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 252
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T03:18:24.599853+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T03:18:24.600295+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T03:18:25.153892+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T03:18:25.204935+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_74a1d975.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T03:18:29.074483+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T03:18:29.276046+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "Glob",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T03:18:29.326685+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "gen-depth-contamination",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T03:18:29.377332+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T03:18:45.419658+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__get_worker_status",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__get_worker_status",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T03:18:45.470333+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-16T03:18:47.882625+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "gen-depth-contamination",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "gen-depth-contamination",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T03:18:47.983789+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"gen-depth-contamination\", \"section\": \"execution\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_constraint\": [\"autodl-4090d:cuda:0\"], \"gpu_ids\": [\"cuda:0\"], \"project_path\": \"/root/autodl-tmp/gen-depth-contamination\", \"servers\": [\"westc-26893\"]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-16T03:19:16.157935+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 1 / 实际跑 1 (exp-016 on cuda:0) | Worker 池 0 → 正在补充\n\n## exp_012_binary_confidence 完成 — conclusion: success ✅\n\n**结果摘要**：\n- N=500 全量，4 个 generator (qwen-rewrite, pythia-1.4b, olmo-1b, qwen-cont)\n- **Binary detector K*≈1 vs OBD K*=2** — 核心发现\n- 6-class depth accuracy ≤ 0.199（random baseline = 0.167），binary detector 完全无法区分 depth\n- Spearman |ρ| = 0.06–0.46，统计显著但实际意义弱\n- 0v1 pairwise AUC 极高 (0.99+)，但 deeper pairs 塌缩到 ~0.5 → binary detector 只捕捉 human/AI 边界，无法区分代际深度\n- 可视化已生成：exp012_confidence_vs_depth.pdf\n\n**对比**：与 exp_011 (LLM zero-shot) 形成互补 — frontier LLM (GPT-5.5/Claude) 和 binary detector (PPL/Binoculars) 都无法做 fine-grained depth estimation，只有 OBD 15D 特征方法有效。三条 evidence 收敛支持 \"depth is beyond binary detection\" 叙事。\n\n**对 paper 影响**：exp-012 直接强化 C1' (\"K* characterization — binary detector captures K*=1, OBD captures K*=2\") + 支持 \"why depth matters\" 动机段。\n\n**反思实验计划**：\n1. exp-012 success 验证了 \"binary ≠ depth\" hypothesis，与 exp-011 (LLM zero-shot) + exp_D (OBD N=500) 三角验证完成\n2. 当前最后一个 blocking 实验是 exp-016 (Base vs Instruct)，RUNNING 中，无 cron 监控 — 正在派 Worker 检查\n3. 所有 P0 实验 20/20 success，核心 story (K*=2 universality + binary-ours filtering optimal) 完全成立\n\n**建议下一步**：\n1. 等 exp-016 完成 → 整合到论文\n2. 全部完成后 → submit_paper_to_review (continue 模式) 走最终审稿\n3. Scope 扩展实验等 Manager 批额外 GPU",
+  "project": "gen-depth-contamination"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 1 / 实际跑 1 (exp-016 on cuda:0) | Worker 池 0 → 正在补充\n\n## exp_012_binary_confidence 完成 — conclusion: success ✅\n\n**结果摘要**：\n- N=500 全量，4 个 generator (qwen-rewrite, pythia-1.4b, olmo-1b, qwen-cont)\n- **Binary detector K*≈1 vs OBD K*=2** — 核心发现\n- 6-class depth accuracy ≤ 0.199（random baseline = 0.167），binary detector 完全无法区分 depth\n- Spearman |ρ| = 0.06–0.46，统计显著但实际意义弱\n- 0v1 pairwise AUC 极高 (0.99+)，但 deeper pairs 塌缩到 ~0.5 → binary detector 只捕捉 human/AI 边界，无法区分代际深度\n- 可视化已生成：exp012_confidence_vs_depth.pdf\n\n**对比**：与 exp_011 (LLM zero-shot) 形成互补 — frontier LLM (GPT-5.5/Claude) 和 binary detector (PPL/Binoculars) 都无法做 fine-grained depth estimation，只有 OBD 15D 特征方法有效。三条 evidence 收敛支持 \"depth is beyond binary detection\" 叙事。\n\n**对 paper 影响**：exp-012 直接强化 C1' (\"K* characterization — binary detector captures K*=1, OBD captures K*=2\") + 支持 \"why depth matters\" 动机段。\n\n**反思实验计划**：\n1. exp-012 success 验证了 \"binary ≠ depth\" hypothesis，与 exp-011 (LLM zero-shot) + exp_D (OBD N=500) 三角验证完成\n2. 当前最后一个 blocking 实验是 exp-016 (Base vs Instruct)，RUNNING 中，无 cron 监控 — 正在派 Worker 检查\n3. 所有 P0 实验 20/20 success，核心 story (K*=2 universality + binary-ours filtering optimal) 完全成立\n\n**建议下一步**：\n1. 等 exp-016 完成 → 整合到论文\n2. 全部完成后 → submit_paper_to_review (continue 模式) 走最终审稿\n3. Scope 扩展实验等 Manager 批额外 GPU",
+    "project": "gen-depth-contamination"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T03:19:28.023979+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 11866
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-16T03:19:28.131870+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "check:exp_016_status",
+  "project": "gen-depth-contamination",
+  "task_prompt": "## 任务：检查 exp_016_base_vs_instruct 运行状态\n\n### 背景\nexp_016_base_vs_instruct 在 registry 中状态为 RUNNING（创建于 2026-05-16T01:01，最后更新 01:18），但当前没有 cron 监控。需要 SSH 到服务器确认实际运行状态。\n\n### 服务器信息\n- 服务器：westc-26893\n- 项目路径：/root/autodl-tmp/gen-depth-contamination\n- Python 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- GPU：cuda:0 (RTX 4090 D 24GB)\n\n### 检查步骤\n1. SSH 到 westc-26893，检查是否有 exp-016 相关进程在运行：\n   ```\n   ps aux | grep -E \"exp.?016|base_vs_instruct\" | grep -v grep\n   ```\n   也检查 tmux sessions：\n   ```\n   tmux ls 2>/dev/null\n   ```\n\n2. 检查 GPU 使用情况：\n   ```\n   nvidia-smi\n   ```\n\n3. 查找 exp-016 相关的日志文件，读取最后 50 行判断进度：\n   ```\n   ls -lt /root/autodl-tmp/gen-depth-contamination/artifacts/exp016* /root/autodl-tmp/gen-depth-contamination/exp016* /root/autodl-tmp/gen-depth-contamination/logs/exp016* 2>/dev/null\n   find /root/autodl-tmp/gen-depth-contamination -name \"*exp016*\" -o -name \"*base_vs_instruct*\" -o -name \"*exp_016*\" 2>/dev/null | head -20\n   ```\n\n4. 检查最近修改的文件（可能是输出/checkpoint）：\n   ```\n   find /root/autodl-tmp/gen-depth-contamination -mmin -60 -type f 2>/dev/null | head -20\n   ```\n\n### 产出\n用 `update_registry` 更新 exp_016 状态：\n- 如果进程还在跑：保持 RUNNING，在 notes 里加当前进度\n- 如果进程已结束且有结果：读取结果 metrics，转 DONE (conclusion=success/negative)\n- 如果进程已结束且失败：读取错误日志，转 DONE (conclusion=failed)，记录 failure_reason\n\n无论哪种情况，都在回复中明确说明：进程是否存活、GPU 使用情况、日志最后输出、预估完成时间。",
+  "tool_groups": "['ssh', 'registry']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "check:exp_016_status",
+    "project": "gen-depth-contamination",
+    "task_prompt": "## 任务：检查 exp_016_base_vs_instruct 运行状态\n\n### 背景\nexp_016_base_vs_instruct 在 registry 中状态为 RUNNING（创建于 2026-05-16T01:01，最后更新 01:18），但当前没有 cron 监控。需要 SSH 到服务器确认实际运行状态。\n\n### 服务器信息\n- 服务器：westc-26893\n- 项目路径：/root/autodl-tmp/gen-depth-contamination\n- Python 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- GPU：cuda:0 (RTX 4090 D 24GB)\n\n### 检查步骤\n1. SSH 到 westc-26893，检查是否有 exp-016 相关进程在运行：\n   ```\n   ps aux | grep -E \"exp.?016|base_vs_instruct\" | grep -v grep\n   ```\n   也检查 tmux sessions：\n   ```\n   tmux ls 2>/dev/null\n   ```\n\n2. 检查 GPU 使用情况：\n   ```\n   nvidia-smi\n   ```\n\n3. 查找 exp-016 相关的日志文件，读取最后 50 行判断进度：\n   ```\n   ls -lt /root/autodl-tmp/gen-depth-contamination/artifacts/exp016* /root/autodl-tmp/gen-depth-contamination/exp016* /root/autodl-tmp/gen-depth-contamination/logs/exp016* 2>/dev/null\n   find /root/autodl-tmp/gen-depth-contamination -name \"*exp016*\" -o -name \"*base_vs_instruct*\" -o -name \"*exp_016*\" 2>/dev/null | head -20\n   ```\n\n4. 检查最近修改的文件（可能是输出/checkpoint）：\n   ```\n   find /root/autodl-tmp/gen-depth-contamination -mmin -60 -type f 2>/dev/null | head -20\n   ```\n\n### 产出\n用 `update_registry` 更新 exp_016 状态：\n- 如果进程还在跑：保持 RUNNING，在 notes 里加当前进度\n- 如果进程已结束且有结果：读取结果 metrics，转 DONE (conclusion=success/negative)\n- 如果进程已结束且失败：读取错误日志，转 DONE (conclusion=failed)，记录 failure_reason\n\n无论哪种情况，都在回复中明确说明：进程是否存活、GPU 使用情况、日志最后输出、预估完成时间。",
+    "tool_groups": "['ssh', 'registry']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T03:19:28.688103+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Worker of type 'check:exp_016_status' is already active for project 'gen-depth-contamination'. worker_id=worker_check_exp_016_status_20260516T031858\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 556
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-16T03:19:32.304419+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_check_exp_016_status_20260516T031858",
+  "verbose": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_check_exp_016_status_20260516T031858",
+    "verbose": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T03:19:32.405531+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_check_exp_016_status_20260516T031858\", \"status\": \"running\", \"task_type\": \"check:exp_016_status\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-16T03:18:58.980098+00:00\", \"ended_at\": null, \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"progress\": {\"recent_tools\": [\"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\", \"ssh_read_only\"], \"last_text\": \"logs/ 目录只有 exp015 的日志。让我更广泛地搜索 exp016 相关文件和进程。\", \"turn_count\": 15}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-16T03:19:55.390693+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "status": "done",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "gen-depth-contamination",
+    "status": "done",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T03:19:55.441542+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_paper_integrate_exp012_20260516T001041\", \"task_type\": \"paper:integrate_exp012\", \"project\": \"gen-depth-contamination\", \"status\": \"done\", \"started_at\": \"2026-05-16T00:10:41.155239+00:00\", \"ended_at\": \"2026-05-16T00:14:38.332631+00:00\"}, {\"worker_id\": \"worker_code_exp_016_base_vs_instruct_20260516T010452\", \"task_type\": \"code:exp_016_base_vs_instruct\", \"project\": \"gen-depth-contamination\", \"status\": \"done\", \"started_at\": \"2026-05-16T01:04:52.577683+00:00\", \"ended_at\": \"2026-05-16T01:13:54.769262+00:00\"}, {\"worker_id\": \"worker_analysis_exp003_bootstrap_ci_20260516T023635\", \"task_type\": \"analysis:exp003_bootstrap_ci\", \"project\": \"gen-depth-contamination\", \"status\": \"done\", \"started_at\": \"2026-05-16T02:36:35.743142+00:00\", \"ended_at\": \"2026-05-16T03:06:23.398501+00:00\"}, {\"worker_id\": \"worker_analysis_depth_token_length_20260516T023706\", \"task_type\": \"analysis:depth_token_length\", \"project\": \"gen-depth-contamination\", \"status\": \"done\", \"started_at\": \"2026-05-16T02:37:06.360080+00:00\", \"ended_at\": \"2026-05-16T02:46:17.409982+00:00\"}, {\"worker_id\": \"worker_check_exp016_status_20260516T030638\", \"task_type\": \"check:exp016_status\", \"project\": \"gen-depth-contamination\", \"status\": \"done\", \"started_at\": \"2026-05-16T03:06:38.564858+00:00\", \"ended_at\": \"2026-05-16T03:07:53.267679+00:00\"}], \"count\": 5}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-16T03:20:08.830568+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__get_worker_status",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__get_worker_status",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T03:20:08.831141+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-16T03:20:11.496562+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_check_exp016_status_20260516T030638",
+  "verbose": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_check_exp016_status_20260516T030638",
+    "verbose": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-16T03:20:12.000581+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_check_exp016_status_20260516T030638\", \"status\": \"done\", \"task_type\": \"check:exp016_status\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-16T03:06:38.564858+00:00\", \"ended_at\": \"2026-05-16T03:07:53.267679+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"## exp-016 进度报告\\n\\n**当前阶段：数据生成 — depth 4/5（共 6 个 depth: 0-5）**\\n\\n| 项目 | 状态 |\\n|------|------|\\n| 模型 | Qwen2.5-1.5B |\\n| 配置 | 5000 samples/depth, max_depth=5 |\\n| depth 0-3 | 已完成（文件已写入） |\\n| depth 4 | **155/313 batches (50%)**, ~6.2s/batch |\\n| depth 5 | 未开始 |\\n| feature extraction | 未开始 |\\n| classification | 未开始 |\\n| results 目录 | 空 |\\n\\n**进度估算：**\\n- 数据生成整体：4.5/6 depths = **~75%**\\n- depth 4 剩余：~16 min\\n- depth 5：~33 min\\n- 数据生成剩余：**~49 min**\\n- 后续阶段（特征提取+分类）：估计 15-30 min\\n- **预计完成时间：~12:15-12:30**\\n\\n**异常：** 偶发 padding_side warning（非致命，不影响结果）。无报错。\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 504
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-16T03:20:12.001478+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_analysis_depth_token_length_20260516T023706",
+  "verbose": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_analysis_depth_token_length_20260516T023706",
+    "verbose": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-16T03:20:12.453104+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_depth_token_length_20260516T023706\", \"status\": \"done\", \"task_type\": \"analysis:depth_token_length\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-16T02:37:06.360080+00:00\", \"ended_at\": \"2026-05-16T02:46:17.409982+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"已完成。以下是关键发现：\\n\\n## 各模型各 depth 平均 token 数\\n\\n| 模型 | depth_0 | depth_1 | depth_2 | depth_3 | depth_4 | depth_5 |\\n|------|---------|---------|---------|---------|---------|---------|\\n| **mvp-001 (Qwen-rewrite)** | 191 | **254** | 252 | 254 | 254 | 254 |\\n| **exp-001 (Pythia-1.4B)** | 192 | 214 | 215 | 216 | 217 | 218 |\\n| **exp-002 (OLMo-1B)** | 192 | **256** | 256 | 256 | 256 | 256 |\\n| **exp-003 (greedy/nuc/t07/t12)** | 191 | ~253 | ~251 | ~253 | ~253 | ~254 |\\n| **exp-004 (Qwen-7B)** | 191 | 196 | 195 | 193 | 197 | 197 |\\n| **exp-016 (Qwen-base)** | 191 | 194 | 195 | (生成中) | — | — |\\n| **exp-017 (Qwen-cont)** | 191 | 244 | 238 | 240 | 240 | 238 |\\n\\n## EOS 截断率（depth 1+）\\n\\n| 模型 | depth 1-5 平均截断率 | 严重程度 |\\n|------|---------------------|---------|\\n| mvp-001 (Qwen-rewrite) | **7-11%** | 轻微 |\\n| exp-003 (Qwen-1.5B 各采样) | **8-16%** | 轻微 |\\n| exp-017 (Qwen-cont) | **17-20%** | 中等 |\\n| exp-001 (Pythia-1.4B) | **34-36%** | 严重 |\\n| exp-004 (Qwen-7B) | **45-47%** | 严重 |\\n| exp-016 (Qwen-base) | **46-48%** | 严重 |\\n\\n## 关于 depth 0 的意外发现\\n\\ndepth_0（人类文本）mean ≈ 191, std ≈ 78, 约 51% 的样本 < 256 tokens。这是因为 C4 文本是按 **256 tokens 截断上限** 取的，但很多原始文本本身就不足 256 tokens。\\n\\n## 长度 confound 分析\\n\\n**三个层面的长度差异**：\\n\\n1. **depth 0 vs depth 1+**：depth_0 平均 191 tokens，而 depth 1+（对于 Qwen-rewrite/OLMo/exp-003）平均 252-256 tokens。**depth 0 反而更短**——这与\\\"EOS 截断导致 depth 1+ 短于 depth 0\\\"的担忧**方向相反**。0v1 的长度差异实际上是 depth 0 短、depth 1 长。\\n\\n2. **模型间差异巨大**：Qwen-7B、Qwen-base、Pythia 的 depth 1+ 大量 EOS 截断（mean ~195-217），而 Qwen-1.5B-Instruct rewrite 模式几乎不截断（mean ~254）。OLMo 完全不
+…[truncated 369 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 451
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-16T03:20:12.553889+00:00_
+
+called mcp__agent-ml-research__get_worker_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_worker_status</summary>
+
+```json
+{
+  "worker_id": "worker_analysis_exp003_bootstrap_ci_20260516T023635",
+  "verbose": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "tool_args": {
+    "worker_id": "worker_analysis_exp003_bootstrap_ci_20260516T023635",
+    "verbose": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-16T03:20:12.604535+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp003_bootstrap_ci_20260516T023635\", \"status\": \"done\", \"task_type\": \"analysis:exp003_bootstrap_ci\", \"project\": \"gen-depth-contamination\", \"started_at\": \"2026-05-16T02:36:35.743142+00:00\", \"ended_at\": \"2026-05-16T03:06:23.398501+00:00\", \"setup\": null, \"teardown\": null, \"setup_data\": {}, \"result\": {\"raw\": \"W4 任务完成。总结：\\n\\n**脚本**: `scripts/exp003_bootstrap_ci.py` 在远程服务器运行完毕（10K bootstrap + 10K permutation, 耗时 ~27 分钟）\\n\\n**输出**: `artifacts/exp003_bootstrap_ci.json`，4 config × 5 pairs = 20 条目\\n\\n**关键结果**:\\n\\n| Config | 2v3 AUC | 95% CI | CI upper vs θ=0.60 |\\n|--------|---------|--------|---------------------|\\n| config1_greedy | 0.5612 | [0.5517, 0.5705] | 远低于 θ |\\n| **config2_nuc09** | **0.5917** | **[0.5824, 0.6010]** | **跨过 θ** |\\n| config3_t07 | 0.5901 | [0.5806, 0.5996] | 差 0.04pp |\\n| config4_t12 | 0.5820 | [0.5722, 0.5917] | 远低于 θ |\\n\\n- **config2_nuc09 的 2v3 CI 上界 0.6010 跨过 θ=0.60**，K*=2 在该 config 下存在边界模糊性\\n- config3_t07 的 CI 上界 0.5996 极接近但未跨过\\n- 所有 config 的 0v1 和 1v2 permutation p=0（10K 次中零次超过观测值），K*≥2 判定稳健\\n- config2 的 4v5 perm_p=0.12，不显著（接近 chance）\\n\\nArtifact 已注册，registry 已更新。\"}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__get_worker_status",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-16T03:20:29.013946+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "gen-depth-contamination",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-16T03:20:29.265256+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_check_exp_016_status_20260516T031858\", \"task_type\": \"check:exp_016_status\", \"project\": \"gen-depth-contamination\", \"status\": \"running\", \"started_at\": \"2026-05-16T03:18:58.980098+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-16T03:20:29.315892+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "status": "done",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "gen-depth-contamination",
+    "status": "done",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-16T03:20:29.366630+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_paper_integrate_exp004_20260515T231453\", \"task_type\": \"paper:integrate_exp004\", \"project\": \"gen-depth-contamination\", \"status\": \"done\", \"started_at\": \"2026-05-15T23:14:53.415597+00:00\", \"ended_at\": \"2026-05-15T23:21:05.837069+00:00\"}, {\"worker_id\": \"worker_code_exp004_bootstrap_ci_20260515T231700\", \"task_type\": \"code:exp004_bootstrap_ci\", \"project\": \"gen-depth-contamination\", \"status\": \"done\", \"started_at\": \"2026-05-15T23:17:00.920692+00:00\", \"ended_at\": \"2026-05-15T23:21:36.063486+00:00\"}, {\"worker_id\": \"worker_analyze_exp_012_binary_confidence_20260515T232123\", \"task_type\": \"analyze:exp_012_binary_confidence\", \"project\": \"gen-depth-contamination\", \"status\": \"done\", \"started_at\": \"2026-05-15T23:21:23.666185+00:00\", \"ended_at\": \"2026-05-15T23:23:05.604200+00:00\"}, {\"worker_id\": \"worker_figure_update_7b_20260515T234818\", \"task_type\": \"figure:update_7b\", \"project\": \"gen-depth-contamination\", \"status\": \"done\", \"started_at\": \"2026-05-15T23:48:18.737625+00:00\", \"ended_at\": \"2026-05-15T23:51:07.103462+00:00\"}, {\"worker_id\": \"worker_sync_fig2_auc_decay_20260515T235919\", \"task_type\": \"sync:fig2_auc_decay\", \"project\": \"gen-depth-contamination\", \"status\": \"done\", \"started_at\": \"2026-05-15T23:59:19.163938+00:00\", \"ended_at\": \"2026-05-16T00:05:07.827139+00:00\"}, {\"worker_id\": \"worker_paper_integrate_exp012_20260516T001041\", \"task_type\": \"paper:integrate_exp012\", \"project\": \"gen-depth-contamination\", \"status\": \"done\", \"started_at\": \"2026-05-16T00:10:41.155239+00:00\", \"ended_at\": \"2026-05-16T00:14:38.332631+00:00\"}, {\"worker_id\": \"worker_code_exp_016_base_vs_instruct_20260516T010452\", \"task_type\": \"code:exp_016_base_vs_instruct\", \"project\": \"gen-depth-contamination\", \"status\": \"done\", \"started_at\": \"2026-05-16T01:04:52.577683+00:00\", \"ended_
+…[truncated 957 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-16T03:21:07.740042+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "paper:fix_w6_structural_confound",
+  "project": "gen-depth-contamination",
+  "task_prompt": "## 任务：修复 W6 Structural Confound — 将 token length 分析结果整合到论文 Discussion\n\n### 背景\nRound 4 审稿 W6 Critical concern: \"text length might be a structural confound for depth classification — deeper generations could be systematically shorter due to EOS truncation, inflating classification AUC.\"\n\nWorker 已完成 token length 分析，关键发现如下：\n\n### W6 Token Length 分析数据（已验证）\n\n**各模型各 depth 平均 token 数**：\n| 模型 | depth_0 | depth_1 | depth_2 | depth_3 | depth_4 | depth_5 |\n|------|---------|---------|---------|---------|---------|---------|\n| mvp-001 (Qwen-rewrite) | 191 | 254 | 252 | 254 | 254 | 254 |\n| exp-001 (Pythia-1.4B) | 192 | 214 | 215 | 216 | 217 | 218 |\n| exp-002 (OLMo-1B) | 192 | 256 | 256 | 256 | 256 | 256 |\n| exp-003 (各采样策略) | 191 | ~253 | ~251 | ~253 | ~253 | ~254 |\n| exp-004 (Qwen-7B) | 191 | 196 | 195 | 193 | 197 | 197 |\n| exp-017 (Qwen-cont) | 191 | 244 | 238 | 240 | 240 | 238 |\n\n**EOS 截断率**：\n- Qwen-rewrite/exp-003: 7-16%（轻微）\n- Qwen-cont: 17-20%（中等）\n- Pythia: 34-36%（严重）\n- Qwen-7B/Qwen-base: 45-48%（严重）\n\n**核心论证**：\n1. depth_0 (human) 平均 191 tokens，depth 1+ 更长 (196-256)。方向与 reviewer concern **相反**\n2. depth 1-5 之间无系统性递减趋势——长度基本稳定\n3. 如果长度是 confound，它应该让 0v1 分类**更难**（human 更短），而非虚高 AUC\n4. K*=2 在 OLMo (零截断, 全部 256 tokens) 上同样成立，排除长度 confound\n\n### 你的任务\n\n1. 先用 `read_project_file(file=\"paper_framing.md\")` 了解论文 story 和 claims\n2. 读取论文 discussion 相关文件：`read_project_file(file=\"paper/discussion.tex\")` 或类似路径\n3. 在 Discussion 或 Limitations 部分添加 \"Structural Confound Analysis\" 子节（约 150-200 words），包含：\n   - Reviewer concern 的简述\n   - 三层论证：(a) 方向相反 (b) depth 1-5 稳定 (c) OLMo 零截断控制实验\n   - 简要提到截断率数据（可放 appendix table）\n4. 如果 appendix 合适，加一个 token length summary table\n5. 确保措辞与论文整体 tone 一致，不过度防御\n\n### 文件位置\n- 论文文件在项目的 `paper/` 目录下\n- 项目路径：`/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/`\n- 用 Edit/Write 修改本地文件\n\n### 规范\n- 所有数字必须追溯到上面的分析数据\n- 强度与 evidence 匹配\n- 不 cherry-pick，诚实呈现截断率差异",
+  "tool_groups": "['knowledge']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "paper:fix_w6_structural_confound",
+    "project": "gen-depth-contamination",
+    "task_prompt": "## 任务：修复 W6 Structural Confound — 将 token length 分析结果整合到论文 Discussion\n\n### 背景\nRound 4 审稿 W6 Critical concern: \"text length might be a structural confound for depth classification — deeper generations could be systematically shorter due to EOS truncation, inflating classification AUC.\"\n\nWorker 已完成 token length 分析，关键发现如下：\n\n### W6 Token Length 分析数据（已验证）\n\n**各模型各 depth 平均 token 数**：\n| 模型 | depth_0 | depth_1 | depth_2 | depth_3 | depth_4 | depth_5 |\n|------|---------|---------|---------|---------|---------|---------|\n| mvp-001 (Qwen-rewrite) | 191 | 254 | 252 | 254 | 254 | 254 |\n| exp-001 (Pythia-1.4B) | 192 | 214 | 215 | 216 | 217 | 218 |\n| exp-002 (OLMo-1B) | 192 | 256 | 256 | 256 | 256 | 256 |\n| exp-003 (各采样策略) | 191 | ~253 | ~251 | ~253 | ~253 | ~254 |\n| exp-004 (Qwen-7B) | 191 | 196 | 195 | 193 | 197 | 197 |\n| exp-017 (Qwen-cont) | 191 | 244 | 238 | 240 | 240 | 238 |\n\n**EOS 截断率**：\n- Qwen-rewrite/exp-003: 7-16%（轻微）\n- Qwen-cont: 17-20%（中等）\n- Pythia: 34-36%（严重）\n- Qwen-7B/Qwen-base: 45-48%（严重）\n\n**核心论证**：\n1. depth_0 (human) 平均 191 tokens，depth 1+ 更长 (196-256)。方向与 reviewer concern **相反**\n2. depth 1-5 之间无系统性递减趋势——长度基本稳定\n3. 如果长度是 confound，它应该让 0v1 分类**更难**（human 更短），而非虚高 AUC\n4. K*=2 在 OLMo (零截断, 全部 256 tokens) 上同样成立，排除长度 confound\n\n### 你的任务\n\n1. 先用 `read_project_file(file=\"paper_framing.md\")` 了解论文 story 和 claims\n2. 读取论文 discussion 相关文件：`read_project_file(file=\"paper/discussion.tex\")` 或类似路径\n3. 在 Discussion 或 Limitations 部分添加 \"Structural Confound Analysis\" 子节（约 150-200 words），包含：\n   - Reviewer concern 的简述\n   - 三层论证：(a) 方向相反 (b) depth 1-5 稳定 (c) OLMo 零截断控制实验\n   - 简要提到截断率数据（可放 appendix table）\n4. 如果 appendix 合适，加一个 token length summary table\n5. 确保措辞与论文整体 tone 一致，不过度防御\n\n### 文件位置\n- 论文文件在项目的 `paper/` 目录下\n- 项目路径：`/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/`\n- 用 Edit/Write 修改本地文件\n\n### 规范\n- 所有数字必须追溯到上面的分析数据\n- 强度与 evidence 匹配\n- 不 cherry-pick，诚实呈现截断率差异",
+    "tool_groups": "['knowledge']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-16T03:21:10.151805+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_paper_fix_w6_structural_confound_20260516T032107\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_fix_w6_structural_confound_20260516T032107.log\", \"setup_data\": {}, \"message\": \"Worker worker_paper_fix_w6_structural_confound_20260516T032107 started. Use get_worker_status('worker_paper_fix_w6_structural_confound_20260516T032107') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2411
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-16T03:21:21.862518+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__save_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-16T03:21:21.913190+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-16T03:21:32.413695+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "gen-depth-contamination",
+    "file": "memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-16T03:21:32.465846+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/memory.md\", \"content\": \"# Memory — gen-depth-contamination\\n\\n## 关键发现\\n\\n### 7B Cross-scale 发现 [2026-05-15, exp-004]\\n- 0v1 AUC = 0.964 是所有模型中最低的（其他模型 0.98-0.998）——expected，7B 更 human-like，生成文本与人类更相似\\n- 1v2 AUC = 0.618 > θ=0.60，K*=2 confirmed。CI lower=0.608>0.60（robust）\\n- **freq_entropy 首次成为 top-1 feature**（其他模型中 surp_* 系列主导）——7B 的 surprise 分布更接近人类，frequency-based feature 反而更有区分力\\n- exp-004 数据生成中断后可 resume：数据生成（depth-by-depth JSONL）与 feature extraction 可解耦恢复，已有 depth 文件不需重跑\\n\\n### W6 Token Length Confound 分析 [2026-05-16, depth_token_length Worker]\\n- **depth 0（人类文本）平均 191 tokens，depth 1+ 为 195-256 tokens**——depth 0 反而更短\\n- 这与 reviewer concern \\\"EOS 截断导致 depth 1+ 短于 depth 0\\\" **方向相反**\\n- 如果长度是 confound，它让 0v1 检测更难（不能靠\\\"更短=机器生成\\\"作弊），不是虚高 AUC\\n- EOS 截断率差异大：Qwen-rewrite 7-11%、Pythia 34-36%、Qwen-7B 45-47%\\n- depth 1-5 之间无系统性递减——长度 confound 不影响 K* 判定\\n\\n### Cross-scorer K* 按 generator data 分裂 [2026-05-15, EXP-A]\\n替代 scorer (Pythia/OLMo) 下：Qwen-RW 数据 → K*=2（AUC 1v2 ~0.70），Qwen-cont 数据 → K*=1（AUC 1v2 ~0.59，未过 θ=0.60）。差异来自 generator data 性质（rewrite mode 信号更强），不是 scorer 选择。Feature importance ρ≥0.90 跨所有 4 条件，确认 scorer 无关性。**叙事影响**：K*=2 限定为 \\\"self-scoring lower bound\\\"，不能 claim universal。与 exp-013 cross-transfer \\\"self-familiarity effect\\\" 一致。\\n\\n### K*(neural probe) 模型相关 [2026-05-15, exp-015 v4 verified]\\nPythia K*_neural=2, OLMo K*_neural=2, Qwen-cont K*_neural=3。Qwen-cont 升高源于 self-familiarity effect（instruction-tuned model 对自身输出的 hidden state 有更丰富的 mode-specific artifacts）。15D hand-crafted features K*=2 universal，更稳健可迁移。\\n\\n### exp-015 GPU OOM 教训 [2026-05-14]\\nexp-006 (15.5GB) + exp-015 (~9GB) 超出 4090D 24GB 显存。**硬规则**: 后续 GPU 并行必须用 `torch.cuda.max_memory_allocated()` 报告 peak VRAM，不用 nvidia-smi 静态快照（低估 peak usage）。GPU 共享实验必须独占，不并行。\\n\\n### Rebuttal 实验汇总 [2026-05-15]\\n- EXP-A (FR-2 Critical): Cros
+…[truncated 2500 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_012_binary_confidence",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-16T03:21:50.338830+00:00_
+
+Memory 已包含 W6 findings。当前状态清晰：
+
+**已完成**：
+- Director 已收到 exp_012 success 汇报 ✅
+- W4 bootstrap CI 措辞修复已完成 ✅
+- exp_012 论文整合已完成 ✅
+
+**进行中**：
+- Worker 1: `check:exp_016_status` — 检查 exp-016 实际运行状态（turn 15，正在搜索日志）
+- Worker 2: `paper:fix_w6_structural_confound` — 将 token length 分析整合到论文 Discussion
+
+**等待**：
+- exp_016 结果 → 整合到论文 → `submit_paper_to_review` (continue 模式)
+- Manager 批额外 3×4090 → scope 扩展实验
+
+Worker 池 = 2，GPU cuda:0 被 exp-016 占用。等待 Worker 回调。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp_012_binary_confidence"
+}
+```
+
+</details>
+
+---

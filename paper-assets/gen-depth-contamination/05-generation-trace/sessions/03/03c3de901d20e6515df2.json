@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03c3de901d20e6515df2",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper appendix batch b",
+  "task_key": "worker_paper_appendix-batch-b_20260514T071112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_appendix-batch-b_20260514T071112_result.json",
+    "occurrence": 1,
+    "bytes": 755,
+    "sha256": "76ca99b1b6cde654b8c0d151f401221637e2f5796c5c2427cd0f8ce7bd2e4697"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。追加了 `\\section{Supplementary Details}` 包含 5 个表格（Tables S4--S8）：\n\n- **S4** — 数据集统计（每 depth 5000 samples，depth-0 平均 147.8 tokens，depth 1-5 约 207 tokens）\n- **S5** — 15 维特征完整描述，按 Surprisal (9) / Lexical diversity (3) / Frequency tail (3) 分组，含公式和值域\n- **S6** — LightGBM 超参数（n_estimators=200, lr=0.05, max_depth=6, num_leaves=31, 5-fold GroupKFold）\n- **S7** — Neural probe 架构（1536→512→256→6 MLP, Adam lr=1e-3, Dropout 0.1, patience=5）\n- **S8** — 4 模型 × 5 depth pairs 的 bootstrap CI 详细数据，标注了 OLMo 两个不显著的 p 值\n\n所有数值均来自服务器代码和 registry 实际数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-appendix-batch-b.md"
+}

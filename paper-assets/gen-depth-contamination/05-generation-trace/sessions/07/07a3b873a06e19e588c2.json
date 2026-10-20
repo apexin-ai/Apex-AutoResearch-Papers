@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07a3b873a06e19e588c2",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "data exp 023 wiki prep",
+  "task_key": "worker_data_exp_023_wiki_prep_20260516T080040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_exp_023_wiki_prep_20260516T080040_result.json",
+    "occurrence": 1,
+    "bytes": 1244,
+    "sha256": "f31d18d78b08a2f6fc30ec0179bbb1b423f1abdbca23c0102c0b981fbaaf99e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. Wikipedia 数据\n- **路径**: `/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/depth_0.jsonl`\n- **行数**: 5000\n- **来源**: `wikimedia/wikipedia` 20231101.en，streaming 前 ~5300 篇，跳过 282 篇短文（<500 字符）\n\n### 2. 格式验证\n- 字段: `text`, `doc_id` — 与 C4 seed data 完全一致\n- 文本长度: min=502, max=1701, avg=1070 chars\n- doc_id: 0-4999 连续\n- 已用 Qwen2.5-1.5B tokenizer 截断到 256 tokens\n\n### 3. 运行脚本\n- **路径**: `/root/autodl-tmp/gen-depth-contamination/scripts/exp023_wiki_domain.sh`\n- 配置: Qwen2.5-1.5B base, continuation, 5K docs, depth 0-5, batch=16, cuda:3\n- 设置 `HF_DATASETS_OFFLINE=1` + `TRANSFORMERS_OFFLINE=1` 阻断网络\n- 包含 seed data 存在性检查\n\n### 4. Dry-run\n- `bash -n` 语法检查: PASS\n- 模型路径 `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B`: 存在\n- Seed data 文件: 存在，5000 行\n\n### 5. 注意事项\n- cuda:3 当前跑 exp-021 (PID 20982)，等完成后直接执行 `bash scripts/exp023_wiki_domain.sh`\n- 下载时出现 GIL 退出警告，但数据完整无损（datasets 库已知问题）\n- 预计运行时间 ~2-3h（5K docs × 6 depths，与 exp-016 类似）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-exp-023-wiki-prep.md"
+}

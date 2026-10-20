@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e5ea59d3a2eaf6d0ead",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "agent / loop_16_1779060901.md",
+  "task_key": "loop_16_1779060901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1779060901.md",
+    "occurrence": 1,
+    "bytes": 3756,
+    "sha256": "aec17561572f472534672ff4020257a1bbd657056900925fe961b7fbbd262e5b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: max_wall_time\nupdated: '2026-05-17T23:34:53+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- cqa1-22115 GPU 白名单: cuda:0, cuda:1, cuda:2, cuda:3（4×4090D）\n- westd-42896 GPU 白名单: cuda:0, cuda:1（2×RTX PRO 6000 96GB）\n- submit_training_job 的 tmux 用 /bin/sh，命令必须 `bash -c \"...\"` 包裹（不能直接 source）\n- GPU 编号脚本内始终从 0 开���（框架注入 CUDA_VISIBLE_DEVICES 映射物理卡）\n- exp_wiki_scorer_confound 结果已确认 scorer confound：Qwen Wiki K*=2 是 artifact，论文不能再 claim \"Qwen uniqueness on Wikipedia\"\n- 14B/32B scorer confound 预案：如 K*=1，用 14B 作为 scorer 重跑（不是 32B，32B 太紧）\n\n### 2. 🖥️ 基础设施快照\n**cqa1-22115** (本地 4×4090D 24GB):\n- 工作目录: /root/autodl-tmp/gen-depth-contamination/\n- Python: /root/miniconda3/bin/python (3.12)\n- HF cache: /root/autodl-tmp/.hf_cache/\n- Pythia-1.4B: /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79\n- 活跃进程: exp_wiki_scorer_confound_1b5 (PID 180543, tmux=exp_wiki_scorer_confound_1b5, cuda:1)\n\n**westd-42896** (云 2×RTX PRO 6000 96GB):\n- 工作目录: /root/autodl-tmp/gen-depth-contamination/\n- Python: /root/miniconda3/bin/python (3.12), PATH 需 /root/miniconda3/bin\n- 14B 模型: /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-14B (29.6GB)\n- 32B 模型: /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-32B (62GB)\n- 活跃进程: exp_14b_c4 (PID 8586, tmux=exp_14b_c4, cuda:0), exp_32b_c4 (PID 14637, tmux=exp_32b_c4, cuda:1)\n\n### 3. 📊 当前状态\n刚完成 exp_wiki_scorer_confound 分析：**scorer confound confirmed**（Pythia scorer → K*=1，Qwen scorer → K*=2，delta=-0.024 on critical 1v2 pair）。已更新 registry(DONE/negative)、memory.md、向 Director 汇报。\n\nRegistry RUNNING:\n- exp_14b_c4 (westd cuda:0): Qwen-14B C4 scale validation, 预计 May 18 ~15:30 完成\n- exp_32b_c4 (westd cuda:1): Qwen-32B C4 scale validation, 预计 May 20 ~07:00 完成\n- exp_wiki_scorer_confound_1b5 (cqa1 cuda:1): Qwen-1.5B Wiki + Pythia scorer, 预计 <2h\n\n无待处理 Worker 回调。Cron 监控 3 个 RUNNING 实验。\n\n### 4. 📋 待办\n- exp_wiki_scorer_confound_1b5 cron 回调 → 分析 K*，预期 K*=1 确认 confound → 向 Director 汇报 \"Wikipedia 统一 K*=1，2/2 Qwen 均 confirmed\"\n- exp_14b_c4 cron 回调 → 分析 K*：若 K*=2 → success (scale invariance confirmed)；若 K*=1 → 启动 scorer confound contingency (14B as scorer on same data, westd cuda:0)\n- exp_32b_c4 cron 回调 → 同上逻辑\n- Director 决策 Wikipedia paper framing 调整后 → 派 Paper Worker 修订 Wikipedia discussion (Appendix → scorer confound caveat)\n- cqa1 cuda:0,2,3 空闲 → Director 未分配新任务，standby\n\n### 5. 🎯 战略上下文\n**核心结论**: K* is domain-dependent. arXiv(3) > C4(2) > Wikipedia(1). 模型差异次要（Mistral C4 one-wash, OLMo 跨域 one-wash）。\n\n**Domain×Model Matrix 修正后**:\n| Model | C4 | arXiv | Wikipedia |\n|-------|-----|-------|-----------|\n| Qwen-1.5B/7B | 2 | 3 | 1* |\n| Pythia/LLaMA/Mistral | 2/1 | 3 | 1 |\n| OLMo | 2 | 1 | 1 |\n\n*scorer confound: Qwen scorer → K*=2, cross-family scorer → K*=1\n\n**易错点**:\n1. Wikipedia K*=2 已经 invalidated，不要再引用原始 exp_wiki_qwen7b/exp_023 的 K*=2 作为真值\n2. C4 上的 K*=2 已经由 exp_022_cross_scorer_matrix 验证 scorer-independent，不受本次 confound 影响\n3. 14B/32B 如果 K*=1，scorer confound 预案用 14B scorer（不是 32B），在 westd 同台机器跑\n4. DDL May 25 (EMNLP ARR)，32B 预计 May 20 完成，留 5 天写论文 patch\n5. 磁盘: cqa1 97% 但项目仅 1.2GB（共享盘问题，不是我们的）；westd 正常\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779060901.md"
+}

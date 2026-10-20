@@ -1,0 +1,78 @@
+# director / loop_1.md
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/director/loop_1.md`
+- **Structured JSON:** [`56f64f9ddb8d4652657a.json`](../../sessions/56/56f64f9ddb8d4652657a.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 1
+reason: max_messages
+updated: '2026-05-13T02:07:42+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 autodl-4090d 的 cuda:0（1×RTX 4090D），不可使用其他设备
+- Drayson et al. (EMNLP 2025) 是**真实论文**（arXiv:2502.15654），不是幻觉。D006 记录了误判教训。任何引用验证必须交叉核实（arXiv + 机构 + proceedings），单次 web search 不可作为幻觉判定依据
+- AutoDL 环境：pip install 前必须 `source /etc/network_turbo`；HF cache 必须放 `/root/autodl-tmp/`；SSL 需设 `REQUESTS_CA_BUNDLE` 和 `SSL_CERT_FILE`
+- exp-013 依赖 exp-001 + exp-002 + exp-017（4×4 transfer matrix），不可提前跑
+
+### 2. 🖥️ 基础设施快照
+- 服务器：autodl-4090d (connect.westc.seetacloud.com)，用户 root
+- 工作目录：/root/autodl-tmp/gen-depth-contamination
+- Python：conda base 环境 /root/miniconda3/bin/python（aml-train 镜像）
+- 模型缓存：/root/autodl-tmp/.hf_cache
+- 脚本：/root/autodl-tmp/gen-depth-contamination/scripts/run_pipeline.py（619行，支持 --generation_mode {rewrite,continuation}）
+- 活跃进程：exp-002 OLMo-1B（PID 20225 或 20230——两个 PID 报告不一致，需核实）。tmux session 可能已死但进程仍在
+- 种子数据：C4 5K docs，各模型用各自 tokenizer 截断到 256 tokens
+
+### 3. 📊 当前状态
+**刚做完**：Dream 报告分析（D005）→ 整合 8 项行动到 framing/plan → Drayson 误判回滚（D006）→ Drayson novelty 评估（D007，核心 novelty 安全）→ Story Spine 微调 → exp-006 加公平 binary baseline
+
+**Registry**：
+- mvp_pilot_sat_v1: DONE (K*=2, Qwen rewrite)
+- exp_001_pythia_depth: DONE (K*=2, Pythia continuation)
+- exp_002_olmo_depth: RUNNING（depth 3+ 进行中，预计很快完成）
+- exp_017_qwen_continuation: PREPARING（代码已就绪，exp-002 后立即提交）
+- exp_013_cross_transfer: PREPARING（依赖 exp-001+002+017）
+- exp_003_decoding_ablation: PREPARING
+
+**等待中**：exp-002 完成回调；Reviewer 刚 RESET
+
+### 4. 📋 待办（条件触发式）
+- exp-002 完成回调 → 收集结果（K*、AUC 全表、JSD decay），与 mvp-001/exp-001 对比 → 立即提交 exp-017
+- exp-017 完成 → 对比 mvp-001 (Qwen rewrite) 的 feature importance ordering，判断 C2 claim 是否跨 generation mode 成立
+- exp-017 完成 → 启动 exp-013（4×4 transfer matrix：mvp-001 + exp-001 + exp-002 + exp-017）
+- exp-013 结果 → 评估 cross-model transfer framing 是否 misleading（Dream 观察项）
+- exp-003 (decoding ablation) → 重点关注 T=1.2 是否 K*=3（Dream best-tier 预测）
+- 所有 C1 实验完成后 → exp-005 degradation ordering + exp-007 K* sensitivity（纯分析，无 GPU）
+- exp-006 准备阶段 → 确认 DSIR baseline 实现可行性；binary-ours 和 binary-Drayson 两种 baseline
+
+### 5. 🎯 战略上下文
+**核心结论链**：K*=2 across Qwen(mvp) + Pythia(exp-001)。Route B framing locked（K* 作为首次测量的 operational quantity，不是 IT 基本量）。
+
+**决策链**：D001(MVP设计) → D002(重跑确认) → D003(K*=2 Conditional Pass, Route B) → D004(C1措辞校正, exp-013升P0) → D005(Dream整合8项行动) → D006(Drayson回滚) → D007(Drayson novelty安全, exp-006加binary-ours)
+
+**最容易判断错的事**：
+1. **Drayson 是真实论文**——已经因误判为幻觉犯过一次错。它是 closest prior work，我们是其 binary→ordinal 推广
+2. **C2 (degradation ordering) 尚未跨模型验证**——Pythia 的 feature importance 与 Qwen 显著不同（hapax_ratio 跌出 top 10）。exp-017 是关键控制实验，区分 generation mode effect vs model effect。在 exp-017 结果出来前不要强 claim C2
+3. **exp-006 公平性**——binary-ours baseline（同 15D 特征做 binary）是验证 C3 的最关键对比，唯一变量必须是 binary/ordinal decision。如果用 Drayson 的 neural detector 做 baseline 会引入特征差异 confound
+4. **GPU 不能空转**——exp-002 完成后必须立即提交 exp-017，序列：002→017→013→003→005→007→004→006
+
+
+---

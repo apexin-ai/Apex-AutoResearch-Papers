@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_012_binary_confidence",
+  "project": "gen-depth-contamination",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:32:09.468Z",
+    "updated_at": "2026-05-15T12:32:09.468Z",
+    "spec": {
+      "hypothesis": "Binary detector confidence (Binoculars/log-perplexity) 与 true depth 的 Spearman ρ 是否显著？如果 ρ 低，直接支撑 binary confidence ≠ depth estimation 论点",
+      "server": "westc-26893",
+      "data_path": "data/ + data_exp001_pythia/ + data_exp002_olmo/ + data_exp017_qwen_cont/",
+      "data_count": "4×6×5000 = 120000 texts",
+      "model_name": "Binoculars: observer+performer pair; Log-PPL: Qwen2.5-1.5B-Instruct",
+      "seed": 42,
+      "note": "Queued after exp-004 7B completes. Code prepared and dry-run verified."
+    }
+  },
+  "timestamp": "2026-05-15T12:32:09.521667+00:00",
+  "trigger": "update_registry"
+}

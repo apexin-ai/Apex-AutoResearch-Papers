@@ -1,0 +1,41 @@
+{
+  "exp_id": "exp_pythia14b_c4_10k",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:57:18.681Z",
+    "updated_at": "2026-05-22T14:14:41.623Z",
+    "hypothesis": "统一所有 K*=2 configs 的样本量至 10K，避免 selective precision boosting 质疑。Pythia-1.4B 5K 已稳定通过 Bonferroni (CI_lower≈0.641>0.60)，10K 为一致性验证。",
+    "spec": {
+      "command": "python3 scripts/run_pipeline.py --model_path pythia-1.4b --num_samples 10000 --max_depth 5 --batch_size 32 --generation_mode continuation + Phase2 Qwen scorer",
+      "server": "cqa1-22115",
+      "gpu": "cuda:3 (RTX PRO 6000 Blackwell 96GB)",
+      "data_path": "data/exp_pythia14b_c4_10k",
+      "data_count": 10000,
+      "model_name": "Pythia-1.4B (gen) + Qwen2.5-1.5B-Instruct (scorer)",
+      "seed": 42,
+      "log_path": "/tmp/exp_pythia14b_c4_10k.log",
+      "checkpoint_path": "results/exp_pythia14b_c4_10k/"
+    },
+    "metrics": {
+      "K_star": 2,
+      "AUC_0v1": 0.9712,
+      "AUC_1v2": 0.6175,
+      "AUC_2v3": 0.5364,
+      "AUC_3v4": 0.5134,
+      "AUC_4v5": 0.5088,
+      "JSD_0v1": 0.1368,
+      "JSD_1v2": 0.0079,
+      "ordinal_MAE": 1.2846,
+      "ordinal_acc": 0.3503,
+      "top_feature": "freq_entropy"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-22T14:14:41.623Z"
+  },
+  "timestamp": "2026-05-22T14:14:41.937328+00:00",
+  "trigger": "update_registry"
+}

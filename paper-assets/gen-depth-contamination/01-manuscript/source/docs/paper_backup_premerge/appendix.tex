@@ -1,0 +1,499 @@
+\appendix
+\section{Supplementary Figures}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_filtering_strategies.pdf}
+\caption{Downstream performance of all filtering strategies (5 seeds, $\pm$1 std). Binary-ours (green) minimizes MMLU degradation; graduated $\alpha$ sweep shows monotonic convergence toward binary. Dashed line: base model (no fine-tuning).}
+\label{fig:filtering_strategies}
+\end{figure}
+
+%% [Merged into Figure 2] \begin{figure}[t]
+%% [Merged into Figure 2]   \centering
+%% [Merged into Figure 2]   \includegraphics[width=\columnwidth]{figures/fig_s1_auc_decay_ci.pdf}
+%% [Merged into Figure 2]   \caption{Pairwise $\auc$ decay curves for five model-mode configurations with bootstrap 95\% confidence intervals. Error bars computed from 1{,}000 bootstrap resamples. The shaded region marks the $\Kempirical=2$ boundary where $\auc$ drops below $\theta=0.60$. This figure complements Figure~\ref{fig:auc_decay} in the main text by showing statistical uncertainty for each measurement point.}
+%% [Merged into Figure 2]   \label{fig:s1_auc_decay_ci}
+%% [Merged into Figure 2] \end{figure}
+
+\section{Supplementary Tables}
+
+%%% Feature ranking table (moved from main text)
+\begin{table}[t]
+\centering
+\small
+\caption{Top-3 features by single-feature $\auc$ ranking. Bold: shared across all continuation-mode models. Spearman $\rho$ (continuation pairs): Pythia--OLMo 0.95, Pythia--Qwen-cont 0.91, OLMo--Qwen-cont 0.85.}
+\label{tab:top_features}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{cllll}
+\toprule
+Rank & Pythia & OLMo & Qwen-rw & Qwen-cont \\
+\midrule
+1 & \textbf{\texttt{surp\_d1\_std}} & \textbf{\texttt{surp\_std}} & \texttt{freq\_entropy} & \textbf{\texttt{surp\_d1\_std}} \\
+2 & \textbf{\texttt{surp\_d2\_std}} & \textbf{\texttt{surp\_d1\_std}} & \textbf{\texttt{surp\_std}} & \textbf{\texttt{surp\_std}} \\
+3 & \textbf{\texttt{surp\_std}} & \textbf{\texttt{surp\_d2\_std}} & \textbf{\texttt{surp\_d1\_std}} & \textbf{\texttt{surp\_d2\_std}} \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+%%% Table S1: Cross-Transfer Confusion Matrix (exp-013)
+\begin{table*}[t]
+  \centering
+  \caption{Cross-model transfer accuracy matrix. Each cell reports the six-class depth classification accuracy of a detector trained on one model's outputs (row) and evaluated on another model's outputs (column). Diagonal entries (\textbf{bold}) indicate within-model performance. Transfer retention is computed as the ratio of off-diagonal accuracy to the geometric mean of the two corresponding diagonal entries.}
+  \label{tab:s1_transfer}
+  \begin{tabular}{lcccc}
+    \toprule
+    \multirow{2}{*}{\textbf{Train Model}} & \multicolumn{4}{c}{\textbf{Test Model}} \\
+    \cmidrule(lr){2-5}
+    & Qwen-rw & Pythia & OLMo & Qwen-cont \\
+    \midrule
+    Qwen-rw   & \textbf{0.4229} & 0.2590 & 0.2653 & 0.3466 \\
+    Pythia    & 0.2718 & \textbf{0.3856} & 0.3531 & 0.3287 \\
+    OLMo      & 0.2768 & 0.3450 & \textbf{0.3822} & 0.3244 \\
+    Qwen-cont & 0.3440 & 0.3284 & 0.3112 & \textbf{0.3875} \\
+    \bottomrule
+  \end{tabular}
+  \vspace{4pt}
+
+  \footnotesize
+  \textit{Transfer retention} between models $A$ and $B$ is defined as $\frac{1}{2}\bigl(\frac{\mathrm{acc}(A \to B)}{\sqrt{\mathrm{acc}(A \to A) \cdot \mathrm{acc}(B \to B)}} + \frac{\mathrm{acc}(B \to A)}{\sqrt{\mathrm{acc}(A \to A) \cdot \mathrm{acc}(B \to B)}}\bigr)$.
+  Notable pairs: Pythia$\leftrightarrow$OLMo 91--92\%, Qwen-cont$\leftrightarrow$Pythia 83--85\%, Qwen-cont$\leftrightarrow$OLMo 80--85\%, Qwen-rw$\to$Pythia/OLMo 61--63\%.
+\end{table*}
+
+%%% Table S2: Decoding Ablation AUC (exp-003)
+\begin{table*}[t]
+  \centering
+  \caption{Pairwise AUC with bootstrap 95\% CIs across depth pairs for four decoding configurations (all using Qwen2.5-1.5B-Instruct in rewrite mode; 10{,}000 bootstrap resamples). The horizontal rule between depth pairs 1\,vs.\,2 and 2\,vs.\,3 marks the empirical detectability boundary $\Kempirical=2$. Bottom rows report cross-configuration Spearman $\rho$ on per-feature discriminative-power rankings.}
+  \label{tab:s2_decoding}
+  \footnotesize
+  \begin{tabular}{lcccc}
+    \toprule
+    \textbf{Depth Pair} & \textbf{Greedy} & \textbf{Nuc $p{=}0.9$, $T{=}1.0$} & \textbf{Nuc $p{=}0.95$, $T{=}0.7$} & \textbf{Nuc $p{=}0.95$, $T{=}1.2$} \\
+    \midrule
+    0 vs.\ 1 & $.980\;[.977,\,.982]$ & $.995\;[.993,\,.996]$ & $.988\;[.986,\,.990]$ & $.998\;[.998,\,.999]$ \\
+    1 vs.\ 2 & $.689\;[.680,\,.698]$ & $.687\;[.677,\,.695]$ & $.689\;[.680,\,.697]$ & $.704\;[.695,\,.713]$ \\
+    \cmidrule(lr){1-5}
+    2 vs.\ 3 & $.561\;[.552,\,.571]$ & $.592\;[.582,\,.601]$\rlap{$^\dagger$} & $.590\;[.581,\,.600]$ & $.582\;[.572,\,.592]$ \\
+    3 vs.\ 4 & $.540\;[.531,\,.550]$ & $.547\;[.537,\,.557]$ & $.539\;[.529,\,.549]$ & $.529\;[.519,\,.540]$ \\
+    4 vs.\ 5 & $.514\;[.503,\,.524]$ & $.507\;[.496,\,.517]^{\ddagger}$ & $.535\;[.524,\,.545]$ & $.524\;[.513,\,.535]$ \\
+    \midrule
+    \multicolumn{5}{l}{\textbf{Cross-config feature Spearman $\rho$}} \\
+    \midrule
+    \multicolumn{2}{l}{Greedy vs.\ Nuc $p{=}0.9$} & 0.600 &
+    \multicolumn{1}{l}{Nuc $p{=}0.9$ vs.\ $T{=}0.7$} & 0.782 \\
+    \multicolumn{2}{l}{Greedy vs.\ $T{=}0.7$} & 0.914 &
+    \multicolumn{1}{l}{Nuc $p{=}0.9$ vs.\ $T{=}1.2$} & 0.893 \\
+    \multicolumn{2}{l}{Greedy vs.\ $T{=}1.2$} & 0.532 &
+    \multicolumn{1}{l}{$T{=}0.7$ vs.\ $T{=}1.2$} & 0.668 \\
+    \bottomrule
+    \multicolumn{5}{l}{${}^{\dagger}$\,CI upper bound (0.601) marginally exceeds $\theta{=}0.60$ by 0.001.} \\
+    \multicolumn{5}{l}{${}^{\ddagger}$\,Permutation $p = 0.12$ (not significant). All other pairs $p < 0.01$.}
+  \end{tabular}
+\end{table*}
+
+%%% Table S2b: Extended K* CI (all models including new additions)
+\begin{table*}[t]
+  \centering
+  \scriptsize
+  \caption{Extended pairwise $\auc$ with bootstrap 95\% CIs for all model configurations including new additions.
+  This table extends Table~\ref{tab:kstar_ci} in the main text with Qwen-base, LLaMA-8B, Mistral-7B, Pythia-6.9B (nucleus), and Gemma-2-2B configurations.
+  $\Kempirical = 2$ holds for 6/10 conditions at $\theta{=}0.60$ (OLMo-1B, Mistral-7B, Pythia-6.9B, Gemma-2-2B: $\Kempirical{=}1$).}
+  \label{tab:kstar_ci_extended}
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{lcccccccccccccccccccc}
+    \toprule
+     & \multicolumn{2}{c}{Qwen-rw} & \multicolumn{2}{c}{Pythia} & \multicolumn{2}{c}{OLMo} & \multicolumn{2}{c}{Qwen-cont} & \multicolumn{2}{c}{Qwen-7B\rlap{$^\ddagger$}} & \multicolumn{2}{c}{Qwen-base} & \multicolumn{2}{c}{LLaMA-8B} & \multicolumn{2}{c}{Mistral-7B} & \multicolumn{2}{c}{Pythia-6.9B\rlap{$^\S$}} & \multicolumn{2}{c}{Gemma-2B} \\
+    \cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}\cmidrule(lr){10-11}\cmidrule(lr){12-13}\cmidrule(lr){14-15}\cmidrule(lr){16-17}\cmidrule(lr){18-19}\cmidrule(lr){20-21}
+     & $\auc$ & 95\% CI & $\auc$ & 95\% CI & $\auc$ & 95\% CI & $\auc$ & 95\% CI & $\auc$ & 95\% CI & $\auc$ & 95\% CI & $\auc$ & 95\% CI & $\auc$ & 95\% CI & $\auc$ & 95\% CI & $\auc$ & 95\% CI \\
+    \midrule
+    0v1 & .9956 & & .9932 & & .9860 & & .9971 & & .9638 & [.961,\,.967] & .987 & [.985,\,.989] & .9224 & [.917,\,.927] & .9842 & [.982,\,.986] & .9599 & & .953 & [.949,\,.957] \\
+    1v2 & .6955 & [.686,\,.704]\rlap{$^*$} & .6539 & [.645,\,.663]\rlap{$^*$} & .5080 & [.496,\,.519] & .6112 & [.602,\,.621]\rlap{$^*$} & .6168 & [.608,\,.626]\rlap{$^*$} & .626 & [.617,\,.635]\rlap{$^*$} & .6123 & [.603,\,.622]\rlap{$^*$} & .5934 & [.584,\,.603] & .5955 & & .5981 & [.588,\,.608] \\
+    2v3 & .5893 & [.580,\,.599] & .5514 & [.542,\,.563] & .4973 & [.486,\,.509] & .5609 & [.551,\,.571] & .5492 & [.539,\,.559] & .550 & [.540,\,.560] & .5273 & [.517,\,.538] & .5402 & [.530,\,.551] & .5298 & & .534 & [.523,\,.545] \\
+    3v4 & .5435 & & .5152 & & .5024 & & .5409 & & .5276 & & .529 & [.519,\,.540] & .5168 & [.506,\,.528] & .5233 & [.513,\,.534] & .5135 & & .5033 & [.492,\,.514] \\
+    4v5 & .5340 & & .5136 & & .4942 & & .5141 & & .5085 & & .518 & [.508,\,.529] & .5159 & [.505,\,.527] & .5180 & [.507,\,.529] & -- & -- & .5025 & [.492,\,.514] \\
+    \bottomrule
+    \multicolumn{21}{l}{\footnotesize $^*$Permutation $p < 0.001$ for all boundary comparisons.} \\
+    \multicolumn{21}{l}{\footnotesize $^\ddagger$Generator: Qwen2.5-7B (fp16); scorer: Qwen2.5-1.5B. ``--'': experiment pending.} \\
+    \multicolumn{21}{l}{\footnotesize $^\S$Pythia-6.9B evaluated separately; nucleus sampling ($p{=}0.95$, $T{=}1.0$), same as all other models.}
+  \end{tabular}}% end resizebox
+\end{table*}
+
+%%% Table S3: LLM Zero-Shot Confusion Matrices (exp-011)
+\begin{table*}[t]
+  \centering
+  \caption{LLM zero-shot depth classification: $5{\times}5$ confusion matrices
+    (Exp-011). Both frontier LLMs achieve high binary detection accuracy
+    (GPT-5.5: 0.8780; Claude Opus~4.6: 0.8818) but near-chance 5-class
+    accuracy (${\sim}0.33$ vs.\ OBD-LightGBM baseline 0.386, evaluated on the full test set $N{=}5{,}000$). GPT-5.5
+    strongly identifies depth-0 text (recall${=}0.7700$) but collapses on
+    depth-4 (recall${=}0.0800$), misclassifying 50/100 depth-4 samples as
+    depth-2. Claude Opus~4.6 shows more uniform errors across depths 1--4,
+    with depth-4 recall (0.3700) substantially exceeding GPT-5.5.
+    Per-depth recall comparison with OBD-LightGBM in Table~\ref{tab:s3c_perdepth}.}
+  \label{tab:s3_llm_zeroshot}
+
+  \vspace{0.5em}
+  \begin{subtable}{0.48\textwidth}
+    \centering
+    \caption{GPT-5.5 ($N{=}500$, acc${=}0.332$, MAE${=}1.102$)}
+    \label{tab:s3a_gpt55}
+    \small
+    \begin{tabular}{lcccccc}
+      \toprule
+      & \multicolumn{5}{c}{Predicted Depth} & \\
+      \cmidrule(lr){2-6}
+      True & 0 & 1 & 2 & 3 & 4 & Rec. \\
+      \midrule
+      0 & \textbf{77} & 18 &  4 &  0 &  1 & .770 \\
+      1 &  9 & \textbf{19} & 36 & 24 & 12 & .190 \\
+      2 &  8 & 10 & \textbf{38} & 35 &  9 & .380 \\
+      3 & 10 & 16 & 35 & \textbf{24} & 15 & .240 \\
+      4 & 11 & 13 & 50 & 18 &  \textbf{8} & .080 \\
+      \bottomrule
+    \end{tabular}
+  \end{subtable}
+  \hfill
+  \begin{subtable}{0.48\textwidth}
+    \centering
+    \caption{Claude Opus~4.6 ($N{=}499$, acc${=}0.331$, MAE${=}1.150$)}
+    \label{tab:s3b_claude}
+    \small
+    \begin{tabular}{lcccccc}
+      \toprule
+      & \multicolumn{5}{c}{Predicted Depth} & \\
+      \cmidrule(lr){2-6}
+      True & 0 & 1 & 2 & 3 & 4 & Rec. \\
+      \midrule
+      0 & \textbf{69} & 26 &  3 &  0 &  2 & .690 \\
+      1 &  8 & \textbf{21} & 32 & 11 & 28 & .210 \\
+      2 &  6 & 36 & \textbf{28} &  5 & 25 & .280 \\
+      3 &  7 & 20 & 31 & \textbf{10} & 31 & .100 \\
+      4 &  7 & 28 & 22 &  6 & \textbf{37} & .370 \\
+      \bottomrule
+    \end{tabular}
+  \end{subtable}
+\end{table*}
+
+\begin{table}[t]
+  \centering
+  \small
+  \caption{Per-depth recall (\%) on balanced $N{=}500$ test set. OBD's nominal overall accuracy gap originates from depth-0; all methods fail at depths $\geq 2$, consistent with $\Kempirical = 2$.}
+  \label{tab:s3c_perdepth}
+  \begin{tabular}{lccccc}
+    \toprule
+    & Depth 0 & Depth 1 & Depth 2 & Depth 3 & Depth 4 \\
+    \midrule
+    OBD-LightGBM & \textbf{96} & \textbf{39} & 14 & 19 & 22 \\
+    GPT-5.5      & 77 & 19 & \textbf{38} & \textbf{24} &  8 \\
+    Claude Opus~4.6 & 69 & 21 & 28 & 10 & \textbf{37} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+%%% Table: Token Length and EOS Truncation Analysis
+\begin{table*}[t]
+  \centering
+  \small
+  \caption{Mean subword token count per depth and EOS truncation rate (\%) for depth~1+ across all model configurations (generation limit: 256 tokens). Depth~0 (human text) is shared across configurations. Depths 1--5 show no systematic length trend within any model; the 0v1 length asymmetry (human texts shorter) makes detection \emph{more conservative}, not inflated. See Section~\ref{sec:length_confound} for discussion.}
+  \label{tab:token_length}
+  \begin{tabular}{lcccccccc}
+    \toprule
+    & \multicolumn{6}{c}{\textbf{Mean Token Count}} & & \\
+    \cmidrule(lr){2-7}
+    \textbf{Model} & Depth 0 & Depth 1 & Depth 2 & Depth 3 & Depth 4 & Depth 5 & \textbf{EOS Trunc.\ (\%)} & \textbf{Severity} \\
+    \midrule
+    Qwen-rw (1.5B)  & 191 & 254 & 252 & 254 & 254 & 254 & 7--11 & Mild \\
+    Pythia-1.4B      & 192 & 214 & 215 & 216 & 217 & 218 & 34--36 & High \\
+    OLMo-1B          & 192 & 256 & 256 & 256 & 256 & 256 & $<$1 & Negligible \\
+    Qwen-cont (1.5B) & 191 & 244 & 238 & 240 & 240 & 238 & 17--20 & Moderate \\
+    Qwen-7B          & 191 & 196 & 195 & 193 & 197 & 197 & 45--47 & High \\
+    \midrule
+    \multicolumn{9}{l}{\textit{Decoding ablation (Qwen-rw 1.5B)}} \\
+    \quad Greedy          & 191 & 253 & 252 & 253 & 254 & 254 & 8--12 & Mild \\
+    \quad Nuc $p{=}0.9$   & 191 & 254 & 251 & 254 & 253 & 254 & 8--16 & Mild \\
+    \quad $T{=}0.7$       & 191 & 253 & 251 & 253 & 253 & 254 & 8--14 & Mild \\
+    \quad $T{=}1.2$       & 191 & 254 & 252 & 253 & 254 & 254 & 8--16 & Mild \\
+    \bottomrule
+  \end{tabular}
+
+  \vspace{4pt}
+  \footnotesize
+  EOS truncation rate: percentage of depth~1+ samples where generation terminated via EOS before reaching the 256-token limit. Ranges span depths 1--5.
+\end{table*}
+
+\clearpage
+\section{Supplementary Details}
+
+%%% Table S4: Dataset Statistics
+\begin{table}[t]
+  \centering
+  \small
+  \caption{Dataset statistics for the generational depth corpus. Depth~0 contains human-written seed texts sampled from the C4 English validation split and truncated to 256 subword tokens. Depths~1--5 are recursively generated by Qwen2.5-1.5B-Instruct (nucleus sampling, $p{=}0.95$, $T{=}1.0$). Token counts use whitespace tokenization. Statistics shown for the primary Qwen-rewrite corpus; the other three model-mode configurations (Pythia-cont, OLMo-cont, Qwen-cont) share the same generation pipeline and corpus structure.}
+  \label{tab:s4_dataset_stats}
+  \begin{tabular}{clrl}
+    \toprule
+    \textbf{Depth} & \textbf{$N$ samples} & \textbf{Mean tokens} & \textbf{Source} \\
+    \midrule
+    0 & 5{,}000 & 147.8 & C4 validation (human) \\
+    1 & 5{,}000 & 207.1 & Qwen2.5-1.5B rewrite \\
+    2 & 5{,}000 & 206.1 & Qwen2.5-1.5B rewrite \\
+    3 & 5{,}000 & 208.0 & Qwen2.5-1.5B rewrite \\
+    4 & 5{,}000 & 207.7 & Qwen2.5-1.5B rewrite \\
+    5 & 5{,}000 & 207.7 & Qwen2.5-1.5B rewrite \\
+    \midrule
+    \multicolumn{2}{l}{Total} & \multicolumn{2}{l}{30{,}000 samples} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+%%% Table S5: Complete 15-D Feature Descriptions
+\begin{table*}[t]
+  \centering
+  \caption{Complete description of the 15-dimensional feature set used by the OBD classifier. Features are grouped into three families: surprisal statistics (9~dims) computed from Qwen2.5-1.5B token-level log-probabilities, lexical diversity (3~dims), and frequency tail shape (3~dims). All features are computed per document.}
+  \label{tab:s5_features}
+  \begin{tabular}{llp{0.45\textwidth}l}
+    \toprule
+    \textbf{Group} & \textbf{Feature} & \textbf{Description} & \textbf{Range} \\
+    \midrule
+    \multirow{9}{*}{\rotatebox[origin=c]{90}{\textsc{Surprisal}}}
+    & \texttt{surp\_mean}   & Mean token surprisal $\frac{1}{T}\sum_t -\log p(x_t \mid x_{<t})$ & $\mathbb{R}^+$ \\
+    & \texttt{surp\_std}    & Standard deviation of token surprisal & $\mathbb{R}^+$ \\
+    & \texttt{surp\_skew}   & Skewness of the surprisal distribution & $\mathbb{R}$ \\
+    & \texttt{surp\_kurt}   & Excess kurtosis of the surprisal distribution & $\mathbb{R}$ \\
+    & \texttt{surp\_d1\_mean} & Mean of first-order surprisal differences $\Delta s_t = s_{t+1} - s_t$ & $\mathbb{R}$ \\
+    & \texttt{surp\_d1\_std}  & Std of first-order surprisal differences & $\mathbb{R}^+$ \\
+    & \texttt{surp\_d1\_skew} & Skewness of first-order surprisal differences & $\mathbb{R}$ \\
+    & \texttt{surp\_d2\_mean} & Mean of second-order differences $\Delta^2 s_t$ & $\mathbb{R}$ \\
+    & \texttt{surp\_d2\_std}  & Std of second-order surprisal differences & $\mathbb{R}^+$ \\
+    \midrule
+    \multirow{3}{*}{\rotatebox[origin=c]{90}{\textsc{Lex}}}
+    & \texttt{ttr}          & Type-token ratio: $|V| / T$ & $[0, 1]$ \\
+    & \texttt{hapax\_ratio} & Hapax legomena ratio: freq-1 types / unique types & $[0, 1]$ \\
+    & \texttt{self\_bleu}   & Mean 4-gram BLEU against 100 random same-depth samples & $[0, 1]$ \\
+    \midrule
+    \multirow{3}{*}{\rotatebox[origin=c]{90}{\textsc{Freq}}}
+    & \texttt{freq\_kurtosis}  & Excess kurtosis of word frequency distribution & $\mathbb{R}$ \\
+    & \texttt{freq\_entropy}   & Shannon entropy of word frequencies: $-\sum p_w \log_2 p_w$ & $\mathbb{R}^+$ \\
+    & \texttt{low\_freq\_ratio} & Proportion of vocabulary with count $\leq 2$ & $[0, 1]$ \\
+    \bottomrule
+  \end{tabular}
+\end{table*}
+
+%%% Tables S6 & S7: Side by side in a single table* to avoid table*/table overlap
+\begin{table*}[t]
+\begin{minipage}[t]{0.45\textwidth}
+  \centering
+  \small
+  \captionof{table}{LightGBM hyperparameters for the pairwise OBD (Ordinal Binary Decomposition) classifier used throughout the paper. One binary classifier is trained per adjacent depth pair $(k, k{+}1)$; 5-fold GroupKFold cross-validation is grouped by \texttt{doc\_id} to prevent data leakage from the same seed document appearing in both train and test.}
+  \label{tab:s6_lgbm_params}
+  \begin{tabular}{ll}
+    \toprule
+    \textbf{Parameter} & \textbf{Value} \\
+    \midrule
+    \texttt{n\_estimators}      & 200 \\
+    \texttt{learning\_rate}     & 0.05 \\
+    \texttt{max\_depth}         & 6 \\
+    \texttt{num\_leaves}        & 31 \\
+    \texttt{verbose}            & $-1$ \\
+    \texttt{n\_jobs}            & $-1$ (all cores) \\
+    Cross-validation            & 5-fold GroupKFold \\
+    Grouping key                & \texttt{doc\_id} \\
+    Objective                   & Binary (per depth pair) \\
+    \bottomrule
+  \end{tabular}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.52\textwidth}
+  \centering
+  \small
+  \captionof{table}{Neural probe architecture and training details (Exp-015). Applied to all three model families (Qwen2.5-1.5B, Pythia-1.4B, OLMo-1B): each model's frozen hidden states are average-pooled into document embeddings and classified by a two-hidden-layer MLP.}
+  \label{tab:s7_neural_probe}
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{ll}
+    \toprule
+    \textbf{Component} & \textbf{Details} \\
+    \midrule
+    \multicolumn{2}{l}{\textit{Embedding extraction}} \\
+    Base models       & Qwen2.5-1.5B / Pythia-1.4B / OLMo-1B (frozen) \\
+    Representation    & Last hidden state, attention-masked avg pool \\
+    Embedding dim     & 1536 / 2048 / 2048 \\
+    Max sequence len   & 512 tokens \\
+    \midrule
+    \multicolumn{2}{l}{\textit{MLP classifier}} \\
+    Architecture      & $d_{\text{emb}} \to 512 \to 256 \to 6$ \\
+    Activations       & ReLU \\
+    Dropout           & 0.1 (after each hidden layer) \\
+    Output            & 6-class softmax \\
+    \midrule
+    \multicolumn{2}{l}{\textit{Training}} \\
+    Optimizer         & Adam ($\text{lr} = 10^{-3}$, weight decay $= 10^{-4}$) \\
+    Loss              & Cross-entropy \\
+    Batch size        & 256 \\
+    Max epochs        & 20 \\
+    Early stopping    & Patience = 5 (validation loss) \\
+    Cross-validation  & 5-fold GroupKFold \\
+    \bottomrule
+  \end{tabular}%
+  }
+\end{minipage}
+\end{table*}
+
+%%% Table S8: Per-Model Bootstrap CI Results (exp-007)
+\begin{table*}[t]
+  \centering
+  \footnotesize
+  \caption{Pairwise AUC with bootstrap 95\% confidence intervals for four model-mode configurations (Exp-007, 1{,}000 bootstrap resamples). The horizontal rule separates depth pairs above and below the detectability threshold $\theta = 0.60$. Permutation $p$-values test $H_0\colon \auc = 0.50$. All pairs are significant at $p < 0.01$ except OLMo 1\,vs.\,2 through 4\,vs.\,5 (all $p > 0.09$), consistent with $\Kempirical{=}1$ for OLMo.}
+  \label{tab:s8_cv_folds}
+  \begin{tabular}{lcccc}
+    \toprule
+    \textbf{Depth Pair} & \textbf{Qwen-rewrite} & \textbf{Pythia-1.4B} & \textbf{OLMo-1B} & \textbf{Qwen-cont} \\
+    \midrule
+    0 vs.\ 1
+      & $.996\;[.995,\,.997]$
+      & $.993\;[.992,\,.994]$
+      & $.986\;[.984,\,.988]$
+      & $.997\;[.996,\,.998]$ \\
+    1 vs.\ 2
+      & $.696\;[.686,\,.704]$
+      & $.654\;[.645,\,.663]$
+      & $.508\;[.496,\,.519]$
+      & $.611\;[.602,\,.621]$ \\
+    \cmidrule(lr){1-5}
+    2 vs.\ 3
+      & $.589\;[.580,\,.599]$
+      & $.551\;[.542,\,.563]$
+      & $.497\;[.486,\,.509]$
+      & $.561\;[.551,\,.571]$ \\
+    3 vs.\ 4
+      & $.544\;[.533,\,.555]$
+      & $.515\;[.504,\,.526]$
+      & $.502\;[.491,\,.513]$
+      & $.541\;[.531,\,.551]$ \\
+    4 vs.\ 5
+      & $.534\;[.524,\,.545]$
+      & $.514\;[.502,\,.525]$
+      & $.494\;[.483,\,.506]$
+      & $.514\;[.504,\,.526]$ \\
+    \bottomrule
+  \end{tabular}
+
+  \vspace{4pt}
+  \footnotesize
+  Each cell: AUC $[95\%$ CI$]$. CI from 1{,}000 bootstrap resamples; $p$-values from 500-resample permutation test.
+  All pairs $p < 0.01$ except OLMo 1v2--4v5 ($p > 0.09$).
+\end{table*}
+
+%%% Table S9: Binary Detector Spearman ρ (exp-012)
+\begin{table*}[t]
+  \centering
+  \small
+  \caption{Spearman rank correlation ($\rho$) between binary detector confidence scores and true generational depth, and 6-class depth classification accuracy (Exp-012). Three metrics: log-PPL from the reference model (DivEye), log-PPL from the observer model, and PPL ratio (Binoculars; observer: Pythia-1.4B, performer: OLMo-1B). Random baseline for 6-class accuracy: 0.167. While statistically significant, correlations are driven by the 0v1 boundary; confidence scores do not monotonically track depth beyond generation~1. Qwen-rewrite exhibits reversed sign ($\rho > 0$), indicating that generation mode alters the direction of binary confidence's relationship with depth.}
+  \label{tab:s9_binary_spearman}
+  \begin{tabular}{lcccc}
+    \toprule
+    & \textbf{Qwen-rw} & \textbf{Pythia} & \textbf{OLMo} & \textbf{Qwen-cont} \\
+    \midrule
+    \multicolumn{5}{l}{\textit{Spearman $\rho$ with true depth}} \\
+    \quad log-PPL (ref)      & $-0.123$ & $-0.297$ & $-0.378$ & $-0.389$ \\
+    \quad log-PPL (observer) & $+0.082$ & $-0.453$ & $-0.461$ & $-0.162$ \\
+    \quad PPL ratio           & $+0.119$ & $-0.392$ & $-0.407$ & $-0.058$ \\
+    \midrule
+    \multicolumn{5}{l}{\textit{Classification}} \\
+    \quad 6-class accuracy    & 0.199    & 0.130    & 0.127    & 0.183 \\
+    \midrule
+    \multicolumn{5}{l}{Random baseline: 0.167 \quad $\Kempirical^{\text{binary}} = 1$ \quad $\Kempirical^{\text{OBD}} = 2$} \\
+    \bottomrule
+  \end{tabular}
+\end{table*}
+
+%%% Table S10: Pythia Decoding Ablation (exp-020)
+\begin{table*}[t]
+  \centering
+  \small
+  \caption{Pairwise $\auc$ with bootstrap 95\% CIs across depth pairs for Pythia-1.4B under four decoding configurations (Exp-020; 10{,}000 bootstrap resamples). Complements Table~\ref{tab:s2_decoding} (Qwen-rewrite) with a second model family. $^\dagger$Greedy decoding triggers repetition collapse in Pythia-1.4B (4-gram repeat rate: $d_0{=}0.01 \to d_1{=}0.72$), inflating 0v1 and 1v2 AUC via lexical degeneracy rather than depth-discriminative features.}
+  \label{tab:s10_pythia_decoding}
+  \begin{tabular}{lcccc}
+    \toprule
+    \textbf{Depth Pair} & \textbf{Greedy}$^\dagger$ & \textbf{Nuc $p{=}0.9$, $T{=}1.0$} & \textbf{Nuc $p{=}0.95$, $T{=}0.7$} & \textbf{Nuc $p{=}0.95$, $T{=}1.2$} \\
+    \midrule
+    0 vs.\ 1 & $.999\;[.999,\,.999]$ & $.995\;[.994,\,.996]$ & $.996\;[.995,\,.997]$ & $.994\;[.993,\,.994]$ \\
+    1 vs.\ 2 & $.884\;[.878,\,.890]$ & $.675\;[.667,\,.684]$ & $.728\;[.721,\,.736]$ & $.618\;[.608,\,.628]$ \\
+    \cmidrule(lr){1-5}
+    2 vs.\ 3 & $.531\;[.520,\,.541]$ & $.559\;[.549,\,.570]$ & $.598\;[.589,\,.606]$\rlap{$^\ddagger$} & $.531\;[.520,\,.541]$ \\
+    3 vs.\ 4 & $.522\;[.511,\,.532]$ & $.524\;[.513,\,.534]$ & $.563\;[.553,\,.572]$ & $.520\;[.509,\,.531]$ \\
+    4 vs.\ 5 & $.514\;[.504,\,.525]$ & $.501\;[.490,\,.512]$ & $.527\;[.518,\,.537]$ & $.510\;[.499,\,.521]$ \\
+    \midrule
+    $\Kempirical$ & 2 & 2 & 2 & 2 \\
+    \bottomrule
+    \multicolumn{5}{l}{${}^{\ddagger}$\,CI upper bound (0.606) exceeds $\theta{=}0.60$; point estimate (.598) below threshold.} \\
+  \end{tabular}
+\end{table*}
+
+%%% Table S11: Length Ablation (exp-021)
+\begin{table*}[t]
+  \centering
+  \small
+  \caption{Pairwise $\auc$ across depth pairs for three segment lengths (Exp-021; Qwen2.5-1.5B base, continuation mode). $\Kempirical{=}2$ is confirmed for 128 and 256 tokens; 512 tokens yields point estimate $\Kempirical{=}2$ but the 1v2 bootstrap CI lower bound falls marginally below $\theta$.}
+  \label{tab:s11_length_ablation}
+  \begin{tabular}{lccc}
+    \toprule
+    \textbf{Depth Pair} & \textbf{128 tokens} & \textbf{256 tokens} & \textbf{512 tokens} \\
+    \midrule
+    0 vs.\ 1 & .9791 & .9914 & .9917 \\
+    1 vs.\ 2 & .6219 & .6282 & .6073$^\dagger$ \\
+    \cmidrule(lr){1-4}
+    2 vs.\ 3 & .5291 & .5556 & .5721 \\
+    3 vs.\ 4 & .5349 & .5298 & .5300 \\
+    4 vs.\ 5 & .5012 & .5137 & .5176 \\
+    \midrule
+    $\Kempirical$ & 2 & 2 & 2$^\dagger$ \\
+    \bottomrule
+    \multicolumn{4}{l}{\footnotesize $^\dagger$CI $[0.5979,\,0.6166]$; lower bound ${<}\theta{=}0.60$.}
+  \end{tabular}
+\end{table*}
+
+%%% Table S12: Domain Ablation
+\begin{table*}[t]
+  \centering
+  \small
+  \caption{Pairwise $\auc$ across depth pairs for three text domains (Qwen2.5-1.5B-Instruct, continuation mode). Tests generalization of $\Kempirical{=}2$ beyond C4 web text to structured and technical domains.}
+  \label{tab:s12_domain_ablation}
+  \begin{tabular}{lccc}
+    \toprule
+    \textbf{Depth Pair} & \textbf{C4 (web)} & \textbf{Wikipedia} & \textbf{arXiv} \\
+    \midrule
+    0 vs.\ 1 & .9971 & .9961 & .9948 \\
+    1 vs.\ 2 & .6112 & .6193 & .8581 \\
+    \cmidrule(lr){1-4}
+    2 vs.\ 3 & .5609 & .5498 & .6436 \\
+    3 vs.\ 4 & .5409 & .5231 & .5440 \\
+    4 vs.\ 5 & .5141 & .5141 & .5299 \\
+    \midrule
+    $\Kempirical$ & 2 & 2 & 3 \\
+    \bottomrule
+  \end{tabular}
+\end{table*}
+
+%%% Table S13: Scorer Sensitivity Analysis
+\begin{table*}[t]
+  \centering
+  \small
+  \caption{Scorer sensitivity: $\Kempirical$ under self-scoring vs.\ cross-scoring. Self-scorer uses the generator's own model family for feature extraction; cross-scorer uses alternative models (Pythia-1.4B, OLMo-1B). $\Kempirical$ agreement across scorer conditions indicates the boundary is governed by the generation process. Cross-scoring reduces $\Kempirical$ only for the most marginal self-scorer condition (Qwen-continuation).}
+  \label{tab:s13_scorer_sensitivity}
+  \begin{tabular}{lccccc}
+    \toprule
+    & & \multicolumn{3}{c}{\textbf{Scorer}} & \\
+    \cmidrule(lr){3-5}
+    \textbf{Generator} & \textbf{Mode} & \textbf{Self} & \textbf{Pythia} & \textbf{OLMo} & \textbf{Agreement} \\
+    \midrule
+    Qwen-1.5B-Instruct & Rewrite      & 2 & 2 & 2 & \checkmark \\
+    Qwen-1.5B-Instruct & Continuation & 2 & 1 & 1 & $\times$ \\
+    Qwen-1.5B (base)   & Continuation & 2 & 2 & 2 & \checkmark \\
+    Pythia-1.4B         & Continuation & 2 & 2 & 2 & \checkmark \\
+    OLMo-1B             & Continuation & 1 & --- & --- & --- \\
+    Qwen-7B             & Continuation & 2 & --- & --- & --- \\
+    Mistral-7B          & Continuation & 1 & --- & --- & --- \\
+    \bottomrule
+  \end{tabular}
+\end{table*}
+
+\clearpage

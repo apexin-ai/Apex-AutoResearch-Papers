@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp_009_dose_50pct_v2",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T23:14:53.711Z",
+    "updated_at": "2026-05-17T00:22:52.736Z",
+    "spec": {
+      "command": "python scripts/exp009_dose_response.py --ratio 0.5 --device cuda:0 --num_seeds 5",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "86342",
+      "log_path": "~/runs/gen-depth-contamination/exp_009_dose_50pct_v2.log",
+      "submitted_at": "2026-05-16T23:14:53.568Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/exp_009_dose_response/ratio_50/",
+      "data_count": 10000,
+      "model_name": "Qwen2.5-1.5B (continued pretraining)",
+      "seed": 42,
+      "checkpoint_source": "pretrained Qwen2.5-1.5B",
+      "eval_data": "MMLU + HellaSwag via lm-eval-harness",
+      "wall_clock_seconds": 4079.2,
+      "gpu_hours": 1.13
+    },
+    "hypothesis": "Dose-response 50% contamination (v2, fix: HF mirror + retry): binary vs graduated filtering at high synthetic injection. 5 seeds × 3 strategies, Qwen2.5-1.5B cont. pretraining, eval MMLU+HellaSwag.",
+    "conclusion": "failed",
+    "failure_reason": "CUDA OOM during lm_eval MMLU 5-shot (batch_size=8, logits tensor exceeds 24GB)",
+    "checkpoint_path": "N/A (crashed before checkpoint)",
+    "completed_at": "2026-05-17T00:22:52.736Z"
+  },
+  "timestamp": "2026-05-17T00:22:52.884104+00:00",
+  "trigger": "update_registry"
+}

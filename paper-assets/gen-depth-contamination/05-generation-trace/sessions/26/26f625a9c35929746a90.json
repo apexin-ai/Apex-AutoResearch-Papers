@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26f625a9c35929746a90",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp004 analysis prep",
+  "task_key": "worker_code_exp004_analysis_prep_20260515T123648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp004_analysis_prep_20260515T123648_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "0c4e0341eef141ebde92fe44b910d1eaebf8e5af98f499b8f572690316788514"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已部署到服务器，`--help` 验证通过。\n\n**`scripts/exp004_analyze.py`** 功能：\n- **Pairwise AUC**: 0v1~4v5，LightGBM OBD 5-fold CV（参数与现有 pipeline 一致），每对 bootstrap 1000 次算 95% CI\n- **K\\*(θ=0.60)**: CI lower bound ≥ θ 的最大连续 depth pair index + 1\n- **K\\*(θ) sweep**: θ = 0.55, 0.60, 0.65, 0.70\n- **Ordinal**: 6-class MAE + accuracy，Top-5 feature importance\n- **Baseline 对比**: 并排输出 7B vs 4 个 ≤1.5B baseline 的 pairwise AUC\n- **Paired difference test**: 7B vs Qwen-1.5B(cont) 和 Qwen-1.5B(rewrite) 在 1v2 上的 bootstrap 差异显著性检验\n- **输出**: `artifacts/exp004_7b_analysis.json` + 终端 summary table\n\nexp-004 完成后直接运行 `python scripts/exp004_analyze.py` 即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp004-analysis-prep.md"
+}

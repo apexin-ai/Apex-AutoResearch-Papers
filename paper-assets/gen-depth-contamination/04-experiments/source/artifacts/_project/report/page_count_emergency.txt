@@ -1,0 +1,28 @@
+Page Count Emergency Check — 2026-05-23
+=========================================
+
+Conclusion ends: page 8, right column (y≈396/775), paper line ~582
+Limitations starts: page 8, right column (y≈410), paper line 583
+Ethics Statement starts: page 8, right column (y≈620), paper line 597
+Ethics Statement ends: page 9, left column (y≈112), paper line 610
+References starts: page 9, left column (y≈136), paper line 611
+Appendix starts: page 11
+
+Main text pages: 8 (PASS)
+
+Remaining space after Conclusion (before Limitations):
+  ~379 points ≈ 134mm ≈ ~28 lines of breathing room in right column of page 8
+
+Section layout:
+  Page 1:     Introduction (Section 1)
+  Page 2:     Related Work (Section 2), Method (Section 3)
+  Page 3-6:   Experimental Setup & Results (Sections 4-5)
+  Page 7:     Discussion (Section 6)
+  Page 8:     Discussion (cont.) + Conclusion (Section 7) + Limitations + Ethics Statement
+  Page 9:     Ethics Statement (end) + References
+  Page 10:    References (cont.)
+  Page 11-18: Appendix
+
+Total PDF pages: 18
+
+Verdict: PASS — main text (Section 1 through Conclusion) fits within 8 pages with ~28 lines of margin.

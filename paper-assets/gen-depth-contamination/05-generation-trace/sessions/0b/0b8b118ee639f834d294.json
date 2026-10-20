@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b8b118ee639f834d294",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "agent / loop_2_1778715887.md",
+  "task_key": "loop_2_1778715887",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778715887.md",
+    "occurrence": 1,
+    "bytes": 5131,
+    "sha256": "987c6df922e7398461822fba9154f6eea9b4be4be3a6df10356509350664532a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_messages\nupdated: '2026-05-13T22:34:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westc-26893 cuda:0（唯一分配的 GPU），不得在其他卡上启动实验\n- submit_training_job 命令必须 `bash -c \"...\"` 包裹（bash builtin 如 source 不能直接用）\n- exp-006 是 C3 claim 唯一支撑实验，38h 长跑不可中断（PID 46129），任何 SSH 操作不得影响该进程\n- OBD 方向已确认代码 = P(depth > k)，method.tex 已修正为一致，不要再改回 P(≤k)\n- exp-015 neural probe 必须等 exp-006 完成释放 GPU 后才能提交，代码已 dry-run 通过，不需要重写\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westc-26893（原名 autodl-4090d，1×RTX 4090D 24GB）\n- 工作目录：`/root/autodl-tmp/gen-depth-contamination/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型缓存：`/root/autodl-tmp/.hf_cache/`（Qwen2.5-1.5B-Instruct 已下载）\n- 数据：`/root/autodl-tmp/gen-depth-contamination/data/`（C4 5K docs depth chains 已生成）\n- 活跃进程：exp-006 PID 46129, tmux session = `exp_006_graduated_filtering`, 50 runs × ~46min/run\n- Cron：reconcile 返回 0（可能 cron 未注册或已脱钩，exp-006 完成后需手动检查）\n- exp-015 脚本：`/root/autodl-tmp/gen-depth-contamination/scripts/run_exp015_neural_probe.py`（dry-run 通过）\n- exp-015 提交命令：`bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_exp015_neural_probe.py --output_dir artifacts/exp015_neural_probe --num_samples 5000 --max_depth 5 --n_folds 5 2>&1 | tee logs/exp015_neural_probe.log\"`\n\n### 3. 📊 当前状态\n刚完成 paper sections 质量审查 worker 结果处理——发现 10 条修正项（4 数值 + 6 格式/引用），核心数据无误。已 spawn summary figure worker（worker_paper_summary_figure_20260513T221651），尚未收到回调。\n\n**Registry 状态：**\n- RUNNING: exp_006_graduated_filtering（6 strategies × 5 seeds × α sweep = 50 runs, 预计 05-15 11:00 UTC 完成）\n- PREPARING: exp_015_neural_probe（等 GPU 释放）\n- DONE: mvp-001, exp-001, exp-002, exp-017, exp-003, exp-005, exp-007, exp-010, exp-013, exp-011（共 10 个 success）\n\n**等待中：**\n- Worker 回调：worker_paper_summary_figure_20260513T221651（summary AUC decay figure）\n- exp-006 完成回调（cron 或手动检查）\n- Director 决策：无 pending\n\n**尚未向 Director 汇报本轮 3 项任务结果**（exp-003 图表确认 + paper audit 10 条 + summary figure）——summary figure worker 还在跑，等回调后一并汇报。\n\n### 4. 📋 待办\n- summary figure worker 回调 → 注册 artifact → 向 Director 汇报全部 3 项 CPU 任务完成（含 paper audit 10 条修正清单）\n- exp-006 完成回调 → 立即 spawn 分析 worker 提取 metrics → update_registry → 立即用 submit_training_job 提交 exp-015（命令已在 §2）\n- exp-006 conclusion=success → spawn worker 写 Experiments C3 章节 + 填 discussion §5.6 TODO + conclusion C3 TODO\n- exp-006 conclusion=negative → 按 red-section skill 产 Framing 提案，禁止默默跑下一个\n- exp-015 完成 → 若 K*_neural = K*_15D=2 → C1' 从 \"our features find K*=2\" 升级为 \"K*=2 is data-intrinsic\"；若 K*_neural > 2 → 15D projection 是 K*=2 的部分原因，需调整 claim 措辞\n- Paper audit 10 条修正 → spawn worker 批量修复（需 Director 确认优先级，或自行 batch fix）\n\n### 5. 🎯 战略上下文\n- **核心结论**：K*=2 across 8/8 conditions（4 models × 2 gen modes + 4 decoding strategies），D016 universality narrative 成立\n- **论文结构**：2+1 claims（C1' K* characterization + C3 graduated filtering + supporting analysis）。C1' 已有充分 evidence（10 个 success），C3 完全依赖 exp-006\n- **exp-006 是单点依赖**：C3 claim 唯一支撑。若 graduated filtering 未显著优于 binary → D013 已有 fallback story 预案（graduated filtering 作为 \"no worse + interpretability advantage\"）\n- **exp-015 是 C1' 最高边际价值实验**：Reviewer 评估为论文生死实验——neural probe K*=2 = data-intrinsic boundary（强 claim），K*>2 = feature projection artifact（弱 claim）\n- **Paper audit 发现的数值错误**：transfer retention \"91-92%\" 应为 \"90-92%\"，\"83-85%\" 应为 \"84-85%\"。均为 rounding 问题非数据错误。Qwen-cont 0v1 表注说 \"conservatively inferred\" 但实际已计算（perm_p=0），需删除该注\n- **易踩的坑**：(1) read_registry 不传 project 参数会返回空结果；(2) submit_on_allocated 可能因 spec 缺字段失败，直接用 submit_training_job 更可靠；(3) westc-26893 没有 bc 命令（已安装）；(4) exp-006 cron 可能未正确注册（reconcile 返回 0），完成时可能需要手动检查状态\n- **DDL**：05-25 ARR 提交，05-17 完整初稿目标。时间充足但 exp-006 + exp-015 串行 ~41h 是关键路径\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778715887.md"
+}

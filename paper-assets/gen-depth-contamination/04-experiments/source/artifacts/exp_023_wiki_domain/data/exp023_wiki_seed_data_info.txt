@@ -1,0 +1,7 @@
+Path: /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/depth_0.jsonl
+Lines: 5000
+Format: {"text": "...", "doc_id": N} (same as C4 seed data)
+Source: wikimedia/wikipedia 20231101.en (streaming, first ~5300 articles, skipped 282 stubs < 500 chars)
+Text length: min=502, max=1701, avg=1070 chars
+File size: 5430 KB
+Tokenizer: Qwen2.5-1.5B (truncated to 256 tokens)

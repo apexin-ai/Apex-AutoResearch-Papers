@@ -1,0 +1,15 @@
+{
+  "exp_id": "seed_qwen15b_c4_s123",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T00:34:11.792Z",
+    "updated_at": "2026-05-22T03:56:25.294Z",
+    "hypothesis": "Qwen-1.5B C4 的 K*=2 结论在 seed=123 下仍成立（原始 seed=42），验证 OBD 的 depth boundary 不依赖随机种子"
+  },
+  "timestamp": "2026-05-22T03:56:25.597327+00:00",
+  "trigger": "update_registry"
+}

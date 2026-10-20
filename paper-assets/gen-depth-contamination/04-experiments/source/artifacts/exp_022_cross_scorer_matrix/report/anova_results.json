@@ -1,0 +1,64 @@
+{
+  "anova": {
+    "Generator": {
+      "df": 2,
+      "F": 926.7835,
+      "p": 1.315e-113,
+      "eta2_p": 0.8854,
+      "significant": true
+    },
+    "Scorer": {
+      "df": 3,
+      "F": 19.0188,
+      "p": 4.238e-11,
+      "eta2_p": 0.1921,
+      "significant": true
+    },
+    "DepthPair": {
+      "df": 4,
+      "F": 24736.1007,
+      "p": 1.361e-312,
+      "eta2_p": 0.9976,
+      "significant": true
+    },
+    "Generator:Scorer": {
+      "df": 6,
+      "F": 8.162,
+      "p": 4.831e-08,
+      "eta2_p": 0.1695,
+      "significant": true
+    },
+    "Generator:DepthPair": {
+      "df": 8,
+      "F": 993.6865,
+      "p": 2.999e-179,
+      "eta2_p": 0.9707,
+      "significant": true
+    },
+    "Scorer:DepthPair": {
+      "df": 12,
+      "F": 2.4504,
+      "p": 4.986e-03,
+      "eta2_p": 0.1091,
+      "significant": true
+    },
+    "Generator:Scorer:DepthPair": {
+      "df": 24,
+      "F": 1.9668,
+      "p": 5.793e-03,
+      "eta2_p": 0.1644,
+      "significant": true
+    },
+    "Residual": {
+      "df": 240
+    }
+  },
+  "N": 300,
+  "cells_found": 12,
+  "design": "3 Generators x 4 Scorers x 5 DepthPairs x 5 Folds",
+  "generators": ["pythia_greedy", "qwen_base", "qwen_cont256"],
+  "scorers": ["olmo", "pythia", "qwen_base", "qwen_instruct"],
+  "depth_pairs": ["0v1", "1v2", "2v3", "3v4", "4v5"],
+  "note": "3-way ANOVA (Type II) on per-fold AUC values from exp-022 cross-scorer matrix. Expected 4x4=16 cells but only 12 found (3 generators). DepthPair dominates variance (eta2_p=.998); Generator second (eta2_p=.885); Scorer statistically significant but small effect (eta2_p=.192).",
+  "warning": "Scorer main effect is statistically significant (p=4.24e-11, eta2_p=.192). However, effect size is negligible compared to DepthPair (.998) and Generator (.885). The significance likely reflects high statistical power (N=300) detecting a real but practically trivial scorer difference."
+}

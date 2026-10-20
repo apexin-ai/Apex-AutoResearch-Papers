@@ -1,0 +1,138 @@
+{
+  "exp_id": "exp_003_decoding_ablation",
+  "project": "gen-depth-contamination",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 1,
+    "created_at": "2026-05-12T20:06:25.260Z",
+    "updated_at": "2026-05-13T20:24:46.350Z",
+    "hypothesis": "解码策略调控 K*：不同 top_p/temperature 设置是否改变饱和边界（greedy→更低 K*? 高温度→更高 K*?）",
+    "failure_reason": "SSH check failed 5x — last error: Unknown server 'autodl-4090d'. Available: ['westc-26893']",
+    "completed_at": "2026-05-13T15:35:29.038Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-13T15:35:30.207607+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-13T20:22:20.803872+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "失败原因: SSH 别名变更 (autodl-4090d → westc-26893)，cron 监控 5 次连不上后标记 failed。初步诊断: 日志在 westc-26893 上可读，config 2 (nucleus_p0.9_t1.0) 已完成并输出 K*=2，config 3 (nucleus_p0.95_t0.7) 在 depth 4 进度 ~90% 时日志截止。实验可能已完成或部分完成。Worker worker_diagnose_exp_003_decoding_ablation_20260513T153757 正在深入诊断。"
+      }
+    },
+    "notes": "Server alias 变更 autodl-4090d → westc-26893 导致 cron 误标 failed。实际实验一直正常运行。Config 1 (greedy, K*=2), Config 2 (nuc p=0.9/T=1.0, K*=2), Config 3 (nuc p=0.95/T=0.7, K*=2) 已完成。Config 4 (nuc p=0.95/T=1.2) 运行中。深度分析: 1v2 AUC Δ<0.003 across configs, D016 universality confirmed (all 7 configs > θ=0.60), θ-sensitivity K* profile identical across 3 configs. 分析脚本 scripts/exp003_analyze_all_configs.py 已部署。",
+    "spec": {
+      "command": "python scripts/exp003_analyze_all_configs.py",
+      "server": "westc-26893",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "29459",
+      "log_path": "~/runs/gen-depth-contamination/exp_003_decoding_ablation.log",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data_exp003_*",
+      "data_count": 4,
+      "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+      "seed": 42,
+      "configs": "4 ablation configs: greedy, nucleus p=0.9/T=1.0, nucleus p=0.95/T=0.7, nucleus p=0.95/T=1.2",
+      "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/data_exp003_*",
+      "log_path_note": "server renamed from autodl-4090d to westc-26893"
+    },
+    "metrics": {
+      "config1_greedy": {
+        "0v1": 0.9797,
+        "1v2": 0.6893,
+        "2v3": 0.5613,
+        "3v4": 0.5404,
+        "4v5": 0.5139,
+        "kstar_060": 2
+      },
+      "config2_nuc09": {
+        "0v1": 0.9946,
+        "1v2": 0.6866,
+        "2v3": 0.5917,
+        "3v4": 0.5466,
+        "4v5": 0.5068,
+        "kstar_060": 2
+      },
+      "config3_t07": {
+        "0v1": 0.9878,
+        "1v2": 0.6887,
+        "2v3": 0.5902,
+        "3v4": 0.5393,
+        "4v5": 0.5349,
+        "kstar_060": 2
+      },
+      "config4_t12": {
+        "0v1": 0.9982,
+        "1v2": 0.7039,
+        "2v3": 0.5823,
+        "3v4": 0.5293,
+        "4v5": 0.5237,
+        "kstar_060": 2
+      },
+      "theta_sensitivity": {
+        "config1_greedy": {
+          "0.55": 3,
+          "0.60": 2,
+          "0.65": 2,
+          "0.70": 1
+        },
+        "config2_nuc09": {
+          "0.55": 3,
+          "0.60": 2,
+          "0.65": 2,
+          "0.70": 1
+        },
+        "config3_t07": {
+          "0.55": 3,
+          "0.60": 2,
+          "0.65": 2,
+          "0.70": 1
+        },
+        "config4_t12": {
+          "0.55": 3,
+          "0.60": 2,
+          "0.65": 2,
+          "0.70": 2
+        }
+      },
+      "cross_experiment_1v2_ranking": [
+        "Config4-T12:0.7039",
+        "MVP-Qwen-Rewrite:0.6957",
+        "Config1-Greedy:0.6893",
+        "Config3-T07:0.6887",
+        "Config2-Nuc09:0.6866",
+        "Exp001-Pythia:0.6539",
+        "Exp002-OLMo:0.6146",
+        "Exp017-Qwen-Cont:0.6114"
+      ],
+      "d016_universality_all_above_060": true,
+      "spearman_rho_range": [
+        0.5321,
+        0.9143
+      ],
+      "top_features_1v2": [
+        "hapax_ratio",
+        "ttr",
+        "surp_skew"
+      ]
+    },
+    "reproduce": {
+      "finished_at": "2026-05-13T20:22:19.870Z"
+    },
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis.json",
+    "log_path": "~/runs/gen-depth-contamination/exp_003_decoding_ablation.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-13T20:24:46.390713+00:00",
+  "trigger": "update_registry"
+}

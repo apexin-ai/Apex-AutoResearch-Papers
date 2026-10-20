@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22cd69b714f1506baf85",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code batch continuation fix",
+  "task_key": "worker_code_batch_continuation_fix_20260512T204158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_batch_continuation_fix_20260512T204158_result.json",
+    "occurrence": 1,
+    "bytes": 1930,
+    "sha256": "354b6c7185ef7cfb9eebe43e4ff28d6b0745dd365f0bcd5fc57463a79bee76aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 汇报\n\n### 1. 代码 diff\n替换了 `run_pipeline.py` L181-200 的 continuation 分支：\n- **旧代码**：逐条 for 循环，每条 doc 单独 `model.generate()`，batch_size 实际为 1\n- **新代码**：batch generation with left-padding，用 tokenizer batch encode + 一次 `model.generate()`，与 rewrite 分支结构对齐\n\n本地和远程文件已同步修改，远程已备份为 `.bak3`。\n\n### 2. Continuation batch dry-run\n- **通过**，100 docs × 2 depths，总耗时 **1m32s**（含模型加载、seed data、feature extraction、analysis）\n- 生成阶段：~29s/depth（7 batches × ~4.25s/batch），batch_size=16 无 OOM\n\n### 3. 时间推算：5000 docs × 5 depths\n| 阶段 | 估算 |\n|------|------|\n| 生成（5 depths） | 5 × (313 batches × 4.25s) ≈ **111 min** |\n| Feature extraction（6 depths） | 6 × ~350s ≈ **35 min** |\n| Analysis | ~5 min |\n| **合计** | **~2h51m** |\n\n**在 6h 预算内，余量充足。**\n\n### 4. Rewrite 回归\n- **通过**，10 docs × 1 depth，32s 完成，pipeline 未报错\n\n### 5. 生成文本质量对比（抽样 doc_id=0）\n- **depth_0（原文）**: \"The woman who died after falling from a bridge over the A21 has been identified as a Sevenoaks mum. Marta Kendle, 37, fell from the Gracious Lane bridge...\"\n- **depth_1（batch continuation）**: \"and a memorial fund was set up to help the family. Mrs Kendle's mother Lydia said: 'My daughter Marta was a lovely person who would smile when she saw anyone...'\"\n\n语义连贯，从原文前半段自然续写，质量正常。batch 模式与逐条模式的唯一差异是 left-padding 对齐 + 统一 max_new_tokens=256（不再按原文长度动态调整），生成内容风格一致。\n\n### 6. 遇到的问题\n- SSH 30s 超时：改用 nohup 后台执行 + 轮询解决\n- `python3` 在 conda 环境外不可用：需先 `conda activate base`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-batch-continuation-fix.md"
+}

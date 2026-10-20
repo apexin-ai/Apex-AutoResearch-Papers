@@ -1,0 +1,39 @@
+% McNemar test p-values: OBD-LightGBM vs baseline classifiers
+% Task: 1v2 binary depth classification, 5-fold GroupKFold OOF predictions
+% McNemar test with continuity correction (chi-squared, df=1)
+
+\begin{table*}[t]
+\centering
+\small
+\caption{McNemar test $p$-values comparing OBD-LightGBM against baseline classifiers on the depth-1 vs.\ depth-2 binary classification task (5-fold GroupKFold, out-of-fold predictions). Classifier accuracy shown in parentheses. Most comparisons are non-significant, indicating that discriminative power resides in the 15D feature representation rather than classifier choice. Significant results ($p < 0.05$) are \textbf{bold}; $^{*}p<0.05$, $^{**}p<0.01$, $^{***}p<0.001$.}
+\label{tab:mcnemar_obd_baselines}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Model} & \textbf{Domain} & \textbf{OBD Acc.} & \textbf{vs.\ LogReg} & \textbf{vs.\ LinearSVC} & \textbf{vs.\ RandomForest} \\
+\midrule
+Qwen-1.5B-base & C4    & .592 & .232 (.598)            & .605 (.595)              & .271 (.597) \\
+Pythia-1.4B     & C4    & .631 & $\mathbf{.033^{*}}$ (.621) & .105 (.624)              & .451 (.628) \\
+LLaMA-8B        & C4    & .573 & $\mathbf{6.2{\times}10^{-5\,***}}$ (.592) & $\mathbf{1.1{\times}10^{-4\,***}}$ (.591) & $\mathbf{.001^{**}}$ (.586) \\
+\midrule
+Qwen-1.5B      & Wiki  & .588 & $\mathbf{9.4{\times}10^{-4\,***}}$ (.570) & $\mathbf{2.3{\times}10^{-4\,***}}$ (.568) & .655 (.590) \\
+Pythia          & Wiki  & .560 & .180 (.567)            & .540 (.564)              & .369 (.564) \\
+OLMo            & Wiki  & .500 & .868 (.502)            & .705 (.503)              & .751 (.502) \\
+LLaMA-8B        & Wiki  & .573 & .252 (.579)            & .270 (.579)              & .110 (.580) \\
+\midrule
+Qwen-1.5B      & arXiv & .781 & .156 (.774)            & .079 (.772)              & .364 (.777) \\
+Pythia          & arXiv & .733 & .232 (.727)            & .384 (.728)              & .735 (.732) \\
+OLMo            & arXiv & .493 & .520 (.487)            & .681 (.489)              & .759 (.496) \\
+Qwen-7B         & arXiv & .757 & .160 (.749)            & .327 (.751)              & .733 (.758) \\
+Mistral-7B      & arXiv & .742 & .524 (.738)            & .633 (.739)              & .225 (.748) \\
+\bottomrule
+\end{tabular}%
+}
+
+\vspace{4pt}
+\footnotesize
+36 comparisons total. 5/36 reach $p < 0.05$; 4/36 reach $p < 0.01$.
+In the LLaMA-8B/C4 case, baselines significantly \emph{outperform} OBD ($c > b$), likely due to LightGBM overfitting on the relatively noisy 8B-generated features.
+For Qwen-1.5B/Wiki, OBD outperforms linear classifiers but not RandomForest.
+The predominance of non-significant results confirms that depth discriminability is feature-driven, not classifier-driven.
+\end{table*}

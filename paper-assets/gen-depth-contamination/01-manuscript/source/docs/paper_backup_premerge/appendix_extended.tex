@@ -1,0 +1,146 @@
+\section{Extended Discussion}
+\label{sec:extended_discussion}
+
+\subsection{Theoretical Implications of $\Kempirical = 2$}
+
+The DPI guarantees a finite $\Ktheory$; for general web text, $\Kempirical \leq 2$ across all 10 configurations (1B--8B, 6 families), while structured domains (arXiv) yield $\Kempirical{=}3$, aligning with model collapse convergence~\cite{shumailov2024collapse, dohmatob2024model, alemohammad2024selfconsuming}.
+Decoding strategy modestly affects signal strength (1v2 $\auc \in [0.6866, 0.7039]$) but does not shift the boundary.
+
+\subsection{Cross-Model Transfer Implications}
+
+Cross-model classification retains 80--100\% accuracy with scorer-invariant feature rankings ($\rho > 0.90$), enabling single-classifier deployment across generators.
+Absolute discriminability at the $\Kempirical$ boundary is scorer-sensitive: alternative scorers reduce Qwen-continuation $\Kempirical$ from 2 to 1, while rewrite-mode $\Kempirical = 2$ is preserved.
+Model family similarity modulates transfer (Pythia$\leftrightarrow$OLMo: 90--92\% vs.\ Qwen-cont$\leftrightarrow$OLMo: 80--85\%).
+
+\begin{minipage}{\columnwidth}
+\centering
+\captionof{table}{Cross-scorer validation on Qwen-generated text. Alternative scorers (Pythia-1.4B, OLMo-1B) preserve feature ranking ($\rho > 0.90$) and rewrite-mode $\Kempirical = 2$, but reduce continuation-mode $\Kempirical$ from 2 to 1.}
+\label{tab:crossscorer}
+\resizebox{\columnwidth}{!}{\input{tables/tab_crossscorer}}
+\end{minipage}
+
+\begin{table}[h]
+\centering
+\small
+\caption{Three-way ANOVA (Generator $\times$ Scorer $\times$ Depth-Pair) on per-fold pairwise $\auc$ values. DV = per-fold AUC; $N{=}300$ (12 cells $\times$ 5 folds $\times$ 5 depth-pairs). Scorer is statistically significant but explains modest variance ($\eta^2_p{=}.166$) relative to Depth-Pair ($\eta^2_p{=}.997$), supporting near-scorer-independence of depth discrimination.}
+\label{tab:anova_crossscorer}
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Source} & \textbf{df} & $F$ & $p$ & $\eta^2_p$ \\
+\midrule
+Generator     & 2  & 851.91  & ${<}.001$  & .866 \\
+Scorer        & 3  & 17.48  & ${<}.001$  & .166 \\
+Depth-Pair    & 4  & 22737.70  & ${<}.001$  & .997 \\
+Gen$\times$Scorer & 6 & 7.50 & ${<}.001$ & .146 \\
+Gen$\times$Depth  & 8 & 913.41 & ${<}.001$ & .965 \\
+Scorer$\times$Depth & 12 & 2.25 & $.010$ & .093 \\
+Residual      & 264 & & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Feature Importance Across Decoding Strategies}
+
+Feature importance ordering varies across decoding strategies: greedy and $T{=}0.7$ share highly correlated rankings ($\rho = 0.914$), while greedy vs.\ $T{=}1.2$ yields lower correlation ($\rho = 0.53$, nonsignificant after Bonferroni).
+The depth boundary is robust but the optimal feature subset is strategy-dependent.
+
+\subsection{Scale and Neural Probe}
+\label{sec:extended_neural_probe}
+
+Cross-scale validation confirms $\Kempirical = 2$ from 1.5B through 8B: Qwen-7B (1v2 $\auc = 0.6168$ $[0.608, 0.626]$) and LLaMA-3.1-8B (1v2 $\auc = 0.6123$, 0v1 $= 0.9225$) both exceed $\theta$, with progressively lower 0v1 signal consistent with larger models generating more human-like text. Scaling to 13B+ remains open.
+
+The neural probe yields model-dependent $\Kempirical^{\text{neural}}$: $3$ for Qwen (self-familiarity effect from instruction-tuned representations) but $2$ for Pythia; OLMo yields $\Kempirical^{\text{neural}} = 1$ (1v2 $\auc = 0.5054$), consistent with the 15D LightGBM boundary.
+The 15D model-free features yield $\Kempirical = 2$ for Pythia and Qwen, while OLMo yields $\Kempirical = 1$ under the standardized pipeline.
+
+\subsection{LLM Zero-Shot Baseline}
+\label{sec:extended_llm}
+
+GPT-5.5 achieves 33.2\% accuracy (MAE = 1.10) and Claude Opus~4.6 33.1\% (MAE = 1.15) on a balanced 500-sample test set, comparable to OBD-LightGBM's 38.0\% (95\% CI: $[0.340, 0.422]$; McNemar $p = 0.081$, $0.069$; Table~\ref{tab:s3_llm_zeroshot}).
+Per-depth recall confirms convergent failure at depths $\geq 2$ (Section~\ref{sec:why_kstar}).
+When 6-class probabilities are marginalized to 5 classes ($P(d{\geq}4)$), accuracy rises to 44.4\% but concentrates in depth-4 (recall: 22\%$\to$80\%) while depths 2--3 collapse to 2--8\%; we report raw 6-class results.
+
+\subsection{Practical Considerations}
+
+All filtering strategies degrade general capabilities (MMLU: 0.6018 $\to$ 0.5865--0.5941; HellaSwag: 0.6821 $\to$ 0.6638--0.6701); our 100\% synthetic setting is an upper bound; in mixed corpora, degradation scales with contamination fraction~\cite{shumailov2024collapse, dohmatob2024model}.
+$\Kstar$-aware binary filtering reduces MMLU degradation by ${\sim}$50\% ($-$1.53\,pp $\to$ $-$0.77\,pp), requires no per-model calibration, and is combinable with distribution-matching methods (DSIR, DoReMi).
+
+\subsection{Extended Limitations}
+\label{sec:extended_limitations}
+
+\emph{Prompt-chain versus retrain-chain.}
+Retrain-chain validation (Pythia-1.4B LoRA, 5 generations) yields $\Kempirical{\geq}4$ (1v2 $\auc = 0.9484$, 2v3 $= 0.8888$, 3v4 $= 0.7982$), far exceeding prompt-chain $\Kempirical{=}2$.
+The elevated signal arises from cumulative model-adaptation artifacts rather than text-intrinsic degradation; prompt-chain $\Kempirical$ is the operationally relevant boundary for data curation.
+
+\emph{Threshold sensitivity.}
+At $\theta = 0.55$, $\Kempirical = 3$ for Qwen-rewrite/continuation; at $\theta = 0.70$, $\Kempirical = 1$ across all configurations (Figure~\ref{fig:kstar_theta}).
+Qwen-continuation's 1v2 CI lower bound exceeds $\theta$ by only 0.2\,pp; all ten boundary comparisons yield permutation $p < 0.001$.
+
+\emph{Structural confound: token length.}
+In continuation mode the generation prompt is discarded, so all depths $\geq 1$ consist entirely of machine-generated tokens and the 1v2 boundary compares texts differing only in conditioning context (human-authored vs.\ machine-generated prompt), not structural composition.
+Depth~0 texts average ${\sim}$191 subword tokens (C4 truncation), while depth~1+ texts average 193--256 tokens depending on model (Table~\ref{tab:token_length}).
+This asymmetry is directionally opposite to a length-inflation confound: shorter depth-0 texts provide less feature-extraction context, making 0v1 discrimination harder, not easier.
+Within depths 1--5, mean token counts are stable (within-model range $\leq$ 4 tokens for all configurations except Qwen-continuation at 6 tokens), so the pairwise comparisons underlying $\Kempirical{=}2$ are unaffected by length.
+EOS truncation rates are similarly depth-stable within each model: Qwen-rewrite 7--11\%, Pythia 34--36\%, OLMo $<$1\%, Qwen-continuation 17--20\%, Qwen-7B 45--47\%.
+Models with the highest truncation (Pythia, Qwen-7B) still yield $\Kempirical{=}2$ with the same step-function AUC decay pattern as low-truncation models (Table~\ref{tab:kstar_ci}), confirming that EOS truncation does not drive the boundary.
+
+\emph{Graduated filtering.}
+All $\alpha$ values (0.1--0.9) underperform binary-ours on MMLU ($\alpha{=}0.1$: 0.5873; $\alpha{=}0.9$: 0.5892 vs.\ 0.5941); at $\alpha{=}0.9$, HellaSwag matches exactly (0.6701).
+Binary-ours significantly outperforms all alternatives on MMLU ($p_{\text{corr}} \leq 0.021$); Graduated$_{0.9}$ is indistinguishable on HellaSwag ($p = 1.00$) but worse on MMLU ($p_{\text{corr}} = 0.011$).
+\label{tab:pairwise_significance}
+
+\subsection{Dose-Response: Contamination Ratio Effect}
+\label{sec:dose_response}
+
+The main filtering experiments (Section~\ref{sec:filtering}) use 100\% synthetic data to maximize effect size.
+To characterize behavior at lower contamination ratios, we mix synthetic depths 1--5 with clean C4 at 10\%, 30\%, and 50\% contamination (Qwen-1.5B continuation, 5 seeds each; Table~\ref{tab:dose_response}).
+
+\begin{table}[h]
+\centering
+\small
+\caption{MMLU accuracy by contamination ratio (fraction of synthetic data in training set) and filtering strategy. Base model (no fine-tuning): 0.6018. Mean $\pm$ std over 5 seeds.}
+\label{tab:dose_response}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Strategy} & \textbf{10\%} & \textbf{30\%} & \textbf{50\%} \\
+\midrule
+No-filter   & $0.6009 \pm .003$ & $0.5978 \pm .004$ & $0.5932 \pm .004$ \\
+Binary-ours & $0.6011 \pm .003$ & $0.5988 \pm .003$ & $0.5956 \pm .004$ \\
+Graduated   & $0.6008 \pm .003$ & $0.5982 \pm .004$ & $0.5944 \pm .004$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At 10\% contamination, no-filter MMLU ($0.6009$) remains within noise of the base model ($0.6018$, $\Delta = -0.09$\,pp), and all three strategies are indistinguishable ($\Delta_{\max} = 0.03$\,pp between strategies, $p > 0.8$).
+At 30\%, differences emerge directionally ($\Delta = 0.10$\,pp, binary vs.\ no-filter) but remain non-significant ($p > 0.3$).
+At 50\%, binary-ours shows a 0.24\,pp advantage over no-filter, approaching but not reaching significance ($p = 0.12$).
+The strategy ordering (binary $>$ graduated $>$ no-filter) is consistent with the 100\% setting, but effect sizes scale linearly with contamination fraction.
+This demonstrates that $\Kstar$-aware curation provides practical benefit primarily when contamination is severe enough to cause measurable quality degradation.
+
+\subsection{Seed Robustness}
+\label{sec:seed_robustness}
+
+Because the random seed governs both corpus sampling and generation quality (not merely CV splits), absolute AUC values are seed-dependent.
+We re-run three configurations with seed$\,{=}\,123$ (primary: seed$\,{=}\,42$; Table~\ref{tab:seed_robustness}).
+$\Kempirical$ is stable in 2/3 cases: Pythia-1.4B on Wikipedia yields $\Kempirical{=}1$ under both seeds (1v2 $\Delta = -0.8$\,pp), and Qwen-1.5B on C4 yields $\Kempirical{=}2$ (1v2 $\Delta = +9.0$\,pp, both seeds above $\theta$).
+Qwen-1.5B on Wikipedia shifts from $\Kempirical{=}2$ to $\Kempirical{=}3$ under seed$\,{=}\,123$, but the 2v3 AUC ($0.6067$) is marginal: one of five folds falls below $\theta$ (fold~5 $= 0.595$), so this does not constitute strong evidence for $\Kempirical{=}3$.
+The ${\pm}9$\,pp absolute AUC variation across seeds strengthens the methodological case for threshold-based $\Kempirical$ over raw AUC comparisons: the qualitative boundary is robust even when point estimates shift.
+
+\begin{table}[h]
+\centering
+\footnotesize
+\caption{Seed robustness: $\Kempirical$ under two random seeds. 1v2 $\Delta$: change in 1v2 AUC from seed 42 to seed 123. $\Kempirical$ is stable in 2/3 configurations; the Qwen-Wiki shift to $\Kempirical{=}3$ is marginal (2v3 fold variance crosses $\theta$).}
+\label{tab:seed_robustness}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Model} & \textbf{Domain} & \multicolumn{2}{c}{$\Kempirical$} & \textbf{1v2 $\Delta$} & \textbf{Stable?} \\
+\cmidrule(lr){3-4}
+ & & seed=42 & seed=123 & & \\
+\midrule
+Pythia-1.4B & Wikipedia & 1 & 1 & $-0.8$\,pp & \checkmark \\
+Qwen-1.5B  & C4        & 2 & 2 & $+9.0$\,pp & \checkmark \\
+Qwen-1.5B  & Wikipedia & 2 & 3$^\dagger$ & $+8.7$\,pp & $\times$ \\
+\bottomrule
+\multicolumn{6}{l}{\footnotesize $^\dagger$2v3 $\auc = 0.6067$; fold 5 $= 0.595 < \theta$. Marginal boundary.}
+\end{tabular}}
+\end{table}

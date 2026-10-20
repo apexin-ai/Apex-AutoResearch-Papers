@@ -1,0 +1,4298 @@
+# analysis exp 025 pythia arxiv
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 145
+- **Recorded user turns:** 0
+- **Tool calls:** 72
+- **Original source:** `logs/chats/worker_analysis_exp_025_pythia_arxiv_20260516T185842.jsonl`
+- **Structured JSON:** [`4d927d99c327b59e88ac.json`](../../sessions/4d/4d927d99c327b59e88ac.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+145 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T19:05:12.955678+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-16T19:05:12.956088+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T19:05:12.956281+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "tail -100 /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "tail -100 /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T19:05:12.956421+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/gen-depth-contamination/results -type d -name \"*025*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "find /root/autodl-tmp/gen-depth-contamination/results -type d -name \"*025*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-16T19:05:12.956702+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"02:01:45 [INFO] Model: /root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79\\n02:01:45 [INFO] Data dir: data/exp_025_pythia_arxiv\\n02:01:45 [INFO] Samples: 2200, Max depth: 5\\n02:01:45 [INFO] Decoding: do_sample=True, top_p=0.95, temperature=1.0\\n02:01:45 [INFO] Generation mode: continuation\\n02:01:45 [INFO] Max new tokens: 256\\n02:01:45 [INFO] Scorer: /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\n02:01:47 [INFO] Loading tokenizer ...\\n02:01:47 [INFO] Loading model ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/292 [00:00<?, ?it/s]\\rLoading weights:   1%|          | 3/292 [00:00<00:09, 29.93it/s]\\rLoading weights:  13%|█▎        | 38/292 [00:00<00:01, 203.60it/s]\\rLoading weights:  25%|██▍       | 72/292 [00:00<00:00, 259.55it/s]\\rLoading weights:  35%|███▍      | 102/292 [00:00<00:00, 267.89it/s]\\rLoading weights:  46%|████▌     | 134/292 [00:00<00:00, 282.44it/s]\\rLoading weights:  58%|█████▊    | 168/292 [00:00<00:00, 285.12it/s]\\rLoading weights:  70%|██████▉   | 204/292 [00:00<00:00, 304.59it/s]\\rLoading weights:  80%|████████  | 235/292 [00:00<00:00, 301.94it/s]\\rLoading weights:  91%|█████████ | 266/292 [00:00<00:00, 298.17it/s]\\rLoading weights: 100%|██████████| 292/292 [00:01<00:00, 281.27it/s]\\n02:01:49 [INFO] Model loaded on cuda:0\\n02:01:49 [INFO] ======================================== Step 2: Seed Data ========================================\\n02:01:49 [INFO] depth_0.jsonl already exists with enough samples — skipping\\n02:01:49 [INFO] ======================================== Step 3: Depth Chain ========================================\\n02:01:49 [INFO] Generating depth 1 (2200 docs, batch_size=8) ...\\n\\rdepth 1:   0%|          | 0/275 [00:00<?, ?it/s]\\rdepth 1:   0%|          | 1/275 [00:03<14:00,  3.07s/it]\\rdepth 1:   1%|          | 2/275 [00:05<
+…[truncated 6457 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T19:05:12.956943+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T19:05:12.957117+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "tail -50 /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "tail -50 /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-16T19:05:12.957287+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls -la /root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "ls -la /root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T19:05:12.957509+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"02:01:45 [INFO] Max new tokens: 256\\n02:01:45 [INFO] Scorer: /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\n02:01:47 [INFO] Loading tokenizer ...\\n02:01:47 [INFO] Loading model ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/292 [00:00<?, ?it/s]\\rLoading weights:   1%|          | 3/292 [00:00<00:09, 29.93it/s]\\rLoading weights:  13%|█▎        | 38/292 [00:00<00:01, 203.60it/s]\\rLoading weights:  25%|██▍       | 72/292 [00:00<00:00, 259.55it/s]\\rLoading weights:  35%|███▍      | 102/292 [00:00<00:00, 267.89it/s]\\rLoading weights:  46%|████▌     | 134/292 [00:00<00:00, 282.44it/s]\\rLoading weights:  58%|█████▊    | 168/292 [00:00<00:00, 285.12it/s]\\rLoading weights:  70%|██████▉   | 204/292 [00:00<00:00, 304.59it/s]\\rLoading weights:  80%|████████  | 235/292 [00:00<00:00, 301.94it/s]\\rLoading weights:  91%|█████████ | 266/292 [00:00<00:00, 298.17it/s]\\rLoading weights: 100%|██████████| 292/292 [00:01<00:00, 281.27it/s]\\n02:01:49 [INFO] Model loaded on cuda:0\\n02:01:49 [INFO] ======================================== Step 2: Seed Data ========================================\\n02:01:49 [INFO] depth_0.jsonl already exists with enough samples — skipping\\n02:01:49 [INFO] ======================================== Step 3: Depth Chain ========================================\\n02:01:49 [INFO] Generating depth 1 (2200 docs, batch_size=8) ...\\n\\rdepth 1:   0%|          | 0/275 [00:00<?, ?it/s]\\rdepth 1:   0%|          | 1/275 [00:03<14:00,  3.07s/it]\\rdepth 1:   1%|          | 2/275 [00:05<11:32,  2.54s/it]\\rdepth 1:   1%|          | 3/275 [00:07<10:46,  2.38s/it]\\rdepth 1:   1%|▏         | 4/275 [00:09<10:24,  2.30s/it]\\rdepth 1:   2%|▏         | 5/275 [00:11<10:21,  2.30s/it]\\rdepth 1:   2%|▏         | 6/275 [00:14<10:11,  2.27s/it]\\rdepth 1:   3%|▎         | 7/275 [00:16<10:05,  2.26s/it]\\rdepth 1:   3%|▎         | 8/275 [00:18<1
+…[truncated 6459 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T19:05:12.957670+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 2 root root   10 May 17 02:01 .\\ndrwxr-xr-x 9 root root 4096 May 17 02:01 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T19:05:12.957881+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -n \"DONE\\|ERROR\\|Traceback\\|K_star\\|pairwise\\|Step 5\\|Step 6\\|classifier\\|RESULT\\|Saved\\|completed\" /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep -n \"DONE\\|ERROR\\|Traceback\\|K_star\\|pairwise\\|Step 5\\|Step 6\\|classifier\\|RESULT\\|Saved\\|completed\" /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T19:05:12.958050+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T19:05:12.958182+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/gen-depth-contamination -name \"*exp_025*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "find /root/autodl-tmp/gen-depth-contamination -name \"*exp_025*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T19:05:12.958310+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T19:05:12.958431+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -n \"DONE\\|ERROR\\|Traceback\\|K_star\\|pairwise\\|Step 5\\|Step 6\\|classifier\\|RESULT\\|Saved\\|completed\" /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep -n \"DONE\\|ERROR\\|Traceback\\|K_star\\|pairwise\\|Step 5\\|Step 6\\|classifier\\|RESULT\\|Saved\\|completed\" /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T19:05:12.958553+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T19:05:12.958670+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -n \"DONE\" /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep -n \"DONE\" /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T19:05:12.958809+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T19:05:12.958937+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "account": "root",
+  "command": "grep -n \"Step 5\" /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "account": "root",
+    "command": "grep -n \"Step 5\" /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T19:05:12.959062+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"56:02:59:12 [INFO] ======================================== Step 5: Analysis ========================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-16T19:05:12.959196+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -n \"Saved\" /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep -n \"Saved\" /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T19:05:12.959423+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"18:02:12:05 [INFO] Saved 2200 docs to data/exp_025_pythia_arxiv/depth_1.jsonl\\n21:02:21:59 [INFO] Saved 2200 docs to data/exp_025_pythia_arxiv/depth_2.jsonl\\n26:02:31:49 [INFO] Saved 2200 docs to data/exp_025_pythia_arxiv/depth_3.jsonl\\n32:02:41:32 [INFO] Saved 2200 docs to data/exp_025_pythia_arxiv/depth_4.jsonl\\n35:02:51:09 [INFO] Saved 2200 docs to data/exp_025_pythia_arxiv/depth_5.jsonl\\n55:\\rVocabDiv d=5:   0%|          | 0/2200 [00:00<?, ?it/s]\\rVocabDiv d=5:   0%|          | 5/2200 [00:00<00:53, 41.13it/s]\\rVocabDiv d=5:   0%|          | 10/2200 [00:00<00:51, 42.44it/s]\\rVocabDiv d=5:   1%|          | 15/2200 [00:00<00:49, 44.08it/s]\\rVocabDiv d=5:   1%|          | 20/2200 [00:00<00:48, 44.62it/s]\\rVocabDiv d=5:   1%|          | 26/2200 [00:00<00:44, 49.03it/s]\\rVocabDiv d=5:   1%|▏         | 32/2200 [00:00<00:42, 51.21it/s]\\rVocabDiv d=5:   2%|▏         | 38/2200 [00:00<00:43, 49.81it/s]\\rVocabDiv d=5:   2%|▏         | 44/2200 [00:00<00:43, 49.83it/s]\\rVocabDiv d=5:   2%|▏         | 50/2200 [00:01<00:43, 49.12it/s]\\rVocabDiv d=5:   2%|▎         | 55/2200 [00:01<00:44, 48.67it/s]\\rVocabDiv d=5:   3%|▎         | 60/2200 [00:01<00:45, 47.38it/s]\\rVocabDiv d=5:   3%|▎         | 66/2200 [00:01<00:43, 48.58it/s]\\rVocabDiv d=5:   3%|▎         | 71/2200 [00:01<00:44, 48.07it/s]\\rVocabDiv d=5:   4%|▎         | 77/2200 [00:01<00:43, 48.37it/s]\\rVocabDiv d=5:   4%|▎         | 82/2200 [00:01<00:44, 47.62it/s]\\rVocabDiv d=5:   4%|▍         | 88/2200 [00:01<00:43, 48.50it/s]\\rVocabDiv d=5:   4%|▍         | 94/2200 [00:01<00:42, 49.13it/s]\\rVocabDiv d=5:   5%|▍         | 100/2200 [00:02<00:41, 50.54it/s]\\rVocabDiv d=5:   5%|▍         | 106/2200 [00:02<00:42, 49.85it/s]\\rVocabDiv d=5:   5%|▌         | 111/2200 [00:02<00:42, 48.88it/s]\\rVocabDiv d=5:   5%|▌         | 117/2200 [00:02<00:41, 50.72it/s]\\rVocabDiv d=5:   6%|▌         | 123/2200 [00:02<00:40, 51.76it/s]\\rVocabDiv d=5:   6%|▌     
+…[truncated 6446 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-16T19:05:12.959611+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -n \"AUC\\|K_star\\|accuracy\\|MAE\\|feature\\|classifier\\|ordinal\\|Step 5\\|Step 6\\|completed\\|Error\\|Traceback\" /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep -n \"AUC\\|K_star\\|accuracy\\|MAE\\|feature\\|classifier\\|ordinal\\|Step 5\\|Step 6\\|completed\\|Error\\|Traceback\" /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T19:05:12.959746+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T19:05:12.959895+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -n \"AUC\" /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep -n \"AUC\" /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T19:05:12.960039+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"58:02:59:12 [INFO] Computing pairwise AUC ...\\n69:02:59:13 [INFO]   AUC(0 vs 1) = 0.9877 ± 0.0028  folds=[0.9914, 0.9889, 0.9844, 0.9895, 0.9845]\\n80:02:59:14 [INFO]   AUC(1 vs 2) = 0.8047 ± 0.0127  folds=[0.7906, 0.8278, 0.8018, 0.8065, 0.7967]\\n91:02:59:15 [INFO]   AUC(2 vs 3) = 0.6545 ± 0.0126  folds=[0.6409, 0.6433, 0.6764, 0.6548, 0.6572]\\n102:02:59:16 [INFO]   AUC(3 vs 4) = 0.5507 ± 0.0090  folds=[0.5496, 0.5418, 0.5499, 0.5675, 0.5444]\\n113:02:59:17 [INFO]   AUC(4 vs 5) = 0.5287 ± 0.0123  folds=[0.5253, 0.5101, 0.5413, 0.5432, 0.5235]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T19:05:12.960170+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -n \"K_star\" /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep -n \"K_star\" /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T19:05:12.960295+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-16T19:05:12.960415+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "wc -l /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "wc -l /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T19:05:12.960537+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"128 /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-16T19:05:12.960681+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "tail -72 /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "tail -72 /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T19:05:12.960876+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"02:59:12 [INFO] Loading features from data/exp_025_pythia_arxiv/features.csv ...\\n02:59:12 [INFO] Computing pairwise AUC ...\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n02:59:13 [INFO]   AUC(0 vs 1) = 0.9877 ± 0.0028  folds=[0.9914, 0.9889, 0.9844, 0.9895, 0.9845]\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid fea
+…[truncated 4900 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-16T19:05:12.961062+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -n \"accuracy\" /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep -n \"accuracy\" /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T19:05:12.961195+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-16T19:05:12.961317+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -n \"MAE\" /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep -n \"MAE\" /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T19:05:12.961442+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"131:02:59:42 [INFO]   Ordinal MAE = 0.8518, Accuracy = 0.4545, K* = 3\\n154:  MAE = 0.8518\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-16T19:05:12.961562+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "find /root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-16T19:05:12.961691+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_0.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_1.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_2.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_3.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_4.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_5.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/features.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-16T19:05:12.961869+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -n \"feature\" /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep -n \"feature\" /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T19:05:12.962072+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"40:02:51:12 [INFO] Extracting features for all depths ...\\n55:\\rVocabDiv d=5:   0%|          | 0/2200 [00:00<?, ?it/s]\\rVocabDiv d=5:   0%|          | 5/2200 [00:00<00:53, 41.13it/s]\\rVocabDiv d=5:   0%|          | 10/2200 [00:00<00:51, 42.44it/s]\\rVocabDiv d=5:   1%|          | 15/2200 [00:00<00:49, 44.08it/s]\\rVocabDiv d=5:   1%|          | 20/2200 [00:00<00:48, 44.62it/s]\\rVocabDiv d=5:   1%|          | 26/2200 [00:00<00:44, 49.03it/s]\\rVocabDiv d=5:   1%|▏         | 32/2200 [00:00<00:42, 51.21it/s]\\rVocabDiv d=5:   2%|▏         | 38/2200 [00:00<00:43, 49.81it/s]\\rVocabDiv d=5:   2%|▏         | 44/2200 [00:00<00:43, 49.83it/s]\\rVocabDiv d=5:   2%|▏         | 50/2200 [00:01<00:43, 49.12it/s]\\rVocabDiv d=5:   2%|▎         | 55/2200 [00:01<00:44, 48.67it/s]\\rVocabDiv d=5:   3%|▎         | 60/2200 [00:01<00:45, 47.38it/s]\\rVocabDiv d=5:   3%|▎         | 66/2200 [00:01<00:43, 48.58it/s]\\rVocabDiv d=5:   3%|▎         | 71/2200 [00:01<00:44, 48.07it/s]\\rVocabDiv d=5:   4%|▎         | 77/2200 [00:01<00:43, 48.37it/s]\\rVocabDiv d=5:   4%|▎         | 82/2200 [00:01<00:44, 47.62it/s]\\rVocabDiv d=5:   4%|▍         | 88/2200 [00:01<00:43, 48.50it/s]\\rVocabDiv d=5:   4%|▍         | 94/2200 [00:01<00:42, 49.13it/s]\\rVocabDiv d=5:   5%|▍         | 100/2200 [00:02<00:41, 50.54it/s]\\rVocabDiv d=5:   5%|▍         | 106/2200 [00:02<00:42, 49.85it/s]\\rVocabDiv d=5:   5%|▌         | 111/2200 [00:02<00:42, 48.88it/s]\\rVocabDiv d=5:   5%|▌         | 117/2200 [00:02<00:41, 50.72it/s]\\rVocabDiv d=5:   6%|▌         | 123/2200 [00:02<00:40, 51.76it/s]\\rVocabDiv d=5:   6%|▌         | 129/2200 [00:02<00:41, 49.89it/s]\\rVocabDiv d=5:   6%|▌         | 135/2200 [00:02<00:40, 51.49it/s]\\rVocabDiv d=5:   6%|▋         | 141/2200 [00:02<00:42, 48.75it/s]\\rVocabDiv d=5:   7%|▋         | 147/2200 [00:03<00:41, 49.11it/s]\\rVocabDiv d=5:   7%|▋         | 152/2200 [00:03<00:42, 48.74it/s]\\rVocabDiv d=5:   7%|▋         |
+…[truncated 6372 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-16T19:05:12.962225+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -n \"K\\*\" /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep -n \"K\\*\" /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T19:05:12.962354+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"131:02:59:42 [INFO]   Ordinal MAE = 0.8518, Accuracy = 0.4545, K* = 3\\n151:K* (max depth with AUC > 0.60): 3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-16T19:05:12.962482+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "find /root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-16T19:05:12.962611+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/jsd.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/ordinal_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/feature_importance.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-16T19:05:12.962758+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/pairwise_auc.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/pairwise_auc.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-16T19:05:12.962906+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/feature_importance.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/feature_importance.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-16T19:05:12.963103+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/summary.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/summary.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-16T19:05:12.963288+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.9877,\\n    \\\"1v2\\\": 0.8047,\\n    \\\"2v3\\\": 0.6545,\\n    \\\"3v4\\\": 0.5507,\\n    \\\"4v5\\\": 0.5287\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.9914,\\n      0.9889,\\n      0.9844,\\n      0.9895,\\n      0.9845\\n    ],\\n    \\\"1v2\\\": [\\n      0.7906,\\n      0.8278,\\n      0.8018,\\n      0.8065,\\n      0.7967\\n    ],\\n    \\\"2v3\\\": [\\n      0.6409,\\n      0.6433,\\n      0.6764,\\n      0.6548,\\n      0.6572\\n    ],\\n    \\\"3v4\\\": [\\n      0.5496,\\n      0.5418,\\n      0.5499,\\n      0.5675,\\n      0.5444\\n    ],\\n    \\\"4v5\\\": [\\n      0.5253,\\n      0.5101,\\n      0.5413,\\n      0.5432,\\n      0.5235\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-16T19:05:12.963432+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/ordinal_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/ordinal_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-16T19:05:12.963588+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"feature\\\": \\\"freq_entropy\\\",\\n    \\\"importance\\\": 9845.0\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_std\\\",\\n    \\\"importance\\\": 7967.8\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_mean\\\",\\n    \\\"importance\\\": 7568.0\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_d1_skew\\\",\\n    \\\"importance\\\": 7180.0\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_d1_mean\\\",\\n    \\\"importance\\\": 7123.6\\n  },\\n  {\\n    \\\"feature\\\": \\\"freq_kurtosis\\\",\\n    \\\"importance\\\": 7109.8\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_d2_mean\\\",\\n    \\\"importance\\\": 6911.4\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_d1_std\\\",\\n    \\\"importance\\\": 6861.2\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_kurt\\\",\\n    \\\"importance\\\": 6690.2\\n  },\\n  {\\n    \\\"feature\\\": \\\"hapax_ratio\\\",\\n    \\\"importance\\\": 6080.0\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-16T19:05:12.963742+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nMVP Pilot Saturation Study — Results Summary\\n============================================================\\n\\nPairwise AUC (adjacent depths):\\n  depth 0 vs 1: AUC = 0.9877 ± 0.0028  folds=[0.9914, 0.9889, 0.9844, 0.9895, 0.9845]\\n  depth 1 vs 2: AUC = 0.8047 ± 0.0127  folds=[0.7906, 0.8278, 0.8018, 0.8065, 0.7967]\\n  depth 2 vs 3: AUC = 0.6545 ± 0.0126  folds=[0.6409, 0.6433, 0.6764, 0.6548, 0.6572]\\n  depth 3 vs 4: AUC = 0.5507 ± 0.0090  folds=[0.5496, 0.5418, 0.5499, 0.5675, 0.5444]\\n  depth 4 vs 5: AUC = 0.5287 ± 0.0123  folds=[0.5253, 0.5101, 0.5413, 0.5432, 0.5235]\\n\\nPairwise JSD (adjacent depths):\\n  depth 0 vs 1: JSD = 0.171338\\n  depth 1 vs 2: JSD = 0.057344\\n  depth 2 vs 3: JSD = 0.019524\\n  depth 3 vs 4: JSD = 0.009917\\n  depth 4 vs 5: JSD = 0.008846\\n\\nK* (max depth with AUC > 0.60): 3\\n\\nOrdinal Classification (6-class, 5-fold CV):\\n  MAE = 0.8518\\n  Accuracy = 0.4545\\n\\nTop-10 Feature Importance:\\n  freq_entropy         9845.0\\n  surp_std             7967.8\\n  surp_mean            7568.0\\n  surp_d1_skew         7180.0\\n  surp_d1_mean         7123.6\\n  freq_kurtosis        7109.8\\n  surp_d2_mean         6911.4\\n  surp_d1_std          6861.2\\n  surp_kurt            6690.2\\n  hapax_ratio          6080.0\\n\\n============================================================\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-16T19:05:12.963939+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mae\\\": 0.8518,\\n  \\\"accuracy\\\": 0.4545,\\n  \\\"k_star\\\": 3\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-16T19:05:12.964109+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/gen-depth-contamination/scripts -type f -name \"*bootstrap*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "find /root/autodl-tmp/gen-depth-contamination/scripts -type f -name \"*bootstrap*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-16T19:05:12.964245+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/scripts/exp016_bootstrap_ci.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp019_bootstrap_ci.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp018_bootstrap_ci.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/borderline_bootstrap_ci.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp024_bootstrap_ci.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-16T19:05:12.964372+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls /root/autodl-tmp/gen-depth-contamination/scripts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "ls /root/autodl-tmp/gen-depth-contamination/scripts/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-16T19:05:12.964502+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"borderline_bootstrap_ci.py\\ndownload_arxiv_seed.py\\ndownload_wiki_seed.py\\ndraw_kstar_theta.py\\nexp016_bootstrap_ci.py\\nexp018_bootstrap_ci.py\\nexp019_bootstrap_ci.py\\nexp020_pythia_decoding.sh\\nexp021_length_ablation.sh\\nexp022_cross_scorer_matrix.sh\\nexp022_cuda0.sh\\nexp022_cuda1.sh\\nexp023_wiki_domain.sh\\nexp024_arxiv_domain.sh\\nexp024_bootstrap_ci.py\\nplot_auc_decay_ci.py\\nplot_filtering_strategies.py\\nrun_pipeline.py\\ntransfer_heatmap.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-16T19:05:12.964624+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/scripts/exp024_bootstrap_ci.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "cat /root/autodl-tmp/gen-depth-contamination/scripts/exp024_bootstrap_ci.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-16T19:05:12.964860+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import csv\\nimport json\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport lightgbm as lgb\\nfrom sklearn.model_selection import GroupKFold\\nfrom sklearn.metrics import roc_auc_score\\n\\nFEAT_COLS = [\\n    \\\"surp_mean\\\", \\\"surp_std\\\", \\\"surp_skew\\\", \\\"surp_kurt\\\",\\n    \\\"surp_d1_mean\\\", \\\"surp_d1_std\\\", \\\"surp_d1_skew\\\",\\n    \\\"surp_d2_mean\\\", \\\"surp_d2_std\\\",\\n    \\\"ttr\\\", \\\"hapax_ratio\\\", \\\"self_bleu\\\",\\n    \\\"freq_kurtosis\\\", \\\"freq_entropy\\\", \\\"low_freq_ratio\\\",\\n]\\n\\nDATA_DIR = Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv\\\")\\nOUT_PATH = Path(\\\"/root/autodl-tmp/gen-depth-contamination/artifacts/exp024_bootstrap_ci.json\\\")\\nN_BOOT = 10000\\nN_PERM = 10000\\nMAX_DEPTH = 5\\nSEED = 42\\nTHETA = 0.60\\n\\ndef load_data():\\n    with open(DATA_DIR / \\\"features.csv\\\") as f:\\n        rows = list(csv.DictReader(f))\\n    depths = np.array([int(r[\\\"depth\\\"]) for r in rows])\\n    doc_ids = np.array([int(r[\\\"doc_id\\\"]) for r in rows])\\n    X = np.array(\\n        [[float(r[c]) if r[c] not in (\\\"\\\", \\\"nan\\\") else np.nan for c in FEAT_COLS] for r in rows]\\n    )\\n    col_means = np.nanmean(X, axis=0)\\n    for j in range(X.shape[1]):\\n        mask = np.isnan(X[:, j])\\n        X[mask, j] = col_means[j]\\n    return X, depths, doc_ids\\n\\ndef get_oof_predictions(X, y, groups):\\n    gkf = GroupKFold(n_splits=5)\\n    oof_proba = np.zeros(len(y))\\n    fold_aucs = []\\n    for train_idx, test_idx in gkf.split(X, y, groups=groups):\\n        clf = lgb.LGBMClassifier(\\n            n_estimators=200, max_depth=6, learning_rate=0.05,\\n            num_leaves=31, verbose=-1, n_jobs=-1,\\n        )\\n        clf.fit(X[train_idx], y[train_idx])\\n        proba = clf.predict_proba(X[test_idx])[:, 1]\\n        oof_proba[test_idx] = proba\\n        fold_aucs.append(roc_auc_score(y[
+…[truncated 6195 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-16T19:05:12.965086+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat > /root/autodl-tmp/gen-depth-contamination/scripts/exp025_bootstrap_ci.py << 'EOF'\nimport csv\nimport json\nimport time\nfrom pathlib import Path\n\nimport numpy as np\nimport lightgbm as lgb\nfrom sklearn.model_selection import GroupKFold\nfrom sklearn.metrics import roc_auc_score\n\nFEAT_COLS = [\n    \"surp_mean\", \"surp_std\", \"surp_skew\", \"surp_kurt\",\n    \"surp_d1_mean\", \"surp_d1_std\", \"surp_d1_skew\",\n    \"surp_d2_mean\", \"surp_d2_std\",\n    \"ttr\", \"hapax_ratio\", \"self_bleu\",\n    \"freq_kurtosis\", \"freq_entropy\", \"low_freq_ratio\",\n]\n\nDATA_DIR = Path(\"/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv\")\nOUT_PATH = Path(\"/root/autodl-tmp/gen-depth-contamination/artifacts/exp025_bootstrap_ci.json\")\nN_BOOT = 10000\nN_PERM = 10000\nMAX_DEPTH = 5\nSEED = 42\nTHETA = 0.60\n\ndef load_data():\n    with open(DATA_DIR / \"features.csv\") as f:\n        rows = list(csv.DictReader(f))\n    depths = np.array([int(r[\"depth\"]) for r in rows])\n    doc_ids = np.array([int(r[\"doc_id\"]) for r in rows])\n    X = np.array(\n        [[float(r[c]) if r[c] not in (\"\", \"nan\") else np.nan for c in FEAT_COLS] for r in rows]\n    )\n    col_means = np.nanmean(X, axis=0)\n    for j in range(X.shape[1]):\n        mask = np.isnan(X[:, j])\n        X[mask, j] = col_means[j]\n    return X, depths, doc_ids\n\ndef get_oof_predictions(X, y, groups):\n    gkf = GroupKFold(n_splits=5)\n    oof_proba = np.zeros(len(y))\n    fold_aucs = []\n    for train_idx, test_idx in gkf.split(X, y, groups=groups):\n        clf = lgb.LGBMClassifier(\n            n_estimators=200, max_depth=6, learning_rate=0.05,\n            num_leaves=31, verbose=-1, n_jobs=-1,\n        )\n        clf.fit(X[train_idx], y[train_idx])\n        proba = clf.predict_proba(X[test_idx])[:, 1]\n        oof_proba[test_idx] = proba\n        fold_aucs.append(roc_auc_score(y[test_idx], proba))\n    return oof_proba, fold_aucs\n\ndef bootstrap_ci(y, oof_proba, doc_ids, n_boot, rng):\n    unique_docs = np.unique(doc_ids)\n    n_docs = len(unique_docs)\n    doc_indices = [np.where(doc_ids == d)[0] for d in unique_docs]\n    \n    point_auc = roc_auc_score(y, oof_proba)\n    boot_aucs = np.empty(n_boot)\n    \n    for b in range(n_boot):\n        sampled = rng.randint(0, n_docs, size=n_docs)\n        indices = np.concatenate([doc_indices[s] for s in sampled])\n        try:\n            boot_aucs[b] = roc_auc_score(y[indices], oof_proba[indices])\n        except ValueError:\n            boot_aucs[b] = np.nan\n    \n    boot_aucs = boot_aucs[~np.isnan(boot_aucs)]\n    ci_lower = float(np.percentile(boot_aucs, 2.5))\n    ci_upper = float(np.percentile(boot_aucs, 97.5))\n    return point_auc, ci_lower, ci_upper, boot_aucs\n\ndef permutation_test(y, oof_proba, doc_ids, n_perm, rng, observed_auc):\n    unique_docs, inverse = np.unique(doc_ids, return_inverse=True)\n    n_docs = len(unique_docs)\n    \n    count_ge = 0\n    for _ in range(n_perm):\n        doc_labels = rng.randint(0, 2, size=n_docs)\n        perm_y = doc_labels[inverse]\n        if perm_y.sum() == 0 or perm_y.sum() == len(perm_y):\n            continue\n        perm_auc = roc_auc_score(perm_y, oof_proba)\n        if perm_auc >= observed_auc:\n            count_ge += 1\n    return (count_ge + 1) / (n_perm + 1)\n\ndef bootstrap_test_vs_theta(boot_aucs, theta=THETA):\n    p_below = float(np.mean(boot_aucs <= theta))\n    return p_below\n\ndef main():\n    t_start = time.time()\n    print(\"Loading data...\", flush=True)\n    X, depths, doc_ids = load_data()\n    print(f\"Loaded {len(depths)} samples, depths 0-{depths.max()}\", flush=True)\n    \n    rng = np.random.RandomState(SEED)\n    results = {}\n    \n    for k in range(1, MAX_DEPTH + 1):\n        pair = f\"{k-1}v{k}\"\n        t0 = time.time()\n        print(f\"\\n{'='*50}\", flush=True)\n        print(f\"Processing {pair}...\", flush=True)\n        \n        mask = (depths == k - 1) | (depths == k)\n        X_pair = X[mask]\n        y_pair = (depths[mask] == k).astype(int)\n        groups_pair = doc_ids[mask]\n        \n        print(f\"  Samples: {len(y_pair)} (class 0: {(y_pair==0).sum()}, class 1: {(y_pair==1).sum()})\", flush=True)\n        \n        print(\"  Training 5-fold GroupKFold...\", flush=True)\n        oof_proba, fold_aucs = get_oof_predictions(X_pair, y_pair, groups_pair)\n        print(f\"  Fold AUCs: {[round(a,4) for a in fold_aucs]}\", flush=True)\n        print(f\"  Mean AUC: {np.mean(fold_aucs):.4f}\", flush=True)\n        \n        print(f\"  Running {N_BOOT} bootstrap resamples...\", flush=True)\n        point_auc, ci_lower, ci_upper, boot_aucs = bootstrap_ci(\n            y_pair, oof_proba, groups_pair, N_BOOT, rng\n        )\n        print(f\"  Point AUC (OOF): {point_auc:.4f}\", flush=True)\n        print(f\"  95% CI: [{ci_lower:.4f}, {ci_upper:.4f}]\", flush=True)\n        \n        print(f\"  Running {N_PERM} permutation resamples...\", flush=True)\n        perm_p = permutation_test(y_pair, oof_proba, groups_pair, N_PERM, rng, point_auc)\n        print(f\"  Permutation p-value (AUC >= observed under H0): {perm_p:.6f}\", flush=True)\n        \n        p_vs_theta = bootstrap_test_vs_theta(boot_aucs, THETA)\n        print(f\"  Bootstrap p(AUC <= {THETA}): {p_vs_theta:.4f}\", flush=True)\n        \n        elapsed = time.time() - t0\n        print(f\"  Done in {elapsed:.1f}s\", flush=True)\n        \n        results[pair] = {\n            \"auc\": round(point_auc, 4),\n            \"auc_mean_folds\": round(float(np.mean(fold_aucs)), 4),\n            \"fold_aucs\": [round(a, 4) for a in fold_aucs],\n            \"ci_lower\": round(ci_lower, 4),\n            \"ci_upper\": round(ci_upper, 4),\n            \"ci_lower_above_theta\": bool(ci_lower > THETA),\n            \"perm_p\": round(perm_p, 6),\n            \"p_vs_theta_0.60\": round(p_vs_theta, 4),\n            \"boot_mean\": round(float(np.mean(boot_aucs)), 4),\n            \"boot_std\": round(float(np.std(boot_aucs)), 4),\n        }\n    \n    total_time = time.time() - t_start\n    \n    kstar = 0\n    for k in range(1, MAX_DEPTH + 1):\n        pair = f\"{k-1}v{k}\"\n        if results[pair][\"ci_lower_above_theta\"]:\n            kstar = k\n        else:\n            break\n    \n    output = {\n        \"experiment\": \"exp-025 Pythia-1.4B arXiv continuation (domain x model interaction)\",\n        \"method\": \"GroupKFold(5) OOF + doc-level bootstrap + label permutation\",\n        \"n_bootstrap\": N_BOOT,\n        \"n_permutation\": N_PERM,\n        \"seed\": SEED,\n        \"theta\": THETA,\n        \"kstar_ci\": kstar,\n        \"total_seconds\": round(total_time, 1),\n        \"pairs\": results,\n    }\n    \n    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)\n    with open(OUT_PATH, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {OUT_PATH}\", flush=True)\n    \n    print(\"\\n\" + \"=\"*60, flush=True)\n    print(\"SUMMARY\", flush=True)\n    print(\"=\"*60, flush=True)\n    print(f\"Theta = {THETA}\", flush=True)\n    print(f\"K* (CI-based) = {kstar}\", flush=True)\n    print(flush=True)\n    for pair, r in results.items():\n        if r[\"ci_lower_above_theta\"]:\n            flag = \" [CI lower > theta -> PASS]\"\n        else:\n            flag = \" [CI lower <= theta -> FAIL]\"\n        print(f\"  {pair}: AUC={r['auc']:.4f}  95% CI=[{r['ci_lower']:.4f}, {r['ci_upper']:.4f}]  p_perm={r['perm_p']:.6f}  p_vs_theta={r['p_vs_theta_0.60']:.4f}{flag}\", flush=True)\n    \n    print(f\"\\nTotal time: {total_time:.1f}s\", flush=True)\n\nif __name__ == \"__main__\":\n    main()\nEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "cat > /root/autodl-tmp/gen-depth-contamination/scripts/exp025_bootstrap_ci.py << 'EOF'\nimport csv\nimport json\nimport time\nfrom pathlib import Path\n\nimport numpy as np\nimport lightgbm as lgb\nfrom sklearn.model_selection import GroupKFold\nfrom sklearn.metrics import roc_auc_score\n\nFEAT_COLS = [\n    \"surp_mean\", \"surp_std\", \"surp_skew\", \"surp_kurt\",\n    \"surp_d1_mean\", \"surp_d1_std\", \"surp_d1_skew\",\n    \"surp_d2_mean\", \"surp_d2_std\",\n    \"ttr\", \"hapax_ratio\", \"self_bleu\",\n    \"freq_kurtosis\", \"freq_entropy\", \"low_freq_ratio\",\n]\n\nDATA_DIR = Path(\"/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv\")\nOUT_PATH = Path(\"/root/autodl-tmp/gen-depth-contamination/artifacts/exp025_bootstrap_ci.json\")\nN_BOOT = 10000\nN_PERM = 10000\nMAX_DEPTH = 5\nSEED = 42\nTHETA = 0.60\n\ndef load_data():\n    with open(DATA_DIR / \"features.csv\") as f:\n        rows = list(csv.DictReader(f))\n    depths = np.array([int(r[\"depth\"]) for r in rows])\n    doc_ids = np.array([int(r[\"doc_id\"]) for r in rows])\n    X = np.array(\n        [[float(r[c]) if r[c] not in (\"\", \"nan\") else np.nan for c in FEAT_COLS] for r in rows]\n    )\n    col_means = np.nanmean(X, axis=0)\n    for j in range(X.shape[1]):\n        mask = np.isnan(X[:, j])\n        X[mask, j] = col_means[j]\n    return X, depths, doc_ids\n\ndef get_oof_predictions(X, y, groups):\n    gkf = GroupKFold(n_splits=5)\n    oof_proba = np.zeros(len(y))\n    fold_aucs = []\n    for train_idx, test_idx in gkf.split(X, y, groups=groups):\n        clf = lgb.LGBMClassifier(\n            n_estimators=200, max_depth=6, learning_rate=0.05,\n            num_leaves=31, verbose=-1, n_jobs=-1,\n        )\n        clf.fit(X[train_idx], y[train_idx])\n        proba = clf.predict_proba(X[test_idx])[:, 1]\n        oof_proba[test_idx] = proba\n        fold_aucs.append(roc_auc_score(y[test_idx], proba))\n    return oof_proba, fold_aucs\n\ndef bootstrap_ci(y, oof_proba, doc_ids, n_boot, rng):\n    unique_docs = np.unique(doc_ids)\n    n_docs = len(unique_docs)\n    doc_indices = [np.where(doc_ids == d)[0] for d in unique_docs]\n    \n    point_auc = roc_auc_score(y, oof_proba)\n    boot_aucs = np.empty(n_boot)\n    \n    for b in range(n_boot):\n        sampled = rng.randint(0, n_docs, size=n_docs)\n        indices = np.concatenate([doc_indices[s] for s in sampled])\n        try:\n            boot_aucs[b] = roc_auc_score(y[indices], oof_proba[indices])\n        except ValueError:\n            boot_aucs[b] = np.nan\n    \n    boot_aucs = boot_aucs[~np.isnan(boot_aucs)]\n    ci_lower = float(np.percentile(boot_aucs, 2.5))\n    ci_upper = float(np.percentile(boot_aucs, 97.5))\n    return point_auc, ci_lower, ci_upper, boot_aucs\n\ndef permutation_test(y, oof_proba, doc_ids, n_perm, rng, observed_auc):\n    unique_docs, inverse = np.unique(doc_ids, return_inverse=True)\n    n_docs = len(unique_docs)\n    \n    count_ge = 0\n    for _ in range(n_perm):\n        doc_labels = rng.randint(0, 2, size=n_docs)\n        perm_y = doc_labels[inverse]\n        if perm_y.sum() == 0 or perm_y.sum() == len(perm_y):\n            continue\n        perm_auc = roc_auc_score(perm_y, oof_proba)\n        if perm_auc >= observed_auc:\n            count_ge += 1\n    return (count_ge + 1) / (n_perm + 1)\n\ndef bootstrap_test_vs_theta(boot_aucs, theta=THETA):\n    p_below = float(np.mean(boot_aucs <= theta))\n    return p_below\n\ndef main():\n    t_start = time.time()\n    print(\"Loading data...\", flush=True)\n    X, depths, doc_ids = load_data()\n    print(f\"Loaded {len(depths)} samples, depths 0-{depths.max()}\", flush=True)\n    \n    rng = np.random.RandomState(SEED)\n    results = {}\n    \n    for k in range(1, MAX_DEPTH + 1):\n        pair = f\"{k-1}v{k}\"\n        t0 = time.time()\n        print(f\"\\n{'='*50}\", flush=True)\n        print(f\"Processing {pair}...\", flush=True)\n        \n        mask = (depths == k - 1) | (depths == k)\n        X_pair = X[mask]\n        y_pair = (depths[mask] == k).astype(int)\n        groups_pair = doc_ids[mask]\n        \n        print(f\"  Samples: {len(y_pair)} (class 0: {(y_pair==0).sum()}, class 1: {(y_pair==1).sum()})\", flush=True)\n        \n        print(\"  Training 5-fold GroupKFold...\", flush=True)\n        oof_proba, fold_aucs = get_oof_predictions(X_pair, y_pair, groups_pair)\n        print(f\"  Fold AUCs: {[round(a,4) for a in fold_aucs]}\", flush=True)\n        print(f\"  Mean AUC: {np.mean(fold_aucs):.4f}\", flush=True)\n        \n        print(f\"  Running {N_BOOT} bootstrap resamples...\", flush=True)\n        point_auc, ci_lower, ci_upper, boot_aucs = bootstrap_ci(\n            y_pair, oof_proba, groups_pair, N_BOOT, rng\n        )\n        print(f\"  Point AUC (OOF): {point_auc:.4f}\", flush=True)\n        print(f\"  95% CI: [{ci_lower:.4f}, {ci_upper:.4f}]\", flush=True)\n        \n        print(f\"  Running {N_PERM} permutation resamples...\", flush=True)\n        perm_p = permutation_test(y_pair, oof_proba, groups_pair, N_PERM, rng, point_auc)\n        print(f\"  Permutation p-value (AUC >= observed under H0): {perm_p:.6f}\", flush=True)\n        \n        p_vs_theta = bootstrap_test_vs_theta(boot_aucs, THETA)\n        print(f\"  Bootstrap p(AUC <= {THETA}): {p_vs_theta:.4f}\", flush=True)\n        \n        elapsed = time.time() - t0\n        print(f\"  Done in {elapsed:.1f}s\", flush=True)\n        \n        results[pair] = {\n            \"auc\": round(point_auc, 4),\n            \"auc_mean_folds\": round(float(np.mean(fold_aucs)), 4),\n            \"fold_aucs\": [round(a, 4) for a in fold_aucs],\n            \"ci_lower\": round(ci_lower, 4),\n            \"ci_upper\": round(ci_upper, 4),\n            \"ci_lower_above_theta\": bool(ci_lower > THETA),\n            \"perm_p\": round(perm_p, 6),\n            \"p_vs_theta_0.60\": round(p_vs_theta, 4),\n            \"boot_mean\": round(float(np.mean(boot_aucs)), 4),\n            \"boot_std\": round(float(np.std(boot_aucs)), 4),\n        }\n    \n    total_time = time.time() - t_start\n    \n    kstar = 0\n    for k in range(1, MAX_DEPTH + 1):\n        pair = f\"{k-1}v{k}\"\n        if results[pair][\"ci_lower_above_theta\"]:\n            kstar = k\n        else:\n            break\n    \n    output = {\n        \"experiment\": \"exp-025 Pythia-1.4B arXiv continuation (domain x model interaction)\",\n        \"method\": \"GroupKFold(5) OOF + doc-level bootstrap + label permutation\",\n        \"n_bootstrap\": N_BOOT,\n        \"n_permutation\": N_PERM,\n        \"seed\": SEED,\n        \"theta\": THETA,\n        \"kstar_ci\": kstar,\n        \"total_seconds\": round(total_time, 1),\n        \"pairs\": results,\n    }\n    \n    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)\n    with open(OUT_PATH, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nResults saved to {OUT_PATH}\", flush=True)\n    \n    print(\"\\n\" + \"=\"*60, flush=True)\n    print(\"SUMMARY\", flush=True)\n    print(\"=\"*60, flush=True)\n    print(f\"Theta = {THETA}\", flush=True)\n    print(f\"K* (CI-based) = {kstar}\", flush=True)\n    print(flush=True)\n    for pair, r in results.items():\n        if r[\"ci_lower_above_theta\"]:\n            flag = \" [CI lower > theta -> PASS]\"\n        else:\n            flag = \" [CI lower <= theta -> FAIL]\"\n        print(f\"  {pair}: AUC={r['auc']:.4f}  95% CI=[{r['ci_lower']:.4f}, {r['ci_upper']:.4f}]  p_perm={r['perm_p']:.6f}  p_vs_theta={r['p_vs_theta_0.60']:.4f}{flag}\", flush=True)\n    \n    print(f\"\\nTotal time: {total_time:.1f}s\", flush=True)\n\nif __name__ == \"__main__\":\n    main()\nEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-16T19:05:12.965291+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-16T19:05:12.965419+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/exp025_bootstrap_ci.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/exp025_bootstrap_ci.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-16T19:05:12.965558+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/exp025_bootstrap_ci.py'\\n\\nStdout:\\n\\n==================================================\\nProcessing 0v1...\\n  Samples: 4400 (class 0: 2200, class 1: 2200)\\n  Training 5-fold GroupKFold...\\n  Fold AUCs: [0.9914, 0.9889, 0.9844, 0.9895, 0.9845]\\n  Mean AUC: 0.9877\\n  Running 10000 bootstrap resamples...\\n  Point AUC (OOF): 0.9876\\n  95% CI: [0.9851, 0.9900]\\n  Running 10000 permutation resamples...\\n\\nStderr:\\n\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-16T19:05:12.965718+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python scripts/exp025_bootstrap_ci.py > /tmp/exp025_bootstrap.log 2>&1 & echo $!",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python scripts/exp025_bootstrap_ci.py > /tmp/exp025_bootstrap.log 2>&1 & echo $!",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-16T19:05:12.965882+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup python scripts/exp025_bootstrap_ci.py > /tmp/exp025_bootstrap.log 2>&1 & echo $!'\\n\\nStdout:\\n\\n70263\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.76}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-16T19:05:12.966036+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "tail -20 /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "tail -20 /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-16T19:05:12.966173+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Bootstrap p(AUC <= 0.6): 0.0000\\n  Done in 30.2s\\n\\n==================================================\\nProcessing 1v2...\\n  Samples: 4400 (class 0: 2200, class 1: 2200)\\n  Training 5-fold GroupKFold...\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n  Fold AUCs: [0.7906, 0.8278, 0.8018, 0.8065, 0.7967]\\n  Mean AUC: 0.8047\\n  Running 10000 bootstrap resamples...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-16T19:05:12.966328+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "tail -30 /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "tail -30 /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-16T19:05:12.966467+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n  Fold AUCs: [0.9914, 0.9889, 0.9844, 0.9895, 0.9845]\\n  Mean AUC: 0.9877\\n  Running 10000 bootstrap resamples...\\n  Point AUC (OOF): 0.9876\\n  95% CI: [0.9851, 0.9900]\\n  Running 10000 permutation resamples...\\n  Permutation p-value (AUC >= observed under H0): 0.000100\\n  Bootstrap p(AUC <= 0.6): 0.0000\\n  Done in 30.2s\\n\\n==================================================\\nProcessing 1v2...\\n  Samples: 4400 (class 0: 2200, class 1: 2200)\\n  Training 5-fold GroupKFold...\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n  Fold AUCs: [0.7906, 0.8278, 0.8018, 0.8065, 0.7967]\\n  Mean AUC: 0.8047\\n  Running 10000 bootstrap resamples...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-16T19:05:12.966809+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-16T19:05:12.966965+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-16T19:05:12.967317+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-16T19:05:12.967996+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-16T19:05:12.968132+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-16T19:05:12.968473+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-16T19:05:12.968619+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-16T19:05:12.968748+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-16T19:05:12.968898+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-16T19:05:12.969081+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-16T19:05:12.969219+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-16T19:05:12.969344+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-16T19:05:12.969462+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-16T19:05:12.969582+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-16T19:05:12.969699+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-16T19:05:12.969856+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-16T19:05:12.969991+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-16T19:05:12.970122+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-16T19:05:12.970243+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-16T19:05:12.970363+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-16T19:05:12.970480+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-16T19:05:12.970597+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-16T19:05:12.970712+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-16T19:05:12.970852+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-16T19:05:12.970973+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-16T19:05:12.971093+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-16T19:05:12.971208+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-16T19:05:12.971395+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n  Done in 29.1s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-16T19:05:12.971535+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-16T19:05:12.971656+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n  Done in 29.1s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-16T19:05:12.971789+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-16T19:05:12.971919+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n  Done in 29.1s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-16T19:05:12.972036+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-16T19:05:12.972155+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n  Done in 29.1s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-16T19:05:12.972269+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-16T19:05:12.972386+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n  Done in 29.1s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-16T19:05:12.972499+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-16T19:05:12.972623+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n  Done in 29.1s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-16T19:05:12.972738+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-16T19:05:12.972879+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n  Done in 29.1s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-16T19:05:12.972994+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-16T19:05:12.973224+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n  Done in 29.1s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-16T19:05:12.973649+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-16T19:05:12.973814+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n  Done in 29.1s\\n  Done in 29.0s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-16T19:05:12.974005+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-16T19:05:12.974145+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n  Done in 29.1s\\n  Done in 29.0s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-16T19:05:12.974265+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-16T19:05:12.974396+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n  Done in 29.1s\\n  Done in 29.0s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-16T19:05:12.974515+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-16T19:05:12.974632+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n  Done in 29.1s\\n  Done in 29.0s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-16T19:05:12.974745+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 120 · 2026-05-16T19:05:12.974909+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n  Done in 29.1s\\n  Done in 29.0s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 121 · 2026-05-16T19:05:12.975033+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-16T19:05:12.975152+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n  Done in 29.1s\\n  Done in 29.0s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 123 · 2026-05-16T19:05:12.975352+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 124 · 2026-05-16T19:05:12.975499+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n  Done in 29.1s\\n  Done in 29.0s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 125 · 2026-05-16T19:05:12.975626+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 126 · 2026-05-16T19:05:12.975747+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n  Done in 29.1s\\n  Done in 29.0s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 127 · 2026-05-16T19:05:12.975888+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "grep \"Done in\" /tmp/exp025_bootstrap.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 128 · 2026-05-16T19:05:12.976008+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Done in 30.2s\\n  Done in 28.6s\\n  Done in 29.1s\\n  Done in 29.0s\\n  Done in 28.5s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129 · 2026-05-16T19:05:12.976144+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/artifacts/exp025_bootstrap_ci.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "cat /root/autodl-tmp/gen-depth-contamination/artifacts/exp025_bootstrap_ci.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-16T19:05:12.976365+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp-025 Pythia-1.4B arXiv continuation (domain x model interaction)\\\",\\n  \\\"method\\\": \\\"GroupKFold(5) OOF + doc-level bootstrap + label permutation\\\",\\n  \\\"n_bootstrap\\\": 10000,\\n  \\\"n_permutation\\\": 10000,\\n  \\\"seed\\\": 42,\\n  \\\"theta\\\": 0.6,\\n  \\\"kstar_ci\\\": 3,\\n  \\\"total_seconds\\\": 145.5,\\n  \\\"pairs\\\": {\\n    \\\"0v1\\\": {\\n      \\\"auc\\\": 0.9876,\\n      \\\"auc_mean_folds\\\": 0.9877,\\n      \\\"fold_aucs\\\": [\\n        0.9914,\\n        0.9889,\\n        0.9844,\\n        0.9895,\\n        0.9845\\n      ],\\n      \\\"ci_lower\\\": 0.9851,\\n      \\\"ci_upper\\\": 0.99,\\n      \\\"ci_lower_above_theta\\\": true,\\n      \\\"perm_p\\\": 0.0001,\\n      \\\"p_vs_theta_0.60\\\": 0.0,\\n      \\\"boot_mean\\\": 0.9876,\\n      \\\"boot_std\\\": 0.0012\\n    },\\n    \\\"1v2\\\": {\\n      \\\"auc\\\": 0.8047,\\n      \\\"auc_mean_folds\\\": 0.8047,\\n      \\\"fold_aucs\\\": [\\n        0.7906,\\n        0.8278,\\n        0.8018,\\n        0.8065,\\n        0.7967\\n      ],\\n      \\\"ci_lower\\\": 0.7934,\\n      \\\"ci_upper\\\": 0.8162,\\n      \\\"ci_lower_above_theta\\\": true,\\n      \\\"perm_p\\\": 0.0001,\\n      \\\"p_vs_theta_0.60\\\": 0.0,\\n      \\\"boot_mean\\\": 0.8047,\\n      \\\"boot_std\\\": 0.0058\\n    },\\n    \\\"2v3\\\": {\\n      \\\"auc\\\": 0.6544,\\n      \\\"auc_mean_folds\\\": 0.6545,\\n      \\\"fold_aucs\\\": [\\n        0.6409,\\n        0.6433,\\n        0.6764,\\n        0.6548,\\n        0.6572\\n      ],\\n      \\\"ci_lower\\\": 0.6401,\\n      \\\"ci_upper\\\": 0.6688,\\n      \\\"ci_lower_above_theta\\\": true,\\n      \\\"perm_p\\\": 0.0001,\\n      \\\"p_vs_theta_0.60\\\": 0.0,\\n      \\\"boot_mean\\\": 0.6544,\\n      \\\"boot_std\\\": 0.0073\\n    },\\n    \\\"3v4\\\": {\\n      \\\"auc\\\": 0.55,\\n      \\\"auc_mean_folds\\\": 0.5507,\\n      \\\"fold_aucs\\\": [\\n        0
+…[truncated 936 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 131 · 2026-05-16T19:05:12.976569+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 132 · 2026-05-16T19:05:12.976700+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 133 · 2026-05-16T19:05:12.976871+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "exp025_bootstrap_ci",
+  "type": "data",
+  "description": "Bootstrap CI and permutation test results for exp_025_pythia_arxiv (Pythia-1.4B on arXiv, K*=3 confirmed)",
+  "project": "gen-depth-contamination",
+  "exp_id": "exp_025_pythia_arxiv",
+  "source_path": "/root/autodl-tmp/gen-depth-contamination/artifacts/exp025_bootstrap_ci.json",
+  "tags": "['bootstrap', 'pairwise-auc', 'permutation-test', 'domain-model-interaction']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "exp025_bootstrap_ci",
+    "type": "data",
+    "description": "Bootstrap CI and permutation test results for exp_025_pythia_arxiv (Pythia-1.4B on arXiv, K*=3 confirmed)",
+    "project": "gen-depth-contamination",
+    "exp_id": "exp_025_pythia_arxiv",
+    "source_path": "/root/autodl-tmp/gen-depth-contamination/artifacts/exp025_bootstrap_ci.json",
+    "tags": "['bootstrap', 'pairwise-auc', 'permutation-test', 'domain-model-interaction']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 134 · 2026-05-16T19:05:12.977025+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/autodl-tmp/gen-depth-contamination/artifacts/exp025_bootstrap_ci.json\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 135 · 2026-05-16T19:05:12.977176+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "exp025_bootstrap_ci",
+  "type": "data",
+  "description": "Bootstrap CI and permutation test results for exp_025_pythia_arxiv (Pythia-1.4B on arXiv, K*=3 confirmed)",
+  "project": "gen-depth-contamination",
+  "exp_id": "exp_025_pythia_arxiv",
+  "content": "{\n  \"experiment\": \"exp-025 Pythia-1.4B arXiv continuation (domain x model interaction)\",\n  \"method\": \"GroupKFold(5) OOF + doc-level bootstrap + label permutation\",\n  \"n_bootstrap\": 10000,\n  \"n_permutation\": 10000,\n  \"seed\": 42,\n  \"theta\": 0.6,\n  \"kstar_ci\": 3,\n  \"total_seconds\": 145.5,\n  \"pairs\": {\n    \"0v1\": {\"auc\": 0.9876, \"auc_mean_folds\": 0.9877, \"fold_aucs\": [0.9914, 0.9889, 0.9844, 0.9895, 0.9845], \"ci_lower\": 0.9851, \"ci_upper\": 0.99, \"ci_lower_above_theta\": true, \"perm_p\": 0.0001, \"p_vs_theta_0.60\": 0.0, \"boot_mean\": 0.9876, \"boot_std\": 0.0012},\n    \"1v2\": {\"auc\": 0.8047, \"auc_mean_folds\": 0.8047, \"fold_aucs\": [0.7906, 0.8278, 0.8018, 0.8065, 0.7967], \"ci_lower\": 0.7934, \"ci_upper\": 0.8162, \"ci_lower_above_theta\": true, \"perm_p\": 0.0001, \"p_vs_theta_0.60\": 0.0, \"boot_mean\": 0.8047, \"boot_std\": 0.0058},\n    \"2v3\": {\"auc\": 0.6544, \"auc_mean_folds\": 0.6545, \"fold_aucs\": [0.6409, 0.6433, 0.6764, 0.6548, 0.6572], \"ci_lower\": 0.6401, \"ci_upper\": 0.6688, \"ci_lower_above_theta\": true, \"perm_p\": 0.0001, \"p_vs_theta_0.60\": 0.0, \"boot_mean\": 0.6544, \"boot_std\": 0.0073},\n    \"3v4\": {\"auc\": 0.55, \"auc_mean_folds\": 0.5507, \"fold_aucs\": [0.5496, 0.5418, 0.5499, 0.5675, 0.5444], \"ci_lower\": 0.534, \"ci_upper\": 0.5657, \"ci_lower_above_theta\": false, \"perm_p\": 0.0001, \"p_vs_theta_0.60\": 1.0, \"boot_mean\": 0.55, \"boot_std\": 0.0081},\n    \"4v5\": {\"auc\": 0.5284, \"auc_mean_folds\": 0.5287, \"fold_aucs\": [0.5253, 0.5101, 0.5413, 0.5432, 0.5235], \"ci_lower\": 0.5122, \"ci_upper\": 0.5443, \"ci_lower_above_theta\": false, \"perm_p\": 0.001, \"p_vs_theta_0.60\": 1.0, \"boot_mean\": 0.5283, \"boot_std\": 0.0082}\n  }\n}",
+  "content_filename": "exp025_bootstrap_ci.json",
+  "tags": "['bootstrap', 'pairwise-auc', 'permutation-test', 'domain-model-interaction']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "exp025_bootstrap_ci",
+    "type": "data",
+    "description": "Bootstrap CI and permutation test results for exp_025_pythia_arxiv (Pythia-1.4B on arXiv, K*=3 confirmed)",
+    "project": "gen-depth-contamination",
+    "exp_id": "exp_025_pythia_arxiv",
+    "content": "{\n  \"experiment\": \"exp-025 Pythia-1.4B arXiv continuation (domain x model interaction)\",\n  \"method\": \"GroupKFold(5) OOF + doc-level bootstrap + label permutation\",\n  \"n_bootstrap\": 10000,\n  \"n_permutation\": 10000,\n  \"seed\": 42,\n  \"theta\": 0.6,\n  \"kstar_ci\": 3,\n  \"total_seconds\": 145.5,\n  \"pairs\": {\n    \"0v1\": {\"auc\": 0.9876, \"auc_mean_folds\": 0.9877, \"fold_aucs\": [0.9914, 0.9889, 0.9844, 0.9895, 0.9845], \"ci_lower\": 0.9851, \"ci_upper\": 0.99, \"ci_lower_above_theta\": true, \"perm_p\": 0.0001, \"p_vs_theta_0.60\": 0.0, \"boot_mean\": 0.9876, \"boot_std\": 0.0012},\n    \"1v2\": {\"auc\": 0.8047, \"auc_mean_folds\": 0.8047, \"fold_aucs\": [0.7906, 0.8278, 0.8018, 0.8065, 0.7967], \"ci_lower\": 0.7934, \"ci_upper\": 0.8162, \"ci_lower_above_theta\": true, \"perm_p\": 0.0001, \"p_vs_theta_0.60\": 0.0, \"boot_mean\": 0.8047, \"boot_std\": 0.0058},\n    \"2v3\": {\"auc\": 0.6544, \"auc_mean_folds\": 0.6545, \"fold_aucs\": [0.6409, 0.6433, 0.6764, 0.6548, 0.6572], \"ci_lower\": 0.6401, \"ci_upper\": 0.6688, \"ci_lower_above_theta\": true, \"perm_p\": 0.0001, \"p_vs_theta_0.60\": 0.0, \"boot_mean\": 0.6544, \"boot_std\": 0.0073},\n    \"3v4\": {\"auc\": 0.55, \"auc_mean_folds\": 0.5507, \"fold_aucs\": [0.5496, 0.5418, 0.5499, 0.5675, 0.5444], \"ci_lower\": 0.534, \"ci_upper\": 0.5657, \"ci_lower_above_theta\": false, \"perm_p\": 0.0001, \"p_vs_theta_0.60\": 1.0, \"boot_mean\": 0.55, \"boot_std\": 0.0081},\n    \"4v5\": {\"auc\": 0.5284, \"auc_mean_folds\": 0.5287, \"fold_aucs\": [0.5253, 0.5101, 0.5413, 0.5432, 0.5235], \"ci_lower\": 0.5122, \"ci_upper\": 0.5443, \"ci_lower_above_theta\": false, \"perm_p\": 0.001, \"p_vs_theta_0.60\": 1.0, \"boot_mean\": 0.5283, \"boot_std\": 0.0082}\n  }\n}",
+    "content_filename": "exp025_bootstrap_ci.json",
+    "tags": "['bootstrap', 'pairwise-auc', 'permutation-test', 'domain-model-interaction']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 136 · 2026-05-16T19:05:12.977327+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'experiment': 'exp-025 P...3, 'boot_std': 0.0082}}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 137 · 2026-05-16T19:05:12.977459+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "exp025_bootstrap_ci",
+  "type": "data",
+  "description": "Bootstrap CI and permutation test results for exp_025_pythia_arxiv (Pythia-1.4B on arXiv, K*=3 confirmed)",
+  "project": "gen-depth-contamination",
+  "exp_id": "exp_025_pythia_arxiv",
+  "content": "{\"experiment\":\"exp-025 Pythia-1.4B arXiv continuation (domain x model interaction)\",\"method\":\"GroupKFold(5) OOF + doc-level bootstrap + label permutation\",\"n_bootstrap\":10000,\"n_permutation\":10000,\"seed\":42,\"theta\":0.6,\"kstar_ci\":3,\"total_seconds\":145.5,\"pairs\":{\"0v1\":{\"auc\":0.9876,\"ci_lower\":0.9851,\"ci_upper\":0.99,\"ci_lower_above_theta\":true,\"perm_p\":0.0001},\"1v2\":{\"auc\":0.8047,\"ci_lower\":0.7934,\"ci_upper\":0.8162,\"ci_lower_above_theta\":true,\"perm_p\":0.0001},\"2v3\":{\"auc\":0.6544,\"ci_lower\":0.6401,\"ci_upper\":0.6688,\"ci_lower_above_theta\":true,\"perm_p\":0.0001},\"3v4\":{\"auc\":0.55,\"ci_lower\":0.534,\"ci_upper\":0.5657,\"ci_lower_above_theta\":false,\"perm_p\":0.0001},\"4v5\":{\"auc\":0.5284,\"ci_lower\":0.5122,\"ci_upper\":0.5443,\"ci_lower_above_theta\":false,\"perm_p\":0.001}}}",
+  "content_filename": "exp025_bootstrap_ci.json",
+  "tags": "['bootstrap', 'pairwise-auc', 'permutation-test', 'domain-model-interaction']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "exp025_bootstrap_ci",
+    "type": "data",
+    "description": "Bootstrap CI and permutation test results for exp_025_pythia_arxiv (Pythia-1.4B on arXiv, K*=3 confirmed)",
+    "project": "gen-depth-contamination",
+    "exp_id": "exp_025_pythia_arxiv",
+    "content": "{\"experiment\":\"exp-025 Pythia-1.4B arXiv continuation (domain x model interaction)\",\"method\":\"GroupKFold(5) OOF + doc-level bootstrap + label permutation\",\"n_bootstrap\":10000,\"n_permutation\":10000,\"seed\":42,\"theta\":0.6,\"kstar_ci\":3,\"total_seconds\":145.5,\"pairs\":{\"0v1\":{\"auc\":0.9876,\"ci_lower\":0.9851,\"ci_upper\":0.99,\"ci_lower_above_theta\":true,\"perm_p\":0.0001},\"1v2\":{\"auc\":0.8047,\"ci_lower\":0.7934,\"ci_upper\":0.8162,\"ci_lower_above_theta\":true,\"perm_p\":0.0001},\"2v3\":{\"auc\":0.6544,\"ci_lower\":0.6401,\"ci_upper\":0.6688,\"ci_lower_above_theta\":true,\"perm_p\":0.0001},\"3v4\":{\"auc\":0.55,\"ci_lower\":0.534,\"ci_upper\":0.5657,\"ci_lower_above_theta\":false,\"perm_p\":0.0001},\"4v5\":{\"auc\":0.5284,\"ci_lower\":0.5122,\"ci_upper\":0.5443,\"ci_lower_above_theta\":false,\"perm_p\":0.001}}}",
+    "content_filename": "exp025_bootstrap_ci.json",
+    "tags": "['bootstrap', 'pairwise-auc', 'permutation-test', 'domain-model-interaction']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 138 · 2026-05-16T19:05:12.977590+00:00_
+
+Error executing tool register_artifact: 1 validation error for register_artifactArguments
+content
+  Input should be a valid string [type=string_type, input_value={'experiment': 'exp-025 P...alse, 'perm_p': 0.001}}}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 139 · 2026-05-16T19:05:12.977711+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "exp025_bootstrap_ci",
+  "type": "data",
+  "description": "Bootstrap CI and permutation test results for exp_025_pythia_arxiv (Pythia-1.4B on arXiv, K*=3 confirmed). Remote path: /root/autodl-tmp/gen-depth-contamination/artifacts/exp025_bootstrap_ci.json on cqa1-22115",
+  "project": "gen-depth-contamination",
+  "exp_id": "exp_025_pythia_arxiv",
+  "tags": "['bootstrap', 'pairwise-auc', 'permutation-test', 'domain-model-interaction']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "exp025_bootstrap_ci",
+    "type": "data",
+    "description": "Bootstrap CI and permutation test results for exp_025_pythia_arxiv (Pythia-1.4B on arXiv, K*=3 confirmed). Remote path: /root/autodl-tmp/gen-depth-contamination/artifacts/exp025_bootstrap_ci.json on cqa1-22115",
+    "project": "gen-depth-contamination",
+    "exp_id": "exp_025_pythia_arxiv",
+    "tags": "['bootstrap', 'pairwise-auc', 'permutation-test', 'domain-model-interaction']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 140 · 2026-05-16T19:05:12.977895+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"One of source_path, content, or url must be provided.\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 141 · 2026-05-16T19:05:12.978072+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat > /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp025_bootstrap_ci.json << 'EOF'\n{\n  \"experiment\": \"exp-025 Pythia-1.4B arXiv continuation (domain x model interaction)\",\n  \"method\": \"GroupKFold(5) OOF + doc-level bootstrap + label permutation\",\n  \"n_bootstrap\": 10000,\n  \"n_permutation\": 10000,\n  \"seed\": 42,\n  \"theta\": 0.6,\n  \"kstar_ci\": 3,\n  \"total_seconds\": 145.5,\n  \"pairs\": {\n    \"0v1\": {\"auc\": 0.9876, \"auc_mean_folds\": 0.9877, \"fold_aucs\": [0.9914, 0.9889, 0.9844, 0.9895, 0.9845], \"ci_lower\": 0.9851, \"ci_upper\": 0.99, \"ci_lower_above_theta\": true, \"perm_p\": 0.0001, \"p_vs_theta_0.60\": 0.0, \"boot_mean\": 0.9876, \"boot_std\": 0.0012},\n    \"1v2\": {\"auc\": 0.8047, \"auc_mean_folds\": 0.8047, \"fold_aucs\": [0.7906, 0.8278, 0.8018, 0.8065, 0.7967], \"ci_lower\": 0.7934, \"ci_upper\": 0.8162, \"ci_lower_above_theta\": true, \"perm_p\": 0.0001, \"p_vs_theta_0.60\": 0.0, \"boot_mean\": 0.8047, \"boot_std\": 0.0058},\n    \"2v3\": {\"auc\": 0.6544, \"auc_mean_folds\": 0.6545, \"fold_aucs\": [0.6409, 0.6433, 0.6764, 0.6548, 0.6572], \"ci_lower\": 0.6401, \"ci_upper\": 0.6688, \"ci_lower_above_theta\": true, \"perm_p\": 0.0001, \"p_vs_theta_0.60\": 0.0, \"boot_mean\": 0.6544, \"boot_std\": 0.0073},\n    \"3v4\": {\"auc\": 0.55, \"auc_mean_folds\": 0.5507, \"fold_aucs\": [0.5496, 0.5418, 0.5499, 0.5675, 0.5444], \"ci_lower\": 0.534, \"ci_upper\": 0.5657, \"ci_lower_above_theta\": false, \"perm_p\": 0.0001, \"p_vs_theta_0.60\": 1.0, \"boot_mean\": 0.55, \"boot_std\": 0.0081},\n    \"4v5\": {\"auc\": 0.5284, \"auc_mean_folds\": 0.5287, \"fold_aucs\": [0.5253, 0.5101, 0.5413, 0.5432, 0.5235], \"ci_lower\": 0.5122, \"ci_upper\": 0.5443, \"ci_lower_above_theta\": false, \"perm_p\": 0.001, \"p_vs_theta_0.60\": 1.0, \"boot_mean\": 0.5283, \"boot_std\": 0.0082}\n  }\n}\nEOF",
+  "description": "Write bootstrap CI results locally for artifact registration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat > /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp025_bootstrap_ci.json << 'EOF'\n{\n  \"experiment\": \"exp-025 Pythia-1.4B arXiv continuation (domain x model interaction)\",\n  \"method\": \"GroupKFold(5) OOF + doc-level bootstrap + label permutation\",\n  \"n_bootstrap\": 10000,\n  \"n_permutation\": 10000,\n  \"seed\": 42,\n  \"theta\": 0.6,\n  \"kstar_ci\": 3,\n  \"total_seconds\": 145.5,\n  \"pairs\": {\n    \"0v1\": {\"auc\": 0.9876, \"auc_mean_folds\": 0.9877, \"fold_aucs\": [0.9914, 0.9889, 0.9844, 0.9895, 0.9845], \"ci_lower\": 0.9851, \"ci_upper\": 0.99, \"ci_lower_above_theta\": true, \"perm_p\": 0.0001, \"p_vs_theta_0.60\": 0.0, \"boot_mean\": 0.9876, \"boot_std\": 0.0012},\n    \"1v2\": {\"auc\": 0.8047, \"auc_mean_folds\": 0.8047, \"fold_aucs\": [0.7906, 0.8278, 0.8018, 0.8065, 0.7967], \"ci_lower\": 0.7934, \"ci_upper\": 0.8162, \"ci_lower_above_theta\": true, \"perm_p\": 0.0001, \"p_vs_theta_0.60\": 0.0, \"boot_mean\": 0.8047, \"boot_std\": 0.0058},\n    \"2v3\": {\"auc\": 0.6544, \"auc_mean_folds\": 0.6545, \"fold_aucs\": [0.6409, 0.6433, 0.6764, 0.6548, 0.6572], \"ci_lower\": 0.6401, \"ci_upper\": 0.6688, \"ci_lower_above_theta\": true, \"perm_p\": 0.0001, \"p_vs_theta_0.60\": 0.0, \"boot_mean\": 0.6544, \"boot_std\": 0.0073},\n    \"3v4\": {\"auc\": 0.55, \"auc_mean_folds\": 0.5507, \"fold_aucs\": [0.5496, 0.5418, 0.5499, 0.5675, 0.5444], \"ci_lower\": 0.534, \"ci_upper\": 0.5657, \"ci_lower_above_theta\": false, \"perm_p\": 0.0001, \"p_vs_theta_0.60\": 1.0, \"boot_mean\": 0.55, \"boot_std\": 0.0081},\n    \"4v5\": {\"auc\": 0.5284, \"auc_mean_folds\": 0.5287, \"fold_aucs\": [0.5253, 0.5101, 0.5413, 0.5432, 0.5235], \"ci_lower\": 0.5122, \"ci_upper\": 0.5443, \"ci_lower_above_theta\": false, \"perm_p\": 0.001, \"p_vs_theta_0.60\": 1.0, \"boot_mean\": 0.5283, \"boot_std\": 0.0082}\n  }\n}\nEOF",
+    "description": "Write bootstrap CI results locally for artifact registration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 142 · 2026-05-16T19:05:12.978216+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 143 · 2026-05-16T19:05:12.978335+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "exp025_bootstrap_ci",
+  "type": "data",
+  "description": "Bootstrap CI and permutation test results for exp_025_pythia_arxiv (Pythia-1.4B on arXiv, K*=3 confirmed)",
+  "project": "gen-depth-contamination",
+  "exp_id": "exp_025_pythia_arxiv",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp025_bootstrap_ci.json",
+  "tags": "['bootstrap', 'pairwise-auc', 'permutation-test', 'domain-model-interaction']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "exp025_bootstrap_ci",
+    "type": "data",
+    "description": "Bootstrap CI and permutation test results for exp_025_pythia_arxiv (Pythia-1.4B on arXiv, K*=3 confirmed)",
+    "project": "gen-depth-contamination",
+    "exp_id": "exp_025_pythia_arxiv",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp025_bootstrap_ci.json",
+    "tags": "['bootstrap', 'pairwise-auc', 'permutation-test', 'domain-model-interaction']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 144 · 2026-05-16T19:05:12.978475+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_9a7c43\", \"name\": \"exp025_bootstrap_ci\", \"type\": \"data\", \"description\": \"Bootstrap CI and permutation test results for exp_025_pythia_arxiv (Pythia-1.4B on arXiv, K*=3 confirmed)\", \"path\": \"projects/gen-depth-contamination/artifacts/exp_025_pythia_arxiv/data/exp025_bootstrap_ci.json\", \"url\": null, \"project\": \"gen-depth-contamination\", \"exp_id\": \"exp_025_pythia_arxiv\", \"skill\": \"\", \"created_at\": \"2026-05-16T19:04:56.942295+00:00\", \"tags\": [\"bootstrap\", \"pairwise-auc\", \"permutation-test\", \"domain-model-interaction\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 145 · 2026-05-16T19:05:12.978659+00:00_
+
+完成。以下是完整分析结果：
+
+```
+K_star: 3
+pairwise_auc:
+  0v1: 0.9877
+  1v2: 0.8047
+  2v3: 0.6545
+  3v4: 0.5507
+  4v5: 0.5287
+pairwise_jsd:
+  0v1: 0.171338
+  1v2: 0.057344
+  2v3: 0.019524
+  3v4: 0.009917
+  4v5: 0.008846
+bootstrap_ci:
+  0v1: {auc: 0.9876, ci_lower: 0.9851, ci_upper: 0.9900, perm_p: 0.0001}
+  1v2: {auc: 0.8047, ci_lower: 0.7934, ci_upper: 0.8162, perm_p: 0.0001}
+  2v3: {auc: 0.6544, ci_lower: 0.6401, ci_upper: 0.6688, perm_p: 0.0001}
+  3v4: {auc: 0.5500, ci_lower: 0.5340, ci_upper: 0.5657, perm_p: 0.0001}
+  4v5: {auc: 0.5284, ci_lower: 0.5122, ci_upper: 0.5443, perm_p: 0.0010}
+ordinal:
+  MAE: 0.8518
+  Accuracy: 0.4545
+top_features:
+  1. freq_entropy (9845)
+  2. surp_std (7968)
+  3. surp_mean (7568)
+  4. surp_d1_skew (7180)
+  5. surp_d1_mean (7124)
+key_finding: "Pythia-1.4B on arXiv yields K*=3 (θ=0.60), identical to exp-024 (Qwen on arXiv). The 2v3 boundary is the last distinguishable pair with CI lower bound (0.6401) firmly above theta. Domain saturation depth is model-invariant for arXiv."
+comparison_with_exp024: "exp-024 Qwen arXiv: K*=3, 1v2=0.858, 2v3=0.6427, 3v4=0.5437. exp-025 Pythia arXiv: K*=3, 1v2=0.8047, 2v3=0.6545, 3v4=0.5507. Same K*, slightly different AUC magnitudes (Pythia lower at 1v2 by ~0.05, slightly higher at 2v3/3v4). Conclusion: arXiv domain effect (K*=3) is robust across model architectures — this is a domain property, not a Qwen-specific artifact."
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_exp_025_pythia_arxiv_20260516T185842"
+}
+```
+
+</details>
+
+---

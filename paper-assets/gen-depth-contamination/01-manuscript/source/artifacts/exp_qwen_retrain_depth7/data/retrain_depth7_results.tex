@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Pair} & \textbf{AUC} & \textbf{95\% CI} & \textbf{Per-fold AUC} & \textbf{JSD} \\
+\midrule
+0\,vs\,1 & 0.984 & [0.982, 0.985] & .983, .982, .984, .982, .987 & 0.2301 \\
+1\,vs\,2 & 0.897 & [0.895, 0.899] & .892, .899, .899, .899, .897 & 0.1039 \\
+2\,vs\,3 & 0.810 & [0.805, 0.814] & .809, .807, .818, .802, .813 & 0.0750 \\
+3\,vs\,4 & 0.760 & [0.753, 0.767] & .753, .762, .775, .757, .753 & 0.0654 \\
+4\,vs\,5 & 0.746 & [0.738, 0.754] & .743, .756, .752, .730, .748 & 0.0605 \\
+5\,vs\,6 & 0.702 & [0.696, 0.708] & .701, .708, .710, .692, .698 & 0.0350 \\
+6\,vs\,7 & 0.641 & [0.638, 0.645] & .642, .635, .646, .639, .643 & 0.0177 \\
+\bottomrule
+\end{tabular}
+\caption{Qwen2.5-1.5B retrain-chain pairwise classification (depth 0--7). AUC and 95\% CI from 5-fold GroupKFold CV ($\text{mean} \pm 1.96 \cdot \text{std} / \sqrt{5}$). $K^{*}=7$ at $\theta=0.60$. JSD computed on full token-level log-probability distributions.}
+\label{tab:retrain_depth7}
+\end{table}

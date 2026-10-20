@@ -1,0 +1,72 @@
+{
+  "exp_id": "exp_deberta_code_qwen1b5",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T03:34:21.140Z",
+    "updated_at": "2026-05-20T09:43:22.944Z",
+    "hypothesis": "DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True python /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_code.py\"",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "294849",
+      "log_path": "~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log",
+      "submitted_at": "2026-05-20T07:33:30.520Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 7792.4,
+      "gpu_hours": 2.16
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T09:20:38.702Z"
+    },
+    "metrics": {
+      "K_star": 2,
+      "theta": 0.6,
+      "auc_0v1": 1,
+      "auc_1v2": 0.8076,
+      "auc_2v3": 0.5933,
+      "auc_3v4": 0.5492,
+      "auc_4v5": 0.5311,
+      "ci_0v1": [
+        0.9999,
+        1
+      ],
+      "ci_1v2": [
+        0.8001,
+        0.8147
+      ],
+      "ci_2v3": [
+        0.5847,
+        0.6018
+      ],
+      "ci_3v4": [
+        0.541,
+        0.5573
+      ],
+      "ci_4v5": [
+        0.5235,
+        0.5388
+      ],
+      "obd_auc_0v1": 0.9388,
+      "obd_auc_1v2": 0.7382,
+      "obd_auc_2v3": 0.53,
+      "obd_auc_3v4": 0.5022,
+      "obd_auc_4v5": 0.5219,
+      "elapsed_seconds": 5780
+    },
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_code_qwen1b5/code_qwen1b5.json",
+    "log_path": "~/runs/gen-depth-contamination/exp_deberta_code_qwen1b5.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-20T09:43:22.944Z"
+  },
+  "timestamp": "2026-05-20T09:43:23.209750+00:00",
+  "trigger": "update_registry"
+}

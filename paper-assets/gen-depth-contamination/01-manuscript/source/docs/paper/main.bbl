@@ -1,0 +1,284 @@
+\begin{thebibliography}{37}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Alain and Bengio(2017)}]{alain2017understanding}
+Guillaume Alain and Yoshua Bengio. 2017.
+\newblock \href {https://arxiv.org/abs/1610.01644} {Understanding intermediate
+  layers using linear classifier probes}.
+\newblock In \emph{ICLR Workshop}.
+
+\bibitem[{Alemohammad et~al.(2024)Alemohammad, Casco-Rodriguez, Luzi, Humayun,
+  Babaei, LeJeune, Siahkoohi, and Baraniuk}]{alemohammad2024selfconsuming}
+Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed~Imtiaz Humayun,
+  Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, and Richard~G. Baraniuk. 2024.
+\newblock \href {https://arxiv.org/abs/2307.01850} {Self-consuming generative
+  models go {MAD}}.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[{Bao et~al.(2024)Bao, Zhao, Teng, Yang, and Zhang}]{bao2024fast}
+Guangsheng Bao, Yanbin Zhao, Zhiyang Teng, Linyi Yang, and Yue Zhang. 2024.
+\newblock \href {https://arxiv.org/abs/2310.05130} {{Fast-DetectGPT}: Efficient
+  zero-shot detection of machine-generated text via conditional probability
+  curvature}.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[{Basani and Chen(2026)}]{basani2026diveye}
+Advik~Raj Basani and Pin-Yu Chen. 2026.
+\newblock \href {https://arxiv.org/abs/2509.18880} {Diversity boosts
+  {AI}-generated text detection}.
+\newblock \emph{Transactions on Machine Learning Research}.
+
+\bibitem[{Belinkov(2022)}]{belinkov2022probing}
+Yonatan Belinkov. 2022.
+\newblock \href {https://doi.org/10.1162/coli_a_00422} {Probing classifiers:
+  Promises, shortcomings, and advances}.
+\newblock \emph{Computational Linguistics}, 48(1):207--219.
+
+\bibitem[{Briesch et~al.(2023)Briesch, Sobania, and
+  Rothlauf}]{briesch2023selfconsuming}
+Martin Briesch, Dominik Sobania, and Franz Rothlauf. 2023.
+\newblock \href {https://arxiv.org/abs/2311.16822} {Large language models
+  suffer from their own output: An analysis of the self-consuming training
+  loop}.
+\newblock \emph{arXiv preprint arXiv:2311.16822}.
+
+\bibitem[{Cheng et~al.(2025)Cheng, Zhou, Jiang, Wang, and Li}]{cheng2025beyond}
+Zihao Cheng, Li~Zhou, Feng Jiang, Benyou Wang, and Haizhou Li. 2025.
+\newblock \href {https://arxiv.org/abs/2410.14259} {Beyond binary: Towards
+  fine-grained {LLM}-generated text detection via role recognition and
+  involvement measurement}.
+\newblock In \emph{Proceedings of the ACM Web Conference (WWW)}.
+
+\bibitem[{Dohmatob et~al.(2025)Dohmatob, Feng, Subramonian, and
+  Kempe}]{dohmatob2025strong}
+Elvis Dohmatob, Yunzhen Feng, Arjun Subramonian, and Julia Kempe. 2025.
+\newblock \href {https://arxiv.org/abs/2410.04840} {Strong model collapse}.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[{Dohmatob et~al.(2024)Dohmatob, Feng, Yang, Charton, and
+  Kempe}]{dohmatob2024model}
+Elvis Dohmatob, Yunzhen Feng, Pu~Yang, Fran\c{c}ois Charton, and Julia Kempe.
+  2024.
+\newblock \href {https://arxiv.org/abs/2402.07043} {A tale of tails: Model
+  collapse as a change of scaling laws}.
+\newblock In \emph{Proceedings of ICML}.
+
+\bibitem[{Drayson et~al.(2025)Drayson, Yilmaz, and Lampos}]{drayson2025}
+George Drayson, Emine Yilmaz, and Vasileios Lampos. 2025.
+\newblock \href {https://arxiv.org/abs/2502.15654} {Machine-generated text
+  detection prevents language model collapse}.
+\newblock In \emph{Proceedings of EMNLP}.
+
+\bibitem[{Dugan et~al.(2024)Dugan, Hwang, Trhl{\'\i}k, Zhu, Ludan, Xu,
+  Ippolito, and Callison-Burch}]{dugan2024raid}
+Liam Dugan, Alyssa Hwang, Filip Trhl{\'\i}k, Andrew Zhu, Josh~Magnus Ludan,
+  Hainiu Xu, Daphne Ippolito, and Chris Callison-Burch. 2024.
+\newblock \href {https://aclanthology.org/2024.acl-long.674/} {{RAID}: A shared
+  benchmark for robust evaluation of machine-generated text detectors}.
+\newblock In \emph{Proceedings of the 62nd Annual Meeting of the Association
+  for Computational Linguistics}, pages 12463--12492.
+
+\bibitem[{Frank and Hall(2001)}]{frank2001ordinal}
+Eibe Frank and Mark Hall. 2001.
+\newblock \href {https://doi.org/10.1007/3-540-44795-4_13} {A simple approach
+  to ordinal classification}.
+\newblock In \emph{Proceedings of ECML}, pages 145--156.
+
+\bibitem[{Fu et~al.(2025)Fu, Wang, Chen, Tian, and Tao}]{fu2025theoretical}
+Shi Fu, Yingjie Wang, Yuzhu Chen, Xinmei Tian, and Dacheng Tao. 2025.
+\newblock \href {https://arxiv.org/abs/2502.18865} {A theoretical perspective:
+  How to prevent model collapse in self-consuming training loops}.
+\newblock In \emph{Proceedings of the 13th International Conference on Learning
+  Representations}.
+
+\bibitem[{Gerstgrasser et~al.(2024)Gerstgrasser, Schaeffer, Dey, Rafailov,
+  Sleight, Hughes, Korbak, Agrawal, Pai, Gromov, Roberts, Yang, Donoho, and
+  Koyejo}]{gerstgrasser2024model}
+Matthias Gerstgrasser, Rylan Schaeffer, Apratim Dey, Rafael Rafailov, Henry
+  Sleight, John Hughes, Tomasz Korbak, Rajashree Agrawal, Dhruv Pai, Andrey
+  Gromov, Daniel~A. Roberts, Diyi Yang, David~L. Donoho, and Sanmi Koyejo.
+  2024.
+\newblock \href {https://arxiv.org/abs/2404.01413} {Is model collapse
+  inevitable? breaking the curse of recursion by accumulating real and
+  synthetic data}.
+\newblock In \emph{Proceedings of COLM}.
+
+\bibitem[{Guo et~al.(2024)Guo, Shang, Vazirgiannis, and
+  Clavel}]{guo2024curious}
+Yanzhu Guo, Guokan Shang, Michalis Vazirgiannis, and Chlo\'{e} Clavel. 2024.
+\newblock \href {https://arxiv.org/abs/2311.09807} {The curious decline of
+  linguistic diversity: Training language models on synthetic text}.
+\newblock In \emph{Findings of NAACL}.
+
+\bibitem[{Hans et~al.(2024)Hans, Schwarzschild, Cherepanova, Kazemi, Saha,
+  Goldblum, Geiping, and Goldstein}]{hans2024binoculars}
+Abhimanyu Hans, Avi Schwarzschild, Valeriia Cherepanova, Hamid Kazemi,
+  Aniruddha Saha, Micah Goldblum, Jonas Geiping, and Tom Goldstein. 2024.
+\newblock \href {https://arxiv.org/abs/2401.12070} {Spotting {LLMs} with
+  binoculars: Zero-shot detection of machine-generated text}.
+\newblock In \emph{Proceedings of ICML}.
+
+\bibitem[{Hao et~al.(2025)Hao, Li, Zhao, Yang, and Mao}]{hao2025rewrite}
+Wei Hao, Ran Li, Weiliang Zhao, Junfeng Yang, and Chengzhi Mao. 2025.
+\newblock \href {https://arxiv.org/abs/2408.04237} {Learning to rewrite:
+  Generalized {LLM}-generated text detection}.
+\newblock In \emph{Proceedings of ACL}.
+
+\bibitem[{Kazdan et~al.(2025)Kazdan, Schaeffer, Dey, Gerstgrasser, Rafailov,
+  Donoho, and Koyejo}]{kazdan2025collapse}
+Joshua Kazdan, Rylan Schaeffer, Apratim Dey, Matthias Gerstgrasser, Rafael
+  Rafailov, David Donoho, and Sanmi Koyejo. 2025.
+\newblock \href {https://arxiv.org/abs/2410.16713} {Collapse or thrive? perils
+  and promises of synthetic data in a self-generating world}.
+\newblock In \emph{Proceedings of ICML}.
+
+\bibitem[{Kirchenbauer et~al.(2023)Kirchenbauer, Geiping, Wen, Katz, Miers, and
+  Goldstein}]{kirchenbauer2023watermark}
+John Kirchenbauer, Jonas Geiping, Yuxin Wen, Jonathan Katz, Ian Miers, and Tom
+  Goldstein. 2023.
+\newblock A watermark for large language models.
+\newblock In \emph{Proceedings of the 40th International Conference on Machine
+  Learning}, pages 17061--17084. PMLR.
+
+\bibitem[{Krishna et~al.(2023)Krishna, Song, Karpinska, Wieting, and
+  Iyyer}]{krishna2023paraphrasing}
+Kalpesh Krishna, Yixiao Song, Marzena Karpinska, John Wieting, and Mohit Iyyer.
+  2023.
+\newblock \href {https://arxiv.org/abs/2303.13408} {Paraphrasing evades
+  detectors of {AI}-generated text, but retrieval is an effective defense}.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Liang et~al.(2023)Liang, Yuksekgonul, Mao, Wu, and
+  Zou}]{liang2023gpt}
+Weixin Liang, Mert Yuksekgonul, Yining Mao, Eric Wu, and James Zou. 2023.
+\newblock {GPT} detectors are biased against non-native {English} writers.
+\newblock \emph{Patterns}, 4(7):100779.
+
+\bibitem[{Mehta(2025)}]{mehta2025beyond}
+Sushant Mehta. 2025.
+\newblock \href {https://arxiv.org/abs/2511.17602} {Beyond surface-level
+  similarity: Hierarchical contamination detection for synthetic training data
+  in foundation models}.
+\newblock \emph{arXiv preprint arXiv:2511.17602}.
+
+\bibitem[{Mitchell et~al.(2023)Mitchell, Lee, Khazatsky, Manning, and
+  Finn}]{mitchell2023detectgpt}
+Eric Mitchell, Yoonho Lee, Alexander Khazatsky, Christopher~D. Manning, and
+  Chelsea Finn. 2023.
+\newblock \href {https://arxiv.org/abs/2301.11305} {{DetectGPT}: Zero-shot
+  machine-generated text detection using probability curvature}.
+\newblock In \emph{Proceedings of ICML}.
+
+\bibitem[{Padmakumar and He(2024)}]{padmakumar2024writing}
+Vishakh Padmakumar and He~He. 2024.
+\newblock \href {https://arxiv.org/abs/2309.05196} {Does writing with language
+  models reduce content diversity?}
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[{Sadasivan et~al.(2025)Sadasivan, Kumar, Balasubramanian, Wang, and
+  Feizi}]{sadasivan2023detect}
+Vinu~Sankar Sadasivan, Aounon Kumar, Sriram Balasubramanian, Wenxiao Wang, and
+  Soheil Feizi. 2025.
+\newblock \href {https://arxiv.org/abs/2303.11156} {Can {AI}-generated text be
+  reliably detected?}
+\newblock \emph{Transactions on Machine Learning Research}.
+
+\bibitem[{Schaeffer et~al.(2025)Schaeffer, Kazdan, Arulandu, and
+  Koyejo}]{schaeffer2025position}
+Rylan Schaeffer, Joshua Kazdan, Alvan~Caleb Arulandu, and Sanmi Koyejo. 2025.
+\newblock \href {https://arxiv.org/abs/2503.03150} {Position: Model collapse
+  does not mean what you think}.
+\newblock \emph{arXiv preprint arXiv:2503.03150}.
+
+\bibitem[{Shumailov et~al.(2024)Shumailov, Shumaylov, Zhao, Papernot, Anderson,
+  and Gal}]{shumailov2024collapse}
+Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Nicolas Papernot, Ross Anderson,
+  and Yarin Gal. 2024.
+\newblock \href {https://doi.org/10.1038/s41586-024-07566-y} {{AI} models
+  collapse when trained on recursively generated data}.
+\newblock \emph{Nature}, 631:755--759.
+
+\bibitem[{Spennemann(2025)}]{spennemann2025quantifying}
+Dirk H.~R. Spennemann. 2025.
+\newblock \href {https://arxiv.org/abs/2504.08755} {Delving into: the
+  quantification of {AI}-generated content on the internet (synthetic data)}.
+\newblock \emph{arXiv preprint arXiv:2504.08755}.
+
+\bibitem[{Sun et~al.(2025)Sun, Zhang, Shen, Zhang, Liu, Backes, Zhang, and
+  He}]{sun2025aigt}
+Zhen Sun, Zongmin Zhang, Xinyue Shen, Ziyi Zhang, Yule Liu, Michael Backes,
+  Yang Zhang, and Xinlei He. 2025.
+\newblock \href {https://arxiv.org/abs/2412.18148} {Are we in the
+  {AI}-generated text world already? quantifying and monitoring {AIGT} on
+  social media}.
+\newblock In \emph{Proceedings of ACL}.
+
+\bibitem[{Tirumala et~al.(2023)Tirumala, Simig, Aghajanyan, and
+  Morcos}]{tirumala2023d4}
+Kushal Tirumala, Daniel Simig, Armen Aghajanyan, and Ari Morcos. 2023.
+\newblock \href {https://arxiv.org/abs/2308.12284} {{D4}: Improving {LLM}
+  pretraining via document de-duplication and diversification}.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Verma et~al.(2024)Verma, Fleisig, Tomlin, and
+  Klein}]{verma2024ghostbuster}
+Vivek Verma, Eve Fleisig, Nicholas Tomlin, and Dan Klein. 2024.
+\newblock \href {https://aclanthology.org/2024.naacl-long.95/} {Ghostbuster:
+  Detecting text ghostwritten by large language models}.
+\newblock In \emph{Proceedings of the 2024 Conference of the North American
+  Chapter of the Association for Computational Linguistics: Human Language
+  Technologies}, pages 1702--1717.
+
+\bibitem[{Wang et~al.(2024)Wang, Mansurov, Ivanov, Su, Shelmanov, Tsvigun,
+  Afzal, Mahmoud, Puccetti, Arnold, Whitehouse, Aji, Habash, Gurevych, and
+  Nakov}]{wang2024semeval}
+Yuxia Wang, Jonibek Mansurov, Petar Ivanov, Jinyan Su, Artem Shelmanov, Akim
+  Tsvigun, Osama~Mohammed Afzal, Tarek Mahmoud, Giovanni Puccetti, Thomas
+  Arnold, Chenxi Whitehouse, Alham~Fikri Aji, Nizar Habash, Iryna Gurevych, and
+  Preslav Nakov. 2024.
+\newblock \href {https://arxiv.org/abs/2404.14183} {{SemEval}-2024 task 8:
+  Multidomain, multimodel and multilingual machine-generated text detection}.
+\newblock In \emph{Proceedings of SemEval}.
+
+\bibitem[{Wang et~al.(2025)Wang, Li, Yan, Cheng, and Zhang}]{wang2025unveiling}
+Zhilin Wang, Yafu Li, Jianhao Yan, Yu~Cheng, and Yue Zhang. 2025.
+\newblock \href {https://aclanthology.org/2025.acl-long.624/} {Unveiling
+  attractor cycles in large language models: A dynamical systems view of
+  successive paraphrasing}.
+\newblock In \emph{Proceedings of the 63rd Annual Meeting of the Association
+  for Computational Linguistics (Volume 1: Long Papers)}, pages 12740--12755,
+  Vienna, Austria.
+
+\bibitem[{Xie et~al.(2023{\natexlab{a}})Xie, Pham, Dong, Du, Liu, Lu, Liang,
+  Le, Ma, and Yu}]{xie2023doremi}
+Sang~Michael Xie, Hieu Pham, Xuanyi Dong, Nan Du, Hanxiao Liu, Yifeng Lu, Percy
+  Liang, Quoc~V. Le, Tengyu Ma, and Adams~Wei Yu. 2023{\natexlab{a}}.
+\newblock \href {https://arxiv.org/abs/2305.10429} {{DoReMi}: Optimizing data
+  mixtures speeds up language model pretraining}.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Xie et~al.(2023{\natexlab{b}})Xie, Santurkar, Ma, and
+  Liang}]{xie2023dsir}
+Sang~Michael Xie, Shibani Santurkar, Tengyu Ma, and Percy Liang.
+  2023{\natexlab{b}}.
+\newblock \href {https://arxiv.org/abs/2302.03169} {Data selection for language
+  models via importance resampling}.
+\newblock In \emph{Advances in Neural Information Processing Systems}.
+
+\bibitem[{Zawalski et~al.(2026)Zawalski, Boubdir, Ba{\l}azy, Nushi, and
+  Ribalta}]{zawalski2026codec}
+Micha{\l} Zawalski, Meriem Boubdir, Klaudia Ba{\l}azy, Besmira Nushi, and Pablo
+  Ribalta. 2026.
+\newblock \href {https://arxiv.org/abs/2510.27055} {Detecting data
+  contamination in {LLM}s via in-context learning}.
+\newblock In \emph{Proceedings of ICLR}.
+
+\bibitem[{Zhang et~al.(2025)Zhang, Sun, Yeats, Ouyang, Kuo, Zhang, Yang, and
+  Li}]{zhang2024minkpp}
+Jingyang Zhang, Jingwei Sun, Eric Yeats, Yang Ouyang, Martin Kuo, Jianyi Zhang,
+  Hao~Frank Yang, and Hai Li. 2025.
+\newblock \href {https://arxiv.org/abs/2404.02936} {Min-{K}\%++: Improved
+  baseline for detecting pre-training data from large language models}.
+\newblock In \emph{Proceedings of ICLR}.
+
+\end{thebibliography}

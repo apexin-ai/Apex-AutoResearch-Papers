@@ -1,0 +1,59 @@
+{
+  "exp_id": "exp_code_multi_source",
+  "project": "gen-depth-contamination",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:30:38.921Z",
+    "updated_at": "2026-05-20T11:33:36.407Z",
+    "hypothesis": "Code domain multi-source OBD K* preserves single-source ceiling K*=2 when mixing 3 generators (Qwen-7B, LLaMA-8B, Mistral-7B) with unified Qwen2.5-1.5B scorer.",
+    "spec": {
+      "command": "python /root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_code.py",
+      "server": "cqa1-22115",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/exp_code_{qwen7b,llama8b,mistral7b}",
+      "data_count": 99000,
+      "model_name": "Qwen2.5-1.5B (scorer)",
+      "seed": 42
+    },
+    "metrics": {
+      "k_star": 2,
+      "generators": [
+        "qwen7b",
+        "llama8b",
+        "mistral7b"
+      ],
+      "unified_scorer": "qwen2.5-1.5b",
+      "vocab_only_no_label": {
+        "0v1": 0.7891,
+        "1v2": 0.6353,
+        "2v3": 0.5121,
+        "kstar": 2
+      },
+      "vocab_only_with_label": {
+        "0v1": 0.79,
+        "1v2": 0.644,
+        "2v3": 0.5118,
+        "kstar": 2
+      },
+      "unified_no_label": {
+        "0v1": 0.9123,
+        "1v2": 0.6702,
+        "2v3": 0.5013,
+        "kstar": 2
+      },
+      "unified_with_label": {
+        "0v1": 0.9123,
+        "1v2": 0.6803,
+        "2v3": 0.5055,
+        "kstar": 2
+      },
+      "elapsed_seconds": 2025,
+      "note": "Code multi-source K*=2 matches single-source ceiling across all 4 settings."
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T11:33:36.682692+00:00",
+  "trigger": "update_registry"
+}

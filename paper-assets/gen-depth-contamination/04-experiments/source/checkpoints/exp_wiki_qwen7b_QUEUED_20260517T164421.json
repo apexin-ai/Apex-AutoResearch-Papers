@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_wiki_qwen7b",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T16:39:29.006Z",
+    "updated_at": "2026-05-17T16:44:21.109Z",
+    "hypothesis": "Cross-scale Wikipedia K* validation: Qwen2.5-7B continuation on Wikipedia 的 K* 是否 = 2？Qwen2.5-1.5B 在 Wikipedia K*=2（唯一维持 K*=2 的模型），Pythia/OLMo/均 K*=1。测试 7B 规模是否仍维持 Qwen 家族在 Wikipedia 上的 K*=2 pattern。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "parent": "exp_arXiv_qwen7b"
+  },
+  "timestamp": "2026-05-17T16:44:21.273100+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_multi_source_arxiv",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:46:18.107Z",
+    "updated_at": "2026-05-20T08:46:46.223Z",
+    "hypothesis": "Multi-source OBD K* on arXiv domain preserves domain ceiling K*=3 when mixing 3 generators (Qwen/Pythia/LLaMA-8B) with unified Qwen2.5-1.5B scorer, consistent with single-source arXiv K*=3 and higher than C4 multi-source K*=2, confirming domain hierarchy in multi-source setting.",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T08:46:46.473658+00:00",
+  "trigger": "update_registry"
+}

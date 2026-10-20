@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp_E_paired_stats",
+  "project": "gen-depth-contamination",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:18:27.723Z",
+    "updated_at": "2026-05-15T11:19:56.442Z",
+    "hypothesis": "C3 filtering 策略间差异是否统计显著？Holm-Bonferroni 多重比较校正 + Cohen's d 效应量（FR-5 Warning）",
+    "spec": {
+      "command": "python scripts/exp_E_paired_stats.py",
+      "server": "westc-26893",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/artifacts/exp006_filtering/results/",
+      "data_count": 51,
+      "model_name": "N/A (CPU: paired t-test + Holm-Bonferroni)",
+      "seed": "N/A",
+      "note": "6 strategies × 5 seeds, 15 pairwise comparisons, Holm-Bonferroni correction + Cohen's d"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T11:19:56.496964+00:00",
+  "trigger": "update_registry"
+}

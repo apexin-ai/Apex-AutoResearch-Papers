@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ac16071a13e30d0cd7a",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "exp deberta upperbound",
+  "task_key": "worker_exp_deberta-upperbound_20260519T163003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_deberta-upperbound_20260519T163003_result.json",
+    "occurrence": 1,
+    "bytes": 539,
+    "sha256": "8a98b71fbb295162fbb317204bbaaa27ea3108f323186278e465bc0f5e6b3dc0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Loss steadily decreasing: 1.78 → 1.60 → 1.51. ~26s per 200 steps. Training is healthy and progressing.\n\nCurrent status:\n- **PID 167144** running on cqa1-22115, GPU 0\n- wiki_pythia fold 0, epoch 1, step 600/1500\n- Loss declining normally in fp32\n- Estimated total runtime: ~4 hours for all 5 experiments × 5 folds × 3 epochs\n- Log: `/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound.log`\n- Results will be saved to `/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-deberta-upperbound.md"
+}

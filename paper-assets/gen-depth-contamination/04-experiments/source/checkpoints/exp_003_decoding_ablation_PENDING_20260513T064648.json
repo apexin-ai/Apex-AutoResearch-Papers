@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp_003_decoding_ablation",
+  "project": "gen-depth-contamination",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T20:06:25.260Z",
+    "updated_at": "2026-05-13T06:46:48.331Z",
+    "hypothesis": "解码策略调控 K*：不同 top_p/temperature 设置是否改变饱和边界（greedy→更低 K*? 高温度→更高 K*?）",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/gen-depth-contamination && bash scripts/run_exp003_ablation.sh 1 && bash scripts/run_exp003_ablation.sh 2 && bash scripts/run_exp003_ablation.sh 3 && bash scripts/run_exp003_ablation.sh 4\"",
+      "server": "autodl-4090d",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "29459",
+      "log_path": "~/runs/gen-depth-contamination/exp_003_decoding_ablation.log",
+      "submitted_at": "2026-05-13T06:43:59.756Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-13T06:46:48.381669+00:00",
+  "trigger": "update_registry"
+}

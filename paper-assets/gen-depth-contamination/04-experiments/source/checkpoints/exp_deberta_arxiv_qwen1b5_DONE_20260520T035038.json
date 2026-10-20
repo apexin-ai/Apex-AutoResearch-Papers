@@ -1,0 +1,68 @@
+{
+  "exp_id": "exp_deberta_arxiv_qwen1b5",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T03:12:10.106Z",
+    "updated_at": "2026-05-20T03:50:38.093Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_arxiv.py\"",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "276481",
+      "log_path": "~/runs/gen-depth-contamination/exp_deberta_arxiv_qwen1b5.log",
+      "submitted_at": "2026-05-20T03:12:09.627Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/exp_024_arxiv/",
+      "data_count": 13200,
+      "model_name": "DeBERTa-v3-base",
+      "seed": "5-fold GroupKFold",
+      "hyperparams": {
+        "epochs": 3,
+        "batch_size": 16,
+        "grad_accum": 2,
+        "lr": "2e-5",
+        "n_boot": 10000,
+        "threshold": 0.6
+      },
+      "checkpoint_path": "N/A (OOF predictions only)",
+      "wall_clock_seconds": 2247.8,
+      "gpu_hours": 0.62
+    },
+    "hypothesis": "DeBERTa supervised classifier on arXiv domain yields K*=3 (matching OBD K*=3), confirming representation-independent domain ceiling holds across all 4 domains (C4 K*=2, wiki K*=3, code K*=2, arXiv K*=3).",
+    "reproduce": {
+      "finished_at": "2026-05-20T03:45:52.617Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T03:45:57.340301+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "K_star": 4,
+      "0v1_auc": 0.9997,
+      "1v2_auc": 0.9214,
+      "2v3_auc": 0.7446,
+      "3v4_auc": 0.6238,
+      "4v5_auc": 0.5771,
+      "3v4_ci_lower": 0.6127,
+      "3v4_ci_upper": 0.6349,
+      "theta": 0.6
+    },
+    "completed_at": "2026-05-20T03:49:37.411Z"
+  },
+  "timestamp": "2026-05-20T03:50:38.489555+00:00",
+  "trigger": "update_registry"
+}

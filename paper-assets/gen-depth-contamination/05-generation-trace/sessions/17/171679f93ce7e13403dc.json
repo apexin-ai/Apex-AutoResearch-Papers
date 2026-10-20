@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "id": "171679f93ce7e13403dc",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "research exp014 plan",
+  "task_key": "worker_research_exp014_plan_20260525T063111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_exp014_plan_20260525T063111.log",
+    "occurrence": 1,
+    "bytes": 573123,
+    "sha256": "a006fe06f9c069e38d1ee159af5f3b6c2732a87ca3b213b599b68740175a6424"
+  },
+  "statistics": {
+    "messages": 234,
+    "user_turns": 3,
+    "tool_calls": 75,
+    "roles": {
+      "log": 1,
+      "system": 66,
+      "record": 1,
+      "assistant": 12,
+      "tool_call": 75,
+      "tool_result": 75,
+      "user": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "171679f93ce7e13403dc-part-0001.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 9,
+      "chunks": [
+        {
+          "path": "171679f93ce7e13403dc-part-0001.json",
+          "message_count": 9
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "171679f93ce7e13403dc-part-0001.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 192,
+      "chunks": [
+        {
+          "path": "171679f93ce7e13403dc-part-0001.json",
+          "message_count": 138
+        },
+        {
+          "path": "171679f93ce7e13403dc-part-0002.json",
+          "message_count": 54
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-exp014-plan.md"
+}

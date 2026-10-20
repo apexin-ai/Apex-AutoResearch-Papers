@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_code_qwen1b5_pythia_scorer",
+  "project": "gen-depth-contamination",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:30:03.239Z",
+    "updated_at": "2026-05-19T06:30:03.239Z"
+  },
+  "timestamp": "2026-05-19T06:30:03.519393+00:00",
+  "trigger": "update_registry"
+}

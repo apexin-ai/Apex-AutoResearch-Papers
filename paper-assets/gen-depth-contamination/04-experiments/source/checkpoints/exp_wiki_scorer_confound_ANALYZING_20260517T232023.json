@@ -1,0 +1,53 @@
+{
+  "exp_id": "exp_wiki_scorer_confound",
+  "project": "gen-depth-contamination",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T22:35:20.326Z",
+    "updated_at": "2026-05-17T23:20:23.381Z",
+    "hypothesis": "Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。",
+    "parent": "exp_wiki_qwen7b",
+    "server": "cqa1-22115",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "cqa1-22115",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-17T22:55:01.348Z",
+      "command": "bash -c \"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\${d}.jsonl data/exp_wiki_scorer_confound/depth_\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound --results_dir results/exp_wiki_scorer_confound --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\"",
+      "code_commit": "0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5",
+      "finished_at": "2026-05-17T23:13:55.501Z",
+      "training_hours": 0.32
+    },
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\${d}.jsonl data/exp_wiki_scorer_confound/depth_\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound --results_dir results/exp_wiki_scorer_confound --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\"",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "178762",
+      "log_path": "~/runs/gen-depth-contamination/exp_wiki_scorer_confound.log",
+      "submitted_at": "2026-05-17T22:55:03.139Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "178762",
+    "log_path": "~/runs/gen-depth-contamination/exp_wiki_scorer_confound.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T23:13:58.836236+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-17T23:20:23.843595+00:00",
+  "trigger": "update_registry"
+}

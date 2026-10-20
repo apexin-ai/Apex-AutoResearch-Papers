@@ -1,0 +1,881 @@
+# experiment arxiv deberta upperbound
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 29
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/chats/worker_experiment_arxiv-deberta-upperbound_20260520T031015.jsonl`
+- **Structured JSON:** [`7b5bc6ac9f4afd0de33a.json`](../../sessions/7b/7b5bc6ac9f4afd0de33a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+29 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-20T03:12:28.936000+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__detect_image",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__detect_image",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-20T03:12:28.936366+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-20T03:12:28.936540+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "head -120 /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_upperbound.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "head -120 /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_upperbound.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-20T03:12:28.936679+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "ls /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-20T03:12:28.936937+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nDeBERTa-v3-base upper-bound baseline: 6-class ordinal depth classification.\\n5-fold GroupKFold, pairwise AUC with doc-level bootstrap CI, K* determination.\\n\\\"\\\"\\\"\\n\\nimport gc\\nimport json\\nimport logging\\nimport os\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom torch.utils.data import Dataset, DataLoader\\nfrom sklearn.model_selection import GroupKFold\\nfrom sklearn.metrics import roc_auc_score\\nfrom transformers import (\\n    AutoTokenizer,\\n    AutoModelForSequenceClassification,\\n    get_linear_schedule_with_warmup,\\n)\\n\\nROOT = Path(\\\"/root/autodl-tmp/gen-depth-contamination\\\")\\nDATA_DIR = ROOT / \\\"data\\\"\\nRESULTS_DIR = ROOT / \\\"results\\\" / \\\"exp_deberta_upperbound\\\"\\n\\nEXPERIMENTS = {\\n    \\\"wiki_pythia\\\": DATA_DIR / \\\"exp_wiki_pythia\\\",\\n    \\\"wiki_olmo\\\": DATA_DIR / \\\"exp_wiki_olmo\\\",\\n    \\\"wiki_qwen7b\\\": DATA_DIR / \\\"exp_wiki_qwen7b\\\",\\n    \\\"wiki_llama8b\\\": DATA_DIR / \\\"exp_wiki_llama8b\\\",\\n    \\\"wiki_mistral7b\\\": DATA_DIR / \\\"exp_wiki_mistral7b\\\",\\n}\\n\\nMODEL_NAME = \\\"microsoft/deberta-v3-base\\\"\\nHF_CACHE = \\\"/root/autodl-tmp/.hf_cache\\\"\\nMAX_LEN = 512\\nN_CLASSES = 6\\nN_FOLDS = 5\\nEPOCHS = 3\\nBS = 16\\nGRAD_ACCUM = 2\\nLR = 2e-5\\nWARMUP = 0.1\\nWD = 0.01\\nN_BOOT = 1000\\nTHETA = 0.60\\nSEED = 42\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\", datefmt=\\\"%H:%M:%S\\\")\\nlog = logging.getLogger(__name__)\\n\\n\\ndef load_data(exp_dir):\\n    texts, labels, doc_ids = [], [], []\\n    for d in range(N_CLASSES):\\n        with open(exp_dir / f\\\"depth_{d}.jsonl\\\") as f:\\n            for line in f:\\n                obj = json.loads(line)\\n                texts.append(obj[\\\"text\\\"])\\n                labels.append(d)\\n                doc_ids.append(obj[\\\"doc
+…[truncated 2669 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-20T03:12:28.937127+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls /root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "ls /root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T03:12:28.937295+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"depth_0.jsonl\\ndepth_1.jsonl\\ndepth_2.jsonl\\ndepth_3.jsonl\\ndepth_4.jsonl\\ndepth_5.jsonl\\nfeatures.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-20T03:12:28.937429+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"summary.json\\nwiki_llama8b.json\\nwiki_mistral7b.json\\nwiki_olmo.json\\nwiki_pythia.json\\nwiki_qwen7b.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-20T03:12:28.937588+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "tail -n +120 /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_upperbound.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "tail -n +120 /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_upperbound.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T03:12:28.937827+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n    model.eval()\\n    probs = []\\n    with torch.no_grad():\\n        for ids, mask, _ in va_dl:\\n            ids, mask = ids.to(device), mask.to(device)\\n            out = model(input_ids=ids, attention_mask=mask)\\n            probs.append(torch.softmax(out.logits, dim=-1).cpu().numpy())\\n    del model, opt, sched\\n    torch.cuda.empty_cache()\\n    gc.collect()\\n    return np.concatenate(probs)\\n\\n\\ndef pairwise_auc_ci(labels, probs, doc_ids):\\n    rng = np.random.RandomState(SEED)\\n    results = {}\\n    for k in range(N_CLASSES - 1):\\n        key = f\\\"{k}v{k+1}\\\"\\n        mask = (labels == k) | (labels == k + 1)\\n        y = (labels[mask] == k + 1).astype(int)\\n        s = probs[mask][:, k+1:].sum(axis=1)\\n        docs = doc_ids[mask]\\n        auc = float(roc_auc_score(y, s))\\n        doc2idx = {}\\n        for i, d in enumerate(docs):\\n            doc2idx.setdefault(int(d), []).append(i)\\n        idx_arr = [np.array(v) for v in doc2idx.values()]\\n        n_docs = len(idx_arr)\\n        boots = []\\n        for _ in range(N_BOOT):\\n            si = rng.randint(0, n_docs, n_docs)\\n            idx = np.concatenate([idx_arr[j] for j in si])\\n            try: boots.append(roc_auc_score(y[idx], s[idx]))\\n            except ValueError: continue\\n        boots = np.array(boots)\\n        ci_lo, ci_hi = float(np.percentile(boots, 2.5)), float(np.percentile(boots, 97.5))\\n        results[key] = {\\\"auc\\\": round(auc,4), \\\"ci_lower\\\": round(ci_lo,4), \\\"ci_upper\\\": round(ci_hi,4),\\n                         \\\"ci_lower_above_theta\\\": bool(ci_lo > THETA), \\\"boot_mean\\\": round(float(boots.mean()),4), \\\"boot_std\\\": round(float(boots.std()),4)}\\n    kstar = 0\\n    for k in range(N_CLASSES - 1):\\n        if results[f\\\"{k}v{k+1}\\\"][\\\"ci_lower_above_theta\\\"]: kstar = k + 1\\n        else: break\\n    return results, kstar\\n\\n\\ndef load_obd(name):\\n    p 
+…[truncated 4126 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-20T03:12:28.938129+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "wc -l /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_0.jsonl /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_5.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "wc -l /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_0.jsonl /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_5.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T03:12:28.938279+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   2200 /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_0.jsonl\\n   2200 /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_5.jsonl\\n   4400 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T03:12:28.938445+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/gen-depth-contamination/results/ -name \"pairwise_auc*\" -path \"*arxiv*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "find /root/autodl-tmp/gen-depth-contamination/results/ -name \"pairwise_auc*\" -path \"*arxiv*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T03:12:28.938584+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/pairwise_auc.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T03:12:28.938708+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "head -1 /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_0.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "head -1 /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_0.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T03:12:28.938902+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"text\\\": \\\"Multi-shot video generation extends single-shot generation to coherent visual narratives, yet maintaining consistent characters, objects, and locations across shots remains a challenge over long sequences. Existing evaluations typically use independently generated prompt sets with limited entity coverage and simple consistency metrics, making standardized comparison difficult. We introduce EntityBench, a benchmark of 140 episodes (2,491 shots) derived from real narrative media, with explicit per-shot entity schedules tracking characters, objects, and locations simultaneously across easy / medium / hard tiers of up to 50 shots, 13 cross-shot characters, 8 cross-shot locations, 22 cross-shot objects, and recurrence gaps spanning up to 48 shots. It is paired with a three-pillar evaluation suite that disentangles intra-shot quality, prompt-following alignment, and cross-shot consistency, with a fidelity gate that admits only accurate entity appearances into cross-shot scoring. As a baseline, we propose EntityMem, a memory-augmented generation system that stores verified per-entity visual references in a persistent memory bank before generation begins. Experiments show that cross-shot entity consistency degrades sharply with recurrence distance in existing methods, and that explicit per-entity memory yields the highest character fidelity (Cohen's d = +2.33) and presence among methods evaluated. Code and data are available at https://github.com/Catherine-R-He/EntityBench/.\\\", \\\"doc_id\\\": 0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-20T03:12:28.939102+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv/pairwise_auc.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv/pairwise_auc.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T03:12:28.939272+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.9948,\\n    \\\"1v2\\\": 0.8581,\\n    \\\"2v3\\\": 0.6436,\\n    \\\"3v4\\\": 0.544,\\n    \\\"4v5\\\": 0.5299\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.9956,\\n      0.9955,\\n      0.9938,\\n      0.9938,\\n      0.9952\\n    ],\\n    \\\"1v2\\\": [\\n      0.8763,\\n      0.8669,\\n      0.8411,\\n      0.8515,\\n      0.8549\\n    ],\\n    \\\"2v3\\\": [\\n      0.6738,\\n      0.6349,\\n      0.6479,\\n      0.6537,\\n      0.6078\\n    ],\\n    \\\"3v4\\\": [\\n      0.52,\\n      0.5346,\\n      0.5491,\\n      0.5471,\\n      0.5693\\n    ],\\n    \\\"4v5\\\": [\\n      0.5517,\\n      0.5419,\\n      0.5413,\\n      0.5312,\\n      0.4832\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-20T03:12:28.939488+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat > /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_arxiv.py << 'SCRIPT'\n#!/usr/bin/env python3\n\"\"\"\nDeBERTa-v3-base upper-bound baseline for arXiv domain (Qwen-1.5B scorer).\n6-class ordinal depth classification, 5-fold GroupKFold, pairwise AUC with\ndoc-level bootstrap CI, K* determination.\n\"\"\"\n\nimport gc\nimport json\nimport logging\nimport os\nimport time\nfrom pathlib import Path\n\nimport numpy as np\nimport torch\nfrom torch.utils.data import Dataset, DataLoader\nfrom sklearn.model_selection import GroupKFold\nfrom sklearn.metrics import roc_auc_score\nfrom transformers import (\n    AutoTokenizer,\n    AutoModelForSequenceClassification,\n    get_linear_schedule_with_warmup,\n)\n\nROOT = Path(\"/root/autodl-tmp/gen-depth-contamination\")\nDATA_DIR = ROOT / \"data\"\nRESULTS_DIR = ROOT / \"results\" / \"exp_deberta_arxiv\"\n\nEXPERIMENTS = {\n    \"arxiv_qwen1b5\": DATA_DIR / \"exp_024_arxiv\",\n}\n\nOBD_MAP = {\n    \"arxiv_qwen1b5\": ROOT / \"results\" / \"exp_024_arxiv\" / \"pairwise_auc.json\",\n}\n\nMODEL_NAME = \"microsoft/deberta-v3-base\"\nHF_CACHE = \"/root/autodl-tmp/.hf_cache\"\nMAX_LEN = 512\nN_CLASSES = 6\nN_FOLDS = 5\nEPOCHS = 3\nBS = 16\nGRAD_ACCUM = 2\nLR = 2e-5\nWARMUP = 0.1\nWD = 0.01\nN_BOOT = 10000\nTHETA = 0.60\nSEED = 42\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s [%(levelname)s] %(message)s\", datefmt=\"%H:%M:%S\")\nlog = logging.getLogger(__name__)\n\n\ndef load_data(exp_dir):\n    texts, labels, doc_ids = [], [], []\n    for d in range(N_CLASSES):\n        with open(exp_dir / f\"depth_{d}.jsonl\") as f:\n            for line in f:\n                obj = json.loads(line)\n                texts.append(obj[\"text\"])\n                labels.append(d)\n                doc_ids.append(obj[\"doc_id\"])\n    return texts, np.array(labels), np.array(doc_ids)\n\n\nclass DS(Dataset):\n    def __init__(self, ids, masks, labels):\n        self.ids, self.masks, self.labels = ids, masks, labels\n    def __len__(self): return len(self.labels)\n    def __getitem__(self, i): return self.ids[i], self.masks[i], self.labels[i]\n\n\ndef collate(batch):\n    ids_l, mask_l, lab_l = zip(*batch)\n    mx = max(len(x) for x in ids_l)\n    bsz = len(ids_l)\n    ids = torch.zeros(bsz, mx, dtype=torch.long)\n    masks = torch.zeros(bsz, mx, dtype=torch.long)\n    for i, (x, m) in enumerate(zip(ids_l, mask_l)):\n        n = len(x)\n        ids[i, :n] = torch.tensor(x, dtype=torch.long)\n        masks[i, :n] = torch.tensor(m, dtype=torch.long)\n    return ids, masks, torch.tensor(lab_l, dtype=torch.long)\n\n\ndef train_fold(tr_ids, tr_masks, tr_labels, va_ids, va_masks, va_labels, device, fold):\n    log.info(f\"  Fold {fold}: train={len(tr_labels)}, val={len(va_labels)}\")\n    model = AutoModelForSequenceClassification.from_pretrained(\n        MODEL_NAME, num_labels=N_CLASSES, cache_dir=HF_CACHE,\n        local_files_only=True, torch_dtype=torch.float32,\n    ).to(device)\n\n    tr_dl = DataLoader(DS(tr_ids, tr_masks, tr_labels), batch_size=BS, shuffle=True, collate_fn=collate, num_workers=2, pin_memory=True)\n    va_dl = DataLoader(DS(va_ids, va_masks, va_labels), batch_size=BS*2, collate_fn=collate, num_workers=2, pin_memory=True)\n\n    opt = torch.optim.AdamW(model.parameters(), lr=LR, weight_decay=WD)\n    total_opt = (len(tr_dl) // GRAD_ACCUM) * EPOCHS\n    sched = get_linear_schedule_with_warmup(opt, int(total_opt * WARMUP), total_opt)\n\n    model.train()\n    for ep in range(EPOCHS):\n        ep_loss = 0.0\n        opt.zero_grad()\n        for step, (ids, mask, lab) in enumerate(tr_dl):\n            ids, mask, lab = ids.to(device), mask.to(device), lab.to(device)\n            out = model(input_ids=ids, attention_mask=mask, labels=lab)\n            (out.loss / GRAD_ACCUM).backward()\n            ep_loss += out.loss.item()\n            if (step + 1) % GRAD_ACCUM == 0:\n                torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)\n                opt.step()\n                sched.step()\n                opt.zero_grad()\n            if step % 200 == 0 and step > 0:\n                log.info(f\"    Ep {ep+1} step {step}/{len(tr_dl)} loss={ep_loss/(step+1):.4f}\")\n        log.info(f\"    Ep {ep+1}/{EPOCHS} avg_loss={ep_loss/len(tr_dl):.4f}\")\n\n    model.eval()\n    probs = []\n    with torch.no_grad():\n        for ids, mask, _ in va_dl:\n            ids, mask = ids.to(device), mask.to(device)\n            out = model(input_ids=ids, attention_mask=mask)\n            probs.append(torch.softmax(out.logits, dim=-1).cpu().numpy())\n    del model, opt, sched\n    torch.cuda.empty_cache()\n    gc.collect()\n    return np.concatenate(probs)\n\n\ndef pairwise_auc_ci(labels, probs, doc_ids):\n    rng = np.random.RandomState(SEED)\n    results = {}\n    for k in range(N_CLASSES - 1):\n        key = f\"{k}v{k+1}\"\n        mask = (labels == k) | (labels == k + 1)\n        y = (labels[mask] == k + 1).astype(int)\n        s = probs[mask][:, k+1:].sum(axis=1)\n        docs = doc_ids[mask]\n        auc = float(roc_auc_score(y, s))\n        doc2idx = {}\n        for i, d in enumerate(docs):\n            doc2idx.setdefault(int(d), []).append(i)\n        idx_arr = [np.array(v) for v in doc2idx.values()]\n        n_docs = len(idx_arr)\n        boots = []\n        for _ in range(N_BOOT):\n            si = rng.randint(0, n_docs, n_docs)\n            idx = np.concatenate([idx_arr[j] for j in si])\n            try: boots.append(roc_auc_score(y[idx], s[idx]))\n            except ValueError: continue\n        boots = np.array(boots)\n        ci_lo, ci_hi = float(np.percentile(boots, 2.5)), float(np.percentile(boots, 97.5))\n        results[key] = {\"auc\": round(auc,4), \"ci_lower\": round(ci_lo,4), \"ci_upper\": round(ci_hi,4),\n                         \"ci_lower_above_theta\": bool(ci_lo > THETA), \"boot_mean\": round(float(boots.mean()),4), \"boot_std\": round(float(boots.std()),4)}\n    kstar = 0\n    for k in range(N_CLASSES - 1):\n        if results[f\"{k}v{k+1}\"][\"ci_lower_above_theta\"]: kstar = k + 1\n        else: break\n    return results, kstar\n\n\ndef load_obd(name):\n    p = OBD_MAP.get(name)\n    if p and p.exists():\n        data = json.load(open(p))\n        return data.get(\"mean\", data)\n    return None\n\n\ndef main():\n    os.environ[\"HF_HOME\"] = HF_CACHE\n    os.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\n    os.environ[\"HF_HUB_DISABLE_XET\"] = \"1\"\n    os.environ[\"TRANSFORMERS_OFFLINE\"] = \"1\"\n\n    device = torch.device(\"cuda:0\")\n    log.info(f\"Device: {device} ({torch.cuda.get_device_name(0)})\")\n\n    log.info(f\"Loading tokenizer: {MODEL_NAME}\")\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, cache_dir=HF_CACHE, use_fast=False, local_files_only=True)\n    log.info(\"Tokenizer loaded\")\n\n    RESULTS_DIR.mkdir(parents=True, exist_ok=True)\n    all_res = {}\n\n    for exp_name, exp_dir in EXPERIMENTS.items():\n        log.info(f\"\\n{'='*60}\\n{exp_name}\\n{'='*60}\")\n        t0 = time.time()\n        texts, labels, doc_ids = load_data(exp_dir)\n        N = len(texts)\n        log.info(f\"Loaded {N} samples ({N // N_CLASSES} docs x {N_CLASSES} depths)\")\n\n        log.info(\"Tokenizing...\")\n        enc = tokenizer(texts, truncation=True, max_length=MAX_LEN, padding=False)\n        all_ids, all_masks = enc[\"input_ids\"], enc[\"attention_mask\"]\n        log.info(\"Tokenization done\")\n\n        gkf = GroupKFold(n_splits=N_FOLDS)\n        oof = np.zeros((N, N_CLASSES))\n\n        for fi, (tr_i, va_i) in enumerate(gkf.split(np.arange(N), labels, doc_ids)):\n            oof[va_i] = train_fold(\n                [all_ids[i] for i in tr_i], [all_masks[i] for i in tr_i], labels[tr_i].tolist(),\n                [all_ids[i] for i in va_i], [all_masks[i] for i in va_i], labels[va_i].tolist(),\n                device, fi,\n            )\n\n        pw, kstar = pairwise_auc_ci(labels, oof, doc_ids)\n        elapsed = time.time() - t0\n\n        log.info(f\"\\nPairwise AUC ({exp_name}):\")\n        for pk, v in pw.items():\n            log.info(f\"  {pk}: {v['auc']:.4f} [{v['ci_lower']:.4f}, {v['ci_upper']:.4f}]\")\n        log.info(f\"  K* (theta={THETA}): {kstar}  Time: {elapsed:.0f}s\")\n\n        obd = load_obd(exp_name)\n        exp_res = {\"experiment\": exp_name, \"model\": MODEL_NAME, \"method\": \"DeBERTa-v3-base fine-tuned 6-class\",\n                    \"n_samples\": N, \"epochs\": EPOCHS, \"lr\": LR, \"batch_size\": BS, \"max_length\": MAX_LEN,\n                    \"theta\": THETA, \"kstar\": kstar, \"pairwise_auc\": pw, \"elapsed_seconds\": round(elapsed, 1)}\n        if obd: exp_res[\"obd_baseline\"] = obd\n        all_res[exp_name] = exp_res\n        json.dump(exp_res, open(RESULTS_DIR / f\"{exp_name}.json\", \"w\"), indent=2)\n        log.info(f\"Saved: {RESULTS_DIR / f'{exp_name}.json'}\")\n\n    json.dump(all_res, open(RESULTS_DIR / \"summary.json\", \"w\"), indent=2)\n\n    log.info(f\"\\n{'='*80}\\nDeBERTa vs OBD-LightGBM\\n{'='*80}\")\n    for name, r in all_res.items():\n        obd = r.get(\"obd_baseline\", {})\n        for pk in [\"0v1\", \"1v2\", \"2v3\", \"3v4\", \"4v5\"]:\n            da = r[\"pairwise_auc\"][pk][\"auc\"]\n            cl, ch = r[\"pairwise_auc\"][pk][\"ci_lower\"], r[\"pairwise_auc\"][pk][\"ci_upper\"]\n            oa = obd.get(pk)\n            log.info(f\"{name:<18} {pk} DeBERTa={da:.4f} [{cl:.4f},{ch:.4f}] OBD={oa if oa else 'N/A'} delta={da-oa:+.4f}\" if oa else f\"{name:<18} {pk} DeBERTa={da:.4f} [{cl:.4f},{ch:.4f}]\")\n        log.info(f\"  K*(DeBERTa)={r['kstar']}\")\n    log.info(\"All done.\")\n\n\nif __name__ == \"__main__\":\n    torch.manual_seed(SEED)\n    np.random.seed(SEED)\n    if torch.cuda.is_available(): torch.cuda.manual_seed_all(SEED)\n    main()\nSCRIPT",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "cat > /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_arxiv.py << 'SCRIPT'\n#!/usr/bin/env python3\n\"\"\"\nDeBERTa-v3-base upper-bound baseline for arXiv domain (Qwen-1.5B scorer).\n6-class ordinal depth classification, 5-fold GroupKFold, pairwise AUC with\ndoc-level bootstrap CI, K* determination.\n\"\"\"\n\nimport gc\nimport json\nimport logging\nimport os\nimport time\nfrom pathlib import Path\n\nimport numpy as np\nimport torch\nfrom torch.utils.data import Dataset, DataLoader\nfrom sklearn.model_selection import GroupKFold\nfrom sklearn.metrics import roc_auc_score\nfrom transformers import (\n    AutoTokenizer,\n    AutoModelForSequenceClassification,\n    get_linear_schedule_with_warmup,\n)\n\nROOT = Path(\"/root/autodl-tmp/gen-depth-contamination\")\nDATA_DIR = ROOT / \"data\"\nRESULTS_DIR = ROOT / \"results\" / \"exp_deberta_arxiv\"\n\nEXPERIMENTS = {\n    \"arxiv_qwen1b5\": DATA_DIR / \"exp_024_arxiv\",\n}\n\nOBD_MAP = {\n    \"arxiv_qwen1b5\": ROOT / \"results\" / \"exp_024_arxiv\" / \"pairwise_auc.json\",\n}\n\nMODEL_NAME = \"microsoft/deberta-v3-base\"\nHF_CACHE = \"/root/autodl-tmp/.hf_cache\"\nMAX_LEN = 512\nN_CLASSES = 6\nN_FOLDS = 5\nEPOCHS = 3\nBS = 16\nGRAD_ACCUM = 2\nLR = 2e-5\nWARMUP = 0.1\nWD = 0.01\nN_BOOT = 10000\nTHETA = 0.60\nSEED = 42\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s [%(levelname)s] %(message)s\", datefmt=\"%H:%M:%S\")\nlog = logging.getLogger(__name__)\n\n\ndef load_data(exp_dir):\n    texts, labels, doc_ids = [], [], []\n    for d in range(N_CLASSES):\n        with open(exp_dir / f\"depth_{d}.jsonl\") as f:\n            for line in f:\n                obj = json.loads(line)\n                texts.append(obj[\"text\"])\n                labels.append(d)\n                doc_ids.append(obj[\"doc_id\"])\n    return texts, np.array(labels), np.array(doc_ids)\n\n\nclass DS(Dataset):\n    def __init__(self, ids, masks, labels):\n        self.ids, self.masks, self.labels = ids, masks, labels\n    def __len__(self): return len(self.labels)\n    def __getitem__(self, i): return self.ids[i], self.masks[i], self.labels[i]\n\n\ndef collate(batch):\n    ids_l, mask_l, lab_l = zip(*batch)\n    mx = max(len(x) for x in ids_l)\n    bsz = len(ids_l)\n    ids = torch.zeros(bsz, mx, dtype=torch.long)\n    masks = torch.zeros(bsz, mx, dtype=torch.long)\n    for i, (x, m) in enumerate(zip(ids_l, mask_l)):\n        n = len(x)\n        ids[i, :n] = torch.tensor(x, dtype=torch.long)\n        masks[i, :n] = torch.tensor(m, dtype=torch.long)\n    return ids, masks, torch.tensor(lab_l, dtype=torch.long)\n\n\ndef train_fold(tr_ids, tr_masks, tr_labels, va_ids, va_masks, va_labels, device, fold):\n    log.info(f\"  Fold {fold}: train={len(tr_labels)}, val={len(va_labels)}\")\n    model = AutoModelForSequenceClassification.from_pretrained(\n        MODEL_NAME, num_labels=N_CLASSES, cache_dir=HF_CACHE,\n        local_files_only=True, torch_dtype=torch.float32,\n    ).to(device)\n\n    tr_dl = DataLoader(DS(tr_ids, tr_masks, tr_labels), batch_size=BS, shuffle=True, collate_fn=collate, num_workers=2, pin_memory=True)\n    va_dl = DataLoader(DS(va_ids, va_masks, va_labels), batch_size=BS*2, collate_fn=collate, num_workers=2, pin_memory=True)\n\n    opt = torch.optim.AdamW(model.parameters(), lr=LR, weight_decay=WD)\n    total_opt = (len(tr_dl) // GRAD_ACCUM) * EPOCHS\n    sched = get_linear_schedule_with_warmup(opt, int(total_opt * WARMUP), total_opt)\n\n    model.train()\n    for ep in range(EPOCHS):\n        ep_loss = 0.0\n        opt.zero_grad()\n        for step, (ids, mask, lab) in enumerate(tr_dl):\n            ids, mask, lab = ids.to(device), mask.to(device), lab.to(device)\n            out = model(input_ids=ids, attention_mask=mask, labels=lab)\n            (out.loss / GRAD_ACCUM).backward()\n            ep_loss += out.loss.item()\n            if (step + 1) % GRAD_ACCUM == 0:\n                torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)\n                opt.step()\n                sched.step()\n                opt.zero_grad()\n            if step % 200 == 0 and step > 0:\n                log.info(f\"    Ep {ep+1} step {step}/{len(tr_dl)} loss={ep_loss/(step+1):.4f}\")\n        log.info(f\"    Ep {ep+1}/{EPOCHS} avg_loss={ep_loss/len(tr_dl):.4f}\")\n\n    model.eval()\n    probs = []\n    with torch.no_grad():\n        for ids, mask, _ in va_dl:\n            ids, mask = ids.to(device), mask.to(device)\n            out = model(input_ids=ids, attention_mask=mask)\n            probs.append(torch.softmax(out.logits, dim=-1).cpu().numpy())\n    del model, opt, sched\n    torch.cuda.empty_cache()\n    gc.collect()\n    return np.concatenate(probs)\n\n\ndef pairwise_auc_ci(labels, probs, doc_ids):\n    rng = np.random.RandomState(SEED)\n    results = {}\n    for k in range(N_CLASSES - 1):\n        key = f\"{k}v{k+1}\"\n        mask = (labels == k) | (labels == k + 1)\n        y = (labels[mask] == k + 1).astype(int)\n        s = probs[mask][:, k+1:].sum(axis=1)\n        docs = doc_ids[mask]\n        auc = float(roc_auc_score(y, s))\n        doc2idx = {}\n        for i, d in enumerate(docs):\n            doc2idx.setdefault(int(d), []).append(i)\n        idx_arr = [np.array(v) for v in doc2idx.values()]\n        n_docs = len(idx_arr)\n        boots = []\n        for _ in range(N_BOOT):\n            si = rng.randint(0, n_docs, n_docs)\n            idx = np.concatenate([idx_arr[j] for j in si])\n            try: boots.append(roc_auc_score(y[idx], s[idx]))\n            except ValueError: continue\n        boots = np.array(boots)\n        ci_lo, ci_hi = float(np.percentile(boots, 2.5)), float(np.percentile(boots, 97.5))\n        results[key] = {\"auc\": round(auc,4), \"ci_lower\": round(ci_lo,4), \"ci_upper\": round(ci_hi,4),\n                         \"ci_lower_above_theta\": bool(ci_lo > THETA), \"boot_mean\": round(float(boots.mean()),4), \"boot_std\": round(float(boots.std()),4)}\n    kstar = 0\n    for k in range(N_CLASSES - 1):\n        if results[f\"{k}v{k+1}\"][\"ci_lower_above_theta\"]: kstar = k + 1\n        else: break\n    return results, kstar\n\n\ndef load_obd(name):\n    p = OBD_MAP.get(name)\n    if p and p.exists():\n        data = json.load(open(p))\n        return data.get(\"mean\", data)\n    return None\n\n\ndef main():\n    os.environ[\"HF_HOME\"] = HF_CACHE\n    os.environ[\"TOKENIZERS_PARALLELISM\"] = \"false\"\n    os.environ[\"HF_HUB_DISABLE_XET\"] = \"1\"\n    os.environ[\"TRANSFORMERS_OFFLINE\"] = \"1\"\n\n    device = torch.device(\"cuda:0\")\n    log.info(f\"Device: {device} ({torch.cuda.get_device_name(0)})\")\n\n    log.info(f\"Loading tokenizer: {MODEL_NAME}\")\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, cache_dir=HF_CACHE, use_fast=False, local_files_only=True)\n    log.info(\"Tokenizer loaded\")\n\n    RESULTS_DIR.mkdir(parents=True, exist_ok=True)\n    all_res = {}\n\n    for exp_name, exp_dir in EXPERIMENTS.items():\n        log.info(f\"\\n{'='*60}\\n{exp_name}\\n{'='*60}\")\n        t0 = time.time()\n        texts, labels, doc_ids = load_data(exp_dir)\n        N = len(texts)\n        log.info(f\"Loaded {N} samples ({N // N_CLASSES} docs x {N_CLASSES} depths)\")\n\n        log.info(\"Tokenizing...\")\n        enc = tokenizer(texts, truncation=True, max_length=MAX_LEN, padding=False)\n        all_ids, all_masks = enc[\"input_ids\"], enc[\"attention_mask\"]\n        log.info(\"Tokenization done\")\n\n        gkf = GroupKFold(n_splits=N_FOLDS)\n        oof = np.zeros((N, N_CLASSES))\n\n        for fi, (tr_i, va_i) in enumerate(gkf.split(np.arange(N), labels, doc_ids)):\n            oof[va_i] = train_fold(\n                [all_ids[i] for i in tr_i], [all_masks[i] for i in tr_i], labels[tr_i].tolist(),\n                [all_ids[i] for i in va_i], [all_masks[i] for i in va_i], labels[va_i].tolist(),\n                device, fi,\n            )\n\n        pw, kstar = pairwise_auc_ci(labels, oof, doc_ids)\n        elapsed = time.time() - t0\n\n        log.info(f\"\\nPairwise AUC ({exp_name}):\")\n        for pk, v in pw.items():\n            log.info(f\"  {pk}: {v['auc']:.4f} [{v['ci_lower']:.4f}, {v['ci_upper']:.4f}]\")\n        log.info(f\"  K* (theta={THETA}): {kstar}  Time: {elapsed:.0f}s\")\n\n        obd = load_obd(exp_name)\n        exp_res = {\"experiment\": exp_name, \"model\": MODEL_NAME, \"method\": \"DeBERTa-v3-base fine-tuned 6-class\",\n                    \"n_samples\": N, \"epochs\": EPOCHS, \"lr\": LR, \"batch_size\": BS, \"max_length\": MAX_LEN,\n                    \"theta\": THETA, \"kstar\": kstar, \"pairwise_auc\": pw, \"elapsed_seconds\": round(elapsed, 1)}\n        if obd: exp_res[\"obd_baseline\"] = obd\n        all_res[exp_name] = exp_res\n        json.dump(exp_res, open(RESULTS_DIR / f\"{exp_name}.json\", \"w\"), indent=2)\n        log.info(f\"Saved: {RESULTS_DIR / f'{exp_name}.json'}\")\n\n    json.dump(all_res, open(RESULTS_DIR / \"summary.json\", \"w\"), indent=2)\n\n    log.info(f\"\\n{'='*80}\\nDeBERTa vs OBD-LightGBM\\n{'='*80}\")\n    for name, r in all_res.items():\n        obd = r.get(\"obd_baseline\", {})\n        for pk in [\"0v1\", \"1v2\", \"2v3\", \"3v4\", \"4v5\"]:\n            da = r[\"pairwise_auc\"][pk][\"auc\"]\n            cl, ch = r[\"pairwise_auc\"][pk][\"ci_lower\"], r[\"pairwise_auc\"][pk][\"ci_upper\"]\n            oa = obd.get(pk)\n            log.info(f\"{name:<18} {pk} DeBERTa={da:.4f} [{cl:.4f},{ch:.4f}] OBD={oa if oa else 'N/A'} delta={da-oa:+.4f}\" if oa else f\"{name:<18} {pk} DeBERTa={da:.4f} [{cl:.4f},{ch:.4f}]\")\n        log.info(f\"  K*(DeBERTa)={r['kstar']}\")\n    log.info(\"All done.\")\n\n\nif __name__ == \"__main__\":\n    torch.manual_seed(SEED)\n    np.random.seed(SEED)\n    if torch.cuda.is_available(): torch.cuda.manual_seed_all(SEED)\n    main()\nSCRIPT",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T03:12:28.939835+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-20T03:12:28.940014+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls -la /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_arxiv.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "ls -la /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_arxiv.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T03:12:28.940156+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 9269 May 20 11:11 /root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_arxiv.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-20T03:12:28.940288+00:00_
+
+called mcp__agent-ml-research__submit_training_job
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_training_job</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "gpu_ids": "['cuda:1']",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_arxiv.py\"",
+  "exp_id": "exp_deberta_arxiv_qwen1b5",
+  "account": "root",
+  "project": "gen-depth-contamination",
+  "timeout_hours": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "gpu_ids": "['cuda:1']",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_arxiv.py\"",
+    "exp_id": "exp_deberta_arxiv_qwen1b5",
+    "account": "root",
+    "project": "gen-depth-contamination",
+    "timeout_hours": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T03:12:28.940435+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"pid\": \"276481\", \"log_file\": \"~/runs/gen-depth-contamination/exp_deberta_arxiv_qwen1b5.log\", \"gpu_ids\": [\"cuda:1\"], \"server\": \"cqa1-22115\", \"account\": \"root\", \"cuda_visible_devices\": \"1\", \"backend\": \"tmux\", \"tmux_session\": \"exp_deberta_arxiv_qwen1b5\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.91}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T03:12:28.940586+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "tail -20 /root/runs/gen-depth-contamination/exp_deberta_arxiv_qwen1b5.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "tail -20 /root/runs/gen-depth-contamination/exp_deberta_arxiv_qwen1b5.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T03:12:28.940710+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T03:12:28.940873+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "tail -20 ~/runs/gen-depth-contamination/exp_deberta_arxiv_qwen1b5.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "tail -20 ~/runs/gen-depth-contamination/exp_deberta_arxiv_qwen1b5.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T03:12:28.941018+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Skipping import of cpp extensions due to incompatible torch version. Please upgrade to torch >= 2.11.0 (found 2.8.0+cu128).\\n11:12:15 [INFO] Device: cuda:0 (NVIDIA GeForce RTX 4090 D)\\n11:12:15 [INFO] Loading tokenizer: microsoft/deberta-v3-base\\n11:12:16 [INFO] Tokenizer loaded\\n11:12:16 [INFO] \\n============================================================\\narxiv_qwen1b5\\n============================================================\\n11:12:16 [INFO] Loaded 13200 samples (2200 docs x 6 depths)\\n11:12:16 [INFO] Tokenizing...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-20T03:12:28.941190+00:00_
+
+启动成功，已加载 13200 samples，正在 tokenize。
+
+**实验信息汇总：**
+
+| 项 | 值 |
+|---|---|
+| exp_id | `exp_deberta_arxiv_qwen1b5` |
+| PID | 276481 |
+| GPU | cuda:1 (RTX 4090 D) |
+| 脚本 | `scripts/run_deberta_arxiv.py` |
+| 日志 | `~/runs/gen-depth-contamination/exp_deberta_arxiv_qwen1b5.log` |
+| 数据 | 13200 samples (2200 docs × 6 depths), arXiv domain, Qwen-1.5B scorer |
+| 超参 | 5-fold GroupKFold, 3 epochs, BS=16, grad_accum=2, LR=2e-5, N_BOOT=10000, θ=0.60 |
+| 输出 | `results/exp_deberta_arxiv/arxiv_qwen1b5.json` |
+
+**与 wiki 版本的差异：**
+- `EXPERIMENTS` 指向 `data/exp_024_arxiv/`
+- `N_BOOT` 从 1000 改为 10000（更精确的 CI 估计）
+- `load_obd` 通过 `OBD_MAP` 加载 `results/exp_024_arxiv/pairwise_auc.json` 作为 baseline
+- 输出到 `results/exp_deberta_arxiv/`
+
+**预计耗时：** wiki 版本 5 个实验跑完的时间参考，单个 arXiv 实验（13200 samples × 5 folds × 3 epochs + 10000 bootstrap）预计 30-60 分钟。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_experiment_arxiv-deberta-upperbound_20260520T031015"
+}
+```
+
+</details>
+
+---

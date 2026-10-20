@@ -1,0 +1,13 @@
+14D vs 15D Feature Ablation (self_bleu removal)
+Method: GroupKFold(5) OOF + doc-level bootstrap(10000), theta=0.60, seed=42
+Total time: 1173s
+
+Results:
+Model       | K*_15D | K*_14D | 1v2 AUC_15D [CI]              | 1v2 AUC_14D [CI]              | Delta
+Qwen-base   | 2      | 2      | 0.6288 [0.6197, 0.6379]       | 0.6258 [0.6163, 0.6350]       | -0.0031
+Pythia      | 2      | 2      | 0.8840 [0.8775, 0.8904]       | 0.8830 [0.8764, 0.8894]       | -0.0010
+LLaMA-8B    | 2      | 2      | 0.6075 [0.5979, 0.6171]       | 0.6074 [0.5978, 0.6170]       | -0.0001
+Mistral-7B  | 1      | 1      | 0.5902 [0.5801, 0.6001]       | 0.5903 [0.5803, 0.6003]       | +0.0002
+
+Conclusion: Removing self_bleu has zero impact on K* determination for all 4 models. Max |Delta AUC| = 0.0031, well within statistical noise.
+Server path: /root/autodl-tmp/gen-depth-contamination/artifacts/exp_14d_ablation_detail.json

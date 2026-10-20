@@ -1,0 +1,1857 @@
+{
+  "schema_version": "1.0",
+  "id": "1f94735c3e6cfdc322d1",
+  "project": "gen-depth-contamination",
+  "kind": "conversation",
+  "title": "research paper integration prep",
+  "task_key": "worker_research_paper_integration_prep_20260516T080012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_paper_integration_prep_20260516T080012.jsonl",
+    "occurrence": 1,
+    "bytes": 95862,
+    "sha256": "0c5720baea08dcb0d40fe8ac5a705d23297bedd1644395461396bb982e2758f4"
+  },
+  "statistics": {
+    "messages": 93,
+    "user_turns": 0,
+    "tool_calls": 46,
+    "roles": {
+      "tool_call": 46,
+      "tool_result": 46,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T08:04:29.575686+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T08:04:29.576097+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T08:04:29.576274+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "file": "paper_framing.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T08:04:29.576748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — gen-depth-contamination\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (ARR submission May 25, 2026)\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Backup: AAAI 2027 (abstract July 25, paper August 1)\\\\n\\\\n## Canonical Experimental Condition\\\\n\\\\n**Continuation mode 是 cross-model 结论的基础。**\\\\n\\\\n> \\\\\\\"We evaluate both generation modes because real-world recursive contamination can arise from either. Our analysis reveals generation mode as a significant confound, leading us to recommend continuation mode as the canonical condition for cross-model comparisons.\\\\\\\"\\\\n\\\\n| Condition | Pythia↔OLMo | Qwen↔others | 论文定位 |\\\\n|-----------|-------------|-------------|---------|\\\\n| Continuation | 90-92% retention | 80-85% retention | **主实验条件** — cross-model claims 的基础 |\\\\n| Rewrite (instruction) | N/A | 61-63% retention | **upper bound with mode-specific confound** — 仅作 ablation |\\\\n\\\\n**原则**：\\\\n- C1' 的跨模型 claim 必须基于 continuation mode 数据\\\\n- Rewrite mode 的高 AUC (0.6957 vs cont 0.6114) 是 mode-specific signal amplification，不能作为泛化性证据\\\\n- mvp-001 (Qwen-rewrite) 定位为 \\\\\\\"pilot study demonstrating feasibility\\\\\\\"，后续用 continuation mode rigorously validate\\\\n- cont→rw 89% vs rw→cont 82% 不对称性 → continuation features 是 rewrite 的通用子集\\\\n\\\\n## Core Claims (2+1 结构, D012)\\\\n\\\\n### Primary: C1' (K* Characterization)\\\\n首次系统测量递归合成文本的 generational discrimination boundary K*，并揭示其 universality。\\\\n\\\\nDPI 理论证明有限 K*_theory 必然存在（信息论 impossibility boundary）；我们首次在受控实验中测量 K*_empirical，它提供 K*_theory 的保守下界。通过 10 条件实验矩阵（5 model-mode configurations + 4 decoding strategies + 1 cross-scale 7B）系统表征 K*_empirical 的行为，发现 K*=2 在所有 10 个测试条件下保持不变，展现出跨模型架构、跨解码策略、跨生成模式、跨模型规模（1B–7B）、跨 instruct/base 的 universality。\\\\n\\\\n**子组件：**\\\\n\\\\n**(a) K*=2 universality across architectures, generation modes, and decoding strategies**\\\\n> **4/4 model-mode c\n…[truncated 10080 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T08:04:29.577215+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "file": "ROADMAP.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T08:04:29.577590+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/ROADMAP.md\\\", \\\"content\\\": \\\"# gen-depth-contamination — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-16 05:38 UTC | 更新原因: Scope 扩展 4 卡全部启动 + exp-016 K*=2 confirmed + bootstrap CI done\\\\n\\\\n## 核心方向\\\\n递归合成文本的代际深度估计：K*=2 universality + filtering 应用。2+1 claim 结构：C1'(K* characterization) + C3(filtering) + supporting analysis。9 条件全部 K*=2。详见 paper_framing.md。\\\\n\\\\n## 当前阶段：Scope 扩展执行中（4 卡满载）\\\\n\\\\n### 已完成\\\\n- ✅ 服务器迁移 (D041): cqa1-22115 (4×4090D) 就绪，westc-26893 可释放\\\\n- ✅ exp-016 K*=2 confirmed (base=instruct), bootstrap CI 1v2 lower=0.6168 > θ=0.60\\\\n- ✅ Round 4 审稿修复: 3 Critical + Major/Minor 全部修复\\\\n- ✅ 21/21 P0 实验 success\\\\n\\\\n### Scope 扩展（4 卡并行运行中）\\\\n| 卡 | 实验 | GPU 时间 | 状态 |\\\\n|----|------|---------|------|\\\\n| cuda:0 | exp-018 LLaMA-3.1-8B depth chain | ~8h | RUNNING |\\\\n| cuda:1 | exp-019 Mistral-7B-v0.3 depth chain | ~8h | RUNNING (PID 12147) |\\\\n| cuda:2 | exp-020 Pythia-1.4B 解码消融 | ~6h | RUNNING |\\\\n| cuda:3 | exp-021 文本长度消融 (128/256/512) | ~6h | Worker 提交中 |\\\\n| cuda:3 | exp-022 cross-scorer 矩阵 | ~3h | QUEUED (exp-021 完成后) |\\\\n预计 05-16 晚间~05-17 上午完成。\\\\n\\\\n## 近期任务\\\\n- [ ] 等待 exp-018/019/020/021 完成 → 分析结果\\\\n- [ ] exp-021 完成后启动 exp-022 (cuda:3)\\\\n- [ ] scope 结果整合到论文 → submit_paper_to_review (continue)\\\\n- [ ] 释放旧机器 westc-26893\\\\n\\\\n## GPU 预算\\\\n- cqa1-22115: 4× RTX 4090 D 24GB（全部可用）\\\\n- westc-26893: 待释放\\\\n\\\\n## DDL 倒排\\\\n| 日期 | 里程碑 |\\\\n|------|--------|\\\\n| 05-16 | ✅ 迁移完成 + exp-016 done + scope 扩展 4 卡启动 |\\\\n| 05-17 | scope 扩展完成 + 结果分析 |\\\\n| 05-18~19 | 结果整合到论文 |\\\\n| 05-20~22 | 论文更新 + 最终审稿 |\\\\n| 05-22~24 | 打磨 |\\\\n| 05-25 | EMNLP ARR 提交 |\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D043 | 2026-05-16 | 补 domain ablation 实验 (Wikipedia seed data)，堵住数据域单一 | exp-023 |\\\\n| D042 | 2026-05-16 | exp-016 K*=2 confirmed (base=instruct), 启动 4 卡并行 s | exp_016_base_vs_instruct |\\\\n| D041 | 2026-05-16 | 迁移到 cqa1-22115 (4×409\n…[truncated 861 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T08:04:29.577826+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "find /root/autodl-tmp/gen-depth-contamination/paper -type f 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T08:04:29.577979+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T08:04:29.578450+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "find /root/autodl-tmp/gen-depth-contamination/paper -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T08:04:29.578718+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/autodl-tmp/gen-depth-contamination/paper': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T08:04:29.578886+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "find /root/autodl-tmp/gen-depth-contamination -name \"*.py\" -path \"*/scripts/*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T08:04:29.579018+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ls /root/autodl-tmp/gen-depth-contamination/",
+              "account": "root"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T08:04:29.579209+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/scripts/run_pipeline.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp016_bootstrap_ci.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T08:04:29.579558+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"artifacts\\\\ndata\\\\ndata_exp016_qwen_base\\\\ndata_exp019_mistral7b\\\\ndata_exp020_pythia_greedy\\\\ndata_exp020_pythia_nuc09\\\\ndata_exp020_pythia_t07\\\\ndata_exp020_pythia_t12\\\\nexp019.log\\\\nlogs\\\\nresults\\\\nresults_exp016_qwen_base\\\\nresults_exp019_mistral7b\\\\nresults_exp020_pythia_greedy\\\\nscripts\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T08:04:29.579744+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "find /root/autodl-tmp/gen-depth-contamination -name \"*.tex\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T08:04:29.579900+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T08:04:29.580057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ls /root/autodl-tmp/gen-depth-contamination/artifacts/",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T08:04:29.580251+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp016_bootstrap_ci.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T08:04:29.580438+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "find /root/autodl-tmp/gen-depth-contamination -name \"*.py\" -not -path \"*__pycache__*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T08:04:29.580636+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/scripts/run_pipeline.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp016_bootstrap_ci.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T08:04:29.580889+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T08:04:29.581097+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/dream_reports/dream_20260512T200328/best/paper.tex\nartifacts/dream_reports/dream_20260512T200328/median/paper.tex\nartifacts/dream_reports/dream_20260512T200328/worst/paper.tex\nartifacts/dream_reports/dream_20260513T080728/best/paper.tex\nartifacts/dream_reports/dream_20260513T080728/median/paper.tex\nartifacts/dream_reports/dream_20260513T080728/worst/paper.tex\nartifacts/_project/paper/method.tex\nartifacts/_project/paper/experiments_c1.tex\nartifacts/exp_015_neural_probe/paper/neural_probe_analysis.tex\nartifacts/drafts/neural_probe_analysis.tex\nartifacts/c3_contingency_versions.tex\nartifacts/exp-006/paper/c3_contingency_versions.tex\ndocs/paper/tables/tab_filtering_main.tex\ndocs/paper/tables/tab_alpha_sweep.tex\ndocs/paper/tables/tab_pairwise_significance.tex\ndocs/paper/tables/tab_crossscorer.tex\ndocs/paper/related_work.tex\ndocs/paper/experiments_c3.tex\ndocs/paper/appendix.tex\ndocs/paper/method.tex\ndocs/paper/experiments_c1.tex\ndocs/paper/introduction.tex\ndocs/paper/appendix_extended.tex\ndocs/paper/conclusion.tex\ndocs/paper/main.tex\ndocs/paper/discussion.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T08:04:29.581289+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T08:04:29.581531+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/report/related_work_structure.md\nartifacts/_project/report/gpu_optimization_report.txt\nartifacts/gpu_optimization_report.txt\nartifacts/_project/report/claim_routes.md\nartifacts/_project/report/theory_framework.md\nartifacts/_project/report/full_study_plan.md\nartifacts/_project/report/methodology_draft.md\nartifacts/_project/report/figure_plan.md\nartifacts/dream_reports/dream_20260512T200328/logs/phase1_attempt0.log\nartifacts/dream_reports/dream_20260512T200328/logs/phase2_best_attempt0.log\nartifacts/dream_reports/dream_20260512T200328/logs/phase2_median_attempt0.log\nartifacts/dream_reports/dream_20260512T200328/logs/phase2_worst_attempt0.log\nartifacts/dream_reports/dream_20260512T200328/best/imagined_experiments.yaml\nartifacts/dream_reports/dream_20260512T200328/best/experiment_data.json\nartifacts/dream_reports/dream_20260512T200328/best/paper.tex\nartifacts/dream_reports/dream_20260512T200328/best/paper.aux\nartifacts/dream_reports/dream_20260512T200328/best/paper.out\nartifacts/dream_reports/dream_20260512T200328/best/paper.pdf\nartifacts/dream_reports/dream_20260512T200328/best/paper.log\nartifacts/dream_reports/dream_20260512T200328/logs/paper_agent_best.log\nartifacts/dream_reports/dream_20260512T200328/median/imagined_experiments.yaml\nartifacts/dream_reports/dream_20260512T200328/median/experiment_data.json\nartifacts/dream_reports/dream_20260512T200328/median/paper.tex\nartifacts/dream_reports/dream_20260512T200328/median/paper.aux\nartifacts/dream_reports/dream_20260512T200328/median/paper.out\nartifacts/dream_reports/dream_20260512T200328/median/paper.pdf\nartifacts/dream_reports/dream_20260512T200328/median/paper.log\nartifacts/dream_reports/dream_20260512T200328/logs/paper_agent_median.log\nartifacts/dream_reports/dream_20260512T200328/worst/imagined_experiments.yaml\nartifacts/dream_reports/dream_20260512T200328/worst/experiment_data.json\nartifacts/dream_reports/dream_20260512T200328/worst/paper.tex\nartifacts/dream_reports/dream_20260512T200328/worst/\n…[truncated 4178 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T08:04:29.581763+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "file": "report.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T08:04:29.582025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-16\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp_021_length_ablation | 文本长度消融：128/256/512 tokens 下 K* 是否稳定？验证 K*=2 不依赖于 256-token 固定长度设定。Qwen2.5-1.5B (base) continuation, C4 5K, depth 0-5。 | — | — | — |\\\\n| exp_018_llama8b_depth | Cross-family K* 验证：LLaMA-3.1-8B continuation mode 的 K* 是否 = 2？首次超出 Qwen 家族，验证 K* universality 跨模型架构。C4 5K, depth 0-5, scorer=Qwen2.5-1.5B base。 | — | — | — |\\\\n| exp_019_mistral7b_depth | Cross-family K* 验证：Mistral-7B-v0.3 continuation mode 的 K* 是否 = 2？第二个非 Qwen 家族模型。C4 5K, depth 0-5, scorer=Mistral-7B-v0.3 (self-scorer)。与 exp-001/002/017 self-scoring 方法一致，exp_A_alt_scorer 已证明 scorer 不影响 K*。 | — | — | — |\\\\n\\\\n## 待处理\\\\n- exp_022_cross_scorer_matrix: 完整 4×4 cross-scorer 矩阵：4 generator (Qwen-rw/Qwen-cont/Pythia/OLMo) × 4 scorer (Qwen-Instruct/Qwen-base/Pythia/OLMo) 的 K* 和 pairwise AUC，量化 self-scoring advantage 并验证 scorer 独立性。（排队等待 GPU）\\\\n\\\\n## 近期结论\\\\n- **exp_016_base_vs_instruct** (success): Base vs Instruct K* 对比：Qwen2.5-1.5B (base) continuation mode 的 K* 是否与 exp-017 (Instruct continuation, K*=2) 一致？封堵 \\\\\\\"K*=2 是 instruct-tuning 副产物\\\\\\\" 攻击面。唯一变量 = base vs instruct。 ← 基于 exp_017_qwen_continuation\\\\n  [exp016_bootstrap_ci](/api/workspace-files/projects/gen-depth-contamination/artifacts/exp_016_base_vs_instruct/data/exp016_bootstrap_ci.json)\\\\n- **exp_003_decoding_ablation** (success): 解码策略调控 K*：不同 top_p/temperature 设置是否改变饱和边界（greedy→更低 K*? 高温度→更高 K*?）\\\\n  [exp003_config12_analysis](/api/workspace-files/projects/gen-depth-contamination/artifacts/exp_003_decoding_ablation/report/exp003_analysis_report.md) | [exp003_decoding_ablation_figure](/api/workspace-files/projects/gen-depth-contamination/artifacts/exp_003_decoding_ablation/chart/exp003_figure_info.md) | [exp003_boots\n…[truncated 603 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T08:04:29.582279+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T08:04:29.582551+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% EMNLP 2026 Main — ARR May 2026\n2\t% Generational Depth Contamination\n3\t\\documentclass[11pt]{article}\n4\t\\usepackage[review]{acl}\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{amsmath}\n12\t\\usepackage{amssymb}\n13\t\\usepackage{booktabs}\n14\t\\usepackage{multirow}\n15\t\\usepackage{enumitem}\n16\t\\usepackage{subcaption}\n17\t\\usepackage[section]{placeins}\n18\t\n19\t\\newcommand{\\Kstar}{{K^*}}\n20\t\\newcommand{\\Kempirical}{{K^*_{\\text{empirical}}}}\n21\t\\newcommand{\\Ktheory}{{K^*_{\\text{theory}}}}\n22\t\\newcommand{\\auc}{\\text{AUC}}\n23\t\\newcommand{\\jsd}{\\text{JSD}}\n24\t\n25\t\\title{Generational Depth Estimation of Recursive Synthetic Text:\\\\Measuring the Discrimination Boundary}\n26\t\n27\t\\author{Anonymous}\n28\t\n29\t\\begin{document}\n30\t\\maketitle\n31\t\n32\t% === Abstract ===\n33\t\\begin{abstract}\n34\tWeb-scale corpora are increasingly contaminated by recursive synthetic content, yet no method estimates a document's generational depth.\n35\tWe measure the discrimination boundary $\\Kempirical$---the maximum depth at which adjacent generations remain distinguishable---using 15 statistical features and an OBD-LightGBM classifier.\n36\tAcross 6 model configurations (1B--7B, base and instruct) and 4 decoding strategies, $\\Kempirical{=}2$ at $\\theta{=}0.60$ (Cohen's $h{\\approx}0.20$), consistent across all 10 tested conditions under self-scoring (most marginal: 0.2\\,pp above $\\theta$): a single generation step is reliably detectable, but the second renders text statistically indistinguishable from deeper synthetic content---a \\emph{one-wash laundering} effect.\n37\tModel-free statistical features enable 80--92\\% cross-model transfer retention among continuation-mode generators with scorer-invariant feature ordering ($\\rho > 0.90$), and cross-scorer validation confirms that $\\Kempirical$ is governed by the generation process rather than the scoring model.\n38\tBoth supervised classification and zero-\n…[truncated 4648 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T08:04:29.582798+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T08:04:29.583276+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe evaluate generational depth estimation on six model configurations:\n5\tPythia-1.4B and OLMo-1B in continuation mode, Qwen2.5-1.5B-Instruct in both rewrite and continuation modes, Qwen2.5-1.5B (base) in continuation mode, and Qwen2.5-7B in continuation mode (cross-scale scoring with Qwen2.5-1.5B).\n6\tAll experiments use the OBD-LightGBM classifier with the 15-dimensional feature set (Section~\\ref{sec:method}), with 5{,}000 texts per depth level (generations 0--5).\n7\t\n8\t%% ====================================================================\n9\t\\subsection{$\\Kempirical = 2$ Across All Configurations}\n10\t\\label{sec:kstar_boundary}\n11\t\n12\t\\begin{table*}[t]\n13\t\\centering\n14\t\\small\n15\t\\caption{Pairwise $\\auc$ for adjacent depth pairs with bootstrap 95\\% CIs and permutation $p$-values for boundary rows.\n16\t$\\Kempirical = 2$ requires 1v2 $\\auc > \\theta{=}0.60$ and 2v3 $\\auc < \\theta$; CIs quantify boundary uncertainty.}\n17\t\\label{tab:kstar_ci}\n18\t\\begin{tabular}{lcccccccccc}\n19\t\\toprule\n20\t & \\multicolumn{2}{c}{Qwen-rw} & \\multicolumn{2}{c}{Pythia} & \\multicolumn{2}{c}{OLMo} & \\multicolumn{2}{c}{Qwen-cont} & \\multicolumn{2}{c}{Qwen-7B\\rlap{$^\\ddagger$}} \\\\\n21\t\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\\cmidrule(lr){6-7}\\cmidrule(lr){8-9}\\cmidrule(lr){10-11}\n22\t & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI \\\\\n23\t\\midrule\n24\t0v1 & .9956 & & .9932 & & .9970 & & .9971 & & .9638 & [.961,\\,.967] \\\\\n25\t1v2 & .6955 & [.686,\\,.704]\\rlap{$^*$} & .6539 & [.645,\\,.663]\\rlap{$^*$} & .6145 & [.605,\\,.625]\\rlap{$^*$} & .6112 & [.602,\\,.621]\\rlap{$^*$} & .6168 & [.608,\\,.626]\\rlap{$^*$} \\\\\n26\t2v3 & .5893 & [.580,\\,.599] & .5514 & [.542,\\,.563] & .5496 & [.540,\\,.560] & .5609 & [.551,\\,.571] & .5492 & [.539,\\,.559] \\\\\n27\t3v4 & .5435 & & .5152 & & .5091 & & .5409 & & .5276 & \\\\\n28\t4v5 & .5340 & & .5136 & & .5045 & & .5141 & & .5085 & \\\\\n29\t\\bottomrule\n30\t\\multicolumn{11}{l}{\\footnotesize $^*$Perm\n…[truncated 14911 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T08:04:29.583511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T08:04:29.583672+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Application: $\\Kstar$-Aware Data Filtering}\n2\t\\label{sec:filtering}\n3\t\n4\t$\\Kempirical = 2$ makes a falsifiable prediction: binary curation should suffice, and graduated performance should converge toward binary as the decay steepness increases.\n5\tWe compare six strategies on 30{,}000 documents (depths 0--5): (i)~\\textbf{no-filter}, (ii)~\\textbf{binary-ours} ($w = 1 - P(\\text{synthetic})$ from 15D LightGBM), (iii)~\\textbf{binary-Drayson}~\\citep{drayson2025}, (iv)~\\textbf{graduated} ($w = \\exp(-\\alpha \\cdot \\hat{d})$, $\\alpha \\in \\{0.1,\\ldots,0.9\\}$), (v)~\\textbf{surprisal} (retain above median), and (vi)~\\textbf{DSIR}~\\citep{xie2023dsir}.\n6\tWe fine-tune Qwen2.5-1.5B-Instruct via LoRA (rank~8, $\\alpha_{\\text{LoRA}}{=}16$) for 3 epochs on MMLU and HellaSwag across 5 seeds (51 total runs; this 100\\% synthetic setting is an upper bound~\\cite{shumailov2024collapse, dohmatob2024model}).\n7\t\n8\t\\begin{table}[t]\n9\t\\centering\n10\t\\small\n11\t\\caption{Downstream filtering performance (5 seeds). Full $\\alpha$ sweep and significance tests in Appendix~\\ref{sec:extended_limitations}.}\n12\t\\label{tab:tab_filtering_main}\n13\t\\input{tables/tab_filtering_main}\n14\t\\end{table}\n15\t\n16\tBinary-ours minimizes MMLU degradation most effectively (Table~\\ref{tab:tab_filtering_main}), reducing the gap from $-$1.53\\,pp (no-filter) to $-$0.77\\,pp (${\\sim}$50\\% reduction; $p_{\\text{corr}} < 0.05$ vs.\\ all alternatives).\n17\tThese effects are measured in a 100\\% synthetic upper-bound setting; real-world contamination ratios are typically lower, and effect sizes would scale accordingly.\n18\tThe strategy ordering is interpretable through $\\Kempirical$: binary filtering exploits the one reliable boundary (0v1), while graduated strategies assign weights to depths 2--5 based on near-random classifier outputs, injecting noise.\n19\tGraduated filtering converges monotonically toward binary: at $\\alpha{=}0.9$, it matches binary-ours on HellaSwag exactly ($\\Delta = 0$, $p_{\\text{corr}} = 1.00$) but remains s\n…[truncated 257 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T08:04:29.583866+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/report/figure_plan.md"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T08:04:29.584113+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# 论文图表方案\n2\t\n3\t> 项目：gen-depth-contamination\n4\t> 目标投稿：EMNLP ARR May 25, 2026\n5\t> 最后更新：2026-05-12\n6\t\n7\t---\n8\t\n9\t## Fig 1: Method Overview / Pipeline 图\n10\t\n11\t**类型**：示意图 / flow diagram\n12\t\n13\t**数据来源**：无数据依赖，纯概念图\n14\t\n15\t**核心信息**：一图看懂整个方法——从人类文本出发，经过递归 LLM 生成形成不同 depth 的文本，提取统计特征后送入 ordinal depth classifier，最终输出 depth 估计用于 graduated filtering。读者看完应理解 (1) depth chain 的构造方式 (2) 特征提取到分类的 pipeline (3) graduated filtering 的思路。\n16\t\n17\t**设计要点**：\n18\t\n19\t- **布局**：左到右水平流程，分三个区域——Corpus Construction / Feature Extraction / Depth-Aware Curation\n20\t- **Corpus Construction 区域**：\n21\t  - 左起一个 Human Text 方块（X₀），颜色最深（深蓝 #1a5276）\n22\t  - 依次经过 LLM 信道符号（▷）连接到 X₁, X₂, ..., X₅\n23\t  - 每个 Xₖ 用渐变色编码 depth：depth 0 深蓝 → depth 5 浅蓝/白色，隐喻信息衰减\n24\t  - X₀ 到 X₅ 之间画一条从粗到细的灰色箭头，底部标注 \"I(X₀; Xₖ) ↓ (DPI)\"\n25\t- **Feature Extraction 区域**：\n26\t  - 三组特征用图标 + 颜色区分：Surprisal (蓝 #2980b9) / Diversity (绿 #27ae60) / Tail-thinning (橙 #e67e22)\n27\t  - 简洁的 15-dim feature vector 示意\n28\t- **Depth-Aware Curation 区域**：\n29\t  - Ordinal Classifier 输出 depth 估计 k̂\n30\t  - 底部分支：graduated weight = quality(k̂)/quality(0) → 加权训练数据\n31\t  - 与 binary filtering（remove all synthetic）对比的小示意\n32\t- **底部信息条**：DPI 理论支撑——\"Data Processing Inequality: information about X₀ can only decrease with depth\"\n33\t- **字体**：标题用 sans-serif bold，标注用 9pt，数学符号用 LaTeX 渲染\n34\t- **配色**：以蓝色系为主色调，三组特征颜色贯穿后续所有图表\n35\t\n36\t**制作工具**：TikZ（LaTeX 原生，与论文排版一致，方便调整尺寸）。如时间不够，matplotlib + 手动布局。\n37\t\n38\t---\n39\t\n40\t## Fig 2: Pairwise AUC 随 depth 衰减曲线（核心结果图）\n41\t\n42\t**类型**：折线图\n43\t\n44\t**数据来源**：\n45\t- P0-9 (全配置特征提取) + P0-10 (LightGBM 5-fold CV)\n46\t- 文件：`artifacts/analysis/pairwise_auc_matrix.csv`\n47\t- 每个 (model, decoding_strategy) 配置的 pairwise AUC 值\n48\t\n49\t**核心信息**：depth signal 存在且随深度单调衰减，K* 可精确测量。不同模型/解码策略的衰减速度不同但趋势一致。读者看完应得出：(1) depth 0v1 区分度最高 (2) 衰减是单调的 (3) K* 位置清晰可读。\n50\t\n51\t**设计要点**：\n52\t\n53\t- **X 轴**：depth pair (0v1, 1v2, 2v3, 3v4, 4v5)，等间距\n54\t- **Y 轴**：AUC，范围 [0.45, 1.0]，0.5 处标注 \"random baseline\"\n55\t- **线条**：\n56\t  - 主实验线（Qwen2.5-1.5B × 5 种解码策略）：实线，不同明度的蓝色系\n57\t    - D-greedy: 深蓝实线 ●\n58\t    -\n…[truncated 10790 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T08:04:29.584318+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T08:04:29.584481+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tWeb-scale text corpora are increasingly contaminated by synthetic content that has itself been generated from earlier synthetic content.\n5\tEstimates suggest that a substantial fraction of online text is machine-generated~\\cite{sun2025aigt, spennemann2025quantifying}, and this share continues to rise.\n6\tWhen models train on the outputs of earlier models, the resulting multi-generational synthetic text degrades with each iteration: tail modes vanish, lexical diversity contracts, and surprisal distributions flatten~\\cite{shumailov2024collapse, dohmatob2024model}.\n7\tThis degradation arises in both \\emph{retrain-chains} (iteratively training on model outputs) and \\emph{prompt-chains} (recursively generating from previous outputs without retraining); we study the latter, which isolates generation-level information loss from training dynamics (Appendix~\\ref{sec:extended_limitations}).\n8\tYet the dominant paradigm treats all machine-generated text identically, discarding the generational depth dimension.\n9\t\n10\tThe gap cuts across three communities.\n11\tBinary detection methods~\\cite{basani2026diveye, zhang2024minkpp} produce no depth estimate, and their confidence scores fail to discriminate beyond the binary boundary (Section~\\ref{sec:binary_confidence}).\n12\tData contamination detection via membership inference~\\cite{zawalski2026codec} addresses a different question (whether specific texts appeared in training data) and likewise provides no depth signal.\n13\tThe model collapse literature~\\cite{shumailov2024collapse, alemohammad2024selfconsuming, schaeffer2025position} characterizes recursive degradation at the macro level but provides no per-text depth estimation tool.\n14\tData selection methods~\\cite{xie2023dsir, tirumala2023d4, drayson2025} ignore recursive depth.\n15\tNo existing method estimates how many rounds of recursive generation a text has undergone, nor quantifies the boundary beyond which such estimation become\n…[truncated 2292 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T08:04:29.584641+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T08:04:29.584833+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\subsection{The One-Wash Laundering Effect}\n5\t\\label{sec:why_kstar}\n6\t\\label{sec:one_wash}\n7\t\n8\tThe shallowness of $\\Kempirical = 2$ reflects the concentration of information loss: the 0v1 boundary is near-trivially separable ($\\auc \\geq 0.96$), 1v2 drops by ${\\sim}$30\\,pp, and 2v3 falls below $\\theta$---the generation operator acts as a lossy channel with diminishing marginal information loss.\n9\tConsistency across four decoding strategies (Table~\\ref{tab:s2_decoding}) reinforces that $\\Kempirical$ is governed by the generation process rather than the sampling algorithm.\n10\tEven at the most marginal 1v2 condition (Qwen-continuation, CI lower bound exceeds $\\theta$ by only 0.2\\,pp), $\\Kempirical = 2$ survives under self-scoring; on the 2v3 side, CI upper bounds confirm non-discrimination in 9/10 conditions, with the single borderline case (nucleus $p{=}0.9$, CI upper${} = 0.601$) consistent with measurement noise at near-threshold values.\n11\tCross-scale validation at 7B (Section~\\ref{sec:kstar_boundary}) extends this from 1.5B to 7B despite reduced 0v1 signal ($0.9638$ vs.\\ $> 0.99$).\n12\t\n13\tThe practical consequence is a three-tier taxonomy: human-authored (depth~0), first-generation synthetic (depth~1), and deeper synthetic (depth~$\\geq 2$).\n14\tA single generation pass suffices to render text statistically indistinguishable from multiply recycled content---a \\emph{one-wash laundering} effect that limits depth-aware corpus curation to a binary boundary.\n15\tThis connects to model collapse: Shumailov et al.~\\cite{shumailov2024collapse} observed that tail-distribution degradation is most acute in the earliest generations; our prompt-chain results show an analogous per-text pattern.\n16\t\n17\tPer-depth analysis provides the most direct evidence that this boundary is not methodological.\n18\tOBD achieves 96\\% depth-0 recall but only 14--22\\% for depths 2--4; frontier LLMs show 69--77\\% depth-0 recall and 8--38\\% for depths \n…[truncated 2848 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T08:04:29.585084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T08:04:29.585470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\appendix\n2\t\\section{Supplementary Figures}\n3\t\n4\t\\begin{figure}[t]\n5\t\\centering\n6\t\\includegraphics[width=\\columnwidth]{figures/fig_filtering_strategies.pdf}\n7\t\\caption{Downstream performance of all filtering strategies (5 seeds, $\\pm$1 std). Binary-ours (green) minimizes MMLU degradation; graduated $\\alpha$ sweep shows monotonic convergence toward binary. Dashed line: base model (no fine-tuning).}\n8\t\\label{fig:filtering_strategies}\n9\t\\end{figure}\n10\t\n11\t\\begin{figure}[t]\n12\t  \\centering\n13\t  \\includegraphics[width=\\columnwidth]{figures/fig_s1_auc_decay_ci.pdf}\n14\t  \\caption{Pairwise $\\auc$ decay curves for five model-mode configurations with bootstrap 95\\% confidence intervals. Error bars computed from 1{,}000 bootstrap resamples. The shaded region marks the $\\Kempirical=2$ boundary where $\\auc$ drops below $\\theta=0.60$. This figure complements Figure~\\ref{fig:auc_decay} in the main text by showing statistical uncertainty for each measurement point.}\n15\t  \\label{fig:s1_auc_decay_ci}\n16\t\\end{figure}\n17\t\n18\t\\section{Supplementary Tables}\n19\t\n20\t%%% Table S1: Cross-Transfer Confusion Matrix (exp-013)\n21\t\\begin{table*}[t]\n22\t  \\centering\n23\t  \\caption{Cross-model transfer accuracy matrix. Each cell reports the six-class depth classification accuracy of a detector trained on one model's outputs (row) and evaluated on another model's outputs (column). Diagonal entries (\\textbf{bold}) indicate within-model performance. Transfer retention is computed as the ratio of off-diagonal accuracy to the geometric mean of the two corresponding diagonal entries.}\n24\t  \\label{tab:s1_transfer}\n25\t  \\begin{tabular}{lcccc}\n26\t    \\toprule\n27\t    \\multirow{2}{*}{\\textbf{Train Model}} & \\multicolumn{4}{c}{\\textbf{Test Model}} \\\\\n28\t    \\cmidrule(lr){2-5}\n29\t    & Qwen-rw & Pythia & OLMo & Qwen-cont \\\\\n30\t    \\midrule\n31\t    Qwen-rw   & \\textbf{0.4229} & 0.2590 & 0.2653 & 0.3466 \\\\\n32\t    Pythia    & 0.2718 & \\textbf{0.3856} & 0.3531 & 0.3287 \\\\\n33\t    OLMo      & 0.2768 & 0.3450 & \\textb\n…[truncated 17952 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T08:04:29.585638+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/method.tex"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T08:04:29.586001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\begin{figure*}[t]\n5\t\\centering\n6\t\\includegraphics[width=\\textwidth]{figures/pipeline.pdf}\n7\t\\caption{Generational depth estimation pipeline. Seed documents are recursively passed through a generation operator $G_\\delta$ to produce a depth chain. Statistical features are fed to the OBD-LightGBM classifier for depth prediction.}\n8\t\\label{fig:pipeline}\n9\t\\end{figure*}\n10\t\n11\t\\subsection{Problem Formulation}\n12\t\\label{sec:formulation}\n13\t\n14\tA generation operator $G_\\delta$ (LLM + decoding strategy $\\delta$) produces successive generations $X \\to Y_1 \\to \\cdots \\to Y_K$, where $Y_k = G_\\delta(Y_{k-1})$ and $Y_0 \\triangleq X$ (Figure~\\ref{fig:pipeline}).\n15\tThis sequence forms a Markov chain.\n16\tBy the Data Processing Inequality, $I(X; Y_1) \\geq I(X; Y_2) \\geq \\cdots \\geq 0$: the original signal degrades monotonically.\n17\tTogether with Markov chain convergence, this guarantees a finite $\\Ktheory$ beyond which adjacent generations are indistinguishable.\n18\t\n19\tWe define the operational lower bound:\n20\t\\begin{equation}\n21\t  \\Kempirical = \\max\\{k \\geq 1 : \\auc_{k-1,k} > \\theta\\},\n22\t  \\label{eq:kstar}\n23\t\\end{equation}\n24\twhere $\\auc_{k-1,k}$ is the point-estimate pairwise AUC and $\\theta = 0.60$ corresponds to Cohen's $h \\approx 0.20$\\footnote{$h = 2\\arcsin\\!\\sqrt{0.60} - 2\\arcsin\\!\\sqrt{0.50} \\approx 0.2014$, a ``small'' effect size by Cohen's (1988) convention.} (a conventional small-effect-size threshold), well above the permutation null (95th percentile $< 0.55$).\n25\tBootstrap 95\\% CIs (1{,}000 resamples) provide uncertainty quantification: we verify that boundary-pair CI lower bounds exceed $\\theta$ and non-boundary-pair CI upper bounds fall below $\\theta$ (Section~\\ref{sec:kstar_boundary}).\n26\t$\\theta{=}0.60$ is justified independently by Cohen's $h \\approx 0.20$ and a 10K permutation test ($p < 0.002$); the filtering evaluation (Section~\\ref{sec:filtering}) uses the OBD classifier as-is rather than re-optimizing $\\theta$\n…[truncated 3603 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T08:04:29.586203+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T08:04:29.586375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Extended Discussion}\n2\t\\label{sec:extended_discussion}\n3\t\n4\t\\subsection{Theoretical Implications of $\\Kempirical = 2$}\n5\t\n6\tThe DPI guarantees a finite $\\Ktheory$; our result establishes $\\Kempirical = 2$ across all 10 conditions (1B--7B), aligning with model collapse convergence~\\cite{shumailov2024collapse, dohmatob2024model, alemohammad2024selfconsuming}.\n7\tDecoding strategy modestly affects signal strength (1v2 $\\auc \\in [0.6866, 0.7039]$) but does not shift the boundary.\n8\t\n9\t\\subsection{Cross-Model Transfer Implications}\n10\t\n11\tCross-model classification retains 80--92\\% accuracy with scorer-invariant feature rankings ($\\rho > 0.90$), enabling single-classifier deployment across generators.\n12\tAbsolute discriminability at the $\\Kempirical$ boundary is scorer-sensitive: alternative scorers reduce Qwen-continuation $\\Kempirical$ from 2 to 1, while rewrite-mode $\\Kempirical = 2$ is preserved.\n13\tModel family similarity modulates transfer (Pythia$\\leftrightarrow$OLMo: 90--92\\% vs.\\ Qwen-cont$\\leftrightarrow$OLMo: 80--85\\%).\n14\t\n15\t\\begin{minipage}{\\columnwidth}\n16\t\\centering\n17\t\\captionof{table}{Cross-scorer validation on Qwen-generated text. Alternative scorers (Pythia-1.4B, OLMo-1B) preserve feature ranking ($\\rho > 0.90$) and rewrite-mode $\\Kempirical = 2$, but reduce continuation-mode $\\Kempirical$ from 2 to 1.}\n18\t\\label{tab:crossscorer}\n19\t\\resizebox{\\columnwidth}{!}{\\input{tables/tab_crossscorer}}\n20\t\\end{minipage}\n21\t\n22\t\\subsection{Feature Importance Across Decoding Strategies}\n23\t\n24\tFeature importance ordering varies across decoding strategies: greedy and $T{=}0.7$ share highly correlated rankings ($\\rho = 0.914$), while greedy vs.\\ $T{=}1.2$ yields lower correlation ($\\rho = 0.53$, nonsignificant after Bonferroni).\n25\tThe depth boundary is robust but the optimal feature subset is strategy-dependent.\n26\t\n27\t\\subsection{Scale and Neural Probe}\n28\t\\label{sec:extended_neural_probe}\n29\t\n30\tCross-scale validation confirms $\\Kempirical = 2$ at 7B (1\n…[truncated 4234 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T08:04:29.586521+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T08:04:29.586666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe presented the first systematic measurement of the generational depth discrimination boundary $\\Kempirical$ for recursive synthetic text.\n5\tTwo primary findings emerge:\n6\t(a)~$\\Kempirical = 2$ at $\\theta{=}0.60$ (Cohen's $h{\\approx}0.20$), consistent across all tested configurations from 1B to 7B under self-scoring ($p \\leq 0.002$; most marginal: 0.2\\,pp above $\\theta$), implying a one-wash laundering effect.\n7\tConvergent failure of both supervised classifiers and frontier LLMs at depths $\\geq 2$ (McNemar $p > 0.05$) provides converging evidence consistent with this reflecting a data-intrinsic boundary rather than a method limitation.\n8\tGeneration mode appears to have a larger effect than model architecture ($\\Delta = 8.4$\\,pp), but rewrite-mode advantages are non-transferable (61--63\\% vs.\\ 80--92\\%).\n9\t(b)~Model-free statistical features enable 80--92\\% cross-model transfer retention among continuation-mode generators with scorer-invariant feature ordering ($\\rho > 0.90$), with surprisal-variance features dominating across model families ($\\rho \\geq 0.85$); cross-scorer validation confirms that $\\Kempirical$ is governed by the generation process rather than the scoring model, enabling depth estimation for text from unknown generators without retraining.\n10\tAs a downstream validation, $\\Kempirical = 2$ correctly predicts the optimal curation granularity: binary filtering minimizes degradation most effectively; finer ordinal structure and depth-agnostic methods (DSIR) provide no benefit.\n11\t\n12\tFuture work includes scaling beyond 7B, extending to naturalistic multi-domain corpora, and developing model-agnostic neural probes.\n13\tOur prompt-chain protocol isolates generation-level information loss in a controlled setting; establishing the retrain-chain $\\Kstar$ relationship, where training dynamics introduce additional degradation, is a natural next step.\n14\tThe 100\\% synthetic filtering experiment characterizes a\n…[truncated 235 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T08:04:29.586830+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_filtering_main.tex"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T08:04:29.586970+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{tabular}{lcc}\n2\t\\toprule\n3\t\\textbf{Strategy} & \\textbf{MMLU} & \\textbf{HellaSwag} \\\\\n4\t\\midrule\n5\tBase model (no training) & 0.6018 & 0.6821 \\\\\n6\t\\midrule\n7\tBinary-ours ($\\Kstar{=}2$) & \\textbf{0.5941}$\\pm$0.0008 & \\textbf{0.6701}$\\pm$0.0006 \\\\\n8\tBinary-Drayson & 0.5913$\\pm$0.0009 & 0.6691$\\pm$0.0004 \\\\\n9\tSurprisal & 0.5894$\\pm$0.0009 & 0.6641$\\pm$0.0006 \\\\\n10\tGraduated ($\\alpha{=}0.9$) & 0.5892$\\pm$0.0008 & 0.6701$\\pm$0.0007 \\\\\n11\tDSIR & 0.5869$\\pm$0.0003 & 0.6631$\\pm$0.0007 \\\\\n12\tNo filter & 0.5865$\\pm$0.0010 & 0.6638$\\pm$0.0008 \\\\\n13\t\\bottomrule\n14\t\\end{tabular}\n15\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T08:04:29.587095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/tables/tab_crossscorer.tex"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T08:04:29.587222+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\\small\n2\t\\begin{tabular}{llcccc}\n3\t\\toprule\n4\t\\textbf{Scorer} & \\textbf{Gen.\\ Data} & $\\boldsymbol{K^*}$ & \\textbf{AUC(0v1)} & \\textbf{AUC(1v2)} & \\textbf{Spearman}~$\\boldsymbol{\\rho}$ \\\\\n5\t\\midrule\n6\t% --- Qwen-RW block ---\n7\tQwen-1.5B (self) & Qwen-RW & 2 & --- & 0.6955 & --- \\\\\n8\tPythia-1.4B       & Qwen-RW & 2 & 0.9923 & 0.7012 & 0.906 \\\\\n9\tOLMo-1B           & Qwen-RW & 2 & 0.9918 & 0.6947 & 0.920 \\\\\n10\t\\midrule\n11\t% --- Qwen-cont block ---\n12\tQwen-1.5B (self) & Qwen-cont & 2 & --- & 0.6112 & --- \\\\\n13\tPythia-1.4B       & Qwen-cont & \\textcolor{red}{1\\textsuperscript{$\\dagger$}} & 0.9900 & \\underline{0.5923} & 0.942 \\\\\n14\tOLMo-1B           & Qwen-cont & \\textcolor{red}{1\\textsuperscript{$\\dagger$}} & 0.9890 & \\underline{0.5858} & 0.902 \\\\\n15\t\\midrule\n16\t% --- Qwen-7B cross-scale block ---\n17\tQwen-1.5B        & Qwen-7B-cont & 2 & 0.9644 & 0.6178 & --- \\\\\n18\t\\bottomrule\n19\t\\end{tabular}\n20\t}\n21\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T08:04:29.587441+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "docs/paper/figures/*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T08:04:29.587613+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/figures/fig3_transfer_heatmap.png\ndocs/paper/figures/fig3_transfer_heatmap.pdf\ndocs/paper/figures/fig_s1_auc_decay_ci.pdf\ndocs/paper/figures/fig_kstar_theta.png\ndocs/paper/figures/fig_filtering_strategies.pdf\ndocs/paper/figures/fig_filtering_strategies.png\ndocs/paper/figures/fig2_auc_decay.pdf\ndocs/paper/figures/fig2_auc_decay.png\ndocs/paper/figures/fig_kstar_theta.pdf\ndocs/paper/figures/pipeline.pdf\ndocs/paper/figures/pipeline.png"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T08:04:29.587795+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*plot*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T08:04:29.587999+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "scripts/plot_exp003_decoding_ablation.py\nartifacts/scripts/plot_summary_auc_decay.py\n.venv/lib/python3.14/site-packages/fontTools/varLib/plot.py\n.venv/lib/python3.14/site-packages/matplotlib/pyplot.py\n.venv/lib/python3.14/site-packages/matplotlib/stackplot.py\n.venv/lib/python3.14/site-packages/matplotlib/streamplot.py\n.venv/lib/python3.14/site-packages/matplotlib/sphinxext/plot_directive.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_matplotlib.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_pyplot.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_streamplot.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_subplots.py\n.venv/lib/python3.14/site-packages/matplotlib/tri/_triplot.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T08:04:29.588425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*fig*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T08:04:29.588603+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ".venv/lib/python3.14/site-packages/pip/_internal/commands/configuration.py\n.venv/lib/python3.14/site-packages/pip/_internal/configuration.py\n.venv/lib/python3.14/site-packages/pip/_internal/locations/_sysconfig.py\n.venv/lib/python3.14/site-packages/numpy/__config__.py\n.venv/lib/python3.14/site-packages/numpy/_configtool.py\n.venv/lib/python3.14/site-packages/numpy/_core/_ufunc_config.py\n.venv/lib/python3.14/site-packages/numpy/tests/test_configtool.py\n.venv/lib/python3.14/site-packages/numpy/tests/test_numpy_config.py\n.venv/lib/python3.14/site-packages/numpy/typing/tests/data/pass/ufunc_config.py\n.venv/lib/python3.14/site-packages/fontTools/misc/configTools.py\n.venv/lib/python3.14/site-packages/contourpy/util/_build_config.py\n.venv/lib/python3.14/site-packages/matplotlib/_fontconfig_pattern.py\n.venv/lib/python3.14/site-packages/matplotlib/figure.py\n.venv/lib/python3.14/site-packages/matplotlib/backends/qt_editor/figureoptions.py\n.venv/lib/python3.14/site-packages/matplotlib/sphinxext/figmpl_directive.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_figure.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_fontconfig_pattern.py\nartifacts/_project/intermediate/gen_pipeline_figure.py\nartifacts/gen_pipeline_figure.py\nscripts/draw_pipeline_figure.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T08:04:29.588763+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "find /root/autodl-tmp/gen-depth-contamination -name \"*plot*\" -o -name \"*fig*\" -o -name \"*viz*\" -o -name \"*draw*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T08:04:29.589471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T08:04:29.590015+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/plot_exp003_decoding_ablation.py"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T08:04:29.590279+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"exp-003 decoding ablation: 4-config pairwise AUC grouped bar chart + summary table.\n3\tInput:  artifacts/exp003_analysis.json (or built-in data)\n4\tOutput: artifacts/exp003_decoding_ablation.pdf, .png, .tex\n5\t\"\"\"\n6\t\n7\timport json\n8\timport os\n9\timport sys\n10\tfrom pathlib import Path\n11\t\n12\timport matplotlib\n13\tmatplotlib.use(\"Agg\")\n14\timport matplotlib.pyplot as plt\n15\timport numpy as np\n16\t\n17\tROOT = Path(__file__).resolve().parent.parent\n18\tARTIFACT_DIR = ROOT / \"artifacts\"\n19\tJSON_PATH = ARTIFACT_DIR / \"exp003_analysis.json\"\n20\t\n21\t# ---------------------------------------------------------------------------\n22\t# Data\n23\t# ---------------------------------------------------------------------------\n24\tFALLBACK_AUC = {\n25\t    \"Config1-Greedy\":  {\"0v1\": 0.9797, \"1v2\": 0.6893, \"2v3\": 0.5613, \"3v4\": 0.5404, \"4v5\": 0.5139},\n26\t    \"Config2-Nuc09\":   {\"0v1\": 0.9946, \"1v2\": 0.6866, \"2v3\": 0.5917, \"3v4\": 0.5466, \"4v5\": 0.5068},\n27\t    \"Config3-T07\":     {\"0v1\": 0.9878, \"1v2\": 0.6887, \"2v3\": 0.5902, \"3v4\": 0.5393, \"4v5\": 0.5349},\n28\t    \"Config4-T12\":     {\"0v1\": 0.9982, \"1v2\": 0.7039, \"2v3\": 0.5823, \"3v4\": 0.5293, \"4v5\": 0.5237},\n29\t}\n30\t\n31\tCONFIG_LABELS = {\n32\t    \"Config1-Greedy\": \"Greedy\",\n33\t    \"Config2-Nuc09\":  \"Nuc p=.9, T=1.0\",\n34\t    \"Config3-T07\":    \"Nuc p=.95, T=0.7\",\n35\t    \"Config4-T12\":    \"Nuc p=.95, T=1.2\",\n36\t}\n37\t\n38\tDEPTH_PAIRS = [\"0v1\", \"1v2\", \"2v3\", \"3v4\", \"4v5\"]\n39\tDEPTH_LABELS = [\"0 vs 1\", \"1 vs 2\", \"2 vs 3\", \"3 vs 4\", \"4 vs 5\"]\n40\t\n41\tCOLORS_FILL = [\"#4E79A7\", \"#F28E2B\", \"#59A14F\", \"#E15759\"]\n42\tCOLORS_EDGE = [\"#2B5A83\", \"#C06A10\", \"#3B7A32\", \"#B8393B\"]\n43\t\n44\tdef load_data():\n45\t    if JSON_PATH.exists():\n46\t        with open(JSON_PATH) as f:\n47\t            blob = json.load(f)\n48\t        return blob.get(\"pairwise_auc_table\", FALLBACK_AUC), blob\n49\t    return FALLBACK_AUC, {}\n50\t\n51\t# ---------------------------------------------------------------------------\n52\t# Figure\n53\t# --------------------------------------------\n…[truncated 4847 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-16T08:04:29.591015+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/scripts/plot_summary_auc_decay.py"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-16T08:04:29.591565+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Summary overview figure: pairwise AUC decay curves for all model-mode and decoding configs.\"\"\"\n3\t\n4\timport matplotlib\n5\tmatplotlib.use(\"Agg\")\n6\timport matplotlib.pyplot as plt\n7\timport matplotlib.patches as mpatches\n8\timport numpy as np\n9\tfrom pathlib import Path\n10\t\n11\t# ── Data ──\n12\tdata = {\n13\t    \"Qwen-rewrite\": {\"0v1\": 0.9956, \"1v2\": 0.6957, \"2v3\": 0.5893, \"3v4\": 0.5434, \"4v5\": 0.5343},\n14\t    \"Pythia-cont\":  {\"0v1\": 0.9932, \"1v2\": 0.6539, \"2v3\": 0.5514, \"3v4\": 0.5152, \"4v5\": 0.5136},\n15\t    \"OLMo-cont\":    {\"0v1\": 0.9970, \"1v2\": 0.6145, \"2v3\": 0.5496, \"3v4\": 0.5091, \"4v5\": 0.5045},\n16\t    \"Qwen-cont\":    {\"0v1\": 0.9972, \"1v2\": 0.6112, \"2v3\": 0.5609, \"3v4\": 0.5409, \"4v5\": 0.5141},\n17\t    \"Greedy\":       {\"0v1\": 0.9797, \"1v2\": 0.6893, \"2v3\": 0.5613, \"3v4\": 0.5404, \"4v5\": 0.5139},\n18\t    \"Nuc p=0.9\":    {\"0v1\": 0.9946, \"1v2\": 0.6866, \"2v3\": 0.5917, \"3v4\": 0.5466, \"4v5\": 0.5068},\n19\t    \"T=0.7\":        {\"0v1\": 0.9878, \"1v2\": 0.6887, \"2v3\": 0.5902, \"3v4\": 0.5393, \"4v5\": 0.5349},\n20\t    \"T=1.2\":        {\"0v1\": 0.9982, \"1v2\": 0.7039, \"2v3\": 0.5823, \"3v4\": 0.5293, \"4v5\": 0.5237},\n21\t}\n22\t\n23\tx_labels = [\"0 vs 1\", \"1 vs 2\", \"2 vs 3\", \"3 vs 4\", \"4 vs 5\"]\n24\tx = np.arange(len(x_labels))\n25\t\n26\tmodel_keys = [\"Qwen-rewrite\", \"Pythia-cont\", \"OLMo-cont\", \"Qwen-cont\"]\n27\tdecode_keys = [\"Greedy\", \"Nuc p=0.9\", \"T=0.7\", \"T=1.2\"]\n28\t\n29\t# Tableau 10 colorblind-safe subset\n30\tmodel_colors = [\"#4e79a7\", \"#e15759\", \"#76b7b2\", \"#59a14f\"]\n31\tdecode_colors = [\"#b07aa1\", \"#ff9da7\", \"#9c755f\", \"#bab0ac\"]\n32\t\n33\t# ── Style ──\n34\tplt.rcParams.update({\n35\t    \"font.family\": \"serif\",\n36\t    \"font.size\": 11,\n37\t    \"axes.linewidth\": 0.8,\n38\t    \"xtick.major.width\": 0.8,\n39\t    \"ytick.major.width\": 0.8,\n40\t})\n41\t\n42\tfig, ax = plt.subplots(figsize=(7, 4), constrained_layout=True)\n43\t\n44\t# K* boundary shading\n45\tax.axvspan(0.5, 1.5, color=\"#fff9c4\", alpha=0.55, zorder=0)\n46\tax.text(1.0, 1.02, r\"$K^*$ boundary\", ha=\"center\", va=\"bottom\", fontsize=9,\n47\t        fonts\n…[truncated 2555 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-16T08:04:29.592281+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/draw_pipeline_figure.py"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-16T08:04:29.592574+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Draw Figure 1: pipeline overview for the generational depth estimation paper.\"\"\"\n2\timport matplotlib\n3\tmatplotlib.use('Agg')\n4\timport matplotlib.pyplot as plt\n5\timport matplotlib.patches as mpatches\n6\tfrom matplotlib.patches import FancyBboxPatch, FancyArrowPatch\n7\timport numpy as np\n8\timport os\n9\t\n10\tfig, ax = plt.subplots(1, 1, figsize=(14, 3.2))\n11\tax.set_xlim(-0.3, 14.3)\n12\tax.set_ylim(-0.5, 3.2)\n13\tax.axis('off')\n14\t\n15\tcolors = {\n16\t    'seed': '#D6DCE4',\n17\t    'gen': '#FFF2CC',\n18\t    'feat': '#D5F5E3',\n19\t    'obd': '#E8DAEF',\n20\t    'out': '#D6DCE4',\n21\t}\n22\t\n23\tbox_style = \"round,pad=0.15\"\n24\tbox_h = 1.6\n25\tbox_y = 0.0\n26\t\n27\tboxes = [\n28\t    {'x': 0.0, 'w': 1.8, 'color': colors['seed'],\n29\t     'title': 'Seed Text', 'sub': '(C4, 256 tok)'},\n30\t    {'x': 2.8, 'w': 2.4, 'color': colors['gen'],\n31\t     'title': 'Recursive\\nGeneration', 'sub': '$G_\\\\delta = \\\\mathrm{LLM} + \\\\delta$\\n$X{\\\\to}Y_1{\\\\to}{\\\\cdots}{\\\\to}Y_K$'},\n32\t    {'x': 6.2, 'w': 2.6, 'color': colors['feat'],\n33\t     'title': '15D Feature\\nExtraction',\n34\t     'sub': '· Surprisal moments\\n· Surprisal derivatives\\n· Vocab diversity\\n· Frequency tail'},\n35\t    {'x': 9.8, 'w': 2.2, 'color': colors['obd'],\n36\t     'title': 'OBD\\nLightGBM', 'sub': '$K$ binary classifiers\\n$P(\\\\mathrm{depth} > k)$'},\n37\t    {'x': 12.8, 'w': 1.2, 'color': colors['out'],\n38\t     'title': '$\\\\hat{d}$\\n$K^*$', 'sub': ''},\n39\t]\n40\t\n41\tfor b in boxes:\n42\t    rect = FancyBboxPatch(\n43\t        (b['x'], box_y), b['w'], box_h,\n44\t        boxstyle=box_style, linewidth=1.2,\n45\t        edgecolor='#888888', facecolor=b['color'],\n46\t        zorder=2\n47\t    )\n48\t    ax.add_patch(rect)\n49\t\n50\t    cx = b['x'] + b['w'] / 2\n51\t    if b['sub']:\n52\t        title_y = box_y + box_h * 0.72\n53\t        sub_y = box_y + box_h * 0.28\n54\t        ax.text(cx, title_y, b['title'],\n55\t                ha='center', va='center', fontsize=12, fontweight='bold',\n56\t                fontfamily='serif', zorder=3)\n57\t        ax.text(cx, sub_y, b['sub'],\n\n…[truncated 2452 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-16T08:04:29.592821+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ls /root/autodl-tmp/gen-depth-contamination/results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-16T08:04:29.592975+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp_018_llama8b\\\\nexp_021_length_128\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-16T08:04:29.593107+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ls /root/autodl-tmp/gen-depth-contamination/results_exp016_qwen_base/",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-16T08:04:29.593239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"feature_importance.json\\\\njsd.json\\\\nordinal_results.json\\\\npairwise_auc.json\\\\nsummary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-16T08:04:29.593363+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ls /root/autodl-tmp/gen-depth-contamination/results_exp019_mistral7b/",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-16T08:04:29.593487+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-16T08:04:29.593818+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ls /root/autodl-tmp/gen-depth-contamination/results_exp020_pythia_greedy/",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-16T08:04:29.593997+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-16T08:04:29.594126+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ls /root/autodl-tmp/gen-depth-contamination/results/exp_018_llama8b/",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-16T08:04:29.594253+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-16T08:04:29.594372+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "ls /root/autodl-tmp/gen-depth-contamination/results/exp_021_length_128/",
+              "account": "root"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-16T08:04:29.594495+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.66}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-16T08:04:29.594613+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cat /root/autodl-tmp/gen-depth-contamination/results_exp016_qwen_base/pairwise_auc.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-16T08:04:29.594745+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-22115",
+              "command": "cat /root/autodl-tmp/gen-depth-contamination/scripts/run_pipeline.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-16T08:04:29.594914+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mean\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": 0.987,\\\\n    \\\\\\\"1v2\\\\\\\": 0.6262,\\\\n    \\\\\\\"2v3\\\\\\\": 0.5496,\\\\n    \\\\\\\"3v4\\\\\\\": 0.5294,\\\\n    \\\\\\\"4v5\\\\\\\": 0.5182\\\\n  },\\\\n  \\\\\\\"per_fold\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": [\\\\n      0.9881,\\\\n      0.9884,\\\\n      0.9852,\\\\n      0.9851,\\\\n      0.9882\\\\n    ],\\\\n    \\\\\\\"1v2\\\\\\\": [\\\\n      0.5963,\\\\n      0.6362,\\\\n      0.6366,\\\\n      0.6337,\\\\n      0.6282\\\\n    ],\\\\n    \\\\\\\"2v3\\\\\\\": [\\\\n      0.5516,\\\\n      0.5456,\\\\n      0.5403,\\\\n      0.5605,\\\\n      0.5501\\\\n    ],\\\\n    \\\\\\\"3v4\\\\\\\": [\\\\n      0.5515,\\\\n      0.5133,\\\\n      0.5198,\\\\n      0.535,\\\\n      0.5276\\\\n    ],\\\\n    \\\\\\\"4v5\\\\\\\": [\\\\n      0.5207,\\\\n      0.5393,\\\\n      0.5186,\\\\n      0.5169,\\\\n      0.4956\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-16T08:04:29.595171+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nMVP Pilot Saturation Study — Complete Pipeline (Steps 2-5)\\\\n\\\\nGenerates recursive depth chains from C4 seed data using Qwen2.5-1.5B,\\\\nextracts statistical features, and runs distinguishability analysis.\\\\n\\\\nInput:  C4 validation split (streamed from HuggingFace)\\\\nOutput: data/depth_{0..K}.jsonl, data/features.csv, results/*.json + summary.txt\\\\n\\\\nKey deps: torch, transformers, datasets, scipy, lightgbm, sklearn, tqdm\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport math\\\\nimport os\\\\nimport sys\\\\nfrom collections import Counter\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom scipy import stats\\\\nfrom tqdm import tqdm\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    datefmt=\\\\\\\"%H:%M:%S\\\\\\\",\\\\n)\\\\nlog = logging.getLogger(__name__)\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Utility: simple 4-gram BLEU (no nltk dependency)\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef ngrams(tokens, n):\\\\n    return [tuple(tokens[i : i + n]) for i in range(len(tokens) - n + 1)]\\\\n\\\\n\\\\ndef simple_bleu(candidate_tokens, reference_tokens, max_n=4):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute sentence-level BLEU up to max_n grams with brevity penalty.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if len(candidate_tokens) == 0:\\\\n        return 0.0\\\\n    precisions = []\\\\n    for n in range(1, max_n + 1):\\\\n        cand_ngrams = ngrams(candidate_tokens, n)\\\\n        ref_ngrams = ngrams(reference_tokens, n)\\\\n        if not cand_ngrams:\\\\n            precisions.append(0.0)\\\\n            continue\\\\n        ref_counts = Counter(ref_ngrams)\\\\n        clipped = 0\\\\n        cand_counts = Counter(cand_ngrams)\\\\n        for ng, cnt in cand_counts.items():\\\\n            clipped += min(cnt, ref_counts.get(ng, 0))\\\\n        precisions.append(clipped / len(cand_\n…[truncated 7050 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-16T08:04:29.595437+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "10 (tested )?conditions|10 conditions|ten conditions",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-16T08:04:29.595599+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/appendix_extended.tex:6:The DPI guarantees a finite $\\Ktheory$; our result establishes $\\Kempirical = 2$ across all 10 conditions (1B--7B), aligning with model collapse convergence~\\cite{shumailov2024collapse, dohmatob2024model, alemohammad2024selfconsuming}.\ndocs/paper/main.tex:36:Across 6 model configurations (1B--7B, base and instruct) and 4 decoding strategies, $\\Kempirical{=}2$ at $\\theta{=}0.60$ (Cohen's $h{\\approx}0.20$), consistent across all 10 tested conditions under self-scoring (most marginal: 0.2\\,pp above $\\theta$): a single generation step is reliably detectable, but the second renders text statistically indistinguishable from deeper synthetic content---a \\emph{one-wash laundering} effect.\ndocs/paper/main.tex:67:[Omitted long matching line]\ndocs/paper/experiments_c1.tex:44:This establishes $\\Kempirical = 2$ as consistent across all 10 tested conditions (6 independent model-mode configurations and 4 decoding-strategy ablation variants on the Qwen-rewrite configuration; Table~\\ref{tab:s2_decoding}).\ndocs/paper/discussion.tex:10:Even at the most marginal 1v2 condition (Qwen-continuation, CI lower bound exceeds $\\theta$ by only 0.2\\,pp), $\\Kempirical = 2$ survives under self-scoring; on the 2v3 side, CI upper bounds confirm non-discrimination in 9/10 conditions, with the single borderline case (nucleus $p{=}0.9$, CI upper${} = 0.601$) consistent with measurement noise at near-threshold values.\ndocs/paper/discussion.tex:32:The hierarchy $\\Kempirical^{15\\text{D}}{=}2 < \\Kempirical^{\\text{neural}} \\in \\{2,3\\}$ reflects an interpretability--sensitivity tradeoff: learned representations recover additional depth signal sufficient to push $\\Kempirical$ to 3 for one model (Qwen), but this gain is model-dependent---the 15D features trade one depth level of sensitivity for cross-model universality (10/10 conditions $\\Kempirical{=}2$, 3/3 models identical), making them the preferred operational choice."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-16T08:04:29.595755+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "6 model|six model|six config|6 config",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-16T08:04:29.595927+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/main.tex:36:Across 6 model configurations (1B--7B, base and instruct) and 4 decoding strategies, $\\Kempirical{=}2$ at $\\theta{=}0.60$ (Cohen's $h{\\approx}0.20$), consistent across all 10 tested conditions under self-scoring (most marginal: 0.2\\,pp above $\\theta$): a single generation step is reliably detectable, but the second renders text statistically indistinguishable from deeper synthetic content---a \\emph{one-wash laundering} effect.\ndocs/paper/experiments_c1.tex:4:We evaluate generational depth estimation on six model configurations:\ndocs/paper/experiments_c1.tex:63:\\caption{$\\Kempirical$ as a function of $\\theta$ across six model-mode configurations, computed using the 95\\% CI lower bound criterion (Eq.~\\ref{eq:kstar}). The dashed line marks the operational threshold $\\theta{=}0.60$ used throughout, where all configurations yield $\\Kempirical{=}2$. Qwen-rewrite yields the highest $\\Kempirical$ at all $\\theta$; at $\\theta{=}0.70$, $\\Kempirical{=}1$ universally.}\ndocs/paper/method.tex:44:We evaluate six configurations spanning three model families (Table~\\ref{tab:setup}): Qwen2.5-1.5B-Instruct (rewrite and continuation modes), Qwen2.5-1.5B (base, continuation), Qwen2.5-7B (continuation), Pythia-1.4B and OLMo-1B (continuation).\ndocs/paper/introduction.tex:23:  \\item \\textbf{$\\Kempirical = 2$ at $\\theta{=}0.60$} (Cohen's $h{\\approx}0.20$) across 6 model configurations (1B--7B, base and instruct) and 4 decoding strategies, with all 1v2 CI lower bounds exceeding $\\theta$ and all 2v3 CI upper bounds below $\\theta$ ($p \\leq 0.002$; Section~\\ref{sec:kstar_boundary}).\ndocs/paper/main.aux:360:[Omitted long matching line]\ndocs/paper/main.aux:361:\\newlabel{fig:kstar_theta}{{3}{4}{$\\Kempirical $ as a function of $\\theta $ across six model-mode configurations, computed using the 95\\% CI lower bound criterion (Eq.~\\ref {eq:kstar}). The dashed line marks the operational threshold $\\theta {=}0.60$ used throughout, where all configurations yield $\\Kempirical {=}2$. Q\n…[truncated 138 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-16T08:04:29.596086+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "1B--7B|1\\.5B|≤7B",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-16T08:04:29.596299+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/experiments_c3.tex:6:We fine-tune Qwen2.5-1.5B-Instruct via LoRA (rank~8, $\\alpha_{\\text{LoRA}}{=}16$) for 3 epochs on MMLU and HellaSwag across 5 seeds (51 total runs; this 100\\% synthetic setting is an upper bound~\\cite{shumailov2024collapse, dohmatob2024model}).\ndocs/paper/appendix_extended.tex:6:The DPI guarantees a finite $\\Ktheory$; our result establishes $\\Kempirical = 2$ across all 10 conditions (1B--7B), aligning with model collapse convergence~\\cite{shumailov2024collapse, dohmatob2024model, alemohammad2024selfconsuming}.\ndocs/paper/appendix_extended.tex:30:Cross-scale validation confirms $\\Kempirical = 2$ at 7B (1v2 $\\auc = 0.6168$ $[0.608, 0.626]$, 2v3 $\\auc = 0.5492$; Table~\\ref{tab:kstar_ci}); the 7B 0v1 $\\auc$ (0.9638) is ${\\sim}$3\\,pp lower than ${\\leq}$1.5B models, consistent with larger models generating more human-like text. Scaling beyond 7B remains open.\ndocs/paper/main.tex:36:Across 6 model configurations (1B--7B, base and instruct) and 4 decoding strategies, $\\Kempirical{=}2$ at $\\theta{=}0.60$ (Cohen's $h{\\approx}0.20$), consistent across all 10 tested conditions under self-scoring (most marginal: 0.2\\,pp above $\\theta$): a single generation step is reliably detectable, but the second renders text statistically indistinguishable from deeper synthetic content---a \\emph{one-wash laundering} effect.\ndocs/paper/main.tex:67:[Omitted long matching line]\ndocs/paper/experiments_c1.tex:5:Pythia-1.4B and OLMo-1B in continuation mode, Qwen2.5-1.5B-Instruct in both rewrite and continuation modes, Qwen2.5-1.5B (base) in continuation mode, and Qwen2.5-7B in continuation mode (cross-scale scoring with Qwen2.5-1.5B).\ndocs/paper/experiments_c1.tex:31:\\multicolumn{11}{l}{\\footnotesize $^\\ddagger$Generator: Qwen2.5-7B (fp16); scorer: Qwen2.5-1.5B.}\ndocs/paper/experiments_c1.tex:43:All five 1v2 point estimates exceed $\\theta$, confirmed by bootstrap CIs (most marginal lower bound: Qwen-1.5B-continuation at 0.602); all five 2v3 point estimates and CI up\n…[truncated 9078 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-16T08:04:29.596484+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/integration_templates.md"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-16T08:04:29.596697+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Integration Templates: exp-004 & exp-012\n2\t\n3\tCreated: 2026-05-15. Fill [PLACEHOLDER] when results arrive.\n4\t\n5\t---\n6\t\n7\t## 1. exp-004 (7B Cross-Scale) Integration\n8\t\n9\t### 1.1 Registry: exp_004_7b_crossscale (RUNNING)\n10\t- Config: Qwen2.5-7B continuation, C4 5K seeds, depth 0-5, scorer=Qwen2.5-1.5B\n11\t- Expected output: pairwise AUC per depth pair + bootstrap CI + K*\n12\t\n13\t### 1.2 \"≤1.5B\" Qualifier Locations (6 sites)\n14\t\n15\t| # | File | Line | Current Text | Scenario A (K*=2) | Scenario B (K*≠2) |\n16\t|---|------|------|-------------|-------------------|-------------------|\n17\t| 1 | `main.tex` (Abstract) | L36 | `(${\\leq}1.5$B scale)` | `($1.5$--$7$B scale)` | keep `(${\\leq}1.5$B scale)` |\n18\t| 2 | `introduction.tex` | L22 | `at ${\\leq}$1.5B scale` | `at $1.5$--$7$B scale` | keep as-is |\n19\t| 3 | `main.tex` (Limitations) | L66 | `(1)~model scale ($\\leq$1.5B)` | `(1)~model scale ($\\leq$7B; tested at 1.5B and 7B)` | keep as-is |\n20\t| 4 | `appendix_extended.tex` | L7 | `at the $\\leq$1.5B scale` | `at the $\\leq$7B scale` | keep as-is |\n21\t| 5 | `appendix_extended.tex` | L52 | `Our $\\Kempirical = 2$ at $\\leq$1.5B` | `Our $\\Kempirical = 2$ at $\\leq$7B` | keep as-is |\n22\t| 6 | `conclusion.tex` | L11 | `scaling to 7B+ models` | `scaling beyond 7B` | keep as-is |\n23\t\n24\t### 1.3 Table 1 (tab:kstar_ci) — Add Qwen-7B Column\n25\t\n26\tFile: `experiments_c1.tex` L12-32\n27\t\n28\t**Scenario A (K*=2 confirmed):**\n29\t```latex\n30\t% Add after \\multicolumn{2}{c}{Qwen-cont} in header:\n31\t& \\multicolumn{2}{c}{Qwen-7B} \\\\\n32\t% Add \\cmidrule(lr){10-11}\n33\t\n34\t% Data rows — fill from registry:\n35\t0v1 & ... & & ... & & ... & & ... & & [PLACEHOLDER] & \\\\\n36\t1v2 & ... & & ... & & ... & & ... & & [PLACEHOLDER] & [PLACEHOLDER]\\rlap{$^*$} \\\\\n37\t2v3 & ... & & ... & & ... & & ... & & [PLACEHOLDER] & [PLACEHOLDER] \\\\\n38\t3v4 & ... & & ... & & ... & & ... & & [PLACEHOLDER] & \\\\\n39\t4v5 & ... & & ... & & ... & & ... & & [PLACEHOLDER] & \\\\\n40\t```\n41\t\n42\t**Scenario B (K*≠2):**\n43\tSame column addition, but\n…[truncated 9657 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-16T08:04:29.596927+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "savefig|plt\\.save",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+              "output_mode": "files_with_matches",
+              "glob": "*.py"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-16T08:04:29.597094+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 70 files\nscripts/draw_pipeline_figure.py\nartifacts/exp012_ppl_depth_correlation.py\nscripts/draw_kstar_theta.py\nartifacts/exp012_binary_confidence.py\nartifacts/_project/intermediate/gen_pipeline_figure.py\nartifacts/gen_pipeline_figure.py\n.venv/lib/python3.14/site-packages/mpl_toolkits/axes_grid1/tests/test_axes_grid1.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_widgets.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_usetex.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_units.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_text.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_spines.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_simplification.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_scale.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_png.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_patches.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_offsetbox.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_mathtext.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_legend.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_image.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_ft2font.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_font_manager.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_figure.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_determinism.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_constrainedlayout.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_colorbar.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_collections.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_bbox_tight.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_backends_interactive.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_backend_svg.py\n.venv/lib/python3.14/site-packages/matplotlib/tests/test_backend_ps.py\n.\n…[truncated 2503 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-16T08:04:29.597243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/draw_kstar_theta.py"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-16T08:04:29.597398+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\timport numpy as np\n2\timport matplotlib\n3\tmatplotlib.use(\"Agg\")\n4\timport matplotlib.pyplot as plt\n5\tfrom pathlib import Path\n6\t\n7\t# 95% CI lower bounds from exp_007_bootstrap_ci (1000 resamples)\n8\tAUC_DATA = {\n9\t    \"Qwen-rw\": [0.9946, 0.6859, 0.5795, 0.5333, 0.5238],\n10\t    \"Pythia\":   [0.9921, 0.6454, 0.5417, 0.5041, 0.5021],\n11\t    \"OLMo\":     [0.9964, 0.6045, 0.5399, 0.4973, 0.4932],\n12\t    \"Qwen-cont\":[0.9963, 0.6015, 0.5511, 0.5308, 0.5035],\n13\t}\n14\t\n15\tSTYLES = {\n16\t    \"Qwen-rw\":   dict(color=\"#1f77b4\", linestyle=\"-\",  marker=\"o\"),\n17\t    \"Pythia\":     dict(color=\"#ff7f0e\", linestyle=\"--\", marker=\"s\"),\n18\t    \"OLMo\":       dict(color=\"#2ca02c\", linestyle=\"-.\", marker=\"^\"),\n19\t    \"Qwen-cont\":  dict(color=\"#d62728\", linestyle=\":\",  marker=\"D\"),\n20\t}\n21\t\n22\tdef compute_kstar(auc_list, theta):\n23\t    k = 0\n24\t    for auc in auc_list:\n25\t        if auc >= theta:\n26\t            k += 1\n27\t        else:\n28\t            break\n29\t    return k\n30\t\n31\tthetas = np.arange(0.55, 0.701, 0.01)\n32\t\n33\tplt.rcParams.update({\n34\t    \"font.family\": \"serif\",\n35\t    \"font.size\": 11,\n36\t    \"axes.linewidth\": 0.8,\n37\t    \"xtick.direction\": \"in\",\n38\t    \"ytick.direction\": \"in\",\n39\t})\n40\t\n41\tfig, ax = plt.subplots(figsize=(6, 3.5))\n42\t\n43\tfor name, aucs in AUC_DATA.items():\n44\t    ks = [compute_kstar(aucs, t) for t in thetas]\n45\t    ax.step(thetas, ks, where=\"post\", label=name,\n46\t            linewidth=1.8, markersize=4, **STYLES[name])\n47\t\n48\tax.axvline(x=0.60, color=\"grey\", linestyle=\"--\", linewidth=0.8, alpha=0.7)\n49\tax.text(0.605, 4.6, r\"$\\theta=0.60$\", color=\"grey\", fontsize=9, va=\"top\")\n50\t\n51\tax.set_xlabel(r\"Threshold $\\theta$\")\n52\tax.set_ylabel(r\"$K^*(\\theta)$\")\n53\tax.set_xlim(0.545, 0.705)\n54\tax.set_ylim(-0.2, 5.5)\n55\tax.set_yticks(range(6))\n56\tax.legend(loc=\"best\", fontsize=9, framealpha=0.9, edgecolor=\"none\")\n57\tax.grid(axis=\"y\", color=\"#e0e0e0\", linewidth=0.5)\n58\t\n59\tfig.tight_layout()\n60\t\n61\tout_dir = Path(__file__).resolve().parent.parent / \"docs\" / \"paper\" / \"figures\"\n6\n…[truncated 307 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-16T08:04:29.597720+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息收集完毕。以下是结构化报告。\n\n---\n\n## 论文整合准备报告\n\n### 1. Table/Figure 清单\n\n#### 主文 Figures\n\n| ID | 文件 | 位置 | 当前内容 | 需要的新数据 | 绘图脚本 |\n|---|---|---|---|---|---|\n| Fig 1 | `pipeline.pdf` | method.tex:4-9 | 方法概览（概念图） | 无 | `scripts/draw_pipeline_figure.py` ✅ |\n| Fig 2 | `fig2_auc_decay.pdf` | experiments_c1.tex:35-39 | 4 model-mode + 4 decoding 曲线 | **exp-018 LLaMA, exp-019 Mistral, exp-016 Qwen-base, Qwen-7B** | `artifacts/scripts/plot_summary_auc_decay.py` ⚠️ 硬编码 |\n| Fig 3 | `fig_kstar_theta.pdf` | experiments_c1.tex:60-65 | 4 model 的 K*(θ) step plot | **Qwen-base, Qwen-7B, LLaMA, Mistral** | `scripts/draw_kstar_theta.py` ⚠️ 硬编码 |\n| Fig 4 | `fig3_transfer_heatmap.pdf` | experiments_c1.tex:77-81 | 4×4 cross-transfer 热力图 | 如扩展 transfer 实验则需更新 | **无脚本** ❌ |\n\n#### 主文 Tables\n\n| ID | 标签 | 位置 | 当前列/行 | 需要更新 |\n|---|---|---|---|---|\n| Tab kstar_ci | `tab:kstar_ci` | experiments_c1.tex:12-33 | 5 列 (Qwen-rw, Pythia, OLMo, Qwen-cont, Qwen-7B) | **+2 列: LLaMA-3.1-8B, Mistral-7B** (exp-018/019) |\n| Tab setup | `tab:setup` | method.tex:50-67 | 6 config 行 | **+2 行: LLaMA-3.1-8B, Mistral-7B-v0.3** |\n| Tab top_features | `tab:top_features` | experiments_c1.tex:108-122 | 4 列 (Pythia, OLMo, Qwen-rw, Qwen-cont) | 可选：加 LLaMA/Mistral 列 |\n| Tab neural_probe | `tab:neural_probe_crossmodel` | experiments_c1.tex:152-166 | 3 模型 | 暂不需变 |\n| Tab filtering | `tab:tab_filtering_main` | experiments_c3.tex:8-14 | 6 策略 | 暂不需变 |\n| Tab crossscorer | `tab:crossscorer` | appendix_extended.tex:15-20 | 3 scorer × 2 gen + 1 cross-scale | **exp-022 扩展为 4×4 矩阵** |\n\n#### Appendix Figures\n\n| ID | 文件 | 位置 | 需要更新 |\n|---|---|---|---|\n| Fig S1 | `fig_s1_auc_decay_ci.pdf` | appendix.tex:11-16 | **+2 模型 CI 带** (LLaMA, Mistral) — **无脚本** ❌ |\n| Fig filtering | `fig_filtering_strategies.pdf` | appendix.tex:4-9 | 暂不需变 — **无脚本** ❌ |\n\n#### Appendix Tables\n\n| ID | 位置 | 需要更新 |\n|---|---|---|\n| Tab s1_transfer | appendix.tex:21-42 | 可选：扩展为含 LLaMA/Mistral 的更大矩阵 |\n| Tab s2_decoding | appendix.tex:45-73 | **exp-020: 加 Pythia 4 decoding configs 或新表** |\n| Tab s8_cv_folds | appendix.tex:295-337 | **+2 列: LLaMA, Mistral bootstrap CI** |\n| Tab token_length | appendix.tex:148-176 | **+2 行: LLaMA, Mistral token 统计** |\n| Tab s4_dataset_stats | appendix.tex:182-201 | 可能需更新总样本数说明 |\n\n#### 新增 Tables/Figures（exp-020, exp-021）\n\n| 实验 | 需要创建 |\n|---|---|\n| exp-020 Pythia decoding消融 | 新 Tab (或合并到 Tab s2_decoding) + 可选 bar chart |\n| exp-021 长度消融 | **新 Tab**: 128/256/512 tokens 下的 pairwise AUC 和 K* + 可选 figure |\n\n---\n\n### 2. Conditions 统计\n\n| 维度 | 当前论文 claim | 实验完成后实际值 |\n|---|---|---|\n| Model-mode configs | **6** (Qwen-rw, Pythia, OLMo, Qwen-cont, Qwen-base, Qwen-7B) | **8** (+LLaMA-3.1-8B, Mistral-7B-v0.3) |\n| Decoding configs | **4** (Greedy, Nuc p=0.9, T=0.7, T=1.2，全在 Qwen-rw 上) | **8** (+4 Pythia decoding from exp-020) |\n| 长度消融 | 无 | **3** (128/256/512 from exp-021) |\n| Cross-scorer | 3 scorer × 2 gen mode + 1 cross-scale | **4×4 矩阵** (exp-022) |\n| **\"tested conditions\" 总数** | **10** (6 model + 4 decoding) | **~19** (8 model + 8 decoding + 3 length) |\n| 模型规模范围 | \"1B--7B\" | **\"1B--8B\"** |\n| 模型架构族 | 3 族 (Qwen, Pythia/GPT-NeoX, OLMo) | **5 族** (+LLaMA, Mistral) |\n\n#### \"10 conditions\" 需要更新的具体位置 (6 处):\n1. `main.tex:36` — abstract: \"all 10 tested conditions\"\n2. `main.tex:67` — limitations: \"ten conditions yield point-estimate\"\n3. `experiments_c1.tex:44` — \"all 10 tested conditions (6 independent model-mode...)\"\n4. `appendix_extended.tex:6` — \"across all 10 conditions\"\n5. `discussion.tex:10` — \"9/10 conditions\"\n6. `discussion.tex:32` — \"10/10 conditions K*=2\"\n\n#### \"6 model configurations\" / \"six\" 需要更新的位置 (5 处):\n1. `main.tex:36` — abstract: \"6 model configurations\"\n2. `introduction.tex:23` — \"6 model configurations (1B--7B)\"\n3. `experiments_c1.tex:4` — \"six model configurations\"\n4. `experiments_c1.tex:63` — fig caption: \"six model-mode configurations\"\n5. `method.tex:44` — \"six configurations spanning three model families\"\n\n#### \"1B--7B\" 需要更新的位置:\n1. `main.tex:36` — abstract\n2. `introduction.tex:23`\n3. `appendix_extended.tex:6`\n4. `main.tex:67` — limitations: \"≤7B\" → \"≤8B\"\n\n---\n\n### 3. 绘图脚本兼容性\n\n| 脚本 | 功能 | 兼容新模型？ | 问题描述 |\n|---|---|---|---|\n| `scripts/draw_pipeline_figure.py` | Fig 1 概念图 | ✅ 无需改动 | — |\n| `artifacts/scripts/plot_summary_auc_decay.py` | Fig 2 AUC decay | ❌ **不兼容** | 数据 hardcoded 在 `data` dict (L12-21)，仅含 4 model + 4 decode。需添加 LLaMA/Mistral/Qwen-base/Qwen-7B 数据点。`model_keys` (L26) 和 `decode_keys` (L27) 列表需扩展。颜色分配 (L30-31) 只有 4+4=8 色，需增加。 |\n| `scripts/draw_kstar_theta.py` | K* vs θ step plot | ❌ **不兼容** | `AUC_DATA` dict (L8-13) 仅含 4 模型（Qwen-rw, Pythia, OLMo, Qwen-cont），缺 Qwen-base、Qwen-7B、LLaMA、Mistral。`STYLES` dict (L15-20) 只定义 4 组样式。 |\n| `scripts/plot_exp003_decoding_ablation.py` | Decoding bar chart | ⚠️ **部分兼容** | 仅适用于 Qwen-rewrite 的 4 configs。exp-020 (Pythia decoding) 需单独脚本或扩展。`FALLBACK_AUC` (L24-29) 和 `CONFIG_LABELS` (L31-36) 都是 Qwen-specific。 |\n| **fig3_transfer_heatmap** | Cross-model 热力图 | — | **无脚本** — 需从头创建或找回旧服务器上的脚本 |\n| **fig_s1_auc_decay_ci** | AUC decay + CI 带 | — | **无脚本** — 需从头创建 |\n| **fig_filtering_strategies** | Filtering 对比图 | — | **无脚本** — 需从头创建（但此图不受 scope 扩展影响） |\n\n#### 兼容性修改要点\n\n**`plot_summary_auc_decay.py` 修改项:**\n- L12-21: `data` dict 需加入 `\"LLaMA-8B\"`, `\"Mistral-7B\"`, `\"Qwen-base\"`, `\"Qwen-7B\"` 及其 AUC 值\n- L26: `model_keys` 从 4 扩展到 8\n- L30-31: `model_colors` / `decode_colors` 需增加颜色（目前 4+4=8 个颜色已用完）\n- 图例布局可能需调整（8 model + 4~8 decode = 12~16 条线太密集，建议拆为主文版和 appendix 完整版）\n\n**`draw_kstar_theta.py` 修改项:**\n- L8-13: `AUC_DATA` 加入 4 个新模型的 CI lower bound 数组\n- L15-20: `STYLES` 加入对应样式（颜色/线型/标记）\n- 可能需增大 fig size 或改图例位置以容纳 8 条线\n\n---\n\n### 4. 风险点\n\n| 风险 | 严重度 | 说明 |\n|---|---|---|\n| **Tab kstar_ci 列数超限** | 高 | 当前 5 列 + header 已占 10 列双栏宽度。加 2 列到 7 个模型可能溢出 `table*` 宽度。可能需要拆表或缩小字号。 |\n| **Fig 2 线条过密** | 中 | 当前 8 条线已较密。加到 12+ 条线后可读性下降。建议主文只保留 model-mode curves（8条），decoding 放 appendix。 |\n| **3 个 figure 无脚本** | 中 | fig3_transfer_heatmap、fig_s1_auc_decay_ci、fig_filtering_strategies 没有找到生成脚本。需从头编写或从旧服务器(westc-26893)找回。如果旧服务器已释放，脚本丢失。 |\n| **论文页数** | 中 | integration_templates.md 记录当前 18 页。新增 2 模型列 + 可能的新表（长度消融、Pythia 解码消融）+ 更新文字 → 可能推至 19~20 页。需提前规划哪些内容移入 appendix。 |\n| **exp-019 结果目录为空** | 低 | `results_exp019_mistral7b/` 目前空，`results_exp020_pythia_greedy/` 同空 — 实验仍在运行中，pipeline 完成后自动生成。正常。 |\n| **结果 JSON 格式一致性** | 低 | exp-016 的 `pairwise_auc.json` 格式为 `{mean: {0v1: ..., ...}, per_fold: {...}}`，与绘图脚本 hardcoded 格式不同（脚本直接写死数值）。整合时需手动从 JSON 提取值填入脚本，无自动化流程。 |\n| **\"6 configurations spanning three model families\"** | 高 | 改为 8 configs + 5 families 时，method.tex:44 的模型列表、Tab setup、以及论文正文多处 \"three model families\" 措辞都需同步更新。漏改任何一处都会造成审稿人困惑。 |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper_integration_prep_20260516T080012"
+          },
+          "id": "event-000093"
+        }
+      ],
+      "message_count": 93
+    }
+  ],
+  "readable_path": "readable/conversations/research-paper-integration-prep.md"
+}

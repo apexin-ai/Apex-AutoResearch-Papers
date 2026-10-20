@@ -1,0 +1,91 @@
+% EMNLP 2026 Main — ARR May 2026
+% Generational Depth Contamination
+\documentclass[11pt]{article}
+\usepackage[review]{acl}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{subcaption}
+\usepackage[section]{placeins}
+
+\newcommand{\Kstar}{{K^*}}
+\newcommand{\Kempirical}{{K^*_{\text{empirical}}}}
+\newcommand{\Ktheory}{{K^*_{\text{theory}}}}
+\newcommand{\auc}{\text{AUC}}
+\newcommand{\jsd}{\text{JSD}}
+
+\title{Generational Depth Estimation of Recursive Synthetic Text:\\Measuring the Discrimination Boundary}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+% === Abstract ===
+\begin{abstract}
+Web-scale corpora are increasingly contaminated by recursive synthetic content, yet no method estimates a document's generational depth.
+We measure a lower bound on the generational discrimination boundary, $\Kempirical$ (the maximum depth at which adjacent generations remain distinguishable), using 15 statistical features and an OBD-LightGBM classifier.
+Across 10 model configurations (6 architecture families, 1B--8B), 3 source domains, and 4 decoding strategies, $\Kempirical \in \{1, 2, 3\}$ at $\theta{=}0.60$ (Cohen's $h{\approx}0.20$): general web text yields $\Kempirical{=}2$ in 6/10 configurations (2 of 6 families unanimously, plus a scale-dependent split in Pythia), while structured academic text (arXiv) yields $\Kempirical{=}3$, validated across two architectures.
+A single generation pass suffices to render general web text indistinguishable from deeper synthetic content, a \emph{one-wash laundering} effect (first-generation text is detectable, but second-generation and beyond are not).
+Model-free statistical features enable 80--100\% cross-model transfer with scorer-invariant feature rankings ($\rho > 0.90$); $\Kempirical$ agreement is scorer-independent for strong-signal configurations but scorer-sensitive at marginal boundaries (Qwen-continuation 1v2 $\auc = 0.611$, only 0.011 above $\theta$).
+As a consistency check, domain-appropriate $\Kempirical$ correctly predicts that binary filtering outperforms graduated alternatives for web text when contamination causes detectable quality loss.
+\end{abstract}
+
+% === Section 1: Introduction ===
+\input{introduction}
+
+% === Section 2: Related Work ===
+\input{related_work}
+
+% === Section 3: Method ===
+\input{method}
+
+% === Section 4: Experiments ===
+\input{experiments_c1}
+
+% === Section 5: K*-Aware Data Filtering ===
+\input{experiments_c3}
+
+% === Section 6: Discussion ===
+\input{discussion}
+
+% === Section 7: Conclusion ===
+\input{conclusion}
+
+% === Limitations (ACL required, unnumbered) ===
+\clearpage
+\section*{Limitations}
+
+Our findings are bounded by:
+(1)~\emph{Scope}: model scale $\leq$8B (6 architecture families), English text (C4, Wikipedia, arXiv), four decoding strategies; arXiv $\Kempirical{=}3$ is confirmed with two model families (Qwen-1.5B, Pythia-1.4B) but with reduced sample size ($n{=}2{,}200$ per model).
+(2)~\emph{Protocol}: prompt-chain rather than retrain-chain. Retrain-chain validation (Pythia-1.4B LoRA, Appendix~\ref{sec:extended_limitations}) yields $\Kempirical{\geq}4$ due to cumulative model-adaptation artifacts; prompt-chain isolates text-intrinsic degradation and provides the operationally relevant boundary for data curation.
+(3)~\emph{Threshold}: $\Kempirical$ ranges from 2--3 at $\theta{=}0.55$ to 1 at $\theta{=}0.70$; 6/10 configurations yield $\Kempirical{=}2$ at $\theta{=}0.60$ (OLMo-1B, Mistral-7B, Gemma-2-2B, Pythia-6.9B: $\Kempirical{=}1$).
+(4)~\emph{Marginal boundary}: Qwen-continuation's 1v2 CI lower bound exceeds $\theta$ by only 0.002; cross-scorer validation drops this to $\Kempirical{=}1$ (Section~\ref{sec:transfer}).
+(5)~\emph{Feature set}: the 15D features yield a feature-set-specific lower bound ($\Ktheory$ may be strictly higher); neural probe $\Kempirical$ is model-dependent ($3$ for Qwen, $2$ for Pythia, $1$ for OLMo).
+(6)~\emph{Segment length}: $\Kempirical{=}2$ confirmed for 128 and 256 tokens (CI lower $> \theta$); 512 tokens yields point estimate $\Kempirical{=}2$ but CI lower marginally below $\theta$ ($0.5979$), indicating the boundary weakens at longer generation lengths.
+(7)~\emph{Curation applicability}: the practical benefit of $\Kstar$-aware curation depends on contamination severity; when synthetic data proportion is low enough to leave overall training quality intact, filtering strategies converge (Appendix~\ref{sec:dose_response}).
+Our filtering validation (Section~\ref{sec:filtering}) was conducted exclusively on Qwen-1.5B continuation-mode text; extending to $\Kempirical{=}1$ generators remains future work.
+Seed robustness testing (Appendix~\ref{sec:seed_robustness}) shows $\Kempirical$ is stable under seed variation for strong-signal configurations, but marginal boundaries are seed-sensitive (absolute AUC shifts up to ${\pm}9$\,pp).
+Additional limitations (cross-model scoring sensitivity, feature ranking variability at the 1v2 boundary, structural composition confound analysis) appear in Appendix~\ref{sec:extended_limitations}.
+
+% === Ethics Statement (ACL required, unnumbered) ===
+\section*{Ethics Statement}
+
+Generational depth estimation is intended for data curation and corpus auditing, positive-sum applications that improve training data quality.
+Our experiments use the publicly available C4 corpus and do not involve personally identifiable information.
+A potential dual-use concern is that depth estimation techniques could inform adversarial strategies to evade detection (e.g., by calibrating rewriting to mimic earlier-generation statistics); we note that this risk is shared by all detection research and that the binary detection boundary ($\auc \geq 0.96$ at 0v1) remains robust.
+
+\bibliography{references}
+
+\input{appendix}
+\input{appendix_extended}
+
+\end{document}

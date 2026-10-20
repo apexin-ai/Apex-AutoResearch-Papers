@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_32b_c4",
+  "project": "gen-depth-contamination",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T14:56:48.122Z",
+    "updated_at": "2026-05-17T19:36:40.571Z",
+    "hypothesis": "Scale-dependent K* on C4: Qwen2.5-32B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 在最大规模（32B）是否稳定。如果 K*=2 → K* 与 model capacity 无关（从 1.5B 到 32B 不变）；如果 K*>2 → 更大模型保留更多代际信号。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "parent": "exp_arXiv_llama8b"
+  },
+  "timestamp": "2026-05-17T19:36:40.968807+00:00",
+  "trigger": "update_registry"
+}

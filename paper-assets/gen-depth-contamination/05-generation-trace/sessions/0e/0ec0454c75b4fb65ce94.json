@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "0ec0454c75b4fb65ce94",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "experiment exp 014 naturalistic",
+  "task_key": "worker_experiment_exp_014_naturalistic_20260520T110716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_exp_014_naturalistic_20260520T110716.log",
+    "occurrence": 1,
+    "bytes": 1192550,
+    "sha256": "730d59123bbc9f1a7e8a67a5dc2eb65a7f436de8cafbeb6ca8327d1011eca974"
+  },
+  "statistics": {
+    "messages": 508,
+    "user_turns": 1,
+    "tool_calls": 203,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 94,
+      "tool_call": 203,
+      "tool_result": 203,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 449,
+      "chunks": [
+        {
+          "path": "0ec0454c75b4fb65ce94-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0ec0454c75b4fb65ce94-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0ec0454c75b4fb65ce94-part-0003.json",
+          "message_count": 89
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 59,
+      "chunks": [
+        {
+          "path": "0ec0454c75b4fb65ce94-part-0003.json",
+          "message_count": 59
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-exp-014-naturalistic.md"
+}

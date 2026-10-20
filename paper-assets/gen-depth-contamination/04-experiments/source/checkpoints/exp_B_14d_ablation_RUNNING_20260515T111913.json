@@ -1,0 +1,24 @@
+{
+  "exp_id": "exp_B_14d_ablation",
+  "project": "gen-depth-contamination",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:18:25.666Z",
+    "updated_at": "2026-05-15T11:19:13.228Z",
+    "hypothesis": "移除 self_BLEU（14D vs 15D）后 K*=2 是否稳定？排除 self_BLEU information leakage（FR-3 Critical）",
+    "spec": {
+      "command": "python scripts/exp_B_14d_ablation.py",
+      "server": "westc-26893",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data + data_exp001_pythia + data_exp002_olmo + data_exp017_qwen_cont",
+      "data_count": 20000,
+      "model_name": "N/A (CPU: LightGBM 14D vs 15D)",
+      "seed": 42,
+      "note": "Remove self_BLEU, compare 14D vs 15D pairwise AUC and K*"
+    }
+  },
+  "timestamp": "2026-05-15T11:19:13.274507+00:00",
+  "trigger": "update_registry"
+}

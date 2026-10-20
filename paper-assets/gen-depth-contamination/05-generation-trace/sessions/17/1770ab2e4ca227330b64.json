@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1770ab2e4ca227330b64",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops exp025 fix datasource",
+  "task_key": "worker_ops_exp025-fix-datasource_20260518T082513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp025-fix-datasource_20260518T082513_result.json",
+    "occurrence": 1,
+    "bytes": 822,
+    "sha256": "aa844e44cdfd89f34f8561a5cabbbd79acdb7ab20610c38d0dee66717af1d7e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动，4 个 GPU 并行跑 Batch 1。\n\n## Kill 结果\nkilled 6 个进程（4 python 训练 + 1 bash launcher + 1 nohup wrapper），无 tmux session\n\n## 数据确认\n- nucleus 数据路径: `/root/autodl-tmp/gen-depth-contamination/data_exp020_pythia_nuc09/`\n- depth 文件: depth_0~5.jsonl，每个 5000 行，共 30000 条\n\n## 脚本修改\n- `scripts/exp025_pythia_filtering.py`: `DATA_DIR` 从 `data_exp020_pythia_greedy` → `data_exp020_pythia_nuc09`\n- `scripts/run_exp025.sh`: 无数据路径变量，无需修改\n\n## 清理\n- 删除 `results/exp_025_pythia_filtering/`、`checkpoints/exp025*/`、`logs/exp025/`\n\n## 重新提交\n- Batch 1 已启动：4 个 GPU 分别跑 no_filter×3seeds + binary_ours×seed42\n- 主进程 PID=15687，9 个 run 分 3 批串行执行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp025-fix-datasource.md"
+}

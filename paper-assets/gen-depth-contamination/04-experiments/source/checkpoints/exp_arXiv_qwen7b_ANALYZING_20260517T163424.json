@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp_arXiv_qwen7b",
+  "project": "gen-depth-contamination",
+  "state": "ANALYZING",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T12:56:03.934Z",
+    "updated_at": "2026-05-17T16:34:24.648Z",
+    "hypothesis": "Cross-scale arXiv K* validation: Qwen2.5-7B continuation on arXiv abstracts 的 K* 是否 = 3？验证 structured domain K*=3 在 Qwen 家族内跨规模（1.5B→7B）的稳定性，排除 small-model capacity artifact。同时检验 Qwen2.5-7B 在 arXiv 上是否保持与 C4 相同的 pattern (C4 K*=2)。2200 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "parent": "exp_024_arxiv_domain",
+    "server": "cqa1-22115",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "cqa1-22115",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-17T14:08:40.926Z",
+      "command": "cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python3.12 scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --data_dir data/exp_arXiv_qwen7b --results_dir results/exp_arXiv_qwen7b --num_samples 2200 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B",
+      "code_commit": "0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5",
+      "finished_at": "2026-05-17T16:34:23.946Z",
+      "training_hours": 2.43
+    },
+    "spec": {
+      "command": "cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python3.12 scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --data_dir data/exp_arXiv_qwen7b --results_dir results/exp_arXiv_qwen7b --num_samples 2200 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "data/exp_arXiv_qwen7b",
+      "data_count": 2200,
+      "model_name": "Qwen2.5-7B",
+      "seed": 42,
+      "checkpoint_source": "pretrained:Qwen/Qwen2.5-7B",
+      "eval_data": "arXiv abstracts depth 0-5, scorer=Qwen2.5-1.5B"
+    },
+    "pid": "42742",
+    "log_path": "~/runs/gen-depth-contamination/exp_arXiv_qwen7b.log"
+  },
+  "timestamp": "2026-05-17T16:34:24.953723+00:00",
+  "trigger": "update_registry"
+}

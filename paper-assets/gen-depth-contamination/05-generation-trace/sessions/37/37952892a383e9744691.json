@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37952892a383e9744691",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis sf5 retrain t dist",
+  "task_key": "worker_analysis_sf5_retrain_t_dist_20260520T042824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sf5_retrain_t_dist_20260520T042824_result.json",
+    "occurrence": 1,
+    "bytes": 915,
+    "sha256": "f3ae5c682c3b7d149c867e779e7b63f475bb9229567f7fce074c31394dc12e20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n### K\\*=7 在 t-distribution CI 下仍然成立\n\n两个模型的 6v7 pair 的 t-CI lower bound 均 > 0.60：\n\n| Experiment | Pair | Mean | SE | Normal CI | t(df=4) CI | t_lower > 0.60 |\n|---|---|---|---|---|---|---|\n| **Pythia** | 6v7 | 0.6340 | 0.0037 | [0.6267, 0.6414] | [0.6237, 0.6444] | YES |\n| **Qwen** | 6v7 | 0.6410 | 0.0019 | [0.6372, 0.6448] | [0.6357, 0.6464] | YES |\n\nt-CI 确实比 normal-CI 更宽（t_crit=2.776 vs z_crit=1.96），但由于 fold 间方差很小（SE 仅 0.002~0.004），CI 的展宽不足以将 lower bound 拉到 0.60 以下。所有 pair（0v1 到 6v7）在 t-CI 下的 lower bound 均 > 0.60，K\\*=7 判定不变。\n\n结果已保存至：\n- `/results/exp_pythia_retrain_depth7/pairwise_auc_t_dist.json`\n- `/results/exp_qwen_retrain_chain_ext/pairwise_auc_t_dist.json`\n- `/results/exp_008_retrain_chain/pairwise_auc_t_dist.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sf5-retrain-t-dist.md"
+}

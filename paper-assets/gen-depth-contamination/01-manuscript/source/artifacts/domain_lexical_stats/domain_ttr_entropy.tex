@@ -1,0 +1,33 @@
+% Domain × Depth lexical statistics: TTR and Vocabulary Entropy
+% Data sources: C4 (exp_018, LLaMA-3.1-8B), Wikipedia (exp_023), arXiv (exp_024, Qwen)
+% Requires: \usepackage{booktabs}
+\newcommand{\tpm}{\ensuremath{\,\pm\,}}
+\begin{table*}[t]
+\centering
+\small
+\caption{Type-Token Ratio (TTR) and vocabulary entropy across three domains and generation depths.
+At depth~0 (original human text), arXiv exhibits the highest lexical diversity (TTR\,=\,0.755, $H$\,=\,6.853),
+followed by C4 and Wikipedia.
+As depth increases, all domains converge, with arXiv showing the steepest decline.
+Cohen's $d$ values are computed at depth~0 for pairwise domain comparisons.}
+\label{tab:domain-ttr-entropy}
+\begin{tabular}{ll rrr rrr}
+\toprule
+& & \multicolumn{3}{c}{\textbf{TTR}} & \multicolumn{3}{c}{\textbf{Vocab Entropy ($H$)}} \\
+\cmidrule(lr){3-5} \cmidrule(lr){6-8}
+\textbf{Depth} & $N$ & \textbf{Wiki} & \textbf{C4} & \textbf{arXiv} & \textbf{Wiki} & \textbf{C4} & \textbf{arXiv} \\
+\midrule
+0 & 5k/5k/2.2k & .665\tpm.061 & .720\tpm.105 & \textbf{.755}\tpm.055 & 6.408\tpm.284 & 6.225\tpm.706 & \textbf{6.853}\tpm.295 \\
+1 &             & .655\tpm.121 & .707\tpm.149 & \textbf{.732}\tpm.098 & 5.932\tpm.843 & 5.737\tpm1.189 & \textbf{6.113}\tpm.655 \\
+2 &             & .647\tpm.145 & .676\tpm.159 & \textbf{.677}\tpm.131 & 5.784\tpm.905 & 5.774\tpm1.139 & \textbf{5.998}\tpm.967 \\
+3 &             & .645\tpm.159 & \textbf{.662}\tpm.164 & .635\tpm.134 & 5.664\tpm1.085 & 5.743\tpm1.161 & \textbf{5.964}\tpm.933 \\
+4 &             & .636\tpm.164 & \textbf{.647}\tpm.169 & .621\tpm.140 & 5.660\tpm1.062 & 5.758\tpm1.167 & \textbf{5.898}\tpm.942 \\
+5 &             & .632\tpm.172 & \textbf{.636}\tpm.175 & .618\tpm.150 & 5.593\tpm1.130 & 5.772\tpm1.141 & \textbf{5.816}\tpm.968 \\
+\midrule
+\multicolumn{8}{l}{\textit{Cohen's $d$ at depth 0 (positive $=$ second domain higher):}} \\
+\multicolumn{2}{l}{C4 vs.\ Wiki}   & \multicolumn{3}{c}{$d = +0.65$} & \multicolumn{3}{c}{$d = -0.34$} \\
+\multicolumn{2}{l}{arXiv vs.\ C4}  & \multicolumn{3}{c}{$d = +0.37$} & \multicolumn{3}{c}{$d = +1.03$} \\
+\multicolumn{2}{l}{arXiv vs.\ Wiki} & \multicolumn{3}{c}{$d = +1.52$} & \multicolumn{3}{c}{$d = +1.55$} \\
+\bottomrule
+\end{tabular}
+\end{table*}

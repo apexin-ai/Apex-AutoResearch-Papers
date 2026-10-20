@@ -1,0 +1,16 @@
+experiment: exp_llama8b_10k
+depth_pair: 1v2
+n_samples_per_depth: 10000
+point_auc_oof: 0.5880
+fold_aucs: [0.5836, 0.5738, 0.5955, 0.5902, 0.5977]
+mean_fold_auc: 0.5881
+bootstrap_n: 10000
+boot_mean: 0.5880
+boot_std: 0.0036
+ci_95: [0.5809, 0.5950]
+ci_995_bonferroni: [0.5776, 0.5978]
+bonferroni_pass: false
+perm_n: 10000
+perm_p: 0.0001
+seed: 42
+elapsed_seconds: 98.2

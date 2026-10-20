@@ -1,0 +1,74 @@
+=== DATA CONSISTENCY SNAPSHOT ===
+Generated: 2026-05-20 22:00:25 UTC
+Total eval files: 10
+Metric conventions: PIQA=acc, ARC-C=acc_norm, Winogrande=acc, TruthfulQA=acc, GSM8K=exact_match
+
+base_model_eval.json (modified: 2026-05-20 17:29:05 UTC)
+  piqa: acc=0.7578890097932536, acc_norm=0.7611534276387377 [USE acc], scores_val=0.7578890097932536
+  truthfulqa_mc2: acc=0.4658919916995827, scores_val=0.4658919916995827
+  winogrande: acc=0.6456195737963694, acc_norm=N/A [USE acc], scores_val=0.6456195737963694
+  arc_challenge: acc=0.49146757679180886, acc_norm=0.5486348122866894 [USE acc_norm], scores_val=0.5486348122866894
+  gsm8k: exact_match=N/A, scores_val=None
+
+binary_ours_seed0_eval.json (modified: 2026-05-20 21:46:17 UTC)
+  piqa: acc=0.7529923830250272, acc_norm=0.7464635473340587 [USE acc], scores_val=0.7529923830250272
+  truthfulqa_mc2: acc=0.4359416894030287, scores_val=0.4359416894030287
+  winogrande: acc=0.6385161799526441, acc_norm=N/A [USE acc], scores_val=0.6385161799526441
+  arc_challenge: acc=0.4786689419795222, acc_norm=0.5196245733788396 [USE acc_norm], scores_val=0.5196245733788396
+  gsm8k: exact_match=0.5860500379075056, scores_val=0.5860500379075056
+
+binary_ours_seed1_eval.json (modified: 2026-05-20 19:10:24 UTC)
+  piqa: acc=0.7524483133841132, acc_norm=0.749727965179543 [USE acc], scores_val=0.7524483133841132
+  truthfulqa_mc2: acc=0.44559071083240687, scores_val=0.44559071083240687
+  winogrande: acc=0.6424625098658248, acc_norm=N/A [USE acc], scores_val=0.6424625098658248
+  arc_challenge: acc=0.4735494880546075, acc_norm=0.5187713310580204 [USE acc_norm], scores_val=0.5187713310580204
+  gsm8k: exact_match=N/A, scores_val=None
+
+binary_ours_seed2_eval.json (modified: 2026-05-20 21:30:17 UTC)
+  piqa: acc=0.7529923830250272, acc_norm=0.7475516866158868 [USE acc], scores_val=0.7529923830250272
+  truthfulqa_mc2: acc=0.4378315730141588, scores_val=0.4378315730141588
+  winogrande: acc=0.6408839779005525, acc_norm=N/A [USE acc], scores_val=0.6408839779005525
+  arc_challenge: acc=0.47440273037542663, acc_norm=0.5127986348122867 [USE acc_norm], scores_val=0.5127986348122867
+  gsm8k: exact_match=0.5852918877937832, scores_val=0.5852918877937832
+
+graduated_seed0_eval.json (modified: 2026-05-20 22:00:19 UTC)
+  piqa: acc=0.7513601741022851, acc_norm=0.7529923830250272 [USE acc], scores_val=0.7513601741022851
+  truthfulqa_mc2: acc=0.42246157581368704, scores_val=0.42246157581368704
+  winogrande: acc=0.648776637726914, acc_norm=N/A [USE acc], scores_val=0.648776637726914
+  arc_challenge: acc=0.46928327645051193, acc_norm=0.5127986348122867 [USE acc_norm], scores_val=0.5127986348122867
+  gsm8k: exact_match=0.5572403335860501, scores_val=0.5572403335860501
+
+graduated_seed1_eval.json (modified: 2026-05-20 20:01:08 UTC)
+  piqa: acc=0.750816104461371, acc_norm=0.750272034820457 [USE acc], scores_val=0.750816104461371
+  truthfulqa_mc2: acc=0.4234460944480008, scores_val=0.4234460944480008
+  winogrande: acc=0.6440410418310971, acc_norm=N/A [USE acc], scores_val=0.6440410418310971
+  arc_challenge: acc=0.47440273037542663, acc_norm=0.523037542662116 [USE acc_norm], scores_val=0.523037542662116
+  gsm8k: exact_match=0.5617892342683851, scores_val=0.5617892342683851
+
+graduated_seed2_eval.json (modified: 2026-05-20 21:09:32 UTC)
+  piqa: acc=0.749183895538629, acc_norm=0.749727965179543 [USE acc], scores_val=0.749183895538629
+  truthfulqa_mc2: acc=0.42752106369295106, scores_val=0.42752106369295106
+  winogrande: acc=0.6456195737963694, acc_norm=N/A [USE acc], scores_val=0.6456195737963694
+  arc_challenge: acc=0.4684300341296928, acc_norm=0.5213310580204779 [USE acc_norm], scores_val=0.5213310580204779
+  gsm8k: exact_match=0.5648218347232752, scores_val=0.5648218347232752
+
+no_filter_seed0_eval.json (modified: 2026-05-20 17:51:27 UTC)
+  piqa: acc=0.7519042437431991, acc_norm=0.7540805223068553 [USE acc], scores_val=0.7519042437431991
+  truthfulqa_mc2: acc=0.42238503754437356, scores_val=0.42238503754437356
+  winogrande: acc=0.6519337016574586, acc_norm=N/A [USE acc], scores_val=0.6519337016574586
+  arc_challenge: acc=0.46928327645051193, acc_norm=0.5127986348122867 [USE acc_norm], scores_val=0.5127986348122867
+  gsm8k: exact_match=N/A, scores_val=None
+
+no_filter_seed1_eval.json (modified: 2026-05-20 18:54:23 UTC)
+  piqa: acc=0.750816104461371, acc_norm=0.749727965179543 [USE acc], scores_val=0.750816104461371
+  truthfulqa_mc2: acc=0.4236530471065961, scores_val=0.4236530471065961
+  winogrande: acc=0.6456195737963694, acc_norm=N/A [USE acc], scores_val=0.6456195737963694
+  arc_challenge: acc=0.47440273037542663, acc_norm=0.5213310580204779 [USE acc_norm], scores_val=0.5213310580204779
+  gsm8k: exact_match=N/A, scores_val=None
+
+no_filter_seed2_eval.json (modified: 2026-05-20 21:10:23 UTC)
+  piqa: acc=0.749727965179543, acc_norm=0.7519042437431991 [USE acc], scores_val=0.749727965179543
+  truthfulqa_mc2: acc=0.4276590555523126, scores_val=0.4276590555523126
+  winogrande: acc=0.6479873717442778, acc_norm=N/A [USE acc], scores_val=0.6479873717442778
+  arc_challenge: acc=0.46757679180887374, acc_norm=0.5238907849829352 [USE acc_norm], scores_val=0.5238907849829352
+  gsm8k: exact_match=0.5670962850644428, scores_val=0.5670962850644428

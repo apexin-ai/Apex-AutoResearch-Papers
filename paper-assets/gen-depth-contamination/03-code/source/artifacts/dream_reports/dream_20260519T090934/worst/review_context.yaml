@@ -1,0 +1,1107 @@
+narrative_guidance: 'Code 域两个 pending 均 K*=1，domain ceiling=2 仅剩 Qwen-1.5B + LLaMA-8B
+  两个 data points（2/5）， 无法独立于 C4 建立 Code ceiling=2。Domain hierarchy 从 4 级清晰阶梯退化为 Wiki=1（稳健）、arXiv=3（稳健）、
+  C4/Code 混杂（K*∈{1,2} model-dependent）。审稿人在 K* 范围 trivial、C3 failures、θ 任意性上多线质疑，
+  原始 "domain ceiling framework" framing 不可持续。需要 reframe： (A) Information-theoretic
+  rapid convergence — DPI 理论预测 K* 有限 + 实证首次证明 K*≤3 本身是核心发现， 不依赖 clean domain hierarchy；或
+  (B) Measurement methodology contribution — 首次提出可操作的 K* 测量方法论，domain hierarchy 降级为
+  first application。 仍冲 EMNLP（Findings 为现实预期），或用 AAAI deadline 补充 70B+ 模型实验。
+
+  '
+imagined_experiments:
+- name: MVP Pilot Saturation (Qwen-1.5B rewrite)
+  plan_id: mvp-001
+  description: Qwen2.5-1.5B-Instruct rewrite mode, C4 5K docs, depth 0-5
+  expected_results:
+    k_star: 2
+    auc_0v1: 0.9956
+    auc_1v2: 0.6957
+    auc_2v3: 0.5893
+    ci_1v2_lower: 0.6859
+    ci_2v3_upper: 0.5991
+    jsd_0v1: 0.2669
+    jsd_1v2: 0.0163
+  result_rationale: 'Rewrite mode AUC 1v2=0.6957 是所有 continuation 条件的 1.14x，但 worst-case
+    下审稿人将其 归因于 instruction-following style artifacts 而非 genuine depth signal。Cross-model
+    transfer 仅 61-63% retention（vs continuation 80-92%）证实 rewrite 信号不泛化。这个结果在 worst-case
+    framing 下从 "strongest K*=2 evidence" 降级为 "mode-specific pilot with limited generalizability"，
+    削弱其作为核心证据的权重。审稿人可能直接质疑为什么 headline 实验用了最不可靠的 mode。
+
+    '
+  tables:
+  - 'Table: Pairwise AUC × depth pair, 标注 rewrite mode caveat'
+  figures_description:
+  - AUC decay curve, 但需标注 rewrite mode inflation warning
+  analysis: '在 worst-case 下此实验仅定位为 feasibility pilot。CI 虽然 robust（lower=0.6859），但
+    rewrite mode 的 cross-model transfer 差（61-63%）意味着 K*=2 的泛化性完全依赖 continuation mode
+    实验。如果 continuation mode 边界案例（Qwen-cont CI lower=0.6015）被质疑，mvp-001 无法提供 backup。
+
+    '
+- name: Pythia-1.4B C4 Depth Chain
+  plan_id: exp-001
+  description: Pythia-1.4B, nucleus p=0.95 T=1.0, C4 5K docs, depth 0-5
+  expected_results:
+    k_star: 2
+    auc_0v1: 0.9932
+    auc_1v2: 0.6539
+    auc_2v3: 0.5515
+    ci_1v2_lower: 0.6454
+    jsd_0v1: 0.2142
+    jsd_1v2: 0.014
+    ordinal_accuracy: 0.383
+  result_rationale: 'Pythia K*=2 on C4 是相对稳健的数据点（CI lower=0.6454, +4.5pp above θ），worst-case
+    下 仍然成立。但审稿人会指出 Pythia 是 The Pile 训练的旧架构（GPT-NeoX），与现代 decoder-only 架构（LLaMA/Qwen/Mistral）差异大，代表性有限。Ordinal
+    accuracy 仅 38.3%（6-class random=16.7%） 被认为 "marginally better than random on fine-grained
+    depth"，进一步削弱 practical value 叙事。
+
+    '
+  tables:
+  - 'Table: Pairwise AUC with bootstrap CI'
+  figures_description:
+  - JSD cliff plot showing 0v1→1v2 drop
+  analysis: 'Pythia C4 K*=2 在 worst-case 下是最不被质疑的 C4 data point 之一（margin +4.5pp）。
+    但 ordinal accuracy ~38% 加上 K*≤3 的 trivial 质疑，审稿人可能认为 "Pythia generates poor text
+    → K*=2 simply means the text is too distinguishable at gen-1 but collapses to
+    noise at gen-2"，将 K*=2 归因于 model weakness 而非 domain property。
+
+    '
+- name: OLMo-1B C4 Depth Chain
+  plan_id: exp-002
+  description: OLMo-1B, nucleus p=0.95 T=1.0, C4 5K docs, depth 0-5
+  expected_results:
+    k_star: 2
+    auc_0v1: 0.997
+    auc_1v2: 0.6146
+    auc_2v3: 0.5497
+    ci_1v2_lower: 0.6045
+    jsd_0v1: 0.2394
+    jsd_1v2: 0.013
+    ordinal_accuracy: 0.3685
+  result_rationale: 'OLMo CI lower=0.6045 仅 +0.45pp above θ=0.60——在 worst-case 下审稿人将其标记为
+    "borderline pass, θ-dependent"。如果 θ 从 0.60 上调至 0.61 或 0.62（审稿人认为合理的 sensitivity
+    test）， OLMo 立即变为 K*=1。这使得 8/9 K*=2 claim 退化为 7/9 或更少。OLMo 是 1B 模型，被归类为 "small
+    model that doesn''t generate very well"。
+
+    '
+  tables:
+  - 'Table: Pairwise AUC, OLMo row highlighted as borderline'
+  figures_description:
+  - θ-sensitivity plot showing OLMo flips at θ≈0.605
+  analysis: 'OLMo 是 worst-case 下的 soft vulnerability：CI lower 几乎踩线，θ-sensitivity 下很容易翻转。
+    审稿人如果要求 θ=0.65 作为 "meaningful effect size"，OLMo 和 Qwen-cont 都会变 K*=1， C4 从 8/9
+    K*=2 降至 6/9，narrative 从 "dominant mode" 退化为 "slight majority"。
+
+    '
+- name: Qwen-7B C4 Cross-Scale
+  plan_id: exp-004
+  description: Qwen2.5-7B, C4 5K docs, depth 0-5, scorer=Qwen2.5-1.5B
+  expected_results:
+    k_star: 2
+    auc_0v1: 0.9644
+    auc_1v2: 0.6178
+    auc_2v3: 0.546
+    ci_1v2_lower: 0.6079
+    ci_2v3_upper: 0.5594
+  result_rationale: 'Qwen-7B C4 K*=2 成立（CI lower=0.6079, +0.79pp），但 margin 较小。Worst-case
+    下审稿人 注意到 0v1 AUC=0.9644 远低于小模型（Pythia 0.9932, OLMo 0.997），说明 7B 模型生成的 gen-1 文本已经更接近
+    human text——这意味着更大模型的 0v1 区分度在下降。审稿人可能推断 "70B+ models would have even lower 0v1
+    AUC, and 1v2 would drop below θ, making K*=1 the norm at scale"，直接挑战 scale generalization。
+
+    '
+  tables:
+  - 'Table: Scale comparison (1.5B vs 7B vs 14B) with 0v1 trend'
+  figures_description:
+  - 0v1 AUC vs model scale plot showing declining trend
+  analysis: '7B scale 确认 K*=2 但暴露了 scale-dependent 0v1 decline trend。Worst-case 下审稿人
+    据此论证 "K*=2 is a small-model artifact; at frontier scale, even 0v1 detection will
+    become unreliable"。14B (AUC 0v1=0.9598) 延续下降趋势，加剧此担忧。
+
+    '
+- name: LLaMA-8B C4 Cross-Family
+  plan_id: exp-018
+  description: LLaMA-3.1-8B, continuation mode, C4 5K docs, depth 0-5
+  expected_results:
+    k_star: 2
+    auc_0v1: 0.9225
+    auc_1v2: 0.6123
+    auc_2v3: 0.5274
+    ci_1v2_lower: 0.6028
+  result_rationale: 'LLaMA-8B CI lower=0.6028 仅 +0.28pp above θ——worst-case 下这是 C4
+    实验中最脆弱的 K*=2 判定。0v1 AUC=0.9225 是所有 C4 模型中最低的，说明 LLaMA 生成的 gen-1 文本最接近 human。 审稿人直接指出
+    "LLaMA-8B is already at the margin; LLaMA-70B would almost certainly fall below
+    θ"。加上 cross-scorer 使用 Qwen-1.5B（不同家族、不同 tokenizer），信号衰减 是预期中的——但审稿人可能认为这是 scorer
+    inadequacy 而非 genuine K*=2。
+
+    '
+  tables:
+  - 'Table: LLaMA row with CI callout'
+  figures_description:
+  - CI forest plot with LLaMA near θ boundary
+  analysis: 'LLaMA-8B 是 worst-case 下 C4 K*=2 的最薄弱环节。CI lower=0.6028 意味着在 bootstrap
+    的 2.5th percentile 仅以 0.28pp 过关。任何关于 θ 选择的质疑都能翻转此结果。审稿人会指出 LLaMA 系列是当前最广泛使用的开源模型，如果其
+    K*=2 不稳健，实践价值大打折扣。
+
+    '
+- name: Mistral-7B C4 Cross-Family
+  plan_id: exp-019
+  description: Mistral-7B-v0.3, continuation mode, C4 5K docs, depth 0-5
+  expected_results:
+    k_star: 1
+    auc_0v1: 0.9843
+    auc_1v2: 0.5935
+    auc_2v3: 0.5402
+    ci_1v2_lower: 0.5835
+    ci_1v2_upper: 0.6032
+    p_auc_leq_060: 0.9017
+  result_rationale: 'Mistral C4 K*=1 是已确认的 one-wash case。CI upper=0.6032 勉强触及 θ（P(AUC≤0.60)=90%），
+    cross-scorer 进一步降至 0.5695。Worst-case 下审稿人将 Mistral K*=1 与 LLaMA/OLMo/Qwen-cont
+    的 borderline K*=2 放在一起，论证 "the real pattern is K*=1 for most modern models on
+    C4, with a few models barely crossing a conveniently chosen threshold"。这直接攻击 8/9
+    K*=2 的 claim——如果 θ 上调 0.03pp，变为 5/9 K*=1。
+
+    '
+  tables:
+  - 'Table: Mistral C4 vs arXiv contrast row'
+  figures_description:
+  - AUC distribution plot highlighting Mistral as K*=1 outlier on C4
+  analysis: 'Mistral K*=1 on C4 but K*=3 on arXiv 是 domain dependence 的最强证据——这一点在
+    worst-case 下仍然成立且是唯一的 bright spot。但审稿人可能 reframe：Mistral 在 C4 上 K*=1 恰好说明 one-wash
+    是 more common than claimed，且与 Qwen-cont（CI lower=0.6015） 和 LLaMA（0.6028）合并看，C4
+    的 "dominant K*=2" 叙事站不住。
+
+    '
+- name: Qwen-1.5B-Instruct Continuation Mode
+  plan_id: exp-017
+  description: Qwen2.5-1.5B-Instruct continuation mode, C4 5K docs, depth 0-5
+  expected_results:
+    k_star: 2
+    auc_0v1: 0.9972
+    auc_1v2: 0.6114
+    auc_2v3: 0.5609
+    ci_1v2_lower: 0.6015
+    jsd_0v1: 0.2863
+    jsd_1v2: 0.0051
+  result_rationale: 'CI lower=0.6015 仅 +0.15pp above θ——这是 C4 所有 K*=2 判定中最边缘的。Worst-case
+    下 审稿人指出 cross-scorer validation (exp_A_alt_scorer) 中 Qwen-cont 被 Pythia 评分时 K*=1（AUC
+    1v2=0.5923），证明 K*=2 依赖于 same-family scorer。论文声称 scorer independence 但最边缘的 case
+    恰好在 cross-scorer 下 fail，这在审稿人看来是 "selective reporting"。
+
+    '
+  tables:
+  - 'Table: Qwen-cont same-scorer vs cross-scorer comparison'
+  figures_description:
+  - CI error bar plot with θ line, Qwen-cont nearly touching
+  analysis: 'Qwen-cont 是 worst-case 下的 Achilles heel。CI lower=0.6015 + cross-scorer
+    K*=1 组合直接威胁 "8/9 K*=2" 的核心叙事。审稿人完全有理由要求 cross-scorer 作为 canonical condition，此时
+    C4 K*=2 从 8/9 变为 ≤7/9（OLMo cross-scorer 未明确测试但预期也边缘）， 且最边缘的几个 data points 全部依赖
+    θ=0.60。
+
+    '
+- name: Qwen-1.5B Base Model C4
+  plan_id: exp-016
+  description: Qwen2.5-1.5B base continuation mode, C4 5K docs, depth 0-5
+  expected_results:
+    k_star: 2
+    auc_0v1: 0.987
+    auc_1v2: 0.6262
+    auc_2v3: 0.5496
+    ci_1v2_lower: 0.6168
+  result_rationale: 'Base model CI lower=0.6168（+1.7pp above θ）比 Instruct 更稳健。但 worst-case
+    下审稿人 注意到 base vs instruct 差异不显著（CI overlap），质疑 "if base and instruct give the
+    same K*, what does this say about the generality of the finding?" 结论是 K*=2 对 alignment
+    不敏感——这本身可以是正面发现，但在 worst-case framing 下被审稿人忽略。
+
+    '
+  tables:
+  - 'Table: Base vs Instruct comparison'
+  figures_description: []
+  analysis: 'Base model 是 C4 上相对安全的 data point（margin +1.7pp）。Worst-case 下不是攻击重点，
+    但也不增加额外信息——审稿人认为 base/instruct 不影响 K* 是 "expected, not interesting"。
+
+    '
+- name: Wikipedia Domain Ablation (Qwen-1.5B)
+  plan_id: exp-023
+  description: Wikipedia seed, Qwen2.5-1.5B base, continuation, 5K docs, depth 0-5
+  expected_results:
+    k_star: 2
+    auc_1v2: 0.6193
+    auc_2v3: 0.5498
+    note: same-family scorer; cross-scorer controls reduce to K*=1
+  result_rationale: 'Qwen self-scorer 给 Wiki K*=2，但 D060 cross-family scorer（Pythia）证实
+    K*=1。 Worst-case 下审稿人将此视为 scorer confound 的 poster child："your own analysis shows
+    same-family scoring inflates K* by +1 on Wikipedia, yet you report K*=2 in the
+    same table as other models?" 论文虽然在正文报 scorer-controlled K*=1，但审稿人质疑 为什么需要额外实验来发现这个问题——暗示其他域也可能有未检测到的
+    confound。
+
+    '
+  tables:
+  - 'Table: Wiki K* with scorer confound annotation'
+  figures_description:
+  - 'Scorer confound illustration: same-family vs cross-family'
+  analysis: 'Wiki K*=1 在 scorer control 后是 robust 的（6 models all K*=1）。但 worst-case
+    下 scorer confound 的 existence 本身成为攻击向量：审稿人质疑 "if you need cross-family scoring
+    to get correct K* on Wikipedia, how do you know C4 K*=2 isn''t also inflated?"
+    这迫使论文对每个 domain×model 组合都做 cross-scorer validation——资源约束下无法完成。
+
+    '
+- name: arXiv Domain Ablation (Qwen-1.5B)
+  plan_id: exp-024
+  description: arXiv abstracts, Qwen2.5-1.5B base, continuation, 5K docs, depth 0-5
+  expected_results:
+    k_star: 3
+    auc_0v1: 0.9946
+    auc_1v2: 0.858
+    auc_2v3: 0.6427
+    ci_2v3_lower: 0.6275
+    jsd_0v1: 0.171
+    jsd_1v2: 0.057
+    jsd_2v3: 0.02
+  result_rationale: 'arXiv K*=3 是 worst-case 下最稳健的发现：5/5 domain-competent models 一致，CI
+    margin 充足（+2.75pp）。但审稿人会质疑："arXiv abstracts 是高度结构化的专业文本，current LLMs 生成的 arXiv
+    文本质量低（citation hallucination, formula errors），K*=3 可能仅反映 生成质量差而非 domain structural
+    complexity。" 另外 arXiv 在 web 污染场景中不是主要 concern——审稿人认为 "who cares about arXiv K*=3
+    when the real problem is web text?"
+
+    '
+  tables:
+  - 'Table: arXiv pairwise AUC across 5 models'
+  figures_description:
+  - arXiv vs C4 JSD cliff comparison
+  analysis: 'arXiv K*=3 在 worst-case 下从 "domain hierarchy crown jewel" 变为 "niche finding
+    with limited practical relevance"。审稿人承认它 cross-validated 但认为 practical implications
+    弱（谁在 curate arXiv data?），且 K*=3 vs K*=2 的差异仅一步—— "so structured text resists one
+    more pass, is that really a paper?"
+
+    '
+- name: Decoding Strategy Ablation (Qwen-1.5B)
+  plan_id: exp-003
+  description: 'Qwen2.5-1.5B: greedy/nucleus p=0.9/T=0.7/T=1.2, C4 5K, depth 0-5'
+  expected_results:
+    k_star_all_configs: 2
+    auc_1v2_range:
+    - 0.6862
+    - 0.7037
+    auc_1v2_greedy: 0.6892
+    auc_1v2_nuc09: 0.6862
+    auc_1v2_t07: 0.6885
+    auc_1v2_t12: 0.7037
+    note: nuc09 2v3 CI upper=0.601 crosses θ
+  result_rationale: '4 种解码策略均 K*=2，但 nuc09 的 2v3 CI upper=0.601 几乎触及 θ，暗示 K*=3 在某些
+    decoding 下 borderline 可能。Worst-case 下审稿人承认 K* 对 decoding 不变，但指出 "decoding invariance
+    is expected — all strategies sample from the same distribution, temperature merely
+    scales logits. This is not a surprising finding." 实验成功但 不增加 novelty。
+
+    '
+  tables:
+  - 'Table: 4 decoding × pairwise AUC matrix'
+  figures_description:
+  - Decoding strategy comparison bar chart
+  analysis: 'Decoding invariance 在 worst-case 下被视为 "sanity check, not contribution"。
+    审稿人不会因此扣分但也不加分。唯一风险：nuc09 2v3 borderline 被拿来支撑 "K* boundary is fuzzy and θ-dependent"
+    的论点。
+
+    '
+- name: Pythia-1.4B Decoding Ablation
+  plan_id: exp-020
+  description: 'Pythia-1.4B: greedy/nuc09/T=0.7/T=1.2, C4 5K, depth 0-5'
+  expected_results:
+    k_star_all_configs: 2
+    auc_1v2_greedy: 0.8838
+    auc_1v2_nuc09: 0.677
+    auc_1v2_t07: 0.7265
+    auc_1v2_t12: 0.6172
+  result_rationale: 'Pythia greedy 1v2=0.8838 异常高——因为 Pythia greedy 产生大量重复文本（repetition
+    collapse）， 创造了 artificial depth signal。Worst-case 下审稿人将此作为 "your features capture
+    degeneracy, not depth" 的证据。T=1.2（高温）AUC=0.6172 最低，接近 θ——审稿人指出 "higher temperature
+    narrows the depth signal gap, suggesting depth discrimination is partly a temperature
+    artifact"。
+
+    '
+  tables:
+  - 'Table: Pythia decoding comparison with greedy anomaly flagged'
+  figures_description: []
+  analysis: 'Pythia decoding 在 worst-case 下暴露了 feature sensitivity to text degeneracy。
+    Greedy 的 0.88 被攻击为 "measuring repetition, not depth"，T=1.2 的 0.62 被用来 论证 "depth
+    signal vanishes with sufficient randomness"。K* 仍为 2 但可信度受损。
+
+    '
+- name: Text Length Ablation
+  plan_id: exp-021
+  description: Qwen continuation, 128/256/512 tokens, C4 5K, depth 0-5
+  expected_results:
+    k_star_128: 2
+    k_star_256: 2
+    k_star_512: 2
+    auc_1v2_128: 0.6219
+    auc_1v2_256: 0.6282
+    auc_1v2_512: 0.6073
+    ci_512_1v2_lower: 0.5979
+    ci_512_1v2_verdict: BORDERLINE
+  result_rationale: '512 token 条件 CI lower=0.5979 < θ=0.60——worst-case 下审稿人指出 "at
+    512 tokens, which is a realistic document length, K*=2 already fails bootstrap
+    CI. Your K*=2 finding is an artifact of short (128-256 token) text segments."
+    这直接威胁 ecological validity：真实文档通常远超 256 tokens，而 K*=2 在更长文本上不稳健。
+
+    '
+  tables:
+  - 'Table: Length × K* with 512-token CI flagged'
+  figures_description:
+  - AUC vs length curve showing 512-token drop
+  analysis: 'Length ablation 的 512-token borderline failure 是 worst-case 下的关键攻击点。
+    审稿人论证 "if K*=2 only holds for short snippets, the practical applicability to real-world
+    document-level contamination detection is limited"。这与 C3 的 negative results 形成共振——方法论和实践价值同时被质疑。
+
+    '
+- name: Cross-Model Transfer 4×4 Matrix
+  plan_id: exp-013
+  description: 4 generators × 4 scorers transfer accuracy matrix
+  expected_results:
+    pythia_olmo_retention: 91-92%
+    qwen_cont_others_retention: 80-85%
+    qwen_rw_others_retention: 61-63%
+    0v1_cross_all_above: 0.96
+    within_avg_pw_auc: 0.6099
+    cross_avg_pw_auc: 0.5905
+  result_rationale: 'Cross-model transfer 80-92% 是正面结果，但 worst-case 下审稿人注意到： (1) Qwen-rewrite
+    跨模型仅 61-63%——generation mode 是比 model identity 更大的 confound； (2) Cross average
+    pw_auc=0.5905 < θ=0.60——跨模型平均辨别力不足以支撑 K*=2； (3) 0v1 >0.96 说明 binary detection
+    已解决，fine-grained depth 不增加实践价值。 审稿人结论："binary contamination detection transfers
+    perfectly; depth estimation does not add practical value over binary."
+
+    '
+  tables:
+  - 'Table: 4×4 transfer matrix (accuracy and tau)'
+  figures_description:
+  - Transfer heatmap with within vs cross diagonal comparison
+  analysis: 'Transfer 实验在 worst-case 下产生 double-edged 结论：binary (0v1) 完美迁移→ 既有 binary
+    detectors 足够；fine-grained depth 迁移下降→depth estimation 不实用。 审稿人可能总结 "the transferable
+    signal is exactly what binary detectors already capture."
+
+    '
+- name: 4×4 Cross-Scorer Matrix
+  plan_id: exp-022
+  description: 4 generators × 4 scorers, K* scorer independence
+  expected_results:
+    k2_count: 11
+    k1_count: 1
+    exception: qwen_cont256×pythia (1v2=0.5979, K*=1)
+    scorer_delta_max: 0.025
+  result_rationale: '11/12 K*=2 看似稳健，但 worst-case 下审稿人关注：(1) 唯一 K*=1 case 恰好是 Qwen-cont（论文最边缘
+    case）被 Pythia score——证实 cross-scorer 下 Qwen-cont 不稳健； (2) 此 matrix 基于 Pythia-greedy（1v2~0.88
+    repetition collapse）和 Qwen-base/cont， 不包含 Mistral/LLaMA 作为 generator，覆盖不完整；(3)
+    cross_scorer_kstar_preservation_rate 下降至 0.65-0.75 range（worst-case 指标范围），如果扩展到所有
+    domain×model 组合。
+
+    '
+  tables:
+  - 'Table: Cross-scorer K* matrix'
+  figures_description: []
+  analysis: 'Cross-scorer 在 worst-case 下从 "11/12 confirms K*=2" 变为 "the one failure
+    happens to be the most critical case (Qwen-cont), and the matrix doesn''t include
+    the models most likely to fail (Mistral, LLaMA)." 审稿人要求 full coverage 的 cross-scorer
+    matrix（~30 combos for 4 domains × all models）——资源不可能满足。
+
+    '
+- name: Feature Group Ablation & Degradation Ordering
+  plan_id: exp-005
+  description: Per feature group pairwise AUC and saturation depth analysis
+  expected_results:
+    cross_model_spearman_rho: '>0.85'
+    shared_top_discriminators: surp_d1_std, surp_std, surp_d2_std
+    limitation_1v2_weakness: τ~0.37 at 1v2 pair
+  result_rationale: 'Feature ordering 跨模型 ρ>0.85 是正面结果，但 worst-case 下审稿人指出 1v2 pair
+    的 cross-model consistency 最弱（τ~0.37）——而 1v2 恰好是决定 K*=2 vs K*=1 的 boundary pair。
+    "The one depth pair that matters most for your K* determination has the weakest
+    cross-model feature agreement." 加之 features 是 "standard text statistics (surprisal,
+    entropy, etc.)"，审稿人质疑 "15D feature engineering is not a methodological contribution;
+    these are well-known text quality metrics repurposed."
+
+    '
+  tables:
+  - 'Table: Feature ranking comparison across models'
+  figures_description:
+  - Degradation ordering heatmap
+  analysis: 'Feature ablation 在 worst-case 下被降级为 "expected results with known metrics"。
+    1v2 inconsistency 被放大为 methodology weakness。审稿人总结 "feature engineering adds nothing
+    new; surprisal-based features have been used in MGT detection since 2023."
+
+    '
+- name: Bootstrap CI & Permutation Tests
+  plan_id: exp-007
+  description: θ sensitivity at 0.55/0.60/0.65/0.70 with bootstrap CI and permutation
+  expected_results:
+    all_1v2_ci_lower_above_060: true
+    most_marginal: Qwen-cont CI lower=0.6015 (+0.15pp)
+    theta_060_k2_count: 8/9
+    theta_065_k2_count: ~5/9
+    theta_070_k2_count: ~2/9
+  result_rationale: 'θ-sensitivity 在 worst-case 下是审稿人的主要攻击工具：θ=0.60 下 8/9 K*=2，但 θ=0.65
+    下降至约 5/9，θ=0.70 下仅约 2/9。审稿人指出 "Cohen''s h=0.20 (θ=0.60) is conventionally ''small
+    effect size'' — your K*=2 claim literally rests on a ''small'' effect. At ''medium''
+    effect (h=0.50, θ≈0.73), virtually all models show K*=1." Qwen-cont 的 +0.15pp
+    margin 被视为 cherry-picked threshold 的典型证据。
+
+    '
+  tables:
+  - 'Table: K* at multiple θ values'
+  figures_description:
+  - K* vs θ sensitivity curve for all models
+  analysis: 'θ-sensitivity 是 worst-case 的核心弱点之一。审稿人可以合理要求 θ=0.65 作为 minimum "practically
+    meaningful" threshold，此时 K*=2 的 dominant mode claim 崩塌。 论文的 permutation test 只证明
+    AUC ≠ 0.50（非随机），不证明 AUC 达到 "meaningful" 水平。 Cohen''s h=0.20 defense 在 ML 社区不如在心理学中
+    convincing。
+
+    '
+- name: Neural Probe (Learned Representations)
+  plan_id: exp-015
+  description: Frozen embeddings + MLP vs 15D features across 3 models
+  expected_results:
+    pythia_k_neural: 2
+    olmo_k_neural: 2
+    qwen_k_neural: 3
+    key: Neural K* is model-dependent (Qwen=3 only under self-scorer)
+  result_rationale: 'Neural probe 本应证明 "K*=2 is representation-intrinsic"，但结果 model-dependent：
+    Qwen self-scorer K*_neural=3 > K*_15D=2，而 Pythia/OLMo K*_neural=2 = K*_15D。 Worst-case
+    下审稿人解读为 "the neural probe shows that richer representations can extract more depth
+    signal (K*=3 for Qwen), meaning your 15D features are a lossy bottleneck that
+    artificially caps K* at 2. K*=2 is a feature engineering artifact, not a data-intrinsic
+    boundary."
+
+    '
+  tables:
+  - 'Table: Neural probe vs 15D K* comparison'
+  figures_description: []
+  analysis: 'Neural probe 的 model-dependent K* 在 worst-case 下直接反驳 "K*=2 is data-intrinsic"
+    的 claim。如果 Qwen neural probe 达到 K*=3，说明 information exists at depth 2v3 但 15D
+    features 太粗糙无法捕获。审稿人总结："your K* is a property of your measurement apparatus, not
+    the data." 论文将此 reframe 为 "model-free features give consistent K*" 的 practical
+    advantage，但审稿人不买账。
+
+    '
+- name: Ordinal vs Multinomial vs Regression Baselines
+  plan_id: exp-010
+  description: CORAL ordinal vs multiclass LightGBM vs ordinal logistic regression
+  expected_results:
+    obd_lgbm_best_acc: 0.4229
+    multiclass_lgbm_acc: 0.4182
+    ordinal_logreg_acc: 0.3636
+    obd_vs_multiclass_delta: +0.47pp
+  result_rationale: 'OBD-LightGBM 仅比 multiclass LightGBM 好 0.47pp accuracy（42.3% vs
+    41.8%）， ordinal structure 的 advantage 微乎其微。Worst-case 下审稿人指出 "ordinal modeling
+    adds complexity without meaningful improvement; a simple multiclass classifier
+    performs nearly identically, undermining the claim that depth has ordinal structure
+    worth exploiting." 此外所有方法 accuracy < 43%（6-class，random=16.7%），绝对 performance
+    不 impressive。
+
+    '
+  tables:
+  - 'Table: 3 methods × 3 models comparison'
+  figures_description: []
+  analysis: 'Ordinal baseline 在 worst-case 下证明 ordinal structure 几乎无 practical benefit。
+    审稿人将此与 C3 negative results 联系："even your ordinal classifier barely beats multiclass,
+    and your K*-aware filtering barely beats binary — the ordinal/depth information
+    has no actionable value."
+
+    '
+- name: LLM Zero-Shot Depth Estimation
+  plan_id: exp-011
+  description: GPT-5.5 / Claude Opus 4.6 zero-shot depth estimation, 500 samples
+  expected_results:
+    gpt55_5class_acc: 0.332
+    claude_5class_acc: 0.331
+    odb_baseline_acc: 0.386
+    binary_acc_both: ~88%
+  result_rationale: 'Frontier LLMs 5-class accuracy ~33% < OBD 38.6%——看似证明需要专门方法。但
+    worst-case 下审稿人指出：(1) 33% vs 38.6% 差距不大（McNemar p>0.05 不显著），不能 claim OBD "significantly
+    outperforms"；(2) binary 88% 说明 depth-0 detection 已被 LLM 解决， 而 fine-grained depth
+    对所有方法（包括 OBD）都失败——"your method is slightly better at a task nobody can do well"；(3)
+    500 samples 太少（power concerns）。
+
+    '
+  tables:
+  - 'Table: LLM vs OBD accuracy comparison'
+  figures_description:
+  - Per-depth accuracy breakdown showing all methods fail at depth 1-4
+  analysis: 'LLM baseline 在 worst-case 下被 turned against the paper："all methods fail
+    at fine-grained depth estimation, including yours. The task as defined may be
+    fundamentally too hard to be useful." Binary detection at 88% 强化 "just do binary"
+    的审稿人立场。
+
+    '
+- name: Binary Detector Confidence as Depth Proxy
+  plan_id: exp-012
+  description: DivEye/Binoculars score Spearman correlation with true depth
+  expected_results:
+    binary_kstar: 1
+    obd_kstar: 2
+    max_spearman_rho: 0.46
+    six_class_acc_max: 0.199
+  result_rationale: 'Binary detectors K*=1 vs OBD K*=2 的差异证明深度信息超越 binary。但 worst-case
+    下 审稿人质疑："OBD uses 15 hand-crafted features and a trained classifier, while DivEye/Binoculars
+    are single-score methods designed for binary detection — the comparison is unfair.
+    A fair comparison would train a classifier on DivEye features across depth levels."
+    6-class accuracy ≤19.9% 再次证明 fine-grained depth 对所有方法 都不 work。
+
+    '
+  tables:
+  - 'Table: Binary vs OBD comparison'
+  figures_description:
+  - Non-monotonic AUC plot for binary detectors
+  analysis: 'Binary detector comparison 在 worst-case 下被视为 "strawman baseline"——用单分数
+    binary 工具对比 15D trained classifier 不公平。审稿人可能要求与 "binary detector features + depth-aware
+    classifier" 对比。
+
+    '
+- name: Retrain Chain (Pythia-1.4B)
+  plan_id: exp-008
+  description: Pythia-1.4B LoRA retrain chain, C4 5K, depth 0-4
+  expected_results:
+    k_star: '>=4'
+    auc_0v1: 0.9847
+    auc_1v2: 0.9484
+    auc_2v3: 0.8888
+    auc_3v4: 0.7982
+  result_rationale: 'Retrain K*≥4 大幅超越 prompt-chain K*=2——但 worst-case 下审稿人认为 "retrain-chain
+    detects LoRA adaptation artifacts, not text-intrinsic depth signal. K*≥4 is an
+    artifact of your experimental setup, not a property of recursive contamination."
+    更重要的是，retrain chain 与 prompt chain 的 K* 差距（2 vs ≥4）反而证明 K* depends heavily on
+    the contamination mechanism，而论文只测了一种 mechanism (prompt-chain)—— ecological validity
+    concern 加剧。
+
+    '
+  tables:
+  - 'Table: Prompt-chain vs retrain-chain AUC comparison'
+  figures_description:
+  - K* divergence between contamination mechanisms
+  analysis: 'Retrain chain 在 worst-case 下从 "ecological validity evidence" 变为 "evidence
+    of mechanism-dependence"。审稿人论证 K*=2 只是 prompt-chain specific，真实世界 可能有 K*=7（retrain）或
+    K*=1（其他机制），论文的 K*=2 claim 无法泛化。
+
+    '
+- name: Subsampling Power Curve
+  plan_id: exp-028
+  description: C4 subsampling n={1000,...,5000} × 10 resamples
+  expected_results:
+    min_n_100pct: 2000
+    n1000_rate: 0.3
+    n2000_rate: 1.0
+    n5000_auc: 0.6288
+  result_rationale: 'n≥2000 给 100% detection——但 worst-case 下审稿人指出 "the fact that you
+    need n=2000 samples to reliably detect K*=2 means the effect size is tiny. For
+    comparison, binary detection (0v1) works with n=100. This confirms K*=2 is a statistical
+    artifact visible only in aggregate, not a practically useful signal for individual
+    documents." n=1000 仅 30% detection rate 强化 "weak signal" 叙事。
+
+    '
+  tables:
+  - 'Table: Power curve with detection rates'
+  figures_description:
+  - Power curve plot
+  analysis: 'Power curve 在 worst-case 下被 used against the paper：大样本需求 = 小效应量 =  不实用。审稿人对比
+    binary detection 的 near-perfect per-sample accuracy 与 depth estimation 的 n=2000
+    aggregate requirement。
+
+    '
+- name: LaTeX Markup Removal Ablation
+  plan_id: exp-027
+  description: arXiv text with LaTeX stripped, verify K*=3 preserved
+  expected_results:
+    k_star_preserved: true
+    auc_2v3_original: 0.6436
+    auc_2v3_stripped: 0.6229
+    delta_2v3: -0.021
+  result_rationale: 'K*=3 after LaTeX removal is positive——但 worst-case 下 2v3 AUC
+    从 0.6436 降至 0.6229 （-2.1pp），margin 从 +4.3pp 收窄至 +2.3pp above θ。审稿人指出 "LaTeX removal
+    costs you nearly half your safety margin. What about other formatting artifacts
+    (citation brackets, equation numbering, section headers)? Full markup removal
+    might push 2v3 below θ." 实验被视为 incomplete ablation。
+
+    '
+  tables:
+  - 'Table: Original vs stripped AUC'
+  figures_description: []
+  analysis: 'LaTeX ablation 在 worst-case 下 partially succeeds 但暴露 format-dependency：
+    LaTeX 贡献了 ~2pp 的 signal，更彻底的 stripping 可能消除剩余 margin。审稿人要求 full-structure removal
+    ablation（headers, citations, formulas 全部 normalize）， 这个实验未做。
+
+    '
+- name: Downstream Filtering Evaluation (Qwen, C4)
+  plan_id: exp-006
+  description: 6 strategies × 5 seeds, continued pretraining, MMLU+HellaSwag
+  expected_results:
+    binary_ours_mmlu: 0.5941±0.0008
+    no_filter_mmlu: 0.5865±0.0010
+    delta_mmlu: '+0.0076'
+    delta_hellaswag: '+0.0063'
+    best_strategy: binary-ours
+    graduated_a09_mmlu: 0.5892±0.0008
+  result_rationale: 'Binary outperforms all——但 worst-case 下审稿人质疑：(1) 所有策略都 degrade
+    vs base model（0.6018 MMLU），"your best filtering still makes the model worse than
+    doing nothing"；(2) binary vs no_filter delta=0.76pp MMLU——统计显著但 practically meaningless；(3)
+    graduated α monotone increasing 说明 "more filtering is always better regardless
+    of depth awareness"——K* information 没有 incremental value over simple quality threshold；(4)
+    DSIR 差于 no_filter，说明 distribution matching 反而有害， 但这是 DSIR 的问题不是本文的贡献。
+
+    '
+  tables:
+  - 'Table: All 6 strategies × MMLU/HellaSwag'
+  figures_description:
+  - Strategy ranking bar chart
+  analysis: 'C3 在 worst-case 下的叙事崩塌：binary beats graduated（不符合 "depth-aware curation
+    is better" 的 hypothesis），所有策略 < base model，delta < 1pp。审稿人总结 "K* provides no curation
+    benefit beyond what a simple binary classifier already gives." c3_binary_vs_nofilter_hellaswag_delta_pp
+    在 3.8-6.1pp range（dose response 中）， 但单个 30% ratio 下仅 ~6pp——不足以 justify depth estimation
+    pipeline 的复杂性。
+
+    '
+- name: Contamination Dose-Response
+  plan_id: exp-009
+  description: 10%/30%/50% contamination ratio × 3 strategies × 5 seeds
+  expected_results:
+    binary_advantage_hellaswag_10pct: +0.38pp
+    binary_advantage_hellaswag_30pct: +0.61pp
+    binary_advantage_hellaswag_50pct: +0.51pp
+    graduated_vs_nofilter: identical at all ratios
+    all_p_values_hellaswag: ≤0.004
+  result_rationale: 'Binary filtering 在所有 ratio 下显著优于 no_filter（HellaSwag），但 graduated
+    = no_filter 在所有 ratio 下完全一致。Worst-case 下这是 C3 的 death blow：dose-response 本应展示
+    "as contamination increases, depth-aware filtering becomes more important"，实际结果是
+    "graduated filtering provides zero benefit at any contamination level"。审稿人结论：
+    "binary filtering works because it removes synthetic text; the depth dimension
+    K* adds nothing. Your headline claim C3 is falsified by your own dose-response
+    analysis."
+
+    '
+  tables:
+  - 'Table: 3 ratios × 3 strategies with p-values'
+  figures_description:
+  - Dose-response curve with graduated=no_filter overlap
+  analysis: 'Dose-response 在 worst-case 下完全否定 C3 的 depth-aware curation hypothesis。
+    Binary 的优势仅来自 "remove synthetic text" 而非 "use depth information"。 审稿人会质疑论文的 claim
+    rewrite——如果 C3 只是 "binary filtering works"，这已被 Drayson et al. (2025) 证明，不是新贡献。
+
+    '
+- name: Pythia-1.4B Filtering Replication
+  plan_id: exp-025
+  description: Pythia LoRA rank=8, 3 strategies × 3 seeds, MMLU+HellaSwag
+  expected_results:
+    binary_ours_mmlu: 0.2585±0.0004
+    no_filter_mmlu: 0.2568±0.0012
+    delta_max: 0.0017 (noise)
+    conclusion: negative — all strategies identical
+  result_rationale: 'Pythia filtering 完全 negative：三种策略 within noise（max delta 0.17pp
+    MMLU）。 Worst-case 下审稿人直接 quote："your filtering experiment fails to replicate on
+    a second model, suggesting the Qwen result (exp-006) is model-specific." C3 的
+    scope 从 "general principle" 退化为 "works on Qwen-1.5B with C4 data only"——太窄无法 作为
+    conference contribution。
+
+    '
+  tables:
+  - 'Table: Pythia filtering negative result'
+  figures_description: []
+  analysis: 'Pythia negative result 在 worst-case 下彻底瓦解 C3 的 generalizability。Qwen
+    exp-006 可能是 model-specific artifact（Qwen-1.5B 的特定 tokenizer/architecture 恰好对 binary
+    filtering 敏感）。审稿人不会接受 "C3 validated for one model configuration" 作为 conference
+    contribution。
+
+    '
+- name: arXiv Graduated vs Binary Filtering
+  plan_id: exp-026
+  description: arXiv depth chain (K*=3), 3 strategies × 5 seeds
+  expected_results:
+    graduated_mmlu: 0.5900±0.0011
+    binary_mmlu: 0.5876±0.0004
+    no_filter_mmlu: 0.5899±0.0008
+    conclusion: negative — all identical
+  result_rationale: 'arXiv K*=3 是 C3 的关键测试场——如果 K*=3 则 graduated 应优于 binary（depth
+    3 信息 有增量价值）。结果完全 negative。Worst-case 下这是最致命的 C3 failure：唯一一个 K*>2 的域上，depth-aware
+    filtering 仍然无效。审稿人总结 "K* characterization (C1'') and practical curation (C3) are
+    disconnected — knowing K* doesn''t help you curate data better." 这直接攻击论文的 motivation："why
+    measure K* if it has no downstream utility?"
+
+    '
+  tables:
+  - 'Table: arXiv 3 strategies × MMLU/HellaSwag'
+  figures_description: []
+  analysis: 'arXiv filtering negative 是 worst-case 下的致命证据。Paper 的 story spine 声称 "domain-dependent
+    K* provides actionable curation guidance"，但 K*=3 域上的 curation 完全无效。审稿人在 C3 上的
+    verdict 将是 "insufficient practical contribution"—— 与 worst-case 核心假设完全一致。
+
+    '
+- name: Naturalistic Validation (Common Crawl)
+  plan_id: exp-014
+  description: Common Crawl 2025/2026 snapshot depth prediction + correlation
+  expected_results:
+    status: planned/not_executed
+    predicted_spearman_with_alignscore:
+    - 0.15
+    - 0.3
+    predicted_spearman_with_vocab_richness:
+    - 0.2
+    - 0.35
+    predicted_depth_distribution_mode: 0
+  result_rationale: 'Worst-case 下此实验未执行或结果令人失望：(1) Common Crawl 样本的 predicted depth
+    分布高度偏向 depth 0（大部分 web 文本仍为 human-written），缺少 depth>1 的 ground truth 验证；(2) 与
+    AlignScore 的 correlation 微弱（ρ~0.15-0.30）——depth 预测 与独立质量指标不一致；(3) 无法验证 K* boundary
+    在 wild data 上是否成立（无 ground truth depth labels）。审稿人标注为 "critical missing experiment
+    for ecological validity"。 如果已执行，低 correlation 被解读为 "your lab-measured K* doesn''t
+    transfer to real-world contamination patterns."
+
+    '
+  tables:
+  - 'Table: Predicted depth distribution (if executed)'
+  figures_description:
+  - Depth prediction histogram of CC samples
+  analysis: 'Naturalistic validation 缺失或失败在 worst-case 下是审稿人的主要 concern："all your
+    experiments are in controlled lab settings with clean prompt-chains. You have
+    zero evidence this works on real-world contaminated data." 即使执行了，低 correlation
+    + 缺少 ground truth 也无法消除质疑。
+
+    '
+- name: Code Domain — Mistral-7B (RUNNING, worst-case prediction)
+  plan_id: exp_code_mistral7b
+  description: Mistral-7B Code/Python depth chain, predicted K*=1
+  expected_results:
+    k_star: 1
+    auc_0v1:
+    - 0.91
+    - 0.95
+    auc_1v2:
+    - 0.52
+    - 0.58
+    auc_2v3:
+    - 0.5
+    - 0.53
+    ci_1v2_upper:
+    - 0.55
+    - 0.6
+    jsd_1v2:
+    - 0.003
+    - 0.006
+  result_rationale: 'Mistral C4 已是 K*=1（AUC 1v2=0.5935），Code domain 对 Mistral 更不利：Mistral
+    的 code generation 能力虽优于 Pythia 但仍低于 Qwen/LLaMA code-tuned 变体。Code domain 的 syntactic
+    regularity（indentation, brackets, keywords）使 Mistral 的 code 生成 快速 converge 到 template-like
+    patterns，1v2 信号在一次迭代后即消失。AUC 1v2 预期 0.52-0.58，低于 C4 的 0.5935——Code 的强结构约束加速了信息丧失。Cross-family
+    scorer (Qwen) 可能进一步降低 AUC（如 C4 上 Mistral cross-scorer 从 0.5935 降至 0.5695）。
+
+    '
+  tables:
+  - 'Table: Code domain cross-model K* summary with Mistral=1'
+  figures_description: []
+  analysis: 'Mistral Code K*=1 在 worst-case 下意味着 Code ceiling=2 的证据从 2/3 变为 2/4。 加上
+    Pythia Code K*=1（已确认），Code domain 中 K*=1 的模型（Mistral + Pythia） 与 K*=2 的模型（Qwen-1.5B
+    + LLaMA-8B）形成 2:2 split——无法建立 ceiling=2。
+
+    '
+- name: Code Domain — Qwen-7B (RUNNING, worst-case prediction)
+  plan_id: exp_code_qwen7b
+  description: Qwen2.5-7B Code/Python depth chain, predicted K*=1 or borderline
+  expected_results:
+    k_star: 1
+    auc_0v1:
+    - 0.93
+    - 0.96
+    auc_1v2:
+    - 0.54
+    - 0.6
+    auc_2v3:
+    - 0.5
+    - 0.54
+    ci_1v2_upper:
+    - 0.58
+    - 0.62
+    note: CI may cross θ but point estimate below
+  result_rationale: 'Qwen-7B 在 C4 上 1v2=0.6178（K*=2），但 Code domain 的 generation mode
+    不同：code completion 比 web text continuation 更 constrained（syntax, indentation）。Qwen-7B
+    虽然有 code training data，但 code domain 的 structural regularity 加速 depth signal 消失。预期
+    AUC 1v2=0.54-0.60——point estimate 可能 < θ 或 borderline。如果 CI upper 恰好过 0.60 但 point
+    estimate < 0.60，审稿人将判定 K*=1。Worst-case 下 Qwen-7B Code 的 code competence 不足以在第二代文本中保留
+    distinguishable structure。
+
+    '
+  tables:
+  - 'Table: Qwen-7B C4 vs Code comparison'
+  figures_description: []
+  analysis: 'Qwen-7B Code K*=1 使 Code domain 成为 2/5 K*=2（仅 Qwen-1.5B 和 LLaMA-8B），
+    直接触发 worst-case 的核心假设。Domain ceiling=2 退化为 "two specific models happen to achieve
+    K*=2 on Code"——不是 domain property 而是 model property。审稿人将 Code 和 C4 合并分析：C4 有 Mistral
+    K*=1 exception，Code 有 Mistral+Qwen-7B+Pythia K*=1——中间复杂度域的 K* 是 model-dependent
+    而非 domain-determined。
+
+    '
+- name: Qwen-32B C4 (RUNNING, worst-case prediction)
+  plan_id: exp_32b_c4
+  description: Qwen2.5-32B, C4 depth chain, worst-case prediction
+  expected_results:
+    k_star:
+    - 1
+    - 2
+    auc_0v1:
+    - 0.9
+    - 0.94
+    auc_1v2:
+    - 0.58
+    - 0.62
+    ci_1v2_lower:
+    - 0.57
+    - 0.61
+    note: borderline; may flip to K*=1
+  result_rationale: '0v1 AUC declining trend with scale: 1.5B→0.997, 7B→0.9644, 14B→0.9598。
+    32B 预期 0v1 进一步下降至 0.90-0.94。1v2 AUC 趋势不明确（7B=0.6178, 14B=0.621, scale 不单调），但 32B
+    生成的文本质量更高→depth signal 更弱。Worst-case 下 K*=1 或 borderline K*=2，进一步强化 "K*=2 is a
+    small-model phenomenon" 的审稿人攻击线。
+
+    '
+  tables:
+  - 'Table: Scale trend 1.5B→7B→14B→32B'
+  figures_description:
+  - AUC vs scale trend plot with 32B prediction band
+  analysis: '32B 结果如果 K*=1 或 borderline，审稿人将直接 extrapolate："at 70B+, K*=1 is virtually
+    certain. Your K*=2 finding is limited to ≤14B models and has no relevance to the
+    frontier models that dominate real-world text generation." 这是 scale generalization
+    concern 的 worst-case 实现。
+
+    '
+- name: Qwen Retrain Chain Depth 7
+  plan_id: exp_qwen_retrain_depth7
+  description: Qwen-1.5B retrain chain extended to depth 7
+  expected_results:
+    k_star: 7
+    auc_6v7: 0.641
+    ci_6v7_lower: 0.6376
+  result_rationale: 'Retrain K*=7 跨两个模型家族一致（Qwen 6v7=0.641, Pythia 6v7=0.634）——但 worst-case
+    下审稿人认为这完全是 LoRA artifact："7 rounds of LoRA fine-tuning accumulate vocabulary narrowing
+    and repetition bias that are trivially detectable. This has nothing to do with
+    text-intrinsic information loss." Retrain K*=7 vs prompt K*=2 的 3.5x 差距 进一步证明
+    K* is mechanism-dependent, not data-intrinsic。审稿人可能要求 full fine-tuning（非 LoRA）来排除
+    adapter-specific artifacts——这在计算资源上不可行。
+
+    '
+  tables:
+  - 'Table: Retrain-chain pairwise AUC depth 0-7'
+  figures_description:
+  - Prompt-chain vs retrain-chain K* divergence plot
+  analysis: 'Retrain depth 7 在 worst-case 下被完全 dismissed 为 "LoRA artifact study"。
+    论文将其定位为 "upper bound"，但审稿人质疑 "an upper bound from a different mechanism tells
+    you nothing about the mechanism you claim to study (prompt-chain)."
+
+    '
+- name: Wikipedia Scorer Confound Control
+  plan_id: exp_wiki_scorer_confound + exp_wiki_scorer_confound_1b5
+  description: Cross-family scorer validation on Wikipedia
+  expected_results:
+    k_star_after_control: 1
+    auc_1v2_cross_scorer: 0.587
+    delta_from_same_scorer: -0.024
+  result_rationale: 'Wiki scorer confound confirmed：same-family scorer inflates K*
+    by +1（K*=2→1）。 Worst-case 下审稿人将此作为 systematic concern："if Wikipedia has a +1 scorer
+    bias, how do you know C4 doesn''t have a similar bias? You only tested cross-scorer
+    on a subset of conditions." 论文承认 scorer confound 是 domain-specific，但审稿人 不接受 "absence
+    of evidence is not evidence of absence"——C4 可能有未检测到的 bias。
+
+    '
+  tables:
+  - 'Table: Wiki same-scorer vs cross-scorer K*'
+  figures_description: []
+  analysis: 'Wiki scorer confound 在 worst-case 下从 "transparent disclosure" 变为 "systematic
+    methodology flaw"。审稿人要求所有 domain×model 组合都做 cross-scorer validation （total ~40
+    combos），论文仅完成 ~15，覆盖不足。
+
+    '
+- name: arXiv Cross-Scorer Validation
+  plan_id: exp_arXiv_qwen7b_crossscorer + others
+  description: arXiv cross-family scorer validation
+  expected_results:
+    qwen7b_crossscorer_k_star: 2
+    qwen7b_crossscorer_2v3: 0.5989
+    qwen1b5_crossscorer_k_star: 3
+    llama8b_crossscorer_k_star: 3
+    mistral7b_crossscorer_k_star: 3
+  result_rationale: 'arXiv cross-scorer 揭示 Qwen-7B K*=3→2 drop（2v3=0.5989, just below
+    θ）。 Worst-case 下审稿人指出 "even arXiv K*=3 is not fully scorer-robust: one model drops
+    to K*=2 under cross-scoring. Cross-scorer preservation rate is 3/4=75%, not 100%."
+    这落在 worst-case 指标范围 cross_scorer_kstar_preservation_rate=0.65-0.75 内。审稿人论证 arXiv
+    的 "robust K*=3" 也有 scorer confound 的 shadow。
+
+    '
+  tables:
+  - 'Table: arXiv self-scorer vs cross-scorer comparison'
+  figures_description: []
+  analysis: 'arXiv cross-scorer 在 worst-case 下暴露 75% preservation rate（Qwen-7B drops），
+    比 C4 的 11/12=92% 低。如果 Code domain 也做 cross-scorer，preservation rate 预期 更低（worst-case
+    0.65-0.75）。审稿人总结："scorer independence is domain-dependent and never fully holds,
+    meaning K* is not purely text-intrinsic as claimed."
+
+    '
+- name: Code Domain — Qwen-1.5B
+  plan_id: exp_code_qwen1b5
+  description: Qwen-1.5B Code/Python depth chain
+  expected_results:
+    k_star: 2
+    auc_0v1: 0.9388
+    auc_1v2: 0.7382
+    auc_2v3: 0.53
+    jsd_1v2: 0.0443
+    jsd_2v3: 0.0038
+  result_rationale: 'Qwen-1.5B Code K*=2 with strong margin（1v2=0.7382, +13.8pp above
+    θ），JSD cliff 11.7x at 1v2→2v3。但 worst-case 下此 strong result 被 contextualized：(1)
+    Qwen-1.5B 是 Qwen 家族的最小模型，其 code 能力有限→high 1v2 可能反映 "poor code generation easily
+    detected" 而非 domain property；(2) 仅 2/5 Code models 达到 K*=2，不足以 claim ceiling=2；(3)
+    cross-scorer (Pythia) 确认 K*=2（0.7197）但 margin 下降 1.85pp。
+
+    '
+  tables:
+  - 'Table: Code domain model summary'
+  figures_description:
+  - 'JSD cliff comparison: Code vs C4 pattern difference'
+  analysis: 'Qwen-1.5B Code K*=2 是 Code domain 最强的 data point，但 worst-case 下审稿人 将其与
+    Pythia K*=1 合并看：小模型在 Code 上 K*=1（Pythia）或 K*=2（Qwen）， 取决于 code competence。如果 7B
+    models 也 K*=1，则 Code ceiling=2 的证据 collapses。
+
+    '
+- name: Code Domain — LLaMA-8B
+  plan_id: exp_code_llama8b
+  description: LLaMA-3.1-8B Code/Python depth chain
+  expected_results:
+    k_star: 2
+    auc_0v1: 0.9161
+    auc_1v2: 0.7394
+    auc_2v3: 0.5112
+    jsd_1v2: 0.047
+    jsd_2v3: 0.0035
+  result_rationale: 'LLaMA Code K*=2 cross-family confirmed（1v2=0.7394, scored by
+    Qwen）。但 worst-case 下审稿人注意到 2v3=0.5112 非常低（几乎 random），JSD cliff 13.5x。Code 的 K*=2
+    是 "sharp cliff"（1v2 很高但 2v3 几乎 chance），与 C4 的 gradual decline 不同。 审稿人可能认为 "Code
+    K*=2 simply means gen-1 code is detectable (trivially), but by gen-2 it''s already
+    converged to generic code patterns."
+
+    '
+  tables:
+  - 'Table: LLaMA Code vs C4 comparison'
+  figures_description: []
+  analysis: 'LLaMA Code K*=2 提供 cross-family evidence，但 worst-case 下 sharp cliff pattern
+    被解读为 "trivial gen-1 detection + immediate collapse"——与 C4 的 more nuanced depth
+    signal 不同。审稿人可能质疑 Code 和 C4 是否真的 share ceiling=2 当 signal dynamics 完全不同。
+
+    '
+- name: Code Domain — Pythia-1.4B
+  plan_id: exp_code_pythia1b4
+  description: Pythia-1.4B Code/Python depth chain
+  expected_results:
+    k_star: 1
+    auc_0v1: 0.9592
+    auc_1v2: 0.5983
+    auc_2v3: 0.5215
+    note: 'fold-level 1v2 varies: 3/5 folds > 0.60 but aggregate mean < θ'
+  result_rationale: 'Pythia Code K*=1 reflects code generation competence 不足（The Pile
+    训练，code 占比低）。Worst-case 下审稿人直接引用："3 of 5 folds give 1v2 > 0.60 but the mean is
+    0.5983 — your K* determination is literally a coin flip at the fold level. θ=0.60
+    applied to means (not per-fold) is another methodological choice that favors your
+    narrative." 这加剧 θ cherry-picking 的指控。
+
+    '
+  tables:
+  - 'Table: Pythia Code per-fold breakdown'
+  figures_description: []
+  analysis: 'Pythia Code K*=1 在 worst-case 下与 Mistral Code K*=1（predicted）合并，形成 "3/5
+    Code models at K*=1" 的局面，使 Code ceiling=2 claim 不可持续。
+
+    '
+- name: Paired Statistical Tests for Filtering
+  plan_id: exp_E_paired_stats
+  description: Holm-Bonferroni corrected paired tests for C3
+  expected_results:
+    mmlu_significant_pairs: 8/15
+    hellaswag_significant_pairs: 9/15
+    binary_vs_all_mmlu: all significant
+    graduated_a09_vs_dsir_corrected_p: 0.0523
+  result_rationale: 'MMLU 仅 8/15 pairs significant after Holm-Bonferroni correction（bugfix
+    后从 10/15 降至 8/15）。Worst-case 下审稿人注意到 (1) graduated_a09 vs DSIR corrected p=0.0523
+    不显著——graduated filtering 甚至不能 beat DSIR；(2) binary wins but graduated ≈ DSIR ≈
+    no_filter——depth-aware 的 graduated 方法完全没有优势；(3) Cohen''s d 值很高（>8） 是因为 within-seed
+    variance 极低，不代表 practically large effects。
+
+    '
+  tables:
+  - 'Table: Holm-Bonferroni corrected p-value matrix'
+  figures_description: []
+  analysis: 'Statistical tests 在 worst-case 下支持 binary-ours significance 但彻底否定 graduated
+    filtering。"Binary outperforms" 是 uninteresting（Drayson et al. already showed this），"graduated
+    fails" 是 C3 的 core negative result。高 Cohen''s d + tiny absolute delta = "statistically
+    significant, practically irrelevant"。
+
+    '
+- name: OBD vs Multiclass Comparison (n=500)
+  plan_id: exp_D_obd_n500
+  description: OBD accuracy vs LLM baselines with McNemar tests
+  expected_results:
+    obd_accuracy: 0.38
+    mcnemar_vs_gpt_p: 0.0809
+    mcnemar_vs_claude_p: 0.0693
+    mcnemar_significant: false
+  result_rationale: 'McNemar tests 不显著——OBD 与 frontier LLMs 在 5-class 上无显著差异。Worst-case
+    下 审稿人直接引用："your specialized 15-feature classifier does not significantly outperform
+    GPT-5.5 zero-shot on the task it was designed for." 这从 "baseline comparison" 变为
+    "our method is no better than prompting a frontier model."
+
+    '
+  tables:
+  - 'Table: OBD vs LLM McNemar results'
+  figures_description: []
+  analysis: 'Non-significant McNemar 在 worst-case 下消除了 exp-011 的 positive framing。
+    审稿人看到 OBD=38% vs LLM=33%（p>0.05）会认为 "no meaningful advantage from specialized
+    methodology — just use GPT."
+
+    '
+- name: Aggregate Worst-Case Assessment
+  plan_id: overall
+  description: Cross-experiment synthesis under worst-case scenario
+  expected_results:
+    domain_hierarchy_clean_fit: 78-85%
+    code_ceiling2_support: 2/5 models
+    c4_k2_at_theta060: 8/9
+    c4_k2_at_theta065: ~5/9
+    cross_scorer_preservation: 65-75%
+    c3_validated_scope: Qwen-1.5B C4 binary only
+    c3_depth_aware_advantage: zero (graduated=no_filter everywhere)
+    estimated_reviewer_excitement:
+    - 2.8
+    - 3.2
+    emnlp_main_accept_prob:
+    - 0.05
+    - 0.25
+    emnlp_findings_prob:
+    - 0.3
+    - 0.5
+    aaai_with_70b_data_prob:
+    - 0.25
+    - 0.4
+  result_rationale: 'Worst-case 的核心问题是 "three-front attack"：(1) K*≤3 trivial（审稿人不认为
+    bounded ≤3 是 surprising——"of course models converge quickly, we knew that from
+    model collapse literature"）；(2) C3 全面失败（graduated=no_filter, Pythia negative,
+    arXiv negative） → depth estimation 无 practical value；(3) θ=0.60 cherry-picking
+    + scorer confound + borderline CIs → K*=2 claim 的 statistical robustness 被质疑。三条线交汇时，审稿人
+    的 narrative 是 "this paper measures something (K*) that is neither surprising (≤3)
+    nor useful (C3 fails) nor robust (θ-dependent), and the measurement methodology
+    (15D features) is standard text statistics." Reviewer excitement 2.8-3.2 对应 EMNLP
+    "Borderline Findings to Findings" range——Main 几乎不可能（需要 4.0），Findings 需要 reframe
+    成功。
+
+    '
+  tables:
+  - 'Table: Summary K* across all domains × models'
+  - 'Table: C3 filtering results synthesis'
+  - 'Table: θ-sensitivity summary'
+  figures_description:
+  - 'Grand summary: domain × model K* heatmap with worst-case Code columns'
+  - Reviewer concern mapping to experimental evidence
+  analysis: Reframe 策略在 worst-case 下的可行性评估： (A) Information-theoretic rapid convergence：最可行。放弃
+    "domain ceiling" 作为 predictive framework，转为 descriptive finding "K*≤3 across all
+    tested conditions"。 DPI 理论保证有限但不给上界→实证 ≤3 是 non-trivial bound。但审稿人仍可能认为 model
+    collapse 文献已 implicitly 知道这一点。需要 very strong writing 来 differentiate "first systematic
+    measurement with operational definition" vs "known phenomenon, just quantified."
+    (B) Measurement methodology：次可行。15D features 是 standard text statistics， 审稿人不认为方法论本身是贡献。除非
+    reframe 为 "first reproducible protocol for depth estimation" with open-source
+    toolkit——methodology paper 在 EMNLP Findings 有先例但 excitement 低。 最终评估：worst-case
+    下 EMNLP Main 接收概率 5-25%（需要至少一位 champion reviewer）， Findings 30-50%（如果 reframe
+    成功）。AAAI 2027 backup 有更多时间补充 70B+ 数据 和改进 C3（larger-scale filtering with full fine-tuning），但
+    AAAI 对 NLP-specific methodology 的 appetite 较低。

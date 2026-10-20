@@ -1,0 +1,84 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Machine-generated text detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model collapse and iterative retraining.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data selection and curation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Information-theoretic foundations.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Theoretical Framework}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Prompt-Chain Generation}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Source domains.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Feature Extraction and Classification}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces C4 domain $K^{*}$ across the full model scale range (1B--32B). All models except Mistral-7B achieve $K^{*}\!=\!2$. The 1v2 AUC CI lower exceeds $\theta \!=\!0.60$ in all $K^{*}\!=\!2$ cases, while all 2v3 CI upper values fall below 0.60.}}{4}{table.caption.7}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:c4_full_scale}{{1}{4}{C4 domain $\kstar $ across the full model scale range (1B--32B). All models except Mistral-7B achieve $\kstar \!=\!2$. The 1v2 AUC CI lower exceeds $\theta \!=\!0.60$ in all $\kstar \!=\!2$ cases, while all 2v3 CI upper values fall below 0.60}{table.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Qwen2.5-32B C4 pairwise AUC with bootstrap confidence intervals. $K^{*}\!=\!2$: the 1v2 pair exceeds $\theta \!=\!0.60$ while all subsequent pairs fall below.}}{4}{table.caption.9}\protected@file@percent }
+\newlabel{tab:qwen32b_c4}{{2}{4}{Qwen2.5-32B C4 pairwise AUC with bootstrap confidence intervals. $\kstar \!=\!2$: the 1v2 pair exceeds $\theta \!=\!0.60$ while all subsequent pairs fall below}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}C4 Web Text: $K^{*}\!=\!2$ as the Dominant Mode}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:c4}{{4.1}{4}{C4 Web Text: $\kstar \!=\!2$ as the Dominant Mode}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{32B scale validation.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scale trend analysis.}{4}{section*.10}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Scale trend analysis for C4. Binary detection (0v1) weakens with scale, but the $K^{*}$ boundary pair (1v2) remains stable. Mistral-7B excluded from the 7--8B bucket due to its domain-specific competence failure ($K^{*}\!=\!1$).}}{5}{table.caption.11}\protected@file@percent }
+\newlabel{tab:scale_trend}{{3}{5}{Scale trend analysis for C4. Binary detection (0v1) weakens with scale, but the $\kstar $ boundary pair (1v2) remains stable. Mistral-7B excluded from the 7--8B bucket due to its domain-specific competence failure ($\kstar \!=\!1$)}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Code domain cross-model summary. Four of five models achieve the domain ceiling $K^{*}\!=\!2$. Pythia-1.4B's $K^{*}\!=\!1$ reflects insufficient code pretraining (The Pile), not a domain property. JSD cliff ratio measures signal collapse sharpness at the $K^{*}$ boundary.}}{5}{table.caption.14}\protected@file@percent }
+\newlabel{tab:code_crossmodel}{{4}{5}{Code domain cross-model summary. Four of five models achieve the domain ceiling $\kstar \!=\!2$. Pythia-1.4B's $\kstar \!=\!1$ reflects insufficient code pretraining (The Pile), not a domain property. JSD cliff ratio measures signal collapse sharpness at the $\kstar $ boundary}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{Decoding strategy invariance.}{5}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Code Domain: Ceiling$\,=\,$2 Across Architectures}{5}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:code}{{4.2}{5}{Code Domain: Ceiling$\,=\,$2 Across Architectures}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-architecture validation.}{5}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mistral-7B on Code.}{5}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Qwen-7B on Code: scale invariance within family.}{5}{section*.18}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Mistral-7B Code pairwise AUC with bootstrap CI. The sharp JSD collapse from the 1v2 pair (0.0392) to the 2v3 pair (0.0035) marks the $K^{*}\!=\!2$ boundary.}}{6}{table.caption.16}\protected@file@percent }
+\newlabel{tab:mistral_code}{{5}{6}{Mistral-7B Code pairwise AUC with bootstrap CI. The sharp JSD collapse from the 1v2 pair (0.0392) to the 2v3 pair (0.0035) marks the $\kstar \!=\!2$ boundary}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Mistral-7B cross-domain $K^{*}$ ladder. A single model produces three different $K^{*}$ values across three domains, each matching the respective domain ceiling. C4 $K^{*}\!=\!1$ reflects web text domain competence insufficiency (one-wash), not a model-level limitation.}}{6}{table.caption.17}\protected@file@percent }
+\newlabel{tab:mistral_ladder}{{6}{6}{Mistral-7B cross-domain $\kstar $ ladder. A single model produces three different $\kstar $ values across three domains, each matching the respective domain ceiling. C4 $\kstar \!=\!1$ reflects web text domain competence insufficiency (one-wash), not a model-level limitation}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {paragraph}{Qwen-7B cross-domain consistency.}{6}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}arXiv: Structured Text Extends $K^{*}$ to 3}{6}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:arxiv}{{4.3}{6}{arXiv: Structured Text Extends $\kstar $ to 3}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Wikipedia: One-Wash at $K^{*}\!=\!1$}{6}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:wiki}{{4.4}{6}{Wikipedia: One-Wash at $\kstar \!=\!1$}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Qwen-7B Code pairwise AUC with bootstrap CI. $K^{*}\!=\!2$, consistent with Qwen-1.5B.}}{7}{table.caption.19}\protected@file@percent }
+\newlabel{tab:qwen7b_code}{{7}{7}{Qwen-7B Code pairwise AUC with bootstrap CI. $\kstar \!=\!2$, consistent with Qwen-1.5B}{table.caption.19}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Qwen family Code domain scale invariance. $K^{*}\!=\!2$ is identical at both scales; 1v2 AUC differs by only 1.6pp.}}{7}{table.caption.20}\protected@file@percent }
+\newlabel{tab:qwen_code_scale}{{8}{7}{Qwen family Code domain scale invariance. $\kstar \!=\!2$ is identical at both scales; 1v2 AUC differs by only 1.6pp}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Domain Hierarchy Summary}{7}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:hierarchy}{{4.5}{7}{Domain Hierarchy Summary}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Cross-Model Transfer}{7}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:transfer}{{4.6}{7}{Cross-Model Transfer}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Analysis}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}The Domain Ceiling Framework}{7}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:domain_ceiling}{{5.1}{7}{The Domain Ceiling Framework}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Qwen-7B cross-domain consistency. The model reaches the domain ceiling in all three domains, with $K^{*}$ entirely determined by domain structure.}}{8}{table.caption.22}\protected@file@percent }
+\newlabel{tab:qwen7b_crossdomain}{{9}{8}{Qwen-7B cross-domain consistency. The model reaches the domain ceiling in all three domains, with $\kstar $ entirely determined by domain structure}{table.caption.22}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Domain hierarchy of $K^{*}$. Domain structural complexity determines the ceiling; model competence determines whether the ceiling is reached. All ``anomalies'' (Mistral C4, Pythia Code, OLMo arXiv) are explained by domain-specific competence failure.}}{8}{table.caption.23}\protected@file@percent }
+\newlabel{tab:domain_hierarchy}{{10}{8}{Domain hierarchy of $\kstar $. Domain structural complexity determines the ceiling; model competence determines whether the ceiling is reached. All ``anomalies'' (Mistral C4, Pythia Code, OLMo arXiv) are explained by domain-specific competence failure}{table.caption.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Representation Dependence}{8}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Generation Mode as a Confound}{8}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Naturalistic Validation on Common Crawl}{8}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:cc_validation}{{5.4}{8}{Naturalistic Validation on Common Crawl}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{External correlates.}{8}{section*.25}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Common Crawl predicted depth distribution with external correlates. Predicted depth correlates negatively with semantic coherence (AlignScore) and vocabulary richness (type-token ratio), consistent with recursive information loss.}}{9}{table.caption.24}\protected@file@percent }
+\newlabel{tab:cc_depth}{{11}{9}{Common Crawl predicted depth distribution with external correlates. Predicted depth correlates negatively with semantic coherence (AlignScore) and vocabulary richness (type-token ratio), consistent with recursive information loss}{table.caption.24}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Spearman correlation matrix for Common Crawl depth predictions and text quality indicators. All correlations significant at $p < 0.001$ ($n = 50{,}000$).}}{9}{table.caption.26}\protected@file@percent }
+\newlabel{tab:cc_correlations}{{12}{9}{Spearman correlation matrix for Common Crawl depth predictions and text quality indicators. All correlations significant at $p < 0.001$ ($n = 50{,}000$)}{table.caption.26}{}}
+\@writefile{toc}{\contentsline {paragraph}{Domain-specific depth prevalence.}{9}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}$K^{*}$-Aware Data Curation}{9}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:curation}{{5.5}{9}{$\kstar $-Aware Data Curation}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Threshold Sensitivity}{9}{subsection.5.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Common Crawl depth distribution by content category. Social/UGC content shows the highest synthetic contamination rate, while technical documentation remains predominantly human-written.}}{10}{table.caption.28}\protected@file@percent }
+\newlabel{tab:cc_domains}{{13}{10}{Common Crawl depth distribution by content category. Social/UGC content shows the highest synthetic contamination rate, while technical documentation remains predominantly human-written}{table.caption.28}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{10}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The one-wash laundering effect.}{10}{section*.29}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why is $K^{*}$ so small?}{10}{section*.30}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for model collapse.}{10}{section*.31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{10}{section*.32}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{10}{section.7}\protected@file@percent }
+\bibstyle{plainnat}
+\bibdata{references}
+\gdef \@abspage@last{11}

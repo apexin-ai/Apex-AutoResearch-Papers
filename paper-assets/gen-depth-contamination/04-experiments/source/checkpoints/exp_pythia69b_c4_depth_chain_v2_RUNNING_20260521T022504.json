@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp_pythia69b_c4_depth_chain_v2",
+  "project": "gen-depth-contamination",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:23:27.242Z",
+    "updated_at": "2026-05-21T02:25:04.579Z",
+    "hypothesis": "Pythia-6.9B 在 C4 上的 K*=2，与其他 ≥7B 模型一致，验证 K*=2 不依赖 Qwen 家族。使用 Qwen-1.5B scorer 以匹配主表（D095）。",
+    "parent": "exp_pythia69b_c4_depth_chain",
+    "spec": {
+      "model_name": "EleutherAI/pythia-6.9b",
+      "model_path": "/root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-6.9b/snapshots/c0e3eee36dc47af0c49f361c74cfe459c09f7f23",
+      "scorer_path": "/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B",
+      "data_path": "data/exp_pythia69b_c4 (C4 seed from run_pipeline.py)",
+      "data_count": 5000,
+      "seed": "default",
+      "generation_mode": "continuation",
+      "no_sample": true,
+      "max_depth": 5,
+      "batch_size": 4,
+      "feat_batch_size": 2,
+      "num_samples": 5000,
+      "command": "python scripts/run_pipeline.py --model_path .../pythia-6.9b --scorer_path .../Qwen2___5-1___5B --num_samples 5000 --max_depth 5 --generation_mode continuation --no_sample",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "391937",
+      "log_path": "~/runs/gen-depth-contamination/exp_pythia69b_c4_depth_chain_v2.log",
+      "submitted_at": "2026-05-21T02:23:38Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_source": "N/A (full pipeline re-run, not eval)",
+      "eval_data": "N/A (full pipeline: seed→generation→features→OBD)"
+    }
+  },
+  "timestamp": "2026-05-21T02:25:04.908145+00:00",
+  "trigger": "update_registry"
+}

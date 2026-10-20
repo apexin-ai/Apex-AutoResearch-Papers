@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ff539207d072439e11c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis lofo olmo update",
+  "task_key": "worker_analysis_lofo_olmo_update_20260521T152740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_lofo_olmo_update_20260521T152740_result.json",
+    "occurrence": 1,
+    "bytes": 681,
+    "sha256": "bef3e94aa2be23c4d4230060b70993f083afe7c3aae28a4fed338e87561d8407"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整重算结果已写入 `artifacts/lofo_olmo_recalc.md`。\n\n**核心结论**：Agreement 从 8/9 (89%) 暴跌至 2/9 (22%)，不宜直接更新 .tex。\n\n**原因**：OLMo AUC_1v2=0.508 接近随机，在 4/5 个 fold 中成为 min(AUC_1v2)，将 θ̂ 从 ~0.59 拉低到 ~0.53-0.55。低 θ̂ 导致大部分模型被预测为 K*_θ̂≥3（因为两个 AUC 都超过了被压低的阈值），而 K*_0.60 仍给 K*=2 或 1，产生系统性 mismatch。\n\n**决策选项**（详见文件）：\n1. 排除 K*=1 模型出 LOFO 训练集\n2. 用 median 代替 min\n3. 如实报告 22%，加文字说明\n4. 其他方案\n\n需要 Director 决定处理方式。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-lofo-olmo-update.md"
+}

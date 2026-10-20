@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp_gemma2b_10k",
+  "project": "gen-depth-contamination",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:00:38.686Z",
+    "updated_at": "2026-05-22T18:01:00.507Z",
+    "hypothesis": "Gemma-2-2B 10K sample-size robustness: 5K borderline K*=1 (1v2 AUC=0.5981, just below θ=0.60) should remain K*=1 at 10K, confirming between-sample stability for borderline verdicts. Adds a K*=1 datapoint to the 10K robustness table (currently only K*=2 configs).",
+    "spec": {
+      "command": "python3 scripts/run_pipeline.py --model_path gemma-2-2b --num_samples 10000 --max_depth 5 --generation_mode continuation",
+      "server": "cqa1-22115",
+      "gpu": "cuda:3 (RTX PRO 6000 Blackwell 96GB)",
+      "pid": "exp_gemma2b_10k",
+      "log_path": "results/exp_gemma2b_10k/run.log",
+      "data_path": "data/exp_gemma2b_10k",
+      "data_count": 10000,
+      "model_name": "google/gemma-2-2b",
+      "seed": 42,
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-22T18:01:00.821602+00:00",
+  "trigger": "update_registry"
+}

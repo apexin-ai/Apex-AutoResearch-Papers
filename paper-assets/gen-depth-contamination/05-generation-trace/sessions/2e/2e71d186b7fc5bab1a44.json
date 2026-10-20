@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e71d186b7fc5bab1a44",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops cloud 14b readiness",
+  "task_key": "worker_ops_cloud_14b_readiness_20260517T164114",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cloud_14b_readiness_20260517T164114_result.json",
+    "occurrence": 1,
+    "bytes": 1072,
+    "sha256": "26adf0e2a21263eb4c1f7402a95a47326f4abfe6fb7c976bed25fa298509d253"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n### 模型状态\n| 模型 | 路径 | 大小 | 状态 |\n|------|------|------|------|\n| Qwen2.5-1.5B | `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B/` | 2.9GB | tokenizer 可加载 |\n| Qwen2.5-1.5B-Instruct | `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B-Instruct/` | 2.9GB | tokenizer 可加载 |\n| Qwen2.5-7B | `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B/` | 15GB | tokenizer 可加载 |\n| **Qwen2.5-14B** | 不存在 | — | **未下载** |\n| **Qwen2.5-32B** | 不存在 | — | **未下载** |\n\n### 其他状态\n- **PATH**: 已修复，`/root/miniconda3/bin` 写入 `.bashrc`\n- **run_pipeline.py**: 可用，`--help` 正常输出。默认用 `Qwen2.5-1.5B-Instruct` 做生成，`--scorer_path` 可选独立 scorer\n- **下载进程**: PID 4570/4571/4496 全部已退出，14B 和 32B 从未成功下载（服务器上只下载到了 7B）\n- **磁盘**: 250GB 中已用 91GB，剩余 **160GB**\n\n### 需要决策\n14B 和 32B 模型需要重新下载（14B ~28GB，32B ~65GB，空间够）。是否现在启动下载？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cloud-14b-readiness.md"
+}

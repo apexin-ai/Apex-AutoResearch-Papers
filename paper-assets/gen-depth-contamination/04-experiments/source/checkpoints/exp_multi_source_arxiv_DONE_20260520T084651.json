@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_multi_source_arxiv",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:46:18.107Z",
+    "updated_at": "2026-05-20T08:46:51.345Z",
+    "hypothesis": "Multi-source OBD K* on arXiv domain preserves domain ceiling K*=3 when mixing 3 generators (Qwen/Pythia/LLaMA-8B) with unified Qwen2.5-1.5B scorer, consistent with single-source arXiv K*=3 and higher than C4 multi-source K*=2, confirming domain hierarchy in multi-source setting.",
+    "conclusion": "success",
+    "spec": {
+      "command": "python scripts/run_multi_source_arxiv.py",
+      "server": "cqa1-22115",
+      "data_path": "data/exp_024_arxiv + data/exp_025_pythia_arxiv + data/exp_arXiv_llama8b",
+      "data_count": 19800,
+      "model_name": "OBD-LightGBM-15D",
+      "seed": 42,
+      "checkpoint_path": "results/exp_multi_source_arxiv/",
+      "log_path": "results/exp_multi_source_arxiv/summary.json"
+    },
+    "completed_at": "2026-05-20T08:46:51.345Z"
+  },
+  "timestamp": "2026-05-20T08:46:51.789017+00:00",
+  "trigger": "update_registry"
+}

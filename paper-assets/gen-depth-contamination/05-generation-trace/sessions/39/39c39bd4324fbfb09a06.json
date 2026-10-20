@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39c39bd4324fbfb09a06",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code deberta c4 1b5 prep",
+  "task_key": "worker_code_deberta-c4-1b5-prep_20260519T202226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_deberta-c4-1b5-prep_20260519T202226_result.json",
+    "occurrence": 1,
+    "bytes": 2153,
+    "sha256": "92fc134e14b7fc989e5e91504101f08d80047fa912f960c8db97dafdee0cf322"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SSH 仍然无法连接。AutoDL 实例可能已重启，端口已变更。\n\n**当前状态：**\n\n脚本已完成，路径：`scripts/run_deberta_c4_1b5.py`\n\n**脚本功能：**\n- `--config` 选择 qwen_rw / pythia_greedy / qwen_cont256\n- `--gpu` 指定 GPU（默认 0，配合 `CUDA_VISIBLE_DEVICES` 使用）\n- `--dry_run` 模式：只加载数据 + 模型 + 跑 1 个 batch 验证\n- AMP fp16 加速\n- 5-fold GroupKFold (group=doc_id)\n- 保存 `.npz` OOF predictions (doc_id, true_depth, pred_probs[6])\n- Pairwise AUC + Bootstrap 95% CI (10000 resamples, cluster by doc_id) + F1@0.50\n- K* = max k where CI_lower(k vs k+1) > 0.60\n- 自动搜索 LightGBM baseline 输出对比表\n\n**无法完成的步骤：**\n- SSH 连接 cqa1-22115 失败（\"Error reading SSH protocol banner\"），无法部署和 dry-run 验证\n- 这是 AutoDL 实例重启后 SSH 端口变更的典型表现，请去 AutoDL 控制台确认新的 SSH 端口并更新 `~/.ssh/config`\n\n**SSH 恢复后的部署命令：**\n```bash\n# 部署脚本\nscp scripts/run_deberta_c4_1b5.py cqa1-22115:/root/autodl-tmp/gen-depth-contamination/scripts/\n\n# 创建输出目录\nssh cqa1-22115 \"mkdir -p /root/autodl-tmp/gen-depth-contamination/results/exp_deberta_c4_1b5\"\n\n# Dry-run 验证 (用 cuda:1)\nssh cqa1-22115 \"cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=1 python scripts/run_deberta_c4_1b5.py --config qwen_rw --gpu 0 --dry_run\"\n```\n\n**训练启动命令（cross-transfer 完成后）：**\n```bash\ncd /root/autodl-tmp/gen-depth-contamination\nCUDA_VISIBLE_DEVICES=1 nohup python scripts/run_deberta_c4_1b5.py --config qwen_rw --gpu 0 > results/exp_deberta_c4_1b5/qwen_rw.log 2>&1 &\nCUDA_VISIBLE_DEVICES=2 nohup python scripts/run_deberta_c4_1b5.py --config pythia_greedy --gpu 0 > results/exp_deberta_c4_1b5/pythia_greedy.log 2>&1 &\nCUDA_VISIBLE_DEVICES=3 nohup python scripts/run_deberta_c4_1b5.py --config qwen_cont256 --gpu 0 > results/exp_deberta_c4_1b5/qwen_cont256.log 2>&1 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-deberta-c4-1b5-prep.md"
+}

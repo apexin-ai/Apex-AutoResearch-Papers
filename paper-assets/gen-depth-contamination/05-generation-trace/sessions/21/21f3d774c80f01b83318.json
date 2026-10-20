@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21f3d774c80f01b83318",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp gemma27b c4",
+  "task_key": "worker_code_exp_gemma27b_c4_20260524T082950",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_gemma27b_c4_20260524T082950_result.json",
+    "occurrence": 1,
+    "bytes": 2416,
+    "sha256": "ac1ebd30972487eb8e1652e3ca61c3f62b0948c8cfbbd3fb3a7af483e0054a1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "一切就绪。以下是完整报告：\n\n---\n\n## 环境与数据状态\n\n| 项目 | 状态 |\n|------|------|\n| **模型** | Gemma-2-27B 已下载 (102GB at `/root/autodl-tmp/.hf_cache/google/gemma-2-27b/`) |\n| **GPU** | 4× RTX PRO 6000 Blackwell 98GB，全部空闲 |\n| **磁盘** | `/root/autodl-tmp` 101GB 可用 |\n| **深度链数据** | 已生成完毕 (`data/exp_gemma27b_c4/depth_{0-5}.jsonl`, 5K docs × 6 depths) |\n| **自评特征** | 已提取 (`data/exp_gemma27b_c4/features.csv`, 30K rows) |\n| **Cross-scorer 特征** | 已提取 (`data/exp_gemma27b_c4_qwen_scorer/features.csv`, 30K rows) |\n\n## 已有实验结果\n\n**Self-scorer (Gemma-27B)** — K\\*=2:\n| Pair | AUC | 判定 |\n|------|-----|------|\n| 0v1 | 0.9695 | 可区分 |\n| 1v2 | 0.6196 | 可区分 (>0.60) |\n| 2v3 | 0.5388 | 不可区分 |\n| 3v4 | 0.5069 | ~random |\n| 4v5 | 0.5124 | ~random |\n\n**Cross-scorer (Qwen-1.5B-Instruct)** — K\\*=1:\n| Pair | AUC | 判定 |\n|------|-----|------|\n| 0v1 | 0.8874 | 可区分 |\n| 1v2 | **0.5894** | 不可区分 (<0.60) |\n| 2v3 | 0.5150 | ~random |\n\n## 缺失部分\n\nBootstrap CI + 置换检验尚未计算。1v2 cross-scorer AUC=0.5894 距阈值 0.60 很近，bootstrap CI 可能横跨 0.60 — 这是 K\\*=2 vs K\\*=1 的关键判定。\n\n## 新脚本\n\n已创建 `scripts/run_gemma27b_depth.py`，支持以下模式：\n\n```bash\n# 完整流程（生成 + 自评 + cross-score + bootstrap CI）\npython scripts/run_gemma27b_depth.py\n\n# 跳过生成和 cross-scoring，直接跑 bootstrap CI（推荐，因为数据已有）\npython scripts/run_gemma27b_depth.py --skip_generation --skip_cross_scoring\n\n# 只跑 cross-scorer 的 bootstrap CI\npython scripts/run_gemma27b_depth.py --cross_only --skip_cross_scoring\n\n# 只跑 self-scorer 的 bootstrap CI\npython scripts/run_gemma27b_depth.py --skip_generation --self_only\n```\n\n**推荐运行方式**：数据和特征已齐全，直接跑 bootstrap CI 即可，无需重新生成，预计 5-10 分钟：\n\n```bash\ncd /root/autodl-tmp/gen-depth-contamination\npython scripts/run_gemma27b_depth.py --skip_generation --skip_cross_scoring\n```\n\n## 注意\n\n旧脚本 `run_gemma27b_c4.sh` 的 Phase 2 cross-scoring 因传了无效参数 `--seed 42` 而失败（run_pipeline.py 不支持该参数）。Cross-scorer 结果是后来由其他途径补跑的。新脚本已修正这个问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-gemma27b-c4.md"
+}

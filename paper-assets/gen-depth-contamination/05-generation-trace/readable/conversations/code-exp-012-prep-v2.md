@@ -1,0 +1,1391 @@
+# code exp 012 prep v2
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 47
+- **Recorded user turns:** 0
+- **Tool calls:** 23
+- **Original source:** `logs/chats/worker_code_exp_012_prep_v2_20260515T124303.jsonl`
+- **Structured JSON:** [`ae19db3cd8c393512e75.json`](../../sessions/ae/ae19db3cd8c393512e75.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+47 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T12:46:51.393466+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T12:46:51.393819+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T12:46:51.394016+00:00_
+
+called mcp__agent-ml-research__detect_image
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "tool_args": {
+    "server": "westc-26893",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T12:46:51.394151+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "find /root/autodl-tmp/gen-depth-contamination -maxdepth 3 -type f -name \"*.jsonl\" -o -name \"*.json\" -o -name \"*.csv\" -o -name \"*.parquet\" -o -name \"*.pkl\" -o -name \"*.npy\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westc-26893",
+    "command": "find /root/autodl-tmp/gen-depth-contamination -maxdepth 3 -type f -name \"*.jsonl\" -o -name \"*.json\" -o -name \"*.csv\" -o -name \"*.parquet\" -o -name \"*.pkl\" -o -name \"*.npy\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T12:46:51.394276+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "ls -la /root/autodl-tmp/gen-depth-contamination/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westc-26893",
+    "command": "ls -la /root/autodl-tmp/gen-depth-contamination/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T12:46:51.394419+00:00_
+
+{"result":"{\n  \"detected\": false,\n  \"status\": \"unknown\",\n  \"skip_base_setup\": false,\n  \"message\": \"No image marker file found. Use traditional env-setup flow.\"\n}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T12:46:51.394625+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/data/depth_0.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/depth_1.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/depth_2.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/depth_3.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/depth_4.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/depth_5.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/features.csv\\n/root/autodl-tmp/gen-depth-contamination/data_v1_right_padding/depth_0.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data_v1_right_padding/depth_1.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data_v1_right_padding/depth_2.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data_v1_right_padding/depth_3.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data_v1_right_padding/depth_4.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data_v1_right_padding/depth_5.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data_v1_right_padding/features.csv\\n/root/autodl-tmp/gen-depth-contamination/results_v1_right_padding/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results_v1_right_padding/jsd.json\\n/root/autodl-tmp/gen-depth-contamination/results_v1_right_padding/ordinal_results.json\\n/root/autodl-tmp/gen-depth-contamination/results_v1_right_padding/feature_importance.json\\n/root/autodl-tmp/gen-depth-contamination/results/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/jsd.json\\n/root/autodl-tmp/gen-depth-contamination/results/ordinal_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/feature_importance.json\\n/root/autodl-tmp/gen-depth-contamination/data_exp001_pythia/depth_0.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data_exp001_pythia/depth_1.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data_exp001_pythia/depth_2.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data_exp001_pythia/depth_3.jsonl\\n/root/autodl-tmp/gen-depth-contamin
+…[truncated 6414 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T12:46:51.394848+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 152\\ndrwxr-xr-x 32 root root  4096 May 15 18:55 .\\ndrwxr-xr-x  5 root root    85 May 12 19:36 ..\\ndrwxr-xr-x  4 root root  4096 May 15 20:38 artifacts\\ndrwxr-xr-x  2 root root   184 May 13 03:04 data\\ndrwxr-xr-x  2 root root   184 May 13 07:13 data_exp001_pythia\\ndrwxr-xr-x  2 root root   152 May 13 10:28 data_exp002_olmo\\ndrwxr-xr-x  2 root root   184 May 13 18:03 data_exp003_greedy\\ndrwxr-xr-x  2 root root   184 May 13 21:27 data_exp003_nuc09\\ndrwxr-xr-x  2 root root   184 May 14 00:52 data_exp003_t07\\ndrwxr-xr-x  2 root root   184 May 14 04:17 data_exp003_t12\\ndrwxr-xr-x  2 root root    35 May 15 18:56 data_exp004_qwen7b\\ndrwxr-xr-x  2 root root   184 May 13 13:58 data_exp017_qwen_cont\\ndrwxr-xr-x  2 root root   184 May 12 23:13 data_v1_right_padding\\ndrwxr-xr-x  3 root root    29 May 12 23:33 data_v2_left_padding_bad_feat\\ndrwxr-xr-x  3 root root    27 May 15 15:47 docs\\n-rw-r--r--  1 root root 75786 May 15 20:43 exp004_run.log\\ndrwxr-xr-x  2 root root   124 May 14 07:49 figures\\n-rw-r--r--  1 root root  6616 May 14 07:49 gen_figures.py\\ndrwxr-xr-x  2 root root    48 May 15 17:16 logs\\ndrwxr-xr-x  4 root root    46 May 14 08:02 outputs\\ndrwxr-xr-x  2 root root   149 May 13 03:04 results\\ndrwxr-xr-x  2 root root   149 May 13 07:13 results_exp001_pythia\\ndrwxr-xr-x  2 root root   149 May 13 10:29 results_exp002_olmo\\ndrwxr-xr-x  2 root root   149 May 13 18:03 results_exp003_greedy\\ndrwxr-xr-x  2 root root   149 May 13 21:28 results_exp003_nuc09\\ndrwxr-xr-x  2 root root   149 May 14 00:53 results_exp003_t07\\ndrwxr-xr-x  2 root root   149 May 14 04:17 results_exp003_t12\\ndrwxr-xr-x  2 root root     6 May 15 18:55 results_exp004_qwen7b\\ndrwxr-xr-x  2 root root   115 May 13 10:15 results_exp005\\ndrwxr-xr-x  2 root root   188 May 13 14:18 results_exp005_4model\\ndrwxr-xr-x  2 root root   141 May 13 10:39 results_exp005_degradation\\ndrwxr-xr-x  2 root root   125 May 13 13:58 res
+…[truncated 307 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T12:46:51.395075+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "head -3 /root/autodl-tmp/gen-depth-contamination/data/depth_0.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westc-26893",
+    "command": "head -3 /root/autodl-tmp/gen-depth-contamination/data/depth_0.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T12:46:51.395267+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "head -3 /root/autodl-tmp/gen-depth-contamination/data/depth_3.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westc-26893",
+    "command": "head -3 /root/autodl-tmp/gen-depth-contamination/data/depth_3.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T12:46:51.395452+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"text\\\": \\\"The woman who died after falling from a bridge over the A21 has been identified as a Sevenoaks mum.\\\\nMarta Kendle, 37, fell from the Gracious Lane bridge on the morning of February 19.\\\\nPolice were called to the carriageway around 6.10am and the road was promptly closed in both directions.\\\\nDespite paramedics best efforts, Marta, who was originally from Poland, was pronounced dead at the scene.\\\\nKent and Medway Coroners office have confirmed an inquest into her death will open on Wednesday (February 27).\\\\nTributes to the mum were left at the scene and on social media.\\\\nFriend, Jodi Cahill posted on Facebook: \\\\\\\"I will certainly remember you. I am sorry we did not see how lost and alone you felt.\\\\n\\\\\\\"Be at peace dear Marta.\\\\\\\"\\\\nA floral tribute left at the scene said goodbye to the \\\\\\\"beautiful and kind soul\\\\\\\".\\\\nIt read: \\\\\\\"To a beautiful and kind soul, we are sorry we didn&apos;t see your pain. We will miss you always.\\\\n\\\\\\\"Rest in peace Marta, Love from Lorraine, Colin and family.\\\\\\\"\\\\nThe inquest will take place at the Archbishop&apos;s Palace in Maidstone and will examine\\\", \\\"doc_id\\\": 0}\\n{\\\"text\\\": \\\"messaging system designed as a plugin-based system.\\\\nDoubtless the kopete people would disagree with me here, but I'd say that their project was utterly redundant. What advantages does kopete bring that could not have been submitted to gaim itself? Why go to the time and effort to independently develop two programs which do virtually the same thing?\\\\nNow there are other, significant differences. Gaim uses the GTK+ toolkit. Kopete uses Qt. Gaim is primarily C, Kopete is C++. In fact Kopete is fairly tightly bounded to KDE, whereas I think Gaim is not so quite involved with Gnome.\\\\nSo we can reduce this redundancy problem to the problem of two desktops, if it is a problem. I'm not sure it is, after a
+…[truncated 1581 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T12:46:51.395666+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/pairwise_auc.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westc-26893",
+    "command": "cat /root/autodl-tmp/gen-depth-contamination/results/pairwise_auc.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T12:46:51.395864+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results_exp001_pythia/pairwise_auc.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westc-26893",
+    "command": "cat /root/autodl-tmp/gen-depth-contamination/results_exp001_pythia/pairwise_auc.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T12:46:51.396051+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"text\\\": \\\"An accomplished pianist from Paris passed away this afternoon after falling ill backstage while performing at a prestigious concert hall. The 45-year-old musician had been experiencing unexplained symptoms like fatigue and dizziness for weeks prior to the show. Her family members were notified instantly upon discovering their loved one's condition deteriorating rapidly.\\\\n\\\\nEmergency services arrived swiftly to render emergency assistance, which proved insufficient due to the severity of her underlying health issues. She suffered extensive brain trauma and required urgent neurosurgical intervention, but it was too late—their efforts proved futile. The tragic event occurred at 8 PM today, marking the sudden end to a promising professional career and personal life.\\\\n\\\\nAmong those mourning her loss, friends, colleagues, and fans left heartfelt tributes expressing regret over her untimely demise. Comments included phrases like “she was a true inspiration” and “her music will forever live on.” Authorities announced an inquest into the circumstances surrounding the musician's death, focusing particularly on the state of preparation and safety protocols ahead of large public gatherings.\\\\n\\\\nMedia outlets covering news extensively highlighted her remarkable achievements—winning several international competitions under the age of 25—and detailed her enduring influence in the contemporary classical music scene. Thousands reached out online for support, offering condolence messages via social networks\\\", \\\"doc_id\\\": 0}\\n{\\\"text\\\": \\\"A software development firm named Synthesis Technologies has unveiled a cutting-edge interface tool dubbed \\\\\\\"SoundScript.\\\\\\\" This innovative platform is designed to streamline the creation and composition of musical scores across diverse genres seamlessly, offering unparalleled flexibility and control over audio production.\\\\n\\\\nSy
+…[truncated 3122 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T12:46:51.396215+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results_exp002_olmo/pairwise_auc.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westc-26893",
+    "command": "cat /root/autodl-tmp/gen-depth-contamination/results_exp002_olmo/pairwise_auc.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T12:46:51.396347+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results_exp017_qwen_cont/pairwise_auc.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westc-26893",
+    "command": "cat /root/autodl-tmp/gen-depth-contamination/results_exp017_qwen_cont/pairwise_auc.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T12:46:51.396487+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.9956,\\n    \\\"1v2\\\": 0.6957,\\n    \\\"2v3\\\": 0.5893,\\n    \\\"3v4\\\": 0.5434,\\n    \\\"4v5\\\": 0.5343\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.9965,\\n      0.9954,\\n      0.9957,\\n      0.9954,\\n      0.995\\n    ],\\n    \\\"1v2\\\": [\\n      0.7019,\\n      0.6987,\\n      0.6865,\\n      0.7038,\\n      0.6878\\n    ],\\n    \\\"2v3\\\": [\\n      0.5963,\\n      0.5911,\\n      0.5846,\\n      0.6051,\\n      0.5693\\n    ],\\n    \\\"3v4\\\": [\\n      0.5367,\\n      0.5388,\\n      0.5465,\\n      0.5514,\\n      0.5438\\n    ],\\n    \\\"4v5\\\": [\\n      0.5336,\\n      0.5444,\\n      0.5302,\\n      0.5197,\\n      0.5434\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.95}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T12:46:51.396617+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "ls /root/autodl-tmp/gen-depth-contamination/scripts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westc-26893",
+    "command": "ls /root/autodl-tmp/gen-depth-contamination/scripts/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T12:46:51.396757+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.9932,\\n    \\\"1v2\\\": 0.6539,\\n    \\\"2v3\\\": 0.5515,\\n    \\\"3v4\\\": 0.5153,\\n    \\\"4v5\\\": 0.5135\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.9936,\\n      0.9934,\\n      0.9934,\\n      0.9919,\\n      0.9938\\n    ],\\n    \\\"1v2\\\": [\\n      0.649,\\n      0.6435,\\n      0.6589,\\n      0.655,\\n      0.6629\\n    ],\\n    \\\"2v3\\\": [\\n      0.5452,\\n      0.5714,\\n      0.5548,\\n      0.5298,\\n      0.5561\\n    ],\\n    \\\"3v4\\\": [\\n      0.5131,\\n      0.5045,\\n      0.528,\\n      0.5096,\\n      0.5213\\n    ],\\n    \\\"4v5\\\": [\\n      0.5027,\\n      0.5235,\\n      0.5072,\\n      0.5204,\\n      0.5137\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T12:46:51.396948+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "wc -l /root/autodl-tmp/gen-depth-contamination/data/depth_0.jsonl /root/autodl-tmp/gen-depth-contamination/data/depth_1.jsonl /root/autodl-tmp/gen-depth-contamination/data/depth_5.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westc-26893",
+    "command": "wc -l /root/autodl-tmp/gen-depth-contamination/data/depth_0.jsonl /root/autodl-tmp/gen-depth-contamination/data/depth_1.jsonl /root/autodl-tmp/gen-depth-contamination/data/depth_5.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T12:46:51.397096+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.997,\\n    \\\"1v2\\\": 0.6146,\\n    \\\"2v3\\\": 0.5497,\\n    \\\"3v4\\\": 0.509,\\n    \\\"4v5\\\": 0.5044\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.9972,\\n      0.9973,\\n      0.9965,\\n      0.9967,\\n      0.9974\\n    ],\\n    \\\"1v2\\\": [\\n      0.6102,\\n      0.6185,\\n      0.6145,\\n      0.6129,\\n      0.6169\\n    ],\\n    \\\"2v3\\\": [\\n      0.551,\\n      0.549,\\n      0.5567,\\n      0.546,\\n      0.5457\\n    ],\\n    \\\"3v4\\\": [\\n      0.5056,\\n      0.5238,\\n      0.5124,\\n      0.5015,\\n      0.5018\\n    ],\\n    \\\"4v5\\\": [\\n      0.5093,\\n      0.4814,\\n      0.4977,\\n      0.5129,\\n      0.5204\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T12:46:51.397241+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.9972,\\n    \\\"1v2\\\": 0.6114,\\n    \\\"2v3\\\": 0.5609,\\n    \\\"3v4\\\": 0.5408,\\n    \\\"4v5\\\": 0.5139\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.9979,\\n      0.9957,\\n      0.9981,\\n      0.9973,\\n      0.9968\\n    ],\\n    \\\"1v2\\\": [\\n      0.602,\\n      0.6072,\\n      0.6233,\\n      0.6153,\\n      0.6093\\n    ],\\n    \\\"2v3\\\": [\\n      0.5624,\\n      0.5482,\\n      0.5669,\\n      0.5546,\\n      0.5726\\n    ],\\n    \\\"3v4\\\": [\\n      0.5254,\\n      0.5529,\\n      0.5467,\\n      0.5402,\\n      0.539\\n    ],\\n    \\\"4v5\\\": [\\n      0.5175,\\n      0.5194,\\n      0.5148,\\n      0.5067,\\n      0.5113\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.85}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T12:46:51.397383+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nbootstrap_ci.py\\nbootstrap_ci_exp017.py\\ndraw_pipeline_figure.py\\nexp003_analyze_all_configs.py\\nexp004_analyze.py\\nexp006_analyze.py\\nexp006_continued_pretraining.py\\nexp006_evaluate.py\\nexp006_filtering_strategies.py\\nexp011_analyze.py\\nexp011_llm_zeroshot.py\\nexp011_sample_data.py\\nexp_A_alt_scorer.py\\nexp_B_14d_ablation.py\\nexp_C_permutation_10k.py\\nexp_D_mcnemar.py\\nexp_D_mcnemar_comprehensive.py\\nexp_D_mcnemar_final.py\\nexp_D_mcnemar_fixed.py\\nexp_D_obd_n500.py\\nexp_D_obd_n500_v2.py\\nexp_E_paired_stats.py\\nplot_exp003_decoding_ablation.py\\nplot_kstar_theta.py\\nplot_three_model_comparison.py\\nrun_exp003_ablation.sh\\nrun_exp004_qwen7b_depth.py\\nrun_exp005_degradation.py\\nrun_exp006.sh\\nrun_exp009_dose_response.py\\nrun_exp010_ordinal_comparison.py\\nrun_exp013_cross_transfer.py\\nrun_exp015_neural_probe.py\\nrun_exp015_neural_probe_v2_backup.py\\nrun_exp_A.sh\\nrun_pipeline.py\\nrun_pipeline.py.bak\\nrun_pipeline.py.bak2\\nrun_pipeline.py.bak3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.65}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T12:46:51.397520+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    5000 /root/autodl-tmp/gen-depth-contamination/data/depth_0.jsonl\\n    5000 /root/autodl-tmp/gen-depth-contamination/data/depth_1.jsonl\\n    5000 /root/autodl-tmp/gen-depth-contamination/data/depth_5.jsonl\\n   15000 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T12:46:51.397679+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westc-26893",
+    "command": "nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T12:46:51.397822+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "find /root/autodl-tmp/.hf_cache -maxdepth 3 -type d -name \"models--*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westc-26893",
+    "command": "find /root/autodl-tmp/.hf_cache -maxdepth 3 -type d -name \"models--*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T12:46:51.397946+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "head -1 /root/autodl-tmp/gen-depth-contamination/data/features.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westc-26893",
+    "command": "head -1 /root/autodl-tmp/gen-depth-contamination/data/features.csv",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T12:46:51.398060+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "head -5 /root/autodl-tmp/gen-depth-contamination/scripts/run_pipeline.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westc-26893",
+    "command": "head -5 /root/autodl-tmp/gen-depth-contamination/scripts/run_pipeline.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T12:46:51.398176+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"NVIDIA GeForce RTX 4090 D, 24564 MiB, 580.105.08\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T12:46:51.398292+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/.hf_cache/hub/models--Qwen--Qwen2.5-1.5B-Instruct\\n/root/autodl-tmp/.hf_cache/models--Qwen--Qwen2.5-1.5B-Instruct\\n/root/autodl-tmp/.hf_cache/.locks/models--Qwen--Qwen2.5-1.5B-Instruct\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T12:46:51.398435+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.99}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T12:46:51.398576+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nMVP Pilot Saturation Study — Complete Pipeline (Steps 2-5)\\n\\nGenerates recursive depth chains from C4 seed data using Qwen2.5-1.5B,\\nextracts statistical features, and runs distinguishability analysis.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.93}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T12:46:51.398746+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "find /root/autodl-tmp/.hf_cache -maxdepth 3 -type d -name \"models--*pythia*\" -o -name \"models--*Pythia*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westc-26893",
+    "command": "find /root/autodl-tmp/.hf_cache -maxdepth 3 -type d -name \"models--*pythia*\" -o -name \"models--*Pythia*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T12:46:51.398898+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T12:46:51.399017+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "python3 -c \"import torch, transformers, scipy, sklearn; print(f'torch={torch.__version__} tf={transformers.__version__} scipy={scipy.__version__} sklearn={sklearn.__version__}')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westc-26893",
+    "command": "python3 -c \"import torch, transformers, scipy, sklearn; print(f'torch={torch.__version__} tf={transformers.__version__} scipy={scipy.__version__} sklearn={sklearn.__version__}')\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T12:46:51.399138+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T12:46:51.399252+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "python3 -c \"import torch, transformers, scipy, sklearn; print(torch.__version__, transformers.__version__, scipy.__version__, sklearn.__version__)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westc-26893",
+    "command": "python3 -c \"import torch, transformers, scipy, sklearn; print(torch.__version__, transformers.__version__, scipy.__version__, sklearn.__version__)\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T12:46:51.399368+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T12:46:51.399480+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "python3 -c \"import torch; print(torch.__version__)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westc-26893",
+    "command": "python3 -c \"import torch; print(torch.__version__)\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T12:46:51.399601+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T12:46:51.399727+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import torch, transformers, scipy, sklearn; print(torch.__version__, transformers.__version__, scipy.__version__, sklearn.__version__)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westc-26893",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import torch, transformers, scipy, sklearn; print(torch.__version__, transformers.__version__, scipy.__version__, sklearn.__version__)\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T12:46:51.399871+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2.10.0+cu128 4.57.6 1.17.1 1.8.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.94}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T12:46:51.400063+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "cat > /root/autodl-tmp/gen-depth-contamination/scripts/exp012_ppl_depth_correlation.py << 'PYTHON_SCRIPT'\n\"\"\"\nexp012: Perplexity vs. Depth Correlation Analysis\n\nHypothesis: Scalar perplexity scores cannot effectively estimate generational\ndepth. While log-PPL may separate human (depth=0) from AI-generated text\n(depth≥1), it fails at fine-grained depth discrimination (1/2/3/4/5),\nunlike the 15D statistical feature + LightGBM ordinal classifier.\n\nInputs:\n  - Depth chain texts from 4 model conditions:\n    data/               (Qwen-rewrite, mvp_pilot)\n    data_exp001_pythia/  (Pythia-1.4B)\n    data_exp002_olmo/    (OLMo-1B)\n    data_exp017_qwen_cont/ (Qwen-1.5B continuation)\n  - Each condition has depth_0.jsonl .. depth_5.jsonl (5000 samples each)\n\nOutputs:\n  - results_exp012/ppl_depth_correlation.json  (full results)\n  - Terminal summary table\n\nDependencies:\n  - torch, transformers (Qwen2.5-1.5B-Instruct, EleutherAI/pythia-1.4b)\n  - scipy, sklearn, numpy\n\nGPU time estimate: ~40-60 min on RTX 4090 (500 samples/depth × 4 conditions × 2 models)\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport sys\nfrom pathlib import Path\nfrom itertools import combinations\n\nimport numpy as np\nimport torch\nfrom scipy.stats import spearmanr\nfrom sklearn.metrics import roc_auc_score\n\nPROJECT_ROOT = Path(\"/root/autodl-tmp/gen-depth-contamination\")\n\nMODEL_CONDITIONS = {\n    \"qwen-rewrite\": PROJECT_ROOT / \"data\",\n    \"pythia-1.4b\":  PROJECT_ROOT / \"data_exp001_pythia\",\n    \"olmo-1b\":      PROJECT_ROOT / \"data_exp002_olmo\",\n    \"qwen-cont\":    PROJECT_ROOT / \"data_exp017_qwen_cont\",\n}\n\n# 15D OBD-LightGBM pairwise AUC baselines (5-fold CV mean)\nOBD_PAIRWISE_AUC = {\n    \"qwen-rewrite\": {\"0v1\": 0.9956, \"1v2\": 0.6957, \"2v3\": 0.5893, \"3v4\": 0.5434, \"4v5\": 0.5343},\n    \"pythia-1.4b\":  {\"0v1\": 0.9932, \"1v2\": 0.6539, \"2v3\": 0.5515, \"3v4\": 0.5153, \"4v5\": 0.5135},\n    \"olmo-1b\":      {\"0v1\": 0.9970, \"1v2\": 0.6146, \"2v3\": 0.5497, \"3v4\": 0.5090, \"4v5\": 0.5044},\n    \"qwen-cont\":    {\"0v1\": 0.9972, \"1v2\": 0.6114, \"2v3\": 0.5609, \"3v4\": 0.5408, \"4v5\": 0.5139},\n}\n\nDEPTH_PAIRS = [\"0v1\", \"1v2\", \"2v3\", \"3v4\", \"4v5\"]\n\n\ndef load_texts(data_dir: Path, max_samples: int) -> dict[int, list[str]]:\n    \"\"\"Load depth-labeled texts. Returns {depth: [text, ...]}.\"\"\"\n    texts = {}\n    for d in range(6):\n        fpath = data_dir / f\"depth_{d}.jsonl\"\n        if not fpath.exists():\n            print(f\"  WARNING: {fpath} not found, skipping depth {d}\")\n            continue\n        samples = []\n        with open(fpath) as f:\n            for i, line in enumerate(f):\n                if i >= max_samples:\n                    break\n                samples.append(json.loads(line)[\"text\"])\n        texts[d] = samples\n    return texts\n\n\ndef compute_log_perplexity_batch(\n    model, tokenizer, texts: list[str], batch_size: int = 8, max_length: int = 512\n) -> np.ndarray:\n    \"\"\"Compute mean token-level log-perplexity for each text.\"\"\"\n    device = next(model.parameters()).device\n    all_ppl = []\n\n    for start in range(0, len(texts), batch_size):\n        batch_texts = texts[start : start + batch_size]\n        encodings = tokenizer(\n            batch_texts,\n            return_tensors=\"pt\",\n            padding=True,\n            truncation=True,\n            max_length=max_length,\n        ).to(device)\n\n        with torch.no_grad():\n            outputs = model(**encodings)\n            logits = outputs.logits\n\n        # shift for causal LM: predict token t+1 from position t\n        shift_logits = logits[:, :-1, :].contiguous()\n        shift_labels = encodings[\"input_ids\"][:, 1:].contiguous()\n        attention_mask = encodings[\"attention_mask\"][:, 1:].contiguous()\n\n        loss_fn = torch.nn.CrossEntropyLoss(reduction=\"none\")\n        token_losses = loss_fn(\n            shift_logits.view(-1, shift_logits.size(-1)),\n            shift_labels.view(-1),\n        ).view(shift_labels.size())\n\n        # mask padding tokens\n        token_losses = token_losses * attention_mask\n        mean_loss = token_losses.sum(dim=1) / attention_mask.sum(dim=1).clamp(min=1)\n        all_ppl.extend(mean_loss.cpu().numpy().tolist())\n\n    return np.array(all_ppl)\n\n\ndef pairwise_auc(scores: np.ndarray, labels: np.ndarray, d_low: int, d_high: int) -> float:\n    \"\"\"AUC for binary classification: depth d_low vs d_high using scalar scores.\"\"\"\n    mask = np.isin(labels, [d_low, d_high])\n    s = scores[mask]\n    y = (labels[mask] == d_high).astype(int)\n    if len(np.unique(y)) < 2:\n        return 0.5\n    auc = roc_auc_score(y, s)\n    return max(auc, 1 - auc)\n\n\ndef threshold_accuracy(scores: np.ndarray, labels: np.ndarray, n_classes: int = 6) -> float:\n    \"\"\"5-class accuracy by equal-quantile thresholding of scalar scores.\"\"\"\n    thresholds = np.quantile(scores, np.linspace(0, 1, n_classes + 1)[1:-1])\n    predicted = np.digitize(scores, thresholds)\n    return float(np.mean(predicted == labels))\n\n\ndef analyze_condition(\n    condition: str,\n    ref_ppl: dict[int, np.ndarray],\n    obs_ppl: dict[int, np.ndarray],\n) -> dict:\n    \"\"\"Run all metrics for one model condition.\"\"\"\n    depths_present = sorted(set(ref_ppl.keys()) & set(obs_ppl.keys()))\n\n    all_ref = np.concatenate([ref_ppl[d] for d in depths_present])\n    all_obs = np.concatenate([obs_ppl[d] for d in depths_present])\n    all_labels = np.concatenate([np.full(len(ref_ppl[d]), d) for d in depths_present])\n\n    ppl_ratio = all_obs / np.clip(all_ref, 1e-6, None)\n\n    # Spearman correlation\n    rho_ref, p_ref = spearmanr(all_ref, all_labels)\n    rho_obs, p_obs = spearmanr(all_obs, all_labels)\n    rho_ratio, p_ratio = spearmanr(ppl_ratio, all_labels)\n\n    # Pairwise AUC\n    pair_auc_ref = {}\n    pair_auc_obs = {}\n    pair_auc_ratio = {}\n    obd_baseline = OBD_PAIRWISE_AUC[condition]\n\n    for pair_name in DEPTH_PAIRS:\n        d_low, d_high = int(pair_name[0]), int(pair_name[2])\n        if d_low in depths_present and d_high in depths_present:\n            pair_auc_ref[pair_name] = round(pairwise_auc(all_ref, all_labels, d_low, d_high), 4)\n            pair_auc_obs[pair_name] = round(pairwise_auc(all_obs, all_labels, d_low, d_high), 4)\n            pair_auc_ratio[pair_name] = round(pairwise_auc(ppl_ratio, all_labels, d_low, d_high), 4)\n\n    # Threshold accuracy (6-class: depth 0-5)\n    acc_ref = round(threshold_accuracy(all_ref, all_labels), 4)\n    acc_obs = round(threshold_accuracy(all_obs, all_labels), 4)\n    acc_ratio = round(threshold_accuracy(ppl_ratio, all_labels), 4)\n\n    return {\n        \"spearman\": {\n            \"log_ppl_ref\": {\"rho\": round(rho_ref, 4), \"p\": round(p_ref, 6)},\n            \"log_ppl_obs\": {\"rho\": round(rho_obs, 4), \"p\": round(p_obs, 6)},\n            \"ppl_ratio\":   {\"rho\": round(rho_ratio, 4), \"p\": round(p_ratio, 6)},\n        },\n        \"pairwise_auc\": {\n            \"log_ppl_ref\": pair_auc_ref,\n            \"log_ppl_obs\": pair_auc_obs,\n            \"ppl_ratio\":   pair_auc_ratio,\n            \"obd_15d\":     {k: v for k, v in obd_baseline.items() if k in pair_auc_ref},\n        },\n        \"threshold_accuracy_6class\": {\n            \"log_ppl_ref\": acc_ref,\n            \"log_ppl_obs\": acc_obs,\n            \"ppl_ratio\":   acc_ratio,\n            \"random_baseline\": round(1/6, 4),\n        },\n    }\n\n\ndef print_summary(results: dict):\n    \"\"\"Print formatted terminal summary.\"\"\"\n    print(\"\\n\" + \"=\" * 80)\n    print(\"EXP-012: Perplexity vs. Depth Correlation — Summary\")\n    print(\"=\" * 80)\n\n    for cond, res in results.items():\n        print(f\"\\n--- {cond} ---\")\n\n        sp = res[\"spearman\"]\n        print(f\"  Spearman ρ:  ref={sp['log_ppl_ref']['rho']:.4f}  \"\n              f\"obs={sp['log_ppl_obs']['rho']:.4f}  \"\n              f\"ratio={sp['ppl_ratio']['rho']:.4f}\")\n\n        print(f\"  6-class acc: ref={res['threshold_accuracy_6class']['log_ppl_ref']:.4f}  \"\n              f\"obs={res['threshold_accuracy_6class']['log_ppl_obs']:.4f}  \"\n              f\"ratio={res['threshold_accuracy_6class']['ppl_ratio']:.4f}  \"\n              f\"(random={res['threshold_accuracy_6class']['random_baseline']:.4f})\")\n\n        pa = res[\"pairwise_auc\"]\n        print(f\"  {'Pair':>5s}  {'PPL_ref':>8s}  {'PPL_obs':>8s}  {'Ratio':>8s}  {'OBD-15D':>8s}  {'Δ(OBD-best_scalar)':>20s}\")\n        for pair in DEPTH_PAIRS:\n            if pair in pa[\"log_ppl_ref\"]:\n                best_scalar = max(pa[\"log_ppl_ref\"][pair], pa[\"log_ppl_obs\"][pair], pa[\"ppl_ratio\"][pair])\n                obd = pa[\"obd_15d\"][pair]\n                delta = obd - best_scalar\n                print(f\"  {pair:>5s}  {pa['log_ppl_ref'][pair]:>8.4f}  \"\n                      f\"{pa['log_ppl_obs'][pair]:>8.4f}  \"\n                      f\"{pa['ppl_ratio'][pair]:>8.4f}  \"\n                      f\"{obd:>8.4f}  \"\n                      f\"{delta:>+20.4f}\")\n\n    print(\"\\n\" + \"=\" * 80)\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"exp012: PPL vs depth correlation\")\n    parser.add_argument(\"--max_samples\", type=int, default=500,\n                        help=\"Max samples per depth per condition (default: 500)\")\n    parser.add_argument(\"--batch_size\", type=int, default=8,\n                        help=\"Inference batch size (default: 8)\")\n    parser.add_argument(\"--max_length\", type=int, default=512,\n                        help=\"Max token length for truncation (default: 512)\")\n    parser.add_argument(\"--ref_model\", type=str, default=\"Qwen/Qwen2.5-1.5B-Instruct\",\n                        help=\"Reference model for PPL computation\")\n    parser.add_argument(\"--obs_model\", type=str, default=\"EleutherAI/pythia-1.4b\",\n                        help=\"Observer model for PPL ratio\")\n    parser.add_argument(\"--output_dir\", type=str,\n                        default=str(PROJECT_ROOT / \"results_exp012\"))\n    parser.add_argument(\"--dry_run\", action=\"store_true\",\n                        help=\"Only test imports and data loading\")\n    args = parser.parse_args()\n\n    os.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\n\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    # --- Load texts ---\n    print(\"Loading texts...\")\n    all_texts: dict[str, dict[int, list[str]]] = {}\n    for cond, data_dir in MODEL_CONDITIONS.items():\n        print(f\"  {cond}: {data_dir}\")\n        all_texts[cond] = load_texts(data_dir, args.max_samples)\n        for d, t in sorted(all_texts[cond].items()):\n            print(f\"    depth {d}: {len(t)} samples\")\n\n    if args.dry_run:\n        print(\"\\n[DRY RUN] Data loading successful. Exiting before model loading.\")\n        total_texts = sum(len(t) for cond_texts in all_texts.values() for t in cond_texts.values())\n        print(f\"  Total texts to process: {total_texts}\")\n        print(f\"  Models: ref={args.ref_model}, obs={args.obs_model}\")\n        print(f\"  Estimated GPU time: ~{total_texts * 2 * 0.03 / 60:.0f} min (rough)\")\n        sys.exit(0)\n\n    # --- Load models ---\n    from transformers import AutoModelForCausalLM, AutoTokenizer\n\n    device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n    print(f\"\\nDevice: {device}\")\n\n    print(f\"Loading reference model: {args.ref_model}\")\n    ref_tokenizer = AutoTokenizer.from_pretrained(args.ref_model, trust_remote_code=True)\n    ref_model = AutoModelForCausalLM.from_pretrained(\n        args.ref_model, torch_dtype=torch.float16, trust_remote_code=True\n    ).to(device).eval()\n\n    if ref_tokenizer.pad_token is None:\n        ref_tokenizer.pad_token = ref_tokenizer.eos_token\n        ref_model.config.pad_token_id = ref_model.config.eos_token_id\n\n    # Compute reference PPL for all conditions\n    print(\"\\nComputing reference model PPL...\")\n    ref_ppls: dict[str, dict[int, np.ndarray]] = {}\n    for cond in MODEL_CONDITIONS:\n        print(f\"  {cond}...\")\n        ref_ppls[cond] = {}\n        for d, texts in sorted(all_texts[cond].items()):\n            ref_ppls[cond][d] = compute_log_perplexity_batch(\n                ref_model, ref_tokenizer, texts, args.batch_size, args.max_length\n            )\n            print(f\"    depth {d}: mean_ppl={ref_ppls[cond][d].mean():.4f}\")\n\n    # Free reference model memory\n    del ref_model\n    torch.cuda.empty_cache()\n\n    print(f\"\\nLoading observer model: {args.obs_model}\")\n    obs_tokenizer = AutoTokenizer.from_pretrained(args.obs_model)\n    obs_model = AutoModelForCausalLM.from_pretrained(\n        args.obs_model, torch_dtype=torch.float16\n    ).to(device).eval()\n\n    if obs_tokenizer.pad_token is None:\n        obs_tokenizer.pad_token = obs_tokenizer.eos_token\n        obs_model.config.pad_token_id = obs_model.config.eos_token_id\n\n    # Compute observer PPL for all conditions\n    print(\"\\nComputing observer model PPL...\")\n    obs_ppls: dict[str, dict[int, np.ndarray]] = {}\n    for cond in MODEL_CONDITIONS:\n        print(f\"  {cond}...\")\n        obs_ppls[cond] = {}\n        for d, texts in sorted(all_texts[cond].items()):\n            obs_ppls[cond][d] = compute_log_perplexity_batch(\n                obs_model, obs_tokenizer, texts, args.batch_size, args.max_length\n            )\n            print(f\"    depth {d}: mean_ppl={obs_ppls[cond][d].mean():.4f}\")\n\n    del obs_model\n    torch.cuda.empty_cache()\n\n    # --- Analysis ---\n    print(\"\\nAnalyzing...\")\n    results = {}\n    for cond in MODEL_CONDITIONS:\n        results[cond] = analyze_condition(cond, ref_ppls[cond], obs_ppls[cond])\n\n    # --- Save results ---\n    out_path = output_dir / \"ppl_depth_correlation.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n\n    # --- Per-sample scores for reproducibility ---\n    per_sample_path = output_dir / \"per_sample_scores.json\"\n    per_sample = {}\n    for cond in MODEL_CONDITIONS:\n        per_sample[cond] = {}\n        for d in sorted(ref_ppls[cond].keys()):\n            per_sample[cond][str(d)] = {\n                \"log_ppl_ref\": ref_ppls[cond][d].tolist(),\n                \"log_ppl_obs\": obs_ppls[cond][d].tolist(),\n            }\n    with open(per_sample_path, \"w\") as f:\n        json.dump(per_sample, f)\n    print(f\"Per-sample scores saved to {per_sample_path}\")\n\n    print_summary(results)\n\n\nif __name__ == \"__main__\":\n    main()\nPYTHON_SCRIPT",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westc-26893",
+    "command": "cat > /root/autodl-tmp/gen-depth-contamination/scripts/exp012_ppl_depth_correlation.py << 'PYTHON_SCRIPT'\n\"\"\"\nexp012: Perplexity vs. Depth Correlation Analysis\n\nHypothesis: Scalar perplexity scores cannot effectively estimate generational\ndepth. While log-PPL may separate human (depth=0) from AI-generated text\n(depth≥1), it fails at fine-grained depth discrimination (1/2/3/4/5),\nunlike the 15D statistical feature + LightGBM ordinal classifier.\n\nInputs:\n  - Depth chain texts from 4 model conditions:\n    data/               (Qwen-rewrite, mvp_pilot)\n    data_exp001_pythia/  (Pythia-1.4B)\n    data_exp002_olmo/    (OLMo-1B)\n    data_exp017_qwen_cont/ (Qwen-1.5B continuation)\n  - Each condition has depth_0.jsonl .. depth_5.jsonl (5000 samples each)\n\nOutputs:\n  - results_exp012/ppl_depth_correlation.json  (full results)\n  - Terminal summary table\n\nDependencies:\n  - torch, transformers (Qwen2.5-1.5B-Instruct, EleutherAI/pythia-1.4b)\n  - scipy, sklearn, numpy\n\nGPU time estimate: ~40-60 min on RTX 4090 (500 samples/depth × 4 conditions × 2 models)\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport sys\nfrom pathlib import Path\nfrom itertools import combinations\n\nimport numpy as np\nimport torch\nfrom scipy.stats import spearmanr\nfrom sklearn.metrics import roc_auc_score\n\nPROJECT_ROOT = Path(\"/root/autodl-tmp/gen-depth-contamination\")\n\nMODEL_CONDITIONS = {\n    \"qwen-rewrite\": PROJECT_ROOT / \"data\",\n    \"pythia-1.4b\":  PROJECT_ROOT / \"data_exp001_pythia\",\n    \"olmo-1b\":      PROJECT_ROOT / \"data_exp002_olmo\",\n    \"qwen-cont\":    PROJECT_ROOT / \"data_exp017_qwen_cont\",\n}\n\n# 15D OBD-LightGBM pairwise AUC baselines (5-fold CV mean)\nOBD_PAIRWISE_AUC = {\n    \"qwen-rewrite\": {\"0v1\": 0.9956, \"1v2\": 0.6957, \"2v3\": 0.5893, \"3v4\": 0.5434, \"4v5\": 0.5343},\n    \"pythia-1.4b\":  {\"0v1\": 0.9932, \"1v2\": 0.6539, \"2v3\": 0.5515, \"3v4\": 0.5153, \"4v5\": 0.5135},\n    \"olmo-1b\":      {\"0v1\": 0.9970, \"1v2\": 0.6146, \"2v3\": 0.5497, \"3v4\": 0.5090, \"4v5\": 0.5044},\n    \"qwen-cont\":    {\"0v1\": 0.9972, \"1v2\": 0.6114, \"2v3\": 0.5609, \"3v4\": 0.5408, \"4v5\": 0.5139},\n}\n\nDEPTH_PAIRS = [\"0v1\", \"1v2\", \"2v3\", \"3v4\", \"4v5\"]\n\n\ndef load_texts(data_dir: Path, max_samples: int) -> dict[int, list[str]]:\n    \"\"\"Load depth-labeled texts. Returns {depth: [text, ...]}.\"\"\"\n    texts = {}\n    for d in range(6):\n        fpath = data_dir / f\"depth_{d}.jsonl\"\n        if not fpath.exists():\n            print(f\"  WARNING: {fpath} not found, skipping depth {d}\")\n            continue\n        samples = []\n        with open(fpath) as f:\n            for i, line in enumerate(f):\n                if i >= max_samples:\n                    break\n                samples.append(json.loads(line)[\"text\"])\n        texts[d] = samples\n    return texts\n\n\ndef compute_log_perplexity_batch(\n    model, tokenizer, texts: list[str], batch_size: int = 8, max_length: int = 512\n) -> np.ndarray:\n    \"\"\"Compute mean token-level log-perplexity for each text.\"\"\"\n    device = next(model.parameters()).device\n    all_ppl = []\n\n    for start in range(0, len(texts), batch_size):\n        batch_texts = texts[start : start + batch_size]\n        encodings = tokenizer(\n            batch_texts,\n            return_tensors=\"pt\",\n            padding=True,\n            truncation=True,\n            max_length=max_length,\n        ).to(device)\n\n        with torch.no_grad():\n            outputs = model(**encodings)\n            logits = outputs.logits\n\n        # shift for causal LM: predict token t+1 from position t\n        shift_logits = logits[:, :-1, :].contiguous()\n        shift_labels = encodings[\"input_ids\"][:, 1:].contiguous()\n        attention_mask = encodings[\"attention_mask\"][:, 1:].contiguous()\n\n        loss_fn = torch.nn.CrossEntropyLoss(reduction=\"none\")\n        token_losses = loss_fn(\n            shift_logits.view(-1, shift_logits.size(-1)),\n            shift_labels.view(-1),\n        ).view(shift_labels.size())\n\n        # mask padding tokens\n        token_losses = token_losses * attention_mask\n        mean_loss = token_losses.sum(dim=1) / attention_mask.sum(dim=1).clamp(min=1)\n        all_ppl.extend(mean_loss.cpu().numpy().tolist())\n\n    return np.array(all_ppl)\n\n\ndef pairwise_auc(scores: np.ndarray, labels: np.ndarray, d_low: int, d_high: int) -> float:\n    \"\"\"AUC for binary classification: depth d_low vs d_high using scalar scores.\"\"\"\n    mask = np.isin(labels, [d_low, d_high])\n    s = scores[mask]\n    y = (labels[mask] == d_high).astype(int)\n    if len(np.unique(y)) < 2:\n        return 0.5\n    auc = roc_auc_score(y, s)\n    return max(auc, 1 - auc)\n\n\ndef threshold_accuracy(scores: np.ndarray, labels: np.ndarray, n_classes: int = 6) -> float:\n    \"\"\"5-class accuracy by equal-quantile thresholding of scalar scores.\"\"\"\n    thresholds = np.quantile(scores, np.linspace(0, 1, n_classes + 1)[1:-1])\n    predicted = np.digitize(scores, thresholds)\n    return float(np.mean(predicted == labels))\n\n\ndef analyze_condition(\n    condition: str,\n    ref_ppl: dict[int, np.ndarray],\n    obs_ppl: dict[int, np.ndarray],\n) -> dict:\n    \"\"\"Run all metrics for one model condition.\"\"\"\n    depths_present = sorted(set(ref_ppl.keys()) & set(obs_ppl.keys()))\n\n    all_ref = np.concatenate([ref_ppl[d] for d in depths_present])\n    all_obs = np.concatenate([obs_ppl[d] for d in depths_present])\n    all_labels = np.concatenate([np.full(len(ref_ppl[d]), d) for d in depths_present])\n\n    ppl_ratio = all_obs / np.clip(all_ref, 1e-6, None)\n\n    # Spearman correlation\n    rho_ref, p_ref = spearmanr(all_ref, all_labels)\n    rho_obs, p_obs = spearmanr(all_obs, all_labels)\n    rho_ratio, p_ratio = spearmanr(ppl_ratio, all_labels)\n\n    # Pairwise AUC\n    pair_auc_ref = {}\n    pair_auc_obs = {}\n    pair_auc_ratio = {}\n    obd_baseline = OBD_PAIRWISE_AUC[condition]\n\n    for pair_name in DEPTH_PAIRS:\n        d_low, d_high = int(pair_name[0]), int(pair_name[2])\n        if d_low in depths_present and d_high in depths_present:\n            pair_auc_ref[pair_name] = round(pairwise_auc(all_ref, all_labels, d_low, d_high), 4)\n            pair_auc_obs[pair_name] = round(pairwise_auc(all_obs, all_labels, d_low, d_high), 4)\n            pair_auc_ratio[pair_name] = round(pairwise_auc(ppl_ratio, all_labels, d_low, d_high), 4)\n\n    # Threshold accuracy (6-class: depth 0-5)\n    acc_ref = round(threshold_accuracy(all_ref, all_labels), 4)\n    acc_obs = round(threshold_accuracy(all_obs, all_labels), 4)\n    acc_ratio = round(threshold_accuracy(ppl_ratio, all_labels), 4)\n\n    return {\n        \"spearman\": {\n            \"log_ppl_ref\": {\"rho\": round(rho_ref, 4), \"p\": round(p_ref, 6)},\n            \"log_ppl_obs\": {\"rho\": round(rho_obs, 4), \"p\": round(p_obs, 6)},\n            \"ppl_ratio\":   {\"rho\": round(rho_ratio, 4), \"p\": round(p_ratio, 6)},\n        },\n        \"pairwise_auc\": {\n            \"log_ppl_ref\": pair_auc_ref,\n            \"log_ppl_obs\": pair_auc_obs,\n            \"ppl_ratio\":   pair_auc_ratio,\n            \"obd_15d\":     {k: v for k, v in obd_baseline.items() if k in pair_auc_ref},\n        },\n        \"threshold_accuracy_6class\": {\n            \"log_ppl_ref\": acc_ref,\n            \"log_ppl_obs\": acc_obs,\n            \"ppl_ratio\":   acc_ratio,\n            \"random_baseline\": round(1/6, 4),\n        },\n    }\n\n\ndef print_summary(results: dict):\n    \"\"\"Print formatted terminal summary.\"\"\"\n    print(\"\\n\" + \"=\" * 80)\n    print(\"EXP-012: Perplexity vs. Depth Correlation — Summary\")\n    print(\"=\" * 80)\n\n    for cond, res in results.items():\n        print(f\"\\n--- {cond} ---\")\n\n        sp = res[\"spearman\"]\n        print(f\"  Spearman ρ:  ref={sp['log_ppl_ref']['rho']:.4f}  \"\n              f\"obs={sp['log_ppl_obs']['rho']:.4f}  \"\n              f\"ratio={sp['ppl_ratio']['rho']:.4f}\")\n\n        print(f\"  6-class acc: ref={res['threshold_accuracy_6class']['log_ppl_ref']:.4f}  \"\n              f\"obs={res['threshold_accuracy_6class']['log_ppl_obs']:.4f}  \"\n              f\"ratio={res['threshold_accuracy_6class']['ppl_ratio']:.4f}  \"\n              f\"(random={res['threshold_accuracy_6class']['random_baseline']:.4f})\")\n\n        pa = res[\"pairwise_auc\"]\n        print(f\"  {'Pair':>5s}  {'PPL_ref':>8s}  {'PPL_obs':>8s}  {'Ratio':>8s}  {'OBD-15D':>8s}  {'Δ(OBD-best_scalar)':>20s}\")\n        for pair in DEPTH_PAIRS:\n            if pair in pa[\"log_ppl_ref\"]:\n                best_scalar = max(pa[\"log_ppl_ref\"][pair], pa[\"log_ppl_obs\"][pair], pa[\"ppl_ratio\"][pair])\n                obd = pa[\"obd_15d\"][pair]\n                delta = obd - best_scalar\n                print(f\"  {pair:>5s}  {pa['log_ppl_ref'][pair]:>8.4f}  \"\n                      f\"{pa['log_ppl_obs'][pair]:>8.4f}  \"\n                      f\"{pa['ppl_ratio'][pair]:>8.4f}  \"\n                      f\"{obd:>8.4f}  \"\n                      f\"{delta:>+20.4f}\")\n\n    print(\"\\n\" + \"=\" * 80)\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"exp012: PPL vs depth correlation\")\n    parser.add_argument(\"--max_samples\", type=int, default=500,\n                        help=\"Max samples per depth per condition (default: 500)\")\n    parser.add_argument(\"--batch_size\", type=int, default=8,\n                        help=\"Inference batch size (default: 8)\")\n    parser.add_argument(\"--max_length\", type=int, default=512,\n                        help=\"Max token length for truncation (default: 512)\")\n    parser.add_argument(\"--ref_model\", type=str, default=\"Qwen/Qwen2.5-1.5B-Instruct\",\n                        help=\"Reference model for PPL computation\")\n    parser.add_argument(\"--obs_model\", type=str, default=\"EleutherAI/pythia-1.4b\",\n                        help=\"Observer model for PPL ratio\")\n    parser.add_argument(\"--output_dir\", type=str,\n                        default=str(PROJECT_ROOT / \"results_exp012\"))\n    parser.add_argument(\"--dry_run\", action=\"store_true\",\n                        help=\"Only test imports and data loading\")\n    args = parser.parse_args()\n\n    os.environ[\"HF_HOME\"] = \"/root/autodl-tmp/.hf_cache\"\n\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    # --- Load texts ---\n    print(\"Loading texts...\")\n    all_texts: dict[str, dict[int, list[str]]] = {}\n    for cond, data_dir in MODEL_CONDITIONS.items():\n        print(f\"  {cond}: {data_dir}\")\n        all_texts[cond] = load_texts(data_dir, args.max_samples)\n        for d, t in sorted(all_texts[cond].items()):\n            print(f\"    depth {d}: {len(t)} samples\")\n\n    if args.dry_run:\n        print(\"\\n[DRY RUN] Data loading successful. Exiting before model loading.\")\n        total_texts = sum(len(t) for cond_texts in all_texts.values() for t in cond_texts.values())\n        print(f\"  Total texts to process: {total_texts}\")\n        print(f\"  Models: ref={args.ref_model}, obs={args.obs_model}\")\n        print(f\"  Estimated GPU time: ~{total_texts * 2 * 0.03 / 60:.0f} min (rough)\")\n        sys.exit(0)\n\n    # --- Load models ---\n    from transformers import AutoModelForCausalLM, AutoTokenizer\n\n    device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n    print(f\"\\nDevice: {device}\")\n\n    print(f\"Loading reference model: {args.ref_model}\")\n    ref_tokenizer = AutoTokenizer.from_pretrained(args.ref_model, trust_remote_code=True)\n    ref_model = AutoModelForCausalLM.from_pretrained(\n        args.ref_model, torch_dtype=torch.float16, trust_remote_code=True\n    ).to(device).eval()\n\n    if ref_tokenizer.pad_token is None:\n        ref_tokenizer.pad_token = ref_tokenizer.eos_token\n        ref_model.config.pad_token_id = ref_model.config.eos_token_id\n\n    # Compute reference PPL for all conditions\n    print(\"\\nComputing reference model PPL...\")\n    ref_ppls: dict[str, dict[int, np.ndarray]] = {}\n    for cond in MODEL_CONDITIONS:\n        print(f\"  {cond}...\")\n        ref_ppls[cond] = {}\n        for d, texts in sorted(all_texts[cond].items()):\n            ref_ppls[cond][d] = compute_log_perplexity_batch(\n                ref_model, ref_tokenizer, texts, args.batch_size, args.max_length\n            )\n            print(f\"    depth {d}: mean_ppl={ref_ppls[cond][d].mean():.4f}\")\n\n    # Free reference model memory\n    del ref_model\n    torch.cuda.empty_cache()\n\n    print(f\"\\nLoading observer model: {args.obs_model}\")\n    obs_tokenizer = AutoTokenizer.from_pretrained(args.obs_model)\n    obs_model = AutoModelForCausalLM.from_pretrained(\n        args.obs_model, torch_dtype=torch.float16\n    ).to(device).eval()\n\n    if obs_tokenizer.pad_token is None:\n        obs_tokenizer.pad_token = obs_tokenizer.eos_token\n        obs_model.config.pad_token_id = obs_model.config.eos_token_id\n\n    # Compute observer PPL for all conditions\n    print(\"\\nComputing observer model PPL...\")\n    obs_ppls: dict[str, dict[int, np.ndarray]] = {}\n    for cond in MODEL_CONDITIONS:\n        print(f\"  {cond}...\")\n        obs_ppls[cond] = {}\n        for d, texts in sorted(all_texts[cond].items()):\n            obs_ppls[cond][d] = compute_log_perplexity_batch(\n                obs_model, obs_tokenizer, texts, args.batch_size, args.max_length\n            )\n            print(f\"    depth {d}: mean_ppl={obs_ppls[cond][d].mean():.4f}\")\n\n    del obs_model\n    torch.cuda.empty_cache()\n\n    # --- Analysis ---\n    print(\"\\nAnalyzing...\")\n    results = {}\n    for cond in MODEL_CONDITIONS:\n        results[cond] = analyze_condition(cond, ref_ppls[cond], obs_ppls[cond])\n\n    # --- Save results ---\n    out_path = output_dir / \"ppl_depth_correlation.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nResults saved to {out_path}\")\n\n    # --- Per-sample scores for reproducibility ---\n    per_sample_path = output_dir / \"per_sample_scores.json\"\n    per_sample = {}\n    for cond in MODEL_CONDITIONS:\n        per_sample[cond] = {}\n        for d in sorted(ref_ppls[cond].keys()):\n            per_sample[cond][str(d)] = {\n                \"log_ppl_ref\": ref_ppls[cond][d].tolist(),\n                \"log_ppl_obs\": obs_ppls[cond][d].tolist(),\n            }\n    with open(per_sample_path, \"w\") as f:\n        json.dump(per_sample, f)\n    print(f\"Per-sample scores saved to {per_sample_path}\")\n\n    print_summary(results)\n\n\nif __name__ == \"__main__\":\n    main()\nPYTHON_SCRIPT",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T12:46:51.400382+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T12:46:51.400534+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && python3 scripts/exp012_ppl_depth_correlation.py --dry_run --max_samples 500",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westc-26893",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && python3 scripts/exp012_ppl_depth_correlation.py --dry_run --max_samples 500",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T12:46:51.400678+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading texts...\\n  qwen-rewrite: /root/autodl-tmp/gen-depth-contamination/data\\n    depth 0: 500 samples\\n    depth 1: 500 samples\\n    depth 2: 500 samples\\n    depth 3: 500 samples\\n    depth 4: 500 samples\\n    depth 5: 500 samples\\n  pythia-1.4b: /root/autodl-tmp/gen-depth-contamination/data_exp001_pythia\\n    depth 0: 500 samples\\n    depth 1: 500 samples\\n    depth 2: 500 samples\\n    depth 3: 500 samples\\n    depth 4: 500 samples\\n    depth 5: 500 samples\\n  olmo-1b: /root/autodl-tmp/gen-depth-contamination/data_exp002_olmo\\n    depth 0: 500 samples\\n    depth 1: 500 samples\\n    depth 2: 500 samples\\n    depth 3: 500 samples\\n    depth 4: 500 samples\\n    depth 5: 500 samples\\n  qwen-cont: /root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont\\n    depth 0: 500 samples\\n    depth 1: 500 samples\\n    depth 2: 500 samples\\n    depth 3: 500 samples\\n    depth 4: 500 samples\\n    depth 5: 500 samples\\n\\n[DRY RUN] Data loading successful. Exiting before model loading.\\n  Total texts to process: 12000\\n  Models: ref=Qwen/Qwen2.5-1.5B-Instruct, obs=EleutherAI/pythia-1.4b\\n  Estimated GPU time: ~12 min (rough)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.33}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-15T12:46:51.400876+00:00_
+
+Dry-run 通过。4 条件 × 6 深度 × 500 样本 = 12000 条文本，全部正确加载。
+
+汇报：
+
+**脚本路径**: `/root/autodl-tmp/gen-depth-contamination/scripts/exp012_ppl_depth_correlation.py`
+
+**数据格式**: 每个 `depth_X.jsonl` 一行一条 `{"text": "...", "doc_id": N}`，每个 depth 5000 条。4 个模型条件分别在 `data/`、`data_exp001_pythia/`、`data_exp002_olmo/`、`data_exp017_qwen_cont/`。
+
+**脚本功能**:
+- 用 Qwen2.5-1.5B-Instruct（已缓存）计算 log-PPL
+- 用 Pythia-1.4B（需下载 ~2.8GB）计算 observer PPL
+- 计算 PPL ratio、Spearman ρ、pairwise AUC（对比已硬编码的 15D OBD 基线）、6-class 阈值准确率
+- 输出 JSON + 终端 summary 表格
+- 支持 `--max_samples`、`--batch_size`、`--dry_run` 参数
+
+**预估 GPU 时间**: 默认 500 samples/depth 约 12-20 分钟（RTX 4090）。两个模型顺序加载，先跑完 ref 再释放显存加载 obs，24GB 显存充裕。
+
+**注意**: Pythia-1.4B 未缓存，首次运行需下载。建议运行前先 `source /etc/network_turbo` 加速下载。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_exp_012_prep_v2_20260515T124303"
+}
+```
+
+</details>
+
+---

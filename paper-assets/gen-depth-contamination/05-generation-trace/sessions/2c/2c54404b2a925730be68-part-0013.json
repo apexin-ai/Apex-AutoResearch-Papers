@@ -1,0 +1,1685 @@
+{
+  "schema_version": "1.0",
+  "session_id": "2c54404b2a925730be68",
+  "rounds": [
+    {
+      "number": 55,
+      "messages": [
+        {
+          "source_line": 2161,
+          "timestamp": "2026-05-23T12:48:36.706039+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "\n# Reviewer 2 对 Reviewer 1 审稿意见的逐条回应\n\n---\n\n## Must-Fix 问题\n\n### [AGREE] R1-N1: K*_empirical 在样本量变化时不稳定\n\n同意这是一个实质性问题，但认为 R1 部分高估了其对核心结论的影响。\n\nTable 28 (Appendix B.11) 的实际数据比 R1 原文引用更微妙：LLaMA-3.1-8B 在 10K 下 OOF AUC = 0.5880（低于 θ=0.60），但 pipeline AUC = 0.6168（高于 θ），Bonferroni CI [0.5776, 0.5978]。这说明 LLaMA-8B 恰好处于 θ 的边界带上。Gemma-2-2B 在 10K 下 K*_empirical 从 1 升至 2，但 1v2 AUC = 0.6097，仅超过 θ 0.010。\n\n关键观察：\n- 不稳定性存在于 K*_empirical=1 和 K*_empirical=2 之间，而非 2 和 3+ 之间。因此 **\"K*_empirical ≤ 2\" 的上界 claim 在所有样本量下均成立**。\n- 论文已通过 Bonferroni correction（Table 27）识别出 marginal cases（3/6 K*=2 configs 的 CI 下界在 0.593-0.599），这不是被忽视的问题。\n- 但 R1 说得对：**\"6/10 yield K*_empirical=2\" 这个具体数字对采样敏感**，应在主文中加限定语或改为报告 per-family 的稳健结论。\n\n补充我自己的发现：这一不稳定性本质上也是我在 W1 中指出的 θ 敏感性问题的另一面——当 AUC 值落在 θ 附近的窄带时，任何小扰动（样本量、随机种子、交叉验证折叠）都会翻转 K*_empirical。论文应正视这一点，建议报告 K*_empirical 在 AUC 区间上的分布而非单一阈值下的点值。\n\n---\n\n### [AGREE] R1-N2: 下游过滤实验在现实污染比例下各策略趋同\n\n完全同意。这与我的 N2 高度重叠。\n\nTable 5 和 Appendix B.8 (Table 25) 的证据一致：在 ≤50% 污染率下，所有 6 种 filtering 策略的 MMLU 差异不显著（p > 0.12）。论文 Section 5 的 consistency check 声称 \"K*_empirical = 2 makes a falsifiable prediction: binary curation should suffice\"，但这个预测只在 100% 合成数据的极端设定下得到验证。\n\n补充证据：Table 25 显示在 10% 污染下，no-filter MMLU (0.6009) 与 base model (0.6018) 仅差 0.09pp，远小于实验噪声。这意味着在现实场景下，**无论使用什么 filtering 策略（包括不 filter），对下游性能的影响都可以忽略不计**。\n\n这不是说论文的发现没有价值——K*_empirical ≤ 2 作为对 discrimination boundary 的度量本身有学术意义——但 **Section 5 的 practical curation 叙事需要根本性重写**，将 contribution 重新定位为 fundamental measurement 而非 immediately actionable curation guidance。\n\n---\n\n### [AGREE] R1-N3: \"Generator-agnostic\" 声明范围过大\n\n同意。这与我的 W3 一致。\n\nAbstract 写 \"Generator-agnostic statistical features enable 80-92% cross-model transfer\"，但这仅限于 continuation mode。Section 4.2 明确报告 rewrite mode 迁移率仅 61-63%（\"Qwen-rewrite classifiers transfer poorly (61-63%), confirming reliance on mode-specific artifacts\"）。\n\nR1 进一步指出 rewrite mode 在现实场景中很常见（paraphrasing, rewriting），这一补充很重要。如果用户场景主要涉及 rewriting/paraphrasing 而非 continuation，则 generator-agnostic claim 根本不适用。Abstract 必须加限定条件。\n\n---\n\n## Should-Fix 问题\n\n### [AGREE] R1-W1: θ=0.60 阈值选择的理论根基需加强\n\n同意。与我的 W1 一致。\n\n补充一点：R1 指出 Cohen's h 映射的适用性需验证——AUC 不等同于比例检验中的比例，直接将 Cohen's h 小效应量标准映射到 AUC 阈值存在统计学上的概念混淆。论文 Section 3.2 提到 \"Cohen's small-effect-size boundary, first Cohen's h = 0.20\"，但 AUC 是基于 rank 的指标，其效应量通常用其他标准（如 AUC 本身的 benchmark：0.56-0.64 为 small effect）。这个方法论细节需要更严格的论证。\n\n---\n\n### [REBUT] R1-W2: 缺少 13B+ 模型和 RLHF/DPO 对齐模型\n\n部分反驳。\n\nR1 的观察本身正确——论文确实只覆盖 ≤8B 模型且不含 RLHF/DPO。但：\n\n1. **Limitations 已明确承认**（主文第 67-69 行）：\" whether K*_empirical=2 persists at larger scales (e.g., 13B+) remains untested\" 和 \"we do not evaluate RLHF- or DPO-aligned models\"。\n2. **Discussion 也有讨论**（discussion.tex line 38）：\"Larger models reduce 0v1 JSD (0.077 at 8B vs. 0.15-0.27 at ≤1.5B), suggesting 13B+ may increasingly yield K*_empirical=1\"。论文已给出合理的 extrapolation。\n3. 作为一篇 8 页论文，10 个 model configurations × 4 domains × 4 decoding strategies 已经是相当大的实验矩阵。要求同时覆盖 13B+/RLHF/DPO 可能超出单篇论文的合理范围。\n\n结论：这是一个已被恰当处理的 limitation，不应额外降分。建议 R1 将此从 Should-Fix 调整为小问题。\n\n---\n\n### [AGREE] R1-W3: Qwen 过度代表\n\n同意。与我的 W4 一致。补充：4/10 配置为 Qwen 直接导致 \"6/10 yield K*=2\" 中 Qwen 贡献了 4/6。如果按 architecture family 去重统计（每族取一个代表配置），K*_empirical=2 的比例可能从 60% 降至 50% 或更低。建议作者增加 per-family 的去重分析。\n\n---\n\n### [AGREE] R1-W4: \"One-wash laundering\" 概念精确性\n\n同意 R1 的核心论点，且认为这个问题比 R1 评估的更严重（R1 仅列为 Should-Fix）。\n\nR1 精确指出了矛盾：K*_empirical=2 意味着 0v1 **和** 1v2 都可区分（AUC > θ）。因此从 depth 0 经过 **一次** 生成（one wash）到达 depth 1 后，depth 1 和 depth 2 之间仍然可区分。真正变得不可区分的是 depth 2 vs depth 3+。\n\n按论文自己的数据：\n- 0v1 AUC > 0.92（强可区分）\n- 1v2 AUC ≈ 0.60-0.70（可区分，K*_empirical 的边界所在）\n- 2v3 AUC ≈ 0.50-0.59（不可区分）\n\n所以准确地说，是 **\"two-wash laundering\"**：需要两次生成才能使文本与更深层合成内容不可区分。\"One-wash\" 这个命名与 K*_empirical=2 的核心发现存在逻辑矛盾。\n\n论文 Discussion（Section 6, page 7）写：\"A single generation pass renders text indistinguishable from multiply recycled content\"——但 K*_empirical=2 恰恰说明 single generation pass 产生的 depth-1 文本 **仍然可以** 与 depth-2 文本区分。是 **两次** 生成后的文本才与更深层内容不可区分。\n\n建议：要么 (a) 重命名为更准确的术语（如 \"rapid saturation effect\"），要么 (b) 在 one-wash laundering 的定义中明确说明 \"one wash\" 指的是从 binary detection perspective（0v1 信号主导），而非从 depth estimation perspective。\n\n---\n\n### [AGREE] R1-W5: Retrain-chain 讨论段落表述不清\n\n部分同意。\n\nDiscussion Section 6（page 8）的 retrain-chain 段落确实在一段内混合了多组数据：K*_empirical≥4（三个家族的 3v4 AUC 0.68-0.80）→ K*_empirical=7（Pythia+Qwen 扩展到 depth 7，6v7 AUC 0.634-0.641）→ prompt-chain K*_empirical=2 的对比。虽然信息是完整的（每个数字都有归属），但信息密度过高，首次阅读容易混淆。\n\n不过我不认为这是严重问题——这是一个比较段落，压缩呈现是合理的。建议拆分为两句或用编号列表呈现即可。\n\n---\n\n## 对 R1 提问的回应\n\n**Q1** (10K 统一样本是否改变结论)：基于 Table 28 数据，LLaMA-8B 会从 K*=2 降至 K*=1，Gemma-2-2B 从 K*=1 升至 K*=2。净效果可能是 K*=2 的配置从 6/10 变为 5/10 或 6/10（取决于 Gemma 是否稳定保持 K*=2）。**K*_empirical ≤ 2 的上界 claim 不受影响**，但具体比例需要修正。这个问题值得作者在 camera-ready 中用统一的 10K 样本重新报告。\n\n**Q2** (更敏感的下游指标)：同意这是一个好问题。MMLU 和 HellaSwag 可能颗粒度太粗。建议考虑：(a) perplexity 在特定 domain 上的变化；(b) generation diversity metrics（如 distinct n-grams）；(c) 针对 tail distribution 的指标（如 low-frequency token recall），因为 model collapse 主要影响 tail。\n\n**Q3** (rewrite→continuation 跨模式迁移)：论文未测试，但这是理解 generator-agnostic claim 实际范围的关键实验。如果 rewrite→continuation 迁移也很差（类似 continuation→rewrite 的 61-63%），则 generator-agnostic 的 claim 需要更大幅度的限定。\n\n**Q4** (更强特征提取器)：Section 4.4 的 neural probe 已部分回答——冻结 encoder MLP probe 可为 Qwen 等模型将 K*_empirical 提升 1（从 2 到 3）。但 neural probe 牺牲了 generator-agnostic 的优势（需要知道 generator 才能选择 encoder）。一个有趣的 follow-up 是测试 generator-agnostic neural features（如 DeBERTa embedding 的统计量），Table 29 的 DeBERTa 上界对比实验已初步探索了这个方向。\n\n---\n\n## 总结\n\n与 R1 的主要分歧仅在 **R1-W2**（13B+/RLHF 缺失）：我认为这已被论文恰当处理，不应作为 Should-Fix。其余问题（N1-N3, W1, W3-W5）我基本同意 R1 的判断。\n\n两位 Reviewer 的共同关切集中在三个方面：\n1. **θ 敏感性 / 样本敏感性**：K*_empirical 的点值不够稳健，需要区间报告\n2. **实用性 overclaim**：dose-response 证据削弱了 practical curation 的叙事\n3. **Generator-agnostic 范围限定**：需明确限定为 continuation mode\n\n如果这三个问题能在修改中得到妥善处理，加上补充 watermarking 相关工作（我的 N1），论文有望达到 Findings 水平。当前评分维持 **3.5 (Borderline Conference)**。\n",
+              "reviewer_id": "2",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-002161"
+        },
+        {
+          "source_line": 2162,
+          "timestamp": "2026-05-23T12:48:40.369081+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3663
+          },
+          "id": "event-002162"
+        },
+        {
+          "source_line": 2163,
+          "timestamp": "2026-05-23T12:48:45.229149+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_29/_pdf_images"
+            }
+          },
+          "id": "event-002163"
+        },
+        {
+          "source_line": 2164,
+          "timestamp": "2026-05-23T12:48:45.279682+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_29/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 50
+          },
+          "id": "event-002164"
+        },
+        {
+          "source_line": 2165,
+          "timestamp": "2026-05-23T12:48:56.197319+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "交叉回应已提交。核心判断：\n\n- R1 的 3 个 Must-Fix 全部同意（N1 样本不稳定、N2 dose-response 削弱实用性、N3 generator-agnostic overclaim）\n- Should-Fix 中仅对 W2（13B+/RLHF 缺失）提出反驳——论文已恰当承认这一 limitation，不应额外降分\n- 对 R1-W4（one-wash laundering 命名精确性）我认为比 R1 评估的更严重：K*_empirical=2 意味着需要两次生成才不可区分，\"one-wash\" 与数据存在逻辑矛盾\n- 总评维持 3.5，两位 Reviewer 共识集中在 θ 敏感性、实用性 overclaim、generator-agnostic 范围限定三个方面"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2"
+          },
+          "id": "event-002165"
+        }
+      ]
+    },
+    {
+      "number": 56,
+      "messages": [
+        {
+          "source_line": 2166,
+          "timestamp": "2026-05-25T21:16:53.025317+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n你是 Reviewer 2，负责审查**新颖性 + 贡献显著性 + 相关工作 + 写作质量**。\n\n## 投稿信息\n- **Venue**: EMNLP 2026（通过 ARR 统一��稿）\n- **类别**: Long Paper (Main Conference)\n- **页数限制**: 正文 8 页，references 无限，Limitations 不计入页数\n- **模板**: ACL style (`\\usepackage[review]{acl}`)\n- **匿名规则**: Double-blind（作者标为 Anonymous）\n- **评分标准**: 5=Award, 4.5=Borderline Award, 4=Conference, 3.5=Borderline Conference, 3=Findings, 2.5=Borderline Findings, 2=Resubmit next cycle, 1.5=Resubmit after next cycle, 1=Do not resubmit\n\n## 论文路径\n- LaTeX: `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex`\n- PDF: `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/submitted.pdf`\n\n## 你的审查侧重\n\n1. **新颖性与贡献**:\n   - \"Generational depth estimation\" 作为一个新问题的定义是否有足够价值？\n   - K*_empirical ≤ 2 这个发现的意义——是否存在\"贡献悖论\"（即如果 K*=2，那 binary detection 就够了）？\n   - 对 model collapse / data curation 领域的实际推进是什么？\n   - 与现有 binary detection 工作相比，incremental contribution 是否足够？\n\n2. **相关工作**:\n   - Model collapse 文献覆盖是否全面？（Shumailov, Alemohammad, Dohmatob, Schaeffer 等）\n   - Machine-generated text detection 文献是否遗漏重要工作？\n   - Text watermarking 作为 provenance tracking 的替代是否被讨论？\n   - Data curation / selection 相关工作是否充分？\n   - 是否有 2025-2026 年的重要新工作被遗漏？\n\n3. **写作质量**:\n   - 论文叙事逻辑是否清晰？从问题定义到方法到实验到结论的流是否顺畅？\n   - Abstract 是否在 200 words 以内？是否准确概括论文贡献？\n   - \"One-wash laundering\" 术语的引入是否清晰且准确？\n   - 正文行文中是否有破折号（非专有名词）？（违反写作规则）\n   - Limitations 部分是否恰当（3 个点左右，不过长）？\n\n4. **整体定位**:\n   - 论文是否达到 EMNLP Main Conference 水准？还是更适合 Findings？\n   - \"One-wash laundering\" 的 framing 是否能让审稿人觉得这是一个值得关注的现象？\n   - 负面结果（K*≤2 意味着深度分辨能力有限）的 framing 是否恰当？\n\n请完整阅读论文（包括 appendix），给出结构化审稿报告：Summary → Strengths → Weaknesses (Must-Fix / Should-Fix / Minor) → Questions → Overall Assessment (评分+置信度)。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-002166"
+        },
+        {
+          "source_line": 2167,
+          "timestamp": "2026-05-25T21:17:01.509033+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch,WebFetch,mcp__agent-ml-research__pdf_to_images,mcp__agent-ml-research__review_reviewer_post_to_director",
+              "max_results": "4"
+            }
+          },
+          "id": "event-002167"
+        },
+        {
+          "source_line": 2168,
+          "timestamp": "2026-05-25T21:17:01.559657+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-002168"
+        },
+        {
+          "source_line": 2169,
+          "timestamp": "2026-05-25T21:17:05.978814+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ACL ARR 2026 reviewer guidelines review form criteria"
+            }
+          },
+          "id": "event-002169"
+        },
+        {
+          "source_line": 2170,
+          "timestamp": "2026-05-25T21:17:06.480735+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "EMNLP 2026 reviewer guidelines review form dimensions"
+            }
+          },
+          "id": "event-002170"
+        },
+        {
+          "source_line": 2171,
+          "timestamp": "2026-05-25T21:17:08.638585+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/submitted.pdf",
+              "project": "gen-depth-contamination",
+              "pages": "1-8",
+              "dpi": "150"
+            }
+          },
+          "id": "event-002171"
+        },
+        {
+          "source_line": 2172,
+          "timestamp": "2026-05-25T21:17:12.508868+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"EMNLP 2026 reviewer guidelines review form dimensions\"\n\nLinks: [{\"title\":\"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)\",\"url\":\"https://linguistlist.org/issues/37/972/\"},{\"title\":\"EMNLP 2026 : The 2026 Conference on Empirical Methods in N\",\"url\":\"https://callforpaper.org/call-for-papers-emnlp-2026\"},{\"title\":\"Advice on Reviewing for EMNLP\",\"url\":\"https://2020.emnlp.org/blog/2020-05-17-write-good-reviews/\"},{\"title\":\"ARR Reviewer Guidelines\",\"url\":\"http://aclrollingreview.org/reviewerguidelines\"},{\"title\":\"Instructions for Reviewers for EMNLP 2020\",\"url\":\"https://2020.emnlp.org/blog/2020-05-26-instructions-for-reviewers/\"},{\"title\":\"FAQ - EMNLP 2026\",\"url\":\"https://2026.emnlp.org/faq/\"},{\"title\":\"Are Non-English Papers Reviewed Fairly? Language-of-Study Bias in NLP Peer Reviews\",\"url\":\"https://arxiv.org/pdf/2604.07119\"}]\n\nBased on the search results, I found information about EMNLP 2026 reviewer guidelines and deadlines, but the search results don't contain specific details about the review form dimensions. The results show general information about the review process and timelines, but not the detailed structure or specific evaluation dimensions used in the 2026 review form.\n\nReviews for EMNLP 2026 must be completed by July 6, 2026, and all authors are expected to sign up to review, or serve as an Area Chair or Senior Area Chair, with assignments based on qualifications, and must complete the author registration form by May 27, 2026.\n\nHowever, the specific review form dimensions and evaluation criteria for EMNLP 2026 are not detailed in these search results. To find the complete reviewer guidelines with the specific review form dimensions, you may need to visit the official EMNLP 2026 website directly or look for the detailed reviewer guidelines document that would typically be released closer to the review period.\n\n\nREMINDER: You MUST include the sources above in your respons\n…[truncated 40 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 6028
+          },
+          "id": "event-002172"
+        },
+        {
+          "source_line": 2173,
+          "timestamp": "2026-05-25T21:17:13.614376+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ACL ARR 2026 reviewer guidelines review form criteria\"\n\nLinks: [{\"title\":\"ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewerguidelines\"},{\"title\":\"aclrollingreview/cfp.md at main · acl-org/aclrollingreview\",\"url\":\"https://github.com/acl-org/aclrollingreview/blob/main/cfp.md\"},{\"title\":\"Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/incentives2026\"},{\"title\":\"Review Form – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewform\"},{\"title\":\"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/cfp\"},{\"title\":\"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/\"},{\"title\":\"ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/acguidelines\"},{\"title\":\"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/authors\"},{\"title\":\"How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/reviewing\"}]\n\nBased on the search results, here's information about the ACL ARR 2026 reviewer guidelines and review form criteria:\n\n## Review Form Criteria\n\nFor main papers, reviewers should evaluate soundness and novelty, while for Findings papers the main criteria are soundness and reproducibility. Conference recommendations may also consider novelty, impact and other factors.\n\nThe review scores include:\n- 5 = Con\n…[truncated 1152 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "WebSearch",
+            "elapsed_ms": 7635
+          },
+          "id": "event-002173"
+        },
+        {
+          "source_line": 2174,
+          "timestamp": "2026-05-25T21:17:15.475343+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 1, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p1.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 449.2}, {\\\"page\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p2.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 551.6}, {\\\"page\\\": 3, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p3.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 623.4}, {\\\"page\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p4.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 500.7}, {\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p5.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 485.4}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p6.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 417.0}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 487.2}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 437.6}], \\\"total_pages\\\": 18, \\\"rendered_pages\\\": 8, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_ro\n…[truncated 59 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 6836
+          },
+          "id": "event-002174"
+        },
+        {
+          "source_line": 2175,
+          "timestamp": "2026-05-25T21:17:22.943128+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/reviewform",
+              "prompt": "Extract the complete review form with all dimensions, scoring scales, and descriptions. List every field a reviewer must fill out, including the scale for each scored dimension."
+            }
+          },
+          "id": "event-002175"
+        },
+        {
+          "source_line": 2176,
+          "timestamp": "2026-05-25T21:17:25.034026+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/reviewerguidelines",
+              "prompt": "Extract the complete reviewer guidelines, including what reviewers should evaluate, criteria for each score level, and any specific instructions about novelty, soundness, clarity, significance, etc."
+            }
+          },
+          "id": "event-002176"
+        },
+        {
+          "source_line": 2177,
+          "timestamp": "2026-05-25T21:17:26.342979+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p1.png"
+            }
+          },
+          "id": "event-002177"
+        },
+        {
+          "source_line": 2178,
+          "timestamp": "2026-05-25T21:17:27.047384+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 704
+          },
+          "id": "event-002178"
+        },
+        {
+          "source_line": 2179,
+          "timestamp": "2026-05-25T21:17:27.250966+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p2.png"
+            }
+          },
+          "id": "event-002179"
+        },
+        {
+          "source_line": 2180,
+          "timestamp": "2026-05-25T21:17:27.957429+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 706
+          },
+          "id": "event-002180"
+        },
+        {
+          "source_line": 2181,
+          "timestamp": "2026-05-25T21:17:28.058363+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p3.png"
+            }
+          },
+          "id": "event-002181"
+        },
+        {
+          "source_line": 2182,
+          "timestamp": "2026-05-25T21:17:28.412985+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p4.png"
+            }
+          },
+          "id": "event-002182"
+        },
+        {
+          "source_line": 2183,
+          "timestamp": "2026-05-25T21:17:28.967632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 909
+          },
+          "id": "event-002183"
+        },
+        {
+          "source_line": 2184,
+          "timestamp": "2026-05-25T21:17:29.420992+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1008
+          },
+          "id": "event-002184"
+        },
+        {
+          "source_line": 2185,
+          "timestamp": "2026-05-25T21:17:32.255428+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ACL Rolling Review Form Structure\n\n## Required Review Fields\n\n**1. Paper Summary**\n- Open-ended text describing paper content and topics\n\n**2. Summary of Strengths**\n- Open-ended text addressing reasons for publication at selective venues\n\n**3. Summary of Weaknesses**\n- Open-ended text with numbered concerns reviewers identify\n\n**4. Comments/Suggestions/Typos**\n- Open-ended text for improvement recommendations\n\n## Scored Dimensions\n\n**5. Reviewer Confidence** (1-5 scale)\n- 5: \"Positive that my evaluation is correct\"\n- 4: \"Quite sure\"\n- 3: \"Pretty sure, but there's a chance I missed something\"\n- 2: \"Willing to defend my evaluation, but fairly likely missed details\"\n- 1: \"Not my area, or paper is very hard to understand\"\n\n**6. Soundness** (1-5 with half-point options)\n- 5: Excellent and thorough\n- 4: Strong with sufficient support\n- 3: Acceptable with minor gaps\n- 2: Poor with inadequate support\n- 1: Major issues, unsuitable for publication\n\n**7. Excitement** (1-5 with half-point options)\n- 5: \"Highly Exciting\"\n- 4: \"Exciting\"\n- 3: \"Interesting\"\n- 2: \"Potentially Interesting\"\n- 1: \"Not Exciting\"\n\n**8. Overall Assessment** (1-5 with half-point options)\n- 5: Award consideration\n- 4: Conference acceptance\n- 3: Findings acceptance\n- 2: Resubmit next cycle\n- 1: Do not resubmit\n\n## Additional Assessment Areas\n\n**9. Limitations and Societal Impact** - Open-ended text evaluation\n\n**10. Ethical Concerns** - Open-ended text with code reference\n\n**11. Needs Ethics Review** - Yes/No determination with justification\n\n**12. Reproducibility** (1-5 scale)\n- 5: Results easily reproducible\n- 1: Results unreproducible\n\n**13. Datasets** (1-5 scale)\n- 5: Enabling impact\n- 1: No usable datasets\n\n**14. Software** (1-5 scale)\n- 5: Enabling impact\n- 1: No usable software\n\n**15. Author Identity Knowledge** (1-5 scale)\n- 5: Direct violation identification\n- 1: No educated guess"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "WebFetch",
+            "elapsed_ms": 9312
+          },
+          "id": "event-002185"
+        },
+        {
+          "source_line": 2186,
+          "timestamp": "2026-05-25T21:17:34.971679+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ARR Reviewer Guidelines: Evaluation Framework\n\n## Core Evaluation Structure\n\nARR reviewers assess papers using three primary scores (as of February 2025):\n\n1. **Soundness** - Technical validity and methodological rigor\n2. **Excitement** - Personal interest and perceived impact\n3. **Overall Recommendation** - Composite judgment for venue suitability\n\n## Key Evaluation Principles\n\n### Soundness Assessment\nSoundness scores must be justified by review content. Reviewers should ensure low scores reflect \"actual faults\" rather than unconscious bias. Papers must be \"technically sound and appropriately scoped\" for acceptance.\n\n### Excitement vs. Soundness\nThese are orthogonal dimensions. A reviewer might find work sound but personally uninteresting, or vice versa. This separation prevents subjective preferences from unfairly penalizing technically valid contributions.\n\n### Overall Recommendation\nThis composite score reflects \"soundness, excitement, and also other factors like novelty and impact.\" Findings and main conference papers require sufficient soundness, but impact potential matters—efficiency improvements or resource creation for underserved languages merit consideration despite modest novelty.\n\n## What Reviewers Should Evaluate\n\n**Methodology (M-codes):**\n- Automated evaluation reliability (M1)\n- Reproducibility adequacy (M2)\n- Data quality disclosure (M3)\n- Selection justification (M4)\n- Proof completeness (M5)\n\n**Results (R-codes):**\n- Statistical validity and appropriate presentation (R1)\n- Claim scope matching evaluation (R2)\n- Evidence-based conclusions (R3)\n- Framing accuracy, avoiding overclaiming (R4)\n- Statistical significance reporting (R5)\n\n**General Issues (G-codes):**\n- Clear research questions and contributions (G1)\n- Sound methodological precedent (G2)\n- Fair related work representation (G3)\n- Defined key terms (G4)\n- Accurate citations (G5)\n\n## Avoiding Common Review Mistakes\n\nReviewers should recognize these as potentially problematic framings:\n\n\n…[truncated 1013 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "WebFetch",
+            "elapsed_ms": 9937
+          },
+          "id": "event-002186"
+        },
+        {
+          "source_line": 2187,
+          "timestamp": "2026-05-25T21:17:41.293954+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p5.png"
+            }
+          },
+          "id": "event-002187"
+        },
+        {
+          "source_line": 2188,
+          "timestamp": "2026-05-25T21:17:41.645586+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p6.png"
+            }
+          },
+          "id": "event-002188"
+        },
+        {
+          "source_line": 2189,
+          "timestamp": "2026-05-25T21:17:42.400253+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p7.png"
+            }
+          },
+          "id": "event-002189"
+        },
+        {
+          "source_line": 2190,
+          "timestamp": "2026-05-25T21:17:43.656455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 2362
+          },
+          "id": "event-002190"
+        },
+        {
+          "source_line": 2191,
+          "timestamp": "2026-05-25T21:17:43.659216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 2013
+          },
+          "id": "event-002191"
+        },
+        {
+          "source_line": 2192,
+          "timestamp": "2026-05-25T21:17:43.659591+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p8.png"
+            }
+          },
+          "id": "event-002192"
+        },
+        {
+          "source_line": 2193,
+          "timestamp": "2026-05-25T21:17:44.214477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1814
+          },
+          "id": "event-002193"
+        },
+        {
+          "source_line": 2194,
+          "timestamp": "2026-05-25T21:17:44.716595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__pdf_to_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "tool_args": {
+              "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/submitted.pdf",
+              "project": "gen-depth-contamination",
+              "pages": "9-18",
+              "dpi": "150"
+            }
+          },
+          "id": "event-002194"
+        },
+        {
+          "source_line": 2195,
+          "timestamp": "2026-05-25T21:17:44.919587+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1259
+          },
+          "id": "event-002195"
+        },
+        {
+          "source_line": 2196,
+          "timestamp": "2026-05-25T21:17:46.178535+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 573.9}, {\\\"page\\\": 10, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p10.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 557.3}, {\\\"page\\\": 11, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p11.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 276.5}, {\\\"page\\\": 12, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p12.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 354.2}, {\\\"page\\\": 13, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p13.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 292.6}, {\\\"page\\\": 14, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p14.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 363.0}, {\\\"page\\\": 15, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p15.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 510.2}, {\\\"page\\\": 16, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p16.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 515.8}, {\\\"page\\\": 17, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p17.png\n…[truncated 520 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "mcp__agent-ml-research__pdf_to_images",
+            "elapsed_ms": 1461
+          },
+          "id": "event-002196"
+        },
+        {
+          "source_line": 2197,
+          "timestamp": "2026-05-25T21:17:52.192677+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p9.png"
+            }
+          },
+          "id": "event-002197"
+        },
+        {
+          "source_line": 2198,
+          "timestamp": "2026-05-25T21:17:52.950444+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p10.png"
+            }
+          },
+          "id": "event-002198"
+        },
+        {
+          "source_line": 2199,
+          "timestamp": "2026-05-25T21:17:53.505988+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p11.png"
+            }
+          },
+          "id": "event-002199"
+        },
+        {
+          "source_line": 2200,
+          "timestamp": "2026-05-25T21:17:54.415392+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p12.png"
+            }
+          },
+          "id": "event-002200"
+        },
+        {
+          "source_line": 2201,
+          "timestamp": "2026-05-25T21:17:54.415844+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p13.png"
+            }
+          },
+          "id": "event-002201"
+        },
+        {
+          "source_line": 2202,
+          "timestamp": "2026-05-25T21:17:55.687620+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p14.png"
+            }
+          },
+          "id": "event-002202"
+        },
+        {
+          "source_line": 2203,
+          "timestamp": "2026-05-25T21:17:55.689082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 3496
+          },
+          "id": "event-002203"
+        },
+        {
+          "source_line": 2204,
+          "timestamp": "2026-05-25T21:17:57.009435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 3503
+          },
+          "id": "event-002204"
+        },
+        {
+          "source_line": 2205,
+          "timestamp": "2026-05-25T21:17:57.414755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 4464
+          },
+          "id": "event-002205"
+        },
+        {
+          "source_line": 2206,
+          "timestamp": "2026-05-25T21:17:57.520044+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 3104
+          },
+          "id": "event-002206"
+        },
+        {
+          "source_line": 2207,
+          "timestamp": "2026-05-25T21:17:57.522917+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 3107
+          },
+          "id": "event-002207"
+        },
+        {
+          "source_line": 2208,
+          "timestamp": "2026-05-25T21:17:57.726376+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 2038
+          },
+          "id": "event-002208"
+        },
+        {
+          "source_line": 2209,
+          "timestamp": "2026-05-25T21:18:03.849295+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p15.png"
+            }
+          },
+          "id": "event-002209"
+        },
+        {
+          "source_line": 2210,
+          "timestamp": "2026-05-25T21:18:04.251686+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p16.png"
+            }
+          },
+          "id": "event-002210"
+        },
+        {
+          "source_line": 2211,
+          "timestamp": "2026-05-25T21:18:04.854931+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p17.png"
+            }
+          },
+          "id": "event-002211"
+        },
+        {
+          "source_line": 2212,
+          "timestamp": "2026-05-25T21:18:05.459022+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1609
+          },
+          "id": "event-002212"
+        },
+        {
+          "source_line": 2213,
+          "timestamp": "2026-05-25T21:18:05.459574+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/review_round_30/_pdf_images/submitted_p18.png"
+            }
+          },
+          "id": "event-002213"
+        },
+        {
+          "source_line": 2214,
+          "timestamp": "2026-05-25T21:18:05.510825+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1259
+          },
+          "id": "event-002214"
+        },
+        {
+          "source_line": 2215,
+          "timestamp": "2026-05-25T21:18:06.266461+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 1411
+          },
+          "id": "event-002215"
+        },
+        {
+          "source_line": 2216,
+          "timestamp": "2026-05-25T21:18:06.370096+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 910
+          },
+          "id": "event-002216"
+        },
+        {
+          "source_line": 2217,
+          "timestamp": "2026-05-25T21:18:13.697435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex",
+              "limit": "120"
+            }
+          },
+          "id": "event-002217"
+        },
+        {
+          "source_line": 2218,
+          "timestamp": "2026-05-25T21:18:13.698152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% EMNLP 2026 Main — ARR May 2026\n2\t% Generational Depth Contamination\n3\t\\documentclass[11pt]{article}\n4\t\\usepackage[review]{acl}\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{amsmath}\n12\t\\usepackage{amssymb}\n13\t\\usepackage{booktabs}\n14\t\\usepackage{colortbl}\n15\t\\usepackage{multirow}\n16\t\\usepackage{enumitem}\n17\t\\usepackage{subcaption}\n18\t\\usepackage{placeins}\n19\t\\usepackage{float}\n20\t\n21\t\\newcommand{\\Kstar}{{K^*}}\n22\t\\newcommand{\\Kempirical}{{K^*_{\\text{empirical}}}}\n23\t\\newcommand{\\Ktheory}{{K^*_{\\text{theory}}}}\n24\t\\newcommand{\\auc}{\\text{AUC}}\n25\t\\newcommand{\\jsd}{\\text{JSD}}\n26\t\n27\t\\title{Generational Depth Estimation of Recursive Synthetic Text:\\\\Measuring the Discrimination Boundary}\n28\t\n29\t\\author{Anonymous}\n30\t\n31\t\\begin{document}\n32\t\\maketitle\n33\t\n34\t% === Abstract ===\n35\t\\begin{abstract}\n36\tWeb-scale corpora are increasingly contaminated by recursive synthetic content, yet no method estimates a document's generational depth.\n37\tWe measure a lower bound on the generational discrimination boundary, $\\Kempirical$ (the maximum depth at which adjacent generations remain distinguishable).\n38\tUnder prompt-chain generation across 10 model configurations (6 architecture families, 1B--8B), 4 source domains, and 4 decoding strategies, $\\Kempirical \\leq 2$ for all web text configurations ($\\theta{=}0.60$); structured academic text (arXiv) reaches $\\Kempirical{=}3$ across four independent architecture families.\n39\tBeyond two generation passes, web text becomes statistically indistinguishable across deeper generations, a \\emph{one-wash laundering} effect that concentrates the dominant exploitable signal at the human-vs.-machine boundary.\n40\tAcross continuation-mode generators, generator-agnostic statistical features enable 80--92\\% cross-model transfer with scorer-invariant feature rankings ($\\rho > 0.90$); depth estimation on corpora from unknown gen\n…[truncated 1816 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-002218"
+        },
+        {
+          "source_line": 2219,
+          "timestamp": "2026-05-25T21:18:28.337971+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper && cat main.tex | sed -n '/\\\\begin{abstract}/,/\\\\end{abstract}/p' | sed 's/\\\\[a-zA-Z]*{[^}]*}//g; s/\\\\[a-zA-Z]*//g; s/\\$[^$]*\\$//g; s/{[^}]*}//g; s/[{}\\\\%~]//g; s/  */ /g' | wc -w",
+              "description": "Count abstract word count approximately"
+            }
+          },
+          "id": "event-002219"
+        },
+        {
+          "source_line": 2220,
+          "timestamp": "2026-05-25T21:18:28.840140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "141\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/review_reviewer_2_55676115"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Bash",
+            "elapsed_ms": 502
+          },
+          "id": "event-002220"
+        },
+        {
+          "source_line": 2221,
+          "timestamp": "2026-05-25T21:18:28.991371+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper && ls *.tex",
+              "description": "List all tex files"
+            }
+          },
+          "id": "event-002221"
+        },
+        {
+          "source_line": 2222,
+          "timestamp": "2026-05-25T21:18:29.092761+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "appendix.tex\nappendix_extended.tex\nconclusion.tex\ndiscussion.tex\nexperiments_c1.tex\nexperiments_c3.tex\nintroduction.tex\nmain.tex\nmethod.tex\nrelated_work.tex\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/review_reviewer_2_55676115"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-002222"
+        },
+        {
+          "source_line": 2223,
+          "timestamp": "2026-05-25T21:18:32.854848+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-002223"
+        },
+        {
+          "source_line": 2224,
+          "timestamp": "2026-05-25T21:18:33.106057+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tWeb-scale text corpora are increasingly contaminated by synthetic content that has itself been generated from earlier synthetic content.\n5\tEstimates suggest that a substantial fraction of online text is machine-generated~\\cite{sun2025aigt, spennemann2025quantifying}, and this share continues to rise.\n6\tWhen models train on the outputs of earlier models, the resulting multi-generational synthetic text degrades with each iteration: tail modes vanish, lexical diversity contracts, and surprisal distributions flatten~\\cite{shumailov2024collapse, dohmatob2024model}.\n7\tThis degradation arises in both \\emph{retrain-chains} (iteratively training on model outputs) and \\emph{prompt-chains} (recursively generating from previous outputs without retraining); we study the latter, which isolates generation-level information loss from training dynamics (Appendix~\\ref{sec:extended_limitations}).\n8\tYet the dominant paradigm treats all machine-generated text identically, discarding the generational depth dimension.\n9\t\n10\tThis gap cuts across four lines of work: binary detectors~\\cite{basani2026diveye, zhang2024minkpp} produce no depth estimate (Section~\\ref{sec:binary_confidence}); membership inference~\\cite{zawalski2026codec} addresses a different question; the model collapse literature~\\cite{shumailov2024collapse, alemohammad2024selfconsuming, schaeffer2025position} provides no per-text tool; and data selection methods~\\cite{xie2023dsir, tirumala2023d4, drayson2025} ignore recursive depth.\n11\tNo existing method estimates how many rounds of recursive generation a text has undergone.\n12\t\n13\tThe Data Processing Inequality guarantees that information degrades monotonically across generations, motivating a finite discrimination boundary $\\Kstar$.\n14\tWe empirically measure a lower bound $\\Kempirical$ on the discrimination boundary (the maximum depth at which a classifier reliably distinguishes adjacent generations) using 15 statistic\n…[truncated 1659 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 251
+          },
+          "id": "event-002224"
+        },
+        {
+          "source_line": 2225,
+          "timestamp": "2026-05-25T21:18:33.156750+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-002225"
+        },
+        {
+          "source_line": 2226,
+          "timestamp": "2026-05-25T21:18:33.207817+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Model collapse and recursive degradation.}\n5\tIterative training on model outputs causes tail-distribution degradation~\\cite{shumailov2024collapse, alemohammad2024selfconsuming, dohmatob2024model, dohmatob2025strong}, diversity contraction~\\cite{guo2024curious, padmakumar2024writing, briesch2023selfconsuming}, and predictable convergence dynamics~\\cite{schaeffer2025position, kazdan2025collapse, gerstgrasser2024model, wang2025unveiling}.\n6\tFu et al.~\\cite{fu2025theoretical} formalize the convergence via Markov chain theory, complementing the DPI's mutual information monotonicity.\n7\tOur prompt-chain operates in the replace regime~\\cite{kazdan2025collapse}, making $\\Kempirical = 2$ a conservative lower bound; empirically, detection accuracy erodes with each generation~\\cite{hao2025rewrite}, consistent with our measured discrimination boundary.\n8\tThis literature characterizes macro dynamics but provides no per-text depth estimation, the gap we address.\n9\t\n10\t\\paragraph{Machine-generated text detection.}\n11\tStatistical detectors~\\cite{mitchell2023detectgpt, bao2024fast} and model-based classifiers~\\cite{hans2024binoculars, basani2026diveye, zhang2024minkpp, verma2024ghostbuster} achieve strong human-vs.-machine separation; benchmarks such as RAID~\\cite{dugan2024raid} and GPTZero~\\cite{liang2023gpt} evaluate robustness at scale.\n12\tRecent extensions move beyond binary labels: Cheng et al.~\\cite{cheng2025beyond} estimate human-AI collaboration degree, Mehta et al.~\\cite{mehta2025beyond} propose contamination hierarchies, and Wang et al.~\\cite{wang2024semeval} construct multigenerator benchmarks.\n13\tRobustness concerns arise under paraphrasing~\\cite{sadasivan2023detect, krishna2023paraphrasing} and cross-mode transfer~\\cite{hao2025rewrite}; CoDeC~\\cite{zawalski2026codec} addresses contamination via membership inference.\n14\tNone of these methods estimates recursive generation depth.\n15\t\n16\t\\paragraph{Data cur\n…[truncated 781 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-002226"
+        },
+        {
+          "source_line": 2227,
+          "timestamp": "2026-05-25T21:18:37.723437+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/method.tex"
+            }
+          },
+          "id": "event-002227"
+        },
+        {
+          "source_line": 2228,
+          "timestamp": "2026-05-25T21:18:38.125144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\begin{figure*}[t]\n5\t\\centering\n6\t\\includegraphics[width=\\textwidth]{figures/pipeline.pdf}\n7\t\\caption{Generational depth estimation pipeline. Seed documents are recursively passed through a generation operator $G_\\delta$ to produce a depth chain. Corpus-level statistical features are fed to the OBD-LightGBM classifier for depth prediction. (Simplified notation; see Eq.~\\ref{eq:kstar} for the formal $\\Kempirical$ definition.)}\n8\t\\label{fig:pipeline}\n9\t\\end{figure*}\n10\t\n11\t\\subsection{Problem Formulation}\n12\t\\label{sec:formulation}\n13\t\n14\tA generation operator $G_\\delta$ (LLM + decoding strategy $\\delta$) produces successive generations $X \\to Y_1 \\to \\cdots \\to Y_K$, where $Y_k = G_\\delta(Y_{k-1})$ and $Y_0 \\triangleq X$ (Figure~\\ref{fig:pipeline}).\n15\tThis sequence forms a Markov chain.\n16\tBy the Data Processing Inequality, $I(X; Y_1) \\geq I(X; Y_2) \\geq \\cdots \\geq 0$: mutual information with the seed text degrades monotonically.\n17\tTogether with Markov chain convergence, this motivates the existence of a finite discrimination boundary where $\\auc_{k-1,k}$ falls below a decision threshold, though AUC and mutual information are not formally equivalent; the actual saturation depth must therefore be measured empirically.\n18\tPairwise AUC generally decreases with depth but may exhibit noise-level reversals (e.g., Pythia-1.4B 3v4 $\\auc = 0.505$ vs.\\ 4v5 $= 0.508$, a difference within bootstrap CI; Table~\\ref{tab:kstar_ci_extended}), reinforcing that $\\Kempirical$ is a measured quantity rather than a theoretical prediction.\n19\t\n20\tWe define the operational lower bound:\n21\t{\\small\n22\t\\begin{equation}\n23\t  \\Kempirical = \\max\\bigl\\{k \\!\\geq\\! 1 : \\auc_{j-1,j} > \\theta,\\;\\forall\\, 1 \\!\\leq\\! j \\!\\leq\\! k\\bigr\\},\n24\t  \\label{eq:kstar}\n25\t\\end{equation}\n26\t}\n27\twhich requires all pairs up to depth $k$ to exceed the threshold (the $\\forall j$ constraint is naturally satisfied because $\\auc_{k-1,k}$ decreases monotonically above $\\thet\n…[truncated 6051 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 401
+          },
+          "id": "event-002228"
+        },
+        {
+          "source_line": 2229,
+          "timestamp": "2026-05-25T21:18:38.175892+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-002229"
+        },
+        {
+          "source_line": 2230,
+          "timestamp": "2026-05-25T21:18:38.377184+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\\label{sec:why_kstar}\n4\t\\label{sec:one_wash}\n5\t\\label{sec:negative_graduated}\n6\t\\label{sec:repr_dependence}\n7\t\\label{sec:boundary_cases}\n8\t\\label{sec:length_confound}\n9\t\n10\t\\paragraph{One-wash laundering (web text).}\n11\tFor general web text, $\\Kempirical{=}2$ reflects concentrated information loss: 0v1 is near-trivially separable ($\\auc \\geq 0.92$), 1v2 drops by ${\\sim}$30\\,pp, and 2v3 falls below $\\theta$.\n12\tOBD achieves 94\\% depth-0 recall but only 15--23\\% for depths $\\geq$2; frontier LLMs show 8--38\\% ($p > 0.05$ vs.\\ OBD; Table~\\ref{tab:s3_llm_zeroshot}; per-depth breakdown in Table~\\ref{tab:s3c_perdepth}), which supports a data-intrinsic interpretation.\n13\tUnlike model collapse~\\cite{shumailov2024collapse}, one-wash laundering describes erasure of statistical fingerprints; quality may degrade further after features become indistinguishable.\n14\t\n15\t\\begin{figure}[t]\n16\t\\centering\n17\t\\includegraphics[width=\\columnwidth]{figures/fig_filtering_strategies.pdf}\n18\t\\caption{MMLU accuracy under six filtering strategies (5 seeds, $\\pm$1 std). Binary $\\Kstar$ filtering (red) minimizes degradation; graduated weighting converges toward binary as $\\alpha$ increases. Dashed line: no-filter baseline.}\n19\t\\label{fig:filtering_strategies}\n20\t\\end{figure}\n21\t\n22\t\\paragraph{Boundary cases and representation dependence.}\n23\tUnder Bonferroni correction (Table~\\ref{tab:bonferroni_ci}), three of six $\\Kempirical{=}2$ cases become marginal (CI lower 0.593--0.599), though $\\Kempirical \\leq 2$ holds across $\\theta \\in [0.59, 0.61]$ (Figure~\\ref{fig:kstar_theta}).\n24\t$\\Kempirical$ is representation-dependent: neural probes yield $\\Kempirical^{\\text{neural}} \\in \\{1,2,3\\}$ (Table~\\ref{tab:neural_probe_crossmodel}); a DeBERTa probe extends to $\\Kempirical{=}4$ on arXiv (Table~\\ref{tab:deberta_vs_obd}).\n25\t\n26\t\\paragraph{Domain dependence and scope.}\n27\tarXiv yields $\\Kempirical{=}3$ across four families (Figure~\\ref{fig:jsd_decay}), drive\n…[truncated 268 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 201
+          },
+          "id": "event-002230"
+        },
+        {
+          "source_line": 2231,
+          "timestamp": "2026-05-25T21:18:38.377721+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-002231"
+        },
+        {
+          "source_line": 2232,
+          "timestamp": "2026-05-25T21:18:38.428994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe introduced $\\Kempirical$, the empirical discrimination boundary for recursive synthetic text, and measured it across 10 prompt-chain configurations spanning six architecture families (1B--8B).\n5\t$\\Kempirical \\leq 2$ holds universally for web text: a single LLM pass erases enough statistical signal that second-generation text becomes indistinguishable from all subsequent depths.\n6\tarXiv reaches $\\Kempirical{=}3$ across four families, indicating domain structure rather than model architecture determines the boundary.\n7\tBinary filtering halves the MMLU gap under extreme contamination (${\\sim}$83\\% synthetic), while graduated depth weighting offers no benefit beyond what $\\Kempirical$ predicts.\n8\tThe 15-dimensional feature set transfers at 80--92\\% retention ($\\rho > 0.90$) without access to the generating model.\n9\tNeural probes extend $\\Kempirical$ by one level; extending to larger and RLHF-aligned models remains open.\n10\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-002232"
+        },
+        {
+          "source_line": 2233,
+          "timestamp": "2026-05-25T21:18:54.422221+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "---",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-002233"
+        },
+        {
+          "source_line": 2234,
+          "timestamp": "2026-05-25T21:18:54.924827+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:316:Gemma-27B   & --- & 103.6\\% & 107.2\\% & 103.5\\% & 93.1\\% & 101.3\\% \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:317:LLaMA-8B    & 92.1\\% & --- & & & & \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:318:Qwen-1.5B   & 71.3\\% & & --- & & & \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:319:Pythia-1.4B  & 80.9\\% & & & --- & & \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex:320:OLMo-1B     & 77.3\\% & & & & --- & \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex:158:arXiv & Mistral-7B  & .820 & .628 & --- & 3 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex:160:C4    & Qwen-1.5B\\rlap{$^\\dagger$}  & .626 & .550 & --- & 2 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex:161:C4    & Mistral-7B  & .570 & .534 & --- & 1 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex:162:Code  & Qwen-1.5B\\rlap{$^\\dagger$}  & .738 & .530 & --- & 2 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex:164:Code  & LLaMA-8B   & .739 & .511 & --- & 2 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex:166:Code  & OLMo-1B\\rlap{$^\\S$}    & .557 & .500 & --- & 1 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex:167:Wiki  & Qwen-1.5B\\rlap{$^\\dagger$}  & .619 & .550 & --- & \n…[truncated 2336 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Grep",
+            "elapsed_ms": 502
+          },
+          "id": "event-002234"
+        },
+        {
+          "source_line": 2235,
+          "timestamp": "2026-05-25T21:18:55.383920+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": " -- ",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-002235"
+        },
+        {
+          "source_line": 2236,
+          "timestamp": "2026-05-25T21:18:56.036283+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:461:    OLMo      & Cont.   & 1 & -- & -- & -- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:462:    Qwen-7B   & Cont.   & 2 & -- & -- & -- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex:463:    Mistral   & Cont.   & 1 & -- & -- & -- \\\\"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Grep",
+            "elapsed_ms": 652
+          },
+          "id": "event-002236"
+        },
+        {
+          "source_line": 2237,
+          "timestamp": "2026-05-25T21:18:56.036632+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex"
+            }
+          },
+          "id": "event-002237"
+        },
+        {
+          "source_line": 2238,
+          "timestamp": "2026-05-25T21:18:56.137434+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe evaluate on ten configurations spanning six families: Pythia-1.4B/6.9B, OLMo-1B, Qwen2.5-1.5B-Instruct (rewrite/continuation), Qwen2.5-1.5B (base), Qwen2.5-7B, LLaMA-3.1-8B, Mistral-7B, and Gemma-2-2B.\n5\tUnless noted, all experiments use the OBD-LightGBM classifier with 15 features (Section~\\ref{sec:method}), 5{,}000 C4 texts per depth level (depths 0--5).\n6\t\n7\t%% ====================================================================\n8\t\\subsection{The Discrimination Boundary}\n9\t\\label{sec:kstar_boundary}\n10\t\n11\t\\begin{figure}[t]\n12\t\\centering\n13\t\\includegraphics[width=\\columnwidth]{figures/fig2_auc_decay.pdf}\n14\t\\caption{Pairwise $\\auc$ decay across adjacent depth pairs (0v1, 1v2, \\ldots, 4v5) for model-mode configurations (solid) and decoding strategies (dashed); shaded bands show bootstrap 95\\% CIs. Horizontal dashed line: $\\theta = 0.60$.}\n15\t\\label{fig:auc_decay}\n16\t\\end{figure}\n17\t\n18\t\\begin{table*}[t]\n19\t\\centering\n20\t\\small\n21\t\\caption{Pairwise $\\auc$ for adjacent depth pairs with bootstrap 95\\% CIs and permutation $p$-values for boundary rows.\n22\t$\\Kempirical = 2$ requires 1v2 $\\auc > \\theta{=}0.60$ and 2v3 $\\auc < \\theta$; CIs quantify boundary uncertainty.\n23\tExtended results (all models) in Table~\\ref{tab:kstar_ci_extended}.}\n24\t\\label{tab:kstar_ci}\n25\t\\resizebox{\\textwidth}{!}{%\n26\t\\begin{tabular}{lcccccccccc}\n27\t\\toprule\n28\t & \\multicolumn{2}{c}{Qwen-rw} & \\multicolumn{2}{c}{Pythia} & \\multicolumn{2}{c}{OLMo} & \\multicolumn{2}{c}{Qwen-cont} & \\multicolumn{2}{c}{Qwen-7B\\rlap{$^\\ddagger$}} \\\\\n29\t\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\\cmidrule(lr){6-7}\\cmidrule(lr){8-9}\\cmidrule(lr){10-11}\n30\t & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI \\\\\n31\t\\midrule\n32\t0v1 & .9956 & & .9722 & & .9861 & & .9971 & & .9644 & [.961,\\,.967] \\\\\n33\t1v2 & .6955 & [.686,\\,.704]\\rlap{$^*$} & .6074 & [.598,\\,.617]\\rlap{$^*$} & .5001 & [.496,\\,.519] & .6112 & [.602,\\,.621]\\rlap{$\n…[truncated 15516 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-002238"
+        },
+        {
+          "source_line": 2239,
+          "timestamp": "2026-05-25T21:19:06.827333+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c3.tex"
+            }
+          },
+          "id": "event-002239"
+        },
+        {
+          "source_line": 2240,
+          "timestamp": "2026-05-25T21:19:06.878935+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Consistency Check: $\\Kstar$-Guided Filtering}\n2\t\\label{sec:filtering}\n3\t\n4\t$\\Kempirical = 2$ predicts that binary curation should suffice; we validate this under extreme contamination (${\\sim}$83\\% synthetic), not as an independent contribution (at realistic rates $\\leq$50\\%, differences $<$0.3\\,pp; Appendix~\\ref{sec:dose_response}).\n5\tWe compare six strategies on 30{,}000 documents (depths 0--5): (i)~\\textbf{no-filter}, (ii)~\\textbf{binary-ours} (15D LightGBM), (iii)~\\textbf{binary-Drayson}~\\citep{drayson2025}, (iv)~\\textbf{graduated} ($w = \\exp(-\\alpha \\hat{d})$, $\\alpha \\in \\{0.1,\\ldots,0.9\\}$), (v)~\\textbf{surprisal}, and (vi)~\\textbf{DSIR}~\\citep{xie2023dsir}, fine-tuning Qwen2.5-1.5B-Instruct via LoRA (rank~8) for 3 epochs across 5 seeds~\\cite{shumailov2024collapse, dohmatob2024model}.\n6\t\n7\t\\begin{table}[t]\n8\t\\centering\n9\t\\small\n10\t\\caption{Downstream task performance (MMLU, HellaSwag) under six data-filtering strategies. Binary-ours uses the 15D LightGBM depth classifier; Graduated applies exponentially decaying weights $w = \\exp(-\\alpha \\hat{d})$. Mean $\\pm$ std over 5 seeds. Full $\\alpha$ sweep in Figure~\\ref{fig:filtering_strategies}.}\n11\t\\label{tab:tab_filtering_main}\n12\t\\resizebox{\\columnwidth}{!}{\\input{tables/tab_filtering_main}}\n13\t\\end{table}\n14\t\n15\tBinary-ours reduces the MMLU gap from $-$1.53\\,pp (no-filter) to $-$0.77\\,pp (${\\sim}$50\\% reduction; $p_{\\text{corr}} < 0.05$ vs.\\ all alternatives; Table~\\ref{tab:tab_filtering_main}, \\ref{tab:pairwise_significance}).\n16\tThe ordering is interpretable through $\\Kempirical$: binary filtering exploits the strongest boundary (0v1), while graduated strategies assign weights based on near-random classifier outputs for depths $\\geq 2$, injecting noise rather than useful signal.\n17\tGraduated filtering converges toward binary: at $\\alpha{=}0.9$, it matches binary-ours on HellaSwag ($p_{\\text{corr}} = 1.00$) but remains worse on MMLU ($p_{\\text{corr}} = 0.011$); DSIR is indistinguishable from no-filter\n…[truncated 290 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-002240"
+        },
+        {
+          "source_line": 2241,
+          "timestamp": "2026-05-25T21:23:48.907950+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 2 审稿报告（Round 1 — 新颖性/贡献/相关工作/写作质量）\n\n---\n\n### Paper Summary\n\n本文定义了\"generational depth estimation\"问题：给定一篇文本，估计其经历了多少轮递归合成生成。作者提出 K*_empirical 作为\"discrimination boundary\"的下界——即分类器能可靠区分相邻深度的最大深度。通过 15 维统计特征 + OBD-LightGBM 分类器，在 10 种模型配置（6 个架构族，1B-8B）、4 个领域、4 种解码策略上实验。核心发现：web text 上 K*≤2（\"one-wash laundering\"现象），arXiv 上 K*=3，跨模型迁移保留 80-92% 准确率。在极端污染场景（~83% synthetic）下，K*=2 正确预测了 binary filtering 是最优策略。\n\n---\n\n### 总体评分\n\n**Overall**: 3.0（Findings）\n**一句话总结**: 问题定义有一定新意，实验覆盖全面，但核心发现 K*≤2 构成\"贡献悖论\"——depth estimation 框架的实际效用被还原为 binary detection，novelty 和 practical impact 不足以支撑 Main Conference。\n\n---\n\n### 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3.5/5 | 方法论合理，统计检验严谨（Bonferroni、bootstrap CI、permutation test），但 DPI 与 AUC 的关联是非正式的，θ=0.60 的选取有一定任意性 |\n| Excitement | 3/5 | 问题时效性强，one-wash laundering 概念有趣，但 K*≤2 限制了框架的实际影响力，结论与 binary detection 高度重合 |\n| Overall Assessment | 3.0/5 | Findings 水准：实证工作扎实但贡献显著性不足 |\n| Confidence | 4/5 | model collapse 和 text detection 在我的专长范围内 |\n| Reproducibility | 4/5 | 提供匿名代码/数据链接，超参数和实验设置在 appendix 中详述 |\n\n---\n\n### Must-Fix 问题（影响接收决定）\n\n**N1** [critical] 贡献悖论：K*≤2 使 depth estimation 框架退化为 binary detection\n\n- 具体位置：Section 1（contributions），Section 5（filtering），Section 7（conclusion）\n- 问题：论文的核心 framing 是\"generational depth estimation\"这一新问题，但主要实验发现 K*≤2（web text）意味着深度估计在实践中等价于二分类（human vs. machine）或最多三分类（depth 0/1/≥2）。Section 5 的 filtering 实验进一步证实 binary filtering 是最优策略，graduated weighting 没有额外收益——这与现有 binary detector（DivEye、Binoculars、Min-K++等）的实际功能完全一致。论文试图将 K*=2 本身作为贡献（\"knowing the boundary matters\"），但未充分论证：(a) 知道 K*=2 相比直接使用 binary detector 在实践中有何额外价值？(b) K*=2 这一结论对 data curation pipeline 的设计产生了哪些 binary detection 无法给出的指导？\n- 为什么影响接收：如果 depth estimation 框架的实际产出等价于已有工作，novelty 和 practical contribution 将大打折扣。审稿人会质疑：为什么需要一个新框架来得出\"用 binary 就够了\"这一结论？\n- 建议修改方向：(1) 在 Introduction 和 Discussion 中更坦诚地讨论这一悖论，明确区分 framework 的理论价值（characterization of information loss dynamics）和实践价值；(2) 更深入地讨论 K*>2 的场景（arXiv K*=3，neural probe K*=3-4，retrain-chain K*≥4），将这些作为框架价值的正面证据而非脚注；(3) 讨论在什么条件下（更强的特征、更大的模型、structured domains）depth estimation 可能变得 non-trivially useful。\n\n**N2** [critical] 4/10 配置 K*=1 削弱了\"K*≤2 universally holds\"的主张\n\n- 具体位置：Section 4.1（第45-47行，LaTeX experiments_c1.tex），Table 2（主文），Table 10（appendix）\n- 问题：论文的核心声明是\"K*≤2 holds universally for web text\"（Abstract, Conclusion），但 4/10 配置（OLMo 全部配置、Gemma-2-2B、Mistral-7B、Pythia-6.9B 的部分配置）给出 K*=1，意味着这些模型甚至无法区分 depth 1 和 depth 2。论文将 OLMo K*=1 归因为该模型的特性（\"sole exception\"），但当 40% 的配置给出 K*=1 时，这不再是\"exception\"。论文对 K*=1 出现的原因缺乏系统性分析：是模型容量、训练数据、架构差异、还是 15D 特征集的局限？\n- 为什么影响接收：如果 K*=1 和 K*=2 的分布接近 50/50，那么 K*=2 的\"universal\"声明需要更多 qualification。此外，K*=1 意味着连 binary depth distinction（depth 1 vs 2）都做不到，进一步削弱了 depth estimation 框架的适用性。\n- 建议修改方向：(1) 明确报告 K*=1 和 K*=2 的比例，避免\"universally K*≤2\"的 overclaiming；(2) 增加对 K*=1 模型的特征分析（例如 OLMo 和 Pythia-6.9B 的 surprisal distribution 是否确实没有 depth-dependent shift）；(3) 讨论 K*=1 是特征集的局限（lower bound 太 loose）还是真实的信息论极限。\n\n---\n\n### Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] Text watermarking 作为 provenance tracking 替代方案的讨论严重不足\n\n- 具体位置：Section 2（related_work.tex 第18-19行）\n- 问题：Text watermarking（Kirchenbauer et al., 2023）是 generational provenance tracking 的直接竞争范式——如果生成器嵌入水印，则可以精确追踪生成深度，K*理论上可以无限延伸。论文仅用一句话提及 watermarking（\"our work addresses the complementary post-hoc scenario where the generator is not controlled\"），但没有讨论：(a) 在什么场景下 post-hoc 方法优于 proactive watermarking？(b) 随着 watermarking 技术普及，post-hoc depth estimation 的长期价值如何？(c) 是否有混合方案（部分水印 + post-hoc 检测）的可能性？\n- 建议：在 Related Work 中增加 1-2 句讨论 watermarking 与 post-hoc detection 的互补性和各自适用条件。\n\n**W2** [warning] θ=0.60 的阈值选取存在 circularity 风险\n\n- 具体位置：Section 3.1（method.tex 第34-40行），Figure 3\n- 问题：θ=0.60 的主要 justification 是\"sits between the 1v2 AUC cluster (0.607-0.696) and the 2v3 cluster (0.55-0.59)\"。但这意味着阈值是在观察到 AUC 分布后选择的，使其恰好将 K* 定在 2。这构成了一种弱 circularity：先看数据分布，再选阈值，再报告该阈值下的结论。虽然 Figure 3 的 sensitivity analysis 缓解了这一问题（K*=2 在 θ∈[0.59, 0.60] 范围内稳定），但 1pp 的稳定窗口并不宽裕。在 θ=0.61 时，Pythia-1.4B 已 drop 到 K*=1。\n- 建议：(1) 承认 θ 是 post-hoc 选取的，或者提供 θ 的先验 justification（如基于随机分类器的 null distribution）；(2) 报告在多个 θ 值下的主要结论，而非仅在 θ=0.60 下。\n\n**W3** [warning] Retrain-chain K*≥4 的声明缺乏方法论支撑\n\n- 具体位置：Section 6（discussion.tex 第28行）\n- 问题：\"Retrain-chain experiments yield K*≥4\" 在正文中仅一句话提及，但没有描述实验方法、使用的模型、训练过程或统计检验。如果 retrain-chain 确实能达到 K*≥4，这将是本文框架最有价值的应用场景之一——它表明 depth estimation 在 retrain 设定下是 non-trivial 的。但目前这一声明是未经充分支撑的。\n- 建议：(1) 在 appendix 中补充 retrain-chain 实验的完整方法和结果；(2) 或者删除这一声明，避免 unsupported claim。\n\n**W4** [warning] 论文叙事密度过高，insight 深度不足\n\n- 具体位置：整个 Section 4-5\n- 问题：正文 8 页内塞入了 10 个模型配置、4 个领域、4 种解码策略、cross-model transfer、cross-scorer validation、neural probe、binary detector comparison、filtering experiment 等大量实验，每个实验的讨论空间极为有限。许多关键发现被压缩到 1-2 句话后立即指向 appendix table。例如 Section 4.3（Feature Ordering，7 行文字）和 Section 4.6（Binary Detector，4 行文字）。这导致论文读起来更像实验结果清单而非有深度的分析。\n- 建议：考虑删减部分边缘实验（如 binary detector confidence 可移到 appendix），腾出空间对核心发现进行更深入的分析和讨论。\n\n---\n\n### 小问题（不影响接收）\n\n- Introduction 第7行（introduction.tex line 7）一句话中有三层括号嵌套（retrain-chains 定义、prompt-chains 定义、appendix 引用），可读性差。建议拆成两句。\n- Section 4.5 中 \"Jensen--Shannon divergence\" 使用 en-dash 连接双人名，虽然 LaTeX 排版上可接受，但在 NLP 社区更常见的写法是 \"Jensen-Shannon\"（hyphen）。\n- Abstract word count: ~144 words，符合 200 words 限制。\n- Limitations 部分：3 个点，简洁恰当，符合规范。\n- 未发现正文行文中使用破折号（em-dash）的违规情况。所有 `---` 均出现在表格中作为缺失值标记。\n- 匿名规则：作者标为 \"Anonymous\"，符合 double-blind 要求。\n- 页数限制：正文（Section 1-7）在 8 页以内，Limitations 在第 9 页，符合 EMNLP 2026 格式要求。\n\n---\n\n### 主要优势\n\n1. **问题定义有开拓性**：将 generational depth estimation 从模糊的直觉转化为可操作的度量（K*_empirical），为 model collapse 和 data contamination 研究提供了量化工具。DPI → discrimination boundary 的理论动机是自然的。\n\n2. **实验覆盖面广且方法论严谨**：10 个模型配置、6 个架构族、4 个领域、4 种解码策略，辅以 Bonferroni 校正、bootstrap CI、permutation test、ANOVA，统计测试达到了高标准。Appendix 提供了充分的复现细节。\n\n3. **\"One-wash laundering\"概念有传播价值**：将 K*=2 的发现包装为\"一次清洗即不可追溯\"的概念，对数据治理实践有直接的 messaging value——它告诉社区：一旦合成文本被再次用于生成，后续深度信息就丢失了。\n\n4. **跨模型迁移（80-92%）是实用贡献**：15D generator-agnostic 特征集在 continuation mode 下的高迁移率（scorer-invariant feature ranking ρ>0.90）使得无需知道生成模型即可部署，这对实际数据审计有价值。\n\n5. **K*-guided filtering 提供了 end-to-end 验证**：Section 5 的 filtering 实验将 K* 从描述性度量提升为有预测力的指标，展示了框架与下游任务的连接。\n\n---\n\n### 针对 Director 指定审查维度的总结判断\n\n1. **新颖性与贡献**：中等。问题定义有新意，但 K*≤2 导致框架退化为 binary detection（贡献悖论）。One-wash laundering 是一个有价值的 empirical characterization，但不构成方法论突破。与 binary detection 的增量贡献需要更清晰的论证。\n\n2. **相关工作**：基本完整，model collapse 和 detection 文献覆盖良好，但 watermarking 讨论过于薄弱。未发现 2025-2026 重大遗漏。\n\n3. **写作质量**：整体清晰，叙事逻辑通顺，术语引入恰当。主要问题是信息密度过高导致 insight 深度不足。无破折号违规，abstract 字数合规，limitations 格式正确。\n\n4. **整体定位**：更适合 Findings。论文的 ambition（depth estimation framework）与 conclusion（binary suffices）之间的张力是最大障碍。如果能更好地 frame K*>2 场景（arXiv、retrain-chain、neural probe）的价值，并深入讨论贡献悖论，有望提升到 Borderline Conference（3.5）。",
+              "reviewer_id": "2",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-002241"
+        },
+        {
+          "source_line": 2242,
+          "timestamp": "2026-05-25T21:23:52.605259+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3697
+          },
+          "id": "event-002242"
+        },
+        {
+          "source_line": 2243,
+          "timestamp": "2026-05-25T21:24:03.633051+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿报告已提交给 Review Director。\n\n核心判断：**Overall 3.0（Findings）**。\n\n两个 Must-Fix 问题：\n1. **贡献悖论**——K*≤2 使 depth estimation 框架退化为 binary detection，论文未充分论证其相对于现有 binary detector 的增量价值\n2. **K*=1 占 40% 配置**——\"universally K*≤2\"的声明需要更多 qualification，4/10 配置连 depth 1 vs 2 都分不出\n\n四个 Should-Fix：watermarking 讨论不足、θ=0.60 选取有弱 circularity、retrain-chain K*≥4 声明无支撑、正文信息密度过高导致 insight 深度不足。\n\n写作质量总体良好，无破折号违规，abstract 字数合规，格式无问题。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2"
+          },
+          "id": "event-002243"
+        }
+      ]
+    },
+    {
+      "number": 57,
+      "messages": [
+        {
+          "source_line": 2244,
+          "timestamp": "2026-05-25T21:35:19.346457+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n## 交叉分享：请逐条回应 Reviewer 1 的审稿意见\n\n以下是 Reviewer 1 的完整审稿原文。请逐条回应：[AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n特别关注两人评分差异（你 3.0 vs R1 3.5）的根源——R1 将 Bonferroni 显著性和 Qwen 过度代表列为 Must-Fix，你主要关注贡献悖论。这两组问题的 severity 应如何对齐？\n\n---\n\n## Reviewer 1 审稿报告\n\n**论文**: Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary\n**Venue**: EMNLP 2026 (ARR May 2026)\n**审查侧重**: 方法严谨性 + 实验设计 + 统计有效性\n\n---\n\n## Summary\n\n本文提出\"生成深度估计\"这一新问题：衡量文本经历了多少轮递归 LLM 生成。定义 K*_empirical 为相邻代际仍可区分的最大深度（AUC > θ=0.60），使用 15 维统计特征 + OBD-LightGBM 分类器。核心发现：对一般网络文本 K*_empirical ≤ 2（10 个模型配置、6 个架构族），arXiv 结构化文本 K*_empirical = 3。跨模型迁移保持 80-92% 准确率（continuation mode）。在 ~83% 污染下，K*_empirical 正确预测二元过滤优于渐进式策略。\n\n---\n\n## 总体评分\n\n**Overall**: 3.5 — Borderline Conference\n**一句话总结**: 问题定义新颖、实验覆盖面广、统计实践较规范，但核心发现 K*=2 的统计显著性在 Bonferroni 校正下仅半数成立，Qwen 过度代表和 claim 范围过大拉低了可信度。\n\n## 官方维度打分（来自 ACL ARR review form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3.5/5 | 方法论总体合理，统计控制（permutation + Bonferroni + GroupKFold）规范；但 DPI→AUC 推理链有逻辑缺口，6 个 K*=2 配置中 3 个在 Bonferroni 校正下 marginal，核心 claim 的统计基础有脆弱性 |\n| Excitement | 3.5/5 | \"生成深度\"是一个全新的研究维度，\"one-wash laundering\" 发现对 model collapse 和数据治理领域有实际意义；但 K*≤2 本质上是个 negative result——说明深度估计在二元检测之上提供的增量有限 |\n| Reproducibility | 4/5 | 超参数完整报告（Table S6），特征定义齐全（Table S5），匿名代码/数据链接已提供，数据集构造描述充分 |\n| Confidence | 4/5 | 仔细阅读全文及全部附录，熟悉 machine-generated text detection 和 model collapse 相关工作 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] K*_empirical=2 的统计显著性在 Bonferroni 校正下仅半数成立\n\n- 具体位置：Section 4.1, Table 2, Appendix B.10 (Table 27)\n- 问题：论文声称\"K*_empirical=2 for 6/10 configurations\"（Abstract, Section 4.1），但 Table 27 (Bonferroni-corrected 99.5% CI) 显示 6 个 K*=2 配置中仅 3 个（Qwen-rw, Qwen-base, Qwen-7B）的 CI 下界超过 θ=0.60。Pythia-1.4B (0.593), Qwen-cont (0.598), LLaMA-8B (0.599) 三个配置的 CI 下界均低于 θ。这意味着在多重比较校正后，\"K*=2\"对这三个配置而言统计不显著。\n- 为什么影响接收：这是论文的核心 claim。如果仅 3/6 配置统计显著，且这 3 个全是 Qwen 变体，那 \"K*≤2 universally\" 的泛化性大幅削弱。论文在 Section 4.1 确实提及了这一点，但措辞是\"marginal\"而非直接承认不显著，且 Abstract/Introduction 的表述未反映这一限制。\n- 建议修改方向：(1) Abstract 和 Introduction 中将 \"6/10\" 改为按 family 去重的表述（如\"3 of 6 independent families achieve K*=2, with 3 additional Qwen-family variants\"）；(2) 明确区分\"statistically significant K*=2\"（3 configs）和\"point-estimate K*=2\"（6 configs）；(3) 考虑以 per-family 分析作为主要结论而非 per-configuration 计数。\n\n**N2** [critical] Qwen 过度代表导致 headline 数字膨胀\n\n- 具体位置：Table 1 (Section 3.3), Table 2 (Section 4.1), Abstract\n- 问题：10 个配置中 Qwen 占 4 个（Qwen-rw, Qwen-cont, Qwen-base, Qwen-7B），其他 5 个 family 各仅 1-2 个配置。6 个 K*=2 配置中 4 个是 Qwen 变体。按 family 去重：仅 3 个独立 family（Qwen, Pythia, LLaMA）在至少一个配置中达到 K*=2，而 Pythia 和 LLaMA 的 K*=2 在 Bonferroni 校正下均为 marginal。实际上只有 Qwen family 稳健地达到 K*=2。\n- 为什么影响接收：如果核心结论主要由一个 model family 驱动，泛化性主张不成立。Reviewer 和 reader 读到 \"6/10 configurations, 6 architecture families\" 时会认为这是跨 family 的 robust 结论，但实际不是。\n- 建议修改方向：(1) 主表和 Abstract 应以 per-family 结果为主体（如：\"K*=2 robustly holds for the Qwen family; Pythia and LLaMA reach K*=2 but with marginal significance; OLMo, Gemma, Mistral yield K*=1\"）；(2) 分析 Qwen 为何 consistently 产生更高 AUC——是 Qwen 的生成文本确实保留更多世代信号，还是存在 Qwen-specific artifact（Section 4.4 neural probe 已暗示后者的可能）。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] DPI→AUC 单调递减的推理链有逻辑缺口\n\n- 具体位置：Section 3.1 (method.tex lines 16-18, 30)\n- 问题：论文用 DPI 论证 I(X; Y_1) ≥ I(X; Y_2) ≥ ...（seed 与各代的 MI 单调递减），然后以此 \"motivate\" AUC_{k-1,k} 随 k 递减的经验观察。但 DPI 关于 I(X; Y_k) 的单调性并不蕴含 I(Y_{k-1}; Y_k)（相邻代际的 MI）的单调性。论文衡量的是相邻代际的可区分性 AUC_{k-1,k}，这与 I(X; Y_k) 是不同的量。对齐次 Markov chain，I(Y_{k-1}; Y_k) 的行为取决于 mixing rate / convergence，非 DPI 直接推导。\n- 建议：明确说明 DPI 只保证 seed-to-generation MI 的单调性，而非 adjacent-pair discriminability。可引用 Markov chain mixing time 文献补充理论动机。当前 \"The DPI motivates the empirical observation\" 的措辞模糊了理论保证与经验观察的边界。\n\n**W2** [warning] θ=0.60 阈值的后验性问题\n\n- 具体位置：Section 3.1 (method.tex lines 34-40), Figure 3\n- 问题：θ=0.60 的选择基于 1v2 AUC cluster (0.607-0.696) 与 2v3 cluster (~0.54-0.59) 之间的 gap。这本质上是 post-hoc 的——先观察了 AUC 分布，再选择 θ 落在 gap 中。论文提供了两个独立 justification：(1) permutation null 95th percentile < 0.55, (2) sensitivity surface (Figure 3)。这些有帮助，但更理想的做法是基于 permutation null distribution 直接推导 θ（如取 null 的 99th percentile 作为 θ），或在独立 hold-out 配置上验证 θ。\n- 建议：(1) 承认 θ 的选择有 post-hoc 成分；(2) 报告基于 permutation null 直接推导的 θ 值（如 99th percentile of null），并与 θ=0.60 比较；(3) 或者在 held-out 配置（如 LLaMA, Mistral）上验证 θ=0.60 的有效性。\n\n**W3** [warning] Cross-model transfer claim 范围过大\n\n- 具体位置：Abstract (\"depth estimation on corpora from unknown generators requires no retraining\"), Section 4.2\n- 问题：Abstract 声称 \"depth estimation on corpora from unknown generators requires no retraining\"，但 (a) 迁移实验仅覆盖 continuation mode，rewrite mode 迁移仅 61-63%；(b) 迁移在 K*=1 的模型（OLMo, Gemma, Mistral）上无意义——因为这些模型本身只有 0v1 信号；(c) 有效的迁移仅在 Pythia↔OLMo↔Qwen-cont 三者之间验证。Abstract 的 claim 远超实际验证范围。\n- 建议：Abstract 中限定为 \"across continuation-mode generators with K*≥2\"，避免暗示 universal applicability。\n\n**W4** [warning] OBD vs. ordinal logistic regression 对比的公平性\n\n- 具体位置：Section 3.2 (method.tex line 72)\n- 问题：论文报告 OBD pairwise AUC 均值 0.6099 vs. ordinal logistic regression 0.4883。AUC < 0.50 意味着 ordinal regression 在部分 depth pair 上系统性反向预测，这暗示模型拟合可能有问题（如特征标准化、超参数选择）。论文解释为 \"collapsing predictions toward central depths\"，但 collapsing 应产生 AUC ≈ 0.50（随机水平），而非 < 0.50。均值 0.4883 < 0.50 需要更详细的解释——是哪些 depth pair 反转了？是否调参过？\n- 建议：报告 ordinal regression 各 depth pair 的 AUC 分解，解释 <0.50 的具体原因，并说明是否对 ordinal regression 做了合理的超参数调优以确保对比公平。\n\n**W5** [warning] Filtering 实验的实际意义有限\n\n- 具体位置：Section 5, Appendix B.8 (Table 25)\n- 问题：主实验在 ~83% 污染下进行，binary-ours 将 MMLU 降幅从 -1.53pp 减至 -0.77pp。但 Appendix B.8 显示在现实污染比例 (≤50%) 下，所有策略差异 <0.3pp，且所有策略下 MMLU 均高于 base model（无降幅可恢复）。这意味着 K*-guided filtering 仅在极端场景下有实际效果。论文将此定位为\"consistency check\"，但 Abstract 和 contributions 中的表述重量级很高，可能误导读者认为这是一个 practical contribution。\n- 建议：(1) Abstract 中更明确地限定 filtering 结论的适用范围；(2) 在 Section 5 开头直接说明 ≤50% 下效果消失，而非放在附录。\n\n**W6** [warning] Bootstrap CI 方法不一致\n\n- 具体位置：Table 27 (Appendix B.10) vs. Table 28 (Appendix B.11)\n- 问题：Table 27 使用 normal-approximation bootstrap CI（AUC ± 2.807 × σ_boot），Table 28 脚注提到 \"percentile\" CI。对于 AUC 接近边界（0.50-0.60 区间）的情形，bootstrap 分布可能偏斜，normal approximation 可能不准确。论文未统一说明全文使用的 CI 计算方法。\n- 建议：明确全文 CI 方法（建议统一用 percentile bootstrap），并对 boundary pair AUC 检查 bootstrap 分布的偏斜程度。\n\n---\n\n## 小问题（不影响接收）\n\n- **M1**: Eq.1 定义 K*_empirical = max{k ≥ 1 : ...}，当集合为空时（即 AUC_{0,1} < θ）定义未明确。虽然实验中所有 0v1 AUC > 0.92 故不会触发，但形式定义应处理此边界情况（如约定 K*_empirical = 0）。\n- **M2**: \"One-wash laundering\" 术语隐含故意洗白的含义，但论文描述的是自然发生的信息丢失现象。可考虑在首次使用时解释此术语为隐喻而非字面含义。\n- **M3**: Table 2 中 OLMo 的 1v2 AUC (0.5001) 和 2v3 AUC (0.4973) 以及 3v4 AUC (0.5034) 呈非单调——脚注 § 已标注。这个案例本身就说明 DPI→AUC 单调的论证不成立（回应 W1）。\n- **M4**: 论文提到 Pythia-6.9B 的 4v5 AUC 为 \"---\" (Table S2b)，标注 \"K*=1; 4v5 not required for boundary determination\"。但其 1v2 AUC = 0.5955 低于 θ=0.60，所以确实是 K*=1，不影响结论。只是标注不够直观。\n- **M5**: Abstract 中 \"structured academic text (arXiv) reaches K*_empirical=3 across four independent architecture families\" 应注明 OLMo 是例外（K*=1 across all domains）。否则读者可能以为全部 5 个测试 family 都是 K*=3。\n\n---\n\n## Questions for Authors\n\n1. 3 个 Bonferroni-marginal 的 K*=2 配置（Pythia-1.4B, Qwen-cont, LLaMA-8B）的 CI 下界分别为 0.593, 0.598, 0.599。如果采用 0.60 作为 CI 下界的判定标准（而非点估计），论文的核心结论会如何修改？\n2. Qwen family 在 K*=2 中的 dominant 表现是否可能源于 Qwen 架构/训练数据的特殊性而非普遍现象？Neural probe (Section 4.4) 中 Qwen 达到 K*_neural=3 而 Pythia 仅 K*_neural=2，是否暗示 Qwen 生成文本有特殊的 \"self-familiarity\" 信号？\n3. Ordinal logistic regression 的 pairwise AUC 均值 0.4883 低于随机水平(0.50)，能否提供各 depth pair 的分解？是否对 ordinal regression 做了超参数搜索？\n4. Cross-model transfer (Section 4.2) 仅覆盖 continuation mode。对于实际部署场景（互联网文本可能由 instruction-tuned 模型的 rewrite mode 生成），迁移失败（61-63%）是否限制了整个方法的实用性？\n\n---\n\n## 主要优势\n\n- **S1**: 问题定义新颖且重要——\"生成深度\"是一个此前未被研究的维度，对 model collapse、数据治理和 synthetic text detection 领域有明确意义。\n- **S2**: 实验覆盖面广——10 个模型配置、6 个架构族、4 个域、4 个解码策略，附带充分的消融实验（长度、seed、scorer、样本量）。\n- **S3**: 统计实践规范——permutation test + Bonferroni 校正、bootstrap CI、GroupKFold 防泄漏、self-BLEU 折内计算，多处主动标注 marginal cases。\n- **S4**: DeBERTa 上界实验（Appendix B.14）提供了有用的对比：15D 特征给出 lower bound，表征模型可将 K* 推至 4（arXiv），量化了 generator-agnostic 特征的代价。\n- **S5**: 对 retrain-chain vs. prompt-chain 的区分（Appendix B.7）澄清了本工作的定位：prompt-chain K* 度量的是文本固有的信息退化，不含训练循环效应。\n- **S6**: 可复现性好——超参数、特征定义、数据集构造、代码链接均已提供。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-002244"
+        },
+        {
+          "source_line": 2245,
+          "timestamp": "2026-05-25T21:37:35.134643+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "## Reviewer 2 交叉回应 Reviewer 1 审稿意见\n\n---\n\n### 评分差异分析（R2: 3.0 vs R1: 3.5）\n\n两人的分歧根源在于关注层次不同：\n\n- **R1 的 Must-Fix 聚焦\"K\\*=2 是否站得住\"**（统计显著性、模型代表性），属于 empirical robustness 层面。这些问题通过修改 claim scope 和补充 per-family 分析即可解决。\n- **R2 的 Must-Fix 聚焦\"K\\*=2 即便站得住，是否构成足够贡献\"**（贡献悖论：depth estimation 退化为 binary detection），属于 conceptual novelty 层面。这个问题更难通过 revision 解决。\n\nR1 的问题是 R2 问题的前提：如果 K\\*=2 的统计基础不牢固（R1），那贡献就更弱；但即使修复了 R1 的所有问题、K\\*=2 被 robustly 确立，R2 的贡献悖论仍然存在。这解释了 0.5 分的差距——R1 认为修复后可达 Conference（故 3.5 Borderline），R2 认为即使修复统计问题，conceptual contribution 仍停留在 Findings 水平（故 3.0）。\n\n**建议 severity 对齐**：R1 的 N1/N2 和 R2 的 N1/N2 应并列为 Must-Fix。统计显著性（R1-N1）和贡献悖论（R2-N1）分别从 evidence 和 significance 两个维度威胁接收决定。Qwen 过度代表（R1-N2）和 K\\*=1 占比过高（R2-N2）是同一问题的两面——都指向 generalizability 不足。\n\n---\n\n### 逐条回应\n\n#### Must-Fix\n\n**[AGREE] R1-N1: Bonferroni 校正下仅半数 K\\*=2 配置显著**\n\n同意这是一个严重问题，且我在初审时未给予足够权重。R1 的分析准确：Table 27 显示 Pythia-1.4B (CI lower 0.593)、Qwen-cont (0.598)、LLaMA-8B (0.599) 三个配置的 99.5% CI 下界均未超过 θ=0.60。论文在 Section 4.1 (experiments_c1.tex line 48) 用\"marginal\"一词描述这一情况，但 Abstract 和 Introduction 的 \"6/10 configurations\" 表述未反映这一关键限定。\n\n补充观察：这一问题与我的 N2（4/10 配置 K\\*=1）形成共振——如果 statistically significant K\\*=2 仅 3 个配置（全是 Qwen 变体），而 K\\*=1 有 4 个配置，那么论文的实际发现更准确地说是：**Qwen family robustly achieves K\\*=2，其他 family 的 K\\* 在 1 和 2 之间模糊**。这比 \"K\\*≤2 universally\" 的表述弱得多。\n\nR1 建议的 per-family 分析和分层报告是合理的修改方向。\n\n**[AGREE] R1-N2: Qwen 过度代表导致 headline 数字膨胀**\n\n完全同意。10 个配置中 Qwen 占 4 个（Table 1, Section 3.3），6 个 K\\*=2 中 Qwen 占 4 个。去重后，robust K\\*=2 仅 Qwen family（结合 R1-N1 的 Bonferroni 分析）。\n\n进一步支持 R1 的论点：Section 4.4（experiments_c1.tex line 105-106）neural probe 实验中，Qwen 达到 K\\*_neural=3 而 Pythia 仅 K\\*_neural=2、OLMo 为 1。论文自己承认\"We hypothesize that the Qwen-only elevation reflects self-familiarity artifacts\"。如果 Qwen 的高 K\\* 部分源自 self-familiarity artifact 而非 universal depth signal，那么以 Qwen 为主的 K\\*=2 结论的泛化性就更加可疑。\n\nR1 关于分析 Qwen 为何 consistently 产生更高 AUC 的建议很重要——这可能揭示 K\\*=2 是 Qwen 特异性现象还是普遍规律。\n\n---\n\n#### Should-Fix\n\n**[AGREE] R1-W1: DPI→AUC 单调递减的推理链有逻辑缺口**\n\n同意。这是一个我初审时未充分标记的理论问题。R1 准确指出了关键区别：DPI 保证 I(X; Y_k) 单调递减（seed 到第 k 代），但论文衡量的是 AUC_{k-1,k}（相邻代际的可区分性），这对应 I(Y_{k-1}; Y_k) 而非 I(X; Y_k)。Section 3.1 (method.tex line 30) 的 \"The DPI motivates the empirical observation\" 措辞确实模糊了理论保证与经验观察的边界。\n\nR1-M3 提到 OLMo 的非单调 AUC（Table 2 脚注 §: 2v3=0.497 < 3v4=0.503）恰好是这个逻辑缺口的实证反例——如果 AUC_{k-1,k} 确实由 DPI 保证单调递减，则不应出现这种反转。论文虽然标注了这一点，但未讨论它对 DPI motivation 的影响。\n\n**[AGREE] R1-W2: θ=0.60 阈值的后验性问题**\n\n与我的 W2 完全一致。R1 提出的 \"基于 permutation null 的 99th percentile 直接推导 θ\" 是比我的建议更具体的改进方案。论文的 permutation null 95th percentile < 0.55（Section 3.1, method.tex line 36），如果取 99th percentile 作为 θ，可能比 0.60 低，这将使更多配置达到 K\\*≥2——但也会削弱 K\\*=2 结论的 discriminative power。无论如何，应承认 post-hoc 成分。\n\n**[AGREE] R1-W3: Cross-model transfer claim 范围过大**\n\n同意。Abstract 的 \"depth estimation on corpora from unknown generators requires no retraining\" 确实过于强烈。实际验证范围有限：(1) 仅 continuation mode（rewrite mode 迁移 61-63%，Figure 4）；(2) 有效迁移仅在 3 个 continuation-mode 模型间验证（Pythia↔OLMo↔Qwen-cont）；(3) K\\*=1 模型的迁移在 depth estimation 意义上是 trivial 的（仅有 0v1 信号）。R1 建议限定为 \"across continuation-mode generators with K\\*≥2\" 是合理的。\n\n**[AGREE] R1-W4: OBD vs. ordinal logistic regression 对比的公平性**\n\n同意这值得关注。Section 3.2 (method.tex line 72) 报告 ordinal regression pairwise AUC 均值 0.4883 < 0.50，R1 正确指出这意味着部分 depth pair 上存在系统性反向预测。论文解释为 \"collapsing predictions toward central depths\"，但 R1 的分析更准确：collapsing 应产生 ~0.50 而非 <0.50。如果 ordinal regression 未经充分调参，这一对比就不公平，OBD 的优势可能被人为放大。\n\n不过，我认为这不影响论文的核心结论——OBD 是工具选择而非核心贡献，即使换用其他分类器，K\\*≤2 的发现应该是 robust 的（因为它反映的是特征层面的信息衰减而非分类器效力）。建议降级为 Minor。\n\n**[AGREE] R1-W5: Filtering 实验的实际意义有限**\n\n强烈同意，且这与我的 N1（贡献悖论）高度相关。Appendix B.8 (Table 25) 显示在 ≤50% 污染下所有策略差异 <0.3pp，且 MMLU 均高于 base model——filtering 在现实场景下无实际效果。Section 5 标题 \"Consistency Check\" 是诚实的定位，但 Abstract 第 41 行的表述给人的印象远超 consistency check：读者可能以为这是一个 practical data curation contribution。\n\n这进一步支持我的贡献悖论论点：K\\*=2 的 filtering 应用在现实条件下效果消失，说明 K\\* 框架的实践价值有限。\n\n**[AGREE] R1-W6: Bootstrap CI 方法不一致**\n\n同意。我初审时未注意到 Table 27 (normal-approximation) 和 Table 28 (percentile) 使用不同 CI 方法。对于 AUC 在 0.50-0.60 区间的 boundary pair，bootstrap 分布可能偏斜，normal approximation 可能不准确。这是一个方法论细节问题，但在论文核心发现高度依赖 CI 边界是否跨越 θ 的情况下，CI 方法的一致性很重要。\n\n---\n\n#### 小问题\n\n**[AGREE] R1-M1: K\\* 定义边界情况**\n\nEq.1 确实未处理 AUC_{0,1} < θ 的情况。虽然实验中不会触发（所有 0v1 AUC > 0.92），但形式完整性要求约定 K\\*=0。\n\n**[REBUT] R1-M2: \"One-wash laundering\" 术语的故意含义**\n\nR1 认为该术语\"隐含故意洗白的含义\"，建议解释为隐喻。我认为论文的处理已经足够：Section 6 (discussion.tex line 13) 明确区分了 one-wash laundering 和 model collapse：\"Unlike model collapse, one-wash laundering describes erasure of statistical fingerprints; quality may degrade further after features become indistinguishable。\" 这已经传达了\"信息丢失\"而非\"故意洗白\"的语义。此外，该术语的 vivid imagery 恰恰是其传播价值所在——它让 reviewer 和 reader 立即理解 K\\*=2 的含义。强行去掉隐喻色彩反而削弱传达效果。\n\n**[AGREE] R1-M3: OLMo 非单调 AUC**\n\n同意，且如上所述（对 W1 的回应），这直接构成 DPI→AUC 单调性论证的反例。\n\n**[AGREE] R1-M4: Pythia-6.9B 标注**\n\nMinor 标注问题，同意。\n\n**[AGREE] R1-M5: Abstract arXiv claim 应注明 OLMo 例外**\n\n同意。Abstract 第 38 行 \"across four independent architecture families\" 在上下文中容易被误读为\"所有测试 family 都达到 K\\*=3\"。应明确标注 \"four of five tested families (OLMo excluded)\"。\n\n---\n\n### R1 的 Questions 补充评论\n\n**Q1 (Bonferroni CI → 结论修改)**: 关键问题。如果以 CI 下界而非点估计判定，核心结论从 \"6/10 K\\*=2\" 变为 \"3/10 K\\*=2 (all Qwen)\"，论文需要 major reframing。\n\n**Q2 (Qwen self-familiarity)**: R1 和我都注意到了这一点。Section 4.4 的 neural probe 结果（Qwen K\\*_neural=3, Pythia K\\*_neural=2）和 Section 4.2 的 rewrite mode 迁移失败（61-63%）共同暗示 Qwen 可能存在 model-specific artifact。这是 K\\*=2 泛化性的关键威胁。\n\n**Q3 (Ordinal regression AUC < 0.50)**: 同意 R1 应要求分解。但如我上面分析，这对核心结论影响有限。\n\n**Q4 (Rewrite mode 迁移失败的实用性)**: 重要问题。在实际互联网场景中，instruction-tuned 模型可能通过多种 mode 生成文本（rewrite、continuation、chat），continuation-only 的迁移验证确实限制了方法的部署价值。\n\n---\n\n### 综合评估\n\nR1 的审稿在方法论和统计层面非常细致，发现了多个我初审遗漏或低估的问题（特别是 Bonferroni 显著性分层、Qwen 过度代表、DPI→AUC 逻辑缺口、bootstrap CI 不一致）。\n\n两份 review 的 weakness 是互补而非冲突的：\n- R1 的核心质疑：**K\\*=2 的 evidence 是否 robust**（统计 + 代表性）→ 可通过 revision 修复\n- R2 的核心质疑：**K\\*=2 的 significance 是否足够**（贡献悖论）→ 更难通过 revision 修复\n\n如果仅考虑 R1 的问题（修复 claim scope + per-family 分析），论文可达 3.5（Borderline Conference）。但叠加 R2 的贡献悖论——即使完美修复所有统计问题，\"depth estimation framework 的结论是 binary detection 就够了\"这一根本张力仍在——我维持 3.0（Findings）的评分。\n\n最终建议：两份 review 合并后，论文需要同时解决 empirical robustness（R1）和 conceptual contribution（R2）两个层面的问题。如果 rebuttal/revision 能有效回应贡献悖论（例如通过更好地 frame K\\*>2 场景的价值、深入讨论 retrain-chain 的 K\\*≥4），并修复统计 claim scope，评分可提升至 3.5。",
+              "reviewer_id": "2",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-002245"
+        },
+        {
+          "source_line": 2246,
+          "timestamp": "2026-05-25T21:37:38.697880+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3563
+          },
+          "id": "event-002246"
+        },
+        {
+          "source_line": 2247,
+          "timestamp": "2026-05-25T21:37:51.440268+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "交叉回应已提交。核心结论：\n\n- R1 的两个 Must-Fix（Bonferroni 显著性、Qwen 过度代表）均 AGREE，且与我的 N2（K\\*=1 占比过高）形成共振\n- R1 的 6 个 Should-Fix 中 5 个 AGREE，仅在 W4（OBD vs ordinal regression）建议降级为 Minor\n- 唯一 REBUT 的是 M2（\"one-wash laundering\"术语），认为论文的隐喻处理已充分且有传播价值\n- 两份 review 互补：R1 质疑 evidence robustness（可修复），R2 质疑 contribution significance（更难修复），这解释了 0.5 分差距（3.0 vs 3.5）\n- 维持 Overall 3.0（Findings）评分"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_0f6dcb30efaa4f47425ef1d9874a89d7:reviewer_2"
+          },
+          "id": "event-002247"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02c47f43d5827270e837",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops pythia69b nuc restart",
+  "task_key": "worker_ops_pythia69b_nuc_restart_20260521T143716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pythia69b_nuc_restart_20260521T143716_result.json",
+    "occurrence": 1,
+    "bytes": 699,
+    "sha256": "9e4aba7b87ab22af853739970fbf4a225e6e19356e34f46bcc103eb5ae516289"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部正常启动。\n\n## 汇报\n\n| 项目 | 状态 |\n|------|------|\n| PID 438362 | 已 kill（force_killed） |\n| 新进程 PID | **443243** |\n| GPU 0 | 13975 MiB / 24564 MiB，利用率 96% |\n| 日志确认 | `do_sample=True, top_p=0.95, temperature=1.0`，generation_mode=continuation |\n| 进度 | depth_0 已跳过（复用），正在生成 depth 1（~5.6s/batch，预计 ~2h 完成 depth 1） |\n\n**修复细节**：原脚本不支持 `--scorer_path`（scorer 内置），且 `HF_HUB_OFFLINE=1` 阻止了 C4 下载。解决方式：从 `exp_pythia69b_c4` 复制了已有的 depth_0.jsonl 到新实验目录，脚本自动检测到已有数据跳过了下载步骤。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-pythia69b-nuc-restart.md"
+}

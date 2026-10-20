@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "1ece28d1e0dc83ba0ea5",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "analysis arXiv crossscorer bootstrap",
+  "task_key": "worker_analysis_arXiv_crossscorer_bootstrap_20260518T034111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_arXiv_crossscorer_bootstrap_20260518T034111.log",
+    "occurrence": 1,
+    "bytes": 503316,
+    "sha256": "dfef6b212ff007a9de8b39a6b2b20a9da4f636b89503faf574e0f219789d9050"
+  },
+  "statistics": {
+    "messages": 301,
+    "user_turns": 0,
+    "tool_calls": 126,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 45,
+      "tool_call": 126,
+      "tool_result": 126,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 301,
+      "chunks": [
+        {
+          "path": "1ece28d1e0dc83ba0ea5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1ece28d1e0dc83ba0ea5-part-0002.json",
+          "message_count": 121
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-arxiv-crossscorer-bootstrap.md"
+}

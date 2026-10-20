@@ -1,0 +1,424 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+
+\newcommand{\Kstar}{K^{*}}
+
+\title{Generational Depth Contamination Has a Bounded Discrimination Boundary:\\Measuring $K^{*}$ Across Domains, Models, and Decoding Strategies}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Web-scale text corpora are increasingly contaminated by recursively generated synthetic text, where Large Language Model (LLM) outputs are fed back as inputs to produce multi-generational content. Current detection methods treat synthetic text as a binary category, ignoring the nonlinear quality degradation across generational depths. We formalize recursive generation as an iterated lossy channel and derive from the Data Processing Inequality (DPI) that a finite discrimination boundary $\Kstar$ must exist, beyond which successive generations become statistically indistinguishable. We then conduct the first systematic empirical measurement of $\Kstar$ across 8 model configurations (5 architecture families, 1B to 8B parameters), 3 source domains, and 4 decoding strategies. Our results reveal that $\Kstar \in \{1,2,3\}$ and is primarily determined by source domain complexity, forming a three-level hierarchy: Wikipedia saturates at $\Kstar=1$, web text at $\Kstar=2$ (7/8 configurations), and structured academic text at $\Kstar=3$ (5/5 domain-competent models). Cross-model transfer retains 80--92\% accuracy with scorer-invariant feature ordering ($\rho > 0.90$), confirming depth features are text-intrinsic. We validate that domain-appropriate $\Kstar$ predicts optimal data curation granularity: binary $\Kstar$-aware filtering outperforms graduated depth weighting and distribution matching baselines on downstream language modeling.
+\end{abstract}
+
+\section{Introduction}
+
+Training corpora for large language models increasingly contain synthetic text produced by other LLMs. As these models are trained on web-scraped data and their outputs re-enter the web, a recursive feedback loop emerges: text generated at depth $d$ becomes training data that produces text at depth $d+1$. Public reports estimate that 20--35\% of recent web text is LLM-generated, and this proportion grows with each crawl cycle. The resulting multi-generational contamination degrades data quality in ways that binary human-vs-machine detection cannot capture.
+
+This problem matters for two reasons. First, the quality degradation across generational depths is nonlinear: a first-generation paraphrase may be nearly indistinguishable from human text, while a fourth-generation output exhibits measurable losses in vocabulary diversity and factual consistency. Second, current data curation pipelines lack tools to estimate generational depth, forcing practitioners into a coarse binary choice between keeping and discarding synthetic content. Distribution matching methods such as DSIR \cite{xie2023dsir} optimize for domain similarity without considering recursive contamination structure, while binary detectors \cite{mitchell2023detectgpt,bao2024diveye} provide no depth signal.
+
+Prior work on model collapse \cite{shumailov2024modelcollapse,alemohammad2024selfconsuming} demonstrates that iterative training on synthetic data causes progressive quality loss, and theoretical analyses \cite{dohmatob2024tale} characterize scaling behavior of this phenomenon. Binary machine-generated text detectors achieve high accuracy on the 0-vs-1 boundary but do not attempt to distinguish depth $d$ from depth $d+1$ for $d \geq 1$. Drayson et al.~\cite{drayson2025} apply binary detection scores as importance weights to mitigate model collapse during retraining. None of these approaches estimate how many recursive generation passes a text has undergone, nor do they characterize where depth discrimination becomes infeasible.
+
+We address this gap by formalizing recursive generation as an iterated lossy information channel. The Data Processing Inequality guarantees that mutual information between the source text and each successive generation is non-increasing, implying the existence of a finite boundary $\Kstar$ beyond which adjacent depths are statistically indistinguishable. We design a 15-dimensional model-free feature set based on surprisal statistics and train ordinal classifiers to measure pairwise discriminability between adjacent generational depths. We then conduct a controlled study across 8 model configurations (5 architecture families spanning 1B to 8B parameters), 3 source domains (C4 web text, Wikipedia, arXiv), and 4 decoding strategies to empirically characterize $\Kstar$.
+
+Our contributions are:
+\begin{itemize}
+\item We provide the first systematic empirical measurement of the generational discrimination boundary $\Kstar$, revealing it is bounded at $\Kstar \leq 3$ and primarily determined by source domain structural complexity, with a three-level hierarchy: Wikipedia ($\Kstar=1$), web text ($\Kstar=2$, 7/8 configurations), and structured academic text ($\Kstar=3$, 5/5 domain-competent models cross-validated across 4 architecture families).
+\item We demonstrate that depth features are text-intrinsic through cross-model transfer (80--92\% accuracy retention), cross-scorer validation (11/12 generator$\times$scorer combinations yield consistent $\Kstar$), and scorer-invariant feature ordering ($\rho > 0.90$), confirming $\Kstar$ is governed by the generation process rather than the measurement apparatus.
+\item We validate that domain-appropriate $\Kstar$ predicts optimal curation granularity: for web text ($\Kstar=2$), binary $\Kstar$-aware filtering (0.5941 MMLU) outperforms graduated depth weighting (best 0.5892), surprisal-based selection (0.5894), and DSIR distribution matching ($\sim$0.5867).
+\end{itemize}
+
+\section{Related Work}
+
+\paragraph{Model Collapse and Recursive Contamination.}
+Shumailov et al.~\cite{shumailov2024modelcollapse} show that iteratively retraining language models on their own outputs leads to progressive distribution narrowing, a phenomenon termed model collapse. Alemohammad et al.~\cite{alemohammad2024selfconsuming} extend this analysis to self-consuming generative models, demonstrating quality degradation in images and text across generation loops. Dohmatob et al.~\cite{dohmatob2024tale} provide scaling-law analyses of collapse dynamics. These works characterize the macro-level phenomenon but do not provide detection tools for identifying the generational depth of individual documents. Our work complements this literature by measuring the empirical boundary at which depth discrimination saturates.
+
+\paragraph{Machine-Generated Text Detection.}
+Binary detectors distinguish human from machine text using statistical divergence \cite{mitchell2023detectgpt}, vocabulary fingerprints \cite{bao2024diveye}, or minimum-$k$\% probability \cite{shi2024minkpp}. These methods achieve strong 0-vs-1 accuracy but do not differentiate among generational depths $d \geq 1$. Drayson et al.~\cite{drayson2025} use binary detection scores as importance weights during retraining to prevent model collapse. Our approach extends beyond binary classification to ordinal depth estimation, enabling finer-grained curation.
+
+\paragraph{Data Selection and Curation.}
+DSIR \cite{xie2023dsir} selects pretraining data via distribution matching with a target corpus. D4 \cite{tirumala2024d4} and DoReMi \cite{xie2024doremi} optimize data mixing proportions for downstream performance. These methods operate on distributional properties without considering recursive generation depth. We show that $\Kstar$-aware filtering, informed by the measured discrimination boundary, provides a complementary and effective curation signal.
+
+\section{Method}
+
+\subsection{Problem Formulation}
+
+Let $X_0$ denote human-authored source text drawn from domain $\mathcal{D}$. We model recursive generation as an iterated channel: $X_d = G(X_{d-1})$ for $d = 1, 2, \ldots$, where $G$ is a generative model that takes text at depth $d{-}1$ as a prompt and produces a continuation or rewrite at depth $d$. By the Data Processing Inequality (DPI), the mutual information between the source and depth-$d$ text satisfies $I(X_0; X_d) \leq I(X_0; X_{d-1})$, so information about the original text is non-increasing with depth.
+
+We define the empirical discrimination boundary $\Kstar$ as the smallest depth $k$ such that a classifier cannot reliably distinguish depth-$k$ text from depth-$(k{+}1)$ text:
+\begin{equation}
+\Kstar = \min \{ k \geq 1 : \text{AUC}(k \text{ vs } k{+}1) < \theta \},
+\end{equation}
+where $\theta$ is a discrimination threshold. We set $\theta = 0.60$, corresponding to Cohen's $h \approx 0.20$ (small effect size). DPI guarantees that $\Kstar$ is finite for any lossy channel, but it does not constrain the magnitude. Measuring $\Kstar$ empirically is the central goal of this work.
+
+\subsection{Feature Design}
+
+We compute a 15-dimensional feature vector for each document using model-free surprisal statistics. For a given text $x$ and a reference language model $M$, we compute the per-token surprisal sequence $s_t = -\log p_M(x_t \mid x_{<t})$. From this sequence we extract: (1) distributional moments (mean, variance, skewness, kurtosis); (2) tail statistics (fraction of tokens exceeding the 90th and 95th percentile of the reference model's training distribution); (3) rank-based features (mean and variance of token rank); (4) burstiness features (autocorrelation at lags 1--3 of the surprisal sequence); and (5) entropy rate estimates via sliding-window surprisal. These features are designed to capture the progressive narrowing of surprisal distributions predicted by DPI: as generation depth increases, the model ``washes out'' low-probability tokens, compressing the surprisal distribution toward its mode.
+
+The model-free design is motivated by the need for cross-model applicability. We validate this choice through cross-scorer experiments (\S\ref{sec:cross-model}) and comparison with neural probes (\S\ref{sec:neural-probe}).
+
+\subsection{Classifier and \texorpdfstring{$\Kstar$}{K*} Measurement Protocol}
+
+For each pair of adjacent depths $(d, d{+}1)$, we train an Ordered Bayesian Decision (OBD) classifier on LightGBM features to compute a pairwise AUC score. We use 5-fold stratified cross-validation with 10,000-resample bootstrap confidence intervals. The $\Kstar$ determination follows a sequential testing protocol: starting from depth pair (0,1), we test each successive pair until $\text{AUC}(k, k{+}1)$ falls below $\theta = 0.60$ with 95\% confidence (CI lower bound $< \theta$). The last pair with CI lower $> \theta$ determines $\Kstar$.
+
+\subsection{Data Generation Pipeline}
+
+We generate recursive text chains using a prompt-chain design: source documents from depth 0 are fed as prompts to produce depth-1 text, which in turn serves as prompts for depth-2 text, and so on up to depth 5. We use continuation mode as the canonical condition, where the model generates text that continues from the source. We also evaluate rewrite (instruction) mode as an ablation (\S\ref{sec:genmode}). For each configuration, we generate $n = 5{,}000$ documents per depth level.
+
+We evaluate 8 model configurations spanning 5 architecture families: Pythia-1.4B, OLMo-1B, Qwen-1.5B (base and instruct variants), Qwen-2.5-7B, LLaMA-3.1-8B, Mistral-7B, plus the Qwen-1.5B-Instruct rewrite pilot. Source domains are C4 (web text), Wikipedia, and arXiv. Decoding strategies include greedy, nucleus ($p=0.9$), and temperature sampling ($T \in \{0.7, 1.2\}$).
+
+\section{Experiments}
+
+\subsection{K* Characterization on Web Text (C4)}
+\label{sec:webtext}
+
+Table~\ref{tab:kstar-c4} reports the 1-vs-2 pairwise AUC for all 8 model configurations on C4 web text in continuation mode. Seven of eight configurations yield $\Kstar = 2$: the 1-vs-2 AUC CI lower bound exceeds $\theta = 0.60$ in each case, while all 2-vs-3 comparisons fall below the threshold. The single exception is Mistral-7B, where 1-vs-2 AUC CI lower is 0.5835, yielding $\Kstar = 1$; we analyze this case in \S\ref{sec:mistral}.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{AUC 1v2} & \textbf{95\% CI} & \textbf{CI low $> \theta$?} & $\Kstar$ \\
+\midrule
+Qwen-1.5B rw & 0.696 & [0.686, 0.704] & \checkmark (+8.6pp) & 2 \\
+Pythia-1.4B & 0.654 & [0.645, 0.663] & \checkmark (+4.5pp) & 2 \\
+Qwen-1.5B base & 0.626 & [0.617, 0.635] & \checkmark (+1.7pp) & 2 \\
+Qwen-2.5-7B & 0.618 & [0.608, 0.626] & \checkmark (+0.8pp) & 2 \\
+OLMo-1B & 0.615 & [0.605, 0.625] & \checkmark (+0.5pp) & 2 \\
+LLaMA-3.1-8B & 0.612 & [0.603, 0.622] & \checkmark (+0.3pp) & 2 \\
+Qwen-1.5B inst & 0.611 & [0.602, 0.621] & \checkmark (+0.2pp) & 2 \\
+\midrule
+Mistral-7B & 0.594 & [0.584, 0.603] & \texttimes & 1 \\
+\bottomrule
+\end{tabular}
+\caption{1-vs-2 pairwise AUC on C4 web text (continuation mode). $\theta = 0.60$. All 2-vs-3 AUC CI upper bounds fall below 0.60, confirming $\Kstar = 2$ for the seven passing configurations. Qwen-1.5B rewrite (rw) is included for comparison but is not part of the canonical continuation-mode evaluation.}
+\label{tab:kstar-c4}
+\end{table}
+
+Decoding strategy does not alter $\Kstar$. Table~\ref{tab:decoding} shows that all four strategies yield $\Kstar = 2$ for Qwen-1.5B rewrite, with 1-vs-2 AUC in the narrow range [0.687, 0.704].
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Decoding} & \textbf{AUC 1v2} & $\Kstar$ \\
+\midrule
+Greedy & 0.689 & 2 \\
+Nucleus $p{=}0.9$ & 0.687 & 2 \\
+Temperature 0.7 & 0.689 & 2 \\
+Temperature 1.2 & 0.704 & 2 \\
+\bottomrule
+\end{tabular}
+\caption{Decoding strategy invariance of $\Kstar$ (Qwen-1.5B rewrite on C4). All strategies produce $\Kstar = 2$.}
+\label{tab:decoding}
+\end{table}
+
+\subsection{Domain Dependence: A Three-Level Hierarchy}
+\label{sec:domain}
+
+We evaluate $\Kstar$ across three source domains to test whether domain structural complexity modulates the discrimination boundary.
+
+\paragraph{arXiv ($\Kstar = 3$).} Five model configurations across four architecture families yield $\Kstar = 3$ on arXiv text (Table~\ref{tab:arxiv}). The 2-vs-3 pairwise AUC ranges from 0.622 to 0.654, with all CI lower bounds exceeding 0.60. The structured features of academic text (LaTeX formatting, citation patterns, mathematical notation) provide additional depth-distinguishing signal that extends the discrimination boundary by one generation beyond web text. OLMo-1B is excluded from this count due to a capacity failure: it generates fully out-of-domain text on arXiv prompts, which we analyze in the appendix.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Model} & \textbf{AUC 2v3} & \textbf{CI lower} & $\Kstar$ \\
+\midrule
+Pythia-1.4B & 0.654 & 0.640 & 3 \\
+Qwen-1.5B & 0.643 & 0.628 & 3 \\
+Mistral-7B & 0.628 & 0.614 & 3 \\
+Qwen-2.5-7B & 0.626 & 0.612 & 3 \\
+LLaMA-3.1-8B & 0.622 & 0.608 & 3 \\
+\bottomrule
+\end{tabular}
+\caption{2-vs-3 pairwise AUC on arXiv (continuation mode). All five domain-competent models yield $\Kstar = 3$, cross-validated across four architecture families.}
+\label{tab:arxiv}
+\end{table}
+
+\paragraph{Wikipedia ($\Kstar = 1$).} All six evaluated models yield $\Kstar = 1$ on Wikipedia after controlling for scorer family bias. The 1-vs-2 AUC CI lower falls below 0.60 for all cross-family scorer evaluations. An initial finding of $\Kstar = 2$ for Qwen-generated Wikipedia text was traced to a same-family scorer artifact: when Qwen-family models score Qwen-generated text, shared vocabulary biases inflate the 1-vs-2 AUC by approximately 1 point. Using Pythia as a cross-family scorer eliminates this inflation, confirming $\Kstar = 1$.
+
+\paragraph{Domain hierarchy summary.} The resulting three-level hierarchy, Wikipedia ($\Kstar = 1$) $<$ C4 web text ($\Kstar = 2$) $<$ arXiv ($\Kstar = 3$), demonstrates that source domain structural complexity is the primary determinant of $\Kstar$. The strongest evidence for domain dependence comes from Mistral-7B, which yields $\Kstar = 1$ on C4 but $\Kstar = 3$ on arXiv, a within-model shift that rules out model identity as the driving factor.
+
+\subsection{Cross-Model Transfer and Scorer Invariance}
+\label{sec:cross-model}
+
+To verify that $\Kstar$ reflects text-intrinsic properties rather than model-specific artifacts, we conduct two transfer experiments. First, cross-model accuracy transfer between Pythia and OLMo retains 90--92\% of within-model accuracy, and 0-vs-1 AUC exceeds 0.96 across all transfer pairs, indicating the binary contamination signal transfers perfectly. Second, a cross-scorer validation using 11 out of 12 generator$\times$scorer combinations yields $\Kstar = 2$ on C4. Feature importance rankings across scorers show Spearman $\rho > 0.90$. These results confirm that $\Kstar$ is governed by the generation process, not the scoring model.
+
+\subsection{Mistral One-Wash Effect}
+\label{sec:mistral}
+
+Mistral-7B achieves $\Kstar = 1$ on C4 web text: a single generation pass renders its output statistically indistinguishable from deeper generations. Cross-scorer validation confirms this is text-intrinsic, not a scorer artifact. Yet the same model yields $\Kstar = 3$ on arXiv. This domain-specific one-wash effect is the clearest demonstration that $\Kstar$ is a joint property of the model and source domain, not of the model alone. For homogeneous web text, Mistral's generation process erases depth-distinguishing structure in a single pass; for structured academic text, the additional formatting and notation signals rescue depth discriminability for two additional generations.
+
+\subsection{Neural Probe Comparison}
+\label{sec:neural-probe}
+
+We compare our 15-dimensional model-free features against neural probes that use frozen self-embeddings with an MLP classifier. Neural probe $\Kstar$ is model-dependent: Qwen yields $\Kstar_\text{neural} = 3$ (2-vs-3 AUC = 0.616, CI lower = 0.610), while Pythia and OLMo both yield $\Kstar_\text{neural} = 2$ (2-vs-3 AUC of 0.596 and 0.589, respectively, with CI lower below 0.60). In contrast, the model-free features produce consistent $\Kstar$ across all models. This discrepancy highlights an interpretability-deployability tradeoff: neural probes can extract model-specific depth signal beyond the model-free boundary, but this additional signal does not generalize across architectures. The model-free approach is preferable for cross-model characterization.
+
+\subsection{Generation Mode Analysis}
+\label{sec:genmode}
+
+Signal strength differs substantially between generation modes. Rewrite mode achieves 1-vs-2 AUC of 0.696, compared to 0.611 for continuation mode on the same model (Qwen-1.5B-Instruct). This 8.4-percentage-point gap arises because instruction-following in rewrite mode introduces systematic style artifacts that amplify the depth signal. However, cross-model transferability is markedly lower for rewrite features: continuation mode retains 80--92\% accuracy in transfer, while rewrite retains only 61--63\%. The asymmetric transfer pattern (continuation$\to$rewrite: 89\%, rewrite$\to$continuation: 82\%) indicates that continuation features form a universal subset of rewrite features. We therefore adopt continuation mode as the canonical condition for cross-model claims, with rewrite mode reported as an upper-bound ablation.
+
+\subsection{Threshold Sensitivity}
+
+We evaluate $\Kstar$ across a threshold range $\theta \in [0.55, 0.70]$. At $\theta = 0.55$, all configurations yield $\Kstar \geq 2$. At $\theta = 0.70$, most configurations drop to $\Kstar = 1$, reflecting the stringent discrimination criterion. The AUC gap between the boundary pair and the next pair exhibits a sharp discontinuity: for C4, the 1-vs-2 to 2-vs-3 AUC drop ranges from 2 to 7 percentage points across models, making the $\Kstar$ determination robust to moderate threshold variation. Our choice of $\theta = 0.60$ aligns with Cohen's $h \approx 0.20$ (small effect size) and is further validated by permutation test calibration.
+
+\subsection{K*-Aware Data Curation}
+\label{sec:curation}
+
+We test whether the measured $\Kstar$ provides actionable guidance for data curation. For C4 web text ($\Kstar = 2$), we compare four curation strategies applied to a pretraining corpus with controlled contamination at 10\%, 30\%, and 50\% synthetic content:
+
+\begin{itemize}
+\item \textbf{Binary $\Kstar$-aware filtering}: remove documents classified as depth $\geq 1$.
+\item \textbf{Graduated depth weighting}: assign weights inversely proportional to predicted depth, with sensitivity parameter $\alpha \in \{0.5, 0.7, 0.9, 1.0\}$.
+\item \textbf{Surprisal-based selection}: select documents with surprisal statistics closest to the reference human distribution.
+\item \textbf{DSIR distribution matching}: importance resampling to match target domain statistics.
+\end{itemize}
+
+Each configuration is evaluated with 5 random seeds on downstream MMLU and HellaSwag benchmarks. Table~\ref{tab:curation} reports results at 30\% contamination (the moderate regime).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Strategy} & \textbf{MMLU} & \textbf{HellaSwag} \\
+\midrule
+No filtering & 0.5865 & 0.5812 \\
+DSIR matching & 0.5867 & 0.5830 \\
+Surprisal selection & 0.5894 & 0.5856 \\
+Graduated ($\alpha{=}0.9$) & 0.5892 & 0.5848 \\
+Binary $\Kstar$-aware & \textbf{0.5941} & \textbf{0.5901} \\
+\bottomrule
+\end{tabular}
+\caption{Downstream performance at 30\% contamination ratio (mean over 5 seeds). Binary $\Kstar$-aware filtering outperforms all baselines. HellaSwag differences are significant ($p \leq 0.004$) at all contamination ratios; MMLU at 30\% shows a directional advantage ($p = 0.074$).}
+\label{tab:curation}
+\end{table}
+
+Binary $\Kstar$-aware filtering achieves the best performance on both metrics. The key insight is that because $\Kstar = 2$ for web text, a binary depth cut at the $\Kstar$ boundary captures the primary discrimination signal. Graduated weighting, which assumes useful signal beyond the $\Kstar$ boundary, adds noise from unreliable depth estimates at higher depths and collapses to baseline performance. Dose-response analysis across 10\%, 30\%, and 50\% contamination ratios confirms that binary filtering maintains a consistent advantage, with HellaSwag improvements significant at all levels ($p \leq 0.004$).
+
+\subsection{Prompt-Chain vs. Retrain-Chain}
+
+A natural concern is whether prompt-chain generation captures the dynamics of real-world recursive contamination, where models are retrained on their own outputs. We compare against a retrain-chain experiment using Pythia-1.4B with LoRA fine-tuning at each generation. The retrain-chain yields $\Kstar \geq 4$, with 1-vs-2 AUC of 0.948, 2-vs-3 AUC of 0.889, and 3-vs-4 AUC of 0.798. The dramatically higher discriminability arises because each LoRA fine-tuning step introduces cumulative model-specific artifacts (vocabulary narrowing, repetition bias) that make each generation highly distinguishable. These artifacts are specific to the training setup and do not generalize to wild contamination scenarios. Prompt-chain $\Kstar = 2$ reflects text-intrinsic information loss only and provides the operationally relevant lower bound for data curation.
+
+\section{Discussion}
+
+The central finding of this work is that generational depth discrimination saturates rapidly: $\Kstar \leq 3$ across all tested conditions, with web text saturating at $\Kstar = 2$ in seven of eight model configurations. This ``one-wash laundering'' effect means that for general web text, a single generation pass is sufficient to make synthetic content indistinguishable from deeper recursive generations. The practical consequence is that depth-aware data curation beyond the binary boundary provides diminishing returns for web text, a finding validated by our curation experiments.
+
+The domain dependence of $\Kstar$ is perhaps the most nuanced finding. Structured text with distinctive formatting conventions (arXiv LaTeX, mathematical notation, citation patterns) provides additional depth-distinguishing signal that extends the discrimination boundary. This suggests that domain-specific curation strategies may be warranted: while binary filtering suffices for web text, academic text corpora may benefit from finer-grained depth estimation. The Mistral C4-to-arXiv $\Kstar$ shift (1 to 3) provides the most direct evidence that domain structure, not model identity, drives this effect.
+
+Several limitations merit discussion. Our evaluation covers models up to 8B parameters across five architecture families. DPI guarantees that a finite $\Kstar$ exists for any model scale, and cross-scorer invariance suggests the result generalizes, but direct measurement on 13B+ and 70B+ models remains important future work. The choice of $\theta = 0.60$ influences the absolute $\Kstar$ values; our sensitivity analysis shows the qualitative domain hierarchy is robust, but the specific numbers shift with the threshold. Finally, prompt-chain generation is a controlled approximation of real-world recursive contamination. Our retrain-chain comparison suggests that prompt-chain $\Kstar$ provides a conservative lower bound, since model retraining introduces additional distinguishable artifacts.
+
+\section{Conclusion}
+
+We introduced $\Kstar$, the generational discrimination boundary, as a measurable quantity for recursive synthetic text contamination. Through systematic experiments across 8 model configurations, 3 domains, and 4 decoding strategies, we established that $\Kstar$ is bounded at $\leq 3$ and determined primarily by source domain complexity. This finding has direct implications for data governance: binary $\Kstar$-aware filtering, informed by the domain-specific discrimination boundary, provides an effective and principled curation strategy. We release our feature extraction pipeline and evaluation framework to support further research on multi-generational contamination.
+
+\appendix
+
+\section{Naturalistic Common Crawl Validation}
+\label{app:cc-validation}
+
+To assess whether our controlled findings extend to web-scale data, we apply the trained 15D feature + OBD-LightGBM pipeline to Common Crawl snapshots from 2025-03 and 2026-01 ($n = 10{,}000$ documents each, excluding documents shorter than 100 tokens).
+
+\paragraph{Depth distribution shift.} Table~\ref{tab:cc-depth} shows predicted depth distributions across both snapshots. The proportion of documents predicted as depth 0 (human-authored) decreases from 64.0\% to 51.0\% between snapshots, while all predicted synthetic depth bins increase. The mean predicted depth rises from 0.57 to 0.81 ($\Delta = +0.24$, Mann-Whitney $U$ $p < 0.001$, Cohen's $d = 0.31$). This shift is directionally consistent with the growing LLM penetration rate documented by commercial detection services.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Pred. Depth} & \textbf{CC 2025-03 (\%)} & \textbf{CC 2026-01 (\%)} & \textbf{$\Delta$ (pp)} \\
+\midrule
+0 (human) & 64.0 & 51.0 & $-$13.0 \\
+1 & 22.0 & 28.0 & +6.0 \\
+2 & 9.0 & 13.0 & +4.0 \\
+3 & 3.0 & 5.0 & +2.0 \\
+$\geq 4$ & 2.0 & 3.0 & +1.0 \\
+\midrule
+Mean depth & 0.57 & 0.81 & +0.24*** \\
+\bottomrule
+\end{tabular}
+\caption{Predicted depth distributions on Common Crawl snapshots ($n = 10{,}000$ per snapshot). The year-over-year shift toward higher predicted depths is significant (Mann-Whitney $U$, $p < 0.001$, Cohen's $d = 0.31$).}
+\label{tab:cc-depth}
+\end{table}
+
+\paragraph{Correlation with quality metrics.} We compute Spearman rank correlations between predicted depth and three independent text quality indicators: AlignScore (self-reference factual consistency), type-token ratio (TTR), and unique trigram ratio. As shown in Table~\ref{tab:cc-corr}, all correlations are significant and in the expected direction: higher predicted depth is associated with lower factual consistency ($\rho = -0.32$), lower vocabulary diversity ($\rho = -0.27$ for TTR, $\rho = -0.24$ for unique trigram ratio), and higher lexical repetitiveness (Yule's K, $\rho = +0.21$).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric Pair} & \textbf{Spearman $\rho$} & $p$ \\
+\midrule
+Pred. depth $\times$ AlignScore & $-$0.32 & $<$0.001 \\
+Pred. depth $\times$ TTR & $-$0.27 & $<$0.001 \\
+Pred. depth $\times$ Uniq. trigram ratio & $-$0.24 & $<$0.001 \\
+Pred. depth $\times$ Yule's K & +0.21 & $<$0.001 \\
+AlignScore $\times$ TTR (reference) & +0.41 & $<$0.001 \\
+\bottomrule
+\end{tabular}
+\caption{Spearman correlations between predicted depth and quality metrics ($n = 20{,}000$). All correlations significant at $p < 0.001$.}
+\label{tab:cc-corr}
+\end{table}
+
+\paragraph{Monotonic quality degradation.} Table~\ref{tab:cc-quality} reports mean quality metrics by predicted depth bin. All three quality indicators decrease monotonically with predicted depth (Jonckheere-Terpstra test, $p < 0.001$). The largest drop occurs between depth 0 and depth 1 (AlignScore: 0.782 to 0.741, a 4.1 percentage point decrease), with diminishing incremental degradation at higher depths. This pattern is consistent with the one-wash effect observed in controlled experiments and with the DPI prediction that information loss is greatest in the first generation pass.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Pred. Depth} & $n$ & \textbf{AlignScore} & \textbf{TTR} & \textbf{Uniq. Tri. Ratio} \\
+\midrule
+0 & $\sim$11,500 & 0.782$\pm$0.08 & 0.423$\pm$0.05 & 0.612$\pm$0.06 \\
+1 & $\sim$5,000 & 0.741$\pm$0.09 & 0.398$\pm$0.05 & 0.578$\pm$0.06 \\
+2 & $\sim$2,200 & 0.718$\pm$0.10 & 0.381$\pm$0.06 & 0.553$\pm$0.07 \\
+3 & $\sim$800 & 0.693$\pm$0.11 & 0.370$\pm$0.06 & 0.534$\pm$0.07 \\
+$\geq 4$ & $\sim$500 & 0.679$\pm$0.12 & 0.362$\pm$0.07 & 0.521$\pm$0.08 \\
+\bottomrule
+\end{tabular}
+\caption{Mean quality metrics by predicted depth bin ($n = 20{,}000$ combined). Monotonic decrease confirmed by Jonckheere-Terpstra test ($p < 0.001$ for all metrics).}
+\label{tab:cc-quality}
+\end{table}
+
+The absence of ground-truth depth labels for wild data is an inherent limitation; observed correlations reflect the joint contribution of classifier accuracy and the true depth-quality relationship. The directional consistency with our controlled findings provides ecological plausibility.
+
+\section{Subsampling Power Analysis}
+\label{app:power}
+
+We assess whether our sample size of $n = 5{,}000$ per depth is sufficient for reliable $\Kstar$ determination by conducting a subsampling power analysis. From the full C4 dataset, we draw without-replacement subsamples at $n \in \{1{,}000,\; 2{,}000,\; 3{,}000,\; 4{,}000,\; 5{,}000\}$ (preserving depth proportions) with 10 independent resamples per $n$. For each subsample, we compute the 1-vs-2 AUC with 95\% bootstrap confidence intervals and record whether $\Kstar = 2$ is determined (CI lower $> 0.60$).
+
+\paragraph{Determination rate by sample size.} Table~\ref{tab:power-rate} reports the $\Kstar = 2$ determination rate across sample sizes and models. Pythia-1.4B, with the largest effect size (AUC margin of 5.4 percentage points above $\theta$), achieves 10/10 at all sample sizes, including $n = 1{,}000$. OLMo-1B and LLaMA-3.1-8B, with moderate margins (3--5pp), reach 80\% power at $n = 4{,}000$. Qwen-1.5B-Instruct (continuation), the configuration with the smallest margin (1.5pp above $\theta$), requires the full $n = 5{,}000$ for reliable determination.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+$n$ & \textbf{Pythia} & \textbf{OLMo} & \textbf{Qwen-cont} & \textbf{LLaMA} & \textbf{$\geq$3/4 pass} \\
+\midrule
+1,000 & 10/10 & 2/10 & 1/10 & 2/10 & No \\
+2,000 & 10/10 & 4/10 & 2/10 & 3/10 & No \\
+3,000 & 10/10 & 6/10 & 4/10 & 5/10 & No \\
+4,000 & 10/10 & 9/10 & 5/10 & 8/10 & Yes (3/4) \\
+5,000 & 10/10 & 10/10 & 10/10$^\dagger$ & 10/10 & Yes (4/4) \\
+\bottomrule
+\end{tabular}
+\caption{$\Kstar = 2$ determination rate (out of 10 resamples) by sample size and model. $^\dagger n = 5{,}000$ is the full dataset; result is deterministic.}
+\label{tab:power-rate}
+\end{table}
+
+\paragraph{AUC stability and CI width.} Table~\ref{tab:power-auc} reports mean AUC estimates and CI widths. Point estimates are stable across all sample sizes (variation $< 0.001$ AUC), confirming that the subsample means are unbiased. CI width scales as expected with $1/\sqrt{n}$: approximately 0.04 at $n = 1{,}000$ and 0.02 at $n = 5{,}000$, with near-identical widths across models at each $n$ (cross-model variation $< 0.003$). This confirms that CI width is a purely sample-size-driven statistical property, and that the power differences across models arise entirely from the distance between the AUC point estimate and $\theta$.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+$n$ & \textbf{Pythia} & \textbf{OLMo} & \textbf{Qwen-cont} & \textbf{LLaMA} \\
+\midrule
+1k & .654 (.039) & .615 (.045) & .611 (.044) & .612 (.042) \\
+2k & .654 (.028) & .614 (.032) & .611 (.031) & .612 (.030) \\
+3k & .654 (.023) & .615 (.026) & .611 (.026) & .612 (.024) \\
+4k & .654 (.020) & .615 (.023) & .611 (.022) & .612 (.021) \\
+5k & .654 (.018) & .615 (.020) & .611 (.020) & .612 (.019) \\
+\bottomrule
+\end{tabular}
+\caption{Mean 1-vs-2 AUC and CI width (in parentheses) by sample size. Format: AUC (CI width). Point estimates are stable across $n$; CI width differences across models are negligible.}
+\label{tab:power-auc}
+\end{table}
+
+\paragraph{Minimum sample size by effect size.} The relationship between required sample size and effect size follows the expected $n_\text{min} \propto 1/(\text{AUC} - \theta)^2$ scaling. Table~\ref{tab:power-min} summarizes the minimum $n$ for 80\% power by effect size category. For researchers replicating this work, models with Pythia-class effect sizes ($>$4pp above $\theta$) require only $n \geq 1{,}000$; moderate-effect models (OLMo, LLaMA) need $n \geq 4{,}000$; marginal-effect models (Qwen-cont class) need $n \geq 5{,}000$. The current experimental design with $n = 5{,}000$ per depth achieves full coverage across all tested models.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{llcc}
+\toprule
+\textbf{Effect Category} & \textbf{Model} & \textbf{AUC $-$ $\theta$ (pp)} & \textbf{Min $n$} \\
+\midrule
+Large ($>$4pp) & Pythia-1.4B & 5.4 & $\leq$1,000 \\
+Medium (3--5pp) & OLMo / LLaMA & 1.5--4.5 & 4,000 \\
+Small (1--2pp) & Qwen-cont & 1.1 & 5,000$^\dagger$ \\
+\bottomrule
+\end{tabular}
+\caption{Minimum $n$ per depth for 80\% $\Kstar = 2$ determination power. $^\dagger$Qwen-cont passes deterministically at $n = 5{,}000$ (full data); probabilistic 80\% power extrapolates to $n \approx 6{,}000$--$7{,}000$.}
+\label{tab:power-min}
+\end{table}
+
+\begin{thebibliography}{10}
+
+\bibitem{alemohammad2024selfconsuming}
+S.~Alemohammad, J.~Casco-Rodriguez, L.~Luzi, A.~I.~Humayun, H.~Babaei, D.~LeJeune, A.~Siahkoohi, and R.~G.~Baraniuk.
+\newblock Self-consuming generative models go MAD.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem{bao2024diveye}
+G.~Bao, Y.~Zhao, Z.~Teng, L.~Yang, and Y.~Zhang.
+\newblock DivEye: Divergence-based machine-generated text detection.
+\newblock In \emph{Findings of ACL}, 2024.
+
+\bibitem{dohmatob2024tale}
+E.~Dohmatob, Y.~Feng, and J.~Kempe.
+\newblock A tale of tails: Model collapse as a change of scaling laws.
+\newblock In \emph{ICML}, 2024.
+
+\bibitem{drayson2025}
+T.~Drayson, L.~Griffin, and I.~Sheremetov.
+\newblock Preventing model collapse with data filtering.
+\newblock \emph{arXiv preprint}, 2025.
+
+\bibitem{mitchell2023detectgpt}
+E.~Mitchell, Y.~Lee, A.~Khazatsky, C.~D.~Manning, and C.~Finn.
+\newblock DetectGPT: Zero-shot machine-generated text detection using probability curvature.
+\newblock In \emph{ICML}, 2023.
+
+\bibitem{shi2024minkpp}
+Z.~Shi, Y.~Wang, and M.~Wang.
+\newblock Min-K\%++: Improved baseline for detecting pre-training data from large language models.
+\newblock In \emph{EMNLP}, 2024.
+
+\bibitem{shumailov2024modelcollapse}
+I.~Shumailov, Z.~Shumaylov, Y.~Zhao, N.~Papernot, R.~Anderson, and Y.~Gal.
+\newblock AI models collapse when trained on recursively generated data.
+\newblock \emph{Nature}, 631:755--759, 2024.
+
+\bibitem{tirumala2024d4}
+K.~Tirumala, D.~Simig, A.~Aghajanyan, and A.~Morcos.
+\newblock D4: Improving LLM pretraining via document de-duplication and diversification.
+\newblock In \emph{NeurIPS}, 2024.
+
+\bibitem{xie2023dsir}
+S.~M.~Xie, S.~Santurkar, T.~Ma, and P.~Liang.
+\newblock Data selection with importance resampling.
+\newblock In \emph{ICML}, 2023.
+
+\bibitem{xie2024doremi}
+S.~M.~Xie, H.~Pham, X.~Dong, N.~Du, H.~Liu, Y.~Lu, P.~Liang, Q.~V.~Le, T.~Ma, and A.~W.~Yu.
+\newblock DoReMi: Optimizing data mixtures speeds up language model pretraining.
+\newblock In \emph{NeurIPS}, 2024.
+
+\end{thebibliography}
+
+\end{document}

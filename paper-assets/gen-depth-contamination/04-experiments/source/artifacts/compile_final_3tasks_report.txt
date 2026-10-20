@@ -1,0 +1,32 @@
+== 论文编译与验证报告 ==
+日期: 2026-05-23
+
+1. 编译结果
+   - 命令: pdflatex + bibtex + pdflatex x2
+   - LaTeX errors: 0
+   - 输出: main.pdf (19 pages, 557081 bytes)
+   - 状态: ✅ 通过
+
+2. 页数检查
+   - 正文: 8 页 (pages 1-8)
+   - References 起始页: 第 9 页
+   - 状态: ✅ 正文 ≤ 8 页
+
+3. 新引用验证 (\cite{bakshi2026collapse})
+   - discussion.tex 第 35 行: "...retrain-chain collapse can be mitigated with fresh data mixing~\cite{bakshi2026collapse}..."
+   - PDF 渲染: "(Bakshi and Chakraborty, 2026)" — 正确解析，无 "?"
+   - 出现位置: discussion.tex retrain 段落
+   - 状态: ✅ 通过
+
+4. 破折号检查
+   - Em-dash (—): 正文中未发现（main.tex 第 1 行为注释，不计入）
+   - En-dash (–): 仅出现在数字范围中（如 1B–8B, 80–92%, 0.61–0.70 等），用法正确
+   - 表格中 "---" 为缺失值占位符，非行文破折号
+   - 状态: ✅ 通过
+
+5. References 列表验证
+   - Bakshi & Chakraborty 2026 出现在 References 中
+   - 完整条目: "Soham Bakshi and Sunrit Chakraborty. 2026. From collapse to improvement: Statistical perspectives on the..."
+   - 状态: ✅ 通过
+
+== 总结: 全部 5 项检查通过 ==

@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp_qwen_cont_10k",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T09:27:38.591Z",
+    "updated_at": "2026-05-22T14:47:57.847Z",
+    "hypothesis": "增加 Qwen-cont C4 样本量从 5k→10k 可将 1v2 bootstrap std 缩小 ~√2 倍，使 Bonferroni 99.5% CI lower bound 恢复到 θ=0.60 以上",
+    "spec": {
+      "command": "bash /tmp/run_qwen_cont_10k.sh (Phase1: base generation + Phase2: instruct scoring)",
+      "server": "cqa1-22115",
+      "gpu": "cuda:1 (RTX PRO 6000 Blackwell 96GB)",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/exp_qwen_cont_10k",
+      "data_count": 10000,
+      "model_name": "Qwen/Qwen2.5-1.5B (base, continuation) + Qwen/Qwen2.5-1.5B-Instruct (scorer)",
+      "seed": 42,
+      "checkpoint_path": "results/exp_qwen_cont_10k/",
+      "log_path": "/tmp/exp_qwen_cont_10k_phase1.log"
+    },
+    "metrics": {
+      "K_star": 2,
+      "AUC_0v1": 0.9875,
+      "AUC_1v2": 0.6346,
+      "AUC_2v3": 0.5616,
+      "AUC_3v4": 0.5451,
+      "AUC_4v5": 0.5254,
+      "JSD_0v1": 0.16091,
+      "JSD_1v2": 0.00925,
+      "ordinal_MAE": 1.1639,
+      "ordinal_acc": 0.3787,
+      "top_feature": "freq_entropy",
+      "fold_1v2_min": 0.6324,
+      "note": "no bootstrap CI file generated, need separate bootstrap run"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-22T14:47:57.847Z"
+  },
+  "timestamp": "2026-05-22T14:47:58.425946+00:00",
+  "trigger": "update_registry"
+}

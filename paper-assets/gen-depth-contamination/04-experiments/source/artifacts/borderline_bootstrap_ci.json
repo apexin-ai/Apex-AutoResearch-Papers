@@ -1,0 +1,50 @@
+{
+  "description": "Borderline cases bootstrap CI + permutation test",
+  "method": "GroupKFold(5) OOF + doc-level bootstrap(10000) + label permutation(10000)",
+  "seed": 42,
+  "total_seconds": 163.5,
+  "cases": {
+    "exp-021_512tok_1v2": {
+      "depth_pair": "1v2",
+      "expected_auc": 0.6073,
+      "auc_oof": 0.6073,
+      "auc_mean_folds": 0.6073,
+      "fold_aucs": [0.6184, 0.5979, 0.5952, 0.6118, 0.6134],
+      "ci_lower": 0.5979,
+      "ci_upper": 0.6166,
+      "perm_p": 0.0001,
+      "boot_mean": 0.6074,
+      "boot_std": 0.0048,
+      "verdict": "BORDERLINE",
+      "check": "ci_lower_gt_060"
+    },
+    "exp-020_t07_2v3": {
+      "depth_pair": "2v3",
+      "expected_auc": 0.5941,
+      "auc_oof": 0.5939,
+      "auc_mean_folds": 0.5941,
+      "fold_aucs": [0.6009, 0.5951, 0.5954, 0.5754, 0.6036],
+      "ci_lower": 0.5855,
+      "ci_upper": 0.6025,
+      "perm_p": 0.0001,
+      "boot_mean": 0.5939,
+      "boot_std": 0.0043,
+      "verdict": "BORDERLINE",
+      "check": "ci_upper_lt_060"
+    },
+    "exp-020_t12_1v2": {
+      "depth_pair": "1v2",
+      "expected_auc": 0.6172,
+      "auc_oof": 0.617,
+      "auc_mean_folds": 0.6172,
+      "fold_aucs": [0.6193, 0.5961, 0.6182, 0.6258, 0.6265],
+      "ci_lower": 0.6071,
+      "ci_upper": 0.627,
+      "perm_p": 0.0001,
+      "boot_mean": 0.617,
+      "boot_std": 0.0051,
+      "verdict": "PASS",
+      "check": "ci_lower_gt_060"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+paper_key: "shumailov2024collapse"
+title: "AI models collapse when trained on recursively generated data"
+venue: "Nature 2024"
+full_text_available: false
+
+research:
+  baselines: [models trained on purely real data, mixed real+synthetic data]
+  metrics:
+    - {name: "distribution tail coverage", direction: "higher_better"}
+    - {name: "generation diversity", direction: "higher_better"}
+    - {name: "perplexity", direction: "lower_better"}
+  datasets:
+    - {name: "wikitext-103 (for LLM experiments)", size: "~103M tokens"}
+    - {name: "synthetic GMM data", size: "not specified"}
+    - {name: "MNIST (for VAE experiments)", size: "60K images"}
+  ablation_dimensions: [model type (VAE/GMM/LLM), generation depth, proportion of synthetic data]
+  training_recipe: {details: "Recursive retraining across generations; models trained on output of previous generation to study cumulative distribution degradation"}
+  method_family: "model collapse analysis (theoretical + empirical)"
+
+positioning:
+  core_claim: "Training on recursively generated synthetic data causes irreversible model collapse where distribution tails vanish, demonstrated across VAEs, GMMs, and LLMs"
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

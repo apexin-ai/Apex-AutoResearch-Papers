@@ -1,0 +1,114 @@
+{
+  "exp_id": "exp_025_pythia_arxiv",
+  "project": "gen-depth-contamination",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T17:16:13.988Z",
+    "updated_at": "2026-05-16T19:22:53.058Z",
+    "hypothesis": "Domain × model interaction: Pythia-1.4B on arXiv data 的 K* 是否与 exp-024 (Qwen on arXiv, K*=?) 一致？验证 arXiv domain effect 跨模型一致性，排除 Qwen-specific artifact。Pythia-1.4B continuation, nucleus p=0.95 T=1.0, 2200 docs, depth 0-5, scorer=Qwen2.5-1.5B base。",
+    "parent": "exp_024_arxiv_domain",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && CUDA_VISIBLE_DEVICES=1 python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --generation_mode continuation --top_p 0.95 --temperature 1.0 --num_samples 2200 --max_depth 5 --batch_size 8 --feat_batch_size 16 --data_dir data/exp_025_pythia_arxiv --results_dir results/exp_025_pythia_arxiv",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "67006",
+      "log_path": "~/runs/gen-depth-contamination/exp_025_pythia_arxiv.log",
+      "submitted_at": "2026-05-16T17:59:52.930Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/",
+      "data_count": 2200,
+      "model_name": "EleutherAI/pythia-1.4b",
+      "seed": 42,
+      "checkpoint_source": "pretrained (EleutherAI/pythia-1.4b)",
+      "eval_data": "arXiv abstracts depth chains (shared seed data from exp-024)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T18:57:28.981Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T18:57:30.288692+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "k_star": 3,
+      "pairwise_auc": {
+        "0v1": 0.9877,
+        "1v2": 0.8047,
+        "2v3": 0.6545,
+        "3v4": 0.5507,
+        "4v5": 0.5287
+      },
+      "pairwise_jsd": {
+        "0v1": 0.171338,
+        "1v2": 0.057344,
+        "2v3": 0.019524,
+        "3v4": 0.009917,
+        "4v5": 0.008846
+      },
+      "bootstrap_ci": {
+        "0v1": {
+          "auc": 0.9876,
+          "ci_lower": 0.9851,
+          "ci_upper": 0.99,
+          "perm_p": 0.0001
+        },
+        "1v2": {
+          "auc": 0.8047,
+          "ci_lower": 0.7934,
+          "ci_upper": 0.8162,
+          "perm_p": 0.0001
+        },
+        "2v3": {
+          "auc": 0.6544,
+          "ci_lower": 0.6401,
+          "ci_upper": 0.6688,
+          "perm_p": 0.0001
+        },
+        "3v4": {
+          "auc": 0.55,
+          "ci_lower": 0.534,
+          "ci_upper": 0.5657,
+          "perm_p": 0.0001
+        },
+        "4v5": {
+          "auc": 0.5284,
+          "ci_lower": 0.5122,
+          "ci_upper": 0.5443,
+          "perm_p": 0.001
+        }
+      },
+      "bootstrap_resamples": 10000,
+      "permutation_resamples": 10000,
+      "n_samples": 2200,
+      "top_features": [
+        "freq_entropy",
+        "surp_std",
+        "surp_mean",
+        "surp_d1_skew",
+        "surp_d1_mean"
+      ],
+      "ordinal": {
+        "MAE": 0.8518,
+        "Accuracy": 0.4545
+      },
+      "key_finding": "Pythia-1.4B on arXiv yields K*=3, identical to exp-024 (Qwen on arXiv). 2v3 CI lower=0.6401 > θ=0.60. Domain saturation depth is model-invariant for arXiv."
+    },
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/",
+    "log_path": "/root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T19:22:53.155863+00:00",
+  "trigger": "update_registry"
+}

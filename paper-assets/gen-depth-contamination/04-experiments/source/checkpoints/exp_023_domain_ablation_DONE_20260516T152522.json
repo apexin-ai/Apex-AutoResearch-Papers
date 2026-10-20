@@ -1,0 +1,44 @@
+{
+  "exp_id": "exp_023_domain_ablation",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T11:59:57.643Z",
+    "updated_at": "2026-05-16T15:25:22.371Z",
+    "hypothesis": "Domain ablation: Wikipedia 数据下 K*=2 是否成立？验证 K* 跨数据域（C4 vs Wikipedia）的稳定性。Qwen2.5-1.5B base, continuation, nucleus p=0.95 T=1.0, 5K docs, depth 0-5。",
+    "spec": {
+      "command": "bash scripts/exp023_wiki_domain.sh",
+      "server": "cqa1-22115",
+      "gpu": "cuda:1",
+      "pid": 39530,
+      "log_path": "~/runs/gen-depth-contamination/exp_023_domain_ablation.log",
+      "submitted_at": "2026-05-16T12:00:07.999Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/",
+      "data_count": 5000,
+      "model_name": "Qwen2.5-1.5B (base)",
+      "seed": 42,
+      "wall_clock_seconds": 12314.4,
+      "gpu_hours": 3.42
+    },
+    "conclusion": "success",
+    "metrics": {
+      "K_star": 2,
+      "1v2_auc": 0.6193,
+      "2v3_auc": 0.5498,
+      "all_folds_above_060": true,
+      "top_feature": "freq_entropy",
+      "ordinal_accuracy": 0.377
+    },
+    "checkpoint_path": "results_exp023_wiki_domain/",
+    "log_path": "~/runs/gen-depth-contamination/exp_023_domain_ablation.log",
+    "completed_at": "2026-05-16T15:25:22.371Z"
+  },
+  "timestamp": "2026-05-16T15:25:22.463674+00:00",
+  "trigger": "update_registry"
+}

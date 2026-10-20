@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0bd8f272d4d8edf736aa",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper fix figure2 overlap",
+  "task_key": "worker_paper_fix_figure2_overlap_20260522T101657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_figure2_overlap_20260522T101657_result.json",
+    "occurrence": 1,
+    "bytes": 872,
+    "sha256": "4a0d9ac05d9fcd81c23f7536322b18de5b72f225cb49eebeb83c24d7245bf25a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "23 pages total (8 main text + appendix). Page count unchanged from the original. \n\n**Summary:**\n\n**Root cause:** `figsize=(7, 4.2)` — the figure was designed at 7 inches wide but rendered at `\\columnwidth` (~3.31 inches), causing ~53% horizontal compression. X-tick labels, legends, and markers all became cramped.\n\n**Fix** (in `scripts/plot_fig2_merged.py`):\n- `figsize` → `(3.4, 2.8)`: designed at column width so it renders at ~1:1 scale\n- `font.size` 10 → 8, axis labels 10.5 → 8.5, reference text 8 → 6.5\n- Line widths 1.6/1.4 → 1.2/1.0, marker sizes 4.5/4 → 3.5/3\n- Legend fonts 7.5 → 6 with tighter padding (`labelspacing=0.25`, `handletextpad=0.4`)\n- `xlim` left edge −0.25 → −0.4 for more left padding\n- Replaced `constrained_layout=True` with `fig.tight_layout(pad=0.4)`\n\nNo data changes. Page count unchanged."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-figure2-overlap.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b549f2f47b01ebeffaf",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis retrain chain paper prep",
+  "task_key": "worker_analysis_retrain-chain-paper-prep_20260519T025458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_retrain-chain-paper-prep_20260519T025458_result.json",
+    "occurrence": 1,
+    "bytes": 1367,
+    "sha256": "7d11dd61c5094142338c243f556c756a23c986afc3fd80fc0a2250d2e160c195"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "素材文档已写入 `artifacts/retrain_chain_paper_notes.md` 并注册。核心内容总结：\n\n**数据层面**：\n- 完整 7-pair AUC/CI/JSD + per-fold 数值（§A）\n- Retrain vs prompt side-by-side 对比表：retrain 在 1v2 处 AUC 高出 +28.6pp (Qwen) / +29.3pp (Pythia)，K\\* 差距 5 generations（§B）\n\n**Narrative 层面**（§C）：\n- Retrain K\\*>>prompt K\\* 的机制：LoRA fine-tune 每代引入累积 model-adaptation artifacts（vocabulary narrowing, repetition bias），叠加在 text-intrinsic degradation 之上\n- 与 model collapse 文献（Shumailov, Alemohammad）的定位区分：他们关注 model quality degradation，我们关注 discriminability\n- 两种 K\\* 的 operational 含义：prompt K\\*=2 是 data curation boundary（保守/可泛化），retrain K\\*=7 是 model archaeology upper bound\n\n**Gap 分析**（§D）：\n- 🔴 **正文缺 retrain-chain 专门段落**（目前仅 appendix + limitations 一句话）\n- 🔴 **缺 retrain vs prompt 的 side-by-side 对比表**\n- 🟡 缺 model collapse 文献的 explicit citation/positioning\n- 🟡 Pythia depth extension 结果 pending\n\n**段落建议**（§E）：推荐在 Discussion 加一个 \"Retrain-Chain: Upper Bound on Discriminability\" 段落（~8 句），cross-reference 已有的 appendix Table 24 和 fig_retrain_decay。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-retrain-chain-paper-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "130937684823245b7bd1",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "research gpu utilization check",
+  "task_key": "worker_research_gpu_utilization_check_20260512T124716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_gpu_utilization_check_20260512T124716_result.json",
+    "occurrence": 1,
+    "bytes": 771,
+    "sha256": "da90b4e81306503cf795ad1c51971d15b46473300c857c63486a6ebcd3e3f7dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/gpu_optimization_report.txt`。核心发现：\n\n**当前状态**: GPU 利用率 45%，显存仅用 3.9GB/24GB (16%)，严重浪费。\n\n**根因**: batch_size=16 (生成) / feat_batch_size=8 (特征提取) 远低于 4090D 能承载的上限。\n\n**推荐参数 (full study)**:\n| 阶段 | 当前 | 推荐 |\n|------|------|------|\n| Step 3 生成 | batch_size=16 | **64** (保守) 或 128 |\n| Step 4 特征提取 | feat_batch_size=8 | **24** (保守) 或 32 |\n\n**必须修复**: `tokenizer.padding_side = \"left\"` — 当前每个 batch 都在报 right-padding 警告，影响生成质量。\n\n**预估节省**: Step 3 ~57min + Step 4 ~17min ≈ **总共节省 ~74 min (38%)**。加上 flash-attn 可能再多 10-15%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-gpu-utilization-check.md"
+}

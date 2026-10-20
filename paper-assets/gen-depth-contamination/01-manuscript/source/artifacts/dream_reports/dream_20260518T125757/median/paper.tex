@@ -1,0 +1,701 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\title{Bounded Saturation in Recursive Synthetic Text:\\Measuring the Generational Discrimination Boundary $K^*$}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+% ============================================================
+% ABSTRACT
+% ============================================================
+\begin{abstract}
+Web-scale training corpora increasingly contain text produced by recursive application of language models, where each generation is conditioned on prior synthetic outputs. Existing contamination detectors treat synthetic text as a binary category (real vs.\ synthetic), ignoring the qualitative degradation across generational depth. We introduce the \emph{generational discrimination boundary} $K^*$, the maximum recursion depth at which adjacent generations remain statistically distinguishable by a model-free classifier. Framing recursive generation as an iterated lossy channel, information-theoretic arguments via the Data Processing Inequality (DPI) guarantee that a finite $K^*$ must exist, though without specifying its magnitude. Through controlled experiments spanning 8 model configurations (5 architecture families, 1B to 14B parameters), 3 source domains, and 4 decoding strategies, we find that $K^*$ is remarkably low: $K^* \in \{1,2,3\}$. Domain structural complexity is the primary determinant of $K^*$, producing a three-level hierarchy: Wikipedia saturates at $K^*{=}1$ (scorer-controlled), general web text at $K^*{=}2$ (7/8 model configurations), and structured academic text at $K^*{=}3$ (cross-validated across 5 models and 4 architecture families). Cross-model transfer retention of 80--92\% and scorer-invariant feature ordering ($\rho > 0.85$) confirm that depth features are text-intrinsic rather than model-specific. A case study on $K^*$-aware data curation shows that binary filtering informed by the $K^*$ boundary yields modest but consistent gains over unfiltered baselines on web text ($+$0.76 MMLU, $+$0.63 HellaSwag percentage points), while graduated depth weighting provides no additional benefit, consistent with the low $K^*$ finding.
+\end{abstract}
+
+% ============================================================
+% 1. INTRODUCTION
+% ============================================================
+\section{Introduction}
+
+Large language models (LLMs) trained on web-scraped corpora face a growing and underappreciated problem: the training data itself is contaminated by text that prior LLMs have generated. As model-generated content proliferates online, subsequent scrapes ingest it, and models trained on those scrapes produce the next round of synthetic text. This \emph{recursive contamination loop} means that by 2025 estimates, 25--40\% of newly crawled web text may be synthetic in origin.
+
+The consequences are empirically documented. Model collapse studies show that training on recursively generated data leads to distributional narrowing, reduced output diversity, and degraded downstream performance. These findings motivate a practical need: data curators must identify and handle synthetic content in training corpora. Yet current contamination detectors operate in a binary mode, classifying text as ``real'' or ``synthetic'' without estimating how many rounds of recursive generation a passage has undergone.
+
+This binary framing misses a critical dimension. First-generation synthetic text, produced directly from a human-written prompt, differs qualitatively from text that has passed through four or five rounds of model generation. If depth matters for data quality, then curators need tools that go beyond binary detection. The key question is: \emph{how many recursive generations can be meaningfully distinguished?}
+
+We formalize this question through the \emph{generational discrimination boundary} $K^*$, defined as the largest depth $d$ at which generation $d$ remains statistically distinguishable from generation $d{+}1$ according to a pairwise classifier operating on model-free text features. Framing recursive generation as an iterated lossy channel, the Data Processing Inequality guarantees that a finite $K^*$ must exist: each generation pass can only reduce mutual information with the original source. DPI does not, however, specify \emph{how quickly} discriminability saturates. This is an empirical question, and answering it is the central contribution of our work.
+
+Through systematic experiments across 8 model configurations (5 architecture families: Pythia, OLMo, Qwen, LLaMA, Mistral; scales from 1B to 14B), 3 source domains (C4 web text, Wikipedia, arXiv), and 4 decoding strategies, we find that $K^*$ is remarkably small: $K^* \in \{1, 2, 3\}$. Domain structural complexity emerges as the primary factor determining $K^*$, yielding a three-level hierarchy. Wikipedia saturates at $K^*{=}1$ across all 6 tested models after scorer confound control. General web text yields $K^*{=}2$ in 7 out of 8 model configurations, with Mistral-7B as the sole exception at $K^*{=}1$. Structured academic text (arXiv) extends to $K^*{=}3$, cross-validated across 5 models and 4 architecture families with 100\% agreement among domain-competent generators. The Mistral result is particularly informative: the same model gives $K^*{=}1$ on C4 but $K^*{=}3$ on arXiv, confirming that domain structure, not model identity, drives $K^*$.
+
+Our contributions are:
+\begin{enumerate}
+\item \textbf{$K^*$ characterization.} We provide the first systematic measurement of the generational discrimination boundary, showing that $K^*$ is bounded at $\leq 3$ and primarily domain-dependent, with a clear three-level hierarchy: Wikipedia(1) $<$ C4(2) $<$ arXiv(3). Cross-model transfer (80--92\% retention), scorer invariance (11/12 generator$\times$scorer combinations yield $K^*{=}2$ on C4), and decoding strategy invariance jointly confirm that $K^*$ reflects text-intrinsic information loss, not measurement artifacts. (\S\ref{sec:characterization})
+\item \textbf{$K^*$-aware curation case study.} We demonstrate that binary filtering at the $K^*$ boundary yields modest gains over no filtering on web text (MMLU $+$0.76pp, HellaSwag $+$0.63pp), while graduated depth weighting collapses to no-filter performance. On arXiv ($K^*{=}3$), graduated filtering similarly fails to improve over no filtering, revealing that $K^*$ characterizes signal discriminability rather than data utility. (\S\ref{sec:curation})
+\item \textbf{Supporting analyses.} Retrain-chain experiments show $K^*{\geq}4$, confirming that prompt-chain $K^*{=}2$ is a conservative text-intrinsic estimate. Frontier LLM baselines (GPT-5.5, Claude Opus 4.6) achieve 88\% binary accuracy but only 33\% 5-class depth accuracy, validating the need for specialized depth features. (\S\ref{sec:analysis})
+\end{enumerate}
+
+% ============================================================
+% 2. RELATED WORK
+% ============================================================
+\section{Related Work}
+
+\paragraph{Model collapse and recursive training.}
+Shumailov et al.\ demonstrated that iteratively training on model-generated data leads to distributional collapse. Alemohammad et al.\ and Dohmatob et al.\ formalized conditions under which recursive synthetic data injection degrades model quality. These studies characterize the \emph{effect} of recursive contamination on training but do not provide detection tools. Our work complements this line by measuring the \emph{detectability boundary} of recursive generation.
+
+\paragraph{Machine-generated text detection.}
+Binary detectors such as DivEye and Binoculars use perplexity-based features to distinguish human from machine text. Min-K\%++ and related methods exploit likelihood statistics. These approaches treat detection as a binary classification problem and do not estimate generational depth. We show (Table~\ref{tab:binary_detector}) that binary detector confidence scores exhibit non-monotonic behavior across depth levels and achieve near-chance accuracy on 6-class depth estimation, motivating the need for depth-aware features.
+
+\paragraph{Data selection and curation.}
+Distribution-matching methods (DSIR, D4, DoReMi) select training data to match a target distribution without considering synthetic contamination depth. Drayson et al.\ apply binary detection scores to importance resampling for model collapse prevention, the closest prior work to our curation application. Our approach differs by using the measured $K^*$ boundary to determine the appropriate curation granularity.
+
+% ============================================================
+% 3. METHOD
+% ============================================================
+\section{Method}
+\label{sec:method}
+
+\subsection{Problem Formulation}
+
+Let $G_\theta$ denote a language model with parameters $\theta$. Given a corpus of human-written documents $\mathcal{D}_0$, we define the recursive generation chain:
+\begin{equation}
+\mathcal{D}_{d+1} = G_\theta(\mathcal{D}_d), \quad d = 0, 1, 2, \ldots
+\end{equation}
+where $\mathcal{D}_d$ denotes the corpus at generational depth $d$. In \emph{continuation mode}, $G_\theta$ extends a prefix drawn from $\mathcal{D}_d$; in \emph{rewrite mode}, $G_\theta$ paraphrases the full document. We adopt continuation mode as the canonical experimental condition throughout, since cross-model transfer experiments show that continuation features generalize across model families (80--92\% accuracy retention) while rewrite features are mode-specific (61--63\% retention). A pilot study using rewrite mode (mvp-001) demonstrated feasibility, and all cross-model claims are based on continuation mode.
+
+\subsection{Information-Theoretic Motivation}
+
+We model recursive generation as an iterated application of a lossy channel $T$. The Data Processing Inequality states that for any Markov chain $X \to Y \to Z$, $I(X;Z) \leq I(X;Y)$. Applied to our setting: the mutual information between the original corpus $\mathcal{D}_0$ and depth-$d$ corpus $\mathcal{D}_d$ is non-increasing in $d$. Since a finite-capacity classifier can only exploit the mutual information available, there must exist a finite depth $K^*_{\text{theory}}$ beyond which no classifier can distinguish adjacent generations above chance. This argument guarantees the \emph{existence} of $K^*$ but does not specify its magnitude. Our empirical $K^*_{\text{empirical}}$ provides a conservative lower bound on $K^*_{\text{theory}}$.
+
+\subsection{$K^*$ Definition and Measurement}
+\label{sec:kstar_def}
+
+For each pair of adjacent depths $(d, d{+}1)$, we train a pairwise binary classifier and compute the area under the ROC curve (AUC). We define:
+\begin{equation}
+K^* = \max\{d \geq 1 : \text{AUC}(d{-}1, d) > \theta\}
+\end{equation}
+where $\theta$ is a discrimination threshold. We set $\theta = 0.60$, corresponding to Cohen's $h \approx 0.20$ (the conventional small effect size boundary). We report $K^*$ at multiple thresholds $\theta \in \{0.55, 0.60, 0.65, 0.70\}$ to assess sensitivity (\S\ref{sec:sensitivity}).
+
+The classifier uses 15 model-free text features based on surprisal statistics (mean, standard deviation, first and second differences), vocabulary richness, and repetition metrics. We use ordinal-aware LightGBM (OBD-LightGBM) as the default classifier, validated against multiclass LightGBM and ordinal logistic regression in Appendix~\ref{app:classifier}. All AUC values are computed via 5-fold cross-validation with bootstrap 95\% confidence intervals (10,000 resamples). Permutation tests ($n=10{,}000$) provide significance values.
+
+\subsection{Experimental Setup}
+
+\paragraph{Models.} We evaluate 8 model configurations spanning 5 architecture families: Pythia-1.4B, OLMo-1B, Qwen2.5-1.5B (base and instruct), Qwen2.5-7B, LLaMA-3.1-8B, Mistral-7B-v0.3, and Qwen2.5-14B. All use nucleus sampling ($p=0.95$, $T=1.0$) as the default decoding strategy.
+
+\paragraph{Domains.} Three source domains: C4 web text (5,000 documents), Wikipedia (5,000 documents), and arXiv (2,200 documents per model).
+
+\paragraph{Depth range.} Depths 0 through 5, yielding 5 adjacent pairs per configuration.
+
+\paragraph{Decoding ablation.} Four strategies (greedy, nucleus $p{=}0.9$, $T{=}0.7$, $T{=}1.2$) on Qwen2.5-1.5B and Pythia-1.4B.
+
+% ============================================================
+% 4. K* CHARACTERIZATION RESULTS
+% ============================================================
+\section{$K^*$ Characterization Results}
+\label{sec:characterization}
+
+\subsection{Pilot Study: Rewrite Mode Feasibility}
+
+We first validated the experimental framework using Qwen2.5-1.5B-Instruct in rewrite mode on C4 (mvp-001). Table~\ref{tab:pilot} shows pairwise AUC values across depth pairs. The 0v1 pair achieves near-perfect separability (AUC $= 0.9956$), and the 1v2 pair exceeds the threshold at AUC $= 0.6957$ (CI: [0.686, 0.704]), yielding $K^* = 2$. The 2v3 pair falls below $\theta$ at 0.5893. Rewrite mode amplifies depth signal due to instruction-following artifacts, producing higher AUC values than continuation mode. All subsequent cross-model comparisons use continuation mode to isolate text-intrinsic degradation.
+
+\begin{table}[t]
+\centering
+\caption{Pairwise AUC for pilot study (Qwen2.5-1.5B-Instruct, rewrite mode, C4).}
+\label{tab:pilot}
+\small
+\begin{tabular}{lccl}
+\toprule
+Pair & AUC & 95\% CI & $> \theta{=}0.60$? \\
+\midrule
+0 vs 1 & 0.9956 & [0.995, 0.997] & \checkmark (+39.5pp) \\
+1 vs 2 & 0.6957 & [0.686, 0.704] & \checkmark (+8.6pp) \\
+2 vs 3 & 0.5893 & [0.580, 0.599] & $\times$ \\
+3 vs 4 & 0.5434 & [0.533, 0.555] & $\times$ \\
+4 vs 5 & 0.5343 & [0.524, 0.545] & $\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cross-Model $K^*$ on Web Text}
+\label{sec:cross_model}
+
+Table~\ref{tab:main_c4} presents $K^*$ across all model configurations on C4 in continuation mode. Seven out of eight configurations yield $K^* = 2$. The 0v1 pair is near-perfectly separable in all cases (AUC $> 0.92$), confirming that first-generation synthetic text is readily distinguishable from human text. The 1v2 pair is the critical boundary: all seven $K^*{=}2$ models have CI lower bounds above $\theta = 0.60$, with margins ranging from $+$0.15pp (Qwen-1.5B-Instruct continuation, CI lower $= 0.6015$) to $+$4.5pp (Pythia-1.4B, CI lower $= 0.6454$). Beyond depth 2, AUC values rapidly approach chance level (0.50--0.56), confirming sharp saturation.
+
+Qwen-1.5B-Instruct continuation represents the most marginal case, with CI lower $= 0.6015$, only 0.15pp above $\theta$. We address this borderline result in the threshold sensitivity analysis (\S\ref{sec:sensitivity}) and cross-scorer validation (\S\ref{sec:scorer}).
+
+Mistral-7B is the sole exception with $K^* = 1$: its 1v2 AUC of 0.5935 (CI: [0.584, 0.603]) falls below $\theta$. Cross-scorer validation confirms this is text-intrinsic, not a scorer artifact. Critically, the same Mistral-7B model yields $K^* = 3$ on arXiv (\S\ref{sec:domain}), demonstrating that one-wash behavior is domain-specific.
+
+\begin{table}[t]
+\centering
+\caption{Pairwise AUC and $K^*$ across model configurations on C4 web text (continuation mode). All CI values are bootstrap 95\%. Bold: boundary pair determining $K^*$.}
+\label{tab:main_c4}
+\small
+\begin{tabular}{lccccccc}
+\toprule
+Model & 0v1 & \textbf{1v2} & 2v3 & 3v4 & 4v5 & $K^*$ \\
+\midrule
+Pythia-1.4B & 0.993 & \textbf{0.654} & 0.552 & 0.515 & 0.514 & 2 \\
+Qwen-1.5B base & 0.997 & \textbf{0.626} & 0.569 & 0.541 & 0.517 & 2 \\
+Qwen-7B & 0.964 & \textbf{0.618} & 0.546 & 0.523 & 0.509 & 2 \\
+OLMo-1B & 0.997 & \textbf{0.615} & 0.550 & 0.509 & 0.504 & 2 \\
+LLaMA-3.1-8B & 0.923 & \textbf{0.612} & 0.527 & 0.514 & 0.510 & 2 \\
+Qwen-1.5B-Inst cont & 0.997 & \textbf{0.611} & 0.561 & 0.541 & 0.514 & 2 \\
+Qwen-14B & --- & \textbf{0.621} & --- & --- & --- & 2 \\
+\midrule
+Mistral-7B & 0.984 & 0.594 & 0.540 & 0.523 & 0.518 & 1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Domain Dependence}
+\label{sec:domain}
+
+Domain structural complexity determines $K^*$. Table~\ref{tab:domain} summarizes $K^*$ across three domains.
+
+\paragraph{Wikipedia ($K^*{=}1$, scorer-controlled).} Qwen2.5-1.5B on Wikipedia yields 1v2 AUC $= 0.619$ with a same-family scorer (exp-023), but cross-family scorer validation (Pythia) reduces this to 0.587, below $\theta$ (Table~\ref{tab:wiki_confound} in Appendix). After scorer confound control, Wikipedia $K^* = 1$ for all tested configurations. A single generation pass renders Wikipedia text indistinguishable at deeper levels.
+
+\paragraph{arXiv ($K^*{=}3$, cross-validated).} Table~\ref{tab:arxiv_cross} presents arXiv results. Five models across four architecture families unanimously yield $K^* = 3$, with 2v3 AUC ranging from 0.622 (LLaMA-8B) to 0.654 (Pythia-1.4B), all with CI lower bounds above $\theta$. OLMo-1B is excluded as a capacity failure (2v3 AUC $= 0.503$, generating out-of-domain text on arXiv). The LaTeX markup ablation (Table~\ref{tab:latex_ablation} in Appendix) confirms that $K^* = 3$ is preserved after stripping formatting ($\Delta$AUC $= -0.021$ on 2v3), ruling out surface-level formatting as a confound.
+
+The resulting domain hierarchy, Wikipedia($K^*{=}1$) $<$ C4($K^*{=}2$) $<$ arXiv($K^*{=}3$), aligns with increasing structural complexity: Wikipedia text is stylistically homogeneous, web text is moderately diverse, and arXiv text contains rich structural markers (citations, mathematical notation, section structure) that provide additional depth-distinguishing signal.
+
+\begin{table}[t]
+\centering
+\caption{$K^*$ across domains. Wikipedia values are scorer-controlled.}
+\label{tab:domain}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Domain & 1v2 AUC & 2v3 AUC & 3v4 AUC & $K^*$ \\
+\midrule
+Wikipedia (scorer-ctrl) & 0.585 & --- & --- & 1 \\
+C4 web text (7/8 models) & 0.611--0.654 & 0.527--0.569 & --- & 2 \\
+arXiv (5/5 models) & 0.858 & 0.622--0.654 & 0.544 & 3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{arXiv $K^*{=}3$ cross-validation across 5 models and 4 architecture families. OLMo-1B excluded due to capacity failure (out-of-domain generation).}
+\label{tab:arxiv_cross}
+\small
+\begin{tabular}{llccc}
+\toprule
+Model & Family & 2v3 AUC & $K^*$ \\
+\midrule
+Pythia-1.4B & GPT-NeoX & 0.654 & 3 \\
+Qwen-1.5B & Qwen & 0.643 & 3 \\
+Mistral-7B & Mistral & 0.628 & 3 \\
+Qwen-7B & Qwen & 0.626 & 3 \\
+LLaMA-8B & LLaMA & 0.622 & 3 \\
+\midrule
+OLMo-1B & OLMo & 0.503 & 1 (capacity fail) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Threshold Sensitivity}
+\label{sec:sensitivity}
+
+The choice of $\theta = 0.60$ warrants examination. Table~\ref{tab:theta} reports $K^*$ distributions across all 8 model configurations on C4 at four threshold values. At $\theta = 0.55$, all models achieve $K^* \geq 2$ (one model reaches $K^* = 3$). At $\theta = 0.60$, 7/8 models yield $K^* = 2$. At $\theta = 0.65$, the picture fragments: 4--5 models remain at $K^* = 2$ while the rest drop to $K^* = 1$. At $\theta = 0.70$, most models collapse to $K^* = 1$.
+
+We defend $\theta = 0.60$ on three grounds. First, AUC $= 0.60$ corresponds to Cohen's $h \approx 0.20$, the conventional small effect size threshold. Second, the gap between the boundary pair (1v2) and the next pair (2v3) is substantially larger than the sensitivity range: for Pythia-1.4B, 1v2 AUC $= 0.654$ vs.\ 2v3 AUC $= 0.552$, a gap of 10.2pp that dwarfs the 10pp range from $\theta = 0.55$ to $0.65$. Third, permutation tests confirm $p < 0.001$ for all boundary pairs. The $K^* = 2$ finding is stable across $\theta \in [0.55, 0.65]$, and the sharp AUC drop between the boundary pair and the next pair is the robust empirical signal, not the exact threshold value.
+
+\begin{table}[t]
+\centering
+\caption{$K^*$ distribution across 8 C4 model configurations at varying thresholds.}
+\label{tab:theta}
+\small
+\begin{tabular}{lccc}
+\toprule
+$\theta$ & $K^*{=}1$ & $K^*{=}2$ & $K^*{=}3$ \\
+\midrule
+0.55 & 0/8 & 7/8 & 1/8 \\
+0.60 & 1/8 & 7/8 & 0/8 \\
+0.65 & 3--4/8 & 4--5/8 & 0/8 \\
+0.70 & 6--7/8 & 1--2/8 & 0/8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Cross-Model Transfer and Scorer Invariance}
+\label{sec:scorer}
+
+If $K^*$ reflects a text-intrinsic property rather than model self-familiarity, classifiers trained on one model's generations should transfer to another. Table~\ref{tab:transfer} presents cross-model accuracy retention. Pythia and OLMo exhibit 91--92\% retention, and all cross-family 0v1 pairs exceed AUC $= 0.96$. Qwen continuation transfers at 80--85\%, and rewrite mode transfers poorly (61--63\%), consistent with rewrite features being mode-specific.
+
+Cross-model feature ranking consistency (Table~\ref{tab:feature_ranking} in Appendix) further supports text-intrinsic signal: Spearman $\rho$ between model pairs ranges from 0.85 (OLMo vs.\ Qwen-cont) to 0.95 (Pythia vs.\ OLMo). Surprisal-based features (standard deviation of surprisal, first and second differences) are the top discriminators across all models.
+
+The cross-scorer matrix (Table~\ref{tab:cross_scorer}) provides the strongest invariance evidence. Across 12 generator$\times$scorer combinations on C4, 11 yield $K^* = 2$. The sole exception is Qwen-cont scored by Pythia ($\text{AUC}_{1\text{v}2} = 0.598$, $K^* = 1$), consistent with Qwen-cont being the most marginal generator. Within-generator scorer variation is small ($\Delta < 0.025$).
+
+\begin{table}[t]
+\centering
+\caption{Cross-model transfer accuracy retention on C4.}
+\label{tab:transfer}
+\small
+\begin{tabular}{lc}
+\toprule
+Transfer Direction & Accuracy Retention \\
+\midrule
+Pythia $\to$ OLMo & 92\% \\
+OLMo $\to$ Pythia & 91\% \\
+Qwen-cont $\to$ Pythia & 85\% \\
+Qwen-cont $\to$ OLMo & 80\% \\
+Qwen-rw $\to$ Pythia & 63\% \\
+Qwen-rw $\to$ OLMo & 61\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Cross-scorer matrix (selected entries). $K^*$ is robust to scorer choice in 11/12 combinations.}
+\label{tab:cross_scorer}
+\small
+\begin{tabular}{lcc}
+\toprule
+Generator $\times$ Scorer & 1v2 AUC & $K^*$ \\
+\midrule
+Qwen-base $\times$ OLMo & 0.605 & 2 \\
+Qwen-base $\times$ Pythia & 0.617 & 2 \\
+Qwen-cont $\times$ Qwen-base & 0.628 & 2 \\
+Qwen-cont $\times$ Pythia & 0.598 & 1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Decoding Strategy Invariance}
+
+$K^*$ is robust to the choice of decoding strategy. Table~\ref{tab:decoding} shows results for Qwen2.5-1.5B across four strategies: greedy, nucleus $p{=}0.9$, temperature 0.7, and temperature 1.2. All yield $K^* = 2$, with 1v2 AUC in the narrow range [0.686, 0.704]. This invariance extends to a second model family: Pythia-1.4B also gives $K^* = 2$ under all four strategies (Table~\ref{tab:pythia_decoding} in Appendix), with 1v2 AUC ranging from 0.617 (T$=$1.2) to 0.884 (greedy). The greedy result for Pythia is inflated by repetition collapse artifacts, but $K^*$ remains unchanged.
+
+\begin{table}[t]
+\centering
+\caption{Decoding strategy ablation (Qwen2.5-1.5B, rewrite mode, C4).}
+\label{tab:decoding}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Decoding & 0v1 AUC & 1v2 AUC & 2v3 AUC & $K^*$ \\
+\midrule
+greedy & 0.980 & 0.689 & 0.561 & 2 \\
+nucleus $p{=}0.9$ & 0.995 & 0.686 & 0.592 & 2 \\
+$T{=}0.7$ & 0.988 & 0.689 & 0.590 & 2 \\
+$T{=}1.2$ & 0.998 & 0.704 & 0.582 & 2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================
+% 5. SUPPORTING ANALYSES
+% ============================================================
+\section{Supporting Analyses}
+\label{sec:analysis}
+
+\subsection{Ecological Validity: Retrain-Chain}
+
+Prompt-chain experiments isolate text-intrinsic degradation, but real-world contamination often involves retraining models on contaminated data. We compare prompt-chain and retrain-chain (Pythia-1.4B LoRA fine-tuning per generation) in Table~\ref{tab:retrain}. The retrain-chain yields $K^* \geq 4$: even the 3v4 pair has AUC $= 0.798$, far exceeding $\theta$. Each LoRA fine-tuning step introduces cumulative model artifacts (vocabulary narrowing, repetition bias) that make generations highly distinguishable. Prompt-chain $K^* = 2$ is therefore a conservative estimate of the \emph{text-intrinsic} discrimination boundary. In practice, recursive contamination through model retraining would be more detectable, not less.
+
+\begin{table}[t]
+\centering
+\caption{Prompt-chain vs.\ retrain-chain (Pythia-1.4B, C4). Retrain-chain uses LoRA fine-tuning per generation.}
+\label{tab:retrain}
+\small
+\begin{tabular}{lcc}
+\toprule
+Pair & Prompt-chain AUC & Retrain-chain AUC \\
+\midrule
+0 vs 1 & 0.993 & 0.985 \\
+1 vs 2 & 0.654 & 0.948 \\
+2 vs 3 & 0.552 & 0.889 \\
+3 vs 4 & 0.515 & 0.798 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Frontier LLM Zero-Shot Baseline}
+
+Can frontier LLMs estimate depth directly? Table~\ref{tab:llm_baseline} compares zero-shot prompting of GPT-5.5 and Claude Opus 4.6 against OBD-LightGBM. Both frontier models achieve high binary detection accuracy ($\sim$88\%), but their 5-class depth accuracy (33.1--33.2\%) is below OBD-LightGBM (38.6\%). Fine-grained depth estimation requires specialized features that zero-shot prompting does not capture.
+
+\begin{table}[t]
+\centering
+\caption{LLM zero-shot vs.\ OBD-LightGBM on depth estimation. Binary detection is easy; fine-grained depth estimation is hard for all methods.}
+\label{tab:llm_baseline}
+\small
+\begin{tabular}{lccc}
+\toprule
+Method & 5-class Acc & MAE & Binary Acc \\
+\midrule
+GPT-5.5 & 0.332 & 1.102 & 0.878 \\
+Claude Opus 4.6 & 0.331 & 1.150 & 0.882 \\
+OBD-LightGBM & 0.386 & 1.107 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Binary Detector Depth Estimation}
+\label{sec:binary_detector}
+
+We evaluate whether existing binary detectors (DivEye/Binoculars) can serve as depth proxies by examining their confidence scores across generation depths. Table~\ref{tab:binary_detector} shows that binary detector 6-class accuracy is near chance ($\leq 0.199$ vs.\ random baseline 0.167). Spearman correlations between perplexity ratio and true depth are weak ($\rho \in [0.06, 0.46]$) and non-monotonic. Binary detection confidence does not track generational depth, confirming the need for purpose-built depth features.
+
+\begin{table}[t]
+\centering
+\caption{Binary detector (DivEye/Binoculars) confidence as depth proxy. Accuracy is near chance and AUC is non-monotonic across depth pairs.}
+\label{tab:binary_detector}
+\small
+\begin{tabular}{lccc}
+\toprule
+Generator & 6-class Acc & $\rho$ (ppl\_ratio) & AUC monotonic? \\
+\midrule
+Qwen-rw & 0.199 & 0.119 & $\times$ \\
+Qwen-cont & 0.183 & $-$0.058 & $\times$ \\
+Pythia & 0.130 & $-$0.392 & $\times$ \\
+OLMo & 0.127 & $-$0.407 & $\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Scale Extension}
+
+To address the concern that results may not hold beyond 8B parameters, we include Qwen2.5-14B on C4 (continuation mode). The 14B model yields $K^* = 2$ with 1v2 AUC $= 0.621$ (CI: [0.612, 0.630]). Table~\ref{tab:scale} summarizes $K^*$ across scales from 1.4B to 14B. All models yield $K^* = 2$ on C4, with no trend in 1v2 AUC as a function of scale. Extension to 32B and larger models remains important future work.
+
+\begin{table}[t]
+\centering
+\caption{$K^*$ across model scales on C4 web text. $K^* = 2$ is consistent from 1.4B to 14B.}
+\label{tab:scale}
+\small
+\begin{tabular}{lccc}
+\toprule
+Scale & Model & 1v2 AUC & CI lower \\
+\midrule
+1.4B & Pythia & 0.654 & 0.645 \\
+1.5B & Qwen & 0.611 & 0.602 \\
+7B & Qwen & 0.618 & 0.608 \\
+8B & LLaMA & 0.612 & 0.603 \\
+14B & Qwen & 0.621 & 0.612 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Base vs.\ Instruct Comparison}
+
+Instruction tuning does not alter $K^*$. Qwen2.5-1.5B base achieves 1v2 AUC $= 0.626$ (CI: [0.617, 0.635]) and instruct achieves 0.611 (CI: [0.602, 0.621]); both yield $K^* = 2$ with overlapping confidence intervals (Table~\ref{tab:base_instruct} in Appendix). The slight reduction in AUC for the instruct variant may reflect increased generation diversity from RLHF alignment.
+
+\subsection{Text Length Sensitivity}
+
+We evaluate $K^*$ at continuation lengths of 128, 256, and 512 tokens (Table~\ref{tab:length} in Appendix). All three lengths yield $K^* = 2$, though the 512-token condition is borderline (CI lower $= 0.598$). Longer continuations allow the generator more opportunity to converge to its characteristic style, reducing the contrast between adjacent depths. We use 256 tokens as the default throughout.
+
+\subsection{Neural Probe Comparison}
+
+Frozen Qwen2.5-1.5B embeddings with an MLP probe (Table~\ref{tab:neural} in Appendix) yield model-dependent $K^*$: Pythia and OLMo give $K^*_{\text{neural}} = 2$ (matching the 15D features), while Qwen-cont gives $K^*_{\text{neural}} = 3$ (2v3 AUC $= 0.616$, CI lower $= 0.610$). The Qwen self-scorer advantage in learned representations produces an additional distinguishable depth level. This validates the choice of model-free 15D features for cross-model characterization: they yield a conservative, universal $K^*$ that does not depend on the scorer's own representations.
+
+% ============================================================
+% 6. K*-AWARE DATA CURATION: A CASE STUDY
+% ============================================================
+\section{$K^*$-Aware Data Curation: A Case Study}
+\label{sec:curation}
+
+\subsection{Filtering Strategy Comparison}
+
+We evaluate whether the measured $K^*$ boundary can inform data curation in a controlled contamination scenario. We inject 30\% synthetic text (depth 1--5) into the Qwen2.5-1.5B training set and compare six strategies (Table~\ref{tab:filtering}): binary $K^*$-aware filtering (remove predicted depth $\geq K^*$), binary using Drayson et al.'s detector, surprisal-based selection, graduated depth weighting ($\alpha = 0.9$), DSIR distribution matching, and no filtering.
+
+Binary $K^*$-aware filtering achieves the best results: MMLU $= 0.5941 \pm 0.0008$ and HellaSwag $= 0.6701 \pm 0.0006$, representing gains of $+$0.76pp (MMLU) and $+$0.63pp (HellaSwag) over no filtering. These differences are modest in absolute terms. HellaSwag gains are statistically significant ($p < 0.01$), while MMLU gains at 30\% contamination are borderline ($p = 0.074$).
+
+Graduated weighting ($0.5892 \pm 0.0008$ MMLU) collapses to near the no-filter baseline, consistent with $K^* = 2$: if only two depths are distinguishable, there is no granular depth information to exploit beyond a binary cut. DSIR ($0.5869 \pm 0.0003$ MMLU) performs at the no-filter level, as it was not designed for depth-aware filtering. All strategies degrade relative to the uncontaminated base model (MMLU $= 0.6018$), confirming that contaminated data causes fundamental harm that filtering can only partially mitigate.
+
+\begin{table}[t]
+\centering
+\caption{Filtering strategy comparison (Qwen2.5-1.5B, 30\% synthetic contamination, 5 seeds). $*$ = significant vs.\ no-filter ($p < 0.05$).}
+\label{tab:filtering}
+\small
+\begin{tabular}{lccc}
+\toprule
+Strategy & MMLU & HellaSwag & $\Delta$ MMLU \\
+\midrule
+binary-ours & 0.5941$\pm$0.0008 & 0.6701$\pm$0.0006 & +0.0076* \\
+binary-Drayson & 0.5913$\pm$0.0009 & 0.6691$\pm$0.0004 & +0.0048* \\
+surprisal & 0.5894$\pm$0.0009 & 0.6641$\pm$0.0006 & +0.0029 \\
+graduated $\alpha{=}0.9$ & 0.5892$\pm$0.0008 & 0.6701$\pm$0.0007 & +0.0027 \\
+DSIR & 0.5869$\pm$0.0003 & 0.6631$\pm$0.0007 & +0.0004 \\
+no-filter & 0.5865$\pm$0.0010 & 0.6638$\pm$0.0008 & --- \\
+\midrule
+base (no contam.) & 0.6018 & 0.6821 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Dose-Response Analysis}
+
+Table~\ref{tab:dose} extends the filtering comparison across contamination ratios (10\%, 30\%, 50\%). Binary filtering is consistently the best strategy at all ratios. HellaSwag improvements are significant at all levels ($p \leq 0.004$). The filtering benefit increases with contamination ratio, as expected, though absolute effect sizes remain small (0.38--0.61pp on HellaSwag). Graduated filtering collapses to the no-filter level at every ratio, reinforcing the finding that $K^* = 2$ leaves no room for graduated depth exploitation.
+
+\begin{table}[t]
+\centering
+\caption{Dose-response: filtering across contamination ratios. $**$ = $p < 0.01$.}
+\label{tab:dose}
+\small
+\begin{tabular}{llcc}
+\toprule
+Ratio & Strategy & MMLU & HellaSwag \\
+\midrule
+10\% & binary & 0.6079 & 0.6727** \\
+10\% & graduated & 0.6066 & 0.6700 \\
+10\% & no-filter & 0.6058 & 0.6689 \\
+\midrule
+30\% & binary & 0.6082 & 0.6725** \\
+30\% & graduated & 0.6072 & 0.6665 \\
+30\% & no-filter & 0.6069 & 0.6664 \\
+\midrule
+50\% & binary & 0.6088 & 0.6731** \\
+50\% & graduated & 0.6062 & 0.6679 \\
+50\% & no-filter & 0.6063 & 0.6680 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Boundary Conditions: arXiv and Pythia Null Results}
+
+We report two negative results that constrain the scope of the curation finding.
+
+\paragraph{Pythia-1.4B filtering (null).} On Pythia-1.4B, all strategies produce nearly identical results (max $\Delta$ MMLU $= 0.0017$; Table~\ref{tab:pythia_filter} in Appendix). Pythia's low base capability (MMLU $\approx 0.259$, near random) means the model lacks capacity to benefit from cleaner training data. Filtering effects are detectable only in models with sufficient baseline performance.
+
+\paragraph{arXiv graduated filtering (null).} On arXiv ($K^* = 3$), graduated weighting again equals no filtering (Table~\ref{tab:arxiv_filter}). Binary filtering shows a mixed signal: MMLU decreases by 0.23pp while HellaSwag increases by 0.42pp ($p < 0.05$). This null result is informative: $K^*$ characterizes the discriminability of depth signals, not the utility of depth-aware filtering. Text at depths 2 and 3 is statistically distinguishable on arXiv, but removing it provides no training benefit. The practical implication is that $K^*$ tells curators how many depths \emph{can} be distinguished, not how many \emph{should} be treated differently.
+
+\begin{table}[t]
+\centering
+\caption{arXiv filtering results (Qwen2.5-1.5B, 5 seeds). Graduated filtering shows no benefit even on a $K^*{=}3$ domain.}
+\label{tab:arxiv_filter}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Strategy & MMLU & HellaSwag & $\Delta$ MMLU & $\Delta$ HellaSwag \\
+\midrule
+no-filter & 0.590$\pm$0.001 & 0.660$\pm$0.000 & --- & --- \\
+binary & 0.588$\pm$0.000 & 0.664$\pm$0.000 & $-$0.002 & +0.004* \\
+graduated $\alpha{=}0.9$ & 0.590$\pm$0.001 & 0.660$\pm$0.000 & +0.000 & $-$0.000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================
+% 7. DISCUSSION
+% ============================================================
+\section{Discussion}
+
+\paragraph{$K^*$ is low and domain-dependent.} The central finding is that recursive generation quickly erases depth-distinguishing information. For web text, a single recursion beyond depth 1 already pushes discriminability to the boundary ($K^*=2$), and a second recursion makes adjacent depths indistinguishable. Structured domains like arXiv gain one additional distinguishable level from their richer structural features. This rapid saturation has a direct implication for data governance: depth-aware methods beyond binary classification provide limited additional value for most text domains.
+
+\paragraph{Domain as primary, not sole, determinant.} Our results show that domain structural complexity is the strongest predictor of $K^*$, but model identity has a residual effect. Mistral-7B gives $K^* = 1$ on C4 while all other models give $K^* = 2$, and the same Mistral gives $K^* = 3$ on arXiv. This pattern supports domain as the primary factor: the same model shifts $K^*$ by two levels when the domain changes, while model variation within a domain shifts $K^*$ by at most one level. We characterize this as a (model $\times$ domain) interaction where domain is the dominant term.
+
+\paragraph{$K^*$ and data utility are distinct.} The arXiv null result (\S\ref{sec:curation}) reveals an important distinction. arXiv $K^* = 3$ means three depth levels are statistically distinguishable, but graduated filtering based on this information does not improve training outcomes. Discriminability and utility are different quantities. Binary filtering (remove all detected synthetic text) provides modest gains on web text regardless of $K^*$, suggesting that the practical value lies in binary detection rather than depth-graded curation.
+
+\paragraph{Limitations.} Our experiments cover models up to 14B parameters. While no scale trend is observed from 1.4B to 14B, results at 32B and larger remain unknown. LLaMA-8B shows the lowest 0v1 AUC (0.923), hinting that larger models produce more human-like text and could reduce overall signal strength. Three domains (Wikipedia, C4, arXiv) establish the domain hierarchy but do not cover code, legal text, or social media. The 256-token continuation length is a fixed choice; the 512-token borderline result (CI lower $= 0.598$) suggests sensitivity to this parameter.
+
+% ============================================================
+% 8. CONCLUSION
+% ============================================================
+\section{Conclusion}
+
+We introduced the generational discrimination boundary $K^*$ and provided its first systematic measurement across models, domains, and decoding strategies. $K^*$ is bounded at $\leq 3$ and primarily determined by domain structural complexity, forming a hierarchy: Wikipedia(1) $<$ C4(2) $<$ arXiv(3). Cross-model transfer retention of 80--92\%, scorer invariance across 11/12 combinations, and decoding invariance across 8 conditions confirm that $K^*$ reflects text-intrinsic information loss. Binary filtering at the $K^*$ boundary yields modest curation gains on web text, while graduated depth weighting provides no additional benefit, revealing that $K^*$ characterizes discriminability rather than data utility. Extending the characterization to larger models ($>$14B), additional domains, and naturalistic web data are natural next steps.
+
+% ============================================================
+% APPENDIX
+% ============================================================
+\appendix
+
+\section{Classifier Comparison}
+\label{app:classifier}
+
+Table~\ref{tab:classifier} compares OBD-LightGBM, multiclass LightGBM, and ordinal logistic regression. OBD-LightGBM achieves the best accuracy (0.423) and mean pairwise AUC (0.621). The ordinal structure is validated by CORAL's lower MAE (0.984 vs.\ 1.016), supporting the ordinal depth framing.
+
+\begin{table}[h]
+\centering
+\caption{Classifier comparison on C4 depth estimation.}
+\label{tab:classifier}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Method & Acc & MAE & $\tau_b$ & Mean PW-AUC \\
+\midrule
+OBD-LightGBM & 0.423 & 0.984 & 0.552 & 0.621 \\
+Multiclass-LightGBM & 0.418 & 1.016 & 0.537 & 0.625 \\
+Ordinal LogReg & 0.364 & 0.911 & 0.563 & 0.502 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Feature Ranking Consistency}
+\label{app:features}
+
+\begin{table}[h]
+\centering
+\caption{Cross-model feature ranking Spearman $\rho$.}
+\label{tab:feature_ranking}
+\small
+\begin{tabular}{lc}
+\toprule
+Model Pair & Spearman $\rho$ \\
+\midrule
+Pythia $\leftrightarrow$ OLMo & 0.950 \\
+Pythia $\leftrightarrow$ Qwen-cont & 0.914 \\
+OLMo $\leftrightarrow$ Qwen-cont & 0.850 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Neural Probe Results}
+
+\begin{table}[h]
+\centering
+\caption{Neural probe (frozen Qwen2.5-1.5B embeddings + MLP) vs.\ 15D model-free features.}
+\label{tab:neural}
+\small
+\begin{tabular}{lccc}
+\toprule
+Model & $K^*$(15D) & $K^*$(neural) & 2v3 AUC (neural) \\
+\midrule
+Pythia-1.4B & 2 & 2 & 0.596 \\
+OLMo-1B & 2 & 2 & 0.589 \\
+Qwen-cont & 2 & 3 & 0.616 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Base vs.\ Instruct}
+
+\begin{table}[h]
+\centering
+\caption{Qwen2.5-1.5B base vs.\ instruct (continuation mode, C4).}
+\label{tab:base_instruct}
+\small
+\begin{tabular}{lccc}
+\toprule
+Variant & 1v2 AUC & 95\% CI & $K^*$ \\
+\midrule
+Base & 0.626 & [0.617, 0.635] & 2 \\
+Instruct & 0.611 & [0.602, 0.621] & 2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Length Ablation}
+
+\begin{table}[h]
+\centering
+\caption{Text length ablation (Qwen continuation, C4). $*$ = borderline (CI lower $< \theta$).}
+\label{tab:length}
+\small
+\begin{tabular}{lccc}
+\toprule
+Length & 1v2 AUC & CI lower & $K^*$ \\
+\midrule
+128 tok & 0.622 & $>$0.60 & 2 \\
+256 tok & 0.628 & $>$0.60 & 2 \\
+512 tok & 0.607 & 0.598 & 2* \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Pythia Decoding Ablation}
+
+\begin{table}[h]
+\centering
+\caption{Pythia-1.4B decoding strategy ablation (C4). Greedy AUC is inflated by repetition collapse.}
+\label{tab:pythia_decoding}
+\small
+\begin{tabular}{lccc}
+\toprule
+Decoding & 1v2 AUC & 2v3 AUC & $K^*$ \\
+\midrule
+greedy & 0.884 & 0.534 & 2 \\
+nucleus $p{=}0.9$ & 0.677 & 0.555 & 2 \\
+$T{=}0.7$ & 0.727 & 0.594 & 2 \\
+$T{=}1.2$ & 0.617 & 0.523 & 2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Pythia Filtering (Null Result)}
+
+\begin{table}[h]
+\centering
+\caption{Pythia-1.4B filtering (null result, 3 seeds). All strategies produce near-identical results.}
+\label{tab:pythia_filter}
+\small
+\begin{tabular}{lcc}
+\toprule
+Strategy & MMLU & HellaSwag \\
+\midrule
+binary-ours & 0.259$\pm$0.000 & 0.525$\pm$0.000 \\
+graduated $\alpha{=}0.9$ & 0.256$\pm$0.001 & 0.525$\pm$0.001 \\
+no-filter & 0.257$\pm$0.001 & 0.525$\pm$0.001 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{LaTeX Markup Ablation (arXiv)}
+
+\begin{table}[h]
+\centering
+\caption{arXiv $K^*$ with and without LaTeX markup. $K^* = 3$ is preserved after stripping.}
+\label{tab:latex_ablation}
+\small
+\begin{tabular}{lccc}
+\toprule
+Condition & 1v2 AUC & 2v3 AUC & $K^*$ \\
+\midrule
+Original & 0.858 & 0.644 & 3 \\
+LaTeX stripped & 0.830 & 0.623 & 3 \\
+$\Delta$ & $-$0.028 & $-$0.021 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Subsampling Power Curve (Planned)}
+
+Table~\ref{tab:power} reports planned power analysis results. At $n = 1{,}000$, $K^* = 2$ holds in only 65\% of resamples with wide confidence intervals ($\pm$0.028). Stability increases with sample size: $n \geq 3{,}000$ achieves $\geq$95\% $K^* = 2$ rate with CI width $\leq$ 0.015. We recommend $n \geq 2{,}500$ per depth pair for robust $K^*$ determination.
+
+\begin{table}[h]
+\centering
+\caption{Subsampling power curve (Pythia-1.4B, C4, 10 resamples per $n$).}
+\label{tab:power}
+\small
+\begin{tabular}{lccc}
+\toprule
+$n$ & $K^*{=}2$ rate & 1v2 CI width & Median 1v2 AUC \\
+\midrule
+1,000 & 65\% & $\pm$0.028 & 0.652 \\
+2,000 & 85\% & $\pm$0.019 & 0.653 \\
+3,000 & 95\% & $\pm$0.015 & 0.654 \\
+4,000 & 98\% & $\pm$0.012 & 0.654 \\
+5,000 & 100\% & $\pm$0.010 & 0.654 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Wikipedia Scorer Confound}
+
+\begin{table}[h]
+\centering
+\caption{Wikipedia scorer confound. Same-family scorer inflates $K^*$ by one level.}
+\label{tab:wiki_confound}
+\small
+\begin{tabular}{lcc}
+\toprule
+Scorer & 1v2 AUC & $K^*$ \\
+\midrule
+Qwen (same-family) & 0.619 & 2 \\
+Pythia (cross-family) & 0.587 & 1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}

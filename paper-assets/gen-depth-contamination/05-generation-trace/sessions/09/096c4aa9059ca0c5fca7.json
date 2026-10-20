@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "096c4aa9059ca0c5fca7",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "review ref audit A",
+  "task_key": "worker_review_ref-audit-A_20260526T104656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_ref-audit-A_20260526T104656_result.json",
+    "occurrence": 1,
+    "bytes": 516,
+    "sha256": "b7f848b4400b022099e9d338e97690426a2b06bf5f75fc3702dcc689fa94d6ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "37 条引用逐条核查完成，结果写入 `artifacts/ref_audit_worker_A.md`。\n\n**3 条有问题：**\n- `hans2024binoculars` — 标题截断，缺副标题 \": Zero-Shot Detection of Machine-Generated Text\"\n- `sadasivan2023detect` — 已发表在 TMLR 2025，bib 仍标为 arXiv preprint 2023\n- `liang2023gpt` — `related_work.tex:11` 将其作为 GPTZero 引用，但该论文是关于 GPT 检测器对非母语写作者偏见的研究，不是 GPTZero\n\n其余 34 条均验证通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-ref-audit-a.md"
+}

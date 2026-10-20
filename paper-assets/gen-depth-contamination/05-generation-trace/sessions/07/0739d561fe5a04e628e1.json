@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0",
+  "id": "0739d561fe5a04e628e1",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analyze exp 14b c4",
+  "task_key": "worker_analyze_exp_14b_c4_20260518T082213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp_14b_c4_20260518T082213_result.json",
+    "occurrence": 1,
+    "bytes": 2270,
+    "sha256": "4b664c707c6c0075209b65886096951d408b787fc198332caf8eeb26ff1df27c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据完整，depth_0~5 各 5000 行。无 bootstrap CI 文件。结果汇总：\n\n```json\n{\n  \"k_star\": 2,\n  \"auc\": {\"0v1\": 0.96, \"1v2\": 0.6211, \"2v3\": 0.5494, \"3v4\": 0.5243, \"4v5\": 0.5152},\n  \"jsd\": {\"0v1\": 0.109709, \"1v2\": 0.01123, \"2v3\": 0.006152, \"3v4\": 0.004436, \"4v5\": 0.003589},\n  \"ordinal\": {\"mae\": 1.2266, \"accuracy\": 0.3497},\n  \"top_features\": [\"freq_entropy\", \"surp_d1_skew\", \"surp_std\", \"surp_d1_mean\", \"surp_d2_mean\", \"freq_kurtosis\", \"surp_mean\", \"surp_kurt\", \"surp_skew\", \"hapax_ratio\"],\n  \"bootstrap_ci\": null,\n  \"conclusion\": \"success\",\n  \"summary\": \"Qwen2.5-14B on C4 confirms K*=2 (1v2 AUC=0.6211, 2v3 AUC=0.5494), consistent with 1.5B/7B/8B results — K*=2 dominant mode is stable across 1.5B–14B scale.\"\n}\n```\n\n**关键观察**：\n- **K\\*=2 确认**：1v2 AUC=0.6211 > 0.60 阈值，2v3 AUC=0.5494 < 0.60，与 1.5B/7B/8B 完全一致\n- **0v1 AUC=0.96**：14B 的 depth-0 vs depth-1 区分度极高，与其他规模类似\n- **1v2 AUC=0.6211**：比 1.5B 的 ~0.62-0.64 略低但仍在阈值之上，5-fold 各 fold 稳定在 0.61-0.63\n- **JSD 模式**：0v1 JSD=0.1097 远高于后续 pair，1v2 后急剧衰减，符合预期的指数衰减模式\n- **Feature importance**：freq_entropy 和 surp_d1_skew 为 top-2，与之前实验一致\n\nHypothesis 验证通过：K\\*=2 在 Qwen 系列 1.5B→7B→14B 均稳定。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "k_star": 2,
+              "auc": {
+                "0v1": 0.96,
+                "1v2": 0.6211,
+                "2v3": 0.5494,
+                "3v4": 0.5243,
+                "4v5": 0.5152
+              },
+              "jsd": {
+                "0v1": 0.109709,
+                "1v2": 0.01123,
+                "2v3": 0.006152,
+                "3v4": 0.004436,
+                "4v5": 0.003589
+              },
+              "ordinal": {
+                "mae": 1.2266,
+                "accuracy": 0.3497
+              },
+              "top_features": [
+                "freq_entropy",
+                "surp_d1_skew",
+                "surp_std",
+                "surp_d1_mean",
+                "surp_d2_mean",
+                "freq_kurtosis",
+                "surp_mean",
+                "surp_kurt",
+                "surp_skew",
+                "hapax_ratio"
+              ],
+              "bootstrap_ci": null,
+              "conclusion": "success",
+              "summary": "Qwen2.5-14B on C4 confirms K*=2 (1v2 AUC=0.6211, 2v3 AUC=0.5494), consistent with 1.5B/7B/8B results — K*=2 dominant mode is stable across 1.5B–14B scale."
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-14b-c4.md"
+}

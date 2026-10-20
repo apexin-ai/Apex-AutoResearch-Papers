@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_pythia14b_10k",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:59:05.554Z",
+    "updated_at": "2026-05-22T12:00:24.157Z",
+    "hypothesis": "统一所有 K*=2 configs 样本量至 10K，避免 selective precision boosting 质疑。Pythia-1.4B 5K 已稳定通过 Bonferroni (CI_lower≈0.641>0.60)，10K 为一致性验证。",
+    "spec": {
+      "command": "python3 scripts/run_pipeline.py --model_path pythia-1.4b --num_samples 10000 --max_depth 5 --batch_size 32 --generation_mode continuation + Phase2 Qwen scorer",
+      "server": "cqa1-22115",
+      "gpu": "cuda:3 (RTX PRO 6000 Blackwell 96GB)",
+      "data_path": "data/exp_pythia14b_c4_10k",
+      "data_count": 10000,
+      "model_name": "Pythia-1.4B (gen) + Qwen2.5-1.5B-Instruct (scorer)",
+      "seed": 42,
+      "log_path": "N/A",
+      "note": "重复条目，已合并到 exp_pythia14b_c4_10k",
+      "checkpoint_path": "N/A"
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-22T12:00:24.157Z"
+  },
+  "timestamp": "2026-05-22T12:00:24.463736+00:00",
+  "trigger": "update_registry"
+}

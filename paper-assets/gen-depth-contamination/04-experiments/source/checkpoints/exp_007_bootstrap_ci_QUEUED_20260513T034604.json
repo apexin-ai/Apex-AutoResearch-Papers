@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_007_bootstrap_ci",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T03:45:50.948Z",
+    "updated_at": "2026-05-13T03:46:03.983Z",
+    "hypothesis": "K* 统计严谨性验证：bootstrap 95% CI 和 permutation test 确认 K*=2 在三个模型族上统计显著"
+  },
+  "timestamp": "2026-05-13T03:46:04.003012+00:00",
+  "trigger": "update_registry"
+}

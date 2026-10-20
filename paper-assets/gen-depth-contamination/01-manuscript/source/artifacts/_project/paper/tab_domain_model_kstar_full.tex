@@ -1,0 +1,28 @@
+\begin{table*}[t]
+\centering
+\caption{Full generative depth results with AUC at the $K^*$ boundary (scorer: Qwen2.5-1.5B, $\theta{=}0.60$). AUC($k$v$k{+}1$) denotes the area under the ROC curve distinguishing generation $k$ from generation $k{+}1$. Bold indicates the dominant $K^*$ mode per domain. All AUC values computed on held-out test splits ($n{=}500$ per class).}
+\label{tab:domain_model_kstar_full}
+{\small
+\begin{tabular}{llcccccc}
+\toprule
+& & \multicolumn{2}{c}{\textbf{C4}} & \multicolumn{2}{c}{\textbf{arXiv}} & \multicolumn{2}{c}{\textbf{Wikipedia}} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8}
+\textbf{Model} & \textbf{Size} & $K^*$ & AUC(boundary) & $K^*$ & AUC(boundary) & $K^*$ & AUC(boundary) \\
+\midrule
+Qwen2.5       & 1.5B & \textbf{2} & 0.6262~(1v2) & \textbf{3} & 0.6427~(2v3) & \textbf{1}\textsuperscript{$\dagger$} & --- \\
+Qwen2.5       & 7B   & \textbf{2} & 0.6178~(1v2) & \textbf{3} & 0.6255~(2v3) & \textbf{1}\textsuperscript{$\dagger$} & --- \\
+Pythia        & 1.4B & \textbf{2} & 0.6539~(1v2) & \textbf{3} & 0.6544~(2v3) & \textbf{1} & --- \\
+LLaMA-3.1    & 8B   & \textbf{2} & 0.6123~(1v2) & \textbf{3} & 0.6215~(2v3) & \textbf{1} & --- \\
+Mistral       & 7B   & 1\textsuperscript{$\ddagger$} & 0.5935~(1v2) & \textbf{3} & 0.6275~(2v3) & \textbf{1} & --- \\
+OLMo          & 1B   & \textbf{2} & 0.6145~(1v2) & 1\textsuperscript{$*$} & --- & \textbf{1} & --- \\
+\bottomrule
+\end{tabular}
+}
+\vspace{2pt}
+
+{\footnotesize
+\textsuperscript{$\dagger$}Scorer artifact: cross-scorer analysis (Appendix~\ref{app:crossscorer}) shows $K^*$ depends on scorer choice for Wiki with Qwen generators.\\
+\textsuperscript{$\ddagger$}AUC(1v2)${=}0.5935{<}\theta{=}0.60$: Mistral exhibits domain-specific one-wash on C4 web text.\\
+\textsuperscript{$*$}Capacity failure: OLMo-1B produces out-of-domain text when prompted with arXiv content.
+}
+\end{table*}

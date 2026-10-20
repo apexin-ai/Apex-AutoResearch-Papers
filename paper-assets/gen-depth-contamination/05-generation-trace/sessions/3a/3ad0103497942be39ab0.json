@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ad0103497942be39ab0",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis feature importance correct data",
+  "task_key": "worker_analysis_feature_importance_correct_data_20260521T195442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_feature_importance_correct_data_20260521T195442_result.json",
+    "occurrence": 1,
+    "bytes": 1077,
+    "sha256": "a7d58817f631ad2b7bc7beee011e02bf24f167f893f58cb9fdcf7ccc289a488f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n**1v2 Feature Importance（修正数据）**\n\n| | OLMo-1B (K\\*=1) | Pythia-1.4B (K\\*=2) | Qwen-cont (K\\*=2) |\n|---|---|---|---|\n| 1v2 raw AUC | 0.508 | 0.678 | 0.617 |\n| #1 feature | Δ¹Surp σ +0.007 | **Surprisal σ +0.102** | **Surprisal σ +0.065** |\n| #2 feature | Δ¹Surp Skew +0.005 | **Freq Entropy +0.043** | **Freq Entropy +0.037** |\n\n**核心结论不变**：Surprisal σ 和 Freq Entropy 在 K\\*≥2 模型中稳定占据 top-2；OLMo (K\\*=1) 所有 feature ΔAUC < 0.007，无显著贡献。Pythia/Qwen-cont top-4 排序完全一致（Surp σ → Freq Entropy → Surp μ → Hapax Ratio）。\n\n**数据源变更**：OLMo 从 cross-scored (`olmo_c4_qwen_scorer`) 改为 self-scored rerun；Pythia 从 cross-scored 改为 nucleus p=0.9 self-scored。exp_017 Qwen-cont self-scored 数据不在磁盘上，沿用 `qwen_cont256__qwen_base`（AUC 0.617 ≈ target 0.611）。\n\n产出：\n- 服务器 JSON: `results/feature_importance_correct/`\n- 本地报告: `artifacts/feature_importance_correct_data.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-feature-importance-correct-data.md"
+}

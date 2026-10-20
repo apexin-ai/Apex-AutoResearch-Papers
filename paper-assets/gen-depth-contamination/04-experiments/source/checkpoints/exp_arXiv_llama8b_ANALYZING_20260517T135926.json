@@ -1,0 +1,45 @@
+{
+  "exp_id": "exp_arXiv_llama8b",
+  "project": "gen-depth-contamination",
+  "state": "ANALYZING",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T10:53:57.754Z",
+    "updated_at": "2026-05-17T13:59:26.026Z",
+    "hypothesis": "Cross-architecture arXiv K* validation: LLaMA-3.1-8B continuation on arXiv abstracts 的 K* 是否 = 3？验证 structured domain K*=3 在大模型（8B scale）上是否成立，排除小模型 capacity artifact。2200 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "parent": "exp_024_arxiv_domain",
+    "server": "cqa1-22115",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "cqa1-22115",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-17T10:59:48.493Z",
+      "finished_at": "2026-05-17T13:59:25.526Z",
+      "training_hours": 2.99
+    },
+    "spec": {
+      "command": "python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B --data_dir data/exp_arXiv_llama8b --results_dir results/exp_arXiv_llama8b --num_samples 2200 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "27469",
+      "log_path": "~/runs/gen-depth-contamination/exp_arXiv_llama8b.log",
+      "submitted_at": "2026-05-17T11:23:08.013Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/exp_arXiv_llama8b (seed from exp_024_arxiv/depth_0.jsonl)",
+      "data_count": 2200,
+      "model_name": "Meta-Llama-3.1-8B",
+      "seed": 42,
+      "checkpoint_source": "pretrained:LLM-Research/Meta-Llama-3.1-8B",
+      "eval_data": "arXiv abstracts depth 0-5, scorer=Qwen2.5-1.5B"
+    }
+  },
+  "timestamp": "2026-05-17T13:59:26.279620+00:00",
+  "trigger": "update_registry"
+}

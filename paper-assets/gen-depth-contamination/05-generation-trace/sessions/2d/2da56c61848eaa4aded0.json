@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2da56c61848eaa4aded0",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "figure heatmap fontsize fix",
+  "task_key": "worker_figure_heatmap-fontsize-fix_20260523T133214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_heatmap-fontsize-fix_20260523T133214_result.json",
+    "occurrence": 1,
+    "bytes": 527,
+    "sha256": "c4fefd0efa53f392eb898cc163d65ab74a6a183dc305397c0d260bec86a5ce98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。字号修改汇总：\n\n| 元素 | 旧值 | 新值 |\n|------|------|------|\n| AUC 数值标注 | 9pt | 10pt |\n| K* 标注 | 7.5pt | 9pt |\n| 坐标轴刻度标签 | 9pt | 10pt |\n| 坐标轴标题 | 9pt | 10pt |\n| 图标题 | 9pt | 10pt |\n| 图例 | 7.5pt | 8.5pt |\n\nPDF 为矢量格式（29.7 KB），页面尺寸 271.7 × 249.5 pts（约 3.77 × 3.47 inches），适合单栏排版。数据内容和 colormap 未改动。本地 `docs/paper/figures/fig3_transfer_heatmap.{pdf,png}` 已替换。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-heatmap-fontsize-fix.md"
+}

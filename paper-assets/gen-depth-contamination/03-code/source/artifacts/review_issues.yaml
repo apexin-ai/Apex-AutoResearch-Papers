@@ -1,0 +1,717 @@
+## Review Issues Tracker — gen-depth-contamination
+## Updated: Round 30 Review (2026-05-25)
+
+# === CRITICAL / MUST-FIX ===
+
+- id: "R25-N1"
+  summary: "Qwen 过度代表使 6/10 统计量误导"
+  category: framing
+  severity: critical
+  status: in_progress
+  first_raised_round: 25
+  last_seen_round: 30
+  mentions:
+    - round: 25
+      reviewer: [R1, R2]
+      note: "6/10 中 4 个 Qwen。按 family：仅 2/6 unanimously K*=2。"
+    - round: 26
+      reviewer: [R1, R2]
+      note: "尽管 Round 25 已添加 per-family，叙事权重仍以 '6/10' 为主导。"
+    - round: 27
+      reviewer: [R1, R2]
+      note: "共识 Must-Fix。非 Qwen 6 配置中仅 Pythia-1.4B+LLaMA-8B 为 K*=2。"
+    - round: 29
+      reviewer: [R1, R2]
+      note: "两人再次共识。R1(W3)+R2(W4) 均指出按 family 去重后 K*=2 比例降至约 50%。建议 per-family 去重分析。"
+    - round: 30
+      reviewer: [R1, R2]
+      note: "R1 标 Must-Fix(N2): 4/6 K*=2 为 Qwen 变体, 按 family 去重仅 Qwen robustly K*=2。R2 完全同意, 补充 neural probe self-familiarity artifact 可能。共识: per-family 分析为主体。"
+  action_items:
+    - round: 27
+      action: "重构 narrative hierarchy"
+      assigned_to: paper_agent
+      status: superseded
+    - round: 29
+      action: "Section 4.1 在 '6/10' 后立即加 per-family 去重数字"
+      assigned_to: paper_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R30-N1"
+  summary: "Bonferroni 校正下仅 3/6 K*=2 配置统计显著（全为 Qwen）"
+  category: experiment
+  severity: critical
+  status: open
+  first_raised_round: 30
+  last_seen_round: 30
+  mentions:
+    - round: 30
+      reviewer: [R1, R2]
+      note: "R1 标 Must-Fix(N1): Table 27 显示 Pythia-1.4B(0.593), Qwen-cont(0.598), LLaMA-8B(0.599) CI 下界均<θ=0.60。论文用 'marginal' 而非承认不显著。R2 AGREE 且与 R2-N2(K*=1 占 40%) 共振: statistically significant K*=2 仅 3 configs 全是 Qwen。"
+  action_items: []
+  resolution: ""
+  resolution_round: null
+
+- id: "R25-W2"
+  summary: "贡献悖论: K*≤2 使 depth estimation 退化为 binary detection"
+  category: framing
+  severity: critical
+  status: open
+  first_raised_round: 25
+  last_seen_round: 30
+  mentions:
+    - round: 27
+      reviewer: [R1, R2]
+      note: "需正面处理。"
+    - round: 29
+      reviewer: [R1, R2]
+      note: "R1 接受当前定位。分歧缩小。"
+    - round: 30
+      reviewer: [R1, R2]
+      note: "R2 升级为 Must-Fix(N1): framework 的实际产出等价于 binary detection。R1 REBUT severity(characterization 有独立价值, K*>2 场景证明框架扩展潜力), 但承认诊断准确。核心分歧: R1 认为修改 framing 可解决(3.5), R2 认为即使修复仍 Findings(3.0)。"
+  action_items:
+    - round: 27
+      action: "Intro 更早声明 K*=2 为核心发现"
+      assigned_to: paper_agent
+      status: superseded
+    - round: 30
+      action: "需在 Introduction/Discussion 中明确区分框架的理论贡献(characterization of information loss dynamics)和实践贡献(K*>2 场景的 non-binary depth estimation), 正面讨论 K*≤2 的 'why binary suffices' 解释价值"
+      assigned_to: paper_agent
+      status: open
+  resolution: ""
+  resolution_round: null
+
+- id: "R1-W2"
+  summary: "Filtering 实验效果量在现实污染比例下极小"
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 20
+  last_seen_round: 30
+  mentions:
+    - round: 27
+      reviewer: [R1, R2]
+      note: "100% 设置不切实际。"
+    - round: 29
+      reviewer: [R1, R2]
+      note: "两人均标 critical。≤50% 污染下所有策略趋同(p>0.12)。10% 下 MMLU Δ=0.09pp。"
+    - round: 30
+      reviewer: [R1, R2]
+      note: "R1 标 Should-Fix(W5), R2 强烈同意并认为进一步支持贡献悖论。Abstract 表述给人 practical contribution 印象, 但 Appendix B.8 显示 ≤50% 下效果消失。"
+  action_items:
+    - round: 29
+      action: "Abstract/Section 5 限定 filtering 声明适用范围"
+      assigned_to: paper_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R29-N1"
+  summary: "'Generator-agnostic' 声明范围过大——仅限 continuation mode"
+  category: framing
+  severity: critical
+  status: in_progress
+  first_raised_round: 29
+  last_seen_round: 30
+  mentions:
+    - round: 29
+      reviewer: [R1, R2]
+      note: "Abstract '80-92% cross-model transfer' 仅在 continuation mode 成立；rewrite mode 迁移仅 61-63%。"
+    - round: 30
+      reviewer: [R1, R2]
+      note: "R1 标 Should-Fix(W3), R2 AGREE。有效迁移仅在 Pythia↔OLMo↔Qwen-cont 间验证。建议限定 'across continuation-mode generators with K*≥2'。"
+  action_items:
+    - round: 29
+      action: "Abstract/Conclusion 限定 continuation mode"
+      assigned_to: paper_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R29-N2"
+  summary: "K*_empirical 在 5K→10K 样本量变化时不稳定"
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 29
+  last_seen_round: 29
+  mentions:
+    - round: 29
+      reviewer: [R1, R2]
+      note: "LLaMA-8B K*=2(5K)→K*=1(10K); Gemma-2-2B K*=1→K*=2。"
+    - round: 30
+      reviewer: []
+      note: "本轮未以 sample instability 角度提及。R30-N1 从 Bonferroni CI 角度替代了部分 concern。"
+  action_items:
+    - round: 29
+      action: "Bootstrap K*_empirical 分析"
+      assigned_to: main_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R22-C4"
+  summary: "模型规模覆盖偏向小模型（≤8B），威胁可推广性"
+  category: experiment
+  severity: critical
+  status: in_progress
+  first_raised_round: 22
+  last_seen_round: 29
+  mentions:
+    - round: 29
+      reviewer: [R1, R2]
+      note: "R1 仍标 Should-Fix。R2 反驳：Limitations 已恰当处理。"
+    - round: 30
+      reviewer: []
+      note: "本轮未直接提及。"
+  action_items:
+    - round: 27
+      action: "弱化 'regardless of scale'"
+      assigned_to: paper_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+# === WARNING / SHOULD-FIX ===
+
+- id: "R1-N2"
+  summary: "θ=0.60 post-hoc 选择使 K*=2 核心结论脆弱"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 20
+  last_seen_round: 30
+  mentions:
+    - round: 29
+      reviewer: [R1, R2]
+      note: "两人再次共识。R2: AUC 是 rank-based 指标，直接映射 Cohen's h 有概念混淆。"
+    - round: 30
+      reviewer: [R1, R2]
+      note: "R1(W2): 建议基于 permutation null 99th percentile 推导 θ。R2(W2): circularity, 1pp stability window 不宽裕, θ=0.61 时 Pythia-1.4B 已 drop 到 K*=1。共识。"
+  action_items:
+    - round: 29
+      action: "删除 Cohen's h 类比, 改用经验论据"
+      assigned_to: paper_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R1-N1"
+  summary: "DPI→adjacent-pair AUC 推理链存在逻辑缺口"
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 20
+  last_seen_round: 30
+  mentions:
+    - round: 27
+      reviewer: [R1, R2]
+      note: "AUC≠MI 单调函数。"
+    - round: 29
+      reviewer: []
+      note: "本轮未直接提及。"
+    - round: 30
+      reviewer: [R1, R2]
+      note: "R1 标 Should-Fix(W1), R2 AGREE。DPI 保证 I(X;Y_k) 单调, 但论文衡量 AUC_{k-1,k}(对应 I(Y_{k-1};Y_k)), 两者不等价。OLMo 非单调 AUC(M3) 构成实证反例。"
+  action_items:
+    - round: 27
+      action: "DPI 降级为 motivating intuition"
+      assigned_to: paper_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R29-W1"
+  summary: "Related Work 遗漏 text watermarking 作为 provenance tracking 替代方案"
+  category: related_work
+  severity: warning
+  status: in_progress
+  first_raised_round: 29
+  last_seen_round: 30
+  mentions:
+    - round: 29
+      reviewer: [R1, R2]
+      note: "R2 标 critical(N1); R1 反驳降级为 Should-Fix。"
+    - round: 30
+      reviewer: [R1, R2]
+      note: "R2 标 Should-Fix(W1), R1 AGREE。watermarking 在递归生成下鲁棒性也是 open question, 与 one-wash laundering 形成对比。补 1-2 句即可。"
+  action_items:
+    - round: 29
+      action: "Section 2 末尾加 1-2 句 watermarking 定位"
+      assigned_to: paper_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R30-W1"
+  summary: "Bootstrap CI 方法不一致 (Table 27 normal-approx vs Table 28 percentile)"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 30
+  last_seen_round: 30
+  mentions:
+    - round: 30
+      reviewer: [R1, R2]
+      note: "R1 标 Should-Fix(W6), R2 AGREE。AUC 在 0.50-0.60 区间 bootstrap 分布可能偏斜, normal approximation 不准确。核心发现高度依赖 CI 是否跨越 θ。"
+  action_items: []
+  resolution: ""
+  resolution_round: null
+
+- id: "R30-W2"
+  summary: "正文叙事密度过高, insight 深度不足"
+  category: writing
+  severity: warning
+  status: open
+  first_raised_round: 30
+  last_seen_round: 30
+  mentions:
+    - round: 30
+      reviewer: [R1, R2]
+      note: "R2 标 Should-Fix(W4): Section 4.3(7行)/4.6(4行) 讨论过浅。R1 部分 AGREE, 建议重组结构(将 binary detector/feature ordering 移入 appendix)而非删减实验。"
+  action_items: []
+  resolution: ""
+  resolution_round: null
+
+- id: "R30-W3"
+  summary: "Retrain-chain K*≥4 声明方法论支撑不足"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 30
+  last_seen_round: 30
+  mentions:
+    - round: 30
+      reviewer: [R1, R2]
+      note: "R2 标 Should-Fix(W3): 正文仅一句话, 无方法/统计检验描述。R1 REBUT: Appendix B.7 提供了模型(Pythia-1.4B LoRA)/代数(5)/AUC 数值, 非 unsupported, 但缺 LoRA 超参数和 CI。分歧。"
+  action_items: []
+  resolution: ""
+  resolution_round: null
+
+- id: "R30-W4"
+  summary: "OBD vs ordinal regression 对比公平性 (AUC<0.50 暗示调参不足)"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 30
+  last_seen_round: 30
+  mentions:
+    - round: 30
+      reviewer: [R1, R2]
+      note: "R1 标 Should-Fix(W4): ordinal regression AUC 均值 0.4883<0.50, collapsing 应产生 ~0.50 而非 <0.50。R2 AGREE 但认为不影响核心结论(OBD 是工具选择非核心贡献), 建议降级为 Minor。"
+  action_items: []
+  resolution: ""
+  resolution_round: null
+
+- id: "R29-W2"
+  summary: "'One-wash laundering' 命名与 K*=2 数据存在逻辑矛盾"
+  category: framing
+  severity: warning
+  status: in_progress
+  first_raised_round: 29
+  last_seen_round: 30
+  mentions:
+    - round: 29
+      reviewer: [R1, R2]
+      note: "R1(W4) 指出被 '洗掉' 的是深度信号而非检测信号。"
+    - round: 30
+      reviewer: [R1]
+      note: "R1 标 Minor(M2), 建议解释为隐喻。R2 REBUT: Discussion 已区分 one-wash laundering 与 model collapse, vivid imagery 有传播价值, 不应去掉隐喻色彩。"
+  action_items:
+    - round: 29
+      action: "从信号集中度角度精确定义 one-wash laundering"
+      assigned_to: paper_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R25-W1"
+  summary: "Prompt-chain 生态有效性——one-wash laundering 可能是 prompt-chain 特有"
+  category: framing
+  severity: warning
+  status: in_progress
+  first_raised_round: 25
+  last_seen_round: 29
+  mentions:
+    - round: 29
+      reviewer: [R1, R2]
+      note: "R1(W5) 指出 retrain-chain 段落表述不清。prompt-chain K*=2 vs retrain-chain K*=7 是定量巨大差异。"
+    - round: 30
+      reviewer: []
+      note: "本轮未直接提及。R30-W3(retrain-chain K*≥4 支撑不足)间接相关。"
+  action_items:
+    - round: 27
+      action: "Discussion 区分 one-wash laundering vs model collapse"
+      assigned_to: paper_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R26-W1"
+  summary: "遗漏高度相关近期工作"
+  category: related_work
+  severity: warning
+  status: in_progress
+  first_raised_round: 26
+  last_seen_round: 29
+  mentions:
+    - round: 29
+      reviewer: [R2]
+      note: "新增：watermarking 引用。见 R29-W1。"
+    - round: 30
+      reviewer: []
+      note: "本轮未提及新遗漏(watermarking 已独立追踪为 R29-W1)。"
+  action_items:
+    - round: 27
+      action: "Related Work 补充"
+      assigned_to: paper_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R27-W1"
+  summary: "self-BLEU 在 GroupKFold 中存在潜在数据泄漏"
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 27
+  last_seen_round: 27
+  mentions:
+    - round: 30
+      reviewer: []
+      note: "本轮未提及。"
+  action_items:
+    - round: 27
+      action: "Section 3.2 明确 fold-internal 计算"
+      assigned_to: paper_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R27-W2"
+  summary: "K*_empirical 下界紧致性未量化"
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 27
+  last_seen_round: 27
+  mentions:
+    - round: 30
+      reviewer: []
+      note: "本轮未提及。"
+  action_items:
+    - round: 27
+      action: "Discussion 承认 tightness 为开放问题"
+      assigned_to: paper_agent
+      status: in_progress
+    - round: 29
+      action: "修正 'near-tight' 表述"
+      assigned_to: paper_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R27-W3"
+  summary: "Binary detector 对比框架部分不公平"
+  category: method
+  severity: warning
+  status: in_progress
+  first_raised_round: 27
+  last_seen_round: 30
+  mentions:
+    - round: 29
+      reviewer: []
+      note: "本轮未提及"
+    - round: 30
+      reviewer: [R1]
+      note: "R30-W4(ordinal regression AUC<0.50) 与此相关。"
+  action_items:
+    - round: 27
+      action: "Section 4.6 弱化 6-class accuracy"
+      assigned_to: paper_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R27-W4"
+  summary: "'model-free' 措辞与 scorer 模型依赖的张力"
+  category: writing
+  severity: warning
+  status: in_progress
+  first_raised_round: 27
+  last_seen_round: 30
+  mentions:
+    - round: 29
+      reviewer: [R1, R2]
+      note: "'generator-agnostic' 仍需限定 continuation mode。"
+    - round: 30
+      reviewer: [R1, R2]
+      note: "归入 R29-N1(generator-agnostic overclaim)。"
+  action_items:
+    - round: 27
+      action: "全文 'model-free' → 'generator-agnostic'"
+      assigned_to: paper_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+- id: "R29-W3"
+  summary: "未报告特征提取和分类器训练/推理的计算开销"
+  category: experiment
+  severity: warning
+  status: in_progress
+  first_raised_round: 29
+  last_seen_round: 29
+  mentions:
+    - round: 30
+      reviewer: []
+      note: "本轮未提及。"
+  action_items:
+    - round: 29
+      action: "Agent 提供 per-document benchmark 数据"
+      assigned_to: main_agent
+      status: in_progress
+  resolution: ""
+  resolution_round: null
+
+# === MINOR ===
+
+- id: "R29-M1"
+  summary: "Figure 4 heatmap 文字过小"
+  category: format
+  severity: minor
+  status: in_progress
+  first_raised_round: 29
+  last_seen_round: 30
+  mentions:
+    - round: 29
+      reviewer: [R1, R2]
+      note: "打印时难辨认。"
+    - round: 30
+      reviewer: []
+      note: "Reviewer 未直接提及, 但视觉审查确认 page 6 heatmap labels 偏小(warning)。"
+  action_items:
+    - round: 29
+      action: "放大 Figure 4 heatmap 字号"
+      assigned_to: paper_agent
+      status: in_progress
+
+- id: "R30-M1"
+  summary: "Eq.1 K*_empirical 定义未处理空集边界情况"
+  category: method
+  severity: minor
+  status: open
+  first_raised_round: 30
+  last_seen_round: 30
+  mentions:
+    - round: 30
+      reviewer: [R1, R2]
+      note: "R1 标 Minor(M1), R2 AGREE。当 AUC_{0,1}<θ 时定义未明确。实验中不触发(所有 0v1 AUC>0.92), 但形式定义应约定 K*=0。"
+  action_items: []
+  resolution: ""
+  resolution_round: null
+
+- id: "R30-M2"
+  summary: "Abstract arXiv K*=3 claim 应注明 OLMo 为例外"
+  category: writing
+  severity: minor
+  status: open
+  first_raised_round: 30
+  last_seen_round: 30
+  mentions:
+    - round: 30
+      reviewer: [R1, R2]
+      note: "R1 标 Minor(M5), R2 AGREE。'four independent architecture families' 容易误读为所有测试 family。应标注 'four of five tested families (OLMo excluded)'。"
+  action_items: []
+  resolution: ""
+  resolution_round: null
+
+- id: "R29-M2"
+  summary: "Table 2 信息密度过高"
+  category: format
+  severity: minor
+  status: wont_fix
+  first_raised_round: 29
+  last_seen_round: 29
+  mentions:
+    - round: 30
+      reviewer: []
+      note: "本轮未提及。"
+  resolution: "8 页限制下难以大改。维持现状。"
+  resolution_round: 29
+
+- id: "R24-M3"
+  summary: "K*_empirical 定义中 max 算子隐含 AUC 单调递减假设"
+  category: method
+  severity: minor
+  status: in_progress
+  first_raised_round: 24
+  last_seen_round: 27
+  mentions:
+    - round: 30
+      reviewer: []
+      note: "本轮未提及"
+  action_items:
+    - round: 27
+      action: "Eq.1 记法改进"
+      assigned_to: paper_agent
+      status: in_progress
+
+- id: "R27-M1"
+  summary: "Top-3 特征缺乏直觉解释"
+  category: writing
+  severity: minor
+  status: in_progress
+  first_raised_round: 27
+  last_seen_round: 27
+  mentions:
+    - round: 30
+      reviewer: []
+      note: "本轮未提及"
+
+- id: "R27-M2"
+  summary: "Figure 2 caption 未自解释 pairwise AUC"
+  category: format
+  severity: minor
+  status: in_progress
+  first_raised_round: 27
+  last_seen_round: 27
+  mentions:
+    - round: 30
+      reviewer: []
+      note: "本轮未提及"
+
+- id: "R27-M3"
+  summary: "Conclusion 与 Abstract 逐字重复"
+  category: writing
+  severity: minor
+  status: in_progress
+  first_raised_round: 27
+  last_seen_round: 27
+  mentions:
+    - round: 30
+      reviewer: []
+      note: "本轮未提及"
+
+# === RESOLVED ===
+
+- id: "R26-N1"
+  summary: "arXiv K*=3 缺乏 bootstrap CI 和 permutation p-value"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 26
+  last_seen_round: 26
+  resolution: "CI+p-value 已添加。Round 27 未重新提出。"
+  resolution_round: 27
+
+- id: "R26-W2"
+  summary: "边界 CI 决策缺乏多重比较校正"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 26
+  last_seen_round: 26
+  resolution: "Bonferroni 99.5% CI 已添加。Round 27+ Reviewer 正面评价统计实践。"
+  resolution_round: 27
+
+- id: "R2-W3"
+  summary: "Conclusion 过于简短"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 20
+  last_seen_round: 24
+  resolution: "Expanded; not re-raised Round 25-30"
+  resolution_round: 25
+
+- id: "R2-W1"
+  summary: "与 Geng/Wang 技术区分不够清晰"
+  category: related_work
+  severity: warning
+  status: resolved
+  first_raised_round: 20
+  last_seen_round: 24
+  resolution: "Citations added; not re-raised Round 25-30"
+  resolution_round: 25
+
+- id: "R24-M4"
+  summary: "Figure 4 红绿配色"
+  category: format
+  severity: minor
+  status: resolved
+  first_raised_round: 24
+  last_seen_round: 24
+  resolution: "Blue-orange palette; not re-raised"
+  resolution_round: 25
+
+- id: "R23-M2"
+  summary: "Orphan bib / 引用格式不一致"
+  category: format
+  severity: minor
+  status: resolved
+  first_raised_round: 23
+  last_seen_round: 24
+  resolution: "URLs completed; not re-raised"
+  resolution_round: 25
+
+- id: "R24-C1"
+  summary: "附录空占位符表格"
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 23
+  last_seen_round: 24
+  resolution: "All tables filled"
+  resolution_round: 25
+
+- id: "R24-C2"
+  summary: "Cross-scorer 部分证伪 scorer independence"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 22
+  last_seen_round: 25
+  resolution: "Three-layer scorer independence rewrite; not re-raised"
+  resolution_round: 26
+
+- id: "R26-M1"
+  summary: "标题 'Recursive Synthetic Text' 范围略宽于 prompt-chain"
+  category: framing
+  severity: minor
+  status: wont_fix
+  first_raised_round: 26
+  last_seen_round: 26
+  resolution: "不改标题。正文已明确 prompt-chain protocol。"
+  resolution_round: 26
+
+- id: "R26-M2"
+  summary: "ANOVA 使用 GroupKFold 非独立观测值"
+  category: method
+  severity: minor
+  status: resolved
+  first_raised_round: 26
+  last_seen_round: 26
+  resolution: "Appendix ANOVA 后加 GroupKFold caveat"
+  resolution_round: 27
+
+- id: "R26-M3"
+  summary: "OLMo sub-threshold AUC 非单调性未显式标注"
+  category: method
+  severity: minor
+  status: resolved
+  first_raised_round: 26
+  last_seen_round: 26
+  resolution: "Table 2 脚注标注非单调性"
+  resolution_round: 27
+
+- id: "R26-M4"
+  summary: "Neural probe 'self-familiarity' 归因为推测"
+  category: method
+  severity: minor
+  status: resolved
+  first_raised_round: 26
+  last_seen_round: 26
+  resolution: "改为 'We hypothesize...' 假设性表述"
+  resolution_round: 27

@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_019_mistral7b_depth",
+  "project": "gen-depth-contamination",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T04:52:12.077Z",
+    "updated_at": "2026-05-16T04:54:47.626Z",
+    "hypothesis": "Cross-family K* 验证：Mistral-7B-v0.3 continuation mode 的 K* 是否 = 2？第二个非 Qwen 家族模型。C4 5K, depth 0-5, scorer=Qwen2.5-1.5B base。"
+  },
+  "timestamp": "2026-05-16T04:54:47.709579+00:00",
+  "trigger": "update_registry"
+}

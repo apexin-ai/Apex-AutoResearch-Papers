@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_olmo_retrain_chain",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:08:07.671Z",
+    "updated_at": "2026-05-18T16:08:52.675Z",
+    "hypothesis": "OLMo-1B retrain-chain (LoRA rank=16, 1 epoch per generation) on C4 produces K* ≤ 2, confirming prompt-chain as conservative upper bound for K*.",
+    "parent": "exp_002"
+  },
+  "timestamp": "2026-05-18T16:08:52.876119+00:00",
+  "trigger": "update_registry"
+}

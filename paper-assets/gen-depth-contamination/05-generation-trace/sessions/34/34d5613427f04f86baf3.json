@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34d5613427f04f86baf3",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check exp019b result",
+  "task_key": "worker_check_exp019b_result_20260516T115406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp019b_result_20260516T115406_result.json",
+    "occurrence": 1,
+    "bytes": 1556,
+    "sha256": "f06684da171795612105a5df4eb7f85dfe42cd2334efb2fc5c885ba9c943504b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完毕。汇总如下：\n\n---\n\n## 产出总结\n\n### 1. GPU 状态（4x RTX 4090D）\n\n| GPU | 状态 | 显存 | 利用率 |\n|-----|------|------|--------|\n| cuda:0 | 忙 (PID 10403) | 15.9/24.6 GB | 96% |\n| **cuda:1** | **空闲** | **0/24.6 GB** | **0%** |\n| cuda:2 | 忙 (PID 38725) | 4.5/24.6 GB | 90% |\n| cuda:3 | 忙 (PID 32175) | 4.0/24.6 GB | 88% |\n\n**cuda:1 完全空闲，可用。**\n\n### 2. exp-019b: 已完成 (EXIT_CODE=0)\n\n进程 36365 已退出，结果文件齐全。\n\n### 3. 结果 & 对比\n\n**Pairwise AUC + Bootstrap 95% CI:**\n\n| Pair | exp-019 Self-scorer | exp-019b Cross-scorer | Cross CI | 判定 |\n|------|--------------------|-----------------------|----------|------|\n| 0v1 | 0.9843 | 0.9209 | [0.9189, 0.9229] | PASS |\n| 1v2 | 0.5935 | 0.5695 | [0.5645, 0.5746] | FAIL (< 0.60) |\n| 2v3 | 0.5402 | 0.5335 | [0.5283, 0.5382] | FAIL |\n| 3v4 | 0.5232 | 0.5140 | [0.5063, 0.5213] | FAIL |\n| 4v5 | 0.5181 | 0.5184 | [0.5128, 0.5244] | FAIL |\n\n**K\\* = 1**（两个实验一致）\n\n**关键结论：Mistral K\\*=1 是 genuine，不是 self-scorer artifact。** Cross-scorer AUC 全线低于 self-scorer（1v2: 0.5695 < 0.5935），说明换 scorer 后区分度反而下降。如果 K\\*=1 是 self-scoring 造成的虚高，cross-scorer 应该更高才对——实际相反。\n\n其他指标：\n- JSD 模式一致（0v1 远大于其余）\n- Ordinal MAE: 1.37 (cross) vs 1.23 (self)，cross 更差\n- Top-3 features 完全相同：freq_entropy, surp_d1_skew, surp_d1_mean"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp019b-result.md"
+}

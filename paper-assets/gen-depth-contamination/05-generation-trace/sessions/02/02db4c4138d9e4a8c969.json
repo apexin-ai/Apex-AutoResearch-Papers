@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02db4c4138d9e4a8c969",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "submit exp 023 wiki domain",
+  "task_key": "worker_submit_exp_023_wiki_domain_20260516T115910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_exp_023_wiki_domain_20260516T115910_result.json",
+    "occurrence": 1,
+    "bytes": 613,
+    "sha256": "cb894be64f44a2a7a722fba33e2455f1b6a8cec9488093bafb2a2de7f291f377"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-023 已成功启动并运行。\n\n**汇总：**\n\n| 项目 | 结果 |\n|------|------|\n| 数据 | `depth_0.jsonl` — 5000 行，字段 `[text, doc_id]` ✓ |\n| 模型 | `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B` 存在 ✓ |\n| 脚本修改 | `CUDA_VISIBLE_DEVICES=3` → `1` ✓ |\n| PID | 39530 (tmux session: `exp_023_domain_ablation`) |\n| GPU 占用 | cuda:1 已加载模型，3706 MiB |\n| 日志 | 模型加载完成，参数确认：`top_p=0.95, temperature=1.0, continuation, 5K samples, depth 0-5` |\n| 预估时间 | 5K docs × 6 depths × batch_size=16 → 约 2-4 小时 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-exp-023-wiki-domain.md"
+}

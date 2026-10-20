@@ -1,0 +1,59 @@
+{
+  "exp_id": "arxiv_multi_source",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T08:26:09.176Z",
+    "updated_at": "2026-05-24T10:12:26.970Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_arxiv_multi_source_1b5.py\"",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "165918",
+      "log_path": "~/runs/gen-depth-contamination/arxiv_multi_source.log",
+      "submitted_at": "2026-05-24T09:15:24.821Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/exp_024_arxiv/ (2200 docs × 6 depths × 3 generators)",
+      "data_count": "2200 docs × 6 depths × 3 models = 39600 samples",
+      "model_name": "Pythia-1.4B + OLMo-1B + Qwen-1.5B (generators), Qwen2.5-1.5B-Instruct (scorer)",
+      "seed": 42,
+      "checkpoint_path": "results/arxiv_multi_source/",
+      "wall_clock_seconds": 3422.1,
+      "gpu_hours": 0.95
+    },
+    "conclusion": "success",
+    "hypothesis": "ArXiv domain K*=3 is domain-intrinsic (not model-specific): Pythia-1.4B and OLMo-1B on arXiv will also yield K*=3 (matching Qwen-1.5B exp-024), confirming that formulaic academic text structure creates larger per-generation distributional shifts that sustain one additional discriminable depth level beyond web text K*=2.",
+    "metrics": {
+      "k_star": 3,
+      "pairwise_auc": {
+        "0v1": 0.9948,
+        "1v2": 0.8581,
+        "2v3": 0.6436,
+        "3v4": 0.544,
+        "4v5": 0.5299
+      },
+      "pairwise_jsd": {
+        "0v1": 0.203,
+        "1v2": 0.077,
+        "2v3": 0.02,
+        "3v4": 0.008,
+        "4v5": 0.008
+      },
+      "ordinal_mae": 0.826,
+      "ordinal_accuracy": 0.477,
+      "top_features": "freq_entropy, surp_std, surp_mean",
+      "scorer": "Qwen2.5-1.5B-Instruct (cross-scorer)",
+      "key_finding": "Multi-source arXiv (Pythia+OLMo+Qwen) K*=3 confirmed. Domain ceiling=3 is model-intrinsic, not architecture-specific. 2v3 AUC=0.6436 clearly above θ=0.60."
+    },
+    "completed_at": "2026-05-24T10:12:26.970Z"
+  },
+  "timestamp": "2026-05-24T10:12:27.316878+00:00",
+  "trigger": "update_registry"
+}

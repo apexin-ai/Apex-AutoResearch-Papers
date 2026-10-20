@@ -1,0 +1,63 @@
+{
+  "exp_id": "exp_wiki_olmo_v2",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:40:38.784Z",
+    "updated_at": "2026-05-17T13:23:57.369Z",
+    "hypothesis": "Cross-model Wikipedia K* validation (v2 fix): OLMo-1B continuation on Wikipedia 的 K* 是否 = 2？使用独立 data_dir 避免 v1 的 data reuse bug，让 pipeline 用 OLMo 重新生成 depth 1-5。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "parent": "exp_wiki_olmo",
+    "spec": {
+      "command": "python scripts/run_pipeline.py --model_path .../allenai/OLMo-1B-hf --generation_mode continuation",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "31084",
+      "log_path": "~/runs/gen-depth-contamination/exp_wiki_olmo_v2.log",
+      "submitted_at": "2026-05-17T11:48:36.028Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/exp_wiki_olmo",
+      "data_count": 5000,
+      "model_name": "allenai/OLMo-1B-hf",
+      "seed": 42,
+      "git_commit": "0b10b43",
+      "checkpoint_source": "N/A (generation experiment, not eval)",
+      "eval_data": "N/A",
+      "wall_clock_seconds": 5721.3,
+      "gpu_hours": 1.59
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T13:08:49.908Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T13:08:52.662189+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "K_star": 1,
+      "auc_0v1": 0.9932,
+      "auc_1v2": 0.4986,
+      "auc_2v3": 0.5012,
+      "auc_3v4": 0.5057,
+      "auc_4v5": 0.5009,
+      "jsd_0v1": 0.1688,
+      "ordinal_acc": 0.3227
+    },
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo_v2/",
+    "completed_at": "2026-05-17T13:23:57.369Z"
+  },
+  "timestamp": "2026-05-17T13:23:57.528311+00:00",
+  "trigger": "update_registry"
+}

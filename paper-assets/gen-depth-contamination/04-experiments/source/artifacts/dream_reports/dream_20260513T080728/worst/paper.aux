@@ -1,0 +1,87 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shumailov2024collapse,alemohammad2024selfconsuming}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Theoretical Framework}{2}{section.2}\protected@file@percent }
+\newlabel{sec:background}{{2}{2}{Background and Theoretical Framework}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Recursive Generation as Iterated Lossy Channel}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Data Processing Inequality and $K^*$}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Related Work}{3}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model collapse.}{3}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Binary synthetic text detection.}{3}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data selection.}{3}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Depth Chain Construction}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Prompt-chain (canonical).}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Retrain-chain.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Feature Extraction}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}$K^*$ Measurement Protocol}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{4}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}$K^*$ Depends on Decoding Strategy}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:decoding}{{4.1}{4}{$K^*$ Depends on Decoding Strategy}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces $K^*$ as a function of decoding strategy (Qwen2.5-1.5B, continuation mode). Higher sampling entropy yields larger $K^*$.}}{4}{table.caption.6}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:decoding}{{1}{4}{$K^*$ as a function of decoding strategy (Qwen2.5-1.5B, continuation mode). Higher sampling entropy yields larger $K^*$}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}$K^*$ Depends on Model Scale}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:scale}{{4.2}{4}{$K^*$ Depends on Model Scale}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Scale effect on $K^*$. Larger models produce recursive text that converges faster to the stationary distribution.}}{4}{table.caption.7}\protected@file@percent }
+\newlabel{tab:scale}{{2}{4}{Scale effect on $K^*$. Larger models produce recursive text that converges faster to the stationary distribution}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}$K^*$ Depends on Recursion Mechanism}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:retrain}{{4.3}{4}{$K^*$ Depends on Recursion Mechanism}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Prompt-chain vs.\ retrain-chain (Pythia-1.4B). Retrain-chains exhibit faster convergence.}}{5}{table.caption.8}\protected@file@percent }
+\newlabel{tab:retrain}{{3}{5}{Prompt-chain vs.\ retrain-chain (Pythia-1.4B). Retrain-chains exhibit faster convergence}{table.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Stability of $K^*{=}2$ Under Seed Variation}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:stability}{{4.4}{5}{Stability of $K^*{=}2$ Under Seed Variation}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Seed sensitivity of the Qwen-cont 1v2 AUC. The $K^*{=}2$ claim is fragile: 2 of 3 new seeds produce CI lower bounds below 0.60.}}{5}{table.caption.9}\protected@file@percent }
+\newlabel{tab:seeds}{{4}{5}{Seed sensitivity of the Qwen-cont 1v2 AUC. The $K^*{=}2$ claim is fragile: 2 of 3 new seeds produce CI lower bounds below 0.60}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Base vs.\ Instruct Models}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:base_instruct}{{4.5}{5}{Base vs.\ Instruct Models}{subsection.4.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Base vs.\ instruct model comparison (Qwen2.5-1.5B, continuation). Both yield $K^*{=}2$; the base model shows slightly higher 1v2 discriminability.}}{5}{table.caption.10}\protected@file@percent }
+\newlabel{tab:base_instruct}{{5}{5}{Base vs.\ instruct model comparison (Qwen2.5-1.5B, continuation). Both yield $K^*{=}2$; the base model shows slightly higher 1v2 discriminability}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Learned vs.\ Hand-Crafted Features}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:learned}{{4.6}{6}{Learned vs.\ Hand-Crafted Features}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Learned representations substantially outperform hand-crafted features and extend $K^*$.}}{6}{table.caption.11}\protected@file@percent }
+\newlabel{tab:learned}{{6}{6}{Learned representations substantially outperform hand-crafted features and extend $K^*$}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Comparison with Existing Detection Methods}{6}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:binary_baseline}{{4.7}{6}{Comparison with Existing Detection Methods}{subsection.4.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Binary detector confidence as depth proxy.}{6}{section*.12}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Binary detector confidence vs.\ generation depth. Existing detectors excel at 0v1 but fail at depth ordering.}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:binary_det}{{7}{6}{Binary detector confidence vs.\ generation depth. Existing detectors excel at 0v1 but fail at depth ordering}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {paragraph}{LLM zero-shot depth estimation.}{6}{section*.14}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Zero-shot LLM depth estimation. LLMs perform near chance on ordinal depth, calibrating task difficulty.}}{7}{table.caption.15}\protected@file@percent }
+\newlabel{tab:llm_zeroshot}{{8}{7}{Zero-shot LLM depth estimation. LLMs perform near chance on ordinal depth, calibrating task difficulty}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Downstream Filtering Evaluation}{7}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:filtering}{{4.8}{7}{Downstream Filtering Evaluation}{subsection.4.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Filtering strategy comparison (mean $\pm $ std over 5 seeds, 30\% synthetic injection). Graduated filtering does not significantly outperform binary.}}{7}{table.caption.16}\protected@file@percent }
+\newlabel{tab:filtering}{{9}{7}{Filtering strategy comparison (mean $\pm $ std over 5 seeds, 30\% synthetic injection). Graduated filtering does not significantly outperform binary}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Sensitivity of graduated filtering to $\alpha $.}}{7}{table.caption.17}\protected@file@percent }
+\newlabel{tab:alpha}{{10}{7}{Sensitivity of graduated filtering to $\alpha $}{table.caption.17}{}}
+\@writefile{toc}{\contentsline {paragraph}{Dose-response analysis.}{8}{section*.18}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Dose-response: graduated $-$ binary improvement (pp) across injection ratios. The trend is suggestive but never reaches statistical significance.}}{8}{table.caption.19}\protected@file@percent }
+\newlabel{tab:dose}{{11}{8}{Dose-response: graduated $-$ binary improvement (pp) across injection ratios. The trend is suggestive but never reaches statistical significance}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Naturalistic Validation}{8}{subsection.4.9}\protected@file@percent }
+\newlabel{sec:naturalistic}{{4.9}{8}{Naturalistic Validation}{subsection.4.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Naturalistic validation: predicted depth correlates moderately with independent quality metrics.}}{8}{table.caption.20}\protected@file@percent }
+\newlabel{tab:naturalistic}{{12}{8}{Naturalistic validation: predicted depth correlates moderately with independent quality metrics}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{8}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{8}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{$K^*$ as operational parameter.}{8}{section*.21}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{shumailov2024collapse}{{1}{2024}{{Shumailov et~al.}}{{}}}
+\bibcite{alemohammad2024selfconsuming}{{2}{2024}{{Alemohammad et~al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Implications for practitioners.}{9}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Text-intrinsic vs.\ model-specific signal.}{9}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{9}{section*.24}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Graduated filtering: a negative result.}{9}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{9}{section.6}\protected@file@percent }
+\bibcite{dohmatob2024tale}{{3}{2024}{{Dohmatob et~al.}}{{}}}
+\bibcite{drayson2025filtering}{{4}{2025}{{Drayson et~al.}}{{}}}
+\bibcite{mitchell2023detectgpt}{{5}{2023}{{Mitchell et~al.}}{{}}}
+\bibcite{shi2024minkpp}{{6}{2024}{{Shi et~al.}}{{}}}
+\bibcite{xie2023dsir}{{7}{2023}{{Xie et~al.}}{{}}}
+\bibcite{cover2006elements}{{8}{2006}{{Cover and Thomas}}{{}}}
+\gdef \@abspage@last{10}

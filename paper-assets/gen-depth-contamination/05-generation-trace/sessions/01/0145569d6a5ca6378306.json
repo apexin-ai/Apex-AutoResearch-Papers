@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0145569d6a5ca6378306",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "experiment exp 7b scorer arxiv",
+  "task_key": "worker_experiment_exp_7b_scorer_arxiv_20260520T122956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_exp_7b_scorer_arxiv_20260520T122956_result.json",
+    "occurrence": 1,
+    "bytes": 783,
+    "sha256": "cca94e50d1d1fab764f50df8105ae72295351cff41ac359fc0046c9e4a5f499b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动并运行中：\n\n- **PID**: 320673\n- **GPU**: cuda:1 (RTX 4090D, 3595 MiB 已占用)\n- **状态**: Phase 1 进行中，1.5B scorer 已加载 (1.5B params)，正在提取 `pythia_arxiv` depth 0 的 surprisal 特征（~6 it/s，batch_size=8）\n- **数据源**: Pythia-1.4B arXiv (exp_025_pythia_arxiv) + OLMo-1B arXiv (exp_arXiv_olmo)，各 6 depths × 2200 samples\n- **日志**: `/root/autodl-tmp/gen-depth-contamination/results/exp_7b_scorer_arxiv.log`\n- **Registry**: `exp_7b_scorer_arxiv` → RUNNING, parent=exp_024_arxiv_domain\n\nPipeline 流程：Phase 1 (1.5B scorer, 2 generators) → Phase 2 (7B scorer, 2 generators, batch_size=4) → Phase 3 (summary + K* 对比)。预计 Phase 2 显存会升到 ~14GB，在 24GB 卡上可行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-exp-7b-scorer-arxiv.md"
+}

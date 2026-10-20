@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a85039d014cc6f42ee6",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code llama8b 10k phase2 restart",
+  "task_key": "worker_code_llama8b_10k_phase2_restart_20260522T193619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama8b_10k_phase2_restart_20260522T193619_result.json",
+    "occurrence": 1,
+    "bytes": 399,
+    "sha256": "7ab336cc1c2a259023608b593dc32a7cc000ce3982162dd6a0fb371edbfa00da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 2 运行正常。\n\n- **PID**: 61742\n- **状态**: 正在进行 depth_0 的 Surprisal feature extraction（625 batches，当前约 28%，~6.3 it/s）\n- **GPU**: 模型已加载到 cuda:0（因为 `CUDA_VISIBLE_DEVICES=1`，进程内部看到的是 cuda:0，实际物理卡是 cuda:1）\n- **日志**: 无报错，已跳过 generation，直接进入 Step 4: Feature Extraction"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama8b-10k-phase2-restart.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24bc0f925d95957794d4",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analyze mf1 theta lofo crossval",
+  "task_key": "worker_analyze_mf1-theta-lofo-crossval_20260518T153609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_mf1-theta-lofo-crossval_20260518T153609_result.json",
+    "occurrence": 1,
+    "bytes": 995,
+    "sha256": "bbea0941a0e88b6be116062718a97602890834f6fa97e546398c7dfdf8892b86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Results\n\n**C4 LOFO (primary)**: 8/9 agreement (89%). θ=0.60 is not circular.\n\n| Held-out | θ̂ | K* match |\n|----------|------|---------|\n| Pythia | 0.5914 | all Y |\n| OLMo | 0.5914 | all Y |\n| Qwen | 0.5725 | 4/5 Y (mvp_pilot → K*=3) |\n| LLaMA | 0.5914 | Y |\n| Mistral | 0.6004 | Y (K*=1 preserved) |\n\n- Derived θ̂ range: **[0.5725, 0.6004]**, θ=0.60 falls within it\n- Only mismatch: Qwen-1.5B-RW (rewrite mode), whose AUC₂ᵥ₃=0.5893 is the highest in the dataset and sits 0.011 below θ=0.60\n\n**arXiv**: 6/6 (100%). θ=0.60 from C4 correctly predicts K*=3 for all non-OLMo models.\n\n**Wikipedia**: 1/6 (17%). Formula breaks down due to OLMo's chance-level AUC deflating θ̂. This is a limitation of the gap formula in domains with heterogeneous K*, not of θ=0.60 itself.\n\nOutputs:\n- `artifacts/theta_crossval/theta_lofo_table.tex` (C4 table + combined 3-domain table)\n- `artifacts/theta_crossval/summary.md` (full analysis with data sources)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-mf1-theta-lofo-crossval.md"
+}

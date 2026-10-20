@@ -1,0 +1,15 @@
+Compilation: PASS (errors: 0)
+Pages: total=18, main_text=8
+
+Check 1 (Limitations scale): PASS — found text: "we evaluate models up to 8B parameters across 6 architecture families, English text only (C4, Wikipedia, arXiv, Code), and prompt-chain generation; supplementary experiments with 14B and 32B models (Appendix) suggest $K^*_{empirical}=2$ extends beyond this range"
+Check 2 (Code description): PASS — found text: "We additionally evaluate on CodeSearchNet Python ($n=5,000$, continuation mode); all four tested models (Qwen-1.5B, Qwen-7B, LLaMA-8B, Mistral-7B) yield $K^*_{empirical}=2$" (experiments_c1.tex:130)
+Check 3 (table caption): PASS — found text: "All four Code models yield $K^*_{empirical}=2$; representative configurations shown." (experiments_c1.tex:135)
+Check 4 (intro contribution b): PASS — found text: "general web text (C4, Wikipedia) and code yield $K^*_{empirical}{\leq}2$" (introduction.tex:22)
+Check 5 (appendix title): PASS — found text: "\subsection{Additional Scope Analysis}" (appendix_extended.tex:68)
+Check 6 (cross-section consistency): PASS — details below:
+  - "10 model configurations": consistent in Abstract (main.tex:37), Introduction (introduction.tex:19), Experiments (experiments_c1.tex:4,45), Limitations (main.tex:69)
+  - "6 architecture families": consistent in Abstract (main.tex:37), Introduction (introduction.tex:19), Conclusion (conclusion.tex:4), Experiments (experiments_c1.tex:4), Limitations (main.tex:68)
+  - "1B--8B" scale: consistent in Abstract (main.tex:37), Introduction (introduction.tex:19), Conclusion (conclusion.tex:4), Limitations says "up to 8B" (main.tex:68)
+  - "4 source domains (C4, Wikipedia, arXiv, Code)": Abstract (main.tex:37), Limitations (main.tex:68)
+  - "K* <= 2 for web text": consistent in Abstract (main.tex:37), Introduction (introduction.tex:19,22), Conclusion (conclusion.tex:4)
+  - "arXiv K*=3, three independent architecture families": consistent in Abstract (main.tex:37), Introduction (introduction.tex:20,22), Conclusion (conclusion.tex:4), Experiments (experiments_c1.tex:126,128), Limitations (main.tex:72)

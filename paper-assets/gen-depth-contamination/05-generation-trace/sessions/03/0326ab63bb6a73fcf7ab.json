@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0326ab63bb6a73fcf7ab",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper fill llama8b 10k appendix",
+  "task_key": "worker_paper_fill_llama8b_10k_appendix_20260522T200241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fill_llama8b_10k_appendix_20260522T200241_result.json",
+    "occurrence": 1,
+    "bytes": 652,
+    "sha256": "ef535e0b2ebc9a975689ce2a04f3c249f6792bf27386ecd2e0814ae9430133c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改内容：\n\n1. **表格行**（line 217）：LLaMA-8B 10K 填入 AUC(0v1)=0.9798, AUC(1v2)=0.5880†, AUC(2v3)=0.5409, K*=1†\n2. **脚注**（line 219）：说明 1v2 为 OOF AUC（pipeline=0.6316），Bonferroni 99.5% CI [0.5776, 0.5978] 未通过 θ\n3. **正文**（line 198-199）：将 \"pending\" 替换为实际结果描述，说明 LLaMA-8B 是唯一 10K OOF AUC 低于 θ 的配置\n\n**注意**：任务给的 2v3=0.6023 与服务器 pairwise_auc.json 中的 0.5409 不一致，我用了服务器验证值 0.5409（与 monotonic decay 模式一致）。如果 0.6023 来自其他来源，请告知我修正。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fill-llama8b-10k-appendix.md"
+}

@@ -1,0 +1,15 @@
+{
+  "experiment": "exp_026_feature_stability",
+  "theta": 0.6,
+  "seed": 42,
+  "data_path": "/root/autodl-tmp/gen-depth-contamination/data/exp_008_retrain_chain/features.csv",
+  "all_1v2_above_theta": true,
+  "summary": [
+    {"subset_size": 15, "num_tested": 1, "num_kstar_2": 0, "min_1v2_auc": 0.9472, "mean_1v2_auc": 0.9472, "max_1v2_auc": 0.9472},
+    {"subset_size": 10, "num_tested": 5, "num_kstar_2": 0, "min_1v2_auc": 0.8698, "mean_1v2_auc": 0.9202, "max_1v2_auc": 0.9445},
+    {"subset_size": 8, "num_tested": 5, "num_kstar_2": 0, "min_1v2_auc": 0.8955, "mean_1v2_auc": 0.9156, "max_1v2_auc": 0.9394},
+    {"subset_size": 5, "num_tested": 5, "num_kstar_2": 0, "min_1v2_auc": 0.8785, "mean_1v2_auc": 0.9081, "max_1v2_auc": 0.9278},
+    {"subset_size": 3, "num_tested": 1, "num_kstar_2": 0, "min_1v2_auc": 0.8314, "mean_1v2_auc": 0.8314, "max_1v2_auc": 0.8314}
+  ],
+  "details_note": "Full per-trial details saved on server at /root/autodl-tmp/gen-depth-contamination/artifacts/exp026_feature_stability.json"
+}

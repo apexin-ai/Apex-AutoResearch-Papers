@@ -1,0 +1,1127 @@
+{
+  "schema_version": "1.0",
+  "session_id": "0c991d738f10727e3b52",
+  "rounds": [
+    {
+      "number": 74,
+      "messages": [
+        {
+          "source_line": 901,
+          "timestamp": "2026-05-16T15:24:59.495094+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_021_length_ablation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-16T04:52:13.569Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:24:59.264Z\\\", \\\"hypothesis\\\": \\\"文本长度消融：128/256/512 tokens 下 K* 是否稳定？验证 K*=2 不依赖于 256-token 固定长度设定。Qwen2.5-1.5B (base) continuation, C4 5K, depth 0-5。\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-16T04:57:47.040Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=1 (generic error — check log tail)\\\", \\\"completed_at\\\": \\\"2026-05-16T06:23:09.413Z\\\", \\\"notes\\\": \\\"2026-05-16 retry#2: 用本地 C4 数据修复。数据源=/root/autodl-tmp/gen-depth-contamination/data_exp016_qwen_base/depth_0.jsonl (5000行)，复制到 data/exp_021_length_{128,256,512}/。设置 HF_DATASETS_OFFLINE=1 + TRANSFORMERS_OFFLINE=1 阻断 HF 网络调用，prepare_seed_data 检测到本地文件自动跳过 streaming。PID 20982, tmux session exp_021_length_ablation。\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"2026-05-16: 崩溃原因确认——脚本未执行 `source /etc/network_turbo`，导致 AutoDL 网络代理未启用，HuggingFace C4 数据集下载失败 (RuntimeError: Cannot send a request, as the client has been closed / Errno 99: Cannot assign requested address)。三个长度 (128/256/512) 全部未完成，无任何产出。cuda:3 已空闲。需重跑并修复网络配置。\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && cd /root/autodl-tmp/gen-depth-contamination && bash scripts/exp021_length_ablation.sh\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"20982\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_021_length_ablation.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T07:13:09.587Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data_exp016_qwen_base/depth_0.jsonl (local C4, copied to data/exp_021_length_{128,256,512}/)\\\", \\\"data_count\\\"\n…[truncated 441 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 353
+          },
+          "id": "event-000901"
+        },
+        {
+          "source_line": 902,
+          "timestamp": "2026-05-16T15:24:59.696843+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_023_domain_ablation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T11:59:57.643Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:24:59.589Z\\\", \\\"hypothesis\\\": \\\"Domain ablation: Wikipedia 数据下 K*=2 是否成立？验证 K* 跨数据域（C4 vs Wikipedia）的稳定性。Qwen2.5-1.5B base, continuation, nucleus p=0.95 T=1.0, 5K docs, depth 0-5。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/exp023_wiki_domain.sh\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 39530, \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_023_domain_ablation.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T12:00:07.999Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"Qwen2.5-1.5B (base)\\\", \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2064}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 454
+          },
+          "id": "event-000902"
+        },
+        {
+          "source_line": 903,
+          "timestamp": "2026-05-16T15:25:07.584843+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_021_length_ablation",
+              "field": "metrics",
+              "value": "{'128tok': {'K_star': 2, '1v2_auc': 0.6219}, '256tok': {'K_star': 2, '1v2_auc': 0.6282}, '512tok': {'K_star': 2, '1v2_auc': 0.6073}, 'all_K_star_2': True}",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000903"
+        },
+        {
+          "source_line": 904,
+          "timestamp": "2026-05-16T15:25:08.489119+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_021_length_ablation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-16T04:52:13.569Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:25:07.680Z\\\", \\\"hypothesis\\\": \\\"文本长度消融：128/256/512 tokens 下 K* 是否稳定？验证 K*=2 不依赖于 256-token 固定长度设定。Qwen2.5-1.5B (base) continuation, C4 5K, depth 0-5。\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-16T04:57:47.040Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=1 (generic error — check log tail)\\\", \\\"completed_at\\\": \\\"2026-05-16T06:23:09.413Z\\\", \\\"notes\\\": \\\"2026-05-16 retry#2: 用本地 C4 数据修复。数据源=/root/autodl-tmp/gen-depth-contamination/data_exp016_qwen_base/depth_0.jsonl (5000行)，复制到 data/exp_021_length_{128,256,512}/。设置 HF_DATASETS_OFFLINE=1 + TRANSFORMERS_OFFLINE=1 阻断 HF 网络调用，prepare_seed_data 检测到本地文件自动跳过 streaming。PID 20982, tmux session exp_021_length_ablation。\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"2026-05-16: 崩溃原因确认——脚本未执行 `source /etc/network_turbo`，导致 AutoDL 网络代理未启用，HuggingFace C4 数据集下载失败 (RuntimeError: Cannot send a request, as the client has been closed / Errno 99: Cannot assign requested address)。三个长度 (128/256/512) 全部未完成，无任何产出。cuda:3 已空闲。需重跑并修复网络配置。\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && cd /root/autodl-tmp/gen-depth-contamination && bash scripts/exp021_length_ablation.sh\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"20982\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_021_length_ablation.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T07:13:09.587Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data_exp016_qwen_base/depth_0.jsonl (local C4, copied to data/exp_021_length_{128,256,512}/)\\\", \\\"data_count\\\"\n…[truncated 631 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 904
+          },
+          "id": "event-000904"
+        },
+        {
+          "source_line": 905,
+          "timestamp": "2026-05-16T15:25:08.640229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_023_domain_ablation",
+              "field": "metrics",
+              "value": "{'K_star': 2, '1v2_auc': 0.6193, '2v3_auc': 0.5498, 'all_folds_above_060': True, 'top_feature': 'freq_entropy', 'ordinal_accuracy': 0.377}",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000905"
+        },
+        {
+          "source_line": 906,
+          "timestamp": "2026-05-16T15:25:08.892047+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_023_domain_ablation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T11:59:57.643Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:25:08.777Z\\\", \\\"hypothesis\\\": \\\"Domain ablation: Wikipedia 数据下 K*=2 是否成立？验证 K* 跨数据域（C4 vs Wikipedia）的稳定性。Qwen2.5-1.5B base, continuation, nucleus p=0.95 T=1.0, 5K docs, depth 0-5。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/exp023_wiki_domain.sh\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 39530, \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_023_domain_ablation.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T12:00:07.999Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"Qwen2.5-1.5B (base)\\\", \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"K_star\\\": 2, \\\"1v2_auc\\\": 0.6193, \\\"2v3_auc\\\": 0.5498, \\\"all_folds_above_060\\\": true, \\\"top_feature\\\": \\\"freq_entropy\\\", \\\"ordinal_accuracy\\\": 0.377}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2396}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 251
+          },
+          "id": "event-000906"
+        },
+        {
+          "source_line": 907,
+          "timestamp": "2026-05-16T15:25:12.959452+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_021_length_ablation",
+              "field": "status",
+              "value": "DONE",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000907"
+        },
+        {
+          "source_line": 908,
+          "timestamp": "2026-05-16T15:25:13.312331+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_023_domain_ablation",
+              "field": "status",
+              "value": "DONE",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000908"
+        },
+        {
+          "source_line": 909,
+          "timestamp": "2026-05-16T15:25:13.564797+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_021_length_ablation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-16T04:52:13.569Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:25:13.084Z\\\", \\\"hypothesis\\\": \\\"文本长度消融：128/256/512 tokens 下 K* 是否稳定？验证 K*=2 不依赖于 256-token 固定长度设定。Qwen2.5-1.5B (base) continuation, C4 5K, depth 0-5。\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-16T04:57:47.040Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=1 (generic error — check log tail)\\\", \\\"completed_at\\\": \\\"2026-05-16T06:23:09.413Z\\\", \\\"notes\\\": \\\"2026-05-16 retry#2: 用本地 C4 数据修复。数据源=/root/autodl-tmp/gen-depth-contamination/data_exp016_qwen_base/depth_0.jsonl (5000行)，复制到 data/exp_021_length_{128,256,512}/。设置 HF_DATASETS_OFFLINE=1 + TRANSFORMERS_OFFLINE=1 阻断 HF 网络调用，prepare_seed_data 检测到本地文件自动跳过 streaming。PID 20982, tmux session exp_021_length_ablation。\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"2026-05-16: 崩溃原因确认——脚本未执行 `source /etc/network_turbo`，导致 AutoDL 网络代理未启用，HuggingFace C4 数据集下载失败 (RuntimeError: Cannot send a request, as the client has been closed / Errno 99: Cannot assign requested address)。三个长度 (128/256/512) 全部未完成，无任何产出。cuda:3 已空闲。需重跑并修复网络配置。\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && cd /root/autodl-tmp/gen-depth-contamination && bash scripts/exp021_length_ablation.sh\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"20982\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_021_length_ablation.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T07:13:09.587Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data_exp016_qwen_base/depth_0.jsonl (local C4, copied to data/exp_021_length_{128,256,512}/)\\\", \\\"data_count\\\": 500\n…[truncated 730 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 605
+          },
+          "id": "event-000909"
+        },
+        {
+          "source_line": 910,
+          "timestamp": "2026-05-16T15:25:13.665677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.119}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 353
+          },
+          "id": "event-000910"
+        },
+        {
+          "source_line": 911,
+          "timestamp": "2026-05-16T15:25:17.533946+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_023_domain_ablation",
+              "field": "checkpoint_path",
+              "value": "results_exp023_wiki_domain/",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000911"
+        },
+        {
+          "source_line": 912,
+          "timestamp": "2026-05-16T15:25:17.987735+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_023_domain_ablation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T11:59:57.643Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:25:17.643Z\\\", \\\"hypothesis\\\": \\\"Domain ablation: Wikipedia 数据下 K*=2 是否成立？验证 K* 跨数据域（C4 vs Wikipedia）的稳定性。Qwen2.5-1.5B base, continuation, nucleus p=0.95 T=1.0, 5K docs, depth 0-5。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/exp023_wiki_domain.sh\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 39530, \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_023_domain_ablation.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T12:00:07.999Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"Qwen2.5-1.5B (base)\\\", \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"K_star\\\": 2, \\\"1v2_auc\\\": 0.6193, \\\"2v3_auc\\\": 0.5498, \\\"all_folds_above_060\\\": true, \\\"top_feature\\\": \\\"freq_entropy\\\", \\\"ordinal_accuracy\\\": 0.377}, \\\"checkpoint_path\\\": \\\"results_exp023_wiki_domain/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2117}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 453
+          },
+          "id": "event-000912"
+        },
+        {
+          "source_line": 913,
+          "timestamp": "2026-05-16T15:25:18.439868+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_023_domain_ablation",
+              "field": "log_path",
+              "value": "~/runs/gen-depth-contamination/exp_023_domain_ablation.log",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000913"
+        },
+        {
+          "source_line": 914,
+          "timestamp": "2026-05-16T15:25:18.692503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_023_domain_ablation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T11:59:57.643Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:25:18.567Z\\\", \\\"hypothesis\\\": \\\"Domain ablation: Wikipedia 数据下 K*=2 是否成立？验证 K* 跨数据域（C4 vs Wikipedia）的稳定性。Qwen2.5-1.5B base, continuation, nucleus p=0.95 T=1.0, 5K docs, depth 0-5。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/exp023_wiki_domain.sh\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 39530, \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_023_domain_ablation.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T12:00:07.999Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"Qwen2.5-1.5B (base)\\\", \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"K_star\\\": 2, \\\"1v2_auc\\\": 0.6193, \\\"2v3_auc\\\": 0.5498, \\\"all_folds_above_060\\\": true, \\\"top_feature\\\": \\\"freq_entropy\\\", \\\"ordinal_accuracy\\\": 0.377}, \\\"checkpoint_path\\\": \\\"results_exp023_wiki_domain/\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_023_domain_ablation.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2396}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 252
+          },
+          "id": "event-000914"
+        },
+        {
+          "source_line": 915,
+          "timestamp": "2026-05-16T15:25:22.258120+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_023_domain_ablation",
+              "field": "status",
+              "value": "DONE",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000915"
+        },
+        {
+          "source_line": 916,
+          "timestamp": "2026-05-16T15:25:22.860809+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_023_domain_ablation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T11:59:57.643Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:25:22.371Z\\\", \\\"hypothesis\\\": \\\"Domain ablation: Wikipedia 数据下 K*=2 是否成立？验证 K* 跨数据域（C4 vs Wikipedia）的稳定性。Qwen2.5-1.5B base, continuation, nucleus p=0.95 T=1.0, 5K docs, depth 0-5。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/exp023_wiki_domain.sh\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 39530, \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_023_domain_ablation.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T12:00:07.999Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"Qwen2.5-1.5B (base)\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 12314.4, \\\"gpu_hours\\\": 3.42}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"K_star\\\": 2, \\\"1v2_auc\\\": 0.6193, \\\"2v3_auc\\\": 0.5498, \\\"all_folds_above_060\\\": true, \\\"top_feature\\\": \\\"freq_entropy\\\", \\\"ordinal_accuracy\\\": 0.377}, \\\"checkpoint_path\\\": \\\"results_exp023_wiki_domain/\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_023_domain_ablation.log\\\", \\\"completed_at\\\": \\\"2026-05-16T15:25:22.371Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5818}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 602
+          },
+          "id": "event-000916"
+        },
+        {
+          "source_line": 917,
+          "timestamp": "2026-05-16T15:25:28.033589+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__save_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000917"
+        },
+        {
+          "source_line": 918,
+          "timestamp": "2026-05-16T15:25:28.084314+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000918"
+        },
+        {
+          "source_line": 919,
+          "timestamp": "2026-05-16T15:25:43.005360+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_submit_exp_022_cross_scorer_matrix_20260516T150341"
+            }
+          },
+          "id": "event-000919"
+        },
+        {
+          "source_line": 920,
+          "timestamp": "2026-05-16T15:25:43.507920+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_submit_exp_022_cross_scorer_matrix_20260516T150341\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"submit:exp_022_cross_scorer_matrix\\\", \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"started_at\\\": \\\"2026-05-16T15:03:41.308304+00:00\\\", \\\"ended_at\\\": \\\"2026-05-16T15:11:02.872903+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"GPU 1 确认活跃：**71% 利用率，4783MiB 显存，PID 49787**。\\\\n\\\\n汇总：\\\\n\\\\n| 项 | 值 |\\\\n|---|---|\\\\n| tmux session | `exp022` |\\\\n| PID | 49787 |\\\\n| GPU | cuda:1 (RTX 4090 D) |\\\\n| 显存占用 | 4783 MiB / 24564 MiB |\\\\n| GPU 利用率 | 71% |\\\\n| 日志 | `/root/autodl-tmp/gen-depth-contamination/logs/exp022.log` |\\\\n\\\\n**当前运行的是 2×2 子矩阵**（2 generators × 2 scorers = 4 组合）：\\\\n- Generators: Qwen2.5-1.5B (continuation), Pythia-1.4B\\\\n- Scorers: Qwen2.5-1.5B (base), Pythia-1.4B\\\\n\\\\n**缺失项**（无法运行完整 4×4 矩阵）：\\\\n- **Scorer 模型未缓存**: Qwen2.5-1.5B-Instruct, OLMo-1B\\\\n- **Generator depth chain 数据缺失**: Qwen2.5-1.5B (rewrite), OLMo-1B\\\\n\\\\n如需完整 4×4 矩阵，需要先 `source /etc/network_turbo` 下载缺失模型，并生成 Qwen-rewrite 和 OLMo 的 depth chain 数据。预计当前 2×2 矩阵约 40-50 分钟完成。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 502
+          },
+          "id": "event-000920"
+        },
+        {
+          "source_line": 921,
+          "timestamp": "2026-05-16T15:25:43.508380+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_submit_exp_024_arxiv_restart_20260516T150351"
+            }
+          },
+          "id": "event-000921"
+        },
+        {
+          "source_line": 922,
+          "timestamp": "2026-05-16T15:25:43.659402+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_submit_exp_024_arxiv_restart_20260516T150351\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"submit:exp_024_arxiv_restart\\\", \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"started_at\\\": \\\"2026-05-16T15:03:51.523173+00:00\\\", \\\"ended_at\\\": \\\"2026-05-16T15:05:33.472766+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"重启成功。\\\\n\\\\n**状态确认：**\\\\n- **GPU 2**: 43% util, 3703 MiB 已占用（模型加载中，利用率会继续上升）\\\\n- **tmux session**: `exp_024_arxiv` 已创建\\\\n- **PID**: 48283/48284/48286（bash + python pipeline）\\\\n- **脚本修改**: `--num_samples 2200`, `CUDA_VISIBLE_DEVICES=2`\\\\n\\\\nGPU 0 继续跑原有任务（93% util），互不干扰。日志写入 `/root/autodl-tmp/gen-depth-contamination/logs/exp_024_arxiv.log`。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 151
+          },
+          "id": "event-000922"
+        },
+        {
+          "source_line": 923,
+          "timestamp": "2026-05-16T15:25:43.659873+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_submit_exp_023_wiki_restart_20260516T150421"
+            }
+          },
+          "id": "event-000923"
+        },
+        {
+          "source_line": 924,
+          "timestamp": "2026-05-16T15:25:43.710448+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_submit_exp_023_wiki_restart_20260516T150421\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"submit:exp_023_wiki_restart\\\", \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"started_at\\\": \\\"2026-05-16T15:04:21.862183+00:00\\\", \\\"ended_at\\\": \\\"2026-05-16T15:05:32.134322+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"**exp-023 已经完整跑完，不需要重启。**\\\\n\\\\n状态：\\\\n- 所有 6 个 depth（0-5）× 5000 docs = 30000 行，全部生成完毕\\\\n- 分析结果已产出：`results/exp_023_wiki/` 下有 summary.txt、pairwise_auc.json、jsd.json、ordinal_results.json、feature_importance.json\\\\n- **K\\\\\\\\* = 2**，与 C4 domain 结果一致，跨域稳定性验证通过\\\\n\\\\n之前 PID 39530 crash 时实验其实已经完成（或在 crash 前跑完了）。无需重新提交。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-000924"
+        },
+        {
+          "source_line": 925,
+          "timestamp": "2026-05-16T15:25:57.057294+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_submit_exp_022_cross_scorer_v2_20260516T150528",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000925"
+        },
+        {
+          "source_line": 926,
+          "timestamp": "2026-05-16T15:25:57.559700+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_submit_exp_022_cross_scorer_v2_20260516T150528\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"submit:exp_022_cross_scorer_v2\\\", \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"started_at\\\": \\\"2026-05-16T15:05:28.263418+00:00\\\", \\\"ended_at\\\": \\\"2026-05-16T15:14:33.962950+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"实验运行正常。状态汇总：\\\\n\\\\n**cuda:3 已占用** — 第一个组合 `qwen_base × qwen_base` feature extraction 已到 75%（depth 0），~8 it/s。\\\\n\\\\n**12 个组合的进度**：\\\\n- 第 1 批（已缓存模型，6 个组合）：qwen_base/pythia 做 scorer × 3 generators — 正在进行\\\\n- 第 2 批（待下载模型，6 个组合）：qwen_instruct/olmo 做 scorer × 3 generators — 等模型下载\\\\n\\\\n**模型下载**：\\\\n- Qwen2.5-1.5B-Instruct：3% of 2.88GB，~6MB/s\\\\n- OLMo-1B-hf：26% of 4.38GB，~6MB/s\\\\n\\\\n**注意**：原计划 4 generators 但 OLMo-1B 没有 depth chain 数据，实际可跑 3 generators × 4 scorers = 12 个组合。\\\\n\\\\n**tmux session**: `exp022`\\\\n**日志**: `logs/exp022.log`\\\\n\\\\n第一批约 60 分钟跑完。下载完成后重跑脚本处理第二批（脚本自动跳过已完成的组合）。需要我持续监控还是你稍后自己看？\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 502
+          },
+          "id": "event-000926"
+        },
+        {
+          "source_line": 927,
+          "timestamp": "2026-05-16T15:25:58.062183+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_submit_exp_024_arxiv_fix_v2_20260516T150540",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000927"
+        },
+        {
+          "source_line": 928,
+          "timestamp": "2026-05-16T15:25:58.163233+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_submit_exp_024_arxiv_fix_v2_20260516T150540\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"submit:exp_024_arxiv_fix_v2\\\", \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"started_at\\\": \\\"2026-05-16T15:05:40.833872+00:00\\\", \\\"ended_at\\\": \\\"2026-05-16T15:07:36.538663+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"实验已经在跑了。关键确认：\\\\n\\\\n1. **C4 跳过成功**：`depth_0.jsonl already exists with enough samples — skipping` — 没有触发 C4 下载\\\\n2. **正在生成 depth 1**：27% 进度 (37/138 batches)，在 cuda:2 上正常运行\\\\n3. **配置正确**：Qwen2.5-1.5B, continuation mode, nucleus p=0.95 T=1.0, 2200 samples, depth 0-5\\\\n\\\\n**总结**：\\\\n- tmux session: `exp_024_arxiv`\\\\n- PID: 48295\\\\n- GPU: cuda:2, 73% 利用率, 3754 MiB\\\\n- 状态: Step 3 depth 1 生成中，预计还需 ~20 分钟完成全部 5 层\\\\n- 修复原理: `depth_0.jsonl` 已有 2200 行 arXiv 数据，`prepare_seed_data()` 的行数检查通过后直接跳过 C4 下载，HF_DATASETS_OFFLINE=1 不再产生冲突\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-000928"
+        },
+        {
+          "source_line": 929,
+          "timestamp": "2026-05-16T15:25:58.163831+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_audit_exp_020_data_integrity_20260516T150550",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000929"
+        },
+        {
+          "source_line": 930,
+          "timestamp": "2026-05-16T15:25:58.214396+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_audit_exp_020_data_integrity_20260516T150550\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"audit:exp_020_data_integrity\\\", \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"started_at\\\": \\\"2026-05-16T15:05:50.351008+00:00\\\", \\\"ended_at\\\": \\\"2026-05-16T15:06:50.334312+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"两个文件最后一行均以 `\\\\\\\"doc_id\\\\\\\": 4999}` 正常闭合，JSON 完整。\\\\n\\\\n## exp-020 数据完整性矩阵\\\\n\\\\n| config \\\\\\\\ depth | 0 | 1 | 2 | 3 | 4 | 5 |\\\\n|---|---|---|---|---|---|---|\\\\n| **greedy** | 5000 | 5000 | 5000 | 5000 | 5000 | 5000 |\\\\n| **nuc09** | 5000 | 5000 | 5000 | 5000 | 5000 | 5000 |\\\\n| **t07** | 5000 | 5000 | 5000 | 5000 | 5000 | 5000 |\\\\n| **t12** | 5000 | 5000 | 5000 | 5000 | 5000 | 5000 |\\\\n\\\\n**结论**：全部 24 个文件均为 5000 行，doc_id 范围 0-4999，无缺失。t07 和 t12 的 depth_5 最后一行 JSON 闭合正常，无截断。数据完整，可放心用于后续分析。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-000930"
+        },
+        {
+          "source_line": 931,
+          "timestamp": "2026-05-16T15:26:14.086968+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_022_cross_scorer_matrix",
+              "field": "status",
+              "value": "PREPARING",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000931"
+        },
+        {
+          "source_line": 932,
+          "timestamp": "2026-05-16T15:26:14.238327+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: RUNNING → PREPARING. Allowed: ['ANALYZING', 'DONE']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1256}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 151
+          },
+          "id": "event-000932"
+        },
+        {
+          "source_line": 933,
+          "timestamp": "2026-05-16T15:26:21.768019+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_022_cross_scorer_matrix",
+              "field": "notes",
+              "value": "2026-05-16 15:05: 双 GPU 并行。cuda:1 跑 2×2 子矩阵 (PID 49787, Qwen-cont/Pythia × Qwen-base/Pythia)。cuda:3 跑 3×4=12 组合 (先跑已缓存模型 6 combo，等下载 Qwen-Instruct/OLMo 后补剩余 6)。OLMo generator 无 depth chain 数据，实际 3 generators × 4 scorers。",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000933"
+        },
+        {
+          "source_line": 934,
+          "timestamp": "2026-05-16T15:26:23.627422+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_022_cross_scorer_matrix\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T04:52:14.132Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:26:21.848Z\\\", \\\"hypothesis\\\": \\\"完整 4×4 cross-scorer 矩阵：4 generator (Qwen-rw/Qwen-cont/Pythia/OLMo) × 4 scorer (Qwen-Instruct/Qwen-base/Pythia/OLMo) 的 K* 和 pairwise AUC，量化 self-scoring advantage 并验证 scorer 独立性。\\\", \\\"parent\\\": \\\"exp_A_alt_scorer\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/exp022_cross_scorer_matrix.sh\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"data_path\\\": \\\"data_exp016_qwen_base + data_exp020_pythia_greedy + data/exp_021_length_256\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"cross: Qwen2.5-1.5B/Pythia-1.4B/OLMo-1B/Qwen2.5-1.5B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"pretrained\\\", \\\"eval_data\\\": \\\"cross-scorer matrix on existing depth chains\\\"}, \\\"notes\\\": \\\"2026-05-16 15:05: 双 GPU 并行。cuda:1 跑 2×2 子矩阵 (PID 49787, Qwen-cont/Pythia × Qwen-base/Pythia)。cuda:3 跑 3×4=12 组合 (先跑已缓存模型 6 combo，等下载 Qwen-Instruct/OLMo 后补剩余 6)。OLMo generator 无 depth chain 数据，实际 3 generators × 4 scorers。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.21}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1859
+          },
+          "id": "event-000934"
+        },
+        {
+          "source_line": 935,
+          "timestamp": "2026-05-16T15:26:23.678086+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp_024_arxiv_domain",
+              "field": "notes",
+              "value": "2026-05-16 15:05 重启成功。PID 48295, cuda:2, 73% util。修复：depth_0.jsonl 已有 2200 行 arXiv 数据，prepare_seed_data 行数检查通过后跳过 C4 下载，HF_DATASETS_OFFLINE=1 不再冲突。n_docs=2200。预计 ~20 min 完成剩余 depth。",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000935"
+        },
+        {
+          "source_line": 936,
+          "timestamp": "2026-05-16T15:26:23.930181+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_024_arxiv_domain\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T14:43:59.323Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:26:23.801Z\\\", \\\"hypothesis\\\": \\\"Domain ablation: arXiv abstracts 数据下 K*=2 是否成立？验证 K* 跨数据域（C4 vs Wikipedia vs arXiv）的稳定性。Qwen2.5-1.5B base, continuation, nucleus p=0.95 T=1.0, 5K docs, depth 0-5。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash scripts/exp024_arxiv_domain.sh\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 46766, \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_024_arxiv_domain.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:44:07.168Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/\\\", \\\"data_count\\\": 2200, \\\"model_name\\\": \\\"Qwen2.5-1.5B (base)\\\", \\\"seed\\\": 42}, \\\"notes\\\": \\\"2026-05-16 15:05 重启成功。PID 48295, cuda:2, 73% util。修复：depth_0.jsonl 已有 2200 行 arXiv 数据，prepare_seed_data 行数检查通过后跳过 C4 下载，HF_DATASETS_OFFLINE=1 不再冲突。n_docs=2200。预计 ~20 min 完成剩余 depth。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2231}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 252
+          },
+          "id": "event-000936"
+        },
+        {
+          "source_line": 937,
+          "timestamp": "2026-05-16T15:26:45.470980+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 4 / 实际跑 4 | Worker 池 0 (全部已完成回调)\n\n## 5 项任务执行结果\n\n### 任务 1 ✅ exp-022 cross-scorer matrix — cuda:1 + cuda:3 双卡并行\n- **cuda:1**: 2×2 子矩阵 (PID 49787, 71% util) — Qwen-cont/Pythia × Qwen-base/Pythia\n- **cuda:3**: 3×4=12 组合 (75% through depth 0) — 先跑已缓存模型 6 combo，Qwen-Instruct/OLMo 下载中 (~6MB/s)\n- **限制**: OLMo generator 无 depth chain 数据，实际可跑 3 generators × 4 scorers = 12 组合（非 16）\n- 预计第一批 ~60 min 完成\n\n### 任务 2 ✅ exp-024 arXiv domain — cuda:2 重启成功\n- PID 48295, 73% util, depth 1 生成中 (27%)\n- **修复**: depth_0.jsonl 已有 2200 行，prepare_seed_data 检测到后跳过 C4 下载，HF_DATASETS_OFFLINE 不再冲突\n- 预计 ~20 min 完成全部 5 层\n\n### 任务 3 ✅ exp-023 Wiki — registry 已更新 DONE\n- K*=2, 1v2 AUC=0.6193, 2v3 AUC=0.5498, top_feature=freq_entropy\n- Wiki 域验证 K*=2 稳定\n\n### 任务 4 ✅ exp-021 Length ablation — registry 已更新 DONE\n- 128tok: K*=2 (1v2=0.6219), 256tok: K*=2 (1v2=0.6282), 512tok: K*=2 (1v2=0.6073)\n- 三种长度全部 K*=2，长度不影响 K*\n\n### 任务 5 ✅ exp-020 数据完整性 — 全部完整\n| config \\ depth | 0 | 1 | 2 | 3 | 4 | 5 |\n|---|---|---|---|---|---|---|\n| greedy/nuc09/t07/t12 | 5000 | 5000 | 5000 | 5000 | 5000 | 5000 |\nt07/t12 depth_5 JSON 闭合正常，无截断。\n\n## 当前 GPU 全景\n| GPU | 实验 | PID | Util | 预计完成 |\n|-----|------|-----|------|---------|\n| cuda:0 | exp-018 LLaMA-8B | 10403 | 93% | depth 5 gen ~20min + analysis 30-60min |\n| cuda:1 | exp-022 cross-scorer 2×2 | 49787 | 71% | ~60 min |\n| cuda:2 | exp-024 arXiv 2200条 | 48295 | 73% | ~20 min depth gen + analysis |\n| cuda:3 | exp-022 cross-scorer 12-combo | — | 75% | ~60 min (第一批) |\n\n## 待决策\n- exp-022 缺 OLMo generator depth chain（之前没跑过 OLMo 生成实验）。要完整 4×4 需要先生成 OLMo depth chain。是否需要？\n- cuda:2 预计 ~20min 释放（exp-024 完成后），可接力跑 OLMo depth chain 或其他实验",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000937"
+        },
+        {
+          "source_line": 938,
+          "timestamp": "2026-05-16T15:26:49.717766+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 4246
+          },
+          "id": "event-000938"
+        },
+        {
+          "source_line": 939,
+          "timestamp": "2026-05-16T15:26:54.380364+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 项任务全部完成，4 张 GPU 全部在跑。已向 Director 汇报全景状态，等待 Worker 回调和 Director 下一步指令。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
+          },
+          "id": "event-000939"
+        }
+      ]
+    },
+    {
+      "number": 75,
+      "messages": [
+        {
+          "source_line": 940,
+          "timestamp": "2026-05-16T15:26:54.912242+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_submit_exp_023_wiki_restart_20260516T150421 已完成（status=done）。用 `get_worker_status('worker_submit_exp_023_wiki_restart_20260516T150421')` 读取结果，然后处理。\n\n- worker_id: worker_submit_exp_023_wiki_restart_20260516T150421\n- project: gen-depth-contamination\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "source": "worker:done"
+          },
+          "id": "event-000940"
+        },
+        {
+          "source_line": 941,
+          "timestamp": "2026-05-16T15:27:00.619046+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已处理过这个 Worker 的结果——exp-023 实际已完成（K*=2），registry 已更新为 DONE。无需额外操作。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
+          },
+          "id": "event-000941"
+        }
+      ]
+    },
+    {
+      "number": 76,
+      "messages": [
+        {
+          "source_line": 942,
+          "timestamp": "2026-05-16T15:27:01.164641+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_submit_exp_024_arxiv_restart_20260516T150351 已完成（status=done）。用 `get_worker_status('worker_submit_exp_024_arxiv_restart_20260516T150351')` 读取结果，然后处理。\n\n- worker_id: worker_submit_exp_024_arxiv_restart_20260516T150351\n- project: gen-depth-contamination\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "source": "worker:done"
+          },
+          "id": "event-000942"
+        },
+        {
+          "source_line": 943,
+          "timestamp": "2026-05-16T15:27:07.997029+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "这两个 Worker 的结果已在之前读取并处理过。exp-023 已完成无需重启（registry 已更新 DONE），exp-024 已重启成功（PID 48295, cuda:2, 73% util）。无需重复操作。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
+          },
+          "id": "event-000943"
+        }
+      ]
+    },
+    {
+      "number": 77,
+      "messages": [
+        {
+          "source_line": 944,
+          "timestamp": "2026-05-16T15:27:08.560661+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_audit_exp_020_data_integrity_20260516T150550 已完成（status=done）。用 `get_worker_status('worker_audit_exp_020_data_integrity_20260516T150550')` 读取结果，然后处理。\n\n- worker_id: worker_audit_exp_020_data_integrity_20260516T150550\n- project: gen-depth-contamination\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "source": "worker:done"
+          },
+          "id": "event-000944"
+        },
+        {
+          "source_line": 945,
+          "timestamp": "2026-05-16T15:27:15.933301+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已在之前批量处理过这 3 个 Worker 的结果（exp-023 wiki 已完成无需重启、exp-024 arXiv 重启成功 PID 48295、exp-020 数据 24 文件全部 5000 行完整）。结果已更新到 registry 并汇报 Director。无需重复处理。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
+          },
+          "id": "event-000945"
+        }
+      ]
+    },
+    {
+      "number": 78,
+      "messages": [
+        {
+          "source_line": 946,
+          "timestamp": "2026-05-16T15:27:16.451161+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_submit_exp_024_arxiv_fix_v2_20260516T150540 已完成（status=done）。用 `get_worker_status('worker_submit_exp_024_arxiv_fix_v2_20260516T150540')` 读取结果，然后处理。\n\n- worker_id: worker_submit_exp_024_arxiv_fix_v2_20260516T150540\n- project: gen-depth-contamination\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "source": "worker:done"
+          },
+          "id": "event-000946"
+        },
+        {
+          "source_line": 947,
+          "timestamp": "2026-05-16T15:27:21.132324+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
+          },
+          "id": "event-000947"
+        }
+      ]
+    },
+    {
+      "number": 79,
+      "messages": [
+        {
+          "source_line": 948,
+          "timestamp": "2026-05-16T15:27:21.695428+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_submit_exp_022_cross_scorer_matrix_20260516T150341 已完成（status=done）。用 `get_worker_status('worker_submit_exp_022_cross_scorer_matrix_20260516T150341')` 读取结果，然后处理。\n\n- worker_id: worker_submit_exp_022_cross_scorer_matrix_20260516T150341\n- project: gen-depth-contamination\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "source": "worker:done"
+          },
+          "id": "event-000948"
+        },
+        {
+          "source_line": 949,
+          "timestamp": "2026-05-16T15:27:26.561385+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
+          },
+          "id": "event-000949"
+        }
+      ]
+    },
+    {
+      "number": 80,
+      "messages": [
+        {
+          "source_line": 950,
+          "timestamp": "2026-05-16T15:27:27.091080+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_submit_exp_022_cross_scorer_v2_20260516T150528 已完成（status=done）。用 `get_worker_status('worker_submit_exp_022_cross_scorer_v2_20260516T150528')` 读取结果，然后处理。\n\n- worker_id: worker_submit_exp_022_cross_scorer_v2_20260516T150528\n- project: gen-depth-contamination\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "source": "worker:done"
+          },
+          "id": "event-000950"
+        },
+        {
+          "source_line": 951,
+          "timestamp": "2026-05-16T15:27:32.288313+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
+          },
+          "id": "event-000951"
+        }
+      ]
+    },
+    {
+      "number": 81,
+      "messages": [
+        {
+          "source_line": 952,
+          "timestamp": "2026-05-16T15:27:32.821894+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] 关于 exp-022 缺 OLMo depth chain 的问题：\n\n**exp-002 就是 OLMo-1B depth chain 实验**（C4 5K docs, depth 0-5, nucleus p=0.95）。数据应该在 results/exp_002_olmo_depth/ 或类似路径下。请检查：\n- `ls /root/autodl-tmp/gen-depth-contamination/results/exp_002*` 或 `data/exp_002*`\n- 如果 depth chain jsonl 文件存在（depth_0~5.jsonl），直���用于 cross-scorer matrix\n\n如果 exp-002 数据确实已被清理不存在：\n- cuda:2 exp-024 完成后（~20min），用 cuda:2 重新跑 OLMo depth chain（OLMo-1B 小模型，应该 1-2h 就完成）\n- 同时 exp-022 先用 3 generators 出第一版结果\n\n**cuda:2 释放后的优先级**：\n1. 如果 OLMo 数据缺失 → 生成 OLMo depth chain\n2. 如果 OLMo 数据存在 → 跑 exp-022 OLMo 相关的 scorer 组合\n3. 以上都不需要 → 空闲等 exp-018 结果后的 follow-up"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "source": "director"
+          },
+          "id": "event-000952"
+        },
+        {
+          "source_line": 953,
+          "timestamp": "2026-05-16T15:27:47.065337+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "check:olmo_depth_chain_data",
+              "project": "gen-depth-contamination",
+              "task_prompt": "## 任务：检查 OLMo depth chain 数据是否存在\n\n**背景**：exp-022 cross-scorer matrix 需要 OLMo-1B 的 depth chain 数据。exp-002 就是 OLMo-1B depth chain 实验（C4 5K docs, depth 0-5, nucleus p=0.95），数据应该在服务器上。\n\n**执行步骤**（只读操作）：\n1. SSH 到 cqa1-22115（ssh_read_only）\n2. `cd /root/autodl-tmp/gen-depth-contamination`\n3. 搜索 exp-002 / OLMo 相关数据：\n   ```\n   ls -la results/exp_002* data/exp_002* data_exp002* results_exp002* 2>/dev/null\n   find . -maxdepth 3 -name \"*olmo*\" -o -name \"*exp_002*\" -o -name \"*exp002*\" | head -30\n   ```\n4. 如果找到目录，检查 depth chain 完整性：\n   ```\n   for d in 0 1 2 3 4 5; do\n     f=$(find . -path \"*olmo*depth_${d}*\" -o -path \"*exp_002*depth_${d}*\" | head -1)\n     if [ -n \"$f\" ]; then\n       echo \"depth_${d}: $(wc -l < $f) lines - $f\"\n     else\n       echo \"depth_${d}: NOT FOUND\"\n     fi\n   done\n   ```\n5. 同时检查 exp-024 进度：`nvidia-smi` 看 cuda:2 是否还在跑\n\n**产出**：\n- OLMo depth chain 数据是否存在，路径，各 depth 行数\n- cuda:2 当前状态",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000953"
+        },
+        {
+          "source_line": 954,
+          "timestamp": "2026-05-16T15:27:53.233339+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_check_olmo_depth_chain_data_20260516T152747\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_check_olmo_depth_chain_data_20260516T152747.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_check_olmo_depth_chain_data_20260516T152747 started. Use get_worker_status('worker_check_olmo_depth_chain_data_20260516T152747') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 6167
+          },
+          "id": "event-000954"
+        },
+        {
+          "source_line": 955,
+          "timestamp": "2026-05-16T15:27:56.469907+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派出检查 OLMo 数据。等回调后汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
+          },
+          "id": "event-000955"
+        }
+      ]
+    },
+    {
+      "number": 82,
+      "messages": [
+        {
+          "source_line": 956,
+          "timestamp": "2026-05-16T15:27:56.940704+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000956"
+        },
+        {
+          "source_line": 957,
+          "timestamp": "2026-05-16T15:28:46.190032+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cqa1-22115 的 cuda:0/1/2/3，全部已分配给本项目。不可用其他服务器的 GPU\n- exp-022 cross-scorer matrix 在 cuda:1 和 cuda:3 上双卡并行跑，两个 tmux session 都叫 `exp022`，不要 kill 错\n- HF_DATASETS_OFFLINE=1 是所有实验的标配——C4 streaming 在 AutoDL 上反复失败（3 次事故），必须用本地数据\n- arXiv 数据只有 2200 条（API 限速），Director 已批准用 2200 跑，不要等 5000\n- Mistral-7B K*=1 是已确认的真实结果（非 bug），cross-scorer exp-019b 已验证。不要试图\"修复\"它\n- 之前报告过 4/4 GPU 在跑但实际 3 张空转，被 Director CRITICAL 三次。汇报 GPU 状态前必须有 nvidia-smi 实证\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-22115 (4× RTX 4090D 24GB)，工作目录 `/root/autodl-tmp/gen-depth-contamination`\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- HF cache：`/root/autodl-tmp/.hf_cache`，已缓存 Qwen2.5-1.5B (base/instruct)、Pythia-1.4B、Mistral-7B、LLaMA-3.1-8B；OLMo-1B 和 Qwen-Instruct 下载中\n- 网络代理：`source /etc/network_turbo`（pip/git/HF 下载前必须执行）\n- 活跃进程（截至 15:15 UTC）：\n  - cuda:0: exp-018 LLaMA-8B (PID 10403, tmux=exp_018_llama8b_depth, cron 监控中)\n  - cuda:1: exp-022 cross-scorer 2×2 (PID 49787, tmux=exp022)\n  - cuda:2: exp-024 arXiv domain (PID 48295, tmux=exp_024_arxiv)\n  - cuda:3: exp-022 cross-scorer 12-combo (tmux=exp022)\n- 待确认 Worker：worker_check_olmo_depth_chain_data_20260516T152747（检查 exp-002 OLMo 数据是否存在）\n\n### 3. 📊 当前状态\n刚完成 Director 的 5 项紧急任务（3 GPU 空转修复），4 张卡全部恢复运行。\n\n**Registry 状态**：\n- RUNNING: exp-018 (LLaMA-8B, cuda:0, depth 5 生成中 ~20min), exp-022 (cross-scorer, cuda:1+3), exp-024 (arXiv 2200条, cuda:2, depth 1 生成中)\n- DONE (今天): exp-021 (length ablation, 128/256/512 全部 K*=2), exp-023 (Wiki domain K*=2), exp-020 (Pythia decoding 4 configs 全部 K*=2), exp-019/019b (Mistral K*=1 confirmed)\n- QUEUED: 无\n\n**等待中**：\n- Worker 回调：olmo_depth_chain_data 检查（判断 exp-002 数据是否在新服务器上）\n- exp-018 cron 回调（LLaMA-8B 完成）\n- exp-024 完成后 cuda:2 释放\n- Director 对 OLMo depth chain 优先级的最终决策（已给出条件分支）\n\n### 4. 📋 待办（条件触发式）\n- OLMo 数据检查 Worker 回调 → 数据存在则告知 exp-022 Worker 可用路径；不存在则 cuda:2 释放后生成 OLMo depth chain (OLMo-1B ~1-2h)\n- exp-024 cron 回调 (完成) → 注册 DONE + metrics → cuda:2 按 Director 优先级分配（OLMo chain > OLMo scorer combos > 空闲等 exp-018）\n- exp-018 cron 回调 (完成) → 分析 LLaMA-8B K* 结果 → 如果 K*=2 则 paper C1' claim 进一步加强；如果 K*≠2 则触发 red-section framing 调整\n- exp-022 两个 tmux session 完成 → 合并 3×4 矩阵结果 → 分析 self-scorer advantage → 汇报 Director\n- exp-022 第一批（已缓存模型）完成后 → 检查 OLMo/Qwen-Instruct 模型下载是否完成 → 重跑脚本处理第二批 6 combo\n- 所有 scope expansion 实验完成 → 更新 paper：Tab kstar_ci 加 LLaMA/Mistral 列，\"10 conditions\"→实际数量，paper_framing.md 按 Narrative B 更新\n\n### 5. 🎯 战略上下文\n- **核心结论演进**：原 C1' 是 \"K*=2 universally\"，Mistral-7B K*=1 打破了这个 claim。Director 已采纳 D047 Modified Narrative B: \"K*∈{1,2} with robust ceiling\"——K* 不超过 2，大多数条件 K*=2，Mistral 是唯一例外\n- **DDL**：EMNLP ARR 05-25（9 天），05-17 scope expansion 完成，05-18-19 论文整合，05-20-22 更新+审稿，05-22-24 打磨\n- **已验证的维度**：model family (Qwen/Pythia/Mistral/LLaMA), decoding strategy (4 configs), text length (128/256/512), data domain (C4/Wiki/arXiv), scorer independence (cross-scorer), base vs instruct\n- **易错点**：\n  - 不要把 exp-022 cuda:1 和 cuda:3 的结果混淆——cuda:1 是 2×2 子矩阵，cuda:3 是完整 12-combo，有重叠组合\n  - exp-024 只有 2200 条数据（vs 其他实验 5000），统计效力略低，汇报时要标注\n  - paper 里 6 处 \"10 conditions\"、5 处 \"6 model configurations\"、4+ 处 \"1B-7B\" 都需要更新，不要漏\n  - 绘图脚本已重构为 auto-discover JSON，但新实验结果需要确认 JSON 输出格式兼容\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_e168ce0e8c2b1176be821fdab5f2e3e6"
+          },
+          "id": "event-000957"
+        }
+      ]
+    }
+  ]
+}

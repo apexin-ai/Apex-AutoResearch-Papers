@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23c95f07d2b86d54fff3",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper wiki narrative d060",
+  "task_key": "worker_paper_wiki-narrative-d060_20260517T234003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_wiki-narrative-d060_20260517T234003_result.json",
+    "occurrence": 1,
+    "bytes": 2003,
+    "sha256": "1a44f26373f8ec5602fca5713a5a95a1d716b94ac1b20de1e4b4c373f9da8bd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All updates done. Here's the summary:\n\n---\n\n## Completed changes\n\n**experiments_c1.tex (Section 5.5 Cross-Domain Variation)**:\n- Restructured into three clear paragraphs: arXiv K*=3 (5-model cross-validation), Wikipedia K*=1 (single-generation saturation), Domain as sole dominant factor\n- arXiv evidence now cites boundary-pair 2v3 AUC range (0.6215--0.6544) instead of irrelevant 1v2 range\n- Wikipedia framed as \"simplest domain tested, encyclopedic regularity, single generation suffices\"\n- Scorer confound as explicit methodological disclosure: \"+1 depth bias under same-family scoring, specific to Qwen on Wikipedia\"\n- Updated table caption: \"(scorer-controlled)\", \"Raw same-family scoring yields K*=2; controlled value shown\"\n\n**discussion.tex (Domain dependence paragraph)**:\n- \"two independent model families\" → \"five models spanning four architecture families\"\n- Added explicit \"+1 inflation\" mechanism\n- Added closing sentence: \"Source-domain structural complexity is the sole factor that systematically shifts K*\"\n\n**appendix_extended.tex**: Already correct, no changes needed.\n\n---\n\n## introduction.tex: lines needing sync (do not modify, flagging only)\n\n**Line 21** (contribution b):\n```\n\\item \\textbf{Domain dependence of $\\Kempirical$}: C4 web text yields $\\Kempirical{=}2$ (7/8 model configurations), while structured academic text (arXiv) yields $\\Kempirical{=}3$, consistent across model families (Section~\\ref{sec:cross_domain}).\n```\nSuggested update:\n- \"consistent across model families\" → \"consistent across five models and four architecture families\"\n- Consider adding Wikipedia to complete the hierarchy: \"...yields K*=3 (five models, four architecture families); Wikipedia yields K*=1 (six models, scorer-controlled), producing a three-level hierarchy governed by domain structural complexity\"\n\nThis is the only introduction line with a direct factual gap relative to the updated experiments section."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-wiki-narrative-d060.md"
+}

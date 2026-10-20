@@ -1,0 +1,104 @@
+{
+  "exp_id": "exp_006_graduated_filtering",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 3,
+    "created_at": "2026-05-13T20:25:52.364Z",
+    "updated_at": "2026-05-15T09:18:13.822Z",
+    "hypothesis": "K*-aware graduated filtering (exploiting human/gen-1/gen-2+ trichotomy) yields better downstream LM quality than binary filtering on MMLU and HellaSwag. 6 strategies × 5 seeds × α sweep.",
+    "parent": "exp_003_decoding_ablation",
+    "notes": "48/51 runs complete as of 07:40 UTC 05-15. dsir: 2/5 done (s42, s123), s456 eval in progress (~21%), s789/s1024 pending. ETA ~09:10-09:30 UTC.\n\nDSIR PARTIAL RESULTS (2/5):\n- dsir_s42: MMLU 0.5868, HS 0.6641\n- dsir_s123: MMLU 0.5865, HS 0.6633\n\nSURPRISAL RESULTS (5/5 complete):\n- surprisal: MMLU 0.5894±0.0009, HS 0.6641±0.0006 (vs binary-ours: -0.47pp MMLU, -0.61pp HS)\n\nCONFIRMED RANKING (48 runs):\n1. binary-ours: MMLU 0.5941±0.0008, HS 0.6701±0.0006 (BEST)\n2. binary-drayson: 0.5913, 0.6691\n3. surprisal: 0.5894, 0.6641\n4. graduated_a0.9: 0.5892, 0.6701\n5-8. graduated_a0.7→a0.1: monotonic decrease\n9. no-filter: 0.5865, 0.6638\ndsir partial: 0.5867 (2 seeds avg, below binary-ours)\n\nC3 VERSION B confirmed by Director. Paper Agent activating.\nPLAN on completion: analyze dsir → update registry DONE → submit exp-015 approval.",
+    "reproduce": {
+      "finished_at": "2026-05-14T21:31:53.630Z"
+    },
+    "failure_reason": "EXIT_CODE=124 (timeout — exceeded timeout_hours)",
+    "completed_at": "2026-05-14T21:04:20.455Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T21:04:21.389845+00:00"
+        },
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T21:32:00.501871+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "RESUMED 05-14 ~21:30 UTC after EXIT_CODE=124 timeout crash. 32/50 runs complete pre-crash. 18 remaining: a0.7(s456/s789/s1024) + a0.9(5) + surprisal(5) + dsir(5). Script has built-in skip logic (checks eval_results.json). Running in tmux:exp006_resume without timeout wrapper. ETA: ~05-15 11:00-12:00 UTC."
+      }
+    },
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp006_graduated_filtering.py",
+      "server": "westc-26893",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/depth_corpus_30k",
+      "data_count": 30000,
+      "model_name": "Qwen2.5-1.5B-Instruct",
+      "seed": "42,123,456,789,1024",
+      "gpu": "cuda:0",
+      "checkpoint_source": "Qwen/Qwen2.5-1.5B-Instruct (HuggingFace, LoRA fine-tune from base)",
+      "eval_data": "MMLU (14042 test, 0-shot) + HellaSwag (10042 val, 0-shot) via lm-eval-harness",
+      "note": "Resumed run. tmux: exp_006_graduated_filtering. 33/50 complete, 17 remaining. ETA ~05-15 07:30-08:30 UTC."
+    },
+    "conclusion": "success",
+    "metrics": {
+      "total_runs": 51,
+      "binary_ours": {
+        "mmlu": "0.5941±0.0008",
+        "hellaswag": "0.6701±0.0006"
+      },
+      "binary_drayson": {
+        "mmlu": "0.5913±0.0009",
+        "hellaswag": "0.6691±0.0004"
+      },
+      "surprisal": {
+        "mmlu": "0.5894±0.0009",
+        "hellaswag": "0.6641±0.0006"
+      },
+      "graduated_a09": {
+        "mmlu": "0.5892±0.0008",
+        "hellaswag": "0.6701±0.0007"
+      },
+      "graduated_a07": {
+        "mmlu": "0.5892±0.0014",
+        "hellaswag": "0.6695±0.0004"
+      },
+      "graduated_a05": {
+        "mmlu": "0.5880±0.0013",
+        "hellaswag": "0.6687±0.0008"
+      },
+      "graduated_a03": {
+        "mmlu": "0.5877±0.0013",
+        "hellaswag": "0.6669±0.0005"
+      },
+      "graduated_a01": {
+        "mmlu": "0.5873±0.0019",
+        "hellaswag": "0.6640±0.0009"
+      },
+      "dsir": {
+        "mmlu": "0.5869±0.0003",
+        "hellaswag": "0.6631±0.0007"
+      },
+      "no_filter": {
+        "mmlu": "0.5865±0.0010",
+        "hellaswag": "0.6638±0.0008"
+      },
+      "base_model": {
+        "mmlu": "0.6018",
+        "hellaswag": "0.6821"
+      },
+      "best_strategy": "binary-ours",
+      "key_finding": "binary-ours is best filtering strategy. All strategies degrade vs base_model. Graduated α monotonically increasing confirms K*=2 boundary. DSIR below all other strategies except no-filter."
+    },
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/artifacts/exp006_filtering/results/",
+    "log_path": "~/runs/gen-depth-contamination/exp_006_graduated_filtering.log"
+  },
+  "timestamp": "2026-05-15T09:18:13.865229+00:00",
+  "trigger": "update_registry"
+}

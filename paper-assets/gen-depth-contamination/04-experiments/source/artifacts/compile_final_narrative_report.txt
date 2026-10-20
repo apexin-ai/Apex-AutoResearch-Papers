@@ -1,0 +1,29 @@
+Compile & Narrative Verification Report
+========================================
+Date: 2026-05-23
+
+1. COMPILATION
+   - Command: pdflatex + bibtex + pdflatex x2
+   - LaTeX errors: 0
+   - Undefined references: 0
+   - Output: main.pdf (19 pages, 555620 bytes)
+
+2. PAGE CHECK
+   - References start on page 9
+   - Main text (Sections 1–8 + Limitations): pages 1–8  ✓
+   - Compliant with EMNLP 2026 8-page limit
+
+3. CONTENT VERIFICATION
+   a) "DeBERTa-v3-base upper-bound probe confirms this pattern"
+      - Location: discussion.tex, Representation dependence paragraph (line 20)
+      - Rendered in PDF: YES (page 7)
+
+   b) "Code (Python) provides an informative contrast"
+      - Location: discussion.tex, Domain dependence paragraph (line 29)
+      - Rendered in PDF: YES (page 7)
+
+4. REFERENCE RESOLUTION
+   - \ref{tab:deberta_vs_obd} resolves to Table 29 (page 19)
+   - No "??" in output
+
+5. RESULT: ALL CHECKS PASSED

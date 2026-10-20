@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1fc9ba8933ad733dae9c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code kill pid 57919",
+  "task_key": "worker_code_kill_pid_57919_20260522T191552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_kill_pid_57919_20260522T191552_result.json",
+    "occurrence": 1,
+    "bytes": 341,
+    "sha256": "f6a1653f087fdbcee86e7e812c282b464fe34b2f722ed43919a1c4967482a165"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项确认结果：\n\n1. **PID 57919**: DEAD — 已成功 kill\n2. **PID 23239 (原始进程)**: ORIGINAL GONE — 也已不存在\n3. **results/exp_llama8b_10k/ 最新文件**:\n   - `run.log` — 03:16 (583KB)\n   - `feature_importance.json` — 03:11\n   - `ordinal_results.json` — 03:11\n   - `summary.txt` — 03:11"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-kill-pid-57919.md"
+}

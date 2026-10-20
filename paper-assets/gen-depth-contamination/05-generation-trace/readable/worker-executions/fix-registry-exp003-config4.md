@@ -1,0 +1,1336 @@
+# fix registry exp003 config4
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 25
+- **Recorded user turns:** 0
+- **Tool calls:** 7
+- **Original source:** `logs/workers/worker_fix_registry_exp003_config4_20260513T234006.log`
+- **Structured JSON:** [`20c64aaf2ae904ef3a59.json`](../../sessions/20/20c64aaf2ae904ef3a59.json)
+
+## Before a recorded user message
+
+25 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "session_id": "74ed2539-4b0e-4c4e-82cc-75630c924afb",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "2b6a8e44-f434-4f81-a4d2-e031ce96c9d6",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778723400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "deb13015-2343-42eb-aa0e-cddb9b8354e7",
+  "session_id": "74ed2539-4b0e-4c4e-82cc-75630c924afb"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+Looking for exp-003 related output files on the server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74ed2539-4b0e-4c4e-82cc-75630c924afb",
+  "uuid": "cd52bcbe-3355-45fb-b610-259fc28bd61b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ABJSaBdRny6WprjwC4uWeA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11493,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11493
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01X2ChJYBjWix8DG6ZkWKTZt`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74ed2539-4b0e-4c4e-82cc-75630c924afb",
+  "uuid": "9404ab04-92fb-4d43-bf97-5456fe69d806",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ABJSaBdRny6WprjwC4uWeA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11493,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11493
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-13T23:40:19.902Z_
+
+<details><summary>↩ Tool result · `toolu_01X2ChJYBjWix8DG6ZkWKTZt`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "74ed2539-4b0e-4c4e-82cc-75630c924afb",
+  "uuid": "64102793-c1a2-4daa-ba8f-bbb9dd73986c",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me first check the current registry state and search for exp-003 output files on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74ed2539-4b0e-4c4e-82cc-75630c924afb",
+  "uuid": "2f259c95-aa37-4b7c-b660-038d3c826623",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01URgD31LyxEtKjxBgv7Js2h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1195,
+      "cache_read_input_tokens": 23334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1195
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Bi4ch1wK6UkBCdyGectV7w`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "exp_003_decoding_ablation"
+  },
+  "project": "gen-depth-contamination",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74ed2539-4b0e-4c4e-82cc-75630c924afb",
+  "uuid": "e1e2d238-466e-4e69-a4a2-dff14c0f243e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01URgD31LyxEtKjxBgv7Js2h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1195,
+      "cache_read_input_tokens": 23334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1195
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-13T23:40:24.456Z_
+
+<details><summary>↩ Tool result · `toolu_01Bi4ch1wK6UkBCdyGectV7w`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0545}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "74ed2539-4b0e-4c4e-82cc-75630c924afb",
+  "uuid": "d178019e-82d6-4063-b976-06098ff61e47",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0545}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0545}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0185dShXg1WSv9m9C8ktkQ6R`</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "find /root/autodl-tmp/gen-depth-contamination -type f -name \"*exp003*\" -o -name \"*exp-003*\" -o -name \"*config4*\" -o -name \"*t12*\" -o -name \"*cross_config*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74ed2539-4b0e-4c4e-82cc-75630c924afb",
+  "uuid": "a77816c8-278b-4754-ae87-d99171a0f5d1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01URgD31LyxEtKjxBgv7Js2h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1195,
+      "cache_read_input_tokens": 23334,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1195
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-13T23:40:28.631Z_
+
+<details><summary>↩ Tool result · `toolu_0185dShXg1WSv9m9C8ktkQ6R`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/scripts/run_exp003_ablation.sh\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp003_analyze_all_configs.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/plot_exp003_decoding_ablation.py\\n/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis.json\\n/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.pdf\\n/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.png\\n/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.tex\\n/root/autodl-tmp/gen-depth-contamination/data_exp003_t12\\n/root/autodl-tmp/gen-depth-contamination/results_exp003_t12\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "74ed2539-4b0e-4c4e-82cc-75630c924afb",
+  "uuid": "5e16ec5f-2848-4fb4-afe0-3fb8e95799cb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/scripts/run_exp003_ablation.sh\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp003_analyze_all_configs.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/plot_exp003_decoding_ablation.py\\\\n/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis.json\\\\n/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.pdf\\\\n/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.png\\\\n/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.tex\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp003_t12\\\\n/root/autodl-tmp/gen-depth-contamination/results_exp003_t12\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/scripts/run_exp003_ablation.sh\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp003_analyze_all_configs.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/plot_exp003_decoding_ablation.py\\n/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis.json\\n/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.pdf\\n/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.png\\n/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.tex\\n/root/autodl-tmp/gen-depth-contamination/data_exp003_t12\\n/root/autodl-tmp/gen-depth-contamination/results_exp003_t12\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found several files. Let me look at the analysis JSON and the results directory for config4_t12 data. The registry filter returned 0 results - let me try without the filter or with the correct exp_id.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74ed2539-4b0e-4c4e-82cc-75630c924afb",
+  "uuid": "97efc77f-d5c2-461d-97d2-bdc906b6dae5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0113RVd6cV476dxz1xpXrPh7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 760,
+      "cache_read_input_tokens": 24529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 760
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+Registry filter returned 0 — let me try the correct exp_id. Also reading the analysis JSON and the results directory.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74ed2539-4b0e-4c4e-82cc-75630c924afb",
+  "uuid": "1036c2f3-2f8f-44c8-b02f-e2b447b48c90",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0113RVd6cV476dxz1xpXrPh7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 760,
+      "cache_read_input_tokens": 24529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 760
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_015hsaniQRxwydjb46Aw7rRZ`</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "fields": [
+    "*"
+  ],
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74ed2539-4b0e-4c4e-82cc-75630c924afb",
+  "uuid": "2baf604a-714f-46b1-8584-830770adf692",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0113RVd6cV476dxz1xpXrPh7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 760,
+      "cache_read_input_tokens": 24529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 760
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-13T23:40:36.485Z_
+
+<details><summary>↩ Tool result · `toolu_015hsaniQRxwydjb46Aw7rRZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_006_graduated_filtering\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T20:25:52.364Z\", \"updated_at\": \"2026-05-13T23:39:51.042Z\", \"hypothesis\": \"K*-aware graduated filtering (exploiting human/gen-1/gen-2+ trichotomy) yields better downstream LM quality than binary filtering on MMLU and HellaSwag. 6 strategies × 5 seeds × α sweep.\", \"parent\": \"exp_003_decoding_ablation\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/gen-depth-contamination && bash scripts/run_exp006.sh\\\"\", \"server\": \"westc-26893\", \"gpu\": [\"cuda:0\"], \"pid\": \"46129\", \"log_path\": \"~/runs/gen-depth-contamination/exp_006_graduated_filtering.log\", \"submitted_at\": \"2026-05-13T21:02:48.327Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/\", \"data_count\": 30000, \"model_name\": \"Qwen/Qwen2.5-1.5B-Instruct\", \"seed\": \"42,123,456,789,1024\", \"checkpoint_source\": \"Qwen/Qwen2.5-1.5B-Instruct (base model, LoRA CPT per strategy)\", \"eval_data\": \"lm-eval-harness: MMLU (14042 test) + HellaSwag (10042 val)\"}, \"notes\": \"Progress check 05-13 22:35 UTC: PID 46129 alive, 3/50 runs done (4%), currently on no-filter_s456 step 310/2814. Actual speed ~44min/run (original estimate 25min). Total ETA ~36.7h, remaining ~35h. Output path: /root/autodl-tmp/gen-depth-contamination/outputs/exp006/. Run 1 adapter at outputs/exp006/no-filter_s42/final_adapter.\"}, \"exp_007_bootstrap_ci\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T03:45:50.948Z\", \"updated_at\": \"2026-05-13T21:15:42.372Z\", \"hypothesis\": \"K* 统计严谨性验证：bootstrap 95% CI 和 permutation test 确认 K*=2 在三个模型族上统计显著\", \"spec\": {\"command\": \"python scripts/bootstrap_ci.py --data_dirs results_exp001_pythia results_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output artifacts/bootstrap_ci_results.json\", \"script_path\": \"/root/autodl-tmp/gen-depth-contamination/scripts/bootstrap_ci.py\", \"server\": \"autodl-4090d\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/bootstrap_ci_results.json\", \"data_count\": 15000, \"model_name\": \"Pythia-1.4B / OLMo-1B / Qwen-1.5B\", \"seed\": 42, \"input_sources\": [\"results_exp001_pythia (exp-001)\", \"results_exp002_olmo (exp-002)\", \"data (mvp-001)\"], \"bootstrap_resamples\": 1000, \"permutation_resamples\": 500, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/bootstrap_ci_results.json\", \"log_path\": \"~/runs/gen-depth-contamination/exp_007_bootstrap_ci.log\"}, \"metrics\": {\"qwen_rewrite\": {\"0v1\": {\"auc\": 0.9956, \"ci_lower\": 0.9946, \"ci_upper\": 0.9965, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6955, \"ci_lower\": 0.6859, \"ci_upper\": 0.7041, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5893, \"ci_lower\": 0.5795, \"ci_upper\": 0.5991, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5435, \"ci_lower\": 0.5333, \"ci_upper\": 0.5551, \"perm_p\": 0.002}, \"4v5\": {\"auc\": 0.534, \"ci_lower\": 0.5238, \"ci_upper\": 0.5448, \"perm_p\": 0.002}}, \"pythia_cont\": {\"0v1\": {\"auc\": 0.9932, \"ci_lower\": 0.9921, \"ci_upper\": 0.9943, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6539, \"ci_lower\": 0.6454, \"ci_upper\": 0.663, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5514, \"ci_lower\": 0.5417, \"ci_upper\": 0.5628, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5152, \"ci_lower\": 0.5041, \"ci_upper\": 0.526, \"perm_p\": 0.006}, \"4v5\": {\"auc\": 0.5136, \"ci_lower\": 0.5021, \"ci_upper\": 0.5249, \"perm_p\": 0.008}}, \"olmo_cont\": {\"0v1\": {\"auc\": 0.997, \"ci_lower\": 0.9964, \"ci_upper\": 0.9975, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6145, \"ci_lower\": 0.6045, \"ci_upper\": 0.6247, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5496, \"ci_lower\": 0.5399, \"ci_upper\": 0.5596, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5091, \"ci_lower\": 0.4973, \"ci_upper\": 0.52, \"perm_p\": 0.064}, \"4v5\": {\"auc\": 0.5045, \"ci_lower\": 0.4932, \"ci_upper\": 0.515, \"perm_p\": 0.232}}, \"qwen_cont\": {\"0v1\": {\"auc\": 0.9972, \"ci_lower\": 0.9963, \"ci_upper\": 0.9978, \"perm_p\": 0}, \"1v2\": {\"auc\": 0.6112, \"ci_lower\": 0.6015, \"ci_upper\": 0.6213, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5609, \"ci_lower\": 0.5511, \"ci_upper\": 0.5712, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5409, \"ci_lower\": 0.5308, \"ci_upper\": 0.5508, \"perm_p\": 0.002}, \"4v5\": {\"auc\": 0.5141, \"ci_lower\": 0.5035, \"ci_upper\": 0.5255, \"perm_p\": 0.006}}, \"k_star_robust\": true, \"all_1v2_ci_lower_above_060\": true, \"most_marginal\": \"Qwen-cont CI lower=0.6015, only 0.0015 above threshold\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T03:46:36.617Z\"}, \"exp_003_decoding_ablation\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-12T20:06:25.260Z\", \"updated_at\": \"2026-05-13T21:15:30.408Z\", \"hypothesis\": \"解码策略调控 K*：不同 top_p/temperature 设置是否改变饱和边界（greedy→更低 K*? 高温度→更高 K*?）\", \"failure_reason\": \"SSH check failed 5x — last error: Unknown server 'autodl-4090d'. Available: ['westc-26893']\", \"completed_at\": \"2026-05-13T15:35:29.038Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T15:35:30.207607+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T20:22:20.803872+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: SSH 别名变更 (autodl-4090d → westc-26893)，cron 监控 5 次连不上后标记 failed。初步诊断: 日志在 westc-26893 上可读，config 2 (nucleus_p0.9_t1.0) 已完成并输出 K*=2，config 3 (nucleus_p0.95_t0.7) 在 depth 4 进度 ~90% 时日志截止。实验可能已完成或部分完成。Worker worker_diagnose_exp_003_decoding_ablation_20260513T153757 正在深入诊断。\"}}, \"notes\": \"Server alias 变更 autodl-4090d → westc-26893 导致 cron 误标 failed。实际实验一直正常运行。Config 1 (greedy, K*=2), Config 2 (nuc p=0.9/T=1.0, K*=2), Config 3 (nuc p=0.95/T=0.7, K*=2) 已完成。Config 4 (nuc p=0.95/T=1.2) 运行中。深度分析: 1v2 AUC Δ<0.003 across configs, D016 universality confirmed (all 7 configs > θ=0.60), θ-sensitivity K* profile identical across 3 configs. 分析脚本 scripts/exp003_analyze_all_configs.py 已部署。\", \"spec\": {\"command\": \"python scripts/exp003_analyze_all_configs.py\", \"server\": \"westc-26893\", \"gpu\": [\"cuda:0\"], \"pid\": \"29459\", \"log_path\": \"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp003_*\", \"data_count\": 4, \"model_name\": \"Qwen/Qwen2.5-1.5B-Instruct\", \"seed\": 42, \"configs\": \"4 ablation configs: greedy, nucleus p=0.9/T=1.0, nucleus p=0.95/T=0.7, nucleus p=0.95/T=1.2\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp003_*\", \"log_path_note\": \"server renamed from autodl-4090d to westc-26893\"}, \"metrics\": {\"config1_greedy\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9797, \"1v2\": 0.6893, \"2v3\": 0.5613, \"3v4\": 0.5404, \"4v5\": 0.5139}, \"top3_features_1v2\": [\"self_bleu\", \"hapax_ratio\", \"ttr\"]}, \"config2_nuc09\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9946, \"1v2\": 0.6866, \"2v3\": 0.5917, \"3v4\": 0.5466, \"4v5\": 0.5068}, \"top3_features_1v2\": [\"hapax_ratio\", \"ttr\", \"surp_skew\"]}, \"config3_t07\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9878, \"1v2\": 0.6887, \"2v3\": 0.5902, \"3v4\": 0.5393, \"4v5\": 0.5349}, \"top3_features_1v2\": [\"hapax_ratio\", \"ttr\", \"low_freq_ratio\"]}, \"config4_t12\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9982, \"1v2\": 0.7039, \"2v3\": 0.5823, \"3v4\": 0.5293, \"4v5\": 0.5237}, \"top3_features_1v2\": [\"hapax_ratio\", \"ttr\", \"surp_skew\"]}, \"cross_config_analysis\": {\"greedy_vs_nuc09_feature_spearman\": 0.6, \"greedy_vs_t07_feature_spearman\": 0.914, \"nuc09_vs_t07_feature_spearman\": 0.782, \"d016_universality_theta060\": true, \"all_8_configs_1v2_above_060\": true, \"weakest_1v2\": \"Qwen-cont 0.6114\", \"theta_sensitivity\": {\"theta_055\": \"K*=3 (all 4 configs)\", \"theta_060\": \"K*=2 (all 4 configs)\", \"theta_065\": \"K*=2 (all 4 configs)\", \"theta_070\": \"K*=1 (3 configs) / K*=2 (config4_t12)\"}}}, \"reproduce\": {\"finished_at\": \"2026-05-13T20:22:19.870Z\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis.json\", \"log_path\": \"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\", \"conclusion\": \"success\"}, \"exp_015_neural_probe\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T18:53:34.791Z\", \"updated_at\": \"2026-05-13T18:53:48.812Z\", \"hypothesis\": \"Learned representations (frozen LLM → MLP) 的 K* 是否高于 hand-crafted 15D features？若 K*_neural > K*_15D，说明 15D projection 是 K*=2 的部分原因；若相同，加强 information-theoretic impossibility 论证\"}, \"exp_011_llm_zeroshot\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T08:59:07.954Z\", \"updated_at\": \"2026-05-13T11:34:44.605Z\", \"hypothesis\": \"Frontier LLMs (GPT-5.5, Claude Opus 4.6) cannot reliably estimate generational depth via zero-shot prompting, motivating the need for specialized statistical methods\", \"spec\": {\"command\": \"python3 scripts/exp011_llm_zeroshot.py --model gpt-5.5 && python3 scripts/exp011_llm_zeroshot.py --model claude-opus-4-6 && python3 scripts/exp011_analyze.py\", \"server\": \"autodl-4090d\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp001_pythia/\", \"data_count\": 500, \"model_name\": \"GPT-5.5 + Claude Opus 4.6 (zero-shot via OpenRouter)\", \"seed\": 42, \"sampling\": \"100 texts × 5 depths (0-4) from Pythia continuation\", \"scripts\": [\"scripts/exp011_sample_data.py\", \"scripts/exp011_llm_zeroshot.py\", \"scripts/exp011_analyze.py\"], \"samples_path\": \"artifacts/exp011_samples.jsonl\", \"api_base_url\": \"http://47.94.22.126/v1\", \"api_model_ids\": {\"gpt-5.5\": \"openai/gpt-5.5\", \"claude-opus-4-6\": \"claude-opus-4-6\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp011_analysis.json\", \"log_path\": \"N/A (API task)\"}, \"notes\": \"GPT-5.5: 500条, 0 parse failures. Claude Opus 4.6: 500条, 1 parse failure. 两个 frontier LLM 5-class accuracy (~33%) 均低于 OBD-LightGBM (38.6%)。Binary human/AI detection 高 (~88%) 但 fine-grained depth 判断失败。Claude proxy 需用 model ID 'claude-opus-4-6' (无 anthropic/ 前缀)。\", \"metrics\": {\"gpt55_5class_acc\": 0.332, \"gpt55_mae\": 1.102, \"gpt55_spearman\": 0.383, \"gpt55_binary_acc\": 0.878, \"claude_5class_acc\": 0.331, \"claude_mae\": 1.15, \"claude_spearman\": 0.416, \"claude_binary_acc\": 0.882, \"odb_baseline_5class_acc\": 0.386, \"odb_baseline_mae\": 1.107, \"gpt55_per_depth_acc\": {\"depth_0\": 0.77, \"depth_1\": 0.19, \"depth_2\": 0.38, \"depth_3\": 0.24, \"depth_4\": 0.08}, \"claude_per_depth_acc\": {\"depth_0\": 0.69, \"depth_1\": 0.21, \"depth_2\": 0.28, \"depth_3\": 0.101, \"depth_4\": 0.37}, \"n_samples_per_model\": 500, \"key_finding\": \"Both frontier LLMs (GPT-5.5, Claude Opus 4.6) perform WORSE than OBD-LightGBM on 5-class depth estimation (~33% vs 38.6% acc). Binary human/AI detection is high (~88%) but fine-grained depth discrimination fails.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T11:32:56.036Z\"}, \"exp_013_cross_transfer\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:50:57.813Z\", \"updated_at\": \"2026-05-13T06:54:11.689Z\", \"spec\": {\"command\": \"python scripts/run_exp013_cross_transfer.py --out_dir artifacts/\", \"server\": \"autodl-4090d\", \"data_path\": \"data/, data_exp001_pythia/, data_exp002_olmo/, data_exp017_qwen_cont/\", \"data_count\": 20000, \"model_name\": \"N/A (CPU classifiers: OBD-LightGBM)\", \"seed\": 42, \"input_sources\": [\"mvp-001 Qwen-rewrite\", \"exp-001 Pythia\", \"exp-002 OLMo\", \"exp-017 Qwen-cont\"], \"checkpoint_path\": \"artifacts/cross_transfer_matrix.json\", \"log_path\": \"N/A (CPU task)\"}, \"hypothesis\": \"Depth signal 是文本固有属性还是 model self-familiarity artifact？4×4 cross-model transfer matrix 测试分类器跨模型泛化能力\", \"metrics\": {\"accuracy_matrix\": {\"Qwen_rw→Qwen_rw\": 0.4229, \"Qwen_rw→Pythia\": 0.259, \"Qwen_rw→OLMo\": 0.2653, \"Qwen_rw→Qwen_cont\": 0.3466, \"Pythia→Qwen_rw\": 0.2718, \"Pythia→Pythia\": 0.3856, \"Pythia→OLMo\": 0.3531, \"Pythia→Qwen_cont\": 0.3287, \"OLMo→Qwen_rw\": 0.2768, \"OLMo→Pythia\": 0.345, \"OLMo→OLMo\": 0.3822, \"OLMo→Qwen_cont\": 0.3244, \"Qwen_cont→Qwen_rw\": 0.344, \"Qwen_cont→Pythia\": 0.3284, \"Qwen_cont→OLMo\": 0.3112, \"Qwen_cont→Qwen_cont\": 0.3875}, \"transfer_retention_accuracy\": {\"Pythia↔OLMo\": \"91-92%\", \"Qwen_rw→Pythia/OLMo\": \"61-63%\", \"Qwen_cont↔Pythia\": \"83-85%\", \"Qwen_cont↔OLMo\": \"80-85%\"}, \"transfer_retention_tau\": {\"Pythia↔OLMo\": \"85-86%\", \"Qwen_rw→Pythia/OLMo\": \"45-50%\", \"Qwen_cont↔others\": \"68-83%\"}, \"mean_pw_auc_matrix\": {\"within_avg\": 0.6099, \"cross_avg\": 0.5905, \"0v1_cross_all_above\": 0.96}, \"key_finding\": \"depth signal ≈ 70-85% text-intrinsic + 15-30% model self-familiarity. Binary contamination detection (0v1) highly transferable (>0.96 AUC). Fine-grained depth transfer depends on model family similarity. Qwen-rewrite overfits style features; Qwen-cont transfers much better.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T06:53:07.326Z\", \"notes\": \"depth signal ≈ 70-85% text-intrinsic + 15-30% model self-familiarity. Pythia↔OLMo 91-92% retention (architecture-agnostic). Qwen-rewrite catastrophic transfer to other models (61-63%), but Qwen-cont much better (80-85%). 0v1 universally transferable (>0.96 AUC), 1v2+ transfer depends on model family. Rewrite mode overfits style features → continuation mode is canonical condition for cross-model claims.\"}, \"exp_005_degradation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T02:40:12.117Z\", \"updated_at\": \"2026-05-13T06:51:26.544Z\", \"spec\": {\"command\": \"python scripts/run_exp005_degradation.py --data_dirs results_exp001_pythia results_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output_dir results_exp005_degradation\", \"server\": \"autodl-4090d\", \"script_path\": \"/root/autodl-tmp/gen-depth-contamination/scripts/run_exp005_degradation.py\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation\", \"data_count\": 15000, \"model_name\": \"Pythia-1.4B / OLMo-1B / Qwen-1.5B (3-model comparison)\", \"seed\": 42, \"input_dirs\": [\"results_exp001_pythia\", \"results_exp002_olmo\", \"data\"], \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/\", \"log_path\": \"~/runs/gen-depth-contamination/exp_005_degradation.log\"}, \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json\", \"metrics\": {\"cross_model_kendall_tau_by_first_auc\": {\"Pythia_vs_OLMo\": 0.733, \"Pythia_vs_Qwen_rewrite\": 0.467, \"Pythia_vs_Qwen_cont\": 0.695, \"OLMo_vs_Qwen_rewrite\": 0.429, \"OLMo_vs_Qwen_cont\": 0.543, \"Qwen_rewrite_vs_Qwen_cont\": 0.733}, \"cross_model_kendall_tau_by_avg_auc\": {\"Pythia_vs_OLMo\": 0.8476, \"Pythia_vs_Qwen_cont\": 0.7524, \"OLMo_vs_Qwen_cont\": 0.6762}, \"cross_model_spearman_rho_single_feature_auc\": {\"Pythia_vs_OLMo\": 0.95, \"Pythia_vs_Qwen_cont\": 0.9143, \"OLMo_vs_Qwen_cont\": 0.85, \"metric_definition\": \"Spearman ρ on per-feature AUC rankings (each feature independently classifies depth pairs)\"}, \"4model_tau_mean_continuation_by_first_auc\": 0.657, \"4model_tau_mean_all_by_first_auc\": 0.6, \"generation_mode_delta\": {\"Pythia_vs_Qwen\": \"+0.228\", \"OLMo_vs_Qwen\": \"+0.114\"}, \"top3_features_ranking_by_first_auc\": {\"Pythia\": [\"surp_d1_std\", \"surp_d2_std\", \"surp_std\"], \"OLMo\": [\"surp_std\", \"surp_d1_std\", \"surp_d2_std\"], \"Qwen_rewrite\": [\"freq_entropy\", \"surp_std\", \"surp_d1_std\"], \"Qwen_cont\": [\"surp_d1_std\", \"surp_std\", \"surp_d2_std\"]}, \"shared_top_discriminators\": \"surp_d1_std, surp_std, surp_d2_std shared across all architectures (single-feature AUC ranking)\", \"degradation_ordering_consistency\": \"Strong cross-model consistency (ρ≥0.85) on single-feature AUC ranking under controlled generation mode.\", \"residual_architecture_effect\": \"Qwen-cont vs OLMo (τ=0.54 by_first_auc) still lower than Pythia vs OLMo (τ=0.73), ~30-40% of ordering divergence from architecture\", \"limitation_1v2_weakness\": \"depth-pair level consistency weakest at 1v2 (τ~0.37), near-generational feature importance ordering varies more across models\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T02:40:50.885Z\", \"notes\": \"4-model τ matrix complete. Generation mode confirmed as primary driver of Qwen divergence (Δτ=+0.23 for Pythia pair). Residual architecture effect ~30-40%. C2 claim: degradation ordering largely consistent under same generation mode, with noted architecture residuals.\"}, \"exp_017_qwen_continuation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:41:22.423Z\", \"updated_at\": \"2026-05-13T06:17:00.826Z\", \"hypothesis\": \"Generation mode 对 K* 的影响：Qwen2.5-1.5B-Instruct continuation vs rewrite (mvp-001)，分离 generation mode 和 model 对 K* 的独立效应\", \"notes\": \"dry-run passed 2026-05-13: model OK (2.9G safetensors), env OK (torch=2.10.0+cu128, transformers=4.57.6), dirs auto-create. Submit command prepared. 等 exp-002 完成后立即提交。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2.5-1.5B-Instruct --data_dir /root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont --results_dir /root/autodl-tmp/gen-depth-contamination/results_exp017_qwen_cont --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"autodl-4090d\", \"gpu\": [\"cuda:0\"], \"pid\": \"23758\", \"log_path\": \"~/runs/gen-depth-contamination/exp_017_qwen_continuation.log\", \"submitted_at\": \"2026-05-13T02:35:15Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont\", \"data_count\": 5000, \"model_name\": \"Qwen/Qwen2.5-1.5B-Instruct\", \"seed\": 42, \"max_depth\": 5, \"generation_mode\": \"continuation\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont/\", \"wall_clock_seconds\": 13305.8, \"gpu_hours\": 3.7}, \"log_path\": \"/root/runs/gen-depth-contamination/exp_017_qwen_continuation.log\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results_exp017_qwen_cont/\", \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9972, \"1v2\": 0.6114, \"2v3\": 0.5609, \"3v4\": 0.5408, \"4v5\": 0.5139}, \"pairwise_jsd\": {\"0v1\": 0.28627, \"1v2\": 0.005107, \"2v3\": 0.003603, \"3v4\": 0.003395, \"4v5\": 0.003085}, \"ordinal_mae\": 1.1547, \"ordinal_accuracy\": 0.3819, \"top3_features\": [\"freq_entropy\", \"surp_mean\", \"surp_std\"]}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T06:17:00.826Z\"}, \"exp_010_ordinal_baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T04:22:42.199Z\", \"updated_at\": \"2026-05-13T04:26:54.571Z\", \"hypothesis\": \"Ordinal structure improves depth classification: ordinal methods should outperform unordered multiclass on MAE\", \"spec\": {\"command\": \"python scripts/run_exp010_ordinal_comparison.py\", \"server\": \"autodl-4090d\", \"data_path\": \"data/features.csv, data_exp001_pythia/features.csv, data_exp002_olmo/features.csv\", \"data_count\": 90000, \"model_name\": \"N/A (CPU classifiers)\", \"seed\": \"N/A\", \"checkpoint_source\": \"N/A\", \"eval_data\": \"N/A\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/ordinal_comparison_results.json\"}, \"metrics\": {\"qwen_rewrite\": {\"obd_lgbm\": {\"accuracy\": 0.4229, \"mae\": 0.9836, \"tau_b\": 0.5518, \"mean_pw_auc\": 0.6214}, \"multiclass_lgbm\": {\"accuracy\": 0.4182, \"mae\": 1.0163, \"tau_b\": 0.5367, \"mean_pw_auc\": 0.6246}, \"ordinal_logreg\": {\"accuracy\": 0.3636, \"mae\": 0.9105, \"tau_b\": 0.563, \"mean_pw_auc\": 0.5022}}, \"pythia\": {\"obd_lgbm\": {\"accuracy\": 0.3856, \"mae\": 1.1072, \"tau_b\": 0.4745, \"mean_pw_auc\": 0.6055}, \"multiclass_lgbm\": {\"accuracy\": 0.3832, \"mae\": 1.1399, \"tau_b\": 0.4622, \"mean_pw_auc\": 0.6062}, \"ordinal_logreg\": {\"accuracy\": 0.3179, \"mae\": 1.022, \"tau_b\": 0.49, \"mean_pw_auc\": 0.4767}}, \"olmo\": {\"obd_lgbm\": {\"accuracy\": 0.3822, \"mae\": 1.1469, \"tau_b\": 0.4683, \"mean_pw_auc\": 0.6015}, \"multiclass_lgbm\": {\"accuracy\": 0.3685, \"mae\": 1.1813, \"tau_b\": 0.4497, \"mean_pw_auc\": 0.5974}, \"ordinal_logreg\": {\"accuracy\": 0.3265, \"mae\": 1.0352, \"tau_b\": 0.4656, \"mean_pw_auc\": 0.4859}}}, \"conclusion\": \"success\", \"notes\": \"Ordinal methods beat multiclass LightGBM on MAE across all 3 datasets. Best MAE consistently from mord LogisticAT, not OBD-LightGBM. However, ordinal_logreg has worst pairwise AUC — it reduces MAE by collapsing predictions toward the center, not by better discrimination.\", \"completed_at\": \"2026-05-13T04:26:54.571Z\"}, \"exp_002_olmo_depth\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:06:24.766Z\", \"updated_at\": \"2026-05-13T02:35:52.823Z\", \"hypothesis\": \"K* 跨模型一致性验证：OLMo-1B 在相同种子数据和解码策略下的 K* 是否与 Qwen2.5-1.5B 一致（K*=2）\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/allenai/OLMo-1B-hf --data_dir /root/autodl-tmp/gen-depth-contamination/data_exp002_olmo --results_dir /root/autodl-tmp/gen-depth-contamination/results_exp002_olmo --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"autodl-4090d\", \"gpu\": [\"cuda:0\"], \"pid\": \"20225\", \"log_path\": \"~/runs/gen-depth-contamination/exp_002_olmo_depth.log\", \"submitted_at\": \"2026-05-13T00:16:07.960Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp002_olmo\", \"data_count\": 5000, \"model_name\": \"allenai/OLMo-1B-hf\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp002_olmo/\", \"wall_clock_seconds\": 8384.9, \"gpu_hours\": 2.33}, \"reproduce\": {\"finished_at\": \"2026-05-13T02:31:18.880Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T02:31:19.738113+00:00\"}]}, \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.997, \"1v2\": 0.6146, \"2v3\": 0.5497, \"3v4\": 0.509, \"4v5\": 0.5044}, \"pairwise_auc_std\": {\"0v1\": 0.0004, \"1v2\": 0.0029, \"2v3\": 0.004, \"3v4\": 0.0084, \"4v5\": 0.0136}, \"pairwise_jsd\": {\"0v1\": 0.23941, \"1v2\": 0.012972, \"2v3\": 0.00735, \"3v4\": 0.003968, \"4v5\": 0.003851}, \"ordinal_mae\": 1.1813, \"ordinal_accuracy\": 0.3685, \"top_features\": [\"surp_d1_mean\", \"surp_d1_skew\", \"freq_kurtosis\", \"surp_d2_mean\", \"surp_mean\"]}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T02:35:52.823Z\"}}, \"count\": 10, \"total\": 12, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0529}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "74ed2539-4b0e-4c4e-82cc-75630c924afb",
+  "uuid": "d839e92c-61b8-4b5b-bc22-9b7e5179b71a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_006_graduated_filtering\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T20:25:52.364Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:39:51.042Z\\\", \\\"hypothesis\\\": \\\"K*-aware graduated filtering (exploiting human/gen-1/gen-2+ trichotomy) yields better downstream LM quality than binary filtering on MMLU and HellaSwag. 6 strategies × 5 seeds × α sweep.\\\", \\\"parent\\\": \\\"exp_003_decoding_ablation\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/gen-depth-contamination && bash scripts/run_exp006.sh\\\\\\\"\\\", \\\"server\\\": \\\"westc-26893\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"46129\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_006_graduated_filtering.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T21:02:48.327Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data/\\\", \\\"data_count\\\": 30000, \\\"model_name\\\": \\\"Qwen/Qwen2.5-1.5B-Instruct\\\", \\\"seed\\\": \\\"42,123,456,789,1024\\\", \\\"checkpoint_source\\\": \\\"Qwen/Qwen2.5-1.5B-Instruct (base model, LoRA CPT per strategy)\\\", \\\"eval_data\\\": \\\"lm-eval-harness: MMLU (14042 test) + HellaSwag (10042 val)\\\"}, \\\"notes\\\": \\\"Progress check 05-13 22:35 UTC: PID 46129 alive, 3/50 runs done (4%), currently on no-filter_s456 step 310/2814. Actual speed ~44min/run (original estimate 25min). Total ETA ~36.7h, remaining ~35h. Output path: /root/autodl-tmp/gen-depth-contamination/outputs/exp006/. Run 1 adapter at outputs/exp006/no-filter_s42/final_adapter.\\\"}, \\\"exp_007_bootstrap_ci\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T03:45:50.948Z\\\", \\\"updated_at\\\": \\\"2026-05-13T21:15:42.372Z\\\", \\\"hypothesis\\\": \\\"K* 统计严谨性验证：bootstrap 95% CI 和 permutation test 确认 K*=2 在三个模型族上统计显著\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/bootstrap_ci.py --data_dirs results_exp001_pythia results_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output artifacts/bootstrap_ci_results.json\\\", \\\"script_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/scripts/bootstrap_ci.py\\\", \\\"server\\\": \\\"autodl-4090d\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/artifacts/bootstrap_ci_results.json\\\", \\\"data_count\\\": 15000, \\\"model_name\\\": \\\"Pythia-1.4B / OLMo-1B / Qwen-1.5B\\\", \\\"seed\\\": 42, \\\"input_sources\\\": [\\\"results_exp001_pythia (exp-001)\\\", \\\"results_exp002_olmo (exp-002)\\\", \\\"data (mvp-001)\\\"], \\\"bootstrap_resamples\\\": 1000, \\\"permutation_resamples\\\": 500, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/artifacts/bootstrap_ci_results.json\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_007_bootstrap_ci.log\\\"}, \\\"metrics\\\": {\\\"qwen_rewrite\\\": {\\\"0v1\\\": {\\\"auc\\\": 0.9956, \\\"ci_lower\\\": 0.9946, \\\"ci_upper\\\": 0.9965, \\\"perm_p\\\": 0.002}, \\\"1v2\\\": {\\\"auc\\\": 0.6955, \\\"ci_lower\\\": 0.6859, \\\"ci_upper\\\": 0.7041, \\\"perm_p\\\": 0.002}, \\\"2v3\\\": {\\\"auc\\\": 0.5893, \\\"ci_lower\\\": 0.5795, \\\"ci_upper\\\": 0.5991, \\\"perm_p\\\": 0.002}, \\\"3v4\\\": {\\\"auc\\\": 0.5435, \\\"ci_lower\\\": 0.5333, \\\"ci_upper\\\": 0.5551, \\\"perm_p\\\": 0.002}, \\\"4v5\\\": {\\\"auc\\\": 0.534, \\\"ci_lower\\\": 0.5238, \\\"ci_upper\\\": 0.5448, \\\"perm_p\\\": 0.002}}, \\\"pythia_cont\\\": {\\\"0v1\\\": {\\\"auc\\\": 0.9932, \\\"ci_lower\\\": 0.9921, \\\"ci_upper\\\": 0.9943, \\\"perm_p\\\": 0.002}, \\\"1v2\\\": {\\\"auc\\\": 0.6539, \\\"ci_lower\\\": 0.6454, \\\"ci_upper\\\": 0.663, \\\"perm_p\\\": 0.002}, \\\"2v3\\\": {\\\"auc\\\": 0.5514, \\\"ci_lower\\\": 0.5417, \\\"ci_upper\\\": 0.5628, \\\"perm_p\\\": 0.002}, \\\"3v4\\\": {\\\"auc\\\": 0.5152, \\\"ci_lower\\\": 0.5041, \\\"ci_upper\\\": 0.526, \\\"perm_p\\\": 0.006}, \\\"4v5\\\": {\\\"auc\\\": 0.5136, \\\"ci_lower\\\": 0.5021, \\\"ci_upper\\\": 0.5249, \\\"perm_p\\\": 0.008}}, \\\"olmo_cont\\\": {\\\"0v1\\\": {\\\"auc\\\": 0.997, \\\"ci_lower\\\": 0.9964, \\\"ci_upper\\\": 0.9975, \\\"perm_p\\\": 0.002}, \\\"1v2\\\": {\\\"auc\\\": 0.6145, \\\"ci_lower\\\": 0.6045, \\\"ci_upper\\\": 0.6247, \\\"perm_p\\\": 0.002}, \\\"2v3\\\": {\\\"auc\\\": 0.5496, \\\"ci_lower\\\": 0.5399, \\\"ci_upper\\\": 0.5596, \\\"perm_p\\\": 0.002}, \\\"3v4\\\": {\\\"auc\\\": 0.5091, \\\"ci_lower\\\": 0.4973, \\\"ci_upper\\\": 0.52, \\\"perm_p\\\": 0.064}, \\\"4v5\\\": {\\\"auc\\\": 0.5045, \\\"ci_lower\\\": 0.4932, \\\"ci_upper\\\": 0.515, \\\"perm_p\\\": 0.232}}, \\\"qwen_cont\\\": {\\\"0v1\\\": {\\\"auc\\\": 0.9972, \\\"ci_lower\\\": 0.9963, \\\"ci_upper\\\": 0.9978, \\\"perm_p\\\": 0}, \\\"1v2\\\": {\\\"auc\\\": 0.6112, \\\"ci_lower\\\": 0.6015, \\\"ci_upper\\\": 0.6213, \\\"perm_p\\\": 0.002}, \\\"2v3\\\": {\\\"auc\\\": 0.5609, \\\"ci_lower\\\": 0.5511, \\\"ci_upper\\\": 0.5712, \\\"perm_p\\\": 0.002}, \\\"3v4\\\": {\\\"auc\\\": 0.5409, \\\"ci_lower\\\": 0.5308, \\\"ci_upper\\\": 0.5508, \\\"perm_p\\\": 0.002}, \\\"4v5\\\": {\\\"auc\\\": 0.5141, \\\"ci_lower\\\": 0.5035, \\\"ci_upper\\\": 0.5255, \\\"perm_p\\\": 0.006}}, \\\"k_star_robust\\\": true, \\\"all_1v2_ci_lower_above_060\\\": true, \\\"most_marginal\\\": \\\"Qwen-cont CI lower=0.6015, only 0.0015 above threshold\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T03:46:36.617Z\\\"}, \\\"exp_003_decoding_ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-12T20:06:25.260Z\\\", \\\"updated_at\\\": \\\"2026-05-13T21:15:30.408Z\\\", \\\"hypothesis\\\": \\\"解码策略调控 K*：不同 top_p/temperature 设置是否改变饱和边界（greedy→更低 K*? 高温度→更高 K*?）\\\", \\\"failure_reason\\\": \\\"SSH check failed 5x — last error: Unknown server 'autodl-4090d'. Available: ['westc-26893']\\\", \\\"completed_at\\\": \\\"2026-05-13T15:35:29.038Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T15:35:30.207607+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T20:22:20.803872+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"失败原因: SSH 别名变更 (autodl-4090d → westc-26893)，cron 监控 5 次连不上后标记 failed。初步诊断: 日志在 westc-26893 上可读，config 2 (nucleus_p0.9_t1.0) 已完成并输出 K*=2，config 3 (nucleus_p0.95_t0.7) 在 depth 4 进度 ~90% 时日志截止。实验可能已完成或部分完成。Worker worker_diagnose_exp_003_decoding_ablation_20260513T153757 正在深入诊断。\\\"}}, \\\"notes\\\": \\\"Server alias 变更 autodl-4090d → westc-26893 导致 cron 误标 failed。实际实验一直正常运行。Config 1 (greedy, K*=2), Config 2 (nuc p=0.9/T=1.0, K*=2), Config 3 (nuc p=0.95/T=0.7, K*=2) 已完成。Config 4 (nuc p=0.95/T=1.2) 运行中。深度分析: 1v2 AUC Δ<0.003 across configs, D016 universality confirmed (all 7 configs > θ=0.60), θ-sensitivity K* profile identical across 3 configs. 分析脚本 scripts/exp003_analyze_all_configs.py 已部署。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/exp003_analyze_all_configs.py\\\", \\\"server\\\": \\\"westc-26893\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"29459\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data_exp003_*\\\", \\\"data_count\\\": 4, \\\"model_name\\\": \\\"Qwen/Qwen2.5-1.5B-Instruct\\\", \\\"seed\\\": 42, \\\"configs\\\": \\\"4 ablation configs: greedy, nucleus p=0.9/T=1.0, nucleus p=0.95/T=0.7, nucleus p=0.95/T=1.2\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data_exp003_*\\\", \\\"log_path_note\\\": \\\"server renamed from autodl-4090d to westc-26893\\\"}, \\\"metrics\\\": {\\\"config1_greedy\\\": {\\\"k_star\\\": 2, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9797, \\\"1v2\\\": 0.6893, \\\"2v3\\\": 0.5613, \\\"3v4\\\": 0.5404, \\\"4v5\\\": 0.5139}, \\\"top3_features_1v2\\\": [\\\"self_bleu\\\", \\\"hapax_ratio\\\", \\\"ttr\\\"]}, \\\"config2_nuc09\\\": {\\\"k_star\\\": 2, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9946, \\\"1v2\\\": 0.6866, \\\"2v3\\\": 0.5917, \\\"3v4\\\": 0.5466, \\\"4v5\\\": 0.5068}, \\\"top3_features_1v2\\\": [\\\"hapax_ratio\\\", \\\"ttr\\\", \\\"surp_skew\\\"]}, \\\"config3_t07\\\": {\\\"k_star\\\": 2, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9878, \\\"1v2\\\": 0.6887, \\\"2v3\\\": 0.5902, \\\"3v4\\\": 0.5393, \\\"4v5\\\": 0.5349}, \\\"top3_features_1v2\\\": [\\\"hapax_ratio\\\", \\\"ttr\\\", \\\"low_freq_ratio\\\"]}, \\\"config4_t12\\\": {\\\"k_star\\\": 2, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9982, \\\"1v2\\\": 0.7039, \\\"2v3\\\": 0.5823, \\\"3v4\\\": 0.5293, \\\"4v5\\\": 0.5237}, \\\"top3_features_1v2\\\": [\\\"hapax_ratio\\\", \\\"ttr\\\", \\\"surp_skew\\\"]}, \\\"cross_config_analysis\\\": {\\\"greedy_vs_nuc09_feature_spearman\\\": 0.6, \\\"greedy_vs_t07_feature_spearman\\\": 0.914, \\\"nuc09_vs_t07_feature_spearman\\\": 0.782, \\\"d016_universality_theta060\\\": true, \\\"all_8_configs_1v2_above_060\\\": true, \\\"weakest_1v2\\\": \\\"Qwen-cont 0.6114\\\", \\\"theta_sensitivity\\\": {\\\"theta_055\\\": \\\"K*=3 (all 4 configs)\\\", \\\"theta_060\\\": \\\"K*=2 (all 4 configs)\\\", \\\"theta_065\\\": \\\"K*=2 (all 4 configs)\\\", \\\"theta_070\\\": \\\"K*=1 (3 configs) / K*=2 (config4_t12)\\\"}}}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T20:22:19.870Z\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis.json\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_015_neural_probe\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T18:53:34.791Z\\\", \\\"updated_at\\\": \\\"2026-05-13T18:53:48.812Z\\\", \\\"hypothesis\\\": \\\"Learned representations (frozen LLM → MLP) 的 K* 是否高于 hand-crafted 15D features？若 K*_neural > K*_15D，说明 15D projection 是 K*=2 的部分原因；若相同，加强 information-theoretic impossibility 论证\\\"}, \\\"exp_011_llm_zeroshot\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T08:59:07.954Z\\\", \\\"updated_at\\\": \\\"2026-05-13T11:34:44.605Z\\\", \\\"hypothesis\\\": \\\"Frontier LLMs (GPT-5.5, Claude Opus 4.6) cannot reliably estimate generational depth via zero-shot prompting, motivating the need for specialized statistical methods\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 scripts/exp011_llm_zeroshot.py --model gpt-5.5 && python3 scripts/exp011_llm_zeroshot.py --model claude-opus-4-6 && python3 scripts/exp011_analyze.py\\\", \\\"server\\\": \\\"autodl-4090d\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data_exp001_pythia/\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"GPT-5.5 + Claude Opus 4.6 (zero-shot via OpenRouter)\\\", \\\"seed\\\": 42, \\\"sampling\\\": \\\"100 texts × 5 depths (0-4) from Pythia continuation\\\", \\\"scripts\\\": [\\\"scripts/exp011_sample_data.py\\\", \\\"scripts/exp011_llm_zeroshot.py\\\", \\\"scripts/exp011_analyze.py\\\"], \\\"samples_path\\\": \\\"artifacts/exp011_samples.jsonl\\\", \\\"api_base_url\\\": \\\"http://47.94.22.126/v1\\\", \\\"api_model_ids\\\": {\\\"gpt-5.5\\\": \\\"openai/gpt-5.5\\\", \\\"claude-opus-4-6\\\": \\\"claude-opus-4-6\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/artifacts/exp011_analysis.json\\\", \\\"log_path\\\": \\\"N/A (API task)\\\"}, \\\"notes\\\": \\\"GPT-5.5: 500条, 0 parse failures. Claude Opus 4.6: 500条, 1 parse failure. 两个 frontier LLM 5-class accuracy (~33%) 均低于 OBD-LightGBM (38.6%)。Binary human/AI detection 高 (~88%) 但 fine-grained depth 判断失败。Claude proxy 需用 model ID 'claude-opus-4-6' (无 anthropic/ 前缀)。\\\", \\\"metrics\\\": {\\\"gpt55_5class_acc\\\": 0.332, \\\"gpt55_mae\\\": 1.102, \\\"gpt55_spearman\\\": 0.383, \\\"gpt55_binary_acc\\\": 0.878, \\\"claude_5class_acc\\\": 0.331, \\\"claude_mae\\\": 1.15, \\\"claude_spearman\\\": 0.416, \\\"claude_binary_acc\\\": 0.882, \\\"odb_baseline_5class_acc\\\": 0.386, \\\"odb_baseline_mae\\\": 1.107, \\\"gpt55_per_depth_acc\\\": {\\\"depth_0\\\": 0.77, \\\"depth_1\\\": 0.19, \\\"depth_2\\\": 0.38, \\\"depth_3\\\": 0.24, \\\"depth_4\\\": 0.08}, \\\"claude_per_depth_acc\\\": {\\\"depth_0\\\": 0.69, \\\"depth_1\\\": 0.21, \\\"depth_2\\\": 0.28, \\\"depth_3\\\": 0.101, \\\"depth_4\\\": 0.37}, \\\"n_samples_per_model\\\": 500, \\\"key_finding\\\": \\\"Both frontier LLMs (GPT-5.5, Claude Opus 4.6) perform WORSE than OBD-LightGBM on 5-class depth estimation (~33% vs 38.6% acc). Binary human/AI detection is high (~88%) but fine-grained depth discrimination fails.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T11:32:56.036Z\\\"}, \\\"exp_013_cross_transfer\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T20:50:57.813Z\\\", \\\"updated_at\\\": \\\"2026-05-13T06:54:11.689Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/run_exp013_cross_transfer.py --out_dir artifacts/\\\", \\\"server\\\": \\\"autodl-4090d\\\", \\\"data_path\\\": \\\"data/, data_exp001_pythia/, data_exp002_olmo/, data_exp017_qwen_cont/\\\", \\\"data_count\\\": 20000, \\\"model_name\\\": \\\"N/A (CPU classifiers: OBD-LightGBM)\\\", \\\"seed\\\": 42, \\\"input_sources\\\": [\\\"mvp-001 Qwen-rewrite\\\", \\\"exp-001 Pythia\\\", \\\"exp-002 OLMo\\\", \\\"exp-017 Qwen-cont\\\"], \\\"checkpoint_path\\\": \\\"artifacts/cross_transfer_matrix.json\\\", \\\"log_path\\\": \\\"N/A (CPU task)\\\"}, \\\"hypothesis\\\": \\\"Depth signal 是文本固有属性还是 model self-familiarity artifact？4×4 cross-model transfer matrix 测试分类器跨模型泛化能力\\\", \\\"metrics\\\": {\\\"accuracy_matrix\\\": {\\\"Qwen_rw→Qwen_rw\\\": 0.4229, \\\"Qwen_rw→Pythia\\\": 0.259, \\\"Qwen_rw→OLMo\\\": 0.2653, \\\"Qwen_rw→Qwen_cont\\\": 0.3466, \\\"Pythia→Qwen_rw\\\": 0.2718, \\\"Pythia→Pythia\\\": 0.3856, \\\"Pythia→OLMo\\\": 0.3531, \\\"Pythia→Qwen_cont\\\": 0.3287, \\\"OLMo→Qwen_rw\\\": 0.2768, \\\"OLMo→Pythia\\\": 0.345, \\\"OLMo→OLMo\\\": 0.3822, \\\"OLMo→Qwen_cont\\\": 0.3244, \\\"Qwen_cont→Qwen_rw\\\": 0.344, \\\"Qwen_cont→Pythia\\\": 0.3284, \\\"Qwen_cont→OLMo\\\": 0.3112, \\\"Qwen_cont→Qwen_cont\\\": 0.3875}, \\\"transfer_retention_accuracy\\\": {\\\"Pythia↔OLMo\\\": \\\"91-92%\\\", \\\"Qwen_rw→Pythia/OLMo\\\": \\\"61-63%\\\", \\\"Qwen_cont↔Pythia\\\": \\\"83-85%\\\", \\\"Qwen_cont↔OLMo\\\": \\\"80-85%\\\"}, \\\"transfer_retention_tau\\\": {\\\"Pythia↔OLMo\\\": \\\"85-86%\\\", \\\"Qwen_rw→Pythia/OLMo\\\": \\\"45-50%\\\", \\\"Qwen_cont↔others\\\": \\\"68-83%\\\"}, \\\"mean_pw_auc_matrix\\\": {\\\"within_avg\\\": 0.6099, \\\"cross_avg\\\": 0.5905, \\\"0v1_cross_all_above\\\": 0.96}, \\\"key_finding\\\": \\\"depth signal ≈ 70-85% text-intrinsic + 15-30% model self-familiarity. Binary contamination detection (0v1) highly transferable (>0.96 AUC). Fine-grained depth transfer depends on model family similarity. Qwen-rewrite overfits style features; Qwen-cont transfers much better.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T06:53:07.326Z\\\", \\\"notes\\\": \\\"depth signal ≈ 70-85% text-intrinsic + 15-30% model self-familiarity. Pythia↔OLMo 91-92% retention (architecture-agnostic). Qwen-rewrite catastrophic transfer to other models (61-63%), but Qwen-cont much better (80-85%). 0v1 universally transferable (>0.96 AUC), 1v2+ transfer depends on model family. Rewrite mode overfits style features → continuation mode is canonical condition for cross-model claims.\\\"}, \\\"exp_005_degradation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T02:40:12.117Z\\\", \\\"updated_at\\\": \\\"2026-05-13T06:51:26.544Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/run_exp005_degradation.py --data_dirs results_exp001_pythia results_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output_dir results_exp005_degradation\\\", \\\"server\\\": \\\"autodl-4090d\\\", \\\"script_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/scripts/run_exp005_degradation.py\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation\\\", \\\"data_count\\\": 15000, \\\"model_name\\\": \\\"Pythia-1.4B / OLMo-1B / Qwen-1.5B (3-model comparison)\\\", \\\"seed\\\": 42, \\\"input_dirs\\\": [\\\"results_exp001_pythia\\\", \\\"results_exp002_olmo\\\", \\\"data\\\"], \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_005_degradation.log\\\"}, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json\\\", \\\"metrics\\\": {\\\"cross_model_kendall_tau_by_first_auc\\\": {\\\"Pythia_vs_OLMo\\\": 0.733, \\\"Pythia_vs_Qwen_rewrite\\\": 0.467, \\\"Pythia_vs_Qwen_cont\\\": 0.695, \\\"OLMo_vs_Qwen_rewrite\\\": 0.429, \\\"OLMo_vs_Qwen_cont\\\": 0.543, \\\"Qwen_rewrite_vs_Qwen_cont\\\": 0.733}, \\\"cross_model_kendall_tau_by_avg_auc\\\": {\\\"Pythia_vs_OLMo\\\": 0.8476, \\\"Pythia_vs_Qwen_cont\\\": 0.7524, \\\"OLMo_vs_Qwen_cont\\\": 0.6762}, \\\"cross_model_spearman_rho_single_feature_auc\\\": {\\\"Pythia_vs_OLMo\\\": 0.95, \\\"Pythia_vs_Qwen_cont\\\": 0.9143, \\\"OLMo_vs_Qwen_cont\\\": 0.85, \\\"metric_definition\\\": \\\"Spearman ρ on per-feature AUC rankings (each feature independently classifies depth pairs)\\\"}, \\\"4model_tau_mean_continuation_by_first_auc\\\": 0.657, \\\"4model_tau_mean_all_by_first_auc\\\": 0.6, \\\"generation_mode_delta\\\": {\\\"Pythia_vs_Qwen\\\": \\\"+0.228\\\", \\\"OLMo_vs_Qwen\\\": \\\"+0.114\\\"}, \\\"top3_features_ranking_by_first_auc\\\": {\\\"Pythia\\\": [\\\"surp_d1_std\\\", \\\"surp_d2_std\\\", \\\"surp_std\\\"], \\\"OLMo\\\": [\\\"surp_std\\\", \\\"surp_d1_std\\\", \\\"surp_d2_std\\\"], \\\"Qwen_rewrite\\\": [\\\"freq_entropy\\\", \\\"surp_std\\\", \\\"surp_d1_std\\\"], \\\"Qwen_cont\\\": [\\\"surp_d1_std\\\", \\\"surp_std\\\", \\\"surp_d2_std\\\"]}, \\\"shared_top_discriminators\\\": \\\"surp_d1_std, surp_std, surp_d2_std shared across all architectures (single-feature AUC ranking)\\\", \\\"degradation_ordering_consistency\\\": \\\"Strong cross-model consistency (ρ≥0.85) on single-feature AUC ranking under controlled generation mode.\\\", \\\"residual_architecture_effect\\\": \\\"Qwen-cont vs OLMo (τ=0.54 by_first_auc) still lower than Pythia vs OLMo (τ=0.73), ~30-40% of ordering divergence from architecture\\\", \\\"limitation_1v2_weakness\\\": \\\"depth-pair level consistency weakest at 1v2 (τ~0.37), near-generational feature importance ordering varies more across models\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T02:40:50.885Z\\\", \\\"notes\\\": \\\"4-model τ matrix complete. Generation mode confirmed as primary driver of Qwen divergence (Δτ=+0.23 for Pythia pair). Residual architecture effect ~30-40%. C2 claim: degradation ordering largely consistent under same generation mode, with noted architecture residuals.\\\"}, \\\"exp_017_qwen_continuation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T20:41:22.423Z\\\", \\\"updated_at\\\": \\\"2026-05-13T06:17:00.826Z\\\", \\\"hypothesis\\\": \\\"Generation mode 对 K* 的影响：Qwen2.5-1.5B-Instruct continuation vs rewrite (mvp-001)，分离 generation mode 和 model 对 K* 的独立效应\\\", \\\"notes\\\": \\\"dry-run passed 2026-05-13: model OK (2.9G safetensors), env OK (torch=2.10.0+cu128, transformers=4.57.6), dirs auto-create. Submit command prepared. 等 exp-002 完成后立即提交。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2.5-1.5B-Instruct --data_dir /root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont --results_dir /root/autodl-tmp/gen-depth-contamination/results_exp017_qwen_cont --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\\\\\"\\\", \\\"server\\\": \\\"autodl-4090d\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"23758\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_017_qwen_continuation.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T02:35:15Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"Qwen/Qwen2.5-1.5B-Instruct\\\", \\\"seed\\\": 42, \\\"max_depth\\\": 5, \\\"generation_mode\\\": \\\"continuation\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont/\\\", \\\"wall_clock_seconds\\\": 13305.8, \\\"gpu_hours\\\": 3.7}, \\\"log_path\\\": \\\"/root/runs/gen-depth-contamination/exp_017_qwen_continuation.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results_exp017_qwen_cont/\\\", \\\"metrics\\\": {\\\"k_star\\\": 2, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9972, \\\"1v2\\\": 0.6114, \\\"2v3\\\": 0.5609, \\\"3v4\\\": 0.5408, \\\"4v5\\\": 0.5139}, \\\"pairwise_jsd\\\": {\\\"0v1\\\": 0.28627, \\\"1v2\\\": 0.005107, \\\"2v3\\\": 0.003603, \\\"3v4\\\": 0.003395, \\\"4v5\\\": 0.003085}, \\\"ordinal_mae\\\": 1.1547, \\\"ordinal_accuracy\\\": 0.3819, \\\"top3_features\\\": [\\\"freq_entropy\\\", \\\"surp_mean\\\", \\\"surp_std\\\"]}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T06:17:00.826Z\\\"}, \\\"exp_010_ordinal_baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T04:22:42.199Z\\\", \\\"updated_at\\\": \\\"2026-05-13T04:26:54.571Z\\\", \\\"hypothesis\\\": \\\"Ordinal structure improves depth classification: ordinal methods should outperform unordered multiclass on MAE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/run_exp010_ordinal_comparison.py\\\", \\\"server\\\": \\\"autodl-4090d\\\", \\\"data_path\\\": \\\"data/features.csv, data_exp001_pythia/features.csv, data_exp002_olmo/features.csv\\\", \\\"data_count\\\": 90000, \\\"model_name\\\": \\\"N/A (CPU classifiers)\\\", \\\"seed\\\": \\\"N/A\\\", \\\"checkpoint_source\\\": \\\"N/A\\\", \\\"eval_data\\\": \\\"N/A\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/artifacts/ordinal_comparison_results.json\\\"}, \\\"metrics\\\": {\\\"qwen_rewrite\\\": {\\\"obd_lgbm\\\": {\\\"accuracy\\\": 0.4229, \\\"mae\\\": 0.9836, \\\"tau_b\\\": 0.5518, \\\"mean_pw_auc\\\": 0.6214}, \\\"multiclass_lgbm\\\": {\\\"accuracy\\\": 0.4182, \\\"mae\\\": 1.0163, \\\"tau_b\\\": 0.5367, \\\"mean_pw_auc\\\": 0.6246}, \\\"ordinal_logreg\\\": {\\\"accuracy\\\": 0.3636, \\\"mae\\\": 0.9105, \\\"tau_b\\\": 0.563, \\\"mean_pw_auc\\\": 0.5022}}, \\\"pythia\\\": {\\\"obd_lgbm\\\": {\\\"accuracy\\\": 0.3856, \\\"mae\\\": 1.1072, \\\"tau_b\\\": 0.4745, \\\"mean_pw_auc\\\": 0.6055}, \\\"multiclass_lgbm\\\": {\\\"accuracy\\\": 0.3832, \\\"mae\\\": 1.1399, \\\"tau_b\\\": 0.4622, \\\"mean_pw_auc\\\": 0.6062}, \\\"ordinal_logreg\\\": {\\\"accuracy\\\": 0.3179, \\\"mae\\\": 1.022, \\\"tau_b\\\": 0.49, \\\"mean_pw_auc\\\": 0.4767}}, \\\"olmo\\\": {\\\"obd_lgbm\\\": {\\\"accuracy\\\": 0.3822, \\\"mae\\\": 1.1469, \\\"tau_b\\\": 0.4683, \\\"mean_pw_auc\\\": 0.6015}, \\\"multiclass_lgbm\\\": {\\\"accuracy\\\": 0.3685, \\\"mae\\\": 1.1813, \\\"tau_b\\\": 0.4497, \\\"mean_pw_auc\\\": 0.5974}, \\\"ordinal_logreg\\\": {\\\"accuracy\\\": 0.3265, \\\"mae\\\": 1.0352, \\\"tau_b\\\": 0.4656, \\\"mean_pw_auc\\\": 0.4859}}}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"Ordinal methods beat multiclass LightGBM on MAE across all 3 datasets. Best MAE consistently from mord LogisticAT, not OBD-LightGBM. However, ordinal_logreg has worst pairwise AUC — it reduces MAE by collapsing predictions toward the center, not by better discrimination.\\\", \\\"completed_at\\\": \\\"2026-05-13T04:26:54.571Z\\\"}, \\\"exp_002_olmo_depth\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T20:06:24.766Z\\\", \\\"updated_at\\\": \\\"2026-05-13T02:35:52.823Z\\\", \\\"hypothesis\\\": \\\"K* 跨模型一致性验证：OLMo-1B 在相同种子数据和解码策略下的 K* 是否与 Qwen2.5-1.5B 一致（K*=2）\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/allenai/OLMo-1B-hf --data_dir /root/autodl-tmp/gen-depth-contamination/data_exp002_olmo --results_dir /root/autodl-tmp/gen-depth-contamination/results_exp002_olmo --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\\\\\"\\\", \\\"server\\\": \\\"autodl-4090d\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"20225\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_002_olmo_depth.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T00:16:07.960Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data_exp002_olmo\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"allenai/OLMo-1B-hf\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data_exp002_olmo/\\\", \\\"wall_clock_seconds\\\": 8384.9, \\\"gpu_hours\\\": 2.33}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T02:31:18.880Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T02:31:19.738113+00:00\\\"}]}, \\\"metrics\\\": {\\\"k_star\\\": 2, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.997, \\\"1v2\\\": 0.6146, \\\"2v3\\\": 0.5497, \\\"3v4\\\": 0.509, \\\"4v5\\\": 0.5044}, \\\"pairwise_auc_std\\\": {\\\"0v1\\\": 0.0004, \\\"1v2\\\": 0.0029, \\\"2v3\\\": 0.004, \\\"3v4\\\": 0.0084, \\\"4v5\\\": 0.0136}, \\\"pairwise_jsd\\\": {\\\"0v1\\\": 0.23941, \\\"1v2\\\": 0.012972, \\\"2v3\\\": 0.00735, \\\"3v4\\\": 0.003968, \\\"4v5\\\": 0.003851}, \\\"ordinal_mae\\\": 1.1813, \\\"ordinal_accuracy\\\": 0.3685, \\\"top_features\\\": [\\\"surp_d1_mean\\\", \\\"surp_d1_skew\\\", \\\"freq_kurtosis\\\", \\\"surp_d2_mean\\\", \\\"surp_mean\\\"]}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T02:35:52.823Z\\\"}}, \\\"count\\\": 10, \\\"total\\\": 12, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0529}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_006_graduated_filtering\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T20:25:52.364Z\", \"updated_at\": \"2026-05-13T23:39:51.042Z\", \"hypothesis\": \"K*-aware graduated filtering (exploiting human/gen-1/gen-2+ trichotomy) yields better downstream LM quality than binary filtering on MMLU and HellaSwag. 6 strategies × 5 seeds × α sweep.\", \"parent\": \"exp_003_decoding_ablation\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/gen-depth-contamination && bash scripts/run_exp006.sh\\\"\", \"server\": \"westc-26893\", \"gpu\": [\"cuda:0\"], \"pid\": \"46129\", \"log_path\": \"~/runs/gen-depth-contamination/exp_006_graduated_filtering.log\", \"submitted_at\": \"2026-05-13T21:02:48.327Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/\", \"data_count\": 30000, \"model_name\": \"Qwen/Qwen2.5-1.5B-Instruct\", \"seed\": \"42,123,456,789,1024\", \"checkpoint_source\": \"Qwen/Qwen2.5-1.5B-Instruct (base model, LoRA CPT per strategy)\", \"eval_data\": \"lm-eval-harness: MMLU (14042 test) + HellaSwag (10042 val)\"}, \"notes\": \"Progress check 05-13 22:35 UTC: PID 46129 alive, 3/50 runs done (4%), currently on no-filter_s456 step 310/2814. Actual speed ~44min/run (original estimate 25min). Total ETA ~36.7h, remaining ~35h. Output path: /root/autodl-tmp/gen-depth-contamination/outputs/exp006/. Run 1 adapter at outputs/exp006/no-filter_s42/final_adapter.\"}, \"exp_007_bootstrap_ci\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T03:45:50.948Z\", \"updated_at\": \"2026-05-13T21:15:42.372Z\", \"hypothesis\": \"K* 统计严谨性验证：bootstrap 95% CI 和 permutation test 确认 K*=2 在三个模型族上统计显著\", \"spec\": {\"command\": \"python scripts/bootstrap_ci.py --data_dirs results_exp001_pythia results_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output artifacts/bootstrap_ci_results.json\", \"script_path\": \"/root/autodl-tmp/gen-depth-contamination/scripts/bootstrap_ci.py\", \"server\": \"autodl-4090d\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/bootstrap_ci_results.json\", \"data_count\": 15000, \"model_name\": \"Pythia-1.4B / OLMo-1B / Qwen-1.5B\", \"seed\": 42, \"input_sources\": [\"results_exp001_pythia (exp-001)\", \"results_exp002_olmo (exp-002)\", \"data (mvp-001)\"], \"bootstrap_resamples\": 1000, \"permutation_resamples\": 500, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/bootstrap_ci_results.json\", \"log_path\": \"~/runs/gen-depth-contamination/exp_007_bootstrap_ci.log\"}, \"metrics\": {\"qwen_rewrite\": {\"0v1\": {\"auc\": 0.9956, \"ci_lower\": 0.9946, \"ci_upper\": 0.9965, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6955, \"ci_lower\": 0.6859, \"ci_upper\": 0.7041, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5893, \"ci_lower\": 0.5795, \"ci_upper\": 0.5991, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5435, \"ci_lower\": 0.5333, \"ci_upper\": 0.5551, \"perm_p\": 0.002}, \"4v5\": {\"auc\": 0.534, \"ci_lower\": 0.5238, \"ci_upper\": 0.5448, \"perm_p\": 0.002}}, \"pythia_cont\": {\"0v1\": {\"auc\": 0.9932, \"ci_lower\": 0.9921, \"ci_upper\": 0.9943, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6539, \"ci_lower\": 0.6454, \"ci_upper\": 0.663, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5514, \"ci_lower\": 0.5417, \"ci_upper\": 0.5628, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5152, \"ci_lower\": 0.5041, \"ci_upper\": 0.526, \"perm_p\": 0.006}, \"4v5\": {\"auc\": 0.5136, \"ci_lower\": 0.5021, \"ci_upper\": 0.5249, \"perm_p\": 0.008}}, \"olmo_cont\": {\"0v1\": {\"auc\": 0.997, \"ci_lower\": 0.9964, \"ci_upper\": 0.9975, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6145, \"ci_lower\": 0.6045, \"ci_upper\": 0.6247, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5496, \"ci_lower\": 0.5399, \"ci_upper\": 0.5596, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5091, \"ci_lower\": 0.4973, \"ci_upper\": 0.52, \"perm_p\": 0.064}, \"4v5\": {\"auc\": 0.5045, \"ci_lower\": 0.4932, \"ci_upper\": 0.515, \"perm_p\": 0.232}}, \"qwen_cont\": {\"0v1\": {\"auc\": 0.9972, \"ci_lower\": 0.9963, \"ci_upper\": 0.9978, \"perm_p\": 0}, \"1v2\": {\"auc\": 0.6112, \"ci_lower\": 0.6015, \"ci_upper\": 0.6213, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5609, \"ci_lower\": 0.5511, \"ci_upper\": 0.5712, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5409, \"ci_lower\": 0.5308, \"ci_upper\": 0.5508, \"perm_p\": 0.002}, \"4v5\": {\"auc\": 0.5141, \"ci_lower\": 0.5035, \"ci_upper\": 0.5255, \"perm_p\": 0.006}}, \"k_star_robust\": true, \"all_1v2_ci_lower_above_060\": true, \"most_marginal\": \"Qwen-cont CI lower=0.6015, only 0.0015 above threshold\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T03:46:36.617Z\"}, \"exp_003_decoding_ablation\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-12T20:06:25.260Z\", \"updated_at\": \"2026-05-13T21:15:30.408Z\", \"hypothesis\": \"解码策略调控 K*：不同 top_p/temperature 设置是否改变饱和边界（greedy→更低 K*? 高温度→更高 K*?）\", \"failure_reason\": \"SSH check failed 5x — last error: Unknown server 'autodl-4090d'. Available: ['westc-26893']\", \"completed_at\": \"2026-05-13T15:35:29.038Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T15:35:30.207607+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T20:22:20.803872+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: SSH 别名变更 (autodl-4090d → westc-26893)，cron 监控 5 次连不上后标记 failed。初步诊断: 日志在 westc-26893 上可读，config 2 (nucleus_p0.9_t1.0) 已完成并输出 K*=2，config 3 (nucleus_p0.95_t0.7) 在 depth 4 进度 ~90% 时日志截止。实验可能已完成或部分完成。Worker worker_diagnose_exp_003_decoding_ablation_20260513T153757 正在深入诊断。\"}}, \"notes\": \"Server alias 变更 autodl-4090d → westc-26893 导致 cron 误标 failed。实际实验一直正常运行。Config 1 (greedy, K*=2), Config 2 (nuc p=0.9/T=1.0, K*=2), Config 3 (nuc p=0.95/T=0.7, K*=2) 已完成。Config 4 (nuc p=0.95/T=1.2) 运行中。深度分析: 1v2 AUC Δ<0.003 across configs, D016 universality confirmed (all 7 configs > θ=0.60), θ-sensitivity K* profile identical across 3 configs. 分析脚本 scripts/exp003_analyze_all_configs.py 已部署。\", \"spec\": {\"command\": \"python scripts/exp003_analyze_all_configs.py\", \"server\": \"westc-26893\", \"gpu\": [\"cuda:0\"], \"pid\": \"29459\", \"log_path\": \"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp003_*\", \"data_count\": 4, \"model_name\": \"Qwen/Qwen2.5-1.5B-Instruct\", \"seed\": 42, \"configs\": \"4 ablation configs: greedy, nucleus p=0.9/T=1.0, nucleus p=0.95/T=0.7, nucleus p=0.95/T=1.2\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp003_*\", \"log_path_note\": \"server renamed from autodl-4090d to westc-26893\"}, \"metrics\": {\"config1_greedy\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9797, \"1v2\": 0.6893, \"2v3\": 0.5613, \"3v4\": 0.5404, \"4v5\": 0.5139}, \"top3_features_1v2\": [\"self_bleu\", \"hapax_ratio\", \"ttr\"]}, \"config2_nuc09\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9946, \"1v2\": 0.6866, \"2v3\": 0.5917, \"3v4\": 0.5466, \"4v5\": 0.5068}, \"top3_features_1v2\": [\"hapax_ratio\", \"ttr\", \"surp_skew\"]}, \"config3_t07\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9878, \"1v2\": 0.6887, \"2v3\": 0.5902, \"3v4\": 0.5393, \"4v5\": 0.5349}, \"top3_features_1v2\": [\"hapax_ratio\", \"ttr\", \"low_freq_ratio\"]}, \"config4_t12\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9982, \"1v2\": 0.7039, \"2v3\": 0.5823, \"3v4\": 0.5293, \"4v5\": 0.5237}, \"top3_features_1v2\": [\"hapax_ratio\", \"ttr\", \"surp_skew\"]}, \"cross_config_analysis\": {\"greedy_vs_nuc09_feature_spearman\": 0.6, \"greedy_vs_t07_feature_spearman\": 0.914, \"nuc09_vs_t07_feature_spearman\": 0.782, \"d016_universality_theta060\": true, \"all_8_configs_1v2_above_060\": true, \"weakest_1v2\": \"Qwen-cont 0.6114\", \"theta_sensitivity\": {\"theta_055\": \"K*=3 (all 4 configs)\", \"theta_060\": \"K*=2 (all 4 configs)\", \"theta_065\": \"K*=2 (all 4 configs)\", \"theta_070\": \"K*=1 (3 configs) / K*=2 (config4_t12)\"}}}, \"reproduce\": {\"finished_at\": \"2026-05-13T20:22:19.870Z\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis.json\", \"log_path\": \"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\", \"conclusion\": \"success\"}, \"exp_015_neural_probe\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T18:53:34.791Z\", \"updated_at\": \"2026-05-13T18:53:48.812Z\", \"hypothesis\": \"Learned representations (frozen LLM → MLP) 的 K* 是否高于 hand-crafted 15D features？若 K*_neural > K*_15D，说明 15D projection 是 K*=2 的部分原因；若相同，加强 information-theoretic impossibility 论证\"}, \"exp_011_llm_zeroshot\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T08:59:07.954Z\", \"updated_at\": \"2026-05-13T11:34:44.605Z\", \"hypothesis\": \"Frontier LLMs (GPT-5.5, Claude Opus 4.6) cannot reliably estimate generational depth via zero-shot prompting, motivating the need for specialized statistical methods\", \"spec\": {\"command\": \"python3 scripts/exp011_llm_zeroshot.py --model gpt-5.5 && python3 scripts/exp011_llm_zeroshot.py --model claude-opus-4-6 && python3 scripts/exp011_analyze.py\", \"server\": \"autodl-4090d\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp001_pythia/\", \"data_count\": 500, \"model_name\": \"GPT-5.5 + Claude Opus 4.6 (zero-shot via OpenRouter)\", \"seed\": 42, \"sampling\": \"100 texts × 5 depths (0-4) from Pythia continuation\", \"scripts\": [\"scripts/exp011_sample_data.py\", \"scripts/exp011_llm_zeroshot.py\", \"scripts/exp011_analyze.py\"], \"samples_path\": \"artifacts/exp011_samples.jsonl\", \"api_base_url\": \"http://47.94.22.126/v1\", \"api_model_ids\": {\"gpt-5.5\": \"openai/gpt-5.5\", \"claude-opus-4-6\": \"claude-opus-4-6\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp011_analysis.json\", \"log_path\": \"N/A (API task)\"}, \"notes\": \"GPT-5.5: 500条, 0 parse failures. Claude Opus 4.6: 500条, 1 parse failure. 两个 frontier LLM 5-class accuracy (~33%) 均低于 OBD-LightGBM (38.6%)。Binary human/AI detection 高 (~88%) 但 fine-grained depth 判断失败。Claude proxy 需用 model ID 'claude-opus-4-6' (无 anthropic/ 前缀)。\", \"metrics\": {\"gpt55_5class_acc\": 0.332, \"gpt55_mae\": 1.102, \"gpt55_spearman\": 0.383, \"gpt55_binary_acc\": 0.878, \"claude_5class_acc\": 0.331, \"claude_mae\": 1.15, \"claude_spearman\": 0.416, \"claude_binary_acc\": 0.882, \"odb_baseline_5class_acc\": 0.386, \"odb_baseline_mae\": 1.107, \"gpt55_per_depth_acc\": {\"depth_0\": 0.77, \"depth_1\": 0.19, \"depth_2\": 0.38, \"depth_3\": 0.24, \"depth_4\": 0.08}, \"claude_per_depth_acc\": {\"depth_0\": 0.69, \"depth_1\": 0.21, \"depth_2\": 0.28, \"depth_3\": 0.101, \"depth_4\": 0.37}, \"n_samples_per_model\": 500, \"key_finding\": \"Both frontier LLMs (GPT-5.5, Claude Opus 4.6) perform WORSE than OBD-LightGBM on 5-class depth estimation (~33% vs 38.6% acc). Binary human/AI detection is high (~88%) but fine-grained depth discrimination fails.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T11:32:56.036Z\"}, \"exp_013_cross_transfer\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:50:57.813Z\", \"updated_at\": \"2026-05-13T06:54:11.689Z\", \"spec\": {\"command\": \"python scripts/run_exp013_cross_transfer.py --out_dir artifacts/\", \"server\": \"autodl-4090d\", \"data_path\": \"data/, data_exp001_pythia/, data_exp002_olmo/, data_exp017_qwen_cont/\", \"data_count\": 20000, \"model_name\": \"N/A (CPU classifiers: OBD-LightGBM)\", \"seed\": 42, \"input_sources\": [\"mvp-001 Qwen-rewrite\", \"exp-001 Pythia\", \"exp-002 OLMo\", \"exp-017 Qwen-cont\"], \"checkpoint_path\": \"artifacts/cross_transfer_matrix.json\", \"log_path\": \"N/A (CPU task)\"}, \"hypothesis\": \"Depth signal 是文本固有属性还是 model self-familiarity artifact？4×4 cross-model transfer matrix 测试分类器跨模型泛化能力\", \"metrics\": {\"accuracy_matrix\": {\"Qwen_rw→Qwen_rw\": 0.4229, \"Qwen_rw→Pythia\": 0.259, \"Qwen_rw→OLMo\": 0.2653, \"Qwen_rw→Qwen_cont\": 0.3466, \"Pythia→Qwen_rw\": 0.2718, \"Pythia→Pythia\": 0.3856, \"Pythia→OLMo\": 0.3531, \"Pythia→Qwen_cont\": 0.3287, \"OLMo→Qwen_rw\": 0.2768, \"OLMo→Pythia\": 0.345, \"OLMo→OLMo\": 0.3822, \"OLMo→Qwen_cont\": 0.3244, \"Qwen_cont→Qwen_rw\": 0.344, \"Qwen_cont→Pythia\": 0.3284, \"Qwen_cont→OLMo\": 0.3112, \"Qwen_cont→Qwen_cont\": 0.3875}, \"transfer_retention_accuracy\": {\"Pythia↔OLMo\": \"91-92%\", \"Qwen_rw→Pythia/OLMo\": \"61-63%\", \"Qwen_cont↔Pythia\": \"83-85%\", \"Qwen_cont↔OLMo\": \"80-85%\"}, \"transfer_retention_tau\": {\"Pythia↔OLMo\": \"85-86%\", \"Qwen_rw→Pythia/OLMo\": \"45-50%\", \"Qwen_cont↔others\": \"68-83%\"}, \"mean_pw_auc_matrix\": {\"within_avg\": 0.6099, \"cross_avg\": 0.5905, \"0v1_cross_all_above\": 0.96}, \"key_finding\": \"depth signal ≈ 70-85% text-intrinsic + 15-30% model self-familiarity. Binary contamination detection (0v1) highly transferable (>0.96 AUC). Fine-grained depth transfer depends on model family similarity. Qwen-rewrite overfits style features; Qwen-cont transfers much better.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T06:53:07.326Z\", \"notes\": \"depth signal ≈ 70-85% text-intrinsic + 15-30% model self-familiarity. Pythia↔OLMo 91-92% retention (architecture-agnostic). Qwen-rewrite catastrophic transfer to other models (61-63%), but Qwen-cont much better (80-85%). 0v1 universally transferable (>0.96 AUC), 1v2+ transfer depends on model family. Rewrite mode overfits style features → continuation mode is canonical condition for cross-model claims.\"}, \"exp_005_degradation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T02:40:12.117Z\", \"updated_at\": \"2026-05-13T06:51:26.544Z\", \"spec\": {\"command\": \"python scripts/run_exp005_degradation.py --data_dirs results_exp001_pythia results_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output_dir results_exp005_degradation\", \"server\": \"autodl-4090d\", \"script_path\": \"/root/autodl-tmp/gen-depth-contamination/scripts/run_exp005_degradation.py\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation\", \"data_count\": 15000, \"model_name\": \"Pythia-1.4B / OLMo-1B / Qwen-1.5B (3-model comparison)\", \"seed\": 42, \"input_dirs\": [\"results_exp001_pythia\", \"results_exp002_olmo\", \"data\"], \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/\", \"log_path\": \"~/runs/gen-depth-contamination/exp_005_degradation.log\"}, \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json\", \"metrics\": {\"cross_model_kendall_tau_by_first_auc\": {\"Pythia_vs_OLMo\": 0.733, \"Pythia_vs_Qwen_rewrite\": 0.467, \"Pythia_vs_Qwen_cont\": 0.695, \"OLMo_vs_Qwen_rewrite\": 0.429, \"OLMo_vs_Qwen_cont\": 0.543, \"Qwen_rewrite_vs_Qwen_cont\": 0.733}, \"cross_model_kendall_tau_by_avg_auc\": {\"Pythia_vs_OLMo\": 0.8476, \"Pythia_vs_Qwen_cont\": 0.7524, \"OLMo_vs_Qwen_cont\": 0.6762}, \"cross_model_spearman_rho_single_feature_auc\": {\"Pythia_vs_OLMo\": 0.95, \"Pythia_vs_Qwen_cont\": 0.9143, \"OLMo_vs_Qwen_cont\": 0.85, \"metric_definition\": \"Spearman ρ on per-feature AUC rankings (each feature independently classifies depth pairs)\"}, \"4model_tau_mean_continuation_by_first_auc\": 0.657, \"4model_tau_mean_all_by_first_auc\": 0.6, \"generation_mode_delta\": {\"Pythia_vs_Qwen\": \"+0.228\", \"OLMo_vs_Qwen\": \"+0.114\"}, \"top3_features_ranking_by_first_auc\": {\"Pythia\": [\"surp_d1_std\", \"surp_d2_std\", \"surp_std\"], \"OLMo\": [\"surp_std\", \"surp_d1_std\", \"surp_d2_std\"], \"Qwen_rewrite\": [\"freq_entropy\", \"surp_std\", \"surp_d1_std\"], \"Qwen_cont\": [\"surp_d1_std\", \"surp_std\", \"surp_d2_std\"]}, \"shared_top_discriminators\": \"surp_d1_std, surp_std, surp_d2_std shared across all architectures (single-feature AUC ranking)\", \"degradation_ordering_consistency\": \"Strong cross-model consistency (ρ≥0.85) on single-feature AUC ranking under controlled generation mode.\", \"residual_architecture_effect\": \"Qwen-cont vs OLMo (τ=0.54 by_first_auc) still lower than Pythia vs OLMo (τ=0.73), ~30-40% of ordering divergence from architecture\", \"limitation_1v2_weakness\": \"depth-pair level consistency weakest at 1v2 (τ~0.37), near-generational feature importance ordering varies more across models\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T02:40:50.885Z\", \"notes\": \"4-model τ matrix complete. Generation mode confirmed as primary driver of Qwen divergence (Δτ=+0.23 for Pythia pair). Residual architecture effect ~30-40%. C2 claim: degradation ordering largely consistent under same generation mode, with noted architecture residuals.\"}, \"exp_017_qwen_continuation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:41:22.423Z\", \"updated_at\": \"2026-05-13T06:17:00.826Z\", \"hypothesis\": \"Generation mode 对 K* 的影响：Qwen2.5-1.5B-Instruct continuation vs rewrite (mvp-001)，分离 generation mode 和 model 对 K* 的独立效应\", \"notes\": \"dry-run passed 2026-05-13: model OK (2.9G safetensors), env OK (torch=2.10.0+cu128, transformers=4.57.6), dirs auto-create. Submit command prepared. 等 exp-002 完成后立即提交。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2.5-1.5B-Instruct --data_dir /root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont --results_dir /root/autodl-tmp/gen-depth-contamination/results_exp017_qwen_cont --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"autodl-4090d\", \"gpu\": [\"cuda:0\"], \"pid\": \"23758\", \"log_path\": \"~/runs/gen-depth-contamination/exp_017_qwen_continuation.log\", \"submitted_at\": \"2026-05-13T02:35:15Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont\", \"data_count\": 5000, \"model_name\": \"Qwen/Qwen2.5-1.5B-Instruct\", \"seed\": 42, \"max_depth\": 5, \"generation_mode\": \"continuation\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont/\", \"wall_clock_seconds\": 13305.8, \"gpu_hours\": 3.7}, \"log_path\": \"/root/runs/gen-depth-contamination/exp_017_qwen_continuation.log\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results_exp017_qwen_cont/\", \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9972, \"1v2\": 0.6114, \"2v3\": 0.5609, \"3v4\": 0.5408, \"4v5\": 0.5139}, \"pairwise_jsd\": {\"0v1\": 0.28627, \"1v2\": 0.005107, \"2v3\": 0.003603, \"3v4\": 0.003395, \"4v5\": 0.003085}, \"ordinal_mae\": 1.1547, \"ordinal_accuracy\": 0.3819, \"top3_features\": [\"freq_entropy\", \"surp_mean\", \"surp_std\"]}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T06:17:00.826Z\"}, \"exp_010_ordinal_baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T04:22:42.199Z\", \"updated_at\": \"2026-05-13T04:26:54.571Z\", \"hypothesis\": \"Ordinal structure improves depth classification: ordinal methods should outperform unordered multiclass on MAE\", \"spec\": {\"command\": \"python scripts/run_exp010_ordinal_comparison.py\", \"server\": \"autodl-4090d\", \"data_path\": \"data/features.csv, data_exp001_pythia/features.csv, data_exp002_olmo/features.csv\", \"data_count\": 90000, \"model_name\": \"N/A (CPU classifiers)\", \"seed\": \"N/A\", \"checkpoint_source\": \"N/A\", \"eval_data\": \"N/A\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/ordinal_comparison_results.json\"}, \"metrics\": {\"qwen_rewrite\": {\"obd_lgbm\": {\"accuracy\": 0.4229, \"mae\": 0.9836, \"tau_b\": 0.5518, \"mean_pw_auc\": 0.6214}, \"multiclass_lgbm\": {\"accuracy\": 0.4182, \"mae\": 1.0163, \"tau_b\": 0.5367, \"mean_pw_auc\": 0.6246}, \"ordinal_logreg\": {\"accuracy\": 0.3636, \"mae\": 0.9105, \"tau_b\": 0.563, \"mean_pw_auc\": 0.5022}}, \"pythia\": {\"obd_lgbm\": {\"accuracy\": 0.3856, \"mae\": 1.1072, \"tau_b\": 0.4745, \"mean_pw_auc\": 0.6055}, \"multiclass_lgbm\": {\"accuracy\": 0.3832, \"mae\": 1.1399, \"tau_b\": 0.4622, \"mean_pw_auc\": 0.6062}, \"ordinal_logreg\": {\"accuracy\": 0.3179, \"mae\": 1.022, \"tau_b\": 0.49, \"mean_pw_auc\": 0.4767}}, \"olmo\": {\"obd_lgbm\": {\"accuracy\": 0.3822, \"mae\": 1.1469, \"tau_b\": 0.4683, \"mean_pw_auc\": 0.6015}, \"multiclass_lgbm\": {\"accuracy\": 0.3685, \"mae\": 1.1813, \"tau_b\": 0.4497, \"mean_pw_auc\": 0.5974}, \"ordinal_logreg\": {\"accuracy\": 0.3265, \"mae\": 1.0352, \"tau_b\": 0.4656, \"mean_pw_auc\": 0.4859}}}, \"conclusion\": \"success\", \"notes\": \"Ordinal methods beat multiclass LightGBM on MAE across all 3 datasets. Best MAE consistently from mord LogisticAT, not OBD-LightGBM. However, ordinal_logreg has worst pairwise AUC — it reduces MAE by collapsing predictions toward the center, not by better discrimination.\", \"completed_at\": \"2026-05-13T04:26:54.571Z\"}, \"exp_002_olmo_depth\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:06:24.766Z\", \"updated_at\": \"2026-05-13T02:35:52.823Z\", \"hypothesis\": \"K* 跨模型一致性验证：OLMo-1B 在相同种子数据和解码策略下的 K* 是否与 Qwen2.5-1.5B 一致（K*=2）\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/allenai/OLMo-1B-hf --data_dir /root/autodl-tmp/gen-depth-contamination/data_exp002_olmo --results_dir /root/autodl-tmp/gen-depth-contamination/results_exp002_olmo --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"autodl-4090d\", \"gpu\": [\"cuda:0\"], \"pid\": \"20225\", \"log_path\": \"~/runs/gen-depth-contamination/exp_002_olmo_depth.log\", \"submitted_at\": \"2026-05-13T00:16:07.960Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp002_olmo\", \"data_count\": 5000, \"model_name\": \"allenai/OLMo-1B-hf\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp002_olmo/\", \"wall_clock_seconds\": 8384.9, \"gpu_hours\": 2.33}, \"reproduce\": {\"finished_at\": \"2026-05-13T02:31:18.880Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T02:31:19.738113+00:00\"}]}, \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.997, \"1v2\": 0.6146, \"2v3\": 0.5497, \"3v4\": 0.509, \"4v5\": 0.5044}, \"pairwise_auc_std\": {\"0v1\": 0.0004, \"1v2\": 0.0029, \"2v3\": 0.004, \"3v4\": 0.0084, \"4v5\": 0.0136}, \"pairwise_jsd\": {\"0v1\": 0.23941, \"1v2\": 0.012972, \"2v3\": 0.00735, \"3v4\": 0.003968, \"4v5\": 0.003851}, \"ordinal_mae\": 1.1813, \"ordinal_accuracy\": 0.3685, \"top_features\": [\"surp_d1_mean\", \"surp_d1_skew\", \"freq_kurtosis\", \"surp_d2_mean\", \"surp_mean\"]}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T02:35:52.823Z\"}}, \"count\": 10, \"total\": 12, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0529}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XmYDSfMA7rV53TYkM5c9X4`</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74ed2539-4b0e-4c4e-82cc-75630c924afb",
+  "uuid": "331409d2-e92c-4ceb-b248-c2b0b8f57af0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0113RVd6cV476dxz1xpXrPh7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 760,
+      "cache_read_input_tokens": 24529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 760
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0171sXBbCJSwUjVR22X1xBu4`</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "ls -la /root/autodl-tmp/gen-depth-contamination/results_exp003_t12",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74ed2539-4b0e-4c4e-82cc-75630c924afb",
+  "uuid": "199abcf3-393f-4f14-afac-6746fae89887",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0113RVd6cV476dxz1xpXrPh7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 760,
+      "cache_read_input_tokens": 24529,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 760
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-13T23:40:38.458Z_
+
+<details><summary>↩ Tool result · `toolu_01XmYDSfMA7rV53TYkM5c9X4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"configs_discovered\\\": [\\n    \\\"greedy\\\",\\n    \\\"nuc09\\\",\\n    \\\"t07\\\",\\n    \\\"t12\\\"\\n  ],\\n  \\\"pairwise_auc_table\\\": {\\n    \\\"Config1-Greedy\\\": {\\n      \\\"0v1\\\": 0.9797,\\n      \\\"1v2\\\": 0.6893,\\n      \\\"2v3\\\": 0.5613,\\n      \\\"3v4\\\": 0.5404,\\n      \\\"4v5\\\": 0.5139\\n    },\\n    \\\"Config2-Nuc09\\\": {\\n      \\\"0v1\\\": 0.9946,\\n      \\\"1v2\\\": 0.6866,\\n      \\\"2v3\\\": 0.5917,\\n      \\\"3v4\\\": 0.5466,\\n      \\\"4v5\\\": 0.5068\\n    },\\n    \\\"Config3-T07\\\": {\\n      \\\"0v1\\\": 0.9878,\\n      \\\"1v2\\\": 0.6887,\\n      \\\"2v3\\\": 0.5902,\\n      \\\"3v4\\\": 0.5393,\\n      \\\"4v5\\\": 0.5349\\n    },\\n    \\\"Config4-T12\\\": {\\n      \\\"0v1\\\": 0.9982,\\n      \\\"1v2\\\": 0.7039,\\n      \\\"2v3\\\": 0.5823,\\n      \\\"3v4\\\": 0.5293,\\n      \\\"4v5\\\": 0.5237\\n    }\\n  },\\n  \\\"single_feature_auc_1v2\\\": {\\n    \\\"Config1-Greedy\\\": {\\n      \\\"surp_mean\\\": 0.5184,\\n      \\\"surp_std\\\": 0.5282,\\n      \\\"surp_skew\\\": 0.5322,\\n      \\\"surp_kurt\\\": 0.5251,\\n      \\\"surp_d1_mean\\\": 0.5015,\\n      \\\"surp_d1_std\\\": 0.5038,\\n      \\\"surp_d1_skew\\\": 0.5026,\\n      \\\"surp_d2_mean\\\": 0.5128,\\n      \\\"surp_d2_std\\\": 0.5013,\\n      \\\"ttr\\\": 0.5462,\\n      \\\"hapax_ratio\\\": 0.5752,\\n      \\\"self_bleu\\\": 0.5961,\\n      \\\"freq_kurtosis\\\": 0.5167,\\n      \\\"freq_entropy\\\": 0.5139,\\n      \\\"low_freq_ratio\\\": 0.5444\\n    },\\n    \\\"Config2-Nuc09\\\": {\\n      \\\"surp_mean\\\": 0.5114,\\n      \\\"surp_std\\\": 0.5053,\\n      \\\"surp_skew\\\": 0.5997,\\n      \\\"surp_kurt\\\": 0.598,\\n      \\\"surp_d1_mean\\\": 0.507,\\n      \\\"surp_d1_std\\\": 0.5346,\\n      \\\"surp_d1_skew\\\": 0.5066,\\n      \\\"surp_d2_mean\\\": 0.5066,\\n      \\\"surp_d2_std\\\": 0.54,\\n      \\\"ttr\\\": 0.6043,\\n      \\\"hapax_ratio\\\": 0.6561,\\n      \\\"self_bleu\\\": 0.5429,\\n      \\\"freq_kurtosis\\\": 0.5527,\\n      \\\"freq_entropy\\\": 0.5528,\\n      \\\"low_freq_ratio\\\": 0.5813\\n    },\\n    \\\"Config3-T07\\\": {\\n      \\\"surp_mean\\\": 0.5228,\\n      \\\"surp_std\\\": 0.5336,\\n      \\\"surp_skew\\\": 0.5603,\\n      \\\"surp_kurt\\\": 0.557,\\n      \\\"surp_d1_mean\\\": 0.5043,\\n      \\\"surp_d1_std\\\": 0.5027,\\n      \\\"surp_d1_skew\\\": 0.5102,\\n      \\\"surp_d2_mean\\\": 0.5151,\\n      \\\"surp_d2_std\\\": 0.5083,\\n      \\\"ttr\\\": 0.5867,\\n      \\\"hapax_ratio\\\": 0.6365,\\n      \\\"self_bleu\\\": 0.5756,\\n      \\\"freq_kurtosis\\\": 0.5478,\\n      \\\"freq_entropy\\\": 0.5394,\\n      \\\"low_freq_ratio\\\": 0.5805\\n    },\\n    \\\"Config4-T12\\\": {\\n      \\\"surp_mean\\\": 0.5735,\\n      \\\"surp_std\\\": 0.5436,\\n      \\\"surp_skew\\\": 0.6123,\\n      \\\"surp_kurt\\\": 0.6017,\\n      \\\"surp_d1_mean\\\": 0.5087,\\n      \\\"surp_d1_std\\\": 0.5855,\\n      \\\"surp_d1_skew\\\": 0.5073,\\n      \\\"surp_d2_mean\\\": 0.5125,\\n      \\\"surp_d2_std\\\": 0.5883,\\n      \\\"ttr\\\": 0.6415,\\n      \\\"hapax_ratio\\\": 0.6775,\\n      \\\"self_bleu\\\": 0.54,\\n      \\\"freq_kurtosis\\\": 0.5602,\\n      \\\"freq_entropy\\\": 0.5905,\\n      \\\"low_freq_ratio\\\": 0.6041\\n    }\\n  },\\n  \\\"spearman_rho_matrix\\\": {\\n    \\\"Config1-Greedy vs Config2-Nuc09\\\": {\\n      \\\"rho\\\": 0.6,\\n      \\\"p_value\\\": 0.01805,\\n      \\\"n_features\\\": 15\\n    },\\n    \\\"Config1-Greedy vs Config3-T07\\\": {\\n      \\\"rho\\\": 0.9143,\\n      \\\"p_value\\\": 2e-06,\\n      \\\"n_features\\\": 15\\n    },\\n    \\\"Config1-Greedy vs Config4-T12\\\": {\\n      \\\"rho\\\": 0.5321,\\n      \\\"p_value\\\": 0.041159,\\n      \\\"n_features\\\": 15\\n    },\\n    \\\"Config2-Nuc09 vs Config3-T07\\\": {\\n      \\\"rho\\\": 0.7821,\\n      \\\"p_value\\\": 0.00057,\\n      \\\"n_features\\\": 15\\n    },\\n    \\\"Config2-Nuc09 vs Config4-T12\\\": {\\n      \\\"rho\\\": 0.8929,\\n      \\\"p_value\\\": 7e-06,\\n      \\\"n_features\\\": 15\\n    },\\n    \\\"Config3-T07 vs Config4-T12\\\": {\\n      \\\"rho\\\": 0.6679,\\n      \\\"p_value\\\": 0.00651,\\n      \\\"n_features\\\": 15\\n    }\\n  },\\n  \\\"top3_features\\\": {\\n    \\\"Config1-Greedy\\\": [\\n      \\\"self_bleu\\\",\\n      \\\"hapax_ratio\\\",\\n      \\\"ttr\\\"\\n    ],\\n    \\\"Config2-Nuc09\\\": [\\n      \\\"hapax_ratio\\\",\\n      \\\"ttr\\\",\\n      \\\"surp_skew\\\"\\n    ],\\n    \\\"Config3-T07\\\": [\\n      \\\"hapax_ratio\\\",\\n      \\\"ttr\\\",\\n      \\\"low_freq_ratio\\\"\\n    ],\\n    \\\"Config4-T12\\\": [\\n      \\\"hapax_ratio\\\",\\n      \\\"ttr\\\",\\n      \\\"surp_skew\\\"\\n    ]\\n  },\\n  \\\"theta_sensitivity\\\": {\\n    \\\"Config1-Greedy\\\": {\\n      \\\"0.55\\\": 3,\\n      \\\"0.6\\\": 2,\\n      \\\"0.65\\\": 2,\\n      \\\"0.7\\\": 1\\n    },\\n    \\\"Config2-Nuc09\\\": {\\n      \\\"0.55\\\": 3,\\n      \\\"0.6\\\": 2,\\n      \\\"0.65\\\": 2,\\n      \\\"0.7\\\": 1\\n    },\\n    \\\"Config3-T07\\\": {\\n      \\\"0.55\\\": 3,\\n      \\\"0.6\\\": 2,\\n      \\\"0.65\\\": 2,\\n      \\\"0.7\\\": 1\\n    },\\n    \\\"Config4-T12\\\": {\\n      \\\"0.55\\\": 3,\\n      \\\"0.6\\\": 2,\\n      \\\"0.65\\\": 2,\\n      \\\"0.7\\\": 2\\n    }\\n  },\\n  \\\"cross_experiment_1v2\\\": {\\n    \\\"MVP-Qwen-Rewrite\\\": 0.6957,\\n    \\\"Exp001-Pythia-Cont\\\": 0.6539,\\n    \\\"Exp002-OLMo-Cont\\\": 0.6146,\\n    \\\"Exp017-Qwen-Cont\\\": 0.6114,\\n    \\\"Config1-Greedy\\\": 0.6893,\\n    \\\"Config2-Nuc09\\\": 0.6866,\\n    \\\"Config3-T07\\\": 0.6887,\\n    \\\"Config4-T12\\\": 0.7039\\n  },\\n  \\\"d016_universality\\\": {\\n    \\\"theta\\\": 0.6,\\n    \\\"all_above_theta\\\": true,\\n    \\\"values\\\": {\\n      \\\"MVP-Qwen-Rewrite\\\": 0.6957,\\n      \\\"Exp001-Pythia-Cont\\\": 0.6539,\\n      \\\"Exp002-OLMo-Cont\\\": 0.6146,\\n      \\\"Exp017-Qwen-Cont\\\": 0.6114,\\n      \\\"Config1-Greedy\\\": 0.6893,\\n      \\\"Config2-Nuc09\\\": 0.6866,\\n      \\\"Config3-T07\\\": 0.6887,\\n      \\\"Config4-T12\\\": 0.7039\\n    },\\n    \\\"min_value\\\": 0.6114,\\n    \\\"min_config\\\": \\\"Exp017-Qwen-Cont\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "74ed2539-4b0e-4c4e-82cc-75630c924afb",
+  "uuid": "17f7b070-4a4b-440d-9107-32040801a091",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"configs_discovered\\\\\\\": [\\\\n    \\\\\\\"greedy\\\\\\\",\\\\n    \\\\\\\"nuc09\\\\\\\",\\\\n    \\\\\\\"t07\\\\\\\",\\\\n    \\\\\\\"t12\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"pairwise_auc_table\\\\\\\": {\\\\n    \\\\\\\"Config1-Greedy\\\\\\\": {\\\\n      \\\\\\\"0v1\\\\\\\": 0.9797,\\\\n      \\\\\\\"1v2\\\\\\\": 0.6893,\\\\n      \\\\\\\"2v3\\\\\\\": 0.5613,\\\\n      \\\\\\\"3v4\\\\\\\": 0.5404,\\\\n      \\\\\\\"4v5\\\\\\\": 0.5139\\\\n    },\\\\n    \\\\\\\"Config2-Nuc09\\\\\\\": {\\\\n      \\\\\\\"0v1\\\\\\\": 0.9946,\\\\n      \\\\\\\"1v2\\\\\\\": 0.6866,\\\\n      \\\\\\\"2v3\\\\\\\": 0.5917,\\\\n      \\\\\\\"3v4\\\\\\\": 0.5466,\\\\n      \\\\\\\"4v5\\\\\\\": 0.5068\\\\n    },\\\\n    \\\\\\\"Config3-T07\\\\\\\": {\\\\n      \\\\\\\"0v1\\\\\\\": 0.9878,\\\\n      \\\\\\\"1v2\\\\\\\": 0.6887,\\\\n      \\\\\\\"2v3\\\\\\\": 0.5902,\\\\n      \\\\\\\"3v4\\\\\\\": 0.5393,\\\\n      \\\\\\\"4v5\\\\\\\": 0.5349\\\\n    },\\\\n    \\\\\\\"Config4-T12\\\\\\\": {\\\\n      \\\\\\\"0v1\\\\\\\": 0.9982,\\\\n      \\\\\\\"1v2\\\\\\\": 0.7039,\\\\n      \\\\\\\"2v3\\\\\\\": 0.5823,\\\\n      \\\\\\\"3v4\\\\\\\": 0.5293,\\\\n      \\\\\\\"4v5\\\\\\\": 0.5237\\\\n    }\\\\n  },\\\\n  \\\\\\\"single_feature_auc_1v2\\\\\\\": {\\\\n    \\\\\\\"Config1-Greedy\\\\\\\": {\\\\n      \\\\\\\"surp_mean\\\\\\\": 0.5184,\\\\n      \\\\\\\"surp_std\\\\\\\": 0.5282,\\\\n      \\\\\\\"surp_skew\\\\\\\": 0.5322,\\\\n      \\\\\\\"surp_kurt\\\\\\\": 0.5251,\\\\n      \\\\\\\"surp_d1_mean\\\\\\\": 0.5015,\\\\n      \\\\\\\"surp_d1_std\\\\\\\": 0.5038,\\\\n      \\\\\\\"surp_d1_skew\\\\\\\": 0.5026,\\\\n      \\\\\\\"surp_d2_mean\\\\\\\": 0.5128,\\\\n      \\\\\\\"surp_d2_std\\\\\\\": 0.5013,\\\\n      \\\\\\\"ttr\\\\\\\": 0.5462,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 0.5752,\\\\n      \\\\\\\"self_bleu\\\\\\\": 0.5961,\\\\n      \\\\\\\"freq_kurtosis\\\\\\\": 0.5167,\\\\n      \\\\\\\"freq_entropy\\\\\\\": 0.5139,\\\\n      \\\\\\\"low_freq_ratio\\\\\\\": 0.5444\\\\n    },\\\\n    \\\\\\\"Config2-Nuc09\\\\\\\": {\\\\n      \\\\\\\"surp_mean\\\\\\\": 0.5114,\\\\n      \\\\\\\"surp_std\\\\\\\": 0.5053,\\\\n      \\\\\\\"surp_skew\\\\\\\": 0.5997,\\\\n      \\\\\\\"surp_kurt\\\\\\\": 0.598,\\\\n      \\\\\\\"surp_d1_mean\\\\\\\": 0.507,\\\\n      \\\\\\\"surp_d1_std\\\\\\\": 0.5346,\\\\n      \\\\\\\"surp_d1_skew\\\\\\\": 0.5066,\\\\n      \\\\\\\"surp_d2_mean\\\\\\\": 0.5066,\\\\n      \\\\\\\"surp_d2_std\\\\\\\": 0.54,\\\\n      \\\\\\\"ttr\\\\\\\": 0.6043,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 0.6561,\\\\n      \\\\\\\"self_bleu\\\\\\\": 0.5429,\\\\n      \\\\\\\"freq_kurtosis\\\\\\\": 0.5527,\\\\n      \\\\\\\"freq_entropy\\\\\\\": 0.5528,\\\\n      \\\\\\\"low_freq_ratio\\\\\\\": 0.5813\\\\n    },\\\\n    \\\\\\\"Config3-T07\\\\\\\": {\\\\n      \\\\\\\"surp_mean\\\\\\\": 0.5228,\\\\n      \\\\\\\"surp_std\\\\\\\": 0.5336,\\\\n      \\\\\\\"surp_skew\\\\\\\": 0.5603,\\\\n      \\\\\\\"surp_kurt\\\\\\\": 0.557,\\\\n      \\\\\\\"surp_d1_mean\\\\\\\": 0.5043,\\\\n      \\\\\\\"surp_d1_std\\\\\\\": 0.5027,\\\\n      \\\\\\\"surp_d1_skew\\\\\\\": 0.5102,\\\\n      \\\\\\\"surp_d2_mean\\\\\\\": 0.5151,\\\\n      \\\\\\\"surp_d2_std\\\\\\\": 0.5083,\\\\n      \\\\\\\"ttr\\\\\\\": 0.5867,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 0.6365,\\\\n      \\\\\\\"self_bleu\\\\\\\": 0.5756,\\\\n      \\\\\\\"freq_kurtosis\\\\\\\": 0.5478,\\\\n      \\\\\\\"freq_entropy\\\\\\\": 0.5394,\\\\n      \\\\\\\"low_freq_ratio\\\\\\\": 0.5805\\\\n    },\\\\n    \\\\\\\"Config4-T12\\\\\\\": {\\\\n      \\\\\\\"surp_mean\\\\\\\": 0.5735,\\\\n      \\\\\\\"surp_std\\\\\\\": 0.5436,\\\\n      \\\\\\\"surp_skew\\\\\\\": 0.6123,\\\\n      \\\\\\\"surp_kurt\\\\\\\": 0.6017,\\\\n      \\\\\\\"surp_d1_mean\\\\\\\": 0.5087,\\\\n      \\\\\\\"surp_d1_std\\\\\\\": 0.5855,\\\\n      \\\\\\\"surp_d1_skew\\\\\\\": 0.5073,\\\\n      \\\\\\\"surp_d2_mean\\\\\\\": 0.5125,\\\\n      \\\\\\\"surp_d2_std\\\\\\\": 0.5883,\\\\n      \\\\\\\"ttr\\\\\\\": 0.6415,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 0.6775,\\\\n      \\\\\\\"self_bleu\\\\\\\": 0.54,\\\\n      \\\\\\\"freq_kurtosis\\\\\\\": 0.5602,\\\\n      \\\\\\\"freq_entropy\\\\\\\": 0.5905,\\\\n      \\\\\\\"low_freq_ratio\\\\\\\": 0.6041\\\\n    }\\\\n  },\\\\n  \\\\\\\"spearman_rho_matrix\\\\\\\": {\\\\n    \\\\\\\"Config1-Greedy vs Config2-Nuc09\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.6,\\\\n      \\\\\\\"p_value\\\\\\\": 0.01805,\\\\n      \\\\\\\"n_features\\\\\\\": 15\\\\n    },\\\\n    \\\\\\\"Config1-Greedy vs Config3-T07\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.9143,\\\\n      \\\\\\\"p_value\\\\\\\": 2e-06,\\\\n      \\\\\\\"n_features\\\\\\\": 15\\\\n    },\\\\n    \\\\\\\"Config1-Greedy vs Config4-T12\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.5321,\\\\n      \\\\\\\"p_value\\\\\\\": 0.041159,\\\\n      \\\\\\\"n_features\\\\\\\": 15\\\\n    },\\\\n    \\\\\\\"Config2-Nuc09 vs Config3-T07\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.7821,\\\\n      \\\\\\\"p_value\\\\\\\": 0.00057,\\\\n      \\\\\\\"n_features\\\\\\\": 15\\\\n    },\\\\n    \\\\\\\"Config2-Nuc09 vs Config4-T12\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.8929,\\\\n      \\\\\\\"p_value\\\\\\\": 7e-06,\\\\n      \\\\\\\"n_features\\\\\\\": 15\\\\n    },\\\\n    \\\\\\\"Config3-T07 vs Config4-T12\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.6679,\\\\n      \\\\\\\"p_value\\\\\\\": 0.00651,\\\\n      \\\\\\\"n_features\\\\\\\": 15\\\\n    }\\\\n  },\\\\n  \\\\\\\"top3_features\\\\\\\": {\\\\n    \\\\\\\"Config1-Greedy\\\\\\\": [\\\\n      \\\\\\\"self_bleu\\\\\\\",\\\\n      \\\\\\\"hapax_ratio\\\\\\\",\\\\n      \\\\\\\"ttr\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"Config2-Nuc09\\\\\\\": [\\\\n      \\\\\\\"hapax_ratio\\\\\\\",\\\\n      \\\\\\\"ttr\\\\\\\",\\\\n      \\\\\\\"surp_skew\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"Config3-T07\\\\\\\": [\\\\n      \\\\\\\"hapax_ratio\\\\\\\",\\\\n      \\\\\\\"ttr\\\\\\\",\\\\n      \\\\\\\"low_freq_ratio\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"Config4-T12\\\\\\\": [\\\\n      \\\\\\\"hapax_ratio\\\\\\\",\\\\n      \\\\\\\"ttr\\\\\\\",\\\\n      \\\\\\\"surp_skew\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"theta_sensitivity\\\\\\\": {\\\\n    \\\\\\\"Config1-Greedy\\\\\\\": {\\\\n      \\\\\\\"0.55\\\\\\\": 3,\\\\n      \\\\\\\"0.6\\\\\\\": 2,\\\\n      \\\\\\\"0.65\\\\\\\": 2,\\\\n      \\\\\\\"0.7\\\\\\\": 1\\\\n    },\\\\n    \\\\\\\"Config2-Nuc09\\\\\\\": {\\\\n      \\\\\\\"0.55\\\\\\\": 3,\\\\n      \\\\\\\"0.6\\\\\\\": 2,\\\\n      \\\\\\\"0.65\\\\\\\": 2,\\\\n      \\\\\\\"0.7\\\\\\\": 1\\\\n    },\\\\n    \\\\\\\"Config3-T07\\\\\\\": {\\\\n      \\\\\\\"0.55\\\\\\\": 3,\\\\n      \\\\\\\"0.6\\\\\\\": 2,\\\\n      \\\\\\\"0.65\\\\\\\": 2,\\\\n      \\\\\\\"0.7\\\\\\\": 1\\\\n    },\\\\n    \\\\\\\"Config4-T12\\\\\\\": {\\\\n      \\\\\\\"0.55\\\\\\\": 3,\\\\n      \\\\\\\"0.6\\\\\\\": 2,\\\\n      \\\\\\\"0.65\\\\\\\": 2,\\\\n      \\\\\\\"0.7\\\\\\\": 2\\\\n    }\\\\n  },\\\\n  \\\\\\\"cross_experiment_1v2\\\\\\\": {\\\\n    \\\\\\\"MVP-Qwen-Rewrite\\\\\\\": 0.6957,\\\\n    \\\\\\\"Exp001-Pythia-Cont\\\\\\\": 0.6539,\\\\n    \\\\\\\"Exp002-OLMo-Cont\\\\\\\": 0.6146,\\\\n    \\\\\\\"Exp017-Qwen-Cont\\\\\\\": 0.6114,\\\\n    \\\\\\\"Config1-Greedy\\\\\\\": 0.6893,\\\\n    \\\\\\\"Config2-Nuc09\\\\\\\": 0.6866,\\\\n    \\\\\\\"Config3-T07\\\\\\\": 0.6887,\\\\n    \\\\\\\"Config4-T12\\\\\\\": 0.7039\\\\n  },\\\\n  \\\\\\\"d016_universality\\\\\\\": {\\\\n    \\\\\\\"theta\\\\\\\": 0.6,\\\\n    \\\\\\\"all_above_theta\\\\\\\": true,\\\\n    \\\\\\\"values\\\\\\\": {\\\\n      \\\\\\\"MVP-Qwen-Rewrite\\\\\\\": 0.6957,\\\\n      \\\\\\\"Exp001-Pythia-Cont\\\\\\\": 0.6539,\\\\n      \\\\\\\"Exp002-OLMo-Cont\\\\\\\": 0.6146,\\\\n      \\\\\\\"Exp017-Qwen-Cont\\\\\\\": 0.6114,\\\\n      \\\\\\\"Config1-Greedy\\\\\\\": 0.6893,\\\\n      \\\\\\\"Config2-Nuc09\\\\\\\": 0.6866,\\\\n      \\\\\\\"Config3-T07\\\\\\\": 0.6887,\\\\n      \\\\\\\"Config4-T12\\\\\\\": 0.7039\\\\n    },\\\\n    \\\\\\\"min_value\\\\\\\": 0.6114,\\\\n    \\\\\\\"min_config\\\\\\\": \\\\\\\"Exp017-Qwen-Cont\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"configs_discovered\\\": [\\n    \\\"greedy\\\",\\n    \\\"nuc09\\\",\\n    \\\"t07\\\",\\n    \\\"t12\\\"\\n  ],\\n  \\\"pairwise_auc_table\\\": {\\n    \\\"Config1-Greedy\\\": {\\n      \\\"0v1\\\": 0.9797,\\n      \\\"1v2\\\": 0.6893,\\n      \\\"2v3\\\": 0.5613,\\n      \\\"3v4\\\": 0.5404,\\n      \\\"4v5\\\": 0.5139\\n    },\\n    \\\"Config2-Nuc09\\\": {\\n      \\\"0v1\\\": 0.9946,\\n      \\\"1v2\\\": 0.6866,\\n      \\\"2v3\\\": 0.5917,\\n      \\\"3v4\\\": 0.5466,\\n      \\\"4v5\\\": 0.5068\\n    },\\n    \\\"Config3-T07\\\": {\\n      \\\"0v1\\\": 0.9878,\\n      \\\"1v2\\\": 0.6887,\\n      \\\"2v3\\\": 0.5902,\\n      \\\"3v4\\\": 0.5393,\\n      \\\"4v5\\\": 0.5349\\n    },\\n    \\\"Config4-T12\\\": {\\n      \\\"0v1\\\": 0.9982,\\n      \\\"1v2\\\": 0.7039,\\n      \\\"2v3\\\": 0.5823,\\n      \\\"3v4\\\": 0.5293,\\n      \\\"4v5\\\": 0.5237\\n    }\\n  },\\n  \\\"single_feature_auc_1v2\\\": {\\n    \\\"Config1-Greedy\\\": {\\n      \\\"surp_mean\\\": 0.5184,\\n      \\\"surp_std\\\": 0.5282,\\n      \\\"surp_skew\\\": 0.5322,\\n      \\\"surp_kurt\\\": 0.5251,\\n      \\\"surp_d1_mean\\\": 0.5015,\\n      \\\"surp_d1_std\\\": 0.5038,\\n      \\\"surp_d1_skew\\\": 0.5026,\\n      \\\"surp_d2_mean\\\": 0.5128,\\n      \\\"surp_d2_std\\\": 0.5013,\\n      \\\"ttr\\\": 0.5462,\\n      \\\"hapax_ratio\\\": 0.5752,\\n      \\\"self_bleu\\\": 0.5961,\\n      \\\"freq_kurtosis\\\": 0.5167,\\n      \\\"freq_entropy\\\": 0.5139,\\n      \\\"low_freq_ratio\\\": 0.5444\\n    },\\n    \\\"Config2-Nuc09\\\": {\\n      \\\"surp_mean\\\": 0.5114,\\n      \\\"surp_std\\\": 0.5053,\\n      \\\"surp_skew\\\": 0.5997,\\n      \\\"surp_kurt\\\": 0.598,\\n      \\\"surp_d1_mean\\\": 0.507,\\n      \\\"surp_d1_std\\\": 0.5346,\\n      \\\"surp_d1_skew\\\": 0.5066,\\n      \\\"surp_d2_mean\\\": 0.5066,\\n      \\\"surp_d2_std\\\": 0.54,\\n      \\\"ttr\\\": 0.6043,\\n      \\\"hapax_ratio\\\": 0.6561,\\n      \\\"self_bleu\\\": 0.5429,\\n      \\\"freq_kurtosis\\\": 0.5527,\\n      \\\"freq_entropy\\\": 0.5528,\\n      \\\"low_freq_ratio\\\": 0.5813\\n    },\\n    \\\"Config3-T07\\\": {\\n      \\\"surp_mean\\\": 0.5228,\\n      \\\"surp_std\\\": 0.5336,\\n      \\\"surp_skew\\\": 0.5603,\\n      \\\"surp_kurt\\\": 0.557,\\n      \\\"surp_d1_mean\\\": 0.5043,\\n      \\\"surp_d1_std\\\": 0.5027,\\n      \\\"surp_d1_skew\\\": 0.5102,\\n      \\\"surp_d2_mean\\\": 0.5151,\\n      \\\"surp_d2_std\\\": 0.5083,\\n      \\\"ttr\\\": 0.5867,\\n      \\\"hapax_ratio\\\": 0.6365,\\n      \\\"self_bleu\\\": 0.5756,\\n      \\\"freq_kurtosis\\\": 0.5478,\\n      \\\"freq_entropy\\\": 0.5394,\\n      \\\"low_freq_ratio\\\": 0.5805\\n    },\\n    \\\"Config4-T12\\\": {\\n      \\\"surp_mean\\\": 0.5735,\\n      \\\"surp_std\\\": 0.5436,\\n      \\\"surp_skew\\\": 0.6123,\\n      \\\"surp_kurt\\\": 0.6017,\\n      \\\"surp_d1_mean\\\": 0.5087,\\n      \\\"surp_d1_std\\\": 0.5855,\\n      \\\"surp_d1_skew\\\": 0.5073,\\n      \\\"surp_d2_mean\\\": 0.5125,\\n      \\\"surp_d2_std\\\": 0.5883,\\n      \\\"ttr\\\": 0.6415,\\n      \\\"hapax_ratio\\\": 0.6775,\\n      \\\"self_bleu\\\": 0.54,\\n      \\\"freq_kurtosis\\\": 0.5602,\\n      \\\"freq_entropy\\\": 0.5905,\\n      \\\"low_freq_ratio\\\": 0.6041\\n    }\\n  },\\n  \\\"spearman_rho_matrix\\\": {\\n    \\\"Config1-Greedy vs Config2-Nuc09\\\": {\\n      \\\"rho\\\": 0.6,\\n      \\\"p_value\\\": 0.01805,\\n      \\\"n_features\\\": 15\\n    },\\n    \\\"Config1-Greedy vs Config3-T07\\\": {\\n      \\\"rho\\\": 0.9143,\\n      \\\"p_value\\\": 2e-06,\\n      \\\"n_features\\\": 15\\n    },\\n    \\\"Config1-Greedy vs Config4-T12\\\": {\\n      \\\"rho\\\": 0.5321,\\n      \\\"p_value\\\": 0.041159,\\n      \\\"n_features\\\": 15\\n    },\\n    \\\"Config2-Nuc09 vs Config3-T07\\\": {\\n      \\\"rho\\\": 0.7821,\\n      \\\"p_value\\\": 0.00057,\\n      \\\"n_features\\\": 15\\n    },\\n    \\\"Config2-Nuc09 vs Config4-T12\\\": {\\n      \\\"rho\\\": 0.8929,\\n      \\\"p_value\\\": 7e-06,\\n      \\\"n_features\\\": 15\\n    },\\n    \\\"Config3-T07 vs Config4-T12\\\": {\\n      \\\"rho\\\": 0.6679,\\n      \\\"p_value\\\": 0.00651,\\n      \\\"n_features\\\": 15\\n    }\\n  },\\n  \\\"top3_features\\\": {\\n    \\\"Config1-Greedy\\\": [\\n      \\\"self_bleu\\\",\\n      \\\"hapax_ratio\\\",\\n      \\\"ttr\\\"\\n    ],\\n    \\\"Config2-Nuc09\\\": [\\n      \\\"hapax_ratio\\\",\\n      \\\"ttr\\\",\\n      \\\"surp_skew\\\"\\n    ],\\n    \\\"Config3-T07\\\": [\\n      \\\"hapax_ratio\\\",\\n      \\\"ttr\\\",\\n      \\\"low_freq_ratio\\\"\\n    ],\\n    \\\"Config4-T12\\\": [\\n      \\\"hapax_ratio\\\",\\n      \\\"ttr\\\",\\n      \\\"surp_skew\\\"\\n    ]\\n  },\\n  \\\"theta_sensitivity\\\": {\\n    \\\"Config1-Greedy\\\": {\\n      \\\"0.55\\\": 3,\\n      \\\"0.6\\\": 2,\\n      \\\"0.65\\\": 2,\\n      \\\"0.7\\\": 1\\n    },\\n    \\\"Config2-Nuc09\\\": {\\n      \\\"0.55\\\": 3,\\n      \\\"0.6\\\": 2,\\n      \\\"0.65\\\": 2,\\n      \\\"0.7\\\": 1\\n    },\\n    \\\"Config3-T07\\\": {\\n      \\\"0.55\\\": 3,\\n      \\\"0.6\\\": 2,\\n      \\\"0.65\\\": 2,\\n      \\\"0.7\\\": 1\\n    },\\n    \\\"Config4-T12\\\": {\\n      \\\"0.55\\\": 3,\\n      \\\"0.6\\\": 2,\\n      \\\"0.65\\\": 2,\\n      \\\"0.7\\\": 2\\n    }\\n  },\\n  \\\"cross_experiment_1v2\\\": {\\n    \\\"MVP-Qwen-Rewrite\\\": 0.6957,\\n    \\\"Exp001-Pythia-Cont\\\": 0.6539,\\n    \\\"Exp002-OLMo-Cont\\\": 0.6146,\\n    \\\"Exp017-Qwen-Cont\\\": 0.6114,\\n    \\\"Config1-Greedy\\\": 0.6893,\\n    \\\"Config2-Nuc09\\\": 0.6866,\\n    \\\"Config3-T07\\\": 0.6887,\\n    \\\"Config4-T12\\\": 0.7039\\n  },\\n  \\\"d016_universality\\\": {\\n    \\\"theta\\\": 0.6,\\n    \\\"all_above_theta\\\": true,\\n    \\\"values\\\": {\\n      \\\"MVP-Qwen-Rewrite\\\": 0.6957,\\n      \\\"Exp001-Pythia-Cont\\\": 0.6539,\\n      \\\"Exp002-OLMo-Cont\\\": 0.6146,\\n      \\\"Exp017-Qwen-Cont\\\": 0.6114,\\n      \\\"Config1-Greedy\\\": 0.6893,\\n      \\\"Config2-Nuc09\\\": 0.6866,\\n      \\\"Config3-T07\\\": 0.6887,\\n      \\\"Config4-T12\\\": 0.7039\\n    },\\n    \\\"min_value\\\": 0.6114,\\n    \\\"min_config\\\": \\\"Exp017-Qwen-Cont\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-13T23:40:39.755Z_
+
+<details><summary>↩ Tool result · `toolu_0171sXBbCJSwUjVR22X1xBu4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 24\\ndrwxr-xr-x  2 root root  149 May 14 04:17 .\\ndrwxr-xr-x 27 root root 4096 May 14 04:26 ..\\n-rw-r--r--  1 root root  639 May 14 04:17 feature_importance.json\\n-rw-r--r--  1 root root   96 May 14 04:17 jsd.json\\n-rw-r--r--  1 root root   54 May 14 04:17 ordinal_results.json\\n-rw-r--r--  1 root root  575 May 14 04:17 pairwise_auc.json\\n-rw-r--r--  1 root root 1326 May 14 04:17 summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.28}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "74ed2539-4b0e-4c4e-82cc-75630c924afb",
+  "uuid": "4f1b4a7e-9bd8-46d4-b291-8d8adc4fb057",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 24\\\\ndrwxr-xr-x  2 root root  149 May 14 04:17 .\\\\ndrwxr-xr-x 27 root root 4096 May 14 04:26 ..\\\\n-rw-r--r--  1 root root  639 May 14 04:17 feature_importance.json\\\\n-rw-r--r--  1 root root   96 May 14 04:17 jsd.json\\\\n-rw-r--r--  1 root root   54 May 14 04:17 ordinal_results.json\\\\n-rw-r--r--  1 root root  575 May 14 04:17 pairwise_auc.json\\\\n-rw-r--r--  1 root root 1326 May 14 04:17 summary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.28}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 24\\ndrwxr-xr-x  2 root root  149 May 14 04:17 .\\ndrwxr-xr-x 27 root root 4096 May 14 04:26 ..\\n-rw-r--r--  1 root root  639 May 14 04:17 feature_importance.json\\n-rw-r--r--  1 root root   96 May 14 04:17 jsd.json\\n-rw-r--r--  1 root root   54 May 14 04:17 ordinal_results.json\\n-rw-r--r--  1 root root  575 May 14 04:17 pairwise_auc.json\\n-rw-r--r--  1 root root 1326 May 14 04:17 summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.28}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I found the data in the `exp003_analysis.json`. The `spearman_rho_matrix` contains all 6 pairs including the 3 missing ones involving config4_t12:
+
+- Config1-Greedy vs Config4-T12: rho = 0.5321
+- Config2-Nuc09 vs Config4-T12: rho = 0.8929
+- Config3-T07 vs Config4-T12: rho = 0.6679
+
+The current registry has:
+- greedy_vs_nuc09_feature_spearman: 0.6
+
+
+- greedy_vs_t07_feature_spearman: 0.914
+- nuc09_vs_t07_feature_spearman: 0.782
+
+Now I need to update the registry with the three missing spearman correlations involving t12, then modify the cross_config_analysis section to include these values.
+
+Looking at the update_registry tool, I can either update the entire metrics field or try using dot notation to target just the cross_config_analysis nested field. Let me attempt updating the specific nested field first since that's cleaner than overwriting the whole metrics object. I'm adding the missing feature correlation metrics between the T12 configuration and the other three approaches, then updating the cross_config_analysis using dot notation to avoid overwriting any other metrics data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74ed2539-4b0e-4c4e-82cc-75630c924afb",
+  "uuid": "dacd8890-ff54-45d3-b3c4-1d9fc595b5ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Wi4hCSfXKt2o2th74WnDJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15329,
+      "cache_read_input_tokens": 25289,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15329
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+Found all 3 missing Spearman values in `exp003_analysis.json`:
+
+- greedy_vs_t12: **0.5321**
+- nuc09_vs_t12: **0.8929**
+- t07_vs_t12: **0.6679**
+
+Updating the registry now.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74ed2539-4b0e-4c4e-82cc-75630c924afb",
+  "uuid": "b56784c5-2f2a-4be5-a622-9d3c67bd507c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Wi4hCSfXKt2o2th74WnDJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15329,
+      "cache_read_input_tokens": 25289,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15329
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01FjwyFLM5oBz4R8hcvCd3CY`</summary>
+
+```json
+{
+  "exp_id": "exp_003_decoding_ablation",
+  "field": "metrics",
+  "value": {
+    "config1_greedy": {
+      "k_star": 2,
+      "pairwise_auc": {
+        "0v1": 0.9797,
+        "1v2": 0.6893,
+        "2v3": 0.5613,
+        "3v4": 0.5404,
+        "4v5": 0.5139
+      },
+      "top3_features_1v2": [
+        "self_bleu",
+        "hapax_ratio",
+        "ttr"
+      ]
+    },
+    "config2_nuc09": {
+      "k_star": 2,
+      "pairwise_auc": {
+        "0v1": 0.9946,
+        "1v2": 0.6866,
+        "2v3": 0.5917,
+        "3v4": 0.5466,
+        "4v5": 0.5068
+      },
+      "top3_features_1v2": [
+        "hapax_ratio",
+        "ttr",
+        "surp_skew"
+      ]
+    },
+    "config3_t07": {
+      "k_star": 2,
+      "pairwise_auc": {
+        "0v1": 0.9878,
+        "1v2": 0.6887,
+        "2v3": 0.5902,
+        "3v4": 0.5393,
+        "4v5": 0.5349
+      },
+      "top3_features_1v2": [
+        "hapax_ratio",
+        "ttr",
+        "low_freq_ratio"
+      ]
+    },
+    "config4_t12": {
+      "k_star": 2,
+      "pairwise_auc": {
+        "0v1": 0.9982,
+        "1v2": 0.7039,
+        "2v3": 0.5823,
+        "3v4": 0.5293,
+        "4v5": 0.5237
+      },
+      "top3_features_1v2": [
+        "hapax_ratio",
+        "ttr",
+        "surp_skew"
+      ]
+    },
+    "cross_config_analysis": {
+      "greedy_vs_nuc09_feature_spearman": 0.6,
+      "greedy_vs_t07_feature_spearman": 0.914,
+      "greedy_vs_t12_feature_spearman": 0.5321,
+      "nuc09_vs_t07_feature_spearman": 0.782,
+      "nuc09_vs_t12_feature_spearman": 0.8929,
+      "t07_vs_t12_feature_spearman": 0.6679,
+      "d016_universality_theta060": true,
+      "all_8_configs_1v2_above_060": true,
+      "weakest_1v2": "Qwen-cont 0.6114",
+      "theta_sensitivity": {
+        "theta_055": "K*=3 (all 4 configs)",
+        "theta_060": "K*=2 (all 4 configs)",
+        "theta_065": "K*=2 (all 4 configs)",
+        "theta_070": "K*=1 (3 configs) / K*=2 (config4_t12)"
+      }
+    },
+    "reproduce": {
+      "finished_at": "2026-05-13T20:22:19.870Z"
+    },
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis.json",
+    "log_path": "~/runs/gen-depth-contamination/exp_003_decoding_ablation.log"
+  },
+  "project": "gen-depth-contamination"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74ed2539-4b0e-4c4e-82cc-75630c924afb",
+  "uuid": "2908e19f-5dd8-4000-ab62-2063e70e63d4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Wi4hCSfXKt2o2th74WnDJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15329,
+      "cache_read_input_tokens": 25289,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15329
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-13T23:41:11.812Z_
+
+<details><summary>↩ Tool result · `toolu_01FjwyFLM5oBz4R8hcvCd3CY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_003_decoding_ablation\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-12T20:06:25.260Z\", \"updated_at\": \"2026-05-13T23:41:11.744Z\", \"hypothesis\": \"解码策略调控 K*：不同 top_p/temperature 设置是否改变饱和边界（greedy→更低 K*? 高温度→更高 K*?）\", \"failure_reason\": \"SSH check failed 5x — last error: Unknown server 'autodl-4090d'. Available: ['westc-26893']\", \"completed_at\": \"2026-05-13T15:35:29.038Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T15:35:30.207607+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T20:22:20.803872+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: SSH 别名变更 (autodl-4090d → westc-26893)，cron 监控 5 次连不上后标记 failed。初步诊断: 日志在 westc-26893 上可读，config 2 (nucleus_p0.9_t1.0) 已完成并输出 K*=2，config 3 (nucleus_p0.95_t0.7) 在 depth 4 进度 ~90% 时日志截止。实验可能已完成或部分完成。Worker worker_diagnose_exp_003_decoding_ablation_20260513T153757 正在深入诊断。\"}}, \"notes\": \"Server alias 变更 autodl-4090d → westc-26893 导致 cron 误标 failed。实际实验一直正常运行。Config 1 (greedy, K*=2), Config 2 (nuc p=0.9/T=1.0, K*=2), Config 3 (nuc p=0.95/T=0.7, K*=2) 已完成。Config 4 (nuc p=0.95/T=1.2) 运行中。深度分析: 1v2 AUC Δ<0.003 across configs, D016 universality confirmed (all 7 configs > θ=0.60), θ-sensitivity K* profile identical across 3 configs. 分析脚本 scripts/exp003_analyze_all_configs.py 已部署。\", \"spec\": {\"command\": \"python scripts/exp003_analyze_all_configs.py\", \"server\": \"westc-26893\", \"gpu\": [\"cuda:0\"], \"pid\": \"29459\", \"log_path\": \"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp003_*\", \"data_count\": 4, \"model_name\": \"Qwen/Qwen2.5-1.5B-Instruct\", \"seed\": 42, \"configs\": \"4 ablation configs: greedy, nucleus p=0.9/T=1.0, nucleus p=0.95/T=0.7, nucleus p=0.95/T=1.2\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp003_*\", \"log_path_note\": \"server renamed from autodl-4090d to westc-26893\"}, \"metrics\": {\"config1_greedy\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9797, \"1v2\": 0.6893, \"2v3\": 0.5613, \"3v4\": 0.5404, \"4v5\": 0.5139}, \"top3_features_1v2\": [\"self_bleu\", \"hapax_ratio\", \"ttr\"]}, \"config2_nuc09\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9946, \"1v2\": 0.6866, \"2v3\": 0.5917, \"3v4\": 0.5466, \"4v5\": 0.5068}, \"top3_features_1v2\": [\"hapax_ratio\", \"ttr\", \"surp_skew\"]}, \"config3_t07\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9878, \"1v2\": 0.6887, \"2v3\": 0.5902, \"3v4\": 0.5393, \"4v5\": 0.5349}, \"top3_features_1v2\": [\"hapax_ratio\", \"ttr\", \"low_freq_ratio\"]}, \"config4_t12\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9982, \"1v2\": 0.7039, \"2v3\": 0.5823, \"3v4\": 0.5293, \"4v5\": 0.5237}, \"top3_features_1v2\": [\"hapax_ratio\", \"ttr\", \"surp_skew\"]}, \"cross_config_analysis\": {\"greedy_vs_nuc09_feature_spearman\": 0.6, \"greedy_vs_t07_feature_spearman\": 0.914, \"greedy_vs_t12_feature_spearman\": 0.5321, \"nuc09_vs_t07_feature_spearman\": 0.782, \"nuc09_vs_t12_feature_spearman\": 0.8929, \"t07_vs_t12_feature_spearman\": 0.6679, \"d016_universality_theta060\": true, \"all_8_configs_1v2_above_060\": true, \"weakest_1v2\": \"Qwen-cont 0.6114\", \"theta_sensitivity\": {\"theta_055\": \"K*=3 (all 4 configs)\", \"theta_060\": \"K*=2 (all 4 configs)\", \"theta_065\": \"K*=2 (all 4 configs)\", \"theta_070\": \"K*=1 (3 configs) / K*=2 (config4_t12)\"}}, \"reproduce\": {\"finished_at\": \"2026-05-13T20:22:19.870Z\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis.json\", \"log_path\": \"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-13T20:22:19.870Z\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis.json\", \"log_path\": \"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1198}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "74ed2539-4b0e-4c4e-82cc-75630c924afb",
+  "uuid": "4fd3eb55-898a-4c9c-a9e2-cc53e1c2a629",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_003_decoding_ablation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-12T20:06:25.260Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:41:11.744Z\\\", \\\"hypothesis\\\": \\\"解码策略调控 K*：不同 top_p/temperature 设置是否改变饱和边界（greedy→更低 K*? 高温度→更高 K*?）\\\", \\\"failure_reason\\\": \\\"SSH check failed 5x — last error: Unknown server 'autodl-4090d'. Available: ['westc-26893']\\\", \\\"completed_at\\\": \\\"2026-05-13T15:35:29.038Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T15:35:30.207607+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T20:22:20.803872+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"失败原因: SSH 别名变更 (autodl-4090d → westc-26893)，cron 监控 5 次连不上后标记 failed。初步诊断: 日志在 westc-26893 上可读，config 2 (nucleus_p0.9_t1.0) 已完成并输出 K*=2，config 3 (nucleus_p0.95_t0.7) 在 depth 4 进度 ~90% 时日志截止。实验可能已完成或部分完成。Worker worker_diagnose_exp_003_decoding_ablation_20260513T153757 正在深入诊断。\\\"}}, \\\"notes\\\": \\\"Server alias 变更 autodl-4090d → westc-26893 导致 cron 误标 failed。实际实验一直正常运行。Config 1 (greedy, K*=2), Config 2 (nuc p=0.9/T=1.0, K*=2), Config 3 (nuc p=0.95/T=0.7, K*=2) 已完成。Config 4 (nuc p=0.95/T=1.2) 运行中。深度分析: 1v2 AUC Δ<0.003 across configs, D016 universality confirmed (all 7 configs > θ=0.60), θ-sensitivity K* profile identical across 3 configs. 分析脚本 scripts/exp003_analyze_all_configs.py 已部署。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/exp003_analyze_all_configs.py\\\", \\\"server\\\": \\\"westc-26893\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"29459\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data_exp003_*\\\", \\\"data_count\\\": 4, \\\"model_name\\\": \\\"Qwen/Qwen2.5-1.5B-Instruct\\\", \\\"seed\\\": 42, \\\"configs\\\": \\\"4 ablation configs: greedy, nucleus p=0.9/T=1.0, nucleus p=0.95/T=0.7, nucleus p=0.95/T=1.2\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data_exp003_*\\\", \\\"log_path_note\\\": \\\"server renamed from autodl-4090d to westc-26893\\\"}, \\\"metrics\\\": {\\\"config1_greedy\\\": {\\\"k_star\\\": 2, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9797, \\\"1v2\\\": 0.6893, \\\"2v3\\\": 0.5613, \\\"3v4\\\": 0.5404, \\\"4v5\\\": 0.5139}, \\\"top3_features_1v2\\\": [\\\"self_bleu\\\", \\\"hapax_ratio\\\", \\\"ttr\\\"]}, \\\"config2_nuc09\\\": {\\\"k_star\\\": 2, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9946, \\\"1v2\\\": 0.6866, \\\"2v3\\\": 0.5917, \\\"3v4\\\": 0.5466, \\\"4v5\\\": 0.5068}, \\\"top3_features_1v2\\\": [\\\"hapax_ratio\\\", \\\"ttr\\\", \\\"surp_skew\\\"]}, \\\"config3_t07\\\": {\\\"k_star\\\": 2, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9878, \\\"1v2\\\": 0.6887, \\\"2v3\\\": 0.5902, \\\"3v4\\\": 0.5393, \\\"4v5\\\": 0.5349}, \\\"top3_features_1v2\\\": [\\\"hapax_ratio\\\", \\\"ttr\\\", \\\"low_freq_ratio\\\"]}, \\\"config4_t12\\\": {\\\"k_star\\\": 2, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9982, \\\"1v2\\\": 0.7039, \\\"2v3\\\": 0.5823, \\\"3v4\\\": 0.5293, \\\"4v5\\\": 0.5237}, \\\"top3_features_1v2\\\": [\\\"hapax_ratio\\\", \\\"ttr\\\", \\\"surp_skew\\\"]}, \\\"cross_config_analysis\\\": {\\\"greedy_vs_nuc09_feature_spearman\\\": 0.6, \\\"greedy_vs_t07_feature_spearman\\\": 0.914, \\\"greedy_vs_t12_feature_spearman\\\": 0.5321, \\\"nuc09_vs_t07_feature_spearman\\\": 0.782, \\\"nuc09_vs_t12_feature_spearman\\\": 0.8929, \\\"t07_vs_t12_feature_spearman\\\": 0.6679, \\\"d016_universality_theta060\\\": true, \\\"all_8_configs_1v2_above_060\\\": true, \\\"weakest_1v2\\\": \\\"Qwen-cont 0.6114\\\", \\\"theta_sensitivity\\\": {\\\"theta_055\\\": \\\"K*=3 (all 4 configs)\\\", \\\"theta_060\\\": \\\"K*=2 (all 4 configs)\\\", \\\"theta_065\\\": \\\"K*=2 (all 4 configs)\\\", \\\"theta_070\\\": \\\"K*=1 (3 configs) / K*=2 (config4_t12)\\\"}}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T20:22:19.870Z\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis.json\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T20:22:19.870Z\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis.json\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1198}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_003_decoding_ablation\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-12T20:06:25.260Z\", \"updated_at\": \"2026-05-13T23:41:11.744Z\", \"hypothesis\": \"解码策略调控 K*：不同 top_p/temperature 设置是否改变饱和边界（greedy→更低 K*? 高温度→更高 K*?）\", \"failure_reason\": \"SSH check failed 5x — last error: Unknown server 'autodl-4090d'. Available: ['westc-26893']\", \"completed_at\": \"2026-05-13T15:35:29.038Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T15:35:30.207607+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T20:22:20.803872+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: SSH 别名变更 (autodl-4090d → westc-26893)，cron 监控 5 次连不上后标记 failed。初步诊断: 日志在 westc-26893 上可读，config 2 (nucleus_p0.9_t1.0) 已完成并输出 K*=2，config 3 (nucleus_p0.95_t0.7) 在 depth 4 进度 ~90% 时日志截止。实验可能已完成或部分完成。Worker worker_diagnose_exp_003_decoding_ablation_20260513T153757 正在深入诊断。\"}}, \"notes\": \"Server alias 变更 autodl-4090d → westc-26893 导致 cron 误标 failed。实际实验一直正常运行。Config 1 (greedy, K*=2), Config 2 (nuc p=0.9/T=1.0, K*=2), Config 3 (nuc p=0.95/T=0.7, K*=2) 已完成。Config 4 (nuc p=0.95/T=1.2) 运行中。深度分析: 1v2 AUC Δ<0.003 across configs, D016 universality confirmed (all 7 configs > θ=0.60), θ-sensitivity K* profile identical across 3 configs. 分析脚本 scripts/exp003_analyze_all_configs.py 已部署。\", \"spec\": {\"command\": \"python scripts/exp003_analyze_all_configs.py\", \"server\": \"westc-26893\", \"gpu\": [\"cuda:0\"], \"pid\": \"29459\", \"log_path\": \"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp003_*\", \"data_count\": 4, \"model_name\": \"Qwen/Qwen2.5-1.5B-Instruct\", \"seed\": 42, \"configs\": \"4 ablation configs: greedy, nucleus p=0.9/T=1.0, nucleus p=0.95/T=0.7, nucleus p=0.95/T=1.2\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp003_*\", \"log_path_note\": \"server renamed from autodl-4090d to westc-26893\"}, \"metrics\": {\"config1_greedy\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9797, \"1v2\": 0.6893, \"2v3\": 0.5613, \"3v4\": 0.5404, \"4v5\": 0.5139}, \"top3_features_1v2\": [\"self_bleu\", \"hapax_ratio\", \"ttr\"]}, \"config2_nuc09\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9946, \"1v2\": 0.6866, \"2v3\": 0.5917, \"3v4\": 0.5466, \"4v5\": 0.5068}, \"top3_features_1v2\": [\"hapax_ratio\", \"ttr\", \"surp_skew\"]}, \"config3_t07\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9878, \"1v2\": 0.6887, \"2v3\": 0.5902, \"3v4\": 0.5393, \"4v5\": 0.5349}, \"top3_features_1v2\": [\"hapax_ratio\", \"ttr\", \"low_freq_ratio\"]}, \"config4_t12\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9982, \"1v2\": 0.7039, \"2v3\": 0.5823, \"3v4\": 0.5293, \"4v5\": 0.5237}, \"top3_features_1v2\": [\"hapax_ratio\", \"ttr\", \"surp_skew\"]}, \"cross_config_analysis\": {\"greedy_vs_nuc09_feature_spearman\": 0.6, \"greedy_vs_t07_feature_spearman\": 0.914, \"greedy_vs_t12_feature_spearman\": 0.5321, \"nuc09_vs_t07_feature_spearman\": 0.782, \"nuc09_vs_t12_feature_spearman\": 0.8929, \"t07_vs_t12_feature_spearman\": 0.6679, \"d016_universality_theta060\": true, \"all_8_configs_1v2_above_060\": true, \"weakest_1v2\": \"Qwen-cont 0.6114\", \"theta_sensitivity\": {\"theta_055\": \"K*=3 (all 4 configs)\", \"theta_060\": \"K*=2 (all 4 configs)\", \"theta_065\": \"K*=2 (all 4 configs)\", \"theta_070\": \"K*=1 (3 configs) / K*=2 (config4_t12)\"}}, \"reproduce\": {\"finished_at\": \"2026-05-13T20:22:19.870Z\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis.json\", \"log_path\": \"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-13T20:22:19.870Z\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis.json\", \"log_path\": \"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1198}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+已补全。cross_config_analysis 现在包含完整的 6 对 Spearman 相关性：
+
+| 配对 | ρ |
+|------|------|
+| greedy vs nuc09 | 0.600 |
+| greedy vs t07 | 0.914 |
+| **greedy vs t12** | **0.5321** |
+| nuc09 vs t07 | 0.782 |
+| **nuc09 vs t12** | **0.8929** |
+| **t07 vs t12** | **0.6679** |
+
+数据来源：`artifacts/exp003_analysis.json` 中的 `spearman_rho_matrix`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "74ed2539-4b0e-4c4e-82cc-75630c924afb",
+  "uuid": "b8250d51-75e4-429a-80f0-844b29bb1b26",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RqMjKiTbFdtHxebteNm6kf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4019,
+      "cache_read_input_tokens": 40618,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4019
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 25_
+
+已补全。cross_config_analysis 现在包含完整的 6 对 Spearman 相关性：
+
+| 配对 | ρ |
+|------|------|
+| greedy vs nuc09 | 0.600 |
+| greedy vs t07 | 0.914 |
+| **greedy vs t12** | **0.5321** |
+| nuc09 vs t07 | 0.782 |
+| **nuc09 vs t12** | **0.8929** |
+| **t07 vs t12** | **0.6679** |
+
+数据来源：`artifacts/exp003_analysis.json` 中的 `spearman_rho_matrix`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 62352,
+  "duration_api_ms": 59616,
+  "num_turns": 8,
+  "stop_reason": "end_turn",
+  "session_id": "74ed2539-4b0e-4c4e-82cc-75630c924afb",
+  "total_cost_usd": 0.34206450000000005,
+  "usage": {
+    "input_tokens": 9,
+    "cache_creation_input_tokens": 32796,
+    "cache_read_input_tokens": 125611,
+    "output_tokens": 2913,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 32796,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 184,
+        "cache_read_input_tokens": 40618,
+        "cache_creation_input_tokens": 4019,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 4019
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1309,
+      "outputTokens": 21,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0014140000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 9,
+      "outputTokens": 2913,
+      "cacheReadInputTokens": 125611,
+      "cacheCreationInputTokens": 32796,
+      "webSearchRequests": 0,
+      "costUSD": 0.3406505,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "81af77c5-2c30-48e6-8251-15a8609dc252"
+}
+```
+
+</details>
+
+---

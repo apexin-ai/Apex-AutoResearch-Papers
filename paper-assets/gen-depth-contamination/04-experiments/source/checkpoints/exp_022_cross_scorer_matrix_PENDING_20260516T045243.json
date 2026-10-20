@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_022_cross_scorer_matrix",
+  "project": "gen-depth-contamination",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T04:52:14.132Z",
+    "updated_at": "2026-05-16T04:52:43.087Z",
+    "hypothesis": "完整 4×4 cross-scorer 矩阵：4 generator (Qwen-rw/Qwen-cont/Pythia/OLMo) × 4 scorer (Qwen-Instruct/Qwen-base/Pythia/OLMo) 的 K* 和 pairwise AUC，量化 self-scoring advantage 并验证 scorer 独立性。",
+    "parent": "exp_A_alt_scorer"
+  },
+  "timestamp": "2026-05-16T04:52:43.157642+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+\begin{table}[t]
+\centering
+\caption{Pairwise classification results for Qwen retrain chain. AUC values are 5-fold cross-validation estimates with 95\% CI computed as $\bar{x} \pm 1.96 \cdot s / \sqrt{K}$ ($K{=}5$). All pairs exceed the $\theta{=}0.60$ threshold, yielding $K^*{\geq}4$.}
+\label{tab:qwen-retrain-chain}
+\begin{tabular}{lccc}
+\toprule
+Depth Pair & AUC (5-fold CV) & 95\% CI & JSD \\
+\midrule
+0 vs.\ 1 & \textbf{0.9838} & [0.9820, 0.9855] & 0.2263 \\
+1 vs.\ 2 & 0.8969 & [0.8937, 0.9001] & 0.1046 \\
+2 vs.\ 3 & 0.8100 & [0.8052, 0.8147] & 0.0752 \\
+3 vs.\ 4 & 0.7624 & [0.7543, 0.7706] & 0.0654 \\
+\bottomrule
+\end{tabular}
+\end{table}

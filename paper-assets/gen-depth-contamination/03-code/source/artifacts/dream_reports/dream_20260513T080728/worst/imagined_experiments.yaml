@@ -1,0 +1,770 @@
+tier: worst
+narrative_guidance: 'K*=2 universality 被 exp-003 和 exp-004 打破：greedy 下 K*=1，high-temp
+  下 K*=3，7B 模型 K*=1。K* 不再是 stable universal property，而是 configuration-dependent artifact。C3
+  graduated filtering 无显著收益（Δ<0.5pp, p>0.10），必须删除或降为 negative result。论文从 method/application
+  paper 重构为 empirical analysis paper："What Controls the Discriminability of Recursive
+  Synthetic Text?" 核心贡献变为 DPI 框架 + K* 变化图谱 + text-intrinsic vs model-specific 分解。
+  Learned features 远优于 hand-crafted（≥10pp），承认 15D features 是 convenience baseline。
+  目标降级至 EMNLP 2026 Findings 或转投 AAAI 2027。
+
+  '
+imagined_experiments:
+- name: Decoding strategy ablation
+  plan_id: exp-003
+  description: 'Qwen2.5-1.5B 在 greedy / nucleus p=0.9 / T=0.7 / T=1.2 四种解码策略下的 depth
+    chain， 测试 K* 是否随解码策略剧烈变化。
+
+    '
+  expected_results:
+    greedy:
+      0v1_auc: 0.999
+      1v2_auc: 0.572
+      1v2_ci_lower: 0.563
+      1v2_ci_upper: 0.581
+      2v3_auc: 0.538
+      k_star: 1
+      k_star_note: 1v2 CI upper < 0.60 → K*=1
+    nucleus_p09:
+      0v1_auc: 0.996
+      1v2_auc: 0.628
+      1v2_ci_lower: 0.618
+      1v2_ci_upper: 0.637
+      2v3_auc: 0.554
+      k_star: 2
+    temp_07:
+      0v1_auc: 0.998
+      1v2_auc: 0.591
+      1v2_ci_lower: 0.581
+      1v2_ci_upper: 0.601
+      2v3_auc: 0.546
+      k_star: ambiguous (CI straddles 0.60)
+    temp_12:
+      0v1_auc: 0.992
+      1v2_auc: 0.683
+      1v2_ci_lower: 0.673
+      1v2_ci_upper: 0.694
+      2v3_auc: 0.612
+      2v3_ci_lower: 0.602
+      2v3_ci_upper: 0.623
+      3v4_auc: 0.558
+      k_star: 3
+    k_star_across_decoding: varies 1-3, no stable universal value
+    spearman_rho_feature_ranking_across_decoding: 0.78
+  result_rationale: 'Greedy 解码消除了采样随机性，每轮生成的 output 几乎是确定性函数，递归 chain 极快收敛到模型的 mode
+    distribution。Gen-1 已经高度确定性，gen-2 与 gen-1 的统计差异极小，因此 1v2 AUC 跌破 0.60， K*=1。反之 T=1.2
+    放大了采样噪声，每轮生成引入更多随机变异，递归收敛被延缓——文本的统计 fingerprint 在更多代际间保持可区分性，2v3 也能超过 0.60 阈值，K*=3。Nucleus
+    p=0.9 比 p=0.95（baseline） 略收窄采样空间但效果接近，K* 仍为 2。T=0.7 处于边缘——sampling entropy 降低但未降到
+    greedy 程度， 1v2 CI 横跨 0.60。这证明 K* 不是模型的固有属性，而是解码配置控制的 operational parameter。 Feature
+    ranking 的 Spearman ρ 从 baseline 的 0.85+ 降到 0.78，因为 greedy/low-temp 下 surprisal
+    variance 系列特征的 discriminative power 被压缩（分布更窄），tail-thinning 特征 相对重要性上升。
+
+    '
+  tables:
+  - name: 'Table: K* as a function of decoding strategy'
+    columns:
+    - Decoding
+    - K*
+    - AUC 1v2
+    - 95% CI
+    - AUC 2v3
+    - AUC 3v4
+    rows:
+    - - Greedy
+      - 1
+      - 0.572
+      - '[0.563, 0.581]'
+      - 0.538
+      - 0.512
+    - - Nucleus p=0.9
+      - 2
+      - 0.628
+      - '[0.618, 0.637]'
+      - 0.554
+      - 0.517
+    - - Nucleus p=0.95 (baseline)
+      - 2
+      - 0.611
+      - '[0.602, 0.621]'
+      - 0.561
+      - 0.541
+    - - T=0.7
+      - 1-2
+      - 0.591
+      - '[0.581, 0.601]'
+      - 0.546
+      - 0.519
+    - - T=1.2
+      - 3
+      - 0.683
+      - '[0.673, 0.694]'
+      - 0.612
+      - 0.558
+  figures_description:
+  - 'Heatmap: K* (y-axis) × decoding strategy (x-axis)，展示 K* 从 1 到 3 的连续变化'
+  - 'Line plot: AUC decay curve per decoding strategy，展示不同解码下的衰减速率差异'
+  analysis: 'K*=2 universality 被打破。K* 是解码策略的单调递增函数（近似）：更高的 sampling entropy → 更慢的
+    递归收敛 → 更大的 K*。这从根本上改变了论文叙事——不能再 claim "K*=2 is the boundary"，必须说 "K* is configuration-dependent
+    and we map the controlling factors"。对 C3 的打击： 如果 K* 本身不稳定，graduated filtering
+    的 ordinal signal 基础就不牢固。Positive spin： 这是首次系统揭示 K* 与解码策略的依赖关系，是 measurement paper
+    的核心贡献之一。
+
+    '
+- name: 'Cross-scale probe: Qwen2.5-7B'
+  plan_id: exp-004
+  description: 'Qwen2.5-7B continuation mode, C4 1K docs, depth 0-3，测试 K* 是否随模型规模变化。
+
+    '
+  expected_results:
+    0v1_auc: 0.999
+    1v2_auc: 0.577
+    1v2_ci_lower: 0.558
+    1v2_ci_upper: 0.596
+    2v3_auc: 0.529
+    2v3_ci_lower: 0.51
+    2v3_ci_upper: 0.548
+    k_star: 1
+    ordinal_accuracy: 0.36
+    ordinal_mae: 0.98
+    top3_features:
+    - surp_d1_std
+    - surp_std
+    - freq_entropy
+    spearman_rho_vs_1_5B: 0.82
+  result_rationale: '7B 模型的 next-token prediction 能力显著强于 1.5B，continuation 生成的文本更"像"原始文本——
+    更低的 perplexity、更准确的 style matching。递归 chain 中，gen-1 已经非常接近原始文本的统计分布， gen-2 与 gen-1
+    的差异极小。信息论上，更强的模型意味着 channel capacity 更高（每轮损耗更小）， DPI 约束下的收敛更快。1v2 AUC CI upper
+    < 0.60 → K*=1。注意 1K docs（vs 5K）导致 CI 更宽 （±0.019 vs ±0.010），但即使 upper bound 0.596
+    仍低于 0.60。这与 worst tier 假设一致： 更强模型的递归文本更快趋同，K*=2 不是 scale-invariant property。Feature
+    ranking 与 1.5B 保持较高一致性（ρ=0.82），因为 degradation 的物理机制相同（信息压缩），只是速率不同。
+
+    '
+  tables:
+  - name: 'Table: Scale effect on K*'
+    columns:
+    - Model
+    - Scale
+    - K*
+    - AUC 1v2
+    - 95% CI
+    - AUC 2v3
+    rows:
+    - - Qwen2.5-1.5B (cont)
+      - 1.5B
+      - 2
+      - 0.611
+      - '[0.602, 0.621]'
+      - 0.561
+    - - Qwen2.5-7B (cont)
+      - 7B
+      - 1
+      - 0.577
+      - '[0.558, 0.596]'
+      - 0.529
+  figures_description:
+  - 'Bar chart: 1v2 AUC with 95% CI for 1.5B vs 7B，threshold line at 0.60'
+  - 'AUC decay curve overlay: 1.5B vs 7B，展示 7B 的更快衰减'
+  analysis: 'K* 随模型规模递减。这与 DPI 框架完全一致——更强的 channel（更大模型）每轮信息损耗更小， 递归输出更快趋同于 stationary
+    distribution。但这也意味着论文必须放弃 "K*=2 across scales" 的 universal claim。Positive spin：首次揭示
+    scale-K* 关系，对 practitioners 有直接指导意义 （"用更大模型生成的合成数据更难做 depth estimation"）。需要在 1K
+    docs 的 smaller sample size 下谨慎表述 CI。
+
+    '
+- name: Downstream filtering evaluation
+  plan_id: exp-006
+  description: '六种 filtering 策略（no-filter / binary-ours / binary-Drayson / graduated
+    / surprisal-based / DSIR）在 continued pretraining + lm-eval-harness 上的对比。5 seeds
+    paired t-test。 α sensitivity sweep。
+
+    '
+  expected_results:
+    mmlu:
+      no_filter: 25.8
+      binary_ours: 26.4
+      binary_drayson: 26.5
+      graduated_alpha_01: 26.3
+      graduated_alpha_03: 26.5
+      graduated_alpha_05: 26.6
+      graduated_alpha_07: 26.4
+      graduated_alpha_09: 26.3
+      surprisal_based: 26.2
+      dsir: 26.8
+    hellaswag:
+      no_filter: 42.1
+      binary_ours: 43.0
+      binary_drayson: 43.2
+      graduated_alpha_01: 42.9
+      graduated_alpha_03: 43.1
+      graduated_alpha_05: 43.2
+      graduated_alpha_07: 43.0
+      graduated_alpha_09: 42.8
+      surprisal_based: 42.6
+      dsir: 43.5
+    graduated_minus_binary_delta_pp:
+      mmlu: 0.2
+      hellaswag: 0.2
+      mean: 0.2
+    graduated_vs_binary_paired_ttest_p:
+      mmlu: 0.34
+      hellaswag: 0.28
+    dsir_vs_graduated_delta_pp:
+      mmlu: 0.2
+      hellaswag: 0.3
+    best_alpha: 0.5
+    alpha_sensitivity: non-monotonic, peak at 0.5 but flat (range < 0.3pp)
+  result_rationale: 'Graduated filtering 的理论优势在于利用 ordinal signal（human/gen-1/gen-2+）做更
+    calibrated 的权重分配。但在 worst tier 下，这个优势被多个因素抵消：(1) K*=2 意味着 ordinal signal 只有 3
+    个 有效等级（0/1/2+），graduated 退化为接近 binary 的判断——差异仅在于对 gen-1 赋予中间权重而非 hard cutoff，但
+    gen-1 本身质量尚可（1v2 AUC 只有 0.61-0.69），过滤掉它的边际损失本就不大； (2) 15D hand-crafted features
+    的 ordinal accuracy 只有 ~0.38-0.42，depth 估计的噪声很大， graduated weighting 的"精细调控"被预测噪声淹没；(3)
+    continued pretraining 对数据质量的 sensitivity 在小 injection 比例下较低。结果 graduated - binary
+    仅 +0.2pp，paired t-test p > 0.10（5 seeds 下 power 不足以检测 <0.5pp 的差异）。DSIR 表现最好是因为它做分布匹配
+    而非深度过滤，这是一种 complementary 而非 competing 的策略。α sweep 几乎 flat 说明 graduated 的 weighting
+    scheme 不 matter，因为 ordinal signal 本身太弱。
+
+    '
+  tables:
+  - name: 'Table: Filtering strategy comparison (mean ± std over 5 seeds)'
+    columns:
+    - Strategy
+    - MMLU
+    - HellaSwag
+    - Δ vs no-filter
+    rows:
+    - - No filter
+      - 25.8 ± 0.3
+      - 42.1 ± 0.4
+      - —
+    - - Binary (ours)
+      - 26.4 ± 0.3
+      - 43.0 ± 0.3
+      - +0.75pp
+    - - Binary (Drayson)
+      - 26.5 ± 0.3
+      - 43.2 ± 0.4
+      - +0.9pp
+    - - Graduated (α=0.5)
+      - 26.6 ± 0.4
+      - 43.2 ± 0.4
+      - +0.95pp
+    - - Surprisal-based
+      - 26.2 ± 0.3
+      - 42.6 ± 0.3
+      - +0.45pp
+    - - DSIR
+      - 26.8 ± 0.3
+      - 43.5 ± 0.3
+      - +1.2pp
+  - name: 'Table: α sensitivity sweep (graduated filtering)'
+    columns:
+    - α
+    - MMLU
+    - HellaSwag
+    rows:
+    - - 0.1
+      - 26.3
+      - 42.9
+    - - 0.3
+      - 26.5
+      - 43.1
+    - - 0.5
+      - 26.6
+      - 43.2
+    - - 0.7
+      - 26.4
+      - 43.0
+    - - 0.9
+      - 26.3
+      - 42.8
+  figures_description:
+  - 'Bar chart: 六种策略的 MMLU/HellaSwag 得分 + error bars，graduated 和 binary 的 bars 几乎等高'
+  - 'Line plot: α sweep curve，几乎水平，展示 graduated weighting 的无效性'
+  analysis: 'C3 的核心 claim 被否定。graduated - binary < 0.5pp 且统计不显著（p > 0.10）。即使在 best
+    α=0.5 下，graduated 也仅比 binary 好 0.2pp。这不能支撑 "K*-aware graduated filtering outperforms
+    binary" 的 claim。DSIR 反而是最好的，但它不 claim depth awareness。C3 必须删除或降为 "we tested graduated
+    filtering; the improvement was not statistically significant, consistent with
+    the limited ordinal resolution at K*=2" 的 negative result 段落。 论文的 practical contribution
+    因此大打折扣——从 "method + application" 退化为 "analysis only"。
+
+    '
+- name: Retrain-chain ecological validity
+  plan_id: exp-008
+  description: 'Pythia-1.4B LoRA retrain-chain vs prompt-chain 的 K* 和特征分布对比。
+
+    '
+  expected_results:
+    retrain_chain:
+      0v1_auc: 0.981
+      1v2_auc: 0.593
+      1v2_ci_lower: 0.583
+      1v2_ci_upper: 0.604
+      2v3_auc: 0.541
+      k_star: 1 (CI upper = 0.604, marginally above 0.60 but inconsistent)
+    prompt_chain_reference:
+      1v2_auc: 0.654
+      k_star: 2
+    feature_distribution_jsd_retrain_vs_prompt:
+      gen1: 0.032
+      gen2: 0.048
+      gen3: 0.061
+    spearman_rho_feature_ranking: 0.8
+  result_rationale: 'Retrain-chain 的递归机制与 prompt-chain 不同：模型参数本身被污染数据更新，而非仅通过 prompt
+    传递。LoRA rank=16 的 fine-tuning 只更新少量参数，但每轮 retrain 会让模型的 generation distribution
+    更快收敛到自身输出的 stationary distribution（positive feedback loop 更紧密）。 因此 retrain-chain
+    的代际差异衰减更快，1v2 AUC 低于 prompt-chain（0.593 vs 0.654）。 在 worst tier 下，retrain-chain
+    K*=1 进一步削弱 K*=2 的 universality——即使在同一模型、 同一 scale 下，递归机制的不同就能改变 K*。Feature ranking
+    的一致性（ρ=0.80）说明 degradation 的本质机制类似（都是信息压缩），但速率和 K* 因机制而异。这支持了 measurement paper
+    的叙事："K* depends on the recursion mechanism, not just the model"。
+
+    '
+  tables:
+  - name: 'Table: Prompt-chain vs Retrain-chain (Pythia-1.4B)'
+    columns:
+    - Chain type
+    - K*
+    - AUC 0v1
+    - AUC 1v2
+    - AUC 2v3
+    rows:
+    - - Prompt-chain
+      - 2
+      - 0.993
+      - 0.654
+      - 0.552
+    - - Retrain-chain (LoRA)
+      - 1
+      - 0.981
+      - 0.593
+      - 0.541
+  figures_description:
+  - 'Feature distribution violin plots: prompt-chain vs retrain-chain at gen-1/2/3'
+  - AUC decay curve overlay for two chain types
+  analysis: 'Retrain-chain 的 K* 更低，进一步证实 K* 是 configuration-dependent。但 retrain-chain
+    的 ecological validity 更高（更接近真实 model collapse 场景），这意味着在最真实的场景下 K* 可能更低。论文可以正面叙述："retrain-chain
+    的更快收敛与 model collapse 文献的预测一致"。 但这也意味着 depth estimation 的 practical value 在 retrain
+    场景下更有限。
+
+    '
+- name: Contamination dose-response
+  plan_id: exp-009
+  description: '10%/30%/50% synthetic injection 比例下 graduated vs binary filtering
+    的收益差异。
+
+    '
+  expected_results:
+    injection_10pct:
+      binary_mmlu: 25.9
+      graduated_mmlu: 26.0
+      delta_pp: 0.1
+      p_value: 0.61
+    injection_30pct:
+      binary_mmlu: 26.4
+      graduated_mmlu: 26.6
+      delta_pp: 0.2
+      p_value: 0.38
+    injection_50pct:
+      binary_mmlu: 26.2
+      graduated_mmlu: 26.5
+      delta_pp: 0.3
+      p_value: 0.19
+    hellaswag_pattern: similar, delta_pp 0.1-0.4, all p > 0.10
+    dose_response_trend: graduated advantage increases with injection ratio but never
+      reaches significance
+  result_rationale: '即使 injection 比例增大（50%），graduated 的优势仍无法达到显著性，因为根本瓶颈不在 injection
+    比例而在 ordinal signal 的分辨率。K*=2 限制了 ordinal signal 只有 3 个有效等级，而 depth estimator
+    在这 3 个等级上的 accuracy 只有 ~0.38-0.42。更高的 injection 比例放大了 filtering 的绝对效果（binary 和
+    graduated 都比 no-filter 更好），但 graduated 相对 binary 的边际优势 始终被估计噪声淹没。在 50% injection
+    下 delta 达到 0.3pp，但 5 seeds 的 variance 太大， p=0.19 仍不显著。要达到 p<0.05 可能需要 20+ seeds（不现实的
+    GPU budget）。这说明即使 C3 在某种 asymptotic sense 下可能正确，在实际可操作的实验规模下也无法被证实。
+
+    '
+  tables:
+  - name: 'Table: Dose-response (graduated − binary, pp)'
+    columns:
+    - Injection %
+    - Δ MMLU
+    - Δ HellaSwag
+    - p-value (MMLU)
+    rows:
+    - - 10%
+      - '+0.1'
+      - '+0.1'
+      - 0.61
+    - - 30%
+      - '+0.2'
+      - '+0.2'
+      - 0.38
+    - - 50%
+      - '+0.3'
+      - '+0.4'
+      - 0.19
+  figures_description:
+  - 'Line plot: graduated − binary delta (pp) vs injection ratio，带 confidence band'
+  analysis: 'Dose-response 趋势存在但从未达到显著性，进一步确认 C3 无法在本文中被支撑。 可以作为 discussion 段落提及 "suggestive
+    but underpowered trend"。
+
+    '
+- name: LLM zero-shot depth estimation baseline
+  plan_id: exp-011
+  description: 'GPT-4o / Claude 3.5 对 depth 0-4 文本做 zero-shot depth 判断。
+
+    '
+  expected_results:
+    gpt4o:
+      accuracy: 0.23
+      mae: 1.82
+      tau_b: 0.12
+      binary_0v1plus_auc: 0.71
+    claude35:
+      accuracy: 0.25
+      mae: 1.74
+      tau_b: 0.15
+      binary_0v1plus_auc: 0.74
+    random_baseline_accuracy: 0.2
+    our_15D_accuracy: 0.38
+  result_rationale: 'LLM 的 zero-shot depth estimation 接近随机（accuracy 0.23-0.25 vs random
+    0.20），因为 depth estimation 需要检测微妙的统计 fingerprint（surprisal 分布的高阶矩变化），而不是 surface-level
+    的文本质量判断。LLM 可以做粗粒度的 "is this synthetic?" 判断（0v1+ AUC 0.71-0.74）， 但无法区分 gen-1 vs
+    gen-2 vs gen-3 这种需要统计工具的细粒度差异。这验证了 depth estimation 需要专门方法的 claim。但在 worst tier
+    下，即使我们的方法也只有 0.38 accuracy，LLM baseline 的弱表现更多地证明了 "depth estimation is hard"
+    而非 "our method is strong"。
+
+    '
+  tables:
+  - name: 'Table: Zero-shot LLM depth estimation'
+    columns:
+    - Method
+    - Accuracy
+    - MAE
+    - τ_b
+    - Binary AUC
+    rows:
+    - - Random
+      - 0.2
+      - 2.0
+      - 0.0
+      - 0.5
+    - - GPT-4o zero-shot
+      - 0.23
+      - 1.82
+      - 0.12
+      - 0.71
+    - - Claude 3.5 zero-shot
+      - 0.25
+      - 1.74
+      - 0.15
+      - 0.74
+    - - Our 15D features
+      - 0.38
+      - 1.14
+      - 0.47
+      - 0.99
+  figures_description:
+  - 'Confusion matrix: LLM predictions vs true depth，展示 heavy diagonal blur'
+  analysis: 'LLM 不能做 depth estimation，但这主要证明任务本身难，不单独支撑我们方法的 novelty。 在 analysis paper
+    framing 下，这个实验定位为 "calibration of task difficulty"。
+
+    '
+- name: Binary detector confidence as depth proxy
+  plan_id: exp-012
+  description: 'DivEye/Binoculars score 与 true depth 的 Spearman correlation。
+
+    '
+  expected_results:
+    diveye:
+      spearman_rho_with_depth: 0.18
+      p_value: 0.003
+      0v1_auc: 0.94
+      0v1plus_auc: 0.91
+      1v2_auc: 0.53
+    binoculars:
+      spearman_rho_with_depth: 0.22
+      p_value: 0.001
+      0v1_auc: 0.96
+      0v1plus_auc: 0.93
+      1v2_auc: 0.55
+    our_method:
+      spearman_rho_with_depth: 0.52
+      1v2_auc: 0.65
+  result_rationale: 'Binary detectors 的 confidence score 与 depth 有微弱但显著的相关性（ρ=0.18-0.22），因为
+    更深代的文本更"像"合成文本（更远离原始分布）。但相关性很弱，因为 binary detectors 优化的是 real/synthetic 的 decision
+    boundary，不是 depth ordering。它们的 score 主要反映 gen-0 vs gen-1+ 的巨大差异（0v1 AUC > 0.94），而在
+    gen-1 以上的 depth 差异上几乎没有分辨力 （1v2 AUC 0.53-0.55）。这验证了 "binary confidence ≠ depth"
+    的 claim，但在 worst tier 下，我们自己的方法在 1v2 之上也好不了多少——只是从 "nearly random" 升到 "slightly
+    above random"。
+
+    '
+  tables:
+  - name: 'Table: Binary detector score vs depth'
+    columns:
+    - Detector
+    - ρ(score, depth)
+    - AUC 0v1
+    - AUC 1v2
+    rows:
+    - - DivEye
+      - 0.18
+      - 0.94
+      - 0.53
+    - - Binoculars
+      - 0.22
+      - 0.96
+      - 0.55
+    - - Our 15D (ordinal)
+      - 0.52
+      - 0.99
+      - 0.65
+  figures_description:
+  - 'Scatter plot: detector confidence vs true depth，展示 gen-0 的清晰分离和 gen-1+ 的混杂'
+  analysis: 'Binary confidence 不是 depth 的有效 proxy。我们的方法在 depth correlation 上优势明显 （ρ=0.52
+    vs 0.18-0.22），但 absolute performance 仍有限。在 analysis paper 中定位为 "existing tools
+    cannot estimate depth, motivating dedicated methods"。
+
+    '
+- name: Naturalistic validation (Common Crawl)
+  plan_id: exp-014
+  description: '对 Common Crawl 2025/2026 snapshot 样本做 depth 预测，与 AlignScore 和 vocabulary
+    richness 做 correlation。
+
+    '
+  expected_results:
+    predicted_depth_distribution:
+      depth_0: 0.72
+      depth_1: 0.19
+      depth_2plus: 0.09
+    correlation_with_alignscore:
+      spearman_rho: 0.31
+      p_value: 0.001
+    correlation_with_vocab_richness:
+      spearman_rho: 0.28
+      p_value: 0.002
+    cross_model_prediction_agreement:
+      pythia_vs_olmo_kappa: 0.41
+  result_rationale: 'Common Crawl 中真正的多代递归文本比例仍然有限（2025/2026 snapshot 中大部分合成文本是 单代生成）。Depth
+    predictor 在 in-distribution（C4 prompt-chain）上训练，迁移到 wild data 时 feature distribution
+    shift 导致 calibration 下降。与 AlignScore 的中等相关性（ρ=0.31） 说明 predicted depth 和文本质量有关联但不等同——AlignScore
+    测量的是 factual consistency 而非 generational degradation。Pythia vs OLMo 的 predictor
+    agreement 只有 moderate （κ=0.41），反映了 cross-model transfer 在 wild data 上的进一步退化。在
+    worst tier 下， 这些数据只能支持 "our predictions correlate with independent quality measures"
+    的 weak claim， 不能做 ground-truth validation（无法知道 CC 文本的真实 depth）。
+
+    '
+  tables:
+  - name: 'Table: Naturalistic validation correlations'
+    columns:
+    - Metric pair
+    - Spearman ρ
+    - p-value
+    rows:
+    - - Predicted depth vs AlignScore
+      - 0.31
+      - <0.001
+    - - Predicted depth vs Vocab richness
+      - 0.28
+      - <0.01
+    - - Pythia pred vs OLMo pred (κ)
+      - 0.41
+      - —
+  figures_description:
+  - 'Histogram: predicted depth distribution on CC sample'
+  - 'Scatter plot: predicted depth vs AlignScore'
+  analysis: 'Naturalistic validation 提供了 weak external validity——predicted depth 与独立质量指标
+    相关但相关性中等。在 analysis paper 中定位为 "exploratory application"，不能 overclaim。
+
+    '
+- name: Learned representation baseline
+  plan_id: exp-015
+  description: 'Frozen Qwen2.5-1.5B embeddings + MLP vs hand-crafted 15D features。
+
+    '
+  expected_results:
+    learned_frozen_embedding_mlp:
+      accuracy: 0.49
+      mae: 0.82
+      tau_b: 0.61
+      1v2_auc: 0.73
+      2v3_auc: 0.62
+      k_star: 3
+    hand_crafted_15D:
+      accuracy: 0.38
+      mae: 1.14
+      tau_b: 0.47
+      1v2_auc: 0.65
+      2v3_auc: 0.55
+      k_star: 2
+    delta_accuracy_pp: 11
+    delta_1v2_auc: 0.08
+  result_rationale: 'Frozen embeddings 保留了预训练模型的全部表征能力（768D 或 2048D vs 15D），MLP 可以学习到
+    hand-crafted features 无法捕捉的非线性组合和高维模式。关键差异在于：(1) embedding 空间中 不同 depth 的文本形成了可分离的
+    cluster，但这种分离性是 high-dimensional 的，无法用 15 个 hand-crafted scalar 特征近似；(2) learned
+    probe 可以自动发现 depth-discriminative 的维度， 而 hand-crafted features 是基于先验知识手动选择的子集。在
+    worst tier 下，learned features 优于 hand-crafted ≥ 10pp（accuracy 0.49 vs 0.38），甚至将
+    effective K* 推到 3（2v3 AUC 0.62 > 0.60）。这证明 depth signal 确实存在于文本中但 15D features
+    无法充分提取。论文必须 承认 hand-crafted features 是 "convenience baseline for interpretability"
+    而非 sufficient tool，并在 future work 中呼吁 learned approaches。这对 analysis paper 叙事是双刃剑：
+    证明了 depth signal 的存在（positive），但削弱了 15D features 作为工具的实用价值（negative）。
+
+    '
+  tables:
+  - name: 'Table: Learned vs hand-crafted features'
+    columns:
+    - Feature type
+    - Accuracy
+    - MAE
+    - τ_b
+    - AUC 1v2
+    - AUC 2v3
+    - K*
+    rows:
+    - - Hand-crafted 15D
+      - 0.38
+      - 1.14
+      - 0.47
+      - 0.65
+      - 0.55
+      - 2
+    - - Frozen embedding + MLP
+      - 0.49
+      - 0.82
+      - 0.61
+      - 0.73
+      - 0.62
+      - 3
+    - - Delta
+      - +11pp
+      - −0.32
+      - '+0.14'
+      - '+0.08'
+      - '+0.07'
+      - '+1'
+  figures_description:
+  - 'Bar chart: accuracy/AUC comparison between learned and hand-crafted'
+  - t-SNE visualization of frozen embeddings colored by depth
+  analysis: 'Learned features 大幅优于 hand-crafted（+11pp accuracy），证明 depth signal 存在但
+    15D features 不够用。K* 被 learned probe 推到 3，说明 K*=2 的 boundary 部分是 feature engineering
+    的限制而非信号的物理极限。论文必须添加 "our hand-crafted features provide an interpretable but suboptimal
+    window into depth signal" 的 caveat，并在 future work 中呼吁 learned depth estimation。这对
+    C1'' 的影响：K* 的测量值依赖于 feature set， "K*=2 with 15D features" 更准确地说是 "K*_15D=2"，而
+    K*_learned=3。
+
+    '
+- name: Base vs Instruct model comparison
+  plan_id: exp-016
+  description: 'Qwen2.5-1.5B base vs Instruct 的 K* 和特征分布差异。
+
+    '
+  expected_results:
+    base_model:
+      0v1_auc: 0.991
+      1v2_auc: 0.639
+      1v2_ci_lower: 0.629
+      1v2_ci_upper: 0.649
+      2v3_auc: 0.568
+      k_star: 2
+      top3_features:
+      - surp_d1_std
+      - surp_std
+      - surp_d2_std
+    instruct_model_cont:
+      0v1_auc: 0.997
+      1v2_auc: 0.611
+      1v2_ci_lower: 0.602
+      1v2_ci_upper: 0.621
+      2v3_auc: 0.561
+      k_star: 2
+    delta_1v2_auc: 0.028
+    feature_distribution_jsd_base_vs_instruct:
+      gen0: 0.008
+      gen1: 0.021
+      gen2: 0.034
+    spearman_rho_feature_ranking: 0.88
+  result_rationale: 'Base model 的 continuation generation 更接近"裸"的 next-token prediction，没有
+    RLHF/DPO 的 style alignment。递归 chain 中，base model 的输出更 diverse（temperature 的实际效果更大），
+    代际差异衰减稍慢。Instruct model 的 alignment training 倾向于产生更 uniform 的 style， 递归 chain
+    更快收敛。但差异不大（Δ1v2 AUC = 0.028pp），K* 都是 2。在 worst tier 下，这个 实验的叙事价值有限——只是 K* 变化图谱中的又一个
+    data point。Feature ranking 一致性高（ρ=0.88）， 说明 base/instruct 的 degradation 机制相似。值得注意的是
+    base model 的 0v1 AUC 略低（0.991 vs 0.997），因为 base model 的 gen-0 → gen-1 转换保留了更多原始文本特征（没有
+    style normalization）。
+
+    '
+  tables:
+  - name: 'Table: Base vs Instruct (Qwen2.5-1.5B, continuation mode)'
+    columns:
+    - Variant
+    - K*
+    - AUC 0v1
+    - AUC 1v2
+    - AUC 2v3
+    rows:
+    - - Base
+      - 2
+      - 0.991
+      - 0.639
+      - 0.568
+    - - Instruct
+      - 2
+      - 0.997
+      - 0.611
+      - 0.561
+  figures_description:
+  - 'Paired AUC decay curves: base vs instruct'
+  - Feature importance comparison heatmap
+  analysis: 'Base 和 Instruct 的 K* 一致（都是 2），但 base model 的 1v2 AUC 略高。在 analysis paper
+    中作为 "instruction tuning slightly accelerates convergence" 的 supporting evidence，
+    但不是 major finding。
+
+    '
+- name: Qwen-cont stricter validation (different seed depth chains)
+  plan_id: worst-tier-auxiliary
+  description: 'Qwen-cont 在不同 random seed 的 depth chain 上重新评估，测试 1v2 CI 的稳定性。 这是 worst
+    tier 核心假设之一。
+
+    '
+  expected_results:
+    seed_1_1v2_auc: 0.608
+    seed_1_1v2_ci_lower: 0.597
+    seed_2_1v2_auc: 0.604
+    seed_2_1v2_ci_lower: 0.593
+    seed_3_1v2_auc: 0.615
+    seed_3_1v2_ci_lower: 0.604
+    seeds_with_ci_lower_below_060: 2 out of 3
+    mean_1v2_auc_across_seeds: 0.609
+  result_rationale: 'Qwen-cont 的 1v2 CI lower 在原始实验中仅为 0.6015（高于 0.60 仅 0.0015）。这个
+    margin 极其脆弱——seed randomness 就足以让它跌破阈值。不同 seed 改变了 depth chain 的具体文本 实例，而 Qwen-cont
+    的 1v2 signal 本来就很弱（AUC 0.611），bootstrap CI 的位置对样本 敏感。在 3 个新 seed 中，2 个的 CI lower
+    跌破 0.60，说明 "all 1v2 CI lower > 0.60" 的 claim 不 robust。这打破了 K*=2 的 universal claim——至少对
+    Qwen-cont 来说，K* 在 1 和 2 之间摇摆。
+
+    '
+  tables:
+  - name: 'Table: Qwen-cont 1v2 AUC stability across seeds'
+    columns:
+    - Seed
+    - AUC 1v2
+    - CI lower
+    - CI upper
+    - CI lower > 0.60?
+    rows:
+    - - Original
+      - 0.611
+      - 0.602
+      - 0.621
+      - ✅ (barely)
+    - - Seed 1
+      - 0.608
+      - 0.597
+      - 0.619
+      - ❌
+    - - Seed 2
+      - 0.604
+      - 0.593
+      - 0.615
+      - ❌
+    - - Seed 3
+      - 0.615
+      - 0.604
+      - 0.626
+      - ✅
+  figures_description:
+  - 'Forest plot: 1v2 AUC with CI across seeds，threshold line at 0.60'
+  analysis: Qwen-cont 的 K*=2 claim 不稳定。这是 worst tier 的关键证据之一——K*=2 universality 依赖于一个
+    margin 仅 0.0015 的 borderline case，在新数据上无法复现。

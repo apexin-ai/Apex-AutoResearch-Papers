@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_arXiv_llama8b",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T10:53:57.754Z",
+    "updated_at": "2026-05-17T10:59:35.396Z",
+    "hypothesis": "Cross-architecture arXiv K* validation: LLaMA-3.1-8B continuation on arXiv abstracts 的 K* 是否 = 3？验证 structured domain K*=3 在大模型（8B scale）上是否成立，排除小模型 capacity artifact。2200 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "parent": "exp_024_arxiv_domain"
+  },
+  "timestamp": "2026-05-17T10:59:35.545345+00:00",
+  "trigger": "update_registry"
+}

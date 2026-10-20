@@ -1,0 +1,28 @@
+{
+  "exp_id": "gsm8k_patch_nf_s0",
+  "project": "gen-depth-contamination",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:13:12.767Z",
+    "updated_at": "2026-05-22T00:54:13.005Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_DISABLE_XET=1 HF_ENDPOINT=https://hf-mirror.com python scripts/exp_expanded_downstream_eval.py --device cuda:0 --seed_start 0 --num_seeds 1 --strategy no_filter --skip_base\"",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "368659",
+      "log_path": "~/runs/gen-depth-contamination/gsm8k_patch_nf_s0.log",
+      "submitted_at": "2026-05-20T21:13:12.327Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-22T00:54:13.370444+00:00",
+  "trigger": "update_registry"
+}

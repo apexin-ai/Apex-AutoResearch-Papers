@@ -1,0 +1,24 @@
+paper_key: "pu2026generator"
+title: "Breaking the Generator Barrier: Disentangled Representation for Generalizable AI-Text Detection"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: [RoBERTa-based detectors, DEER, LLM-based zero-shot detectors, supervised fine-tuned classifiers]
+  metrics:
+    - {name: "accuracy", direction: "higher_better"}
+    - {name: "F1 score", direction: "higher_better"}
+    - {name: "cross-generator generalization", direction: "higher_better"}
+  datasets:
+    - {name: "MAGE benchmark", size: "20 LLMs across 7 categories"}
+  ablation_dimensions: [disentanglement stages, training generator diversity, perturbation regularization strength]
+  training_recipe: {details: "Three-stage progressive framework: (1) compact latent encoding for semantic minimality, (2) perturbation-based regularization to reduce generator-specific entanglement, (3) discriminative adaptation for task alignment"}
+  method_family: "supervised detection with disentangled representation learning"
+
+positioning:
+  core_claim: "Disentangling detection-relevant semantics from generator-specific artifacts via progressive encoding, perturbation, and adaptation yields up to 24.2% accuracy and 26.2% F1 gains on unseen generators in the MAGE benchmark"
+  relation_to_us: "competitor"
+
+narrative: N/A
+figures: N/A
+tables: N/A

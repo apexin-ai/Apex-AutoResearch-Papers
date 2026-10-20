@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_deberta_cross_transfer_gpu1",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T00:45:55.753Z",
+    "updated_at": "2026-05-20T00:47:15.747Z",
+    "hypothesis": "Sub-experiment of exp_deberta_cross_transfer_wiki: GPU1 ran pythia↔olmo and pythia↔qwen7b pairs.",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T00:47:16.027435+00:00",
+  "trigger": "update_registry"
+}

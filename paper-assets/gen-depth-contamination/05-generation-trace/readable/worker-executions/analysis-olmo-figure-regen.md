@@ -1,0 +1,5455 @@
+# analysis olmo figure regen
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 114
+- **Recorded user turns:** 0
+- **Tool calls:** 43
+- **Original source:** `logs/workers/worker_analysis_olmo_figure_regen_20260521T153930.log`
+- **Structured JSON:** [`d1b77a4ba111fe14f63d.json`](../../sessions/d1/d1b77a4ba111fe14f63d.json)
+
+## Before a recorded user message
+
+114 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "cbd259f2-e36a-40ea-9b43-cf9ec216318d",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779391800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "cede0a39-3216-465e-b421-b3f46da80636",
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by checking which plot scripts reference OLMo and reading the key script for Figure 4.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "d899a4f0-b749-4dba-9e03-85a8fd50d681",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AYt6QEqW5js6zmNUfa3tkA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12391,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12391
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01YVNsB2xoFbY4qEt5tCcab2`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__detect_image",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "f5d41969-c7a0-4d1b-8e83-069d3696fc4c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AYt6QEqW5js6zmNUfa3tkA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12391,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12391
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T15:39:43.195Z_
+
+<details><summary>↩ Tool result · `toolu_01YVNsB2xoFbY4qEt5tCcab2`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "0d6e9917-69be-4d17-88ec-e6574872ef6c",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by checking which plot scripts reference OLMo and reading the key scripts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "f0a8a8ac-1592-4658-85e2-d032d71706f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RtnsUEV5fzopHKkmXVzVib",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1494,
+      "cache_read_input_tokens": 24232,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1494
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KLbfXsKkYZSLWJQUGnDKaf`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -rl \"olmo\\|OLMo\" /root/autodl-tmp/gen-depth-contamination/scripts/plot_*.py /root/autodl-tmp/gen-depth-contamination/scripts/fig_*.py 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "496ad6d3-c7f6-4fbb-915a-3eac442662b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RtnsUEV5fzopHKkmXVzVib",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1494,
+      "cache_read_input_tokens": 24232,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1494
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T15:39:47.109Z_
+
+<details><summary>↩ Tool result · `toolu_01KLbfXsKkYZSLWJQUGnDKaf`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "f2649158-7b37-4ad5-a657-673b57f959e1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019HSptrpt6QEpjJb2o1aLmD`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls -la /root/autodl-tmp/gen-depth-contamination/results/olmo_feature_importance/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "5d8bbb37-7de3-431a-8f6e-3613a0727476",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RtnsUEV5fzopHKkmXVzVib",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1494,
+      "cache_read_input_tokens": 24232,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1494
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011zSuchECUfT9ZrpMJdN7YA`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls -la /root/autodl-tmp/gen-depth-contamination/data/exp_olmo1b_c4_rerun/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "60b1f1fa-c1bc-496f-89c1-18e707dc6d23",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RtnsUEV5fzopHKkmXVzVib",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1494,
+      "cache_read_input_tokens": 24232,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1494
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T15:39:48.912Z_
+
+<details><summary>↩ Tool result · `toolu_019HSptrpt6QEpjJb2o1aLmD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 576\\ndrwxr-xr-x  2 root root   4096 May 21 23:33 .\\ndrwxr-xr-x 90 root root   4096 May 21 23:31 ..\\n-rw-r--r--  1 root root  47331 May 21 23:32 cross_model_feature_comparison.pdf\\n-rw-r--r--  1 root root 251498 May 21 23:32 cross_model_feature_comparison.png\\n-rw-r--r--  1 root root   5188 May 21 23:33 gemma_importance_results.json\\n-rw-r--r--  1 root root   5506 May 21 23:32 importance_results.json\\n-rw-r--r--  1 root root  33218 May 21 23:32 olmo_rerun_feature_importance.pdf\\n-rw-r--r--  1 root root 220745 May 21 23:32 olmo_rerun_feature_importance.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "5da962e5-17b2-496f-99c6-c9012f0f8dea",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 576\\\\ndrwxr-xr-x  2 root root   4096 May 21 23:33 .\\\\ndrwxr-xr-x 90 root root   4096 May 21 23:31 ..\\\\n-rw-r--r--  1 root root  47331 May 21 23:32 cross_model_feature_comparison.pdf\\\\n-rw-r--r--  1 root root 251498 May 21 23:32 cross_model_feature_comparison.png\\\\n-rw-r--r--  1 root root   5188 May 21 23:33 gemma_importance_results.json\\\\n-rw-r--r--  1 root root   5506 May 21 23:32 importance_results.json\\\\n-rw-r--r--  1 root root  33218 May 21 23:32 olmo_rerun_feature_importance.pdf\\\\n-rw-r--r--  1 root root 220745 May 21 23:32 olmo_rerun_feature_importance.png\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 576\\ndrwxr-xr-x  2 root root   4096 May 21 23:33 .\\ndrwxr-xr-x 90 root root   4096 May 21 23:31 ..\\n-rw-r--r--  1 root root  47331 May 21 23:32 cross_model_feature_comparison.pdf\\n-rw-r--r--  1 root root 251498 May 21 23:32 cross_model_feature_comparison.png\\n-rw-r--r--  1 root root   5188 May 21 23:33 gemma_importance_results.json\\n-rw-r--r--  1 root root   5506 May 21 23:32 importance_results.json\\n-rw-r--r--  1 root root  33218 May 21 23:32 olmo_rerun_feature_importance.pdf\\n-rw-r--r--  1 root root 220745 May 21 23:32 olmo_rerun_feature_importance.png\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.92}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T15:39:49.400Z_
+
+<details><summary>↩ Tool result · `toolu_011zSuchECUfT9ZrpMJdN7YA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 43140\\ndrwxr-xr-x  2 root root     184 May 21 18:34 .\\ndrwxr-xr-x 48 root root    4096 May 21 22:39 ..\\n-rw-r--r--  1 root root 4529316 May 21 18:10 depth_0.jsonl\\n-rw-r--r--  1 root root 6200034 May 21 18:10 depth_1.jsonl\\n-rw-r--r--  1 root root 6210132 May 21 18:10 depth_2.jsonl\\n-rw-r--r--  1 root root 6220145 May 21 18:10 depth_3.jsonl\\n-rw-r--r--  1 root root 6205008 May 21 18:10 depth_4.jsonl\\n-rw-r--r--  1 root root 6209625 May 21 18:10 depth_5.jsonl\\n-rw-r--r--  1 root root 8581992 May 21 18:34 features.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "92f1a233-5136-4288-bfcb-02c8545428da",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 43140\\\\ndrwxr-xr-x  2 root root     184 May 21 18:34 .\\\\ndrwxr-xr-x 48 root root    4096 May 21 22:39 ..\\\\n-rw-r--r--  1 root root 4529316 May 21 18:10 depth_0.jsonl\\\\n-rw-r--r--  1 root root 6200034 May 21 18:10 depth_1.jsonl\\\\n-rw-r--r--  1 root root 6210132 May 21 18:10 depth_2.jsonl\\\\n-rw-r--r--  1 root root 6220145 May 21 18:10 depth_3.jsonl\\\\n-rw-r--r--  1 root root 6205008 May 21 18:10 depth_4.jsonl\\\\n-rw-r--r--  1 root root 6209625 May 21 18:10 depth_5.jsonl\\\\n-rw-r--r--  1 root root 8581992 May 21 18:34 features.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 43140\\ndrwxr-xr-x  2 root root     184 May 21 18:34 .\\ndrwxr-xr-x 48 root root    4096 May 21 22:39 ..\\n-rw-r--r--  1 root root 4529316 May 21 18:10 depth_0.jsonl\\n-rw-r--r--  1 root root 6200034 May 21 18:10 depth_1.jsonl\\n-rw-r--r--  1 root root 6210132 May 21 18:10 depth_2.jsonl\\n-rw-r--r--  1 root root 6220145 May 21 18:10 depth_3.jsonl\\n-rw-r--r--  1 root root 6205008 May 21 18:10 depth_4.jsonl\\n-rw-r--r--  1 root root 6209625 May 21 18:10 depth_5.jsonl\\n-rw-r--r--  1 root root 8581992 May 21 18:34 features.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+OLMo feature importance files exist. Now let me grep for OLMo references without pipe characters, and read the JSD decay script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "252b9c8b-17e7-4e61-9697-51631b559992",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RKVKorzaBBaLhob6ygcM72",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1330,
+      "cache_read_input_tokens": 25726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1330
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Y4zFfr4UsjGtqAbqUmZXEE`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -rl \"olmo\\|OLMo\" /root/autodl-tmp/gen-depth-contamination/scripts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "46df0a35-af51-41c9-96c9-dead443f05fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RKVKorzaBBaLhob6ygcM72",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1330,
+      "cache_read_input_tokens": 25726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1330
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T15:39:53.446Z_
+
+<details><summary>↩ Tool result · `toolu_01Y4zFfr4UsjGtqAbqUmZXEE`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "8e134dcf-5276-4239-9fda-9cdf3c33d164",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Q3jSy71iYvuGUkSwojRREJ`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/scripts/plot_fig_jsd_decay.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "1f36bc5d-16ad-4c71-afaf-b1795077578b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RKVKorzaBBaLhob6ygcM72",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1330,
+      "cache_read_input_tokens": 25726,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1330
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T15:39:54.450Z_
+
+<details><summary>↩ Tool result · `toolu_01Q3jSy71iYvuGUkSwojRREJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Generate paper figure: JSD decay across generational depth.\\n\\nBlue band = C4 K*=2 models (min-max), with median line.\\nSeparate lines for Mistral-7B (K*=1), arXiv Pythia (K*=3), Retrain-chain (K*>=4).\\n\\nOutput: docs/paper/figures/fig_jsd_decay.{pdf,png}\\n\\\"\\\"\\\"\\n\\nimport numpy as np\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nfrom pathlib import Path\\n\\nPAIR_LABELS = [\\\"0 vs 1\\\", \\\"1 vs 2\\\", \\\"2 vs 3\\\", \\\"3 vs 4\\\", \\\"4 vs 5\\\"]\\nx = np.arange(len(PAIR_LABELS))\\n\\n# --- C4 K*=2 models (band) ---\\nc4_k2 = {\\n    \\\"Qwen-1.5B\\\":       [0.163726, 0.010810, 0.005311, 0.003942, 0.003522],\\n    \\\"Qwen-1.5B-cont\\\":  [0.238045, 0.010089, 0.005309, 0.003699, 0.003942],\\n    \\\"LLaMA-8B\\\":        [0.076925, 0.012301, 0.004631, 0.004292, 0.003572],\\n    \\\"Pythia-greedy\\\":    [0.617756, 0.070498, 0.004498, 0.003202, 0.002579],\\n    \\\"Pythia-nuc0.9\\\":    [0.252017, 0.017922, 0.006115, 0.004110, 0.003301],\\n    \\\"Pythia-T0.7\\\":      [0.403980, 0.043741, 0.015638, 0.008836, 0.005122],\\n    \\\"Pythia-T1.2\\\":      [0.166001, 0.009573, 0.003991, 0.003303, 0.003177],\\n    \\\"Qwen-14B\\\":         [0.109700, 0.011200, 0.006200, 0.004400, 0.003600],\\n}\\n\\nc4_arr = np.array(list(c4_k2.values()))\\nc4_median = np.median(c4_arr, axis=0)\\nc4_min = np.min(c4_arr, axis=0)\\nc4_max = np.max(c4_arr, axis=0)\\n\\n# --- Individual lines ---\\nmistral_c4 = [0.124194, 0.008051, 0.005047, 0.004516, 0.004109]\\narxiv_pythia = [0.171338, 0.057344, 0.019524, 0.009917, 0.008846]\\nretrain_chain = [0.169964, 0.129382, 0.107086, 0.064225]\\n\\n# --- Plot ---\\nplt.rcParams.update({\\n    \\\"font.family\\\": \\\"serif\\\",\\n    \\\"font.size\\\": 9,\\n    \\\"axes.linewidth\\\": 0.8,\\n    \\\"xtick.major.width\\\": 0.6,\\n    \\\"ytick.major.width\\\": 0.6,\\n    \\\"xtick.direction\\\": \\\"in\\\",\\n    \\\"ytick.direction\\\": \\\"in\\\",\\n})\\n\\nfig, ax = plt.subplots(figsize=(5.0, 3.5), constrained_layout=True)\\n\\nax.fill_between(x, c4_min, c4_max, color=\\\"#4e79a7\\\", alpha=0.2, zorder=2)\\nax.semilogy(x, c4_median, \\\"-o\\\", color=\\\"#4e79a7\\\", lw=1.8, ms=5,\\n            label=r\\\"C4, $K^*\\\\!=\\\\!2$ (7 models, min-max)\\\", zorder=3)\\n\\nax.semilogy(x, mistral_c4, \\\"--s\\\", color=\\\"#9467bd\\\", lw=1.5, ms=5,\\n            label=r\\\"Mistral-7B, $K^*\\\\!=\\\\!1$\\\", zorder=3)\\n\\nax.semilogy(x, arxiv_pythia, \\\"-^\\\", color=\\\"#2ca02c\\\", lw=1.5, ms=5,\\n            label=r\\\"arXiv Pythia, $K^*\\\\!=\\\\!3$\\\", zorder=3)\\n\\nx_rt = np.arange(len(retrain_chain))\\nax.semilogy(x_rt, retrain_chain, \\\":D\\\", color=\\\"#d62728\\\", lw=1.5, ms=5,\\n            label=r\\\"Retrain-chain, $K^*\\\\!\\\\geq\\\\!4$\\\", zorder=3)\\n\\nax.text(0.55, c4_median[0] * 1.35, \\\"$K^*\\\\\\\\!=\\\\\\\\!2$\\\", fontsize=8.5,\\n        color=\\\"#4e79a7\\\", fontweight=\\\"bold\\\")\\n\\nax.set_xticks(x)\\nax.set_xticklabels(PAIR_LABELS)\\nax.set_xlabel(\\\"Depth Pair\\\")\\nax.set_ylabel(\\\"JSD (log scale)\\\")\\nax.set_ylim(1.5e-3, 0.8)\\nax.set_xlim(-0.15, 4.15)\\n\\nax.legend(fontsize=7.5, loc=\\\"upper right\\\", framealpha=0.9, edgecolor=\\\"0.8\\\")\\n\\nout_dir = Path(__file__).resolve().parent.parent / \\\"docs\\\" / \\\"paper\\\" / \\\"figures\\\"\\nout_dir.mkdir(parents=True, exist_ok=True)\\n\\npdf_path = out_dir / \\\"fig_jsd_decay.pdf\\\"\\npng_path = out_dir / \\\"fig_jsd_decay.png\\\"\\nfig.savefig(pdf_path, dpi=300, bbox_inches=\\\"tight\\\")\\nfig.savefig(png_path, dpi=300, bbox_inches=\\\"tight\\\")\\nplt.close(fig)\\n\\nprint(f\\\"PDF: {pdf_path} ({pdf_path.stat().st_size / 1024:.1f} KB)\\\")\\nprint(f\\\"PNG: {png_path} ({png_path.stat().st_size / 1024:.1f} KB)\\\")\\nprint(f\\\"C4 band models ({len(c4_k2)}): {list(c4_k2.keys())}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "2e92b23e-0d89-49d8-a51a-bc92b7cebe89",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Generate paper figure: JSD decay across generational depth.\\\\n\\\\nBlue band = C4 K*=2 models (min-max), with median line.\\\\nSeparate lines for Mistral-7B (K*=1), arXiv Pythia (K*=3), Retrain-chain (K*>=4).\\\\n\\\\nOutput: docs/paper/figures/fig_jsd_decay.{pdf,png}\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport numpy as np\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nfrom pathlib import Path\\\\n\\\\nPAIR_LABELS = [\\\\\\\"0 vs 1\\\\\\\", \\\\\\\"1 vs 2\\\\\\\", \\\\\\\"2 vs 3\\\\\\\", \\\\\\\"3 vs 4\\\\\\\", \\\\\\\"4 vs 5\\\\\\\"]\\\\nx = np.arange(len(PAIR_LABELS))\\\\n\\\\n# --- C4 K*=2 models (band) ---\\\\nc4_k2 = {\\\\n    \\\\\\\"Qwen-1.5B\\\\\\\":       [0.163726, 0.010810, 0.005311, 0.003942, 0.003522],\\\\n    \\\\\\\"Qwen-1.5B-cont\\\\\\\":  [0.238045, 0.010089, 0.005309, 0.003699, 0.003942],\\\\n    \\\\\\\"LLaMA-8B\\\\\\\":        [0.076925, 0.012301, 0.004631, 0.004292, 0.003572],\\\\n    \\\\\\\"Pythia-greedy\\\\\\\":    [0.617756, 0.070498, 0.004498, 0.003202, 0.002579],\\\\n    \\\\\\\"Pythia-nuc0.9\\\\\\\":    [0.252017, 0.017922, 0.006115, 0.004110, 0.003301],\\\\n    \\\\\\\"Pythia-T0.7\\\\\\\":      [0.403980, 0.043741, 0.015638, 0.008836, 0.005122],\\\\n    \\\\\\\"Pythia-T1.2\\\\\\\":      [0.166001, 0.009573, 0.003991, 0.003303, 0.003177],\\\\n    \\\\\\\"Qwen-14B\\\\\\\":         [0.109700, 0.011200, 0.006200, 0.004400, 0.003600],\\\\n}\\\\n\\\\nc4_arr = np.array(list(c4_k2.values()))\\\\nc4_median = np.median(c4_arr, axis=0)\\\\nc4_min = np.min(c4_arr, axis=0)\\\\nc4_max = np.max(c4_arr, axis=0)\\\\n\\\\n# --- Individual lines ---\\\\nmistral_c4 = [0.124194, 0.008051, 0.005047, 0.004516, 0.004109]\\\\narxiv_pythia = [0.171338, 0.057344, 0.019524, 0.009917, 0.008846]\\\\nretrain_chain = [0.169964, 0.129382, 0.107086, 0.064225]\\\\n\\\\n# --- Plot ---\\\\nplt.rcParams.update({\\\\n    \\\\\\\"font.family\\\\\\\": \\\\\\\"serif\\\\\\\",\\\\n    \\\\\\\"font.size\\\\\\\": 9,\\\\n    \\\\\\\"axes.linewidth\\\\\\\": 0.8,\\\\n    \\\\\\\"xtick.major.width\\\\\\\": 0.6,\\\\n    \\\\\\\"ytick.major.width\\\\\\\": 0.6,\\\\n    \\\\\\\"xtick.direction\\\\\\\": \\\\\\\"in\\\\\\\",\\\\n    \\\\\\\"ytick.direction\\\\\\\": \\\\\\\"in\\\\\\\",\\\\n})\\\\n\\\\nfig, ax = plt.subplots(figsize=(5.0, 3.5), constrained_layout=True)\\\\n\\\\nax.fill_between(x, c4_min, c4_max, color=\\\\\\\"#4e79a7\\\\\\\", alpha=0.2, zorder=2)\\\\nax.semilogy(x, c4_median, \\\\\\\"-o\\\\\\\", color=\\\\\\\"#4e79a7\\\\\\\", lw=1.8, ms=5,\\\\n            label=r\\\\\\\"C4, $K^*\\\\\\\\!=\\\\\\\\!2$ (7 models, min-max)\\\\\\\", zorder=3)\\\\n\\\\nax.semilogy(x, mistral_c4, \\\\\\\"--s\\\\\\\", color=\\\\\\\"#9467bd\\\\\\\", lw=1.5, ms=5,\\\\n            label=r\\\\\\\"Mistral-7B, $K^*\\\\\\\\!=\\\\\\\\!1$\\\\\\\", zorder=3)\\\\n\\\\nax.semilogy(x, arxiv_pythia, \\\\\\\"-^\\\\\\\", color=\\\\\\\"#2ca02c\\\\\\\", lw=1.5, ms=5,\\\\n            label=r\\\\\\\"arXiv Pythia, $K^*\\\\\\\\!=\\\\\\\\!3$\\\\\\\", zorder=3)\\\\n\\\\nx_rt = np.arange(len(retrain_chain))\\\\nax.semilogy(x_rt, retrain_chain, \\\\\\\":D\\\\\\\", color=\\\\\\\"#d62728\\\\\\\", lw=1.5, ms=5,\\\\n            label=r\\\\\\\"Retrain-chain, $K^*\\\\\\\\!\\\\\\\\geq\\\\\\\\!4$\\\\\\\", zorder=3)\\\\n\\\\nax.text(0.55, c4_median[0] * 1.35, \\\\\\\"$K^*\\\\\\\\\\\\\\\\!=\\\\\\\\\\\\\\\\!2$\\\\\\\", fontsize=8.5,\\\\n        color=\\\\\\\"#4e79a7\\\\\\\", fontweight=\\\\\\\"bold\\\\\\\")\\\\n\\\\nax.set_xticks(x)\\\\nax.set_xticklabels(PAIR_LABELS)\\\\nax.set_xlabel(\\\\\\\"Depth Pair\\\\\\\")\\\\nax.set_ylabel(\\\\\\\"JSD (log scale)\\\\\\\")\\\\nax.set_ylim(1.5e-3, 0.8)\\\\nax.set_xlim(-0.15, 4.15)\\\\n\\\\nax.legend(fontsize=7.5, loc=\\\\\\\"upper right\\\\\\\", framealpha=0.9, edgecolor=\\\\\\\"0.8\\\\\\\")\\\\n\\\\nout_dir = Path(__file__).resolve().parent.parent / \\\\\\\"docs\\\\\\\" / \\\\\\\"paper\\\\\\\" / \\\\\\\"figures\\\\\\\"\\\\nout_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\npdf_path = out_dir / \\\\\\\"fig_jsd_decay.pdf\\\\\\\"\\\\npng_path = out_dir / \\\\\\\"fig_jsd_decay.png\\\\\\\"\\\\nfig.savefig(pdf_path, dpi=300, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\nfig.savefig(png_path, dpi=300, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\nplt.close(fig)\\\\n\\\\nprint(f\\\\\\\"PDF: {pdf_path} ({pdf_path.stat().st_size / 1024:.1f} KB)\\\\\\\")\\\\nprint(f\\\\\\\"PNG: {png_path} ({png_path.stat().st_size / 1024:.1f} KB)\\\\\\\")\\\\nprint(f\\\\\\\"C4 band models ({len(c4_k2)}): {list(c4_k2.keys())}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Generate paper figure: JSD decay across generational depth.\\n\\nBlue band = C4 K*=2 models (min-max), with median line.\\nSeparate lines for Mistral-7B (K*=1), arXiv Pythia (K*=3), Retrain-chain (K*>=4).\\n\\nOutput: docs/paper/figures/fig_jsd_decay.{pdf,png}\\n\\\"\\\"\\\"\\n\\nimport numpy as np\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nfrom pathlib import Path\\n\\nPAIR_LABELS = [\\\"0 vs 1\\\", \\\"1 vs 2\\\", \\\"2 vs 3\\\", \\\"3 vs 4\\\", \\\"4 vs 5\\\"]\\nx = np.arange(len(PAIR_LABELS))\\n\\n# --- C4 K*=2 models (band) ---\\nc4_k2 = {\\n    \\\"Qwen-1.5B\\\":       [0.163726, 0.010810, 0.005311, 0.003942, 0.003522],\\n    \\\"Qwen-1.5B-cont\\\":  [0.238045, 0.010089, 0.005309, 0.003699, 0.003942],\\n    \\\"LLaMA-8B\\\":        [0.076925, 0.012301, 0.004631, 0.004292, 0.003572],\\n    \\\"Pythia-greedy\\\":    [0.617756, 0.070498, 0.004498, 0.003202, 0.002579],\\n    \\\"Pythia-nuc0.9\\\":    [0.252017, 0.017922, 0.006115, 0.004110, 0.003301],\\n    \\\"Pythia-T0.7\\\":      [0.403980, 0.043741, 0.015638, 0.008836, 0.005122],\\n    \\\"Pythia-T1.2\\\":      [0.166001, 0.009573, 0.003991, 0.003303, 0.003177],\\n    \\\"Qwen-14B\\\":         [0.109700, 0.011200, 0.006200, 0.004400, 0.003600],\\n}\\n\\nc4_arr = np.array(list(c4_k2.values()))\\nc4_median = np.median(c4_arr, axis=0)\\nc4_min = np.min(c4_arr, axis=0)\\nc4_max = np.max(c4_arr, axis=0)\\n\\n# --- Individual lines ---\\nmistral_c4 = [0.124194, 0.008051, 0.005047, 0.004516, 0.004109]\\narxiv_pythia = [0.171338, 0.057344, 0.019524, 0.009917, 0.008846]\\nretrain_chain = [0.169964, 0.129382, 0.107086, 0.064225]\\n\\n# --- Plot ---\\nplt.rcParams.update({\\n    \\\"font.family\\\": \\\"serif\\\",\\n    \\\"font.size\\\": 9,\\n    \\\"axes.linewidth\\\": 0.8,\\n    \\\"xtick.major.width\\\": 0.6,\\n    \\\"ytick.major.width\\\": 0.6,\\n    \\\"xtick.direction\\\": \\\"in\\\",\\n    \\\"ytick.direction\\\": \\\"in\\\",\\n})\\n\\nfig, ax = plt.subplots(figsize=(5.0, 3.5), constrained_layout=True)\\n\\nax.fill_between(x, c4_min, c4_max, color=\\\"#4e79a7\\\", alpha=0.2, zorder=2)\\nax.semilogy(x, c4_median, \\\"-o\\\", color=\\\"#4e79a7\\\", lw=1.8, ms=5,\\n            label=r\\\"C4, $K^*\\\\!=\\\\!2$ (7 models, min-max)\\\", zorder=3)\\n\\nax.semilogy(x, mistral_c4, \\\"--s\\\", color=\\\"#9467bd\\\", lw=1.5, ms=5,\\n            label=r\\\"Mistral-7B, $K^*\\\\!=\\\\!1$\\\", zorder=3)\\n\\nax.semilogy(x, arxiv_pythia, \\\"-^\\\", color=\\\"#2ca02c\\\", lw=1.5, ms=5,\\n            label=r\\\"arXiv Pythia, $K^*\\\\!=\\\\!3$\\\", zorder=3)\\n\\nx_rt = np.arange(len(retrain_chain))\\nax.semilogy(x_rt, retrain_chain, \\\":D\\\", color=\\\"#d62728\\\", lw=1.5, ms=5,\\n            label=r\\\"Retrain-chain, $K^*\\\\!\\\\geq\\\\!4$\\\", zorder=3)\\n\\nax.text(0.55, c4_median[0] * 1.35, \\\"$K^*\\\\\\\\!=\\\\\\\\!2$\\\", fontsize=8.5,\\n        color=\\\"#4e79a7\\\", fontweight=\\\"bold\\\")\\n\\nax.set_xticks(x)\\nax.set_xticklabels(PAIR_LABELS)\\nax.set_xlabel(\\\"Depth Pair\\\")\\nax.set_ylabel(\\\"JSD (log scale)\\\")\\nax.set_ylim(1.5e-3, 0.8)\\nax.set_xlim(-0.15, 4.15)\\n\\nax.legend(fontsize=7.5, loc=\\\"upper right\\\", framealpha=0.9, edgecolor=\\\"0.8\\\")\\n\\nout_dir = Path(__file__).resolve().parent.parent / \\\"docs\\\" / \\\"paper\\\" / \\\"figures\\\"\\nout_dir.mkdir(parents=True, exist_ok=True)\\n\\npdf_path = out_dir / \\\"fig_jsd_decay.pdf\\\"\\npng_path = out_dir / \\\"fig_jsd_decay.png\\\"\\nfig.savefig(pdf_path, dpi=300, bbox_inches=\\\"tight\\\")\\nfig.savefig(png_path, dpi=300, bbox_inches=\\\"tight\\\")\\nplt.close(fig)\\n\\nprint(f\\\"PDF: {pdf_path} ({pdf_path.stat().st_size / 1024:.1f} KB)\\\")\\nprint(f\\\"PNG: {png_path} ({png_path.stat().st_size / 1024:.1f} KB)\\\")\\nprint(f\\\"C4 band models ({len(c4_k2)}): {list(c4_k2.keys())}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The JSD decay script doesn't contain OLMo at all - it has 8 C4 K*=2 models in the band (Qwen-1.5B, Qwen-1.5B-cont, LLaMA-8B, Pythia-greedy, Pythia-nuc0.9, Pythia-T0.7, Pythia-T1.2, Qwen-14B), plus individual lines for Mistral-7B (K*=1), arXiv Pythia (K*=3), and Retrain-chain (K*>=4). OLMo is not in this plot.
+
+
+There's a mismatch between the legend label saying "7 models" and the actual count of 8 models in the dictionary - the code is using the length of the C4 K*=2 group for the label, but that doesn't match what's being displayed. I'm counting the models in the dictionary again: that's 8 total, but the label says "7 models" — so there's a mismatch. The issue is that OLMo was removed after its K* value changed from 2 to 1, which should have brought the count down from 8 to 7, but somehow there are still 8 models in the current dictionary, making the label incorrect.
+
+Now I need to search through the scripts for any remaining OLMo references to understand what happened.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "0684a916-b7ef-4c5d-805f-3a16fad81bae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hz4NZyCPxYJrpFzBTM1KCA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2458,
+      "cache_read_input_tokens": 27056,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2458
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+The JSD decay script doesn't contain OLMo — it's already excluded from the K*=2 band. But the label says "7 models" while the dict has 8 entries. Let me find all OLMo-referencing scripts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "22705c6c-33e2-4158-a40a-6cfc48533135",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hz4NZyCPxYJrpFzBTM1KCA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2458,
+      "cache_read_input_tokens": 27056,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2458
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TJxoWNJUB5be9HqrgEovdk`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -rli \"olmo\" /root/autodl-tmp/gen-depth-contamination/scripts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "74c2801c-4266-47f4-8e1e-abfb4ddd699b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hz4NZyCPxYJrpFzBTM1KCA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2458,
+      "cache_read_input_tokens": 27056,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2458
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-21T15:40:14.814Z_
+
+<details><summary>↩ Tool result · `toolu_01TJxoWNJUB5be9HqrgEovdk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/scripts/draw_kstar_theta.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/transfer_heatmap.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/plot_auc_decay_ci.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp022_cross_scorer_matrix.sh\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp022_cuda0.sh\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp022_cuda1.sh\\n/root/autodl-tmp/gen-depth-contamination/scripts/__pycache__/exp_olmo_retrain_chain.cpython-312.pyc\\n/root/autodl-tmp/gen-depth-contamination/scripts/mcnemar_obd_vs_baselines.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp_olmo_retrain_chain.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/transfer_heatmap.py.bak\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_upperbound.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/plot_fig2_merged.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_cross_transfer.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/analyze_deberta_results.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/olmo_c4_bootstrap_ci.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_v2.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_unified_scorer.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_vocab_only.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp_olmo_retrain_v3.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_7b_scorer_ablation.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_bootstrap_10k.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_7b_scorer_arxiv.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/lofo_theta_validation.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/lofo_nonqwen_reframing.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/patch_pythia_results.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/feature_importance_batch.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_olmo_ablation.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/olmo_rerun_feature_importance.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "cb41771a-701c-4395-9cb7-d2f213bb0811",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/scripts/draw_kstar_theta.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/transfer_heatmap.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/plot_auc_decay_ci.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp022_cross_scorer_matrix.sh\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp022_cuda0.sh\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp022_cuda1.sh\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/__pycache__/exp_olmo_retrain_chain.cpython-312.pyc\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/mcnemar_obd_vs_baselines.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp_olmo_retrain_chain.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/transfer_heatmap.py.bak\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_upperbound.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/plot_fig2_merged.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_cross_transfer.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/analyze_deberta_results.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/olmo_c4_bootstrap_ci.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_v2.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_unified_scorer.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_vocab_only.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp_olmo_retrain_v3.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_7b_scorer_ablation.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_bootstrap_10k.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_7b_scorer_arxiv.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/lofo_theta_validation.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/lofo_nonqwen_reframing.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/patch_pythia_results.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/feature_importance_batch.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_olmo_ablation.py\\\\n/root/autodl-tmp/gen-depth-contamination/scripts/olmo_rerun_feature_importance.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/scripts/draw_kstar_theta.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/transfer_heatmap.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/plot_auc_decay_ci.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp022_cross_scorer_matrix.sh\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp022_cuda0.sh\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp022_cuda1.sh\\n/root/autodl-tmp/gen-depth-contamination/scripts/__pycache__/exp_olmo_retrain_chain.cpython-312.pyc\\n/root/autodl-tmp/gen-depth-contamination/scripts/mcnemar_obd_vs_baselines.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp_olmo_retrain_chain.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/transfer_heatmap.py.bak\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_upperbound.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/plot_fig2_merged.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_deberta_cross_transfer.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/analyze_deberta_results.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/olmo_c4_bootstrap_ci.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_v2.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_unified_scorer.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_vocab_only.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/exp_olmo_retrain_v3.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_7b_scorer_ablation.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_bootstrap_10k.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_7b_scorer_arxiv.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/lofo_theta_validation.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/lofo_nonqwen_reframing.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/patch_pythia_results.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/feature_importance_batch.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/run_olmo_ablation.py\\n/root/autodl-tmp/gen-depth-contamination/scripts/olmo_rerun_feature_importance.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0197iZgYd3K1bJds8dNipYY1`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls /root/autodl-tmp/gen-depth-contamination/scripts/plot_*.py /root/autodl-tmp/gen-depth-contamination/scripts/fig_*.py 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "cc5005bd-751e-4731-9ac9-e0445fc3961c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hz4NZyCPxYJrpFzBTM1KCA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2458,
+      "cache_read_input_tokens": 27056,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2458
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-21T15:40:15.320Z_
+
+<details><summary>↩ Tool result · `toolu_0197iZgYd3K1bJds8dNipYY1`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "c3fd250c-4cb6-40c3-bf28-d823ce76f0dc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `2>/dev/null` has `>` which is blocked. Let me just list the plot scripts differently. But the key scripts that reference OLMo and are plot scripts are:
+
+1. `draw_kstar_theta.py` - K* theta plot
+2. `transfer_heatmap.py` - transfer heatmap 
+3. `plot_auc_decay_ci.py` - AUC decay CI plot
+4. `plot_fig2_merged.py` - Figure 2 merged
+5. `mcnemar_obd_vs_baselines.py` - McNemar test (not a figure)
+
+
+Now I need to examine these plot scripts to see which ones actually use OLMo data and what might need updating.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "f8072432-1ac0-467d-9878-65b65a706ec0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YVs5H8etQoxy5Ya1qn5UpH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2427,
+      "cache_read_input_tokens": 29514,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2427
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+Found multiple scripts referencing OLMo. Let me read the key plot scripts that generate paper figures.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "49c78fcb-0d7d-4c30-9102-ff5b322115c1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YVs5H8etQoxy5Ya1qn5UpH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2427,
+      "cache_read_input_tokens": 29514,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2427
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01R3AhQmiY7cWeTJnsPLYpeC`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/scripts/plot_fig2_merged.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "f965dcbd-f4a1-4f54-aa15-82b008b681fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YVs5H8etQoxy5Ya1qn5UpH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2427,
+      "cache_read_input_tokens": 29514,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2427
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T15:40:24.818Z_
+
+<details><summary>↩ Tool result · `toolu_01R3AhQmiY7cWeTJnsPLYpeC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Merged Figure 2: AUC decay curves with CI shaded bands.\\n\\nCombines the main AUC decay figure and the supplementary CI figure\\ninto a single plot for the main text.\\n\\\"\\\"\\\"\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nfrom pathlib import Path\\n\\nPAIR_KEYS = [\\\"0v1\\\", \\\"1v2\\\", \\\"2v3\\\", \\\"3v4\\\", \\\"4v5\\\"]\\nX_LABELS = [\\\"0 vs 1\\\", \\\"1 vs 2\\\", \\\"2 vs 3\\\", \\\"3 vs 4\\\", \\\"4 vs 5\\\"]\\n\\n# ── Curated data: Table 1 models (C4, 5-fold CV) ────────────────────────────\\n# CI: exact where available from bootstrap; estimated (±0.010 / ±0.002 for 0v1)\\n# at non-boundary pairs, consistent with observed bootstrap CI widths.\\nTABLE1 = {\\n    \\\"Qwen-rw\\\": {\\n        \\\"mean\\\":     [0.9956, 0.6955, 0.5893, 0.5435, 0.5340],\\n        \\\"ci_lower\\\": [0.9936, 0.686,  0.580,  0.534,  0.524],\\n        \\\"ci_upper\\\": [0.9976, 0.704,  0.599,  0.553,  0.544],\\n    },\\n    \\\"Pythia\\\": {\\n        \\\"mean\\\":     [0.9932, 0.6539, 0.5514, 0.5152, 0.5136],\\n        \\\"ci_lower\\\": [0.9912, 0.645,  0.542,  0.505,  0.504],\\n        \\\"ci_upper\\\": [0.9952, 0.663,  0.563,  0.525,  0.524],\\n    },\\n    \\\"OLMo\\\": {\\n        \\\"mean\\\":     [0.9970, 0.6145, 0.5496, 0.5091, 0.5045],\\n        \\\"ci_lower\\\": [0.9950, 0.605,  0.540,  0.499,  0.495],\\n        \\\"ci_upper\\\": [0.9990, 0.625,  0.560,  0.519,  0.514],\\n    },\\n    \\\"Qwen-cont\\\": {\\n        \\\"mean\\\":     [0.9971, 0.6112, 0.5609, 0.5409, 0.5141],\\n        \\\"ci_lower\\\": [0.9951, 0.602,  0.551,  0.531,  0.504],\\n        \\\"ci_upper\\\": [0.9991, 0.621,  0.571,  0.551,  0.524],\\n    },\\n    r\\\"Qwen-7B$^\\\\ddagger$\\\": {\\n        \\\"mean\\\":     [0.9638, 0.6168, 0.5492, 0.5276, 0.5085],\\n        \\\"ci_lower\\\": [0.961,  0.608,  0.539,  0.518,  0.499],\\n        \\\"ci_upper\\\": [0.967,  0.626,  0.559,  0.537,  0.518],\\n    },\\n}\\n\\n# ── Additional models with bootstrap CI (all pairs) ─────────────────────────\\nEXTRA_MODELS = {\\n    \\\"LLaMA-8B\\\": {\\n        \\\"mean\\\":     [0.9225, 0.6123, 0.5274, 0.5169, 0.5162],\\n        \\\"ci_lower\\\": [0.9174, 0.6028, 0.5169, 0.5062, 0.5052],\\n        \\\"ci_upper\\\": [0.9272, 0.6216, 0.5378, 0.5275, 0.5268],\\n    },\\n    \\\"Mistral-7B\\\": {\\n        \\\"mean\\\":     [0.9843, 0.5935, 0.5402, 0.5232, 0.5181],\\n        \\\"ci_lower\\\": [0.9824, 0.5835, 0.5301, 0.5128, 0.5070],\\n        \\\"ci_upper\\\": [0.9860, 0.6032, 0.5510, 0.5338, 0.5287],\\n    },\\n}\\n\\n# ── Decoding strategies (per_fold → approximate CI) ─────────────────────────\\nDECODE_FOLD = {\\n    \\\"Greedy\\\": {\\n        \\\"mean\\\": [0.9992, 0.8838, 0.5342, 0.5228, 0.5162],\\n        \\\"folds\\\": {\\n            \\\"0v1\\\": [0.9996, 0.9991, 0.9992, 0.9996, 0.9984],\\n            \\\"1v2\\\": [0.8906, 0.8766, 0.8847, 0.881, 0.8861],\\n            \\\"2v3\\\": [0.5188, 0.542, 0.5264, 0.5364, 0.5473],\\n            \\\"3v4\\\": [0.5223, 0.5135, 0.5187, 0.5355, 0.5239],\\n            \\\"4v5\\\": [0.5272, 0.5108, 0.5124, 0.5128, 0.5177],\\n        },\\n    },\\n    r\\\"Nuc $p{=}0.9$\\\": {\\n        \\\"mean\\\": [0.9948, 0.677, 0.5549, 0.5299, 0.5013],\\n        \\\"folds\\\": {\\n            \\\"0v1\\\": [0.9957, 0.9951, 0.9939, 0.9942, 0.9952],\\n            \\\"1v2\\\": [0.6875, 0.6745, 0.6838, 0.6631, 0.6763],\\n            \\\"2v3\\\": [0.548, 0.5563, 0.5534, 0.5638, 0.5531],\\n            \\\"3v4\\\": [0.525, 0.5494, 0.5317, 0.5301, 0.5133],\\n            \\\"4v5\\\": [0.5257, 0.4903, 0.4898, 0.5, 0.5008],\\n        },\\n    },\\n    r\\\"$T{=}0.7$\\\": {\\n        \\\"mean\\\": [0.9965, 0.7265, 0.5941, 0.5698, 0.5284],\\n        \\\"folds\\\": {\\n            \\\"0v1\\\": [0.9977, 0.9972, 0.9956, 0.9972, 0.995],\\n            \\\"1v2\\\": [0.7367, 0.7367, 0.7255, 0.7121, 0.7214],\\n            \\\"2v3\\\": [0.6009, 0.5951, 0.5954, 0.5754, 0.6036],\\n            \\\"3v4\\\": [0.5521, 0.5739, 0.5801, 0.5784, 0.5643],\\n            \\\"4v5\\\": [0.5209, 0.529, 0.5222, 0.5358, 0.5343],\\n        },\\n    },\\n    r\\\"$T{=}1.2$\\\": {\\n        \\\"mean\\\": [0.9933, 0.6172, 0.5226, 0.517, 0.5051],\\n        \\\"folds\\\": {\\n            \\\"0v1\\\": [0.9938, 0.9949, 0.9929, 0.9922, 0.9929],\\n            \\\"1v2\\\": [0.6193, 0.5961, 0.6182, 0.6258, 0.6265],\\n            \\\"2v3\\\": [0.5285, 0.5246, 0.5219, 0.5254, 0.5123],\\n            \\\"3v4\\\": [0.5464, 0.5142, 0.4998, 0.5028, 0.5218],\\n            \\\"4v5\\\": [0.5048, 0.5059, 0.5053, 0.4936, 0.5162],\\n        },\\n    },\\n}\\n\\nTABLEAU = [\\n    \\\"#4e79a7\\\", \\\"#e15759\\\", \\\"#76b7b2\\\", \\\"#59a14f\\\", \\\"#b07aa1\\\",\\n    \\\"#ff9da7\\\", \\\"#9c755f\\\", \\\"#edc948\\\", \\\"#f28e2b\\\", \\\"#bab0ac\\\",\\n    \\\"#86bcb6\\\",\\n]\\nMARKERS = [\\\"o\\\", \\\"s\\\", \\\"^\\\", \\\"D\\\", \\\"v\\\", \\\"P\\\", \\\"X\\\", \\\"*\\\", \\\"h\\\", \\\"<\\\", \\\">\\\"]\\n\\n\\ndef fold_ci(folds):\\n    arr = np.array(folds)\\n    m = arr.mean()\\n    se = arr.std(ddof=1) / np.sqrt(len(arr))\\n    return m - 1.96 * se, m + 1.96 * se\\n\\n\\ndef main():\\n    x = np.arange(len(PAIR_KEYS))\\n\\n    plt.rcParams.update({\\n        \\\"font.family\\\": \\\"serif\\\",\\n        \\\"font.size\\\": 10,\\n        \\\"axes.linewidth\\\": 0.8,\\n        \\\"xtick.major.width\\\": 0.8,\\n        \\\"ytick.major.width\\\": 0.8,\\n    })\\n\\n    fig, ax = plt.subplots(figsize=(7, 4.2), constrained_layout=True)\\n\\n    # Reference lines\\n    ax.axhline(0.60, color=\\\"grey\\\", ls=\\\"--\\\", lw=0.8, zorder=1)\\n    ax.text(len(PAIR_KEYS) - 0.45, 0.608, r\\\"$\\\\theta = 0.60$\\\",\\n            fontsize=8, color=\\\"grey\\\", va=\\\"bottom\\\", ha=\\\"right\\\")\\n    ax.axhline(0.50, color=\\\"lightgrey\\\", ls=\\\"--\\\", lw=0.8, zorder=1)\\n    ax.text(len(PAIR_KEYS) - 0.45, 0.507, \\\"chance\\\",\\n            fontsize=8, color=\\\"silver\\\", va=\\\"bottom\\\", ha=\\\"right\\\")\\n\\n    ci = 0\\n    model_handles = []\\n    decode_handles = []\\n\\n    # ── Model configs (solid + CI bands) ─────────────────────────────────\\n    all_models = {}\\n    all_models.update(TABLE1)\\n    all_models.update(EXTRA_MODELS)\\n\\n    for label, data in all_models.items():\\n        color = TABLEAU[ci % len(TABLEAU)]\\n        marker = MARKERS[ci % len(MARKERS)]\\n        means = data[\\\"mean\\\"]\\n        lo = data[\\\"ci_lower\\\"]\\n        hi = data[\\\"ci_upper\\\"]\\n\\n        ax.fill_between(x, lo, hi, color=color, alpha=0.18, zorder=2,\\n                         linewidth=0)\\n        line, = ax.plot(x, means, \\\"-\\\", color=color, lw=1.6, marker=marker,\\n                        markersize=4.5, label=label, zorder=3)\\n        model_handles.append(line)\\n        ci += 1\\n\\n    # ── Decoding strategies (dashed, no CI bands) ────────────────────────\\n    for label, data in DECODE_FOLD.items():\\n        color = TABLEAU[ci % len(TABLEAU)]\\n        marker = MARKERS[ci % len(MARKERS)]\\n        means = data[\\\"mean\\\"]\\n\\n        line, = ax.plot(x, means, \\\"--\\\", color=color, lw=1.4, marker=marker,\\n                        markersize=4, label=label, zorder=3)\\n        decode_handles.append(line)\\n        ci += 1\\n\\n    # ── Axes ─────────────────────────────────────────────────────────────\\n    ax.set_xticks(x)\\n    ax.set_xticklabels(X_LABELS)\\n    ax.set_xlabel(\\\"Depth Pair\\\", fontsize=10.5)\\n    ax.set_ylabel(\\\"Pairwise AUC\\\", fontsize=10.5)\\n    ax.set_ylim(0.45, 1.05)\\n    ax.set_xlim(-0.25, len(PAIR_KEYS) - 0.75)\\n    ax.tick_params(direction=\\\"in\\\")\\n\\n    # ── Legends ──────────────────────────────────────────────────────────\\n    leg1 = ax.legend(handles=model_handles, title=\\\"Models\\\", title_fontsize=8.5,\\n                     fontsize=7.5, loc=\\\"upper right\\\", bbox_to_anchor=(1.0, 0.98),\\n                     framealpha=0.92, edgecolor=\\\"0.85\\\", handlelength=2.0)\\n    ax.add_artist(leg1)\\n    if decode_handles:\\n        ax.legend(handles=decode_handles, title=\\\"Decoding\\\", title_fontsize=8.5,\\n                  fontsize=7.5, loc=\\\"center right\\\", bbox_to_anchor=(1.0, 0.42),\\n                  framealpha=0.92, edgecolor=\\\"0.85\\\", handlelength=2.0)\\n\\n    # ── Save ─────────────────────────────────────────────────────────────\\n    out_dir = Path(__file__).resolve().parent.parent / \\\"docs\\\" / \\\"paper\\\" / \\\"figures\\\"\\n    out_dir.mkdir(parents=True, exist_ok=True)\\n\\n    pdf_path = out_dir / \\\"fig2_auc_decay.pdf\\\"\\n    png_path = out_dir / \\\"fig2_auc_decay.png\\\"\\n    fig.savefig(pdf_path, dpi=300, bbox_inches=\\\"tight\\\")\\n    fig.savefig(png_path, dpi=300, bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n\\n    print(f\\\"PDF: {pdf_path} ({pdf_path.stat().st_size/1024:.1f} KB)\\\")\\n    print(f\\\"PNG: {png_path} ({png_path.stat().st_size/1024:.1f} KB)\\\")\\n    print(\\\"OK\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "2ad39658-0ac7-4eca-bd18-c2ab57d90840",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Merged Figure 2: AUC decay curves with CI shaded bands.\\\\n\\\\nCombines the main AUC decay figure and the supplementary CI figure\\\\ninto a single plot for the main text.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nfrom pathlib import Path\\\\n\\\\nPAIR_KEYS = [\\\\\\\"0v1\\\\\\\", \\\\\\\"1v2\\\\\\\", \\\\\\\"2v3\\\\\\\", \\\\\\\"3v4\\\\\\\", \\\\\\\"4v5\\\\\\\"]\\\\nX_LABELS = [\\\\\\\"0 vs 1\\\\\\\", \\\\\\\"1 vs 2\\\\\\\", \\\\\\\"2 vs 3\\\\\\\", \\\\\\\"3 vs 4\\\\\\\", \\\\\\\"4 vs 5\\\\\\\"]\\\\n\\\\n# ── Curated data: Table 1 models (C4, 5-fold CV) ────────────────────────────\\\\n# CI: exact where available from bootstrap; estimated (±0.010 / ±0.002 for 0v1)\\\\n# at non-boundary pairs, consistent with observed bootstrap CI widths.\\\\nTABLE1 = {\\\\n    \\\\\\\"Qwen-rw\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\":     [0.9956, 0.6955, 0.5893, 0.5435, 0.5340],\\\\n        \\\\\\\"ci_lower\\\\\\\": [0.9936, 0.686,  0.580,  0.534,  0.524],\\\\n        \\\\\\\"ci_upper\\\\\\\": [0.9976, 0.704,  0.599,  0.553,  0.544],\\\\n    },\\\\n    \\\\\\\"Pythia\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\":     [0.9932, 0.6539, 0.5514, 0.5152, 0.5136],\\\\n        \\\\\\\"ci_lower\\\\\\\": [0.9912, 0.645,  0.542,  0.505,  0.504],\\\\n        \\\\\\\"ci_upper\\\\\\\": [0.9952, 0.663,  0.563,  0.525,  0.524],\\\\n    },\\\\n    \\\\\\\"OLMo\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\":     [0.9970, 0.6145, 0.5496, 0.5091, 0.5045],\\\\n        \\\\\\\"ci_lower\\\\\\\": [0.9950, 0.605,  0.540,  0.499,  0.495],\\\\n        \\\\\\\"ci_upper\\\\\\\": [0.9990, 0.625,  0.560,  0.519,  0.514],\\\\n    },\\\\n    \\\\\\\"Qwen-cont\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\":     [0.9971, 0.6112, 0.5609, 0.5409, 0.5141],\\\\n        \\\\\\\"ci_lower\\\\\\\": [0.9951, 0.602,  0.551,  0.531,  0.504],\\\\n        \\\\\\\"ci_upper\\\\\\\": [0.9991, 0.621,  0.571,  0.551,  0.524],\\\\n    },\\\\n    r\\\\\\\"Qwen-7B$^\\\\\\\\ddagger$\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\":     [0.9638, 0.6168, 0.5492, 0.5276, 0.5085],\\\\n        \\\\\\\"ci_lower\\\\\\\": [0.961,  0.608,  0.539,  0.518,  0.499],\\\\n        \\\\\\\"ci_upper\\\\\\\": [0.967,  0.626,  0.559,  0.537,  0.518],\\\\n    },\\\\n}\\\\n\\\\n# ── Additional models with bootstrap CI (all pairs) ─────────────────────────\\\\nEXTRA_MODELS = {\\\\n    \\\\\\\"LLaMA-8B\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\":     [0.9225, 0.6123, 0.5274, 0.5169, 0.5162],\\\\n        \\\\\\\"ci_lower\\\\\\\": [0.9174, 0.6028, 0.5169, 0.5062, 0.5052],\\\\n        \\\\\\\"ci_upper\\\\\\\": [0.9272, 0.6216, 0.5378, 0.5275, 0.5268],\\\\n    },\\\\n    \\\\\\\"Mistral-7B\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\":     [0.9843, 0.5935, 0.5402, 0.5232, 0.5181],\\\\n        \\\\\\\"ci_lower\\\\\\\": [0.9824, 0.5835, 0.5301, 0.5128, 0.5070],\\\\n        \\\\\\\"ci_upper\\\\\\\": [0.9860, 0.6032, 0.5510, 0.5338, 0.5287],\\\\n    },\\\\n}\\\\n\\\\n# ── Decoding strategies (per_fold → approximate CI) ─────────────────────────\\\\nDECODE_FOLD = {\\\\n    \\\\\\\"Greedy\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": [0.9992, 0.8838, 0.5342, 0.5228, 0.5162],\\\\n        \\\\\\\"folds\\\\\\\": {\\\\n            \\\\\\\"0v1\\\\\\\": [0.9996, 0.9991, 0.9992, 0.9996, 0.9984],\\\\n            \\\\\\\"1v2\\\\\\\": [0.8906, 0.8766, 0.8847, 0.881, 0.8861],\\\\n            \\\\\\\"2v3\\\\\\\": [0.5188, 0.542, 0.5264, 0.5364, 0.5473],\\\\n            \\\\\\\"3v4\\\\\\\": [0.5223, 0.5135, 0.5187, 0.5355, 0.5239],\\\\n            \\\\\\\"4v5\\\\\\\": [0.5272, 0.5108, 0.5124, 0.5128, 0.5177],\\\\n        },\\\\n    },\\\\n    r\\\\\\\"Nuc $p{=}0.9$\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": [0.9948, 0.677, 0.5549, 0.5299, 0.5013],\\\\n        \\\\\\\"folds\\\\\\\": {\\\\n            \\\\\\\"0v1\\\\\\\": [0.9957, 0.9951, 0.9939, 0.9942, 0.9952],\\\\n            \\\\\\\"1v2\\\\\\\": [0.6875, 0.6745, 0.6838, 0.6631, 0.6763],\\\\n            \\\\\\\"2v3\\\\\\\": [0.548, 0.5563, 0.5534, 0.5638, 0.5531],\\\\n            \\\\\\\"3v4\\\\\\\": [0.525, 0.5494, 0.5317, 0.5301, 0.5133],\\\\n            \\\\\\\"4v5\\\\\\\": [0.5257, 0.4903, 0.4898, 0.5, 0.5008],\\\\n        },\\\\n    },\\\\n    r\\\\\\\"$T{=}0.7$\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": [0.9965, 0.7265, 0.5941, 0.5698, 0.5284],\\\\n        \\\\\\\"folds\\\\\\\": {\\\\n            \\\\\\\"0v1\\\\\\\": [0.9977, 0.9972, 0.9956, 0.9972, 0.995],\\\\n            \\\\\\\"1v2\\\\\\\": [0.7367, 0.7367, 0.7255, 0.7121, 0.7214],\\\\n            \\\\\\\"2v3\\\\\\\": [0.6009, 0.5951, 0.5954, 0.5754, 0.6036],\\\\n            \\\\\\\"3v4\\\\\\\": [0.5521, 0.5739, 0.5801, 0.5784, 0.5643],\\\\n            \\\\\\\"4v5\\\\\\\": [0.5209, 0.529, 0.5222, 0.5358, 0.5343],\\\\n        },\\\\n    },\\\\n    r\\\\\\\"$T{=}1.2$\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": [0.9933, 0.6172, 0.5226, 0.517, 0.5051],\\\\n        \\\\\\\"folds\\\\\\\": {\\\\n            \\\\\\\"0v1\\\\\\\": [0.9938, 0.9949, 0.9929, 0.9922, 0.9929],\\\\n            \\\\\\\"1v2\\\\\\\": [0.6193, 0.5961, 0.6182, 0.6258, 0.6265],\\\\n            \\\\\\\"2v3\\\\\\\": [0.5285, 0.5246, 0.5219, 0.5254, 0.5123],\\\\n            \\\\\\\"3v4\\\\\\\": [0.5464, 0.5142, 0.4998, 0.5028, 0.5218],\\\\n            \\\\\\\"4v5\\\\\\\": [0.5048, 0.5059, 0.5053, 0.4936, 0.5162],\\\\n        },\\\\n    },\\\\n}\\\\n\\\\nTABLEAU = [\\\\n    \\\\\\\"#4e79a7\\\\\\\", \\\\\\\"#e15759\\\\\\\", \\\\\\\"#76b7b2\\\\\\\", \\\\\\\"#59a14f\\\\\\\", \\\\\\\"#b07aa1\\\\\\\",\\\\n    \\\\\\\"#ff9da7\\\\\\\", \\\\\\\"#9c755f\\\\\\\", \\\\\\\"#edc948\\\\\\\", \\\\\\\"#f28e2b\\\\\\\", \\\\\\\"#bab0ac\\\\\\\",\\\\n    \\\\\\\"#86bcb6\\\\\\\",\\\\n]\\\\nMARKERS = [\\\\\\\"o\\\\\\\", \\\\\\\"s\\\\\\\", \\\\\\\"^\\\\\\\", \\\\\\\"D\\\\\\\", \\\\\\\"v\\\\\\\", \\\\\\\"P\\\\\\\", \\\\\\\"X\\\\\\\", \\\\\\\"*\\\\\\\", \\\\\\\"h\\\\\\\", \\\\\\\"<\\\\\\\", \\\\\\\">\\\\\\\"]\\\\n\\\\n\\\\ndef fold_ci(folds):\\\\n    arr = np.array(folds)\\\\n    m = arr.mean()\\\\n    se = arr.std(ddof=1) / np.sqrt(len(arr))\\\\n    return m - 1.96 * se, m + 1.96 * se\\\\n\\\\n\\\\ndef main():\\\\n    x = np.arange(len(PAIR_KEYS))\\\\n\\\\n    plt.rcParams.update({\\\\n        \\\\\\\"font.family\\\\\\\": \\\\\\\"serif\\\\\\\",\\\\n        \\\\\\\"font.size\\\\\\\": 10,\\\\n        \\\\\\\"axes.linewidth\\\\\\\": 0.8,\\\\n        \\\\\\\"xtick.major.width\\\\\\\": 0.8,\\\\n        \\\\\\\"ytick.major.width\\\\\\\": 0.8,\\\\n    })\\\\n\\\\n    fig, ax = plt.subplots(figsize=(7, 4.2), constrained_layout=True)\\\\n\\\\n    # Reference lines\\\\n    ax.axhline(0.60, color=\\\\\\\"grey\\\\\\\", ls=\\\\\\\"--\\\\\\\", lw=0.8, zorder=1)\\\\n    ax.text(len(PAIR_KEYS) - 0.45, 0.608, r\\\\\\\"$\\\\\\\\theta = 0.60$\\\\\\\",\\\\n            fontsize=8, color=\\\\\\\"grey\\\\\\\", va=\\\\\\\"bottom\\\\\\\", ha=\\\\\\\"right\\\\\\\")\\\\n    ax.axhline(0.50, color=\\\\\\\"lightgrey\\\\\\\", ls=\\\\\\\"--\\\\\\\", lw=0.8, zorder=1)\\\\n    ax.text(len(PAIR_KEYS) - 0.45, 0.507, \\\\\\\"chance\\\\\\\",\\\\n            fontsize=8, color=\\\\\\\"silver\\\\\\\", va=\\\\\\\"bottom\\\\\\\", ha=\\\\\\\"right\\\\\\\")\\\\n\\\\n    ci = 0\\\\n    model_handles = []\\\\n    decode_handles = []\\\\n\\\\n    # ── Model configs (solid + CI bands) ─────────────────────────────────\\\\n    all_models = {}\\\\n    all_models.update(TABLE1)\\\\n    all_models.update(EXTRA_MODELS)\\\\n\\\\n    for label, data in all_models.items():\\\\n        color = TABLEAU[ci % len(TABLEAU)]\\\\n        marker = MARKERS[ci % len(MARKERS)]\\\\n        means = data[\\\\\\\"mean\\\\\\\"]\\\\n        lo = data[\\\\\\\"ci_lower\\\\\\\"]\\\\n        hi = data[\\\\\\\"ci_upper\\\\\\\"]\\\\n\\\\n        ax.fill_between(x, lo, hi, color=color, alpha=0.18, zorder=2,\\\\n                         linewidth=0)\\\\n        line, = ax.plot(x, means, \\\\\\\"-\\\\\\\", color=color, lw=1.6, marker=marker,\\\\n                        markersize=4.5, label=label, zorder=3)\\\\n        model_handles.append(line)\\\\n        ci += 1\\\\n\\\\n    # ── Decoding strategies (dashed, no CI bands) ────────────────────────\\\\n    for label, data in DECODE_FOLD.items():\\\\n        color = TABLEAU[ci % len(TABLEAU)]\\\\n        marker = MARKERS[ci % len(MARKERS)]\\\\n        means = data[\\\\\\\"mean\\\\\\\"]\\\\n\\\\n        line, = ax.plot(x, means, \\\\\\\"--\\\\\\\", color=color, lw=1.4, marker=marker,\\\\n                        markersize=4, label=label, zorder=3)\\\\n        decode_handles.append(line)\\\\n        ci += 1\\\\n\\\\n    # ── Axes ─────────────────────────────────────────────────────────────\\\\n    ax.set_xticks(x)\\\\n    ax.set_xticklabels(X_LABELS)\\\\n    ax.set_xlabel(\\\\\\\"Depth Pair\\\\\\\", fontsize=10.5)\\\\n    ax.set_ylabel(\\\\\\\"Pairwise AUC\\\\\\\", fontsize=10.5)\\\\n    ax.set_ylim(0.45, 1.05)\\\\n    ax.set_xlim(-0.25, len(PAIR_KEYS) - 0.75)\\\\n    ax.tick_params(direction=\\\\\\\"in\\\\\\\")\\\\n\\\\n    # ── Legends ──────────────────────────────────────────────────────────\\\\n    leg1 = ax.legend(handles=model_handles, title=\\\\\\\"Models\\\\\\\", title_fontsize=8.5,\\\\n                     fontsize=7.5, loc=\\\\\\\"upper right\\\\\\\", bbox_to_anchor=(1.0, 0.98),\\\\n                     framealpha=0.92, edgecolor=\\\\\\\"0.85\\\\\\\", handlelength=2.0)\\\\n    ax.add_artist(leg1)\\\\n    if decode_handles:\\\\n        ax.legend(handles=decode_handles, title=\\\\\\\"Decoding\\\\\\\", title_fontsize=8.5,\\\\n                  fontsize=7.5, loc=\\\\\\\"center right\\\\\\\", bbox_to_anchor=(1.0, 0.42),\\\\n                  framealpha=0.92, edgecolor=\\\\\\\"0.85\\\\\\\", handlelength=2.0)\\\\n\\\\n    # ── Save ─────────────────────────────────────────────────────────────\\\\n    out_dir = Path(__file__).resolve().parent.parent / \\\\\\\"docs\\\\\\\" / \\\\\\\"paper\\\\\\\" / \\\\\\\"figures\\\\\\\"\\\\n    out_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    pdf_path = out_dir / \\\\\\\"fig2_auc_decay.pdf\\\\\\\"\\\\n    png_path = out_dir / \\\\\\\"fig2_auc_decay.png\\\\\\\"\\\\n    fig.savefig(pdf_path, dpi=300, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    fig.savefig(png_path, dpi=300, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    plt.close(fig)\\\\n\\\\n    print(f\\\\\\\"PDF: {pdf_path} ({pdf_path.stat().st_size/1024:.1f} KB)\\\\\\\")\\\\n    print(f\\\\\\\"PNG: {png_path} ({png_path.stat().st_size/1024:.1f} KB)\\\\\\\")\\\\n    print(\\\\\\\"OK\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Merged Figure 2: AUC decay curves with CI shaded bands.\\n\\nCombines the main AUC decay figure and the supplementary CI figure\\ninto a single plot for the main text.\\n\\\"\\\"\\\"\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nfrom pathlib import Path\\n\\nPAIR_KEYS = [\\\"0v1\\\", \\\"1v2\\\", \\\"2v3\\\", \\\"3v4\\\", \\\"4v5\\\"]\\nX_LABELS = [\\\"0 vs 1\\\", \\\"1 vs 2\\\", \\\"2 vs 3\\\", \\\"3 vs 4\\\", \\\"4 vs 5\\\"]\\n\\n# ── Curated data: Table 1 models (C4, 5-fold CV) ────────────────────────────\\n# CI: exact where available from bootstrap; estimated (±0.010 / ±0.002 for 0v1)\\n# at non-boundary pairs, consistent with observed bootstrap CI widths.\\nTABLE1 = {\\n    \\\"Qwen-rw\\\": {\\n        \\\"mean\\\":     [0.9956, 0.6955, 0.5893, 0.5435, 0.5340],\\n        \\\"ci_lower\\\": [0.9936, 0.686,  0.580,  0.534,  0.524],\\n        \\\"ci_upper\\\": [0.9976, 0.704,  0.599,  0.553,  0.544],\\n    },\\n    \\\"Pythia\\\": {\\n        \\\"mean\\\":     [0.9932, 0.6539, 0.5514, 0.5152, 0.5136],\\n        \\\"ci_lower\\\": [0.9912, 0.645,  0.542,  0.505,  0.504],\\n        \\\"ci_upper\\\": [0.9952, 0.663,  0.563,  0.525,  0.524],\\n    },\\n    \\\"OLMo\\\": {\\n        \\\"mean\\\":     [0.9970, 0.6145, 0.5496, 0.5091, 0.5045],\\n        \\\"ci_lower\\\": [0.9950, 0.605,  0.540,  0.499,  0.495],\\n        \\\"ci_upper\\\": [0.9990, 0.625,  0.560,  0.519,  0.514],\\n    },\\n    \\\"Qwen-cont\\\": {\\n        \\\"mean\\\":     [0.9971, 0.6112, 0.5609, 0.5409, 0.5141],\\n        \\\"ci_lower\\\": [0.9951, 0.602,  0.551,  0.531,  0.504],\\n        \\\"ci_upper\\\": [0.9991, 0.621,  0.571,  0.551,  0.524],\\n    },\\n    r\\\"Qwen-7B$^\\\\ddagger$\\\": {\\n        \\\"mean\\\":     [0.9638, 0.6168, 0.5492, 0.5276, 0.5085],\\n        \\\"ci_lower\\\": [0.961,  0.608,  0.539,  0.518,  0.499],\\n        \\\"ci_upper\\\": [0.967,  0.626,  0.559,  0.537,  0.518],\\n    },\\n}\\n\\n# ── Additional models with bootstrap CI (all pairs) ─────────────────────────\\nEXTRA_MODELS = {\\n    \\\"LLaMA-8B\\\": {\\n        \\\"mean\\\":     [0.9225, 0.6123, 0.5274, 0.5169, 0.5162],\\n        \\\"ci_lower\\\": [0.9174, 0.6028, 0.5169, 0.5062, 0.5052],\\n        \\\"ci_upper\\\": [0.9272, 0.6216, 0.5378, 0.5275, 0.5268],\\n    },\\n    \\\"Mistral-7B\\\": {\\n        \\\"mean\\\":     [0.9843, 0.5935, 0.5402, 0.5232, 0.5181],\\n        \\\"ci_lower\\\": [0.9824, 0.5835, 0.5301, 0.5128, 0.5070],\\n        \\\"ci_upper\\\": [0.9860, 0.6032, 0.5510, 0.5338, 0.5287],\\n    },\\n}\\n\\n# ── Decoding strategies (per_fold → approximate CI) ─────────────────────────\\nDECODE_FOLD = {\\n    \\\"Greedy\\\": {\\n        \\\"mean\\\": [0.9992, 0.8838, 0.5342, 0.5228, 0.5162],\\n        \\\"folds\\\": {\\n            \\\"0v1\\\": [0.9996, 0.9991, 0.9992, 0.9996, 0.9984],\\n            \\\"1v2\\\": [0.8906, 0.8766, 0.8847, 0.881, 0.8861],\\n            \\\"2v3\\\": [0.5188, 0.542, 0.5264, 0.5364, 0.5473],\\n            \\\"3v4\\\": [0.5223, 0.5135, 0.5187, 0.5355, 0.5239],\\n            \\\"4v5\\\": [0.5272, 0.5108, 0.5124, 0.5128, 0.5177],\\n        },\\n    },\\n    r\\\"Nuc $p{=}0.9$\\\": {\\n        \\\"mean\\\": [0.9948, 0.677, 0.5549, 0.5299, 0.5013],\\n        \\\"folds\\\": {\\n            \\\"0v1\\\": [0.9957, 0.9951, 0.9939, 0.9942, 0.9952],\\n            \\\"1v2\\\": [0.6875, 0.6745, 0.6838, 0.6631, 0.6763],\\n            \\\"2v3\\\": [0.548, 0.5563, 0.5534, 0.5638, 0.5531],\\n            \\\"3v4\\\": [0.525, 0.5494, 0.5317, 0.5301, 0.5133],\\n            \\\"4v5\\\": [0.5257, 0.4903, 0.4898, 0.5, 0.5008],\\n        },\\n    },\\n    r\\\"$T{=}0.7$\\\": {\\n        \\\"mean\\\": [0.9965, 0.7265, 0.5941, 0.5698, 0.5284],\\n        \\\"folds\\\": {\\n            \\\"0v1\\\": [0.9977, 0.9972, 0.9956, 0.9972, 0.995],\\n            \\\"1v2\\\": [0.7367, 0.7367, 0.7255, 0.7121, 0.7214],\\n            \\\"2v3\\\": [0.6009, 0.5951, 0.5954, 0.5754, 0.6036],\\n            \\\"3v4\\\": [0.5521, 0.5739, 0.5801, 0.5784, 0.5643],\\n            \\\"4v5\\\": [0.5209, 0.529, 0.5222, 0.5358, 0.5343],\\n        },\\n    },\\n    r\\\"$T{=}1.2$\\\": {\\n        \\\"mean\\\": [0.9933, 0.6172, 0.5226, 0.517, 0.5051],\\n        \\\"folds\\\": {\\n            \\\"0v1\\\": [0.9938, 0.9949, 0.9929, 0.9922, 0.9929],\\n            \\\"1v2\\\": [0.6193, 0.5961, 0.6182, 0.6258, 0.6265],\\n            \\\"2v3\\\": [0.5285, 0.5246, 0.5219, 0.5254, 0.5123],\\n            \\\"3v4\\\": [0.5464, 0.5142, 0.4998, 0.5028, 0.5218],\\n            \\\"4v5\\\": [0.5048, 0.5059, 0.5053, 0.4936, 0.5162],\\n        },\\n    },\\n}\\n\\nTABLEAU = [\\n    \\\"#4e79a7\\\", \\\"#e15759\\\", \\\"#76b7b2\\\", \\\"#59a14f\\\", \\\"#b07aa1\\\",\\n    \\\"#ff9da7\\\", \\\"#9c755f\\\", \\\"#edc948\\\", \\\"#f28e2b\\\", \\\"#bab0ac\\\",\\n    \\\"#86bcb6\\\",\\n]\\nMARKERS = [\\\"o\\\", \\\"s\\\", \\\"^\\\", \\\"D\\\", \\\"v\\\", \\\"P\\\", \\\"X\\\", \\\"*\\\", \\\"h\\\", \\\"<\\\", \\\">\\\"]\\n\\n\\ndef fold_ci(folds):\\n    arr = np.array(folds)\\n    m = arr.mean()\\n    se = arr.std(ddof=1) / np.sqrt(len(arr))\\n    return m - 1.96 * se, m + 1.96 * se\\n\\n\\ndef main():\\n    x = np.arange(len(PAIR_KEYS))\\n\\n    plt.rcParams.update({\\n        \\\"font.family\\\": \\\"serif\\\",\\n        \\\"font.size\\\": 10,\\n        \\\"axes.linewidth\\\": 0.8,\\n        \\\"xtick.major.width\\\": 0.8,\\n        \\\"ytick.major.width\\\": 0.8,\\n    })\\n\\n    fig, ax = plt.subplots(figsize=(7, 4.2), constrained_layout=True)\\n\\n    # Reference lines\\n    ax.axhline(0.60, color=\\\"grey\\\", ls=\\\"--\\\", lw=0.8, zorder=1)\\n    ax.text(len(PAIR_KEYS) - 0.45, 0.608, r\\\"$\\\\theta = 0.60$\\\",\\n            fontsize=8, color=\\\"grey\\\", va=\\\"bottom\\\", ha=\\\"right\\\")\\n    ax.axhline(0.50, color=\\\"lightgrey\\\", ls=\\\"--\\\", lw=0.8, zorder=1)\\n    ax.text(len(PAIR_KEYS) - 0.45, 0.507, \\\"chance\\\",\\n            fontsize=8, color=\\\"silver\\\", va=\\\"bottom\\\", ha=\\\"right\\\")\\n\\n    ci = 0\\n    model_handles = []\\n    decode_handles = []\\n\\n    # ── Model configs (solid + CI bands) ─────────────────────────────────\\n    all_models = {}\\n    all_models.update(TABLE1)\\n    all_models.update(EXTRA_MODELS)\\n\\n    for label, data in all_models.items():\\n        color = TABLEAU[ci % len(TABLEAU)]\\n        marker = MARKERS[ci % len(MARKERS)]\\n        means = data[\\\"mean\\\"]\\n        lo = data[\\\"ci_lower\\\"]\\n        hi = data[\\\"ci_upper\\\"]\\n\\n        ax.fill_between(x, lo, hi, color=color, alpha=0.18, zorder=2,\\n                         linewidth=0)\\n        line, = ax.plot(x, means, \\\"-\\\", color=color, lw=1.6, marker=marker,\\n                        markersize=4.5, label=label, zorder=3)\\n        model_handles.append(line)\\n        ci += 1\\n\\n    # ── Decoding strategies (dashed, no CI bands) ────────────────────────\\n    for label, data in DECODE_FOLD.items():\\n        color = TABLEAU[ci % len(TABLEAU)]\\n        marker = MARKERS[ci % len(MARKERS)]\\n        means = data[\\\"mean\\\"]\\n\\n        line, = ax.plot(x, means, \\\"--\\\", color=color, lw=1.4, marker=marker,\\n                        markersize=4, label=label, zorder=3)\\n        decode_handles.append(line)\\n        ci += 1\\n\\n    # ── Axes ─────────────────────────────────────────────────────────────\\n    ax.set_xticks(x)\\n    ax.set_xticklabels(X_LABELS)\\n    ax.set_xlabel(\\\"Depth Pair\\\", fontsize=10.5)\\n    ax.set_ylabel(\\\"Pairwise AUC\\\", fontsize=10.5)\\n    ax.set_ylim(0.45, 1.05)\\n    ax.set_xlim(-0.25, len(PAIR_KEYS) - 0.75)\\n    ax.tick_params(direction=\\\"in\\\")\\n\\n    # ── Legends ──────────────────────────────────────────────────────────\\n    leg1 = ax.legend(handles=model_handles, title=\\\"Models\\\", title_fontsize=8.5,\\n                     fontsize=7.5, loc=\\\"upper right\\\", bbox_to_anchor=(1.0, 0.98),\\n                     framealpha=0.92, edgecolor=\\\"0.85\\\", handlelength=2.0)\\n    ax.add_artist(leg1)\\n    if decode_handles:\\n        ax.legend(handles=decode_handles, title=\\\"Decoding\\\", title_fontsize=8.5,\\n                  fontsize=7.5, loc=\\\"center right\\\", bbox_to_anchor=(1.0, 0.42),\\n                  framealpha=0.92, edgecolor=\\\"0.85\\\", handlelength=2.0)\\n\\n    # ── Save ─────────────────────────────────────────────────────────────\\n    out_dir = Path(__file__).resolve().parent.parent / \\\"docs\\\" / \\\"paper\\\" / \\\"figures\\\"\\n    out_dir.mkdir(parents=True, exist_ok=True)\\n\\n    pdf_path = out_dir / \\\"fig2_auc_decay.pdf\\\"\\n    png_path = out_dir / \\\"fig2_auc_decay.png\\\"\\n    fig.savefig(pdf_path, dpi=300, bbox_inches=\\\"tight\\\")\\n    fig.savefig(png_path, dpi=300, bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n\\n    print(f\\\"PDF: {pdf_path} ({pdf_path.stat().st_size/1024:.1f} KB)\\\")\\n    print(f\\\"PNG: {png_path} ({png_path.stat().st_size/1024:.1f} KB)\\\")\\n    print(\\\"OK\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0124oRTeay5tuPqioDAJ5YPd`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/scripts/plot_auc_decay_ci.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "ce970b49-2d9d-4db8-b9ca-ec9bd3f70668",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YVs5H8etQoxy5Ya1qn5UpH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2427,
+      "cache_read_input_tokens": 29514,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2427
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T15:40:25.302Z_
+
+<details><summary>↩ Tool result · `toolu_0124oRTeay5tuPqioDAJ5YPd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"AUC decay curves with bootstrap confidence interval bands.\\n\\nInput:  artifacts/exp*_bootstrap_ci.json, results_*/bootstrap_ci.json,\\n        results_*/pairwise_auc.json (per_fold -> approximate CI)\\nOutput: artifacts/figures/fig_s1_auc_decay_ci.pdf\\nDeps:   matplotlib, numpy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport re\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nfrom pathlib import Path\\n\\nTABLEAU_COLORS = [\\n    \\\"#4e79a7\\\", \\\"#e15759\\\", \\\"#76b7b2\\\", \\\"#59a14f\\\",\\n    \\\"#b07aa1\\\", \\\"#ff9da7\\\", \\\"#9c755f\\\", \\\"#bab0ac\\\",\\n    \\\"#edc948\\\", \\\"#f28e2b\\\",\\n]\\nMARKERS = [\\\"o\\\", \\\"s\\\", \\\"^\\\", \\\"D\\\", \\\"v\\\", \\\"P\\\", \\\"X\\\", \\\"*\\\", \\\"h\\\", \\\"<\\\"]\\nPAIR_KEYS = [\\\"0v1\\\", \\\"1v2\\\", \\\"2v3\\\", \\\"3v4\\\", \\\"4v5\\\"]\\nX_LABELS = [\\\"0 vs 1\\\", \\\"1 vs 2\\\", \\\"2 vs 3\\\", \\\"3 vs 4\\\", \\\"4 vs 5\\\"]\\n\\n\\ndef infer_label(source_path, metadata=None):\\n    \\\"\\\"\\\"Infer model label from file path or JSON metadata.\\\"\\\"\\\"\\n    if metadata and \\\"experiment\\\" in metadata:\\n        exp = metadata[\\\"experiment\\\"].lower()\\n    else:\\n        exp = str(source_path).lower()\\n    patterns = [\\n        (r\\\"qwen.*rw|qwen.*rewrite\\\", \\\"Qwen-rw\\\"),\\n        (r\\\"qwen.*base\\\", \\\"Qwen-base\\\"),\\n        (r\\\"qwen.*7b\\\", \\\"Qwen-7B\\\"),\\n        (r\\\"qwen.*cont|qwen(?!.*rw|.*rewrite|.*base|.*7b)\\\", \\\"Qwen-cont\\\"),\\n        (r\\\"pythia.*greedy\\\", \\\"Pythia-greedy\\\"),\\n        (r\\\"pythia.*nuc\\\", \\\"Pythia-nuc0.9\\\"),\\n        (r\\\"pythia.*t07|pythia.*t0\\\\.7\\\", \\\"Pythia-T0.7\\\"),\\n        (r\\\"pythia.*t12|pythia.*t1\\\\.2\\\", \\\"Pythia-T1.2\\\"),\\n        (r\\\"pythia\\\", \\\"Pythia\\\"),\\n        (r\\\"olmo\\\", \\\"OLMo\\\"),\\n        (r\\\"mistral\\\", \\\"Mistral-7B\\\"),\\n        (r\\\"llama.*8b\\\", \\\"LLaMA-8B\\\"),\\n        (r\\\"length.?128\\\", \\\"Length-128\\\"),\\n        (r\\\"length.?256\\\", \\\"Length-256\\\"),\\n        (r\\\"length.?512\\\", \\\"Length-512\\\"),\\n    ]\\n    for pat, label in patterns:\\n        if re.search(pat, exp, re.IGNORECASE):\\n            return label\\n    name = source_path.stem if source_path.is_file() else source_path.name\\n    name = re.sub(r\\\"^exp\\\\d+_\\\", \\\"\\\", name).replace(\\\"bootstrap_ci\\\", \\\"\\\").replace(\\\"pairwise_auc\\\", \\\"\\\").strip(\\\"_\\\")\\n    return name or source_path.parent.name\\n\\n\\ndef discover_ci_sources(root):\\n    \\\"\\\"\\\"Find bootstrap CI JSONs and pairwise_auc.json with per_fold data.\\\"\\\"\\\"\\n    ci_patterns = [\\n        \\\"artifacts/*bootstrap*ci*.json\\\",\\n        \\\"artifacts/exp*_bootstrap_ci.json\\\",\\n        \\\"results_*/*bootstrap*ci*.json\\\",\\n        \\\"results/*/*bootstrap*ci*.json\\\",\\n    ]\\n    auc_patterns = [\\n        \\\"results_*/pairwise_auc.json\\\",\\n        \\\"results/*/pairwise_auc.json\\\",\\n    ]\\n    files = set()\\n    for pat in ci_patterns:\\n        files.update(root.glob(pat))\\n    ci_files = sorted(files)\\n\\n    auc_files_set = set()\\n    for pat in auc_patterns:\\n        auc_files_set.update(root.glob(pat))\\n    auc_files = sorted(auc_files_set)\\n\\n    return ci_files, auc_files\\n\\n\\ndef load_bootstrap_ci(json_path):\\n    \\\"\\\"\\\"Load from bootstrap CI JSON. Returns {pair: {mean, ci_lower, ci_upper}}.\\\"\\\"\\\"\\n    with open(json_path) as f:\\n        raw = json.load(f)\\n\\n    result = {}\\n    pairs_data = raw.get(\\\"pairs\\\", raw)\\n    for k in PAIR_KEYS:\\n        if k in pairs_data:\\n            entry = pairs_data[k]\\n            if isinstance(entry, dict) and \\\"ci_lower\\\" in entry:\\n                result[k] = {\\n                    \\\"mean\\\": entry.get(\\\"boot_mean\\\", entry.get(\\\"auc\\\", entry.get(\\\"auc_mean_folds\\\"))),\\n                    \\\"ci_lower\\\": entry[\\\"ci_lower\\\"],\\n                    \\\"ci_upper\\\": entry[\\\"ci_upper\\\"],\\n                }\\n    return result if result else None, raw\\n\\n\\ndef load_pairwise_auc_ci(json_path):\\n    \\\"\\\"\\\"Compute approximate CI from per-fold AUCs (mean +/- 1.96*SE).\\\"\\\"\\\"\\n    with open(json_path) as f:\\n        raw = json.load(f)\\n\\n    per_fold = raw.get(\\\"per_fold\\\")\\n    mean_data = raw.get(\\\"mean\\\")\\n    if not per_fold or not mean_data:\\n        return None, raw\\n\\n    result = {}\\n    for k in PAIR_KEYS:\\n        if k in per_fold and k in mean_data:\\n            folds = np.array(per_fold[k])\\n            m = mean_data[k]\\n            se = np.std(folds, ddof=1) / np.sqrt(len(folds))\\n            result[k] = {\\n                \\\"mean\\\": m,\\n                \\\"ci_lower\\\": m - 1.96 * se,\\n      \\n\\n... [截断: 输出过长，省略 172 字符] ...\\n\\n decay with confidence bands\\\")\\n    parser.add_argument(\\\"--results-dir\\\", type=Path,\\n                        default=Path(__file__).resolve().parent.parent,\\n                        help=\\\"Root directory to scan\\\")\\n    parser.add_argument(\\\"--output\\\", type=Path, default=None,\\n                        help=\\\"Output PDF path\\\")\\n    parser.add_argument(\\\"--filter\\\", type=str, default=None,\\n                        help=\\\"Filter models by substring\\\")\\n    return parser.parse_args()\\n\\n\\ndef main():\\n    args = parse_args()\\n    root = args.results_dir\\n\\n    ci_files, auc_files = discover_ci_sources(root)\\n    if not ci_files and not auc_files:\\n        print(f\\\"No CI or pairwise_auc files found under {root}\\\")\\n        return\\n\\n    models = {}\\n\\n    for fp in ci_files:\\n        data, metadata = load_bootstrap_ci(fp)\\n        if data is None:\\n            continue\\n        label = infer_label(fp, metadata)\\n        if args.filter and args.filter.lower() not in label.lower():\\n            continue\\n        label = label + \\\" (bootstrap)\\\"\\n        models[label] = data\\n\\n    for fp in auc_files:\\n        data, metadata = load_pairwise_auc_ci(fp)\\n        if data is None:\\n            continue\\n        label = infer_label(fp, metadata)\\n        if args.filter and args.filter.lower() not in label.lower():\\n            continue\\n        if any(label.split(\\\" (\\\")[0] in k for k in models):\\n            continue\\n        models[label] = data\\n\\n    if not models:\\n        print(\\\"No valid CI data found after filtering\\\")\\n        return\\n\\n    x = np.arange(len(PAIR_KEYS))\\n\\n    plt.rcParams.update({\\n        \\\"font.family\\\": \\\"serif\\\",\\n        \\\"font.size\\\": 11,\\n        \\\"axes.linewidth\\\": 0.8,\\n        \\\"xtick.major.width\\\": 0.8,\\n        \\\"ytick.major.width\\\": 0.8,\\n    })\\n\\n    fig, ax = plt.subplots(figsize=(7, 4.5), constrained_layout=True)\\n\\n    ax.axhline(0.60, color=\\\"grey\\\", ls=\\\"--\\\", lw=0.8, zorder=1)\\n    ax.text(len(PAIR_KEYS) - 0.45, 0.608, r\\\"$\\\\theta = 0.60$\\\",\\n            fontsize=8.5, color=\\\"grey\\\", va=\\\"bottom\\\", ha=\\\"right\\\")\\n    ax.axhline(0.50, color=\\\"lightgrey\\\", ls=\\\"--\\\", lw=0.8, zorder=1)\\n    ax.text(len(PAIR_KEYS) - 0.45, 0.508, \\\"chance\\\",\\n            fontsize=8.5, color=\\\"silver\\\", va=\\\"bottom\\\", ha=\\\"right\\\")\\n\\n    handles = []\\n    for i, (label, ci_data) in enumerate(models.items()):\\n        color = TABLEAU_COLORS[i % len(TABLEAU_COLORS)]\\n        marker = MARKERS[i % len(MARKERS)]\\n\\n        means = [ci_data.get(k, {}).get(\\\"mean\\\", float(\\\"nan\\\")) for k in PAIR_KEYS]\\n        lowers = [ci_data.get(k, {}).get(\\\"ci_lower\\\", float(\\\"nan\\\")) for k in PAIR_KEYS]\\n        uppers = [ci_data.get(k, {}).get(\\\"ci_upper\\\", float(\\\"nan\\\")) for k in PAIR_KEYS]\\n\\n        ax.fill_between(x, lowers, uppers, color=color, alpha=0.15, zorder=2)\\n        line, = ax.plot(x, means, \\\"-\\\", color=color, lw=1.8, marker=marker,\\n                        markersize=5, label=label, zorder=3)\\n        handles.append(line)\\n\\n    ax.set_xticks(x)\\n    ax.set_xticklabels(X_LABELS)\\n    ax.set_xlabel(\\\"Depth Pair\\\")\\n    ax.set_ylabel(\\\"Pairwise AUC\\\")\\n    ax.set_ylim(0.45, 1.05)\\n    ax.set_xlim(-0.25, len(PAIR_KEYS) - 0.75)\\n    ax.tick_params(direction=\\\"in\\\")\\n\\n    ax.legend(handles=handles, fontsize=8.5, loc=\\\"upper right\\\",\\n              bbox_to_anchor=(1.0, 0.98), framealpha=0.9, edgecolor=\\\"0.8\\\")\\n\\n    if args.output:\\n        out_path = args.output\\n    else:\\n        out_dir = root / \\\"artifacts\\\" / \\\"figures\\\"\\n        out_dir.mkdir(parents=True, exist_ok=True)\\n        out_path = out_dir / \\\"fig_s1_auc_decay_ci.pdf\\\"\\n\\n    out_path.parent.mkdir(parents=True, exist_ok=True)\\n    fig.savefig(out_path, dpi=300, bbox_inches=\\\"tight\\\")\\n    png_path = out_path.with_suffix(\\\".png\\\")\\n    fig.savefig(png_path, dpi=300, bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n\\n    pdf_size = out_path.stat().st_size\\n    png_size = png_path.stat().st_size\\n    print(f\\\"Discovered {len(models)} configs: {list(models.keys())}\\\")\\n    print(f\\\"PDF: {pdf_size/1024:.1f} KB | PNG: {png_size/1024:.1f} KB\\\")\\n    assert pdf_size > 3 * 1024, f\\\"PDF too small: {pdf_size}\\\"\\n    print(\\\"OK\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "03a7efa9-adea-432f-9f66-ef652246c264",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"AUC decay curves with bootstrap confidence interval bands.\\\\n\\\\nInput:  artifacts/exp*_bootstrap_ci.json, results_*/bootstrap_ci.json,\\\\n        results_*/pairwise_auc.json (per_fold -> approximate CI)\\\\nOutput: artifacts/figures/fig_s1_auc_decay_ci.pdf\\\\nDeps:   matplotlib, numpy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport re\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nfrom pathlib import Path\\\\n\\\\nTABLEAU_COLORS = [\\\\n    \\\\\\\"#4e79a7\\\\\\\", \\\\\\\"#e15759\\\\\\\", \\\\\\\"#76b7b2\\\\\\\", \\\\\\\"#59a14f\\\\\\\",\\\\n    \\\\\\\"#b07aa1\\\\\\\", \\\\\\\"#ff9da7\\\\\\\", \\\\\\\"#9c755f\\\\\\\", \\\\\\\"#bab0ac\\\\\\\",\\\\n    \\\\\\\"#edc948\\\\\\\", \\\\\\\"#f28e2b\\\\\\\",\\\\n]\\\\nMARKERS = [\\\\\\\"o\\\\\\\", \\\\\\\"s\\\\\\\", \\\\\\\"^\\\\\\\", \\\\\\\"D\\\\\\\", \\\\\\\"v\\\\\\\", \\\\\\\"P\\\\\\\", \\\\\\\"X\\\\\\\", \\\\\\\"*\\\\\\\", \\\\\\\"h\\\\\\\", \\\\\\\"<\\\\\\\"]\\\\nPAIR_KEYS = [\\\\\\\"0v1\\\\\\\", \\\\\\\"1v2\\\\\\\", \\\\\\\"2v3\\\\\\\", \\\\\\\"3v4\\\\\\\", \\\\\\\"4v5\\\\\\\"]\\\\nX_LABELS = [\\\\\\\"0 vs 1\\\\\\\", \\\\\\\"1 vs 2\\\\\\\", \\\\\\\"2 vs 3\\\\\\\", \\\\\\\"3 vs 4\\\\\\\", \\\\\\\"4 vs 5\\\\\\\"]\\\\n\\\\n\\\\ndef infer_label(source_path, metadata=None):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Infer model label from file path or JSON metadata.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if metadata and \\\\\\\"experiment\\\\\\\" in metadata:\\\\n        exp = metadata[\\\\\\\"experiment\\\\\\\"].lower()\\\\n    else:\\\\n        exp = str(source_path).lower()\\\\n    patterns = [\\\\n        (r\\\\\\\"qwen.*rw|qwen.*rewrite\\\\\\\", \\\\\\\"Qwen-rw\\\\\\\"),\\\\n        (r\\\\\\\"qwen.*base\\\\\\\", \\\\\\\"Qwen-base\\\\\\\"),\\\\n        (r\\\\\\\"qwen.*7b\\\\\\\", \\\\\\\"Qwen-7B\\\\\\\"),\\\\n        (r\\\\\\\"qwen.*cont|qwen(?!.*rw|.*rewrite|.*base|.*7b)\\\\\\\", \\\\\\\"Qwen-cont\\\\\\\"),\\\\n        (r\\\\\\\"pythia.*greedy\\\\\\\", \\\\\\\"Pythia-greedy\\\\\\\"),\\\\n        (r\\\\\\\"pythia.*nuc\\\\\\\", \\\\\\\"Pythia-nuc0.9\\\\\\\"),\\\\n        (r\\\\\\\"pythia.*t07|pythia.*t0\\\\\\\\.7\\\\\\\", \\\\\\\"Pythia-T0.7\\\\\\\"),\\\\n        (r\\\\\\\"pythia.*t12|pythia.*t1\\\\\\\\.2\\\\\\\", \\\\\\\"Pythia-T1.2\\\\\\\"),\\\\n        (r\\\\\\\"pythia\\\\\\\", \\\\\\\"Pythia\\\\\\\"),\\\\n        (r\\\\\\\"olmo\\\\\\\", \\\\\\\"OLMo\\\\\\\"),\\\\n        (r\\\\\\\"mistral\\\\\\\", \\\\\\\"Mistral-7B\\\\\\\"),\\\\n        (r\\\\\\\"llama.*8b\\\\\\\", \\\\\\\"LLaMA-8B\\\\\\\"),\\\\n        (r\\\\\\\"length.?128\\\\\\\", \\\\\\\"Length-128\\\\\\\"),\\\\n        (r\\\\\\\"length.?256\\\\\\\", \\\\\\\"Length-256\\\\\\\"),\\\\n        (r\\\\\\\"length.?512\\\\\\\", \\\\\\\"Length-512\\\\\\\"),\\\\n    ]\\\\n    for pat, label in patterns:\\\\n        if re.search(pat, exp, re.IGNORECASE):\\\\n            return label\\\\n    name = source_path.stem if source_path.is_file() else source_path.name\\\\n    name = re.sub(r\\\\\\\"^exp\\\\\\\\d+_\\\\\\\", \\\\\\\"\\\\\\\", name).replace(\\\\\\\"bootstrap_ci\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"pairwise_auc\\\\\\\", \\\\\\\"\\\\\\\").strip(\\\\\\\"_\\\\\\\")\\\\n    return name or source_path.parent.name\\\\n\\\\n\\\\ndef discover_ci_sources(root):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Find bootstrap CI JSONs and pairwise_auc.json with per_fold data.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    ci_patterns = [\\\\n        \\\\\\\"artifacts/*bootstrap*ci*.json\\\\\\\",\\\\n        \\\\\\\"artifacts/exp*_bootstrap_ci.json\\\\\\\",\\\\n        \\\\\\\"results_*/*bootstrap*ci*.json\\\\\\\",\\\\n        \\\\\\\"results/*/*bootstrap*ci*.json\\\\\\\",\\\\n    ]\\\\n    auc_patterns = [\\\\n        \\\\\\\"results_*/pairwise_auc.json\\\\\\\",\\\\n        \\\\\\\"results/*/pairwise_auc.json\\\\\\\",\\\\n    ]\\\\n    files = set()\\\\n    for pat in ci_patterns:\\\\n        files.update(root.glob(pat))\\\\n    ci_files = sorted(files)\\\\n\\\\n    auc_files_set = set()\\\\n    for pat in auc_patterns:\\\\n        auc_files_set.update(root.glob(pat))\\\\n    auc_files = sorted(auc_files_set)\\\\n\\\\n    return ci_files, auc_files\\\\n\\\\n\\\\ndef load_bootstrap_ci(json_path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load from bootstrap CI JSON. Returns {pair: {mean, ci_lower, ci_upper}}.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    with open(json_path) as f:\\\\n        raw = json.load(f)\\\\n\\\\n    result = {}\\\\n    pairs_data = raw.get(\\\\\\\"pairs\\\\\\\", raw)\\\\n    for k in PAIR_KEYS:\\\\n        if k in pairs_data:\\\\n            entry = pairs_data[k]\\\\n            if isinstance(entry, dict) and \\\\\\\"ci_lower\\\\\\\" in entry:\\\\n                result[k] = {\\\\n                    \\\\\\\"mean\\\\\\\": entry.get(\\\\\\\"boot_mean\\\\\\\", entry.get(\\\\\\\"auc\\\\\\\", entry.get(\\\\\\\"auc_mean_folds\\\\\\\"))),\\\\n                    \\\\\\\"ci_lower\\\\\\\": entry[\\\\\\\"ci_lower\\\\\\\"],\\\\n                    \\\\\\\"ci_upper\\\\\\\": entry[\\\\\\\"ci_upper\\\\\\\"],\\\\n                }\\\\n    return result if result else None, raw\\\\n\\\\n\\\\ndef load_pairwise_auc_ci(json_path):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute approximate CI from per-fold AUCs (mean +/- 1.96*SE).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    with open(json_path) as f:\\\\n        raw = json.load(f)\\\\n\\\\n    per_fold = raw.get(\\\\\\\"per_fold\\\\\\\")\\\\n    mean_data = raw.get(\\\\\\\"mean\\\\\\\")\\\\n    if not per_fold or not mean_data:\\\\n        return None, raw\\\\n\\\\n    result = {}\\\\n    for k in PAIR_KEYS:\\\\n        if k in per_fold and k in mean_data:\\\\n            folds = np.array(per_fold[k])\\\\n            m = mean_data[k]\\\\n            se = np.std(folds, ddof=1) / np.sqrt(len(folds))\\\\n            result[k] = {\\\\n                \\\\\\\"mean\\\\\\\": m,\\\\n                \\\\\\\"ci_lower\\\\\\\": m - 1.96 * se,\\\\n      \\\\n\\\\n... [截断: 输出过长，省略 172 字符] ...\\\\n\\\\n decay with confidence bands\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--results-dir\\\\\\\", type=Path,\\\\n                        default=Path(__file__).resolve().parent.parent,\\\\n                        help=\\\\\\\"Root directory to scan\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", type=Path, default=None,\\\\n                        help=\\\\\\\"Output PDF path\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--filter\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Filter models by substring\\\\\\\")\\\\n    return parser.parse_args()\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    root = args.results_dir\\\\n\\\\n    ci_files, auc_files = discover_ci_sources(root)\\\\n    if not ci_files and not auc_files:\\\\n        print(f\\\\\\\"No CI or pairwise_auc files found under {root}\\\\\\\")\\\\n        return\\\\n\\\\n    models = {}\\\\n\\\\n    for fp in ci_files:\\\\n        data, metadata = load_bootstrap_ci(fp)\\\\n        if data is None:\\\\n            continue\\\\n        label = infer_label(fp, metadata)\\\\n        if args.filter and args.filter.lower() not in label.lower():\\\\n            continue\\\\n        label = label + \\\\\\\" (bootstrap)\\\\\\\"\\\\n        models[label] = data\\\\n\\\\n    for fp in auc_files:\\\\n        data, metadata = load_pairwise_auc_ci(fp)\\\\n        if data is None:\\\\n            continue\\\\n        label = infer_label(fp, metadata)\\\\n        if args.filter and args.filter.lower() not in label.lower():\\\\n            continue\\\\n        if any(label.split(\\\\\\\" (\\\\\\\")[0] in k for k in models):\\\\n            continue\\\\n        models[label] = data\\\\n\\\\n    if not models:\\\\n        print(\\\\\\\"No valid CI data found after filtering\\\\\\\")\\\\n        return\\\\n\\\\n    x = np.arange(len(PAIR_KEYS))\\\\n\\\\n    plt.rcParams.update({\\\\n        \\\\\\\"font.family\\\\\\\": \\\\\\\"serif\\\\\\\",\\\\n        \\\\\\\"font.size\\\\\\\": 11,\\\\n        \\\\\\\"axes.linewidth\\\\\\\": 0.8,\\\\n        \\\\\\\"xtick.major.width\\\\\\\": 0.8,\\\\n        \\\\\\\"ytick.major.width\\\\\\\": 0.8,\\\\n    })\\\\n\\\\n    fig, ax = plt.subplots(figsize=(7, 4.5), constrained_layout=True)\\\\n\\\\n    ax.axhline(0.60, color=\\\\\\\"grey\\\\\\\", ls=\\\\\\\"--\\\\\\\", lw=0.8, zorder=1)\\\\n    ax.text(len(PAIR_KEYS) - 0.45, 0.608, r\\\\\\\"$\\\\\\\\theta = 0.60$\\\\\\\",\\\\n            fontsize=8.5, color=\\\\\\\"grey\\\\\\\", va=\\\\\\\"bottom\\\\\\\", ha=\\\\\\\"right\\\\\\\")\\\\n    ax.axhline(0.50, color=\\\\\\\"lightgrey\\\\\\\", ls=\\\\\\\"--\\\\\\\", lw=0.8, zorder=1)\\\\n    ax.text(len(PAIR_KEYS) - 0.45, 0.508, \\\\\\\"chance\\\\\\\",\\\\n            fontsize=8.5, color=\\\\\\\"silver\\\\\\\", va=\\\\\\\"bottom\\\\\\\", ha=\\\\\\\"right\\\\\\\")\\\\n\\\\n    handles = []\\\\n    for i, (label, ci_data) in enumerate(models.items()):\\\\n        color = TABLEAU_COLORS[i % len(TABLEAU_COLORS)]\\\\n        marker = MARKERS[i % len(MARKERS)]\\\\n\\\\n        means = [ci_data.get(k, {}).get(\\\\\\\"mean\\\\\\\", float(\\\\\\\"nan\\\\\\\")) for k in PAIR_KEYS]\\\\n        lowers = [ci_data.get(k, {}).get(\\\\\\\"ci_lower\\\\\\\", float(\\\\\\\"nan\\\\\\\")) for k in PAIR_KEYS]\\\\n        uppers = [ci_data.get(k, {}).get(\\\\\\\"ci_upper\\\\\\\", float(\\\\\\\"nan\\\\\\\")) for k in PAIR_KEYS]\\\\n\\\\n        ax.fill_between(x, lowers, uppers, color=color, alpha=0.15, zorder=2)\\\\n        line, = ax.plot(x, means, \\\\\\\"-\\\\\\\", color=color, lw=1.8, marker=marker,\\\\n                        markersize=5, label=label, zorder=3)\\\\n        handles.append(line)\\\\n\\\\n    ax.set_xticks(x)\\\\n    ax.set_xticklabels(X_LABELS)\\\\n    ax.set_xlabel(\\\\\\\"Depth Pair\\\\\\\")\\\\n    ax.set_ylabel(\\\\\\\"Pairwise AUC\\\\\\\")\\\\n    ax.set_ylim(0.45, 1.05)\\\\n    ax.set_xlim(-0.25, len(PAIR_KEYS) - 0.75)\\\\n    ax.tick_params(direction=\\\\\\\"in\\\\\\\")\\\\n\\\\n    ax.legend(handles=handles, fontsize=8.5, loc=\\\\\\\"upper right\\\\\\\",\\\\n              bbox_to_anchor=(1.0, 0.98), framealpha=0.9, edgecolor=\\\\\\\"0.8\\\\\\\")\\\\n\\\\n    if args.output:\\\\n        out_path = args.output\\\\n    else:\\\\n        out_dir = root / \\\\\\\"artifacts\\\\\\\" / \\\\\\\"figures\\\\\\\"\\\\n        out_dir.mkdir(parents=True, exist_ok=True)\\\\n        out_path = out_dir / \\\\\\\"fig_s1_auc_decay_ci.pdf\\\\\\\"\\\\n\\\\n    out_path.parent.mkdir(parents=True, exist_ok=True)\\\\n    fig.savefig(out_path, dpi=300, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    png_path = out_path.with_suffix(\\\\\\\".png\\\\\\\")\\\\n    fig.savefig(png_path, dpi=300, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    plt.close(fig)\\\\n\\\\n    pdf_size = out_path.stat().st_size\\\\n    png_size = png_path.stat().st_size\\\\n    print(f\\\\\\\"Discovered {len(models)} configs: {list(models.keys())}\\\\\\\")\\\\n    print(f\\\\\\\"PDF: {pdf_size/1024:.1f} KB | PNG: {png_size/1024:.1f} KB\\\\\\\")\\\\n    assert pdf_size > 3 * 1024, f\\\\\\\"PDF too small: {pdf_size}\\\\\\\"\\\\n    print(\\\\\\\"OK\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"AUC decay curves with bootstrap confidence interval bands.\\n\\nInput:  artifacts/exp*_bootstrap_ci.json, results_*/bootstrap_ci.json,\\n        results_*/pairwise_auc.json (per_fold -> approximate CI)\\nOutput: artifacts/figures/fig_s1_auc_decay_ci.pdf\\nDeps:   matplotlib, numpy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport re\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nfrom pathlib import Path\\n\\nTABLEAU_COLORS = [\\n    \\\"#4e79a7\\\", \\\"#e15759\\\", \\\"#76b7b2\\\", \\\"#59a14f\\\",\\n    \\\"#b07aa1\\\", \\\"#ff9da7\\\", \\\"#9c755f\\\", \\\"#bab0ac\\\",\\n    \\\"#edc948\\\", \\\"#f28e2b\\\",\\n]\\nMARKERS = [\\\"o\\\", \\\"s\\\", \\\"^\\\", \\\"D\\\", \\\"v\\\", \\\"P\\\", \\\"X\\\", \\\"*\\\", \\\"h\\\", \\\"<\\\"]\\nPAIR_KEYS = [\\\"0v1\\\", \\\"1v2\\\", \\\"2v3\\\", \\\"3v4\\\", \\\"4v5\\\"]\\nX_LABELS = [\\\"0 vs 1\\\", \\\"1 vs 2\\\", \\\"2 vs 3\\\", \\\"3 vs 4\\\", \\\"4 vs 5\\\"]\\n\\n\\ndef infer_label(source_path, metadata=None):\\n    \\\"\\\"\\\"Infer model label from file path or JSON metadata.\\\"\\\"\\\"\\n    if metadata and \\\"experiment\\\" in metadata:\\n        exp = metadata[\\\"experiment\\\"].lower()\\n    else:\\n        exp = str(source_path).lower()\\n    patterns = [\\n        (r\\\"qwen.*rw|qwen.*rewrite\\\", \\\"Qwen-rw\\\"),\\n        (r\\\"qwen.*base\\\", \\\"Qwen-base\\\"),\\n        (r\\\"qwen.*7b\\\", \\\"Qwen-7B\\\"),\\n        (r\\\"qwen.*cont|qwen(?!.*rw|.*rewrite|.*base|.*7b)\\\", \\\"Qwen-cont\\\"),\\n        (r\\\"pythia.*greedy\\\", \\\"Pythia-greedy\\\"),\\n        (r\\\"pythia.*nuc\\\", \\\"Pythia-nuc0.9\\\"),\\n        (r\\\"pythia.*t07|pythia.*t0\\\\.7\\\", \\\"Pythia-T0.7\\\"),\\n        (r\\\"pythia.*t12|pythia.*t1\\\\.2\\\", \\\"Pythia-T1.2\\\"),\\n        (r\\\"pythia\\\", \\\"Pythia\\\"),\\n        (r\\\"olmo\\\", \\\"OLMo\\\"),\\n        (r\\\"mistral\\\", \\\"Mistral-7B\\\"),\\n        (r\\\"llama.*8b\\\", \\\"LLaMA-8B\\\"),\\n        (r\\\"length.?128\\\", \\\"Length-128\\\"),\\n        (r\\\"length.?256\\\", \\\"Length-256\\\"),\\n        (r\\\"length.?512\\\", \\\"Length-512\\\"),\\n    ]\\n    for pat, label in patterns:\\n        if re.search(pat, exp, re.IGNORECASE):\\n            return label\\n    name = source_path.stem if source_path.is_file() else source_path.name\\n    name = re.sub(r\\\"^exp\\\\d+_\\\", \\\"\\\", name).replace(\\\"bootstrap_ci\\\", \\\"\\\").replace(\\\"pairwise_auc\\\", \\\"\\\").strip(\\\"_\\\")\\n    return name or source_path.parent.name\\n\\n\\ndef discover_ci_sources(root):\\n    \\\"\\\"\\\"Find bootstrap CI JSONs and pairwise_auc.json with per_fold data.\\\"\\\"\\\"\\n    ci_patterns = [\\n        \\\"artifacts/*bootstrap*ci*.json\\\",\\n        \\\"artifacts/exp*_bootstrap_ci.json\\\",\\n        \\\"results_*/*bootstrap*ci*.json\\\",\\n        \\\"results/*/*bootstrap*ci*.json\\\",\\n    ]\\n    auc_patterns = [\\n        \\\"results_*/pairwise_auc.json\\\",\\n        \\\"results/*/pairwise_auc.json\\\",\\n    ]\\n    files = set()\\n    for pat in ci_patterns:\\n        files.update(root.glob(pat))\\n    ci_files = sorted(files)\\n\\n    auc_files_set = set()\\n    for pat in auc_patterns:\\n        auc_files_set.update(root.glob(pat))\\n    auc_files = sorted(auc_files_set)\\n\\n    return ci_files, auc_files\\n\\n\\ndef load_bootstrap_ci(json_path):\\n    \\\"\\\"\\\"Load from bootstrap CI JSON. Returns {pair: {mean, ci_lower, ci_upper}}.\\\"\\\"\\\"\\n    with open(json_path) as f:\\n        raw = json.load(f)\\n\\n    result = {}\\n    pairs_data = raw.get(\\\"pairs\\\", raw)\\n    for k in PAIR_KEYS:\\n        if k in pairs_data:\\n            entry = pairs_data[k]\\n            if isinstance(entry, dict) and \\\"ci_lower\\\" in entry:\\n                result[k] = {\\n                    \\\"mean\\\": entry.get(\\\"boot_mean\\\", entry.get(\\\"auc\\\", entry.get(\\\"auc_mean_folds\\\"))),\\n                    \\\"ci_lower\\\": entry[\\\"ci_lower\\\"],\\n                    \\\"ci_upper\\\": entry[\\\"ci_upper\\\"],\\n                }\\n    return result if result else None, raw\\n\\n\\ndef load_pairwise_auc_ci(json_path):\\n    \\\"\\\"\\\"Compute approximate CI from per-fold AUCs (mean +/- 1.96*SE).\\\"\\\"\\\"\\n    with open(json_path) as f:\\n        raw = json.load(f)\\n\\n    per_fold = raw.get(\\\"per_fold\\\")\\n    mean_data = raw.get(\\\"mean\\\")\\n    if not per_fold or not mean_data:\\n        return None, raw\\n\\n    result = {}\\n    for k in PAIR_KEYS:\\n        if k in per_fold and k in mean_data:\\n            folds = np.array(per_fold[k])\\n            m = mean_data[k]\\n            se = np.std(folds, ddof=1) / np.sqrt(len(folds))\\n            result[k] = {\\n                \\\"mean\\\": m,\\n                \\\"ci_lower\\\": m - 1.96 * se,\\n      \\n\\n... [截断: 输出过长，省略 172 字符] ...\\n\\n decay with confidence bands\\\")\\n    parser.add_argument(\\\"--results-dir\\\", type=Path,\\n                        default=Path(__file__).resolve().parent.parent,\\n                        help=\\\"Root directory to scan\\\")\\n    parser.add_argument(\\\"--output\\\", type=Path, default=None,\\n                        help=\\\"Output PDF path\\\")\\n    parser.add_argument(\\\"--filter\\\", type=str, default=None,\\n                        help=\\\"Filter models by substring\\\")\\n    return parser.parse_args()\\n\\n\\ndef main():\\n    args = parse_args()\\n    root = args.results_dir\\n\\n    ci_files, auc_files = discover_ci_sources(root)\\n    if not ci_files and not auc_files:\\n        print(f\\\"No CI or pairwise_auc files found under {root}\\\")\\n        return\\n\\n    models = {}\\n\\n    for fp in ci_files:\\n        data, metadata = load_bootstrap_ci(fp)\\n        if data is None:\\n            continue\\n        label = infer_label(fp, metadata)\\n        if args.filter and args.filter.lower() not in label.lower():\\n            continue\\n        label = label + \\\" (bootstrap)\\\"\\n        models[label] = data\\n\\n    for fp in auc_files:\\n        data, metadata = load_pairwise_auc_ci(fp)\\n        if data is None:\\n            continue\\n        label = infer_label(fp, metadata)\\n        if args.filter and args.filter.lower() not in label.lower():\\n            continue\\n        if any(label.split(\\\" (\\\")[0] in k for k in models):\\n            continue\\n        models[label] = data\\n\\n    if not models:\\n        print(\\\"No valid CI data found after filtering\\\")\\n        return\\n\\n    x = np.arange(len(PAIR_KEYS))\\n\\n    plt.rcParams.update({\\n        \\\"font.family\\\": \\\"serif\\\",\\n        \\\"font.size\\\": 11,\\n        \\\"axes.linewidth\\\": 0.8,\\n        \\\"xtick.major.width\\\": 0.8,\\n        \\\"ytick.major.width\\\": 0.8,\\n    })\\n\\n    fig, ax = plt.subplots(figsize=(7, 4.5), constrained_layout=True)\\n\\n    ax.axhline(0.60, color=\\\"grey\\\", ls=\\\"--\\\", lw=0.8, zorder=1)\\n    ax.text(len(PAIR_KEYS) - 0.45, 0.608, r\\\"$\\\\theta = 0.60$\\\",\\n            fontsize=8.5, color=\\\"grey\\\", va=\\\"bottom\\\", ha=\\\"right\\\")\\n    ax.axhline(0.50, color=\\\"lightgrey\\\", ls=\\\"--\\\", lw=0.8, zorder=1)\\n    ax.text(len(PAIR_KEYS) - 0.45, 0.508, \\\"chance\\\",\\n            fontsize=8.5, color=\\\"silver\\\", va=\\\"bottom\\\", ha=\\\"right\\\")\\n\\n    handles = []\\n    for i, (label, ci_data) in enumerate(models.items()):\\n        color = TABLEAU_COLORS[i % len(TABLEAU_COLORS)]\\n        marker = MARKERS[i % len(MARKERS)]\\n\\n        means = [ci_data.get(k, {}).get(\\\"mean\\\", float(\\\"nan\\\")) for k in PAIR_KEYS]\\n        lowers = [ci_data.get(k, {}).get(\\\"ci_lower\\\", float(\\\"nan\\\")) for k in PAIR_KEYS]\\n        uppers = [ci_data.get(k, {}).get(\\\"ci_upper\\\", float(\\\"nan\\\")) for k in PAIR_KEYS]\\n\\n        ax.fill_between(x, lowers, uppers, color=color, alpha=0.15, zorder=2)\\n        line, = ax.plot(x, means, \\\"-\\\", color=color, lw=1.8, marker=marker,\\n                        markersize=5, label=label, zorder=3)\\n        handles.append(line)\\n\\n    ax.set_xticks(x)\\n    ax.set_xticklabels(X_LABELS)\\n    ax.set_xlabel(\\\"Depth Pair\\\")\\n    ax.set_ylabel(\\\"Pairwise AUC\\\")\\n    ax.set_ylim(0.45, 1.05)\\n    ax.set_xlim(-0.25, len(PAIR_KEYS) - 0.75)\\n    ax.tick_params(direction=\\\"in\\\")\\n\\n    ax.legend(handles=handles, fontsize=8.5, loc=\\\"upper right\\\",\\n              bbox_to_anchor=(1.0, 0.98), framealpha=0.9, edgecolor=\\\"0.8\\\")\\n\\n    if args.output:\\n        out_path = args.output\\n    else:\\n        out_dir = root / \\\"artifacts\\\" / \\\"figures\\\"\\n        out_dir.mkdir(parents=True, exist_ok=True)\\n        out_path = out_dir / \\\"fig_s1_auc_decay_ci.pdf\\\"\\n\\n    out_path.parent.mkdir(parents=True, exist_ok=True)\\n    fig.savefig(out_path, dpi=300, bbox_inches=\\\"tight\\\")\\n    png_path = out_path.with_suffix(\\\".png\\\")\\n    fig.savefig(png_path, dpi=300, bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n\\n    pdf_size = out_path.stat().st_size\\n    png_size = png_path.stat().st_size\\n    print(f\\\"Discovered {len(models)} configs: {list(models.keys())}\\\")\\n    print(f\\\"PDF: {pdf_size/1024:.1f} KB | PNG: {png_size/1024:.1f} KB\\\")\\n    assert pdf_size > 3 * 1024, f\\\"PDF too small: {pdf_size}\\\"\\n    print(\\\"OK\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MnZNUMd5ZB2pYzNnFiMeBt`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/scripts/draw_kstar_theta.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "6fe564db-7ec4-4574-8ae9-3c31b0eca3b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YVs5H8etQoxy5Ya1qn5UpH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2427,
+      "cache_read_input_tokens": 29514,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2427
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-21T15:40:26.228Z_
+
+<details><summary>↩ Tool result · `toolu_01MnZNUMd5ZB2pYzNnFiMeBt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Figure 3: two-panel K*(theta) figure.\\n\\nPanel (a): Pairwise AUC profile across depth pairs (C4 configs)\\nPanel (b): K*(theta) sensitivity\\n\\nOutput: docs/paper/figures/fig_kstar_theta.pdf\\n\\\"\\\"\\\"\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nfrom pathlib import Path\\n\\nPAIR_KEYS = [\\\"0v1\\\", \\\"1v2\\\", \\\"2v3\\\", \\\"3v4\\\", \\\"4v5\\\"]\\n\\nMODELS = {\\n    \\\"Qwen-rw\\\": {\\n        \\\"mean\\\":     [0.9956, 0.6955, 0.5893, 0.5435, 0.5340],\\n        \\\"ci_lower\\\": [0.9946, 0.6859, 0.5795, 0.5333, 0.5238],\\n        \\\"ci_upper\\\": [0.9976, 0.7041, 0.5991, 0.5551, 0.5448],\\n    },\\n    \\\"Pythia\\\": {\\n        \\\"mean\\\":     [0.9932, 0.6539, 0.5514, 0.5152, 0.5136],\\n        \\\"ci_lower\\\": [0.9921, 0.6454, 0.5417, 0.5041, 0.5021],\\n        \\\"ci_upper\\\": [0.9943, 0.6630, 0.5628, 0.5260, 0.5249],\\n    },\\n    \\\"OLMo\\\": {\\n        \\\"mean\\\":     [0.9970, 0.6145, 0.5496, 0.5091, 0.5045],\\n        \\\"ci_lower\\\": [0.9964, 0.6045, 0.5399, 0.4973, 0.4932],\\n        \\\"ci_upper\\\": [0.9975, 0.6247, 0.5596, 0.5200, 0.5150],\\n    },\\n    \\\"Qwen-cont\\\": {\\n        \\\"mean\\\":     [0.9971, 0.6112, 0.5609, 0.5409, 0.5141],\\n        \\\"ci_lower\\\": [0.9963, 0.6015, 0.5511, 0.5308, 0.5035],\\n        \\\"ci_upper\\\": [0.9978, 0.6213, 0.5712, 0.5508, 0.5255],\\n    },\\n    \\\"Qwen-7B\\\": {\\n        \\\"mean\\\":     [0.9638, 0.6168, 0.5492, 0.5276, 0.5085],\\n        \\\"ci_lower\\\": [0.9610, 0.6080, 0.5390, 0.5180, 0.4990],\\n        \\\"ci_upper\\\": [0.9670, 0.6260, 0.5590, 0.5370, 0.5180],\\n    },\\n}\\n\\nTABLEAU = [\\n    \\\"#4e79a7\\\", \\\"#e15759\\\", \\\"#76b7b2\\\", \\\"#59a14f\\\", \\\"#b07aa1\\\",\\n    \\\"#ff9da7\\\", \\\"#9c755f\\\", \\\"#bab0ac\\\", \\\"#edc948\\\", \\\"#f28e2b\\\",\\n]\\nMARKERS = [\\\"o\\\", \\\"s\\\", \\\"^\\\", \\\"D\\\", \\\"v\\\", \\\"P\\\", \\\"X\\\", \\\"*\\\", \\\"h\\\", \\\"<\\\"]\\n\\n\\ndef compute_kstar(ci_lowers, theta):\\n    k = 0\\n    for v in ci_lowers:\\n        if v >= theta:\\n            k += 1\\n        else:\\n            break\\n    return k\\n\\n\\ndef main():\\n    x = np.arange(len(PAIR_KEYS))\\n    thetas = np.arange(0.50, 0.751, 0.005)\\n\\n    plt.rcParams.update({\\n        \\\"font.family\\\": \\\"serif\\\",\\n        \\\"font.size\\\": 10,\\n        \\\"axes.linewidth\\\": 0.8,\\n        \\\"xtick.direction\\\": \\\"in\\\",\\n        \\\"ytick.direction\\\": \\\"in\\\",\\n        \\\"xtick.major.width\\\": 0.8,\\n        \\\"ytick.major.width\\\": 0.8,\\n    })\\n\\n    fig, (ax_a, ax_b) = plt.subplots(1, 2, figsize=(10, 3.5),\\n                                      gridspec_kw={\\\"width_ratios\\\": [1, 1.15]})\\n\\n    # ── Panel (a): Pairwise AUC profile ─────────────────────────────────\\n    ax_a.axhline(0.60, color=\\\"grey\\\", ls=\\\"--\\\", lw=0.8, zorder=1)\\n    ax_a.text(4.05, 0.607, r\\\"$\\\\theta = 0.60$\\\", fontsize=8, color=\\\"grey\\\",\\n              va=\\\"bottom\\\", ha=\\\"right\\\")\\n\\n    ax_a.axvspan(1.5, 2.5, color=\\\"#4e79a7\\\", alpha=0.06, zorder=0)\\n    ax_a.annotate(r\\\"$K^*\\\\!=\\\\!2$\\\", xy=(1.7, 0.68), fontsize=8, color=\\\"#4e79a7\\\",\\n                  alpha=0.7)\\n\\n    for i, (name, data) in enumerate(MODELS.items()):\\n        color = TABLEAU[i % len(TABLEAU)]\\n        marker = MARKERS[i % len(MARKERS)]\\n        means = data[\\\"mean\\\"]\\n        lo = data[\\\"ci_lower\\\"]\\n        hi = data[\\\"ci_upper\\\"]\\n\\n        ax_a.fill_between(x, lo, hi, color=color, alpha=0.15, linewidth=0)\\n        ax_a.plot(x, means, \\\"-\\\", color=color, lw=1.6, marker=marker,\\n                  markersize=4.5, label=name, zorder=3)\\n\\n    ax_a.set_xticks(x)\\n    ax_a.set_xticklabels(PAIR_KEYS)\\n    ax_a.set_xlabel(\\\"Depth pair\\\")\\n    ax_a.set_ylabel(\\\"Pairwise AUC\\\")\\n    ax_a.set_ylim(0.47, 1.02)\\n    ax_a.set_xlim(-0.25, len(PAIR_KEYS) - 0.75)\\n    ax_a.legend(fontsize=7.5, loc=\\\"upper right\\\", framealpha=0.92,\\n                edgecolor=\\\"0.85\\\", handlelength=2.0)\\n    ax_a.set_title(r\\\"$\\\\bf{(a)}$\\\" + \\\" Pairwise AUC profile\\\", fontsize=10,\\n                   loc=\\\"left\\\", pad=6)\\n\\n    # ── Panel (b): K*(θ) sensitivity ────────────────────────────────────\\n    all_kstar = {}\\n    for name, data in MODELS.items():\\n        ci_lo = data[\\\"ci_lower\\\"]\\n        ks = [compute_kstar(ci_lo, t) for t in thetas]\\n        all_kstar[name] = ks\\n\\n    kstar_arr = np.array(list(all_kstar.values()))\\n    k_min = kstar_arr.min(axis=0)\\n    k_max = kstar_arr.max(axis=0)\\n\\n    mask_23 = (k_min >= 2) & (k_max <= 3) & (k_min != k_max)\\n    mask_2  = (k_min == 2) & (k_max == 2)\\n\\n    for j in range(len(thetas)):\\n        if mask_23[j]:\\n            ax_b.axvspan(thetas[j] - 0.0025, thetas[j] + 0.0025,\\n                         color=\\\"#cccccc\\\", alpha=0.5, linewidth=0, zorder=0)\\n        if mask_2[j]:\\n            ax_b.axvspan(thetas[j] - 0.0025, thetas[j] + 0.0025,\\n                         color=\\\"#b8d4e3\\\", alpha=0.5, linewidth=0, zorder=0)\\n\\n    for i, (name, ks) in enumerate(all_kstar.items()):\\n        color = TABLEAU[i % len(TABLEAU)]\\n        ax_b.step(thetas, ks, where=\\\"post\\\", label=name,\\n                  linewidth=1.6, color=color)\\n\\n    ax_b.axvline(x=0.60, color=\\\"grey\\\", ls=\\\"--\\\", lw=0.8, alpha=0.7)\\n    ax_b.text(0.605, 5.15, r\\\"$\\\\theta=0.60$\\\", color=\\\"grey\\\", fontsize=8,\\n              va=\\\"top\\\")\\n\\n    import matplotlib.patches as mpatches\\n    legend_patches = [\\n        mpatches.Patch(color=\\\"#cccccc\\\", alpha=0.5, label=r\\\"$K^*\\\\!\\\\in\\\\!\\\\{2,3\\\\}$ (all models)\\\"),\\n        mpatches.Patch(color=\\\"#b8d4e3\\\", alpha=0.5, label=r\\\"$K^*\\\\!=\\\\!2$ (all models)\\\"),\\n    ]\\n    handles_lines = []\\n    for i, name in enumerate(all_kstar.keys()):\\n        color = TABLEAU[i % len(TABLEAU)]\\n        h = plt.Line2D([0], [0], color=color, lw=1.6, label=name)\\n        handles_lines.append(h)\\n\\n    ax_b.legend(handles=legend_patches + handles_lines, fontsize=7.5,\\n                loc=\\\"upper right\\\", framealpha=0.92, edgecolor=\\\"0.85\\\")\\n\\n    ax_b.set_xlabel(r\\\"Threshold $\\\\theta$\\\")\\n    ax_b.set_ylabel(r\\\"$K^*(\\\\theta)$\\\")\\n    ax_b.set_xlim(0.495, 0.755)\\n    max_k = max(len(v) for v in MODELS.values())\\n    ax_b.set_ylim(-0.2, max_k + 0.5)\\n    ax_b.set_yticks(range(max_k + 1))\\n    ax_b.grid(axis=\\\"y\\\", color=\\\"#e0e0e0\\\", linewidth=0.5)\\n    ax_b.set_title(r\\\"$\\\\bf{(b)}$\\\" + r\\\" $K^*(\\\\theta)$ sensitivity\\\", fontsize=10,\\n                   loc=\\\"left\\\", pad=6)\\n\\n    fig.tight_layout()\\n\\n    out_dir = Path(__file__).resolve().parent.parent / \\\"docs\\\" / \\\"paper\\\" / \\\"figures\\\"\\n    out_dir.mkdir(parents=True, exist_ok=True)\\n    out_path = out_dir / \\\"fig_kstar_theta.pdf\\\"\\n\\n    fig.savefig(out_path, bbox_inches=\\\"tight\\\")\\n    fig.savefig(out_path.with_suffix(\\\".png\\\"), bbox_inches=\\\"tight\\\", dpi=300)\\n    plt.close(fig)\\n\\n    print(f\\\"Models: {list(MODELS.keys())}\\\")\\n    print(f\\\"Saved: {out_path}\\\")\\n    pdf_size = out_path.stat().st_size\\n    assert pdf_size > 3 * 1024, f\\\"PDF too small: {pdf_size}\\\"\\n    print(\\\"OK\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "2b27a560-ec05-4690-9027-5b4616e54172",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Figure 3: two-panel K*(theta) figure.\\\\n\\\\nPanel (a): Pairwise AUC profile across depth pairs (C4 configs)\\\\nPanel (b): K*(theta) sensitivity\\\\n\\\\nOutput: docs/paper/figures/fig_kstar_theta.pdf\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nfrom pathlib import Path\\\\n\\\\nPAIR_KEYS = [\\\\\\\"0v1\\\\\\\", \\\\\\\"1v2\\\\\\\", \\\\\\\"2v3\\\\\\\", \\\\\\\"3v4\\\\\\\", \\\\\\\"4v5\\\\\\\"]\\\\n\\\\nMODELS = {\\\\n    \\\\\\\"Qwen-rw\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\":     [0.9956, 0.6955, 0.5893, 0.5435, 0.5340],\\\\n        \\\\\\\"ci_lower\\\\\\\": [0.9946, 0.6859, 0.5795, 0.5333, 0.5238],\\\\n        \\\\\\\"ci_upper\\\\\\\": [0.9976, 0.7041, 0.5991, 0.5551, 0.5448],\\\\n    },\\\\n    \\\\\\\"Pythia\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\":     [0.9932, 0.6539, 0.5514, 0.5152, 0.5136],\\\\n        \\\\\\\"ci_lower\\\\\\\": [0.9921, 0.6454, 0.5417, 0.5041, 0.5021],\\\\n        \\\\\\\"ci_upper\\\\\\\": [0.9943, 0.6630, 0.5628, 0.5260, 0.5249],\\\\n    },\\\\n    \\\\\\\"OLMo\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\":     [0.9970, 0.6145, 0.5496, 0.5091, 0.5045],\\\\n        \\\\\\\"ci_lower\\\\\\\": [0.9964, 0.6045, 0.5399, 0.4973, 0.4932],\\\\n        \\\\\\\"ci_upper\\\\\\\": [0.9975, 0.6247, 0.5596, 0.5200, 0.5150],\\\\n    },\\\\n    \\\\\\\"Qwen-cont\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\":     [0.9971, 0.6112, 0.5609, 0.5409, 0.5141],\\\\n        \\\\\\\"ci_lower\\\\\\\": [0.9963, 0.6015, 0.5511, 0.5308, 0.5035],\\\\n        \\\\\\\"ci_upper\\\\\\\": [0.9978, 0.6213, 0.5712, 0.5508, 0.5255],\\\\n    },\\\\n    \\\\\\\"Qwen-7B\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\":     [0.9638, 0.6168, 0.5492, 0.5276, 0.5085],\\\\n        \\\\\\\"ci_lower\\\\\\\": [0.9610, 0.6080, 0.5390, 0.5180, 0.4990],\\\\n        \\\\\\\"ci_upper\\\\\\\": [0.9670, 0.6260, 0.5590, 0.5370, 0.5180],\\\\n    },\\\\n}\\\\n\\\\nTABLEAU = [\\\\n    \\\\\\\"#4e79a7\\\\\\\", \\\\\\\"#e15759\\\\\\\", \\\\\\\"#76b7b2\\\\\\\", \\\\\\\"#59a14f\\\\\\\", \\\\\\\"#b07aa1\\\\\\\",\\\\n    \\\\\\\"#ff9da7\\\\\\\", \\\\\\\"#9c755f\\\\\\\", \\\\\\\"#bab0ac\\\\\\\", \\\\\\\"#edc948\\\\\\\", \\\\\\\"#f28e2b\\\\\\\",\\\\n]\\\\nMARKERS = [\\\\\\\"o\\\\\\\", \\\\\\\"s\\\\\\\", \\\\\\\"^\\\\\\\", \\\\\\\"D\\\\\\\", \\\\\\\"v\\\\\\\", \\\\\\\"P\\\\\\\", \\\\\\\"X\\\\\\\", \\\\\\\"*\\\\\\\", \\\\\\\"h\\\\\\\", \\\\\\\"<\\\\\\\"]\\\\n\\\\n\\\\ndef compute_kstar(ci_lowers, theta):\\\\n    k = 0\\\\n    for v in ci_lowers:\\\\n        if v >= theta:\\\\n            k += 1\\\\n        else:\\\\n            break\\\\n    return k\\\\n\\\\n\\\\ndef main():\\\\n    x = np.arange(len(PAIR_KEYS))\\\\n    thetas = np.arange(0.50, 0.751, 0.005)\\\\n\\\\n    plt.rcParams.update({\\\\n        \\\\\\\"font.family\\\\\\\": \\\\\\\"serif\\\\\\\",\\\\n        \\\\\\\"font.size\\\\\\\": 10,\\\\n        \\\\\\\"axes.linewidth\\\\\\\": 0.8,\\\\n        \\\\\\\"xtick.direction\\\\\\\": \\\\\\\"in\\\\\\\",\\\\n        \\\\\\\"ytick.direction\\\\\\\": \\\\\\\"in\\\\\\\",\\\\n        \\\\\\\"xtick.major.width\\\\\\\": 0.8,\\\\n        \\\\\\\"ytick.major.width\\\\\\\": 0.8,\\\\n    })\\\\n\\\\n    fig, (ax_a, ax_b) = plt.subplots(1, 2, figsize=(10, 3.5),\\\\n                                      gridspec_kw={\\\\\\\"width_ratios\\\\\\\": [1, 1.15]})\\\\n\\\\n    # ── Panel (a): Pairwise AUC profile ─────────────────────────────────\\\\n    ax_a.axhline(0.60, color=\\\\\\\"grey\\\\\\\", ls=\\\\\\\"--\\\\\\\", lw=0.8, zorder=1)\\\\n    ax_a.text(4.05, 0.607, r\\\\\\\"$\\\\\\\\theta = 0.60$\\\\\\\", fontsize=8, color=\\\\\\\"grey\\\\\\\",\\\\n              va=\\\\\\\"bottom\\\\\\\", ha=\\\\\\\"right\\\\\\\")\\\\n\\\\n    ax_a.axvspan(1.5, 2.5, color=\\\\\\\"#4e79a7\\\\\\\", alpha=0.06, zorder=0)\\\\n    ax_a.annotate(r\\\\\\\"$K^*\\\\\\\\!=\\\\\\\\!2$\\\\\\\", xy=(1.7, 0.68), fontsize=8, color=\\\\\\\"#4e79a7\\\\\\\",\\\\n                  alpha=0.7)\\\\n\\\\n    for i, (name, data) in enumerate(MODELS.items()):\\\\n        color = TABLEAU[i % len(TABLEAU)]\\\\n        marker = MARKERS[i % len(MARKERS)]\\\\n        means = data[\\\\\\\"mean\\\\\\\"]\\\\n        lo = data[\\\\\\\"ci_lower\\\\\\\"]\\\\n        hi = data[\\\\\\\"ci_upper\\\\\\\"]\\\\n\\\\n        ax_a.fill_between(x, lo, hi, color=color, alpha=0.15, linewidth=0)\\\\n        ax_a.plot(x, means, \\\\\\\"-\\\\\\\", color=color, lw=1.6, marker=marker,\\\\n                  markersize=4.5, label=name, zorder=3)\\\\n\\\\n    ax_a.set_xticks(x)\\\\n    ax_a.set_xticklabels(PAIR_KEYS)\\\\n    ax_a.set_xlabel(\\\\\\\"Depth pair\\\\\\\")\\\\n    ax_a.set_ylabel(\\\\\\\"Pairwise AUC\\\\\\\")\\\\n    ax_a.set_ylim(0.47, 1.02)\\\\n    ax_a.set_xlim(-0.25, len(PAIR_KEYS) - 0.75)\\\\n    ax_a.legend(fontsize=7.5, loc=\\\\\\\"upper right\\\\\\\", framealpha=0.92,\\\\n                edgecolor=\\\\\\\"0.85\\\\\\\", handlelength=2.0)\\\\n    ax_a.set_title(r\\\\\\\"$\\\\\\\\bf{(a)}$\\\\\\\" + \\\\\\\" Pairwise AUC profile\\\\\\\", fontsize=10,\\\\n                   loc=\\\\\\\"left\\\\\\\", pad=6)\\\\n\\\\n    # ── Panel (b): K*(θ) sensitivity ────────────────────────────────────\\\\n    all_kstar = {}\\\\n    for name, data in MODELS.items():\\\\n        ci_lo = data[\\\\\\\"ci_lower\\\\\\\"]\\\\n        ks = [compute_kstar(ci_lo, t) for t in thetas]\\\\n        all_kstar[name] = ks\\\\n\\\\n    kstar_arr = np.array(list(all_kstar.values()))\\\\n    k_min = kstar_arr.min(axis=0)\\\\n    k_max = kstar_arr.max(axis=0)\\\\n\\\\n    mask_23 = (k_min >= 2) & (k_max <= 3) & (k_min != k_max)\\\\n    mask_2  = (k_min == 2) & (k_max == 2)\\\\n\\\\n    for j in range(len(thetas)):\\\\n        if mask_23[j]:\\\\n            ax_b.axvspan(thetas[j] - 0.0025, thetas[j] + 0.0025,\\\\n                         color=\\\\\\\"#cccccc\\\\\\\", alpha=0.5, linewidth=0, zorder=0)\\\\n        if mask_2[j]:\\\\n            ax_b.axvspan(thetas[j] - 0.0025, thetas[j] + 0.0025,\\\\n                         color=\\\\\\\"#b8d4e3\\\\\\\", alpha=0.5, linewidth=0, zorder=0)\\\\n\\\\n    for i, (name, ks) in enumerate(all_kstar.items()):\\\\n        color = TABLEAU[i % len(TABLEAU)]\\\\n        ax_b.step(thetas, ks, where=\\\\\\\"post\\\\\\\", label=name,\\\\n                  linewidth=1.6, color=color)\\\\n\\\\n    ax_b.axvline(x=0.60, color=\\\\\\\"grey\\\\\\\", ls=\\\\\\\"--\\\\\\\", lw=0.8, alpha=0.7)\\\\n    ax_b.text(0.605, 5.15, r\\\\\\\"$\\\\\\\\theta=0.60$\\\\\\\", color=\\\\\\\"grey\\\\\\\", fontsize=8,\\\\n              va=\\\\\\\"top\\\\\\\")\\\\n\\\\n    import matplotlib.patches as mpatches\\\\n    legend_patches = [\\\\n        mpatches.Patch(color=\\\\\\\"#cccccc\\\\\\\", alpha=0.5, label=r\\\\\\\"$K^*\\\\\\\\!\\\\\\\\in\\\\\\\\!\\\\\\\\{2,3\\\\\\\\}$ (all models)\\\\\\\"),\\\\n        mpatches.Patch(color=\\\\\\\"#b8d4e3\\\\\\\", alpha=0.5, label=r\\\\\\\"$K^*\\\\\\\\!=\\\\\\\\!2$ (all models)\\\\\\\"),\\\\n    ]\\\\n    handles_lines = []\\\\n    for i, name in enumerate(all_kstar.keys()):\\\\n        color = TABLEAU[i % len(TABLEAU)]\\\\n        h = plt.Line2D([0], [0], color=color, lw=1.6, label=name)\\\\n        handles_lines.append(h)\\\\n\\\\n    ax_b.legend(handles=legend_patches + handles_lines, fontsize=7.5,\\\\n                loc=\\\\\\\"upper right\\\\\\\", framealpha=0.92, edgecolor=\\\\\\\"0.85\\\\\\\")\\\\n\\\\n    ax_b.set_xlabel(r\\\\\\\"Threshold $\\\\\\\\theta$\\\\\\\")\\\\n    ax_b.set_ylabel(r\\\\\\\"$K^*(\\\\\\\\theta)$\\\\\\\")\\\\n    ax_b.set_xlim(0.495, 0.755)\\\\n    max_k = max(len(v) for v in MODELS.values())\\\\n    ax_b.set_ylim(-0.2, max_k + 0.5)\\\\n    ax_b.set_yticks(range(max_k + 1))\\\\n    ax_b.grid(axis=\\\\\\\"y\\\\\\\", color=\\\\\\\"#e0e0e0\\\\\\\", linewidth=0.5)\\\\n    ax_b.set_title(r\\\\\\\"$\\\\\\\\bf{(b)}$\\\\\\\" + r\\\\\\\" $K^*(\\\\\\\\theta)$ sensitivity\\\\\\\", fontsize=10,\\\\n                   loc=\\\\\\\"left\\\\\\\", pad=6)\\\\n\\\\n    fig.tight_layout()\\\\n\\\\n    out_dir = Path(__file__).resolve().parent.parent / \\\\\\\"docs\\\\\\\" / \\\\\\\"paper\\\\\\\" / \\\\\\\"figures\\\\\\\"\\\\n    out_dir.mkdir(parents=True, exist_ok=True)\\\\n    out_path = out_dir / \\\\\\\"fig_kstar_theta.pdf\\\\\\\"\\\\n\\\\n    fig.savefig(out_path, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    fig.savefig(out_path.with_suffix(\\\\\\\".png\\\\\\\"), bbox_inches=\\\\\\\"tight\\\\\\\", dpi=300)\\\\n    plt.close(fig)\\\\n\\\\n    print(f\\\\\\\"Models: {list(MODELS.keys())}\\\\\\\")\\\\n    print(f\\\\\\\"Saved: {out_path}\\\\\\\")\\\\n    pdf_size = out_path.stat().st_size\\\\n    assert pdf_size > 3 * 1024, f\\\\\\\"PDF too small: {pdf_size}\\\\\\\"\\\\n    print(\\\\\\\"OK\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Figure 3: two-panel K*(theta) figure.\\n\\nPanel (a): Pairwise AUC profile across depth pairs (C4 configs)\\nPanel (b): K*(theta) sensitivity\\n\\nOutput: docs/paper/figures/fig_kstar_theta.pdf\\n\\\"\\\"\\\"\\n\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nfrom pathlib import Path\\n\\nPAIR_KEYS = [\\\"0v1\\\", \\\"1v2\\\", \\\"2v3\\\", \\\"3v4\\\", \\\"4v5\\\"]\\n\\nMODELS = {\\n    \\\"Qwen-rw\\\": {\\n        \\\"mean\\\":     [0.9956, 0.6955, 0.5893, 0.5435, 0.5340],\\n        \\\"ci_lower\\\": [0.9946, 0.6859, 0.5795, 0.5333, 0.5238],\\n        \\\"ci_upper\\\": [0.9976, 0.7041, 0.5991, 0.5551, 0.5448],\\n    },\\n    \\\"Pythia\\\": {\\n        \\\"mean\\\":     [0.9932, 0.6539, 0.5514, 0.5152, 0.5136],\\n        \\\"ci_lower\\\": [0.9921, 0.6454, 0.5417, 0.5041, 0.5021],\\n        \\\"ci_upper\\\": [0.9943, 0.6630, 0.5628, 0.5260, 0.5249],\\n    },\\n    \\\"OLMo\\\": {\\n        \\\"mean\\\":     [0.9970, 0.6145, 0.5496, 0.5091, 0.5045],\\n        \\\"ci_lower\\\": [0.9964, 0.6045, 0.5399, 0.4973, 0.4932],\\n        \\\"ci_upper\\\": [0.9975, 0.6247, 0.5596, 0.5200, 0.5150],\\n    },\\n    \\\"Qwen-cont\\\": {\\n        \\\"mean\\\":     [0.9971, 0.6112, 0.5609, 0.5409, 0.5141],\\n        \\\"ci_lower\\\": [0.9963, 0.6015, 0.5511, 0.5308, 0.5035],\\n        \\\"ci_upper\\\": [0.9978, 0.6213, 0.5712, 0.5508, 0.5255],\\n    },\\n    \\\"Qwen-7B\\\": {\\n        \\\"mean\\\":     [0.9638, 0.6168, 0.5492, 0.5276, 0.5085],\\n        \\\"ci_lower\\\": [0.9610, 0.6080, 0.5390, 0.5180, 0.4990],\\n        \\\"ci_upper\\\": [0.9670, 0.6260, 0.5590, 0.5370, 0.5180],\\n    },\\n}\\n\\nTABLEAU = [\\n    \\\"#4e79a7\\\", \\\"#e15759\\\", \\\"#76b7b2\\\", \\\"#59a14f\\\", \\\"#b07aa1\\\",\\n    \\\"#ff9da7\\\", \\\"#9c755f\\\", \\\"#bab0ac\\\", \\\"#edc948\\\", \\\"#f28e2b\\\",\\n]\\nMARKERS = [\\\"o\\\", \\\"s\\\", \\\"^\\\", \\\"D\\\", \\\"v\\\", \\\"P\\\", \\\"X\\\", \\\"*\\\", \\\"h\\\", \\\"<\\\"]\\n\\n\\ndef compute_kstar(ci_lowers, theta):\\n    k = 0\\n    for v in ci_lowers:\\n        if v >= theta:\\n            k += 1\\n        else:\\n            break\\n    return k\\n\\n\\ndef main():\\n    x = np.arange(len(PAIR_KEYS))\\n    thetas = np.arange(0.50, 0.751, 0.005)\\n\\n    plt.rcParams.update({\\n        \\\"font.family\\\": \\\"serif\\\",\\n        \\\"font.size\\\": 10,\\n        \\\"axes.linewidth\\\": 0.8,\\n        \\\"xtick.direction\\\": \\\"in\\\",\\n        \\\"ytick.direction\\\": \\\"in\\\",\\n        \\\"xtick.major.width\\\": 0.8,\\n        \\\"ytick.major.width\\\": 0.8,\\n    })\\n\\n    fig, (ax_a, ax_b) = plt.subplots(1, 2, figsize=(10, 3.5),\\n                                      gridspec_kw={\\\"width_ratios\\\": [1, 1.15]})\\n\\n    # ── Panel (a): Pairwise AUC profile ─────────────────────────────────\\n    ax_a.axhline(0.60, color=\\\"grey\\\", ls=\\\"--\\\", lw=0.8, zorder=1)\\n    ax_a.text(4.05, 0.607, r\\\"$\\\\theta = 0.60$\\\", fontsize=8, color=\\\"grey\\\",\\n              va=\\\"bottom\\\", ha=\\\"right\\\")\\n\\n    ax_a.axvspan(1.5, 2.5, color=\\\"#4e79a7\\\", alpha=0.06, zorder=0)\\n    ax_a.annotate(r\\\"$K^*\\\\!=\\\\!2$\\\", xy=(1.7, 0.68), fontsize=8, color=\\\"#4e79a7\\\",\\n                  alpha=0.7)\\n\\n    for i, (name, data) in enumerate(MODELS.items()):\\n        color = TABLEAU[i % len(TABLEAU)]\\n        marker = MARKERS[i % len(MARKERS)]\\n        means = data[\\\"mean\\\"]\\n        lo = data[\\\"ci_lower\\\"]\\n        hi = data[\\\"ci_upper\\\"]\\n\\n        ax_a.fill_between(x, lo, hi, color=color, alpha=0.15, linewidth=0)\\n        ax_a.plot(x, means, \\\"-\\\", color=color, lw=1.6, marker=marker,\\n                  markersize=4.5, label=name, zorder=3)\\n\\n    ax_a.set_xticks(x)\\n    ax_a.set_xticklabels(PAIR_KEYS)\\n    ax_a.set_xlabel(\\\"Depth pair\\\")\\n    ax_a.set_ylabel(\\\"Pairwise AUC\\\")\\n    ax_a.set_ylim(0.47, 1.02)\\n    ax_a.set_xlim(-0.25, len(PAIR_KEYS) - 0.75)\\n    ax_a.legend(fontsize=7.5, loc=\\\"upper right\\\", framealpha=0.92,\\n                edgecolor=\\\"0.85\\\", handlelength=2.0)\\n    ax_a.set_title(r\\\"$\\\\bf{(a)}$\\\" + \\\" Pairwise AUC profile\\\", fontsize=10,\\n                   loc=\\\"left\\\", pad=6)\\n\\n    # ── Panel (b): K*(θ) sensitivity ────────────────────────────────────\\n    all_kstar = {}\\n    for name, data in MODELS.items():\\n        ci_lo = data[\\\"ci_lower\\\"]\\n        ks = [compute_kstar(ci_lo, t) for t in thetas]\\n        all_kstar[name] = ks\\n\\n    kstar_arr = np.array(list(all_kstar.values()))\\n    k_min = kstar_arr.min(axis=0)\\n    k_max = kstar_arr.max(axis=0)\\n\\n    mask_23 = (k_min >= 2) & (k_max <= 3) & (k_min != k_max)\\n    mask_2  = (k_min == 2) & (k_max == 2)\\n\\n    for j in range(len(thetas)):\\n        if mask_23[j]:\\n            ax_b.axvspan(thetas[j] - 0.0025, thetas[j] + 0.0025,\\n                         color=\\\"#cccccc\\\", alpha=0.5, linewidth=0, zorder=0)\\n        if mask_2[j]:\\n            ax_b.axvspan(thetas[j] - 0.0025, thetas[j] + 0.0025,\\n                         color=\\\"#b8d4e3\\\", alpha=0.5, linewidth=0, zorder=0)\\n\\n    for i, (name, ks) in enumerate(all_kstar.items()):\\n        color = TABLEAU[i % len(TABLEAU)]\\n        ax_b.step(thetas, ks, where=\\\"post\\\", label=name,\\n                  linewidth=1.6, color=color)\\n\\n    ax_b.axvline(x=0.60, color=\\\"grey\\\", ls=\\\"--\\\", lw=0.8, alpha=0.7)\\n    ax_b.text(0.605, 5.15, r\\\"$\\\\theta=0.60$\\\", color=\\\"grey\\\", fontsize=8,\\n              va=\\\"top\\\")\\n\\n    import matplotlib.patches as mpatches\\n    legend_patches = [\\n        mpatches.Patch(color=\\\"#cccccc\\\", alpha=0.5, label=r\\\"$K^*\\\\!\\\\in\\\\!\\\\{2,3\\\\}$ (all models)\\\"),\\n        mpatches.Patch(color=\\\"#b8d4e3\\\", alpha=0.5, label=r\\\"$K^*\\\\!=\\\\!2$ (all models)\\\"),\\n    ]\\n    handles_lines = []\\n    for i, name in enumerate(all_kstar.keys()):\\n        color = TABLEAU[i % len(TABLEAU)]\\n        h = plt.Line2D([0], [0], color=color, lw=1.6, label=name)\\n        handles_lines.append(h)\\n\\n    ax_b.legend(handles=legend_patches + handles_lines, fontsize=7.5,\\n                loc=\\\"upper right\\\", framealpha=0.92, edgecolor=\\\"0.85\\\")\\n\\n    ax_b.set_xlabel(r\\\"Threshold $\\\\theta$\\\")\\n    ax_b.set_ylabel(r\\\"$K^*(\\\\theta)$\\\")\\n    ax_b.set_xlim(0.495, 0.755)\\n    max_k = max(len(v) for v in MODELS.values())\\n    ax_b.set_ylim(-0.2, max_k + 0.5)\\n    ax_b.set_yticks(range(max_k + 1))\\n    ax_b.grid(axis=\\\"y\\\", color=\\\"#e0e0e0\\\", linewidth=0.5)\\n    ax_b.set_title(r\\\"$\\\\bf{(b)}$\\\" + r\\\" $K^*(\\\\theta)$ sensitivity\\\", fontsize=10,\\n                   loc=\\\"left\\\", pad=6)\\n\\n    fig.tight_layout()\\n\\n    out_dir = Path(__file__).resolve().parent.parent / \\\"docs\\\" / \\\"paper\\\" / \\\"figures\\\"\\n    out_dir.mkdir(parents=True, exist_ok=True)\\n    out_path = out_dir / \\\"fig_kstar_theta.pdf\\\"\\n\\n    fig.savefig(out_path, bbox_inches=\\\"tight\\\")\\n    fig.savefig(out_path.with_suffix(\\\".png\\\"), bbox_inches=\\\"tight\\\", dpi=300)\\n    plt.close(fig)\\n\\n    print(f\\\"Models: {list(MODELS.keys())}\\\")\\n    print(f\\\"Saved: {out_path}\\\")\\n    pdf_size = out_path.stat().st_size\\n    assert pdf_size > 3 * 1024, f\\\"PDF too small: {pdf_size}\\\"\\n    print(\\\"OK\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01425XUfnYZGUiBzgrzmTTi5`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/scripts/transfer_heatmap.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "de0b6783-0bf5-403a-a5fe-67ce0e36207d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YVs5H8etQoxy5Ya1qn5UpH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2427,
+      "cache_read_input_tokens": 29514,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2427
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T15:40:26.888Z_
+
+<details><summary>↩ Tool result · `toolu_01425XUfnYZGUiBzgrzmTTi5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Cross-model transfer heatmap: two-panel (ordinal accuracy + retention).\\n\\nInput:  embedded paper data or artifacts/*transfer*.json\\nOutput: artifacts/figures/fig3_transfer_heatmap.pdf\\nDeps:   matplotlib, numpy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nfrom pathlib import Path\\n\\nMODELS = [\\\"Qwen-rw\\\", \\\"Pythia\\\", \\\"OLMo\\\", \\\"Qwen-cont\\\"]\\n\\nORDINAL_ACC = np.array([\\n    [0.423, 0.259, 0.265, 0.347],\\n    [0.272, 0.386, 0.353, 0.329],\\n    [0.277, 0.345, 0.382, 0.324],\\n    [0.344, 0.328, 0.311, 0.388],\\n])\\n\\n\\ndef compute_retention(acc):\\n    diag = np.diag(acc)\\n    return acc / diag[:, None] * 100\\n\\n\\ndef parse_args():\\n    parser = argparse.ArgumentParser(description=\\\"Plot cross-model transfer heatmap\\\")\\n    parser.add_argument(\\\"--data-dir\\\", type=Path,\\n                        default=Path(__file__).resolve().parent.parent)\\n    parser.add_argument(\\\"--output\\\", type=Path, default=None)\\n    return parser.parse_args()\\n\\n\\ndef main():\\n    args = parse_args()\\n    root = args.data_dir\\n\\n    acc = ORDINAL_ACC\\n    retention = compute_retention(acc)\\n    n = len(MODELS)\\n\\n    plt.rcParams.update({\\n        \\\"font.family\\\": \\\"serif\\\",\\n        \\\"font.size\\\": 11,\\n        \\\"axes.linewidth\\\": 0.8,\\n        \\\"xtick.major.width\\\": 0.8,\\n        \\\"ytick.major.width\\\": 0.8,\\n    })\\n\\n    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4.2), constrained_layout=True)\\n\\n    # --- Panel (a): Ordinal Accuracy ---\\n    cmap_acc = plt.cm.RdYlGn\\n    vmin_a, vmax_a = 0.25, max(0.43, np.nanmax(acc) + 0.01)\\n    im1 = ax1.imshow(acc, cmap=cmap_acc, vmin=vmin_a, vmax=vmax_a, aspect=\\\"equal\\\")\\n\\n    for i in range(n):\\n        for j in range(n):\\n            val = acc[i, j]\\n            color = \\\"white\\\" if val > (vmin_a + vmax_a) / 2 else \\\"black\\\"\\n            weight = \\\"bold\\\" if i == j else \\\"normal\\\"\\n            ax1.text(j, i, f\\\"{val:.3f}\\\", ha=\\\"center\\\", va=\\\"center\\\",\\n                     fontsize=10, color=color, fontweight=weight)\\n\\n    for i in range(n):\\n        rect = plt.Rectangle((i - 0.5, i - 0.5), 1, 1, linewidth=2.0,\\n                              edgecolor=\\\"#333333\\\", facecolor=\\\"none\\\", zorder=5)\\n        ax1.add_patch(rect)\\n\\n    ax1.set_xticks(range(n))\\n    ax1.set_xticklabels(MODELS, fontsize=9)\\n    ax1.set_yticks(range(n))\\n    ax1.set_yticklabels(MODELS, fontsize=9)\\n    ax1.set_xlabel(\\\"Test Model\\\", fontsize=10)\\n    ax1.set_ylabel(\\\"Train Model\\\", fontsize=10)\\n    ax1.set_title(\\\"(a) Ordinal Accuracy\\\", fontsize=11, pad=6)\\n    ax1.tick_params(direction=\\\"in\\\", length=0)\\n\\n    cbar1 = fig.colorbar(im1, ax=ax1, shrink=0.82, pad=0.02)\\n    cbar1.set_label(\\\"Accuracy\\\", fontsize=10)\\n    cbar1.ax.tick_params(labelsize=9)\\n\\n    # --- Panel (b): Transfer Retention ---\\n    cmap_ret = plt.cm.RdYlGn\\n    vmin_b, vmax_b = 55, 100\\n    im2 = ax2.imshow(retention, cmap=cmap_ret, vmin=vmin_b, vmax=vmax_b, aspect=\\\"equal\\\")\\n\\n    for i in range(n):\\n        for j in range(n):\\n            val = retention[i, j]\\n            color = \\\"white\\\" if val > (vmin_b + vmax_b) / 2 else \\\"black\\\"\\n            weight = \\\"bold\\\" if i == j else \\\"normal\\\"\\n            ax2.text(j, i, f\\\"{val:.0f}%\\\", ha=\\\"center\\\", va=\\\"center\\\",\\n                     fontsize=10, color=color, fontweight=weight)\\n\\n    for i in range(n):\\n        rect = plt.Rectangle((i - 0.5, i - 0.5), 1, 1, linewidth=2.0,\\n                              edgecolor=\\\"#333333\\\", facecolor=\\\"none\\\", zorder=5)\\n        ax2.add_patch(rect)\\n\\n    ax2.set_xticks(range(n))\\n    ax2.set_xticklabels(MODELS, fontsize=9)\\n    ax2.set_yticks(range(n))\\n    ax2.set_yticklabels(MODELS, fontsize=9)\\n    ax2.set_xlabel(\\\"Test Model\\\", fontsize=10)\\n    ax2.set_ylabel(\\\"Train Model\\\", fontsize=10)\\n    ax2.set_title(\\\"(b) Transfer Retention\\\", fontsize=11, pad=6)\\n    ax2.tick_params(direction=\\\"in\\\", length=0)\\n\\n    cbar2 = fig.colorbar(im2, ax=ax2, shrink=0.82, pad=0.02)\\n    cbar2.set_label(\\\"Retention (%)\\\", fontsize=10)\\n    cbar2.ax.tick_params(labelsize=9)\\n\\n    # --- Save ---\\n    if args.output:\\n        out_path = args.output\\n    else:\\n        out_dir = root / \\\"artifacts\\\" / \\\"figures\\\"\\n        out_dir.mkdir(parents=True, exist_ok=True)\\n        out_path = out_dir / \\\"fig3_transfer_heatmap.pdf\\\"\\n\\n    out_path.parent.mkdir(parents=True, exist_ok=True)\\n    fig.savefig(out_path, dpi=300, bbox_inches=\\\"tight\\\")\\n    png_path = out_path.with_suffix(\\\".png\\\")\\n    fig.savefig(png_path, dpi=300, bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n\\n    pdf_size = out_path.stat().st_size\\n    png_size = png_path.stat().st_size\\n    print(f\\\"Models: {MODELS}\\\")\\n    print(f\\\"PDF: {pdf_size/1024:.1f} KB | PNG: {png_size/1024:.1f} KB\\\")\\n    assert pdf_size > 3 * 1024, f\\\"PDF too small: {pdf_size}\\\"\\n    print(\\\"OK\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "cf5115e0-0a65-4465-a215-7dd01c18304d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Cross-model transfer heatmap: two-panel (ordinal accuracy + retention).\\\\n\\\\nInput:  embedded paper data or artifacts/*transfer*.json\\\\nOutput: artifacts/figures/fig3_transfer_heatmap.pdf\\\\nDeps:   matplotlib, numpy\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nimport numpy as np\\\\nfrom pathlib import Path\\\\n\\\\nMODELS = [\\\\\\\"Qwen-rw\\\\\\\", \\\\\\\"Pythia\\\\\\\", \\\\\\\"OLMo\\\\\\\", \\\\\\\"Qwen-cont\\\\\\\"]\\\\n\\\\nORDINAL_ACC = np.array([\\\\n    [0.423, 0.259, 0.265, 0.347],\\\\n    [0.272, 0.386, 0.353, 0.329],\\\\n    [0.277, 0.345, 0.382, 0.324],\\\\n    [0.344, 0.328, 0.311, 0.388],\\\\n])\\\\n\\\\n\\\\ndef compute_retention(acc):\\\\n    diag = np.diag(acc)\\\\n    return acc / diag[:, None] * 100\\\\n\\\\n\\\\ndef parse_args():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Plot cross-model transfer heatmap\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data-dir\\\\\\\", type=Path,\\\\n                        default=Path(__file__).resolve().parent.parent)\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", type=Path, default=None)\\\\n    return parser.parse_args()\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n    root = args.data_dir\\\\n\\\\n    acc = ORDINAL_ACC\\\\n    retention = compute_retention(acc)\\\\n    n = len(MODELS)\\\\n\\\\n    plt.rcParams.update({\\\\n        \\\\\\\"font.family\\\\\\\": \\\\\\\"serif\\\\\\\",\\\\n        \\\\\\\"font.size\\\\\\\": 11,\\\\n        \\\\\\\"axes.linewidth\\\\\\\": 0.8,\\\\n        \\\\\\\"xtick.major.width\\\\\\\": 0.8,\\\\n        \\\\\\\"ytick.major.width\\\\\\\": 0.8,\\\\n    })\\\\n\\\\n    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4.2), constrained_layout=True)\\\\n\\\\n    # --- Panel (a): Ordinal Accuracy ---\\\\n    cmap_acc = plt.cm.RdYlGn\\\\n    vmin_a, vmax_a = 0.25, max(0.43, np.nanmax(acc) + 0.01)\\\\n    im1 = ax1.imshow(acc, cmap=cmap_acc, vmin=vmin_a, vmax=vmax_a, aspect=\\\\\\\"equal\\\\\\\")\\\\n\\\\n    for i in range(n):\\\\n        for j in range(n):\\\\n            val = acc[i, j]\\\\n            color = \\\\\\\"white\\\\\\\" if val > (vmin_a + vmax_a) / 2 else \\\\\\\"black\\\\\\\"\\\\n            weight = \\\\\\\"bold\\\\\\\" if i == j else \\\\\\\"normal\\\\\\\"\\\\n            ax1.text(j, i, f\\\\\\\"{val:.3f}\\\\\\\", ha=\\\\\\\"center\\\\\\\", va=\\\\\\\"center\\\\\\\",\\\\n                     fontsize=10, color=color, fontweight=weight)\\\\n\\\\n    for i in range(n):\\\\n        rect = plt.Rectangle((i - 0.5, i - 0.5), 1, 1, linewidth=2.0,\\\\n                              edgecolor=\\\\\\\"#333333\\\\\\\", facecolor=\\\\\\\"none\\\\\\\", zorder=5)\\\\n        ax1.add_patch(rect)\\\\n\\\\n    ax1.set_xticks(range(n))\\\\n    ax1.set_xticklabels(MODELS, fontsize=9)\\\\n    ax1.set_yticks(range(n))\\\\n    ax1.set_yticklabels(MODELS, fontsize=9)\\\\n    ax1.set_xlabel(\\\\\\\"Test Model\\\\\\\", fontsize=10)\\\\n    ax1.set_ylabel(\\\\\\\"Train Model\\\\\\\", fontsize=10)\\\\n    ax1.set_title(\\\\\\\"(a) Ordinal Accuracy\\\\\\\", fontsize=11, pad=6)\\\\n    ax1.tick_params(direction=\\\\\\\"in\\\\\\\", length=0)\\\\n\\\\n    cbar1 = fig.colorbar(im1, ax=ax1, shrink=0.82, pad=0.02)\\\\n    cbar1.set_label(\\\\\\\"Accuracy\\\\\\\", fontsize=10)\\\\n    cbar1.ax.tick_params(labelsize=9)\\\\n\\\\n    # --- Panel (b): Transfer Retention ---\\\\n    cmap_ret = plt.cm.RdYlGn\\\\n    vmin_b, vmax_b = 55, 100\\\\n    im2 = ax2.imshow(retention, cmap=cmap_ret, vmin=vmin_b, vmax=vmax_b, aspect=\\\\\\\"equal\\\\\\\")\\\\n\\\\n    for i in range(n):\\\\n        for j in range(n):\\\\n            val = retention[i, j]\\\\n            color = \\\\\\\"white\\\\\\\" if val > (vmin_b + vmax_b) / 2 else \\\\\\\"black\\\\\\\"\\\\n            weight = \\\\\\\"bold\\\\\\\" if i == j else \\\\\\\"normal\\\\\\\"\\\\n            ax2.text(j, i, f\\\\\\\"{val:.0f}%\\\\\\\", ha=\\\\\\\"center\\\\\\\", va=\\\\\\\"center\\\\\\\",\\\\n                     fontsize=10, color=color, fontweight=weight)\\\\n\\\\n    for i in range(n):\\\\n        rect = plt.Rectangle((i - 0.5, i - 0.5), 1, 1, linewidth=2.0,\\\\n                              edgecolor=\\\\\\\"#333333\\\\\\\", facecolor=\\\\\\\"none\\\\\\\", zorder=5)\\\\n        ax2.add_patch(rect)\\\\n\\\\n    ax2.set_xticks(range(n))\\\\n    ax2.set_xticklabels(MODELS, fontsize=9)\\\\n    ax2.set_yticks(range(n))\\\\n    ax2.set_yticklabels(MODELS, fontsize=9)\\\\n    ax2.set_xlabel(\\\\\\\"Test Model\\\\\\\", fontsize=10)\\\\n    ax2.set_ylabel(\\\\\\\"Train Model\\\\\\\", fontsize=10)\\\\n    ax2.set_title(\\\\\\\"(b) Transfer Retention\\\\\\\", fontsize=11, pad=6)\\\\n    ax2.tick_params(direction=\\\\\\\"in\\\\\\\", length=0)\\\\n\\\\n    cbar2 = fig.colorbar(im2, ax=ax2, shrink=0.82, pad=0.02)\\\\n    cbar2.set_label(\\\\\\\"Retention (%)\\\\\\\", fontsize=10)\\\\n    cbar2.ax.tick_params(labelsize=9)\\\\n\\\\n    # --- Save ---\\\\n    if args.output:\\\\n        out_path = args.output\\\\n    else:\\\\n        out_dir = root / \\\\\\\"artifacts\\\\\\\" / \\\\\\\"figures\\\\\\\"\\\\n        out_dir.mkdir(parents=True, exist_ok=True)\\\\n        out_path = out_dir / \\\\\\\"fig3_transfer_heatmap.pdf\\\\\\\"\\\\n\\\\n    out_path.parent.mkdir(parents=True, exist_ok=True)\\\\n    fig.savefig(out_path, dpi=300, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    png_path = out_path.with_suffix(\\\\\\\".png\\\\\\\")\\\\n    fig.savefig(png_path, dpi=300, bbox_inches=\\\\\\\"tight\\\\\\\")\\\\n    plt.close(fig)\\\\n\\\\n    pdf_size = out_path.stat().st_size\\\\n    png_size = png_path.stat().st_size\\\\n    print(f\\\\\\\"Models: {MODELS}\\\\\\\")\\\\n    print(f\\\\\\\"PDF: {pdf_size/1024:.1f} KB | PNG: {png_size/1024:.1f} KB\\\\\\\")\\\\n    assert pdf_size > 3 * 1024, f\\\\\\\"PDF too small: {pdf_size}\\\\\\\"\\\\n    print(\\\\\\\"OK\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Cross-model transfer heatmap: two-panel (ordinal accuracy + retention).\\n\\nInput:  embedded paper data or artifacts/*transfer*.json\\nOutput: artifacts/figures/fig3_transfer_heatmap.pdf\\nDeps:   matplotlib, numpy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nimport numpy as np\\nfrom pathlib import Path\\n\\nMODELS = [\\\"Qwen-rw\\\", \\\"Pythia\\\", \\\"OLMo\\\", \\\"Qwen-cont\\\"]\\n\\nORDINAL_ACC = np.array([\\n    [0.423, 0.259, 0.265, 0.347],\\n    [0.272, 0.386, 0.353, 0.329],\\n    [0.277, 0.345, 0.382, 0.324],\\n    [0.344, 0.328, 0.311, 0.388],\\n])\\n\\n\\ndef compute_retention(acc):\\n    diag = np.diag(acc)\\n    return acc / diag[:, None] * 100\\n\\n\\ndef parse_args():\\n    parser = argparse.ArgumentParser(description=\\\"Plot cross-model transfer heatmap\\\")\\n    parser.add_argument(\\\"--data-dir\\\", type=Path,\\n                        default=Path(__file__).resolve().parent.parent)\\n    parser.add_argument(\\\"--output\\\", type=Path, default=None)\\n    return parser.parse_args()\\n\\n\\ndef main():\\n    args = parse_args()\\n    root = args.data_dir\\n\\n    acc = ORDINAL_ACC\\n    retention = compute_retention(acc)\\n    n = len(MODELS)\\n\\n    plt.rcParams.update({\\n        \\\"font.family\\\": \\\"serif\\\",\\n        \\\"font.size\\\": 11,\\n        \\\"axes.linewidth\\\": 0.8,\\n        \\\"xtick.major.width\\\": 0.8,\\n        \\\"ytick.major.width\\\": 0.8,\\n    })\\n\\n    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4.2), constrained_layout=True)\\n\\n    # --- Panel (a): Ordinal Accuracy ---\\n    cmap_acc = plt.cm.RdYlGn\\n    vmin_a, vmax_a = 0.25, max(0.43, np.nanmax(acc) + 0.01)\\n    im1 = ax1.imshow(acc, cmap=cmap_acc, vmin=vmin_a, vmax=vmax_a, aspect=\\\"equal\\\")\\n\\n    for i in range(n):\\n        for j in range(n):\\n            val = acc[i, j]\\n            color = \\\"white\\\" if val > (vmin_a + vmax_a) / 2 else \\\"black\\\"\\n            weight = \\\"bold\\\" if i == j else \\\"normal\\\"\\n            ax1.text(j, i, f\\\"{val:.3f}\\\", ha=\\\"center\\\", va=\\\"center\\\",\\n                     fontsize=10, color=color, fontweight=weight)\\n\\n    for i in range(n):\\n        rect = plt.Rectangle((i - 0.5, i - 0.5), 1, 1, linewidth=2.0,\\n                              edgecolor=\\\"#333333\\\", facecolor=\\\"none\\\", zorder=5)\\n        ax1.add_patch(rect)\\n\\n    ax1.set_xticks(range(n))\\n    ax1.set_xticklabels(MODELS, fontsize=9)\\n    ax1.set_yticks(range(n))\\n    ax1.set_yticklabels(MODELS, fontsize=9)\\n    ax1.set_xlabel(\\\"Test Model\\\", fontsize=10)\\n    ax1.set_ylabel(\\\"Train Model\\\", fontsize=10)\\n    ax1.set_title(\\\"(a) Ordinal Accuracy\\\", fontsize=11, pad=6)\\n    ax1.tick_params(direction=\\\"in\\\", length=0)\\n\\n    cbar1 = fig.colorbar(im1, ax=ax1, shrink=0.82, pad=0.02)\\n    cbar1.set_label(\\\"Accuracy\\\", fontsize=10)\\n    cbar1.ax.tick_params(labelsize=9)\\n\\n    # --- Panel (b): Transfer Retention ---\\n    cmap_ret = plt.cm.RdYlGn\\n    vmin_b, vmax_b = 55, 100\\n    im2 = ax2.imshow(retention, cmap=cmap_ret, vmin=vmin_b, vmax=vmax_b, aspect=\\\"equal\\\")\\n\\n    for i in range(n):\\n        for j in range(n):\\n            val = retention[i, j]\\n            color = \\\"white\\\" if val > (vmin_b + vmax_b) / 2 else \\\"black\\\"\\n            weight = \\\"bold\\\" if i == j else \\\"normal\\\"\\n            ax2.text(j, i, f\\\"{val:.0f}%\\\", ha=\\\"center\\\", va=\\\"center\\\",\\n                     fontsize=10, color=color, fontweight=weight)\\n\\n    for i in range(n):\\n        rect = plt.Rectangle((i - 0.5, i - 0.5), 1, 1, linewidth=2.0,\\n                              edgecolor=\\\"#333333\\\", facecolor=\\\"none\\\", zorder=5)\\n        ax2.add_patch(rect)\\n\\n    ax2.set_xticks(range(n))\\n    ax2.set_xticklabels(MODELS, fontsize=9)\\n    ax2.set_yticks(range(n))\\n    ax2.set_yticklabels(MODELS, fontsize=9)\\n    ax2.set_xlabel(\\\"Test Model\\\", fontsize=10)\\n    ax2.set_ylabel(\\\"Train Model\\\", fontsize=10)\\n    ax2.set_title(\\\"(b) Transfer Retention\\\", fontsize=11, pad=6)\\n    ax2.tick_params(direction=\\\"in\\\", length=0)\\n\\n    cbar2 = fig.colorbar(im2, ax=ax2, shrink=0.82, pad=0.02)\\n    cbar2.set_label(\\\"Retention (%)\\\", fontsize=10)\\n    cbar2.ax.tick_params(labelsize=9)\\n\\n    # --- Save ---\\n    if args.output:\\n        out_path = args.output\\n    else:\\n        out_dir = root / \\\"artifacts\\\" / \\\"figures\\\"\\n        out_dir.mkdir(parents=True, exist_ok=True)\\n        out_path = out_dir / \\\"fig3_transfer_heatmap.pdf\\\"\\n\\n    out_path.parent.mkdir(parents=True, exist_ok=True)\\n    fig.savefig(out_path, dpi=300, bbox_inches=\\\"tight\\\")\\n    png_path = out_path.with_suffix(\\\".png\\\")\\n    fig.savefig(png_path, dpi=300, bbox_inches=\\\"tight\\\")\\n    plt.close(fig)\\n\\n    pdf_size = out_path.stat().st_size\\n    png_size = png_path.stat().st_size\\n    print(f\\\"Models: {MODELS}\\\")\\n    print(f\\\"PDF: {pdf_size/1024:.1f} KB | PNG: {png_size/1024:.1f} KB\\\")\\n    assert pdf_size > 3 * 1024, f\\\"PDF too small: {pdf_size}\\\"\\n    print(\\\"OK\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the scripts:
+
+1. **`plot_fig_jsd_decay.py`** (Figure 4 - JSD decay):
+   - OLMo is NOT in the script at all
+   - The c4_k2 dict has 8 models but the label says "7 models" - this is a bug, should be "8 models"
+   - No OLMo data to update, but the label count is wrong
+
+2. **`plot_fig2_merged.py`** (Figure 2 - AUC decay):
+   - OLMo IS included in TABLE1 with hardcoded AUC values
+   - The current OLMo values are [0.9970, 0.6145, 0.5496, 0.5091, 0.5045] but these need to be replaced with the updated results from the K*=2→K*=1 rerun
+
+3. **`draw_kstar_theta.py`** (Figure 3 - K* theta):
+   - OLMo IS included in MODELS with the same hardcoded values that also need updating from the rerun
+
+4. **`transfer_heatmap.py`** (transfer heatmap):
+   - OLMo IS included as one of the 4 models using hardcoded ordinal accuracy values
+   - These may or may not need updating depending on whether the transfer experiments were affected by the rerun
+
+5. **`plot_auc_decay_ci.py`** (supplementary AUC decay CI):
+   - This auto-discovers bootstrap CI JSON files from the filesystem by pattern-matching "olmo" in filenames
+   - Depending on where the rerun data is stored, it may automatically pick up the new results
+
+6. **`mcnemar_obd_vs_baselines.py`** - McNemar test, not a figure
+
+Now I need to check what the actual rerun OLMo AUC results are.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "99001c15-f9d0-4852-b766-8b143da3d4e9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VJJrWAm3YCk2MfvKtLZxbG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15158,
+      "cache_read_input_tokens": 31941,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15158
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+Found 4 plot scripts with OLMo data. Now I need the rerun AUC values. Let me check the rerun results and the other relevant scripts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "368fb829-0220-46bb-b327-2654db12827a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VJJrWAm3YCk2MfvKtLZxbG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15158,
+      "cache_read_input_tokens": 31941,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15158
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AY8NYpu4YspcPddiCgCXQT`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/gen-depth-contamination/data/exp_olmo1b_c4_rerun/ -name \"*.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "6003ae70-6d18-411b-bf3e-489cb54b15f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VJJrWAm3YCk2MfvKtLZxbG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15158,
+      "cache_read_input_tokens": 31941,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15158
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-21T15:40:44.460Z_
+
+<details><summary>↩ Tool result · `toolu_01AY8NYpu4YspcPddiCgCXQT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "72028615-1024-4f98-8768-99aaaada8f8b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Q17kh8PpUvikV9TW8BhBPc`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/gen-depth-contamination/results -type d -name \"*olmo*rerun*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "15e6dee7-4819-409b-bef0-1359054cd24b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VJJrWAm3YCk2MfvKtLZxbG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15158,
+      "cache_read_input_tokens": 31941,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15158
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-21T15:40:45.906Z_
+
+<details><summary>↩ Tool result · `toolu_01Q17kh8PpUvikV9TW8BhBPc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_olmo1b_c4_rerun\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "01b0c37d-c15f-425f-868f-d3298db0de05",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_olmo1b_c4_rerun\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_olmo1b_c4_rerun\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01C3yVuxxmCtj8fPuAFtfgVJ`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/gen-depth-contamination -name \"*olmo*rerun*\" -name \"*.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "9174b767-9335-49f7-bf87-1c1b1b34eff5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VJJrWAm3YCk2MfvKtLZxbG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15158,
+      "cache_read_input_tokens": 31941,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 15158
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-21T15:40:46.664Z_
+
+<details><summary>↩ Tool result · `toolu_01C3yVuxxmCtj8fPuAFtfgVJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "5a8d9c1c-ee4f-448a-9bfb-8a8052f79c20",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017f95NoTZc1EoeQTrisujyY`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls -la /root/autodl-tmp/gen-depth-contamination/results/exp_olmo1b_c4_rerun/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "6e6122f2-889c-4a9c-85c8-55f358024d82",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gxd51QbpK34Lm89DBRpNbq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1315,
+      "cache_read_input_tokens": 47099,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1315
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-21T15:40:49.936Z_
+
+<details><summary>↩ Tool result · `toolu_017f95NoTZc1EoeQTrisujyY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4856\\ndrwxr-xr-x  2 root root    4096 May 21 18:35 .\\ndrwxr-xr-x 90 root root    4096 May 21 23:31 ..\\n-rw-r--r--  1 root root     618 May 21 18:35 experiment_config.json\\n-rw-r--r--  1 root root     633 May 21 18:35 feature_importance.json\\n-rw-r--r--  1 root root      96 May 21 18:34 jsd.json\\n-rw-r--r--  1 root root      56 May 21 18:35 ordinal_results.json\\n-rw-r--r--  1 root root     571 May 21 18:34 pairwise_auc.json\\n-rw-r--r--  1 root root 4095905 May 21 18:10 pipeline.log\\n-rw-r--r--  1 root root  834258 May 21 18:35 pipeline2.log\\n-rw-r--r--  1 root root    1322 May 21 18:35 summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "fc25117f-63db-4fae-8e94-5fe914d21449",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4856\\\\ndrwxr-xr-x  2 root root    4096 May 21 18:35 .\\\\ndrwxr-xr-x 90 root root    4096 May 21 23:31 ..\\\\n-rw-r--r--  1 root root     618 May 21 18:35 experiment_config.json\\\\n-rw-r--r--  1 root root     633 May 21 18:35 feature_importance.json\\\\n-rw-r--r--  1 root root      96 May 21 18:34 jsd.json\\\\n-rw-r--r--  1 root root      56 May 21 18:35 ordinal_results.json\\\\n-rw-r--r--  1 root root     571 May 21 18:34 pairwise_auc.json\\\\n-rw-r--r--  1 root root 4095905 May 21 18:10 pipeline.log\\\\n-rw-r--r--  1 root root  834258 May 21 18:35 pipeline2.log\\\\n-rw-r--r--  1 root root    1322 May 21 18:35 summary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4856\\ndrwxr-xr-x  2 root root    4096 May 21 18:35 .\\ndrwxr-xr-x 90 root root    4096 May 21 23:31 ..\\n-rw-r--r--  1 root root     618 May 21 18:35 experiment_config.json\\n-rw-r--r--  1 root root     633 May 21 18:35 feature_importance.json\\n-rw-r--r--  1 root root      96 May 21 18:34 jsd.json\\n-rw-r--r--  1 root root      56 May 21 18:35 ordinal_results.json\\n-rw-r--r--  1 root root     571 May 21 18:34 pairwise_auc.json\\n-rw-r--r--  1 root root 4095905 May 21 18:10 pipeline.log\\n-rw-r--r--  1 root root  834258 May 21 18:35 pipeline2.log\\n-rw-r--r--  1 root root    1322 May 21 18:35 summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017uZe8RGRdLAVzuggbfjAh1`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_olmo1b_c4_rerun/pairwise_auc.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "390e112d-b959-4253-afbb-e53258abc057",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HXy9519qg9WFTRaNMJNLHB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 625,
+      "cache_read_input_tokens": 48414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 625
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-21T15:40:54.051Z_
+
+<details><summary>↩ Tool result · `toolu_017uZe8RGRdLAVzuggbfjAh1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.986,\\n    \\\"1v2\\\": 0.508,\\n    \\\"2v3\\\": 0.4973,\\n    \\\"3v4\\\": 0.5024,\\n    \\\"4v5\\\": 0.4942\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.9881,\\n      0.986,\\n      0.9851,\\n      0.9837,\\n      0.9872\\n    ],\\n    \\\"1v2\\\": [\\n      0.5387,\\n      0.4972,\\n      0.5044,\\n      0.4869,\\n      0.5125\\n    ],\\n    \\\"2v3\\\": [\\n      0.508,\\n      0.4762,\\n      0.5184,\\n      0.4888,\\n      0.495\\n    ],\\n    \\\"3v4\\\": [\\n      0.5199,\\n      0.4968,\\n      0.4901,\\n      0.4986,\\n      0.5064\\n    ],\\n    \\\"4v5\\\": [\\n      0.492,\\n      0.5029,\\n      0.4998,\\n      0.4972,\\n      0.479\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "9fc61104-b540-49d5-906a-f1c810e25601",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mean\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": 0.986,\\\\n    \\\\\\\"1v2\\\\\\\": 0.508,\\\\n    \\\\\\\"2v3\\\\\\\": 0.4973,\\\\n    \\\\\\\"3v4\\\\\\\": 0.5024,\\\\n    \\\\\\\"4v5\\\\\\\": 0.4942\\\\n  },\\\\n  \\\\\\\"per_fold\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": [\\\\n      0.9881,\\\\n      0.986,\\\\n      0.9851,\\\\n      0.9837,\\\\n      0.9872\\\\n    ],\\\\n    \\\\\\\"1v2\\\\\\\": [\\\\n      0.5387,\\\\n      0.4972,\\\\n      0.5044,\\\\n      0.4869,\\\\n      0.5125\\\\n    ],\\\\n    \\\\\\\"2v3\\\\\\\": [\\\\n      0.508,\\\\n      0.4762,\\\\n      0.5184,\\\\n      0.4888,\\\\n      0.495\\\\n    ],\\\\n    \\\\\\\"3v4\\\\\\\": [\\\\n      0.5199,\\\\n      0.4968,\\\\n      0.4901,\\\\n      0.4986,\\\\n      0.5064\\\\n    ],\\\\n    \\\\\\\"4v5\\\\\\\": [\\\\n      0.492,\\\\n      0.5029,\\\\n      0.4998,\\\\n      0.4972,\\\\n      0.479\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.986,\\n    \\\"1v2\\\": 0.508,\\n    \\\"2v3\\\": 0.4973,\\n    \\\"3v4\\\": 0.5024,\\n    \\\"4v5\\\": 0.4942\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.9881,\\n      0.986,\\n      0.9851,\\n      0.9837,\\n      0.9872\\n    ],\\n    \\\"1v2\\\": [\\n      0.5387,\\n      0.4972,\\n      0.5044,\\n      0.4869,\\n      0.5125\\n    ],\\n    \\\"2v3\\\": [\\n      0.508,\\n      0.4762,\\n      0.5184,\\n      0.4888,\\n      0.495\\n    ],\\n    \\\"3v4\\\": [\\n      0.5199,\\n      0.4968,\\n      0.4901,\\n      0.4986,\\n      0.5064\\n    ],\\n    \\\"4v5\\\": [\\n      0.492,\\n      0.5029,\\n      0.4998,\\n      0.4972,\\n      0.479\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012cxRNsDkqXzu3enJCExePf`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_olmo1b_c4_rerun/jsd.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "a8c43620-c428-4b38-bde7-9ce50d2e92b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HXy9519qg9WFTRaNMJNLHB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 625,
+      "cache_read_input_tokens": 48414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 625
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-21T15:40:55.054Z_
+
+<details><summary>↩ Tool result · `toolu_012cxRNsDkqXzu3enJCExePf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"0v1\\\": 0.230821,\\n  \\\"1v2\\\": 0.002958,\\n  \\\"2v3\\\": 0.002992,\\n  \\\"3v4\\\": 0.00339,\\n  \\\"4v5\\\": 0.002903\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "8a00a5e0-3107-4c66-ac86-2b74c4a94c29",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"0v1\\\\\\\": 0.230821,\\\\n  \\\\\\\"1v2\\\\\\\": 0.002958,\\\\n  \\\\\\\"2v3\\\\\\\": 0.002992,\\\\n  \\\\\\\"3v4\\\\\\\": 0.00339,\\\\n  \\\\\\\"4v5\\\\\\\": 0.002903\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"0v1\\\": 0.230821,\\n  \\\"1v2\\\": 0.002958,\\n  \\\"2v3\\\": 0.002992,\\n  \\\"3v4\\\": 0.00339,\\n  \\\"4v5\\\": 0.002903\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01E5Ab6zH9rwUSGykhupc5Mq`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_olmo1b_c4_rerun/ordinal_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "e0025a05-5f0a-485d-9a0b-0834d5df7b01",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HXy9519qg9WFTRaNMJNLHB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 625,
+      "cache_read_input_tokens": 48414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 625
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-21T15:40:55.935Z_
+
+<details><summary>↩ Tool result · `toolu_01E5Ab6zH9rwUSGykhupc5Mq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mae\\\": 1.4139,\\n  \\\"accuracy\\\": 0.3167,\\n  \\\"k_star\\\": 1\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "813e12e2-e580-40b2-80ed-4ccd1be9b77f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mae\\\\\\\": 1.4139,\\\\n  \\\\\\\"accuracy\\\\\\\": 0.3167,\\\\n  \\\\\\\"k_star\\\\\\\": 1\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mae\\\": 1.4139,\\n  \\\"accuracy\\\": 0.3167,\\n  \\\"k_star\\\": 1\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0133M1yJPdQCj2PZmpLNku9a`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_olmo1b_c4_rerun/summary.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "1420bcbf-b640-4638-8986-f23d8d533a9c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HXy9519qg9WFTRaNMJNLHB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 625,
+      "cache_read_input_tokens": 48414,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 625
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-21T15:40:56.484Z_
+
+<details><summary>↩ Tool result · `toolu_0133M1yJPdQCj2PZmpLNku9a`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nMVP Pilot Saturation Study — Results Summary\\n============================================================\\n\\nPairwise AUC (adjacent depths):\\n  depth 0 vs 1: AUC = 0.986 ± 0.0015  folds=[0.9881, 0.986, 0.9851, 0.9837, 0.9872]\\n  depth 1 vs 2: AUC = 0.508 ± 0.0175  folds=[0.5387, 0.4972, 0.5044, 0.4869, 0.5125]\\n  depth 2 vs 3: AUC = 0.4973 ± 0.0147  folds=[0.508, 0.4762, 0.5184, 0.4888, 0.495]\\n  depth 3 vs 4: AUC = 0.5024 ± 0.0102  folds=[0.5199, 0.4968, 0.4901, 0.4986, 0.5064]\\n  depth 4 vs 5: AUC = 0.4942 ± 0.0084  folds=[0.492, 0.5029, 0.4998, 0.4972, 0.479]\\n\\nPairwise JSD (adjacent depths):\\n  depth 0 vs 1: JSD = 0.230821\\n  depth 1 vs 2: JSD = 0.002958\\n  depth 2 vs 3: JSD = 0.002992\\n  depth 3 vs 4: JSD = 0.00339\\n  depth 4 vs 5: JSD = 0.002903\\n\\nK* (max depth with AUC > 0.60): 1\\n\\nOrdinal Classification (6-class, 5-fold CV):\\n  MAE = 1.4139\\n  Accuracy = 0.3167\\n\\nTop-10 Feature Importance:\\n  surp_d1_mean         8305.0\\n  freq_entropy         8214.6\\n  surp_d1_skew         7992.6\\n  freq_kurtosis        7981.0\\n  surp_mean            7943.4\\n  surp_d2_mean         7858.2\\n  surp_kurt            7653.6\\n  ttr                  7070.4\\n  hapax_ratio          6978.0\\n  surp_std             6911.6\\n\\n============================================================\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "e4bd7c3e-7e41-4154-8622-6ed5d846adb4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nMVP Pilot Saturation Study — Results Summary\\\\n============================================================\\\\n\\\\nPairwise AUC (adjacent depths):\\\\n  depth 0 vs 1: AUC = 0.986 ± 0.0015  folds=[0.9881, 0.986, 0.9851, 0.9837, 0.9872]\\\\n  depth 1 vs 2: AUC = 0.508 ± 0.0175  folds=[0.5387, 0.4972, 0.5044, 0.4869, 0.5125]\\\\n  depth 2 vs 3: AUC = 0.4973 ± 0.0147  folds=[0.508, 0.4762, 0.5184, 0.4888, 0.495]\\\\n  depth 3 vs 4: AUC = 0.5024 ± 0.0102  folds=[0.5199, 0.4968, 0.4901, 0.4986, 0.5064]\\\\n  depth 4 vs 5: AUC = 0.4942 ± 0.0084  folds=[0.492, 0.5029, 0.4998, 0.4972, 0.479]\\\\n\\\\nPairwise JSD (adjacent depths):\\\\n  depth 0 vs 1: JSD = 0.230821\\\\n  depth 1 vs 2: JSD = 0.002958\\\\n  depth 2 vs 3: JSD = 0.002992\\\\n  depth 3 vs 4: JSD = 0.00339\\\\n  depth 4 vs 5: JSD = 0.002903\\\\n\\\\nK* (max depth with AUC > 0.60): 1\\\\n\\\\nOrdinal Classification (6-class, 5-fold CV):\\\\n  MAE = 1.4139\\\\n  Accuracy = 0.3167\\\\n\\\\nTop-10 Feature Importance:\\\\n  surp_d1_mean         8305.0\\\\n  freq_entropy         8214.6\\\\n  surp_d1_skew         7992.6\\\\n  freq_kurtosis        7981.0\\\\n  surp_mean            7943.4\\\\n  surp_d2_mean         7858.2\\\\n  surp_kurt            7653.6\\\\n  ttr                  7070.4\\\\n  hapax_ratio          6978.0\\\\n  surp_std             6911.6\\\\n\\\\n============================================================\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nMVP Pilot Saturation Study — Results Summary\\n============================================================\\n\\nPairwise AUC (adjacent depths):\\n  depth 0 vs 1: AUC = 0.986 ± 0.0015  folds=[0.9881, 0.986, 0.9851, 0.9837, 0.9872]\\n  depth 1 vs 2: AUC = 0.508 ± 0.0175  folds=[0.5387, 0.4972, 0.5044, 0.4869, 0.5125]\\n  depth 2 vs 3: AUC = 0.4973 ± 0.0147  folds=[0.508, 0.4762, 0.5184, 0.4888, 0.495]\\n  depth 3 vs 4: AUC = 0.5024 ± 0.0102  folds=[0.5199, 0.4968, 0.4901, 0.4986, 0.5064]\\n  depth 4 vs 5: AUC = 0.4942 ± 0.0084  folds=[0.492, 0.5029, 0.4998, 0.4972, 0.479]\\n\\nPairwise JSD (adjacent depths):\\n  depth 0 vs 1: JSD = 0.230821\\n  depth 1 vs 2: JSD = 0.002958\\n  depth 2 vs 3: JSD = 0.002992\\n  depth 3 vs 4: JSD = 0.00339\\n  depth 4 vs 5: JSD = 0.002903\\n\\nK* (max depth with AUC > 0.60): 1\\n\\nOrdinal Classification (6-class, 5-fold CV):\\n  MAE = 1.4139\\n  Accuracy = 0.3167\\n\\nTop-10 Feature Importance:\\n  surp_d1_mean         8305.0\\n  freq_entropy         8214.6\\n  surp_d1_skew         7992.6\\n  freq_kurtosis        7981.0\\n  surp_mean            7943.4\\n  surp_d2_mean         7858.2\\n  surp_kurt            7653.6\\n  ttr                  7070.4\\n  hapax_ratio          6978.0\\n  surp_std             6911.6\\n\\n============================================================\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the rerun OLMo data:
+
+**Pairwise AUC (rerun)**:
+- 0v1: 0.986
+- 1v2: 0.508
+- 2v3: 0.4973
+- 3v4: 0.5024
+- 4v5: 0.4942
+
+**K* = 1** (only 0v1 has AUC > 0.60)
+
+**JSD (rerun)**:
+- 0v1: 0.230821
+
+
+- 1v2: 0.002958
+- 2v3: 0.002992
+- 3v4: 0.00339
+- 4v5: 0.002903
+
+**Ordinal accuracy**: 0.3167
+
+Now I'm checking the scripts to see how they handle this data. Looking at `plot_fig_jsd_decay.py` for Figure 4, OLMo isn't included in the visualization, and the c4_k2 dictionary has 8 models but the label says 7 — I need to figure out if OLMo was originally there and got removed.
+
+The task notes mention the legend was intentionally changed to "7 models" when OLMo was excluded, but now the dictionary actually contains 8 entries including Qwen-14B, so the label is out of sync with the actual data count. This is a labeling bug that needs fixing.
+
+For Figure 2, I need to update the OLMo values in TABLE1 with the new rerun results and recalculate the confidence intervals using bootstrap from the per-fold data I have available. Now I'm calculating the standard deviation for the 0v1 comparison by finding the squared deviations from the mean, then computing the standard error by dividing by the square root of the sample size.
+
+For the 1v2 comparison, I'm working through the same process with a mean of 0.508 across the five folds, calculating the variance and standard error to establish the confidence interval.
+
+Now moving to 2v3, where the mean is 0.4973 with similar fold-level calculations to determine the confidence bounds. Closing out the confidence interval for 3v4, then moving on to 4v5 where I'm calculating the mean of 0.4942 across its five folds, computing the variance and standard error to establish the confidence bounds of 0.4860 to 0.5024.
+
+Now I'm setting up the OLMo entry with the mean values and confidence intervals for the figures, but I realize I should compute these more precisely using Python rather than hand calculations to ensure consistency with the actual fold data.
+
+The rerun shows OLMo performing at chance level across most comparisons starting from 1v2 (around 0.50 AUC), which is a stark contrast to the original 0.6145 result. I need to update the hardcoded values in the plotting scripts—specifically the TABLE1 entry in the merged figure script and the MODELS dictionary in the K* visualization script. I should also verify whether the ordinal accuracy in the transfer heatmap needs adjustment from its current value.
+
+However, I'm realizing the transfer heatmap's data comes from a full cross-model transfer experiment rather than just OLMo's standalone results, so updating it might require re-running the entire cross-model comparison rather than simply swapping in the new OLMo data. Let me check the task requirements again to see if this falls within the scope of what needs updating. I can tackle several figures directly: updating the JSD decay label to reflect 8 models, refreshing the AUC and K* theta plots with OLMo's rerun values, and flagging the transfer heatmap as needing the full cross-model experiments re-run. I should also check whether the bootstrap CI script auto-discovers the rerun data and quickly scan what other scripts depend on OLMo before proceeding with the updates.
+
+Now I need to compute proper confidence intervals for the OLMo rerun data using Python on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "25047ec8-430c-41ae-96a3-903257ce1417",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AeGoMt5RjPCRDcWcwkjqcb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2089,
+      "cache_read_input_tokens": 49039,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2089
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+Now I have all the data. OLMo rerun: K*=1, AUC_1v2=0.508 (was 0.6145). Let me compute bootstrap CIs from the per-fold data and check additional scripts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "07316563-1044-4eb5-b8ca-5d60abf05ef1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AeGoMt5RjPCRDcWcwkjqcb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2089,
+      "cache_read_input_tokens": 49039,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2089
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_017txT8LCBw3H3U6n2Z6AruA`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport numpy as np\nfolds = {\n    '0v1': [0.9881, 0.986, 0.9851, 0.9837, 0.9872],\n    '1v2': [0.5387, 0.4972, 0.5044, 0.4869, 0.5125],\n    '2v3': [0.508, 0.4762, 0.5184, 0.4888, 0.495],\n    '3v4': [0.5199, 0.4968, 0.4901, 0.4986, 0.5064],\n    '4v5': [0.492, 0.5029, 0.4998, 0.4972, 0.479],\n}\nfor k, v in folds.items():\n    arr = np.array(v)\n    m = arr.mean()\n    se = arr.std(ddof=1) / np.sqrt(len(arr))\n    lo = m - 1.96 * se\n    hi = m + 1.96 * se\n    print(f'{k}: mean={m:.4f}, ci_lower={lo:.4f}, ci_upper={hi:.4f}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "5bba6f83-dffc-4969-82ea-b88f98c7f49d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AeGoMt5RjPCRDcWcwkjqcb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2089,
+      "cache_read_input_tokens": 49039,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2089
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-21T15:41:51.504Z_
+
+<details><summary>↩ Tool result · `toolu_017txT8LCBw3H3U6n2Z6AruA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0v1: mean=0.9860, ci_lower=0.9845, ci_upper=0.9875\\n1v2: mean=0.5079, ci_lower=0.4908, ci_upper=0.5251\\n2v3: mean=0.4973, ci_lower=0.4829, ci_upper=0.5117\\n3v4: mean=0.5024, ci_lower=0.4924, ci_upper=0.5123\\n4v5: mean=0.4942, ci_lower=0.4860, ci_upper=0.5024\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "6343b066-6738-4bb6-815f-6e5a1dcb39e6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0v1: mean=0.9860, ci_lower=0.9845, ci_upper=0.9875\\\\n1v2: mean=0.5079, ci_lower=0.4908, ci_upper=0.5251\\\\n2v3: mean=0.4973, ci_lower=0.4829, ci_upper=0.5117\\\\n3v4: mean=0.5024, ci_lower=0.4924, ci_upper=0.5123\\\\n4v5: mean=0.4942, ci_lower=0.4860, ci_upper=0.5024\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.66}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0v1: mean=0.9860, ci_lower=0.9845, ci_upper=0.9875\\n1v2: mean=0.5079, ci_lower=0.4908, ci_upper=0.5251\\n2v3: mean=0.4973, ci_lower=0.4829, ci_upper=0.5117\\n3v4: mean=0.5024, ci_lower=0.4924, ci_upper=0.5123\\n4v5: mean=0.4942, ci_lower=0.4860, ci_upper=0.5024\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PDm9bU3Np9FDnSYNcaDCjN`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/scripts/mcnemar_obd_vs_baselines.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "0076ef9a-a064-4ee9-953a-eddea09f393b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AeGoMt5RjPCRDcWcwkjqcb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2089,
+      "cache_read_input_tokens": 49039,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2089
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-21T15:41:52.347Z_
+
+<details><summary>↩ Tool result · `toolu_01PDm9bU3Np9FDnSYNcaDCjN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"McNemar test: OBD-LightGBM vs baseline classifiers on 1v2 binary task.\\\"\\\"\\\"\\nimport csv, json, os, sys\\nfrom pathlib import Path\\nimport numpy as np\\nfrom sklearn.model_selection import GroupKFold\\nfrom sklearn.metrics import accuracy_score\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.svm import LinearSVC\\nfrom sklearn.ensemble import RandomForestClassifier\\nfrom sklearn.preprocessing import StandardScaler\\nfrom sklearn.impute import SimpleImputer\\nfrom sklearn.pipeline import Pipeline\\nimport lightgbm as lgb\\nfrom scipy.stats import chi2\\nimport warnings\\nwarnings.filterwarnings(\\\"ignore\\\")\\nos.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = \\\"\\\"\\n\\nBASE = Path(\\\"/root/autodl-tmp/gen-depth-contamination\\\")\\n\\nCONFIGS = {\\n    \\\"Qwen-1.5B-base / C4\\\":  BASE / \\\"data_exp016_qwen_base\\\" / \\\"features.csv\\\",\\n    \\\"Pythia-1.4B / C4\\\":      BASE / \\\"data_exp020_pythia_nuc09\\\" / \\\"features.csv\\\",\\n    \\\"LLaMA-8B / C4\\\":         BASE / \\\"data\\\" / \\\"exp_018_llama8b\\\" / \\\"features.csv\\\",\\n    \\\"Qwen-1.5B / Wiki\\\":      BASE / \\\"data\\\" / \\\"exp_023_wiki\\\" / \\\"features.csv\\\",\\n    \\\"Qwen-1.5B / arXiv\\\":     BASE / \\\"data\\\" / \\\"exp_024_arxiv\\\" / \\\"features.csv\\\",\\n    \\\"Pythia / Wiki\\\":          BASE / \\\"data\\\" / \\\"exp_wiki_pythia\\\" / \\\"features.csv\\\",\\n    \\\"OLMo / Wiki\\\":            BASE / \\\"data\\\" / \\\"exp_wiki_olmo\\\" / \\\"features.csv\\\",\\n    \\\"Qwen-7B / arXiv\\\":       BASE / \\\"data\\\" / \\\"exp_arXiv_qwen7b\\\" / \\\"features.csv\\\",\\n    \\\"Mistral-7B / arXiv\\\":    BASE / \\\"data\\\" / \\\"exp_arXiv_mistral7b\\\" / \\\"features.csv\\\",\\n    \\\"Pythia / arXiv\\\":         BASE / \\\"data\\\" / \\\"exp_025_pythia_arxiv\\\" / \\\"features.csv\\\",\\n    \\\"OLMo / arXiv\\\":           BASE / \\\"data\\\" / \\\"exp_arXiv_olmo\\\" / \\\"features.csv\\\",\\n    \\\"LLaMA-8B / Wiki\\\":       BASE / \\\"data\\\" / \\\"exp_wiki_llama8b\\\" / \\\"features.csv\\\",\\n}\\n\\nFEAT_COLS = [\\n    \\\"surp_mean\\\",\\\"surp_std\\\",\\\"surp_skew\\\",\\\"surp_kurt\\\",\\n    \\\"surp_d1_mean\\\",\\\"surp_d1_std\\\",\\\"surp_d1_skew\\\",\\n    \\\"surp_d2_mean\\\",\\\"surp_d2_std\\\",\\n    \\\"ttr\\\",\\\"hapax_ratio\\\",\\\"self_bleu\\\",\\n    \\\"freq_kurtosis\\\",\\\"freq_entropy\\\",\\\"low_freq_ratio\\\",\\n]\\n\\ndef P(msg):\\n    print(msg, flush=True)\\n\\ndef load_1v2(csv_path):\\n    rows = []\\n    with open(csv_path) as f:\\n        for row in csv.DictReader(f):\\n            if int(row[\\\"depth\\\"]) in (1, 2):\\n                rows.append(row)\\n    if not rows:\\n        return None, None, None\\n    doc_ids = np.array([int(r[\\\"doc_id\\\"]) for r in rows])\\n    y = (np.array([int(r[\\\"depth\\\"]) for r in rows]) == 2).astype(int)\\n    X = np.zeros((len(rows), len(FEAT_COLS)))\\n    for j, c in enumerate(FEAT_COLS):\\n        for i, r in enumerate(rows):\\n            try: X[i,j] = float(r[c])\\n            except: X[i,j] = np.nan\\n    return X, y, doc_ids\\n\\ndef mcnemar_test(y_true, pred_a, pred_b):\\n    ca, cb = (pred_a == y_true), (pred_b == y_true)\\n    b, c = int(np.sum(ca & ~cb)), int(np.sum(~ca & cb))\\n    if b + c == 0: return 1.0, b, c\\n    stat = (abs(b - c) - 1)**2 / (b + c)\\n    return float(1 - chi2.cdf(stat, df=1)), b, c\\n\\ndef oof(X, y, groups, factory, pipe=False):\\n    preds = np.zeros_like(y)\\n    for tri, tei in GroupKFold(5).split(X, y, groups=groups):\\n        if pipe:\\n            p = Pipeline([(\\\"imp\\\", SimpleImputer(strategy=\\\"median\\\")),\\n                          (\\\"sc\\\", StandardScaler()), (\\\"clf\\\", factory())])\\n            p.fit(X[tri], y[tri]); preds[tei] = p.predict(X[tei])\\n        else:\\n            clf = factory(); clf.fit(X[tri], y[tri]); preds[tei] = clf.predict(X[tei])\\n    return preds\\n\\nresults = {}\\nfor name, path in CONFIGS.items():\\n    if not path.exists():\\n        P(f\\\"SKIP {name}\\\"); continue\\n    P(f\\\"\\\\n=== {name} ===\\\")\\n    X, y, g = load_1v2(path)\\n    if X is None: P(\\\"  no data\\\"); continue\\n    P(f\\\"  n={len(y)} d1={int((y==0).sum())} d2={int((y==1).sum())} nan={int(np.isnan(X).sum())}\\\")\\n\\n    p_obd = oof(X, y, g, lambda: lgb.LGBMClassifier(n_estimators=200, max_depth=6,\\n        learning_rate=0.05, num_leaves=31, verbose=-1, n_jobs=-1))\\n    a_obd = accuracy_score(y, p_obd)\\n    P(f\\\"  OBD acc={a_obd:.4f}\\\")\\n\\n    res = {\\\"n\\\": int(len(y)), \\\"acc_obd\\\": round(float(a_obd), 4)}\\n    for bl, fac in [(\\\"LogReg\\\", lambda: LogisticRegression(max_iter=2000, C=1.0)),\\n                    (\\\"LinearSVC\\\", lambda: LinearSVC(max_iter=10000, C=1.0)),\\n                    (\\\"RF\\\", lambda: RandomForestClassifier(n_estimators=100, max_depth=8, n_jobs=-1, random_state=42))]:\\n        p_bl = oof(X, y, g, fac, pipe=True)\\n        a_bl = accuracy_score(y, p_bl)\\n        pv, b, c = mcnemar_test(y, p_obd, p_bl)\\n        sig = \\\"***\\\" if pv<.001 else (\\\"**\\\" if pv<.01 else (\\\"*\\\" if pv<.05 else \\\"ns\\\"))\\n        P(f\\\"  vs {bl}: acc={a_bl:.4f} p={pv:.2e} [{sig}] b={b} c={c}\\\")\\n        res[bl] = {\\\"acc\\\": round(float(a_bl),4), \\\"p\\\": round(pv,6), \\\"b\\\": b, \\\"c\\\": c}\\n    results[name] = res\\n\\nout = BASE / \\\"results\\\" / \\\"mcnemar_obd_vs_baselines\\\"\\nout.mkdir(parents=True, exist_ok=True)\\nwith open(out / \\\"mcnemar_results.json\\\", \\\"w\\\") as f:\\n    json.dump(results, f, indent=2)\\n\\nP(\\\"\\\\n\\\" + \\\"=\\\"*60 + \\\"\\\\nSUMMARY\\\\n\\\" + \\\"=\\\"*60)\\nall_p = [(cfg,bl,r[bl][\\\"p\\\"]) for cfg,r in results.items() for bl in [\\\"LogReg\\\",\\\"LinearSVC\\\",\\\"RF\\\"] if bl in r]\\nif all_p:\\n    mx = max(all_p, key=lambda x: x[2])\\n    P(f\\\"Comparisons: {len(all_p)}\\\")\\n    P(f\\\"Max p: {mx[2]:.2e} ({mx[0]} vs {mx[1]})\\\")\\n    P(f\\\"All<0.01: {all(x[2]<0.01 for x in all_p)}\\\")\\n    P(f\\\"All<0.05: {all(x[2]<0.05 for x in all_p)}\\\")\\n    bad = [x for x in all_p if x[2]>=0.01]\\n    if bad:\\n        P(f\\\"p>=0.01 ({len(bad)}):\\\")\\n        for x in sorted(bad, key=lambda x:-x[2]):\\n            P(f\\\"  {x[0]} vs {x[1]}: p={x[2]:.4e}\\\")\\nP(f\\\"\\\\nSaved: {out/'mcnemar_results.json'}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "37812982-c270-4c2c-8f9d-2433d4b97443",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"McNemar test: OBD-LightGBM vs baseline classifiers on 1v2 binary task.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport csv, json, os, sys\\\\nfrom pathlib import Path\\\\nimport numpy as np\\\\nfrom sklearn.model_selection import GroupKFold\\\\nfrom sklearn.metrics import accuracy_score\\\\nfrom sklearn.linear_model import LogisticRegression\\\\nfrom sklearn.svm import LinearSVC\\\\nfrom sklearn.ensemble import RandomForestClassifier\\\\nfrom sklearn.preprocessing import StandardScaler\\\\nfrom sklearn.impute import SimpleImputer\\\\nfrom sklearn.pipeline import Pipeline\\\\nimport lightgbm as lgb\\\\nfrom scipy.stats import chi2\\\\nimport warnings\\\\nwarnings.filterwarnings(\\\\\\\"ignore\\\\\\\")\\\\nos.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = \\\\\\\"\\\\\\\"\\\\n\\\\nBASE = Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination\\\\\\\")\\\\n\\\\nCONFIGS = {\\\\n    \\\\\\\"Qwen-1.5B-base / C4\\\\\\\":  BASE / \\\\\\\"data_exp016_qwen_base\\\\\\\" / \\\\\\\"features.csv\\\\\\\",\\\\n    \\\\\\\"Pythia-1.4B / C4\\\\\\\":      BASE / \\\\\\\"data_exp020_pythia_nuc09\\\\\\\" / \\\\\\\"features.csv\\\\\\\",\\\\n    \\\\\\\"LLaMA-8B / C4\\\\\\\":         BASE / \\\\\\\"data\\\\\\\" / \\\\\\\"exp_018_llama8b\\\\\\\" / \\\\\\\"features.csv\\\\\\\",\\\\n    \\\\\\\"Qwen-1.5B / Wiki\\\\\\\":      BASE / \\\\\\\"data\\\\\\\" / \\\\\\\"exp_023_wiki\\\\\\\" / \\\\\\\"features.csv\\\\\\\",\\\\n    \\\\\\\"Qwen-1.5B / arXiv\\\\\\\":     BASE / \\\\\\\"data\\\\\\\" / \\\\\\\"exp_024_arxiv\\\\\\\" / \\\\\\\"features.csv\\\\\\\",\\\\n    \\\\\\\"Pythia / Wiki\\\\\\\":          BASE / \\\\\\\"data\\\\\\\" / \\\\\\\"exp_wiki_pythia\\\\\\\" / \\\\\\\"features.csv\\\\\\\",\\\\n    \\\\\\\"OLMo / Wiki\\\\\\\":            BASE / \\\\\\\"data\\\\\\\" / \\\\\\\"exp_wiki_olmo\\\\\\\" / \\\\\\\"features.csv\\\\\\\",\\\\n    \\\\\\\"Qwen-7B / arXiv\\\\\\\":       BASE / \\\\\\\"data\\\\\\\" / \\\\\\\"exp_arXiv_qwen7b\\\\\\\" / \\\\\\\"features.csv\\\\\\\",\\\\n    \\\\\\\"Mistral-7B / arXiv\\\\\\\":    BASE / \\\\\\\"data\\\\\\\" / \\\\\\\"exp_arXiv_mistral7b\\\\\\\" / \\\\\\\"features.csv\\\\\\\",\\\\n    \\\\\\\"Pythia / arXiv\\\\\\\":         BASE / \\\\\\\"data\\\\\\\" / \\\\\\\"exp_025_pythia_arxiv\\\\\\\" / \\\\\\\"features.csv\\\\\\\",\\\\n    \\\\\\\"OLMo / arXiv\\\\\\\":           BASE / \\\\\\\"data\\\\\\\" / \\\\\\\"exp_arXiv_olmo\\\\\\\" / \\\\\\\"features.csv\\\\\\\",\\\\n    \\\\\\\"LLaMA-8B / Wiki\\\\\\\":       BASE / \\\\\\\"data\\\\\\\" / \\\\\\\"exp_wiki_llama8b\\\\\\\" / \\\\\\\"features.csv\\\\\\\",\\\\n}\\\\n\\\\nFEAT_COLS = [\\\\n    \\\\\\\"surp_mean\\\\\\\",\\\\\\\"surp_std\\\\\\\",\\\\\\\"surp_skew\\\\\\\",\\\\\\\"surp_kurt\\\\\\\",\\\\n    \\\\\\\"surp_d1_mean\\\\\\\",\\\\\\\"surp_d1_std\\\\\\\",\\\\\\\"surp_d1_skew\\\\\\\",\\\\n    \\\\\\\"surp_d2_mean\\\\\\\",\\\\\\\"surp_d2_std\\\\\\\",\\\\n    \\\\\\\"ttr\\\\\\\",\\\\\\\"hapax_ratio\\\\\\\",\\\\\\\"self_bleu\\\\\\\",\\\\n    \\\\\\\"freq_kurtosis\\\\\\\",\\\\\\\"freq_entropy\\\\\\\",\\\\\\\"low_freq_ratio\\\\\\\",\\\\n]\\\\n\\\\ndef P(msg):\\\\n    print(msg, flush=True)\\\\n\\\\ndef load_1v2(csv_path):\\\\n    rows = []\\\\n    with open(csv_path) as f:\\\\n        for row in csv.DictReader(f):\\\\n            if int(row[\\\\\\\"depth\\\\\\\"]) in (1, 2):\\\\n                rows.append(row)\\\\n    if not rows:\\\\n        return None, None, None\\\\n    doc_ids = np.array([int(r[\\\\\\\"doc_id\\\\\\\"]) for r in rows])\\\\n    y = (np.array([int(r[\\\\\\\"depth\\\\\\\"]) for r in rows]) == 2).astype(int)\\\\n    X = np.zeros((len(rows), len(FEAT_COLS)))\\\\n    for j, c in enumerate(FEAT_COLS):\\\\n        for i, r in enumerate(rows):\\\\n            try: X[i,j] = float(r[c])\\\\n            except: X[i,j] = np.nan\\\\n    return X, y, doc_ids\\\\n\\\\ndef mcnemar_test(y_true, pred_a, pred_b):\\\\n    ca, cb = (pred_a == y_true), (pred_b == y_true)\\\\n    b, c = int(np.sum(ca & ~cb)), int(np.sum(~ca & cb))\\\\n    if b + c == 0: return 1.0, b, c\\\\n    stat = (abs(b - c) - 1)**2 / (b + c)\\\\n    return float(1 - chi2.cdf(stat, df=1)), b, c\\\\n\\\\ndef oof(X, y, groups, factory, pipe=False):\\\\n    preds = np.zeros_like(y)\\\\n    for tri, tei in GroupKFold(5).split(X, y, groups=groups):\\\\n        if pipe:\\\\n            p = Pipeline([(\\\\\\\"imp\\\\\\\", SimpleImputer(strategy=\\\\\\\"median\\\\\\\")),\\\\n                          (\\\\\\\"sc\\\\\\\", StandardScaler()), (\\\\\\\"clf\\\\\\\", factory())])\\\\n            p.fit(X[tri], y[tri]); preds[tei] = p.predict(X[tei])\\\\n        else:\\\\n            clf = factory(); clf.fit(X[tri], y[tri]); preds[tei] = clf.predict(X[tei])\\\\n    return preds\\\\n\\\\nresults = {}\\\\nfor name, path in CONFIGS.items():\\\\n    if not path.exists():\\\\n        P(f\\\\\\\"SKIP {name}\\\\\\\"); continue\\\\n    P(f\\\\\\\"\\\\\\\\n=== {name} ===\\\\\\\")\\\\n    X, y, g = load_1v2(path)\\\\n    if X is None: P(\\\\\\\"  no data\\\\\\\"); continue\\\\n    P(f\\\\\\\"  n={len(y)} d1={int((y==0).sum())} d2={int((y==1).sum())} nan={int(np.isnan(X).sum())}\\\\\\\")\\\\n\\\\n    p_obd = oof(X, y, g, lambda: lgb.LGBMClassifier(n_estimators=200, max_depth=6,\\\\n        learning_rate=0.05, num_leaves=31, verbose=-1, n_jobs=-1))\\\\n    a_obd = accuracy_score(y, p_obd)\\\\n    P(f\\\\\\\"  OBD acc={a_obd:.4f}\\\\\\\")\\\\n\\\\n    res = {\\\\\\\"n\\\\\\\": int(len(y)), \\\\\\\"acc_obd\\\\\\\": round(float(a_obd), 4)}\\\\n    for bl, fac in [(\\\\\\\"LogReg\\\\\\\", lambda: LogisticRegression(max_iter=2000, C=1.0)),\\\\n                    (\\\\\\\"LinearSVC\\\\\\\", lambda: LinearSVC(max_iter=10000, C=1.0)),\\\\n                    (\\\\\\\"RF\\\\\\\", lambda: RandomForestClassifier(n_estimators=100, max_depth=8, n_jobs=-1, random_state=42))]:\\\\n        p_bl = oof(X, y, g, fac, pipe=True)\\\\n        a_bl = accuracy_score(y, p_bl)\\\\n        pv, b, c = mcnemar_test(y, p_obd, p_bl)\\\\n        sig = \\\\\\\"***\\\\\\\" if pv<.001 else (\\\\\\\"**\\\\\\\" if pv<.01 else (\\\\\\\"*\\\\\\\" if pv<.05 else \\\\\\\"ns\\\\\\\"))\\\\n        P(f\\\\\\\"  vs {bl}: acc={a_bl:.4f} p={pv:.2e} [{sig}] b={b} c={c}\\\\\\\")\\\\n        res[bl] = {\\\\\\\"acc\\\\\\\": round(float(a_bl),4), \\\\\\\"p\\\\\\\": round(pv,6), \\\\\\\"b\\\\\\\": b, \\\\\\\"c\\\\\\\": c}\\\\n    results[name] = res\\\\n\\\\nout = BASE / \\\\\\\"results\\\\\\\" / \\\\\\\"mcnemar_obd_vs_baselines\\\\\\\"\\\\nout.mkdir(parents=True, exist_ok=True)\\\\nwith open(out / \\\\\\\"mcnemar_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n    json.dump(results, f, indent=2)\\\\n\\\\nP(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\"*60 + \\\\\\\"\\\\\\\\nSUMMARY\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\"*60)\\\\nall_p = [(cfg,bl,r[bl][\\\\\\\"p\\\\\\\"]) for cfg,r in results.items() for bl in [\\\\\\\"LogReg\\\\\\\",\\\\\\\"LinearSVC\\\\\\\",\\\\\\\"RF\\\\\\\"] if bl in r]\\\\nif all_p:\\\\n    mx = max(all_p, key=lambda x: x[2])\\\\n    P(f\\\\\\\"Comparisons: {len(all_p)}\\\\\\\")\\\\n    P(f\\\\\\\"Max p: {mx[2]:.2e} ({mx[0]} vs {mx[1]})\\\\\\\")\\\\n    P(f\\\\\\\"All<0.01: {all(x[2]<0.01 for x in all_p)}\\\\\\\")\\\\n    P(f\\\\\\\"All<0.05: {all(x[2]<0.05 for x in all_p)}\\\\\\\")\\\\n    bad = [x for x in all_p if x[2]>=0.01]\\\\n    if bad:\\\\n        P(f\\\\\\\"p>=0.01 ({len(bad)}):\\\\\\\")\\\\n        for x in sorted(bad, key=lambda x:-x[2]):\\\\n            P(f\\\\\\\"  {x[0]} vs {x[1]}: p={x[2]:.4e}\\\\\\\")\\\\nP(f\\\\\\\"\\\\\\\\nSaved: {out/'mcnemar_results.json'}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"McNemar test: OBD-LightGBM vs baseline classifiers on 1v2 binary task.\\\"\\\"\\\"\\nimport csv, json, os, sys\\nfrom pathlib import Path\\nimport numpy as np\\nfrom sklearn.model_selection import GroupKFold\\nfrom sklearn.metrics import accuracy_score\\nfrom sklearn.linear_model import LogisticRegression\\nfrom sklearn.svm import LinearSVC\\nfrom sklearn.ensemble import RandomForestClassifier\\nfrom sklearn.preprocessing import StandardScaler\\nfrom sklearn.impute import SimpleImputer\\nfrom sklearn.pipeline import Pipeline\\nimport lightgbm as lgb\\nfrom scipy.stats import chi2\\nimport warnings\\nwarnings.filterwarnings(\\\"ignore\\\")\\nos.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = \\\"\\\"\\n\\nBASE = Path(\\\"/root/autodl-tmp/gen-depth-contamination\\\")\\n\\nCONFIGS = {\\n    \\\"Qwen-1.5B-base / C4\\\":  BASE / \\\"data_exp016_qwen_base\\\" / \\\"features.csv\\\",\\n    \\\"Pythia-1.4B / C4\\\":      BASE / \\\"data_exp020_pythia_nuc09\\\" / \\\"features.csv\\\",\\n    \\\"LLaMA-8B / C4\\\":         BASE / \\\"data\\\" / \\\"exp_018_llama8b\\\" / \\\"features.csv\\\",\\n    \\\"Qwen-1.5B / Wiki\\\":      BASE / \\\"data\\\" / \\\"exp_023_wiki\\\" / \\\"features.csv\\\",\\n    \\\"Qwen-1.5B / arXiv\\\":     BASE / \\\"data\\\" / \\\"exp_024_arxiv\\\" / \\\"features.csv\\\",\\n    \\\"Pythia / Wiki\\\":          BASE / \\\"data\\\" / \\\"exp_wiki_pythia\\\" / \\\"features.csv\\\",\\n    \\\"OLMo / Wiki\\\":            BASE / \\\"data\\\" / \\\"exp_wiki_olmo\\\" / \\\"features.csv\\\",\\n    \\\"Qwen-7B / arXiv\\\":       BASE / \\\"data\\\" / \\\"exp_arXiv_qwen7b\\\" / \\\"features.csv\\\",\\n    \\\"Mistral-7B / arXiv\\\":    BASE / \\\"data\\\" / \\\"exp_arXiv_mistral7b\\\" / \\\"features.csv\\\",\\n    \\\"Pythia / arXiv\\\":         BASE / \\\"data\\\" / \\\"exp_025_pythia_arxiv\\\" / \\\"features.csv\\\",\\n    \\\"OLMo / arXiv\\\":           BASE / \\\"data\\\" / \\\"exp_arXiv_olmo\\\" / \\\"features.csv\\\",\\n    \\\"LLaMA-8B / Wiki\\\":       BASE / \\\"data\\\" / \\\"exp_wiki_llama8b\\\" / \\\"features.csv\\\",\\n}\\n\\nFEAT_COLS = [\\n    \\\"surp_mean\\\",\\\"surp_std\\\",\\\"surp_skew\\\",\\\"surp_kurt\\\",\\n    \\\"surp_d1_mean\\\",\\\"surp_d1_std\\\",\\\"surp_d1_skew\\\",\\n    \\\"surp_d2_mean\\\",\\\"surp_d2_std\\\",\\n    \\\"ttr\\\",\\\"hapax_ratio\\\",\\\"self_bleu\\\",\\n    \\\"freq_kurtosis\\\",\\\"freq_entropy\\\",\\\"low_freq_ratio\\\",\\n]\\n\\ndef P(msg):\\n    print(msg, flush=True)\\n\\ndef load_1v2(csv_path):\\n    rows = []\\n    with open(csv_path) as f:\\n        for row in csv.DictReader(f):\\n            if int(row[\\\"depth\\\"]) in (1, 2):\\n                rows.append(row)\\n    if not rows:\\n        return None, None, None\\n    doc_ids = np.array([int(r[\\\"doc_id\\\"]) for r in rows])\\n    y = (np.array([int(r[\\\"depth\\\"]) for r in rows]) == 2).astype(int)\\n    X = np.zeros((len(rows), len(FEAT_COLS)))\\n    for j, c in enumerate(FEAT_COLS):\\n        for i, r in enumerate(rows):\\n            try: X[i,j] = float(r[c])\\n            except: X[i,j] = np.nan\\n    return X, y, doc_ids\\n\\ndef mcnemar_test(y_true, pred_a, pred_b):\\n    ca, cb = (pred_a == y_true), (pred_b == y_true)\\n    b, c = int(np.sum(ca & ~cb)), int(np.sum(~ca & cb))\\n    if b + c == 0: return 1.0, b, c\\n    stat = (abs(b - c) - 1)**2 / (b + c)\\n    return float(1 - chi2.cdf(stat, df=1)), b, c\\n\\ndef oof(X, y, groups, factory, pipe=False):\\n    preds = np.zeros_like(y)\\n    for tri, tei in GroupKFold(5).split(X, y, groups=groups):\\n        if pipe:\\n            p = Pipeline([(\\\"imp\\\", SimpleImputer(strategy=\\\"median\\\")),\\n                          (\\\"sc\\\", StandardScaler()), (\\\"clf\\\", factory())])\\n            p.fit(X[tri], y[tri]); preds[tei] = p.predict(X[tei])\\n        else:\\n            clf = factory(); clf.fit(X[tri], y[tri]); preds[tei] = clf.predict(X[tei])\\n    return preds\\n\\nresults = {}\\nfor name, path in CONFIGS.items():\\n    if not path.exists():\\n        P(f\\\"SKIP {name}\\\"); continue\\n    P(f\\\"\\\\n=== {name} ===\\\")\\n    X, y, g = load_1v2(path)\\n    if X is None: P(\\\"  no data\\\"); continue\\n    P(f\\\"  n={len(y)} d1={int((y==0).sum())} d2={int((y==1).sum())} nan={int(np.isnan(X).sum())}\\\")\\n\\n    p_obd = oof(X, y, g, lambda: lgb.LGBMClassifier(n_estimators=200, max_depth=6,\\n        learning_rate=0.05, num_leaves=31, verbose=-1, n_jobs=-1))\\n    a_obd = accuracy_score(y, p_obd)\\n    P(f\\\"  OBD acc={a_obd:.4f}\\\")\\n\\n    res = {\\\"n\\\": int(len(y)), \\\"acc_obd\\\": round(float(a_obd), 4)}\\n    for bl, fac in [(\\\"LogReg\\\", lambda: LogisticRegression(max_iter=2000, C=1.0)),\\n                    (\\\"LinearSVC\\\", lambda: LinearSVC(max_iter=10000, C=1.0)),\\n                    (\\\"RF\\\", lambda: RandomForestClassifier(n_estimators=100, max_depth=8, n_jobs=-1, random_state=42))]:\\n        p_bl = oof(X, y, g, fac, pipe=True)\\n        a_bl = accuracy_score(y, p_bl)\\n        pv, b, c = mcnemar_test(y, p_obd, p_bl)\\n        sig = \\\"***\\\" if pv<.001 else (\\\"**\\\" if pv<.01 else (\\\"*\\\" if pv<.05 else \\\"ns\\\"))\\n        P(f\\\"  vs {bl}: acc={a_bl:.4f} p={pv:.2e} [{sig}] b={b} c={c}\\\")\\n        res[bl] = {\\\"acc\\\": round(float(a_bl),4), \\\"p\\\": round(pv,6), \\\"b\\\": b, \\\"c\\\": c}\\n    results[name] = res\\n\\nout = BASE / \\\"results\\\" / \\\"mcnemar_obd_vs_baselines\\\"\\nout.mkdir(parents=True, exist_ok=True)\\nwith open(out / \\\"mcnemar_results.json\\\", \\\"w\\\") as f:\\n    json.dump(results, f, indent=2)\\n\\nP(\\\"\\\\n\\\" + \\\"=\\\"*60 + \\\"\\\\nSUMMARY\\\\n\\\" + \\\"=\\\"*60)\\nall_p = [(cfg,bl,r[bl][\\\"p\\\"]) for cfg,r in results.items() for bl in [\\\"LogReg\\\",\\\"LinearSVC\\\",\\\"RF\\\"] if bl in r]\\nif all_p:\\n    mx = max(all_p, key=lambda x: x[2])\\n    P(f\\\"Comparisons: {len(all_p)}\\\")\\n    P(f\\\"Max p: {mx[2]:.2e} ({mx[0]} vs {mx[1]})\\\")\\n    P(f\\\"All<0.01: {all(x[2]<0.01 for x in all_p)}\\\")\\n    P(f\\\"All<0.05: {all(x[2]<0.05 for x in all_p)}\\\")\\n    bad = [x for x in all_p if x[2]>=0.01]\\n    if bad:\\n        P(f\\\"p>=0.01 ({len(bad)}):\\\")\\n        for x in sorted(bad, key=lambda x:-x[2]):\\n            P(f\\\"  {x[0]} vs {x[1]}: p={x[2]:.4e}\\\")\\nP(f\\\"\\\\nSaved: {out/'mcnemar_results.json'}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CFgS8Tvzws4rVwQ9EcvHkP`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/scripts/lofo_theta_validation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "cdb1d8c7-0be9-4402-925b-e623cf5d46b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AeGoMt5RjPCRDcWcwkjqcb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2089,
+      "cache_read_input_tokens": 49039,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2089
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-21T15:41:52.829Z_
+
+<details><summary>↩ Tool result · `toolu_01CFgS8Tvzws4rVwQ9EcvHkP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLOFO (Leave-One-Family-Out) θ Validation\\n\\nFor each model family, leave it out and compute:\\n1. The θ range where all remaining families agree on K*=2\\n2. The midpoint θ̂ of that range\\n3. Whether θ=0.60 falls within the consensus range\\n\\nThis validates that the choice of θ is not driven by any single family.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport numpy as np\\nfrom pathlib import Path\\nfrom collections import OrderedDict\\n\\nPAIR_KEYS = [\\\"0v1\\\", \\\"1v2\\\", \\\"2v3\\\", \\\"3v4\\\", \\\"4v5\\\"]\\n\\nMODELS = OrderedDict([\\n    (\\\"Qwen-rw\\\", {\\n        \\\"mean\\\":     [0.9956, 0.6955, 0.5893, 0.5435, 0.5340],\\n        \\\"ci_lower\\\": [0.9946, 0.6859, 0.5795, 0.5333, 0.5238],\\n        \\\"ci_upper\\\": [0.9976, 0.7041, 0.5991, 0.5551, 0.5448],\\n    }),\\n    (\\\"Pythia\\\", {\\n        \\\"mean\\\":     [0.9932, 0.6539, 0.5514, 0.5152, 0.5136],\\n        \\\"ci_lower\\\": [0.9921, 0.6454, 0.5417, 0.5041, 0.5021],\\n        \\\"ci_upper\\\": [0.9943, 0.6630, 0.5628, 0.5260, 0.5249],\\n    }),\\n    (\\\"OLMo\\\", {\\n        \\\"mean\\\":     [0.9970, 0.6145, 0.5496, 0.5091, 0.5045],\\n        \\\"ci_lower\\\": [0.9964, 0.6045, 0.5399, 0.4973, 0.4932],\\n        \\\"ci_upper\\\": [0.9975, 0.6247, 0.5596, 0.5200, 0.5150],\\n    }),\\n    (\\\"Qwen-cont\\\", {\\n        \\\"mean\\\":     [0.9971, 0.6112, 0.5609, 0.5409, 0.5141],\\n        \\\"ci_lower\\\": [0.9963, 0.6015, 0.5511, 0.5308, 0.5035],\\n        \\\"ci_upper\\\": [0.9978, 0.6213, 0.5712, 0.5508, 0.5255],\\n    }),\\n    (\\\"Qwen-7B\\\", {\\n        \\\"mean\\\":     [0.9638, 0.6168, 0.5492, 0.5276, 0.5085],\\n        \\\"ci_lower\\\": [0.9610, 0.6080, 0.5390, 0.5180, 0.4990],\\n        \\\"ci_upper\\\": [0.9670, 0.6260, 0.5590, 0.5370, 0.5180],\\n    }),\\n    (\\\"Gemma-2B\\\", {\\n        \\\"mean\\\":     [0.9530, 0.5981, 0.5340, 0.5033, 0.5025],\\n        \\\"ci_lower\\\": [0.9494, 0.5882, 0.5234, 0.4924, 0.4915],\\n        \\\"ci_upper\\\": [0.9565, 0.6076, 0.5446, 0.5142, 0.5136],\\n    }),\\n])\\n\\n\\ndef compute_kstar(ci_lowers, theta):\\n    k = 0\\n    for v in ci_lowers:\\n        if v >= theta:\\n            k += 1\\n        else:\\n            break\\n    return k\\n\\n\\ndef consensus_kstar2_range(model_subset):\\n    \\\"\\\"\\\"Find �� range where all models in subset have K*=2.\\n    \\n    K*=2 requires: 0v1 ci_lower >= θ AND 1v2 ci_lower >= θ AND 2v3 ci_lower < θ.\\n    Consensus: θ_low = max(2v3 ci_lower across models)  [so 2v3 fails for all]\\n               θ_high = min(1v2 ci_lower across models)  [so 1v2 passes for all]\\n    Valid range: (θ_low, θ_high]\\n    \\\"\\\"\\\"\\n    ci_1v2 = [d[\\\"ci_lower\\\"][1] for d in model_subset.values()]\\n    ci_2v3 = [d[\\\"ci_lower\\\"][2] for d in model_subset.values()]\\n    \\n    theta_high = min(ci_1v2)  # all must pass 1v2\\n    theta_low = max(ci_2v3)   # all must fail 2v3\\n    \\n    binding_high = [name for name, d in model_subset.items() if d[\\\"ci_lower\\\"][1] == theta_high]\\n    binding_low = [name for name, d in model_subset.items() if d[\\\"ci_lower\\\"][2] == theta_low]\\n    \\n    return {\\n        \\\"theta_low\\\": round(theta_low, 4),\\n        \\\"theta_high\\\": round(theta_high, 4),\\n        \\\"width\\\": round(theta_high - theta_low, 4),\\n        \\\"midpoint\\\": round((theta_low + theta_high) / 2, 4),\\n        \\\"valid\\\": theta_high > theta_low,\\n        \\\"contains_060\\\": theta_low < 0.60 <= theta_high,\\n        \\\"binding_high\\\": binding_high,\\n        \\\"binding_low\\\": binding_low,\\n    }\\n\\n\\ndef main():\\n    out_dir = Path(\\\"/root/autodl-tmp/gen-depth-contamination/results/lofo_theta_validation\\\")\\n    out_dir.mkdir(parents=True, exist_ok=True)\\n    \\n    all_names = list(MODELS.keys())\\n    \\n    # --- Per-family K* at θ=0.60 ---\\n    print(\\\"=\\\" * 70)\\n    print(\\\"Per-family K* at θ=0.60\\\")\\n    print(\\\"=\\\" * 70)\\n    print(f\\\"{'Family':15s} {'K*':>4s} {'1v2 ci_lower':>14s} {'2v3 ci_lower':>14s} {'margin(1v2-θ)':>14s}\\\")\\n    print(\\\"-\\\" * 70)\\n    for name, data in MODELS.items():\\n        ks = compute_kstar(data[\\\"ci_lower\\\"], 0.60)\\n        margin = data[\\\"ci_lower\\\"][1] - 0.60\\n        print(f\\\"{name:15s} {ks:4d} {data['ci_lower'][1]:14.4f} {data['ci_lower'][2]:14.4f} {margin:+14.4f}\\\")\\n    \\n    # --- Full set consensus ---\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(\\\"Full-set K*=2 consensus range (all 6 families)\\\")\\n    print(\\\"=\\\" * 70)\\n    full_range = consensus\\n\\n... [截断: 输出过长，省略 2663 字符] ...\\n\\n(theta_highs):.4f}]\\\")\\n    print(f\\\"  θ_low range: [{min(theta_lows):.4f}, {max(theta_lows):.4f}]\\\")\\n    print(f\\\"  Width range: [{min(widths):.4f}, {max(widths):.4f}]\\\")\\n    print(f\\\"  Subsets containing θ=0.60: {contains_count}/{len(all_names)}\\\")\\n    \\n    # --- Extended: consensus range for K*=1 (relevant when Gemma included) ---\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(\\\"Extended: K*>=1 consensus range (all families agree K*>=1)\\\")\\n    print(\\\"=\\\" * 70)\\n    \\n    ci_0v1_all = [d[\\\"ci_lower\\\"][0] for d in MODELS.values()]\\n    ci_1v2_all = [d[\\\"ci_lower\\\"][1] for d in MODELS.values()]\\n    print(f\\\"  All 0v1 ci_lower >= 0.94 → K*>=1 unanimous for any θ < 0.949\\\")\\n    print(f\\\"  Gemma 1v2 ci_lower = 0.5882: θ=0.60 gives K*=1 for Gemma\\\")\\n    print(f\\\"  Adjusted framing: θ=0.59 gives K*=2 for ALL 6 families\\\")\\n    \\n    # Check θ=0.59\\n    print(f\\\"\\\\n  K* at θ=0.59:\\\")\\n    for name, data in MODELS.items():\\n        ks = compute_kstar(data[\\\"ci_lower\\\"], 0.59)\\n        print(f\\\"    {name:15s}: K*={ks}\\\")\\n    \\n    # Check θ=0.585\\n    print(f\\\"\\\\n  K* at θ=0.585:\\\")\\n    for name, data in MODELS.items():\\n        ks = compute_kstar(data[\\\"ci_lower\\\"], 0.585)\\n        print(f\\\"    {name:15s}: K*={ks}\\\")\\n    \\n    # --- Save results ---\\n    output = {\\n        \\\"description\\\": \\\"LOFO (Leave-One-Family-Out) theta validation for K* stability\\\",\\n        \\\"n_families\\\": len(all_names),\\n        \\\"families\\\": all_names,\\n        \\\"theta_default\\\": 0.60,\\n        \\\"full_set_range\\\": full_range,\\n        \\\"original_5_range\\\": orig5_range,\\n        \\\"lofo_results\\\": lofo_results,\\n        \\\"summary\\\": {\\n            \\\"valid_subsets\\\": len(midpoints),\\n            \\\"midpoint_range\\\": [round(min(midpoints), 4), round(max(midpoints), 4)],\\n            \\\"midpoint_mean\\\": round(float(np.mean(midpoints)), 4),\\n            \\\"midpoint_std\\\": round(float(np.std(midpoints)), 4),\\n            \\\"theta_high_range\\\": [round(min(theta_highs), 4), round(max(theta_highs), 4)],\\n            \\\"width_range\\\": [round(min(widths), 4), round(max(widths), 4)],\\n            \\\"subsets_containing_060\\\": contains_count,\\n        },\\n        \\\"per_family_kstar_060\\\": {\\n            name: compute_kstar(data[\\\"ci_lower\\\"], 0.60)\\n            for name, data in MODELS.items()\\n        },\\n    }\\n    \\n    with open(out_dir / \\\"lofo_theta_results.json\\\", \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {out_dir / 'lofo_theta_results.json'}\\\")\\n    \\n    # --- Generate LaTeX table ---\\n    lines = []\\n    lines.append(r\\\"\\\\begin{table}[t]\\\")\\n    lines.append(r\\\"\\\\centering\\\")\\n    lines.append(r\\\"\\\\caption{LOFO $\\\\theta$ validation: leaving one model family out at a time and computing the $\\\\theta$ range where all remaining families yield $\\\\Kempirical = 2$. $\\\\hat\\\\theta$ is the midpoint of the consensus range. All six LOFO subsets produce valid ranges containing $\\\\theta = 0.59$; five of six contain $\\\\theta = 0.60$.}\\\")\\n    lines.append(r\\\"\\\\label{tab:lofo_theta}\\\")\\n    lines.append(r\\\"\\\\small\\\")\\n    lines.append(r\\\"\\\\begin{tabular}{lccccc}\\\")\\n    lines.append(r\\\"\\\\toprule\\\")\\n    lines.append(r\\\"Left-out family & $\\\\theta_{\\\\text{low}}$ & $\\\\theta_{\\\\text{high}}$ & Width & $\\\\hat\\\\theta$ & $\\\\theta{=}0.60$? \\\\\\\\\\\")\\n    lines.append(r\\\"\\\\midrule\\\")\\n    \\n    for name in all_names:\\n        r = lofo_results[name]\\n        contains = r\\\"\\\\cmark\\\" if r[\\\"contains_060\\\"] else r\\\"\\\\xmark\\\"\\n        row = f\\\"{name} & {r['theta_low']:.4f} & {r['theta_high']:.4f} & {r['width']:.4f} & {r['midpoint']:.4f} & {contains} \\\\\\\\\\\\\\\\\\\"\\n        lines.append(row)\\n    \\n    lines.append(r\\\"\\\\midrule\\\")\\n    lines.append(f\\\"All 6 families & {full_range['theta_low']:.4f} & {full_range['theta_high']:.4f} & {full_range['width']:.4f} & {full_range['midpoint']:.4f} & {'Yes' if full_range['contains_060'] else 'No'} \\\\\\\\\\\\\\\\\\\")\\n    lines.append(r\\\"\\\\bottomrule\\\")\\n    lines.append(r\\\"\\\\end{tabular}\\\")\\n    lines.append(r\\\"\\\\end{table}\\\")\\n    \\n    latex = \\\"\\\\n\\\".join(lines)\\n    with open(out_dir / \\\"lofo_theta_table.tex\\\", \\\"w\\\") as f:\\n        f.write(latex)\\n    print(f\\\"LaTeX table saved to {out_dir / 'lofo_theta_table.tex'}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "b9c3cd87-46d4-4564-baa4-2007818924cc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLOFO (Leave-One-Family-Out) θ Validation\\\\n\\\\nFor each model family, leave it out and compute:\\\\n1. The θ range where all remaining families agree on K*=2\\\\n2. The midpoint θ̂ of that range\\\\n3. Whether θ=0.60 falls within the consensus range\\\\n\\\\nThis validates that the choice of θ is not driven by any single family.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport numpy as np\\\\nfrom pathlib import Path\\\\nfrom collections import OrderedDict\\\\n\\\\nPAIR_KEYS = [\\\\\\\"0v1\\\\\\\", \\\\\\\"1v2\\\\\\\", \\\\\\\"2v3\\\\\\\", \\\\\\\"3v4\\\\\\\", \\\\\\\"4v5\\\\\\\"]\\\\n\\\\nMODELS = OrderedDict([\\\\n    (\\\\\\\"Qwen-rw\\\\\\\", {\\\\n        \\\\\\\"mean\\\\\\\":     [0.9956, 0.6955, 0.5893, 0.5435, 0.5340],\\\\n        \\\\\\\"ci_lower\\\\\\\": [0.9946, 0.6859, 0.5795, 0.5333, 0.5238],\\\\n        \\\\\\\"ci_upper\\\\\\\": [0.9976, 0.7041, 0.5991, 0.5551, 0.5448],\\\\n    }),\\\\n    (\\\\\\\"Pythia\\\\\\\", {\\\\n        \\\\\\\"mean\\\\\\\":     [0.9932, 0.6539, 0.5514, 0.5152, 0.5136],\\\\n        \\\\\\\"ci_lower\\\\\\\": [0.9921, 0.6454, 0.5417, 0.5041, 0.5021],\\\\n        \\\\\\\"ci_upper\\\\\\\": [0.9943, 0.6630, 0.5628, 0.5260, 0.5249],\\\\n    }),\\\\n    (\\\\\\\"OLMo\\\\\\\", {\\\\n        \\\\\\\"mean\\\\\\\":     [0.9970, 0.6145, 0.5496, 0.5091, 0.5045],\\\\n        \\\\\\\"ci_lower\\\\\\\": [0.9964, 0.6045, 0.5399, 0.4973, 0.4932],\\\\n        \\\\\\\"ci_upper\\\\\\\": [0.9975, 0.6247, 0.5596, 0.5200, 0.5150],\\\\n    }),\\\\n    (\\\\\\\"Qwen-cont\\\\\\\", {\\\\n        \\\\\\\"mean\\\\\\\":     [0.9971, 0.6112, 0.5609, 0.5409, 0.5141],\\\\n        \\\\\\\"ci_lower\\\\\\\": [0.9963, 0.6015, 0.5511, 0.5308, 0.5035],\\\\n        \\\\\\\"ci_upper\\\\\\\": [0.9978, 0.6213, 0.5712, 0.5508, 0.5255],\\\\n    }),\\\\n    (\\\\\\\"Qwen-7B\\\\\\\", {\\\\n        \\\\\\\"mean\\\\\\\":     [0.9638, 0.6168, 0.5492, 0.5276, 0.5085],\\\\n        \\\\\\\"ci_lower\\\\\\\": [0.9610, 0.6080, 0.5390, 0.5180, 0.4990],\\\\n        \\\\\\\"ci_upper\\\\\\\": [0.9670, 0.6260, 0.5590, 0.5370, 0.5180],\\\\n    }),\\\\n    (\\\\\\\"Gemma-2B\\\\\\\", {\\\\n        \\\\\\\"mean\\\\\\\":     [0.9530, 0.5981, 0.5340, 0.5033, 0.5025],\\\\n        \\\\\\\"ci_lower\\\\\\\": [0.9494, 0.5882, 0.5234, 0.4924, 0.4915],\\\\n        \\\\\\\"ci_upper\\\\\\\": [0.9565, 0.6076, 0.5446, 0.5142, 0.5136],\\\\n    }),\\\\n])\\\\n\\\\n\\\\ndef compute_kstar(ci_lowers, theta):\\\\n    k = 0\\\\n    for v in ci_lowers:\\\\n        if v >= theta:\\\\n            k += 1\\\\n        else:\\\\n            break\\\\n    return k\\\\n\\\\n\\\\ndef consensus_kstar2_range(model_subset):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Find �� range where all models in subset have K*=2.\\\\n    \\\\n    K*=2 requires: 0v1 ci_lower >= θ AND 1v2 ci_lower >= θ AND 2v3 ci_lower < θ.\\\\n    Consensus: θ_low = max(2v3 ci_lower across models)  [so 2v3 fails for all]\\\\n               θ_high = min(1v2 ci_lower across models)  [so 1v2 passes for all]\\\\n    Valid range: (θ_low, θ_high]\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    ci_1v2 = [d[\\\\\\\"ci_lower\\\\\\\"][1] for d in model_subset.values()]\\\\n    ci_2v3 = [d[\\\\\\\"ci_lower\\\\\\\"][2] for d in model_subset.values()]\\\\n    \\\\n    theta_high = min(ci_1v2)  # all must pass 1v2\\\\n    theta_low = max(ci_2v3)   # all must fail 2v3\\\\n    \\\\n    binding_high = [name for name, d in model_subset.items() if d[\\\\\\\"ci_lower\\\\\\\"][1] == theta_high]\\\\n    binding_low = [name for name, d in model_subset.items() if d[\\\\\\\"ci_lower\\\\\\\"][2] == theta_low]\\\\n    \\\\n    return {\\\\n        \\\\\\\"theta_low\\\\\\\": round(theta_low, 4),\\\\n        \\\\\\\"theta_high\\\\\\\": round(theta_high, 4),\\\\n        \\\\\\\"width\\\\\\\": round(theta_high - theta_low, 4),\\\\n        \\\\\\\"midpoint\\\\\\\": round((theta_low + theta_high) / 2, 4),\\\\n        \\\\\\\"valid\\\\\\\": theta_high > theta_low,\\\\n        \\\\\\\"contains_060\\\\\\\": theta_low < 0.60 <= theta_high,\\\\n        \\\\\\\"binding_high\\\\\\\": binding_high,\\\\n        \\\\\\\"binding_low\\\\\\\": binding_low,\\\\n    }\\\\n\\\\n\\\\ndef main():\\\\n    out_dir = Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/results/lofo_theta_validation\\\\\\\")\\\\n    out_dir.mkdir(parents=True, exist_ok=True)\\\\n    \\\\n    all_names = list(MODELS.keys())\\\\n    \\\\n    # --- Per-family K* at θ=0.60 ---\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"Per-family K* at θ=0.60\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    print(f\\\\\\\"{'Family':15s} {'K*':>4s} {'1v2 ci_lower':>14s} {'2v3 ci_lower':>14s} {'margin(1v2-θ)':>14s}\\\\\\\")\\\\n    print(\\\\\\\"-\\\\\\\" * 70)\\\\n    for name, data in MODELS.items():\\\\n        ks = compute_kstar(data[\\\\\\\"ci_lower\\\\\\\"], 0.60)\\\\n        margin = data[\\\\\\\"ci_lower\\\\\\\"][1] - 0.60\\\\n        print(f\\\\\\\"{name:15s} {ks:4d} {data['ci_lower'][1]:14.4f} {data['ci_lower'][2]:14.4f} {margin:+14.4f}\\\\\\\")\\\\n    \\\\n    # --- Full set consensus ---\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"Full-set K*=2 consensus range (all 6 families)\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    full_range = consensus\\\\n\\\\n... [截断: 输出过长，省略 2663 字符] ...\\\\n\\\\n(theta_highs):.4f}]\\\\\\\")\\\\n    print(f\\\\\\\"  θ_low range: [{min(theta_lows):.4f}, {max(theta_lows):.4f}]\\\\\\\")\\\\n    print(f\\\\\\\"  Width range: [{min(widths):.4f}, {max(widths):.4f}]\\\\\\\")\\\\n    print(f\\\\\\\"  Subsets containing θ=0.60: {contains_count}/{len(all_names)}\\\\\\\")\\\\n    \\\\n    # --- Extended: consensus range for K*=1 (relevant when Gemma included) ---\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 70)\\\\n    print(\\\\\\\"Extended: K*>=1 consensus range (all families agree K*>=1)\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 70)\\\\n    \\\\n    ci_0v1_all = [d[\\\\\\\"ci_lower\\\\\\\"][0] for d in MODELS.values()]\\\\n    ci_1v2_all = [d[\\\\\\\"ci_lower\\\\\\\"][1] for d in MODELS.values()]\\\\n    print(f\\\\\\\"  All 0v1 ci_lower >= 0.94 → K*>=1 unanimous for any θ < 0.949\\\\\\\")\\\\n    print(f\\\\\\\"  Gemma 1v2 ci_lower = 0.5882: θ=0.60 gives K*=1 for Gemma\\\\\\\")\\\\n    print(f\\\\\\\"  Adjusted framing: θ=0.59 gives K*=2 for ALL 6 families\\\\\\\")\\\\n    \\\\n    # Check θ=0.59\\\\n    print(f\\\\\\\"\\\\\\\\n  K* at θ=0.59:\\\\\\\")\\\\n    for name, data in MODELS.items():\\\\n        ks = compute_kstar(data[\\\\\\\"ci_lower\\\\\\\"], 0.59)\\\\n        print(f\\\\\\\"    {name:15s}: K*={ks}\\\\\\\")\\\\n    \\\\n    # Check θ=0.585\\\\n    print(f\\\\\\\"\\\\\\\\n  K* at θ=0.585:\\\\\\\")\\\\n    for name, data in MODELS.items():\\\\n        ks = compute_kstar(data[\\\\\\\"ci_lower\\\\\\\"], 0.585)\\\\n        print(f\\\\\\\"    {name:15s}: K*={ks}\\\\\\\")\\\\n    \\\\n    # --- Save results ---\\\\n    output = {\\\\n        \\\\\\\"description\\\\\\\": \\\\\\\"LOFO (Leave-One-Family-Out) theta validation for K* stability\\\\\\\",\\\\n        \\\\\\\"n_families\\\\\\\": len(all_names),\\\\n        \\\\\\\"families\\\\\\\": all_names,\\\\n        \\\\\\\"theta_default\\\\\\\": 0.60,\\\\n        \\\\\\\"full_set_range\\\\\\\": full_range,\\\\n        \\\\\\\"original_5_range\\\\\\\": orig5_range,\\\\n        \\\\\\\"lofo_results\\\\\\\": lofo_results,\\\\n        \\\\\\\"summary\\\\\\\": {\\\\n            \\\\\\\"valid_subsets\\\\\\\": len(midpoints),\\\\n            \\\\\\\"midpoint_range\\\\\\\": [round(min(midpoints), 4), round(max(midpoints), 4)],\\\\n            \\\\\\\"midpoint_mean\\\\\\\": round(float(np.mean(midpoints)), 4),\\\\n            \\\\\\\"midpoint_std\\\\\\\": round(float(np.std(midpoints)), 4),\\\\n            \\\\\\\"theta_high_range\\\\\\\": [round(min(theta_highs), 4), round(max(theta_highs), 4)],\\\\n            \\\\\\\"width_range\\\\\\\": [round(min(widths), 4), round(max(widths), 4)],\\\\n            \\\\\\\"subsets_containing_060\\\\\\\": contains_count,\\\\n        },\\\\n        \\\\\\\"per_family_kstar_060\\\\\\\": {\\\\n            name: compute_kstar(data[\\\\\\\"ci_lower\\\\\\\"], 0.60)\\\\n            for name, data in MODELS.items()\\\\n        },\\\\n    }\\\\n    \\\\n    with open(out_dir / \\\\\\\"lofo_theta_results.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nResults saved to {out_dir / 'lofo_theta_results.json'}\\\\\\\")\\\\n    \\\\n    # --- Generate LaTeX table ---\\\\n    lines = []\\\\n    lines.append(r\\\\\\\"\\\\\\\\begin{table}[t]\\\\\\\")\\\\n    lines.append(r\\\\\\\"\\\\\\\\centering\\\\\\\")\\\\n    lines.append(r\\\\\\\"\\\\\\\\caption{LOFO $\\\\\\\\theta$ validation: leaving one model family out at a time and computing the $\\\\\\\\theta$ range where all remaining families yield $\\\\\\\\Kempirical = 2$. $\\\\\\\\hat\\\\\\\\theta$ is the midpoint of the consensus range. All six LOFO subsets produce valid ranges containing $\\\\\\\\theta = 0.59$; five of six contain $\\\\\\\\theta = 0.60$.}\\\\\\\")\\\\n    lines.append(r\\\\\\\"\\\\\\\\label{tab:lofo_theta}\\\\\\\")\\\\n    lines.append(r\\\\\\\"\\\\\\\\small\\\\\\\")\\\\n    lines.append(r\\\\\\\"\\\\\\\\begin{tabular}{lccccc}\\\\\\\")\\\\n    lines.append(r\\\\\\\"\\\\\\\\toprule\\\\\\\")\\\\n    lines.append(r\\\\\\\"Left-out family & $\\\\\\\\theta_{\\\\\\\\text{low}}$ & $\\\\\\\\theta_{\\\\\\\\text{high}}$ & Width & $\\\\\\\\hat\\\\\\\\theta$ & $\\\\\\\\theta{=}0.60$? \\\\\\\\\\\\\\\\\\\\\\\")\\\\n    lines.append(r\\\\\\\"\\\\\\\\midrule\\\\\\\")\\\\n    \\\\n    for name in all_names:\\\\n        r = lofo_results[name]\\\\n        contains = r\\\\\\\"\\\\\\\\cmark\\\\\\\" if r[\\\\\\\"contains_060\\\\\\\"] else r\\\\\\\"\\\\\\\\xmark\\\\\\\"\\\\n        row = f\\\\\\\"{name} & {r['theta_low']:.4f} & {r['theta_high']:.4f} & {r['width']:.4f} & {r['midpoint']:.4f} & {contains} \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"\\\\n        lines.append(row)\\\\n    \\\\n    lines.append(r\\\\\\\"\\\\\\\\midrule\\\\\\\")\\\\n    lines.append(f\\\\\\\"All 6 families & {full_range['theta_low']:.4f} & {full_range['theta_high']:.4f} & {full_range['width']:.4f} & {full_range['midpoint']:.4f} & {'Yes' if full_range['contains_060'] else 'No'} \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")\\\\n    lines.append(r\\\\\\\"\\\\\\\\bottomrule\\\\\\\")\\\\n    lines.append(r\\\\\\\"\\\\\\\\end{tabular}\\\\\\\")\\\\n    lines.append(r\\\\\\\"\\\\\\\\end{table}\\\\\\\")\\\\n    \\\\n    latex = \\\\\\\"\\\\\\\\n\\\\\\\".join(lines)\\\\n    with open(out_dir / \\\\\\\"lofo_theta_table.tex\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        f.write(latex)\\\\n    print(f\\\\\\\"LaTeX table saved to {out_dir / 'lofo_theta_table.tex'}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"\\nLOFO (Leave-One-Family-Out) θ Validation\\n\\nFor each model family, leave it out and compute:\\n1. The θ range where all remaining families agree on K*=2\\n2. The midpoint θ̂ of that range\\n3. Whether θ=0.60 falls within the consensus range\\n\\nThis validates that the choice of θ is not driven by any single family.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport numpy as np\\nfrom pathlib import Path\\nfrom collections import OrderedDict\\n\\nPAIR_KEYS = [\\\"0v1\\\", \\\"1v2\\\", \\\"2v3\\\", \\\"3v4\\\", \\\"4v5\\\"]\\n\\nMODELS = OrderedDict([\\n    (\\\"Qwen-rw\\\", {\\n        \\\"mean\\\":     [0.9956, 0.6955, 0.5893, 0.5435, 0.5340],\\n        \\\"ci_lower\\\": [0.9946, 0.6859, 0.5795, 0.5333, 0.5238],\\n        \\\"ci_upper\\\": [0.9976, 0.7041, 0.5991, 0.5551, 0.5448],\\n    }),\\n    (\\\"Pythia\\\", {\\n        \\\"mean\\\":     [0.9932, 0.6539, 0.5514, 0.5152, 0.5136],\\n        \\\"ci_lower\\\": [0.9921, 0.6454, 0.5417, 0.5041, 0.5021],\\n        \\\"ci_upper\\\": [0.9943, 0.6630, 0.5628, 0.5260, 0.5249],\\n    }),\\n    (\\\"OLMo\\\", {\\n        \\\"mean\\\":     [0.9970, 0.6145, 0.5496, 0.5091, 0.5045],\\n        \\\"ci_lower\\\": [0.9964, 0.6045, 0.5399, 0.4973, 0.4932],\\n        \\\"ci_upper\\\": [0.9975, 0.6247, 0.5596, 0.5200, 0.5150],\\n    }),\\n    (\\\"Qwen-cont\\\", {\\n        \\\"mean\\\":     [0.9971, 0.6112, 0.5609, 0.5409, 0.5141],\\n        \\\"ci_lower\\\": [0.9963, 0.6015, 0.5511, 0.5308, 0.5035],\\n        \\\"ci_upper\\\": [0.9978, 0.6213, 0.5712, 0.5508, 0.5255],\\n    }),\\n    (\\\"Qwen-7B\\\", {\\n        \\\"mean\\\":     [0.9638, 0.6168, 0.5492, 0.5276, 0.5085],\\n        \\\"ci_lower\\\": [0.9610, 0.6080, 0.5390, 0.5180, 0.4990],\\n        \\\"ci_upper\\\": [0.9670, 0.6260, 0.5590, 0.5370, 0.5180],\\n    }),\\n    (\\\"Gemma-2B\\\", {\\n        \\\"mean\\\":     [0.9530, 0.5981, 0.5340, 0.5033, 0.5025],\\n        \\\"ci_lower\\\": [0.9494, 0.5882, 0.5234, 0.4924, 0.4915],\\n        \\\"ci_upper\\\": [0.9565, 0.6076, 0.5446, 0.5142, 0.5136],\\n    }),\\n])\\n\\n\\ndef compute_kstar(ci_lowers, theta):\\n    k = 0\\n    for v in ci_lowers:\\n        if v >= theta:\\n            k += 1\\n        else:\\n            break\\n    return k\\n\\n\\ndef consensus_kstar2_range(model_subset):\\n    \\\"\\\"\\\"Find �� range where all models in subset have K*=2.\\n    \\n    K*=2 requires: 0v1 ci_lower >= θ AND 1v2 ci_lower >= θ AND 2v3 ci_lower < θ.\\n    Consensus: θ_low = max(2v3 ci_lower across models)  [so 2v3 fails for all]\\n               θ_high = min(1v2 ci_lower across models)  [so 1v2 passes for all]\\n    Valid range: (θ_low, θ_high]\\n    \\\"\\\"\\\"\\n    ci_1v2 = [d[\\\"ci_lower\\\"][1] for d in model_subset.values()]\\n    ci_2v3 = [d[\\\"ci_lower\\\"][2] for d in model_subset.values()]\\n    \\n    theta_high = min(ci_1v2)  # all must pass 1v2\\n    theta_low = max(ci_2v3)   # all must fail 2v3\\n    \\n    binding_high = [name for name, d in model_subset.items() if d[\\\"ci_lower\\\"][1] == theta_high]\\n    binding_low = [name for name, d in model_subset.items() if d[\\\"ci_lower\\\"][2] == theta_low]\\n    \\n    return {\\n        \\\"theta_low\\\": round(theta_low, 4),\\n        \\\"theta_high\\\": round(theta_high, 4),\\n        \\\"width\\\": round(theta_high - theta_low, 4),\\n        \\\"midpoint\\\": round((theta_low + theta_high) / 2, 4),\\n        \\\"valid\\\": theta_high > theta_low,\\n        \\\"contains_060\\\": theta_low < 0.60 <= theta_high,\\n        \\\"binding_high\\\": binding_high,\\n        \\\"binding_low\\\": binding_low,\\n    }\\n\\n\\ndef main():\\n    out_dir = Path(\\\"/root/autodl-tmp/gen-depth-contamination/results/lofo_theta_validation\\\")\\n    out_dir.mkdir(parents=True, exist_ok=True)\\n    \\n    all_names = list(MODELS.keys())\\n    \\n    # --- Per-family K* at θ=0.60 ---\\n    print(\\\"=\\\" * 70)\\n    print(\\\"Per-family K* at θ=0.60\\\")\\n    print(\\\"=\\\" * 70)\\n    print(f\\\"{'Family':15s} {'K*':>4s} {'1v2 ci_lower':>14s} {'2v3 ci_lower':>14s} {'margin(1v2-θ)':>14s}\\\")\\n    print(\\\"-\\\" * 70)\\n    for name, data in MODELS.items():\\n        ks = compute_kstar(data[\\\"ci_lower\\\"], 0.60)\\n        margin = data[\\\"ci_lower\\\"][1] - 0.60\\n        print(f\\\"{name:15s} {ks:4d} {data['ci_lower'][1]:14.4f} {data['ci_lower'][2]:14.4f} {margin:+14.4f}\\\")\\n    \\n    # --- Full set consensus ---\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(\\\"Full-set K*=2 consensus range (all 6 families)\\\")\\n    print(\\\"=\\\" * 70)\\n    full_range = consensus\\n\\n... [截断: 输出过长，省略 2663 字符] ...\\n\\n(theta_highs):.4f}]\\\")\\n    print(f\\\"  θ_low range: [{min(theta_lows):.4f}, {max(theta_lows):.4f}]\\\")\\n    print(f\\\"  Width range: [{min(widths):.4f}, {max(widths):.4f}]\\\")\\n    print(f\\\"  Subsets containing θ=0.60: {contains_count}/{len(all_names)}\\\")\\n    \\n    # --- Extended: consensus range for K*=1 (relevant when Gemma included) ---\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 70)\\n    print(\\\"Extended: K*>=1 consensus range (all families agree K*>=1)\\\")\\n    print(\\\"=\\\" * 70)\\n    \\n    ci_0v1_all = [d[\\\"ci_lower\\\"][0] for d in MODELS.values()]\\n    ci_1v2_all = [d[\\\"ci_lower\\\"][1] for d in MODELS.values()]\\n    print(f\\\"  All 0v1 ci_lower >= 0.94 → K*>=1 unanimous for any θ < 0.949\\\")\\n    print(f\\\"  Gemma 1v2 ci_lower = 0.5882: θ=0.60 gives K*=1 for Gemma\\\")\\n    print(f\\\"  Adjusted framing: θ=0.59 gives K*=2 for ALL 6 families\\\")\\n    \\n    # Check θ=0.59\\n    print(f\\\"\\\\n  K* at θ=0.59:\\\")\\n    for name, data in MODELS.items():\\n        ks = compute_kstar(data[\\\"ci_lower\\\"], 0.59)\\n        print(f\\\"    {name:15s}: K*={ks}\\\")\\n    \\n    # Check θ=0.585\\n    print(f\\\"\\\\n  K* at θ=0.585:\\\")\\n    for name, data in MODELS.items():\\n        ks = compute_kstar(data[\\\"ci_lower\\\"], 0.585)\\n        print(f\\\"    {name:15s}: K*={ks}\\\")\\n    \\n    # --- Save results ---\\n    output = {\\n        \\\"description\\\": \\\"LOFO (Leave-One-Family-Out) theta validation for K* stability\\\",\\n        \\\"n_families\\\": len(all_names),\\n        \\\"families\\\": all_names,\\n        \\\"theta_default\\\": 0.60,\\n        \\\"full_set_range\\\": full_range,\\n        \\\"original_5_range\\\": orig5_range,\\n        \\\"lofo_results\\\": lofo_results,\\n        \\\"summary\\\": {\\n            \\\"valid_subsets\\\": len(midpoints),\\n            \\\"midpoint_range\\\": [round(min(midpoints), 4), round(max(midpoints), 4)],\\n            \\\"midpoint_mean\\\": round(float(np.mean(midpoints)), 4),\\n            \\\"midpoint_std\\\": round(float(np.std(midpoints)), 4),\\n            \\\"theta_high_range\\\": [round(min(theta_highs), 4), round(max(theta_highs), 4)],\\n            \\\"width_range\\\": [round(min(widths), 4), round(max(widths), 4)],\\n            \\\"subsets_containing_060\\\": contains_count,\\n        },\\n        \\\"per_family_kstar_060\\\": {\\n            name: compute_kstar(data[\\\"ci_lower\\\"], 0.60)\\n            for name, data in MODELS.items()\\n        },\\n    }\\n    \\n    with open(out_dir / \\\"lofo_theta_results.json\\\", \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nResults saved to {out_dir / 'lofo_theta_results.json'}\\\")\\n    \\n    # --- Generate LaTeX table ---\\n    lines = []\\n    lines.append(r\\\"\\\\begin{table}[t]\\\")\\n    lines.append(r\\\"\\\\centering\\\")\\n    lines.append(r\\\"\\\\caption{LOFO $\\\\theta$ validation: leaving one model family out at a time and computing the $\\\\theta$ range where all remaining families yield $\\\\Kempirical = 2$. $\\\\hat\\\\theta$ is the midpoint of the consensus range. All six LOFO subsets produce valid ranges containing $\\\\theta = 0.59$; five of six contain $\\\\theta = 0.60$.}\\\")\\n    lines.append(r\\\"\\\\label{tab:lofo_theta}\\\")\\n    lines.append(r\\\"\\\\small\\\")\\n    lines.append(r\\\"\\\\begin{tabular}{lccccc}\\\")\\n    lines.append(r\\\"\\\\toprule\\\")\\n    lines.append(r\\\"Left-out family & $\\\\theta_{\\\\text{low}}$ & $\\\\theta_{\\\\text{high}}$ & Width & $\\\\hat\\\\theta$ & $\\\\theta{=}0.60$? \\\\\\\\\\\")\\n    lines.append(r\\\"\\\\midrule\\\")\\n    \\n    for name in all_names:\\n        r = lofo_results[name]\\n        contains = r\\\"\\\\cmark\\\" if r[\\\"contains_060\\\"] else r\\\"\\\\xmark\\\"\\n        row = f\\\"{name} & {r['theta_low']:.4f} & {r['theta_high']:.4f} & {r['width']:.4f} & {r['midpoint']:.4f} & {contains} \\\\\\\\\\\\\\\\\\\"\\n        lines.append(row)\\n    \\n    lines.append(r\\\"\\\\midrule\\\")\\n    lines.append(f\\\"All 6 families & {full_range['theta_low']:.4f} & {full_range['theta_high']:.4f} & {full_range['width']:.4f} & {full_range['midpoint']:.4f} & {'Yes' if full_range['contains_060'] else 'No'} \\\\\\\\\\\\\\\\\\\")\\n    lines.append(r\\\"\\\\bottomrule\\\")\\n    lines.append(r\\\"\\\\end{tabular}\\\")\\n    lines.append(r\\\"\\\\end{table}\\\")\\n    \\n    latex = \\\"\\\\n\\\".join(lines)\\n    with open(out_dir / \\\"lofo_theta_table.tex\\\", \\\"w\\\") as f:\\n        f.write(latex)\\n    print(f\\\"LaTeX table saved to {out_dir / 'lofo_theta_table.tex'}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a complete picture. Let me summarize what needs updating:
+
+### Scripts that need updates:
+
+1. **`plot_fig2_merged.py`** (Figure 2 - AUC decay):
+   - OLMo in TABLE1 with OLD values
+   - Update to rerun values:
+     - mean: [0.9860, 0.5079, 0.4973, 0.5024, 0.4942]
+     - ci_lower: [0.9845, 0.4908, 0.4829, 0.4924, 0.4860]
+     - ci_upper: [0.9875, 0.5251, 0.5117, 0.5123, 0.5024]
+
+2. **`draw_kstar_theta.py`** (Figure 3 - K* theta):
+   - OLMo in MODELS with OLD values
+   - Same update needed
+
+3. **`lofo_theta_validation.py`** (LOFO theta validation):
+   - OLMo in MODELS with OLD values
+   - Same update needed
+
+4. **`plot_fig_jsd_`** - continuing through the remaining scripts that need the same OLMo value replacements
+
+. The JSD decay figure has a labeling issue where it claims 7 models but actually contains 8 entries. The transfer heatmap script has OLMo as one of four models with hardcoded cross-transfer data, which means those experiments need to be re-run rather than just regenerating the figure. For the supplementary AUC CI script, it auto-discovers JSON files from the filesystem, so it should pick up rerun data if a bootstrap CI file exists, though currently there's only the pairwise_auc.json file available.
+
+Let me verify the file discovery patterns for the rerun data. The script looks for files matching `results_*/pairwise_auc.json` and `results/*/pairwise_auc.json`, and the rerun file at `results/exp_olmo1b_c4_rerun/pairwise_auc.json` should match the second pattern. I need to check if there's an older OLMo result that might conflict. The McNemar test script references OLMo with different datasets (Wiki and arXiv), not C4, so those are separate experiments.
+
+Now I'm focusing on the core updates needed: I'll modify the three plotting scripts to incorporate the new OLMo data, fix the label count issue in the JSD decay plot, regenerate all four figures, and then run the AUC decay script to verify it's picking up the correct data. The transfer heatmap will need a separate experiment run. Let me start updating these scripts on the server. I'm going to write a Python script to handle the replacements across all the plotting scripts, since that'll be cleaner than trying to manage multi-line sed commands for updating the OLMo data with the new means and confidence intervals. Now I need to apply the same OLMo updates to the other files and adjust the model count reference, then write a script to automate these changes and regenerate the figures.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "774ce8b2-58ef-4657-8891-6093e214642f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016t2ZH8NyQF5rndwtYWUhVm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11198,
+      "cache_read_input_tokens": 51128,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11198
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+CI computed. Now I have the full picture:
+
+- **Fig2 (AUC decay)**: OLMo hardcoded with old values, needs update
+- **Fig3 (K* theta)**: OLMo hardcoded with old values, needs update
+- **Fig4 (JSD decay)**: OLMo excluded correctly, but label says "7 models" with 8 entries in dict
+- **LOFO theta validation**: OLMo hardcoded with old values, needs update
+- **Transfer heatmap**: Hardcoded cross-transfer data, needs experiment re-run
+- **Supplementary AUC CI**: Auto-discovers from filesystem, should pick up rerun data
+
+Let me update all scripts and regenerate figures.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "16c2d6f9-842c-4fe2-94df-ad0c6fe45024",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016t2ZH8NyQF5rndwtYWUhVm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11198,
+      "cache_read_input_tokens": 51128,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11198
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01NJNYWVtdTi1G1tYHj2HVAf`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport re\n\n# --- 1. Update plot_fig2_merged.py ---\npath = \"/root/autodl-tmp/gen-depth-contamination/scripts/plot_fig2_merged.py\"\nwith open(path) as f:\n    content = f.read()\n\nold_olmo_fig2 = '''    \"OLMo\": {\n        \"mean\":     [0.9970, 0.6145, 0.5496, 0.5091, 0.5045],\n        \"ci_lower\": [0.9950, 0.605,  0.540,  0.499,  0.495],\n        \"ci_upper\": [0.9990, 0.625,  0.560,  0.519,  0.514],\n    },'''\n\nnew_olmo_fig2 = '''    \"OLMo\": {\n        \"mean\":     [0.9860, 0.5079, 0.4973, 0.5024, 0.4942],\n        \"ci_lower\": [0.9845, 0.4908, 0.4829, 0.4924, 0.4860],\n        \"ci_upper\": [0.9875, 0.5251, 0.5117, 0.5123, 0.5024],\n    },'''\n\nassert old_olmo_fig2 in content, \"Old OLMo block not found in plot_fig2_merged.py\"\ncontent = content.replace(old_olmo_fig2, new_olmo_fig2)\nwith open(path, 'w') as f:\n    f.write(content)\nprint(f\"Updated {path}\")\n\n# --- 2. Update draw_kstar_theta.py ---\npath = \"/root/autodl-tmp/gen-depth-contamination/scripts/draw_kstar_theta.py\"\nwith open(path) as f:\n    content = f.read()\n\nold_olmo_kstar = '''    \"OLMo\": {\n        \"mean\":     [0.9970, 0.6145, 0.5496, 0.5091, 0.5045],\n        \"ci_lower\": [0.9964, 0.6045, 0.5399, 0.4973, 0.4932],\n        \"ci_upper\": [0.9975, 0.6247, 0.5596, 0.5200, 0.5150],\n    },'''\n\nnew_olmo_kstar = '''    \"OLMo\": {\n        \"mean\":     [0.9860, 0.5079, 0.4973, 0.5024, 0.4942],\n        \"ci_lower\": [0.9845, 0.4908, 0.4829, 0.4924, 0.4860],\n        \"ci_upper\": [0.9875, 0.5251, 0.5117, 0.5123, 0.5024],\n    },'''\n\nassert old_olmo_kstar in content, \"Old OLMo block not found in draw_kstar_theta.py\"\ncontent = content.replace(old_olmo_kstar, new_olmo_kstar)\nwith open(path, 'w') as f:\n    f.write(content)\nprint(f\"Updated {path}\")\n\n# --- 3. Update lofo_theta_validation.py ---\npath = \"/root/autodl-tmp/gen-depth-contamination/scripts/lofo_theta_validation.py\"\nwith open(path) as f:\n    content = f.read()\n\nold_olmo_lofo = '''    (\"OLMo\", {\n        \"mean\":     [0.9970, 0.6145, 0.5496, 0.5091, 0.5045],\n        \"ci_lower\": [0.9964, 0.6045, 0.5399, 0.4973, 0.4932],\n        \"ci_upper\": [0.9975, 0.6247, 0.5596, 0.5200, 0.5150],\n    }),'''\n\nnew_olmo_lofo = '''    (\"OLMo\", {\n        \"mean\":     [0.9860, 0.5079, 0.4973, 0.5024, 0.4942],\n        \"ci_lower\": [0.9845, 0.4908, 0.4829, 0.4924, 0.4860],\n        \"ci_upper\": [0.9875, 0.5251, 0.5117, 0.5123, 0.5024],\n    }),'''\n\nassert old_olmo_lofo in content, \"Old OLMo block not found in lofo_theta_validation.py\"\ncontent = content.replace(old_olmo_lofo, new_olmo_lofo)\nwith open(path, 'w') as f:\n    f.write(content)\nprint(f\"Updated {path}\")\n\n# --- 4. Fix plot_fig_jsd_decay.py label ---\npath = \"/root/autodl-tmp/gen-depth-contamination/scripts/plot_fig_jsd_decay.py\"\nwith open(path) as f:\n    content = f.read()\n\nold_label = r'C4, $K^*\\!=\\!2$ (7 models, min-max)'\nnew_label = r'C4, $K^*\\!=\\!2$ (8 models, min-max)'\nassert old_label in content, \"Old label not found in plot_fig_jsd_decay.py\"\ncontent = content.replace(old_label, new_label)\nwith open(path, 'w') as f:\n    f.write(content)\nprint(f\"Updated {path}\")\n\nprint(\"\\nAll 4 scripts updated successfully.\")\nPYEOF\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "7a82f214-b8f7-4484-9f8f-c309eb680caa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016t2ZH8NyQF5rndwtYWUhVm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11198,
+      "cache_read_input_tokens": 51128,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11198
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-21T15:42:41.132Z_
+
+<details><summary>↩ Tool result · `toolu_01NJNYWVtdTi1G1tYHj2HVAf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Updated /root/autodl-tmp/gen-depth-contamination/scripts/plot_fig2_merged.py\\nUpdated /root/autodl-tmp/gen-depth-contamination/scripts/draw_kstar_theta.py\\nUpdated /root/autodl-tmp/gen-depth-contamination/scripts/lofo_theta_validation.py\\nUpdated /root/autodl-tmp/gen-depth-contamination/scripts/plot_fig_jsd_decay.py\\n\\nAll 4 scripts updated successfully.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "4d031d04-18e3-4159-9bac-b05b3a2afc3c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Updated /root/autodl-tmp/gen-depth-contamination/scripts/plot_fig2_merged.py\\\\nUpdated /root/autodl-tmp/gen-depth-contamination/scripts/draw_kstar_theta.py\\\\nUpdated /root/autodl-tmp/gen-depth-contamination/scripts/lofo_theta_validation.py\\\\nUpdated /root/autodl-tmp/gen-depth-contamination/scripts/plot_fig_jsd_decay.py\\\\n\\\\nAll 4 scripts updated successfully.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Updated /root/autodl-tmp/gen-depth-contamination/scripts/plot_fig2_merged.py\\nUpdated /root/autodl-tmp/gen-depth-contamination/scripts/draw_kstar_theta.py\\nUpdated /root/autodl-tmp/gen-depth-contamination/scripts/lofo_theta_validation.py\\nUpdated /root/autodl-tmp/gen-depth-contamination/scripts/plot_fig_jsd_decay.py\\n\\nAll 4 scripts updated successfully.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65_
+
+All 4 scripts updated. Now let me regenerate the figures.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "931dbf3e-6fb3-414e-b380-79e207e09703",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PXULYom6jvezk7jfXmka2N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3882,
+      "cache_read_input_tokens": 62326,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3882
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RnaTJARFq8UEYfDrTRn11F`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python3 scripts/plot_fig2_merged.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "5b3de3ec-835a-44c1-a334-c60545d6a676",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PXULYom6jvezk7jfXmka2N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3882,
+      "cache_read_input_tokens": 62326,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3882
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01QqhcwDio3QLBuiP47uBB4r`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python3 scripts/draw_kstar_theta.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "7d482248-b146-48a7-b001-d1fb9a59bc91",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PXULYom6jvezk7jfXmka2N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3882,
+      "cache_read_input_tokens": 62326,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3882
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-21T15:42:47.363Z_
+
+<details><summary>↩ Tool result · `toolu_01RnaTJARFq8UEYfDrTRn11F`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PDF: /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.pdf (29.5 KB)\\nPNG: /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.png (360.6 KB)\\nOK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.86}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "68d189fb-2bb1-4e85-90ad-954501cc8709",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PDF: /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.pdf (29.5 KB)\\\\nPNG: /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.png (360.6 KB)\\\\nOK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.86}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"PDF: /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.pdf (29.5 KB)\\nPNG: /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.png (360.6 KB)\\nOK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.86}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01AoARH4sjPDABELVeB5gKrb`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python3 scripts/plot_fig_jsd_decay.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "21842bd3-b004-4152-b257-d52c49f97f1c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PXULYom6jvezk7jfXmka2N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3882,
+      "cache_read_input_tokens": 62326,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3882
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_019QR6j3HY6BVu3hU1jDXrqu`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python3 scripts/lofo_theta_validation.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "581d5944-80d1-4006-b965-2e5eba442787",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PXULYom6jvezk7jfXmka2N",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3882,
+      "cache_read_input_tokens": 62326,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3882
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-21T15:42:49.034Z_
+
+<details><summary>↩ Tool result · `toolu_01QqhcwDio3QLBuiP47uBB4r`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Models: ['Qwen-rw', 'Pythia', 'OLMo', 'Qwen-cont', 'Qwen-7B']\\nSaved: /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_kstar_theta.pdf\\nOK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.66}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "0e20136a-6758-436b-a836-339e7e9da1a1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Models: ['Qwen-rw', 'Pythia', 'OLMo', 'Qwen-cont', 'Qwen-7B']\\\\nSaved: /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_kstar_theta.pdf\\\\nOK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.66}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Models: ['Qwen-rw', 'Pythia', 'OLMo', 'Qwen-cont', 'Qwen-7B']\\nSaved: /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_kstar_theta.pdf\\nOK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.66}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-21T15:42:50.570Z_
+
+<details><summary>↩ Tool result · `toolu_01AoARH4sjPDABELVeB5gKrb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PDF: /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_jsd_decay.pdf (24.1 KB)\\nPNG: /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_jsd_decay.png (157.2 KB)\\nC4 band models (8): ['Qwen-1.5B', 'Qwen-1.5B-cont', 'LLaMA-8B', 'Pythia-greedy', 'Pythia-nuc0.9', 'Pythia-T0.7', 'Pythia-T1.2', 'Qwen-14B']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "ab2ffdba-19e6-4e52-aae3-f11646793ee5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PDF: /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_jsd_decay.pdf (24.1 KB)\\\\nPNG: /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_jsd_decay.png (157.2 KB)\\\\nC4 band models (8): ['Qwen-1.5B', 'Qwen-1.5B-cont', 'LLaMA-8B', 'Pythia-greedy', 'Pythia-nuc0.9', 'Pythia-T0.7', 'Pythia-T1.2', 'Qwen-14B']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"PDF: /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_jsd_decay.pdf (24.1 KB)\\nPNG: /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_jsd_decay.png (157.2 KB)\\nC4 band models (8): ['Qwen-1.5B', 'Qwen-1.5B-cont', 'LLaMA-8B', 'Pythia-greedy', 'Pythia-nuc0.9', 'Pythia-T0.7', 'Pythia-T1.2', 'Qwen-14B']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-21T15:42:51.352Z_
+
+<details><summary>↩ Tool result · `toolu_019QR6j3HY6BVu3hU1jDXrqu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\nPer-family K* at θ=0.60\\n======================================================================\\nFamily            K*   1v2 ci_lower   2v3 ci_lower  margin(1v2-θ)\\n----------------------------------------------------------------------\\nQwen-rw            2         0.6859         0.5795        +0.0859\\nPythia             2         0.6454         0.5417        +0.0454\\nOLMo               1         0.4908         0.4829        -0.1092\\nQwen-cont          2         0.6015         0.5511        +0.0015\\nQwen-7B            2         0.6080         0.5390        +0.0080\\nGemma-2B           1         0.5882         0.5234        -0.0118\\n\\n======================================================================\\nFull-set K*=2 consensus range (all 6 families)\\n======================================================================\\n  θ range: (0.5795, 0.4908]\\n  Width:   -0.0887\\n  Midpoint θ̂: 0.5352\\n  Valid:   False\\n  Contains θ=0.60: False\\n  Binding (high): ['OLMo']\\n  Binding (low):  ['Qwen-rw']\\n\\n======================================================================\\nOriginal 5 families (without Gemma) K*=2 consensus range\\n======================================================================\\n  θ range: (0.5795, 0.4908]\\n  Width:   -0.0887\\n  Midpoint θ̂: 0.5352\\n  Contains θ=0.60: False\\n\\n======================================================================\\nLOFO θ Validation (leave one family out at a time)\\n======================================================================\\nLeft-out           θ_low   θ_high    Width  θ̂(mid)  Contains 0.60   Binding(high)\\n----------------------------------------------------------------------------------\\nQwen-rw           0.5511   0.4908  -0.0603   0.5210             NO            OLMo\\nPythia            0.5795   0.4908  -0.0887   0.5352             NO            OLMo\\nOLMo              0.5795   0.5882   0.0087   0.5838             NO        Gemma-2B\\nQwen-cont         0.5795   0.4908  -0.0887   0.5352             NO            OLMo\\nQwen-7B           0.5795   0.4908  -0.0887   0.5352             NO            OLMo\\nGemma-2B          0.5795   0.4908  -0.0887   0.5352             NO            OLMo\\n\\n======================================================================\\nLOFO Summary Statistics\\n======================================================================\\n  Valid LOFO subsets: 1/6\\n  θ̂ midpoint range: [0.5838, 0.5838]\\n  θ̂ midpoint mean ± std: 0.5838 ± 0.0000\\n  θ_high range: [0.5882, 0.5882]\\n  θ_low range: [0.5795, 0.5795]\\n  Width range: [0.0087, 0.0087]\\n  Subsets containing θ=0.60: 0/6\\n\\n======================================================================\\nExtended: K*>=1 consensus range (all families agree K*>=1)\\n======================================================================\\n  All 0v1 ci_lower >= 0.94 → K*>=1 unanimous for any θ < 0.949\\n  Gemma 1v2 ci_lower = 0.5882: θ=0.60 gives K*=1 for Gemma\\n  Adjusted framing: θ=0.59 gives K*=2 for ALL 6 families\\n\\n  K* at θ=0.59:\\n    Qwen-rw        : K*=2\\n    Pythia         : K*=2\\n    OLMo           : K*=1\\n    Qwen-cont      : K*=2\\n    Qwen-7B        : K*=2\\n    Gemma-2B       : K*=1\\n\\n  K* at θ=0.585:\\n    Qwen-rw        : K*=2\\n    Pythia         : K*=2\\n    OLMo           : K*=1\\n    Qwen-cont      : K*=2\\n    Qwen-7B        : K*=2\\n    Gemma-2B       : K*=2\\n\\nResults saved to /root/autodl-tmp/gen-depth-contamination/results/lofo_theta_validation/lofo_theta_results.json\\nLaTeX table saved to /root/autodl-tmp/gen-depth-contamination/results/lofo_theta_validation/lofo_theta_table.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "db1a19c6-b09f-4e50-b52f-2d3a027f7791",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"======================================================================\\\\nPer-family K* at θ=0.60\\\\n======================================================================\\\\nFamily            K*   1v2 ci_lower   2v3 ci_lower  margin(1v2-θ)\\\\n----------------------------------------------------------------------\\\\nQwen-rw            2         0.6859         0.5795        +0.0859\\\\nPythia             2         0.6454         0.5417        +0.0454\\\\nOLMo               1         0.4908         0.4829        -0.1092\\\\nQwen-cont          2         0.6015         0.5511        +0.0015\\\\nQwen-7B            2         0.6080         0.5390        +0.0080\\\\nGemma-2B           1         0.5882         0.5234        -0.0118\\\\n\\\\n======================================================================\\\\nFull-set K*=2 consensus range (all 6 families)\\\\n======================================================================\\\\n  θ range: (0.5795, 0.4908]\\\\n  Width:   -0.0887\\\\n  Midpoint θ̂: 0.5352\\\\n  Valid:   False\\\\n  Contains θ=0.60: False\\\\n  Binding (high): ['OLMo']\\\\n  Binding (low):  ['Qwen-rw']\\\\n\\\\n======================================================================\\\\nOriginal 5 families (without Gemma) K*=2 consensus range\\\\n======================================================================\\\\n  θ range: (0.5795, 0.4908]\\\\n  Width:   -0.0887\\\\n  Midpoint θ̂: 0.5352\\\\n  Contains θ=0.60: False\\\\n\\\\n======================================================================\\\\nLOFO θ Validation (leave one family out at a time)\\\\n======================================================================\\\\nLeft-out           θ_low   θ_high    Width  θ̂(mid)  Contains 0.60   Binding(high)\\\\n----------------------------------------------------------------------------------\\\\nQwen-rw           0.5511   0.4908  -0.0603   0.5210             NO            OLMo\\\\nPythia            0.5795   0.4908  -0.0887   0.5352             NO            OLMo\\\\nOLMo              0.5795   0.5882   0.0087   0.5838             NO        Gemma-2B\\\\nQwen-cont         0.5795   0.4908  -0.0887   0.5352             NO            OLMo\\\\nQwen-7B           0.5795   0.4908  -0.0887   0.5352             NO            OLMo\\\\nGemma-2B          0.5795   0.4908  -0.0887   0.5352             NO            OLMo\\\\n\\\\n======================================================================\\\\nLOFO Summary Statistics\\\\n======================================================================\\\\n  Valid LOFO subsets: 1/6\\\\n  θ̂ midpoint range: [0.5838, 0.5838]\\\\n  θ̂ midpoint mean ± std: 0.5838 ± 0.0000\\\\n  θ_high range: [0.5882, 0.5882]\\\\n  θ_low range: [0.5795, 0.5795]\\\\n  Width range: [0.0087, 0.0087]\\\\n  Subsets containing θ=0.60: 0/6\\\\n\\\\n======================================================================\\\\nExtended: K*>=1 consensus range (all families agree K*>=1)\\\\n======================================================================\\\\n  All 0v1 ci_lower >= 0.94 → K*>=1 unanimous for any θ < 0.949\\\\n  Gemma 1v2 ci_lower = 0.5882: θ=0.60 gives K*=1 for Gemma\\\\n  Adjusted framing: θ=0.59 gives K*=2 for ALL 6 families\\\\n\\\\n  K* at θ=0.59:\\\\n    Qwen-rw        : K*=2\\\\n    Pythia         : K*=2\\\\n    OLMo           : K*=1\\\\n    Qwen-cont      : K*=2\\\\n    Qwen-7B        : K*=2\\\\n    Gemma-2B       : K*=1\\\\n\\\\n  K* at θ=0.585:\\\\n    Qwen-rw        : K*=2\\\\n    Pythia         : K*=2\\\\n    OLMo           : K*=1\\\\n    Qwen-cont      : K*=2\\\\n    Qwen-7B        : K*=2\\\\n    Gemma-2B       : K*=2\\\\n\\\\nResults saved to /root/autodl-tmp/gen-depth-contamination/results/lofo_theta_validation/lofo_theta_results.json\\\\nLaTeX table saved to /root/autodl-tmp/gen-depth-contamination/results/lofo_theta_validation/lofo_theta_table.tex\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"======================================================================\\nPer-family K* at θ=0.60\\n======================================================================\\nFamily            K*   1v2 ci_lower   2v3 ci_lower  margin(1v2-θ)\\n----------------------------------------------------------------------\\nQwen-rw            2         0.6859         0.5795        +0.0859\\nPythia             2         0.6454         0.5417        +0.0454\\nOLMo               1         0.4908         0.4829        -0.1092\\nQwen-cont          2         0.6015         0.5511        +0.0015\\nQwen-7B            2         0.6080         0.5390        +0.0080\\nGemma-2B           1         0.5882         0.5234        -0.0118\\n\\n======================================================================\\nFull-set K*=2 consensus range (all 6 families)\\n======================================================================\\n  θ range: (0.5795, 0.4908]\\n  Width:   -0.0887\\n  Midpoint θ̂: 0.5352\\n  Valid:   False\\n  Contains θ=0.60: False\\n  Binding (high): ['OLMo']\\n  Binding (low):  ['Qwen-rw']\\n\\n======================================================================\\nOriginal 5 families (without Gemma) K*=2 consensus range\\n======================================================================\\n  θ range: (0.5795, 0.4908]\\n  Width:   -0.0887\\n  Midpoint θ̂: 0.5352\\n  Contains θ=0.60: False\\n\\n======================================================================\\nLOFO θ Validation (leave one family out at a time)\\n======================================================================\\nLeft-out           θ_low   θ_high    Width  θ̂(mid)  Contains 0.60   Binding(high)\\n----------------------------------------------------------------------------------\\nQwen-rw           0.5511   0.4908  -0.0603   0.5210             NO            OLMo\\nPythia            0.5795   0.4908  -0.0887   0.5352             NO            OLMo\\nOLMo              0.5795   0.5882   0.0087   0.5838             NO        Gemma-2B\\nQwen-cont         0.5795   0.4908  -0.0887   0.5352             NO            OLMo\\nQwen-7B           0.5795   0.4908  -0.0887   0.5352             NO            OLMo\\nGemma-2B          0.5795   0.4908  -0.0887   0.5352             NO            OLMo\\n\\n======================================================================\\nLOFO Summary Statistics\\n======================================================================\\n  Valid LOFO subsets: 1/6\\n  θ̂ midpoint range: [0.5838, 0.5838]\\n  θ̂ midpoint mean ± std: 0.5838 ± 0.0000\\n  θ_high range: [0.5882, 0.5882]\\n  θ_low range: [0.5795, 0.5795]\\n  Width range: [0.0087, 0.0087]\\n  Subsets containing θ=0.60: 0/6\\n\\n======================================================================\\nExtended: K*>=1 consensus range (all families agree K*>=1)\\n======================================================================\\n  All 0v1 ci_lower >= 0.94 → K*>=1 unanimous for any θ < 0.949\\n  Gemma 1v2 ci_lower = 0.5882: θ=0.60 gives K*=1 for Gemma\\n  Adjusted framing: θ=0.59 gives K*=2 for ALL 6 families\\n\\n  K* at θ=0.59:\\n    Qwen-rw        : K*=2\\n    Pythia         : K*=2\\n    OLMo           : K*=1\\n    Qwen-cont      : K*=2\\n    Qwen-7B        : K*=2\\n    Gemma-2B       : K*=1\\n\\n  K* at θ=0.585:\\n    Qwen-rw        : K*=2\\n    Pythia         : K*=2\\n    OLMo           : K*=1\\n    Qwen-cont      : K*=2\\n    Qwen-7B        : K*=2\\n    Gemma-2B       : K*=2\\n\\nResults saved to /root/autodl-tmp/gen-depth-contamination/results/lofo_theta_validation/lofo_theta_results.json\\nLaTeX table saved to /root/autodl-tmp/gen-depth-contamination/results/lofo_theta_validation/lofo_theta_table.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All figures regenerated successfully. Let me note an important finding from the LOFO validation:
+
+With OLMo rerun (K*=1), the LOFO θ validation now shows:
+- OLMo's 1v2 ci_lower = 0.4908 (well below 0.60), so K*=1
+- The full-set consensus range is now INVALID (θ_high < θ_low)
+- Only 1/6 LOFO subsets are valid (the one leaving out OLMo)
+- None contain θ=0.60
+
+
+This shift in OLMo's classification significantly changes the validation landscape, though since LOFO produces JSON results and LaTeX tables rather than figures, I'll note this separately in the report. Now I need to copy the updated PDFs locally, verify the OLMo feature importance files, check the supplementary AUC CI figure, and then compile everything into the report.
+
+I should also verify whether any old OLMo C4 data directories might interfere with the supplementary AUC CI script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "1150b47e-cb4a-4b94-bdce-0dd046fb2f77",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N8ksqosk89Lz55wMgza731",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2726,
+      "cache_read_input_tokens": 66208,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2726
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+All figures regenerated. Important finding: LOFO validation now shows OLMo breaks the K*=2 consensus (expected since K*=1). Let me now check the supplementary AUC CI figure and sync files locally.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "bd4c52d6-fa10-43e5-9e8f-7277eb093ea2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N8ksqosk89Lz55wMgza731",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2726,
+      "cache_read_input_tokens": 66208,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2726
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Krkh2WWMWv3KbbCjyGoy2P`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache python3 scripts/plot_auc_decay_ci.py 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "bb613c72-45f4-4ae8-8c13-afa33877ac97",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N8ksqosk89Lz55wMgza731",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2726,
+      "cache_read_input_tokens": 66208,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2726
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018PMZkC4ymW6nEkpLCdZX6W`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/gen-depth-contamination -name \"pairwise_auc.json\" -path \"*/olmo*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "7851b1b7-add5-4203-9e9d-48095f096955",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N8ksqosk89Lz55wMgza731",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2726,
+      "cache_read_input_tokens": 66208,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2726
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-21T15:43:07.987Z_
+
+<details><summary>↩ Tool result · `toolu_01Krkh2WWMWv3KbbCjyGoy2P`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Discovered 23 configs: ['Qwen-base (bootstrap)', 'Mistral-7B (bootstrap)', 'Pythia (bootstrap)', 'v2 (bootstrap)', 'results (bootstrap)', 'exp_008_retrain_chain', 'LLaMA-8B', 'Length-128', 'Length-256', 'Length-512', 'exp_023_wiki', 'exp_024_arxiv', 'exp_027_latex_ablation', 'exp_14b_c4', 'OLMo', 'Qwen-rw', 'exp_gemma2b_depth', 'exp_wiki_scorer_confound', 'exp_wiki_scorer_confound_1b5', 'Pythia-greedy', 'Pythia-nuc0.9', 'Pythia-T0.7', 'Pythia-T1.2']\\nPDF: 35.0 KB | PNG: 763.1 KB\\nOK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.99}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "f1f5156e-a985-41c6-97f6-e874121706fc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Discovered 23 configs: ['Qwen-base (bootstrap)', 'Mistral-7B (bootstrap)', 'Pythia (bootstrap)', 'v2 (bootstrap)', 'results (bootstrap)', 'exp_008_retrain_chain', 'LLaMA-8B', 'Length-128', 'Length-256', 'Length-512', 'exp_023_wiki', 'exp_024_arxiv', 'exp_027_latex_ablation', 'exp_14b_c4', 'OLMo', 'Qwen-rw', 'exp_gemma2b_depth', 'exp_wiki_scorer_confound', 'exp_wiki_scorer_confound_1b5', 'Pythia-greedy', 'Pythia-nuc0.9', 'Pythia-T0.7', 'Pythia-T1.2']\\\\nPDF: 35.0 KB | PNG: 763.1 KB\\\\nOK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.99}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Discovered 23 configs: ['Qwen-base (bootstrap)', 'Mistral-7B (bootstrap)', 'Pythia (bootstrap)', 'v2 (bootstrap)', 'results (bootstrap)', 'exp_008_retrain_chain', 'LLaMA-8B', 'Length-128', 'Length-256', 'Length-512', 'exp_023_wiki', 'exp_024_arxiv', 'exp_027_latex_ablation', 'exp_14b_c4', 'OLMo', 'Qwen-rw', 'exp_gemma2b_depth', 'exp_wiki_scorer_confound', 'exp_wiki_scorer_confound_1b5', 'Pythia-greedy', 'Pythia-nuc0.9', 'Pythia-T0.7', 'Pythia-T1.2']\\nPDF: 35.0 KB | PNG: 763.1 KB\\nOK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.99}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-21T15:43:08.482Z_
+
+<details><summary>↩ Tool result · `toolu_018PMZkC4ymW6nEkpLCdZX6W`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/olmo_c4_cont/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/olmo_c4_qwen_scorer/pairwise_auc.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "ceb49092-9967-4862-b5dc-7f82364f1f16",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/olmo_c4_cont/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/olmo_c4_qwen_scorer/pairwise_auc.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/olmo_c4_cont/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/olmo_c4_qwen_scorer/pairwise_auc.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The supplementary AUC CI script discovered 23 configs, including "OLMo". Let me check which OLMo data it's picking up. The auto-discovery finds data from `results/*/pairwise_auc.json`. The OLMo rerun is at `results/exp_olmo1b_c4_rerun/pairwise_auc.json`.
+
+It found:
+- `results/olmo_c4_cont/pairwise_auc.json` - this is old data
+
+
+- `results/olmo_c4_qwen_scorer/pairwise_auc.json` - also old data
+
+The script matches both `results_*/pairwise_auc.json` and `results/*/pairwise_auc.json` patterns, so it should be picking up the rerun at `results/exp_olmo1b_c4_rerun/pairwise_auc.json`. I need to figure out which OLMo entry in the discovered list corresponds to which path, and whether there are multiple OLMo entries being detected.
+
+The deduplication logic checks if a label's base name (before any parenthetical) already exists in the models dict, skipping duplicates. So whichever OLMo file gets processed first gets the label, and the rest are filtered out. The order depends on how the glob sorts the results. "OLMo". The glob sorts results alphabetically, so `exp_olmo1b_c4_rerun` would be discovered first and assigned the "OLMo" label, with the other two skipped as duplicates. But I should also check if there's a bootstrap_ci.json file for OLMo, since the CI patterns take priority and would assign a "(bootstrap)" label instead.
+
+Looking at the code that processes these files, it first checks CI files and adds the bootstrap label, then iterates through AUC files and skips any where the base label already exists in the models dictionary. Since the discovered list shows just "OLMo" without the bootstrap suffix, no old bootstrap CI file was found for OLMo. So the supplementary figure picked up "OLMo" from the pairwise_auc files, which means it's using the rerun data.
+
+Actually, I'm realizing I need to think about this differently—the supplementary figure has 23 configs and auto-generates based on discovered labels. Multiple experiment directories like `olmo_c4_cont`, `olmo_c4_qwen_scorer`, and `exp_olmo1b_c4_rerun` would all match the OLMo pattern and return the same label.
+
+The rerun gets picked first in the sorted order, but this supplementary figure isn't critical anyway—the main paper figures are what really matter. Let me shift focus to syncing the updated PDFs, checking the OLMo feature importance files, and then writing the report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "0e079ac9-fdf3-48e3-8a5c-2ca349eae6a6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011iZ3TRBSXoo6K9RoHwWEYJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1208,
+      "cache_read_input_tokens": 68934,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1208
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81_
+
+The supplementary AUC CI figure auto-discovered 23 configs including OLMo rerun data. Now let me sync the updated PDFs to local and verify the feature importance files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "f7852f35-eaa5-4b81-b2f4-803dea924f9a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011iZ3TRBSXoo6K9RoHwWEYJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1208,
+      "cache_read_input_tokens": 68934,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1208
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LfAeEgtfFHxb4VpwHqN9WB`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls -la /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.pdf /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_kstar_theta.pdf /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_jsd_decay.pdf",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "3df0bf80-2b7a-42ae-a5d3-893484317a71",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011iZ3TRBSXoo6K9RoHwWEYJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1208,
+      "cache_read_input_tokens": 68934,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1208
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-21T15:43:39.655Z_
+
+<details><summary>↩ Tool result · `toolu_01LfAeEgtfFHxb4VpwHqN9WB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 30228 May 21 23:42 /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.pdf\\n-rw-r--r-- 1 root root 24688 May 21 23:42 /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_jsd_decay.pdf\\n-rw-r--r-- 1 root root 33429 May 21 23:42 /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_kstar_theta.pdf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "ec72a19d-2c6e-40d0-b995-d78798ffeec1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 30228 May 21 23:42 /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.pdf\\\\n-rw-r--r-- 1 root root 24688 May 21 23:42 /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_jsd_decay.pdf\\\\n-rw-r--r-- 1 root root 33429 May 21 23:42 /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_kstar_theta.pdf\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 30228 May 21 23:42 /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.pdf\\n-rw-r--r-- 1 root root 24688 May 21 23:42 /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_jsd_decay.pdf\\n-rw-r--r-- 1 root root 33429 May 21 23:42 /root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_kstar_theta.pdf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UXksMGxHcthM6625BTAiRc`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls -la /root/autodl-tmp/gen-depth-contamination/artifacts/figures/fig_s1_auc_decay_ci.pdf",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "b1ad810e-1610-4f70-8b62-91aabfb229bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011iZ3TRBSXoo6K9RoHwWEYJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1208,
+      "cache_read_input_tokens": 68934,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1208
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-21T15:43:40.221Z_
+
+<details><summary>↩ Tool result · `toolu_01UXksMGxHcthM6625BTAiRc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 35811 May 21 23:43 /root/autodl-tmp/gen-depth-contamination/artifacts/figures/fig_s1_auc_decay_ci.pdf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "6c39ebf9-508f-461b-bede-de761cfc9faa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 35811 May 21 23:43 /root/autodl-tmp/gen-depth-contamination/artifacts/figures/fig_s1_auc_decay_ci.pdf\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 35811 May 21 23:43 /root/autodl-tmp/gen-depth-contamination/artifacts/figures/fig_s1_auc_decay_ci.pdf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 86_
+
+All figures generated. Now let me sync them to local.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "ebc35558-f8d6-4f6f-8056-bdae535b393e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gt7mECtDwYWnvuUCRGgiWE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2412,
+      "cache_read_input_tokens": 70142,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2412
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01LjtFiULLsrf6b5Pyb6jhfB`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/ 2>/dev/null && echo \"EXISTS\" || echo \"NOT_EXISTS\"",
+  "description": "Check local figures directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "89f549b4-afa8-4dcb-8eaf-7427a78514ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gt7mECtDwYWnvuUCRGgiWE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2412,
+      "cache_read_input_tokens": 70142,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2412
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-21T15:43:44.841Z_
+
+<details><summary>↩ Tool result · `toolu_01LjtFiULLsrf6b5Pyb6jhfB`</summary>
+
+```text
+_pdf_images
+feature_importance.pdf
+fig2_auc_decay.pdf
+fig2_auc_decay.png
+fig3_transfer_heatmap.pdf
+fig3_transfer_heatmap.png
+fig_feature_ablation.pdf
+fig_filtering_strategies.pdf
+fig_filtering_strategies.png
+fig_jsd_decay.pdf
+fig_jsd_decay.png
+fig_kstar_theta.pdf
+fig_kstar_theta.png
+fig_power_curve.png
+fig_retrain_decay.png
+fig_s1_auc_decay_ci.pdf
+fig_theta_sensitivity.pdf
+pipeline.pdf
+pipeline.png
+EXISTS
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "83363957-8643-470f-bf33-661730dd7ba8",
+  "tool_use_result": {
+    "stdout": "_pdf_images\nfeature_importance.pdf\nfig2_auc_decay.pdf\nfig2_auc_decay.png\nfig3_transfer_heatmap.pdf\nfig3_transfer_heatmap.png\nfig_feature_ablation.pdf\nfig_filtering_strategies.pdf\nfig_filtering_strategies.png\nfig_jsd_decay.pdf\nfig_jsd_decay.png\nfig_kstar_theta.pdf\nfig_kstar_theta.png\nfig_power_curve.png\nfig_retrain_decay.png\nfig_s1_auc_decay_ci.pdf\nfig_theta_sensitivity.pdf\npipeline.pdf\npipeline.png\nEXISTS",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01V1SancWQHQErMXMnWCmDQV`</summary>
+
+```json
+{
+  "command": "scp cqa1-22115:/root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.pdf /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.pdf",
+  "description": "Sync fig2_auc_decay.pdf from server"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "e206c4f3-14c2-491c-b7d7-7ca9c43f5c88",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E7KGqrFhNxuXRDNRCAbqhi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 312,
+      "cache_read_input_tokens": 72554,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 312
+      },
+      "output_tokens": 56,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-21T15:43:50.244Z_
+
+<details><summary>↩ Tool result · `toolu_01V1SancWQHQErMXMnWCmDQV`</summary>
+
+```text
+Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "e6f5462f-4b76-4290-8297-a4172a56ebfd",
+  "tool_use_result": {
+    "stdout": "Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017AQchJMCHtnjStGhuXmNK9`</summary>
+
+```json
+{
+  "command": "scp cqa1-22115:/root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.png /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.png",
+  "description": "Sync fig2_auc_decay.png from server"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "0023ae96-ecf6-448b-a9fd-e62e79aa77db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E7KGqrFhNxuXRDNRCAbqhi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 312,
+      "cache_read_input_tokens": 72554,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 312
+      },
+      "output_tokens": 56,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01CFvrKrHMvKwGvBMi1X5v4U`</summary>
+
+```json
+{
+  "command": "scp cqa1-22115:/root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_kstar_theta.pdf /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig_kstar_theta.pdf",
+  "description": "Sync fig_kstar_theta.pdf from server"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "959ad8e8-214e-4103-bb40-ce363e17666f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E7KGqrFhNxuXRDNRCAbqhi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 312,
+      "cache_read_input_tokens": 72554,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 312
+      },
+      "output_tokens": 56,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_015vsvVUAMJ96LNUb6gdQZC7`</summary>
+
+```json
+{
+  "command": "scp cqa1-22115:/root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_kstar_theta.png /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig_kstar_theta.png",
+  "description": "Sync fig_kstar_theta.png from server"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "d80adf0b-7025-44d2-beda-309be259cdd5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E7KGqrFhNxuXRDNRCAbqhi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 312,
+      "cache_read_input_tokens": 72554,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 312
+      },
+      "output_tokens": 56,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-21T15:43:52.231Z_
+
+<details><summary>↩ Tool result · `toolu_017AQchJMCHtnjStGhuXmNK9`</summary>
+
+```text
+Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "1aa45dca-5b44-456f-b205-adf24111619e",
+  "tool_use_result": {
+    "stdout": "Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01QjHymfo5PLV4sUWTPHWFP6`</summary>
+
+```json
+{
+  "command": "scp cqa1-22115:/root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_jsd_decay.pdf /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig_jsd_decay.pdf",
+  "description": "Sync fig_jsd_decay.pdf from server"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "135f3303-deee-4bb0-b5b4-68bcbca7ff8e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E7KGqrFhNxuXRDNRCAbqhi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 312,
+      "cache_read_input_tokens": 72554,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 312
+      },
+      "output_tokens": 56,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-21T15:43:53.686Z_
+
+<details><summary>↩ Tool result · `toolu_01CFvrKrHMvKwGvBMi1X5v4U`</summary>
+
+```text
+Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "43360cbb-6908-45fd-abb5-8a48619f6320",
+  "tool_use_result": {
+    "stdout": "Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01V5WWXogYrvp2gSUEVpqyWr`</summary>
+
+```json
+{
+  "command": "scp cqa1-22115:/root/autodl-tmp/gen-depth-contamination/docs/paper/figures/fig_jsd_decay.png /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig_jsd_decay.png",
+  "description": "Sync fig_jsd_decay.png from server"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "9f2a7c65-f681-4c3b-a76a-081d55327344",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E7KGqrFhNxuXRDNRCAbqhi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 312,
+      "cache_read_input_tokens": 72554,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 312
+      },
+      "output_tokens": 56,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01BQM1fqiA7DQEiKYr5abPEy`</summary>
+
+```json
+{
+  "command": "scp cqa1-22115:/root/autodl-tmp/gen-depth-contamination/artifacts/figures/fig_s1_auc_decay_ci.pdf /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig_s1_auc_decay_ci.pdf",
+  "description": "Sync fig_s1_auc_decay_ci.pdf from server"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "d823e6cb-4bc2-4f13-b120-f1cad9fb9bc8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E7KGqrFhNxuXRDNRCAbqhi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 312,
+      "cache_read_input_tokens": 72554,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 312
+      },
+      "output_tokens": 56,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-21T15:43:55.447Z_
+
+<details><summary>↩ Tool result · `toolu_015vsvVUAMJ96LNUb6gdQZC7`</summary>
+
+```text
+Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "aaba1bc1-c719-4c5e-bc1d-e6271df33224",
+  "tool_use_result": {
+    "stdout": "Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-21T15:43:57.024Z_
+
+<details><summary>↩ Tool result · `toolu_01QjHymfo5PLV4sUWTPHWFP6`</summary>
+
+```text
+Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "c0f7a148-4886-4157-b3af-b47d382cec15",
+  "tool_use_result": {
+    "stdout": "Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-21T15:43:58.795Z_
+
+<details><summary>↩ Tool result · `toolu_01V5WWXogYrvp2gSUEVpqyWr`</summary>
+
+```text
+Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "ef14e522-c65a-4d29-9174-51bd117d2eeb",
+  "tool_use_result": {
+    "stdout": "Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-21T15:44:00.341Z_
+
+<details><summary>↩ Tool result · `toolu_01BQM1fqiA7DQEiKYr5abPEy`</summary>
+
+```text
+Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "62954e95-634f-454b-a77a-7c26a8ab18d1",
+  "tool_use_result": {
+    "stdout": "Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 103_
+
+Now let me also sync the OLMo feature importance PDFs and write the report.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "4be045d7-9166-4bf4-8271-7dbfc68aed91",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PD5CUomah6zjFUe9CEhrjk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1442,
+      "cache_read_input_tokens": 72866,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1442
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 104_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01DfSY8j6FEtyuhWBvRzSZFA`</summary>
+
+```json
+{
+  "command": "scp cqa1-22115:/root/autodl-tmp/gen-depth-contamination/results/olmo_feature_importance/olmo_rerun_feature_importance.pdf /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/olmo_rerun_feature_importance.pdf && scp cqa1-22115:/root/autodl-tmp/gen-depth-contamination/results/olmo_feature_importance/cross_model_feature_comparison.pdf /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/cross_model_feature_comparison.pdf",
+  "description": "Sync OLMo feature importance PDFs"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "62677aa3-4f09-4731-8005-c1da3f643fa6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PD5CUomah6zjFUe9CEhrjk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1442,
+      "cache_read_input_tokens": 72866,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1442
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01W6NUgmiLexis7uapzRBCPz`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/ 2>/dev/null || echo \"NO_DIR\"",
+  "description": "Check artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "b191cd43-3bfa-4390-8d19-2d3e4b61dc1c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PD5CUomah6zjFUe9CEhrjk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1442,
+      "cache_read_input_tokens": 72866,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1442
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 106_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "bhgowovsq",
+  "tool_use_id": "toolu_01DfSY8j6FEtyuhWBvRzSZFA",
+  "description": "Sync OLMo feature importance PDFs",
+  "task_type": "local_bash",
+  "uuid": "49615abc-fde6-4537-8b19-af0ab1702998",
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9"
+}
+```
+
+---
+
+### System
+
+_source line 107_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "bhgowovsq",
+  "tool_use_id": "toolu_01DfSY8j6FEtyuhWBvRzSZFA",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Sync OLMo feature importance PDFs",
+  "uuid": "fa7cf428-5ab0-4aa3-8498-39ce184ba7a8",
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9"
+}
+```
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-21T15:44:08.559Z_
+
+<details><summary>↩ Tool result · `toolu_01DfSY8j6FEtyuhWBvRzSZFA`</summary>
+
+```text
+Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.
+Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "c5f3a627-f877-40b7-b8bd-5d594473b35b",
+  "tool_use_result": {
+    "stdout": "Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.\r\nWarning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 109 · 2026-05-21T15:44:08.613Z_
+
+<details><summary>↩ Tool result · `toolu_01W6NUgmiLexis7uapzRBCPz`</summary>
+
+```text
+14b_scorer_contingency
+_project
+analysis_exp_deberta_arxiv_qwen1b5.md
+analyze_pythia_retrain_depth7.py
+arXiv_crossscorer_summary
+bootstrap_audit_report.md
+bootstrap_ci_4model.json
+borderline_analysis
+borderline_bootstrap_ci.json
+c3_contingency_versions.tex
+c3_fallback_outline.md
+c4_power_curve
+case_study_qualitative.tex
+citations_round2
+code_crossmodel_table.tex
+code_scenario_prep.md
+compute_f1_threshold.py
+diag_exp_code_qwen7b.md
+discussion_outline.md
+domain_lexical_stats
+drafts
+dream_reports
+dream_simulation_readiness.md
+exp-004
+exp-005
+exp-006
+exp-013
+exp-014
+exp-019
+exp-024
+exp-D
+exp005_4model_tau_matrix.json
+exp006_analyze.py
+exp006_continued_pretraining.py
+exp006_evaluate.py
+exp006_filtering_strategies.py
+exp008_retrain_chain.py
+exp012_binary_confidence.py
+exp012_ppl_depth_correlation.py
+exp016_bootstrap_ci.json
+exp025_bootstrap_ci.json
+exp026_feature_stability.json
+exp_003_decoding_ablation
+exp_006_graduated_filtering
+exp_007_bootstrap_ci
+exp_008_retrain_chain_v2
+exp_015_neural_probe
+exp_016_base_vs_instruct
+exp_019_mistral7b_depth
+exp_019b_mistral_cross_scorer
+exp_020_pythia_decoding
+exp_022_cross_scorer_matrix
+exp_023_wiki_domain
+exp_024_arxiv_domain
+exp_025_pythia_arxiv
+exp_026
+exp_026_arxiv_filtering
+exp_026_feature_stability
+exp_026_ttest
+exp_027
+exp_027_bootstrap_ci
+exp_027_latex_ablation
+exp_028_power_curve
+exp_14b_c4
+exp_14b_c4_bootstrap_ci
+exp_32b_c4
+exp_B_14d_ablation.json
+exp_C_permutation_10k.json
+exp_D_obd_n500.json
+exp_arXiv_llama8b_crossscorer
+exp_arXiv_mistral7b_crossscorer
+exp_arXiv_qwen1b5_crossscorer
+exp_arXiv_qwen7b
+exp_arXiv_qwen7b_analysis.md
+exp_arXiv_qwen7b_crossscorer
+exp_bootstrap_10k
+exp_changepoint_kstar
+exp_code_mistral7b_diagnosis.md
+exp_code_qwen1b5
+exp_code_qwen7b
+exp_contamination_rate_sweep
+exp_deberta_c4_1b5
+exp_expanded_downstream_eval
+exp_expanded_downstream_eval.py
+exp_expanded_downstream_eval_v2.py
+exp_gemma2b_depth
+exp_gemma2b_depth_results.json
+exp_multi_source_arxiv
+exp_multi_source_detection
+exp_olmo1b_c4_rerun
+exp_olmo_retrain_chain
+exp_olmo_retrain_chain.py
+exp_qwen_retrain_chain
+exp_qwen_retrain_chain_ext.py
+exp_qwen_retrain_depth7
+exp_qwen_retrain_ext
+exp_wiki_llama8b
+exp_wiki_mistral7b
+exp_wiki_qwen7b
+exp_wiki_scorer_confound
+exp_wiki_scorer_confound_1b5
+feature_ablation
+fig2_auc_decay.pdf
+fig2_auc_decay.png
+fig3_transfer_heatmap.pdf
+fig3_transfer_heatmap.png
+figures
+gen_pipeline_figure.py
+gen_retrain_decay_v3.py
+gen_theta_sensitivity.py
+gpu_diagnosis_20260519.md
+gpu_optimization_report.txt
+literature_positioning_notes.md
+literature_scan_2025_2026.md
+lofo_olmo_recalc.md
+main.pdf
+manifest.yaml
+mcnemar_pvalues
+model_collapse_literature_notes.md
+new_bibtex_entries.bib
+numerical_audit_m2_m5.json
+olmo_feature_importance_analysis.md
+olmo_selfbleu_ablation.md
+paper_audit
+paper_consistency_audit.md
+paper_patch_audit.md
+rebuttal
+registry_audit_dream_prep.md
+report_diagnose_7b_scorer_arxiv.md
+retrain_chain_paper_notes.md
+retrain_crossmodel_decay.pdf
+retrain_crossmodel_decay.png
+retrain_decay_curve.png
+retrain_decay_curve_v2.png
+retrain_decay_curve_v3.pdf
+retrain_decay_curve_v3.png
+review_issues.yaml
+review_reports
+round22_raw_data_extraction.md
+run_7b_scorer_ablation.py
+run_7b_scorer_arxiv.py
+run_bootstrap_10k.py
+run_deberta_c4.py
+run_exp004_qwen7b_depth.py
+run_exp006.sh
+run_naturalistic_validation.py
+scripts
+summary_auc_decay
+theta_crossval
+theta_sensitivity_analysis.md
+theta_sensitivity_table.csv
+theta_sensitivity_table.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "68b9ab97-2e54-49b5-bb20-399f499d8993",
+  "tool_use_result": {
+    "stdout": "14b_scorer_contingency\n_project\nanalysis_exp_deberta_arxiv_qwen1b5.md\nanalyze_pythia_retrain_depth7.py\narXiv_crossscorer_summary\nbootstrap_audit_report.md\nbootstrap_ci_4model.json\nborderline_analysis\nborderline_bootstrap_ci.json\nc3_contingency_versions.tex\nc3_fallback_outline.md\nc4_power_curve\ncase_study_qualitative.tex\ncitations_round2\ncode_crossmodel_table.tex\ncode_scenario_prep.md\ncompute_f1_threshold.py\ndiag_exp_code_qwen7b.md\ndiscussion_outline.md\ndomain_lexical_stats\ndrafts\ndream_reports\ndream_simulation_readiness.md\nexp-004\nexp-005\nexp-006\nexp-013\nexp-014\nexp-019\nexp-024\nexp-D\nexp005_4model_tau_matrix.json\nexp006_analyze.py\nexp006_continued_pretraining.py\nexp006_evaluate.py\nexp006_filtering_strategies.py\nexp008_retrain_chain.py\nexp012_binary_confidence.py\nexp012_ppl_depth_correlation.py\nexp016_bootstrap_ci.json\nexp025_bootstrap_ci.json\nexp026_feature_stability.json\nexp_003_decoding_ablation\nexp_006_graduated_filtering\nexp_007_bootstrap_ci\nexp_008_retrain_chain_v2\nexp_015_neural_probe\nexp_016_base_vs_instruct\nexp_019_mistral7b_depth\nexp_019b_mistral_cross_scorer\nexp_020_pythia_decoding\nexp_022_cross_scorer_matrix\nexp_023_wiki_domain\nexp_024_arxiv_domain\nexp_025_pythia_arxiv\nexp_026\nexp_026_arxiv_filtering\nexp_026_feature_stability\nexp_026_ttest\nexp_027\nexp_027_bootstrap_ci\nexp_027_latex_ablation\nexp_028_power_curve\nexp_14b_c4\nexp_14b_c4_bootstrap_ci\nexp_32b_c4\nexp_B_14d_ablation.json\nexp_C_permutation_10k.json\nexp_D_obd_n500.json\nexp_arXiv_llama8b_crossscorer\nexp_arXiv_mistral7b_crossscorer\nexp_arXiv_qwen1b5_crossscorer\nexp_arXiv_qwen7b\nexp_arXiv_qwen7b_analysis.md\nexp_arXiv_qwen7b_crossscorer\nexp_bootstrap_10k\nexp_changepoint_kstar\nexp_code_mistral7b_diagnosis.md\nexp_code_qwen1b5\nexp_code_qwen7b\nexp_contamination_rate_sweep\nexp_deberta_c4_1b5\nexp_expanded_downstream_eval\nexp_expanded_downstream_eval.py\nexp_expanded_downstream_eval_v2.py\nexp_gemma2b_depth\nexp_gemma2b_depth_results.json\nexp_multi_source_arxiv\nexp_multi_source_detection\nexp_olmo1b_c4_rerun\nexp_olmo_retrain_chain\nexp_olmo_retrain_chain.py\nexp_qwen_retrain_chain\nexp_qwen_retrain_chain_ext.py\nexp_qwen_retrain_depth7\nexp_qwen_retrain_ext\nexp_wiki_llama8b\nexp_wiki_mistral7b\nexp_wiki_qwen7b\nexp_wiki_scorer_confound\nexp_wiki_scorer_confound_1b5\nfeature_ablation\nfig2_auc_decay.pdf\nfig2_auc_decay.png\nfig3_transfer_heatmap.pdf\nfig3_transfer_heatmap.png\nfigures\ngen_pipeline_figure.py\ngen_retrain_decay_v3.py\ngen_theta_sensitivity.py\ngpu_diagnosis_20260519.md\ngpu_optimization_report.txt\nliterature_positioning_notes.md\nliterature_scan_2025_2026.md\nlofo_olmo_recalc.md\nmain.pdf\nmanifest.yaml\nmcnemar_pvalues\nmodel_collapse_literature_notes.md\nnew_bibtex_entries.bib\nnumerical_audit_m2_m5.json\nolmo_feature_importance_analysis.md\nolmo_selfbleu_ablation.md\npaper_audit\npaper_consistency_audit.md\npaper_patch_audit.md\nrebuttal\nregistry_audit_dream_prep.md\nreport_diagnose_7b_scorer_arxiv.md\nretrain_chain_paper_notes.md\nretrain_crossmodel_decay.pdf\nretrain_crossmodel_decay.png\nretrain_decay_curve.png\nretrain_decay_curve_v2.png\nretrain_decay_curve_v3.pdf\nretrain_decay_curve_v3.png\nreview_issues.yaml\nreview_reports\nround22_raw_data_extraction.md\nrun_7b_scorer_ablation.py\nrun_7b_scorer_arxiv.py\nrun_bootstrap_10k.py\nrun_deberta_c4.py\nrun_exp004_qwen7b_depth.py\nrun_exp006.sh\nrun_naturalistic_validation.py\nscripts\nsummary_auc_decay\ntheta_crossval\ntheta_sensitivity_analysis.md\ntheta_sensitivity_table.csv\ntheta_sensitivity_table.tex",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 110_
+
+Now let me write the report.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "1bbce7cb-fa59-4e1a-905a-27ae26f98b82",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XoYuca1of6XXKk5B5FMh7G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1988,
+      "cache_read_input_tokens": 74308,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1988
+      },
+      "output_tokens": 7,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01QqNjbJSw9eVznw5aRoQJkN`</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/olmo_figure_regen_report.md",
+  "content": "# OLMo Figure Regeneration Report (Task C)\n\nDate: 2026-05-21\n\n## Background\n\nOLMo-1B C4 标准化 pipeline 重跑后 K*=2→K*=1 (AUC_1v2=0.508, was 0.6145)。\n\nRerun data: `data/exp_olmo1b_c4_rerun/` → `results/exp_olmo1b_c4_rerun/`\n\n## Updated OLMo values (from rerun)\n\n| Pair | AUC (mean) | CI lower | CI upper | Old AUC |\n|------|-----------|----------|----------|---------|\n| 0v1  | 0.9860    | 0.9845   | 0.9875   | 0.9970  |\n| 1v2  | 0.5079    | 0.4908   | 0.5251   | 0.6145  |\n| 2v3  | 0.4973    | 0.4829   | 0.5117   | 0.5496  |\n| 3v4  | 0.5024    | 0.4924   | 0.5123   | 0.5091  |\n| 4v5  | 0.4942    | 0.4860   | 0.5024   | 0.5045  |\n\n## Figures updated\n\n### 1. fig2_auc_decay.pdf (Figure 2 — AUC decay curves)\n- **Script**: `scripts/plot_fig2_merged.py`\n- **Change**: Updated OLMo entry in TABLE1 with rerun AUC means and CIs\n- **Output**: `docs/paper/figures/fig2_auc_decay.{pdf,png}` (29.5 KB)\n- **Visual impact**: OLMo curve now drops to ~0.50 at 1v2 (was ~0.61), clearly at chance level\n\n### 2. fig_kstar_theta.pdf (Figure 3 — K*(θ) sensitivity)\n- **Script**: `scripts/draw_kstar_theta.py`\n- **Change**: Updated OLMo entry in MODELS with rerun AUC means and CIs\n- **Output**: `docs/paper/figures/fig_kstar_theta.{pdf,png}` (33.4 KB)\n- **Visual impact**: OLMo's K*(θ) step function now drops to K*=1 for all θ≥0.50, separating from the K*=2 cluster\n\n### 3. fig_jsd_decay.pdf (Figure 4 — JSD decay)\n- **Script**: `scripts/plot_fig_jsd_decay.py`\n- **Change**: Label fix only — \"7 models\" → \"8 models\" (dict had 8 entries after Qwen-14B was added)\n- **OLMo status**: Correctly excluded from C4 K*=2 band (OLMo is K*=1)\n- **Output**: `docs/paper/figures/fig_jsd_decay.{pdf,png}` (24.1 KB)\n\n### 4. fig_s1_auc_decay_ci.pdf (Supplementary — AUC decay CI)\n- **Script**: `scripts/plot_auc_decay_ci.py`\n- **Change**: Auto-discovers from filesystem; now picks up `results/exp_olmo1b_c4_rerun/pairwise_auc.json`\n- **Output**: `artifacts/figures/fig_s1_auc_decay_ci.pdf` (35.0 KB), 23 configs total\n\n### 5. LOFO θ validation (Table, not figure)\n- **Script**: `scripts/lofo_theta_validation.py`\n- **Change**: Updated OLMo entry in MODELS with rerun values\n- **Impact**: OLMo now K*=1, breaks K*=2 full-set consensus. Only leave-OLMo-out subset gives valid K*=2 range.\n- **Output**: `results/lofo_theta_validation/lofo_theta_results.json`, `lofo_theta_table.tex`\n\n## Figures NOT updated (and why)\n\n### transfer_heatmap.py (cross-model transfer heatmap)\n- Uses hardcoded 4×4 ordinal accuracy matrix (Qwen-rw, Pythia, OLMo, Qwen-cont)\n- OLMo diagonal was 0.382 (old), now 0.3167 (rerun)\n- **Cannot update from rerun data alone** — off-diagonal (cross-model transfer) values require re-running the full cross-model transfer experiment\n- **Action needed**: Re-run cross-model transfer experiments with OLMo rerun features\n\n### mcnemar_obd_vs_baselines.py\n- References OLMo/Wiki and OLMo/arXiv only (not OLMo/C4)\n- **No update needed** — different datasets, not affected by C4 rerun\n\n## OLMo feature importance (Task A, verified)\n\nAlready generated by Task A:\n- `results/olmo_feature_importance/olmo_rerun_feature_importance.pdf` (33.2 KB) ✓\n- `results/olmo_feature_importance/cross_model_feature_comparison.pdf` (47.3 KB) ✓\n\n## Local PDF paths (synced)\n\nAll updated PDFs synced to:\n```\ndocs/paper/figures/fig2_auc_decay.pdf\ndocs/paper/figures/fig_kstar_theta.pdf\ndocs/paper/figures/fig_jsd_decay.pdf\ndocs/paper/figures/fig_s1_auc_decay_ci.pdf\ndocs/paper/figures/olmo_rerun_feature_importance.pdf\ndocs/paper/figures/cross_model_feature_comparison.pdf\n```\n\n## LOFO validation note\n\nWith OLMo at K*=1, the LOFO θ=0.60 consensus analysis changes significantly. The full-set consensus range is now invalid (OLMo's 1v2 ci_lower=0.4908 < any reasonable θ). Paper text referencing LOFO θ validation may need revision.\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "aa63865b-5a48-496c-a37c-ab241e101651",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XoYuca1of6XXKk5B5FMh7G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1988,
+      "cache_read_input_tokens": 74308,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1988
+      },
+      "output_tokens": 7,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-21T15:44:40.273Z_
+
+<details><summary>↩ Tool result · `toolu_01QqNjbJSw9eVznw5aRoQJkN`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/olmo_figure_regen_report.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "ec3e71ea-481d-47a8-b013-61d2ccee3b37",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/olmo_figure_regen_report.md",
+    "content": "# OLMo Figure Regeneration Report (Task C)\n\nDate: 2026-05-21\n\n## Background\n\nOLMo-1B C4 标准化 pipeline 重跑后 K*=2→K*=1 (AUC_1v2=0.508, was 0.6145)。\n\nRerun data: `data/exp_olmo1b_c4_rerun/` → `results/exp_olmo1b_c4_rerun/`\n\n## Updated OLMo values (from rerun)\n\n| Pair | AUC (mean) | CI lower | CI upper | Old AUC |\n|------|-----------|----------|----------|---------|\n| 0v1  | 0.9860    | 0.9845   | 0.9875   | 0.9970  |\n| 1v2  | 0.5079    | 0.4908   | 0.5251   | 0.6145  |\n| 2v3  | 0.4973    | 0.4829   | 0.5117   | 0.5496  |\n| 3v4  | 0.5024    | 0.4924   | 0.5123   | 0.5091  |\n| 4v5  | 0.4942    | 0.4860   | 0.5024   | 0.5045  |\n\n## Figures updated\n\n### 1. fig2_auc_decay.pdf (Figure 2 — AUC decay curves)\n- **Script**: `scripts/plot_fig2_merged.py`\n- **Change**: Updated OLMo entry in TABLE1 with rerun AUC means and CIs\n- **Output**: `docs/paper/figures/fig2_auc_decay.{pdf,png}` (29.5 KB)\n- **Visual impact**: OLMo curve now drops to ~0.50 at 1v2 (was ~0.61), clearly at chance level\n\n### 2. fig_kstar_theta.pdf (Figure 3 — K*(θ) sensitivity)\n- **Script**: `scripts/draw_kstar_theta.py`\n- **Change**: Updated OLMo entry in MODELS with rerun AUC means and CIs\n- **Output**: `docs/paper/figures/fig_kstar_theta.{pdf,png}` (33.4 KB)\n- **Visual impact**: OLMo's K*(θ) step function now drops to K*=1 for all θ≥0.50, separating from the K*=2 cluster\n\n### 3. fig_jsd_decay.pdf (Figure 4 — JSD decay)\n- **Script**: `scripts/plot_fig_jsd_decay.py`\n- **Change**: Label fix only — \"7 models\" → \"8 models\" (dict had 8 entries after Qwen-14B was added)\n- **OLMo status**: Correctly excluded from C4 K*=2 band (OLMo is K*=1)\n- **Output**: `docs/paper/figures/fig_jsd_decay.{pdf,png}` (24.1 KB)\n\n### 4. fig_s1_auc_decay_ci.pdf (Supplementary — AUC decay CI)\n- **Script**: `scripts/plot_auc_decay_ci.py`\n- **Change**: Auto-discovers from filesystem; now picks up `results/exp_olmo1b_c4_rerun/pairwise_auc.json`\n- **Output**: `artifacts/figures/fig_s1_auc_decay_ci.pdf` (35.0 KB), 23 configs total\n\n### 5. LOFO θ validation (Table, not figure)\n- **Script**: `scripts/lofo_theta_validation.py`\n- **Change**: Updated OLMo entry in MODELS with rerun values\n- **Impact**: OLMo now K*=1, breaks K*=2 full-set consensus. Only leave-OLMo-out subset gives valid K*=2 range.\n- **Output**: `results/lofo_theta_validation/lofo_theta_results.json`, `lofo_theta_table.tex`\n\n## Figures NOT updated (and why)\n\n### transfer_heatmap.py (cross-model transfer heatmap)\n- Uses hardcoded 4×4 ordinal accuracy matrix (Qwen-rw, Pythia, OLMo, Qwen-cont)\n- OLMo diagonal was 0.382 (old), now 0.3167 (rerun)\n- **Cannot update from rerun data alone** — off-diagonal (cross-model transfer) values require re-running the full cross-model transfer experiment\n- **Action needed**: Re-run cross-model transfer experiments with OLMo rerun features\n\n### mcnemar_obd_vs_baselines.py\n- References OLMo/Wiki and OLMo/arXiv only (not OLMo/C4)\n- **No update needed** — different datasets, not affected by C4 rerun\n\n## OLMo feature importance (Task A, verified)\n\nAlready generated by Task A:\n- `results/olmo_feature_importance/olmo_rerun_feature_importance.pdf` (33.2 KB) ✓\n- `results/olmo_feature_importance/cross_model_feature_comparison.pdf` (47.3 KB) ✓\n\n## Local PDF paths (synced)\n\nAll updated PDFs synced to:\n```\ndocs/paper/figures/fig2_auc_decay.pdf\ndocs/paper/figures/fig_kstar_theta.pdf\ndocs/paper/figures/fig_jsd_decay.pdf\ndocs/paper/figures/fig_s1_auc_decay_ci.pdf\ndocs/paper/figures/olmo_rerun_feature_importance.pdf\ndocs/paper/figures/cross_model_feature_comparison.pdf\n```\n\n## LOFO validation note\n\nWith OLMo at K*=1, the LOFO θ=0.60 consensus analysis changes significantly. The full-set consensus range is now invalid (OLMo's 1v2 ci_lower=0.4908 < any reasonable θ). Paper text referencing LOFO θ validation may need revision.\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 113_
+
+完成。总结：
+
+**已更新 (4 个图表)**:
+- **Fig2** (`fig2_auc_decay.pdf`): OLMo AUC 曲线更新为 rerun 值 (1v2: 0.6145→0.508)
+- **Fig3** (`fig_kstar_theta.pdf`): OLMo K*(θ) 更新，现为 K*=1
+- **Fig4** (`fig_jsd_decay.pdf`): 标签修正 "7 models"→"8 models"，OLMo 已正确排除
+- **Supplementary** (`fig_s1_auc_decay_ci.pdf`): 自动发现 rerun 数据，已重生成
+- **LOFO θ validation**: 更新了 OLMo 数据，输出 JSON + LaTeX table
+
+**不需更新**: `mcnemar_obd_vs_baselines.py` (引用的是 OLMo/Wiki 和 OLMo/arXiv，非 C4)
+
+**需要额外实验**: `transfer_heatmap.py` 的 cross-model transfer 矩阵需要重跑跨模型迁移实验，无法仅从 rerun 数据更新
+
+**注意**: LOFO θ=0.60 共识分析因 OLMo K*=1 而失效，论文正文可能需要修改相关叙述。
+
+报告已写入 `artifacts/olmo_figure_regen_report.md`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "uuid": "9bcbb8ea-68a3-4eea-8a43-cce7713477fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DFMw8r3p2nTMruqDibR72c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1716,
+      "cache_read_input_tokens": 76296,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1716
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 114_
+
+完成。总结：
+
+**已更新 (4 个图表)**:
+- **Fig2** (`fig2_auc_decay.pdf`): OLMo AUC 曲线更新为 rerun 值 (1v2: 0.6145→0.508)
+- **Fig3** (`fig_kstar_theta.pdf`): OLMo K*(θ) 更新，现为 K*=1
+- **Fig4** (`fig_jsd_decay.pdf`): 标签修正 "7 models"→"8 models"，OLMo 已正确排除
+- **Supplementary** (`fig_s1_auc_decay_ci.pdf`): 自动发现 rerun 数据，已重生成
+- **LOFO θ validation**: 更新了 OLMo 数据，输出 JSON + LaTeX table
+
+**不需更新**: `mcnemar_obd_vs_baselines.py` (引用的是 OLMo/Wiki 和 OLMo/arXiv，非 C4)
+
+**需要额外实验**: `transfer_heatmap.py` 的 cross-model transfer 矩阵需要重跑跨模型迁移实验，无法仅从 rerun 数据更新
+
+**注意**: LOFO θ=0.60 共识分析因 OLMo K*=1 而失效，论文正文可能需要修改相关叙述。
+
+报告已写入 `artifacts/olmo_figure_regen_report.md`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 310310,
+  "duration_api_ms": 296140,
+  "num_turns": 44,
+  "stop_reason": "end_turn",
+  "session_id": "b550a826-559e-4eab-b8da-818ea8cab2c9",
+  "total_cost_usd": 1.3411177500000002,
+  "usage": {
+    "input_tokens": 22,
+    "cache_creation_input_tokens": 66171,
+    "cache_read_input_tokens": 909624,
+    "output_tokens": 18843,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 66171,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 410,
+        "cache_read_input_tokens": 76296,
+        "cache_creation_input_tokens": 1716,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1716
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1452,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001552,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 22,
+      "outputTokens": 18843,
+      "cacheReadInputTokens": 909624,
+      "cacheCreationInputTokens": 66171,
+      "webSearchRequests": 0,
+      "costUSD": 1.33956575,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "3b2d61bb-1beb-471d-9499-1ff0829f179d"
+}
+```
+
+</details>
+
+---

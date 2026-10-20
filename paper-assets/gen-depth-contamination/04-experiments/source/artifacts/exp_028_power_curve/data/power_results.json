@@ -1,0 +1,62 @@
+{
+  "experiment": "exp_028_power_curve",
+  "description": "Subsampling power curve for K*=2 detection on C4",
+  "source_data": "exp016_qwen_base (C4)",
+  "feature_matrix": "30000 rows x 15 features",
+  "n_unique_docs": 5000,
+  "theta": 0.6,
+  "n_resamples": 10,
+  "n_folds": 5,
+  "sample_sizes": [500, 1000, 2000, 3000, 4000, 5000],
+  "total_seconds": 86.3,
+  "results": {
+    "500": {
+      "n": 500,
+      "mean_auc": 0.5808,
+      "std_auc": 0.018,
+      "min_auc": 0.5474,
+      "max_auc": 0.611,
+      "detection_probability": 0.2
+    },
+    "1000": {
+      "n": 1000,
+      "mean_auc": 0.5911,
+      "std_auc": 0.0139,
+      "min_auc": 0.5677,
+      "max_auc": 0.6186,
+      "detection_probability": 0.3
+    },
+    "2000": {
+      "n": 2000,
+      "mean_auc": 0.6101,
+      "std_auc": 0.0088,
+      "min_auc": 0.6011,
+      "max_auc": 0.6313,
+      "detection_probability": 1.0
+    },
+    "3000": {
+      "n": 3000,
+      "mean_auc": 0.6166,
+      "std_auc": 0.0051,
+      "min_auc": 0.6085,
+      "max_auc": 0.6238,
+      "detection_probability": 1.0
+    },
+    "4000": {
+      "n": 4000,
+      "mean_auc": 0.622,
+      "std_auc": 0.0042,
+      "min_auc": 0.6162,
+      "max_auc": 0.6301,
+      "detection_probability": 1.0
+    },
+    "5000": {
+      "n": 5000,
+      "mean_auc": 0.6288,
+      "std_auc": 0.0,
+      "min_auc": 0.6288,
+      "max_auc": 0.6288,
+      "detection_probability": 1.0
+    }
+  }
+}

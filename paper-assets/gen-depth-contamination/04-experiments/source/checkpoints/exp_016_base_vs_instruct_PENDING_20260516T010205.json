@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_016_base_vs_instruct",
+  "project": "gen-depth-contamination",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:01:55.079Z",
+    "updated_at": "2026-05-16T01:02:05.781Z",
+    "hypothesis": "Base vs Instruct K* 对比：Qwen2.5-1.5B (base) continuation mode 的 K* 是否与 exp-017 (Instruct continuation, K*=2) 一致？封堵 \"K*=2 是 instruct-tuning 副产物\" 攻击面。唯一变量 = base vs instruct。",
+    "parent": "exp_017_qwen_continuation"
+  },
+  "timestamp": "2026-05-16T01:02:05.865295+00:00",
+  "trigger": "update_registry"
+}

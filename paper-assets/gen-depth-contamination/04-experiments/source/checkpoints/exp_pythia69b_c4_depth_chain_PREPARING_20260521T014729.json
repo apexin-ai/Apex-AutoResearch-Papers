@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_pythia69b_c4_depth_chain",
+  "project": "gen-depth-contamination",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T01:47:28.696Z",
+    "updated_at": "2026-05-21T01:47:28.696Z"
+  },
+  "timestamp": "2026-05-21T01:47:29.067654+00:00",
+  "trigger": "update_registry"
+}

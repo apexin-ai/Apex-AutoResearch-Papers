@@ -1,0 +1,54 @@
+{
+  "exp_id": "exp_025_pythia_arxiv",
+  "project": "gen-depth-contamination",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T17:16:13.988Z",
+    "updated_at": "2026-05-16T19:03:18.232Z",
+    "hypothesis": "Domain × model interaction: Pythia-1.4B on arXiv data 的 K* 是否与 exp-024 (Qwen on arXiv, K*=?) 一致？验证 arXiv domain effect 跨模型一致性，排除 Qwen-specific artifact。Pythia-1.4B continuation, nucleus p=0.95 T=1.0, 2200 docs, depth 0-5, scorer=Qwen2.5-1.5B base。",
+    "parent": "exp_024_arxiv_domain",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_025_pythia_arxiv && cp -n data/exp_024_arxiv/depth_0.jsonl data/exp_025_pythia_arxiv/depth_0.jsonl 2>/dev/null; PYTHIA_PATH=\\$(find /root/autodl-tmp/.hf_cache -maxdepth 3 -type d -name 'pythia-1.4b*' | head -1) && if [ -z \\\"\\$PYTHIA_PATH\\\" ]; then PYTHIA_PATH=\\$(find /root/autodl-tmp/.hf_cache -maxdepth 3 -name 'config.json' -path '*pythia*' -exec dirname {} \\\\; | head -1); fi && echo \\\"[INFO] Using Pythia at: \\$PYTHIA_PATH\\\" && CUDA_VISIBLE_DEVICES=1 python scripts/run_pipeline.py --model_path \\$PYTHIA_PATH --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --generation_mode continuation --top_p 0.95 --temperature 1.0 --num_samples 2200 --max_depth 5 --batch_size 8 --feat_batch_size 16 --data_dir data/exp_025_pythia_arxiv --results_dir results/exp_025_pythia_arxiv 2>&1 | tee logs/exp_025_pythia_arxiv.log\"",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "67006",
+      "log_path": "~/runs/gen-depth-contamination/exp_025_pythia_arxiv.log",
+      "submitted_at": "2026-05-16T17:59:52.930Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T18:57:28.981Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T18:57:30.288692+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "k_star": 3,
+      "pairwise_auc": {
+        "0v1": 0.9877,
+        "1v2": 0.8047,
+        "2v3": 0.6545,
+        "3v4": 0.5507
+      },
+      "n_samples": 2200,
+      "key_finding": "Pythia-1.4B on arXiv also K*=3, confirming domain effect (not Qwen-specific). 2v3=0.6545 robustly above θ=0.60."
+    },
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/",
+    "log_path": "/root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log"
+  },
+  "timestamp": "2026-05-16T19:03:18.328609+00:00",
+  "trigger": "update_registry"
+}

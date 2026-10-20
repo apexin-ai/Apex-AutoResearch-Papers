@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "309aae15939bbb2b7684",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra exp003 progress exp006 preflight",
+  "task_key": "worker_infra_exp003_progress_exp006_preflight_20260513T103619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_exp003_progress_exp006_preflight_20260513T103619_result.json",
+    "occurrence": 1,
+    "bytes": 1859,
+    "sha256": "eff633e8562d1bbab1fc6e5b0d499d2c123295dcb99555e8bdfc2cfb7953cb6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-003 进度\n\n- **当前 config: 2/4 (nucleus p=0.9, T=1.0)**\n- 已完成: greedy（14:44→18:03，含生成+特征提取+分析，共 ~3h20m）\n- nuc09 进行中：depth_0 已完成，**depth_1 生成 311/313 batches (99%)**，~6.3s/batch\n- greedy 各 depth 耗时参考：~32min/depth + 39min 特征分析\n\n**预估剩余时间：**\n| Config | 剩余 |\n|--------|------|\n| nuc09 (当前) | depth 2-5 + 分析 ≈ 2h50m |\n| nuc095_T07 | ~3h20m |\n| nuc095_T12 | ~3h20m |\n| **总计** | **~9h30m** |\n\n日志最新关键输出：\n- greedy 分析结果：K* (max depth with AUC > 0.60) = 2，top feature = freq_entropy\n- nuc09 于 18:04 启动，当前正在生成 depth 1\n\n## GPU 利用率\n\n- GPU: NVIDIA RTX 4090 D\n- **GPU utilization: 47%**\n- **Memory: 3.9 / 24.0 GB (16%)**\n- PID 34916 (python) 占用 3912 MiB\n- 评估：显存大量空闲（~20GB），GPU 计算利用率中等——瓶颈在 autoregressive decoding，单 batch 无法充分利用，属正常水平\n\n## exp-006 前置检查\n\n| 检查项 | 状态 | 备注 |\n|--------|------|------|\n| run_exp006.sh | ✅ | 4.1KB, 可执行 |\n| exp006_filtering_strategies.py | ✅ | 10.9KB |\n| exp006_continued_pretraining.py | ✅ | 7.2KB |\n| exp006_evaluate.py | ✅ | 2.5KB |\n| exp006_analyze.py | ✅ | 9.7KB |\n| Qwen depth chain 数据 | ✅ | depth_0~5.jsonl, 每个 5000 条, 共 30000 条 |\n| Qwen 模型权重 | ✅ | config.json + model.safetensors 存在 |\n| lm-eval-harness | ✅ | 0.4.11 |\n| peft | ✅ | 0.19.0 |\n| lightgbm | ✅ | 4.6.0 |\n| 缺失依赖 | 无 | 全部就绪 |\n\n**run_exp006.sh 配置**: 6 strategies (no-filter, binary-ours, binary-drayson, graduated, surprisal, dsir) × 5 seeds (42/123/456/789/1024), alpha 扫 0.1~0.9。\n\n**结论：exp-006 全部前置条件满足，exp-003 完成后可直接启动。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp003-progress-exp006-preflight.md"
+}

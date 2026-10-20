@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_021_length_ablation",
+  "project": "gen-depth-contamination",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T04:52:13.569Z",
+    "updated_at": "2026-05-16T04:52:42.267Z",
+    "hypothesis": "文本长度消融：128/256/512 tokens 下 K* 是否稳定？验证 K*=2 不依赖于 256-token 固定长度设定。Qwen2.5-1.5B-Instruct continuation, C4 5K, depth 0-5。"
+  },
+  "timestamp": "2026-05-16T04:52:42.336360+00:00",
+  "trigger": "update_registry"
+}

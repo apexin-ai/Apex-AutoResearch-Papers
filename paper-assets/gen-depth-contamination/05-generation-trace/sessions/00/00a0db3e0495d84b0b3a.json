@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00a0db3e0495d84b0b3a",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code 7b cross transfer",
+  "task_key": "worker_code_7b_cross_transfer_20260524T084729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_7b_cross_transfer_20260524T084729_result.json",
+    "occurrence": 1,
+    "bytes": 1576,
+    "sha256": "140009f2814aa113892c4ac5c81c0d4f89673c1b330316d29e1dec0f84489902"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。以下是结果汇总：\n\n## 产出\n\n**脚本**: `scripts/run_7b_cross_transfer_v2.py` on cqa1-22115\n**结果**: `results/7b_cross_transfer_v2/cross_transfer_7b_full_metrics.json`\n**GPU**: 不需要，纯 CPU 任务\n**运行时间**: ~90 秒（5K docs, 2×2 matrix）\n\n## 数据说明\n\n- **exp-004 (Qwen2.5-7B, 5K)** 原始数据在 westc-26893，不在 cqa1-22115。使用 `exp_qwen_cont_10k`（10K 版本）子采样到 5K docs\n- **exp-018 (LLaMA-3.1-8B, 5K)** 直接使用 `data/exp_018_llama8b/features.csv`\n- 两者均为 Qwen2.5-1.5B cross-scoring，15D features\n\n## 2×2 Transfer Matrix\n\n| Metric | Train\\Test | Qwen2.5-7B | LLaMA-3.1-8B |\n|--------|-----------|------------|--------------|\n| **6-class Acc** | Qwen-7B | **0.378** | 0.312 |\n| | LLaMA-8B | 0.346 | **0.331** |\n| **MAE** | Qwen-7B | **1.169** | 1.510 |\n| | LLaMA-8B | 1.249 | **1.321** |\n| **Kendall τ_b** | Qwen-7B | **0.463** | 0.376 |\n| | LLaMA-8B | 0.418 | **0.383** |\n| **Mean AUC** | Qwen-7B | **0.640** | 0.619 |\n| | LLaMA-8B | 0.635 | **0.620** |\n\n## Transfer Retention\n\n| Direction | Accuracy | τ_b | Mean AUC |\n|-----------|----------|-----|----------|\n| Qwen→LLaMA | 82.7% | 81.2% | 85.0% |\n| LLaMA→Qwen | 104.4% | 109.3% | 111.8% |\n\nLLaMA→Qwen 方向 retention >100% 说明 LLaMA 训练的 classifier 在 Qwen 上表现反而优于 LLaMA 自身（因为 Qwen 数据 signal 更强）。Qwen→LLaMA 方向 retention 82-85%，说明 transfer 有损但仍保持较高水平，与 1.5B 规模的 transfer pattern 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-7b-cross-transfer.md"
+}

@@ -1,0 +1,152 @@
+{
+  "exp_id": "exp_qwen_retrain_depth7",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T01:08:52.105Z",
+    "updated_at": "2026-05-19T01:10:20.209Z",
+    "hypothesis": "Qwen2.5-1.5B retrain-chain extended to depth 7: K* measurement at higher depths. Retrain-chain with LoRA rank=16, alpha=32, 1 epoch per generation. Each depth uses independently trained LoRA merged before next generation. C4 5K docs, depth 0-7, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B (self-scoring). Extends exp_qwen_retrain_chain (depth 0-4).",
+    "parent": "exp_qwen_retrain_chain",
+    "spec": {
+      "command": "python scripts/run_pipeline.py --model_path Qwen2.5-1.5B --max_depth 7 (retrain-chain extension)",
+      "server": "cqa1-22115",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/exp_qwen_retrain_chain_ext",
+      "data_count": 5000,
+      "model_name": "Qwen2.5-1.5B",
+      "seed": 42,
+      "checkpoint_source": "exp_qwen_retrain_chain",
+      "eval_data": "C4 5000 docs depth 0-7"
+    },
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_qwen_retrain_chain_ext/",
+    "log_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_qwen_retrain_chain_ext/summary.json",
+    "metrics": {
+      "k_star": 7,
+      "theta": 0.6,
+      "max_depth": 7,
+      "analysis_method": "5-fold GroupKFold CV",
+      "pairwise_auc": {
+        "0v1": {
+          "mean": 0.9837,
+          "std": 0.0019,
+          "ci_95": [
+            0.9821,
+            0.9854
+          ],
+          "folds": [
+            0.9832,
+            0.9821,
+            0.9837,
+            0.9823,
+            0.9873
+          ]
+        },
+        "1v2": {
+          "mean": 0.8971,
+          "std": 0.0025,
+          "ci_95": [
+            0.8949,
+            0.8993
+          ],
+          "folds": [
+            0.8923,
+            0.8988,
+            0.8986,
+            0.8991,
+            0.8967
+          ]
+        },
+        "2v3": {
+          "mean": 0.8098,
+          "std": 0.0052,
+          "ci_95": [
+            0.8052,
+            0.8144
+          ],
+          "folds": [
+            0.8086,
+            0.8074,
+            0.818,
+            0.8024,
+            0.8128
+          ]
+        },
+        "3v4": {
+          "mean": 0.76,
+          "std": 0.0082,
+          "ci_95": [
+            0.7528,
+            0.7672
+          ],
+          "folds": [
+            0.7534,
+            0.7617,
+            0.7753,
+            0.7566,
+            0.7531
+          ]
+        },
+        "4v5": {
+          "mean": 0.7459,
+          "std": 0.0091,
+          "ci_95": [
+            0.7379,
+            0.7538
+          ],
+          "folds": [
+            0.7429,
+            0.7562,
+            0.7521,
+            0.73,
+            0.7482
+          ]
+        },
+        "5v6": {
+          "mean": 0.7017,
+          "std": 0.0068,
+          "ci_95": [
+            0.6958,
+            0.7076
+          ],
+          "folds": [
+            0.7006,
+            0.7077,
+            0.7104,
+            0.6915,
+            0.6984
+          ]
+        },
+        "6v7": {
+          "mean": 0.641,
+          "std": 0.0039,
+          "ci_95": [
+            0.6376,
+            0.6445
+          ],
+          "folds": [
+            0.6419,
+            0.6349,
+            0.6464,
+            0.639,
+            0.643
+          ]
+        }
+      },
+      "jsd": {
+        "0v1": 0.23005,
+        "1v2": 0.103924,
+        "2v3": 0.075049,
+        "3v4": 0.065398,
+        "4v5": 0.060509,
+        "5v6": 0.034998,
+        "6v7": 0.017652
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-19T01:10:20.209Z"
+  },
+  "timestamp": "2026-05-19T01:10:20.415576+00:00",
+  "trigger": "update_registry"
+}

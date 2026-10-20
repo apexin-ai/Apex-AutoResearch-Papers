@@ -1,0 +1,3 @@
+2026-05-12 20:35:49,533 INFO    core.tools.feishu  create_chat: name='gen-depth-contamination-审稿群' → chat_id=oc_0f6dcb30efaa4f47425ef1d9874a89d7
+2026-05-12 20:35:49,536 INFO    core.tools.dream  [dream] auto-created Group C for project=gen-depth-contamination: oc_0f6dcb30efaa4f47425ef1d9874a89d7
+2026-05-12 20:35:49,589 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-idea_gen_0509_7/config/mcp_config_dream_review_director.json

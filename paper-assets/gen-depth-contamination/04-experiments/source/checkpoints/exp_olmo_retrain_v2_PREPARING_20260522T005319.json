@@ -1,0 +1,18 @@
+{
+  "exp_id": "exp_olmo_retrain_v2",
+  "project": "gen-depth-contamination",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:36:11.450Z",
+    "updated_at": "2026-05-22T00:53:19.065Z",
+    "hypothesis": "OLMo-1B retrain-chain ecological validity (v2, fix M009 model download): LoRA rank=16, alpha=32, 1 epoch per generation on C4 5K docs. Retrain-chain K* ≤ prompt-chain K*=2, confirming prompt-chain as conservative upper bound. Independent LoRA per generation, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "parent": "exp_olmo_retrain_chain",
+    "conclusion": "killed",
+    "notes": "Director 决定放弃 OLMo retrain-chain (2026-05-18)。原因：cqa1 两次下载失败（M009 模型权重中断 + 网络端口耗尽），DDL 紧张不再重试。cuda:0 重新分配给 code domain 备用或 Qwen retrain-chain。"
+  },
+  "timestamp": "2026-05-22T00:53:19.452216+00:00",
+  "trigger": "update_registry"
+}

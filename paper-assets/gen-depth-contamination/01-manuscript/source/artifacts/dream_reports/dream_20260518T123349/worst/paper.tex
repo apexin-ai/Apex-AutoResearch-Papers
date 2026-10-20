@@ -1,0 +1,399 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{natbib}
+\usepackage{multirow}
+\usepackage{caption}
+
+\title{Generational Depth Estimation in Recursive Synthetic Text:\\From Discrete Boundaries to Continuous Decay}
+
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+%% ============================================================
+%% ABSTRACT
+%% ============================================================
+\begin{abstract}
+Large Language Model (LLM) generated text increasingly contaminates web corpora through recursive cycles: synthetic outputs become training inputs for subsequent generation.
+Detecting this contamination requires estimating the \emph{generational depth} of text, yet existing detectors treat the problem as binary (human vs.\ machine).
+We formalize recursive generation as an iterated lossy channel and define $K^*$, the discrimination boundary beyond which consecutive depths become statistically indistinguishable.
+Controlled experiments across eight model configurations (five architecture families, 1B--8B parameters), three source domains, and four decoding strategies yield $K^* \in \{1,2,3\}$ with domain-dependent structure.
+However, two validation studies expose fundamental fragility in this discrete characterization.
+A naturalistic evaluation on Common Crawl data reveals severe lab-to-wild transfer degradation: depth--quality correlations are negligible (Spearman $\rho = -0.08$, $p = 0.07$ for AlignScore), and calibration collapses (ECE $= 0.31$).
+A subsampling power analysis shows that the canonical $K^* = 2$ finding on web text requires $n \geq 4{,}000$ samples per depth pair for 80\% detection power, exposing a vanishingly small effect size (Cohen's $h \approx 0.20$).
+These results suggest that $K^*$ as a discrete operational quantity is an artifact of experimental design choices rather than a robust property of recursive generation, motivating a shift toward continuous information decay characterization.
+\end{abstract}
+
+%% ============================================================
+%% 1  INTRODUCTION
+%% ============================================================
+\section{Introduction}
+
+Web-scale text corpora are increasingly contaminated by recursively generated synthetic content.
+When LLM outputs re-enter the training pipeline, the resulting text undergoes iterative quality degradation that binary detectors (human vs.\ machine) cannot capture.
+Understanding how many recursive passes a document has undergone, its \emph{generational depth}, is critical for principled data curation.
+
+Recent work on model collapse~\citep{shumailov2024ai,alemohammad2024selfconsuming,dohmatob2024tale} demonstrates that recursive training on synthetic data leads to distributional narrowing.
+Binary detection methods such as DetectGPT, DivEye, and Min-K\%++ distinguish human from machine text but do not estimate depth.
+Data selection approaches (DSIR, D4, DoReMi) perform distribution matching without depth awareness.
+None of these methods quantify the point at which consecutive generational depths become indistinguishable.
+
+We formalize recursive generation as an iterated lossy channel and, via the Data Processing Inequality (DPI), prove that a finite discrimination boundary $K^*$ must exist.
+We then measure $K^*$ empirically across a comprehensive experimental matrix: eight model configurations spanning five architecture families (Pythia-1.4B, OLMo-1B, Qwen-1.5B, Qwen-7B, LLaMA-3.1-8B, Mistral-7B), three source domains (C4 web text, Wikipedia, arXiv), and four decoding strategies.
+The controlled experiments yield $K^* \in \{1,2,3\}$ with a domain-dependent hierarchy: Wikipedia saturates at $K^*=1$, C4 web text at $K^*=2$ (7/8 configurations), and arXiv at $K^*=3$ (5/5 domain-competent models).
+
+However, two additional validation experiments challenge this clean picture. First, a naturalistic evaluation on Common Crawl (exp-014) reveals that depth estimators trained under controlled conditions fail to generalize to wild data, with calibration error reaching ECE $= 0.31$ and depth--quality correlations falling to negligible levels. Second, a subsampling power analysis (exp-028) demonstrates that $K^*=2$ on C4 requires $n \geq 4{,}000$ samples for reliable detection, exposing an effect size so small that its practical significance is questionable.
+
+Together, these findings suggest that $K^*$ as a discrete operational quantity may be an artifact of specific experimental configurations (sample size, threshold $\theta$, domain) rather than a stable property of the recursive generation process. We argue that the field should move beyond discrete $K^*$ toward characterizing continuous information decay curves.
+
+Our contributions are:
+\begin{itemize}
+    \item We formalize the discrimination boundary $K^*$ via DPI theory and provide the first systematic empirical measurement across 8 model configurations, 3 domains, and 4 decoding strategies, finding $K^* \in \{1,2,3\}$ with domain-dependent structure.
+    \item We expose the fragility of discrete $K^*$ through two validation experiments: (a) lab-to-wild transfer failure on Common Crawl (ECE $= 0.31$, negligible depth--quality correlation), and (b) sample-size dependence of $K^*$ determination ($n \geq 4{,}000$ required for 80\% power).
+    \item We argue for a paradigm shift from discrete $K^*$ characterization to continuous information decay curves, grounded in the empirical evidence of $K^*$'s instability.
+\end{itemize}
+
+
+%% ============================================================
+%% 2  METHOD
+%% ============================================================
+\section{Method}
+
+\subsection{Recursive Generation as Iterated Lossy Channel}
+
+Let $X_0$ denote human-authored text drawn from source distribution $\mathcal{D}$.
+Recursive generation produces a Markov chain $X_0 \to X_1 \to X_2 \to \cdots$, where $X_{k+1} = G(X_k)$ for a generation operator $G$ (prompt-chain continuation or instruction-following rewrite).
+By the Data Processing Inequality, for any statistical functional $T$:
+\begin{equation}
+    I(X_0; T(X_k)) \leq I(X_0; T(X_{k-1})) \leq \cdots \leq I(X_0; T(X_0)),
+\end{equation}
+where $I(\cdot;\cdot)$ denotes mutual information. This monotonic decay guarantees the existence of a finite $K^*_{\text{theory}}$ beyond which no statistical test can distinguish $X_k$ from $X_{k+1}$.
+
+\subsection{Empirical Discrimination Boundary $K^*$}
+
+We define the empirical discrimination boundary $K^*_{\text{empirical}}$ as:
+\begin{equation}
+    K^* = \max\{k : \text{AUC}(k \text{ vs } k{+}1) > \theta\},
+\end{equation}
+where $\text{AUC}(k \text{ vs } k{+}1)$ is the area under the ROC curve for a binary classifier distinguishing depth-$k$ from depth-$(k{+}1)$ text, and $\theta$ is a discrimination threshold.
+We set $\theta = 0.60$, corresponding to Cohen's $h \approx 0.20$ (small effect size), and require the lower bound of a bootstrap 95\% confidence interval to exceed $\theta$.
+
+\subsection{Feature Representation}
+
+We use a 15-dimensional model-free feature vector comprising:
+(i) token-level surprisal statistics (mean, variance, skewness, kurtosis) computed via a reference LM,
+(ii) vocabulary richness metrics (type-token ratio, hapax legomena ratio, Yule's K),
+(iii) syntactic complexity measures (mean dependency length, clause depth),
+(iv) repetition indicators (n-gram overlap ratios for $n \in \{2,3,4\}$),
+and (v) coherence features (entity grid transition probabilities, discourse connective density).
+These features are model-agnostic by design, enabling cross-model transfer.
+
+\subsection{Experimental Matrix}
+
+The controlled experiments span:
+\begin{itemize}
+    \item \textbf{Models}: Pythia-1.4B, OLMo-1B, Qwen-1.5B (base and instruct), Qwen-7B, LLaMA-3.1-8B, Mistral-7B
+    \item \textbf{Domains}: C4 web text, Wikipedia, arXiv
+    \item \textbf{Decoding}: greedy, nucleus ($p=0.9$), temperature (0.7, 1.2)
+    \item \textbf{Generation mode}: continuation (canonical) and instruction-following rewrite (ablation)
+\end{itemize}
+
+Each configuration generates depths 0 through 5, with $n = 5{,}000$ samples per depth in the primary C4 experiments.
+
+
+%% ============================================================
+%% 3  CONTROLLED EXPERIMENTS: K* CHARACTERIZATION
+%% ============================================================
+\section{Controlled Experiments: $K^*$ Characterization}
+
+Under controlled lab conditions, the 15D feature classifier yields consistent $K^*$ values across the experimental matrix.
+Table~\ref{tab:c4_kstar} summarizes the C4 web text results, where 7/8 configurations yield $K^*=2$.
+Table~\ref{tab:domain_kstar} shows the domain hierarchy.
+
+\begin{table}[t]
+\centering
+\caption{$K^*$ determination on C4 web text ($\theta = 0.60$, continuation mode). AUC and 95\% bootstrap CI for the boundary pair (depth 1 vs 2). 7/8 configurations yield $K^* = 2$.}
+\label{tab:c4_kstar}
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Model & AUC 1v2 & 95\% CI & $K^*$ \\
+\midrule
+Pythia-1.4B        & 0.6539 & [0.645, 0.663] & 2 \\
+Qwen-1.5B base     & 0.6262 & [0.617, 0.635] & 2 \\
+Qwen-7B            & 0.6178 & [0.608, 0.626] & 2 \\
+OLMo-1B            & 0.6145 & [0.605, 0.625] & 2 \\
+LLaMA-3.1-8B       & 0.6123 & [0.603, 0.622] & 2 \\
+Qwen-1.5B-Inst cont& 0.6112 & [0.602, 0.621] & 2 \\
+Qwen-1.5B-Inst rw  & 0.6957 & [0.686, 0.704] & 2 \\
+\midrule
+Mistral-7B         & 0.5935 & [0.584, 0.603] & 1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Domain-dependent $K^*$ hierarchy ($\theta = 0.60$). Wikipedia saturates at $K^*=1$, C4 at $K^*=2$, arXiv at $K^*=3$.}
+\label{tab:domain_kstar}
+\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Domain & $K^*$ (dominant) & Models agreeing \\
+\midrule
+Wikipedia  & 1 & 6/6 (scorer-controlled) \\
+C4 web text & 2 & 7/8 \\
+arXiv      & 3 & 5/5 (domain-competent) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+These controlled results present a clean narrative: $K^*$ is low-bounded ($\leq 3$) and domain-dependent.
+The following two sections examine whether this narrative survives validation.
+
+
+%% ============================================================
+%% 4  EXPERIMENT 1: NATURALISTIC COMMON CRAWL VALIDATION
+%% ============================================================
+\section{Naturalistic Common Crawl Validation (exp-014)}
+
+\subsection{Setup}
+
+To evaluate whether the lab-trained depth estimator generalizes beyond controlled conditions, we applied it to $n = 10{,}000$ documents sampled from the Common Crawl 2025-51 snapshot.
+We computed predicted depth for each document and measured correlations with three independent quality proxies: AlignScore (factual consistency), vocabulary richness (type-token ratio, TTR), and perplexity (GPT-2).
+
+\subsection{Results}
+
+Table~\ref{tab:cc_correlation} reports rank correlations between predicted depth and quality metrics.
+None of the correlations reach practically meaningful effect sizes.
+The depth--AlignScore correlation is $\rho = -0.08$ ($p = 0.07$), failing to reach statistical significance.
+Vocabulary richness shows a statistically significant but negligibly small negative correlation ($\rho = -0.14$, $p = 0.002$).
+Perplexity and document length show no meaningful association with predicted depth.
+
+\begin{table}[t]
+\centering
+\caption{Correlation between predicted depth and quality metrics on Common Crawl 2025-51 ($n = 10{,}000$).}
+\label{tab:cc_correlation}
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Metric Pair & Spearman $\rho$ & $p$-value & 95\% CI \\
+\midrule
+Pred Depth $\times$ AlignScore        & $-0.08$ & 0.07  & [$-0.16$, $0.01$] \\
+Pred Depth $\times$ Vocab Richness    & $-0.14$ & 0.002 & [$-0.22$, $-0.05$] \\
+Pred Depth $\times$ Perplexity (GPT-2)& $+0.05$ & 0.28  & [$-0.04$, $+0.13$] \\
+Pred Depth $\times$ Doc Length         & $+0.03$ & 0.51  & [$-0.06$, $+0.11$] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:cc_distribution} compares the predicted depth distribution on Common Crawl against the balanced lab distribution.
+The model assigns 42\% of Common Crawl documents to depth 0 (human-authored) and only 9\% to depth 3+.
+Given that AI-generated content in recent Common Crawl snapshots is estimated at 15--25\%, this suggests substantial false negatives: the model systematically underestimates the prevalence of synthetic text in wild data.
+
+\begin{table}[t]
+\centering
+\caption{Predicted depth distribution: Common Crawl 2025-51 vs.\ balanced lab (C4).}
+\label{tab:cc_distribution}
+\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Depth & CC 2025 (\%) & Lab C4 (\%) \\
+\midrule
+0 (human)   & 42 & 16.7 \\
+1            & 31 & 16.7 \\
+2            & 18 & 16.7 \\
+3+           & 9  & 50.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Calibration is poor: the expected calibration error is ECE $= 0.31$, with mean prediction confidence of only $0.38 \pm 0.12$.
+The AUC drops by 0.15 relative to lab conditions, confirming substantial domain shift.
+
+\subsection{Analysis}
+
+These results expose a severe generalization gap.
+The 15D features, trained on clean C4 subsets generated by a single model family, fail to capture the distributional complexity of Common Crawl data, which spans multiple languages, formats, and unknown generator pipelines.
+The negligible depth--AlignScore correlation ($\rho = -0.08$) undermines the claim that $K^*$ boundaries carry actionable significance for data curation: if predicted depth does not track text quality in the wild, filtering by estimated depth is no better than random at scale.
+The weak vocabulary richness correlation ($\rho = -0.14$), while statistically significant due to large sample size, has an effect size too small ($r^2 < 0.02$) to serve as validation evidence.
+
+The distribution shift (42\% depth-0 on Common Crawl vs.\ 16.7\% in lab) further reveals that the classifier's decision boundaries, calibrated on balanced lab data, collapse under real-world class priors and distributional heterogeneity.
+
+
+%% ============================================================
+%% 5  EXPERIMENT 2: SUBSAMPLING POWER CURVE
+%% ============================================================
+\section{Subsampling Power Analysis (exp-028)}
+
+\subsection{Setup}
+
+We examine how sample size affects the stability of $K^*$ determination.
+Using the most marginal configuration (Qwen-1.5B-Instruct continuation on C4, full-data AUC $1\text{v}2 = 0.6112$, CI lower $= 0.6015$), we construct subsamples at $n \in \{1{,}000,\ 2{,}000,\ 3{,}000,\ 4{,}000,\ 5{,}000\}$ per depth level, with 10 independent resamples per size.
+For each resample, we compute the bootstrap 95\% CI for the 1v2 AUC and determine whether $K^* = 2$ (CI lower $> \theta = 0.60$) or $K^* = 1$.
+
+\subsection{Results}
+
+Table~\ref{tab:power_curve} reports the power curve.
+At $n = 1{,}000$, only 40\% of resamples yield $K^* = 2$; the majority (60\%) conclude $K^* = 1$.
+The detection rate rises monotonically with sample size, reaching 80\% at $n = 4{,}000$ and 90\% at $n = 5{,}000$.
+The mean 1v2 AUC is remarkably stable across sample sizes (0.6095--0.6120), confirming that the underlying effect size is genuine but small: the standard deviation shrinks from 0.028 at $n = 1{,}000$ to 0.010 at $n = 5{,}000$, and the CI lower bound rises from 0.581 to 0.602.
+
+\begin{table}[t]
+\centering
+\caption{$K^*=2$ detection power by sample size (Qwen-1.5B-Inst continuation, C4, $\theta = 0.60$, 10 resamples per $n$, 10{,}000 bootstrap iterations).}
+\label{tab:power_curve}
+\small
+\begin{tabular}{@{}cccccc@{}}
+\toprule
+$n$ per depth & Mean AUC 1v2 & SD & Mean CI lower & \% $K^*{=}2$ & \% $K^*{=}1$ \\
+\midrule
+1,000 & 0.6095 & 0.028 & 0.581 & 40\% & 60\% \\
+2,000 & 0.6108 & 0.019 & 0.592 & 50\% & 50\% \\
+3,000 & 0.6115 & 0.015 & 0.597 & 60\% & 40\% \\
+4,000 & 0.6118 & 0.012 & 0.600 & 80\% & 20\% \\
+5,000 & 0.6120 & 0.010 & 0.602 & 90\% & 10\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:power_models} reveals substantial cross-model heterogeneity in statistical power.
+At $n = 3{,}000$, Pythia-1.4B (margin $+5.39$pp over $\theta$) achieves 95\% detection rate, while Qwen-cont ($+1.12$pp) and LLaMA-8B ($+1.23$pp) reach only 60\% and 62\% respectively.
+Mistral-7B, with a negative margin ($-0.65$pp), achieves only 5\% detection at any sample size, consistent with its $K^* = 1$ classification.
+
+\begin{table}[t]
+\centering
+\caption{Cross-model power comparison at $n = 3{,}000$ per depth (C4 web text).}
+\label{tab:power_models}
+\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Model & AUC 1v2 (full) & Margin over $\theta$ & Est.\ \% $K^*{=}2$ \\
+\midrule
+Pythia-1.4B     & 0.6539 & $+5.39$pp & 95\% \\
+Qwen-1.5B base  & 0.6262 & $+2.62$pp & 80\% \\
+Qwen-7B         & 0.6178 & $+1.78$pp & 70\% \\
+OLMo-1B         & 0.6145 & $+1.45$pp & 65\% \\
+LLaMA-3.1-8B    & 0.6123 & $+1.23$pp & 62\% \\
+Qwen-1.5B-Inst  & 0.6112 & $+1.12$pp & 60\% \\
+Mistral-7B      & 0.5935 & $-0.65$pp & 5\%  \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Analysis}
+
+The power curve exposes two fundamental issues with discrete $K^*$ characterization.
+
+First, the effect size for the $K^*=2$ boundary on C4 web text is vanishingly small.
+The 1v2 AUC of 0.6112 exceeds $\theta = 0.60$ by only 1.12 percentage points (Cohen's $h \approx 0.20$, the lower boundary of ``small effect'').
+Requiring 4{,}000 samples per depth pair for 80\% detection power invites a pointed critique: if a claimed fundamental property of recursive generation requires such large samples to detect, the signal may be too weak to carry practical significance.
+
+Second, the ``7/8 configurations yield $K^*=2$'' claim masks substantial power asymmetry across models.
+Pythia-1.4B needs only $n \approx 1{,}000$ for stable $K^*=2$ detection, while Qwen-cont and LLaMA-8B require $n \geq 4{,}000$.
+At any fixed sample size below 4{,}000, the fraction of models supporting $K^*=2$ drops, and $K^*$ becomes jointly determined by sample size, threshold, and model identity rather than by the data generating process alone.
+
+When combined with the $\theta$-sensitivity reported in the controlled experiments ($\theta = 0.55$ shifts most models to $K^*=2{-}3$; $\theta = 0.70$ shifts most to $K^*=1$), the power analysis reinforces the conclusion that $K^*$ is not a stable property of the text but a function of experimental design parameters $(n, \theta, \text{model})$.
+
+
+%% ============================================================
+%% 6  DISCUSSION
+%% ============================================================
+\section{Discussion}
+
+\subsection{The Fragility of Discrete $K^*$}
+
+The controlled experiments (Section 3) present an appealing narrative: recursive generation has a bounded discrimination boundary $K^* \in \{1,2,3\}$ with clean domain dependence.
+The validation experiments (Sections 4--5) dismantle this narrative along two axes.
+
+The Common Crawl evaluation (exp-014) shows that the lab-trained depth estimator does not transfer to wild data.
+ECE of 0.31 indicates that predicted depths are poorly calibrated, and the negligible correlation with quality metrics ($|\rho| \leq 0.14$ for all proxies) means that $K^*$ boundaries, even if correctly estimated, do not track the quality degradation that motivates depth-aware curation.
+The practical implication is stark: a curation system built on $K^*=2$ filtering would not meaningfully improve data quality on Common Crawl-scale corpora.
+
+The power analysis (exp-028) reveals that $K^*=2$ is a statistically fragile determination.
+For marginal configurations (Qwen-cont, LLaMA-8B, OLMo-1B), the 1v2 AUC exceeds $\theta$ by 1--2 percentage points.
+Whether these configurations are classified as $K^*=1$ or $K^*=2$ depends on sample size and random variation.
+The ``7/8 $K^*=2$'' headline is achievable only at the specific $(n=5{,}000, \theta=0.60)$ operating point.
+
+\subsection{From Discrete Boundaries to Continuous Decay}
+
+These results motivate reframing recursive generation contamination not as a problem of identifying discrete $K^*$ boundaries but as characterizing continuous information decay curves.
+The DPI guarantee ensures monotonic decay of mutual information with depth, but the decay \emph{rate} varies continuously across models and domains.
+The 1v2 AUC values across models (0.5935--0.6539 on C4; see Table~\ref{tab:power_models}) form a continuum, not discrete clusters.
+Discretizing this continuum into $K^*$ via a threshold $\theta$ discards information about the decay rate and introduces dependence on $(n, \theta)$.
+
+A continuous characterization would estimate a decay function $\alpha(k; \text{model}, \text{domain})$ mapping depth $k$ to discriminability.
+This function captures both the rate of information loss (fast for Wikipedia, slow for arXiv) and the model-specific marginal differences that discrete $K^*$ collapses.
+For data curation, a continuous score avoids the binary filtering granularity that $K^*$ imposes and enables graduated weighting schemes calibrated to domain-specific decay profiles.
+
+\subsection{Limitations}
+
+Several limitations constrain interpretation.
+(1) The controlled experiments use models up to 8B parameters; behavior at 70B+ scale remains untested, though DPI guarantees finite $K^*_{\text{theory}}$ regardless of scale.
+(2) The Common Crawl evaluation uses a single snapshot (2025-51); temporal variation in AI content prevalence may affect distributional shift severity.
+(3) The power analysis uses a single marginal model (Qwen-cont) as the test case; power characteristics of other marginal models (OLMo, LLaMA) may differ.
+(4) We do not evaluate continuous decay curve estimation, which remains a direction for future work.
+
+
+%% ============================================================
+%% 7  CONCLUSION
+%% ============================================================
+\section{Conclusion}
+
+We presented the first systematic measurement of the generational discrimination boundary $K^*$ across eight model configurations, three domains, and four decoding strategies.
+The controlled experiments yield $K^* \in \{1,2,3\}$ with domain-dependent structure: Wikipedia $K^*=1$, C4 web text $K^*=2$ (7/8 configurations), arXiv $K^*=3$ (5/5 domain-competent models).
+
+However, our validation experiments reveal that this discrete characterization is fragile.
+Naturalistic evaluation on Common Crawl shows severe lab-to-wild transfer degradation (ECE $= 0.31$, depth--quality $\rho = -0.08$, $p = 0.07$), indicating that $K^*$ boundaries trained on clean subsets do not carry actionable significance for in-the-wild data curation.
+The subsampling power analysis demonstrates that $K^*=2$ determination requires $n \geq 4{,}000$ for 80\% power, exposing an effect size at the lower limit of detectability.
+Combined with $\theta$-sensitivity and cross-model power heterogeneity, $K^*$ appears to be a joint function of $(n, \theta, \text{model})$ rather than an intrinsic property of recursive generation.
+
+These findings point toward a continuous information decay framework as a more principled alternative to discrete $K^*$ classification.
+The rapid saturation of discriminability (within 1--3 passes) confirms that recursive contamination erases generational structure quickly, but the rate of erasure varies continuously across models and domains in ways that discrete $K^*$ fails to capture.
+
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{10}
+
+\bibitem[Shumailov et~al.(2024)]{shumailov2024ai}
+Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Yarin Gal, Nicolas Papernot, and Ross Anderson.
+\newblock {AI} models collapse when trained on recursively generated data.
+\newblock \emph{Nature}, 631:755--759, 2024.
+
+\bibitem[Alemohammad et~al.(2024)]{alemohammad2024selfconsuming}
+Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed~Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, and Richard~G. Baraniuk.
+\newblock Self-consuming generative models go {MAD}.
+\newblock In \emph{ICLR}, 2024.
+
+\bibitem[Dohmatob et~al.(2024)]{dohmatob2024tale}
+Elvis Dohmatob, Yunzhen Feng, and Julia Kempe.
+\newblock A tale of tails: Model collapse as a change of scaling laws.
+\newblock In \emph{ICML}, 2024.
+
+\bibitem[Mitchell et~al.(2023)]{mitchell2023detectgpt}
+Eric Mitchell, Yoonho Lee, Alexander Khazatsky, Christopher~D. Manning, and Chelsea Finn.
+\newblock {DetectGPT}: Zero-shot machine-generated text detection using probability curvature.
+\newblock In \emph{ICML}, 2023.
+
+\bibitem[Xie et~al.(2023)]{xie2023dsir}
+Sang~Michael Xie, Shibani Santurkar, Tengyu Ma, and Percy Liang.
+\newblock Data selection for language models via importance resampling.
+\newblock In \emph{NeurIPS}, 2023.
+
+\bibitem[Drayson et~al.(2025)]{drayson2025contamination}
+Oliver Drayson, Huiqi Deng, and others.
+\newblock Preventing model collapse via importance resampling of synthetic data.
+\newblock \emph{arXiv preprint}, 2025.
+
+\end{thebibliography}
+
+\end{document}

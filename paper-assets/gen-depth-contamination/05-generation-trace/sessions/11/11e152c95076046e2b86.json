@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "11e152c95076046e2b86",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check pythia69b and fig6 fix",
+  "task_key": "worker_check_pythia69b_and_fig6_fix_20260521T170803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_pythia69b_and_fig6_fix_20260521T170803_result.json",
+    "occurrence": 1,
+    "bytes": 1466,
+    "sha256": "c41253f16a9bf79ee3452bd997ca068e5f2e5e9900038e672676e42c527c5a7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### Part A: Pythia-6.9B nucleus 状态\n\n| 项目 | 状态 |\n|------|------|\n| PID 443243 | **存活**，已运行 2h 28m |\n| GPU 0 | 94% 利用率, 14.5/24.5 GB |\n| 数据进度 | depth_0 + depth_1 完成（共需 depth 0-4，当前生成 depth 2） |\n| Feature extraction | 未开始（features.csv 不存在） |\n| Results | 空 |\n| 预计 | 约 40% 生成完成，整个 pipeline（生成+特征+分类）预计还需 3-4 小时 |\n\n### Part B: Figure 6 重绘完成\n\n**数据源修正：**\n\n| 模型 | 数据来源 | 1v2 AUC | CI 来源 |\n|------|---------|---------|---------|\n| Qwen-1.5B-RW | `exp_qwen_retrain_chain/bootstrap_ci.json` | 0.9611 | 10k bootstrap |\n| **Pythia-1.4B** | **`exp_14b_c4/bootstrap_ci_results.json`** | **0.6210** | **10k bootstrap** |\n| OLMo-1B | `exp_olmo1b_c4_rerun/pairwise_auc.json` | 0.5080 | 5-fold SE |\n| Qwen-1.5B-cont | `results_exp022_cross_scorer/qwen_cont256__qwen_base/pairwise_auc.json` | 0.6282 | 5-fold SE |\n\nPythia-1.4B 1v2 AUC 从 0.879 (greedy) 修正为 0.621 (nucleus)。\n\n**注意**：Pythia 的 0.621 与你提到的主表值 0.6539 有差异（~0.03），`exp_14b_c4` 是唯一可用的 Pythia nucleus bootstrap CI 数据。新的 nucleus 重跑（PID 443243 是 6.9B；`data/exp_pythia14b_c4_nuc/` 只有 depth_0，看起来是个未完成的 1.4B nucleus 重跑）完成后可以重新计算。\n\n输出：`docs/paper/figures/fig_s1_auc_decay_ci.{pdf,png}`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-pythia69b-and-fig6-fix.md"
+}

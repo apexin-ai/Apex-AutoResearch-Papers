@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_olmo1b_10k",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T20:05:20.014Z",
+    "updated_at": "2026-05-22T22:34:45.698Z",
+    "hypothesis": "OLMo-1B on 10K C4 samples will show saturation at depth K*=1, meaning generation-depth signal is only distinguishable between real (depth-0) and first-generation synthetic text, with deeper depths being indistinguishable from each other.",
+    "spec": {
+      "command": "bash /tmp/exp_olmo1b_10k.sh (Phase1: OLMo-1B continuation gen + Phase2: Qwen scorer)",
+      "server": "cqa1-22115",
+      "gpu": "cuda:2",
+      "pid": 66415,
+      "data_path": "data/olmo1b_c4_10k",
+      "data_count": 10000,
+      "model_name": "allenai/OLMo-1B-hf (gen) + Qwen2.5-1.5B-Instruct (scorer)",
+      "seed": 42,
+      "log_path": "/tmp/exp_olmo1b_10k.log",
+      "checkpoint_path": "results/olmo1b_c4_10k/"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-22T22:34:45.698Z"
+  },
+  "timestamp": "2026-05-22T22:34:46.003513+00:00",
+  "trigger": "update_registry"
+}

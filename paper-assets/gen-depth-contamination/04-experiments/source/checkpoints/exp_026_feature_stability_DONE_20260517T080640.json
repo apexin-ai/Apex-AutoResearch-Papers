@@ -1,0 +1,62 @@
+{
+  "exp_id": "exp_026_feature_stability",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T07:43:01.256Z",
+    "updated_at": "2026-05-17T08:06:40.583Z",
+    "hypothesis": "K*=2 对 feature 子集选择 robust：即使从 15D 特征中随机抽取 5/8/10 维子集，1v2 AUC 仍 > θ=0.60，证明 K* 边界不依赖特定特征组合（ad-hoc feature 防御）。",
+    "parent": "exp_B_14d_ablation",
+    "metrics": {
+      "data_source": "exp_008_retrain_chain (K*=4)",
+      "results": {
+        "15D": {
+          "num_tested": 1,
+          "min_1v2_auc": 0.9472,
+          "mean_1v2_auc": 0.9472
+        },
+        "10D": {
+          "num_tested": 5,
+          "min_1v2_auc": 0.8698,
+          "mean_1v2_auc": 0.9202
+        },
+        "8D": {
+          "num_tested": 5,
+          "min_1v2_auc": 0.8955,
+          "mean_1v2_auc": 0.9156
+        },
+        "5D": {
+          "num_tested": 5,
+          "min_1v2_auc": 0.8785,
+          "mean_1v2_auc": 0.9081
+        },
+        "3D_top3": {
+          "num_tested": 1,
+          "min_1v2_auc": 0.8314,
+          "mean_1v2_auc": 0.8314
+        }
+      },
+      "key_finding": "1v2 AUC >> 0.60 across all 17 feature subsets (min=0.8314 with top-3 only). Feature selection does not affect discriminability.",
+      "note": "Data was retrain-chain (K*=4), not prompt-chain (K*=2). Should re-run on exp-001 data for K*=2 robustness verification."
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/artifacts/exp026_feature_stability.json",
+    "log_path": "/root/autodl-tmp/gen-depth-contamination/artifacts/exp026_feature_stability.json",
+    "spec": {
+      "command": "python scripts/exp026_feature_stability.py",
+      "server": "cqa1-22115",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/exp_008_retrain_chain/",
+      "data_count": 5000,
+      "model_name": "LightGBM (feature subset ablation)",
+      "seed": 42,
+      "checkpoint_source": "exp_008_retrain_chain scored features",
+      "eval_data": "retrain-chain 15D features depth 0-4"
+    },
+    "completed_at": "2026-05-17T08:06:40.583Z"
+  },
+  "timestamp": "2026-05-17T08:06:40.712692+00:00",
+  "trigger": "update_registry"
+}

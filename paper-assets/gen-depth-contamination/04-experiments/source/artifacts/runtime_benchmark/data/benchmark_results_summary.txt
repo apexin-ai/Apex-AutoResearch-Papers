@@ -1,0 +1,11 @@
+See server path: /root/autodl-tmp/gen-depth-contamination/results/runtime_benchmark/benchmark_results.json
+
+Summary (ms/doc, mean +/- std):
+  obd_pipeline   :  44.3 +/-  7.8  |  22.6 docs/s  |  3102 MB GPU
+  binoculars     :  17.0 +/-  1.2  |  58.8 docs/s  |  5049 MB GPU
+  diveye         :  14.2 +/-  0.2  |  70.3 docs/s  |  3102 MB GPU
+  neural_probe   :  14.6 +/-  0.2  |  68.3 docs/s  |  3061 MB GPU
+
+OBD breakdown: scorer_forward 20.1ms + cpu_features 23.4ms + lgbm 0.77ms
+OBD is ~2.6x slower than baselines due to CPU feature extraction (self-BLEU)
+But OBD provides 15D interpretable features + depth ordering, not just binary detection

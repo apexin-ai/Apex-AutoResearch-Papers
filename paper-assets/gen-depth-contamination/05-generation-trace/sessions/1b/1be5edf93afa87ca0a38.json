@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1be5edf93afa87ca0a38",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "research sweep analysis figure",
+  "task_key": "worker_research_sweep_analysis_figure_20260520T180510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_sweep_analysis_figure_20260520T180510_result.json",
+    "occurrence": 1,
+    "bytes": 595,
+    "sha256": "eaf88cc929dfb788d883da84e66cd85d5b56528fa2a50a3a5c304d3da454eab8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **脚本**: `/root/autodl-tmp/gen-depth-contamination/scripts/draw_sweep_figure.py`\n- **PDF**: `/root/autodl-tmp/gen-depth-contamination/results/contamination_sweep/fig_contamination_sweep.pdf`\n- **PNG**: 同目录 `.png`，已注册为 `art_20260520_97acff`\n\n图中可见：Binary Filter 在 10%~50% 污染率下性能几乎持平（HellaSwag ~0.670, ARC-C ~0.45），而 No Filter 和 Graduated 随污染率单调下降。50% 处 Binary 相对 No Filter 的优势为 HellaSwag +1.18pp、ARC-C +2.05pp。100% 时 Binary 因全部样本被过滤标注为 N/A。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-sweep-analysis-figure.md"
+}

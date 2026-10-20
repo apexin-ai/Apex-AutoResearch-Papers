@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31afd08ed3536d72c3df",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra post exp006 readiness",
+  "task_key": "worker_infra_post-exp006-readiness_20260514T110455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_post-exp006-readiness_20260514T110455_result.json",
+    "occurrence": 1,
+    "bytes": 4782,
+    "sha256": "1d4a4ba7da80b81ca387994d7766d9e39581cad9e8643e8eaf7ba22c7e2bdcfc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息收集完毕。以下是就绪报告。\n\n---\n\n## exp-006 / exp-015 / exp-004 就绪报告\n\n### 前置发现：exp-006 仍在运行\n\n⚠️ **PID 61363 已不存在，但 exp-006 并未完成。** 实际运行进程是 PID 70982（由 tmux session `exp_006_graduated_filtering` 管理）。\n\n- 当前：`graduated_a0.1_s789` 训练中，2586/2814 steps (92%)，~3min 后完成训练\n- 已完成 eval：19/50 runs（base + no-filter×5 + binary-ours×5 + binary-drayson×5 + graduated_a0.1×3）\n- 剩余：~31 runs（graduated_a0.1 剩 2 + graduated×4 alphas×5 seeds + surprisal×5 + dsir×5）\n- 每 run ~45min → **剩余约 23 小时，修正 ETA ≈ May 15 ~18:00 UTC**（非 10:43）\n\n---\n\n### A. exp-006 分析脚本 ✅\n\n| 检查项 | 结果 |\n|--------|------|\n| 文件存在 | ✅ `scripts/exp006_analyze.py`（注意：不是 `analyze_exp006.py`） |\n| 读取路径 | ✅ 默认 `outputs/exp006/*/eval_results.json`，与实际输出目录匹配 |\n| 功能 | ✅ 策略聚合、paired t-test、alpha sensitivity、one-sample vs base |\n| 依赖 | ✅ numpy, scipy（conda base 已有） |\n| 输出 | ✅ stdout 表格 + 可选 `--output` JSON |\n\n**启动命令：**\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/autodl-tmp/gen-depth-contamination\npython3 scripts/exp006_analyze.py --results-dir outputs/exp006 --output outputs/exp006/analysis_summary.json\n```\n\n---\n\n### B. exp-015 Neural Probe ✅\n\n| 检查项 | 结果 |\n|--------|------|\n| 脚本 | ✅ `scripts/run_exp015_neural_probe.py` |\n| Pythia-1.4B 权重 | ✅ `/root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b` (5.5G, symlink → `pythia-1___4b`) |\n| OLMo-1B 权重 | ✅ `/root/autodl-tmp/.hf_cache/allenai/OLMo-1B-hf` (4.4G) |\n| Qwen2.5-1.5B 权重 | ✅ `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct` (2.9G) |\n| 数据 | ✅ `data/depth_{0..5}.jsonl` + `features.csv` |\n| MLP input_dim | ✅ 动态从 embedding shape 读取，适配不同 hidden_dim |\n\n**启动命令（3 模型串行，每次加载 LLM→提取 embedding→释放→训练 MLP）：**\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/autodl-tmp/gen-depth-contamination\n\n# Qwen2.5-1.5B\nCUDA_VISIBLE_DEVICES=0 python3 scripts/run_exp015_neural_probe.py \\\n  --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct \\\n  --data_dir data \\\n  --label qwen1.5b \\\n  --output outputs/exp015/neural_probe_qwen1.5b.json \\\n  --max_depth 5 --n_folds 5\n\n# Pythia-1.4B\nCUDA_VISIBLE_DEVICES=0 python3 scripts/run_exp015_neural_probe.py \\\n  --model_path /root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b \\\n  --data_dir data \\\n  --label pythia1.4b \\\n  --output outputs/exp015/neural_probe_pythia1.4b.json \\\n  --max_depth 5 --n_folds 5\n\n# OLMo-1B\nCUDA_VISIBLE_DEVICES=0 python3 scripts/run_exp015_neural_probe.py \\\n  --model_path /root/autodl-tmp/.hf_cache/allenai/OLMo-1B-hf \\\n  --data_dir data \\\n  --label olmo1b \\\n  --output outputs/exp015/neural_probe_olmo1b.json \\\n  --max_depth 5 --n_folds 5\n```\n\n---\n\n### C. exp-004 7B Cross-Scale ✅\n\n| 检查项 | 结果 |\n|--------|------|\n| 脚本 | ✅ `scripts/run_exp004_qwen7b_depth.py` |\n| Qwen2.5-7B 权重 | ✅ `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-7B-Instruct` (15G, 4 shard files 完整) |\n| 显存估算 | ✅ 7B fp16 ≈ 14GB + generation KV cache ≈ 16-18GB → 24GB 4090D 可以跑 |\n| 4-bit fallback | ✅ 脚本支持 `--quantize 4bit`（如 fp16 OOM 可用） |\n\n**启动命令：**\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/autodl-tmp/gen-depth-contamination\n\nCUDA_VISIBLE_DEVICES=0 python3 scripts/run_exp004_qwen7b_depth.py \\\n  --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-7B-Instruct \\\n  --n_docs 1000 \\\n  --max_depth 3 \\\n  --batch_size 1 \\\n  --feat_batch_size 1 \\\n  --device cuda:0\n```\n\n如 fp16 OOM，加 `--quantize 4bit`。\n\n---\n\n### D. 磁盘空间 ✅\n\n```\n/dev/md0   150G   32G   119G   22%   /root/autodl-tmp\n```\n\n119G 空余，7B 生成数据 + exp-015 embedding 输出预计 <5G，无压力。\n\n---\n\n### 总结\n\n| 项目 | 状态 |\n|------|------|\n| exp-006 分析脚本 | ✅ 就绪（文件名 `exp006_analyze.py`） |\n| exp-015 脚本 + 模型 + 数据 | ✅ 就绪 |\n| exp-004 脚本 + 7B 模型 | ✅ 就绪 |\n| 磁盘空间 | ✅ 119G 可用 |\n| GPU (4090D 24GB) | ✅ 可跑 7B fp16 |\n| **exp-006 完成时间** | ⚠️ **修正 ETA: ~May 15 18:00 UTC（非 10:43）**，还剩 ~31 runs |\n\n**唯一阻塞项**：exp-006 还在跑，占用 cuda:0 (~15.2GB VRAM)。exp-015 和 exp-004 都需要 GPU，必须等 exp-006 完成后才能启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-post-exp006-readiness.md"
+}

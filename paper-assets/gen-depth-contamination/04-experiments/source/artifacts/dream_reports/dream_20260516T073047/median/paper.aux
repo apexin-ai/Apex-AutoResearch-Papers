@@ -1,0 +1,84 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Theoretical foundation.}{1}{section*.1}\protected@file@percent }
+\citation{mitchell2023detectgpt}
+\citation{kirchenbauer2023watermark}
+\citation{su2023detectllm}
+\citation{shumailov2024model}
+\citation{alemohammad2024selfconsuming}
+\citation{dohmatob2024tale}
+\citation{xie2023dsir}
+\citation{tirumala2024d4}
+\citation{xie2024doremi}
+\citation{drayson2025contamination}
+\@writefile{toc}{\contentsline {paragraph}{Contributions.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Machine-generated text detection.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model collapse and recursive training.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data selection and curation.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Recursive Depth Chain Construction}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Feature Extraction: 15-Dimensional OBD}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Discrimination Boundary $K^{*}$}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Cross-Architecture Universality}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:cross_arch}{{4.1}{3}{Cross-Architecture Universality}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Primary results.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Feature consistency.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}4$\times $4 Cross-Scorer Matrix}{3}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:cross_scorer}{{4.2}{3}{4$\times $4 Cross-Scorer Matrix}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Pairwise depth discrimination AUC across six model families. All use continuation mode, nucleus $p{=}0.95$, $T{=}1.0$, C4 seed data. Scorer: Qwen2.5-1.5B (cross-scorer for non-Qwen generators). $\theta = 0.60$; $K^{*}$ determined by 1v2 CI lower $> \theta $.}}{4}{table.caption.7}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:cross_arch}{{1}{4}{Pairwise depth discrimination AUC across six model families. All use continuation mode, nucleus $p{=}0.95$, $T{=}1.0$, C4 seed data. Scorer: Qwen2.5-1.5B (cross-scorer for non-Qwen generators). $\thetaval = 0.60$; $\kstar $ determined by 1v2 CI lower $> \thetaval $}{table.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces $K^{*}$ and 1v2 AUC for all generator$\times $scorer combinations. Self-scored entries on the diagonal. 12/16 pairs yield $K^{*}= 2$ (75\%).}}{4}{table.caption.9}\protected@file@percent }
+\newlabel{tab:cross_scorer}{{2}{4}{$\kstar $ and 1v2 AUC for all generator$\times $scorer combinations. Self-scored entries on the diagonal. 12/16 pairs yield $\kstar = 2$ (75\%)}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Decoding Strategy Invariance}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:decoding}{{4.3}{4}{Decoding Strategy Invariance}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Text Length Ablation}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:length}{{4.4}{4}{Text Length Ablation}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Decoding strategy ablation on Pythia-1.4B. Three of four configurations yield $K^{*}= 2$; $T{=}0.7$ is a boundary case (CI lower $= 0.597$). Cross-model comparison with Qwen (exp-003) in rightmost columns.}}{5}{table.caption.10}\protected@file@percent }
+\newlabel{tab:decoding}{{3}{5}{Decoding strategy ablation on Pythia-1.4B. Three of four configurations yield $\kstar = 2$; $T{=}0.7$ is a boundary case (CI lower $= 0.597$). Cross-model comparison with Qwen (exp-003) in rightmost columns}{table.caption.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Text length ablation. $K^{*}= 2$ requires $\geq $256 tokens. Per-feature AUC at the 1v2 boundary increases monotonically with length.}}{5}{table.caption.11}\protected@file@percent }
+\newlabel{tab:length}{{4}{5}{Text length ablation. $\kstar = 2$ requires $\geq $256 tokens. Per-feature AUC at the 1v2 boundary increases monotonically with length}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Domain Ablation: Wikipedia}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:domain}{{4.5}{5}{Domain Ablation: Wikipedia}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Ecological Validity: Retrain-Chain}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:retrain}{{4.6}{5}{Ecological Validity: Retrain-Chain}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}$K^{*}$-Aware Data Curation}{5}{subsection.4.7}\protected@file@percent }
+\newlabel{sec:curation}{{4.7}{5}{$\kstar $-Aware Data Curation}{subsection.4.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Per-feature AUC at the 1v2 boundary by text length. All features improve monotonically, consistent with the DPI prediction that aggregate mutual information scales with sample size.}}{6}{table.caption.12}\protected@file@percent }
+\newlabel{tab:perfeature_length}{{5}{6}{Per-feature AUC at the 1v2 boundary by text length. All features improve monotonically, consistent with the DPI prediction that aggregate mutual information scales with sample size}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Domain comparison: C4 vs.\ Wikipedia. $K^{*}= 2$ in both domains.}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:domain}{{6}{6}{Domain comparison: C4 vs.\ Wikipedia. $\kstar = 2$ in both domains}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Naturalistic Validation on Common Crawl}{6}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:cc}{{4.8}{6}{Naturalistic Validation on Common Crawl}{subsection.4.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{6}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Analysis and Discussion}{6}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{6}{Analysis and Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Summary of $K^{*}$ Across All Conditions}{6}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Boundary Conditions of Universality}{6}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:boundary}{{5.2}{6}{Boundary Conditions of Universality}{subsection.5.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Prompt-chain vs.\ retrain-chain on Pythia-1.4B. Both yield $K^{*}= 2$. Feature ranking Spearman $\rho = 0.841$; top-3 features shared.}}{7}{table.caption.14}\protected@file@percent }
+\newlabel{tab:retrain}{{7}{7}{Prompt-chain vs.\ retrain-chain on Pythia-1.4B. Both yield $\kstar = 2$. Feature ranking Spearman $\rho = 0.841$; top-3 features shared}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Dose-response: MMLU scores under three filtering strategies. Binary $K^{*}$-aware filtering is optimal at all doses; the advantage scales with contamination level and reaches significance at 50\%.}}{7}{table.caption.15}\protected@file@percent }
+\newlabel{tab:dose}{{8}{7}{Dose-response: MMLU scores under three filtering strategies. Binary $\kstar $-aware filtering is optimal at all doses; the advantage scales with contamination level and reaches significance at 50\%}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {paragraph}{Short text ($<$256 tokens).}{7}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Low temperature ($T = 0.7$, Pythia).}{7}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-architecture scorer mismatch (Mistral).}{7}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Unified interpretation.}{7}{section*.22}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Predicted depth distribution in Common Crawl snapshots and correlation with independent text quality indicators.}}{8}{table.caption.16}\protected@file@percent }
+\newlabel{tab:cc}{{9}{8}{Predicted depth distribution in Common Crawl snapshots and correlation with independent text quality indicators}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Implications for Data Curation}{8}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.23}\protected@file@percent }
+\bibstyle{plainnat}
+\bibdata{references}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Summary of $K^{*}$ across all 19 tested conditions. Standard conditions (14 conditions): $K^{*}= 2$ in 14/14 (100\%). Boundary conditions (5 conditions): $K^{*}= 1$ in 5/5.}}{9}{table.caption.18}\protected@file@percent }
+\newlabel{tab:summary}{{10}{9}{Summary of $\kstar $ across all 19 tested conditions. Standard conditions (14 conditions): $\kstar = 2$ in 14/14 (100\%). Boundary conditions (5 conditions): $\kstar = 1$ in 5/5}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {paragraph}{Future work.}{9}{section*.24}\protected@file@percent }
+\gdef \@abspage@last{9}

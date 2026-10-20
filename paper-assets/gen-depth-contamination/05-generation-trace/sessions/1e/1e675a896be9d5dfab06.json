@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "1e675a896be9d5dfab06",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "ops seed2 collect v2",
+  "task_key": "worker_ops_seed2_collect_v2_20260520T210519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_seed2_collect_v2_20260520T210519.log",
+    "occurrence": 1,
+    "bytes": 712760,
+    "sha256": "d9239105394f3ad95739b746adc0257b492aaf524ea17a60e42b9c7853c5d808"
+  },
+  "statistics": {
+    "messages": 223,
+    "user_turns": 0,
+    "tool_calls": 75,
+    "roles": {
+      "log": 1,
+      "system": 8,
+      "record": 1,
+      "assistant": 62,
+      "tool_call": 75,
+      "tool_result": 75,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 223,
+      "chunks": [
+        {
+          "path": "1e675a896be9d5dfab06-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1e675a896be9d5dfab06-part-0002.json",
+          "message_count": 43
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-seed2-collect-v2.md"
+}

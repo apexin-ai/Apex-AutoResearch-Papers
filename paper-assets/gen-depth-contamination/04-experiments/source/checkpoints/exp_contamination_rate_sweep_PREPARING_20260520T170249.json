@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_contamination_rate_sweep",
+  "project": "gen-depth-contamination",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T17:02:48.807Z",
+    "updated_at": "2026-05-20T17:02:48.807Z"
+  },
+  "timestamp": "2026-05-20T17:02:49.075662+00:00",
+  "trigger": "update_registry"
+}

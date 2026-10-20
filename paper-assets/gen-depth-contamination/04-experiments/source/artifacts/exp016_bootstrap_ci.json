@@ -1,0 +1,60 @@
+{
+  "experiment": "exp-016 Qwen2.5-1.5B base continuation",
+  "method": "GroupKFold(5) OOF + doc-level bootstrap + label permutation",
+  "n_bootstrap": 10000,
+  "n_permutation": 10000,
+  "seed": 42,
+  "total_seconds": 282.0,
+  "pairs": {
+    "0v1": {
+      "auc": 0.987,
+      "auc_mean_folds": 0.987,
+      "fold_aucs": [0.9881, 0.9884, 0.9852, 0.9851, 0.9882],
+      "ci_lower": 0.9853,
+      "ci_upper": 0.9885,
+      "perm_p": 0.0001,
+      "boot_mean": 0.9869,
+      "boot_std": 0.0008
+    },
+    "1v2": {
+      "auc": 0.626,
+      "auc_mean_folds": 0.6262,
+      "fold_aucs": [0.5963, 0.6362, 0.6366, 0.6337, 0.6282],
+      "ci_lower": 0.6168,
+      "ci_upper": 0.6353,
+      "perm_p": 0.0001,
+      "boot_mean": 0.6261,
+      "boot_std": 0.0047
+    },
+    "2v3": {
+      "auc": 0.5496,
+      "auc_mean_folds": 0.5496,
+      "fold_aucs": [0.5516, 0.5456, 0.5403, 0.5605, 0.5501],
+      "ci_lower": 0.5397,
+      "ci_upper": 0.56,
+      "perm_p": 0.0001,
+      "boot_mean": 0.5496,
+      "boot_std": 0.0052
+    },
+    "3v4": {
+      "auc": 0.5293,
+      "auc_mean_folds": 0.5294,
+      "fold_aucs": [0.5515, 0.5133, 0.5198, 0.535, 0.5276],
+      "ci_lower": 0.5188,
+      "ci_upper": 0.5399,
+      "perm_p": 0.0001,
+      "boot_mean": 0.5292,
+      "boot_std": 0.0054
+    },
+    "4v5": {
+      "auc": 0.5181,
+      "auc_mean_folds": 0.5182,
+      "fold_aucs": [0.5207, 0.5393, 0.5186, 0.5169, 0.4956],
+      "ci_lower": 0.5075,
+      "ci_upper": 0.5288,
+      "perm_p": 0.0016,
+      "boot_mean": 0.5181,
+      "boot_std": 0.0054
+    }
+  }
+}

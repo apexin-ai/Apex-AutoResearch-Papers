@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "0d632ff34153eb16732a",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "ssh fix exp014",
+  "task_key": "worker_ssh_fix_exp014_20260525T154305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_exp014_20260525T154305.log",
+    "occurrence": 1,
+    "bytes": 730360,
+    "sha256": "3ee739f8403397f90b3be8c04c4f7ea9632a0f4b245e08e7792ae90a3531f1ff"
+  },
+  "statistics": {
+    "messages": 263,
+    "user_turns": 0,
+    "tool_calls": 105,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 49,
+      "tool_call": 105,
+      "tool_result": 105,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 263,
+      "chunks": [
+        {
+          "path": "0d632ff34153eb16732a-part-0001.json",
+          "message_count": 150
+        },
+        {
+          "path": "0d632ff34153eb16732a-part-0002.json",
+          "message_count": 113
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-fix-exp014.md"
+}

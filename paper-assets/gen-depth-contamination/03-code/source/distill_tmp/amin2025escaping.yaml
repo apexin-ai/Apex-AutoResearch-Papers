@@ -1,0 +1,42 @@
+paper_key: "amin2025escaping"
+title: "Escaping Collapse: The Strength of Weak Data for Large Language Model Training"
+venue: "arXiv 2025"
+full_text_available: true
+research:
+  baselines: ["Do nothing (pure synthetic)", "Filter only", "Gold SFT", "Boosting w/o focusing", "Pretrained baseline"]
+  metrics: [{name: "Train accuracy@1", direction: "higher_better"}, {name: "Test accuracy@1", direction: "higher_better"}, {name: "Test pass@32", direction: "higher_better"}]
+  datasets: [{name: "GSM8K", size: "7K math problems"}, {name: "MBPP", size: "374 coding problems"}]
+  ablation_dimensions: ["alpha (weak data weight)", "focusing vs non-focusing", "weak data setup A vs B", "rounds 1-5"]
+  training_recipe: {model: "Gemma 2 2B", iterations: 5, seeds: 3}
+  method_family: "model collapse mitigation via weak external labeling (boosting framework)"
+positioning:
+  core_claim: "Any weak exogenous signal with beta>0 fraction correct suffices to prevent collapse in O(log(1/ε)/β) iterations, via inverse-boosting framework."
+  key_results: "GSM8K: Boosting 0.456 test@1 > Filter-only 0.393 > Do-nothing 0.129"
+  limitations: ["perfect strong learner assumption unrealistic", "only bounds training performance", "2B model only", "5 rounds only"]
+  relation_to_us: "complementary"
+narrative:
+  story_type: "化繁为简型 + 突破局限型"
+  hook: "High-quality human data may soon be exhausted"
+  tension: "Synthetic data necessary but dangerous; what minimal curation prevents collapse?"
+  key_insight: "Iterative synthetic training is an inversion of classical boosting: strong learner + weak data is dual to weak learner + strong data"
+  argument_chain: "data exhaustion → collapse risk → boosting lens → beta>0 suffices → convergence theorem → focus on hard examples → validation"
+  contribution_framing: "5 contributions: framework, theorem, boosting connection, focusing strategy, unification of STaR/ReST/ReSTEM"
+  intro_structure: "6 paragraphs: motivation, problem, question, mechanism, result preview, boosting connection"
+  notable_technique: "Dual inversion framing gives reviewers a memorable conceptual handle"
+figures:
+  figure_count: 3
+  figure1:
+    type: "teaser_result"
+    description: "Line plots with error bands showing test/train accuracy across 5 rounds on GSM8K"
+    narrative_role: "Primary empirical validation of theoretical hierarchy"
+    design_elements: ["shaded error bands (3 seeds)", "dual metrics", "separate test/train panels"]
+  figure_narrative_role: "Fig1 (GSM8K) → Fig2 (MBPP) → Fig3 (labeler assumption validation)"
+tables:
+  table_count: 1
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "datasets × metrics"
+    highlight_strategy: "bold best implied"
+    statistical_reporting: "mean ± std, 3 seeds"
+    num_baselines: 5

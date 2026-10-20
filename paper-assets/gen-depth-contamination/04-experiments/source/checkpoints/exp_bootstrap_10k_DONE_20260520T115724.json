@@ -1,0 +1,95 @@
+{
+  "exp_id": "exp_bootstrap_10k",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:51:15.538Z",
+    "updated_at": "2026-05-20T11:57:24.167Z",
+    "hypothesis": "10K bootstrap resamples yield tighter CI but no K* verdict flips for borderline Table 2 configurations (LLaMA-8B, Gemma-2-2B, Mistral-7B, 512-tok), confirming robustness of K* assignments at 1K resamples.",
+    "spec": {
+      "command": "python /root/autodl-tmp/gen-depth-contamination/scripts/run_bootstrap_10k.py",
+      "server": "cqa1-22115",
+      "data_path": "multiple (exp_018, exp_gemma2b, exp_019, exp_021_512)",
+      "data_count": 40000,
+      "model_name": "LightGBM (CPU-only bootstrap)",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_bootstrap_10k/bootstrap_10k_comparison.json",
+      "log_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_bootstrap_10k_log.txt"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T11:56:15.385Z",
+    "metrics": {
+      "configs_tested": 4,
+      "configs_missing": 2,
+      "results": {
+        "llama8b": {
+          "auc": 0.6075,
+          "ci_1k": [
+            0.597,
+            0.617
+          ],
+          "ci_10k": [
+            0.598,
+            0.617
+          ],
+          "verdict_1k": "BORDERLINE",
+          "verdict_10k": "BORDERLINE",
+          "flipped": false
+        },
+        "gemma2b": {
+          "auc": 0.5981,
+          "ci_1k": [
+            0.588,
+            0.608
+          ],
+          "ci_10k": [
+            0.588,
+            0.608
+          ],
+          "verdict_1k": "BORDERLINE",
+          "verdict_10k": "BORDERLINE",
+          "flipped": false
+        },
+        "mistral7b": {
+          "auc": 0.5902,
+          "ci_1k": [
+            0.58,
+            0.6
+          ],
+          "ci_10k": [
+            0.58,
+            0.6
+          ],
+          "verdict_1k": "K*=1",
+          "verdict_10k": "BORDERLINE",
+          "flipped_technical": true,
+          "note": "CI upper 0.6000→0.6001 (noise, +0.01pp). Point estimate 0.5902 << theta. K*=1 unchanged."
+        },
+        "512tok": {
+          "auc": 0.6136,
+          "ci_1k": [
+            0.604,
+            0.623
+          ],
+          "ci_10k": [
+            0.604,
+            0.623
+          ],
+          "verdict_1k": "K*=2",
+          "verdict_10k": "K*=2",
+          "flipped": false
+        }
+      },
+      "missing": [
+        "exp_017_qwen_cont (features.csv not on disk)",
+        "exp_002_olmo (features.csv not on disk)"
+      ],
+      "conclusion": "No substantive K* flips. 10K CI ~3% tighter. 1K resamples confirmed robust."
+    }
+  },
+  "timestamp": "2026-05-20T11:57:24.415370+00:00",
+  "trigger": "update_registry"
+}

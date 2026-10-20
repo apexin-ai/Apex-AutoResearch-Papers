@@ -1,0 +1,108 @@
+{
+  "exp_id": "exp_gemma27b_c4",
+  "project": "gen-depth-contamination",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T07:57:19.726Z",
+    "updated_at": "2026-05-24T09:13:27.661Z",
+    "hypothesis": "Gemma-2-27B (27B params, base model) on C4 domain will show slower depth saturation (higher K*) than smaller models due to greater generation capacity, while maintaining the universal depth-dependent distinguishability pattern observed across model families.",
+    "metrics": {
+      "self_scorer_k_star": 2,
+      "self_scorer_pairwise_auc": {
+        "0v1": 0.9695,
+        "1v2": 0.6196,
+        "2v3": 0.5388,
+        "3v4": 0.5069,
+        "4v5": 0.5124
+      },
+      "self_scorer_bootstrap_ci": {
+        "0v1": {
+          "auc": 0.9695,
+          "ci_lower": 0.9666,
+          "ci_upper": 0.9721,
+          "perm_p": 0.0001
+        },
+        "1v2": {
+          "auc": 0.6196,
+          "ci_lower": 0.6096,
+          "ci_upper": 0.6296,
+          "perm_p": 0.0001
+        },
+        "2v3": {
+          "auc": 0.5388,
+          "ci_lower": 0.5279,
+          "ci_upper": 0.549,
+          "perm_p": 0.0001
+        },
+        "3v4": {
+          "auc": 0.5069,
+          "ci_lower": 0.4959,
+          "ci_upper": 0.5172,
+          "perm_p": 0.1099
+        },
+        "4v5": {
+          "auc": 0.5124,
+          "ci_lower": 0.5012,
+          "ci_upper": 0.5234,
+          "perm_p": 0.0147
+        }
+      },
+      "cross_scorer_k_star": 1,
+      "cross_scorer": "Qwen2.5-1.5B-Instruct",
+      "cross_scorer_pairwise_auc": {
+        "0v1": 0.8871,
+        "1v2": 0.5895,
+        "2v3": 0.515,
+        "3v4": 0.5061,
+        "4v5": 0.5108
+      },
+      "cross_scorer_bootstrap_ci": {
+        "0v1": {
+          "auc": 0.8871,
+          "ci_lower": 0.8811,
+          "ci_upper": 0.893,
+          "perm_p": 0.0001
+        },
+        "1v2": {
+          "auc": 0.5895,
+          "ci_lower": 0.5795,
+          "ci_upper": 0.5997,
+          "perm_p": 0.0001
+        },
+        "2v3": {
+          "auc": 0.515,
+          "ci_lower": 0.5045,
+          "ci_upper": 0.5254,
+          "perm_p": 0.0027
+        },
+        "3v4": {
+          "auc": 0.5061,
+          "ci_lower": 0.4952,
+          "ci_upper": 0.5165,
+          "perm_p": 0.1346
+        },
+        "4v5": {
+          "auc": 0.5108,
+          "ci_lower": 0.4998,
+          "ci_upper": 0.5218,
+          "perm_p": 0.0282
+        }
+      },
+      "cross_scorer_jsd": {
+        "0v1": 0.0643,
+        "1v2": 0.0106,
+        "2v3": 0.0049,
+        "3v4": 0.0042,
+        "4v5": 0.0031
+      },
+      "bootstrap_resamples": 10000,
+      "permutation_resamples": 10000,
+      "key_finding": "Self-scorer K*=2 (1v2 CI lower=0.6096>0.60, robust). Cross-scorer K*=1 (1v2 CI upper=0.5997<0.60). 27B scale does NOT elevate K* — consistent with universal K*<=2 for web text. Cross-scorer gap reflects scale mismatch (1.5B scorer vs 27B generator)."
+    }
+  },
+  "timestamp": "2026-05-24T09:13:27.992482+00:00",
+  "trigger": "update_registry"
+}

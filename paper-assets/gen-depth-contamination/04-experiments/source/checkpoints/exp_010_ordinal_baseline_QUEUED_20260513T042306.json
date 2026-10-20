@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_010_ordinal_baseline",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T04:22:42.199Z",
+    "updated_at": "2026-05-13T04:23:06.183Z",
+    "hypothesis": "Ordinal structure improves depth classification: ordinal methods should outperform unordered multiclass on MAE"
+  },
+  "timestamp": "2026-05-13T04:23:06.206851+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,77 @@
+{
+  "exp_id": "exp_expanded_downstream_eval",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T17:02:47.262Z",
+    "updated_at": "2026-05-21T00:03:56.750Z",
+    "hypothesis": "K*-guided binary filtering consistently outperforms graduated filtering across a broader set of benchmarks (GSM8K, ARC-Challenge, WinoGrande, TruthfulQA, PIQA), not just MMLU/HellaSwag, validating the generalizability of the filtering consistency claim in Section 5.",
+    "spec": {
+      "command": "python scripts/run_expanded_eval.py (base eval + 3 strategies × 3 seeds LoRA train+eval, 5 benchmarks)",
+      "server": "cqa1-22115",
+      "gpu": "cuda:0",
+      "pid": "334626",
+      "log_path": "cqa1-22115:/root/gen-depth-contamination/results/exp_expanded_downstream_eval/",
+      "submitted_at": "2026-05-20T17:17:37.434Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/",
+      "data_count": 30000,
+      "model_name": "Qwen2.5-1.5B",
+      "seed": "42,123,456",
+      "benchmarks": "PIQA, TruthfulQA-MC2, WinoGrande, ARC-Challenge, GSM8K",
+      "checkpoint_path": "cqa1-22115:/root/gen-depth-contamination/results/exp_expanded_downstream_eval/",
+      "wall_clock_seconds": 24379.3,
+      "gpu_hours": 6.77
+    },
+    "gpus": [
+      "cqa1-22115:cuda:1"
+    ],
+    "metrics": {
+      "metric_standard": "PIQA=acc_norm, ARC-C=acc_norm, WinoGrande=acc, TruthfulQA=mc2, GSM8K=exact_match(strict)",
+      "base_model": {
+        "piqa": 0.7612,
+        "arc_c": 0.5486,
+        "winogrande": 0.6456,
+        "truthfulqa": 0.4659,
+        "gsm8k": 0.6224
+      },
+      "no_filter_mean": {
+        "piqa": 0.7519,
+        "arc_c": 0.5193,
+        "winogrande": 0.6485,
+        "truthfulqa": 0.4246,
+        "gsm8k": 0.5666
+      },
+      "binary_ours_mean": {
+        "piqa": 0.7479,
+        "arc_c": 0.5171,
+        "winogrande": 0.6406,
+        "truthfulqa": 0.4398,
+        "gsm8k": 0.5858
+      },
+      "graduated_mean": {
+        "piqa": 0.751,
+        "arc_c": 0.519,
+        "winogrande": 0.6461,
+        "truthfulqa": 0.4245,
+        "gsm8k": 0.5613
+      },
+      "binary_vs_nf_delta": {
+        "piqa": -0.4,
+        "arc_c": -0.22,
+        "winogrande": -0.79,
+        "truthfulqa": 1.52,
+        "gsm8k": 1.92
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-21T00:03:56.750Z"
+  },
+  "timestamp": "2026-05-21T00:03:57.038260+00:00",
+  "trigger": "update_registry"
+}

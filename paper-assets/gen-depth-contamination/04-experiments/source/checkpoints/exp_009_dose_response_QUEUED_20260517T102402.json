@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_009_dose_response",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T22:17:38.441Z",
+    "updated_at": "2026-05-17T10:24:02.685Z",
+    "hypothesis": "Contamination dose-response: 在 10%/30%/50% synthetic injection 比例下，graduated filtering 相对 binary filtering 的收益是否随 contamination 增加而扩大？验证 C3 (graduated filtering superiority) 在不同 contamination severity 下的 robustness。3 ratios × 3 strategies (no-filter/binary/graduated) × 5 seeds, continued pretraining Qwen2.5-1.5B, eval MMLU+HellaSwag."
+  },
+  "timestamp": "2026-05-17T10:24:02.846125+00:00",
+  "trigger": "update_registry"
+}

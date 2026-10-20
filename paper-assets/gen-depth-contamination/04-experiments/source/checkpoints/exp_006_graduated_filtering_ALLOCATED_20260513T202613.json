@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp_006_graduated_filtering",
+  "project": "gen-depth-contamination",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T20:25:52.364Z",
+    "updated_at": "2026-05-13T20:26:13.219Z",
+    "hypothesis": "K*-aware graduated filtering (exploiting human/gen-1/gen-2+ trichotomy) yields better downstream LM quality than binary filtering on MMLU and HellaSwag. 6 strategies × 5 seeds × α sweep.",
+    "parent": "exp_003_decoding_ablation",
+    "spec": {
+      "server": "westc-26893",
+      "gpu": [
+        "cuda:0"
+      ],
+      "account": "root",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/",
+      "data_count": 30000,
+      "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+      "seed": "42,123,456,789,1024",
+      "strategies": "no-filter, binary-ours, binary-drayson, graduated, surprisal, dsir",
+      "total_runs": 50,
+      "estimated_hours": 21
+    }
+  },
+  "timestamp": "2026-05-13T20:26:13.256020+00:00",
+  "trigger": "update_registry"
+}

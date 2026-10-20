@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "334384f68772fcb1e3c8",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper w18 reference urls",
+  "task_key": "worker_paper_w18_reference_urls_20260522T061745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_w18_reference_urls_20260522T061745_result.json",
+    "occurrence": 1,
+    "bytes": 1479,
+    "sha256": "b98e655f9cf38f71dcd74d4755d256c8d71e05095166f4fb2dc90f2e5c04f9b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 14 条 URL 添加成功。31 个条目现在都有 URL。\n\n## 结果汇总\n\n**缺 URL 的 14 个条目（非 8 个）及补全的 URL：**\n\n| # | cite key | URL |\n|---|----------|-----|\n| 1 | `mitchell2023detectgpt` | `https://arxiv.org/abs/2301.11305` |\n| 2 | `zhang2024minkpp` | `https://arxiv.org/abs/2404.02936` |\n| 3 | `shumailov2024collapse` | `https://doi.org/10.1038/s41586-024-07566-y` |\n| 4 | `alemohammad2024selfconsuming` | `https://arxiv.org/abs/2307.01850` |\n| 5 | `dohmatob2024model` | `https://arxiv.org/abs/2402.07043` |\n| 6 | `xie2023dsir` | `https://arxiv.org/abs/2302.03169` |\n| 7 | `tirumala2023d4` | `https://arxiv.org/abs/2308.12284` |\n| 8 | `xie2023doremi` | `https://arxiv.org/abs/2305.10429` |\n| 9 | `hans2024binoculars` | `https://arxiv.org/abs/2401.12070` |\n| 10 | `alain2017understanding` | `https://arxiv.org/abs/1610.01644` |\n| 11 | `belinkov2022probing` | `https://doi.org/10.1162/coli_a_00422` |\n| 12 | `frank2001ordinal` | `https://doi.org/10.1007/3-540-44795-4_13` |\n| 13 | `krishna2023paraphrasing` | `https://arxiv.org/abs/2303.13408` |\n| 14 | `hao2025rewrite` | `https://arxiv.org/abs/2408.04237` |\n\n**URL 类型选择：**\n- Nature 文章（shumailov2024collapse）用 DOI URL\n- Computational Linguistics 文章（belinkov2022probing）用 DOI URL\n- Springer 会议论文（frank2001ordinal）用 DOI URL\n- 其余全部用 arXiv 链接\n\n**未找到 URL 的条目：** 无，全部补全。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-w18-reference-urls.md"
+}

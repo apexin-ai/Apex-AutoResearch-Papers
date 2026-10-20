@@ -1,0 +1,84 @@
+# agent / loop_1.md
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/agent/loop_1.md`
+- **Structured JSON:** [`31cf0e04be2331953e98.json`](../../sessions/31/31cf0e04be2331953e98.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 1
+reason: max_wall_time
+updated: '2026-05-13T02:09:10+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- 本项目只分配 1 张 GPU：autodl-4090d cuda:0，禁止使用其他卡
+- Qwen 模型路径是嵌套的 ModelScope 结构：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2.5-1.5B-Instruct/`（两层 Qwen/），写错会 FileNotFoundError
+- base model（Pythia, OLMo）必须用 `--generation_mode continuation`，不能用 rewrite（instruction prompting 对 base model 无效）
+- Drayson et al. (EMNLP 2025) 是**真实论文**（arXiv:2502.15654），之前被误判为幻觉并清理过一次，本 session 已恢复。不要再删
+
+### 2. 🖥️ 基础设施快照
+- 服务器：autodl-4090d，GPU RTX 4090 D 24GB
+- 工作目录：`/root/autodl-tmp/gen-depth-contamination`
+- Python：`/root/miniconda3/bin/python`，环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- 网络代理：`source /etc/network_turbo`（pip/HF 下载前必须）
+- HF cache：`/root/autodl-tmp/.hf_cache`，需设 `HF_HOME` + `HF_HUB_DISABLE_XET=1` + SSL 证书环境变量
+- 模型路径：
+  - Pythia-1.4B：`/root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b`
+  - OLMo-1B：`/root/autodl-tmp/.hf_cache/allenai/OLMo-1B-hf`
+  - Qwen-1.5B-Instruct：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2.5-1.5B-Instruct/`
+- 活跃进程：exp-002 OLMo PID 20225（tmux session 已死，进程仍在）
+- Cron：exp_002_olmo_depth 已注册（interval 120s）
+
+### 3. 📊 当前状态
+**刚做完**：文献扫描（8 篇新论文加入 literature_map.yaml）+ 恢复 Drayson 引用（4 个文件）+ 向 Director 报告
+
+**exp-002 (OLMo-1B)**：RUNNING，5 depths 生成全部完成，当前在特征提取阶段（VocabDiv depth 2 at 63%）。预计 ~20 min 内完成全部 pipeline。
+
+**Registry**：
+| exp_id | status | 摘要 |
+|--------|--------|------|
+| mvp_pilot_sat_v1 | DONE (success) | K\*=2, AUC 1v2=0.6957 |
+| exp_001_pythia_depth | DONE (success) | K\*=2, AUC 1v2=0.6539 |
+| exp_002_olmo_depth | RUNNING | ~20 min 到完成 |
+| exp_017_qwen_continuation | PREPARING | 代码就绪，等 exp-002 释放 GPU |
+| exp_013_cross_transfer | PREPARING | 脚本就绪（scripts/run_cross_transfer.py），等 exp-002 数据 |
+| exp_003_decoding_ablation | PREPARING | 4 configs 脚本就绪（scripts/run_exp003_ablation.sh） |
+
+**等待回调**：
+- Worker `worker_infra_prep_exp017_dryrun_20260513T020807` 正在验证 exp-017 提交前置条件
+- Cron 监控 exp-002 完成
+
+### 4. 📋 待办（条件触发式）
+- **exp-017 dry-run Worker 回调** → 读取结果，确认提交命令无阻塞
+- **exp-002 cron 回调（进程退出）** → spawn Worker SSH 收集结果（K\*, AUC, JSD）→ update_registry DONE → 三模型对比（MVP/exp-001/exp-002）→ 立即 submit_training_job exp-017 → 并行 spawn Worker 跑 exp-013（CPU，用 scripts/run_cross_transfer.py --data_dirs data_exp001_pythia data_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B）
+- **exp-017 完成** → 对比 continuation vs rewrite（mvp-001）的 K\* → 判断 generation mode 是否是 confound
+- **exp-013 完成** → cross-model transfer retention rate → 判断 depth signal 是 text-intrinsic 还是 model self-familiarity
+- **Director 回复文献扫描结果** → 可能要求更新 paper_framing.md（Schaeffer 定义区分、Drayson 定位）
+
+### 5. 🎯 战略上下文
+- **Route B 已锁定**（D003）：K\*=2 作为 saturation characterization，不是 classifier 可行性
+- **K\*_empirical vs K\*_theory 区分**（D004）：K\*=2 是特定特征+分类器下的 practical boundary，更好方法可能推高
+- **核心 novelty 安全**：文献扫描确认无人做过 ordinal depth estimation 或量化 K\*
+- **Drayson (EMNLP 2025) 是 closest prior work**：binary detection → collapse prevention。我们是 ordinal depth → graduated curation。必须定位为 binary → ordinal 的推广
+- **Dream 预测对照**（exp-002 完成后对比）：Dream 预测 OLMo K\*=2, AUC 1v2=0.654。实际结果出来后对比
+- **易错点**：exp-013 cross-model transfer 如果 retention 很低，意味着 depth signal 可能是 model self-familiarity 而非 text-intrinsic —— 这是审稿人最危险的攻击面（D004 已标记）。结果出来前不要在 paper 中 overclaim transfer 能力
+- **实验序列**：exp-002 → exp-017 → exp-013 → exp-003 → exp-005 → exp-007 → exp-004 → exp-006(72h 最重)
+
+
+---

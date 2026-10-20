@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d8d56e02fb0cd9c003c",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "reviewer / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_2.md",
+    "occurrence": 1,
+    "bytes": 4057,
+    "sha256": "a8ab36af28f764744c4f7b24d730cea8d5dc718a89910b321947d7d2186edc54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_wall_time\nupdated: '2026-05-13T02:07:43+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 **cuda:0** on **autodl-4090d**（`gpu_ids: [cuda:0]`，配置文件 `config/projects/gen-depth-contamination.yaml:5-6`）\n- **Drayson et al. (EMNLP 2025) 是真实论文**（arXiv:2502.15654）——D006 已确认，绝不能再当幻觉引用清理。这是 closest prior work，必须 cite\n- exp-006 binary vs graduated 对比必须控制唯一变量（binary/ordinal decision），不能混入特征质量差异（我在 novelty 评估中已 flag 为 warning）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`autodl-4090d(root)`，工作目录 `/root/autodl-tmp/gen-depth-contamination`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- HF cache：`/root/autodl-tmp/.hf_cache`，需 `HF_HUB_DISABLE_XET=1` + `source /etc/network_turbo`\n- 模型路径：Qwen `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct`，Pythia `/root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b`，OLMo `/root/autodl-tmp/.hf_cache/allenai/OLMo-1B-hf`\n- 活跃进程：exp-002 OLMo（PID 20230，tmux=`exp_002_olmo_depth`，cuda:0）——我最后看到在 depth 3 batch 228/313，预计 ~1h 后全部完成（depth 3-5 + feature extraction）\n- 无 W&B，无 cron\n\n### 3. 📊 当前状态\n**刚完成**：\n- Drayson et al. 引用回滚验证（5 个文件全部确认到位）\n- 文献扫描核实（novelty 安全，8 篇 must/should-cite 入 literature_map.yaml）\n- Drayson novelty 影响评估（4 个问题逐条回答，结论：核心 novelty 安全，Story Spine 需微调加入 Drayson positioning）\n- ROADMAP 审查两次（D006 更新 + exp-013 依赖修正均 PASS）\n\n**Registry 状态**：\n- `mvp_pilot_sat_v1`: DONE, K*=2\n- `exp_001_pythia_depth`: DONE, K*=2（但之前 registry 有延迟更新的历史）\n- `exp_002_olmo_depth`: RUNNING（注意：registry 可能未注册，我已 flag warning 要求补注册）\n- 其余实验均未启动\n\n**等待中**：Director 对 Story Spine 微调建议的回复（我建议在 gap analysis 中显式加入 Drayson 作为 closest prior work）\n\n### 4. 📋 待办\n- exp-002 完成通知到达 → 独立核实结果（K* 是否仍=2、pairwise AUC 趋势、GPU 资源合规），检查 registry 是否已补注册\n- exp-017 (Qwen continuation) 启动/完成 → 核实 generation_mode=continuation 是否正确执行，对比 mvp-001 (rewrite) 的 K* 差异\n- exp-013 (cross-transfer) 完成 → **重点审查**：4×4 transfer matrix 的 diagonal vs off-diagonal AUC drop 是否 <0.03（text-intrinsic）；如果 drop 显著，C1 需要根本调整\n- exp-006 设计阶段 → 核实 binary baseline 实现公平性（same features, binary vs ordinal），检查 DSIR baseline 可行性（Dream 观察项）\n- Director 转发任何 Framing 调整提案 → 立即 Read `negative-framing-review.skill.md`，按四维度审\n\n### 5. 🎯 战略上下文\n- **决策链**：D001(MVP方案) → D002(K*=2边界) → D003(Route B锁定) → D004(K*_empirical vs theory区分, exp-013升P0) → D005(Dream整合8项) → D006(Drayson回滚)\n- **核心结论**：K*=2 across Qwen-1.5B and Pythia-1.4B，JSD 严格单调递减，Route B framing（K* 作为 operational quantity）\n- **最容易判断错的事**：\n  1. Drayson 的 100 代 ≠ depth discrimination。他们追踪的是训练迭代动态，不是单样本深度估计。下一个\"你\"在审查 related work 写作时别把这两件事混淆\n  2. exp-013 是最危险的审稿人攻击面——如果 cross-transfer drop 显著（>0.03），说明 depth signal 是 model self-familiarity 而非 text-intrinsic，C1 需要大改。这个实验的结果必须最严格审查\n  3. K*_empirical 是保守下界，不是信息论 impossibility boundary——之前的 framing 混淆导致 D004 修正，别走回老路\n  4. Registry 有延迟更新的历史（exp-001 完成后 registry 仍显示 PREPARING），核实结果时不能只看 registry，必须 SSH 读服务器原始文件交叉验证\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-copy-3.md"
+}

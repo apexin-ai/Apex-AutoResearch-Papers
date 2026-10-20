@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_A_alt_scorer",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:18:24.715Z",
+    "updated_at": "2026-05-15T11:18:49.952Z",
+    "hypothesis": "替代 scorer (Pythia-1.4B, OLMo-1B) 计算 surprisal features 时，K*=2 是否仍成立？验证 K* 不依赖 scorer-generator 匹配（FR-2 Critical）"
+  },
+  "timestamp": "2026-05-15T11:18:50.031244+00:00",
+  "trigger": "update_registry"
+}

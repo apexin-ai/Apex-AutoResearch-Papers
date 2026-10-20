@@ -1,0 +1,82 @@
+paper_key: "zawalski2026codec"
+title: "CoDeC: Detecting Data Contamination in LLMs via In-Context Learning"
+venue: "arXiv 2025"
+full_text_available: true
+
+research:
+  baselines: [Vanilla Loss, Min-K%, Zlib Ratio]
+  metrics:
+    - {name: "dataset-level AUC", direction: "higher_better"}
+    - {name: "contamination score (0-100%)", direction: "context_dependent"}
+  datasets:
+    - {name: "Pile subsets (Wikipedia, GitHub, ArXiv, HackerNews, DM Mathematics)", size: "varies per subset"}
+    - {name: "Dolma components (for OLMo)", size: "varies"}
+    - {name: "Nemotron-CC components", size: "varies"}
+    - {name: "Unseen benchmarks (gsm8k, GPQA, IFEval, HumanEval, AIME 2024-2025)", size: "varies"}
+  ablation_dimensions: [context size (n=1 to multi), target dataset size (100 to 1000+), model architecture (Transformer/RNN/hybrid), model scale, text cropping, formatting variation]
+  training_recipe: {details: "No training required; two forward passes per sample (baseline + in-context). Gray-box access to token log-probabilities."}
+  method_family: "ICL-based contamination detection (dataset-level)"
+
+positioning:
+  core_claim: "In-context examples boost confidence for unseen data but reduce it for contaminated data due to disrupted memorization patterns; this asymmetry yields 99.9% dataset-level AUC across all evaluated models"
+  key_results: "Dataset-level AUC: 99.9% (CoDeC) vs 89.6% (Zlib) vs 78.5% (Min-K%) vs 75.7% (Vanilla Loss). Training data scores near 100%, unseen below 20%."
+  limitations: ["No sample-level (membership inference) capability", "Scores affected by adversarial datasets with heavy duplication or mixed sources", "Diverse unseen datasets can score up to 60%", "Larger models show slightly lower scores on training data"]
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Detecting training data contamination is essential for evaluating LLM integrity; existing approaches require training data access and parameter tuning"
+  tension: "Current detection methods produce unreliable results and need model-specific calibration"
+  key_insight: "Contaminated models have internalized dataset-specific priors; in-context examples disrupt memorization patterns, revealed at intro via log-probability contrast between seen and unseen datasets"
+  argument_chain: "contamination problem → ICL disrupts memorization → two forward passes suffice → fraction of negative delta = score → 99.9% AUC → validated across 11 models and architectures"
+  contribution_framing: "Three contributions: (1) simple model-agnostic ICL-based approach, (2) extensive experiments showing superiority over baselines, (3) practical guidelines and contamination revelations in recent models"
+  intro_structure: "4 paragraphs: problem importance, existing limitations, core insight and method overview, contributions"
+  notable_technique: "Front-loading the log-probability contrast (Figure 1) as intuition before formalization; the method is so simple (fraction of negative deltas) that the paper must convince through breadth of validation"
+
+figures:
+  figure_count: 9
+  figure1:
+    type: "motivation"
+    description: "Log-probability changes with/without context for Pythia 1.4B on unseen (gsm8k) vs training (ArXiv) data; token-level contrast shows consistent patterns"
+    narrative_role: "Establishes core intuition before method formalization"
+    design_elements: ["side-by-side seen vs unseen", "token-level log-prob visualization", "consistent pattern emphasis"]
+    visual_style: "Dual panel with token-level granularity, colored by direction of change"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "scatter"
+      what_compared: "CoDeC vs 3 baselines: contamination scores for training (red) vs unseen (blue) datasets"
+      how_gain_highlighted: "Clean separation in CoDeC panel vs heavy overlap in baselines"
+      design_note: "Four-panel layout with each baseline; red/blue clusters; AUC annotated"
+    - figure_id: "Figure 5"
+      viz_type: "bar_chart"
+      what_compared: "Distribution of CoDeC scores per dataset across Pile-trained models"
+      how_gain_highlighted: "Training data clusters at 80-100%, unseen shows 0-60% variance"
+      design_note: "Per-dataset box plots revealing score distributions"
+  ablation_figures:
+    - figure_id: "Figure 9"
+      viz_type: "line_plot"
+      dimensions_varied: ["context size", "target dataset size"]
+      design_note: "Two subplots (a: context size, b: dataset size) showing convergence and stability"
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      dimensions_varied: ["training steps"]
+      design_note: "CoDeC scores during OLMo 7B training; sharp rise at 1k-10k steps then stabilization"
+  figure_narrative_role: "Fig1 (intuition) → Fig2 (method pipeline) → Fig3 (main result: cluster separation) → Fig4 (training dynamics) → Fig5 (per-dataset distributions) → Fig6 (finetuning validation) → Fig7 (contamination transfer) → Fig8 (ICL-finetuning relation) → Fig9 (ablations)"
+
+tables:
+  table_count: 1
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "models"
+    col_axis: "detection methods (CoDeC, Vanilla Loss, Min-K%, Zlib)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_method"
+    highlight_strategy: "bold_best implied"
+    statistical_reporting: "AUC percentage, single aggregation"
+    num_baselines: 3
+    design_note: "Compact table showing 99.9-100% for CoDeC across all models; baselines vary 64-98%; cumulative row at bottom"
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Extended results with per-dataset scores, finetuning details, additional model families"
+    reason: "Main paper focuses on aggregate AUC; per-dataset breakdown too granular for main flow"

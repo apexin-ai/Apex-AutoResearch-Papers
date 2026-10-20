@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_wiki_scorer_confound_1b5",
+  "project": "gen-depth-contamination",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T23:18:37.565Z",
+    "updated_at": "2026-05-17T23:19:21.508Z",
+    "hypothesis": "Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。",
+    "parent": "exp_023_domain_ablation"
+  },
+  "timestamp": "2026-05-17T23:19:21.706767+00:00",
+  "trigger": "update_registry"
+}

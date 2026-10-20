@@ -1,0 +1,41 @@
+{
+  "exp_id": "exp_code_mistral7b",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:03:15.326Z",
+    "updated_at": "2026-05-19T11:05:18.283Z",
+    "hypothesis": "Mistral-7B code domain K* measurement: Mistral-7B-v0.3 continuation on CodeSearchNet Python subset. Mistral 是唯一展现极端 domain dependence 的模型（C4 K*=1, arXiv K*=3）。若 code K*=2（与 Qwen/LLaMA 一致）→ code K* domain-governed, Mistral one-wash 仅限 C4。若 code K*=1 → one-wash 是 model-intrinsic property for non-academic text。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "parent": "exp_code_qwen1b5",
+    "spec": {
+      "command": "cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/bin/activate && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-v0___3 --data_dir data/exp_code_mistral7b --results_dir results/exp_code_mistral7b --num_samples 5000 --max_depth 5 --batch_size 4 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "107037",
+      "log_path": "~/runs/gen-depth-contamination/exp_code_mistral7b.log",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/exp_code_mistral7b",
+      "data_count": 5000,
+      "model_name": "Mistral-7B-v0.3",
+      "seed": 42,
+      "checkpoint_source": "exp_code_qwen1b5",
+      "eval_data": "CodeSearchNet Python 5000 docs"
+    },
+    "notes": "Log writes to /dev/pts/3 (terminal session), not a file. Progress inferred from data dir: depth_1.jsonl done (5500 lines), depth_2 in progress. No persistent log file for post-mortem analysis.",
+    "reproduce": {
+      "finished_at": "2026-05-19T11:05:15.743Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T11:05:15.059Z"
+  },
+  "timestamp": "2026-05-19T11:05:18.737592+00:00",
+  "trigger": "update_registry"
+}

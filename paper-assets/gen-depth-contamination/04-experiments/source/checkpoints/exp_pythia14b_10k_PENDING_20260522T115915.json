@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_pythia14b_10k",
+  "project": "gen-depth-contamination",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:59:05.554Z",
+    "updated_at": "2026-05-22T11:59:14.978Z",
+    "hypothesis": "统一所有 K*=2 configs 样本量至 10K，避免 selective precision boosting 质疑。Pythia-1.4B 5K 已稳定通过 Bonferroni (CI_lower≈0.641>0.60)，10K 为一致性验证。"
+  },
+  "timestamp": "2026-05-22T11:59:15.324593+00:00",
+  "trigger": "update_registry"
+}

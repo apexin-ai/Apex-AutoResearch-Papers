@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18902b998d248144d1e0",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper compile check",
+  "task_key": "worker_paper_compile-check_20260519T025440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile-check_20260519T025440_result.json",
+    "occurrence": 1,
+    "bytes": 552,
+    "sha256": "77b560568f0e83fe2e71434fb01ca4f9f61245a3f573c237d7a6c4df0a173d0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译结果：\n\n- **Error**: 0 个\n- **未解析引用/引用 (`??`)**: 0 个，所有 `\\ref` 和 `\\cite` 均正常解析\n- **`fig_retrain_decay.png`**: 正常加载，用于 input line 307，输出在第 24 页\n- **附录 line 305 注释删除**: 无编译问题\n- **Warnings**（非 layout 类）:\n  - 3 个 `caption` 包的 `hypcap=true` 警告（无害，浮动体定位相关）\n  - 13 个 `'h' float specifier changed to 'ht'` 警告（LaTeX 自动调整浮动体位置，正常行为）\n- **PDF 总页数**: **29 页**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compile-check.md"
+}

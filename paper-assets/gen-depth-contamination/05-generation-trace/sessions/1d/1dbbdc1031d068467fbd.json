@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1dbbdc1031d068467fbd",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops deberta graduated and gsm8k fix",
+  "task_key": "worker_ops_deberta_graduated_and_gsm8k_fix_20260520T192259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_deberta_graduated_and_gsm8k_fix_20260520T192259_result.json",
+    "occurrence": 1,
+    "bytes": 1326,
+    "sha256": "ce4a0415ff1564d38ba5f7a91a517657983eefd92029f1282cc676a2ef787a2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务状态总结：\n\n## 修复 1：deberta_graduated\n\n已成功提交到 cqa1 cuda:1（PID 359411）。训练进行中：373/825 steps (45%)，约 2.5 it/s，预计 ~8 分钟后完成训练+eval。\n\n注意修正了两个原始命令中的问题：\n- `--gpu 1` → `--device cuda:0`（脚本只接受 `--strategy`/`--device`/`--seed`/`--skip_eval`）\n- 因为 `submit_training_job` 设置 `CUDA_VISIBLE_DEVICES=1`，物理 GPU 1 映射为 cuda:0\n\n## 修复 2：GSM8K 401 问题\n\n**根因**：lm_eval 下载 `openai/gsm8k` 时走了 xethub 后端（`cas-server.xethub.hf.co`），返回 401 Unauthorized。3 次重试均失败，所有 eval JSON 中 gsm8k 记为 null。\n\n**已完成**：\n- GSM8K 数据已用 `HF_HUB_DISABLE_XET=1` + `HF_ENDPOINT=https://hf-mirror.com` 预下载缓存（1319 test examples）\n- Arrow 缓存已复制到 HF_HOME 路径下\n\n**GSM8K 补跑方案**（当前实验完成后执行）：\n1. 当前 expanded_downstream_eval 仍在运行（已完成 6/10 模型，GPU 0），进程内未设 `HF_HUB_DISABLE_XET=1`，剩余模型的 GSM8K 仍会失败\n2. 等当前实验跑完后，删除所有 `*_eval.json`\n3. 用 `HF_HUB_DISABLE_XET=1 HF_ENDPOINT=https://hf-mirror.com` 重跑\n4. 预计耗时 ~30-40 分钟（10 个模型重新训练+全 benchmark eval）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deberta-graduated-and-gsm8k-fix.md"
+}

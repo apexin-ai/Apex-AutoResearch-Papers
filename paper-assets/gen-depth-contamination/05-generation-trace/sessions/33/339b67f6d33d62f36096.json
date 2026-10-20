@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "339b67f6d33d62f36096",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "reviewer / loop_19.md",
+  "task_key": "loop_19",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_19.md",
+    "occurrence": 1,
+    "bytes": 3037,
+    "sha256": "5b5eb5ebad043adf837047c6fdafbe17467946fd48afe07df65d8c3dbf7c79ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 19\nreason: max_wall_time\nupdated: '2026-05-22T00:33:51+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- Pythia-6.9B 实验必须用 Qwen-1.5B 作为 scorer（D095），不能用自评结果写入主表\n- 主表 Pythia-1.4B 保留原始值 0.6539（D097），不用 nucleus rerun 值替换\n- OLMo K*=1 是确认结论（D096），不要试图恢复 K*=2\n- θ=0.60 是固定阈值（D094），LOFO 验证排除 K*=1 families\n- 论文 transfer \"90--92%\" 已核实正确（基于 nucleus Pythia 数据），不要修改\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-22115 (root)，工作目录 `/root/autodl-tmp/gen-depth-contamination`\n- 第二台：westd-42896 (root)，2×Blackwell 98GB，空闲\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/`\n- 活跃进程：PID 443243 on cuda:0（Pythia-6.9B depth_5 生成，自评用，非论文关键路径）\n- cuda:1/2/3 空闲\n- 关键结果目录：`results/exp_pythia69b_c4_nuc_qwen/`（Pythia-6.9B Qwen scorer 最终结果），`results/exp015_olmo_rerun/`（neural probe 重跑），`results/exp013_olmo_rerun_v2/`（corrected transfer matrix）\n\n### 3. 📊 当前状态\n论文处于 DDL 前打磨阶段（EMNLP 2026 ARR May，5/25 截稿）。Round 24 审稿已提交（pending user approval）。\n\n我刚完成的审查循环：\n- 验证 appendix 脚注修复（Pythia nucleus 描述）✅\n- 验证 neural probe 表 OLMo 2v3 AUC 更新（0.5892→0.5056）✅\n- 撤回此前 3 次关于 transfer \"90-92%\" 的错误报告（corrected data 碰巧给出相同 retention）✅\n- 确认论文无已知数据不一致 ✅\n\n无 RUNNING/PREPARING 实验。无等待中的 Worker 回调。等待用户审批 Round 24 + 冯元宁 Figure 1 反馈。\n\n### 4. 📋 待办\n- Round 24 审稿报告回来 → 按 review-report-action skill 逐条审查 Agent 的处理\n- 冯元宁 Figure 1 反馈到达 → 审查 Agent 的修改是否合理\n- PID 443243 完成 depth_5 → 确认 GPU 释放，info 级通知即可（不影响论文）\n- 任何新 worker_done 通知 → 按标准流程审查\n- 如收到章节审查请求 → 先读 paper-quality-lessons skill，按模式 B 审查\n\n### 5. 🎯 战略上下文\n- 核心结论：prompt-chain K*≤2（web text），6/8 configs K*=2，OLMo+Mistral K*=1；arXiv K*=3；retrain-chain K*≥4\n- 论文 framing 已从 \"universal K*=2\" 调整为 \"4/6 families\"，borderline cases 诚实披露\n- 决策链关键节点：D089(Gemma K*=1) → D091/D092(OLMo flip-flop) → D096(OLMo K*=1 confirmed) → D097(Pythia-1.4B keep original)\n\n**易错点**：\n- Pythia-1.4B 有两套数据：主表用原始 greedy-era 数据（0.6539），但 transfer/figure 用 nucleus rerun 数据（exp020）。不要混淆\n- \"90-92%\" transfer retention 看起来像旧数据残留但实际是正确的——我已经算过，不要再报\n- Neural probe 表只有 2v3 列，OLMo K*=1 由 1v2=0.5054 决定，不要被 2v3 值迷惑\n- ssh_read_only 不支持 pipe (`|`) 和 sed，用独立 grep/head 命令代替\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-19-copy-2.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_wiki_scorer_confound",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T22:35:20.326Z",
+    "updated_at": "2026-05-17T22:54:46.371Z",
+    "hypothesis": "Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。",
+    "parent": "exp_wiki_qwen7b"
+  },
+  "timestamp": "2026-05-17T22:54:46.543504+00:00",
+  "trigger": "update_registry"
+}

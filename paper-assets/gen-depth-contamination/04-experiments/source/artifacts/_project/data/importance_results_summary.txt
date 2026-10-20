@@ -1,0 +1,1 @@
+Remote: /root/autodl-tmp/gen-depth-contamination/results/feature_importance/importance_results.json on cqa1-22115. Summary: 0v1 AUC=0.9219 (top: surp_d1_std=0.2092, surp_std=0.0952, freq_entropy=0.0635). 1v2 AUC=0.6104 (top: surp_std=0.0583, surp_d2_std=0.0218, freq_entropy=0.0170). 2v3 AUC=0.5318 (near-random, all importances ~0.01).

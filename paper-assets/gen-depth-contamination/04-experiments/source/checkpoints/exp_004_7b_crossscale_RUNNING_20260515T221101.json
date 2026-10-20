@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_004_7b_crossscale",
+  "project": "gen-depth-contamination",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:08:22.198Z",
+    "updated_at": "2026-05-15T22:11:00.989Z",
+    "spec": {
+      "hypothesis": "K*=2 在 7B scale 下是否成立？Qwen2.5-7B continuation mode, C4 5K seeds, scorer=Qwen2.5-1.5B",
+      "server": "westc-26893",
+      "model_name": "Qwen/Qwen2.5-7B (fp16, 14.5GB) + Qwen2.5-1.5B-Instruct (scorer)",
+      "data_count": 5000,
+      "seed": 42,
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && bash scripts/exp004_run.sh",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data_exp004_qwen7b",
+      "note": "Generator=Qwen2.5-7B base (continuation), Scorer=1.5B. batch_size=4 gen/8 feat. ETA ~8-9h remaining, ~03:00-04:00 UTC 05-16."
+    },
+    "hypothesis": "K*=2 在 7B scale 下是否成立？Qwen2.5-7B continuation mode, C4 5K seeds, scorer=Qwen2.5-1.5B。Reviewer R2 Critical: 现有实验仅 ≤1.5B",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-15T22:11:01.081149+00:00",
+  "trigger": "update_registry"
+}

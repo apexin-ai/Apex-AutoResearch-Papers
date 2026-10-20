@@ -1,0 +1,556 @@
+paper:
+  title: ''
+  version: 114
+  generated_at: '2026-05-25T07:49:12.208369+00:00'
+claims:
+- id: C001
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'OBD-LightGBM achieves lower MAE than multiclass LightGBM (Qwen-rw: 0.984
+    vs 1.016; Pythia: 1.107 vs 1.140; OLMo: 1.147 vs 1.181)'
+  type: quantitative
+  evidence:
+  - exp_id: exp_010_ordinal_baseline
+  decisions: []
+  deprecated: false
+- id: C003
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Ordinal logistic regression: mean pairwise AUC 0.4883 vs 0.6095 for OBD-LightGBM'
+  type: quantitative
+  evidence:
+  - exp_id: exp_010_ordinal_baseline
+  decisions: []
+  deprecated: false
+- id: C006
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Permutation null 95th percentile AUC < 0.55, justifying theta=0.60
+  type: quantitative
+  evidence:
+  - exp_id: exp_007_bootstrap_ci
+  decisions: []
+  deprecated: false
+- id: C010
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: K*=2 at theta=0.60 across all 4 model configs, permutation p=0.002 for all
+    1v2
+  type: quantitative
+  evidence:
+  - exp_id: exp_007_bootstrap_ci
+  decisions: []
+  deprecated: false
+- id: C015
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Theta sensitivity: 0.55->K*=3 uniformly across all 4 decoding configs, 0.65->only
+    rewrite K*=2, 0.70->K*=1 universal'
+  type: quantitative
+  evidence:
+  - exp_id: exp_007_bootstrap_ci
+  decisions: []
+  deprecated: false
+- id: C021
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Continuation transfer retention 80-92% vs rewrite 61-63%
+  type: quantitative
+  evidence:
+  - exp_id: exp_013_cross_transfer
+  decisions: []
+  deprecated: false
+- id: C028
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Rewrite AUC 1v2=0.6957 vs continuation 0.6112 on Qwen
+  type: quantitative
+  evidence:
+  - exp_id: exp_017_qwen_continuation
+  - exp_id: mvp_pilot_sat_v1
+  decisions: []
+  deprecated: false
+- id: C036
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Asymmetric transfer: cont->rw 89% vs rw->cont 82%'
+  type: quantitative
+  evidence:
+  - exp_id: exp_013_cross_transfer
+  decisions: []
+  deprecated: false
+- id: C037
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Binary detection features applied to depth-1 vs depth-2 yield AUC ≤ 0.53
+  type: quantitative
+  evidence:
+  - exp_id: exp_013_cross_transfer
+  decisions: []
+  deprecated: false
+- id: C039
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: K* aligns with Schaeffer et al. Family B (D4 collapsing variance + D6 mode
+    entanglement)
+  type: qualitative
+  evidence:
+  - exp_id: exp_005_degradation
+  decisions: []
+  deprecated: false
+- id: C042
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Prompt-chain = replace regime (Kazdan); K*_empirical=2 is conservative lower
+    bound
+  type: qualitative
+  evidence:
+  - exp_id: exp_007_bootstrap_ci
+  decisions: []
+  deprecated: false
+- id: C046
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Drayson SIR is special case of graduated filtering when K*=1
+  type: qualitative
+  evidence:
+  - exp_id: exp_006_graduated_filtering
+  - exp_id: exp_contamination_rate_sweep
+  decisions: []
+  deprecated: false
+- id: C047
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: K*_empirical=2 across all 4 model configs, permutation p≤0.002, most marginal
+    Qwen-cont CI_lower=0.6015
+  type: quantitative
+  evidence:
+  - exp_id: exp_007_bootstrap_ci
+  - exp_id: exp_003_decoding_ablation
+  decisions: []
+  deprecated: false
+- id: C049
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: K*_empirical=2 also holds under greedy decoding
+  type: quantitative
+  evidence:
+  - exp_id: exp_003_decoding_ablation
+  decisions: []
+  deprecated: false
+- id: C052
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Cross-model transfer 80-92% accuracy retention, Pythia↔OLMo 90-92%
+  type: quantitative
+  evidence:
+  - exp_id: exp_013_cross_transfer
+  decisions: []
+  deprecated: false
+- id: C056
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 0v1 cross-model AUC exceeds 0.96 across all tested model pairs
+  type: quantitative
+  evidence:
+  - exp_id: exp_013_cross_transfer
+  decisions: []
+  deprecated: false
+- id: C061
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Spearman ρ≥0.85 on single-feature AUC ranking, top features surp_d1_std/surp_std/surp_d2_std
+    shared
+  type: quantitative
+  evidence:
+  - exp_id: exp_005_degradation
+  decisions: []
+  deprecated: false
+- id: C067
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Rewrite 1v2 AUC=0.6955 vs continuation 0.6112, Δ=+8.4pp
+  type: quantitative
+  evidence:
+  - exp_id: exp_007_bootstrap_ci
+  decisions: []
+  deprecated: false
+- id: C074
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: cont→rw 89% vs rw→cont 82% transfer asymmetry
+  type: quantitative
+  evidence:
+  - exp_id: exp_013_cross_transfer
+  decisions: []
+  deprecated: false
+- id: C082
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Depth-pair level τ≈0.37 at 1v2 (limitation)
+  type: quantitative
+  evidence:
+  - exp_id: exp_005_degradation
+  decisions: []
+  deprecated: false
+- id: C083
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: K*_empirical=2 consistently across all 8 tested configurations (4 model-mode
+    + 4 decoding)
+  type: empirical
+  evidence:
+  - exp_id: exp_007_bootstrap_ci
+  - exp_id: exp_003_decoding_ablation
+  decisions: []
+  deprecated: false
+- id: C085
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 0v1 AUC >0.99, 1v2 drops ~30pp (range 0.6112-0.6955), 2v3 below theta=0.60
+    (0.5496-0.5917 across all 8 model×decoding conditions)
+  type: empirical
+  evidence:
+  - exp_id: exp_007_bootstrap_ci
+  decisions: []
+  deprecated: false
+- id: C088
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'Decoding: 1v2 AUC range [0.6866, 0.7039], all K*=2'
+  type: empirical
+  evidence:
+  - exp_id: exp_003_decoding_ablation
+  decisions: []
+  deprecated: false
+- id: C092
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Pythia-OLMo 90-92% accuracy retention, continuation-mode 80-92%
+  type: empirical
+  evidence:
+  - exp_id: exp_013_cross_transfer
+  decisions: []
+  deprecated: false
+- id: C097
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 0v1 cross-model AUC >0.96 across all tested model pairs
+  type: empirical
+  evidence:
+  - exp_id: exp_013_cross_transfer
+  decisions: []
+  deprecated: false
+- id: C103
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Greedy vs T=0.7 Spearman rho=0.914, Greedy vs T=1.2 rho=0.53 (p=0.041, nonsig
+    after Bonferroni)
+  type: empirical
+  evidence:
+  - exp_id: exp_003_decoding_ablation
+  decisions: []
+  deprecated: false
+- id: C110
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'T=1.2 top-3: hapax_ratio, ttr, surp_skew; freq_entropy rank 10→5'
+  type: empirical
+  evidence:
+  - exp_id: exp_003_decoding_ablation
+  decisions: []
+  deprecated: false
+- id: C118
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Cross-model single-feature AUC Spearman rho>=0.85, tau~0.37 at 1v2
+  type: empirical
+  evidence:
+  - exp_id: exp_005_degradation
+  decisions: []
+  deprecated: false
+- id: C127
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: GPT-5.5 33.2% / Claude 33.1% 5-class vs OBD 38.6%; binary ~88%
+  type: empirical
+  evidence:
+  - exp_id: exp_011_llm_zeroshot
+  decisions: []
+  deprecated: false
+- id: C137
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'Limitations: up to 8B scale (6 families), prompt-chain, C4/Wikipedia/arXiv/Code
+    English, 4 decoding, operational lower bound, 15D features'
+  type: discussion
+  evidence:
+  - exp_id: exp_007_bootstrap_ci
+  - exp_id: exp_003_decoding_ablation
+  decisions: []
+  deprecated: false
+- id: C138
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: K*_neural=3 on Qwen-cont (2v3 AUC=0.6195), pending cross-model validation
+  type: empirical
+  evidence:
+  - exp_id: exp_015_neural_probe
+  decisions: []
+  deprecated: false
+- id: C139
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: GPT-5.5 33.2% / Claude 33.1% 5-class acc vs OBD 38.6%
+  type: empirical
+  evidence:
+  - exp_id: exp_011_llm_zeroshot
+  decisions: []
+  deprecated: false
+- id: C140
+  location:
+    section: experiments_c1
+    paragraph: 0
+    sentence: 0
+  text: 'K*=2 holds at 7B scale: Qwen2.5-7B continuation mode with Qwen2.5-1.5B scorer
+    yields 1v2 AUC=0.6178±0.0081 (above θ=0.60) and 2v3 AUC=0.5460±0.0028 (below θ)'
+  type: empirical
+  evidence:
+  - exp_004_7b_crossscale
+  decisions: []
+  deprecated: false
+- id: C141
+  location:
+    section: experiments_c1
+    paragraph: 0
+    sentence: 0
+  text: 0v1 AUC drops to 0.9644 at 7B (vs >0.99 for all ≤1.5B models), consistent
+    with larger models generating more human-like text
+  type: empirical
+  evidence:
+  - exp_004_7b_crossscale
+  decisions: []
+  deprecated: false
+- id: C142
+  location:
+    section: experiments_c1
+    paragraph: 0
+    sentence: 0
+  text: 'JSD at 7B: 0v1=0.127 (vs 0.214-0.287 for 1-1.5B models), 1v2=0.010 comparable
+    across scales'
+  type: empirical
+  evidence:
+  - exp_004_7b_crossscale
+  decisions: []
+  deprecated: false
+- id: C143
+  location:
+    section: experiments_c1
+    paragraph: 0
+    sentence: 0
+  text: Top discriminative features at 7B (freq_entropy, surp_d1_skew, surp_std) overlap
+    with 1.5B features
+  type: empirical
+  evidence:
+  - exp_004_7b_crossscale
+  decisions: []
+  deprecated: false
+- id: C144
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'Depth-2 saturation boundary is an inherent property of iterative autoregressive
+    generation, not a capacity artifact of small models: K*=2 holds at 7B despite
+    reduced 0v1 signal (AUC=0.9644)'
+  type: empirical
+  evidence:
+  - exp_004_7b_crossscale
+  decisions: []
+  deprecated: false
+- id: C145
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Scale invariance of depth saturation implies the one-wash regime may persist
+    as generator quality improves, placing a fundamental limit on depth-based corpus
+    auditing regardless of model scale
+  type: interpretive
+  evidence:
+  - exp_004_7b_crossscale
+  decisions: []
+  deprecated: false
+- id: C146
+  location:
+    section: experiments_c1
+    paragraph: 0
+    sentence: 0
+  text: Qwen-rw cross-architecture transfer retention 61-63%
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C147
+  location:
+    section: experiments_c1
+    paragraph: 0
+    sentence: 0
+  text: Qwen-rw to Qwen-cont retention 82% (.347/.423)
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C148
+  location:
+    section: experiments_c1
+    paragraph: 0
+    sentence: 0
+  text: Qwen-rw to Pythia/OLMo 61-63%, to Qwen-cont 82%
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C149
+  location:
+    section: experiments_c1
+    paragraph: 0
+    sentence: 0
+  text: Qwen-rw cross-architecture 61-63%, within-Qwen 82%
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C150
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: Qwen-rw to Pythia/OLMo 61-63%, to Qwen-cont 82%
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C151
+  location:
+    section: appendix
+    paragraph: 0
+    sentence: 0
+  text: Qwen-rw cross-arch 61-63%, within-Qwen 82%
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+tables:
+- id: tab_features
+  location:
+    section: method
+    table_number: 0
+  caption: ''
+  cells:
+  - row: all
+    col: all
+    value: 15D feature set
+    source:
+      exp_id: manual
+      metric: feature_design
+  deprecated: false
+- id: tab_setup
+  location:
+    section: method
+    table_number: 0
+  caption: ''
+  cells:
+  - row: all
+    col: all
+    value: 4 model configs
+    source:
+      exp_id: manual
+      metric: experimental_design
+  deprecated: false
+figures:
+- id: fig1_pipeline
+  location:
+    section: method
+    figure_number: 0
+  caption: Pipeline overview placeholder
+  type: conceptual
+  source:
+    exp_id: manual
+  output_path: figures/pipeline.pdf
+  deprecated: false
+_completeness:
+  coverage: 38/45
+  claims: 44
+  tables: 2
+  figures: 1
+  tier_counts:
+    tier1: 0
+    tier2: 38
+    tier3: 7
+    tierX: 0
+  last_checked: '2026-05-25T07:49:12.208408+00:00'

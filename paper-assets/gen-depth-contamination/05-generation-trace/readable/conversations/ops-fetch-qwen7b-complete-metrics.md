@@ -1,0 +1,316 @@
+# ops fetch qwen7b complete metrics
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 9
+- **Recorded user turns:** 0
+- **Tool calls:** 4
+- **Original source:** `logs/chats/worker_ops_fetch-qwen7b-complete-metrics_20260519T121502.jsonl`
+- **Structured JSON:** [`e3e274c1b6d1cfa636a8.json`](../../sessions/e3/e3e274c1b6d1cfa636a8.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+9 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-19T12:15:47.387858+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fetch-qwen7b-complete-metrics_20260519T121502",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-19T12:15:47.388208+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fetch-qwen7b-complete-metrics_20260519T121502",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-19T12:15:47.388384+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen7b/summary.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fetch-qwen7b-complete-metrics_20260519T121502",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen7b/summary.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-19T12:15:47.388554+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nMVP Pilot Saturation Study — Results Summary\\n============================================================\\n\\nPairwise AUC (adjacent depths):\\n  depth 0 vs 1: AUC = 0.9051 ± 0.0043  folds=[0.9073, 0.9012, 0.912, 0.9049, 0.9003]\\n  depth 1 vs 2: AUC = 0.7276 ± 0.0055  folds=[0.7377, 0.7254, 0.724, 0.722, 0.7289]\\n  depth 2 vs 3: AUC = 0.5368 ± 0.0145  folds=[0.5179, 0.5332, 0.5275, 0.5462, 0.5593]\\n  depth 3 vs 4: AUC = 0.509 ± 0.0055  folds=[0.5029, 0.5054, 0.5085, 0.5092, 0.5191]\\n  depth 4 vs 5: AUC = 0.5139 ± 0.0128  folds=[0.5016, 0.5317, 0.5264, 0.509, 0.5007]\\n\\nPairwise JSD (adjacent depths):\\n  depth 0 vs 1: JSD = 0.061265\\n  depth 1 vs 2: JSD = 0.042256\\n  depth 2 vs 3: JSD = 0.00413\\n  depth 3 vs 4: JSD = 0.003198\\n  depth 4 vs 5: JSD = 0.003393\\n\\nK* (max depth with AUC > 0.60): 2\\n\\nOrdinal Classification (6-class, 5-fold CV):\\n  MAE = 1.2651\\n  Accuracy = 0.3423\\n\\nTop-10 Feature Importance:\\n  freq_entropy         9730.0\\n  surp_d2_mean         9236.2\\n  surp_d1_mean         9126.2\\n  surp_d1_skew         8833.4\\n  surp_std             8110.2\\n  freq_kurtosis        7838.6\\n  surp_mean            7586.0\\n  surp_kurt            6769.2\\n  hapax_ratio          6636.4\\n  ttr                  6332.6\\n\\n============================================================\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fetch-qwen7b-complete-metrics_20260519T121502",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-19T12:15:47.388721+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_code_qwen7b",
+  "field": "conclusion",
+  "value": "success",
+  "project": "gen-depth-contamination"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fetch-qwen7b-complete-metrics_20260519T121502",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_code_qwen7b",
+    "field": "conclusion",
+    "value": "success",
+    "project": "gen-depth-contamination"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T12:15:47.388920+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_code_qwen7b\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T00:30:13.401Z\", \"updated_at\": \"2026-05-19T12:15:25.015Z\", \"hypothesis\": \"Qwen2.5-7B code domain K* measurement: Qwen family scale invariance test on CodeSearchNet Python. Pythia Code K*=1 弱化了跨模型一致性。Qwen-7B 测试两个方向：(1) Qwen 家族内 Code 的 scale invariance（1.5B K*=2, 7B K*=?），(2) 若 LLaMA/Mistral 也 K*=1，Qwen-7B K*=2 能维持 \\\"code-competent models reach K*=2\\\" 叙事。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"parent\": \"exp_code_pythia1b4\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/bin/activate && HF_ENDPOINT=https://hf-mirror.com python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --data_dir data/exp_code_qwen7b --results_dir results/exp_code_qwen7b --num_samples 5000 --max_depth 5 --batch_size 4 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"114228\", \"log_path\": \"~/runs/gen-depth-contamination/exp_code_qwen7b.log\", \"submitted_at\": \"2026-05-19T01:29:00Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_code_qwen7b\", \"data_count\": 5000, \"model_name\": \"Qwen2.5-7B\", \"seed\": 42, \"checkpoint_source\": \"exp_code_qwen1b5\", \"eval_data\": \"CodeSearchNet Python 5000 docs\", \"wall_clock_seconds\": 38608.5, \"gpu_hours\": 10.72}, \"notes\": \"Attempts 1-3 failed: huggingface.co unreachable (000), httpx client closed during datasets.load_dataset. Attempt 4 success: copied depth_0.jsonl from exp_code_qwen1b5 (MD5 match), set HF_ENDPOINT=https://hf-mirror.com. PID 114228, GPU util 96%, 15211/24564 MiB. nvidia-smi verified.\", \"reproduce\": {\"finis
+…[truncated 382 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fetch-qwen7b-complete-metrics_20260519T121502",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-19T12:15:47.389110+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_code_qwen7b",
+  "field": "metrics",
+  "value": "{'pairwise_auc': {'0v1': {'mean': 0.9051, 'ci95_half': 0.0043, 'folds': [0.9073, 0.9012, 0.912, 0.9049, 0.9003]}, '1v2': {'mean': 0.7276, 'ci95_half': 0.0055, 'folds': [0.7377, 0.7254, 0.724, 0.722, 0.7289]}, '2v3': {'mean': 0.5368, 'ci95_half': 0.0145, 'folds': [0.5179, 0.5332, 0.5275, 0.5462, 0.5593]}, '3v4': {'mean': 0.509, 'ci95_half': 0.0055, 'folds': [0.5029, 0.5054, 0.5085, 0.5092, 0.5191]}, '4v5': {'mean': 0.5139, 'ci95_half': 0.0128, 'folds': [0.5016, 0.5317, 0.5264, 0.509, 0.5007]}}, 'pairwise_jsd': {'0v1': 0.061265, '1v2': 0.042256, '2v3': 0.00413, '3v4': 0.003198, '4v5': 0.003393}, 'k_star': 2, 'ordinal': {'mae': 1.2651, 'accuracy': 0.3423}, 'top_features': [{'name': 'freq_entropy', 'importance': 9730}, {'name': 'surp_d2_mean', 'importance': 9236.2}, {'name': 'surp_d1_mean', 'importance': 9126.2}, {'name': 'surp_d1_skew', 'importance': 8833.4}, {'name': 'surp_std', 'importance': 8110.2}, {'name': 'freq_kurtosis', 'importance': 7838.6}, {'name': 'surp_mean', 'importance': 7586}, {'name': 'surp_kurt', 'importance': 6769.2}, {'name': 'hapax_ratio', 'importance': 6636.4}, {'name': 'ttr', 'importance': 6332.6}]}",
+  "project": "gen-depth-contamination"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_fetch-qwen7b-complete-metrics_20260519T121502",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_code_qwen7b",
+    "field": "metrics",
+    "value": "{'pairwise_auc': {'0v1': {'mean': 0.9051, 'ci95_half': 0.0043, 'folds': [0.9073, 0.9012, 0.912, 0.9049, 0.9003]}, '1v2': {'mean': 0.7276, 'ci95_half': 0.0055, 'folds': [0.7377, 0.7254, 0.724, 0.722, 0.7289]}, '2v3': {'mean': 0.5368, 'ci95_half': 0.0145, 'folds': [0.5179, 0.5332, 0.5275, 0.5462, 0.5593]}, '3v4': {'mean': 0.509, 'ci95_half': 0.0055, 'folds': [0.5029, 0.5054, 0.5085, 0.5092, 0.5191]}, '4v5': {'mean': 0.5139, 'ci95_half': 0.0128, 'folds': [0.5016, 0.5317, 0.5264, 0.509, 0.5007]}}, 'pairwise_jsd': {'0v1': 0.061265, '1v2': 0.042256, '2v3': 0.00413, '3v4': 0.003198, '4v5': 0.003393}, 'k_star': 2, 'ordinal': {'mae': 1.2651, 'accuracy': 0.3423}, 'top_features': [{'name': 'freq_entropy', 'importance': 9730}, {'name': 'surp_d2_mean', 'importance': 9236.2}, {'name': 'surp_d1_mean', 'importance': 9126.2}, {'name': 'surp_d1_skew', 'importance': 8833.4}, {'name': 'surp_std', 'importance': 8110.2}, {'name': 'freq_kurtosis', 'importance': 7838.6}, {'name': 'surp_mean', 'importance': 7586}, {'name': 'surp_kurt', 'importance': 6769.2}, {'name': 'hapax_ratio', 'importance': 6636.4}, {'name': 'ttr', 'importance': 6332.6}]}",
+    "project": "gen-depth-contamination"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-19T12:15:47.389363+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_code_qwen7b\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T00:30:13.401Z\", \"updated_at\": \"2026-05-19T12:15:37.664Z\", \"hypothesis\": \"Qwen2.5-7B code domain K* measurement: Qwen family scale invariance test on CodeSearchNet Python. Pythia Code K*=1 弱化了跨模型一致性。Qwen-7B 测试两个方向：(1) Qwen 家族内 Code 的 scale invariance（1.5B K*=2, 7B K*=?），(2) 若 LLaMA/Mistral 也 K*=1，Qwen-7B K*=2 能维持 \\\"code-competent models reach K*=2\\\" 叙事。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"parent\": \"exp_code_pythia1b4\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/bin/activate && HF_ENDPOINT=https://hf-mirror.com python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --data_dir data/exp_code_qwen7b --results_dir results/exp_code_qwen7b --num_samples 5000 --max_depth 5 --batch_size 4 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"114228\", \"log_path\": \"~/runs/gen-depth-contamination/exp_code_qwen7b.log\", \"submitted_at\": \"2026-05-19T01:29:00Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_code_qwen7b\", \"data_count\": 5000, \"model_name\": \"Qwen2.5-7B\", \"seed\": 42, \"checkpoint_source\": \"exp_code_qwen1b5\", \"eval_data\": \"CodeSearchNet Python 5000 docs\", \"wall_clock_seconds\": 38608.5, \"gpu_hours\": 10.72}, \"notes\": \"Attempts 1-3 failed: huggingface.co unreachable (000), httpx client closed during datasets.load_dataset. Attempt 4 success: copied depth_0.jsonl from exp_code_qwen1b5 (MD5 match), set HF_ENDPOINT=https://hf-mirror.com. PID 114228, GPU util 96%, 15211/24564 MiB. nvidia-smi verified.\", \"reproduce\": {\"finis
+…[truncated 1657 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_fetch-qwen7b-complete-metrics_20260519T121502",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-19T12:15:47.389567+00:00_
+
+Registry 已更新。完整 metrics 如下：
+
+## exp_code_qwen7b 完整结果 (K\* = 2)
+
+### Pairwise AUC (5-fold CV)
+
+| Pair | AUC | 95% CI | Folds |
+|------|-----|--------|-------|
+| 0v1 | 0.9051 | ±0.0043 | 0.9073, 0.9012, 0.9120, 0.9049, 0.9003 |
+| 1v2 | 0.7276 | ±0.0055 | 0.7377, 0.7254, 0.7240, 0.7220, 0.7289 |
+| 2v3 | 0.5368 | ±0.0145 | 0.5179, 0.5332, 0.5275, 0.5462, 0.5593 |
+| 3v4 | 0.5090 | ±0.0055 | 0.5029, 0.5054, 0.5085, 0.5092, 0.5191 |
+| 4v5 | 0.5139 | ±0.0128 | 0.5016, 0.5317, 0.5264, 0.5090, 0.5007 |
+
+### Pairwise JSD
+
+| Pair | JSD |
+|------|-----|
+| 0v1 | 0.061265 |
+| 1v2 | 0.042256 |
+| 2v3 | 0.004130 |
+| 3v4 | 0.003198 |
+| 4v5 | 0.003393 |
+
+### Ordinal Classification (6-class)
+- MAE = 1.2651
+- Accuracy = 0.3423
+
+### Top-10 Features
+1. freq_entropy (9730.0)
+2. surp_d2_mean (9236.2)
+3. surp_d1_mean (9126.2)
+4. surp_d1_skew (8833.4)
+5. surp_std (8110.2)
+6. freq_kurtosis (7838.6)
+7. surp_mean (7586.0)
+8. surp_kurt (6769.2)
+9. hapax_ratio (6636.4)
+10. ttr (6332.6)
+
+Registry 已更新：conclusion=success, metrics 已录入完整数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ops_fetch-qwen7b-complete-metrics_20260519T121502"
+}
+```
+
+</details>
+
+---

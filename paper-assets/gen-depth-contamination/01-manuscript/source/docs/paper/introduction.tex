@@ -1,0 +1,25 @@
+\section{Introduction}
+\label{sec:introduction}
+
+Web-scale text corpora are increasingly contaminated by synthetic content that has itself been generated from earlier synthetic content.
+Estimates suggest that a substantial fraction of online text is machine-generated~\cite{sun2025aigt, spennemann2025quantifying}, and this share continues to rise.
+When models train on the outputs of earlier models, the resulting multi-generational synthetic text degrades with each iteration: tail modes vanish, lexical diversity contracts, and surprisal distributions flatten~\cite{shumailov2024collapse, dohmatob2024model}.
+This degradation arises in both \emph{retrain-chains} (iteratively training on model outputs) and \emph{prompt-chains} (recursively generating from previous outputs without retraining); we study the latter, which isolates generation-level information loss from training dynamics (Appendix~\ref{sec:extended_limitations}).
+Yet the dominant paradigm treats all machine-generated text identically, discarding the generational depth dimension.
+
+This gap cuts across four lines of work: binary detectors~\cite{basani2026diveye, zhang2024minkpp} produce no depth estimate (Section~\ref{sec:binary_confidence}); membership inference~\cite{zawalski2026codec} addresses a different question; the model collapse literature~\cite{shumailov2024collapse, alemohammad2024selfconsuming, schaeffer2025position} provides no per-text tool; and data selection methods~\cite{xie2023dsir, tirumala2023d4, drayson2025} ignore recursive depth.
+No existing method estimates how many rounds of recursive generation a text has undergone.
+
+The Data Processing Inequality (DPI) guarantees that information degrades monotonically across generations, motivating a finite discrimination boundary $\Kstar$.
+We empirically measure a lower bound $\Kempirical$ on the discrimination boundary (the maximum depth at which a classifier reliably distinguishes adjacent generations) using 15 statistical features and an Ordinal Binary Decomposition (OBD) LightGBM classifier.
+We operationalize $\Kempirical$ as the deepest $k \geq 1$ where the pairwise area under the ROC curve ($\auc_{k-1,k}$) exceeds $\theta = 0.60$ (Section~\ref{sec:formulation}).
+
+Our contributions:
+\begin{enumerate}[label=(\alph*),nosep]
+  \item \textbf{Measuring the discrimination boundary}: $\Kempirical \leq 2$ across all 10 model configurations (6 architecture families, 1B--8B) and 4 decoding strategies; $\Kempirical{=}2$ for 6/10 spanning three families ($p < 0.001$; Section~\ref{sec:kstar_boundary}).
+  Beyond two passes, web text becomes statistically indistinguishable; both supervised OBD and zero-shot LLMs fail beyond $\Kempirical$ (McNemar $p > 0.05$; Section~\ref{sec:why_kstar}).
+  \item \textbf{Domain dependence}: C4, Wikipedia, and code yield $\Kempirical{\leq}2$; structured academic text (arXiv) yields $\Kempirical{=}3$ across four families (Section~\ref{sec:cross_domain}).
+  \item \textbf{Generator-agnostic transfer} (continuation mode): 15 statistical features enable 80--92\% accuracy retention with scorer-invariant rankings ($\rho > 0.90$); $\Kempirical$ agreement holds across scorers for strong-signal configurations (Section~\ref{sec:transfer}).
+\end{enumerate}
+
+\noindent As a consistency check under extreme contamination (${\sim}$83\% synthetic), $\Kempirical{=}2$ correctly predicts the strategy ordering: binary curation minimizes Massive Multitask Language Understanding (MMLU) degradation ($0.5941$ vs.\ base $0.6018$); at realistic ratios ($\leq$50\%), all strategies converge (Section~\ref{sec:filtering}).

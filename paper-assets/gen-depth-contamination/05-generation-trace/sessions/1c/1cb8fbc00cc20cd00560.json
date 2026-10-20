@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1cb8fbc00cc20cd00560",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp015 per dataset",
+  "task_key": "worker_analysis_exp015-per-dataset_20260514T030259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp015-per-dataset_20260514T030259_result.json",
+    "occurrence": 1,
+    "bytes": 2511,
+    "sha256": "5bb63ef2c7f3774a43879c65a6057a51f845550dc7d874745160b81517405e4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-015 Neural Probe 结果报告\n\n### 执行概况\n\n| 数据集 | 状态 | 原因 |\n|--------|------|------|\n| **Pythia** | OOM 崩溃 | embedding extraction 第一个 batch 即 OOM（RTX 4090D 23GB，Qwen2.5-1.5B + `output_hidden_states=True` 内存不足） |\n| **OLMo** | 未执行 | Pythia OOM 后脚本被 SIGHUP (EXIT_CODE=129) 终止 |\n| **Qwen-cont** | 完成 | 第二次运行（仅跑 Qwen-cont），30000 样本，1875 batches，~7 分钟 embedding + 5-fold MLP |\n\n日志显示两次运行拼接：第一次从 Pythia 开始立即 OOM，第二次只跑了 Qwen-cont 并成功。\n\n### 训练方式：Independent probe per dataset\n\n脚本使用 `run_one_dataset()` 函数逐数据集运行完整 pipeline：\n- **Embedding**: Frozen Qwen2.5-1.5B last hidden state → avg pool → 1536-dim\n- **Probe**: MLP (1536→512→256→6), 5-fold GroupKFold CV, early stopping\n- 每个数据集独立训练独立 probe，非 pooled\n\n### Qwen-cont Pairwise AUC 表\n\n| Pair | Neural Probe AUC | ±std | LightGBM AUC | θ=0.60 判定 |\n|------|:-:|:-:|:-:|:-:|\n| **0v1** | 0.9873 | 0.0021 | 0.9972 | **PASS** |\n| **1v2** | 0.6983 | 0.0073 | 0.6114 | **PASS** |\n| **2v3** | 0.6195 | 0.0094 | 0.5609 | **PASS** |\n| **3v4** | 0.5930 | 0.0051 | 0.5408 | FAIL |\n| **4v5** | 0.5747 | 0.0072 | 0.5139 | FAIL |\n\nNon-adjacent pairs (neural probe) 也可用：0v2=0.9944, 0v3=0.9959, 0v4=0.9978, 0v5=0.9984, 1v3=0.7901, 1v4=0.8536, 1v5=0.8896, 2v4=0.7113, 2v5=0.7728, 3v5=0.6676。距离越远 AUC 越高，符合预期。\n\n### K* 分解\n\n| 方法 | K* | 含义 |\n|------|:--:|------|\n| **Neural Probe** | **3** | depth 0-1-2-3 四层可区分，3v4 边界（0.593）跌破 θ=0.60 |\n| **LightGBM (15D 手工特征)** | **2** | depth 0-1-2 三层可区分，2v3 边界（0.5609）跌破 θ=0.60 |\n\nNeural probe 比 LightGBM **多探测到一个可区分边界**（2v3: 0.6195 vs 0.5609）。1536-dim frozen representation 比 15D 手工特征有更强的区分力，将 K* 从 2 提升到 3。\n\n### 关键发现\n\n1. **K*=3 来源**：仅来自 Qwen-cont 数据集的独立 probe，无跨数据集聚合\n2. **与 LightGBM 的差异**：neural probe 在所有 adjacent pairs 上 AUC 均高于 LightGBM（除 0v1 略低 0.9873 vs 0.9972），表明 frozen LLM embeddings 捕捉到了手工特征遗漏的信号\n3. **分类精度**：6-class accuracy 仅 43.35%，因为 depth 3-4-5 互相混淆严重\n4. **结果只覆盖 Qwen-cont**，Pythia/OLMo 的 K* 尚未知"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp015-per-dataset.md"
+}

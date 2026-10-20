@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp_C_permutation_10k",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:18:26.152Z",
+    "updated_at": "2026-05-15T11:20:30.088Z",
+    "hypothesis": "10K permutation resamples 替换 500 resamples，验证 p-value 精度（FR-11 Warning）",
+    "spec": {
+      "command": "python scripts/exp_C_permutation_10k.py",
+      "server": "westc-26893",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data + data_exp001_pythia + data_exp002_olmo + data_exp017_qwen_cont",
+      "data_count": 20000,
+      "model_name": "N/A (CPU: permutation test)",
+      "seed": 42,
+      "note": "10K permutation resamples replacing 500, per depth pair per model"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "resamples": 10000,
+      "all_boundary_pairs_p": "<0.0001",
+      "key_finding": "10K permutation confirms all boundary p-values well below 0.01. FR-11 resolved."
+    },
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/artifacts/exp_C_permutation_10k.json",
+    "log_path": "/root/autodl-tmp/gen-depth-contamination/artifacts/exp_C_permutation_10k.json",
+    "completed_at": "2026-05-15T11:20:30.088Z"
+  },
+  "timestamp": "2026-05-15T11:20:30.141747+00:00",
+  "trigger": "update_registry"
+}

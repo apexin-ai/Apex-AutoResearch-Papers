@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ce84891577d31e64ff8",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "bugfix 32b json kstar",
+  "task_key": "worker_bugfix_32b-json-kstar_20260519T213534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_bugfix_32b-json-kstar_20260519T213534_result.json",
+    "occurrence": 1,
+    "bytes": 315,
+    "sha256": "c229a4b5ba8b98cc73e07b16936c62fb362ae0c4f3fa0f52e56433ba44f25053"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**修改结果**：`k_star` 从 1 → 2（1-indexed），已写入 `exp_32b_c4_results.json`。\n\n**Pipeline 状态**：exp_32b_c4 已完成（EXIT_CODE=0），depth_0~depth_5 + features.csv 全部生成，DeBERTa 训练和评估结果齐全（14b + 32b 两份 JSON + summary.json）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/bugfix-32b-json-kstar.md"
+}

@@ -1,0 +1,56 @@
+{
+  "exp_id": "exp_008_retrain_chain_v2",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T21:57:55.644Z",
+    "updated_at": "2026-05-17T00:23:00.448Z",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp008_retrain_chain.py --device cuda:0",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "77098",
+      "log_path": "~/runs/gen-depth-contamination/exp_008_retrain_chain_v2.log",
+      "submitted_at": "2026-05-16T21:57:55.512Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/exp_008_retrain_chain/",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-1.4b + LoRA (rank=16, alpha=32)",
+      "seed": 42,
+      "checkpoint_source": "pretrained + per-generation LoRA fine-tune",
+      "eval_data": "C4 5K docs, retrain-chain depth 0-4",
+      "wall_clock_seconds": 8704.9,
+      "gpu_hours": 2.42
+    },
+    "hypothesis": "Retrain-chain ecological validity (v2, fix: labels padding bug): Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "parent": "exp_001_pythia_depth",
+    "metrics": {
+      "k_star": ">=4",
+      "pairwise_auc": {
+        "0v1": 0.9847,
+        "1v2": 0.9484,
+        "2v3": 0.8888,
+        "3v4": 0.7982
+      },
+      "pairwise_jsd": {
+        "0v1": 0.17,
+        "1v2": 0.12,
+        "2v3": 0.064,
+        "3v4": 0.04
+      },
+      "key_finding": "Retrain-chain K*>=4, all pairs AUC>>0.60. LoRA adaptation artifacts make generations highly distinguishable. Prompt-chain K*=2 is text-intrinsic boundary."
+    },
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/outputs/exp_008_retrain_chain/",
+    "conclusion": "success",
+    "completed_at": "2026-05-17T00:23:00.448Z"
+  },
+  "timestamp": "2026-05-17T00:23:00.561528+00:00",
+  "trigger": "update_registry"
+}

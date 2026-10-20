@@ -1,0 +1,140 @@
+{
+  "C4": {
+    "full": {
+      "auc": 0.6085,
+      "std": 0.0101
+    },
+    "single": {
+      "surprisal_base": {
+        "auc": 0.5966,
+        "std": 0.0053
+      },
+      "surprisal_deriv": {
+        "auc": 0.5898,
+        "std": 0.0061
+      },
+      "lexical_diversity": {
+        "auc": 0.55,
+        "std": 0.0065
+      },
+      "freq_distribution": {
+        "auc": 0.5331,
+        "std": 0.0047
+      }
+    },
+    "leave_one_out": {
+      "surprisal_base": {
+        "auc": 0.6012,
+        "std": 0.0072,
+        "drop": 0.0073
+      },
+      "surprisal_deriv": {
+        "auc": 0.6116,
+        "std": 0.0122,
+        "drop": -0.003
+      },
+      "lexical_diversity": {
+        "auc": 0.6079,
+        "std": 0.01,
+        "drop": 0.0006
+      },
+      "freq_distribution": {
+        "auc": 0.6036,
+        "std": 0.0063,
+        "drop": 0.0049
+      }
+    }
+  },
+  "arXiv": {
+    "full": {
+      "auc": 0.8596,
+      "std": 0.0143
+    },
+    "single": {
+      "surprisal_base": {
+        "auc": 0.8091,
+        "std": 0.0157
+      },
+      "surprisal_deriv": {
+        "auc": 0.7888,
+        "std": 0.0234
+      },
+      "lexical_diversity": {
+        "auc": 0.691,
+        "std": 0.0153
+      },
+      "freq_distribution": {
+        "auc": 0.6845,
+        "std": 0.0186
+      }
+    },
+    "leave_one_out": {
+      "surprisal_base": {
+        "auc": 0.8284,
+        "std": 0.0192,
+        "drop": 0.0312
+      },
+      "surprisal_deriv": {
+        "auc": 0.8564,
+        "std": 0.0149,
+        "drop": 0.0032
+      },
+      "lexical_diversity": {
+        "auc": 0.855,
+        "std": 0.0146,
+        "drop": 0.0046
+      },
+      "freq_distribution": {
+        "auc": 0.8508,
+        "std": 0.0171,
+        "drop": 0.0088
+      }
+    }
+  },
+  "Wiki": {
+    "full": {
+      "auc": 0.6186,
+      "std": 0.0082
+    },
+    "single": {
+      "surprisal_base": {
+        "auc": 0.5811,
+        "std": 0.0065
+      },
+      "surprisal_deriv": {
+        "auc": 0.5899,
+        "std": 0.0082
+      },
+      "lexical_diversity": {
+        "auc": 0.5569,
+        "std": 0.0075
+      },
+      "freq_distribution": {
+        "auc": 0.5642,
+        "std": 0.0056
+      }
+    },
+    "leave_one_out": {
+      "surprisal_base": {
+        "auc": 0.6159,
+        "std": 0.0054,
+        "drop": 0.0028
+      },
+      "surprisal_deriv": {
+        "auc": 0.6231,
+        "std": 0.0054,
+        "drop": -0.0045
+      },
+      "lexical_diversity": {
+        "auc": 0.6136,
+        "std": 0.0102,
+        "drop": 0.0051
+      },
+      "freq_distribution": {
+        "auc": 0.6116,
+        "std": 0.0095,
+        "drop": 0.007
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+\section{Related Work}
+\label{sec:related_work}
+
+\paragraph{Model collapse and recursive degradation.}
+Iterative training on model outputs causes tail-distribution degradation~\cite{shumailov2024collapse, alemohammad2024selfconsuming, dohmatob2024model, dohmatob2025strong}, diversity contraction~\cite{guo2024curious, padmakumar2024writing, briesch2023selfconsuming}, and predictable convergence dynamics~\cite{schaeffer2025position, kazdan2025collapse, gerstgrasser2024model, wang2025unveiling}.
+Fu et al.~\cite{fu2025theoretical} formalize the convergence via Markov chain theory, complementing the DPI's mutual information monotonicity.
+Our prompt-chain operates in the replace regime~\cite{kazdan2025collapse}, making $\Kempirical = 2$ a conservative lower bound; empirically, detection accuracy erodes with each generation~\cite{hao2025rewrite}, consistent with our measured discrimination boundary.
+This literature characterizes macro dynamics but provides no per-text depth estimation, the gap we address.
+
+\paragraph{Machine-generated text detection.}
+Statistical detectors~\cite{mitchell2023detectgpt, bao2024fast} and model-based classifiers~\cite{hans2024binoculars, basani2026diveye, zhang2024minkpp, verma2024ghostbuster} achieve strong human-vs.-machine separation; benchmarks such as RAID~\cite{dugan2024raid} evaluate robustness at scale.
+Recent extensions move beyond binary labels: Cheng et al.~\cite{cheng2025beyond} estimate human-AI collaboration degree, Mehta et al.~\cite{mehta2025beyond} propose contamination hierarchies, and Wang et al.~\cite{wang2024semeval} construct multigenerator benchmarks.
+Robustness concerns arise under paraphrasing~\cite{sadasivan2023detect, krishna2023paraphrasing}, cross-mode transfer~\cite{hao2025rewrite}, and demographic bias~\cite{liang2023gpt}; CoDeC~\cite{zawalski2026codec} addresses contamination via membership inference.
+None of these methods estimates recursive generation depth.
+
+\paragraph{Data curation, ordinal methods, and watermarking.}
+Data Selection with Importance Resampling (DSIR)~\cite{xie2023dsir}, D4~\cite{tirumala2023d4}, and DoReMi~\cite{xie2023doremi} select training data by domain relevance but are depth-agnostic; Drayson et al.~\cite{drayson2025} combined binary detection with importance resampling, a special case when $\Kstar = 1$.
+Our OBD classifier follows Frank \& Hall's~\cite{frank2001ordinal} binary decomposition for ordinal regression; our neural probe extends probing~\cite{alain2017understanding, belinkov2022probing} to the discrimination boundary.
+Text watermarking~\cite{kirchenbauer2023watermark} embeds provenance signals proactively; our work addresses the complementary post-hoc scenario where the generator is not controlled.

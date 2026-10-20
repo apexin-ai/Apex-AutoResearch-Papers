@@ -1,0 +1,96 @@
+{
+  "exp_id": "exp_contamination_rate_sweep",
+  "project": "gen-depth-contamination",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T17:02:48.807Z",
+    "updated_at": "2026-05-20T18:02:14.928Z",
+    "hypothesis": "Binary filtering (remove depth>=1) consistently outperforms graduated filtering across contamination rates (10/30/50/100%), validating that K*=2 provides actionable curation guidance across realistic contamination scenarios, not just at full contamination.",
+    "spec": {
+      "command": "python scripts/contamination_rate_sweep.py (4 rates x 3 strategies = 12 runs)",
+      "server": "cqa1-22115",
+      "gpu": "cuda:1,cuda:2,cuda:3",
+      "pid": "333220,333297,333439",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/contamination_sweep/",
+      "data_count": 5000,
+      "model_name": "Qwen2.5-1.5B",
+      "seed": 42,
+      "training_config": "LoRA rank=16 alpha=32 1epoch",
+      "current_round": "rate=10% (no_filter:cuda1/binary:cuda2/graduated:cuda3)",
+      "remaining_rounds": "rate=30%,50%,100%",
+      "eval_benchmarks": "MMLU-5shot HellaSwag-10shot ARC-Challenge-25shot"
+    },
+    "metrics": {
+      "rate_10": {
+        "no_filter": {
+          "mmlu": 0.5878,
+          "hellaswag": 0.6652,
+          "arc_c": 0.4471
+        },
+        "binary": {
+          "mmlu": 0.5868,
+          "hellaswag": 0.6709,
+          "arc_c": 0.4462
+        },
+        "graduated": {
+          "mmlu": 0.5873,
+          "hellaswag": 0.6672,
+          "arc_c": 0.4428
+        }
+      },
+      "rate_30": {
+        "no_filter": {
+          "mmlu": 0.5885,
+          "hellaswag": 0.6625,
+          "arc_c": 0.4334
+        },
+        "binary": {
+          "mmlu": 0.5867,
+          "hellaswag": 0.6702,
+          "arc_c": 0.448
+        },
+        "graduated": {
+          "mmlu": 0.5873,
+          "hellaswag": 0.664,
+          "arc_c": 0.4334
+        }
+      },
+      "rate_50": {
+        "no_filter": {
+          "mmlu": 0.5858,
+          "hellaswag": 0.6582,
+          "arc_c": 0.43
+        },
+        "binary": {
+          "mmlu": 0.5913,
+          "hellaswag": 0.67,
+          "arc_c": 0.4505
+        },
+        "graduated": {
+          "mmlu": 0.5848,
+          "hellaswag": 0.6606,
+          "arc_c": 0.4292
+        }
+      },
+      "rate_100": {
+        "no_filter": {
+          "mmlu": 0.5707,
+          "hellaswag": 0.6217,
+          "arc_c": 0.3891
+        },
+        "binary": null,
+        "graduated": {
+          "mmlu": 0.5701,
+          "hellaswag": 0.6215,
+          "arc_c": 0.3933
+        }
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T18:02:15.212619+00:00",
+  "trigger": "update_registry"
+}

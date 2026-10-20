@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Qwen2.5-1.5B retrain-chain generational depth contamination results (LoRA rank=16, 1 epoch per generation, C4 5K docs). Pairwise AUC measures distinguishability between consecutive generation depths via 5-fold GroupKFold LightGBM classification on surprisal and lexical features. JSD quantifies distributional divergence of token frequencies.}
+\label{tab:qwen_retrain}
+\begin{tabular}{l c c c}
+\toprule
+Pair & AUC & 95\% CI & JSD \\
+\midrule
+0 vs 1 & 0.9838 & [0.980, 0.988] & 0.2263 \\
+1 vs 2 & 0.8969 & [0.890, 0.904] & 0.1046 \\
+2 vs 3 & 0.8100 & [0.799, 0.821] & 0.0752 \\
+3 vs 4 & 0.7624 & [0.744, 0.781] & 0.0654 \\
+\midrule
+\multicolumn{4}{l}{$K^* \geq 4$ ($\theta = 0.60$)} \\
+\bottomrule
+\end{tabular}
+\end{table}

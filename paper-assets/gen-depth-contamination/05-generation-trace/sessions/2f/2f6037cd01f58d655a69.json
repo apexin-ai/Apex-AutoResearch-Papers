@@ -1,0 +1,212 @@
+{
+  "schema_version": "1.0",
+  "id": "2f6037cd01f58d655a69",
+  "project": "gen-depth-contamination",
+  "kind": "conversation",
+  "title": "analysis exp003 config3 metrics fix",
+  "task_key": "worker_analysis_exp003_config3_metrics_fix_20260513T205942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_exp003_config3_metrics_fix_20260513T205942.jsonl",
+    "occurrence": 1,
+    "bytes": 6054,
+    "sha256": "8205e28348d8d7e8493087d0c31b57de69aedbea2d355a468c7e03c8c26cdd0c"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "tool_call": 4,
+      "tool_result": 4,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T21:00:09.826094+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_config3_metrics_fix_20260513T205942",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T21:00:09.826554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_config3_metrics_fix_20260513T205942",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T21:00:09.826733+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_config3_metrics_fix_20260513T205942",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westc-26893",
+              "command": "find /root/autodl-tmp/gen-depth-contamination -name \"pairwise_auc*\" -path \"*exp003*\" 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T21:00:09.826937+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_config3_metrics_fix_20260513T205942",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T21:00:09.827140+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_config3_metrics_fix_20260513T205942",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westc-26893",
+              "command": "ls /root/autodl-tmp/gen-depth-contamination/artifacts/",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T21:00:09.827372+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bootstrap_ci_4model.json\\\\nbootstrap_ci_results.json\\\\ncross_transfer_matrix.csv\\\\ncross_transfer_matrix.json\\\\nexp003_analysis.json\\\\nexp011_analysis.json\\\\nexp011_results_claude_opus_4_6.jsonl\\\\nexp011_results_gpt_5_5.jsonl\\\\nexp011_samples.jsonl\\\\nexp015_dryrun.json\\\\nfigures\\\\nordinal_comparison_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.61}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_config3_metrics_fix_20260513T205942",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T21:00:09.827586+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_config3_metrics_fix_20260513T205942",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westc-26893",
+              "command": "cat /root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T21:00:09.828012+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"configs_discovered\\\\\\\": [\\\\n    \\\\\\\"greedy\\\\\\\",\\\\n    \\\\\\\"nuc09\\\\\\\",\\\\n    \\\\\\\"t07\\\\\\\",\\\\n    \\\\\\\"t12\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"pairwise_auc_table\\\\\\\": {\\\\n    \\\\\\\"Config1-Greedy\\\\\\\": {\\\\n      \\\\\\\"0v1\\\\\\\": 0.9797,\\\\n      \\\\\\\"1v2\\\\\\\": 0.6893,\\\\n      \\\\\\\"2v3\\\\\\\": 0.5613,\\\\n      \\\\\\\"3v4\\\\\\\": 0.5404,\\\\n      \\\\\\\"4v5\\\\\\\": 0.5139\\\\n    },\\\\n    \\\\\\\"Config2-Nuc09\\\\\\\": {\\\\n      \\\\\\\"0v1\\\\\\\": 0.9946,\\\\n      \\\\\\\"1v2\\\\\\\": 0.6866,\\\\n      \\\\\\\"2v3\\\\\\\": 0.5917,\\\\n      \\\\\\\"3v4\\\\\\\": 0.5466,\\\\n      \\\\\\\"4v5\\\\\\\": 0.5068\\\\n    },\\\\n    \\\\\\\"Config3-T07\\\\\\\": {\\\\n      \\\\\\\"0v1\\\\\\\": 0.9878,\\\\n      \\\\\\\"1v2\\\\\\\": 0.6887,\\\\n      \\\\\\\"2v3\\\\\\\": 0.5902,\\\\n      \\\\\\\"3v4\\\\\\\": 0.5393,\\\\n      \\\\\\\"4v5\\\\\\\": 0.5349\\\\n    },\\\\n    \\\\\\\"Config4-T12\\\\\\\": {\\\\n      \\\\\\\"0v1\\\\\\\": 0.9982,\\\\n      \\\\\\\"1v2\\\\\\\": 0.7039,\\\\n      \\\\\\\"2v3\\\\\\\": 0.5823,\\\\n      \\\\\\\"3v4\\\\\\\": 0.5293,\\\\n      \\\\\\\"4v5\\\\\\\": 0.5237\\\\n    }\\\\n  },\\\\n  \\\\\\\"single_feature_auc_1v2\\\\\\\": {\\\\n    \\\\\\\"Config1-Greedy\\\\\\\": {\\\\n      \\\\\\\"surp_mean\\\\\\\": 0.5184,\\\\n      \\\\\\\"surp_std\\\\\\\": 0.5282,\\\\n      \\\\\\\"surp_skew\\\\\\\": 0.5322,\\\\n      \\\\\\\"surp_kurt\\\\\\\": 0.5251,\\\\n      \\\\\\\"surp_d1_mean\\\\\\\": 0.5015,\\\\n      \\\\\\\"surp_d1_std\\\\\\\": 0.5038,\\\\n      \\\\\\\"surp_d1_skew\\\\\\\": 0.5026,\\\\n      \\\\\\\"surp_d2_mean\\\\\\\": 0.5128,\\\\n      \\\\\\\"surp_d2_std\\\\\\\": 0.5013,\\\\n      \\\\\\\"ttr\\\\\\\": 0.5462,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 0.5752,\\\\n      \\\\\\\"self_bleu\\\\\\\": 0.5961,\\\\n      \\\\\\\"freq_kurtosis\\\\\\\": 0.5167,\\\\n      \\\\\\\"freq_entropy\\\\\\\": 0.5139,\\\\n      \\\\\\\"low_freq_ratio\\\\\\\": 0.5444\\\\n    },\\\\n    \\\\\\\"Config2-Nuc09\\\\\\\": {\\\\n      \\\\\\\"surp_mean\\\\\\\": 0.5114,\\\\n      \\\\\\\"surp_std\\\\\\\": 0.5053,\\\\n      \\\\\\\"surp_skew\\\\\\\": 0.5997,\\\\n      \\\\\\\"surp_kurt\\\\\\\": 0.598,\\\\n      \\\\\\\"surp_d1_mean\\\\\\\": 0.507,\\\\n      \\\\\\\"surp_d1_std\\\\\\\": 0.5346,\\\\n      \\\\\\\"surp_d1_skew\\\\\\\": 0.5066,\\\\n      \\\\\\\"surp_d2_mean\\\\\\\": 0.5066,\\\\n      \\\\\\\"surp_d2_std\\\\\\\": 0.54,\\\\n      \\\\\\\"ttr\\\\\\\": 0.6043,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 0.6561,\\\\n   \n…[truncated 4336 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_config3_metrics_fix_20260513T205942",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T21:00:09.828356+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Config3-T07** (nucleus p=0.95, T=0.7) 完整 pairwise AUC：\n\n| Depth Pair | AUC |\n|---|---|\n| 0v1 | 0.9878 |\n| 1v2 | 0.6887 |\n| 2v3 | 0.5902 |\n| 3v4 | 0.5393 |\n| 4v5 | 0.5349 |\n\n单调递减趋势明确：depth 越深，相邻层之间的可区分度越低。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_config3_metrics_fix_20260513T205942"
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-exp003-config3-metrics-fix.md"
+}

@@ -1,0 +1,2813 @@
+# ops urgent check expanded eval
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 57
+- **Recorded user turns:** 0
+- **Tool calls:** 20
+- **Original source:** `logs/workers/worker_ops_urgent_check_expanded_eval_20260520T191844.log`
+- **Structured JSON:** [`e889f3a7f2002400ebdf.json`](../../sessions/e8/e889f3a7f2002400ebdf.json)
+
+## Before a recorded user message
+
+57 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "54e41b28-75c9-49cf-98db-43e46f85ad0d",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779318000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "886bbbda-b6f6-4b6d-b774-58296bb8189c",
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the experiment status on the server. I'll start by checking the process status and output directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "7eb5d914-00ec-41ab-ac9b-be44286b3cd4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QAEEiboHrxreAxvzRA8W9C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12089,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12089
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01FMxqqfFc3Srmv1fegx92oc`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+  "max_results": 6
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "e0638fb4-ab6e-4ba2-a445-8308470b033b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QAEEiboHrxreAxvzRA8W9C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12089,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12089
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T19:18:58.864Z_
+
+<details><summary>↩ Tool result · `toolu_01FMxqqfFc3Srmv1fegx92oc`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "f534dfd2-668b-4076-b39f-e332bf1477e1",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the registry and server status in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "ca244d9c-64f4-473b-a2e4-b03e9221c365",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TYuyfspmjZKvcJ6T55mGbr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2360,
+      "cache_read_input_tokens": 23930,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2360
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+检查实验状态和服务器进程。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "8d780656-1a71-4010-ad3f-d14351b926bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TYuyfspmjZKvcJ6T55mGbr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2360,
+      "cache_read_input_tokens": 23930,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2360
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01KcuqioX7Y9bnjkR5qJV7fJ`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "exp_expanded_downstream_eval"
+  },
+  "project": "gen-depth-contamination",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "9e40a786-9455-43db-be6f-4dce9fcb9fe0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TYuyfspmjZKvcJ6T55mGbr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2360,
+      "cache_read_input_tokens": 23930,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2360
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T19:19:03.977Z_
+
+<details><summary>↩ Tool result · `toolu_01KcuqioX7Y9bnjkR5qJV7fJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4704}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "cc34c396-7d6f-4124-bcdf-0a3144d46284",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4704}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4704}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018DH8EB4yatuZUAsL755Six`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "nvidia-smi",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "4ba33117-cbb8-4a66-aac4-ea2fa7050abe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TYuyfspmjZKvcJ6T55mGbr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2360,
+      "cache_read_input_tokens": 23930,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2360
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013A4EhgcqfETWM9tRH5aTbB`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ps aux | grep python | grep -v grep",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "d23d564e-6918-4655-a725-b838d798a1e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TYuyfspmjZKvcJ6T55mGbr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2360,
+      "cache_read_input_tokens": 23930,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2360
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T19:19:05.615Z_
+
+<details><summary>↩ Tool result · `toolu_018DH8EB4yatuZUAsL755Six`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Thu May 21 03:19:05 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.76.05              Driver Version: 580.76.05      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 4090 D      On  |   00000000:16:00.0 Off |                  Off |\\n| 47%   64C    P2            327W /  425W |   11091MiB /  24564MiB |     64%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA GeForce RTX 4090 D      On  |   00000000:17:00.0 Off |                  Off |\\n| 30%   39C    P8             22W /  425W |    3685MiB /  24564MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA GeForce RTX 4090 D      On  |   00000000:28:00.0 Off |                  Off |\\n|  0%   32C    P8             16W /  425W |    3685MiB /  24564MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA GeForce RTX 4090 D      On  |   00000000:5A:00.0 Off |                  Off |\\n| 30%   30C    P8             17W /  425W |    3685MiB /  24564MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    0   N/A  N/A          334631      C   python                                11082MiB |\\n|    1   N/A  N/A          353802      C   python                                 3676MiB |\\n|    2   N/A  N/A          353881      C   python                                 3676MiB |\\n|    3   N/A  N/A          354025      C   python                                 3676MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.27}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "087275e9-245f-494a-bfd8-d1adb2894fa7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Thu May 21 03:19:05 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.76.05              Driver Version: 580.76.05      CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA GeForce RTX 4090 D      On  |   00000000:16:00.0 Off |                  Off |\\\\n| 47%   64C    P2            327W /  425W |   11091MiB /  24564MiB |     64%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA GeForce RTX 4090 D      On  |   00000000:17:00.0 Off |                  Off |\\\\n| 30%   39C    P8             22W /  425W |    3685MiB /  24564MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA GeForce RTX 4090 D      On  |   00000000:28:00.0 Off |                  Off |\\\\n|  0%   32C    P8             16W /  425W |    3685MiB /  24564MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA GeForce RTX 4090 D      On  |   00000000:5A:00.0 Off |                  Off |\\\\n| 30%   30C    P8             17W /  425W |    3685MiB /  24564MiB |      0%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A          334631      C   python                                11082MiB |\\\\n|    1   N/A  N/A          353802      C   python                                 3676MiB |\\\\n|    2   N/A  N/A          353881      C   python                                 3676MiB |\\\\n|    3   N/A  N/A          354025      C   python                                 3676MiB |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.27}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Thu May 21 03:19:05 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.76.05              Driver Version: 580.76.05      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 4090 D      On  |   00000000:16:00.0 Off |                  Off |\\n| 47%   64C    P2            327W /  425W |   11091MiB /  24564MiB |     64%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA GeForce RTX 4090 D      On  |   00000000:17:00.0 Off |                  Off |\\n| 30%   39C    P8             22W /  425W |    3685MiB /  24564MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA GeForce RTX 4090 D      On  |   00000000:28:00.0 Off |                  Off |\\n|  0%   32C    P8             16W /  425W |    3685MiB /  24564MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA GeForce RTX 4090 D      On  |   00000000:5A:00.0 Off |                  Off |\\n| 30%   30C    P8             17W /  425W |    3685MiB /  24564MiB |      0%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    0   N/A  N/A          334631      C   python                                11082MiB |\\n|    1   N/A  N/A          353802      C   python                                 3676MiB |\\n|    2   N/A  N/A          353881      C   python                                 3676MiB |\\n|    3   N/A  N/A          354025      C   python                                 3676MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.27}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T19:19:05.625Z_
+
+<details><summary>↩ Tool result · `toolu_013A4EhgcqfETWM9tRH5aTbB`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "6879397c-5a04-4c99-9f8b-6c3629b2ab40",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BcvfPDE4VEwc6jWRT6mzfY`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "tmux list-sessions 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "62f13236-3864-4200-8f31-4e9211551474",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TYuyfspmjZKvcJ6T55mGbr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2360,
+      "cache_read_input_tokens": 23930,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2360
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-20T19:19:05.997Z_
+
+<details><summary>↩ Tool result · `toolu_01BcvfPDE4VEwc6jWRT6mzfY`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "350ab8a2-4a2f-4f4b-b614-f22103e4e7ef",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, so:
+1. Registry doesn't have `exp_expanded_downstream_eval` entry (0 results). Let me check with a broader filter.
+2. GPU 0 is actively running (64% util, 327W, 11GB), GPUs 1-3 have python processes but 0% util and low power - could be vLLM workers or idle.
+3. The pipe commands were blocked by ssh_read_only.
+
+Let me check the registry more broadly, check what processes are running, and look at the results directory.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "918b698d-cca7-465d-a79c-a7476e2f7eea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0195s385dJzuX7ibBAdzPqAr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1643,
+      "cache_read_input_tokens": 26290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1643
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+GPU 0 在活跃运行（64% util），其余三张卡有 Python 进程但空闲。Registry 中没找到该实验。继续检查进程和结果目录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "ac70313d-6eae-451e-88c7-e03a2e48f7cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0195s385dJzuX7ibBAdzPqAr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1643,
+      "cache_read_input_tokens": 26290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1643
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01H6HE7DBUDzVrmyReXXxfAh`</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "fields": [
+    "*"
+  ],
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "a75fc320-a622-49b1-964a-2799a40b6afc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0195s385dJzuX7ibBAdzPqAr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1643,
+      "cache_read_input_tokens": 26290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1643
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T19:19:15.839Z_
+
+<details><summary>↩ Tool result · `toolu_01H6HE7DBUDzVrmyReXXxfAh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_deberta_filtering_comparison\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:02:50.271Z\", \"updated_at\": \"2026-05-20T19:13:39.079Z\", \"hypothesis\": \"DeBERTa's higher K* on arXiv (K*=4 vs 15D K*=3) does not yield significantly better downstream performance when used for filtering, validating that the 15D lower bound is practically sufficient.\", \"spec\": {\"command\": \"python scripts/exp_deberta_filtering_comparison.py --strategy {no_filter,obd_binary,deberta_binary,deberta_graduated} --device cuda:0 --seed 42\", \"server\": \"cqa1-22115\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/\", \"data_count\": 13200, \"model_name\": \"Qwen/Qwen2.5-1.5B\", \"seed\": 42, \"strategies\": [\"no_filter\", \"obd_binary\", \"deberta_binary\", \"deberta_graduated\"], \"prediction_results\": {\"deberta_accuracy\": 0.5363, \"obd_accuracy\": 0.4741, \"deberta_pred_distribution\": [2184, 1645, 2111, 1971, 1074, 4215], \"obd_pred_distribution\": [2177, 2470, 2196, 1900, 2098, 2359]}, \"lora_config\": {\"rank\": 16, \"alpha\": 32, \"targets\": [\"q_proj\", \"v_proj\"], \"dropout\": 0.05}, \"training_config\": {\"lr\": 0.0002, \"batch_size\": 4, \"grad_accum\": 4, \"epochs\": 1, \"max_length\": 256}, \"gpu_allocation\": {\"no_filter\": \"cuda:1\", \"obd_binary\": \"cuda:2\", \"deberta_binary\": \"cuda:3\", \"deberta_graduated\": \"pending\"}}}, \"deberta_filter_deberta_binary\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T19:11:29.363Z\", \"updated_at\": \"2026-05-20T19:12:24.058Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && export HF_DATASETS_OFFLINE=0 && export HF_HUB_OFFLINE=0 && export TRANSFORMERS_OFFLINE=0 && cd /root/autodl-tmp/gen-depth-contamination && python -u scripts/exp_deberta_filtering_comparison.py --strategy deberta_binary --device cuda:0 --seed 42\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"pid\": \"354020\", \"log_path\": \"~/runs/gen-depth-contamination/deberta_filter_deberta_binary.log\", \"submitted_at\": \"2026-05-20T19:12:23.647Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"deberta_filter_obd_binary\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T19:11:26.462Z\", \"updated_at\": \"2026-05-20T19:12:21.430Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && export HF_DATASETS_OFFLINE=0 && export HF_HUB_OFFLINE=0 && export TRANSFORMERS_OFFLINE=0 && cd /root/autodl-tmp/gen-depth-contamination && python -u scripts/exp_deberta_filtering_comparison.py --strategy obd_binary --device cuda:0 --seed 42\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:2\"], \"pid\": \"353876\", \"log_path\": \"~/runs/gen-depth-contamination/deberta_filter_obd_binary.log\", \"submitted_at\": \"2026-05-20T19:12:21.027Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"deberta_filter_no_filter\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T19:11:24.655Z\", \"updated_at\": \"2026-05-20T19:12:19.044Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && export HF_DATASETS_OFFLINE=0 && export HF_HUB_OFFLINE=0 && export TRANSFORMERS_OFFLINE=0 && cd /root/autodl-tmp/gen-depth-contamination && python -u scripts/exp_deberta_filtering_comparison.py --strategy no_filter --device cuda:0 --seed 42\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"353797\", \"log_path\": \"~/runs/gen-depth-contamination/deberta_filter_no_filter.log\", \"submitted_at\": \"2026-05-20T19:12:18.634Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"deberta_filtering_predict\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:48:51.515Z\", \"updated_at\": \"2026-05-20T18:40:45.650Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && rm -rf /root/autodl-tmp/.hf_cache/models--microsoft--deberta-v3-base/.no_exist && python -c 'from transformers import AutoTokenizer, AutoModelForSequenceClassification; print(\\\\\\\"Downloading deberta-v3-base...\\\\\\\"); AutoTokenizer.from_pretrained(\\\\\\\"microsoft/deberta-v3-base\\\\\\\", cache_dir=\\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"); AutoModelForSequenceClassification.from_pretrained(\\\\\\\"microsoft/deberta-v3-base\\\\\\\", num_labels=6, cache_dir=\\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"); print(\\\\\\\"Download complete.\\\\\\\")' && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && cd /root/autodl-tmp/gen-depth-contamination && CUDA_VISIBLE_DEVICES=2 python scripts/exp_deberta_filtering_predict.py --device cuda:0\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:2\"], \"pid\": \"349680\", \"log_path\": \"~/runs/gen-depth-contamination/deberta_filtering_predict.log\", \"submitted_at\": \"2026-05-20T18:40:45.030Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp_contamination_rate_sweep\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:02:48.807Z\", \"updated_at\": \"2026-05-20T18:02:19.878Z\", \"hypothesis\": \"Binary filtering (remove depth>=1) consistently outperforms graduated filtering across contamination rates (10/30/50/100%), validating that K*=2 provides actionable curation guidance across realistic contamination scenarios, not just at full contamination.\", \"spec\": {\"command\": \"python scripts/contamination_rate_sweep.py (4 rates x 3 strategies = 12 runs)\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:1,cuda:2,cuda:3\", \"pid\": \"333220,333297,333439\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/contamination_sweep/\", \"data_count\": 5000, \"model_name\": \"Qwen2.5-1.5B\", \"seed\": 42, \"training_config\": \"LoRA rank=16 alpha=32 1epoch\", \"current_round\": \"rate=10% (no_filter:cuda1/binary:cuda2/graduated:cuda3)\", \"remaining_rounds\": \"rate=30%,50%,100%\", \"eval_benchmarks\": \"MMLU-5shot HellaSwag-10shot ARC-Challenge-25shot\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_contamination_rate_sweep/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_contamination_rate_sweep/summary.json\"}, \"metrics\": {\"rate_10\": {\"no_filter\": {\"mmlu\": 0.5878, \"hellaswag\": 0.6652, \"arc_c\": 0.4471}, \"binary\": {\"mmlu\": 0.5868, \"hellaswag\": 0.6709, \"arc_c\": 0.4462}, \"graduated\": {\"mmlu\": 0.5873, \"hellaswag\": 0.6672, \"arc_c\": 0.4428}}, \"rate_30\": {\"no_filter\": {\"mmlu\": 0.5885, \"hellaswag\": 0.6625, \"arc_c\": 0.4334}, \"binary\": {\"mmlu\": 0.5867, \"hellaswag\": 0.6702, \"arc_c\": 0.448}, \"graduated\": {\"mmlu\": 0.5873, \"hellaswag\": 0.664, \"arc_c\": 0.4334}}, \"rate_50\": {\"no_filter\": {\"mmlu\": 0.5858, \"hellaswag\": 0.6582, \"arc_c\": 0.43}, \"binary\": {\"mmlu\": 0.5913, \"hellaswag\": 0.67, \"arc_c\": 0.4505}, \"graduated\": {\"mmlu\": 0.5848, \"hellaswag\": 0.6606, \"arc_c\": 0.4292}}, \"rate_100\": {\"no_filter\": {\"mmlu\": 0.5707, \"hellaswag\": 0.6217, \"arc_c\": 0.3891}, \"binary\": null, \"graduated\": {\"mmlu\": 0.5701, \"hellaswag\": 0.6215, \"arc_c\": 0.3933}}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T18:02:19.878Z\"}, \"sweep_r100_binary\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:53:14.587Z\", \"updated_at\": \"2026-05-20T18:00:01.029Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 100 --strategy binary --device cuda:0\\\"\", \"server\": \"westd-42896\", \"gpu\": [\"cuda:0\"], \"pid\": \"227976\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_r100_binary.log\", \"submitted_at\": \"2026-05-20T18:00:00.616Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_r100_graduated\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:53:46.876Z\", \"updated_at\": \"2026-05-20T17:53:46.876Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://huggingface.co && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 100 --strategy graduated --device cuda:0\\\"\", \"server\": \"westd-42896\", \"gpu\": [\"cuda:1\"], \"pid\": \"226991\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_r100_graduated.log\", \"submitted_at\": \"2026-05-20T17:53:46.454Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_r100_nf\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:53:12.678Z\", \"updated_at\": \"2026-05-20T17:53:12.678Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://huggingface.co && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 100 --strategy no_filter --device cuda:0\\\"\", \"server\": \"westd-42896\", \"gpu\": [\"cuda:0\"], \"pid\": \"226555\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_r100_nf.log\", \"submitted_at\": \"2026-05-20T17:53:12.278Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_r50_graduated\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:53:10.838Z\", \"updated_at\": \"2026-05-20T17:53:10.838Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://huggingface.co && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 50 --strategy graduated --device cuda:0\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"pid\": \"344395\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_r50_graduated.log\", \"submitted_at\": \"2026-05-20T17:53:10.443Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_r50_binary\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:49:15.968Z\", \"updated_at\": \"2026-05-20T17:53:08.386Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://huggingface.co && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 50 --strategy binary --device cuda:0\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:2\"], \"pid\": \"344316\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_r50_binary.log\", \"submitted_at\": \"2026-05-20T17:53:07.990Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_r50_nf\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:46:06.026Z\", \"updated_at\": \"2026-05-20T17:46:06.026Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://huggingface.co && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 50 --strategy no_filter --device cuda:0\\\"\", \"server\": \"westd-42896\", \"gpu\": [\"cuda:0\"], \"pid\": \"225683\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_r50_nf.log\", \"submitted_at\": \"2026-05-20T17:46:05.636Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_r30_graduated\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:44:40.942Z\", \"updated_at\": \"2026-05-20T17:44:40.942Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://huggingface.co && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 30 --strategy graduated --device cuda:0\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"pid\": \"341524\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_r30_graduated.log\", \"submitted_at\": \"2026-05-20T17:44:40.527Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_r30_binary\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:44:38.912Z\", \"updated_at\": \"2026-05-20T17:44:38.912Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://huggingface.co && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 30 --strategy binary --device cuda:0\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:2\"], \"pid\": \"341445\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_r30_binary.log\", \"submitted_at\": \"2026-05-20T17:44:38.527Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_eval_r10_nf_v2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:44:37.119Z\", \"updated_at\": \"2026-05-20T17:44:37.120Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://huggingface.co && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 10 --strategy no_filter --device cuda:0 --eval_only\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"341368\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_eval_r10_nf_v2.log\", \"submitted_at\": \"2026-05-20T17:44:36.698Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_eval_r30_nf\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:35:17.531Z\", \"updated_at\": \"2026-05-20T17:35:17.531Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 30 --strategy no_filter --device cuda:0 --eval_only\\\"\", \"server\": \"westd-42896\", \"gpu\": [\"cuda:0\"], \"pid\": \"224549\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_eval_r30_nf.log\", \"submitted_at\": \"2026-05-20T17:35:17.149Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_eval_r10_grad\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:35:15.378Z\", \"updated_at\": \"2026-05-20T17:35:15.379Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 10 --strategy graduated --device cuda:0 --eval_only\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"pid\": \"338694\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_eval_r10_grad.log\", \"submitted_at\": \"2026-05-20T17:35:14.990Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_eval_r10_bin\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:35:13.515Z\", \"updated_at\": \"2026-05-20T17:35:13.515Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 10 --strategy binary --device cuda:0 --eval_only\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:2\"], \"pid\": \"338554\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_eval_r10_bin.log\", \"submitted_at\": \"2026-05-20T17:35:13.136Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_eval_r10_nf\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:35:11.100Z\", \"updated_at\": \"2026-05-20T17:35:11.100Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 10 --strategy no_filter --device cuda:0 --eval_only\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"338477\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_eval_r10_nf.log\", \"submitted_at\": \"2026-05-20T17:35:10.713Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_eval_r30_nofilter\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:34:39.366Z\", \"updated_at\": \"2026-05-20T17:34:39.366Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 30 --strategy no_filter --device cuda:0 --eval_only\\\"\", \"server\": \"westd-42896\", \"gpu\": [\"cuda:0\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_eval_r30_nofilter.log\", \"submitted_at\": \"2026-05-20T17:34:38.989Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"count\": 20, \"total\": 139, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8302}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "3f2ff637-14f3-4190-8354-496be438c807",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_deberta_filtering_comparison\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:02:50.271Z\\\", \\\"updated_at\\\": \\\"2026-05-20T19:13:39.079Z\\\", \\\"hypothesis\\\": \\\"DeBERTa's higher K* on arXiv (K*=4 vs 15D K*=3) does not yield significantly better downstream performance when used for filtering, validating that the 15D lower bound is practically sufficient.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/exp_deberta_filtering_comparison.py --strategy {no_filter,obd_binary,deberta_binary,deberta_graduated} --device cuda:0 --seed 42\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/\\\", \\\"data_count\\\": 13200, \\\"model_name\\\": \\\"Qwen/Qwen2.5-1.5B\\\", \\\"seed\\\": 42, \\\"strategies\\\": [\\\"no_filter\\\", \\\"obd_binary\\\", \\\"deberta_binary\\\", \\\"deberta_graduated\\\"], \\\"prediction_results\\\": {\\\"deberta_accuracy\\\": 0.5363, \\\"obd_accuracy\\\": 0.4741, \\\"deberta_pred_distribution\\\": [2184, 1645, 2111, 1971, 1074, 4215], \\\"obd_pred_distribution\\\": [2177, 2470, 2196, 1900, 2098, 2359]}, \\\"lora_config\\\": {\\\"rank\\\": 16, \\\"alpha\\\": 32, \\\"targets\\\": [\\\"q_proj\\\", \\\"v_proj\\\"], \\\"dropout\\\": 0.05}, \\\"training_config\\\": {\\\"lr\\\": 0.0002, \\\"batch_size\\\": 4, \\\"grad_accum\\\": 4, \\\"epochs\\\": 1, \\\"max_length\\\": 256}, \\\"gpu_allocation\\\": {\\\"no_filter\\\": \\\"cuda:1\\\", \\\"obd_binary\\\": \\\"cuda:2\\\", \\\"deberta_binary\\\": \\\"cuda:3\\\", \\\"deberta_graduated\\\": \\\"pending\\\"}}}, \\\"deberta_filter_deberta_binary\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T19:11:29.363Z\\\", \\\"updated_at\\\": \\\"2026-05-20T19:12:24.058Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && export HF_DATASETS_OFFLINE=0 && export HF_HUB_OFFLINE=0 && export TRANSFORMERS_OFFLINE=0 && cd /root/autodl-tmp/gen-depth-contamination && python -u scripts/exp_deberta_filtering_comparison.py --strategy deberta_binary --device cuda:0 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"354020\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/deberta_filter_deberta_binary.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T19:12:23.647Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"deberta_filter_obd_binary\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T19:11:26.462Z\\\", \\\"updated_at\\\": \\\"2026-05-20T19:12:21.430Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && export HF_DATASETS_OFFLINE=0 && export HF_HUB_OFFLINE=0 && export TRANSFORMERS_OFFLINE=0 && cd /root/autodl-tmp/gen-depth-contamination && python -u scripts/exp_deberta_filtering_comparison.py --strategy obd_binary --device cuda:0 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"353876\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/deberta_filter_obd_binary.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T19:12:21.027Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"deberta_filter_no_filter\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T19:11:24.655Z\\\", \\\"updated_at\\\": \\\"2026-05-20T19:12:19.044Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && export HF_DATASETS_OFFLINE=0 && export HF_HUB_OFFLINE=0 && export TRANSFORMERS_OFFLINE=0 && cd /root/autodl-tmp/gen-depth-contamination && python -u scripts/exp_deberta_filtering_comparison.py --strategy no_filter --device cuda:0 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"353797\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/deberta_filter_no_filter.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T19:12:18.634Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"deberta_filtering_predict\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:48:51.515Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:40:45.650Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && rm -rf /root/autodl-tmp/.hf_cache/models--microsoft--deberta-v3-base/.no_exist && python -c 'from transformers import AutoTokenizer, AutoModelForSequenceClassification; print(\\\\\\\\\\\\\\\"Downloading deberta-v3-base...\\\\\\\\\\\\\\\"); AutoTokenizer.from_pretrained(\\\\\\\\\\\\\\\"microsoft/deberta-v3-base\\\\\\\\\\\\\\\", cache_dir=\\\\\\\\\\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\\\\\\\\\"); AutoModelForSequenceClassification.from_pretrained(\\\\\\\\\\\\\\\"microsoft/deberta-v3-base\\\\\\\\\\\\\\\", num_labels=6, cache_dir=\\\\\\\\\\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\\\\\\\\\"); print(\\\\\\\\\\\\\\\"Download complete.\\\\\\\\\\\\\\\")' && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && cd /root/autodl-tmp/gen-depth-contamination && CUDA_VISIBLE_DEVICES=2 python scripts/exp_deberta_filtering_predict.py --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"349680\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/deberta_filtering_predict.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T18:40:45.030Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"exp_contamination_rate_sweep\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:02:48.807Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:02:19.878Z\\\", \\\"hypothesis\\\": \\\"Binary filtering (remove depth>=1) consistently outperforms graduated filtering across contamination rates (10/30/50/100%), validating that K*=2 provides actionable curation guidance across realistic contamination scenarios, not just at full contamination.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/contamination_rate_sweep.py (4 rates x 3 strategies = 12 runs)\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:1,cuda:2,cuda:3\\\", \\\"pid\\\": \\\"333220,333297,333439\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data/contamination_sweep/\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"Qwen2.5-1.5B\\\", \\\"seed\\\": 42, \\\"training_config\\\": \\\"LoRA rank=16 alpha=32 1epoch\\\", \\\"current_round\\\": \\\"rate=10% (no_filter:cuda1/binary:cuda2/graduated:cuda3)\\\", \\\"remaining_rounds\\\": \\\"rate=30%,50%,100%\\\", \\\"eval_benchmarks\\\": \\\"MMLU-5shot HellaSwag-10shot ARC-Challenge-25shot\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_contamination_rate_sweep/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_contamination_rate_sweep/summary.json\\\"}, \\\"metrics\\\": {\\\"rate_10\\\": {\\\"no_filter\\\": {\\\"mmlu\\\": 0.5878, \\\"hellaswag\\\": 0.6652, \\\"arc_c\\\": 0.4471}, \\\"binary\\\": {\\\"mmlu\\\": 0.5868, \\\"hellaswag\\\": 0.6709, \\\"arc_c\\\": 0.4462}, \\\"graduated\\\": {\\\"mmlu\\\": 0.5873, \\\"hellaswag\\\": 0.6672, \\\"arc_c\\\": 0.4428}}, \\\"rate_30\\\": {\\\"no_filter\\\": {\\\"mmlu\\\": 0.5885, \\\"hellaswag\\\": 0.6625, \\\"arc_c\\\": 0.4334}, \\\"binary\\\": {\\\"mmlu\\\": 0.5867, \\\"hellaswag\\\": 0.6702, \\\"arc_c\\\": 0.448}, \\\"graduated\\\": {\\\"mmlu\\\": 0.5873, \\\"hellaswag\\\": 0.664, \\\"arc_c\\\": 0.4334}}, \\\"rate_50\\\": {\\\"no_filter\\\": {\\\"mmlu\\\": 0.5858, \\\"hellaswag\\\": 0.6582, \\\"arc_c\\\": 0.43}, \\\"binary\\\": {\\\"mmlu\\\": 0.5913, \\\"hellaswag\\\": 0.67, \\\"arc_c\\\": 0.4505}, \\\"graduated\\\": {\\\"mmlu\\\": 0.5848, \\\"hellaswag\\\": 0.6606, \\\"arc_c\\\": 0.4292}}, \\\"rate_100\\\": {\\\"no_filter\\\": {\\\"mmlu\\\": 0.5707, \\\"hellaswag\\\": 0.6217, \\\"arc_c\\\": 0.3891}, \\\"binary\\\": null, \\\"graduated\\\": {\\\"mmlu\\\": 0.5701, \\\"hellaswag\\\": 0.6215, \\\"arc_c\\\": 0.3933}}}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T18:02:19.878Z\\\"}, \\\"sweep_r100_binary\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:53:14.587Z\\\", \\\"updated_at\\\": \\\"2026-05-20T18:00:01.029Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 100 --strategy binary --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"westd-42896\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"227976\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/sweep_r100_binary.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T18:00:00.616Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"sweep_r100_graduated\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:53:46.876Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:53:46.876Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://huggingface.co && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 100 --strategy graduated --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"westd-42896\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"226991\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/sweep_r100_graduated.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:53:46.454Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"sweep_r100_nf\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:53:12.678Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:53:12.678Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://huggingface.co && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 100 --strategy no_filter --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"westd-42896\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"226555\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/sweep_r100_nf.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:53:12.278Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"sweep_r50_graduated\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:53:10.838Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:53:10.838Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://huggingface.co && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 50 --strategy graduated --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"344395\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/sweep_r50_graduated.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:53:10.443Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"sweep_r50_binary\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:49:15.968Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:53:08.386Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://huggingface.co && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 50 --strategy binary --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"344316\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/sweep_r50_binary.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:53:07.990Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"sweep_r50_nf\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:46:06.026Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:46:06.026Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://huggingface.co && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 50 --strategy no_filter --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"westd-42896\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"225683\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/sweep_r50_nf.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:46:05.636Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"sweep_r30_graduated\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:44:40.942Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:44:40.942Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://huggingface.co && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 30 --strategy graduated --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"341524\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/sweep_r30_graduated.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:44:40.527Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"sweep_r30_binary\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:44:38.912Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:44:38.912Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://huggingface.co && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 30 --strategy binary --device cuda:0\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"341445\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/sweep_r30_binary.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:44:38.527Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"sweep_eval_r10_nf_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:44:37.119Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:44:37.120Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://huggingface.co && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 10 --strategy no_filter --device cuda:0 --eval_only\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"341368\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/sweep_eval_r10_nf_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:44:36.698Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"sweep_eval_r30_nf\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:35:17.531Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:35:17.531Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 30 --strategy no_filter --device cuda:0 --eval_only\\\\\\\"\\\", \\\"server\\\": \\\"westd-42896\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"224549\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/sweep_eval_r30_nf.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:35:17.149Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"sweep_eval_r10_grad\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:35:15.378Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:35:15.379Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 10 --strategy graduated --device cuda:0 --eval_only\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"338694\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/sweep_eval_r10_grad.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:35:14.990Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"sweep_eval_r10_bin\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:35:13.515Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:35:13.515Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 10 --strategy binary --device cuda:0 --eval_only\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"338554\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/sweep_eval_r10_bin.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:35:13.136Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"sweep_eval_r10_nf\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:35:11.100Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:35:11.100Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 10 --strategy no_filter --device cuda:0 --eval_only\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"338477\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/sweep_eval_r10_nf.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:35:10.713Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"sweep_eval_r30_nofilter\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T17:34:39.366Z\\\", \\\"updated_at\\\": \\\"2026-05-20T17:34:39.366Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 30 --strategy no_filter --device cuda:0 --eval_only\\\\\\\"\\\", \\\"server\\\": \\\"westd-42896\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"unknown\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/sweep_eval_r30_nofilter.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:34:38.989Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"count\\\": 20, \\\"total\\\": 139, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8302}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_deberta_filtering_comparison\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:02:50.271Z\", \"updated_at\": \"2026-05-20T19:13:39.079Z\", \"hypothesis\": \"DeBERTa's higher K* on arXiv (K*=4 vs 15D K*=3) does not yield significantly better downstream performance when used for filtering, validating that the 15D lower bound is practically sufficient.\", \"spec\": {\"command\": \"python scripts/exp_deberta_filtering_comparison.py --strategy {no_filter,obd_binary,deberta_binary,deberta_graduated} --device cuda:0 --seed 42\", \"server\": \"cqa1-22115\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/\", \"data_count\": 13200, \"model_name\": \"Qwen/Qwen2.5-1.5B\", \"seed\": 42, \"strategies\": [\"no_filter\", \"obd_binary\", \"deberta_binary\", \"deberta_graduated\"], \"prediction_results\": {\"deberta_accuracy\": 0.5363, \"obd_accuracy\": 0.4741, \"deberta_pred_distribution\": [2184, 1645, 2111, 1971, 1074, 4215], \"obd_pred_distribution\": [2177, 2470, 2196, 1900, 2098, 2359]}, \"lora_config\": {\"rank\": 16, \"alpha\": 32, \"targets\": [\"q_proj\", \"v_proj\"], \"dropout\": 0.05}, \"training_config\": {\"lr\": 0.0002, \"batch_size\": 4, \"grad_accum\": 4, \"epochs\": 1, \"max_length\": 256}, \"gpu_allocation\": {\"no_filter\": \"cuda:1\", \"obd_binary\": \"cuda:2\", \"deberta_binary\": \"cuda:3\", \"deberta_graduated\": \"pending\"}}}, \"deberta_filter_deberta_binary\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T19:11:29.363Z\", \"updated_at\": \"2026-05-20T19:12:24.058Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && export HF_DATASETS_OFFLINE=0 && export HF_HUB_OFFLINE=0 && export TRANSFORMERS_OFFLINE=0 && cd /root/autodl-tmp/gen-depth-contamination && python -u scripts/exp_deberta_filtering_comparison.py --strategy deberta_binary --device cuda:0 --seed 42\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"pid\": \"354020\", \"log_path\": \"~/runs/gen-depth-contamination/deberta_filter_deberta_binary.log\", \"submitted_at\": \"2026-05-20T19:12:23.647Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"deberta_filter_obd_binary\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T19:11:26.462Z\", \"updated_at\": \"2026-05-20T19:12:21.430Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && export HF_DATASETS_OFFLINE=0 && export HF_HUB_OFFLINE=0 && export TRANSFORMERS_OFFLINE=0 && cd /root/autodl-tmp/gen-depth-contamination && python -u scripts/exp_deberta_filtering_comparison.py --strategy obd_binary --device cuda:0 --seed 42\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:2\"], \"pid\": \"353876\", \"log_path\": \"~/runs/gen-depth-contamination/deberta_filter_obd_binary.log\", \"submitted_at\": \"2026-05-20T19:12:21.027Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"deberta_filter_no_filter\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T19:11:24.655Z\", \"updated_at\": \"2026-05-20T19:12:19.044Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && export HF_DATASETS_OFFLINE=0 && export HF_HUB_OFFLINE=0 && export TRANSFORMERS_OFFLINE=0 && cd /root/autodl-tmp/gen-depth-contamination && python -u scripts/exp_deberta_filtering_comparison.py --strategy no_filter --device cuda:0 --seed 42\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"353797\", \"log_path\": \"~/runs/gen-depth-contamination/deberta_filter_no_filter.log\", \"submitted_at\": \"2026-05-20T19:12:18.634Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"deberta_filtering_predict\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:48:51.515Z\", \"updated_at\": \"2026-05-20T18:40:45.650Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo && export HF_HOME=/root/autodl-tmp/.hf_cache && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && rm -rf /root/autodl-tmp/.hf_cache/models--microsoft--deberta-v3-base/.no_exist && python -c 'from transformers import AutoTokenizer, AutoModelForSequenceClassification; print(\\\\\\\"Downloading deberta-v3-base...\\\\\\\"); AutoTokenizer.from_pretrained(\\\\\\\"microsoft/deberta-v3-base\\\\\\\", cache_dir=\\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"); AutoModelForSequenceClassification.from_pretrained(\\\\\\\"microsoft/deberta-v3-base\\\\\\\", num_labels=6, cache_dir=\\\\\\\"/root/autodl-tmp/.hf_cache\\\\\\\"); print(\\\\\\\"Download complete.\\\\\\\")' && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && cd /root/autodl-tmp/gen-depth-contamination && CUDA_VISIBLE_DEVICES=2 python scripts/exp_deberta_filtering_predict.py --device cuda:0\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:2\"], \"pid\": \"349680\", \"log_path\": \"~/runs/gen-depth-contamination/deberta_filtering_predict.log\", \"submitted_at\": \"2026-05-20T18:40:45.030Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"exp_contamination_rate_sweep\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:02:48.807Z\", \"updated_at\": \"2026-05-20T18:02:19.878Z\", \"hypothesis\": \"Binary filtering (remove depth>=1) consistently outperforms graduated filtering across contamination rates (10/30/50/100%), validating that K*=2 provides actionable curation guidance across realistic contamination scenarios, not just at full contamination.\", \"spec\": {\"command\": \"python scripts/contamination_rate_sweep.py (4 rates x 3 strategies = 12 runs)\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:1,cuda:2,cuda:3\", \"pid\": \"333220,333297,333439\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/contamination_sweep/\", \"data_count\": 5000, \"model_name\": \"Qwen2.5-1.5B\", \"seed\": 42, \"training_config\": \"LoRA rank=16 alpha=32 1epoch\", \"current_round\": \"rate=10% (no_filter:cuda1/binary:cuda2/graduated:cuda3)\", \"remaining_rounds\": \"rate=30%,50%,100%\", \"eval_benchmarks\": \"MMLU-5shot HellaSwag-10shot ARC-Challenge-25shot\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_contamination_rate_sweep/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_contamination_rate_sweep/summary.json\"}, \"metrics\": {\"rate_10\": {\"no_filter\": {\"mmlu\": 0.5878, \"hellaswag\": 0.6652, \"arc_c\": 0.4471}, \"binary\": {\"mmlu\": 0.5868, \"hellaswag\": 0.6709, \"arc_c\": 0.4462}, \"graduated\": {\"mmlu\": 0.5873, \"hellaswag\": 0.6672, \"arc_c\": 0.4428}}, \"rate_30\": {\"no_filter\": {\"mmlu\": 0.5885, \"hellaswag\": 0.6625, \"arc_c\": 0.4334}, \"binary\": {\"mmlu\": 0.5867, \"hellaswag\": 0.6702, \"arc_c\": 0.448}, \"graduated\": {\"mmlu\": 0.5873, \"hellaswag\": 0.664, \"arc_c\": 0.4334}}, \"rate_50\": {\"no_filter\": {\"mmlu\": 0.5858, \"hellaswag\": 0.6582, \"arc_c\": 0.43}, \"binary\": {\"mmlu\": 0.5913, \"hellaswag\": 0.67, \"arc_c\": 0.4505}, \"graduated\": {\"mmlu\": 0.5848, \"hellaswag\": 0.6606, \"arc_c\": 0.4292}}, \"rate_100\": {\"no_filter\": {\"mmlu\": 0.5707, \"hellaswag\": 0.6217, \"arc_c\": 0.3891}, \"binary\": null, \"graduated\": {\"mmlu\": 0.5701, \"hellaswag\": 0.6215, \"arc_c\": 0.3933}}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T18:02:19.878Z\"}, \"sweep_r100_binary\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:53:14.587Z\", \"updated_at\": \"2026-05-20T18:00:01.029Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 100 --strategy binary --device cuda:0\\\"\", \"server\": \"westd-42896\", \"gpu\": [\"cuda:0\"], \"pid\": \"227976\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_r100_binary.log\", \"submitted_at\": \"2026-05-20T18:00:00.616Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_r100_graduated\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:53:46.876Z\", \"updated_at\": \"2026-05-20T17:53:46.876Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://huggingface.co && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 100 --strategy graduated --device cuda:0\\\"\", \"server\": \"westd-42896\", \"gpu\": [\"cuda:1\"], \"pid\": \"226991\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_r100_graduated.log\", \"submitted_at\": \"2026-05-20T17:53:46.454Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_r100_nf\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:53:12.678Z\", \"updated_at\": \"2026-05-20T17:53:12.678Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://huggingface.co && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 100 --strategy no_filter --device cuda:0\\\"\", \"server\": \"westd-42896\", \"gpu\": [\"cuda:0\"], \"pid\": \"226555\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_r100_nf.log\", \"submitted_at\": \"2026-05-20T17:53:12.278Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_r50_graduated\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:53:10.838Z\", \"updated_at\": \"2026-05-20T17:53:10.838Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://huggingface.co && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 50 --strategy graduated --device cuda:0\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"pid\": \"344395\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_r50_graduated.log\", \"submitted_at\": \"2026-05-20T17:53:10.443Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_r50_binary\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:49:15.968Z\", \"updated_at\": \"2026-05-20T17:53:08.386Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://huggingface.co && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 50 --strategy binary --device cuda:0\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:2\"], \"pid\": \"344316\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_r50_binary.log\", \"submitted_at\": \"2026-05-20T17:53:07.990Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_r50_nf\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:46:06.026Z\", \"updated_at\": \"2026-05-20T17:46:06.026Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://huggingface.co && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 50 --strategy no_filter --device cuda:0\\\"\", \"server\": \"westd-42896\", \"gpu\": [\"cuda:0\"], \"pid\": \"225683\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_r50_nf.log\", \"submitted_at\": \"2026-05-20T17:46:05.636Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_r30_graduated\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:44:40.942Z\", \"updated_at\": \"2026-05-20T17:44:40.942Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://huggingface.co && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 30 --strategy graduated --device cuda:0\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"pid\": \"341524\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_r30_graduated.log\", \"submitted_at\": \"2026-05-20T17:44:40.527Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_r30_binary\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:44:38.912Z\", \"updated_at\": \"2026-05-20T17:44:38.912Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://huggingface.co && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 30 --strategy binary --device cuda:0\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:2\"], \"pid\": \"341445\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_r30_binary.log\", \"submitted_at\": \"2026-05-20T17:44:38.527Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_eval_r10_nf_v2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:44:37.119Z\", \"updated_at\": \"2026-05-20T17:44:37.120Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://huggingface.co && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 10 --strategy no_filter --device cuda:0 --eval_only\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"341368\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_eval_r10_nf_v2.log\", \"submitted_at\": \"2026-05-20T17:44:36.698Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_eval_r30_nf\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:35:17.531Z\", \"updated_at\": \"2026-05-20T17:35:17.531Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 30 --strategy no_filter --device cuda:0 --eval_only\\\"\", \"server\": \"westd-42896\", \"gpu\": [\"cuda:0\"], \"pid\": \"224549\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_eval_r30_nf.log\", \"submitted_at\": \"2026-05-20T17:35:17.149Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_eval_r10_grad\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:35:15.378Z\", \"updated_at\": \"2026-05-20T17:35:15.379Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 10 --strategy graduated --device cuda:0 --eval_only\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"pid\": \"338694\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_eval_r10_grad.log\", \"submitted_at\": \"2026-05-20T17:35:14.990Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_eval_r10_bin\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:35:13.515Z\", \"updated_at\": \"2026-05-20T17:35:13.515Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 10 --strategy binary --device cuda:0 --eval_only\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:2\"], \"pid\": \"338554\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_eval_r10_bin.log\", \"submitted_at\": \"2026-05-20T17:35:13.136Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_eval_r10_nf\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:35:11.100Z\", \"updated_at\": \"2026-05-20T17:35:11.100Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 10 --strategy no_filter --device cuda:0 --eval_only\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"338477\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_eval_r10_nf.log\", \"submitted_at\": \"2026-05-20T17:35:10.713Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"sweep_eval_r30_nofilter\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T17:34:39.366Z\", \"updated_at\": \"2026-05-20T17:34:39.366Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 30 --strategy no_filter --device cuda:0 --eval_only\\\"\", \"server\": \"westd-42896\", \"gpu\": [\"cuda:0\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/gen-depth-contamination/sweep_eval_r30_nofilter.log\", \"submitted_at\": \"2026-05-20T17:34:38.989Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"count\": 20, \"total\": 139, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8302}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HNXT42Cj8VRb7kiBE1wFUQ`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls -la /root/autodl-tmp/gen-depth-contamination/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "3fe01e57-adaf-4837-ad6a-cc65027e2dee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0195s385dJzuX7ibBAdzPqAr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1643,
+      "cache_read_input_tokens": 26290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1643
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T19:19:16.859Z_
+
+<details><summary>↩ Tool result · `toolu_01HNXT42Cj8VRb7kiBE1wFUQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 7720\\ndrwxr-xr-x 74 root root    4096 May 21 02:05 .\\ndrwxr-xr-x 27 root root    4096 May 19 09:09 ..\\ndrwxr-xr-x  2 root root      77 May 19 11:46 analysis_pythia_retrain_depth7\\ndrwxr-xr-x  2 root root     108 May 18 18:26 c4_power_curve\\n-rw-r--r--  1 root root    1392 May 18 15:47 c4_subsample_control.json\\ndrwxr-xr-x  2 root root      88 May 21 02:05 contamination_sweep\\ndrwxr-xr-x  2 root root      86 May 20 02:00 cross_scorer_f1\\ndrwxr-xr-x  2 root root    4096 May 20 12:02 deberta_cross_transfer\\ndrwxr-xr-x  2 root root    4096 May 20 12:30 exp_008_retrain_chain\\ndrwxr-xr-x  5 root root      70 May 17 06:23 exp_009_dose_response\\ndrwxr-xr-x  2 root root     142 May 20 19:26 exp_014_naturalistic\\n-rw-r--r--  1 root root 6889363 May 20 19:38 exp_014_naturalistic.log\\ndrwxr-xr-x  2 root root     149 May 16 23:27 exp_018_llama8b\\ndrwxr-xr-x  2 root root     149 May 16 16:13 exp_021_length_128\\ndrwxr-xr-x  2 root root     149 May 16 18:06 exp_021_length_256\\ndrwxr-xr-x  2 root root     149 May 16 21:42 exp_021_length_512\\ndrwxr-xr-x  2 root root     149 May 16 22:10 exp_023_wiki\\ndrwxr-xr-x  2 root root     149 May 16 23:56 exp_024_arxiv\\ndrwxr-xr-x  2 root root     149 May 17 02:59 exp_025_pythia_arxiv\\ndrwxr-xr-x 11 root root    4096 May 18 17:20 exp_025_pythia_filtering\\ndrwxr-xr-x 17 root root    4096 May 18 19:07 exp_026_arxiv_filtering\\ndrwxr-xr-x  2 root root     186 May 18 19:31 exp_027_latex_ablation\\ndrwxr-xr-x  2 root root      94 May 19 06:58 exp_028_power_curve\\n-rw-r--r--  1 root root   63339 May 19 06:58 exp_028_power_curve.log\\ndrwxr-xr-x  2 root root     186 May 18 17:47 exp_14b_c4\\ndrwxr-xr-x  2 root root      47 May 19 21:56 exp_7b_cross_transfer\\ndrwxr-xr-x  2 root root      61 May 20 20:51 exp_7b_scorer_ablation\\ndrwxr-xr-x  2 root root      61 May 20 21:14 exp_7b_scorer_arxiv\\n-rw-r--r--  1 root root  742599 May 20 21:14 exp_7b_scorer_arxiv.log\\ndrwxr-xr-x  2 root root     149 May 17 21:59 exp_arXiv_llama8b\\ndrwxr-xr-x  2 root root     149 May 18 10:56 exp_arXiv_llama8b_crossscorer\\ndrwxr-xr-x  2 root root     149 May 18 00:24 exp_arXiv_mistral7b\\ndrwxr-xr-x  2 root root     149 May 18 10:53 exp_arXiv_mistral7b_crossscorer\\ndrwxr-xr-x  2 root root     149 May 17 19:56 exp_arXiv_olmo\\ndrwxr-xr-x  2 root root     149 May 18 10:56 exp_arXiv_qwen1b5_crossscorer\\ndrwxr-xr-x  2 root root     149 May 18 00:33 exp_arXiv_qwen7b\\ndrwxr-xr-x  2 root root     149 May 18 10:56 exp_arXiv_qwen7b_crossscorer\\ndrwxr-xr-x  2 root root      51 May 20 19:55 exp_bootstrap_10k\\n-rw-r--r--  1 root root    6797 May 20 19:55 exp_bootstrap_10k_log.txt\\ndrwxr-xr-x  2 root root     153 May 20 15:17 exp_changepoint_kstar\\ndrwxr-xr-x  2 root root     149 May 19 16:11 exp_code_llama8b\\ndrwxr-xr-x  2 root root     149 May 19 18:54 exp_code_mistral7b\\n-rw-r--r--  1 root root  978768 May 19 18:54 exp_code_mistral7b.log\\ndrwxr-xr-x  2 root root    4096 May 20 19:04 exp_code_multi_source\\n-rw-r--r--  1 root root  472285 May 20 19:04 exp_code_multi_source.log\\ndrwxr-xr-x  2 root root     170 May 19 08:22 exp_code_pythia1b4\\ndrwxr-xr-x  2 root root     149 May 19 05:21 exp_code_qwen1b5\\ndrwxr-xr-x  2 root root     149 May 19 14:49 exp_code_qwen1b5_pythia_scorer\\ndrwxr-xr-x  2 root root     149 May 19 20:10 exp_code_qwen7b\\ndrwxr-xr-x  5 root root      91 May 21 02:01 exp_contamination_rate_sweep\\ndrwxr-xr-x  2 root root      98 May 20 11:53 exp_deberta_arxiv\\ndrwxr-xr-x  2 root root      44 May 20 11:53 exp_deberta_arxiv_qwen1b5\\ndrwxr-xr-x  2 root root     179 May 20 12:03 exp_deberta_c4_1b5\\ndrwxr-xr-x  2 root root      82 May 20 17:09 exp_deberta_code_qwen1b5\\ndrwxr-xr-x  5 root root     129 May 21 03:12 exp_deberta_filtering_comparison\\ndrwxr-xr-x  2 root root    4096 May 20 12:03 exp_deberta_upperbound\\n-rw-r--r--  1 root root   76008 May 20 05:39 exp_deberta_upperbound.log\\ndrwxr-xr-x  3 root root    4096 May 21 03:10 exp_expanded_downstream_eval\\ndrwxr-xr-x  2 root root     149 May 20 17:33 exp_gemma2b_depth\\ndrwxr-xr-x  2 root root     159 May 20 16:41 exp_multi_source_arxiv\\ndrwxr-xr-x  2 root root      95 May 20 15:38 exp_multi_source_detection\\ndrwxr-xr-x  2 root root      47 May 20 15:21 exp_multi_source_detection_v2\\ndrwxr-xr-x  2 root root     168 May 20 15:58 exp_multi_source_unified_scorer\\ndrwxr-xr-x  2 root root     145 May 20 22:53 exp_olmo_retrain_chain\\ndrwxr-xr-x  2 root root     119 May 20 12:29 exp_pythia_retrain_depth7\\ndrwxr-xr-x  2 root root      88 May 19 06:07 exp_qwen_retrain_chain\\ndrwxr-xr-x  2 root root     119 May 20 12:30 exp_qwen_retrain_chain_ext\\ndrwxr-xr-x  2 root root     149 May 18 03:28 exp_wiki_llama8b\\ndrwxr-xr-x  2 root root     149 May 18 03:48 exp_wiki_mistral7b\\ndrwxr-xr-x  2 root root     159 May 20 19:30 exp_wiki_multi_source\\n-rw-r--r--  1 root root  297383 May 20 19:30 exp_wiki_multi_source.log\\ndrwxr-xr-x  2 root root     149 May 17 19:24 exp_wiki_olmo\\ndrwxr-xr-x  2 root root     149 May 17 21:07 exp_wiki_olmo_v2\\ndrwxr-xr-x  2 root root     149 May 17 19:24 exp_wiki_pythia\\ndrwxr-xr-x  2 root root     149 May 17 21:14 exp_wiki_pythia_v2\\ndrwxr-xr-x  2 root root     149 May 18 06:21 exp_wiki_qwen7b\\ndrwxr-xr-x  2 root root     149 May 18 07:12 exp_wiki_scorer_confound\\ndrwxr-xr-x  2 root root     149 May 18 09:18 exp_wiki_scorer_confound_1b5\\ndrwxr-xr-x  2 root root      45 May 20 01:10 f1_optimal_threshold\\ndrwxr-xr-x  2 root root     174 May 18 21:54 feature_ablation\\ndrwxr-xr-x  2 root root     134 May 20 03:04 lofo_importance\\ndrwxr-xr-x  2 root root      42 May 18 23:26 mcnemar_obd_vs_baselines\\n-rw-r--r--  1 root root   23097 May 20 12:50 monotonicity_check.json\\ndrwxr-xr-x  2 root root     149 May 20 14:12 olmo_c4_cont\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "ab3dabd4-b6ae-49f4-a631-095ee7e85825",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 7720\\\\ndrwxr-xr-x 74 root root    4096 May 21 02:05 .\\\\ndrwxr-xr-x 27 root root    4096 May 19 09:09 ..\\\\ndrwxr-xr-x  2 root root      77 May 19 11:46 analysis_pythia_retrain_depth7\\\\ndrwxr-xr-x  2 root root     108 May 18 18:26 c4_power_curve\\\\n-rw-r--r--  1 root root    1392 May 18 15:47 c4_subsample_control.json\\\\ndrwxr-xr-x  2 root root      88 May 21 02:05 contamination_sweep\\\\ndrwxr-xr-x  2 root root      86 May 20 02:00 cross_scorer_f1\\\\ndrwxr-xr-x  2 root root    4096 May 20 12:02 deberta_cross_transfer\\\\ndrwxr-xr-x  2 root root    4096 May 20 12:30 exp_008_retrain_chain\\\\ndrwxr-xr-x  5 root root      70 May 17 06:23 exp_009_dose_response\\\\ndrwxr-xr-x  2 root root     142 May 20 19:26 exp_014_naturalistic\\\\n-rw-r--r--  1 root root 6889363 May 20 19:38 exp_014_naturalistic.log\\\\ndrwxr-xr-x  2 root root     149 May 16 23:27 exp_018_llama8b\\\\ndrwxr-xr-x  2 root root     149 May 16 16:13 exp_021_length_128\\\\ndrwxr-xr-x  2 root root     149 May 16 18:06 exp_021_length_256\\\\ndrwxr-xr-x  2 root root     149 May 16 21:42 exp_021_length_512\\\\ndrwxr-xr-x  2 root root     149 May 16 22:10 exp_023_wiki\\\\ndrwxr-xr-x  2 root root     149 May 16 23:56 exp_024_arxiv\\\\ndrwxr-xr-x  2 root root     149 May 17 02:59 exp_025_pythia_arxiv\\\\ndrwxr-xr-x 11 root root    4096 May 18 17:20 exp_025_pythia_filtering\\\\ndrwxr-xr-x 17 root root    4096 May 18 19:07 exp_026_arxiv_filtering\\\\ndrwxr-xr-x  2 root root     186 May 18 19:31 exp_027_latex_ablation\\\\ndrwxr-xr-x  2 root root      94 May 19 06:58 exp_028_power_curve\\\\n-rw-r--r--  1 root root   63339 May 19 06:58 exp_028_power_curve.log\\\\ndrwxr-xr-x  2 root root     186 May 18 17:47 exp_14b_c4\\\\ndrwxr-xr-x  2 root root      47 May 19 21:56 exp_7b_cross_transfer\\\\ndrwxr-xr-x  2 root root      61 May 20 20:51 exp_7b_scorer_ablation\\\\ndrwxr-xr-x  2 root root      61 May 20 21:14 exp_7b_scorer_arxiv\\\\n-rw-r--r--  1 root root  742599 May 20 21:14 exp_7b_scorer_arxiv.log\\\\ndrwxr-xr-x  2 root root     149 May 17 21:59 exp_arXiv_llama8b\\\\ndrwxr-xr-x  2 root root     149 May 18 10:56 exp_arXiv_llama8b_crossscorer\\\\ndrwxr-xr-x  2 root root     149 May 18 00:24 exp_arXiv_mistral7b\\\\ndrwxr-xr-x  2 root root     149 May 18 10:53 exp_arXiv_mistral7b_crossscorer\\\\ndrwxr-xr-x  2 root root     149 May 17 19:56 exp_arXiv_olmo\\\\ndrwxr-xr-x  2 root root     149 May 18 10:56 exp_arXiv_qwen1b5_crossscorer\\\\ndrwxr-xr-x  2 root root     149 May 18 00:33 exp_arXiv_qwen7b\\\\ndrwxr-xr-x  2 root root     149 May 18 10:56 exp_arXiv_qwen7b_crossscorer\\\\ndrwxr-xr-x  2 root root      51 May 20 19:55 exp_bootstrap_10k\\\\n-rw-r--r--  1 root root    6797 May 20 19:55 exp_bootstrap_10k_log.txt\\\\ndrwxr-xr-x  2 root root     153 May 20 15:17 exp_changepoint_kstar\\\\ndrwxr-xr-x  2 root root     149 May 19 16:11 exp_code_llama8b\\\\ndrwxr-xr-x  2 root root     149 May 19 18:54 exp_code_mistral7b\\\\n-rw-r--r--  1 root root  978768 May 19 18:54 exp_code_mistral7b.log\\\\ndrwxr-xr-x  2 root root    4096 May 20 19:04 exp_code_multi_source\\\\n-rw-r--r--  1 root root  472285 May 20 19:04 exp_code_multi_source.log\\\\ndrwxr-xr-x  2 root root     170 May 19 08:22 exp_code_pythia1b4\\\\ndrwxr-xr-x  2 root root     149 May 19 05:21 exp_code_qwen1b5\\\\ndrwxr-xr-x  2 root root     149 May 19 14:49 exp_code_qwen1b5_pythia_scorer\\\\ndrwxr-xr-x  2 root root     149 May 19 20:10 exp_code_qwen7b\\\\ndrwxr-xr-x  5 root root      91 May 21 02:01 exp_contamination_rate_sweep\\\\ndrwxr-xr-x  2 root root      98 May 20 11:53 exp_deberta_arxiv\\\\ndrwxr-xr-x  2 root root      44 May 20 11:53 exp_deberta_arxiv_qwen1b5\\\\ndrwxr-xr-x  2 root root     179 May 20 12:03 exp_deberta_c4_1b5\\\\ndrwxr-xr-x  2 root root      82 May 20 17:09 exp_deberta_code_qwen1b5\\\\ndrwxr-xr-x  5 root root     129 May 21 03:12 exp_deberta_filtering_comparison\\\\ndrwxr-xr-x  2 root root    4096 May 20 12:03 exp_deberta_upperbound\\\\n-rw-r--r--  1 root root   76008 May 20 05:39 exp_deberta_upperbound.log\\\\ndrwxr-xr-x  3 root root    4096 May 21 03:10 exp_expanded_downstream_eval\\\\ndrwxr-xr-x  2 root root     149 May 20 17:33 exp_gemma2b_depth\\\\ndrwxr-xr-x  2 root root     159 May 20 16:41 exp_multi_source_arxiv\\\\ndrwxr-xr-x  2 root root      95 May 20 15:38 exp_multi_source_detection\\\\ndrwxr-xr-x  2 root root      47 May 20 15:21 exp_multi_source_detection_v2\\\\ndrwxr-xr-x  2 root root     168 May 20 15:58 exp_multi_source_unified_scorer\\\\ndrwxr-xr-x  2 root root     145 May 20 22:53 exp_olmo_retrain_chain\\\\ndrwxr-xr-x  2 root root     119 May 20 12:29 exp_pythia_retrain_depth7\\\\ndrwxr-xr-x  2 root root      88 May 19 06:07 exp_qwen_retrain_chain\\\\ndrwxr-xr-x  2 root root     119 May 20 12:30 exp_qwen_retrain_chain_ext\\\\ndrwxr-xr-x  2 root root     149 May 18 03:28 exp_wiki_llama8b\\\\ndrwxr-xr-x  2 root root     149 May 18 03:48 exp_wiki_mistral7b\\\\ndrwxr-xr-x  2 root root     159 May 20 19:30 exp_wiki_multi_source\\\\n-rw-r--r--  1 root root  297383 May 20 19:30 exp_wiki_multi_source.log\\\\ndrwxr-xr-x  2 root root     149 May 17 19:24 exp_wiki_olmo\\\\ndrwxr-xr-x  2 root root     149 May 17 21:07 exp_wiki_olmo_v2\\\\ndrwxr-xr-x  2 root root     149 May 17 19:24 exp_wiki_pythia\\\\ndrwxr-xr-x  2 root root     149 May 17 21:14 exp_wiki_pythia_v2\\\\ndrwxr-xr-x  2 root root     149 May 18 06:21 exp_wiki_qwen7b\\\\ndrwxr-xr-x  2 root root     149 May 18 07:12 exp_wiki_scorer_confound\\\\ndrwxr-xr-x  2 root root     149 May 18 09:18 exp_wiki_scorer_confound_1b5\\\\ndrwxr-xr-x  2 root root      45 May 20 01:10 f1_optimal_threshold\\\\ndrwxr-xr-x  2 root root     174 May 18 21:54 feature_ablation\\\\ndrwxr-xr-x  2 root root     134 May 20 03:04 lofo_importance\\\\ndrwxr-xr-x  2 root root      42 May 18 23:26 mcnemar_obd_vs_baselines\\\\n-rw-r--r--  1 root root   23097 May 20 12:50 monotonicity_check.json\\\\ndrwxr-xr-x  2 root root     149 May 20 14:12 olmo_c4_cont\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 7720\\ndrwxr-xr-x 74 root root    4096 May 21 02:05 .\\ndrwxr-xr-x 27 root root    4096 May 19 09:09 ..\\ndrwxr-xr-x  2 root root      77 May 19 11:46 analysis_pythia_retrain_depth7\\ndrwxr-xr-x  2 root root     108 May 18 18:26 c4_power_curve\\n-rw-r--r--  1 root root    1392 May 18 15:47 c4_subsample_control.json\\ndrwxr-xr-x  2 root root      88 May 21 02:05 contamination_sweep\\ndrwxr-xr-x  2 root root      86 May 20 02:00 cross_scorer_f1\\ndrwxr-xr-x  2 root root    4096 May 20 12:02 deberta_cross_transfer\\ndrwxr-xr-x  2 root root    4096 May 20 12:30 exp_008_retrain_chain\\ndrwxr-xr-x  5 root root      70 May 17 06:23 exp_009_dose_response\\ndrwxr-xr-x  2 root root     142 May 20 19:26 exp_014_naturalistic\\n-rw-r--r--  1 root root 6889363 May 20 19:38 exp_014_naturalistic.log\\ndrwxr-xr-x  2 root root     149 May 16 23:27 exp_018_llama8b\\ndrwxr-xr-x  2 root root     149 May 16 16:13 exp_021_length_128\\ndrwxr-xr-x  2 root root     149 May 16 18:06 exp_021_length_256\\ndrwxr-xr-x  2 root root     149 May 16 21:42 exp_021_length_512\\ndrwxr-xr-x  2 root root     149 May 16 22:10 exp_023_wiki\\ndrwxr-xr-x  2 root root     149 May 16 23:56 exp_024_arxiv\\ndrwxr-xr-x  2 root root     149 May 17 02:59 exp_025_pythia_arxiv\\ndrwxr-xr-x 11 root root    4096 May 18 17:20 exp_025_pythia_filtering\\ndrwxr-xr-x 17 root root    4096 May 18 19:07 exp_026_arxiv_filtering\\ndrwxr-xr-x  2 root root     186 May 18 19:31 exp_027_latex_ablation\\ndrwxr-xr-x  2 root root      94 May 19 06:58 exp_028_power_curve\\n-rw-r--r--  1 root root   63339 May 19 06:58 exp_028_power_curve.log\\ndrwxr-xr-x  2 root root     186 May 18 17:47 exp_14b_c4\\ndrwxr-xr-x  2 root root      47 May 19 21:56 exp_7b_cross_transfer\\ndrwxr-xr-x  2 root root      61 May 20 20:51 exp_7b_scorer_ablation\\ndrwxr-xr-x  2 root root      61 May 20 21:14 exp_7b_scorer_arxiv\\n-rw-r--r--  1 root root  742599 May 20 21:14 exp_7b_scorer_arxiv.log\\ndrwxr-xr-x  2 root root     149 May 17 21:59 exp_arXiv_llama8b\\ndrwxr-xr-x  2 root root     149 May 18 10:56 exp_arXiv_llama8b_crossscorer\\ndrwxr-xr-x  2 root root     149 May 18 00:24 exp_arXiv_mistral7b\\ndrwxr-xr-x  2 root root     149 May 18 10:53 exp_arXiv_mistral7b_crossscorer\\ndrwxr-xr-x  2 root root     149 May 17 19:56 exp_arXiv_olmo\\ndrwxr-xr-x  2 root root     149 May 18 10:56 exp_arXiv_qwen1b5_crossscorer\\ndrwxr-xr-x  2 root root     149 May 18 00:33 exp_arXiv_qwen7b\\ndrwxr-xr-x  2 root root     149 May 18 10:56 exp_arXiv_qwen7b_crossscorer\\ndrwxr-xr-x  2 root root      51 May 20 19:55 exp_bootstrap_10k\\n-rw-r--r--  1 root root    6797 May 20 19:55 exp_bootstrap_10k_log.txt\\ndrwxr-xr-x  2 root root     153 May 20 15:17 exp_changepoint_kstar\\ndrwxr-xr-x  2 root root     149 May 19 16:11 exp_code_llama8b\\ndrwxr-xr-x  2 root root     149 May 19 18:54 exp_code_mistral7b\\n-rw-r--r--  1 root root  978768 May 19 18:54 exp_code_mistral7b.log\\ndrwxr-xr-x  2 root root    4096 May 20 19:04 exp_code_multi_source\\n-rw-r--r--  1 root root  472285 May 20 19:04 exp_code_multi_source.log\\ndrwxr-xr-x  2 root root     170 May 19 08:22 exp_code_pythia1b4\\ndrwxr-xr-x  2 root root     149 May 19 05:21 exp_code_qwen1b5\\ndrwxr-xr-x  2 root root     149 May 19 14:49 exp_code_qwen1b5_pythia_scorer\\ndrwxr-xr-x  2 root root     149 May 19 20:10 exp_code_qwen7b\\ndrwxr-xr-x  5 root root      91 May 21 02:01 exp_contamination_rate_sweep\\ndrwxr-xr-x  2 root root      98 May 20 11:53 exp_deberta_arxiv\\ndrwxr-xr-x  2 root root      44 May 20 11:53 exp_deberta_arxiv_qwen1b5\\ndrwxr-xr-x  2 root root     179 May 20 12:03 exp_deberta_c4_1b5\\ndrwxr-xr-x  2 root root      82 May 20 17:09 exp_deberta_code_qwen1b5\\ndrwxr-xr-x  5 root root     129 May 21 03:12 exp_deberta_filtering_comparison\\ndrwxr-xr-x  2 root root    4096 May 20 12:03 exp_deberta_upperbound\\n-rw-r--r--  1 root root   76008 May 20 05:39 exp_deberta_upperbound.log\\ndrwxr-xr-x  3 root root    4096 May 21 03:10 exp_expanded_downstream_eval\\ndrwxr-xr-x  2 root root     149 May 20 17:33 exp_gemma2b_depth\\ndrwxr-xr-x  2 root root     159 May 20 16:41 exp_multi_source_arxiv\\ndrwxr-xr-x  2 root root      95 May 20 15:38 exp_multi_source_detection\\ndrwxr-xr-x  2 root root      47 May 20 15:21 exp_multi_source_detection_v2\\ndrwxr-xr-x  2 root root     168 May 20 15:58 exp_multi_source_unified_scorer\\ndrwxr-xr-x  2 root root     145 May 20 22:53 exp_olmo_retrain_chain\\ndrwxr-xr-x  2 root root     119 May 20 12:29 exp_pythia_retrain_depth7\\ndrwxr-xr-x  2 root root      88 May 19 06:07 exp_qwen_retrain_chain\\ndrwxr-xr-x  2 root root     119 May 20 12:30 exp_qwen_retrain_chain_ext\\ndrwxr-xr-x  2 root root     149 May 18 03:28 exp_wiki_llama8b\\ndrwxr-xr-x  2 root root     149 May 18 03:48 exp_wiki_mistral7b\\ndrwxr-xr-x  2 root root     159 May 20 19:30 exp_wiki_multi_source\\n-rw-r--r--  1 root root  297383 May 20 19:30 exp_wiki_multi_source.log\\ndrwxr-xr-x  2 root root     149 May 17 19:24 exp_wiki_olmo\\ndrwxr-xr-x  2 root root     149 May 17 21:07 exp_wiki_olmo_v2\\ndrwxr-xr-x  2 root root     149 May 17 19:24 exp_wiki_pythia\\ndrwxr-xr-x  2 root root     149 May 17 21:14 exp_wiki_pythia_v2\\ndrwxr-xr-x  2 root root     149 May 18 06:21 exp_wiki_qwen7b\\ndrwxr-xr-x  2 root root     149 May 18 07:12 exp_wiki_scorer_confound\\ndrwxr-xr-x  2 root root     149 May 18 09:18 exp_wiki_scorer_confound_1b5\\ndrwxr-xr-x  2 root root      45 May 20 01:10 f1_optimal_threshold\\ndrwxr-xr-x  2 root root     174 May 18 21:54 feature_ablation\\ndrwxr-xr-x  2 root root     134 May 20 03:04 lofo_importance\\ndrwxr-xr-x  2 root root      42 May 18 23:26 mcnemar_obd_vs_baselines\\n-rw-r--r--  1 root root   23097 May 20 12:50 monotonicity_check.json\\ndrwxr-xr-x  2 root root     149 May 20 14:12 olmo_c4_cont\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018BzZJh5psNe6wBq3xwJP6d`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /proc/334631/cmdline",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "61b189ca-24e8-4021-ba4a-e9a63fec9689",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0195s385dJzuX7ibBAdzPqAr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1643,
+      "cache_read_input_tokens": 26290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1643
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T19:19:17.482Z_
+
+<details><summary>↩ Tool result · `toolu_018BzZJh5psNe6wBq3xwJP6d`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"python\\u0000scripts/exp_expanded_downstream_eval.py\\u0000--device\\u0000cuda:0\\u0000--num_seeds\\u00003\\u0000\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "32266bb6-cedd-4d8a-968d-4b0253450f48",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python\\\\u0000scripts/exp_expanded_downstream_eval.py\\\\u0000--device\\\\u0000cuda:0\\\\u0000--num_seeds\\\\u00003\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"python\\u0000scripts/exp_expanded_downstream_eval.py\\u0000--device\\u0000cuda:0\\u0000--num_seeds\\u00003\\u0000\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Afy9Cy9kic7jVEgAQKFFbr`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /proc/353802/cmdline",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "12dc1672-b20c-4b21-a639-a370a3e5be00",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0195s385dJzuX7ibBAdzPqAr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1643,
+      "cache_read_input_tokens": 26290,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1643
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T19:19:17.989Z_
+
+<details><summary>↩ Tool result · `toolu_01Afy9Cy9kic7jVEgAQKFFbr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"python\\u0000-u\\u0000scripts/exp_deberta_filtering_comparison.py\\u0000--strategy\\u0000no_filter\\u0000--device\\u0000cuda:0\\u0000--seed\\u000042\\u0000\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "81e06608-3339-40c0-9e37-dfc835eecb5f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python\\\\u0000-u\\\\u0000scripts/exp_deberta_filtering_comparison.py\\\\u0000--strategy\\\\u0000no_filter\\\\u0000--device\\\\u0000cuda:0\\\\u0000--seed\\\\u000042\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"python\\u0000-u\\u0000scripts/exp_deberta_filtering_comparison.py\\u0000--strategy\\u0000no_filter\\u0000--device\\u0000cuda:0\\u0000--seed\\u000042\\u0000\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see:
+1. Registry doesn't have `exp_expanded_downstream_eval` as a registered experiment (it wasn't in the top 20 results, but there are 139 total)
+2. GPU 0 is running `exp_expanded_downstream_eval.py --device cuda:0 --num_seeds 3` (PID 334631) - it's STILL RUNNING
+3. GPUs 1-3 are running `exp_deberta_filtering_comparison.py` (different strategies)
+4. The results directory `exp_expanded_downstream_eval` exists (modified May 21 03:10)
+
+
+5. I should check what's in the results directory and look at the tmux sessions to understand the current progress.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "5d8ee805-a28a-4bde-9783-1afe4ccd11db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019RiAXfyi1vLg3WLLsncJ4x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12346,
+      "cache_read_input_tokens": 27933,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12346
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+实验仍在运行中（PID 334631，GPU 0，64% util）。检查已产出的结果和进度。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "4b3c8771-fc36-444f-8f06-3907102ccc9e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019RiAXfyi1vLg3WLLsncJ4x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12346,
+      "cache_read_input_tokens": 27933,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12346
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NGXxPaQFfPmP7ayrTExohK`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/ -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "1095f547-eadd-4429-a0a2-146e90983cdb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019RiAXfyi1vLg3WLLsncJ4x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12346,
+      "cache_read_input_tokens": 27933,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12346
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T19:19:27.583Z_
+
+<details><summary>↩ Tool result · `toolu_01NGXxPaQFfPmP7ayrTExohK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/base_model_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/no_filter_seed0_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/binary_ours_seed0_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/graduated_seed0_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/no_filter_seed1_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/binary_ours_seed1_eval.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "65f8673f-e5ff-409a-8fab-3852f012b681",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/base_model_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/no_filter_seed0_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/binary_ours_seed0_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/graduated_seed0_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/no_filter_seed1_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/binary_ours_seed1_eval.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/base_model_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/no_filter_seed0_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/binary_ours_seed0_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/graduated_seed0_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/no_filter_seed1_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/binary_ours_seed1_eval.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NaTiZnZkgKiZQsQ4FqYsct`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls -la /root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "452cce30-baa9-4b59-a75d-b5292b9cc1b2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019RiAXfyi1vLg3WLLsncJ4x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12346,
+      "cache_read_input_tokens": 27933,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12346
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T19:19:28.178Z_
+
+<details><summary>↩ Tool result · `toolu_01NaTiZnZkgKiZQsQ4FqYsct`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 32\\ndrwxr-xr-x  3 root root 4096 May 21 03:10 .\\ndrwxr-xr-x 74 root root 4096 May 21 02:05 ..\\n-rw-r--r--  1 root root 1400 May 21 01:29 base_model_eval.json\\n-rw-r--r--  1 root root 1400 May 21 02:08 binary_ours_seed0_eval.json\\n-rw-r--r--  1 root root 1399 May 21 03:10 binary_ours_seed1_eval.json\\n-rw-r--r--  1 root root 1400 May 21 02:31 graduated_seed0_eval.json\\ndrwxr-xr-x  2 root root   10 May 21 03:10 graduated_seed1_train\\n-rw-r--r--  1 root root 1403 May 21 01:51 no_filter_seed0_eval.json\\n-rw-r--r--  1 root root 1396 May 21 02:54 no_filter_seed1_eval.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "30bb9099-cbf8-42be-ab53-f441b88a9ae8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 32\\\\ndrwxr-xr-x  3 root root 4096 May 21 03:10 .\\\\ndrwxr-xr-x 74 root root 4096 May 21 02:05 ..\\\\n-rw-r--r--  1 root root 1400 May 21 01:29 base_model_eval.json\\\\n-rw-r--r--  1 root root 1400 May 21 02:08 binary_ours_seed0_eval.json\\\\n-rw-r--r--  1 root root 1399 May 21 03:10 binary_ours_seed1_eval.json\\\\n-rw-r--r--  1 root root 1400 May 21 02:31 graduated_seed0_eval.json\\\\ndrwxr-xr-x  2 root root   10 May 21 03:10 graduated_seed1_train\\\\n-rw-r--r--  1 root root 1403 May 21 01:51 no_filter_seed0_eval.json\\\\n-rw-r--r--  1 root root 1396 May 21 02:54 no_filter_seed1_eval.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 32\\ndrwxr-xr-x  3 root root 4096 May 21 03:10 .\\ndrwxr-xr-x 74 root root 4096 May 21 02:05 ..\\n-rw-r--r--  1 root root 1400 May 21 01:29 base_model_eval.json\\n-rw-r--r--  1 root root 1400 May 21 02:08 binary_ours_seed0_eval.json\\n-rw-r--r--  1 root root 1399 May 21 03:10 binary_ours_seed1_eval.json\\n-rw-r--r--  1 root root 1400 May 21 02:31 graduated_seed0_eval.json\\ndrwxr-xr-x  2 root root   10 May 21 03:10 graduated_seed1_train\\n-rw-r--r--  1 root root 1403 May 21 01:51 no_filter_seed0_eval.json\\n-rw-r--r--  1 root root 1396 May 21 02:54 no_filter_seed1_eval.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CQGeQ7hrKyyf835D415emu`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/ -name \"*.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "71f0d2dd-7fb2-4b5f-9ac6-cd541497b3d1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019RiAXfyi1vLg3WLLsncJ4x",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12346,
+      "cache_read_input_tokens": 27933,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12346
+      },
+      "output_tokens": 12,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T19:19:29.085Z_
+
+<details><summary>↩ Tool result · `toolu_01CQGeQ7hrKyyf835D415emu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/base_model_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/no_filter_seed0_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/binary_ours_seed0_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/graduated_seed0_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/no_filter_seed1_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/binary_ours_seed1_eval.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "bb16143b-8f6e-4510-8c9b-ccab461838de",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/base_model_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/no_filter_seed0_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/binary_ours_seed0_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/graduated_seed0_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/no_filter_seed1_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/binary_ours_seed1_eval.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/base_model_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/no_filter_seed0_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/binary_ours_seed0_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/graduated_seed0_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/no_filter_seed1_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/binary_ours_seed1_eval.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The experiment is still running. Here's what's completed:
+- base_model_eval.json ✓
+- no_filter_seed0_eval.json ✓
+- binary_ours_seed0_eval.json ✓
+- graduated_seed0_eval.json ✓
+- no_filter_seed1_eval.json ✓
+- binary_ours_seed1_eval.json ✓
+- graduated_seed1_train/ (currently training, not yet evaluated)
+
+What's left:
+
+
+- graduated_seed1_eval.json (currently training)
+- no_filter_seed2_eval.json
+- binary_ours_seed2_eval.json
+- graduated_seed2_eval.json
+
+So I've got 6 out of 10 evaluations done—the base model plus seed 0 and most of seed 1 across the three strategies. Still need to finish seed 1's evaluation and then run through all three strategies for seed 2.
+
+Let me check what results we have so far.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "1a935889-a97e-4dce-93f7-829ef237c0bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X3MmLmj7PHjnQiTqcFN2CR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1633,
+      "cache_read_input_tokens": 40279,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1633
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+实验正在运行中，已完成 6/10 个评估。当前正在训练 `graduated_seed1`。读取已有结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "1d5907ec-fa6e-48ff-8671-fa761aa201f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X3MmLmj7PHjnQiTqcFN2CR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1633,
+      "cache_read_input_tokens": 40279,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1633
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YKepu6u748YmsUbzjYh6Nn`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/base_model_eval.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "5d07ffd9-5aeb-424f-9e2d-ee4dae5ecb1f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X3MmLmj7PHjnQiTqcFN2CR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1633,
+      "cache_read_input_tokens": 40279,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1633
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T19:19:40.640Z_
+
+<details><summary>↩ Tool result · `toolu_01YKepu6u748YmsUbzjYh6Nn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scores\\\": {\\n    \\\"piqa\\\": 0.7578890097932536,\\n    \\\"truthfulqa_mc2\\\": 0.4658919916995827,\\n    \\\"winogrande\\\": 0.6456195737963694,\\n    \\\"arc_challenge\\\": 0.5486348122866894,\\n    \\\"gsm8k\\\": null\\n  },\\n  \\\"full\\\": {\\n    \\\"piqa\\\": {\\n      \\\"name\\\": \\\"piqa\\\",\\n      \\\"alias\\\": \\\"piqa\\\",\\n      \\\"sample_len\\\": 1838,\\n      \\\"acc,none\\\": 0.7578890097932536,\\n      \\\"acc_stderr,none\\\": 0.00999437126910446,\\n      \\\"acc_norm,none\\\": 0.7611534276387377,\\n      \\\"acc_norm_stderr,none\\\": 0.009948120385337331\\n    },\\n    \\\"truthfulqa_mc2\\\": {\\n      \\\"name\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"alias\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"sample_len\\\": 817,\\n      \\\"acc,none\\\": 0.4658919916995827,\\n      \\\"acc_stderr,none\\\": 0.014817326169427523\\n    },\\n    \\\"winogrande\\\": {\\n      \\\"name\\\": \\\"winogrande\\\",\\n      \\\"alias\\\": \\\"winogrande\\\",\\n      \\\"sample_len\\\": 1267,\\n      \\\"acc,none\\\": 0.6456195737963694,\\n      \\\"acc_stderr,none\\\": 0.013443314368356059\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"name\\\": \\\"arc_challenge\\\",\\n      \\\"alias\\\": \\\"arc_challenge\\\",\\n      \\\"sample_len\\\": 1172,\\n      \\\"acc,none\\\": 0.49146757679180886,\\n      \\\"acc_stderr,none\\\": 0.014609263165632116,\\n      \\\"acc_norm,none\\\": 0.5486348122866894,\\n      \\\"acc_norm_stderr,none\\\": 0.014542104569955378\\n    }\\n  },\\n  \\\"benchmarks\\\": [\\n    [\\n      \\\"piqa\\\",\\n      0\\n    ],\\n    [\\n      \\\"truthfulqa_mc2\\\",\\n      0\\n    ],\\n    [\\n      \\\"winogrande\\\",\\n      5\\n    ],\\n    [\\n      \\\"arc_challenge\\\",\\n      25\\n    ],\\n    [\\n      \\\"gsm8k\\\",\\n      8\\n    ]\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "e21f3004-fbb7-4ffb-9a82-2c07cde174be",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"scores\\\\\\\": {\\\\n    \\\\\\\"piqa\\\\\\\": 0.7578890097932536,\\\\n    \\\\\\\"truthfulqa_mc2\\\\\\\": 0.4658919916995827,\\\\n    \\\\\\\"winogrande\\\\\\\": 0.6456195737963694,\\\\n    \\\\\\\"arc_challenge\\\\\\\": 0.5486348122866894,\\\\n    \\\\\\\"gsm8k\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"full\\\\\\\": {\\\\n    \\\\\\\"piqa\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"piqa\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"piqa\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 1838,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.7578890097932536,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.00999437126910446,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.7611534276387377,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.009948120385337331\\\\n    },\\\\n    \\\\\\\"truthfulqa_mc2\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"truthfulqa_mc2\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"truthfulqa_mc2\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 817,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.4658919916995827,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.014817326169427523\\\\n    },\\\\n    \\\\\\\"winogrande\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 1267,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6456195737963694,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.013443314368356059\\\\n    },\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 1172,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.49146757679180886,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.014609263165632116,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.5486348122866894,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.014542104569955378\\\\n    }\\\\n  },\\\\n  \\\\\\\"benchmarks\\\\\\\": [\\\\n    [\\\\n      \\\\\\\"piqa\\\\\\\",\\\\n      0\\\\n    ],\\\\n    [\\\\n      \\\\\\\"truthfulqa_mc2\\\\\\\",\\\\n      0\\\\n    ],\\\\n    [\\\\n      \\\\\\\"winogrande\\\\\\\",\\\\n      5\\\\n    ],\\\\n    [\\\\n      \\\\\\\"arc_challenge\\\\\\\",\\\\n      25\\\\n    ],\\\\n    [\\\\n      \\\\\\\"gsm8k\\\\\\\",\\\\n      8\\\\n    ]\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scores\\\": {\\n    \\\"piqa\\\": 0.7578890097932536,\\n    \\\"truthfulqa_mc2\\\": 0.4658919916995827,\\n    \\\"winogrande\\\": 0.6456195737963694,\\n    \\\"arc_challenge\\\": 0.5486348122866894,\\n    \\\"gsm8k\\\": null\\n  },\\n  \\\"full\\\": {\\n    \\\"piqa\\\": {\\n      \\\"name\\\": \\\"piqa\\\",\\n      \\\"alias\\\": \\\"piqa\\\",\\n      \\\"sample_len\\\": 1838,\\n      \\\"acc,none\\\": 0.7578890097932536,\\n      \\\"acc_stderr,none\\\": 0.00999437126910446,\\n      \\\"acc_norm,none\\\": 0.7611534276387377,\\n      \\\"acc_norm_stderr,none\\\": 0.009948120385337331\\n    },\\n    \\\"truthfulqa_mc2\\\": {\\n      \\\"name\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"alias\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"sample_len\\\": 817,\\n      \\\"acc,none\\\": 0.4658919916995827,\\n      \\\"acc_stderr,none\\\": 0.014817326169427523\\n    },\\n    \\\"winogrande\\\": {\\n      \\\"name\\\": \\\"winogrande\\\",\\n      \\\"alias\\\": \\\"winogrande\\\",\\n      \\\"sample_len\\\": 1267,\\n      \\\"acc,none\\\": 0.6456195737963694,\\n      \\\"acc_stderr,none\\\": 0.013443314368356059\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"name\\\": \\\"arc_challenge\\\",\\n      \\\"alias\\\": \\\"arc_challenge\\\",\\n      \\\"sample_len\\\": 1172,\\n      \\\"acc,none\\\": 0.49146757679180886,\\n      \\\"acc_stderr,none\\\": 0.014609263165632116,\\n      \\\"acc_norm,none\\\": 0.5486348122866894,\\n      \\\"acc_norm_stderr,none\\\": 0.014542104569955378\\n    }\\n  },\\n  \\\"benchmarks\\\": [\\n    [\\n      \\\"piqa\\\",\\n      0\\n    ],\\n    [\\n      \\\"truthfulqa_mc2\\\",\\n      0\\n    ],\\n    [\\n      \\\"winogrande\\\",\\n      5\\n    ],\\n    [\\n      \\\"arc_challenge\\\",\\n      25\\n    ],\\n    [\\n      \\\"gsm8k\\\",\\n      8\\n    ]\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016GztWogd6LpyY1WRuSvFRm`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/no_filter_seed0_eval.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "893b8d6c-064a-4750-ba7c-2deec1d7ff8b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X3MmLmj7PHjnQiTqcFN2CR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1633,
+      "cache_read_input_tokens": 40279,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1633
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T19:19:41.594Z_
+
+<details><summary>↩ Tool result · `toolu_016GztWogd6LpyY1WRuSvFRm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scores\\\": {\\n    \\\"piqa\\\": 0.7519042437431991,\\n    \\\"truthfulqa_mc2\\\": 0.42238503754437356,\\n    \\\"winogrande\\\": 0.6519337016574586,\\n    \\\"arc_challenge\\\": 0.5127986348122867,\\n    \\\"gsm8k\\\": null\\n  },\\n  \\\"full\\\": {\\n    \\\"piqa\\\": {\\n      \\\"name\\\": \\\"piqa\\\",\\n      \\\"alias\\\": \\\"piqa\\\",\\n      \\\"sample_len\\\": 1838,\\n      \\\"acc,none\\\": 0.7519042437431991,\\n      \\\"acc_stderr,none\\\": 0.010077118315574635,\\n      \\\"acc_norm,none\\\": 0.7540805223068553,\\n      \\\"acc_norm_stderr,none\\\": 0.010047331865625083\\n    },\\n    \\\"truthfulqa_mc2\\\": {\\n      \\\"name\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"alias\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"sample_len\\\": 817,\\n      \\\"acc,none\\\": 0.42238503754437356,\\n      \\\"acc_stderr,none\\\": 0.014329641559600582\\n    },\\n    \\\"winogrande\\\": {\\n      \\\"name\\\": \\\"winogrande\\\",\\n      \\\"alias\\\": \\\"winogrande\\\",\\n      \\\"sample_len\\\": 1267,\\n      \\\"acc,none\\\": 0.6519337016574586,\\n      \\\"acc_stderr,none\\\": 0.013388004531085948\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"name\\\": \\\"arc_challenge\\\",\\n      \\\"alias\\\": \\\"arc_challenge\\\",\\n      \\\"sample_len\\\": 1172,\\n      \\\"acc,none\\\": 0.46928327645051193,\\n      \\\"acc_stderr,none\\\": 0.014583792546304033,\\n      \\\"acc_norm,none\\\": 0.5127986348122867,\\n      \\\"acc_norm_stderr,none\\\": 0.014606603181012609\\n    }\\n  },\\n  \\\"benchmarks\\\": [\\n    [\\n      \\\"piqa\\\",\\n      0\\n    ],\\n    [\\n      \\\"truthfulqa_mc2\\\",\\n      0\\n    ],\\n    [\\n      \\\"winogrande\\\",\\n      5\\n    ],\\n    [\\n      \\\"arc_challenge\\\",\\n      25\\n    ],\\n    [\\n      \\\"gsm8k\\\",\\n      8\\n    ]\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "df63dfef-cbbd-4a46-b3ef-ac9b6c450e02",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"scores\\\\\\\": {\\\\n    \\\\\\\"piqa\\\\\\\": 0.7519042437431991,\\\\n    \\\\\\\"truthfulqa_mc2\\\\\\\": 0.42238503754437356,\\\\n    \\\\\\\"winogrande\\\\\\\": 0.6519337016574586,\\\\n    \\\\\\\"arc_challenge\\\\\\\": 0.5127986348122867,\\\\n    \\\\\\\"gsm8k\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"full\\\\\\\": {\\\\n    \\\\\\\"piqa\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"piqa\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"piqa\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 1838,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.7519042437431991,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.010077118315574635,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.7540805223068553,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.010047331865625083\\\\n    },\\\\n    \\\\\\\"truthfulqa_mc2\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"truthfulqa_mc2\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"truthfulqa_mc2\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 817,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.42238503754437356,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.014329641559600582\\\\n    },\\\\n    \\\\\\\"winogrande\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 1267,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6519337016574586,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.013388004531085948\\\\n    },\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 1172,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.46928327645051193,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.014583792546304033,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.5127986348122867,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.014606603181012609\\\\n    }\\\\n  },\\\\n  \\\\\\\"benchmarks\\\\\\\": [\\\\n    [\\\\n      \\\\\\\"piqa\\\\\\\",\\\\n      0\\\\n    ],\\\\n    [\\\\n      \\\\\\\"truthfulqa_mc2\\\\\\\",\\\\n      0\\\\n    ],\\\\n    [\\\\n      \\\\\\\"winogrande\\\\\\\",\\\\n      5\\\\n    ],\\\\n    [\\\\n      \\\\\\\"arc_challenge\\\\\\\",\\\\n      25\\\\n    ],\\\\n    [\\\\n      \\\\\\\"gsm8k\\\\\\\",\\\\n      8\\\\n    ]\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scores\\\": {\\n    \\\"piqa\\\": 0.7519042437431991,\\n    \\\"truthfulqa_mc2\\\": 0.42238503754437356,\\n    \\\"winogrande\\\": 0.6519337016574586,\\n    \\\"arc_challenge\\\": 0.5127986348122867,\\n    \\\"gsm8k\\\": null\\n  },\\n  \\\"full\\\": {\\n    \\\"piqa\\\": {\\n      \\\"name\\\": \\\"piqa\\\",\\n      \\\"alias\\\": \\\"piqa\\\",\\n      \\\"sample_len\\\": 1838,\\n      \\\"acc,none\\\": 0.7519042437431991,\\n      \\\"acc_stderr,none\\\": 0.010077118315574635,\\n      \\\"acc_norm,none\\\": 0.7540805223068553,\\n      \\\"acc_norm_stderr,none\\\": 0.010047331865625083\\n    },\\n    \\\"truthfulqa_mc2\\\": {\\n      \\\"name\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"alias\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"sample_len\\\": 817,\\n      \\\"acc,none\\\": 0.42238503754437356,\\n      \\\"acc_stderr,none\\\": 0.014329641559600582\\n    },\\n    \\\"winogrande\\\": {\\n      \\\"name\\\": \\\"winogrande\\\",\\n      \\\"alias\\\": \\\"winogrande\\\",\\n      \\\"sample_len\\\": 1267,\\n      \\\"acc,none\\\": 0.6519337016574586,\\n      \\\"acc_stderr,none\\\": 0.013388004531085948\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"name\\\": \\\"arc_challenge\\\",\\n      \\\"alias\\\": \\\"arc_challenge\\\",\\n      \\\"sample_len\\\": 1172,\\n      \\\"acc,none\\\": 0.46928327645051193,\\n      \\\"acc_stderr,none\\\": 0.014583792546304033,\\n      \\\"acc_norm,none\\\": 0.5127986348122867,\\n      \\\"acc_norm_stderr,none\\\": 0.014606603181012609\\n    }\\n  },\\n  \\\"benchmarks\\\": [\\n    [\\n      \\\"piqa\\\",\\n      0\\n    ],\\n    [\\n      \\\"truthfulqa_mc2\\\",\\n      0\\n    ],\\n    [\\n      \\\"winogrande\\\",\\n      5\\n    ],\\n    [\\n      \\\"arc_challenge\\\",\\n      25\\n    ],\\n    [\\n      \\\"gsm8k\\\",\\n      8\\n    ]\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KEUfjKyuEyahkB6tBmDqGL`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/binary_ours_seed0_eval.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "38f51338-eec2-4c03-ad4b-75bf18935cb1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X3MmLmj7PHjnQiTqcFN2CR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1633,
+      "cache_read_input_tokens": 40279,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1633
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T19:19:42.592Z_
+
+<details><summary>↩ Tool result · `toolu_01KEUfjKyuEyahkB6tBmDqGL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scores\\\": {\\n    \\\"piqa\\\": 0.7529923830250272,\\n    \\\"truthfulqa_mc2\\\": 0.4359416894030287,\\n    \\\"winogrande\\\": 0.6385161799526441,\\n    \\\"arc_challenge\\\": 0.5196245733788396,\\n    \\\"gsm8k\\\": null\\n  },\\n  \\\"full\\\": {\\n    \\\"piqa\\\": {\\n      \\\"name\\\": \\\"piqa\\\",\\n      \\\"alias\\\": \\\"piqa\\\",\\n      \\\"sample_len\\\": 1838,\\n      \\\"acc,none\\\": 0.7529923830250272,\\n      \\\"acc_stderr,none\\\": 0.010062268140772681,\\n      \\\"acc_norm,none\\\": 0.7464635473340587,\\n      \\\"acc_norm_stderr,none\\\": 0.010150090834551817\\n    },\\n    \\\"truthfulqa_mc2\\\": {\\n      \\\"name\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"alias\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"sample_len\\\": 817,\\n      \\\"acc,none\\\": 0.4359416894030287,\\n      \\\"acc_stderr,none\\\": 0.014464771793233418\\n    },\\n    \\\"winogrande\\\": {\\n      \\\"name\\\": \\\"winogrande\\\",\\n      \\\"alias\\\": \\\"winogrande\\\",\\n      \\\"sample_len\\\": 1267,\\n      \\\"acc,none\\\": 0.6385161799526441,\\n      \\\"acc_stderr,none\\\": 0.013502479670791278\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"name\\\": \\\"arc_challenge\\\",\\n      \\\"alias\\\": \\\"arc_challenge\\\",\\n      \\\"sample_len\\\": 1172,\\n      \\\"acc,none\\\": 0.4786689419795222,\\n      \\\"acc_stderr,none\\\": 0.014598087973127125,\\n      \\\"acc_norm,none\\\": 0.5196245733788396,\\n      \\\"acc_norm_stderr,none\\\": 0.014600132075947018\\n    }\\n  },\\n  \\\"benchmarks\\\": [\\n    [\\n      \\\"piqa\\\",\\n      0\\n    ],\\n    [\\n      \\\"truthfulqa_mc2\\\",\\n      0\\n    ],\\n    [\\n      \\\"winogrande\\\",\\n      5\\n    ],\\n    [\\n      \\\"arc_challenge\\\",\\n      25\\n    ],\\n    [\\n      \\\"gsm8k\\\",\\n      8\\n    ]\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "cf4c22c8-d55c-4dcf-8120-152e19d4c082",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"scores\\\\\\\": {\\\\n    \\\\\\\"piqa\\\\\\\": 0.7529923830250272,\\\\n    \\\\\\\"truthfulqa_mc2\\\\\\\": 0.4359416894030287,\\\\n    \\\\\\\"winogrande\\\\\\\": 0.6385161799526441,\\\\n    \\\\\\\"arc_challenge\\\\\\\": 0.5196245733788396,\\\\n    \\\\\\\"gsm8k\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"full\\\\\\\": {\\\\n    \\\\\\\"piqa\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"piqa\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"piqa\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 1838,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.7529923830250272,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.010062268140772681,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.7464635473340587,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.010150090834551817\\\\n    },\\\\n    \\\\\\\"truthfulqa_mc2\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"truthfulqa_mc2\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"truthfulqa_mc2\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 817,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.4359416894030287,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.014464771793233418\\\\n    },\\\\n    \\\\\\\"winogrande\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 1267,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6385161799526441,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.013502479670791278\\\\n    },\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 1172,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.4786689419795222,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.014598087973127125,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.5196245733788396,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.014600132075947018\\\\n    }\\\\n  },\\\\n  \\\\\\\"benchmarks\\\\\\\": [\\\\n    [\\\\n      \\\\\\\"piqa\\\\\\\",\\\\n      0\\\\n    ],\\\\n    [\\\\n      \\\\\\\"truthfulqa_mc2\\\\\\\",\\\\n      0\\\\n    ],\\\\n    [\\\\n      \\\\\\\"winogrande\\\\\\\",\\\\n      5\\\\n    ],\\\\n    [\\\\n      \\\\\\\"arc_challenge\\\\\\\",\\\\n      25\\\\n    ],\\\\n    [\\\\n      \\\\\\\"gsm8k\\\\\\\",\\\\n      8\\\\n    ]\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scores\\\": {\\n    \\\"piqa\\\": 0.7529923830250272,\\n    \\\"truthfulqa_mc2\\\": 0.4359416894030287,\\n    \\\"winogrande\\\": 0.6385161799526441,\\n    \\\"arc_challenge\\\": 0.5196245733788396,\\n    \\\"gsm8k\\\": null\\n  },\\n  \\\"full\\\": {\\n    \\\"piqa\\\": {\\n      \\\"name\\\": \\\"piqa\\\",\\n      \\\"alias\\\": \\\"piqa\\\",\\n      \\\"sample_len\\\": 1838,\\n      \\\"acc,none\\\": 0.7529923830250272,\\n      \\\"acc_stderr,none\\\": 0.010062268140772681,\\n      \\\"acc_norm,none\\\": 0.7464635473340587,\\n      \\\"acc_norm_stderr,none\\\": 0.010150090834551817\\n    },\\n    \\\"truthfulqa_mc2\\\": {\\n      \\\"name\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"alias\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"sample_len\\\": 817,\\n      \\\"acc,none\\\": 0.4359416894030287,\\n      \\\"acc_stderr,none\\\": 0.014464771793233418\\n    },\\n    \\\"winogrande\\\": {\\n      \\\"name\\\": \\\"winogrande\\\",\\n      \\\"alias\\\": \\\"winogrande\\\",\\n      \\\"sample_len\\\": 1267,\\n      \\\"acc,none\\\": 0.6385161799526441,\\n      \\\"acc_stderr,none\\\": 0.013502479670791278\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"name\\\": \\\"arc_challenge\\\",\\n      \\\"alias\\\": \\\"arc_challenge\\\",\\n      \\\"sample_len\\\": 1172,\\n      \\\"acc,none\\\": 0.4786689419795222,\\n      \\\"acc_stderr,none\\\": 0.014598087973127125,\\n      \\\"acc_norm,none\\\": 0.5196245733788396,\\n      \\\"acc_norm_stderr,none\\\": 0.014600132075947018\\n    }\\n  },\\n  \\\"benchmarks\\\": [\\n    [\\n      \\\"piqa\\\",\\n      0\\n    ],\\n    [\\n      \\\"truthfulqa_mc2\\\",\\n      0\\n    ],\\n    [\\n      \\\"winogrande\\\",\\n      5\\n    ],\\n    [\\n      \\\"arc_challenge\\\",\\n      25\\n    ],\\n    [\\n      \\\"gsm8k\\\",\\n      8\\n    ]\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013M6EF5yUTF6oH76BQE8xFX`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/graduated_seed0_eval.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "6f6ebe25-b829-4b5e-8ffc-148f99bf3aaa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X3MmLmj7PHjnQiTqcFN2CR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1633,
+      "cache_read_input_tokens": 40279,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1633
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-20T19:19:43.043Z_
+
+<details><summary>↩ Tool result · `toolu_013M6EF5yUTF6oH76BQE8xFX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scores\\\": {\\n    \\\"piqa\\\": 0.7513601741022851,\\n    \\\"truthfulqa_mc2\\\": 0.42246157581368704,\\n    \\\"winogrande\\\": 0.648776637726914,\\n    \\\"arc_challenge\\\": 0.5127986348122867,\\n    \\\"gsm8k\\\": null\\n  },\\n  \\\"full\\\": {\\n    \\\"piqa\\\": {\\n      \\\"name\\\": \\\"piqa\\\",\\n      \\\"alias\\\": \\\"piqa\\\",\\n      \\\"sample_len\\\": 1838,\\n      \\\"acc,none\\\": 0.7513601741022851,\\n      \\\"acc_stderr,none\\\": 0.010084511234296841,\\n      \\\"acc_norm,none\\\": 0.7529923830250272,\\n      \\\"acc_norm_stderr,none\\\": 0.010062268140772681\\n    },\\n    \\\"truthfulqa_mc2\\\": {\\n      \\\"name\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"alias\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"sample_len\\\": 817,\\n      \\\"acc,none\\\": 0.42246157581368704,\\n      \\\"acc_stderr,none\\\": 0.01431360223954629\\n    },\\n    \\\"winogrande\\\": {\\n      \\\"name\\\": \\\"winogrande\\\",\\n      \\\"alias\\\": \\\"winogrande\\\",\\n      \\\"sample_len\\\": 1267,\\n      \\\"acc,none\\\": 0.648776637726914,\\n      \\\"acc_stderr,none\\\": 0.013415981370545133\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"name\\\": \\\"arc_challenge\\\",\\n      \\\"alias\\\": \\\"arc_challenge\\\",\\n      \\\"sample_len\\\": 1172,\\n      \\\"acc,none\\\": 0.46928327645051193,\\n      \\\"acc_stderr,none\\\": 0.014583792546304033,\\n      \\\"acc_norm,none\\\": 0.5127986348122867,\\n      \\\"acc_norm_stderr,none\\\": 0.014606603181012609\\n    }\\n  },\\n  \\\"benchmarks\\\": [\\n    [\\n      \\\"piqa\\\",\\n      0\\n    ],\\n    [\\n      \\\"truthfulqa_mc2\\\",\\n      0\\n    ],\\n    [\\n      \\\"winogrande\\\",\\n      5\\n    ],\\n    [\\n      \\\"arc_challenge\\\",\\n      25\\n    ],\\n    [\\n      \\\"gsm8k\\\",\\n      8\\n    ]\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "2bf95a7e-ce09-4ec6-931a-dceaadf04b33",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"scores\\\\\\\": {\\\\n    \\\\\\\"piqa\\\\\\\": 0.7513601741022851,\\\\n    \\\\\\\"truthfulqa_mc2\\\\\\\": 0.42246157581368704,\\\\n    \\\\\\\"winogrande\\\\\\\": 0.648776637726914,\\\\n    \\\\\\\"arc_challenge\\\\\\\": 0.5127986348122867,\\\\n    \\\\\\\"gsm8k\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"full\\\\\\\": {\\\\n    \\\\\\\"piqa\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"piqa\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"piqa\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 1838,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.7513601741022851,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.010084511234296841,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.7529923830250272,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.010062268140772681\\\\n    },\\\\n    \\\\\\\"truthfulqa_mc2\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"truthfulqa_mc2\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"truthfulqa_mc2\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 817,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.42246157581368704,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.01431360223954629\\\\n    },\\\\n    \\\\\\\"winogrande\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 1267,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.648776637726914,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.013415981370545133\\\\n    },\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 1172,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.46928327645051193,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.014583792546304033,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.5127986348122867,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.014606603181012609\\\\n    }\\\\n  },\\\\n  \\\\\\\"benchmarks\\\\\\\": [\\\\n    [\\\\n      \\\\\\\"piqa\\\\\\\",\\\\n      0\\\\n    ],\\\\n    [\\\\n      \\\\\\\"truthfulqa_mc2\\\\\\\",\\\\n      0\\\\n    ],\\\\n    [\\\\n      \\\\\\\"winogrande\\\\\\\",\\\\n      5\\\\n    ],\\\\n    [\\\\n      \\\\\\\"arc_challenge\\\\\\\",\\\\n      25\\\\n    ],\\\\n    [\\\\n      \\\\\\\"gsm8k\\\\\\\",\\\\n      8\\\\n    ]\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scores\\\": {\\n    \\\"piqa\\\": 0.7513601741022851,\\n    \\\"truthfulqa_mc2\\\": 0.42246157581368704,\\n    \\\"winogrande\\\": 0.648776637726914,\\n    \\\"arc_challenge\\\": 0.5127986348122867,\\n    \\\"gsm8k\\\": null\\n  },\\n  \\\"full\\\": {\\n    \\\"piqa\\\": {\\n      \\\"name\\\": \\\"piqa\\\",\\n      \\\"alias\\\": \\\"piqa\\\",\\n      \\\"sample_len\\\": 1838,\\n      \\\"acc,none\\\": 0.7513601741022851,\\n      \\\"acc_stderr,none\\\": 0.010084511234296841,\\n      \\\"acc_norm,none\\\": 0.7529923830250272,\\n      \\\"acc_norm_stderr,none\\\": 0.010062268140772681\\n    },\\n    \\\"truthfulqa_mc2\\\": {\\n      \\\"name\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"alias\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"sample_len\\\": 817,\\n      \\\"acc,none\\\": 0.42246157581368704,\\n      \\\"acc_stderr,none\\\": 0.01431360223954629\\n    },\\n    \\\"winogrande\\\": {\\n      \\\"name\\\": \\\"winogrande\\\",\\n      \\\"alias\\\": \\\"winogrande\\\",\\n      \\\"sample_len\\\": 1267,\\n      \\\"acc,none\\\": 0.648776637726914,\\n      \\\"acc_stderr,none\\\": 0.013415981370545133\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"name\\\": \\\"arc_challenge\\\",\\n      \\\"alias\\\": \\\"arc_challenge\\\",\\n      \\\"sample_len\\\": 1172,\\n      \\\"acc,none\\\": 0.46928327645051193,\\n      \\\"acc_stderr,none\\\": 0.014583792546304033,\\n      \\\"acc_norm,none\\\": 0.5127986348122867,\\n      \\\"acc_norm_stderr,none\\\": 0.014606603181012609\\n    }\\n  },\\n  \\\"benchmarks\\\": [\\n    [\\n      \\\"piqa\\\",\\n      0\\n    ],\\n    [\\n      \\\"truthfulqa_mc2\\\",\\n      0\\n    ],\\n    [\\n      \\\"winogrande\\\",\\n      5\\n    ],\\n    [\\n      \\\"arc_challenge\\\",\\n      25\\n    ],\\n    [\\n      \\\"gsm8k\\\",\\n      8\\n    ]\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Nzg7H3kEmwNkpCvh1LUx5f`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/no_filter_seed1_eval.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "8fd09547-48e7-4dcb-892f-9f3fdc1bb057",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X3MmLmj7PHjnQiTqcFN2CR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1633,
+      "cache_read_input_tokens": 40279,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1633
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T19:19:43.972Z_
+
+<details><summary>↩ Tool result · `toolu_01Nzg7H3kEmwNkpCvh1LUx5f`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scores\\\": {\\n    \\\"piqa\\\": 0.750816104461371,\\n    \\\"truthfulqa_mc2\\\": 0.4236530471065961,\\n    \\\"winogrande\\\": 0.6456195737963694,\\n    \\\"arc_challenge\\\": 0.5213310580204779,\\n    \\\"gsm8k\\\": null\\n  },\\n  \\\"full\\\": {\\n    \\\"piqa\\\": {\\n      \\\"name\\\": \\\"piqa\\\",\\n      \\\"alias\\\": \\\"piqa\\\",\\n      \\\"sample_len\\\": 1838,\\n      \\\"acc,none\\\": 0.750816104461371,\\n      \\\"acc_stderr,none\\\": 0.010091882770120146,\\n      \\\"acc_norm,none\\\": 0.749727965179543,\\n      \\\"acc_norm_stderr,none\\\": 0.01010656188008975\\n    },\\n    \\\"truthfulqa_mc2\\\": {\\n      \\\"name\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"alias\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"sample_len\\\": 817,\\n      \\\"acc,none\\\": 0.4236530471065961,\\n      \\\"acc_stderr,none\\\": 0.014311719475296955\\n    },\\n    \\\"winogrande\\\": {\\n      \\\"name\\\": \\\"winogrande\\\",\\n      \\\"alias\\\": \\\"winogrande\\\",\\n      \\\"sample_len\\\": 1267,\\n      \\\"acc,none\\\": 0.6456195737963694,\\n      \\\"acc_stderr,none\\\": 0.013443314368356059\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"name\\\": \\\"arc_challenge\\\",\\n      \\\"alias\\\": \\\"arc_challenge\\\",\\n      \\\"sample_len\\\": 1172,\\n      \\\"acc,none\\\": 0.47440273037542663,\\n      \\\"acc_stderr,none\\\": 0.01459223088529913,\\n      \\\"acc_norm,none\\\": 0.5213310580204779,\\n      \\\"acc_norm_stderr,none\\\": 0.014598087973127125\\n    }\\n  },\\n  \\\"benchmarks\\\": [\\n    [\\n      \\\"piqa\\\",\\n      0\\n    ],\\n    [\\n      \\\"truthfulqa_mc2\\\",\\n      0\\n    ],\\n    [\\n      \\\"winogrande\\\",\\n      5\\n    ],\\n    [\\n      \\\"arc_challenge\\\",\\n      25\\n    ],\\n    [\\n      \\\"gsm8k\\\",\\n      8\\n    ]\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "fddad415-c49c-4323-bdf6-a71ea4cee5fb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"scores\\\\\\\": {\\\\n    \\\\\\\"piqa\\\\\\\": 0.750816104461371,\\\\n    \\\\\\\"truthfulqa_mc2\\\\\\\": 0.4236530471065961,\\\\n    \\\\\\\"winogrande\\\\\\\": 0.6456195737963694,\\\\n    \\\\\\\"arc_challenge\\\\\\\": 0.5213310580204779,\\\\n    \\\\\\\"gsm8k\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"full\\\\\\\": {\\\\n    \\\\\\\"piqa\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"piqa\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"piqa\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 1838,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.750816104461371,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.010091882770120146,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.749727965179543,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.01010656188008975\\\\n    },\\\\n    \\\\\\\"truthfulqa_mc2\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"truthfulqa_mc2\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"truthfulqa_mc2\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 817,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.4236530471065961,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.014311719475296955\\\\n    },\\\\n    \\\\\\\"winogrande\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 1267,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6456195737963694,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.013443314368356059\\\\n    },\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 1172,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.47440273037542663,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.01459223088529913,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.5213310580204779,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.014598087973127125\\\\n    }\\\\n  },\\\\n  \\\\\\\"benchmarks\\\\\\\": [\\\\n    [\\\\n      \\\\\\\"piqa\\\\\\\",\\\\n      0\\\\n    ],\\\\n    [\\\\n      \\\\\\\"truthfulqa_mc2\\\\\\\",\\\\n      0\\\\n    ],\\\\n    [\\\\n      \\\\\\\"winogrande\\\\\\\",\\\\n      5\\\\n    ],\\\\n    [\\\\n      \\\\\\\"arc_challenge\\\\\\\",\\\\n      25\\\\n    ],\\\\n    [\\\\n      \\\\\\\"gsm8k\\\\\\\",\\\\n      8\\\\n    ]\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scores\\\": {\\n    \\\"piqa\\\": 0.750816104461371,\\n    \\\"truthfulqa_mc2\\\": 0.4236530471065961,\\n    \\\"winogrande\\\": 0.6456195737963694,\\n    \\\"arc_challenge\\\": 0.5213310580204779,\\n    \\\"gsm8k\\\": null\\n  },\\n  \\\"full\\\": {\\n    \\\"piqa\\\": {\\n      \\\"name\\\": \\\"piqa\\\",\\n      \\\"alias\\\": \\\"piqa\\\",\\n      \\\"sample_len\\\": 1838,\\n      \\\"acc,none\\\": 0.750816104461371,\\n      \\\"acc_stderr,none\\\": 0.010091882770120146,\\n      \\\"acc_norm,none\\\": 0.749727965179543,\\n      \\\"acc_norm_stderr,none\\\": 0.01010656188008975\\n    },\\n    \\\"truthfulqa_mc2\\\": {\\n      \\\"name\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"alias\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"sample_len\\\": 817,\\n      \\\"acc,none\\\": 0.4236530471065961,\\n      \\\"acc_stderr,none\\\": 0.014311719475296955\\n    },\\n    \\\"winogrande\\\": {\\n      \\\"name\\\": \\\"winogrande\\\",\\n      \\\"alias\\\": \\\"winogrande\\\",\\n      \\\"sample_len\\\": 1267,\\n      \\\"acc,none\\\": 0.6456195737963694,\\n      \\\"acc_stderr,none\\\": 0.013443314368356059\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"name\\\": \\\"arc_challenge\\\",\\n      \\\"alias\\\": \\\"arc_challenge\\\",\\n      \\\"sample_len\\\": 1172,\\n      \\\"acc,none\\\": 0.47440273037542663,\\n      \\\"acc_stderr,none\\\": 0.01459223088529913,\\n      \\\"acc_norm,none\\\": 0.5213310580204779,\\n      \\\"acc_norm_stderr,none\\\": 0.014598087973127125\\n    }\\n  },\\n  \\\"benchmarks\\\": [\\n    [\\n      \\\"piqa\\\",\\n      0\\n    ],\\n    [\\n      \\\"truthfulqa_mc2\\\",\\n      0\\n    ],\\n    [\\n      \\\"winogrande\\\",\\n      5\\n    ],\\n    [\\n      \\\"arc_challenge\\\",\\n      25\\n    ],\\n    [\\n      \\\"gsm8k\\\",\\n      8\\n    ]\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Rr8o97zM9mJ2TtjKnb4J2Z`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/binary_ours_seed1_eval.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "ea18ce47-3a2e-4872-a5b1-25a5c6bc6666",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X3MmLmj7PHjnQiTqcFN2CR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1633,
+      "cache_read_input_tokens": 40279,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1633
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-20T19:19:44.724Z_
+
+<details><summary>↩ Tool result · `toolu_01Rr8o97zM9mJ2TtjKnb4J2Z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scores\\\": {\\n    \\\"piqa\\\": 0.7524483133841132,\\n    \\\"truthfulqa_mc2\\\": 0.44559071083240687,\\n    \\\"winogrande\\\": 0.6424625098658248,\\n    \\\"arc_challenge\\\": 0.5187713310580204,\\n    \\\"gsm8k\\\": null\\n  },\\n  \\\"full\\\": {\\n    \\\"piqa\\\": {\\n      \\\"name\\\": \\\"piqa\\\",\\n      \\\"alias\\\": \\\"piqa\\\",\\n      \\\"sample_len\\\": 1838,\\n      \\\"acc,none\\\": 0.7524483133841132,\\n      \\\"acc_stderr,none\\\": 0.010069703966857201,\\n      \\\"acc_norm,none\\\": 0.749727965179543,\\n      \\\"acc_norm_stderr,none\\\": 0.01010656188008975\\n    },\\n    \\\"truthfulqa_mc2\\\": {\\n      \\\"name\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"alias\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"sample_len\\\": 817,\\n      \\\"acc,none\\\": 0.44559071083240687,\\n      \\\"acc_stderr,none\\\": 0.014546607499549809\\n    },\\n    \\\"winogrande\\\": {\\n      \\\"name\\\": \\\"winogrande\\\",\\n      \\\"alias\\\": \\\"winogrande\\\",\\n      \\\"sample_len\\\": 1267,\\n      \\\"acc,none\\\": 0.6424625098658248,\\n      \\\"acc_stderr,none\\\": 0.013470007443920773\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"name\\\": \\\"arc_challenge\\\",\\n      \\\"alias\\\": \\\"arc_challenge\\\",\\n      \\\"sample_len\\\": 1172,\\n      \\\"acc,none\\\": 0.4735494880546075,\\n      \\\"acc_stderr,none\\\": 0.014590931358120202,\\n      \\\"acc_norm,none\\\": 0.5187713310580204,\\n      \\\"acc_norm_stderr,none\\\": 0.01460109015063406\\n    }\\n  },\\n  \\\"benchmarks\\\": [\\n    [\\n      \\\"piqa\\\",\\n      0\\n    ],\\n    [\\n      \\\"truthfulqa_mc2\\\",\\n      0\\n    ],\\n    [\\n      \\\"winogrande\\\",\\n      5\\n    ],\\n    [\\n      \\\"arc_challenge\\\",\\n      25\\n    ],\\n    [\\n      \\\"gsm8k\\\",\\n      8\\n    ]\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "50d0c337-9351-4588-9517-e75c4fa38ac2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"scores\\\\\\\": {\\\\n    \\\\\\\"piqa\\\\\\\": 0.7524483133841132,\\\\n    \\\\\\\"truthfulqa_mc2\\\\\\\": 0.44559071083240687,\\\\n    \\\\\\\"winogrande\\\\\\\": 0.6424625098658248,\\\\n    \\\\\\\"arc_challenge\\\\\\\": 0.5187713310580204,\\\\n    \\\\\\\"gsm8k\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"full\\\\\\\": {\\\\n    \\\\\\\"piqa\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"piqa\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"piqa\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 1838,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.7524483133841132,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.010069703966857201,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.749727965179543,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.01010656188008975\\\\n    },\\\\n    \\\\\\\"truthfulqa_mc2\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"truthfulqa_mc2\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"truthfulqa_mc2\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 817,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.44559071083240687,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.014546607499549809\\\\n    },\\\\n    \\\\\\\"winogrande\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 1267,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6424625098658248,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.013470007443920773\\\\n    },\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 1172,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.4735494880546075,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.014590931358120202,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.5187713310580204,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.01460109015063406\\\\n    }\\\\n  },\\\\n  \\\\\\\"benchmarks\\\\\\\": [\\\\n    [\\\\n      \\\\\\\"piqa\\\\\\\",\\\\n      0\\\\n    ],\\\\n    [\\\\n      \\\\\\\"truthfulqa_mc2\\\\\\\",\\\\n      0\\\\n    ],\\\\n    [\\\\n      \\\\\\\"winogrande\\\\\\\",\\\\n      5\\\\n    ],\\\\n    [\\\\n      \\\\\\\"arc_challenge\\\\\\\",\\\\n      25\\\\n    ],\\\\n    [\\\\n      \\\\\\\"gsm8k\\\\\\\",\\\\n      8\\\\n    ]\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scores\\\": {\\n    \\\"piqa\\\": 0.7524483133841132,\\n    \\\"truthfulqa_mc2\\\": 0.44559071083240687,\\n    \\\"winogrande\\\": 0.6424625098658248,\\n    \\\"arc_challenge\\\": 0.5187713310580204,\\n    \\\"gsm8k\\\": null\\n  },\\n  \\\"full\\\": {\\n    \\\"piqa\\\": {\\n      \\\"name\\\": \\\"piqa\\\",\\n      \\\"alias\\\": \\\"piqa\\\",\\n      \\\"sample_len\\\": 1838,\\n      \\\"acc,none\\\": 0.7524483133841132,\\n      \\\"acc_stderr,none\\\": 0.010069703966857201,\\n      \\\"acc_norm,none\\\": 0.749727965179543,\\n      \\\"acc_norm_stderr,none\\\": 0.01010656188008975\\n    },\\n    \\\"truthfulqa_mc2\\\": {\\n      \\\"name\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"alias\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"sample_len\\\": 817,\\n      \\\"acc,none\\\": 0.44559071083240687,\\n      \\\"acc_stderr,none\\\": 0.014546607499549809\\n    },\\n    \\\"winogrande\\\": {\\n      \\\"name\\\": \\\"winogrande\\\",\\n      \\\"alias\\\": \\\"winogrande\\\",\\n      \\\"sample_len\\\": 1267,\\n      \\\"acc,none\\\": 0.6424625098658248,\\n      \\\"acc_stderr,none\\\": 0.013470007443920773\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"name\\\": \\\"arc_challenge\\\",\\n      \\\"alias\\\": \\\"arc_challenge\\\",\\n      \\\"sample_len\\\": 1172,\\n      \\\"acc,none\\\": 0.4735494880546075,\\n      \\\"acc_stderr,none\\\": 0.014590931358120202,\\n      \\\"acc_norm,none\\\": 0.5187713310580204,\\n      \\\"acc_norm_stderr,none\\\": 0.01460109015063406\\n    }\\n  },\\n  \\\"benchmarks\\\": [\\n    [\\n      \\\"piqa\\\",\\n      0\\n    ],\\n    [\\n      \\\"truthfulqa_mc2\\\",\\n      0\\n    ],\\n    [\\n      \\\"winogrande\\\",\\n      5\\n    ],\\n    [\\n      \\\"arc_challenge\\\",\\n      25\\n    ],\\n    [\\n      \\\"gsm8k\\\",\\n      8\\n    ]\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me compile all the results. Note that GSM8K is null for all results - it seems the benchmark failed or was skipped.
+
+Let me organize the data:
+
+**Base model:**
+- piqa: 0.7579
+- truthfulqa_mc2: 0.4659
+- winogrande: 0.6456
+- arc_challenge: 0.5486
+- gsm8k: null
+
+**no_filter_seed0:**
+- piqa: 0.7519
+- truthfulqa_mc2: 0.4224
+
+
+- winogrande: 0.6519
+- arc_challenge: 0.5128
+- gsm8k: null
+
+**binary_ours_seed0:**
+- piqa: 0.7530
+- truthfulqa_mc2: 0.4359
+- winogrande: 0.6385
+- arc_challenge: 0.5196
+- gsm8k: null
+
+**graduated_seed0:**
+- piqa: 0.7514
+- truthfulqa_mc2: 0.4225
+- winogrande: 0.6488
+- arc_challenge: 0.5128
+- gsm8k: null
+
+**no_filter_seed1:**
+- piqa: 0
+
+.7508
+- truthfulqa_mc2: 0.4237
+- winogrande: 0.6456
+- arc_challenge: 0.5213
+- gsm8k: null
+
+**binary_ours_seed1:**
+- piqa: 0.7524
+- truthfulqa_mc2: 0.4456
+- winogrande: 0.6425
+- arc_challenge: 0.5188
+- gsm8k: null
+
+The experiment is progressing at about 60% completion with graduated_seed1 still training. I have four more configurations to run, and based on the timing patterns so far, the base model evaluation took around 1.5 hours while subsequent seeds are taking roughly 20-25 minutes each. I tried filtering the experiment registry by exp_id but that didn't work—the filter operates on different fields. Looking through the 139 total experiments in the registry, `exp_expanded_downstream_eval` didn't show up in the recent results, so it might not be registered or could be older than what's currently displayed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "7dde7da4-bb27-4a37-9f8e-2953ad735e6e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012de2xAs45TP8szFmp566CA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6924,
+      "cache_read_input_tokens": 41912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+实验仍在 GPU 0 上活跃运行，约完成 60%。让我查下 registry 中是否有该实验记录，以及检查是否有 MMLU/HellaSwag 结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "ad84f5f3-d5ac-42d7-bbd1-84befb147bec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012de2xAs45TP8szFmp566CA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6924,
+      "cache_read_input_tokens": 41912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01DDTUKW8XGdpfg5JoufvSFn`</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "filters": {
+    "status": "RUNNING"
+  },
+  "fields": [
+    "status",
+    "hypothesis",
+    "spec"
+  ],
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "ced1ab97-3908-4df2-a807-6d517aa5cfcc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012de2xAs45TP8szFmp566CA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6924,
+      "cache_read_input_tokens": 41912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014cw4eue5et9p7WZzJGZUAH`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls -la /root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/graduated_seed1_train/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "d8ce4ec5-2b29-4044-814e-9cbd44e84929",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012de2xAs45TP8szFmp566CA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6924,
+      "cache_read_input_tokens": 41912,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6924
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-20T19:20:08.938Z_
+
+<details><summary>↩ Tool result · `toolu_01DDTUKW8XGdpfg5JoufvSFn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_deberta_filtering_comparison\": {\"status\": \"RUNNING\", \"hypothesis\": \"DeBERTa's higher K* on arXiv (K*=4 vs 15D K*=3) does not yield significantly better downstream performance when used for filtering, validating that the 15D lower bound is practically sufficient.\", \"spec\": {\"command\": \"python scripts/exp_deberta_filtering_comparison.py --strategy {no_filter,obd_binary,deberta_binary,deberta_graduated} --device cuda:0 --seed 42\", \"server\": \"cqa1-22115\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/\", \"data_count\": 13200, \"model_name\": \"Qwen/Qwen2.5-1.5B\", \"seed\": 42, \"strategies\": [\"no_filter\", \"obd_binary\", \"deberta_binary\", \"deberta_graduated\"], \"prediction_results\": {\"deberta_accuracy\": 0.5363, \"obd_accuracy\": 0.4741, \"deberta_pred_distribution\": [2184, 1645, 2111, 1971, 1074, 4215], \"obd_pred_distribution\": [2177, 2470, 2196, 1900, 2098, 2359]}, \"lora_config\": {\"rank\": 16, \"alpha\": 32, \"targets\": [\"q_proj\", \"v_proj\"], \"dropout\": 0.05}, \"training_config\": {\"lr\": 0.0002, \"batch_size\": 4, \"grad_accum\": 4, \"epochs\": 1, \"max_length\": 256}, \"gpu_allocation\": {\"no_filter\": \"cuda:1\", \"obd_binary\": \"cuda:2\", \"deberta_binary\": \"cuda:3\", \"deberta_graduated\": \"pending\"}}}, \"exp_expanded_downstream_eval\": {\"status\": \"RUNNING\", \"hypothesis\": \"K*-guided binary filtering consistently outperforms graduated filtering across a broader set of benchmarks (GSM8K, ARC-Challenge, WinoGrande, TruthfulQA, PIQA), not just MMLU/HellaSwag, validating the generalizability of the filtering consistency claim in Section 5.\", \"spec\": {\"command\": \"python scripts/run_expanded_eval.py (base eval + 3 strategies × 3 seeds LoRA train+eval, 5 benchmarks)\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:0\", \"pid\": \"334626\", \"log_path\": \"~/runs/gen-depth-contamination/exp_expanded_downstream_eval.log\", \"submitted_at\": \"2026-05-20T17:17:37.434Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/\", \"data_count\": 30000, \"model_name\": \"Qwen2.5-1.5B\", \"seed\": \"42,123,456\", \"benchmarks\": \"PIQA, TruthfulQA-MC2, WinoGrande, ARC-Challenge, GSM8K\"}}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7623}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "b48b6190-6cfd-4b37-8004-046ad60d3f14",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_deberta_filtering_comparison\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"DeBERTa's higher K* on arXiv (K*=4 vs 15D K*=3) does not yield significantly better downstream performance when used for filtering, validating that the 15D lower bound is practically sufficient.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/exp_deberta_filtering_comparison.py --strategy {no_filter,obd_binary,deberta_binary,deberta_graduated} --device cuda:0 --seed 42\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/\\\", \\\"data_count\\\": 13200, \\\"model_name\\\": \\\"Qwen/Qwen2.5-1.5B\\\", \\\"seed\\\": 42, \\\"strategies\\\": [\\\"no_filter\\\", \\\"obd_binary\\\", \\\"deberta_binary\\\", \\\"deberta_graduated\\\"], \\\"prediction_results\\\": {\\\"deberta_accuracy\\\": 0.5363, \\\"obd_accuracy\\\": 0.4741, \\\"deberta_pred_distribution\\\": [2184, 1645, 2111, 1971, 1074, 4215], \\\"obd_pred_distribution\\\": [2177, 2470, 2196, 1900, 2098, 2359]}, \\\"lora_config\\\": {\\\"rank\\\": 16, \\\"alpha\\\": 32, \\\"targets\\\": [\\\"q_proj\\\", \\\"v_proj\\\"], \\\"dropout\\\": 0.05}, \\\"training_config\\\": {\\\"lr\\\": 0.0002, \\\"batch_size\\\": 4, \\\"grad_accum\\\": 4, \\\"epochs\\\": 1, \\\"max_length\\\": 256}, \\\"gpu_allocation\\\": {\\\"no_filter\\\": \\\"cuda:1\\\", \\\"obd_binary\\\": \\\"cuda:2\\\", \\\"deberta_binary\\\": \\\"cuda:3\\\", \\\"deberta_graduated\\\": \\\"pending\\\"}}}, \\\"exp_expanded_downstream_eval\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"K*-guided binary filtering consistently outperforms graduated filtering across a broader set of benchmarks (GSM8K, ARC-Challenge, WinoGrande, TruthfulQA, PIQA), not just MMLU/HellaSwag, validating the generalizability of the filtering consistency claim in Section 5.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/run_expanded_eval.py (base eval + 3 strategies × 3 seeds LoRA train+eval, 5 benchmarks)\\\", \\\"server\\\": \\\"cqa1-22115\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"334626\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_expanded_downstream_eval.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T17:17:37.434Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data/\\\", \\\"data_count\\\": 30000, \\\"model_name\\\": \\\"Qwen2.5-1.5B\\\", \\\"seed\\\": \\\"42,123,456\\\", \\\"benchmarks\\\": \\\"PIQA, TruthfulQA-MC2, WinoGrande, ARC-Challenge, GSM8K\\\"}}}, \\\"count\\\": 2, \\\"total\\\": 2, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7623}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_deberta_filtering_comparison\": {\"status\": \"RUNNING\", \"hypothesis\": \"DeBERTa's higher K* on arXiv (K*=4 vs 15D K*=3) does not yield significantly better downstream performance when used for filtering, validating that the 15D lower bound is practically sufficient.\", \"spec\": {\"command\": \"python scripts/exp_deberta_filtering_comparison.py --strategy {no_filter,obd_binary,deberta_binary,deberta_graduated} --device cuda:0 --seed 42\", \"server\": \"cqa1-22115\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/\", \"data_count\": 13200, \"model_name\": \"Qwen/Qwen2.5-1.5B\", \"seed\": 42, \"strategies\": [\"no_filter\", \"obd_binary\", \"deberta_binary\", \"deberta_graduated\"], \"prediction_results\": {\"deberta_accuracy\": 0.5363, \"obd_accuracy\": 0.4741, \"deberta_pred_distribution\": [2184, 1645, 2111, 1971, 1074, 4215], \"obd_pred_distribution\": [2177, 2470, 2196, 1900, 2098, 2359]}, \"lora_config\": {\"rank\": 16, \"alpha\": 32, \"targets\": [\"q_proj\", \"v_proj\"], \"dropout\": 0.05}, \"training_config\": {\"lr\": 0.0002, \"batch_size\": 4, \"grad_accum\": 4, \"epochs\": 1, \"max_length\": 256}, \"gpu_allocation\": {\"no_filter\": \"cuda:1\", \"obd_binary\": \"cuda:2\", \"deberta_binary\": \"cuda:3\", \"deberta_graduated\": \"pending\"}}}, \"exp_expanded_downstream_eval\": {\"status\": \"RUNNING\", \"hypothesis\": \"K*-guided binary filtering consistently outperforms graduated filtering across a broader set of benchmarks (GSM8K, ARC-Challenge, WinoGrande, TruthfulQA, PIQA), not just MMLU/HellaSwag, validating the generalizability of the filtering consistency claim in Section 5.\", \"spec\": {\"command\": \"python scripts/run_expanded_eval.py (base eval + 3 strategies × 3 seeds LoRA train+eval, 5 benchmarks)\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:0\", \"pid\": \"334626\", \"log_path\": \"~/runs/gen-depth-contamination/exp_expanded_downstream_eval.log\", \"submitted_at\": \"2026-05-20T17:17:37.434Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/\", \"data_count\": 30000, \"model_name\": \"Qwen2.5-1.5B\", \"seed\": \"42,123,456\", \"benchmarks\": \"PIQA, TruthfulQA-MC2, WinoGrande, ARC-Challenge, GSM8K\"}}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7623}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T19:20:09.323Z_
+
+<details><summary>↩ Tool result · `toolu_014cw4eue5et9p7WZzJGZUAH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 2 root root   10 May 21 03:10 .\\ndrwxr-xr-x 3 root root 4096 May 21 03:10 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "8aa2fd56-e089-4dff-91c9-fb047fb89717",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x 2 root root   10 May 21 03:10 .\\\\ndrwxr-xr-x 3 root root 4096 May 21 03:10 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 2 root root   10 May 21 03:10 .\\ndrwxr-xr-x 3 root root 4096 May 21 03:10 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture:
+
+1. `exp_expanded_downstream_eval` IS in the registry with status RUNNING
+2. The experiment is currently on GPU 0, working on graduated_seed1 (training phase just started, the train dir is empty)
+3. GSM8K is null across all results - it seems the benchmark failed for all runs
+4. The experiment doesn't include MMLU and HellaSwag - just PIQA, TruthfulQA, WinoGrande, ARC-Challenge, GSM8K
+
+Let me compile the interim results and report to the user.
+
+Progress:
+
+
+I've completed 6 evaluations so far (base model plus seed0 and seed1 with various strategies), with graduated_seed1 currently training and about 80 minutes of work remaining for the final evaluations. Looking at the partial results from the first two seeds, I'm seeing performance metrics across the different filtering strategies, though the data is still incomplete. Generating performance metrics table...
+
+Looking at the binary versus no_filter comparison across the preliminary runs, binary filtering shows modest improvements on TruthfulQA and ARC-C but performs slightly worse on WinoGrande, with differences generally quite small. GSM8K appears to have encountered an error across all runs and needs investigation, but the experiment is still progressing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "77d769f1-1d7e-4461-974d-1cf6ef9c9346",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EPgH6sUAJvwGmpMz6vdhwy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2341,
+      "cache_read_input_tokens": 48836,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2341
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+实验 **仍在运行**，约完成 60%（6/10 evals done）。当前正在训练 graduated_seed1。GSM8K 所有结果均为 null。
+
+## 当前状态
+
+- **GPU 0**: 活跃运行（64% util, 327W, 11GB），PID 334631
+- **进度**: base + seed0×3 + seed1×2 = 6 evals 完成，剩余 graduated_seed1_eval + seed2×3 = 4 evals
+- **预估剩余时间**: ~80 min（每轮 ~20 min）
+- **GSM8K**: 所有结果为 null，可能评估失败
+
+## 已有结果（seed0 + seed1，部分数据）
+
+| Benchmark | Base | no_filter (2s) | binary (2s) | graduated (1s) | binary-nf delta |
+|-----------|------|----------------|-------------|----------------|-----------------|
+| PIQA | 0.7579 | 0.7514 | 0.7527 | 0.7514 | +0.13pp |
+| TruthfulQA | 0.4659 | 0.4230 | 0.4408 | 0.4225 | +1.78pp |
+| WinoGrande | 0.6456 | 0.6488 | 0.6405 | 0.6488 | -0.83pp |
+| ARC-C | 0.5486 | 0.5171 | 0.5192 | 0.5128 | +0.21pp |
+| GSM8K | null | null | null | null | - |
+
+初步趋势：binary 在 TruthfulQA 上有较明显优势（+1.78pp），其他 benchmark 差异很小。所有策略相比 base model 均有退化（尤其 TruthfulQA、ARC-C），说明 contaminated data 训练损害了通用能力。
+
+## 建议
+
+实验仍在运行，不更新 registry。GSM8K 全部为 null 需要排查——等实验完成后再统一处理结果收集和 registry 更新。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "uuid": "718c03ba-cccb-4766-9580-84ba9124776a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EPgH6sUAJvwGmpMz6vdhwy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2341,
+      "cache_read_input_tokens": 48836,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2341
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 57_
+
+实验 **仍在运行**，约完成 60%（6/10 evals done）。当前正在训练 graduated_seed1。GSM8K 所有结果均为 null。
+
+## 当前状态
+
+- **GPU 0**: 活跃运行（64% util, 327W, 11GB），PID 334631
+- **进度**: base + seed0×3 + seed1×2 = 6 evals 完成，剩余 graduated_seed1_eval + seed2×3 = 4 evals
+- **预估剩余时间**: ~80 min（每轮 ~20 min）
+- **GSM8K**: 所有结果为 null，可能评估失败
+
+## 已有结果（seed0 + seed1，部分数据）
+
+| Benchmark | Base | no_filter (2s) | binary (2s) | graduated (1s) | binary-nf delta |
+|-----------|------|----------------|-------------|----------------|-----------------|
+| PIQA | 0.7579 | 0.7514 | 0.7527 | 0.7514 | +0.13pp |
+| TruthfulQA | 0.4659 | 0.4230 | 0.4408 | 0.4225 | +1.78pp |
+| WinoGrande | 0.6456 | 0.6488 | 0.6405 | 0.6488 | -0.83pp |
+| ARC-C | 0.5486 | 0.5171 | 0.5192 | 0.5128 | +0.21pp |
+| GSM8K | null | null | null | null | - |
+
+初步趋势：binary 在 TruthfulQA 上有较明显优势（+1.78pp），其他 benchmark 差异很小。所有策略相比 base model 均有退化（尤其 TruthfulQA、ARC-C），说明 contaminated data 训练损害了通用能力。
+
+## 建议
+
+实验仍在运行，不更新 registry。GSM8K 全部为 null 需要排查——等实验完成后再统一处理结果收集和 registry 更新。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 101563,
+  "duration_api_ms": 100657,
+  "num_turns": 21,
+  "stop_reason": "end_turn",
+  "session_id": "82466ff3-8f10-43d1-a0e1-0547a5b182bd",
+  "total_cost_usd": 0.49858850000000005,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 39336,
+    "cache_read_input_tokens": 221021,
+    "output_tokens": 5635,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 39336,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1517,
+        "cache_read_input_tokens": 48836,
+        "cache_creation_input_tokens": 2341,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2341
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1203,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0013030000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 5635,
+      "cacheReadInputTokens": 221021,
+      "cacheCreationInputTokens": 39336,
+      "webSearchRequests": 0,
+      "costUSD": 0.4972855,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "98900f58-78b2-41fb-8958-4fc3c712ef77"
+}
+```
+
+</details>
+
+---

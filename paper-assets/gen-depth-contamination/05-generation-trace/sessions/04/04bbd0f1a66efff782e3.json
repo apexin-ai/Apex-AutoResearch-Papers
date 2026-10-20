@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04bbd0f1a66efff782e3",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "writing neural probe polish",
+  "task_key": "worker_writing_neural-probe-polish_20260514T175344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_neural-probe-polish_20260514T175344_result.json",
+    "occurrence": 1,
+    "bytes": 1627,
+    "sha256": "b1d06f704d50342333ae1aea03eec5c9a2d30d62c2a0969772a68dcffcca0be3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项检查结果：\n\n**(a) K\\* hierarchy 论证** — 达标。\n- 三层级定义清晰：K\\*\\_theory（理论上界，最优表示+分类器）、K\\*\\_neural（表示依赖上界，模型探针）、K\\*\\_15D（可部署边界，模型无关特征）— lines 386-392\n- 数值明确标注：K\\*\\_15D=2, K\\*\\_neural=3, K\\*\\_theory≥3 — lines 390, 392\n- 信息丢失机制：line 391 明确说\"at least one additional discriminable generation boundary exists in the frozen representations but is lost during projection into the hand-crafted feature space\"，结合 lines 380-381 具体指出 2v3 边界（neural AUC=0.6195 > θ vs 15D AUC=0.5609 < θ）\n\n**(b) Interpretability–discriminability tradeoff** — 达标。\n- 两端对比清晰：15D = model-free, interpretable, lightweight, trains in seconds (line 396-397) vs Neural = model-specific, opaque, 100×+ overhead (line 398)\n- Neural probe 明确定位为\"theoretical exploration tool\" (line 399)\n- Headline result 结论明确：\"K\\*=2 remains the relevant boundary for deployable depth estimation\" (line 400)\n\n**(c) Pending replication caveat** — 达标。\n- Single dataset caveat 清晰：仅 Qwen-continuation，Pythia/OLMo pending (line 408)\n- 2v3 边缘性量化：+1.95pp over θ, std=0.0094, ~2 std deviations (line 403)\n- 双重声明 preliminary：line 404 \"preliminary evidence...not as a firm revision\" + line 409 \"single-dataset preliminary finding rather than a general result\"\n- 5 个 TODO(exp-015-rerun) 占位符完整保留 (lines 361, 364, 405-407)\n\n**质量达标，无需修改。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-neural-probe-polish.md"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_deberta_filtering_comparison",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T17:02:50.271Z",
+    "updated_at": "2026-05-20T18:02:37.251Z",
+    "hypothesis": "DeBERTa's higher K* on arXiv (K*=4 vs 15D K*=3) does not yield significantly better downstream performance when used for filtering, validating that the 15D lower bound is practically sufficient."
+  },
+  "timestamp": "2026-05-20T18:02:37.549119+00:00",
+  "trigger": "update_registry"
+}

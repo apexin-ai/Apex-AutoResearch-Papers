@@ -1,0 +1,17 @@
+{
+  "experiment": "exp-025 Pythia-1.4B arXiv continuation (domain x model interaction)",
+  "method": "GroupKFold(5) OOF + doc-level bootstrap + label permutation",
+  "n_bootstrap": 10000,
+  "n_permutation": 10000,
+  "seed": 42,
+  "theta": 0.6,
+  "kstar_ci": 3,
+  "total_seconds": 145.5,
+  "pairs": {
+    "0v1": {"auc": 0.9876, "auc_mean_folds": 0.9877, "fold_aucs": [0.9914, 0.9889, 0.9844, 0.9895, 0.9845], "ci_lower": 0.9851, "ci_upper": 0.99, "ci_lower_above_theta": true, "perm_p": 0.0001, "p_vs_theta_0.60": 0.0, "boot_mean": 0.9876, "boot_std": 0.0012},
+    "1v2": {"auc": 0.8047, "auc_mean_folds": 0.8047, "fold_aucs": [0.7906, 0.8278, 0.8018, 0.8065, 0.7967], "ci_lower": 0.7934, "ci_upper": 0.8162, "ci_lower_above_theta": true, "perm_p": 0.0001, "p_vs_theta_0.60": 0.0, "boot_mean": 0.8047, "boot_std": 0.0058},
+    "2v3": {"auc": 0.6544, "auc_mean_folds": 0.6545, "fold_aucs": [0.6409, 0.6433, 0.6764, 0.6548, 0.6572], "ci_lower": 0.6401, "ci_upper": 0.6688, "ci_lower_above_theta": true, "perm_p": 0.0001, "p_vs_theta_0.60": 0.0, "boot_mean": 0.6544, "boot_std": 0.0073},
+    "3v4": {"auc": 0.55, "auc_mean_folds": 0.5507, "fold_aucs": [0.5496, 0.5418, 0.5499, 0.5675, 0.5444], "ci_lower": 0.534, "ci_upper": 0.5657, "ci_lower_above_theta": false, "perm_p": 0.0001, "p_vs_theta_0.60": 1.0, "boot_mean": 0.55, "boot_std": 0.0081},
+    "4v5": {"auc": 0.5284, "auc_mean_folds": 0.5287, "fold_aucs": [0.5253, 0.5101, 0.5413, 0.5432, 0.5235], "ci_lower": 0.5122, "ci_upper": 0.5443, "ci_lower_above_theta": false, "perm_p": 0.001, "p_vs_theta_0.60": 1.0, "boot_mean": 0.5283, "boot_std": 0.0082}
+  }
+}

@@ -1,0 +1,75 @@
+paper_key: "zhang2024minkpp"
+title: "Min-K%++: Improved Baseline for Detecting Pre-Training Data from Large Language Models"
+venue: "ICLR 2025 Spotlight"
+full_text_available: true
+
+research:
+  baselines: [Loss, Reference method, Zlib, Lowercase, Neighbor (perturbation-based), Min-K%]
+  metrics:
+    - {name: "AUROC", direction: "higher_better"}
+    - {name: "TPR at low FPR", direction: "higher_better"}
+  datasets:
+    - {name: "WikiMIA", size: "Wikipedia events with timestamp ground truth"}
+    - {name: "MIMIR", size: "Pile-based train/test splits, 7 domain subsets"}
+  ablation_dimensions: [k% selection, component decomposition (mu only, sigma only, combined), text length (32/64/128 tokens)]
+  training_recipe: {details: "No training required; scoring function applied to token log-probabilities. Reference-free: requires only target model logits."}
+  method_family: "membership inference via normalized token statistics"
+
+positioning:
+  core_claim: "Normalizing token log-probabilities by vocabulary-level mean and standard deviation (z-score) yields a theoretically grounded detection score connected to the negative Hessian trace, improving AUROC by 6.2-10.5% over Min-K%"
+  key_results: "WikiMIA length-32: 78.3% AUROC vs 67.8% Min-K% (+10.5%). WikiMIA length-64: 78.6% vs 66.3% (+12.3%). Online detection: 68.1-68.4% on LLaMA 13B-65B vs 58-64% baselines."
+  limitations: ["Smaller improvements on MIMIR where train/test share distributions", "Performance drops in online detection with prepended non-training context", "Sample-level detection (not dataset-level aggregation)"]
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Pre-training data detection matters for copyright, contamination, and privacy; existing methods lack theoretical grounding"
+  tension: "Min-K% is the de facto baseline but uses raw probabilities without considering vocabulary distribution context"
+  key_insight: "A token's absolute probability is misleading; relative likelihood against vocabulary distribution (z-score normalization) is the correct signal. Connected to score matching and negative Hessian trace via theoretical analysis."
+  argument_chain: "problem → Min-K% limitation (absolute prob) → z-score normalization → theoretical connection to Hessian → WikiMIA +10.5% → MIMIR consistent gains → robustness to k%"
+  contribution_framing: "Three contributions: (1) Min-K%++ method with z-score normalization, (2) theoretical connection to negative Hessian trace, (3) comprehensive evaluation on WikiMIA and MIMIR"
+  intro_structure: "4 paragraphs: problem importance, existing methods and gap, proposed solution with theoretical grounding, experimental summary"
+  notable_technique: "Figure 1 externalizes the intuition: two distributions with identical target-token probability but different vocabulary contexts; makes the z-score idea visually obvious before equations"
+
+figures:
+  figure_count: 2
+  figure1:
+    type: "motivation"
+    description: "Two categorical distributions with identical target token probability (0.2) but different vocabulary distributions; illustrates why relative probability matters"
+    narrative_role: "Externalizes the core intuition before any math; makes z-score normalization feel obvious"
+    design_elements: ["side-by-side bar charts", "identical target highlighted", "different vocabulary context"]
+    visual_style: "Clean bar chart comparison with highlighted target token"
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "ROC curves for Min-K%++ vs baselines on WikiMIA across models"
+      how_gain_highlighted: "Min-K%++ curve consistently above all baselines"
+      design_note: "Standard ROC format; multi-model overlay"
+  ablation_figures:
+    - figure_id: "Table 3"
+      viz_type: "table"
+      dimensions_varied: ["mu normalization", "sigma normalization", "combined"]
+      design_note: "Component decomposition showing cumulative 16.8% gain; mu adds 9.3%, sigma adds 7.0%"
+  figure_narrative_role: "Fig1 (intuition: why z-score) → Fig2 (ROC results) → Tables (systematic evaluation + ablation)"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "sentence lengths (32/64/128) × settings (original/paraphrased)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_length"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "AUROC percentage"
+    num_baselines: 6
+    design_note: "Comprehensive grid showing Min-K%++ improvement across all length-setting combinations; 5 model families on WikiMIA"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: ["mu normalization", "sigma normalization"]
+      variation_style: "delta_from_base"
+      design_note: "Component-addition table: base → +mu (+9.3%) → +sigma (+7.0%) → combined (+16.8%); cleanest ablation format in the batch"
+  supplementary_tables:
+    in_appendix: true
+    content: "MIMIR per-domain results, k% sensitivity analysis, additional model families"
+    reason: "Main table focuses on WikiMIA; MIMIR is secondary benchmark"

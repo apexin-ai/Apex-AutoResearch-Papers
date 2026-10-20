@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_018_llama8b_depth",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T04:52:11.229Z",
+    "updated_at": "2026-05-16T04:55:57.129Z",
+    "hypothesis": "Cross-family K* 验证：LLaMA-3.1-8B continuation mode 的 K* 是否 = 2？首次超出 Qwen 家族，验证 K* universality 跨模型架构。C4 5K, depth 0-5, scorer=Qwen2.5-1.5B base。"
+  },
+  "timestamp": "2026-05-16T04:55:57.198319+00:00",
+  "trigger": "update_registry"
+}

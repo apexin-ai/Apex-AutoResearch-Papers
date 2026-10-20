@@ -1,0 +1,351 @@
+\section{Experiments}
+\label{sec:experiments}
+
+We evaluate generational depth estimation on four model configurations:
+Pythia-1.4B and OLMo-1B in continuation mode, and Qwen2.5-7B-Instruct in both rewrite and continuation modes.
+All experiments use the OBD-LightGBM classifier with the 12-dimensional feature set described in Section~3.
+Each configuration uses a balanced corpus of 500 texts per depth level (generations 0--5).
+We organize results around four questions:
+(1)~Does $\Kempirical = 2$ hold across configurations?
+(2)~Do depth classifiers transfer across models?
+(3)~Is the feature degradation ordering model-independent?
+(4)~How does generation mode affect detectability?
+
+%% ====================================================================
+\subsection{$\Kstar = 2$ Across All Configurations}
+\label{sec:kstar_boundary}
+
+Table~\ref{tab:kstar_ci} reports pairwise $\auc$ for adjacent depth pairs
+across all four configurations, with bootstrap 95\% confidence intervals
+(1{,}000 resamples) and permutation-test $p$-values for the critical 1v2
+and 2v3 boundaries.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Pairwise $\auc$ for adjacent depth pairs.  Bootstrap 95\% CIs
+and permutation $p$-values shown for the $\Kstar$ boundary rows (1v2,
+2v3).  $\Kempirical = 2$ requires 1v2 $\text{CI}_\text{low} > \theta$
+and 2v3 $\text{CI}_\text{high} < \theta$ with $\theta = 0.60$.
+All 0v1 permutation $p = 0.002$.}
+\label{tab:kstar_ci}
+\begin{tabular}{lcccc}
+\toprule
+ & Qwen-rw & Pythia & OLMo & Qwen-cont \\
+\midrule
+0v1 & 0.9956 & 0.9932 & 0.9970 & 0.9972 \\[4pt]
+1v2 & 0.6955 & 0.6539 & 0.6145 & 0.6112 \\
+{\footnotesize CI}
+  & {\footnotesize [.6859,\,.7041]}
+  & {\footnotesize [.6454,\,.6630]}
+  & {\footnotesize [.6045,\,.6247]}
+  & {\footnotesize [.6015,\,.6213]} \\
+{\footnotesize $p$}
+  & {\footnotesize .002}
+  & {\footnotesize .002}
+  & {\footnotesize .002}
+  & {\footnotesize .002} \\[4pt]
+2v3 & 0.5893 & 0.5514 & 0.5496 & 0.5609 \\
+{\footnotesize CI}
+  & {\footnotesize [.5795,\,.5991]}
+  & {\footnotesize [.5417,\,.5628]}
+  & {\footnotesize [.5399,\,.5596]}
+  & {\footnotesize [.5511,\,.5712]} \\
+{\footnotesize $p$}
+  & {\footnotesize .002}
+  & {\footnotesize .002}
+  & {\footnotesize .002}
+  & {\footnotesize .002} \\[4pt]
+3v4 & 0.5435 & 0.5152 & 0.5091 & 0.5409 \\
+4v5 & 0.5340 & 0.5136 & 0.5045 & 0.5141 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The pattern is uniform across all four configurations:
+0v1 discrimination is near-perfect ($\auc > 0.99$),
+followed by a sharp drop at 1v2 ($\auc$ range: 0.6112--0.6955),
+with 2v3 falling below the decision threshold $\theta = 0.60$
+($\auc$ range: 0.5496--0.5893).
+All subsequent pairs (3v4, 4v5) converge toward chance.
+Figure~\ref{fig:auc_decay} visualizes this decay.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig2_auc_decay.pdf}
+\caption{Pairwise $\auc$ as a function of depth pair across four model
+configurations.  All configurations show a sharp drop between 0v1 and
+1v2, with 2v3 and deeper pairs falling below the decision threshold
+$\theta = 0.60$ (dashed line).  Error bars: bootstrap 95\% CIs.}
+\label{fig:auc_decay}
+\end{figure}
+
+For the $\Kstar$ determination, all four 1v2 CI lower bounds exceed
+$\theta$: Qwen-rw ($\text{CI}_\text{low} = 0.6859$), Pythia (0.6454),
+OLMo (0.6045), and Qwen-cont (0.6015).
+Conversely, all four 2v3 CI upper bounds fall below $\theta$:
+Qwen-rw ($\text{CI}_\text{high} = 0.5991$), Qwen-cont (0.5712),
+Pythia (0.5628), and OLMo (0.5596).
+Permutation tests confirm $p = 0.002$ for all eight boundary comparisons.
+Together these establish $\Kempirical = 2$ across all tested configurations.
+
+The most marginal case is Qwen-cont, where the 1v2 CI lower bound
+(0.6015) exceeds $\theta$ by only 0.0015.  This narrow margin
+indicates that $\Kstar = 2$ is robust but not trivially so---continuation-mode
+generation produces weaker depth artifacts than rewrite mode, pushing the
+boundary closer to the detection threshold.
+
+The absolute 1v2 $\auc$ varies across models:
+Qwen-rw (0.6955) $>$ Pythia (0.6539) $>$ OLMo (0.6145) $\approx$ Qwen-cont (0.6112).
+Notably, the spread due to generation mode within a single model
+(Qwen-rw vs.\ Qwen-cont: $\Delta = 8.4$\,pp) exceeds the spread
+across models in the same mode
+(Pythia vs.\ OLMo: $\Delta = 3.9$\,pp),
+suggesting that generation protocol is a stronger determinant
+of detectability than model identity.
+We examine both factors in Sections~\ref{sec:transfer}
+and~\ref{sec:generation_mode}.
+
+Beyond the $\Kstar$ boundary, depth discrimination deteriorates
+rapidly.
+OLMo shows nonsignificant permutation $p$-values at 3v4
+($p = 0.064$) and 4v5 ($p = 0.232$), indicating that depth
+classification beyond generation~2 is indistinguishable from
+random for this model.
+Pythia retains marginal effects at these depths
+($p = 0.006$ and $p = 0.008$, respectively),
+while Qwen-cont shows weak but detectable discrimination through
+3v4 ($p = 0.002$) that fades at 4v5 ($p = 0.006$).
+
+%% ====================================================================
+\subsection{Cross-Model Transfer}
+\label{sec:transfer}
+
+To assess whether depth signals are properties of the text itself
+rather than artifacts of a specific generator, we train classifiers
+on one model's outputs and evaluate on another's.
+Table~\ref{tab:transfer_matrix} shows the full
+$4 \times 4$ transfer accuracy matrix for 6-class ordinal depth
+classification.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Cross-model transfer accuracy (6-class ordinal
+classification).  Diagonal entries (bold): within-model accuracy.
+Off-diagonal: cross-model transfer.  Retention is computed as
+off-diagonal accuracy divided by the diagonal entry of the training
+model.}
+\label{tab:transfer_matrix}
+\begin{tabular}{lcccc}
+\toprule
+Train $\downarrow$ / Test $\rightarrow$
+  & Qwen-rw & Pythia & OLMo & Qwen-cont \\
+\midrule
+Qwen-rw
+  & \textbf{0.4229} & 0.2590 & 0.2653 & 0.3466 \\
+Pythia
+  & 0.2718 & \textbf{0.3856} & 0.3531 & 0.3287 \\
+OLMo
+  & 0.2768 & 0.3450 & \textbf{0.3822} & 0.3244 \\
+Qwen-cont
+  & 0.3440 & 0.3284 & 0.3112 & \textbf{0.3875} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\columnwidth]{figures/fig3_transfer_heatmap.pdf}
+\caption{Cross-model transfer heatmap (6-class ordinal accuracy).
+Rows: training model; columns: test model.
+Pythia$\leftrightarrow$OLMo (both continuation mode) shows high
+mutual transfer (91--92\% accuracy retention), while Qwen-rewrite
+transfers poorly to continuation-mode models (61--63\%).
+Diagonal entries are within-model baselines.}
+\label{fig:transfer_heatmap}
+\end{figure}
+
+Two principal findings emerge.
+First, transfer between continuation-mode models is high.
+Pythia$\to$OLMo retains 91--92\% of within-model accuracy, and
+the reverse direction is comparable
+(85--86\% retention by Kendall $\tau$).
+The accuracy-based retention of 91--92\% is complemented by the
+$\tau$-based retention of 85--86\%, indicating that not only
+classification accuracy but also the relative depth ordering of
+predictions is largely preserved.
+Qwen-cont$\leftrightarrow$Pythia also transfers well
+(83--85\% accuracy retention),
+and Qwen-cont$\leftrightarrow$OLMo achieves 80--85\%.
+These retention rates indicate that a substantial fraction of
+the depth signal---on the order of 70--85\%---is text-intrinsic
+rather than tied to a specific generator.
+
+Second, Qwen-rewrite exhibits catastrophic transfer failure.
+Classifiers trained on Qwen-rewrite retain only 61--63\% of
+within-model accuracy when evaluated on Pythia or OLMo
+(45--50\% by $\tau$).
+The reverse direction performs comparably poorly.
+This confirms that rewrite-mode classifiers rely on generation
+artifacts that do not generalize across models, in contrast
+to Qwen-cont, which achieves 80--85\% retention to the same targets.
+
+At the 0v1 boundary, cross-model pairwise $\auc$ exceeds 0.96
+for all model pairs, confirming that the human-vs.-synthetic
+distinction is universally transferable regardless of generator
+or mode.
+The transfer degradation concentrates at deeper boundaries
+(1v2 and beyond), where model- and mode-specific factors dominate.
+
+The aggregate picture is one of modest cross-model loss:
+mean pairwise $\auc$ is 0.6099 within-model versus 0.5905
+cross-model.
+This gap is driven primarily by Qwen-rewrite; among
+continuation-mode pairs the within/cross difference narrows
+further.
+
+%% ====================================================================
+\subsection{Feature Degradation Ordering}
+\label{sec:feature_degradation}
+
+If depth signals are text-intrinsic, different generators should
+rely on the same features in the same order.
+We test this by computing single-feature $\auc$ rankings
+independently for each model and comparing them via rank
+correlation.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Top-3 features by single-feature $\auc$ ranking for each
+model configuration.
+Features shared across all three continuation-mode models are in bold.
+Qwen-rewrite's top feature (\texttt{freq\_entropy}) is mode-specific.
+Spearman $\rho$ (continuation-mode pairs): Pythia--OLMo 0.95,
+Pythia--Qwen-cont 0.9143, OLMo--Qwen-cont 0.85.}
+\label{tab:top_features}
+\begin{tabular}{cllll}
+\toprule
+Rank & Pythia & OLMo & Qwen-rw & Qwen-cont \\
+\midrule
+1
+  & \textbf{\texttt{surp\_d1\_std}}
+  & \textbf{\texttt{surp\_std}}
+  & \texttt{freq\_entropy}
+  & \textbf{\texttt{surp\_d1\_std}} \\
+2
+  & \textbf{\texttt{surp\_d2\_std}}
+  & \textbf{\texttt{surp\_d1\_std}}
+  & \textbf{\texttt{surp\_std}}
+  & \textbf{\texttt{surp\_std}} \\
+3
+  & \textbf{\texttt{surp\_std}}
+  & \textbf{\texttt{surp\_d2\_std}}
+  & \textbf{\texttt{surp\_d1\_std}}
+  & \textbf{\texttt{surp\_d2\_std}} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Among continuation-mode models, single-feature $\auc$ rankings
+are highly correlated:
+Pythia vs.\ OLMo $\rho = 0.95$,
+Pythia vs.\ Qwen-cont $\rho = 0.9143$,
+OLMo vs.\ Qwen-cont $\rho = 0.85$
+(all $\rho \geq 0.85$).
+The top-3 features---\texttt{surp\_d1\_std}, \texttt{surp\_std},
+and \texttt{surp\_d2\_std}---are shared (up to ordering) across
+all three continuation-mode configurations
+(Table~\ref{tab:top_features}).
+All three measure variability of surprisal or its derivatives,
+capturing the \emph{heterogeneity} of token-level predictability
+across the text.
+That these features degrade in a shared order across generators
+suggests a common mechanism: each generation step smooths the
+token-level surprisal landscape, reducing its variance in a
+model-independent fashion.
+
+Qwen-rewrite diverges: its top-ranked feature is
+\texttt{freq\_entropy}, a lexical diversity measure absent from
+the continuation-mode top-3 for any model.
+This corroborates the transfer results in
+Section~\ref{sec:transfer}---rewrite-mode classifiers learn
+partly from instruction-following artifacts rather than the
+shared surprisal-based signals.
+
+Kendall $\tau$ provides a complementary, more conservative
+perspective:
+Pythia vs.\ OLMo $\tau = 0.733$,
+Pythia vs.\ Qwen-cont $\tau = 0.695$,
+OLMo vs.\ Qwen-cont $\tau = 0.543$.
+Cross-mode correlations are lower:
+Pythia vs.\ Qwen-rw $\tau = 0.467$,
+OLMo vs.\ Qwen-rw $\tau = 0.429$.
+
+\paragraph{Limitation.}
+The high Spearman $\rho$ characterizes the \emph{aggregate}
+feature ranking, but at the depth-pair level the agreement
+weakens: $\tau \approx 0.37$ at the 1v2 boundary.
+This means that while the overall importance ordering is shared,
+the relative contribution of individual features at the
+discrimination boundary---where precision matters most---varies
+across models.
+We view this as a genuine limitation of the text-intrinsic
+interpretation and a direction for future investigation.
+
+%% ====================================================================
+\subsection{Generation Mode Effect}
+\label{sec:generation_mode}
+
+Qwen2.5-7B-Instruct provides a controlled comparison of generation
+modes: rewrite (instruction-based paraphrasing) and continuation
+(prompt truncation), as defined in Section~3.
+Both share the same model weights, isolating the effect of
+generation protocol on depth detectability.
+
+Rewrite mode yields higher 1v2 $\auc$ than continuation:
+0.6955 vs.\ 0.6112, a difference of $+$8.4 percentage points.
+The advantage persists at 2v3
+(0.5893 vs.\ 0.5609, $\Delta = +$2.8\,pp)
+and narrows at 3v4
+(0.5435 vs.\ 0.5409, $\Delta = +$0.3\,pp),
+with both modes converging toward chance at deeper levels.
+The amplified detectability under rewrite mode is consistent
+with instruction-following introducing systematic deviations
+from the source text's style---additional artifacts that are
+discriminable but mode-specific rather than text-intrinsic.
+
+Transfer between modes is asymmetric.
+A classifier trained on Qwen-cont and evaluated on Qwen-rw
+retains 89\% of within-model accuracy
+(0.3440 vs.\ 0.3875 diagonal),
+whereas the reverse direction---Qwen-rw trained,
+Qwen-cont tested---retains 82\%
+(0.3466 vs.\ 0.4229 diagonal).
+The direction of the asymmetry is intuitive:
+continuation-mode signals form a subset of the information
+available in rewrite-mode data
+(which adds instruction-following artifacts on top),
+so a continuation-trained classifier can partially recognize
+rewrite-mode outputs but not vice versa.
+
+This asymmetry is mirrored in the feature rankings.
+Qwen-rewrite's top feature (\texttt{freq\_entropy}) is
+mode-specific and ranks outside the top-3 for every
+continuation-mode model.
+Qwen-cont's top feature (\texttt{surp\_d1\_std}) is shared
+with Pythia and OLMo, confirming that continuation mode
+captures primarily text-intrinsic depth signals.
+
+The practical implication is a detectability--generalizability
+tradeoff.
+Rewrite-mode classifiers achieve higher absolute $\auc$ but
+transfer poorly across models
+(Qwen-rw$\to$Pythia/OLMo: 61--63\% retention).
+Continuation-mode classifiers sacrifice 8.4\,pp of within-model
+$\auc$ but achieve robust cross-model transfer
+(Qwen-cont$\to$Pythia: 83--85\%).
+For deployment scenarios requiring model-agnostic depth
+estimation, continuation-mode features provide a more reliable
+foundation despite lower raw discriminability.

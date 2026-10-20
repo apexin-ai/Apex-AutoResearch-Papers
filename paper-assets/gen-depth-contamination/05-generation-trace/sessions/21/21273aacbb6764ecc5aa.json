@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21273aacbb6764ecc5aa",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp003 config3 metrics fix",
+  "task_key": "worker_analysis_exp003_config3_metrics_fix_20260513T205942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp003_config3_metrics_fix_20260513T205942_result.json",
+    "occurrence": 1,
+    "bytes": 287,
+    "sha256": "040b6c732736787063ffeb782010657869c9eed280e60f1e56353643e90627c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Config3-T07** (nucleus p=0.95, T=0.7) 完整 pairwise AUC：\n\n| Depth Pair | AUC |\n|---|---|\n| 0v1 | 0.9878 |\n| 1v2 | 0.6887 |\n| 2v3 | 0.5902 |\n| 3v4 | 0.5393 |\n| 4v5 | 0.5349 |\n\n单调递减趋势明确：depth 越深，相邻层之间的可区分度越低。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp003-config3-metrics-fix.md"
+}

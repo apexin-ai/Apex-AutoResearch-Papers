@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "174bdb719a292c43f737",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra sync paper from server",
+  "task_key": "worker_infra_sync_paper_from_server_20260522T052043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_sync_paper_from_server_20260522T052043_result.json",
+    "occurrence": 1,
+    "bytes": 234,
+    "sha256": "99c0b485be6404ebb2a5bd842725d7270625d4f162ad72c29696f4eb6e89fcc1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。\n\n- **文件总数**：84 个文件\n- **总大小**：19MB（从服务器传输 2.6MB，含 42 个更新文件）\n- **main.pdf**：510KB，修改时间 May 22 04:33，有效 PDF document (version 1.5)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-sync-paper-from-server.md"
+}

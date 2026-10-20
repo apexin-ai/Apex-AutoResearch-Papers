@@ -1,0 +1,24 @@
+paper_key: "falahati2026curated"
+title: "Curated Synthetic Data Doesn't Have to Collapse: A Theoretical Study of Generative Retraining with Pluralistic Preferences"
+venue: "ICML 2026"
+full_text_available: false
+
+research:
+  baselines: [single-reward curation, unfiltered retraining, real-data mixing]
+  metrics:
+    - {name: "distribution diversity preservation", direction: "higher_better"}
+    - {name: "convergence stability", direction: "higher_better"}
+    - {name: "Nash bargaining optimality", direction: "higher_better"}
+  datasets:
+    - {name: "theoretical analysis (no specific empirical dataset)", size: "N/A"}
+  ablation_dimensions: [number of reward functions, reward function heterogeneity, convergence conditions]
+  training_recipe: {details: "Theoretical framework: recursive retraining with curation based on multiple heterogeneous reward functions instead of a single objective; proves convergence to weighted Nash bargaining solution"}
+  method_family: "model collapse mitigation (pluralistic preference curation, theoretical)"
+
+positioning:
+  core_claim: "Collapse under recursive synthetic retraining is avoidable without real data by curating with multiple diverse reward functions, which provably converges to a stable diversity-preserving distribution satisfying Nash bargaining"
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

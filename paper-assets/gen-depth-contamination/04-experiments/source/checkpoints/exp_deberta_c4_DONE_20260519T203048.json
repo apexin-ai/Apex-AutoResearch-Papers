@@ -1,0 +1,80 @@
+{
+  "exp_id": "exp_deberta_c4",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T19:27:44.088Z",
+    "updated_at": "2026-05-19T20:30:48.238Z",
+    "hypothesis": "DeBERTa-v3-base fine-tuned on raw text provides an upper-bound for C4 depth distinguishability compared to 15D LightGBM on handcrafted features. Pairwise AUC should exceed LightGBM at all depth pairs since the model has access to full lexical/semantic signal.",
+    "parent": "exp_deberta_upperbound",
+    "spec": {
+      "server": "westd-42896",
+      "gpu": [
+        "cuda:0"
+      ],
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HOME=/root/autodl-tmp/.hf_cache python scripts/run_deberta_c4.py",
+      "pid": "130789",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/",
+      "data_count": 55000,
+      "model_name": "DeBERTa-v3-base",
+      "seed": 42,
+      "log_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_c4/train.log",
+      "checkpoint_path": "results/exp_deberta_c4/",
+      "checkpoint_source": "microsoft/deberta-v3-base (pretrained)",
+      "eval_data": "C4 depth chains (exp_14b_c4: 30k, exp_32b_c4: 25k)"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "pairwise_auc": {
+        "0v1": 0.9941,
+        "1v2": 0.6781,
+        "2v3": 0.5895,
+        "3v4": 0.5651,
+        "4v5": 0.5485
+      },
+      "ci_95": {
+        "0v1": [
+          0.993,
+          0.9951
+        ],
+        "1v2": [
+          0.6696,
+          0.6866
+        ],
+        "2v3": [
+          0.5814,
+          0.5979
+        ],
+        "3v4": [
+          0.5573,
+          0.5732
+        ],
+        "4v5": [
+          0.5411,
+          0.5562
+        ]
+      },
+      "f1_at_050": {
+        "0v1": 0.9352,
+        "1v2": 0.6751,
+        "2v3": 0.6607,
+        "3v4": 0.6204,
+        "4v5": 0.2869
+      },
+      "kstar": 2,
+      "kstar_theta": 0.6,
+      "config": "exp_14b_c4",
+      "n_samples": 30000,
+      "n_docs": 5000,
+      "bootstrap_resamples": 10000,
+      "training_time_min": 48.3
+    },
+    "notes": "DeBERTa K*=2 = LightGBM K*=2 on C4 14B, confirming representation-independent boundary. 86M-param fine-tuned neural classifier cannot extend K* beyond 2. Worker script reported K*=1 (off-by-one bug in K* calculation logic), corrected to K*=2 based on raw CI data: 1v2 CI lower=0.6696 > θ=0.60.",
+    "completed_at": "2026-05-19T20:30:48.238Z"
+  },
+  "timestamp": "2026-05-19T20:30:48.453338+00:00",
+  "trigger": "update_registry"
+}

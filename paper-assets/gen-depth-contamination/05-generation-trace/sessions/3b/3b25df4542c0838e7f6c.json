@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b25df4542c0838e7f6c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "writing fix obd comparison",
+  "task_key": "worker_writing_fix-obd-comparison_20260514T085213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_fix-obd-comparison_20260514T085213_result.json",
+    "occurrence": 1,
+    "bytes": 590,
+    "sha256": "485856fc57de865866dd634ce6abf223f285f32f6cdf2de4690768446fe20205"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。\n\n**修改前**：`$+$5.2--9.3\\,pp over LLM zero-shot at ${\\sim}$33\\%` — 用 6-class OBD (38.2–42.3%) 减 5-class LLM (~33%)，粒度不匹配。\n\n**修改后**：`$+$5.5\\,pp over frontier-LLM zero-shot on the matched 5-class task, 38.6\\% vs.\\ ${\\sim}$33\\%` — 统一为 5-class 对比（OBD 38.6% vs LLM ~33%，差值 +5.5pp），并明确标注 \"matched 5-class task\"。\n\n段落中 6-class 的部分（38.2–42.3% vs 16.7% random, +21.5–25.6pp）保持不变，因为它们内部一致，且已标注 \"for 6-class classification\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-fix-obd-comparison.md"
+}

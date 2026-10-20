@@ -1,0 +1,20 @@
+{
+  "exp_id": "exp_deberta_c4",
+  "project": "gen-depth-contamination",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T19:27:44.088Z",
+    "updated_at": "2026-05-19T19:27:56.772Z",
+    "hypothesis": "DeBERTa-v3-base fine-tuned ordinal classifier on C4 depth chains as upper-bound baseline: if K*=2 matches 15D LightGBM, the saturation boundary is near-intrinsic (information-theoretic) rather than a feature ceiling. Direct comparison on identical C4 data (qwen_base/pythia_cont/qwen_cont). 5-fold GroupKFold, pairwise AUC, θ=0.60.",
+    "parent": "exp_deberta_upperbound",
+    "spec": {
+      "server": "westd-42896",
+      "gpu": "cuda:0"
+    }
+  },
+  "timestamp": "2026-05-19T19:27:56.981407+00:00",
+  "trigger": "update_registry"
+}

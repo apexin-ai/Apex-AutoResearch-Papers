@@ -1,0 +1,92 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shumailov2024model,alemohammad2024selfconsuming}
+\citation{mitchell2023detectgpt,bao2024fastdetectgpt}
+\citation{xie2023dsir}
+\citation{shumailov2024model,dohmatob2024tale}
+\citation{drayson2025contamination}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{solaiman2019release}
+\citation{mitchell2023detectgpt}
+\citation{bao2024fastdetectgpt}
+\citation{shumailov2024model}
+\citation{alemohammad2024selfconsuming}
+\citation{dohmatob2024tale}
+\citation{xie2023dsir}
+\citation{tirumala2024d4}
+\citation{xie2024doremi}
+\citation{drayson2025contamination}
+\@writefile{toc}{\contentsline {paragraph}{Contributions.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Machine-generated text detection.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model collapse and iterative training.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data selection and curation.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Recursive Generation as an Iterated Lossy Channel}{2}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:dpi}{{3.1}{2}{Recursive Generation as an Iterated Lossy Channel}{subsection.3.1}{}}
+\newlabel{eq:dpi}{{1}{2}{Recursive Generation as an Iterated Lossy Channel}{equation.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Empirical Discrimination Boundary}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:kstar_def}{{3.2}{3}{Empirical Discrimination Boundary}{subsection.3.2}{}}
+\newlabel{eq:kstar}{{2}{3}{Empirical Discrimination Boundary}{equation.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Feature Extraction}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:features}{{3.3}{3}{Feature Extraction}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Classifier and Evaluation Protocol}{3}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:classifier}{{3.4}{3}{Classifier and Evaluation Protocol}{subsection.3.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Depth Chain Construction}{3}{subsection.3.5}\protected@file@percent }
+\newlabel{sec:depth_chain}{{3.5}{3}{Depth Chain Construction}{subsection.3.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{3}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Architecture Scaling: LLaMA-3.1-8B and Mistral-7B}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:exp_scaling}{{4.1}{3}{Architecture Scaling: LLaMA-3.1-8B and Mistral-7B}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Pairwise AUC with bootstrap 95\% CI for LLaMA-3.1-8B and Mistral-7B depth chains. Scorer: Qwen2.5-1.5B. $n\!=\!30{,}000$ samples per pair, $B\!=\!10{,}000$ bootstrap resamples.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:scaling}{{1}{4}{Pairwise AUC with bootstrap 95\% CI for LLaMA-3.1-8B and Mistral-7B depth chains. Scorer: Qwen2.5-1.5B. $n\!=\!30{,}000$ samples per pair, $B\!=\!10{,}000$ bootstrap resamples}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Pythia-1.4B decoding ablation: $K^{*}\!=\!2$ across all 4 decoding configurations. GroupKFold(5) OOF evaluation, $B\!=\!10{,}000$ bootstrap resamples.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:decoding}{{2}{4}{Pythia-1.4B decoding ablation: $\Kstar \!=\!2$ across all 4 decoding configurations. GroupKFold(5) OOF evaluation, $B\!=\!10{,}000$ bootstrap resamples}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Decoding Invariance Across Models}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:exp_decoding}{{4.2}{4}{Decoding Invariance Across Models}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cross-model decoding invariance comparison. Both Qwen-1.5B and Pythia-1.4B show $K^{*}\!=\!2$ across all 4 decoding configurations with narrow AUC ranges.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:decoding_cross}{{3}{5}{Cross-model decoding invariance comparison. Both Qwen-1.5B and Pythia-1.4B show $\Kstar \!=\!2$ across all 4 decoding configurations with narrow AUC ranges}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Length ablation: $K^{*}\!=\!2$ is invariant to text length (128--512 tokens). Detection power increases monotonically with length.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:length}{{4}{5}{Length ablation: $\Kstar \!=\!2$ is invariant to text length (128--512 tokens). Detection power increases monotonically with length}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Text Length Ablation}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:exp_length}{{4.3}{5}{Text Length Ablation}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Cross-Scorer Independence}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:exp_scorer}{{4.4}{5}{Cross-Scorer Independence}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Length effect decomposition: AUC$_{1\text  {v}2}$ increases by ${\sim }$0.017 per doubling of text length, a pure statistical precision effect.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:length_effect}{{5}{6}{Length effect decomposition: AUC$_{1\text {v}2}$ increases by ${\sim }$0.017 per doubling of text length, a pure statistical precision effect}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces $4\!\times \!4$ cross-scorer AUC$_{1\text  {v}2}$ matrix. Bold: the single cell where $K^{*}\!=\!1$ (CI lower $< 0.60$). All other 15 cells yield $K^{*}\!=\!2$.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:cross_scorer}{{6}{6}{$4\!\times \!4$ cross-scorer AUC$_{1\text {v}2}$ matrix. Bold: the single cell where $\Kstar \!=\!1$ (CI lower $< 0.60$). All other 15 cells yield $\Kstar \!=\!2$}{table.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Practical implication.}{6}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Summary of Conditions}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:exp_summary}{{4.5}{6}{Summary of Conditions}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{6}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{6}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Universality of $K^{*}\!=\!2$.}{6}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scorer independence and text-intrinsic signal.}{6}{section*.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Two-way ANOVA on 1v2 AUC across the $4\!\times \!4$ matrix. Generator identity is the dominant source of variation; scorer identity and interaction effects are not significant.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:anova}{{7}{7}{Two-way ANOVA on 1v2 AUC across the $4\!\times \!4$ matrix. Generator identity is the dominant source of variation; scorer identity and interaction effects are not significant}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Summary of all 18 experimental conditions. 17/18 (94\%) yield $K^{*}\!=\!2$.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:summary}{{8}{7}{Summary of all 18 experimental conditions. 17/18 (94\%) yield $\Kstar \!=\!2$}{table.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{The single exception: OLMo$\times $OLMo.}{7}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Length as precision, not signal.}{7}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Implications for data curation.}{7}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.11}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{alemohammad2024selfconsuming}{{1}{2024}{{Alemohammad et~al.}}{{}}}
+\bibcite{bao2024fastdetectgpt}{{2}{2024}{{Bao et~al.}}{{}}}
+\bibcite{dohmatob2024tale}{{3}{2024}{{Dohmatob et~al.}}{{}}}
+\bibcite{drayson2025contamination}{{4}{2025}{{Drayson et~al.}}{{}}}
+\bibcite{mitchell2023detectgpt}{{5}{2023}{{Mitchell et~al.}}{{}}}
+\bibcite{shumailov2024model}{{6}{2024}{{Shumailov et~al.}}{{}}}
+\bibcite{solaiman2019release}{{7}{2019}{{Solaiman et~al.}}{{}}}
+\bibcite{tirumala2024d4}{{8}{2024}{{Tirumala et~al.}}{{}}}
+\bibcite{xie2023dsir}{{9}{2023}{{Xie et~al.}}{{}}}
+\bibcite{xie2024doremi}{{10}{2024}{{Xie et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{8}{Conclusion}{section.6}{}}
+\gdef \@abspage@last{8}

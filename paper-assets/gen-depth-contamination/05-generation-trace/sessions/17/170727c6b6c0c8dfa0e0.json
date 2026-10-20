@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "170727c6b6c0c8dfa0e0",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "director / loop_9.md",
+  "task_key": "loop_9",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_9.md",
+    "occurrence": 1,
+    "bytes": 3935,
+    "sha256": "fb6057c00ee2201ff4520f1b78d82925eb758e01eaaa9d2e87cd2e7bef072a78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: max_wall_time\nupdated: '2026-05-17T23:22:29+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- cqa1-22115 只能用 cuda:0-3（gpu_constraint 白名单）\n- westd-42896 只能用 cuda:0-1（云租卡，已加入 project config）\n- Wikipedia 数据**不写入正文主线**（D054），放 Appendix + scorer confound caveat\n- arXiv K*=3 表述必须写 \"5/6 models\"（OLMo capacity failure excluded），不能写 \"5/5 100%\"（Reviewer 已 flag cherry-picking 风险）\n- 论文中所有数值区间必须覆盖实际数据点（已修两次 overclaim：cliff ratio 6-56×, JSD range 0.16-0.29）\n- exp_008_retrain_chain (无 v2 后缀) 是 dead entry (conclusion=killed)，retrain-chain 数据源是 exp_027_retrain_bootstrap\n\n### 2. 🖥️ 基础设施快照\n- **cqa1-22115**: connect.cqa1.seetacloud.com, root, /root/autodl-tmp/gen-depth-contamination, 4×4090D\n  - 全部空闲（exp_wiki_scorer_confound_1b5 刚审批分配 cuda:1，可能已开始或即将开始）\n  - 磁盘：项目仅 1.2GB，/autodl-pub 97% 是共享盘问题\n- **westd-42896**: 云租卡 2×RTX PRO 6000 96GB\n  - cuda:0: exp_14b_c4 RUNNING（14B fp16, ~May 18 15:30 完成）\n  - cuda:1: exp_32b_c4 RUNNING（32B fp16, ~May 20 07:00 完成）\n- 论文本地路径：projects/gen-depth-contamination/docs/paper/\n- Paper Agent session 已存在（自动复用）\n\n### 3. 📊 当前状态\n本轮（Loop #9 extended）完成了大量工作：\n- **arXiv domain expansion**: 5/5 non-OLMo models K*=3（D055-D057）\n- **Wikipedia domain expansion**: 6/6 models 完成，continuation mode 全线 K*=1（D058-D059）\n- **D060 scorer confound**: Qwen Wiki K*=2 确认是 Qwen scorer artifact（Pythia scorer → K*=1）\n- **Paper Agent patches**: Wikipedia overclaim 修正（4 处）、JSD data 修正（2 处）、scorer confound appendix section、D060 更新\n- **θ sensitivity**: 完成，K* stable in [0.575, 0.625]\n\nRUNNING/PENDING:\n- exp_14b_c4: westd cuda:0, depth 2 进行中, ~May 18 15:30\n- exp_32b_c4: westd cuda:1, depth 1 进行中, ~May 20 07:00\n- exp_wiki_scorer_confound_1b5: cqa1 cuda:1, 刚审批分配（Qwen-1.5B Wiki cross-scorer 复验, <1h）\n\n### 4. 📋 待办\n- exp_wiki_scorer_confound_1b5 完成 → 预期 K*=1（与 D060 一致）→ 更新 appendix 表添加第二行 Pythia-scored 数据\n- exp_14b_c4 完成（~May 18）→ 如果 K*=2 → clean win, scale invariance confirmed；如果 K*=1 → 启动 scorer confound contingency（用 14B 自身作 scorer 重新评分，westd 有空间）\n- exp_32b_c4 完成（~May 20）→ 同上逻辑；32B K*=2 是 strongest scale evidence\n- 14B/32B 结果出齐后 → Paper Agent 综合 patch：完整 domain×model table（含 14B/32B 行 + scorer confound 注释）、Mistral 3-domain case study highlight、scale invariance discussion\n- 所有实验完成后 → submit_paper_to_review 提交 Group C 最终审稿\n\n### 5. 🎯 战略上下文\n**核心结论**: K* is domain-governed。arXiv K*=3 > C4 K*=2 > Wikipedia K*=1。Domain×Model matrix 中仅两个 genuine exceptions: Mistral C4 K*=1 (web-text-universal one-wash), OLMo arXiv K*=1 (capacity failure)。Wikipedia Qwen exception 被 D060 消解（scorer artifact）。\n\n**决策链**: D049(arXiv K*=3 升级) → D050-D057(cross-model validation) → D058(Mistral domain profile) → D059(Wiki complete) → D060(scorer confound confirmed)\n\n**易错点**:\n1. 14B/32B 若 K*=1，**先怀疑 1.5B scorer 能力不足**（scorer capacity confound），不要直接下结论 \"scale breaks K*=2\"。Contingency: 用 14B 自身做 scorer 重新评分\n2. Paper Agent 已多轮 patch，论文内部一致性需要 check_paper_consistency 验证（数字/claim 是否还对得上）\n3. DDL May 25（~6 days），32B 实验 ~May 20 完成，留 5 天做 paper integration + final review，时间充足但不能再加大实验\n4. EMNLP 2026 ARR 格式 ≤8 pages，当前 22 pages（含 appendix），注意正文不超页\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9.md"
+}

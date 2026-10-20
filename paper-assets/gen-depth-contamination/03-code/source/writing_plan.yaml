@@ -1,0 +1,255 @@
+meta:
+  venue: EMNLP 2026 Main
+  track: ARR May 2026
+  template: null
+  template_note: "ARR uses ACL Rolling Review format (acl2023.sty). Will use standard ACL LaTeX class from EMNLP 2025 call."
+  page_limit: 8
+  deadline: 2026-05-25
+  core_claim: >
+    K*=2 is the generational discrimination boundary for 1.5B-scale models, invariant to decoding strategy (nucleus, greedy, temperature).
+    Transfer retention of 80-92% suggests a large text-intrinsic component (Pythia↔OLMo 91% retention).
+    Even coarse 3-class ordinal signal enables graduated filtering that outperforms binary approaches.
+  created_at: 2026-05-13T12:00:00Z
+  partial_draft: true
+  partial_scope: [method, experiments_c1, related_work, introduction]
+  deferred_sections: [abstract, experiments_c3, conclusion]
+  deferred_reason: "exp-006 (graduated filtering) and exp-003 (decoding ablation) not yet complete"
+
+paper_outline:
+  - section: abstract
+    word_budget: 250
+    status: deferred
+    core_bullets:
+      - "Problem: Web data contaminated by multi-generational recursive synthetic text; binary detectors ignore depth"
+      - "Method: DPI motivates finite K* (theoretical motivation); 15D feature pipeline + OBD-LightGBM measures it empirically"
+      - "C1': K*=2 across 4 model configs (bootstrap 95% CI), 80-92% transfer retention suggests large text-intrinsic component"
+      - "C3: [TODO exp-006] Graduated filtering outperforms binary on MMLU/HellaSwag"
+    dependencies: [experiments_c1, experiments_c3, method]
+
+  - section: introduction
+    word_budget: 1200
+    status: writable
+    core_bullets:
+      - "Hook: First-gen synthetic text retains ~85% information structure of source; fourth-gen is qualitatively different — yet binary detectors treat them identically"
+      - "Gap: Binary detection doesn't estimate depth; model collapse literature describes macro phenomenon without detection tools; data selection methods ignore recursive depth"
+      - "Insight: Recursive generation = iterated lossy channel; DPI guarantees finite K* (theoretical motivation, not contribution); we are first to systematically measure it"
+      - "Mechanism: 15D statistical feature pipeline + ordinal classifier; K* operationalized via θ=0.60 AUC threshold with bootstrap CI"
+      - "Contributions: C1' K* Characterization with sub-components: (a) K*=2 across all tested configs including decoding strategies — invariant to sampling method; (b) cross-model transfer 80-92% retention → large text-intrinsic component; (c) degradation ordering ρ≥0.85; (d) generation mode analysis. C3 Graduated Filtering (pending exp-006). Supporting: systematic characterization across decoding strategies, model architectures, and generation modes. DPI is theoretical motivation, NOT independent contribution"
+    dependencies: [experiments_c1]
+    citation_hints:
+      - "shumailov2024collapse (model collapse seminal)"
+      - "drayson2025 (closest prior work)"
+      - "basani2026diveye, zhang2024minkpp (binary detection)"
+      - "schaeffer2025position (collapse taxonomy)"
+    figures: [fig1_pipeline]
+    registry_refs: [exp_007_bootstrap_ci]
+
+  - section: related_work
+    word_budget: 800
+    status: writable
+    core_bullets:
+      - "Model Collapse & Recursive Generation: Shumailov 2024 (Nature, seminal), Alemohammad 2024 (self-consuming MAD), Dohmatob 2024 (scaling law perspective), Schaeffer 2025 (8 definitions taxonomy — K* = Family B D4+D6), Kazdan 2025 (accumulate vs replace), Shi 2025 (memorization transition) → macro phenomenon, no per-text detection tool"
+      - "Binary Synthetic Text Detection: Zellers 2019 (Grover), Ippolito 2020, DivEye (Basani 2026), Min-K%++ (Zhang 2024), CoDeC (Zawalski 2026) → binary boundary only, AUC_{1v2} ≤ 0.53 for depth"
+      - "Data Selection & Curation: DSIR (Xie 2023), D4 (Tirumala 2023), DoReMi (Xie 2023) → distribution matching without depth; Drayson 2025 = closest (binary MGT + SIR for collapse prevention, our ordinal generalization); Amin 2025 (weak signal suffices); Gambetta 2025 (surplexity)"
+      - "Watermarking & Provenance: Kirchenbauer 2023 → complementary when watermarks available; our method works on unwatermarked text"
+    dependencies: [introduction]
+    citation_hints:
+      - "Position Drayson 2025 as closest prior work: SIR is special case of graduated filtering when K*=1"
+      - "Adopt Schaeffer 2025 taxonomy explicitly: K* = distributions deforming (Family B)"
+
+  - section: method
+    word_budget: 1500
+    status: writable
+    core_bullets:
+      - "§3.1 Problem Formulation: Recursive generation as iterated lossy channel X → Y₁ → Y₂ → ...; DPI as theoretical motivation: I(X;Y_k) monotonically decreasing → finite K*_theory must exist; motivated by this guarantee, we measure K*_empirical"
+      - "§3.2 Feature Extraction: 15D statistical features in 4 groups (surprisal moments, surprisal derivatives, vocabulary diversity, frequency tail); computed via external scorer model on tokenized text"
+      - "§3.3 Ordinal Binary Decomposition Classifier: OBD-LightGBM — K binary classifiers for K+1 depth levels; ordinal structure enforced by cumulative probability decomposition; advantage over multiclass (exp-010: lower MAE)"
+      - "§3.4 K* Operationalization: K*_empirical = max k s.t. AUC(k,k+1) bootstrap 95% CI lower > θ; θ=0.60 as operational threshold (justified by permutation test null distribution); K*_empirical ≤ K*_theory (conservative lower bound)"
+      - "§3.5 Experimental Setup: 3 model families (Pythia-1.4B, OLMo-1B, Qwen2.5-1.5B-Instruct) × 2 generation modes; C4 seed corpus (5K docs); nucleus sampling p=0.95 T=1.0; depth 0-5; 5-fold group CV (GroupKFold by seed document)"
+      - "§3.6 Generation Mode Control: continuation (complete truncated prefix) vs rewrite (instruction-based rewrite); continuation as canonical condition for cross-model claims; rewrite as upper bound with mode-specific confound"
+    dependencies: []
+    notation_table:
+      X: "original human-written text"
+      Y_k: "k-th generation synthetic text"
+      G_delta: "LLM generation function with decoding strategy δ"
+      K_star: "generational discrimination boundary"
+      theta: "operational AUC threshold (0.60)"
+      f: "15D feature extraction function"
+    tables: [tab_features, tab_setup]
+    figures: [fig1_pipeline]
+    registry_refs: [exp_010_ordinal_baseline]
+
+  - section: experiments_c1
+    word_budget: 1800
+    status: writable
+    core_bullets:
+      - "§4.1 K*=2 Across All Configurations: 4-model bootstrap CI table; all 1v2 CI_lower > 0.60; all 2v3 CI_upper < 0.60; permutation p < 0.002 for all 1v2; most marginal = Qwen-cont (CI_lower=0.6015); sharp AUC drop from 0v1 (~0.995) to 1v2 (~0.61-0.70) to 2v3 (~0.55-0.59)"
+      - "§4.2 Cross-Model Transfer: 4×4 accuracy matrix + retention analysis; Pythia↔OLMo 91-92% retention → large text-intrinsic component; 0v1 AUC >0.96 universally; Qwen-rewrite catastrophic transfer (61-63%); Qwen-cont much better (80-85%); confirms continuation as canonical"
+      - "§4.3 Feature Degradation Ordering: Spearman ρ ≥ 0.85 on single-feature AUC ranking (continuation, Pythia vs OLMo = 0.95); shared top features: surp_d1_std, surp_std, surp_d2_std; limitation: depth-pair level τ~0.37 at 1v2"
+      - "§4.4 Generation Mode Effect: rewrite AUC 1v2=0.6957 vs continuation 0.6114 (Δ=+8.4pp); transfer asymmetry cont→rw 89% > rw→cont 82%; rewrite amplifies depth signal via instruction-following artifacts but reduces cross-model generalizability"
+    dependencies: []
+    tables: [tab_kstar_ci, tab_transfer_matrix, tab_top_features]
+    figures: [fig2_auc_decay, fig3_transfer_heatmap]
+    registry_refs:
+      - exp_001_pythia_depth
+      - exp_002_olmo_depth
+      - exp_017_qwen_continuation
+      - mvp_pilot_sat_v1
+      - exp_007_bootstrap_ci
+      - exp_013_cross_transfer
+      - exp_005_degradation
+
+  - section: experiments_c3
+    word_budget: 1000
+    status: deferred
+    core_bullets:
+      - "[TODO exp-006] 6 filtering strategies × 5 seeds × α sweep"
+      - "[TODO exp-006] Graduated vs binary on MMLU/HellaSwag"
+      - "[TODO exp-006] α sensitivity + DSIR baseline comparison"
+    dependencies: [experiments_c1]
+    tables: [tab_filtering]
+
+  - section: conclusion
+    word_budget: 400
+    status: deferred
+    core_bullets:
+      - "Summary: K*=2 first systematic measurement + cross-model transferability + graduated filtering"
+      - "Limitations: 1.5B-scale only; C4 English only; prompt-chain not retrain-chain; K* = operational lower bound"
+      - "Future: retrain-chain validation; larger models; multilingual; temporal dynamics of web contamination"
+    dependencies: [experiments_c1, experiments_c3, method]
+
+visualization_plan:
+  - fig_id: fig1_pipeline
+    type: conceptual
+    tool: matplotlib
+    description: "System overview diagram: recursive generation chain (X → Y₁ → Y₂ → ... → Y_K) → 15D feature extraction → OBD-LightGBM depth classifier → K* determination via bootstrap CI. Clean academic style with arrows and labeled components."
+    placement: method
+    aspect_ratio: "16:6"
+    data_source: "manual (conceptual diagram)"
+
+  - fig_id: fig2_auc_decay
+    type: statistical
+    tool: matplotlib
+    description: "Pairwise AUC decay curves across depth pairs (0v1, 1v2, 2v3, 3v4, 4v5) for 4 model configurations. Horizontal dashed line at θ=0.60. Error bars from bootstrap 95% CI. X-axis: depth pair, Y-axis: AUC. Shows K*=2 boundary clearly — all curves cross θ between 1v2 and 2v3."
+    placement: experiments_c1
+    aspect_ratio: "4:3"
+    data_source: "registry: exp_007_bootstrap_ci"
+
+  - fig_id: fig3_transfer_heatmap
+    type: statistical
+    tool: matplotlib
+    description: "4×4 cross-model transfer accuracy heatmap. Rows = training source (Qwen-rw, Pythia, OLMo, Qwen-cont), columns = evaluation target. Annotated with accuracy values. Color scale from low (Qwen-rw cross-transfer ~0.26) to high (diagonal ~0.38-0.42). Highlight Pythia↔OLMo cluster."
+    placement: experiments_c1
+    aspect_ratio: "1:1"
+    data_source: "registry: exp_013_cross_transfer"
+
+  - fig_id: fig4_filtering
+    type: statistical
+    tool: matplotlib
+    status: deferred
+    description: "[DEFERRED] Graduated vs binary filtering comparison on MMLU/HellaSwag."
+    placement: experiments_c3
+    data_source: "[TODO exp-006]"
+
+table_plan:
+  - table_id: tab_kstar_ci
+    caption: "Pairwise depth discrimination AUC with bootstrap 95\\% CI across four model configurations. All 1v2 CI lower bounds exceed $\\theta=0.60$; all 2v3 CI upper bounds fall below $\\theta$, establishing $K^*=2$."
+    placement: experiments_c1
+    type: statistics
+    columns: [Configuration, Generation Mode, "AUC$_{0v1}$", "AUC$_{1v2}$", "95\\% CI$_{1v2}$", "$p_{1v2}$", "AUC$_{2v3}$", "95\\% CI$_{2v3}$"]
+    data_source: "registry: exp_007_bootstrap_ci"
+    notes: "Bold 1v2 values above threshold. Report permutation test p-values."
+
+  - table_id: tab_transfer_matrix
+    caption: "Cross-model transfer accuracy matrix (6-class ordinal depth classification). Diagonal entries show within-model performance; off-diagonal entries show cross-model transfer."
+    placement: experiments_c1
+    type: comparison
+    columns: ["Train $\\backslash$ Test", Qwen-rw, Pythia, OLMo, Qwen-cont]
+    data_source: "registry: exp_013_cross_transfer"
+    notes: "Report retention percentage (off-diagonal / diagonal). Highlight Pythia↔OLMo 91-92% and Qwen-rw 61-63%."
+
+  - table_id: tab_top_features
+    caption: "Top-3 discriminative features by single-feature AUC ranking across model configurations (continuation mode only). Spearman $\\rho$ between model pairs shown below."
+    placement: experiments_c1
+    type: statistics
+    columns: [Rank, Pythia-1.4B, OLMo-1B, Qwen-1.5B-cont]
+    data_source: "registry: exp_005_degradation"
+    notes: "surp_d1_std, surp_std, surp_d2_std shared across all architectures."
+
+  - table_id: tab_features
+    caption: "15-dimensional feature set for depth estimation, organized by feature group."
+    placement: method
+    type: configuration
+    columns: [Group, Feature, Description]
+    data_source: "manual"
+
+  - table_id: tab_setup
+    caption: "Experimental configurations for recursive depth chain generation."
+    placement: method
+    type: configuration
+    columns: [ID, Model, Parameters, Generation Mode, N, Max Depth]
+    data_source: "manual + registry specs"
+
+  - table_id: tab_filtering
+    caption: "[DEFERRED] Downstream evaluation: filtering strategy comparison."
+    placement: experiments_c3
+    type: comparison
+    status: deferred
+    columns: [Strategy, MMLU, HellaSwag, "Δ vs no-filter"]
+    data_source: "[TODO exp-006]"
+
+literature_strategy:
+  citation_budget: 30
+  macro_context:
+    - "recursive synthetic text contamination and generational depth"
+    - "data curation and quality estimation for LLM pretraining"
+  micro_clusters:
+    - cluster_name: "model-collapse"
+      search_queries:
+        - "model collapse iterative training synthetic data 2024 2025"
+        - "recursive generation quality degradation LLM"
+      must_cite:
+        - shumailov2024collapse
+        - alemohammad2024selfconsuming
+        - dohmatob2024model
+        - schaeffer2025position
+        - kazdan2025collapse
+        - shi2025generalization
+      target_count: 6
+
+    - cluster_name: "detection"
+      search_queries:
+        - "machine generated text detection statistical 2024 2025 2026"
+        - "AI text detection zero-shot features"
+      must_cite:
+        - basani2026diveye
+        - zhang2024minkpp
+        - zellers2019grover
+        - ippolito2020detection
+      target_count: 5
+
+    - cluster_name: "verification-curation"
+      search_queries:
+        - "data selection pretraining LLM synthetic filtering 2024 2025"
+        - "synthetic data curation importance resampling"
+      must_cite:
+        - drayson2025
+        - xie2023dsir
+        - tirumala2024d4
+        - xie2024doremi
+        - amin2025escaping
+        - gambetta2025surplexity
+      target_count: 7
+
+    - cluster_name: "watermarking"
+      search_queries:
+        - "LLM watermarking provenance tracking 2024 2025"
+      must_cite:
+        - kirchenbauer2023watermark
+      target_count: 2
+
+writing_order:
+  - method
+  - experiments_c1
+  - related_work
+  - introduction

@@ -1,0 +1,64 @@
+# analysis depth token length
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_analysis_depth_token_length_20260516T023706_result.json`
+- **Structured JSON:** [`9bc48a50d45f6700b6e8.json`](../../sessions/9b/9bc48a50d45f6700b6e8.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+已完成。以下是关键发现：
+
+## 各模型各 depth 平均 token 数
+
+| 模型 | depth_0 | depth_1 | depth_2 | depth_3 | depth_4 | depth_5 |
+|------|---------|---------|---------|---------|---------|---------|
+| **mvp-001 (Qwen-rewrite)** | 191 | **254** | 252 | 254 | 254 | 254 |
+| **exp-001 (Pythia-1.4B)** | 192 | 214 | 215 | 216 | 217 | 218 |
+| **exp-002 (OLMo-1B)** | 192 | **256** | 256 | 256 | 256 | 256 |
+| **exp-003 (greedy/nuc/t07/t12)** | 191 | ~253 | ~251 | ~253 | ~253 | ~254 |
+| **exp-004 (Qwen-7B)** | 191 | 196 | 195 | 193 | 197 | 197 |
+| **exp-016 (Qwen-base)** | 191 | 194 | 195 | (生成中) | — | — |
+| **exp-017 (Qwen-cont)** | 191 | 244 | 238 | 240 | 240 | 238 |
+
+## EOS 截断率（depth 1+）
+
+| 模型 | depth 1-5 平均截断率 | 严重程度 |
+|------|---------------------|---------|
+| mvp-001 (Qwen-rewrite) | **7-11%** | 轻微 |
+| exp-003 (Qwen-1.5B 各采样) | **8-16%** | 轻微 |
+| exp-017 (Qwen-cont) | **17-20%** | 中等 |
+| exp-001 (Pythia-1.4B) | **34-36%** | 严重 |
+| exp-004 (Qwen-7B) | **45-47%** | 严重 |
+| exp-016 (Qwen-base) | **46-48%** | 严重 |
+
+## 关于 depth 0 的意外发现
+
+depth_0（人类文本）mean ≈ 191, std ≈ 78, 约 51% 的样本 < 256 tokens。这是因为 C4 文本是按 **256 tokens 截断上限** 取的，但很多原始文本本身就不足 256 tokens。
+
+## 长度 confound 分析
+
+**三个层面的长度差异**：
+
+1. **depth 0 vs depth 1+**：depth_0 平均 191 tokens，而 depth 1+（对于 Qwen-rewrite/OLMo/exp-003）平均 252-256 tokens。**depth 0 反而更短**——这与"EOS 截断导致 depth 1+ 短于 depth 0"的担忧**方向相反**。0v1 的长度差异实际上是 depth 0 短、depth 1 长。
+
+2. **模型间差异巨大**：Qwen-7B、Qwen-base、Pythia 的 depth 1+ 大量 EOS 截断（mean ~195-217），而 Qwen-1.5B-Instruct rewrite 模式几乎不截断（mean ~254）。OLMo 完全不截断（mean ~256，std < 1）。
+
+3. **depth 1-5 之间无系统性递减**：对所有模型，depth 1 到 depth 5 的平均长度基本稳定，没有随 depth 增加而递减的趋势。
+
+**结论**：长度差异主要存在于 depth 0 vs depth 1+（且 depth 0 更短），以及不同模型之间。对于 reviewer 的 concern——depth 1+ 因 EOS 截断比 depth 0 短——实际数据**不支持**这个方向。如果长度是 confound，它应该让 0v1 检测**更难**（因为 depth 0 更短意味着分类器无法靠"更短=机器生成"来作弊），而不是虚高 AUC。
+
+---

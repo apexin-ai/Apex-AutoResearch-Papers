@@ -1,0 +1,117 @@
+{
+  "schema_version": "1.0",
+  "id": "285101c88d431c3fe347",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "paper audit tables 3 4 inline",
+  "task_key": "worker_paper_audit_tables_3_4_inline_20260523T112128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_audit_tables_3_4_inline_20260523T112128.log",
+    "occurrence": 1,
+    "bytes": 1796472,
+    "sha256": "5097869e7824030ca7b29e2c1449e5754062c7662eac4c6103cd4a37933cd3dd"
+  },
+  "statistics": {
+    "messages": 705,
+    "user_turns": 5,
+    "tool_calls": 233,
+    "roles": {
+      "log": 1,
+      "system": 222,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 233,
+      "tool_result": 233,
+      "user": 5,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 25,
+      "chunks": [
+        {
+          "path": "285101c88d431c3fe347-part-0001.json",
+          "message_count": 25
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "285101c88d431c3fe347-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "285101c88d431c3fe347-part-0001.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "285101c88d431c3fe347-part-0001.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 36,
+      "chunks": [
+        {
+          "path": "285101c88d431c3fe347-part-0001.json",
+          "message_count": 36
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 608,
+      "chunks": [
+        {
+          "path": "285101c88d431c3fe347-part-0001.json",
+          "message_count": 30
+        },
+        {
+          "path": "285101c88d431c3fe347-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "285101c88d431c3fe347-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "285101c88d431c3fe347-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "285101c88d431c3fe347-part-0005.json",
+          "message_count": 38
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-audit-tables-3-4-inline.md"
+}

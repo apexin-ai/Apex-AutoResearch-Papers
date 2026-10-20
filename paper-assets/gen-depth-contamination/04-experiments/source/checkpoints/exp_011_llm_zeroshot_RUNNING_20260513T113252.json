@@ -1,0 +1,78 @@
+{
+  "exp_id": "exp_011_llm_zeroshot",
+  "project": "gen-depth-contamination",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T08:59:07.954Z",
+    "updated_at": "2026-05-13T11:32:52.244Z",
+    "hypothesis": "Frontier LLMs (GPT-5.5, Claude Opus 4.6) cannot reliably estimate generational depth via zero-shot prompting, motivating the need for specialized statistical methods",
+    "spec": {
+      "command": "python3 scripts/exp011_llm_zeroshot.py --model gpt-5.5 && python3 scripts/exp011_llm_zeroshot.py --model claude-opus-4-6 && python3 scripts/exp011_analyze.py",
+      "server": "autodl-4090d",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data_exp001_pythia/",
+      "data_count": 500,
+      "model_name": "GPT-5.5 + Claude Opus 4.6 (zero-shot via OpenRouter)",
+      "seed": 42,
+      "sampling": "100 texts × 5 depths (0-4) from Pythia continuation",
+      "scripts": [
+        "scripts/exp011_sample_data.py",
+        "scripts/exp011_llm_zeroshot.py",
+        "scripts/exp011_analyze.py"
+      ],
+      "samples_path": "artifacts/exp011_samples.jsonl",
+      "api_base_url": "http://47.94.22.126/v1",
+      "api_model_ids": {
+        "gpt-5.5": "openai/gpt-5.5",
+        "claude-opus-4-6": "claude-opus-4-6"
+      },
+      "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/artifacts/exp011_analysis.json",
+      "log_path": "N/A (API task)"
+    },
+    "notes": "脚本就绪，sampling dry-run 通过 (500条)。openai/anthropic 包已装。等 API keys 后可立即运行。",
+    "metrics": {
+      "gpt_5_5": {
+        "accuracy_5class": 0.332,
+        "mae": 1.102,
+        "spearman_rho": 0.3834,
+        "binary_acc": 0.878,
+        "per_depth_acc": {
+          "depth_0": 0.77,
+          "depth_1": 0.19,
+          "depth_2": 0.38,
+          "depth_3": 0.24,
+          "depth_4": 0.08
+        },
+        "n_samples": 500,
+        "parse_failures": 0
+      },
+      "claude_opus_4_6": {
+        "accuracy_5class": 0.3307,
+        "mae": 1.1503,
+        "spearman_rho": 0.4162,
+        "binary_acc": 0.8818,
+        "per_depth_acc": {
+          "depth_0": 0.69,
+          "depth_1": 0.21,
+          "depth_2": 0.28,
+          "depth_3": 0.101,
+          "depth_4": 0.37
+        },
+        "n_samples": 500,
+        "parse_failures": 1
+      },
+      "obd_lgbm_baseline": {
+        "accuracy_5class": 0.3856,
+        "mae": 1.1072,
+        "tau_b": 0.4745
+      },
+      "key_finding": "Both frontier LLMs (GPT-5.5, Claude Opus 4.6) perform WORSE than OBD-LightGBM on 5-class depth estimation (~33% vs 38.6% acc). Binary human/AI detection is high (~88%) but fine-grained depth discrimination fails. Confirms need for specialized statistical methods.",
+      "claude_diagnosis": "anthropic/claude-opus-4-6 returns 503 model_not_found on this proxy; claude-opus-4-6 (no prefix) works"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-13T11:32:52.282037+00:00",
+  "trigger": "update_registry"
+}

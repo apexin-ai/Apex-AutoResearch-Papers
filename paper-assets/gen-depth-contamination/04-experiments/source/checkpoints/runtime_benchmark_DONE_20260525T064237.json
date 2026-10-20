@@ -1,0 +1,38 @@
+{
+  "exp_id": "runtime_benchmark",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T13:11:11.536Z",
+    "updated_at": "2026-05-25T06:42:36.704Z",
+    "spec": {
+      "command": "python scripts/runtime_benchmark.py",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "232163",
+      "log_path": "~/runs/gen-depth-contamination/runtime_benchmark.log",
+      "submitted_at": "2026-05-25T06:37:46.951Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "existing depth chain data",
+      "data_count": 1000,
+      "model_name": "Qwen2.5-1.5B-Instruct + GPT-2 Large + OLMo-1B",
+      "seed": 42,
+      "wall_clock_seconds": 289.8,
+      "gpu_hours": 0.08
+    },
+    "hypothesis": "OBD 15D feature extraction + LightGBM classifier 的 per-document inference time 显著低于 neural baselines (Binoculars/DivEye/neural probe)，且 throughput 满足大规模数据审计需求（>100 docs/sec on single GPU）。Reviewer 预期会问计算开销。",
+    "conclusion": "success",
+    "checkpoint_path": "N/A (benchmark, no checkpoint)",
+    "log_path": "results/runtime_benchmark/run.log",
+    "completed_at": "2026-05-25T06:42:36.705Z"
+  },
+  "timestamp": "2026-05-25T06:42:37.094166+00:00",
+  "trigger": "update_registry"
+}

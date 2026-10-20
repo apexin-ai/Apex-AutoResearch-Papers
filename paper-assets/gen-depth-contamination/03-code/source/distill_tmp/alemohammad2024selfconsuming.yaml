@@ -1,0 +1,30 @@
+paper_key: "alemohammad2024selfconsuming"
+title: "Self-Consuming Generative Models Go MAD"
+venue: "ICLR 2024 Poster"
+full_text_available: false
+
+research:
+  baselines: [real-data-only training, mixed real+synthetic training, purely synthetic training]
+  metrics:
+    - {name: "FID", direction: "lower_better"}
+    - {name: "precision", direction: "higher_better"}
+    - {name: "recall", direction: "higher_better"}
+    - {name: "coverage", direction: "higher_better"}
+    - {name: "density", direction: "higher_better"}
+  datasets:
+    - {name: "FFHQ", size: "70K face images"}
+    - {name: "MNIST", size: "60K digit images"}
+    - {name: "Gaussian mixture models (synthetic)", size: "controlled"}
+  ablation_dimensions: [autophagous loop type (fully synthetic / synthetic augmentation / fresh data), generation depth, proportion of fresh real data, model type (GMM / StyleGAN2 / DDPM)]
+  training_recipe: {details: "Three autophagous loop types: (1) fully synthetic (replace all real data each gen), (2) synthetic augmentation (add synthetic to real), (3) fresh data (new real data each gen). Tested on GMMs, StyleGAN2 (FFHQ), DDPM (MNIST)."}
+  method_family: "model collapse analysis (autophagous loops)"
+
+positioning:
+  core_claim: "Without enough fresh real data in each generation, self-consuming generative models inevitably degrade in quality (precision) or diversity (recall), termed Model Autophagy Disorder (MAD), visible within a few generations"
+  key_results: "Fully synthetic loop: rapid quality and diversity collapse. Synthetic augmentation: slower but eventual degradation. Fresh data: stability proportional to fresh data ratio."
+  limitations: ["Image-only experiments (no text)", "Controlled loop setting, not realistic web contamination", "Limited model scale"]
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

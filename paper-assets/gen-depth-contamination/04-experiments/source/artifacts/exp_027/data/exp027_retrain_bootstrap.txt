@@ -1,0 +1,10 @@
+pair | AUC_point | CI_lower | CI_upper | perm_p | CI_lower>0.60
+0v1  | 0.9847    | 0.9828   | 0.9864   | 0.0001 | Yes
+1v2  | 0.9482    | 0.9443   | 0.9520   | 0.0001 | Yes
+2v3  | 0.8885    | 0.8829   | 0.8940   | 0.0001 | Yes
+3v4  | 0.7977    | 0.7903   | 0.8051   | 0.0001 | Yes
+
+K* (CI-based, theta=0.6) = 4
+Method: GroupKFold(5) OOF + 10000 doc-level bootstrap + 10000 label permutation
+Source: exp_008_retrain_chain features.csv (25000 samples, depths 0-4)
+Remote artifact: /root/autodl-tmp/gen-depth-contamination/artifacts/exp027_retrain_bootstrap.json

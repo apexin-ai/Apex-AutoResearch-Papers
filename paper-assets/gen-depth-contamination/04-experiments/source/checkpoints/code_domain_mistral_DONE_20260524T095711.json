@@ -1,0 +1,48 @@
+{
+  "exp_id": "code_domain_mistral",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T09:38:44.455Z",
+    "updated_at": "2026-05-24T09:57:11.346Z",
+    "hypothesis": "Mistral-7B on Python Code domain will yield K*=2 (matching Code ceiling=2 from Qwen-1.5B and LLaMA-8B), or K*=1 if competence-limited. Combined with Mistral C4 K*=1 and arXiv K*=3, this would demonstrate domain-dependent K* variation within a single model family.",
+    "metrics": {
+      "k_star": 2,
+      "pairwise_auc": {
+        "0v1": 0.9191,
+        "1v2": 0.6152,
+        "2v3": 0.5293,
+        "3v4": 0.5286,
+        "4v5": 0.5099
+      },
+      "pairwise_auc_std": {
+        "0v1": 0.0017,
+        "1v2": 0.012,
+        "2v3": 0.0091,
+        "3v4": 0.0104,
+        "4v5": 0.006
+      },
+      "scorer": "Qwen2.5-1.5B-Instruct",
+      "data_path": "data/exp_code_mistral7b/",
+      "result_path": "results/exp_code_mistral7b/",
+      "key_finding": "Mistral-7B Code K*=2, matching Code ceiling=2. Notable: Mistral is K*=1 on C4 but K*=2 on Code — reaches ceiling on Code despite being competence-limited on C4. Domain K* profile: Wiki=1, C4=1, Code=2, arXiv=3."
+    },
+    "conclusion": "success",
+    "spec": {
+      "command": "OBD pipeline on pre-existing Mistral-7B Code data",
+      "server": "cqa1-22115",
+      "data_path": "data/exp_code_mistral7b/",
+      "data_count": "5500 docs x 6 depths",
+      "model_name": "Mistral-7B + Qwen2.5-1.5B-Instruct (scorer)",
+      "seed": 42,
+      "checkpoint_path": "results/exp_code_mistral7b/",
+      "log_path": "results/exp_code_mistral7b/"
+    },
+    "completed_at": "2026-05-24T09:57:11.346Z"
+  },
+  "timestamp": "2026-05-24T09:57:11.682559+00:00",
+  "trigger": "update_registry"
+}

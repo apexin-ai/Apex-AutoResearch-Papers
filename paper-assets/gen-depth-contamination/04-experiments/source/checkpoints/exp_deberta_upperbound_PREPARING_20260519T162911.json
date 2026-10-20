@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_deberta_upperbound",
+  "project": "gen-depth-contamination",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T16:29:11.448Z",
+    "updated_at": "2026-05-19T16:29:11.449Z"
+  },
+  "timestamp": "2026-05-19T16:29:11.659902+00:00",
+  "trigger": "update_registry"
+}

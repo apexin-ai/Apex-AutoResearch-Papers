@@ -1,0 +1,45 @@
+{
+  "exp_id": "seed_pythia14b_wiki_s123",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T00:34:08.091Z",
+    "updated_at": "2026-05-22T06:39:17.971Z",
+    "hypothesis": "Pythia-1.4B WikiText 的 K*=2 结论在 seed=123 下仍成立（原始 seed=42），验证 OBD 的 depth boundary 不依赖随机种子",
+    "spec": {
+      "command": "run_pipeline.py --generation_mode continuation --top_p 0.95 --seed 123 (two-phase: Pythia gen + Qwen score)",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "2863",
+      "log_path": "/root/autodl-tmp/gen-depth-contamination/results/seed_pythia14b_wiki_s123/",
+      "submitted_at": "2026-05-22T03:58:22.018Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/seed_robustness/seed_pythia14b_wiki_s123",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-1.4b (generator) + Qwen2.5-1.5B-Instruct (scorer)",
+      "seed": 123,
+      "metrics": {
+        "K_star": 1,
+        "auc_0v1": 0.9751,
+        "auc_1v2": 0.5766,
+        "auc_2v3": 0.5318,
+        "auc_3v4": 0.5175,
+        "auc_4v5": 0.527
+      },
+      "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/results/seed_pythia14b_wiki_s123/",
+      "wall_clock_seconds": 9656.0,
+      "gpu_hours": 2.68
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-22T06:39:17.971Z"
+  },
+  "timestamp": "2026-05-22T06:39:18.284603+00:00",
+  "trigger": "update_registry"
+}

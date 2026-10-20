@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "0d4e6c19d29054a939ef",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "audit final data check ddl",
+  "task_key": "worker_audit_final-data-check-ddl_20260524T042721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_final-data-check-ddl_20260524T042721.log",
+    "occurrence": 1,
+    "bytes": 1094429,
+    "sha256": "88ea416fcc90bcec4fd15eb47635095427f1ea70af332af09f02ce597acab8f0"
+  },
+  "statistics": {
+    "messages": 174,
+    "user_turns": 1,
+    "tool_calls": 62,
+    "roles": {
+      "log": 1,
+      "system": 26,
+      "record": 1,
+      "assistant": 20,
+      "tool_call": 62,
+      "tool_result": 62,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 47,
+      "chunks": [
+        {
+          "path": "0d4e6c19d29054a939ef-part-0001.json",
+          "message_count": 47
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 127,
+      "chunks": [
+        {
+          "path": "0d4e6c19d29054a939ef-part-0001.json",
+          "message_count": 36
+        },
+        {
+          "path": "0d4e6c19d29054a939ef-part-0002.json",
+          "message_count": 91
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-final-data-check-ddl.md"
+}

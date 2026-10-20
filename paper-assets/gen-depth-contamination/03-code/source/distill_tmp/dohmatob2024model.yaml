@@ -1,0 +1,72 @@
+paper_key: "dohmatob2024model"
+title: "A Tale of Tails: Model Collapse as a Change of Scaling Laws"
+venue: "arXiv 2024"
+full_text_available: true
+
+research:
+  baselines: [clean-data-only scaling, purely synthetic data, mixed clean+synthetic]
+  metrics:
+    - {name: "test error", direction: "lower_better"}
+    - {name: "perplexity", direction: "lower_better"}
+    - {name: "total-variation distance", direction: "lower_better"}
+    - {name: "skill acquisition curves", direction: "higher_better"}
+  datasets:
+    - {name: "Wikitext-103 (for LLaMA2-7B)", size: "~2M samples"}
+    - {name: "Synthetic Zipf distributions", size: "controlled"}
+    - {name: "GCD integer pairs (for Transformer)", size: "300K training samples"}
+  ablation_dimensions: [tail cutoff rank k, Zipf exponent beta, number of generations n, clean data mixing proportion pi, temperature/top-p sampling, model capacity (embedding dim d)]
+  training_recipe: {details: "Theoretical framework (Hutter LLM, Hutter++, Associative Memory) + empirical validation. LLaMA2-7B fine-tuning on Wikitext-103 with multiple AI-generation iterations. GCD Transformer for skill emergence analysis."}
+  method_family: "theoretical analysis of model collapse via scaling laws"
+
+positioning:
+  core_claim: "Model collapse is a change of scaling laws caused by tail cutting/narrowing in AI-generated data; performance plateaus when T exceeds k^beta, but even small amounts of clean data enable recovery via a grokking mechanism"
+  key_results: "Double scaling law: E_test ~ T^(-(beta-1)/beta) + k^(-(beta-1)). Multi-gen collapse: error accumulates linearly as n*T0^(-c). Grokking: plateau length ~ k^beta/pi, recovery with any pi > 0. LLaMA2-7B: empirical confirmation of tail-dependent scaling."
+  limitations: ["Simplified Zipf assumption may not capture all real data statistics", "Hutter model abstracts away LLM optimization complexities", "Grokking theorem requires deterministic labels", "Associative memory model is simplified"]
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "How is the current scaling paradigm affected by synthetic data in the training corpus?"
+  tension: "Empirical observations of model collapse lack formal characterization; unclear when and why scaling laws break"
+  key_insight: "Heavy-tailed (Zipfian) distributions are essential for scaling; AI-generated data cuts or narrows tails, creating phase transitions in scaling laws. Even vanishingly small clean data fraction enables recovery."
+  argument_chain: "scaling laws depend on heavy tails → AI data cuts tails → double scaling law with plateau → multi-gen compounds linearly → grokking with clean data mixing → LLaMA2 + GCD validation → skill emergence/disappearance"
+  contribution_framing: "Five theoretical contributions: (1) double scaling law for tail-cut data, (2) tail narrowing slower decay, (3) multi-generation linear accumulation, (4) grokking mitigation with clean data, (5) triplet scaling for capacity-limited models"
+  intro_structure: "3 paragraphs: scaling paradigm question, theoretical framework preview, contribution list with theorem references"
+  notable_technique: "The skill emergence/disappearance framing (GCD experiments) makes abstract scaling theory visceral: rare skills literally vanish when tails are cut, giving reviewers a concrete mental image"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "problem_illustration"
+    description: "Illustration of tail cutting/narrowing mechanisms via top-p sampling, temperature scaling, and finite sample bias; includes GCD skill computation visualization"
+    narrative_role: "Makes abstract tail-cutting theory concrete via sampling mechanism diagrams"
+    design_elements: ["distribution plots with cutoff markers", "sampling mechanism comparison", "GCD skill grid"]
+    visual_style: "Multi-panel with distribution curves showing truncation points; clean mathematical style"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Empirical confirmation of double scaling law, multi-gen collapse, and grokking on Zipf data"
+      how_gain_highlighted: "Three panels: (left) k^(-(beta-1)) plateau curves, (middle) rightward shift across 5 gens, (right) grokking plateau then recovery"
+      design_note: "Theory-confirming plots with analytical curves overlaid on empirical points"
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "LLaMA2-7B on Wikitext-103 (0-gen vs subsequent gens), GCD transformer skill emergence"
+      how_gain_highlighted: "Tapered scaling with synthetic data; skill curves that plateau then fail to emerge"
+      design_note: "Real model validation alongside skill emergence visualization"
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      dimensions_varied: ["real data amount T_real", "synthetic data amount T_AI"]
+      design_note: "Mixing analysis showing plateau effect when synthetic data dominates"
+  figure_narrative_role: "Fig1 (tail mechanisms) → Fig2 (distribution comparison: LLaMA vs original) → Fig3 (theory confirmation: 3 panels) → Fig4 (real model + skills) → Fig5 (mixing analysis)"
+
+tables:
+  table_count: 0
+  main_result_table:
+    table_id: "N/A"
+    design_note: "Purely theory+figure-driven paper; no comparison tables. Results expressed as scaling law equations and confirmed via plots."
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: true
+    content: "Proof details, additional experimental configurations"
+    reason: "Theory paper; main contribution is equations, not tabular comparisons"

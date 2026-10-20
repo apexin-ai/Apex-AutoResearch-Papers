@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e428a33066a08b05802",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "verify exp004 gpu",
+  "task_key": "worker_verify_exp004_gpu_20260515T223125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_exp004_gpu_20260515T223125_result.json",
+    "occurrence": 1,
+    "bytes": 457,
+    "sha256": "389c5c12aecec102ca7f31b948fa324a2bddca2fab20ed80533c32f1aba6a5ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-004 恢复任务正常运行中：\n\n- **GPU**: PID 127516，占用 **5436 MiB** VRAM，python3 进程\n- **进程**: PID 127504 在 tmux session `exp_004_7b_crossscale` 中执行 `exp004_resume_feat.sh`\n- **进度**: Step 4 Feature Extraction 进行中，depth 0 (5000 texts) 的 Surprisal 计算已到 **175/625** (~28%)，速度 ~8 it/s，预计还需约 55 秒完成当前 depth\n\n一切正常，任务在 GPU 上稳定推理中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-exp004-gpu.md"
+}

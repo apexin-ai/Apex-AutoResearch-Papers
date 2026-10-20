@@ -1,0 +1,880 @@
+{
+  "schema_version": "1.0",
+  "id": "1741833c70fee364c23e",
+  "project": "gen-depth-contamination",
+  "kind": "conversation",
+  "title": "fix paper audit corrections",
+  "task_key": "worker_fix_paper_audit_corrections_20260513T223912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_fix_paper_audit_corrections_20260513T223912.jsonl",
+    "occurrence": 1,
+    "bytes": 30859,
+    "sha256": "60c7357685fd501f99fde746d325f56db42a597c32a20f2117c7762e7858d7e5"
+  },
+  "statistics": {
+    "messages": 43,
+    "user_turns": 0,
+    "tool_calls": 21,
+    "roles": {
+      "tool_call": 21,
+      "tool_result": 21,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T22:41:53.324972+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/paper/",
+              "description": "List paper directory"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T22:41:53.325304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 2\nls: cannot access '/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/paper/': No such file or directory"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T22:41:53.325470+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/summary_auc_decay/ 2>/dev/null || echo \"NO_DIR\"",
+              "description": "Check artifacts directory for AUC decay figure"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T22:41:53.325714+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(ls -la /home/ubuntu/.agent-ml-research-i…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T22:41:53.325925+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/",
+              "description": "List project root directory"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T22:41:53.326087+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 196\ndrwxr-xr-x  9 ubuntu ubuntu  4096 May 13 22:06 .\ndrwxrwxr-x  5 ubuntu ubuntu  4096 May 12 10:56 ..\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 12 10:56 .claude\n-rw-r--r--  1 ubuntu ubuntu 12798 May 13 22:36 AGENTS.md\n-rw-r--r--  1 ubuntu ubuntu     0 May 12 10:58 ROADMAP.lock\n-rw-------  1 ubuntu ubuntu  5360 May 13 21:19 ROADMAP.md\ndrwxr-xr-x 11 ubuntu ubuntu  4096 May 13 22:17 artifacts\ndrwxr-xr-x  2 ubuntu ubuntu 12288 May 13 21:19 checkpoints\n-rw-r--r--  1 ubuntu ubuntu     0 May 12 10:58 decisions.lock\n-rw-------  1 ubuntu ubuntu 15363 May 13 11:32 decisions.yaml\ndrwxr-xr-x  4 ubuntu ubuntu  4096 May 13 02:35 docs\n-rwxr-xr-x  1 ubuntu ubuntu     0 May 12 20:03 dream_registry.lock\n-rw-------  1 ubuntu ubuntu  1425 May 13 09:05 dream_registry.yaml\n-rw-r--r--  1 ubuntu ubuntu  1430 May 13 09:05 dream_registry.yaml.bak\n-rw-r--r--  1 ubuntu ubuntu     0 May 12 20:50 experiment_plan.lock\n-rw-------  1 ubuntu ubuntu  6106 May 13 21:20 experiment_plan.yaml\n-rw-r--r--  1 ubuntu ubuntu 13243 May 13 02:23 literature_map.yaml\ndrwxr-xr-x  4 ubuntu ubuntu  4096 May 12 11:10 logs\n-rw-r--r--  1 ubuntu ubuntu  3823 May 13 15:59 memory.md\n-rw-r--r--  1 ubuntu ubuntu 11268 May 13 22:05 paper_framing.md\n-rw-r--r--  1 ubuntu ubuntu     0 May 13 09:22 paper_provenance.lock\n-rw-------  1 ubuntu ubuntu  8699 May 13 22:06 paper_provenance.yaml\n-rw-r--r--  1 ubuntu ubuntu     0 May 12 11:09 registry.lock\n-rw-------  1 ubuntu ubuntu 29196 May 13 21:19 registry.yaml\n-rw-r--r--  1 ubuntu ubuntu  1761 May 13 21:19 report.md\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 13 21:02 scripts\n-rwxr-xr-x  1 ubuntu ubuntu     0 May 12 10:57 study_status.lock\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 13 22:34 task_context\n-rw-r--r--  1 ubuntu ubuntu 14338 May 13 11:50 writing_plan.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T22:41:53.326224+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/ -name \"*.tex\" -o -name \"*.bib\" 2>/dev/null",
+              "description": "Find all tex files in the project"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T22:41:53.326354+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/experiments_c1.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/dream_reports/dream_20260512T200328/median/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/dream_reports/dream_20260512T200328/worst/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/dream_reports/dream_20260512T200328/best/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/dream_reports/dream_20260513T080728/median/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/dream_reports/dream_20260513T080728/worst/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/dream_reports/dream_20260513T080728/best/paper.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T22:41:53.326491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/",
+              "description": "List artifacts directory"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T22:41:53.326619+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 160\ndrwxr-xr-x 11 ubuntu ubuntu  4096 May 13 22:17 .\ndrwxr-xr-x  9 ubuntu ubuntu  4096 May 13 22:06 ..\ndrwxr-xr-x  5 ubuntu ubuntu  4096 May 13 09:11 _project\n-rw-r--r--  1 ubuntu ubuntu  5246 May 13 06:48 bootstrap_ci_4model.json\n-rw-r--r--  1 ubuntu ubuntu 13981 May 13 18:48 discussion_outline.md\ndrwxr-xr-x  4 ubuntu ubuntu  4096 May 13 09:05 dream_reports\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 13 06:19 exp-005\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 13 06:51 exp-013\n-rw-r--r--  1 ubuntu ubuntu  2336 May 13 06:19 exp005_4model_tau_matrix.json\n-rw-r--r--  1 ubuntu ubuntu  7877 May 13 07:36 exp006_analyze.py\n-rw-r--r--  1 ubuntu ubuntu  7371 May 13 07:35 exp006_continued_pretraining.py\n-rw-r--r--  1 ubuntu ubuntu  2577 May 13 07:35 exp006_evaluate.py\n-rw-r--r--  1 ubuntu ubuntu 10752 May 13 07:34 exp006_filtering_strategies.py\ndrwxr-xr-x  4 ubuntu ubuntu  4096 May 13 21:03 exp_003_decoding_ablation\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 13 18:53 exp_015_neural_probe\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 13 03:36 figures\n-rw-r--r--  1 ubuntu ubuntu  4054 May 12 12:49 gpu_optimization_report.txt\n-rw-r--r--  1 ubuntu ubuntu 16088 May 13 02:18 literature_positioning_notes.md\n-rw-r--r--  1 ubuntu ubuntu 14327 May 13 00:52 literature_scan_2025_2026.md\n-rw-r--r--  1 ubuntu ubuntu 15887 May 13 22:18 manifest.yaml\n-rw-r--r--  1 ubuntu ubuntu  3807 May 13 07:35 run_exp006.sh\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 13 22:17 scripts\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 13 22:17 summary_auc_decay"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T22:41:53.326763+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T22:41:53.327068+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe evaluate generational depth estimation on four model configurations:\n5\tPythia-1.4B and OLMo-1B in continuation mode, and Qwen2.5-1.5B-Instruct in both rewrite and continuation modes.\n6\tAll experiments use the OBD-LightGBM classifier with the 15-dimensional feature set described in Section~\\ref{sec:method}.\n7\tEach configuration uses a balanced corpus of 5{,}000 texts per depth level (generations 0--5).\n8\tWe organize results around four questions:\n9\t(1)~Does $\\Kempirical = 2$ hold across configurations?\n10\t(2)~Do depth classifiers transfer across models?\n11\t(3)~Is the feature degradation ordering model-independent?\n12\t(4)~How does generation mode affect detectability?\n13\t\n14\t%% ====================================================================\n15\t\\subsection{$\\Kempirical = 2$ Across All Configurations}\n16\t\\label{sec:kstar_boundary}\n17\t\n18\tTable~\\ref{tab:kstar_ci} reports pairwise $\\auc$ for adjacent depth pairs\n19\tacross all four configurations, with bootstrap 95\\% confidence intervals\n20\t(1{,}000 resamples) and permutation-test $p$-values for the critical 1v2\n21\tand 2v3 boundaries.\n22\t\n23\t\\begin{table}[t]\n24\t\\centering\n25\t\\small\n26\t\\caption{Pairwise $\\auc$ for adjacent depth pairs.  Bootstrap 95\\% CIs\n27\tand permutation $p$-values shown for the $\\Kstar$ boundary rows (1v2,\n28\t2v3).  $\\Kempirical = 2$ requires 1v2 $\\text{CI}_\\text{low} > \\theta$\n29\tand 2v3 $\\text{CI}_\\text{high} < \\theta$ with $\\theta = 0.60$.\n30\tAll 0v1 permutation $p \\leq 0.002$ (Qwen-cont 0v1: CI [0.9963, 0.9978], $p = 0.000$).}\n31\t\\label{tab:kstar_ci}\n32\t\\begin{tabular}{lcccc}\n33\t\\toprule\n34\t & Qwen-rw & Pythia & OLMo & Qwen-cont \\\\\n35\t\\midrule\n36\t0v1 & 0.9956 & 0.9932 & 0.9970 & 0.9972 \\\\[4pt]\n37\t1v2 & 0.6955 & 0.6539 & 0.6145 & 0.6112 \\\\\n38\t{\\footnotesize CI}\n39\t  & {\\footnotesize [.6859,\\,.7041]}\n40\t  & {\\footnotesize [.6454,\\,.6630]}\n41\t  & {\\footnotesize [.6045,\\,.6247]}\n42\t  & {\\footnotesize [.6015,\\,.6213]} \\\\\n43\t{\\footnotesize $p$\n…[truncated 13486 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T22:41:53.327231+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T22:41:53.327397+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tWeb-scale text corpora are increasingly contaminated by synthetic content that has itself been generated from earlier synthetic content.\n5\tEach pass through a language model constitutes a lossy channel: first-generation synthetic text retains much of the information structure of its human-written source, but by the fourth generation the output is qualitatively different---tail modes vanish, lexical diversity contracts, and surprisal distributions flatten~\\cite{shumailov2024collapse, dohmatob2024model}.\n6\tThis recursive degradation is not merely a theoretical concern; as synthetic text proliferates on the open web, training corpora inevitably ingest documents at varying generational depths, amplifying the risk of model collapse in downstream systems.\n7\tYet the dominant paradigm in synthetic text detection treats all machine-generated text identically: a document is classified as human or synthetic, with no regard for how many rounds of recursive generation it has undergone.\n8\tThis binary framing discards the generational depth dimension entirely.\n9\t\n10\tThe gap cuts across three research communities.\n11\tBinary detection methods---including DivEye~\\cite{basani2026diveye}, Min-K\\%++~\\cite{zhang2024minkpp}, and CoDeC~\\cite{zawalski2026codec}---achieve strong human-versus-machine separation but produce no depth estimate.\n12\tThe model collapse literature provides macro-level characterizations of recursive degradation: Shumailov et al.~\\cite{shumailov2024collapse} demonstrated irreversible tail loss, Alemohammad et al.~\\cite{alemohammad2024selfconsuming} proved convergence to a fixed point, and Schaeffer et al.~\\cite{schaeffer2025position} organized the field into a taxonomy of eight definitions---yet none of these works provides a tool for estimating the generational depth of an individual text.\n13\tData selection methods such as DSIR~\\cite{xie2023dsir}, D4~\\cite{tirumala2024d4}, and DoReMi~\\cite{xie2024doremi} perfor\n…[truncated 5334 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-13T22:41:53.327547+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/method.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T22:41:53.327749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t% === Pipeline figure placeholder ===\n5\t% \\begin{figure}[t]\n6\t% \\centering\n7\t% \\includegraphics[width=\\columnwidth]{figures/pipeline.pdf}\n8\t% \\caption{Overview of the generational depth estimation pipeline. Seed documents from C4 are recursively passed through a generation operator $G_\\delta$ to produce a depth chain $X \\to Y_1 \\to \\cdots \\to Y_K$. Statistical features extracted by an external scorer model are fed to the OBD-LightGBM classifier for depth prediction.}\n9\t% \\label{fig:pipeline}\n10\t% \\end{figure}\n11\t\n12\t\\subsection{Problem Formulation}\n13\t\\label{sec:formulation}\n14\t\n15\tRecursive text generation naturally forms an iterated lossy channel.\n16\tLet $X$ denote an original human-written document drawn from a source distribution $\\mathcal{D}$.\n17\tA generation operator $G_\\delta = \\text{LLM} + \\delta$, parameterized by a decoding strategy $\\delta$ (e.g., nucleus sampling with top-$p$ and temperature $T$), produces successive generations:\n18\t\\begin{equation}\n19\t  X \\to Y_1 \\to Y_2 \\to \\cdots \\to Y_K, \\quad Y_k = G_\\delta(Y_{k-1}),\n20\t  \\label{eq:markov}\n21\t\\end{equation}\n22\twhere $Y_0 \\triangleq X$.\n23\tThe sequence $\\{Y_k\\}_{k=0}^K$ forms a Markov chain, since each generation depends only on its immediate predecessor.\n24\t\n25\tBy the Data Processing Inequality (DPI), mutual information between the original document and successive generations is monotonically non-increasing:\n26\t\\begin{equation}\n27\t  I(X; Y_1) \\geq I(X; Y_2) \\geq \\cdots \\geq 0.\n28\t  \\label{eq:dpi}\n29\t\\end{equation}\n30\tSince mutual information is bounded below by zero, this monotone sequence converges: the original signal degrades monotonically across generations.\n31\tMoreover, when the generation operator defines a finite-state Markov chain, the marginal distributions of adjacent generations converge to a shared stationary distribution, so that any classifier's ability to distinguish depth $k$ from depth $k{+}1$ must eventually degrade to chance.\n32\tTogethe\n…[truncated 11402 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-13T22:41:53.327920+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/figures/ && ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/summary_auc_decay/",
+              "description": "Check figures and summary_auc_decay directories"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-13T22:41:53.328054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 88\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 13 03:36 .\ndrwxr-xr-x 11 ubuntu ubuntu  4096 May 13 22:17 ..\n-rw-r--r--  1 ubuntu ubuntu 33760 May 13 03:36 auc_heatmap.pdf\n-rw-r--r--  1 ubuntu ubuntu 18709 May 13 03:36 feature_importance.pdf\n-rw-r--r--  1 ubuntu ubuntu 23965 May 13 03:36 jsd_decay.pdf\ntotal 276\ndrwxr-xr-x  2 ubuntu ubuntu   4096 May 13 22:17 .\ndrwxr-xr-x 11 ubuntu ubuntu   4096 May 13 22:17 ..\n-rw-r--r--  1 ubuntu ubuntu  32565 May 13 22:17 fig_summary_auc_decay.pdf\n-rw-r--r--  1 ubuntu ubuntu 240957 May 13 22:17 fig_summary_auc_decay.png"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-13T22:41:53.328176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/",
+              "description": "List paper directory structure"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-13T22:41:53.328295+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 88\ndrwxr-xr-x 3 ubuntu ubuntu  4096 May 13 22:07 .\ndrwxr-xr-x 4 ubuntu ubuntu  4096 May 13 02:35 ..\n-rw-r--r-- 1 ubuntu ubuntu  3320 May 13 22:06 conclusion.tex\n-rw-r--r-- 1 ubuntu ubuntu 10099 May 13 22:07 discussion.tex\n-rw-r--r-- 1 ubuntu ubuntu 14194 May 13 22:06 experiments_c1.tex\ndrwxr-xr-x 2 ubuntu ubuntu  4096 May 13 09:03 figures\n-rw-r--r-- 1 ubuntu ubuntu  7175 May 13 22:05 introduction.tex\n-rw-r--r-- 1 ubuntu ubuntu  1354 May 13 09:01 main.tex\n-rw-r--r-- 1 ubuntu ubuntu 12774 May 13 19:35 method.tex\n-rw-r--r-- 1 ubuntu ubuntu  5559 May 13 11:52 references.bib\n-rw-r--r-- 1 ubuntu ubuntu  6123 May 13 11:52 related_work.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-13T22:41:53.328439+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/",
+              "description": "List paper figures directory"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-13T22:41:53.328565+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 524\ndrwxr-xr-x 2 ubuntu ubuntu   4096 May 13 09:03 .\ndrwxr-xr-x 3 ubuntu ubuntu   4096 May 13 22:07 ..\n-rw-r--r-- 1 ubuntu ubuntu  21179 May 13 09:03 fig2_auc_decay.pdf\n-rw-r--r-- 1 ubuntu ubuntu 178800 May 13 09:03 fig2_auc_decay.png\n-rw-r--r-- 1 ubuntu ubuntu  30523 May 13 09:03 fig3_transfer_heatmap.pdf\n-rw-r--r-- 1 ubuntu ubuntu 287865 May 13 09:03 fig3_transfer_heatmap.png"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-13T22:41:53.328681+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-13T22:41:53.328841+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe presented the first systematic measurement of the generational depth discrimination boundary $\\Kempirical$ for recursive synthetic text.\n5\tAcross 8 configurations spanning 4 model-mode combinations (Pythia-1.4B, OLMo-1B, and Qwen2.5-1.5B-Instruct in continuation mode, with Qwen additionally in rewrite mode) and 4 decoding strategies, we find $\\Kempirical = 2$ uniformly: classifiers can reliably distinguish adjacent generations up to depth~2, but beyond this boundary adjacent depths are operationally indistinguishable ($\\auc$ below $\\theta = 0.60$).\n6\tThe 0v1 boundary is near-perfectly separable ($\\auc > 0.99$), followed by a sharp drop of approximately 30 percentage points at 1v2 ($\\auc$: 0.6112--0.6955).\n7\tCross-model classifiers retain 80--92\\% of within-model accuracy among continuation-mode models, with 0v1 transfer $\\auc$ exceeding 0.96 universally---indicating that depth signals are largely text-intrinsic.\n8\tFeature degradation orderings are highly consistent across model families (Spearman $\\rho \\geq 0.85$), with surprisal-variance features dominating uniformly.\n9\tThe boundary is invariant to decoding strategy, though feature importance rankings diverge between low- and high-entropy sampling ($\\rho = 0.914$ for greedy vs.\\ $T{=}0.7$; $\\rho = 0.53$ for greedy vs.\\ $T{=}1.2$).\n10\tFrontier LLMs achieve approximately 88\\% binary human-vs.-synthetic accuracy but only 33\\% on 5-class depth estimation, below the OBD-LightGBM baseline of 38.6\\%, confirming that depth estimation is a distinct and harder task than binary detection.\n11\t\n12\t% [TODO: graduated filtering conclusion pending exp-006 results.\n13\t% Will summarize: whether coarse 3-class ordinal signal (human / shallow / deep)\n14\t% improves downstream task performance over binary filtering on MMLU/HellaSwag.]\n15\t\n16\tOur results are bounded by the scale of models tested ($\\leq$1.5B parameters), the use of prompt-chain rather than retrain-chain protocols, an\n…[truncated 1392 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-13T22:41:53.328995+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\Kstar|\\\\Kempirical|\\\\Ktheory|\\\\newcommand",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-13T22:41:53.329162+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/related_work.tex:10:Our $\\Kstar$ aligns with their Family~B (distributional deformation), specifically D4 (collapsing variance) and D6 (mode entanglement)---the features that degrade most rapidly in our experiments are precisely variance-based surprisal measures.\ndocs/paper/related_work.tex:12:Our prompt-chain protocol operates in the replace regime, so $\\Kempirical = 2$ is a conservative lower bound; the accumulate regime would yield slower degradation and higher $\\Kstar$.\ndocs/paper/related_work.tex:35:Their approach is a special case of our graduated filtering framework: when $\\Kstar = 1$, ordinal depth estimation reduces to binary classification, and depth-aware curation degenerates to their SIR-based scheme.\ndocs/paper/related_work.tex:37:Amin et al.~\\cite{amin2025escaping} demonstrated that even weak quality signals suffice to escape model collapse when applied iteratively, suggesting that approximate depth estimates beyond $\\Kempirical$ may remain practically useful.\ndocs/paper/main.tex:19:\\newcommand{\\Kstar}{K^*}\ndocs/paper/main.tex:20:\\newcommand{\\Kempirical}{K^*_{\\text{empirical}}}\ndocs/paper/main.tex:21:\\newcommand{\\Ktheory}{K^*_{\\text{theory}}}\ndocs/paper/main.tex:22:\\newcommand{\\auc}{\\text{AUC}}\ndocs/paper/main.tex:23:\\newcommand{\\jsd}{\\text{JSD}}\ndocs/paper/conclusion.tex:4:We presented the first systematic measurement of the generational depth discrimination boundary $\\Kempirical$ for recursive synthetic text.\ndocs/paper/conclusion.tex:5:Across 8 configurations spanning 4 model-mode combinations (Pythia-1.4B, OLMo-1B, and Qwen2.5-1.5B-Instruct in continuation mode, with Qwen additionally in rewrite mode) and 4 decoding strategies, we find $\\Kempirical = 2$ uniformly: classifiers can reliably distinguish adjacent generations up to depth~2, but beyond this boundary adjacent depths are operationally indistinguishable ($\\auc$ below $\\theta = 0.60$).\ndocs/paper/conclusion.tex:17:The 15-dimensional hand-crafted feature set yields $\\Kempirical$ as\n…[truncated 7924 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-13T22:41:53.329300+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Section~3|\\\\ref\\{sec:conclusion\\}|\\\\ref\\{fig:transfer_heatmap\\}",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-13T22:41:53.329425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/introduction.tex:56:Section~\\ref{sec:conclusion} concludes."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-13T22:41:53.329593+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "conservatively|Section~3",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-13T22:41:53.329715+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-13T22:41:53.329851+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\ref\\{fig:transfer_heatmap\\}",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-13T22:41:53.329966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-13T22:41:53.330147+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex",
+              "old_string": "Two principal findings emerge.",
+              "new_string": "Two principal findings emerge (Figure~\\ref{fig:transfer_heatmap})."
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-13T22:41:53.330325+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-13T22:41:53.330447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex",
+              "old_string": "For the $\\Kstar$ determination, all four 1v2 CI lower bounds exceed",
+              "new_string": "For the $\\Kempirical$ determination, all four 1v2 CI lower bounds exceed"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-13T22:41:53.330615+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-13T22:41:53.330736+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex",
+              "old_string": "indicates that $\\Kstar = 2$ is robust but not trivially so---continuation-mode",
+              "new_string": "indicates that $\\Kempirical = 2$ is robust but not trivially so---continuation-mode"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-13T22:41:53.330929+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-13T22:41:53.331057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex",
+              "old_string": "Beyond the $\\Kstar$ boundary, depth discrimination deteriorates",
+              "new_string": "Beyond the $\\Kempirical$ boundary, depth discrimination deteriorates"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-13T22:41:53.331227+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-13T22:41:53.331349+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cp /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/summary_auc_decay/fig_summary_auc_decay.pdf /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/figures/fig2_auc_decay.pdf",
+              "description": "Copy newer AUC decay figure to paper figures"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-13T22:41:53.331465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-13T22:41:53.331620+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修复完成。改动摘要：\n\n### 已确认无需修改（7 条，此前已修正或不存在问题）\n| # | 问题 | 状态 |\n|---|------|------|\n| 1-4 | 数值 91→90、83→84 | 文件中已是正确值 |\n| 5 | 硬编码 Section~3 | 文件中已用 `\\ref{sec:method}` |\n| 6 | \"conservatively inferred\" 表注 | 文件中已替换为实际 p 值 |\n| 8 | `\\ref{sec:conclusion}` 悬空 | `conclusion.tex` 存在且包含 `\\label{sec:conclusion}`，引用有效 |\n\n### 本次修改（3 条）\n| # | 文件 | 改动 |\n|---|------|------|\n| 7 | `experiments_c1.tex:169` | 添加 `(Figure~\\ref{fig:transfer_heatmap})` 引用 |\n| 9 | `docs/paper/figures/fig2_auc_decay.pdf` | 用 `artifacts/summary_auc_decay/fig_summary_auc_decay.pdf`（22:17 生成）覆盖旧版（09:03） |\n| 10 | `experiments_c1.tex:83,94,109` | 3 处 `$\\Kstar$` → `$\\Kempirical$`（实验节讨论的是实证结果，应与节标题 `\\Kempirical` 一致；表注 line 27 的 `\\Kstar` 保留，因其指代通用概念） |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_paper_audit_corrections_20260513T223912"
+          },
+          "id": "event-000043"
+        }
+      ],
+      "message_count": 43
+    }
+  ],
+  "readable_path": "readable/conversations/fix-paper-audit-corrections.md"
+}

@@ -1,0 +1,72 @@
+{
+  "exp_id": "exp_wiki_qwen7b",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T16:39:29.006Z",
+    "updated_at": "2026-05-17T22:24:51.126Z",
+    "hypothesis": "Cross-scale Wikipedia K* validation: Qwen2.5-7B continuation on Wikipedia 的 K* 是否 = 2？Qwen2.5-1.5B 在 Wikipedia K*=2（唯一维持 K*=2 的模型），Pythia/OLMo/均 K*=1。测试 7B 规模是否仍维持 Qwen 家族在 Wikipedia 上的 K*=2 pattern。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "parent": "exp_arXiv_qwen7b",
+    "server": "cqa1-22115",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "cqa1-22115",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-17T17:02:41.963Z",
+      "command": "bash -c \"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --data_dir data/exp_wiki_qwen7b --results_dir results/exp_wiki_qwen7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\"",
+      "code_commit": "0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5",
+      "finished_at": "2026-05-17T22:21:53.554Z",
+      "training_hours": 5.32
+    },
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --data_dir data/exp_wiki_qwen7b --results_dir results/exp_wiki_qwen7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\"",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "732600",
+      "log_path": "~/runs/gen-depth-contamination/exp_wiki_qwen7b.log",
+      "submitted_at": "2026-05-17T17:02:43.570Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 19327.6,
+      "gpu_hours": 5.37
+    },
+    "pid": "732600",
+    "log_path": "~/runs/gen-depth-contamination/exp_wiki_qwen7b.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T22:21:56.559363+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "K_star": 2,
+      "auc_0v1": 0.9673,
+      "auc_1v2": 0.6108,
+      "auc_2v3": 0.5562,
+      "auc_3v4": 0.5297,
+      "auc_4v5": 0.529,
+      "jsd_0v1": 0.083514,
+      "jsd_1v2": 0.010991,
+      "jsd_2v3": 0.00555,
+      "jsd_3v4": 0.004611,
+      "jsd_4v5": 0.003894,
+      "ordinal_mae": 1.2501,
+      "ordinal_accuracy": 0.3532
+    },
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_qwen7b",
+    "completed_at": "2026-05-17T22:24:51.126Z"
+  },
+  "timestamp": "2026-05-17T22:24:51.374021+00:00",
+  "trigger": "update_registry"
+}

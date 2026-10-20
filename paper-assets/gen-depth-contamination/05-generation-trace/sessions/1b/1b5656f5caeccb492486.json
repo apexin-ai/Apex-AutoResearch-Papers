@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "1b5656f5caeccb492486",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "code gemma27b qwen phase2",
+  "task_key": "worker_code_gemma27b_qwen_phase2_20260522T230739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gemma27b_qwen_phase2_20260522T230739.log",
+    "occurrence": 1,
+    "bytes": 1803031,
+    "sha256": "c63ebd6104ccae3d5be785ee5b6cab4b8a72f86a98711258aaa75d3b158ac79e"
+  },
+  "statistics": {
+    "messages": 520,
+    "user_turns": 1,
+    "tool_calls": 216,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 75,
+      "tool_call": 216,
+      "tool_result": 216,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 376,
+      "chunks": [
+        {
+          "path": "1b5656f5caeccb492486-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1b5656f5caeccb492486-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1b5656f5caeccb492486-part-0003.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 144,
+      "chunks": [
+        {
+          "path": "1b5656f5caeccb492486-part-0003.json",
+          "message_count": 78
+        },
+        {
+          "path": "1b5656f5caeccb492486-part-0004.json",
+          "message_count": 66
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-gemma27b-qwen-phase2.md"
+}

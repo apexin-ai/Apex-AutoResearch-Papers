@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_D_obd_n500",
+  "project": "gen-depth-contamination",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:18:27.182Z",
+    "updated_at": "2026-05-15T11:18:27.183Z"
+  },
+  "timestamp": "2026-05-15T11:18:27.227724+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1071 @@
+{
+  "schema_version": "1.0",
+  "id": "129eb6553a151f1ecaef",
+  "project": "gen-depth-contamination",
+  "kind": "conversation",
+  "title": "paper citation expansion",
+  "task_key": "worker_paper_citation-expansion_20260519T111739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_citation-expansion_20260519T111739.jsonl",
+    "occurrence": 1,
+    "bytes": 46184,
+    "sha256": "bbba70e7b235aa0286b0004c3ab24ffb3f5abad75f04c3d4aba4a690bb68e6ef"
+  },
+  "statistics": {
+    "messages": 53,
+    "user_turns": 0,
+    "tool_calls": 26,
+    "roles": {
+      "tool_call": 26,
+      "tool_result": 26,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T11:22:33.776301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "docs/paper/*.bib",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T11:22:33.776808+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T11:22:33.777069+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T11:22:33.777341+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Model collapse and recursive degradation.}\n5\tIterative training on model outputs causes tail-distribution degradation~\\cite{shumailov2024collapse, alemohammad2024selfconsuming, dohmatob2024model, dohmatob2025strong}, diversity contraction~\\cite{guo2024curious, padmakumar2024writing, briesch2023selfconsuming}, and predictable convergence~\\cite{schaeffer2025position, kazdan2025collapse, gerstgrasser2024model, shi2025collapse}.\n6\t\\citet{gambetta2024surplexity} propose surplexity, a single surprisal-based collapse indicator; our 15-dimensional feature set captures richer distributional structure and enables cross-model transfer.\n7\t\\citet{amin2025escaping} show that weak-data curation can mitigate collapse, connecting to our filtering evaluation (Section~\\ref{sec:filtering}).\n8\tOur prompt-chain operates in the replace regime~\\cite{kazdan2025collapse}; $\\Kempirical = 2$ is therefore a conservative lower bound.\n9\tThis literature establishes convergence but provides no per-text depth measurement, does not predict domain dependence of saturation (Wikipedia depth 1 vs.\\ arXiv depth 3), and does not characterize the prompt-chain vs.\\ retrain-chain gap ($\\Kempirical{=}2$ vs.\\ $7$).\n10\t\n11\t\\paragraph{Beyond binary detection.}\n12\tBinary detectors~\\cite{gehrmann2019gltr, mitchell2023detectgpt, bao2024fast, hans2024binoculars, basani2026diveye, zhang2024minkpp} achieve strong human-vs.-machine separation but produce no depth estimate; surveys~\\cite{wu2023survey, tang2024science} consolidate this landscape but frame detection as binary.\n13\tDivEye~\\cite{basani2026diveye} shares 4 of our 15 features but applies them to binary detection; our extended set captures cross-generational degradation.\n14\tRecent work extends beyond binary labels to collaboration degree~\\cite{cheng2025beyond}, contamination hierarchies~\\cite{mehta2025beyond}, and multigenerator benchmarks~\\cite{wang2024semeval}; robustness concerns arise under \n…[truncated 1439 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T11:22:33.777579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T11:22:33.777964+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% === References for gen-depth-contamination ===\n2\t% Source: literature_map.yaml — verified 2026-05-15\n3\t\n4\t% === Must-Cite ===\n5\t\n6\t@inproceedings{drayson2025,\n7\t  title={Machine-Generated Text Detection Prevents Language Model Collapse},\n8\t  author={Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n9\t  booktitle={Proceedings of EMNLP},\n10\t  year={2025},\n11\t  url={https://arxiv.org/abs/2502.15654}\n12\t}\n13\t\n14\t@inproceedings{schaeffer2025position,\n15\t  title={Position: Model Collapse Does Not Mean What You Think},\n16\t  author={Schaeffer, Rylan and Kazdan, Joshua and Arulandu, Anirudh and Koyejo, Sanmi},\n17\t  booktitle={Proceedings of ICML},\n18\t  year={2025},\n19\t  url={https://arxiv.org/abs/2503.03150}\n20\t}\n21\t\n22\t@inproceedings{kazdan2025collapse,\n23\t  title={Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World},\n24\t  author={Kazdan, Joshua and Schaeffer, Rylan and Dey, Apratim and Gerstgrasser, Matthias and Rafailov, Rafael and Donoho, David and Koyejo, Sanmi},\n25\t  booktitle={Proceedings of ICML},\n26\t  year={2025},\n27\t  url={https://arxiv.org/abs/2410.16713}\n28\t}\n29\t\n30\t@inproceedings{mitchell2023detectgpt,\n31\t  title={{DetectGPT}: Zero-Shot Machine-Generated Text Detection using Probability Curvature},\n32\t  author={Mitchell, Eric and Lee, Yoonho and Khazatsky, Alexander and Manning, Christopher D. and Finn, Chelsea},\n33\t  booktitle={Proceedings of ICML},\n34\t  year={2023}\n35\t}\n36\t\n37\t% === Should-Cite ===\n38\t\n39\t@article{basani2026diveye,\n40\t  title={{DivEye}: Diversity Boosts {AI}-Generated Text Detection},\n41\t  author={Basani, Advik Raj and Chen, Pin-Yu},\n42\t  journal={Transactions on Machine Learning Research},\n43\t  issn={2835-8856},\n44\t  year={2026},\n45\t  url={https://arxiv.org/abs/2509.18880}\n46\t}\n47\t\n48\t@inproceedings{zawalski2026codec,\n49\t  title={{CoDeC}: Detecting Data Contamination in {LLM}s via In-Context Learning},\n50\t  author={Zawalski, Micha{\\l} and Boubdir, Meriem and Ba{\\l}azy, Klaudia and Nushi, Besmira an\n…[truncated 14019 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T11:22:33.778343+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "docs/paper/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T11:22:33.778562+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/appendix.tex\ndocs/paper/main.tex\ndocs/paper/appendix_extended.tex\ndocs/paper/introduction.tex\ndocs/paper/experiments_c1.tex\ndocs/paper/method.tex\ndocs/paper/related_work.tex\ndocs/paper/experiments_c3.tex\ndocs/paper/conclusion.tex\ndocs/paper/discussion.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T11:22:33.778791+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\cite[tp]?\\{",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T11:22:33.779054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/related_work.tex:5:Iterative training on model outputs causes tail-distribution degradation~\\cite{shumailov2024collapse, alemohammad2024selfconsuming, dohmatob2024model, dohmatob2025strong}, diversity contraction~\\cite{guo2024curious, padmakumar2024writing, briesch2023selfconsuming}, and predictable convergence~\\cite{schaeffer2025position, kazdan2025collapse, gerstgrasser2024model, shi2025collapse}.\ndocs/paper/related_work.tex:6:\\citet{gambetta2024surplexity} propose surplexity, a single surprisal-based collapse indicator; our 15-dimensional feature set captures richer distributional structure and enables cross-model transfer.\ndocs/paper/related_work.tex:7:\\citet{amin2025escaping} show that weak-data curation can mitigate collapse, connecting to our filtering evaluation (Section~\\ref{sec:filtering}).\ndocs/paper/related_work.tex:8:Our prompt-chain operates in the replace regime~\\cite{kazdan2025collapse}; $\\Kempirical = 2$ is therefore a conservative lower bound.\ndocs/paper/related_work.tex:12:Binary detectors~\\cite{gehrmann2019gltr, mitchell2023detectgpt, bao2024fast, hans2024binoculars, basani2026diveye, zhang2024minkpp} achieve strong human-vs.-machine separation but produce no depth estimate; surveys~\\cite{wu2023survey, tang2024science} consolidate this landscape but frame detection as binary.\ndocs/paper/related_work.tex:13:DivEye~\\cite{basani2026diveye} shares 4 of our 15 features but applies them to binary detection; our extended set captures cross-generational degradation.\ndocs/paper/related_work.tex:14:Recent work extends beyond binary labels to collaboration degree~\\cite{cheng2025beyond}, contamination hierarchies~\\cite{mehta2025beyond}, and multigenerator benchmarks~\\cite{wang2024semeval}; robustness concerns arise under paraphrasing~\\cite{sadasivan2023detect, krishna2023paraphrasing} and cross-mode transfer~\\cite{hao2025rewrite}; CoDeC~\\cite{zawalski2026codec} addresses contamination via membership inference.\ndocs/paper/related_work.tex:15:Iterat\n…[truncated 4456 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T11:22:33.779411+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/method.tex",
+              "limit": "80"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T11:22:33.779723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\begin{figure*}[t]\n5\t\\centering\n6\t\\includegraphics[width=\\textwidth]{figures/pipeline.pdf}\n7\t\\caption{Generational depth estimation pipeline. Seed documents are recursively passed through a generation operator $G_\\delta$ to produce a depth chain. Statistical features are fed to the OBD-LightGBM classifier for depth prediction.}\n8\t\\label{fig:pipeline}\n9\t\\end{figure*}\n10\t\n11\t\\subsection{Problem Formulation}\n12\t\\label{sec:formulation}\n13\t\n14\tA generation operator $G_\\delta$ (LLM + decoding strategy $\\delta$) produces successive generations $X \\to Y_1 \\to \\cdots \\to Y_K$, where $Y_k = G_\\delta(Y_{k-1})$ and $Y_0 \\triangleq X$ (Figure~\\ref{fig:pipeline}).\n15\tThis sequence forms a Markov chain.\n16\tBy the Data Processing Inequality, $I(X; Y_1) \\geq I(X; Y_2) \\geq \\cdots \\geq 0$: the original signal degrades monotonically.\n17\tTogether with Markov chain convergence, this motivates a finite $\\Ktheory$ beyond which adjacent generations become indistinguishable; DPI guarantees existence but does not bound $\\Ktheory$, so the actual saturation depth must be measured empirically.\n18\t\n19\tWe define the operational lower bound:\n20\t\\begin{equation}\n21\t  \\Kempirical = \\max\\{k \\geq 1 : \\mathrm{CI}_{\\mathrm{low}}(\\auc_{k-1,k}) > \\theta\\},\n22\t  \\label{eq:kstar}\n23\t\\end{equation}\n24\twhere $\\mathrm{CI}_{\\mathrm{low}}(\\auc_{k-1,k})$ is the lower bound of a 95\\% bootstrap confidence interval (1{,}000 resamples\\footnote{Boundary-pair results in Table~\\ref{tab:kstar_ci} use 1{,}000 resamples; arXiv cross-scorer CIs (Table~\\ref{tab:arxiv_crossscorer_ci}) use 10{,}000 for tighter bounds at the margin.}) over the pairwise AUC (Area Under the ROC Curve) between depths $k{-}1$ and $k$, and $\\theta = 0.60$ is a post-hoc operational threshold (motivated below).\n25\tThis criterion ensures that $\\Kempirical$ reflects statistically robust discriminability rather than sampling noise.\n26\t$\\Kempirical$ characterizes a discriminability regime at a given $\\theta$; t\n…[truncated 5683 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T11:22:33.779991+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T11:22:33.780242+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tWeb-scale text corpora are increasingly contaminated by synthetic content that has itself been generated from earlier synthetic content.\n5\tEstimates suggest that a substantial fraction of online text is machine-generated~\\cite{sun2025aigt, spennemann2025quantifying}, and this share continues to rise.\n6\tWhen models train on the outputs of earlier models, the resulting multi-generational synthetic text degrades with each iteration: tail modes vanish, lexical diversity contracts, and surprisal distributions flatten~\\cite{shumailov2024collapse, dohmatob2024model}.\n7\tThis degradation arises in both \\emph{retrain-chains} (iteratively training on model outputs) and \\emph{prompt-chains} (recursively generating from previous outputs without retraining); we study the latter, which isolates generation-level information loss from training dynamics (Appendix~\\ref{sec:extended_limitations}).\n8\tYet the dominant paradigm treats all machine-generated text identically and ignores the generational depth dimension.\n9\t\n10\tThis gap cuts across multiple communities.\n11\tBinary detectors~\\cite{basani2026diveye, zhang2024minkpp} produce no depth estimate (Section~\\ref{sec:binary_confidence}).\n12\tMembership inference~\\cite{zawalski2026codec} addresses a different question, and the model collapse literature~\\cite{shumailov2024collapse, alemohammad2024selfconsuming, schaeffer2025position} provides no per-text tool.\n13\tData selection methods~\\cite{xie2023dsir, tirumala2023d4, drayson2025} likewise ignore recursive depth.\n14\tNo existing method estimates how many rounds of recursive generation a text has undergone.\n15\t\n16\tKnowing whether the discriminable depth is finite, and where it saturates, has direct practical consequences.\n17\tFor data curation, the saturation point determines filtering granularity: if discrimination collapses at depth 2, graduated weighting beyond that boundary injects noise, and binary filtering becomes the principle\n…[truncated 2289 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T11:22:33.780488+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T11:22:33.780737+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\\label{sec:why_kstar}\n4\t\\label{sec:one_wash}\n5\t\\label{sec:negative_graduated}\n6\t\\label{sec:repr_dependence}\n7\t\\label{sec:boundary_cases}\n8\t\\label{sec:length_confound}\n9\t\n10\t\\begin{figure}[t]\n11\t\\centering\n12\t\\includegraphics[width=\\columnwidth]{figures/fig_jsd_decay.pdf}\n13\t\\caption{Token-level JSD between adjacent depth pairs on log scale. Blue band: min-max range across 8 C4 models (1B--14B) with $\\Kempirical{=}2$; dashed purple: Mistral-7B ($\\Kempirical{=}1$, cross-scorer validated); green: arXiv Pythia ($\\Kempirical{=}3$); dotted red: retrain-chain ($\\Kempirical{=}7$). C4 models exhibit a sharp cliff ($\\lambda \\approx 2.2$--$3.5$), while arXiv decays gradually ($\\lambda \\approx 1.0$) and retrain-chain shows no cliff ($\\lambda = 0.285$).}\n14\t\\label{fig:jsd_decay}\n15\t\\end{figure}\n16\t\n17\t\\paragraph{One-wash laundering (web text).}\n18\tFor general web text, $\\Kempirical{=}2$ reflects concentrated information loss: 0v1 is near-trivially separable ($\\auc \\geq 0.92$), 1v2 drops by ${\\sim}$30\\,pp, and 2v3 falls below $\\theta$, so a single generation pass renders text indistinguishable from deeper content.\n19\tNeither frontier LLMs nor alternative classifiers improve depth recovery beyond this boundary (McNemar $p > 0.05$; Appendix).\n20\t\n21\t\\paragraph{JSD decay and the discrimination boundary.}\n22\tToken-level JSD between adjacent generations reveals two decay regimes (Figure~\\ref{fig:jsd_decay}): C4 models exhibit a sharp cliff (0v1 JSD exceeds 1v2 by 6--56$\\times$) followed by rapid convergence, while arXiv decays ${\\sim}$3$\\times$ slower ($\\lambda \\approx 1.0$ vs.\\ $2.9$).\n23\tThe retrain-chain ($\\lambda = 0.285$, no cliff) reflects cumulative model-adaptation artifacts, extending $\\Kempirical$ to 7 (Appendix~\\ref{sec:jsd_extended}).\n24\t\n25\t\\paragraph{Graduated filtering failure.}\n26\tFor web text, 2v3 $\\auc < \\theta$ across all configurations, so depth assignments beyond $d{=}2$ approximate random labels; the strategy orde\n…[truncated 1952 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T11:22:33.781080+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T11:22:33.781409+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T11:22:33.781654+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "DNA-GPT Yang et al 2024 divergent n-gram analysis machine-generated text detection venue"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T11:22:33.781879+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Ghostbuster Verma et al 2024 feature-based machine-generated text detection venue"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T11:22:33.782079+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Raffel et al 2020 \"Exploring the Limits of Transfer Learning\" T5 C4 JMLR"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T11:22:33.782263+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Hale 2001 \"probabilistic earley parser\" surprisal NAACL"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T11:22:33.782442+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Levy 2008 \"expectation-based syntactic comprehension\" Cognition surprisal"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T11:22:33.782649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Ghostbuster Verma et al 2024 feature-based machine-generated text detection venue\"\n\nLinks: [{\"title\":\"Ghostbuster: Detecting Text Ghostwritten by Large Language Models | Request PDF\",\"url\":\"https://www.researchgate.net/publication/382631441_Ghostbuster_Detecting_Text_Ghostwritten_by_Large_Language_Models\"},{\"title\":\"Ghostbuster: Detecting Text Ghostwritten by Large Language Models | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/ghostbuster-detecting-text-ghostwritten-by-large-language\"},{\"title\":\"Ghostbuster: Detecting Text Ghostwritten by Large Language Models - ACL Anthology\",\"url\":\"https://aclanthology.org/2024.naacl-long.95/\"},{\"title\":\"Detecting Text Ghostwritten by Large Language Models\",\"url\":\"https://aclanthology.org/2024.naacl-long.95.pdf\"},{\"title\":\"[2305.15047] Ghostbuster: Detecting Text Ghostwritten by Large Language Models\",\"url\":\"https://arxiv.org/abs/2305.15047\"},{\"title\":\"Ghostbuster: Detecting Text Ghostwritten by Large Language Models\",\"url\":\"https://arxiv.org/pdf/2305.15047\"},{\"title\":\"Ghostbuster: Detecting Text Ghostwritten by Large Language Models Vivek Verma\",\"url\":\"https://nlp.cs.berkeley.edu/pubs/Verma-Fleisig-Tomlin-Klein_2024_Ghostbuster_paper.pdf\"},{\"title\":\"Spotlights and Blindspots: Evaluating Machine-Generated Text Detection\",\"url\":\"https://arxiv.org/html/2604.16607v1\"}]\n\nBased on the search results, the Ghostbuster paper by Verma et al. was published at the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL 2024), which took place in Mexico City, Mexico.\n\nThe venue is **NAACL 2024** (North American Chapter of the Association for Computational Linguistics: Human Language Technologies).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T11:22:33.782931+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"DNA-GPT Yang et al 2024 divergent n-gram analysis machine-generated text detection venue\"\n\nLinks: [{\"title\":\"DNA-GPT: Divergent N-Gram Analysis for Training-Free Detection of GPT-Generated Text\",\"url\":\"https://www.nec-labs.com/blog/dna-gpt-divergent-n-gram-analysis-for-training-free-detection-of-gpt-generated-text/\"},{\"title\":\"[PDF] DNA-GPT: Divergent N-Gram Analysis for Training-Free Detection of GPT-Generated Text | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/DNA-GPT:-Divergent-N-Gram-Analysis-for-Detection-of-Yang-Cheng/08145978da4c8912f4a05444a6bbf048778dc4af\"},{\"title\":\"[2305.17359] DNA-GPT: Divergent N-Gram Analysis for Training-Free Detection of GPT-Generated Text\",\"url\":\"https://arxiv.org/abs/2305.17359\"},{\"title\":\"DNA-GPT: Divergent N-Gram Analysis for Training-Free Detection of GPT-Generated Text | OpenReview\",\"url\":\"https://openreview.net/forum?id=Xlayxj2fWp\"},{\"title\":\"DNA-GPT: Divergent N-Gram Analysis for Training-Free Detection of GPT-Generated Text\",\"url\":\"https://paperreading.club/page?id=167623\"},{\"title\":\"dblp: DNA-GPT: Divergent N-Gram Analysis for Training-Free Detection of GPT-Generated Text.\",\"url\":\"https://dblp1.uni-trier.de/rec/conf/iclr/Yang0WPWC24.html\"},{\"title\":\"DNA-GPT: Divergent N-Gram Analysis for Training-Free Detection of GPT-Generated Text | DeepAI\",\"url\":\"https://deepai.org/publication/dna-gpt-divergent-n-gram-analysis-for-training-free-detection-of-gpt-generated-text\"},{\"title\":\"(PDF) DNA-GPT: Divergent N-Gram Analysis for Training-Free Detection of GPT-Generated Text\",\"url\":\"https://www.researchgate.net/publication/371136931_DNA-GPT_Divergent_N-Gram_Analysis_for_Training-Free_Detection_of_GPT-Generated_Text\"}]\n\nBased on the search results, here's information about the DNA-GPT paper by Yang et al. 2024:\n\n## Venue\n\nThe paper was published at ICLR 2024 (International Conference on Learning Representations 2024).\n\n## Key Information\n\nDNA-GPT proposes a novel training-free detection s\n…[truncated 1068 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T11:22:33.783208+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Hale 2001 \"probabilistic earley parser\" surprisal NAACL\"\n\nLinks: [{\"title\":\"A probabilistic earley parser as a psycholinguistic model | BibSonomy\",\"url\":\"https://www.bibsonomy.org/bibtex/2d3d3f7530f21cceff57fe3b937691956/tmalsburg\"},{\"title\":\"Expectation-based syntactic comprehension Roger Levy\",\"url\":\"https://www.mit.edu/~rplevy/papers/levy-2008-cognition.pdf\"},{\"title\":\"A Probabilistic Earley Parser as a Psycholinguistic Model - ACL Anthology\",\"url\":\"https://aclanthology.org/N01-1021/\"},{\"title\":\"A Probabilistic Earley Parser as a Psycholinguistic Model | Request PDF\",\"url\":\"https://www.researchgate.net/publication/2486217_A_Probabilistic_Earley_Parser_as_a_Psycholinguistic_Model\"},{\"title\":\"Expectation-based syntactic comprehension\",\"url\":\"https://escholarship.org/uc/item/66v7520b\"},{\"title\":\"Expectation-based syntactic comprehension - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0010027707001436\"},{\"title\":\"A probabilistic earley parser as a psycholinguistic model | Proceedings of the second meeting of the North American Chapter of the Association for Computational Linguistics on Language technologies\",\"url\":\"https://dl.acm.org/doi/10.3115/1073336.1073357\"},{\"title\":\"A Probabilistic Earley Parser as a Psycholinguistic Model John Hale\",\"url\":\"https://aclanthology.org/N01-1021.pdf\"}]\n\nI found the paper you're looking for! Here's information about Hale's 2001 NAACL paper:\n\n\"A Probabilistic Earley Parser as a Psycholinguistic Model\" was published by John Hale in 2001 at the Second Meeting of the North American Chapter of the Association for Computational Linguistics.\n\nThe paper considers a definition of cognitive load in terms of the total probability of structural options that have been disconfirmed at some point in a sentence: the surprisal of word w_i given its prefix w_0...i-1 on a phrase-structural language model. These loads can be efficiently calculated using a probabilistic Earley parser (Stolcke\n…[truncated 551 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T11:22:33.783565+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Levy 2008 \"expectation-based syntactic comprehension\" Cognition surprisal\"\n\nLinks: [{\"title\":\"[PDF] Expectation-based syntactic comprehension | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Expectation-based-syntactic-comprehension-Levy/2a92864d3f44e1b34da0fa17e13d5752d089eddf\"},{\"title\":\"Expectation-based syntactic comprehension - PubMed\",\"url\":\"https://pubmed.ncbi.nlm.nih.gov/17662975/\"},{\"title\":\"Expectation-based syntactic comprehension Roger Levy\",\"url\":\"https://www.mit.edu/~rplevy/papers/levy-2008-cognition.pdf\"},{\"title\":\"Expectation-Based syntactic comprehension | Request PDF\",\"url\":\"https://www.researchgate.net/publication/6176117_Expectation-Based_syntactic_comprehension\"},{\"title\":\"Memory and surprisal in human sentence comprehension Roger Levy\",\"url\":\"https://www.mit.edu/~rplevy/papers/levy-2013-memory-and-surprisal-corrected.pdf\"},{\"title\":\"Memory and surprisal in human sentence comprehension Roger Levy\",\"url\":\"https://pages.ucsd.edu/~bkbergen/cogs200/sentence-processing-book-chapter.pdf\"},{\"title\":\"Full article: Expectation-based Comprehension: Modeling the Interaction of World Knowledge and Linguistic Experience\",\"url\":\"https://www.tandfonline.com/doi/full/10.1080/0163853X.2018.1448677\"},{\"title\":\"Expectation-based syntactic comprehension - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0010027707001436\"}]\n\nBased on the search results, I found the paper you're looking for:\n\nThe 2008 paper \"Expectation-based syntactic comprehension\" by R. Levy was published in Cognition, volume 106, pages 1126-1177. \n\nThe paper investigates the role of resource allocation as a source of processing difficulty in human sentence comprehension, proposing a simple information-theoretic characterization of processing difficulty as the work incurred by resource reallocation during parallel, incremental, probabilistic disambiguation.\n\nThe proposal characterizes processing difficulty based on surprisa\n…[truncated 371 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T11:22:33.783873+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Raffel et al 2020 \"Exploring the Limits of Transfer Learning\" T5 C4 JMLR\"\n\nLinks: [{\"title\":\"Paper Summary: Exploring the Limits of Transfer Learning with a Unified Text-to-text Transformer\",\"url\":\"https://queirozf.com/entries/paper-summary-exploring-the-limits-of-transfer-learning-with-a-unified-text-to-text-transformer\"},{\"title\":\"T5: Exploring Transfer Learning Limits\",\"url\":\"https://hunterheidenreich.com/notes/natural-language-processing/language-models/t5-text-to-text-transfer-transformer/\"},{\"title\":\"Digest – Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer\",\"url\":\"https://yuyangyy.com/researchlog/nlp/2021/01/25/t5.html\"},{\"title\":\"Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer | Request PDF\",\"url\":\"https://www.researchgate.net/publication/336767865_Exploring_the_Limits_of_Transfer_Learning_with_a_Unified_Text-to-Text_Transformer\"},{\"title\":\"Journal of Machine Learning Research 21 (2020) 1-67\",\"url\":\"https://arxiv.org/pdf/1910.10683\"},{\"title\":\"Exploring the Limits of Transfer Learning with a Unified ...\",\"url\":\"https://www.cs.princeton.edu/courses/archive/fall22/cos597G/lectures/lec03.pdf\"},{\"title\":\"[1910.10683] Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer\",\"url\":\"https://arxiv.org/abs/1910.10683\"},{\"title\":\"[PDF] Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Exploring-the-Limits-of-Transfer-Learning-with-a-Raffel-Shazeer/6c4b76232bb72897685d19b3d264c6ee3005bc2b\"}]\n\nI found the paper you're looking for! Here are the key details:\n\n**Paper Information:**\n\n\"Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer\" by Raffel, Colin and colleagues, published in the Journal of Machine Learning Research, volume 21, number 140, pages 1-67, in 2020.\n\n**Overview:**\n\nThe paper introduces a unified framework that\n…[truncated 943 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T11:22:33.784242+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib",
+              "offset": "365"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T11:22:33.784460+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "365\t  title     = {{CodeSearchNet} Challenge: Evaluating the State of Semantic Code Search},\n366\t  author    = {Husain, Hamel and Wu, Ho-Hsiang and Gazit, Tiferet and Allamanis, Miltiadis and Brockschmidt, Marc},\n367\t  journal   = {arXiv preprint arXiv:1909.09436},\n368\t  year      = {2019},\n369\t  url       = {https://arxiv.org/abs/1909.09436}\n370\t}\n371\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T11:22:33.784676+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib",
+              "old_string": "  url       = {https://arxiv.org/abs/1909.09436}\n}",
+              "new_string": "  url       = {https://arxiv.org/abs/1909.09436}\n}\n\n% === New entries (added 2026-05-19, citation density expansion) ===\n\n@article{raffel2020t5,\n  title={Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer},\n  author={Raffel, Colin and Shazeer, Noam and Roberts, Adam and Lee, Katherine and Narang, Sharan and Matena, Michael and Zhou, Yanqi and Li, Wei and Liu, Peter J.},\n  journal={Journal of Machine Learning Research},\n  volume={21},\n  number={140},\n  pages={1--67},\n  year={2020}\n}\n\n@inproceedings{yang2024dnagpt,\n  title={{DNA-GPT}: Divergent {N}-Gram Analysis for Training-Free Detection of {GPT}-Generated Text},\n  author={Yang, Xianjun and Cheng, Wei and Petzold, Linda and Wang, William Yang and Chen, Haifeng},\n  booktitle={Proceedings of ICLR},\n  year={2024},\n  url={https://arxiv.org/abs/2305.17359}\n}\n\n@inproceedings{verma2024ghostbuster,\n  title={Ghostbuster: Detecting Text Ghostwritten by Large Language Models},\n  author={Verma, Vivek and Fleisig, Eve and Tomlin, Nicholas and Klein, Dan},\n  booktitle={Proceedings of NAACL},\n  pages={1702--1717},\n  year={2024}\n}\n\n@inproceedings{hale2001surprisal,\n  title={A Probabilistic {E}arley Parser as a Psycholinguistic Model},\n  author={Hale, John},\n  booktitle={Proceedings of the Second Meeting of the North American Chapter of the Association for Computational Linguistics},\n  pages={1--8},\n  year={2001}\n}\n\n@article{levy2008expectation,\n  title={Expectation-Based Syntactic Comprehension},\n  author={Levy, Roger},\n  journal={Cognition},\n  volume={106},\n  number={3},\n  pages={1126--1177},\n  year={2008}\n}"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T11:22:33.785027+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T11:22:33.785289+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex",
+              "old_string": "and predictable convergence~\\cite{schaeffer2025position, kazdan2025collapse, gerstgrasser2024model, shi2025collapse}.",
+              "new_string": "and predictable convergence~\\cite{bertrand2024stability, schaeffer2025position, kazdan2025collapse, gerstgrasser2024model, shi2025collapse}."
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T11:22:33.785529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T11:22:33.785737+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex",
+              "old_string": "Binary detectors~\\cite{gehrmann2019gltr, mitchell2023detectgpt, bao2024fast, hans2024binoculars, basani2026diveye, zhang2024minkpp} achieve strong human-vs.-machine separation but produce no depth estimate; surveys~\\cite{wu2023survey, tang2024science} consolidate this landscape but frame detection as binary.\nDivEye~\\cite{basani2026diveye} shares 4 of our 15 features but applies them to binary detection; our extended set captures cross-generational degradation.",
+              "new_string": "Binary detectors~\\cite{gehrmann2019gltr, mitchell2023detectgpt, bao2024fast, yang2024dnagpt, hans2024binoculars, basani2026diveye, zhang2024minkpp} achieve strong human-vs.-machine separation but produce no depth estimate; surveys~\\cite{wu2023survey, tang2024science} consolidate this landscape but frame detection as binary.\nGhostbuster~\\cite{verma2024ghostbuster} and DivEye~\\cite{basani2026diveye} use statistical features for binary detection; our 15-dimensional set extends beyond binary separation to capture cross-generational degradation."
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T11:22:33.786012+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T11:22:33.786222+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex",
+              "old_string": "DSIR~\\cite{xie2023dsir}, D4~\\cite{tirumala2023d4}, DoReMi~\\cite{xie2023doremi}, and FineWeb~\\cite{penedo2024fineweb} address corpus quality through domain-aware filtering and deduplication but are depth-agnostic;",
+              "new_string": "DSIR~\\cite{xie2023dsir}, D4~\\cite{tirumala2023d4}, DoReMi~\\cite{xie2023doremi}, and FineWeb~\\cite{penedo2024fineweb} address corpus quality for large web corpora such as C4~\\cite{raffel2020t5} through domain-aware filtering and deduplication but are depth-agnostic;"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T11:22:33.786459+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T11:22:33.786667+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex",
+              "old_string": "\\paragraph{Ordinal classification and probing.}\nOur OBD classifier follows Frank \\& Hall's~\\cite{frank2001ordinal} binary decomposition; CORAL~\\cite{cao2020coral} provides a rank-consistent neural alternative.\nOur neural probe extends probing~\\cite{alain2017understanding, belinkov2022probing} to the discrimination boundary.",
+              "new_string": "\\paragraph{Ordinal classification and probing.}\nOur surprisal-based features build on the information-theoretic view that word-level processing cost is proportional to surprisal~\\cite{hale2001surprisal, levy2008expectation}; we repurpose this measure to track generational degradation rather than human processing load.\nOur OBD classifier follows Frank \\& Hall's~\\cite{frank2001ordinal} binary decomposition; CORAL~\\cite{cao2020coral} provides a rank-consistent neural alternative.\nOur neural probe extends probing~\\cite{alain2017understanding, belinkov2022probing} to the discrimination boundary."
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T11:22:33.786943+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-19T11:22:33.787174+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/method.tex",
+              "old_string": "Each uses 5{,}000 C4 seeds truncated to 256 tokens",
+              "new_string": "Each uses 5{,}000 C4~\\cite{raffel2020t5} seeds truncated to 256 tokens"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-19T11:22:33.787439+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-19T11:22:33.787673+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-19T11:22:33.787939+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Model collapse and recursive degradation.}\n5\tIterative training on model outputs causes tail-distribution degradation~\\cite{shumailov2024collapse, alemohammad2024selfconsuming, dohmatob2024model, dohmatob2025strong}, diversity contraction~\\cite{guo2024curious, padmakumar2024writing, briesch2023selfconsuming}, and predictable convergence~\\cite{bertrand2024stability, schaeffer2025position, kazdan2025collapse, gerstgrasser2024model, shi2025collapse}.\n6\t\\citet{gambetta2024surplexity} propose surplexity, a single surprisal-based collapse indicator; our 15-dimensional feature set captures richer distributional structure and enables cross-model transfer.\n7\t\\citet{amin2025escaping} show that weak-data curation can mitigate collapse, connecting to our filtering evaluation (Section~\\ref{sec:filtering}).\n8\tOur prompt-chain operates in the replace regime~\\cite{kazdan2025collapse}; $\\Kempirical = 2$ is therefore a conservative lower bound.\n9\tThis literature establishes convergence but provides no per-text depth measurement, does not predict domain dependence of saturation (Wikipedia depth 1 vs.\\ arXiv depth 3), and does not characterize the prompt-chain vs.\\ retrain-chain gap ($\\Kempirical{=}2$ vs.\\ $7$).\n10\t\n11\t\\paragraph{Beyond binary detection.}\n12\tBinary detectors~\\cite{gehrmann2019gltr, mitchell2023detectgpt, bao2024fast, yang2024dnagpt, hans2024binoculars, basani2026diveye, zhang2024minkpp} achieve strong human-vs.-machine separation but produce no depth estimate; surveys~\\cite{wu2023survey, tang2024science} consolidate this landscape but frame detection as binary.\n13\tGhostbuster~\\cite{verma2024ghostbuster} and DivEye~\\cite{basani2026diveye} use statistical features for binary detection; our 15-dimensional set extends beyond binary separation to capture cross-generational degradation.\n14\tRecent work extends beyond binary labels to collaboration degree~\\cite{cheng2025beyond}, contamination hierarchies~\\cite\n…[truncated 1872 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-19T11:22:33.788267+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper && grep -c '^@' references.bib",
+              "description": "Count bib entries"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-19T11:22:33.788465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "49"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-19T11:22:33.788656+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -oP '\\\\cite[tp]?\\{[^}]+\\}' related_work.tex | tr ',' '\\n' | sed 's/.*{//;s/}.*//' | sort -u | wc -l",
+              "description": "Count unique citations in related_work.tex"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-19T11:22:33.788871+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "48"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-19T11:22:33.789064+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -oP '\\\\cite[tp]?\\{[^}]+\\}' *.tex | tr ',' '\\n' | sed 's/.*{//;s/}.*//' | sort -u | wc -l",
+              "description": "Count total unique citations across all tex files"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-19T11:22:33.789255+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "55"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-19T11:22:33.789486+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -oP '\\\\cite[tp]?\\{[^}]+\\}' *.tex | tr ',' '\\n' | sed 's/.*{//;s/}.*//' | sed 's/^ *//;s/ *$//' | sort -u",
+              "description": "List all unique citation keys across tex files"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-19T11:22:33.789694+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "alain2017understanding\nalemohammad2024selfconsuming\namin2025escaping\nbao2024fast\nbasani2026diveye\nbelinkov2022probing\nbertrand2024stability\nbriesch2023selfconsuming\ncao2020coral\ncheng2025beyond\ndohmatob2024model\ndohmatob2025strong\ndrayson2025\nfrank2001ordinal\ngambetta2024surplexity\ngehrmann2019gltr\ngerstgrasser2024model\nguo2024curious\nhale2001surprisal\nhans2024binoculars\nhao2025rewrite\nhusain2019codesearchnet\nkazdan2025collapse\nke2017lightgbm\nkirchenbauer2023watermark\nkrishna2023paraphrasing\nlevy2008expectation\nmehta2025beyond\nmitchell2023detectgpt\noren2024proving\npadmakumar2024writing\npenedo2024fineweb\nraffel2020t5\nsadasivan2023detect\nschaeffer2025position\nshi2025collapse\nshumailov2024collapse\nspennemann2025quantifying\nsun2025aigt\ntang2024science\ntirumala2023d4\nverma2024ghostbuster\nwang2024semeval\nwu2023survey\nxie2023doremi\nxie2023dsir\nyang2024dnagpt\nzawalski2026codec\nzhang2024minkpp"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-19T11:22:33.790025+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n## 引用前/后对比\n\n| | 修改前 | 修改后 |\n|---|---|---|\n| Bib 条目 | 44 | 49 |\n| 全文唯一引用 | 44 | 49 |\n\n## 新增 5 篇引用\n\n| 引用键 | 作者 | 标题 | 会议/期刊 | 年份 |\n|---|---|---|---|---|\n| `raffel2020t5` | Raffel et al. | Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer | JMLR | 2020 |\n| `yang2024dnagpt` | Yang et al. | DNA-GPT: Divergent N-Gram Analysis for Training-Free Detection of GPT-Generated Text | ICLR | 2024 |\n| `verma2024ghostbuster` | Verma et al. | Ghostbuster: Detecting Text Ghostwritten by Large Language Models | NAACL | 2024 |\n| `hale2001surprisal` | Hale | A Probabilistic Earley Parser as a Psycholinguistic Model | NAACL | 2001 |\n| `levy2008expectation` | Levy | Expectation-Based Syntactic Comprehension | Cognition | 2008 |\n\n## Related Work 修改摘要\n\n1. **Model collapse 段** (line 5): 加入 `bertrand2024stability`（已在 bib 但未在 RW 正文引用）\n2. **Beyond binary detection 段** (line 12-13): 加入 `yang2024dnagpt` 到检测器列表；用 Ghostbuster + DivEye 替代原 DivEye 单独描述，突出特征方法对比\n3. **Data selection 段** (line 20): 加入 `raffel2020t5` 作为 C4 数据集引用\n4. **Ordinal classification 段** (line 24): 新增 surprisal 理论基础句，引用 `hale2001surprisal` 和 `levy2008expectation`，说明论文 surprisal 特征的信息论根源\n\n## 额外修改\n- `method.tex` line 55: C4 首次出现处加入 `\\cite{raffel2020t5}`\n\n注：任务列表中的大部分论文（Shumailov, Alemohammad, Dohmatob, Gerstgrasser, DetectGPT, Fast-DetectGPT, Binoculars, GLTR, Kirchenbauer, DSIR, D4, DoReMi, CodeSearchNet 等）修改前已全部在 bib 和正文中。Bertrand 2024 在 bib 但仅被 appendix 引用，现已补入 Related Work。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_citation-expansion_20260519T111739"
+          },
+          "id": "event-000053"
+        }
+      ],
+      "message_count": 53
+    }
+  ],
+  "readable_path": "readable/conversations/paper-citation-expansion.md"
+}

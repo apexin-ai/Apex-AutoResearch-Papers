@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "1ea1f1180a7becdd4856",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "experiment exp wiki multi source",
+  "task_key": "worker_experiment_exp_wiki_multi_source_20260520T102709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_exp_wiki_multi_source_20260520T102709.log",
+    "occurrence": 1,
+    "bytes": 943075,
+    "sha256": "76f73bf544afda9dc87a3fb69b4a03b88cf58f7ef1692e3632a5ad93088da51c"
+  },
+  "statistics": {
+    "messages": 540,
+    "user_turns": 0,
+    "tool_calls": 238,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 60,
+      "tool_call": 238,
+      "tool_result": 238,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 540,
+      "chunks": [
+        {
+          "path": "1ea1f1180a7becdd4856-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1ea1f1180a7becdd4856-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1ea1f1180a7becdd4856-part-0003.json",
+          "message_count": 180
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-exp-wiki-multi-source.md"
+}

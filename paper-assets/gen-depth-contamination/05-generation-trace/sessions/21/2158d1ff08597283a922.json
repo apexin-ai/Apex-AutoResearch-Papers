@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0",
+  "id": "2158d1ff08597283a922",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp wiki scorer confound",
+  "task_key": "worker_analysis_exp_wiki_scorer_confound_20260517T231531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_wiki_scorer_confound_20260517T231531_result.json",
+    "occurrence": 1,
+    "bytes": 2368,
+    "sha256": "85d1e5882176a34b891da53578061e6b19b9b0e83bb0b571bdcbe244ba74e015"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report saved. The experiment isn't in the registry (likely wasn't registered), but the analysis is complete.\n\n---\n\n**Verdict: Scorer confound confirmed. Qwen-7B Wikipedia K\\*=1 (not 2).**\n\nThe critical depth pair 1v2 AUC drops from 0.6108 (Qwen scorer, barely above 0.60) to 0.5870 (Pythia scorer, below threshold). Qwen-1.5B scorer inflates AUC uniformly across all depth pairs by 0.005-0.027, with the largest bias at shallow depths. This aligns Qwen-7B with all other models on Wikipedia (K\\*=1).\n\n```json\n{\n  \"k_star\": 1,\n  \"confound_verdict\": \"confirmed\",\n  \"depth_pairs\": {\n    \"0v1\": {\"ordinal_accuracy\": null, \"auc\": 0.9404, \"auc_std\": 0.0043, \"jsd\": 0.068909},\n    \"1v2\": {\"ordinal_accuracy\": null, \"auc\": 0.5870, \"auc_std\": 0.0088, \"jsd\": 0.008241},\n    \"2v3\": {\"ordinal_accuracy\": null, \"auc\": 0.5456, \"auc_std\": 0.0049, \"jsd\": 0.005474},\n    \"3v4\": {\"ordinal_accuracy\": null, \"auc\": 0.5250, \"auc_std\": 0.0134, \"jsd\": 0.004037},\n    \"4v5\": {\"ordinal_accuracy\": null, \"auc\": 0.5172, \"auc_std\": 0.0082, \"jsd\": 0.003646}\n  },\n  \"ordinal_mae\": 1.3559,\n  \"ordinal_accuracy\": 0.331,\n  \"comparison_with_qwen_scorer\": {\n    \"qwen_scorer_k_star\": 2,\n    \"pythia_scorer_k_star\": 1,\n    \"critical_pair_1v2_auc_delta\": -0.0238\n  },\n  \"wandb_run_id\": null\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "k_star": 1,
+              "confound_verdict": "confirmed",
+              "depth_pairs": {
+                "0v1": {
+                  "ordinal_accuracy": null,
+                  "auc": 0.9404,
+                  "auc_std": 0.0043,
+                  "jsd": 0.068909
+                },
+                "1v2": {
+                  "ordinal_accuracy": null,
+                  "auc": 0.587,
+                  "auc_std": 0.0088,
+                  "jsd": 0.008241
+                },
+                "2v3": {
+                  "ordinal_accuracy": null,
+                  "auc": 0.5456,
+                  "auc_std": 0.0049,
+                  "jsd": 0.005474
+                },
+                "3v4": {
+                  "ordinal_accuracy": null,
+                  "auc": 0.525,
+                  "auc_std": 0.0134,
+                  "jsd": 0.004037
+                },
+                "4v5": {
+                  "ordinal_accuracy": null,
+                  "auc": 0.5172,
+                  "auc_std": 0.0082,
+                  "jsd": 0.003646
+                }
+              },
+              "ordinal_mae": 1.3559,
+              "ordinal_accuracy": 0.331,
+              "comparison_with_qwen_scorer": {
+                "qwen_scorer_k_star": 2,
+                "pythia_scorer_k_star": 1,
+                "critical_pair_1v2_auc_delta": -0.0238
+              },
+              "wandb_run_id": null
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-wiki-scorer-confound.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "22a6f823003f260402c2",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "ssh audit investigate h5 h6 h4",
+  "task_key": "worker_ssh_audit_investigate_h5_h6_h4_20260525T201301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_audit_investigate_h5_h6_h4_20260525T201301.log",
+    "occurrence": 1,
+    "bytes": 670958,
+    "sha256": "42f84577d277d9703e75e1b6ced06c7e1c0caaa2ff6f8e6484e86078649d8950"
+  },
+  "statistics": {
+    "messages": 284,
+    "user_turns": 0,
+    "tool_calls": 115,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 50,
+      "tool_call": 115,
+      "tool_result": 115,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 284,
+      "chunks": [
+        {
+          "path": "22a6f823003f260402c2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "22a6f823003f260402c2-part-0002.json",
+          "message_count": 104
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-audit-investigate-h5-h6-h4.md"
+}

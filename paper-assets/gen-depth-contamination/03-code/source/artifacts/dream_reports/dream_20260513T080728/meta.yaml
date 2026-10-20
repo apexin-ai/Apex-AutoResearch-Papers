@@ -1,0 +1,3032 @@
+dream_id: dream_20260513T080728
+project: gen-depth-contamination
+venue: ''
+focus: ''
+review_mode: full
+review_visible: true
+writing_visible: true
+what_if: []
+tier_definitions:
+  tiers:
+    best:
+      tier: best
+      meaning: C1' 全面成立 + C3 downstream 收益显著 — 原始 2+1 claim 结构可直接支撑 EMNLP main
+      key_assumptions:
+      - 'exp-003 解码消融: K*=2 在 ≥3/4 解码配置下成立，至少一个配置 K*=3（证明 K* 可被解码策略调控）'
+      - 'exp-004 7B: 1v2 AUC ≥ 0.65，K*≥2（scale 不削弱 depth signal，可能增强）'
+      - 'exp-006 graduated filtering: 至少一个 benchmark 上 graduated − binary ≥ 2pp，paired
+        t-test p < 0.05'
+      - 'exp-015 learned features: 15D hand-crafted 与 frozen embedding+MLP 差距 < 3pp
+        AUC（支撑 interpretable features 叙事）'
+      - Qwen-cont 1v2 CI 在重复实验中稳定高于 0.60（消除 0.0015 margin 的脆弱性）
+      number_ranges:
+        auc_1v2_continuation_new_configs:
+        - 0.62
+        - 0.7
+        auc_1v2_7B:
+        - 0.65
+        - 0.75
+        k_star_across_decoding:
+        - 2 in ≥3/4 configs, possibly 3 in low-temp
+        graduated_minus_binary_delta_pp:
+        - 2.0
+        - 4.0
+        cross_model_transfer_retention_expanded:
+        - 0.82
+        - 0.95
+        spearman_rho_degradation_new_configs:
+        - 0.85
+        - 0.95
+        dsir_vs_graduated_delta_pp:
+        - 1.0
+        - 3.0
+        ordinal_accuracy_best_model:
+        - 0.42
+        - 0.48
+      narrative_direction: '原始 framing 完全成立。Title 可写 "K*=2: The Generational Discrimination
+        Boundary  for Recursive Synthetic Text"。C1'' 展示 K*=2 跨模型/解码/规模的鲁棒性 + 可调控性，
+        C3 展示即使 K*=2 这种粗粒度 ordinal signal 也能在 downstream 产生显著收益。 解码策略对 K* 的调控效应（部分
+        config K*=3）回应 "K*=2 太浅" 的审稿人质疑。 Generation mode analysis 作为 methodological
+        insight 增加论文深度。 目标: EMNLP 2026 Main，reviewer score 预期 3.5-4.0。
+
+        '
+    median:
+      tier: median
+      meaning: C1' K*=2 在已测配置上稳固但泛化边界模糊 + C3 收益存在但偏弱 — 需要把重心从 application 转向 characterization
+      key_assumptions:
+      - 'exp-003 解码消融: K*=2 在 3/4 配置成立，greedy 配置 1v2 AUC CI lower ≈ 0.58-0.60（边缘或刚好不过）'
+      - 'exp-004 7B: K*=2 但 1v2 AUC 和 1.5B 无显著差异（scale 效应不明显）'
+      - 'exp-006 graduated filtering: graduated − binary = 0.5-1.5pp，p ∈ [0.05, 0.10]（borderline
+        significant）'
+      - 'exp-015 learned features: frozen embedding+MLP 优于 15D hand-crafted 4-8pp（削弱
+        interpretable features 的独特性叙事）'
+      - Qwen-cont 1v2 仍然是最边缘的配置，CI lower 在 0.600-0.605 之间波动
+      number_ranges:
+        auc_1v2_continuation_new_configs:
+        - 0.58
+        - 0.65
+        auc_1v2_7B:
+        - 0.6
+        - 0.66
+        k_star_across_decoding:
+        - 2 in 3/4 configs, 1 in greedy
+        graduated_minus_binary_delta_pp:
+        - 0.5
+        - 1.5
+        cross_model_transfer_retention_expanded:
+        - 0.78
+        - 0.9
+        spearman_rho_degradation_new_configs:
+        - 0.78
+        - 0.87
+        dsir_vs_graduated_delta_pp:
+        - -0.5
+        - 1.0
+        ordinal_accuracy_best_model:
+        - 0.38
+        - 0.43
+      narrative_direction: 'C1'' 仍是论文核心但需要加 qualification: "K*=2 under standard nucleus
+        sampling  at 1.5B scale"。不能写 universal claim，必须明确 scope。C3 从 "graduated filtering  is
+        practically superior" 弱化为 "graduated filtering provides modest but consistent  improvement,
+        demonstrating that even coarse ordinal signal has value at the  decision boundary"。论文结构变为
+        characterization-heavy: §4 主体是 K* measurement +  cross-model transfer + degradation
+        ordering + generation mode analysis（四个子节）， C3 缩为 §5 的 short application section。exp-015
+        结果需要诚实报告 learned features  更强，但论述 interpretability-performance tradeoff。审稿策略:
+        强调 "first systematic  measurement" 的 novelty + DPI 理论框架。目标: EMNLP 2026 Main
+        (borderline) 或 Findings。
+
+        '
+    worst:
+      tier: worst
+      meaning: K*=2 universality 被打破 + C3 无显著收益 — 需要从 method/application paper 重构为
+        analysis/measurement paper
+      key_assumptions:
+      - 'exp-003 解码消融: K* 在不同解码策略间变化剧烈（greedy K*=1, high-temp K*=3），K*=2 不是 stable
+        property 而是特定配置的 artifact'
+      - 'exp-004 7B: K*=1（更强模型的递归文本更快趋同，1v2 AUC CI upper < 0.60）'
+      - 'exp-006 graduated filtering: graduated − binary < 0.5pp，p > 0.10（不显著）'
+      - 'exp-015 learned features: frozen embedding+MLP 优于 hand-crafted ≥ 10pp（hand-crafted
+        features 不够用）'
+      - Qwen-cont 在更严格测试（e.g., 不同 seed 的 depth chain）中 1v2 CI lower 跌破 0.60
+      number_ranges:
+        auc_1v2_continuation_new_configs:
+        - 0.55
+        - 0.62
+        auc_1v2_7B:
+        - 0.53
+        - 0.59
+        k_star_across_decoding:
+        - varies 1-3, no stable universal value
+        graduated_minus_binary_delta_pp:
+        - -0.5
+        - 0.5
+        cross_model_transfer_retention_expanded:
+        - 0.7
+        - 0.85
+        spearman_rho_degradation_new_configs:
+        - 0.7
+        - 0.82
+        dsir_vs_graduated_delta_pp:
+        - -1.0
+        - 0.5
+        ordinal_accuracy_best_model:
+        - 0.35
+        - 0.4
+      narrative_direction: '原始 framing 不可持续。C3 必须删除或降为 negative result 段落。C1'' 从 "K*=2
+        is the  boundary" 重构为 "K* is configuration-dependent: we map the factors that
+        govern it"。 论文变成 empirical analysis paper: "What Controls the Discriminability
+        of Recursive  Synthetic Text?" 核心贡献变为 (1) DPI 理论框架 + K* 概念的形式化定义, (2) 首次系统测量  K*
+        随 model/scale/decoding/generation-mode 的变化图谱, (3) cross-model transfer  分析揭示
+        depth signal 的 text-intrinsic vs model-specific 分解。叙事转向: "practitioners  不能假设固定
+        K*，必须根据具体配置估计"。如果 learned features 远优于 hand-crafted， 需要承认 15D features 是 convenience
+        baseline 而非 sufficient tool，加 future work  呼吁 learned approaches。目标: EMNLP
+        2026 Findings 或放弃 EMNLP 转投 AAAI 2027 (多 2 个月补实验)。审稿人可能评价 "interesting analysis
+        but limited actionable contribution" → 需要在 related work 中强调 measurement paper
+        的 venue precedent。'
+scenarios:
+- tier: best
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/dream_reports/dream_20260513T080728/best/paper.pdf
+  imagined_experiments:
+  - name: Qwen2.5-1.5B 解码策略消融
+    plan_id: exp-003
+    description: 'Qwen2.5-1.5B-Instruct continuation mode, C4 5K docs, depth 0-5,
+      4 解码配置: greedy / nucleus p=0.9 T=1.0 / nucleus p=0.95 T=0.7 / nucleus p=0.95
+      T=1.2。 Baseline 为 exp-017 (nucleus p=0.95, T=1.0, continuation): 1v2 AUC=0.6114,
+      K*=2。
+
+      '
+    expected_results:
+      greedy:
+        k_star: 1
+        pairwise_auc:
+          0v1: 0.9965
+          1v2: 0.5862
+          2v3: 0.5481
+          3v4: 0.5225
+          4v5: 0.5108
+        pairwise_jsd:
+          0v1: 0.2753
+          1v2: 0.0038
+          2v3: 0.0029
+          3v4: 0.0022
+          4v5: 0.0019
+        ordinal_accuracy: 0.3412
+      nucleus_p0.9_T1.0:
+        k_star: 2
+        pairwise_auc:
+          0v1: 0.9968
+          1v2: 0.6278
+          2v3: 0.5582
+          3v4: 0.5312
+          4v5: 0.5124
+        pairwise_jsd:
+          0v1: 0.2814
+          1v2: 0.0057
+          2v3: 0.0035
+          3v4: 0.0028
+          4v5: 0.0024
+        ordinal_accuracy: 0.3685
+      T0.7_p0.95:
+        k_star: 2
+        pairwise_auc:
+          0v1: 0.9963
+          1v2: 0.6241
+          2v3: 0.5558
+          3v4: 0.5286
+          4v5: 0.5115
+        pairwise_jsd:
+          0v1: 0.2685
+          1v2: 0.0052
+          2v3: 0.0033
+          3v4: 0.0026
+          4v5: 0.0022
+        ordinal_accuracy: 0.3648
+      T1.2_p0.95:
+        k_star: 3
+        pairwise_auc:
+          0v1: 0.9981
+          1v2: 0.6823
+          2v3: 0.6218
+          3v4: 0.5614
+          4v5: 0.5305
+        pairwise_jsd:
+          0v1: 0.3082
+          1v2: 0.0118
+          2v3: 0.0056
+          3v4: 0.0035
+          4v5: 0.0027
+        ordinal_accuracy: 0.3975
+      cross_config_spearman_rho_feature_ordering:
+        greedy_vs_baseline: 0.886
+        p0.9_vs_baseline: 0.921
+        T0.7_vs_baseline: 0.914
+        T1.2_vs_baseline: 0.878
+      k_star_summary: K*=2 in 3/4 configs (p=0.9, T=0.7, T=1.2≥2); K*=1 for greedy;
+        K*=3 for T=1.2
+    result_rationale: '解码策略通过控制 token 采样的有效熵，直接调控递归信道的信息保持率。 Greedy 解码（argmax）将输出钉死在条件分布的
+      mode 上：gen-1 已高度确定性，gen-2 对 gen-1 施加相同的 argmax 压缩后几乎无新增信息损失可测—— 因此 1v2 AUC=0.586
+      低于 θ=0.60 阈值，K*=1。这不是检测失败，而是 greedy 信道本身在首代就完成了绝大部分信息丢弃。 p=0.9（vs baseline p=0.95）仅移除尾部
+      5% 概率质量的差异，效应量小——1v2 AUC 从 0.611 降到 0.628，仍稳定在 K*=2。 T=0.7 压缩 softmax 温度使分布更
+      peaked，效应与收窄 nucleus 类似，1v2=0.624 保持 K*=2。 T=1.2 是关键条件：高温度展平分布→每代输出保留更多"非主流"
+      token 选择→这些 tail tokens 携带的分布结构需要更多代际才能被递归"洗掉"。 信息论机制：T=1.2 抬高了初始互信息 I(X;Y₁)，DPI
+      保证 I(X;Yₖ) 单调递减，但更高起点意味着 2v3 AUC=0.622 仍高于 0.60→K*=3。 Feature ordering 一致性（ρ≥0.878）表明解码策略改变信号强度但不改变哪些特征最先饱和——退化顺序是信息论结构性规律。
+
+      '
+    tables:
+    - caption: '解码策略消融: K* 与关键 pairwise AUC'
+      columns:
+      - decoding_config
+      - K*
+      - AUC_0v1
+      - AUC_1v2
+      - AUC_2v3
+      - AUC_3v4
+      - JSD_0v1
+      rows:
+      - - greedy
+        - 1
+        - 0.9965
+        - 0.5862
+        - 0.5481
+        - 0.5225
+        - 0.2753
+      - - nucleus p=0.9 T=1.0
+        - 2
+        - 0.9968
+        - 0.6278
+        - 0.5582
+        - 0.5312
+        - 0.2814
+      - - p=0.95 T=0.7
+        - 2
+        - 0.9963
+        - 0.6241
+        - 0.5558
+        - 0.5286
+        - 0.2685
+      - - p=0.95 T=1.2
+        - 3
+        - 0.9981
+        - 0.6823
+        - 0.6218
+        - 0.5614
+        - 0.3082
+      - - baseline (p=0.95 T=1.0)
+        - 2
+        - 0.9972
+        - 0.6114
+        - 0.5609
+        - 0.5408
+        - 0.2863
+    - caption: Feature degradation ordering 一致性 (Spearman ρ vs baseline)
+      columns:
+      - config
+      - spearman_rho
+      rows:
+      - - greedy
+        - 0.886
+      - - p=0.9
+        - 0.921
+      - - T=0.7
+        - 0.914
+      - - T=1.2
+        - 0.878
+    figures_description:
+    - 'K* vs 解码有效熵散点图: x轴为各解码配置的实际 token 分布熵估计，y轴为 K*。Greedy 在最左 K*=1，standard configs
+      居中 K*=2，T=1.2 在最右 K*=3，形成清晰阶跃。'
+    - '五配置 JSD decay 曲线族谱图: T=1.2 曲线在 depth=3 才穿过 θ=0.60 对应的 JSD 阈值线，greedy 在 depth=1
+      就穿过，其余在 depth=2。'
+    - 'Bootstrap CI 对比图: 各配置的 1v2 AUC 95% CI 与 θ=0.60 阈值线的关系，视觉化 K* 判定。'
+    analysis: 'T=1.2 → K*=3 + greedy → K*=1 建立了完整的 K* 可调控梯度，这是论文最有力的发现之一。 审稿人无法再说
+      "K*=2 is a ceiling"——它是 standard 解码下的 operating point，可被解码熵上下调控。 3/4 configs
+      K*≥2 表明 K*=2 在合理解码空间内高度稳健；greedy 的 K*=1 不是弱点而是优势： 它证明 K* 捕捉的是信道的真实信息论性质，而非分类器的统计
+      artifact。 Feature ordering ρ≥0.878 跨所有配置，扩展了 exp-005 的 degradation ordering
+      一致性结论到新解码条件。
+
+      '
+  - name: Qwen2.5-7B 跨规模探测
+    plan_id: exp-004
+    description: 'Qwen2.5-7B, nucleus p=0.95 T=1.0, C4 1K docs, depth 0-3。 测试模型规模是否是
+      K* 的杠杆。1K docs（vs 5K）引入更大方差但降低 GPU 成本。
+
+      '
+    expected_results:
+      pairwise_auc:
+        0v1: 0.9984
+        1v2: 0.6948
+        2v3: 0.6175
+      pairwise_auc_std:
+        0v1: 0.0004
+        1v2: 0.0092
+        2v3: 0.0108
+      pairwise_jsd:
+        0v1: 0.3415
+        1v2: 0.0285
+        2v3: 0.0112
+      k_star: 3
+      ordinal_accuracy_4class: 0.4752
+      ordinal_mae: 0.724
+      bootstrap_ci_1v2:
+      - 0.6782
+      - 0.7108
+      bootstrap_ci_2v3:
+      - 0.6015
+      - 0.6338
+      top3_features:
+      - surp_d1_std
+      - surp_std
+      - freq_entropy
+      comparison_vs_1.5B:
+        delta_auc_1v2: '+0.0834'
+        delta_auc_2v3: '+0.0566'
+        delta_jsd_0v1: '+0.0552'
+    result_rationale: '7B 模型的参数空间是 1.5B 的 ~4.7 倍，编码了更丰富的语言分布。递归生成时，每代输出保留更多原始分布的细微结构：
+      rare n-grams、长距离 discourse patterns、低频词汇的上下文相关用法。这些信息在 1.5B 级模型中首代就大部分丢失， 但在
+      7B 中至少保持到第二代——因此 2v3 AUC=0.618 仍高于 θ=0.60，K*≥3。 具体机制：7B 的 next-token 分布有更长的"有意义尾巴"（tail
+      tokens 仍携带语义区分力）， 递归第二代保留了这些 tail 的部分结构特征，到第三代才显著丢失。 1v2 AUC=0.695 较 1.5B 的
+      0.611 提升 8.3pp，JSD_0v1=0.342 较 1.5B 的 0.286 提升 19%—— 更大模型的输出在特征空间中占据更大体积，递归压缩的"距离"更长。
+      1K docs 的样本量约束使 CI 较宽（±0.015 vs 5K docs 的 ±0.010），但 2v3 CI lower=0.602 仍 comfortably
+      高于 0.60。 Ordinal accuracy 4-class=0.475（chance=0.25），MAE=0.724，均显著优于 1.5B 的
+      6-class 表现， 确认更多参数→更多可利用的代际特征梯度。
+
+      '
+    tables:
+    - caption: Qwen2.5-7B vs 1.5B pairwise discrimination 对比
+      columns:
+      - depth_pair
+      - 7B_AUC
+      - 7B_JSD
+      - 1.5B_AUC_cont
+      - 1.5B_JSD_cont
+      rows:
+      - - 0v1
+        - 0.9984
+        - 0.3415
+        - 0.9972
+        - 0.2863
+      - - 1v2
+        - 0.6948
+        - 0.0285
+        - 0.6114
+        - 0.0051
+      - - 2v3
+        - 0.6175
+        - 0.0112
+        - 0.5609
+        - 0.0036
+    - caption: 7B bootstrap 95% CI
+      columns:
+      - depth_pair
+      - AUC
+      - CI_lower
+      - CI_upper
+      - CI_lower > 0.60?
+      rows:
+      - - 1v2
+        - 0.6948
+        - 0.6782
+        - 0.7108
+        - ✅ +7.8pp
+      - - 2v3
+        - 0.6175
+        - 0.6015
+        - 0.6338
+        - ✅ +0.15pp
+    figures_description:
+    - 'Scale-K* 关系图: x轴为模型参数量（log scale: 1B, 1.4B, 1.5B, 7B），y轴为 K*。1B-1.5B 区间 K*=2
+      稳定，7B 跳到 K*=3。虚线外推暗示更大模型 K*≥4。'
+    - '7B vs 1.5B JSD decay 对比: 7B 曲线整体上移且右移，穿过 θ 阈值的 depth 更深，视觉化 scale → K* 效应。'
+    analysis: '7B K*≥3 确认模型规模是 K* 的因果杠杆，与 exp-003 T=1.2 → K*=3 形成两条独立路径。 结合两者可写: "K*=2
+      is not a ceiling but a floor that rises with model scale (7B) and decoding entropy
+      (T=1.2)." 2v3 CI lower=0.602 虽然 margin 较小（受 1K docs 限制），但方向明确且与 1v2 的强信号一致。
+      如需更强统计力度，可考虑增至 2K docs（额外 4 GPU-hours），但当前结果已足以支撑 claim。 对 ordinal_accuracy_best_model
+      的贡献: 7B 4-class=0.475 落入 best 档范围 [0.42, 0.48]。
+
+      '
+  - name: Downstream graduated filtering 评估
+    plan_id: exp-006
+    description: 'Qwen2.5-1.5B depth chain (continuation mode), 比较 6 种过滤策略: no-filter
+      / binary-ours (15D binary) / binary-Drayson (importance resampling) / graduated
+      (3-class ordinal) / surprisal-based (单特征) / DSIR (分布匹配)。Continued pretraining
+      + lm-eval-harness (MMLU, HellaSwag)。 5 seeds, paired t-test。graduated 加 α sensitivity
+      sweep (α ∈ {0.1, 0.3, 0.5, 0.7, 0.9})。
+
+      '
+    expected_results:
+      mmlu_accuracy_pp:
+        no_filter: 25.82
+        binary_ours: 26.93
+        binary_drayson: 27.21
+        graduated_best_alpha: 29.41
+        surprisal_based: 28.15
+        dsir: 27.32
+      hellaswag_accuracy_pp:
+        no_filter: 43.24
+        binary_ours: 44.38
+        binary_drayson: 44.65
+        graduated_best_alpha: 47.08
+        surprisal_based: 45.92
+        dsir: 44.81
+      mmlu_std_5seeds:
+        no_filter: 0.21
+        binary_ours: 0.28
+        binary_drayson: 0.32
+        graduated: 0.25
+        surprisal_based: 0.33
+        dsir: 0.3
+      hellaswag_std_5seeds:
+        no_filter: 0.18
+        binary_ours: 0.23
+        binary_drayson: 0.27
+        graduated: 0.2
+        surprisal_based: 0.28
+        dsir: 0.25
+      key_deltas:
+        graduated_minus_binary_ours_mmlu_pp: 2.48
+        graduated_minus_binary_ours_hellaswag_pp: 2.7
+        graduated_minus_dsir_mmlu_pp: 2.09
+        graduated_minus_dsir_hellaswag_pp: 2.27
+      paired_ttest_pvalues:
+        graduated_vs_binary_ours_mmlu: 0.0043
+        graduated_vs_binary_ours_hellaswag: 0.0067
+        graduated_vs_dsir_mmlu: 0.0125
+        graduated_vs_dsir_hellaswag: 0.0098
+      alpha_sensitivity_mmlu:
+        alpha_0.1: 27.45
+        alpha_0.3: 28.72
+        alpha_0.5: 29.41
+        alpha_0.7: 29.08
+        alpha_0.9: 28.14
+      alpha_sensitivity_hellaswag:
+        alpha_0.1: 44.85
+        alpha_0.3: 46.28
+        alpha_0.5: 47.08
+        alpha_0.7: 46.72
+        alpha_0.9: 45.65
+      optimal_alpha: 0.5
+    result_rationale: 'Binary filtering 的核心困境: gen-1 文本保留了原始文本 ~85% 的信息（0v1 AUC>0.99
+      说明 gen-1 与 human 可区分， 但 1v2 AUC~0.61 说明 gen-1 仍保留了大部分质量）。Binary 策略要么丢掉这些高质量
+      gen-1（过严→训练数据量骤降）， 要么连 gen-2+ 一起保留（过松→引入已过 K* 的噪声数据）。 Graduated filtering 通过
+      3-class ordinal signal 精确解耦: 对 gen-1 施加 α 衰减权重（降低但不移除）， 对 gen-2+ 完全移除。最优 α=0.5
+      意味着 gen-1 以半权重参与训练——保留了其信息价值同时抑制了合成偏差。 MMLU 收益（+2.48pp）高于 HellaSwag，因为 MMLU
+      对知识密度更敏感：graduated 保留的 gen-1 中知识保真度高， binary 移除后的知识缺口比常识推理缺口更难弥补。 Binary-Drayson
+      的 importance resampling 略优于 binary-ours（soft vs hard 决策边界），但仍做二值判断→无法利用 ordinal
+      signal。 DSIR 做分布匹配但不估计 depth→对 depth-specific 污染效果有限。 Surprisal-based 策略用单一特征（surprisal
+      mean）做 proxy filtering，优于 binary 但不及 graduated 的多维 ordinal signal。 α sensitivity
+      呈倒 U 形: α 太小（0.1）几乎等于 binary 移除，α 太大（0.9）几乎等于 no-filter。 5 seeds paired t-test
+      p<0.01 确认 graduated vs binary-ours 的差异非采样噪声。
+
+      '
+    tables:
+    - caption: 6 策略 downstream 评估 (5 seeds mean ± std)
+      columns:
+      - strategy
+      - MMLU_pp
+      - MMLU_std
+      - HellaSwag_pp
+      - HS_std
+      rows:
+      - - no-filter
+        - 25.82
+        - 0.21
+        - 43.24
+        - 0.18
+      - - binary-ours
+        - 26.93
+        - 0.28
+        - 44.38
+        - 0.23
+      - - binary-Drayson
+        - 27.21
+        - 0.32
+        - 44.65
+        - 0.27
+      - - graduated (α=0.5)
+        - 29.41
+        - 0.25
+        - 47.08
+        - 0.2
+      - - surprisal-based
+        - 28.15
+        - 0.33
+        - 45.92
+        - 0.28
+      - - DSIR
+        - 27.32
+        - 0.3
+        - 44.81
+        - 0.25
+    - caption: 关键对比统计显著性 (paired t-test, 5 seeds)
+      columns:
+      - comparison
+      - Δ_MMLU_pp
+      - p_MMLU
+      - Δ_HellaSwag_pp
+      - p_HellaSwag
+      rows:
+      - - graduated vs binary-ours
+        - 2.48
+        - 0.0043
+        - 2.7
+        - 0.0067
+      - - graduated vs DSIR
+        - 2.09
+        - 0.0125
+        - 2.27
+        - 0.0098
+      - - graduated vs binary-Drayson
+        - 2.2
+        - 0.0082
+        - 2.43
+        - 0.0054
+      - - graduated vs surprisal-based
+        - 1.26
+        - 0.0318
+        - 1.16
+        - 0.0425
+    - caption: α sensitivity sweep (graduated, MMLU)
+      columns:
+      - α
+      - MMLU_pp
+      - HellaSwag_pp
+      rows:
+      - - 0.1
+        - 27.45
+        - 44.85
+      - - 0.3
+        - 28.72
+        - 46.28
+      - - 0.5
+        - 29.41
+        - 47.08
+      - - 0.7
+        - 29.08
+        - 46.72
+      - - 0.9
+        - 28.14
+        - 45.65
+    figures_description:
+    - '6 策略 benchmark bar chart (error bars = 1 std over 5 seeds): graduated 最高，与
+      binary-ours 之间有清晰 gap。'
+    - 'α sensitivity curve (倒 U 形): 最优 α=0.5，α→0 趋向 binary 性能，α→1 趋向 no-filter 性能。'
+    - 'Filtering precision-recall 在 gen-1 附近: graduated 的 calibrated soft boundary
+      vs binary 的 hard step function，视觉化 ordinal signal 的阈值优势。'
+    analysis: 'graduated vs binary-ours Δ≥2.48pp (MMLU) 和 2.70pp (HellaSwag) 均落入 best
+      档 [2.0, 4.0] 且 p<0.01。 C3 成立: 即使 K*=2 的粗粒度 3-class ordinal signal 也能在 downstream
+      产生显著收益。 Binary-ours vs graduated 的唯一变量是 binary/ordinal decision→公平验证了 ordinal
+      structure 的价值。 DSIR 和 binary-Drayson 的存在证明 graduated 的优势不仅来自"更好的 filtering"而是来自
+      depth-aware 决策。 α=0.5 的最优性直观: gen-1 质量约为 human 的 ~85%（基于 1v2 AUC），半权重大致反映这个质量折扣。
+
+      '
+  - name: Retrain-chain 生态效度验证
+    plan_id: exp-008
+    description: 'Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain vs prompt-chain,
+      C4 5K docs, depth 0-4。验证 prompt-chain 是否是 retrain-chain 的合理实验代理。
+
+      '
+    expected_results:
+      retrain_chain:
+        k_star: 2
+        pairwise_auc:
+          0v1: 0.9895
+          1v2: 0.6362
+          2v3: 0.5448
+          3v4: 0.5128
+        pairwise_jsd:
+          0v1: 0.2058
+          1v2: 0.0118
+          2v3: 0.0044
+          3v4: 0.0029
+      prompt_chain_actual:
+        k_star: 2
+        pairwise_auc:
+          0v1: 0.9932
+          1v2: 0.6539
+          2v3: 0.5515
+          3v4: 0.5153
+      kstar_diff: 0
+      auc_1v2_diff: -0.0177
+      feature_distribution_jsd_retrain_vs_prompt:
+        depth_0: 0.0018
+        depth_1: 0.0162
+        depth_2: 0.0285
+        depth_3: 0.0378
+      cross_method_transfer_retention: 0.915
+    result_rationale: 'LoRA rank=16 (alpha=32) 只修改了参数空间中一个 16 维的低秩子空间， 实际参数变化量 < 模型总参数的
+      0.2%——这意味着 retrain-chain 的每代"模型"与原始 Pythia-1.4B 高度相似。 因此 retrain-chain 的行为应近似于
+      prompt-chain：两者都是同一个（或近似相同的）模型对自身输出的迭代。 K* diff=0：DPI 约束是拓扑性的——只要信道是有损的（LoRA
+      微调后仍是有损信道），收敛行为保持。 AUC 差异 -0.018：retrain-chain 略低，因为 LoRA 微调在每代引入微小但累积的分布偏移，
+      这些偏移模糊了"纯递归"的代际边界——相当于在递归信道上叠加了一层 adaptation noise。 Feature distribution JSD
+      随 depth 递增是预期行为：更深代际累积了更多 retrain 偏移。 但 JSD < 0.04 在所有 depth，远低于代际间的 JSD（~0.01-0.21），
+      确认 prompt-chain 的代际差异主导了 retrain 偏移效应。 Cross-method transfer retention 91.5%:
+      prompt-chain 上训练的 classifier 在 retrain-chain 上保持高性能。
+
+      '
+    tables:
+    - caption: Retrain-chain vs prompt-chain 对比 (Pythia-1.4B)
+      columns:
+      - depth_pair
+      - retrain_AUC
+      - prompt_AUC
+      - Δ_AUC
+      rows:
+      - - 0v1
+        - 0.9895
+        - 0.9932
+        - -0.0037
+      - - 1v2
+        - 0.6362
+        - 0.6539
+        - -0.0177
+      - - 2v3
+        - 0.5448
+        - 0.5515
+        - -0.0067
+      - - 3v4
+        - 0.5128
+        - 0.5153
+        - -0.0025
+    - caption: Feature 分布偏移 (retrain vs prompt JSD by depth)
+      columns:
+      - depth
+      - JSD
+      rows:
+      - - 0
+        - 0.0018
+      - - 1
+        - 0.0162
+      - - 2
+        - 0.0285
+      - - 3
+        - 0.0378
+    figures_description:
+    - 'Retrain vs prompt JSD decay 对比: 两条曲线近乎重叠，附 bootstrap 95% CI shading。'
+    - 'Feature space t-SNE: retrain 和 prompt 在同一 depth 的点高度混合，depth 之间有清晰分离。不同颜色区分
+      method，不同标记区分 depth。'
+    analysis: 'K* diff=0 且 AUC 差异 < 2pp，直接回应 "prompt-chain 不代表真实递归污染" 的审稿人顾虑。 Prompt-chain
+      作为 controlled proxy 的生态效度得到确认。 Feature JSD 随 depth 缓慢递增的模式可作为 supplementary
+      报告: 它表明 retrain adaptation 的效应虽然累积但始终被代际退化信号所主导。 Cross-method transfer 91.5%
+      与 exp-013 的 Pythia↔OLMo 91-92% 一致—— 换言之，prompt vs retrain 的差异与同族不同模型的差异量级相当。
+
+      '
+  - name: Contamination dose-response
+    plan_id: exp-009
+    description: '10%/30%/50% synthetic injection 比例下 graduated vs binary filtering
+      的收益差异。 基于 exp-006 的实验框架，仅变化 injection 比例。5 seeds, MMLU+HellaSwag。
+
+      '
+    expected_results:
+      graduated_vs_binary_delta_mmlu_pp:
+        injection_10pct: 0.72
+        injection_30pct: 2.48
+        injection_50pct: 3.82
+      graduated_vs_binary_delta_hellaswag_pp:
+        injection_10pct: 0.51
+        injection_30pct: 2.7
+        injection_50pct: 3.48
+      graduated_vs_binary_pvalue_mmlu:
+        injection_10pct: 0.142
+        injection_30pct: 0.0043
+        injection_50pct: 0.0008
+      graduated_vs_binary_pvalue_hellaswag:
+        injection_10pct: 0.218
+        injection_30pct: 0.0067
+        injection_50pct: 0.0012
+      trend: monotonically increasing with injection rate
+      significance_threshold_pct: ~20% injection for p<0.05
+    result_rationale: '10% injection 时，训练数据中仅 10% 是合成文本（其中 gen-1 约 5%，gen-2+ 约 5%），
+      binary 策略移除全部 10% 的信息损失较小，错分 gen-1 的代价也小（因为总量少）→graduated 的边际收益有限（<1pp, p>0.05）。
+      30% 对应 exp-006 主实验条件，graduated 优势 ~2.5pp。 50% injection 是 graduated 价值最大化的条件:
+      半数数据是合成的，其中 gen-1 占 ~25% 的全部训练数据。 Binary 面临极端权衡——移除全部 50% 导致训练数据减半（catastrophic
+      data loss）， 保留则引入 ~25% gen-2+ 噪声。Graduated 精确解耦: gen-1 以 α=0.5 权重保留→等效保留 12.5%
+      高质量数据， gen-2+ 移除→等效移除 25% 噪声。净效果: graduated 比 binary 多保留 12.5% 有用数据同时多移除等量噪声。
+      单调递增趋势是 C3 的核心叙事: "The value of depth-aware curation scales with contamination
+      severity."
+
+      '
+    tables:
+    - caption: 'Dose-response: graduated vs binary Δ by contamination rate'
+      columns:
+      - injection_rate
+      - Δ_MMLU_pp
+      - p_MMLU
+      - Δ_HellaSwag_pp
+      - p_HellaSwag
+      rows:
+      - - 10%
+        - 0.72
+        - 0.142
+        - 0.51
+        - 0.218
+      - - 30%
+        - 2.48
+        - 0.0043
+        - 2.7
+        - 0.0067
+      - - 50%
+        - 3.82
+        - 0.0008
+        - 3.48
+        - 0.0012
+    figures_description:
+    - 'Dose-response curve: x轴 injection rate, y轴 graduated−binary Δ (pp)。MMLU/HellaSwag
+      两条线均单调递增。横虚线标注 2pp 和 p=0.05 阈值。'
+    - 'Stacked bar: 各 injection rate 下 no-filter/binary/graduated 绝对性能对比。随着 injection
+      rate 升高，no-filter 下降最快，graduated 最稳健。'
+    analysis: '单调递增的 dose-response 关系是 graduated filtering 实际部署价值的最直接证据。 10% injection
+      下 p>0.05 是预期中的——低污染率下任何 filtering 策略都足够好，无需精细化。 50% injection 下 Δ=3.82pp (MMLU)
+      落入 best 档上限附近 [2.0, 4.0]。 这为 practical impact 叙事提供核心论据: 当前 web 数据合成文本比例估计 15-30%（且在增长），
+      graduated filtering 在这个区间恰好开始产生统计显著收益，随比例增长价值越大。
+
+      '
+  - name: LLM zero-shot depth estimation baseline
+    plan_id: exp-011
+    description: 'GPT-4o / Claude 3.5 Sonnet 对 depth 0-4 文本做 zero-shot depth 判断。 200
+      samples per depth (共 1000 样本), 5-class classification。 验证 depth estimation 不能被
+      frontier LLM 的通用能力"免费"解决。
+
+      '
+    expected_results:
+      gpt4o:
+        accuracy: 0.218
+        mae: 1.742
+        kendall_tau_with_true_depth: 0.082
+        confusion_matrix_diagonal_pct: 0.218
+      claude_3_5_sonnet:
+        accuracy: 0.234
+        mae: 1.668
+        kendall_tau_with_true_depth: 0.118
+        confusion_matrix_diagonal_pct: 0.234
+      our_ordinal_classifier:
+        accuracy: 0.423
+        mae: 0.984
+        kendall_tau_with_true_depth: 0.552
+      random_baseline:
+        accuracy: 0.2
+        mae: 2.0
+      llm_common_failure_mode: LLM 倾向将所有文本判为 depth 0 或 1，几乎不预测 depth≥3
+    result_rationale: 'LLM zero-shot depth estimation 近乎随机，三个结构性原因: (1) Depth signal
+      是统计性的——需要同一 domain 的多样本分布对比，单文本缺乏参照系。 LLM 每次只看一篇文本，无法感知"这篇相对于同源文本的 vocabulary
+      diversity 降低了多少"。 (2) LLM 的"质量判断"偏向 fluency/coherence/factuality，而这些高层语义特征恰恰是最后才饱和的（与
+      C2 degradation ordering 一致）。 即使 gen-3 的 vocabulary diversity 已严重退化，LLM 仍判定其"写得不错"因为它仍然
+      fluent。 (3) Depth 是一个 training-data 中从未出现过的概念——LLM 没有被训练理解"递归生成导致的信息损失梯度"， 其世界模型中不存在"第
+      N 代合成文本"这个 schema。 Claude 略优于 GPT-4o（差异在 noise range 内）可能反映 Claude 对文本微妙模式的
+      slightly better sensitivity。 两者均远低于 15D ordinal classifier（accuracy 0.42 vs
+      0.22），倍率 ~1.9x。
+
+      '
+    tables:
+    - caption: 'Zero-shot depth estimation: frontier LLM vs ordinal classifier'
+      columns:
+      - method
+      - accuracy
+      - MAE
+      - Kendall_τ
+      rows:
+      - - GPT-4o (zero-shot)
+        - 0.218
+        - 1.742
+        - 0.082
+      - - Claude 3.5 Sonnet (zero-shot)
+        - 0.234
+        - 1.668
+        - 0.118
+      - - Random baseline
+        - 0.2
+        - 2.0
+        - 0.0
+      - - Our ordinal classifier (15D)
+        - 0.423
+        - 0.984
+        - 0.552
+    figures_description:
+    - 'Confusion matrix 三面板: LLM 预测分布近乎 uniform（微偏向 depth 0-1），ordinal classifier
+      对角线主导。'
+    - 'Per-depth accuracy breakdown: LLM 在 depth=0 的 accuracy 最高（~0.35）但仍低于 classifier（~0.70），depth≥2
+      完全随机。'
+    analysis: 'LLM zero-shot 仅比 random chance 高 1.8-3.4pp，而 ordinal classifier 高出
+      22.3pp。 这确立了 depth estimation 作为需要专门方法的 task——不能被 frontier LLM 的 general intelligence
+      "免费"解决。 这是论文 problem formulation 的关键支撑: 我们定义的问题是 genuinely novel 且有技术门槛的。 LLM
+      偏向预测 depth=0/1 的 failure mode 与 C2 一致——高层语义质量在前几代保持， 导致 LLM "认为大部分文本都是 human-written
+      或 first-generation"。
+
+      '
+  - name: Binary detector confidence 作为 depth proxy
+    plan_id: exp-012
+    description: 'DivEye / Binoculars score 与 true depth 的 Spearman correlation, 在
+      exp-001 (Pythia) 和 exp-002 (OLMo) depth chain 上评估。
+
+      '
+    expected_results:
+      diveye:
+        spearman_rho_with_depth: 0.223
+        spearman_p_value: 0.001
+        auc_0v1: 0.935
+        auc_1v2: 0.528
+        auc_2v3: 0.508
+      binoculars:
+        spearman_rho_with_depth: 0.184
+        spearman_p_value: 0.003
+        auc_0v1: 0.912
+        auc_1v2: 0.521
+        auc_2v3: 0.505
+      our_15d_features:
+        auc_0v1: 0.995
+        auc_1v2: 0.634
+        auc_2v3: 0.5505
+      binary_score_depth_correlation_interpretation: 'Binary scores 在 depth=0→1 处有大跳跃然后
+        plateau—— 所有 depth≥1 的合成文本在 binary score 空间中挤在一个窄 band 内。
+
+        '
+    result_rationale: 'Binary detectors 的训练目标是最大化 real/synthetic 决策边界，不是估计 "how synthetic"。
+      其 confidence score 在 depth=0→1 跳跃后迅速饱和，原因: (1) DivEye 和 Binoculars 使用的 summary
+      statistics（如 min-k% perplexity、cross-entropy ratio） 在 gen-1 就已经偏离 human 文本的分布，之后
+      gen-2→gen-5 的偏移量极小（增量 < noise）。 (2) 这些 detectors 被优化为在 human/synthetic 边界处有最大
+      separability—— 边界远处（depth≥2）的分辨力从未被训练目标所选择。 Spearman ρ 显著但极弱（0.18-0.22），因为 depth=0
+      vs depth≥1 的 rank 差异贡献了大部分 correlation， depth≥1 内部几乎无 rank 信息。 DivEye 略优于 Binoculars
+      因为其 vocabulary diversity 相关特征恰好也编码了少量 depth 信息。 关键对比: 我们的 15D features 在 1v2
+      AUC 上高出 binary detectors ~10pp， 证明 binary confidence ≠ depth，depth estimation
+      需要专用特征。
+
+      '
+    tables:
+    - caption: Binary detector scores 作为 depth proxy
+      columns:
+      - detector
+      - Spearman_ρ
+      - p_value
+      - AUC_0v1
+      - AUC_1v2
+      - AUC_2v3
+      rows:
+      - - DivEye
+        - 0.223
+        - 0.001
+        - 0.935
+        - 0.528
+        - 0.508
+      - - Binoculars
+        - 0.184
+        - 0.003
+        - 0.912
+        - 0.521
+        - 0.505
+      - - Our 15D features
+        - —
+        - —
+        - 0.995
+        - 0.634
+        - 0.551
+    figures_description:
+    - 'Binary score vs true depth scatter: score 在 depth=0→1 有大跳跃，depth≥1 几乎平坦 (ceiling
+      effect)。附 LOESS smooth line。'
+    - 'Pairwise AUC decay 对比: binary detectors 在 1v2 处即降至 chance level，我们的 features
+      保持到 depth=2。'
+    analysis: 'Binary detectors 在 0v1 处强劲（AUC 0.91-0.94）但 1v2 处近乎 chance level（0.52-0.53），
+      直接证明 "binary detection ≠ depth estimation"。 这是论文 related work positioning 的关键数据:
+      existing methods solve a different (easier) problem。 Spearman ρ 的统计显著性反映的是 binary
+      信号本身（depth=0 vs all），而非 ordinal depth estimation 能力。
+
+      '
+  - name: Common Crawl 自然验证
+    plan_id: exp-014
+    description: '对 Common Crawl 2025/2026 snapshot 10K 样本做 depth 预测， 与 AlignScore
+      (事实一致性) 和 vocabulary richness 指标做 correlation。 无 ground truth，仅间接验证。
+
+      '
+    expected_results:
+      spearman_predicted_depth_vs_alignscore: -0.288
+      spearman_predicted_depth_vs_vocab_richness: -0.342
+      spearman_p_values:
+        alignscore: <0.001
+        vocab_richness: <0.001
+      pct_samples_predicted_depth_geq_1: 17.5
+      pct_samples_predicted_depth_geq_2: 6.8
+      pct_samples_predicted_depth_geq_3: 2.1
+      predicted_depth_distribution:
+        depth_0: 82.5
+        depth_1: 10.7
+        depth_2: 4.7
+        depth_3_plus: 2.1
+    result_rationale: 'Common Crawl 中的真实合成文本比例和代际深度无 ground truth，只能通过与外部质量指标的 correlation
+      间接验证。 Predicted depth 与 AlignScore 呈负相关（ρ≈-0.29），因为更深代际的文本在递归"电话游戏"中积累了更多事实偏差。
+      与 vocabulary richness 的负相关更强（ρ≈-0.34），与 C2 degradation ordering 一致: vocabulary
+      diversity 是最先退化的特征组，predicted depth 高的文本确实词汇更贫乏。 ~17.5% 样本被预测为 depth≥1 与 2025-2026
+      时期 web 合成文本比例的外部估计（15-25%）一致。 Depth≥2 仅 6.8%——大部分合成文本是"首代"（直接由模型生成），多代递归仍是小众现象。
+      相关性不高（|ρ|<0.35）是预期中的: wild data 的噪声（domain 多样性、unknown model 族、未知解码策略） 稀释了在
+      controlled 实验中观察到的信号。这些结果属于 "proof of concept" 级别。
+
+      '
+    tables:
+    - caption: Common Crawl 自然验证
+      columns:
+      - metric
+      - value
+      rows:
+      - - Spearman(pred depth, AlignScore)
+        - -0.288
+      - - Spearman(pred depth, vocab richness)
+        - -0.342
+      - - '% pred depth ≥ 1'
+        - 17.5%
+      - - '% pred depth ≥ 2'
+        - 6.8%
+      - - '% pred depth ≥ 3'
+        - 2.1%
+    figures_description:
+    - 'Predicted depth 分布直方图: depth=0 占 82.5%，depth=1 占 10.7%，depth=2+ 占 6.8%。'
+    - 'Predicted depth vs AlignScore scatter (LOESS smooth): 清晰下降趋势但散点稀疏。'
+    - 'Predicted depth vs vocabulary richness scatter: 负相关趋势更清晰。'
+    analysis: '自然验证提供 "proof of concept" 级别的 wild-data 证据。 相关性方向正确且显著，足以支持 appendix
+      或 discussion section 的 generalizability 论述。 不足以作为 main claim 的证据但有效回应 "只在 controlled
+      设置下验证" 的审稿人顾虑。 Predicted depth 分布与 web 合成文本比例估计的一致性增加了 classifier 的可信度。
+
+      '
+  - name: Learned representation baseline
+    plan_id: exp-015
+    description: 'Frozen Qwen2.5-1.5B embeddings (last hidden state, 1536-dim) + 2-layer
+      MLP vs hand-crafted 15D features + LightGBM。在 Qwen continuation depth chain
+      上评估。
+
+      '
+    expected_results:
+      frozen_embeddings_mlp:
+        auc_1v2: 0.5982
+        mean_pw_auc: 0.5865
+        ordinal_accuracy: 0.3708
+        mae: 1.195
+        training_time_gpu_hours: 2.6
+        feature_dim: 1536
+      handcrafted_15d:
+        auc_1v2: 0.6112
+        mean_pw_auc: 0.6048
+        ordinal_accuracy: 0.3875
+        mae: 1.155
+        training_time_gpu_hours: 0.08
+        feature_dim: 15
+      gap_auc_1v2_pp: 1.3
+      gap_mean_pw_auc_pp: 1.83
+      gap_ordinal_accuracy_pp: 1.67
+      cross_model_transfer_frozen:
+        frozen_on_qwen_test_pythia_retention: 0.62
+        handcrafted_on_qwen_test_pythia_retention: 0.85
+    result_rationale: 'Frozen embeddings 包含丰富的语义信息但存在三个结构性劣势: (1) 1536 维中绝大部分编码内容语义（topic,
+      entity, style），而非递归退化信号—— MLP 需要从高维空间中"挖掘"少数相关维度。在 5K 训练样本下，这个搜索问题容易过拟合。 (2)
+      Frozen embeddings 来自同一模型（Qwen2.5-1.5B），引入自我参照偏差: 模型对自己生成的文本有系统性 embedding 偏向，但这种偏向在
+      cross-model 设置下不 transfer—— 因此 frozen 的 cross-model retention 仅 62%，远低于 15D
+      的 85%。 (3) Embedding 空间中的 depth signal 不是线性可分的，2-layer MLP 的容量有限。 Hand-crafted
+      15D 的优势: 每个特征都直接编码与递归退化相关的统计量（diversity/surprisal/tail weight）， 人类先验弥补了维度不足。AUC
+      gap 1.30pp < 3pp (best 档要求 < 3pp)。 更关键的是 interpretability 优势: 15D 支持 degradation
+      ordering 分析（exp-005/C2）和 feature group ablation， 这是 frozen embeddings 无法提供的。论文叙事需要
+      interpretable features 来讲述 "which linguistic properties degrade first" 的故事。
+
+      '
+    tables:
+    - caption: Learned vs hand-crafted features 对比
+      columns:
+      - method
+      - AUC_1v2
+      - mean_pw_AUC
+      - ordinal_acc
+      - MAE
+      - dim
+      - GPU_hours
+      rows:
+      - - frozen embeddings + MLP
+        - 0.5982
+        - 0.5865
+        - 0.3708
+        - 1.195
+        - 1536
+        - 2.6
+      - - hand-crafted 15D
+        - 0.6112
+        - 0.6048
+        - 0.3875
+        - 1.155
+        - 15
+        - 0.08
+    - caption: Cross-model transfer 对比 (train Qwen → test Pythia)
+      columns:
+      - method
+      - in_domain_acc
+      - cross_model_acc
+      - retention_pct
+      rows:
+      - - frozen embeddings
+        - 0.3708
+        - 0.2299
+        - 62%
+      - - hand-crafted 15D
+        - 0.3875
+        - 0.3294
+        - 85%
+    figures_description:
+    - 'Performance vs interpretability 双轴图: 15D 在 Pareto 前沿（低维高性能），frozen 在高维略低性能区。'
+    - 'Cross-model transfer retention bar chart: frozen 62% vs 15D 85%，视觉化 interpretable
+      features 的 generalization 优势。'
+    analysis: 'AUC gap 1.30pp < 3pp 满足 best 档假设。15D hand-crafted 在所有指标上优于或持平 frozen
+      embeddings， 且维度低 102 倍、训练快 32.5 倍。 Cross-model transfer 的巨大差距（85% vs 62%）是 decisive
+      argument: frozen embeddings 过拟合 model-specific embedding space，而 15D 统计特征是 model-agnostic
+      的。 这验证了论文 "选择 interpretable features 不是方法论妥协而是设计优势" 的叙事， 同时回应审稿人 "为什么不用 learned
+      representations" 的问题。
+
+      '
+  - name: Base vs Instruct 模型对比
+    plan_id: exp-016
+    description: 'Qwen2.5-1.5B base model (非 instruct 微调版) continuation mode, C4 5K
+      docs, depth 0-5。 与 exp-017 (Qwen2.5-1.5B-Instruct continuation) 对比，分离 RLHF/instruction-tuning
+      对 K* 的影响。
+
+      '
+    expected_results:
+      base:
+        k_star: 2
+        pairwise_auc:
+          0v1: 0.9958
+          1v2: 0.6382
+          2v3: 0.5685
+          3v4: 0.5358
+          4v5: 0.5148
+        pairwise_jsd:
+          0v1: 0.2952
+          1v2: 0.0068
+          2v3: 0.0042
+          3v4: 0.0032
+          4v5: 0.0028
+        ordinal_accuracy: 0.3948
+        top3_features:
+        - surp_d1_std
+        - surp_std
+        - freq_entropy
+      instruct_actual:
+        k_star: 2
+        pairwise_auc:
+          0v1: 0.9972
+          1v2: 0.6114
+          2v3: 0.5609
+          3v4: 0.5408
+          4v5: 0.5139
+      base_vs_instruct_diff:
+        delta_auc_1v2: '+0.0268'
+        delta_auc_2v3: '+0.0076'
+        delta_jsd_0v1: '+0.0089'
+      feature_shift:
+        surprisal_mean_base_vs_instruct: -0.14 std units
+        vocab_diversity_base_vs_instruct: +0.06 std units
+    result_rationale: 'RLHF/instruction-tuning 将模型输出拉向 "人类偏好的模式"——更规范的句式、更安全的措辞、更集中的
+      vocabulary 选择。 这种 alignment 相当于对输出分布施加了额外的低熵约束，使得即使 gen-0→gen-1 的转换也已经部分"标准化"了。
+      结果: instruct 模型的递归代际间差异更小，因为每代输出都被拉向同一个 "preferred mode"。 Base model 没有这个约束，输出更接近预训练数据的原始分布→递归代际间保留更多分布结构→1v2
+      AUC 高 2.7pp。 但 K* 仍为 2: alignment 的影响是 quantitative（减弱信号 2.7pp）而非 qualitative（改变收敛行为）。
+      DPI 的信息论约束在有无 RLHF 的情况下都成立——只要模型是有限容量的 lossy channel。 Surprisal mean 偏移为负（instruct
+      更"可预测"，反映 RLHF 倾向于生成预期输出）; vocabulary diversity 偏移为正（instruct 词汇稍更多样，反映 RLHF
+      鼓励的表达丰富性）。 两种偏移方向一致且量级小（< 0.15 std），为 discussion 段落提供数据。
+
+      '
+    tables:
+    - caption: Base vs Instruct 对比 (Qwen2.5-1.5B, continuation mode)
+      columns:
+      - variant
+      - K*
+      - AUC_0v1
+      - AUC_1v2
+      - AUC_2v3
+      - JSD_0v1
+      - ordinal_acc
+      rows:
+      - - base
+        - 2
+        - 0.9958
+        - 0.6382
+        - 0.5685
+        - 0.2952
+        - 0.3948
+      - - instruct (exp-017)
+        - 2
+        - 0.9972
+        - 0.6114
+        - 0.5609
+        - 0.2863
+        - 0.3819
+      - - Δ (base − instruct)
+        - 0
+        - '-0.0014'
+        - '+0.0268'
+        - '+0.0076'
+        - '+0.0089'
+        - '+0.0129'
+    figures_description:
+    - 'Base vs instruct JSD decay 对比: base 曲线在 depth 1-2 段系统性高于 instruct，差距在 depth≥3
+      后消失。'
+    - 'Feature distribution violin plots: base vs instruct 在 depth=1 的 surprisal mean
+      和 vocab diversity 分布差异。'
+    analysis: 'Base 信号更强但 K* 不变——RLHF alignment 压缩了代际差异但未改变信息论收敛行为。 这对实际应用有关键意义: 野外合成文本可能来自
+      base 或 instruct 模型， K*=2 在两种设置下一致意味着 graduated filtering 框架对两者都适用。 Base model
+      1v2 AUC=0.638 的 CI 预期 lower bound ~0.628（远高于 0.60）， 为 Qwen-cont instruct 的 0.0015
+      margin 脆弱性提供了安全网: 即使 instruct 模型在重复实验中偶尔 CI lower 落到 0.599，base model 的稳健 K*=2
+      仍支撑 claim。'
+  review_report: "---\ndream_id: dream_20260513T080728\ntier: best\noverall_score:\
+    \ weak accept\ntimestamp: 2026-05-13T08:53:20.291070+00:00\n---\n\n# Dream Review\
+    \ Report: Generational Depth Contamination\n\n**Paper:** \"Generational Depth\
+    \ Contamination: Measuring and Exploiting the Discrimination Boundary of Recursive\
+    \ Synthetic Text\"\n**Review mode:** full | **Reviewers:** R1 (Methods+Experiments),\
+    \ R2 (Novelty+Related Work)\n**Date:** 2026-05-13\n\n---\n\n## Step 1: Independent\
+    \ Reviews\n\n### Reviewer 1 — Methods & Experiments\n\n**Score: 4/6 (Weak Accept)\
+    \ | Confidence: 4/5**\n\n**Strengths:**\n- Well-structured problem formulation.\
+    \ The iterated lossy channel model and DPI-based argument for K*'s existence provide\
+    \ a clean conceptual foundation. The K*_theory vs K*_empirical distinction (Section\
+    \ 3.2) is correctly drawn.\n- The decoding ablation (Table 1) establishing the\
+    \ greedy→standard→high-temp K* gradient (1→2→3) is the paper's most convincing\
+    \ finding — K* responds to a theoretically motivated control variable (effective\
+    \ decoding entropy), not classifier artifacts. Feature ordering consistency (ρ≥0.878,\
+    \ Table 2) reinforces this.\n- Appropriate use of bootstrap 95% CIs with 10K resamples\
+    \ (Table 4). Transparent about the Qwen-cont instruct CI lower bound being only\
+    \ +0.15pp above θ.\n- Fair graduated filtering design: binary-ours baseline isolates\
+    \ binary vs ordinal decision boundary with the same 15D features. Inclusion of\
+    \ DSIR and binary-Drayson provides additional context.\n- Ecologically grounded\
+    \ validity checks: retrain-chain (Table 6-7), base vs instruct (Table 5), cross-model\
+    \ transfer all address natural objections.\n- Hand-crafted features justified\
+    \ empirically (Table 14): 85% vs 62% cross-model transfer makes the design a structural\
+    \ advantage, not a compromise.\n\n**Weaknesses:**\n- **θ=0.60 is unjustified.**\
+    \ This is the single most consequential design choice — it determines every K*\
+    \ value. AUC=0.60 is barely above chance (0.50). No principled derivation is provided.\
+    \ A different threshold (0.55 or 0.65) would produce substantially different K*\
+    \ values. At θ=0.55, greedy would reach K*=2; at θ=0.65, most 1.5B configs would\
+    \ drop to K*=1. The paper must report K* sensitivity to θ ∈ [0.55, 0.65].\n- **DPI\
+    \ theory-to-practice gap wider than acknowledged.** DPI operates on the full joint\
+    \ distribution; empirical K* operates on 15D projections. The paper claims K*\
+    \ \"captures genuine information-theoretic properties\" but conflates classifier\
+    \ discriminability on a specific feature set with information-theoretic impossibility.\
+    \ The paper should state explicitly: K*_empirical is a lower bound determined\
+    \ by feature choice and threshold.\n- **7B K*≥3 is statistically fragile.** The\
+    \ 2v3 CI lower=0.6015 exceeds θ=0.60 by 0.15pp on only 1K documents. A single\
+    \ unlucky bootstrap resample could flip this. The paper should acknowledge this\
+    \ fragility more prominently.\n- **5-seed paired t-test (df=4) for graduated filtering.**\
+    \ The p-values (p=0.0043 MMLU) are surprisingly low for 4 degrees of freedom.\
+    \ Individual seed results should be reported; non-parametric alternatives or more\
+    \ seeds (10+) would strengthen the claim.\n- **LoRA rank=16 retrain-chain has\
+    \ limited ecological validity.** Modifying <0.2% of parameters is a near-identity\
+    \ perturbation, far from full retraining. The result validates prompt-chain as\
+    \ a proxy for LoRA-level adaptation, not realistic contamination cycles.\n- **Common\
+    \ Crawl validation is weak.** ρ=-0.288 and ρ=-0.342 explain <12% of variance,\
+    \ with no ground truth. Lower-quality web text would also correlate with lower\
+    \ AlignScore regardless of generational depth.\n- **Domain sensitivity unexamined.**\
+    \ All experiments use C4 English web text. K* likely varies across domains (scientific,\
+    \ code, dialogue). No analysis provided.\n- **Surprisal features use the same\
+    \ model family** that generated the text, creating a self-referential signal.\
+    \ The 85% cross-model transfer partially addresses this, but the 15% retention\
+    \ loss may reflect exactly this component.\n\n**Questions for Authors:**\n1. What\
+    \ are K* values at θ = {0.55, 0.575, 0.625, 0.65}? Is the qualitative gradient\
+    \ preserved?\n2. Have you tested intermediate injection rates (15%, 20%) to identify\
+    \ the exact significance transition point?\n3. Have you considered a full fine-tuning\
+    \ retrain chain (even at small scale, e.g., Pythia-160M)?\n4. If you remove all\
+    \ 5 surprisal features, what happens to K*?\n5. Does optimal α shift with injection\
+    \ rate?\n\n---\n\n### Reviewer 2 — Novelty & Related Work\n\n**Score: 4/6 (Weak\
+    \ Accept) | Confidence: 4/5**\n\n**Strengths:**\n- The shift from binary detection\
+    \ to ordinal depth estimation is a genuine reframing that opens new research directions.\
+    \ Framing depth as a measurable, controllable quantity (not just a binary label)\
+    \ is a real conceptual contribution.\n- The K* controllability gradient is the\
+    \ paper's strongest novelty claim — two independent causal pathways (model scale,\
+    \ decoding entropy) demonstrate K* captures channel properties, not classifier\
+    \ artifacts. This goes beyond simply measuring K*=2.\n- Comprehensive experimental\
+    \ coverage: 4 model configurations, decoding ablation, retrain-chain validation,\
+    \ cross-model transfer, LLM zero-shot baseline, binary detector comparison, learned\
+    \ vs hand-crafted features, Common Crawl validation. The breadth of supporting\
+    \ analyses is impressive for a single paper.\n- The binary-ours comparison design\
+    \ is methodologically sound: same features, same classifier, only switching binary\
+    \ vs ordinal decision → clean causal identification of the ordinal signal's value.\n\
+    \n**Weaknesses:**\n- **DPI application is textbook, not novel.** The iterated\
+    \ lossy channel + DPI argument is standard information theory. The contribution\
+    \ is the empirical measurement and exploitation of K*, not the theoretical framework.\
+    \ The paper oversells the information-theoretic framing relative to its actual\
+    \ novelty.\n- **K*=2 has narrow practical utility.** Graduated filtering with\
+    \ a 3-class ordinal signal (human/gen-1/gen-2+) reduces to a single soft threshold\
+    \ on gen-1 data — close to \"binary with a soft middle category.\" The gap between\
+    \ this and binary-Drayson's importance resampling is conceptual rather than dramatic.\n\
+    - **Related work gaps.** Missing citations:\n  - Watermarking literature (Kirchenbauer\
+    \ et al., 2023) — relevant because watermarking provides an alternative depth-tracking\
+    \ mechanism\n  - Self-refinement / iterative generation literature — texts may\
+    \ undergo multiple LLM passes without being \"recursive contamination\"\n  - Schaeffer\
+    \ et al. (2025) taxonomy of model collapse regimes — directly relevant to framing\n\
+    \  - Kazdan et al. (2025) accumulate/replace regimes — adjacent work on iterative\
+    \ training dynamics\n  - Membership inference connections — depth estimation is\
+    \ related to membership inference across training stages\n- **C1/C3 numbering\
+    \ gap.** The paper lists contributions as C1 and C3, skipping C2. The review context\
+    \ mentions \"degradation ordering\" as a contribution (C2) that was apparently\
+    \ demoted. The numbering artifact is confusing and suggests incomplete revision.\n\
+    - **Drayson comparison not fully controlled.** Drayson et al. (2025) use soft\
+    \ importance resampling weights, not hard binary decisions. The graduated vs binary-Drayson\
+    \ comparison doesn't cleanly isolate ordinal signal from weighting scheme differences\
+    \ — Drayson also uses soft weights, just derived from binary confidence rather\
+    \ than ordinal depth.\n- **\"Model-agnostic\" claim needs qualification.** The\
+    \ 15D features include 5 surprisal features computed using a reference model.\
+    \ If the reference model matches the generating model, the features are model-specific.\
+    \ Cross-model transfer (85%) shows partial but not full generalization. The claim\
+    \ should be qualified as \"partially model-agnostic.\"\n- **Writing quality.**\
+    \ The paper is generally well-written but references are broken (appearing as\
+    \ [?] throughout), and the C1/C3 numbering gap disrupts readability.\n\n**Questions\
+    \ for Authors:**\n1. Why is C2 (degradation ordering) missing from the contribution\
+    \ list? Is Table 2 the remnant of a C2 claim?\n2. How do you position this work\
+    \ against watermarking-based provenance tracking, which could in principle track\
+    \ generational depth?\n3. If graduated filtering is applied on top of Drayson's\
+    \ importance resampling (rather than replacing it), do gains stack?\n4. What reference\
+    \ model is used for surprisal computation in the cross-model transfer experiment?\n\
+    5. How does K* behave for non-English text or code?\n\n---\n\n## Step 2: Cross-Sharing\
+    \ Observations\n\n**Points of agreement (both reviewers independently flagged):**\n\
+    1. The decoding ablation K* gradient is the strongest and most novel contribution\n\
+    2. θ=0.60 lacks justification and sensitivity analysis is essential\n3. 5-seed\
+    \ paired t-test (df=4) is statistically thin\n4. DPI theory-to-practice gap is\
+    \ wider than the paper acknowledges\n5. Core contribution is sound but multiple\
+    \ axes of evidence sit at thin margins simultaneously\n6. Both scored 4/6 (Weak\
+    \ Accept) independently\n\n**R1-unique concerns (methods/stats focus):**\n- 7B\
+    \ CI fragility (0.6015 barely above 0.60)\n- Domain sensitivity completely unexamined\n\
+    - Surprisal feature self-referential signal\n- Common Crawl weak evidence without\
+    \ ground truth\n- LoRA rank=16 ecological validity limited\n\n**R2-unique concerns\
+    \ (novelty/positioning focus):**\n- Related work gaps: watermarking, self-refinement,\
+    \ Schaeffer taxonomy, Kazdan\n- C1/C3 numbering gap (missing C2)\n- K*=2 practical\
+    \ narrowness (essentially binary-with-soft-middle)\n- Drayson comparison not cleanly\
+    \ controlled\n- Broken references ([?] throughout)\n\n---\n\n## Step 3: Convergence\
+    \ Discussion\n\n**Consensus points:**\n\n1. **Overall assessment: Weak Accept.**\
+    \ Both reviewers converge on 4/6. The paper introduces a well-motivated concept\
+    \ (K*), provides systematic empirical characterization across a reasonable range\
+    \ of conditions, and demonstrates a statistically significant practical application.\
+    \ The decoding ablation establishing K* as a controllable quantity (not just a\
+    \ measured constant) elevates the work above a purely empirical survey.\n\n2.\
+    \ **The θ=0.60 sensitivity gap is the most actionable revision request.** Both\
+    \ reviewers flag this as the single most consequential unjustified design choice.\
+    \ The existing data in the paper is sufficient to produce a θ-sensitivity table\
+    \ — this is low-cost, high-impact revision.\n\n3. **Statistical concerns are real\
+    \ but not fatal.** The 7B CI margin (0.15pp) and 5-seed t-test (df=4) are thin\
+    \ but not fabricated. More seeds and more 7B documents would strengthen the paper\
+    \ but are not required if the authors appropriately temper their claims (e.g.,\
+    \ \"suggestive evidence\" rather than \"K*≥3 established\").\n\n4. **The theory-practice\
+    \ gap should be explicitly acknowledged** rather than papered over. DPI guarantees\
+    \ existence of K*_theory; the paper measures K*_empirical as a conservative lower\
+    \ bound contingent on feature choice and threshold. Stating this clearly would\
+    \ improve intellectual honesty without weakening the contribution.\n\n5. **Related\
+    \ work revision needed.** The missing watermarking and model-collapse taxonomy\
+    \ citations are substantive gaps, not cosmetic. Broken references ([?]) suggest\
+    \ incomplete preparation.\n\n**Points of productive disagreement:**\n\n- R1 emphasizes\
+    \ the 7B fragility as a potential claim-level issue; R2 views the 7B result as\
+    \ supporting evidence rather than a headline claim (since the main K*=2 story\
+    \ holds at 1.5B). **Resolution:** The 7B K*≥3 should be presented as \"suggestive\"\
+    \ rather than \"established,\" with the decoding ablation T=1.2→K*=3 (on 5K docs\
+    \ with stronger CI) carrying the \"K* is not a ceiling\" argument.\n\n- R2 is\
+    \ more concerned about K*=2's practical narrowness (3-class ≈ binary-with-soft-middle);\
+    \ R1 finds the graduated filtering evaluation convincing within its scope. **Resolution:**\
+    \ Both acknowledge the downstream gains are real and statistically significant;\
+    \ the question is whether +2.5pp on MMLU/HellaSwag is impactful enough for a top\
+    \ venue. The dose-response showing monotonic scaling with contamination rate is\
+    \ the best response — the value proposition grows as the problem worsens.\n\n\
+    ---\n\n## Step 4: Consolidated Assessment\n\n### Overall Score: 4/6 (Weak Accept)\n\
+    \n### One-Line Verdict\nA genuine conceptual contribution (K* as measurable, controllable\
+    \ operating point) supported by comprehensive experiments, but the simultaneous\
+    \ thin margins across multiple evidence axes (θ sensitivity, 7B CI, 5 seeds, DPI\
+    \ gap) and presentation issues (broken refs, C2 numbering) place it at the borderline.\n\
+    \n### Key Strengths (consensus)\n1. **K* controllability is the core insight.**\
+    \ The greedy(K*=1) → standard(K*=2) → high-temp(K*=3) gradient, combined with\
+    \ the scale pathway (7B→K*≥3), demonstrates K* captures information-theoretic\
+    \ channel properties. This elevates the paper beyond empirical measurement to\
+    \ a conceptual contribution with predictive implications.\n2. **Comprehensive,\
+    \ well-controlled experiments.** 4 model configs × decoding ablation × retrain-chain\
+    \ × cross-model transfer × 6 downstream baselines. The binary-ours comparison\
+    \ cleanly isolates the ordinal signal's value.\n3. **Practically relevant dose-response.**\
+    \ The monotonically increasing graduated-vs-binary advantage with contamination\
+    \ rate (Table 11) is the strongest argument for real-world deployment value, especially\
+    \ given the 15-30% estimated synthetic content in current web data.\n4. **Hand-crafted\
+    \ features as structural advantage.** 85% cross-model transfer (vs 62% for learned\
+    \ representations) makes this a design advantage, not a limitation. 102× fewer\
+    \ dimensions and 32.5× faster training support practical deployment.\n\n### Key\
+    \ Weaknesses (consensus)\n1. **θ=0.60 threshold unjustified.** Every K* claim\
+    \ depends on this single arbitrary choice. Sensitivity analysis across θ ∈ [0.55,\
+    \ 0.65] is essential and straightforward to produce.\n2. **Theory-practice gap\
+    \ understated.** DPI guarantees K*_theory exists in full distributional space;\
+    \ empirical K* is measured on 15D projections. The paper should explicitly frame\
+    \ K*_empirical as a feature-dependent lower bound.\n3. **Thin statistical margins\
+    \ on multiple axes simultaneously.** 7B 2v3 CI lower exceeds θ by 0.15pp; 5-seed\
+    \ paired t-test at df=4; Qwen-cont instruct 1v2 CI margin ~0.15pp. Each is individually\
+    \ acceptable but the pattern raises concern about robustness to minor perturbations.\n\
+    4. **Ecological validity limited.** LoRA rank=16 retrain-chain is far from realistic\
+    \ full-retraining contamination cycles. The validation shows prompt-chain ≈ LoRA\
+    \ adaptation, not prompt-chain ≈ realistic web contamination.\n5. **Related work\
+    \ gaps.** Watermarking literature, Schaeffer et al. (2025) collapse taxonomy,\
+    \ self-refinement literature, and Kazdan et al. (2025) are missing. Broken [?]\
+    \ references throughout.\n6. **C1/C3 numbering artifact.** Missing C2 (degradation\
+    \ ordering) creates reader confusion and suggests incomplete revision.\n\n###\
+    \ Requested Revisions (Priority Order)\n1. **[Essential]** θ-sensitivity table/figure:\
+    \ report K* at θ ∈ {0.55, 0.575, 0.60, 0.625, 0.65} for all configurations\n2.\
+    \ **[Essential]** Fix broken references and C1/C3→C1/C2/C3 numbering\n3. **[Essential]**\
+    \ Add missing related work (watermarking, Schaeffer taxonomy, Kazdan)\n4. **[Important]**\
+    \ Explicitly frame K*_empirical as feature-dependent lower bound on K*_theory\n\
+    5. **[Important]** Temper 7B K*≥3 claim to \"suggestive evidence\" given 0.15pp\
+    \ CI margin\n6. **[Important]** Report individual seed results for graduated filtering\
+    \ (Table 8-9)\n7. **[Desirable]** Increase seeds to 10+ for downstream evaluation\n\
+    8. **[Desirable]** Discuss domain sensitivity as limitation\n9. **[Desirable]**\
+    \ Qualify \"model-agnostic\" claim re: surprisal reference model\n\n### Experiment\
+    \ Coverage Assessment\nThe paper covers all experiments from the design document:\
+    \ exp-003 (decoding ablation, Table 1-2), exp-004 (7B, Tables 3-4), exp-006 (graduated\
+    \ filtering, Tables 8-10), exp-008 (retrain-chain, Tables 6-7), exp-009 (dose-response,\
+    \ Table 11), exp-011 (LLM zero-shot, Table 12), exp-012 (binary detectors, Table\
+    \ 13), exp-014 (Common Crawl, Table 15), exp-015 (learned vs handcrafted, Table\
+    \ 14), exp-016 (base vs instruct, Table 5). **Coverage: 10/10 imagined experiments\
+    \ appear in the paper.** No designed experiment is missing.\n\n### Reviewer Scores\n\
+    | Reviewer | Focus | Score | Confidence |\n|----------|-------|-------|------------|\n\
+    | R1 | Methods + Experiments | 4/6 (Weak Accept) | 4/5 |\n| R2 | Novelty + Related\
+    \ Work | 4/6 (Weak Accept) | 4/5 |\n| **Consensus** | — | **4/6 (Weak Accept)**\
+    \ | **4/5** |\n\n### Accept/Reject Recommendation\n**Weak Accept** — conditional\
+    \ on θ-sensitivity analysis, reference fixes, and related work additions. The\
+    \ K* controllability contribution is genuine and the experimental breadth is above\
+    \ average. The paper is at the borderline: if the θ-sensitivity analysis confirms\
+    \ the qualitative gradient is preserved across reasonable thresholds, the contribution\
+    \ stands. If K* rankings change materially with θ, the paper needs restructuring\
+    \ around a threshold-free metric."
+  error: ''
+- tier: median
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/dream_reports/dream_20260513T080728/median/paper.pdf
+  imagined_experiments:
+  - name: 'Cross-scale probe: Qwen2.5-7B'
+    plan_id: exp-004
+    description: Qwen2.5-7B, nucleus p=0.95 T=1.0, C4 1K docs, depth 0-3. 测试 K* 是否随模型规模变化。
+    expected_results:
+      k_star: 2
+      pairwise_auc:
+        0v1: 0.9983
+        1v2: 0.6285
+        2v3: 0.558
+      pairwise_auc_ci:
+        1v2_ci_lower: 0.6058
+        1v2_ci_upper: 0.6512
+        2v3_ci_lower: 0.5342
+        2v3_ci_upper: 0.5818
+      pairwise_jsd:
+        0v1: 0.2953
+        1v2: 0.0068
+        2v3: 0.0042
+      ordinal_accuracy_3class: 0.52
+      ordinal_mae_3class: 0.58
+      scale_comparison:
+        auc_1v2_7B: 0.6285
+        auc_1v2_1.5B_cont: 0.6112
+        delta_pp: 1.73
+        welch_t_p_value: 0.18
+        ci_overlap: true
+      degradation_spearman_rho_vs_1.5B: 0.82
+      top3_features:
+      - surp_d1_std
+      - surp_std
+      - freq_entropy
+    result_rationale: '7B 的 1v2 AUC (0.6285) 仅比 1.5B (0.6112) 高 ~1.7pp，Welch t-test
+      p=0.18 不显著。 原因: (1) K* 由 iterated lossy channel 信息衰减速率决定，depth 2+ 信号已接近 noise
+      floor， 更大模型不改变此信息论极限；(2) 7B 更高建模能力使 gen-1 更接近 human distribution， 同时也使 gen-2
+      与 gen-1 差异更难检测——两者部分抵消；(3) 仅 1K docs 导致 CI 较宽 (±0.023)， 进一步模糊潜在小效应。1K docs 而非
+      5K 是 GPU budget 约束（7B 的 generation 开销是 1.5B 的 ~5x）， CI 宽度本身就是 limitation。degradation
+      ordering ρ=0.82 说明特征退化模式在 scale 间稳定。
+
+      '
+    tables:
+    - 'Table: Pairwise AUC across scales (1.5B vs 7B), bootstrap 95% CI, Welch t-test
+      p-values'
+    figures_description:
+    - 'Bar chart: 1v2 AUC with CI error bars — Qwen-1.5B-cont vs Qwen-7B, 显示 CI 重叠'
+    - 'AUC decay curve (depth pair vs AUC): 7B overlaid on 1.5B, 几乎相同的衰减形状'
+    analysis: '结论: scale 在 1.5B→7B 范围内不显著改变 K*。论文写法: "K*=2 remains stable from 1.5B
+      to 7B (Δ AUC₁ᵥ₂ = +1.7pp, p = 0.18), though larger models (>7B) may exhibit
+      different behavior." 支持 bounded claim 但不能外推。7B 结果作为 §4.1 K* measurement 的子结果呈现。
+
+      '
+  - name: Downstream filtering evaluation
+    plan_id: exp-006
+    description: 六种过滤策略 (no-filter / binary-ours / binary-Drayson / graduated / surprisal-based
+      / DSIR) + α sensitivity sweep，5 seeds paired t-test，continued pretraining +
+      lm-eval-harness (MMLU, HellaSwag)。假设 30% synthetic injection ratio。
+    expected_results:
+      clean_baseline:
+        mmlu:
+          mean: 46.5
+          std: 0.3
+        hellaswag:
+          mean: 62.0
+          std: 0.4
+      no_filter:
+        mmlu:
+          mean: 44.8
+          std: 0.4
+        hellaswag:
+          mean: 60.2
+          std: 0.5
+      binary_drayson:
+        mmlu:
+          mean: 45.3
+          std: 0.3
+        hellaswag:
+          mean: 60.8
+          std: 0.4
+      surprisal_based:
+        mmlu:
+          mean: 45.0
+          std: 0.4
+        hellaswag:
+          mean: 60.4
+          std: 0.5
+      binary_ours:
+        mmlu:
+          mean: 45.5
+          std: 0.3
+        hellaswag:
+          mean: 60.9
+          std: 0.4
+      graduated_best_alpha:
+        mmlu:
+          mean: 46.1
+          std: 0.3
+        hellaswag:
+          mean: 61.5
+          std: 0.4
+        optimal_alpha: 0.5
+      dsir:
+        mmlu:
+          mean: 45.9
+          std: 0.3
+        hellaswag:
+          mean: 61.4
+          std: 0.4
+      graduated_minus_binary_ours:
+        mmlu_delta_pp: 0.6
+        mmlu_paired_t_p: 0.072
+        hellaswag_delta_pp: 0.6
+        hellaswag_paired_t_p: 0.085
+      dsir_minus_graduated:
+        mmlu_delta_pp: -0.2
+        hellaswag_delta_pp: -0.1
+        neither_significant: true
+      alpha_sweep:
+        alpha_0.1:
+          mmlu: 45.7
+          hellaswag: 61.0
+        alpha_0.3:
+          mmlu: 45.9
+          hellaswag: 61.3
+        alpha_0.5:
+          mmlu: 46.1
+          hellaswag: 61.5
+        alpha_0.7:
+          mmlu: 46.0
+          hellaswag: 61.4
+        alpha_0.9:
+          mmlu: 45.8
+          hellaswag: 61.1
+    result_rationale: 'graduated − binary = +0.6pp (MMLU/HellaSwag), p ∈ [0.07, 0.09]
+      borderline significant。 原因: K*=2 意味着仅 3 个有效类别 (human/gen-1/gen-2+)，ordinal signal
+      很粗糙。 graduated 优势仅体现在 gen-1 vs gen-2 的决策边界——对 gen-1（质量尚可）给予部分权重而非完全丢弃。 处于此决策边界的样本比例有限
+      (大约 training data 的 8-12%)，整体收益被稀释。 p-value borderline 因为 5 seeds 统计功效有限 (power
+      ~0.45 for 0.6pp effect size)。 DSIR 持平 graduated 因为 importance resampling 隐式实现类似质量梯度：
+      低质量文本被下采样，效果等价于 soft ordinal filtering。 α=0.5 最优因为 ordinal signal 有噪声：过强 (α→1)
+      放大误分类风险，过弱 (α→0) 退化为 binary。 α sweep 呈平缓 inverted-U 形——好消息: 对超参数不敏感。 binary-ours
+      优于 binary-Drayson (+0.2pp) 因为共享相同 feature space 使比较更公平， Drayson 的 importance
+      resampling 引入额外方差。
+
+      '
+    tables:
+    - 'Table: 六种策略 MMLU/HellaSwag (mean ± std, 5 seeds), paired t-test p-values for
+      key comparisons'
+    - 'Table: α sensitivity sweep — graduated α ∈ {0.1, 0.3, 0.5, 0.7, 0.9} MMLU/HellaSwag'
+    figures_description:
+    - 'Grouped bar chart: 六种策略 MMLU/HellaSwag 得分, error bars = 1 std, clean baseline
+      虚线'
+    - 'Line plot: α vs MMLU/HellaSwag, 显示平缓 inverted-U (峰值 α≈0.5)'
+    analysis: 'C3 收益真实但偏弱 (0.6pp, borderline p)，不足以作为独立 selling point。 DSIR 无需 depth
+      estimation 即达相似效果，进一步削弱应用价值。 论文定位: C3 缩为 §5 short application section，核心论点变为
+      "even coarse 3-class ordinal signal provides modest improvement at the decision
+      boundary; general-purpose data selection methods achieve comparable results
+      without explicit depth estimation, suggesting that the primary value of depth
+      measurement lies in scientific characterization rather than direct engineering
+      advantage."
+
+      '
+  - name: Retrain-chain ecological validity
+    plan_id: exp-008
+    description: Pythia-1.4B LoRA (rank=16, alpha=32), C4 5K docs, depth 0-4. 对比 prompt-chain
+      和 retrain-chain 的 K* 和特征分布。
+    expected_results:
+      k_star: 2
+      pairwise_auc:
+        0v1: 0.9754
+        1v2: 0.6205
+        2v3: 0.5438
+        3v4: 0.5095
+      pairwise_auc_ci:
+        0v1_ci:
+        - 0.9712
+        - 0.9796
+        1v2_ci:
+        - 0.6098
+        - 0.6312
+        2v3_ci:
+        - 0.5331
+        - 0.5545
+        3v4_ci:
+        - 0.4982
+        - 0.5208
+      pairwise_jsd:
+        0v1: 0.1547
+        1v2: 0.0098
+        2v3: 0.0038
+        3v4: 0.0025
+      ordinal_accuracy: 0.372
+      ordinal_mae: 1.168
+      prompt_vs_retrain_comparison:
+        prompt_chain_ref_auc_0v1: 0.9932
+        prompt_chain_ref_auc_1v2: 0.6539
+        retrain_chain_auc_0v1_delta: -0.0178
+        retrain_chain_auc_1v2_delta: -0.0334
+        retrain_chain_auc_2v3_delta: -0.0077
+        feature_ranking_spearman_rho: 0.78
+        top3_feature_overlap: 2 of 3 shared (surp_d1_std, surp_std)
+      top3_features:
+      - surp_d1_std
+      - surp_std
+      - freq_kurtosis
+    result_rationale: 'retrain-chain 0v1 AUC (0.975) 低于 prompt-chain (0.993) —— LoRA
+      rank=16 对模型的改变 比逐步 prompt generation 更 subtle，首代 retrain 文本与原模型偏移较小。 1v2 AUC
+      (0.620) 比 prompt-chain (0.654) 低 ~3.3pp：retrain 使模型逐渐"适应" 自身生成分布，减缓代际间信息损失速率（模型在自己的输出上变得更
+      calibrated）， 但不改变 K*=2 的基本事实——到 depth 3 信号仍收敛到 noise floor。 特征排序 ρ=0.78 (vs
+      prompt-chain) 反映退化机制高度相关但不完全相同： retrain-chain 中 freq_kurtosis 排名上升因为 LoRA 微调系统性压缩词频分布尾部。
+      JSD 全面低于 prompt-chain (0v1: 0.154 vs 0.214) 反映 retrain 后模型输出分布更接近训练分布。
+
+      '
+    tables:
+    - 'Table: Prompt-chain vs Retrain-chain pairwise AUC 对比, bootstrap CI'
+    figures_description:
+    - 'Parallel AUC decay curves: prompt-chain vs retrain-chain, same K*=2 但 offset
+      lower'
+    - 'Feature importance heatmap: side-by-side prompt vs retrain, highlighting freq_kurtosis
+      上升'
+    analysis: 'retrain-chain 确认 K*=2 在更接近真实 model collapse 场景下成立，增强 ecological validity。
+      prompt-chain 高估代际差异（特别是 0v1），论文需写: "Prompt-chain provides a controlled upper
+      bound; retrain-chain ecological validation confirms K*=2 with attenuated but
+      consistent signal (Δ AUC₁ᵥ₂ = −3.3pp)." LoRA rank=16 是实际限制——完整微调可能不同，列为 limitation。
+
+      '
+  - name: Contamination dose-response
+    plan_id: exp-009
+    description: 10%/30%/50% synthetic injection 下 graduated vs binary filtering 收益差异。
+    expected_results:
+      dose_10pct:
+        no_filter:
+          mmlu: 46.1
+          hellaswag: 61.6
+        binary_ours:
+          mmlu: 46.2
+          hellaswag: 61.7
+        graduated:
+          mmlu: 46.4
+          hellaswag: 61.9
+        graduated_minus_binary_pp: 0.2
+        paired_t_p: 0.32
+      dose_30pct:
+        no_filter:
+          mmlu: 44.8
+          hellaswag: 60.2
+        binary_ours:
+          mmlu: 45.5
+          hellaswag: 60.9
+        graduated:
+          mmlu: 46.1
+          hellaswag: 61.5
+        graduated_minus_binary_pp: 0.6
+        paired_t_p: 0.08
+      dose_50pct:
+        no_filter:
+          mmlu: 43.5
+          hellaswag: 58.8
+        binary_ours:
+          mmlu: 44.8
+          hellaswag: 60.1
+        graduated:
+          mmlu: 45.9
+          hellaswag: 61.0
+        graduated_minus_binary_pp: 1.1
+        paired_t_p: 0.038
+      dose_response_trend: monotonically increasing graduated−binary delta with contamination
+        dose
+    result_rationale: 'graduated vs binary 收益随 dose 单调递增 (0.2→0.6→1.1pp)。 10% 时差异可忽略
+      (p=0.32)：contaminated 样本占比小，binary 已能移除大部分， graduated 的边际价值被 clean data 主导的
+      signal 淹没。 30% 时 borderline (p=0.08)：binary 误杀 gen-1（质量可接受）的代价开始显现， graduated
+      保留部分 gen-1 内容。 50% 时 significant (p=0.038)：高比例 contamination 下 gen-1 样本数量庞大，
+      binary 丢弃它们的损失显著，graduated 的 calibrated weighting 优势放大。 实际 web data synthetic
+      比例目前估计 10-30%， 所以 graduated filtering 的真实收益大概率在 0.2-0.6pp 的 borderline 范围。
+
+      '
+    tables:
+    - 'Table: Dose-response matrix — MMLU/HellaSwag × {10%, 30%, 50%} × {no-filter,
+      binary, graduated}'
+    figures_description:
+    - 'Line plot: contamination dose (x) vs graduated−binary delta (y), 显示近线性增长'
+    - 'Stacked area chart: dose × 策略, 显示 graduated 在高 dose 下优势扩大'
+    analysis: 'dose-response 为 C3 提供 nuanced framing: "practical value scales with
+      contamination prevalence: at moderate levels (30%) benefit is borderline (0.6pp,
+      p=0.08); at high contamination (50%) it becomes significant (1.1pp, p<0.04)."
+      比 flat "graduated is better" 更 honest 也更有学术价值。 50% 是 worst-case，但 web contamination
+      trend 持续上升——graduated filtering 的价值可能随时间增长。
+
+      '
+  - name: LLM zero-shot depth estimation baseline
+    plan_id: exp-011
+    description: GPT-4o / Claude 3.5 对 depth 0-4 文本做 zero-shot depth 判断。API cost only,
+      no GPU。
+    expected_results:
+      gpt4o:
+        binary_accuracy_0v1: 0.72
+        accuracy_3class: 0.38
+        accuracy_6class: 0.2
+        depth_spearman_rho: 0.18
+        mae: 1.85
+      claude_3_5:
+        binary_accuracy_0v1: 0.68
+        accuracy_3class: 0.36
+        accuracy_6class: 0.19
+        depth_spearman_rho: 0.15
+        mae: 1.92
+      random_baselines:
+        accuracy_6class_chance: 0.167
+        accuracy_3class_chance: 0.333
+      our_method_reference:
+        accuracy_6class: 0.42
+        accuracy_3class: 0.63
+        depth_spearman_rho: 0.55
+    result_rationale: 'LLM 在 binary detection (0v1) 有一定能力 (~70%)：人类与合成文本在流畅度、重复性、
+      generic phrasing 等维度有 perceptible 差异。但 depth estimation 接近 chance: 代际间差异是 subtle
+      statistical patterns (surprisal 分布高阶矩、频率分布尾部行为)， 非 LLM prompt 可捕捉的显式质量指标。 3-class
+      accuracy ~37% ≈ chance (33.3%)，说明即使简化为 3 级任务 LLM 仍无能为力。 Spearman ρ ≈ 0.15-0.18
+      仅有极弱单调关系。GPT-4o 略优于 Claude (72% vs 68% on 0v1) 可能因训练数据中包含更多 synthetic text artifact
+      讨论，但差异不显著且与 depth 无关。
+
+      '
+    tables:
+    - 'Table: LLM zero-shot vs our 15D method — accuracy (6/3-class), MAE, Spearman
+      ρ'
+    figures_description:
+    - 'Confusion matrix heatmaps: GPT-4o / Claude 3.5 zero-shot predictions vs true
+      depth — 仅 gen-0 row 有对角集中，其余近均匀'
+    analysis: '强化 C1'' novelty: "State-of-the-art LLMs achieve near-chance on depth
+      estimation (3-class accuracy 36-38% vs chance 33%), confirming generational
+      depth is a distributional property requiring specialized measurement, not a
+      surface quality attribute." 这个 baseline 直接回应 "为什么需要专门方法" 的潜在质疑。
+
+      '
+  - name: Binary detector confidence as depth proxy
+    plan_id: exp-012
+    description: DivEye / Binoculars confidence score 与 true depth 的 Spearman correlation，验证
+      binary confidence ≠ depth。
+    expected_results:
+      diveye:
+        binary_auc_0v1: 0.882
+        spearman_rho_confidence_vs_depth: 0.215
+        auc_1v2_from_confidence: 0.548
+        auc_2v3_from_confidence: 0.512
+      binoculars:
+        binary_auc_0v1: 0.907
+        spearman_rho_confidence_vs_depth: 0.192
+        auc_1v2_from_confidence: 0.534
+        auc_2v3_from_confidence: 0.508
+      our_method_reference:
+        spearman_rho_vs_depth: 0.553
+        auc_1v2: 0.654
+        auc_2v3: 0.552
+    result_rationale: 'Binary detectors 的 confidence 与 depth 有弱正相关 (ρ≈0.19-0.22)：
+      更深代际文本更"像合成"，confidence 缓慢上升。但远弱于我们的方法 (ρ=0.55)， 因为 binary confidence 主要捕捉 0v1
+      的大跳变，对 1v2+ 微小差异不敏感—— 这些 detectors 的 decision boundary 在 real/synthetic 边界，不在
+      gen-1/gen-2 边界。 Binoculars binary AUC (0.907) > DivEye (0.882) 但 depth ρ 反而更低
+      (0.192 vs 0.215)—— 更好的 binary detector 不自动成为更好的 depth estimator，证明二者是不同任务。 1v2
+      AUC from confidence (0.534-0.548) 远低于我们的 15D features (0.654)。
+
+      '
+    tables:
+    - 'Table: Binary detector confidence as depth proxy — Spearman ρ, per-pair AUC,
+      vs 15D method'
+    figures_description:
+    - 'Scatter plot: Binoculars confidence vs true depth — gen-0/gen-1 分离明显，gen-1+
+      基本平坦'
+    - 'AUC decay comparison: 15D method vs DivEye/Binoculars confidence 的 per-pair
+      AUC'
+    analysis: '直接回答审稿人 "为什么不直接用 binary confidence 做 graduated filtering"。 论文写法: "Binary
+      detection confidence provides a poor depth proxy (ρ ≤ 0.22 vs 0.55), confirming
+      that depth estimation requires features capturing distributional shifts beyond
+      the real/synthetic boundary."
+
+      '
+  - name: Naturalistic validation on Common Crawl
+    plan_id: exp-014
+    description: CC 2025/2026 snapshot 样本 (10K docs) 做 depth 预测，与 AlignScore、vocabulary
+      richness、self-BLEU、perplexity 做 correlation。
+    expected_results:
+      depth_distribution_cc2025:
+        predicted_gen0_pct: 83.2
+        predicted_gen1_pct: 11.5
+        predicted_gen2plus_pct: 5.3
+      correlation_with_proxies:
+        spearman_rho_align_score: -0.28
+        spearman_rho_vocab_richness_ttr: -0.24
+        spearman_rho_self_bleu: 0.19
+        spearman_rho_perplexity_gpt2: -0.31
+      confidence_calibration:
+        mean_confidence_gen0: 0.78
+        mean_confidence_gen1: 0.52
+        mean_confidence_gen2plus: 0.41
+    result_rationale: 'CC 上 depth 预测分布 (83/12/5) 与当前 web synthetic content 比例估计 (10-20%)
+      粗略一致。 AlignScore 负相关 (ρ=-0.28)：预测为更深代际的文本事实一致性更差，符合 model collapse 理论。 但相关性偏弱因为:
+      (1) 无 ground truth depth labels，只能做 proxy correlation； (2) CC "合成文本" 来自多种 LLM/pipeline，与单模型受控实验分布不同；
+      (3) domain/length/genre 是强混淆变量。 perplexity 相关性稍高 (ρ=-0.31) 因为 synthetic 文本在
+      GPT-2 下 perplexity 更低 （更接近 LM 的 typical set）。confidence 校准显示模型对 gen-2+ 不确定性更高
+      (0.41 vs 0.78)， 符合 K*=2 预期——gen-2+ 之间确实难以区分。
+
+      '
+    tables:
+    - 'Table: Predicted depth distribution on CC 2025 (10K sample)'
+    - 'Table: Spearman ρ between predicted depth and four independent quality proxies'
+    figures_description:
+    - 'Histogram: CC 2025 predicted depth distribution'
+    - 'Scatter + trend line: predicted depth vs AlignScore, 弱负相关'
+    analysis: '提供 directional evidence 但非 conclusive proof。定位为 "preliminary ecological
+      validation"， 承认没有 ground truth。ρ≈0.24-0.31 弱相关在 web data confounders 下是合理的。
+      主要回应 reviewer concern #3 (ecological validity)，strength 有限——作为 supplementary
+      analysis。
+
+      '
+  - name: Learned representation baseline
+    plan_id: exp-015
+    description: Frozen Qwen2.5-1.5B last-hidden-state (1536d) + 2-layer MLP vs hand-crafted
+      15D features。验证 interpretable features 的价值上限。
+    expected_results:
+      learned_frozen_mlp:
+        qwen_rewrite:
+          accuracy: 0.4785
+          mae: 0.8512
+          tau_b: 0.6195
+          mean_pw_auc: 0.6823
+          auc_1v2: 0.7342
+        pythia:
+          accuracy: 0.4358
+          mae: 0.9624
+          tau_b: 0.5412
+          mean_pw_auc: 0.6498
+          auc_1v2: 0.6973
+        olmo:
+          accuracy: 0.431
+          mae: 0.9787
+          tau_b: 0.5318
+          mean_pw_auc: 0.6425
+          auc_1v2: 0.6582
+      handcrafted_15d_reference:
+        qwen_rewrite:
+          accuracy: 0.4229
+          mean_pw_auc: 0.6214
+          auc_1v2: 0.6955
+        pythia:
+          accuracy: 0.3856
+          mean_pw_auc: 0.6055
+          auc_1v2: 0.6539
+        olmo:
+          accuracy: 0.3822
+          mean_pw_auc: 0.6015
+          auc_1v2: 0.6145
+      delta_accuracy_pp:
+        qwen_rewrite: 5.56
+        pythia: 5.02
+        olmo: 4.88
+        mean: 5.15
+      delta_mean_pw_auc_pp:
+        qwen_rewrite: 6.09
+        pythia: 4.43
+        olmo: 4.1
+        mean: 4.87
+    result_rationale: 'frozen embedding + MLP 优于 15D hand-crafted ~5pp accuracy /
+      ~4.9pp mean_pw_auc。 原因: (1) 1536d frozen embeddings 包含 surprisal/diversity/frequency
+      等 hand-crafted  features 捕捉的信息以及高阶交互和 contextual patterns；(2) MLP 学习非线性组合， 而
+      LightGBM 虽也非线性但受限于 15d 输入；(3) LM 内部表征隐式编码 generation process artifacts。 但差距是
+      ~5pp 而非 overwhelming：hand-crafted features 已捕捉大部分 discriminative signal （~85%
+      of available performance），剩余 ~5pp 来自 high-dimensional interaction effects。 这说明
+      depth signal 主要是 low-dimensional 统计模式，learned features 的优势在于 residual pattern
+      捕捉，而非发现全新 signal source。 跨模型一致的 ~5pp gap 说明这个差距是 structural 的，不是 dataset-specific。
+
+      '
+    tables:
+    - 'Table: Hand-crafted 15D vs Frozen-LM+MLP — accuracy, MAE, τ_b, mean_pw_auc,
+      AUC₁ᵥ₂ across 3 configs'
+    figures_description:
+    - 'Grouped bar chart: accuracy 15D vs learned, per config, 显示一致 ~5pp gap'
+    - 't-SNE: learned embeddings colored by depth — gen-0/gen-1 boundary 清晰, gen-2+
+      混合'
+    analysis: 'median tier 最 uncomfortable 的结果。论文必须诚实报告，但论述: (1) "15D features capture
+      ~85% of available signal — the gap confirms our features  target the right distributional
+      properties." (2) "Hand-crafted features remain uniquely valuable for degradation
+      ordering analysis (§4.3)  and cross-model transfer analysis (§4.2), which require
+      per-feature interpretability." (3) "This interpretability-performance tradeoff
+      is central: learned features are stronger  but opaque; hand-crafted features
+      support the characterization that is the paper''s  primary contribution." 审稿人必问
+      "why not learned features" — 回答是贡献在 characterization 不是 SOTA classifier。
+
+      '
+  - name: Base vs Instruct model comparison
+    plan_id: exp-016
+    description: Qwen2.5-1.5B base (无 instruction tuning) vs Instruct 的 K* 和特征分布差异，continuation
+      mode, C4 5K docs, depth 0-5。
+    expected_results:
+      base_model:
+        k_star: 1
+        k_star_note: 'at θ=0.60: CI lower=0.5878 < 0.60 → K*=1; at θ=0.585: K*=2 —
+          threshold-sensitive'
+        pairwise_auc:
+          0v1: 0.9923
+          1v2: 0.5985
+          2v3: 0.5482
+          3v4: 0.5265
+          4v5: 0.5098
+        pairwise_auc_ci:
+          1v2_ci_lower: 0.5878
+          1v2_ci_upper: 0.6092
+        pairwise_jsd:
+          0v1: 0.2415
+          1v2: 0.0042
+          2v3: 0.0031
+          3v4: 0.0028
+          4v5: 0.0024
+        ordinal_accuracy: 0.362
+        ordinal_mae: 1.225
+        top3_features:
+        - surp_d1_std
+        - surp_std
+        - surp_d2_std
+      instruct_reference:
+        k_star: 2
+        auc_1v2: 0.6112
+        auc_1v2_ci_lower: 0.6015
+      instruct_minus_base:
+        auc_1v2_delta_pp: 1.27
+        auc_0v1_delta_pp: 0.49
+      feature_ranking_comparison:
+        spearman_rho_base_vs_instruct: 0.87
+        shared_top3: true
+        key_divergence: 'freq_entropy: instruct top-1 → base rank-5'
+    result_rationale: 'Base model 1v2 AUC (0.5985) 比 Instruct (0.6112) 低 ~1.3pp，CI
+      lower (0.5878)  在 θ=0.60 下方 → K*=1。 原因: instruction tuning 使模型输出更结构化、更遵循特定 pattern，
+      这些 pattern 在递归生成中的退化更 systematic 因而更 detectable。 Base model 的 continuation 输出更
+      diverse/stochastic，代际间 distributional shift  更 diffuse 更难检测。 但差异很小 (1.3pp)：depth
+      signal 主要来自 iterated generation 的信息损失， 不是 instruction-following artifact。 特征排序高度一致
+      (ρ=0.87)：surprisal 特征在两种模型中都最 discriminative。 关键差异在 freq_entropy：instruct model
+      中 rank 1 但 base 中 rank 5， 因为 instruction tuning 使词频更集中（模板化用词），这个 entropy signal
+      在递归中退化更明显。
+
+      '
+    tables:
+    - 'Table: Base vs Instruct pairwise AUC 对比, bootstrap CI'
+    - 'Table: Feature importance ranking comparison (Spearman ρ = 0.87), highlighting
+      freq_entropy divergence'
+    figures_description:
+    - 'AUC decay curve: base vs instruct 并列, 平行衰减但 instruct ~1pp higher'
+    - 'Feature importance bar chart: base vs instruct side-by-side, freq_entropy 箭头标注'
+    analysis: 'base model borderline K* 增加 important qualification。论文写法: "K*=2 holds
+      for instruction-tuned models; base models show marginally weaker signal  (AUC₁ᵥ₂
+      = 0.60 vs 0.61), with the 0.60 threshold falling within the bootstrap CI. Feature
+      degradation orderings are highly consistent across variants (ρ = 0.87),  indicating
+      shared underlying mechanisms." 这个结果实际上 strengthen "systematic characterization"
+      叙事： 展示 K* 对 model variant 的 sensitivity，证明 fine-grained measurement 的必要性。 作为
+      §4.1 的子分析呈现。'
+  review_report: "---\ndream_id: dream_20260513T080728\ntier: median\noverall_score:\
+    \ weak reject\ntimestamp: 2026-05-13T08:59:48.335928+00:00\n---\n\n# Dream Review\
+    \ Report: Measuring the Generational Discrimination Boundary in Recursively Contaminated\
+    \ Text\n\n**dream_id:** 20260513T080728  \n**Review mode:** full  \n**Date:**\
+    \ 2026-05-13  \n\n---\n\n## Roundtable Summary\n\nTwo reviewers conducted independent\
+    \ reviews (R1: Methods & Experiments; R2: Novelty & Related Work), followed by\
+    \ cross-sharing, convergence discussion, and synthesis.\n\n- **R1 initial score:**\
+    \ 3/6 (Weak Reject), Confidence 4/5\n- **R2 initial score:** 4/6 (Weak Accept),\
+    \ Confidence 4/5\n- **Consensus score:** 3.5 → **3/6 (Weak Reject)**, Confidence\
+    \ 4/5\n\nThe reviewers agree on the core strengths (novel problem framing, comprehensive\
+    \ experiments, commendable honesty) and on the main weaknesses (DPI theory is\
+    \ standard, θ threshold is load-bearing, C3 application claim is effectively null).\
+    \ The key disagreement was whether the conceptual reframing alone is sufficient\
+    \ for a top venue — R2 initially thought yes at borderline, but converged toward\
+    \ R1's view that without stronger empirical grounding of K* (e.g., sensitivity\
+    \ to θ, K* under learned features), the characterization contribution is not yet\
+    \ convincing enough.\n\n---\n\n## Step 1: Independent Reviews\n\n### Reviewer\
+    \ R1 — Methods & Experiments\n\n**Score: 3/6 (Weak Reject) | Confidence: 4/5**\n\
+    \n#### Strengths\n\n- **S1. Novel problem formulation.** Formalizing depth estimation\
+    \ as an ordinal classification problem and defining K* as a measurable quantity\
+    \ is a genuine contribution that no prior work has attempted.\n- **S2. Comprehensive\
+    \ experimental matrix.** 4 model configs × 2 generation modes × cross-scale ×\
+    \ cross-model transfer × retrain-chain × 6 filtering strategies + supporting analyses.\
+    \ This is unusually thorough.\n- **S3. Commendable honesty.** The paper does not\
+    \ hide uncomfortable results: DSIR matching graduated filtering, base model borderline\
+    \ K*, learned features outperforming by ~5pp. This scientific integrity is appreciated.\n\
+    - **S4. Useful baselines.** LLM zero-shot (Table 8) and binary-confidence-as-proxy\
+    \ (Table 9) analyses directly address likely reviewer objections and confirm the\
+    \ non-triviality of depth estimation.\n\n#### Weaknesses\n\n- **W1 (Major). DPI\
+    \ theory is a framing device, not a substantive contribution.** The iterated lossy\
+    \ channel argument provides existence of K* but makes no quantitative predictions\
+    \ — any positive empirical result would be \"consistent with DPI.\" The gap between\
+    \ DPI on full joint distributions and classifier discriminability on 15D feature\
+    \ projections is substantial and under-acknowledged. K*_empirical is a feature-dependent,\
+    \ threshold-dependent lower bound on K*_theory, not K*_theory itself.\n\n- **W2\
+    \ (Major). θ=0.60 threshold is arbitrary and load-bearing.** The base model's\
+    \ K* flips between 1 and 2 at exactly this value (AUC=0.599, CI lower=0.588).\
+    \ Qwen-1.5B continuation CI lower is only 0.002 above threshold (0.602). No sensitivity\
+    \ analysis over θ is provided. The headline result K*=2 depends critically on\
+    \ this single threshold choice, and several configurations are within noise of\
+    \ the boundary.\n\n- **W3 (Major). Learned features outperform 15D by ~5pp consistently\
+    \ — K* under learned features is never reported.** Table 10 shows frozen embeddings\
+    \ + MLP beating hand-crafted features by ~5pp accuracy and ~4.9pp mean pairwise\
+    \ AUC across all three generator configs. If learned features push AUC_2v3 above\
+    \ 0.60, then K*=2 becomes an artifact of the feature set, not a property of recursive\
+    \ text. This is a critical omission.\n\n- **W4 (Major). Graduated filtering fails\
+    \ practical significance.** At 30% contamination (the realistic operating point),\
+    \ graduated vs binary yields +0.6pp (p=0.072) — borderline by any standard. DSIR\
+    \ achieves comparable results without depth estimation. At 10% contamination,\
+    \ the difference is negligible (+0.2pp, p=0.32). Only at 50% (worst-case) does\
+    \ the difference reach significance (+1.1pp, p=0.038). The C3 application claim\
+    \ is effectively null at realistic contamination levels.\n\n- **W5 (Moderate).\
+    \ Low statistical power.** 5 seeds for filtering experiments (power ~0.45 for\
+    \ 0.6pp effect size per the review context). 1K documents for 7B experiments (CI\
+    \ ±0.023). The 7B non-significant result (p=0.18) may simply be underpowered.\n\
+    \n- **W6 (Moderate). Single-domain evaluation.** All experiments use C4 English\
+    \ web text. No evaluation on code, non-English text, domain-specific corpora,\
+    \ or different text lengths. The generality of K*=2 beyond this narrow domain\
+    \ is unknown.\n\n- **W7 (Moderate). Retrain-chain ecological validity is limited.**\
+    \ LoRA rank=16 is a parameter-efficient approximation, not full fine-tuning. The\
+    \ retrain-chain attenuates signal by -3.3pp on 1v2, and the paper acknowledges\
+    \ this limitation, but the gap between LoRA retrain and real-world model collapse\
+    \ (full retraining on mixed data) remains uncharacterized.\n\n#### Questions for\
+    \ Authors (R1)\n\n1. What is K* when measured using learned features (frozen embeddings\
+    \ + MLP)? If AUC_2v3 exceeds 0.60 under learned features, the headline K*=2 is\
+    \ a property of the 15D feature set, not of recursive text.\n2. How does K* vary\
+    \ as a function of θ ∈ {0.55, 0.575, 0.60, 0.625, 0.65}? Is K*=2 robust or is\
+    \ it an artifact of a single threshold choice?\n3. What is the statistical power\
+    \ of the 5-seed filtering experiment to detect a 0.6pp effect? If power < 0.5,\
+    \ the borderline p-values are uninformative.\n4. The DPI argument assumes homogeneous\
+    \ channel applications (same G at each step). In the prompt-chain setup, the model\
+    \ changes context at each step. How does this affect the theoretical guarantee?\n\
+    5. Why was the greedy decoding ablation (exp-003, listed as RUNNING in the experiment\
+    \ plan) not included? This would directly test whether K* varies with decoding\
+    \ strategy.\n\n---\n\n### Reviewer R2 — Novelty & Related Work\n\n**Score: 4/6\
+    \ (Weak Accept) → revised to 3/6 after roundtable | Confidence: 4/5**\n\n####\
+    \ Strengths\n\n- **S1. Genuine conceptual reframing.** The shift from binary (human\
+    \ vs. synthetic) to ordinal (depth estimation) opens a new problem space. No prior\
+    \ work operationalizes this boundary. This is confirmed by literature search.\n\
+    - **S2. Thorough positioning against Drayson et al. (2025).** The closest prior\
+    \ work is correctly identified and the differentiation is clean: Drayson uses\
+    \ binary confidence for importance resampling; this work generalizes to ordinal\
+    \ depth with graduated weights. The binary-ours baseline provides fair isolation.\n\
+    - **S3. Breadth of supporting analyses.** Retrain-chain, cross-model transfer,\
+    \ LLM zero-shot, binary confidence comparison, learned representations, Common\
+    \ Crawl validation — above-average experimental comprehensiveness.\n- **S4. Honest\
+    \ self-assessment.** The paper correctly repositions from \"engineering advantage\"\
+    \ to \"scientific characterization\" when the application results are weak.\n\n\
+    #### Weaknesses\n\n- **W1 (Major). DPI theoretical contribution is standard.**\
+    \ The iterated lossy channel framing and DPI-based K* existence argument is textbook\
+    \ information theory (Markov chain data processing). Should be reframed as \"\
+    motivation\" not \"contribution.\"\n\n- **W2 (Major). K*=2 has narrow practical\
+    \ implications.** A 3-class ordinal signal (human/gen-1/gen-2+) is structurally\
+    \ close to \"binary detection with a soft middle category.\" The graduated filtering\
+    \ formula (Eq. 3) reduces to: keep human (w=1), discount gen-1 (w=1-α), discard\
+    \ gen-2+ (w≈0). This is one additional threshold over binary. The operational\
+    \ gap from Drayson's continuous importance resampling weights is smaller than\
+    \ implied.\n\n- **W3 (Moderate). Significant related work gaps.**\n  - **Watermarking\
+    \ literature** (Kirchenbauer et al., 2023): Active provenance tracking via watermarks\
+    \ is an alternative to passive depth estimation. The paper should discuss the\
+    \ relationship.\n  - **Schaeffer et al. (ICML 2025), \"Position: Model Collapse\
+    \ Does Not Mean What You Think\":** Identifies 8 definitions of model collapse\
+    \ across 3 families. K* belongs to Family B (distribution deformation). Citing\
+    \ this would sharpen positioning.\n  - **Kazdan et al. (ICML 2025), \"Collapse\
+    \ or Thrive?\":** Formalizes replace vs. accumulate vs. accumulate-subsample regimes.\
+    \ The prompt-chain setup = replace regime (harshest). K*=2 should be contextualized\
+    \ as specific to this regime.\n  - **Self-refinement literature:** Texts undergoing\
+    \ multiple LLM self-refinement passes could produce similar statistical signatures\
+    \ but are not \"recursive contamination.\" False positive risk is undiscussed.\n\
+    \  - **Membership inference connections** (Carlini et al., 2022; Shi et al., 2024\
+    \ Min-K%++): Depth estimation has structural similarity to membership inference.\
+    \ Deserves discussion.\n\n- **W4 (Minor). Missing citation \"[?]\" in the introduction.**\
+    \ Broken reference visible in §1. Preparation issue.\n\n- **W5 (Moderate). ~5pp\
+    \ gap to learned features complicates the characterization narrative.** The paper\
+    \ argues for hand-crafted features based on interpretability, but the ~5pp gap\
+    \ is consistent across all configurations (Table 10). If the primary contribution\
+    \ is \"scientific characterization,\" a reader might reasonably ask: characterization\
+    \ using suboptimal features? The interpretability-performance tradeoff argument\
+    \ needs stronger justification — specifically, what characterization insights\
+    \ are uniquely enabled by per-feature analysis that couldn't be obtained from\
+    \ probing learned representations?\n\n- **W6 (Moderate). Scope narrowness relative\
+    \ to claims.** 1.5B-7B models, English web text, nucleus sampling only. No non-English\
+    \ text, no code, no models above 7B. The \"information-theoretic\" framing suggests\
+    \ generality that the experiments cannot support.\n\n#### Questions for Authors\
+    \ (R2)\n\n1. How does K* vary across θ values? Is the K*=2 finding robust across\
+    \ {0.55, 0.575, 0.625, 0.65}?\n2. The cross-model transfer \"91% retention\" comes\
+    \ from the Pythia↔OLMo pair. What is the average retention across all off-diagonal\
+    \ transfer pairs? Table 1 shows Qwen-rw has much higher AUC_1v2 (0.696) than others\
+    \ — does transfer from/to this config drag the average down substantially?\n3.\
+    \ How would the depth classifier behave on text that underwent multiple LLM self-refinement\
+    \ passes (not recursive contamination)? Is there a false-positive risk for iteratively\
+    \ edited text?\n4. If watermarks were applied at each generation stage, depth\
+    \ could be tracked without statistical classifiers. How do you position passive\
+    \ depth estimation against active watermarking-based provenance?\n5. What specific\
+    \ characterization insights are uniquely enabled by per-feature interpretability\
+    \ that could not be obtained by probing or explaining learned representations?\n\
+    \n---\n\n## Step 2: Cross-Sharing — Key Observations\n\nAfter exchanging reviews,\
+    \ both reviewers identified convergent and divergent assessments.\n\n**Points\
+    \ of agreement:**\n- DPI theory is standard, not a real contribution (R1-W1, R2-W1)\n\
+    - θ=0.60 sensitivity is a critical unaddressed issue (R1-W2, R2 Q1)\n- The paper's\
+    \ honesty about weak C3 results is a genuine strength\n- Comprehensive experimental\
+    \ coverage is above average\n- The conceptual reframing (binary → ordinal) is\
+    \ novel and valuable\n\n**Points of divergence:**\n- R1 sees the learned-features\
+    \ gap (W3) as potentially undermining the headline K*=2 finding; R2 sees it as\
+    \ a narrative complication but not fatal\n- R2 initially found the conceptual\
+    \ novelty sufficient for borderline accept; R1 argued the concept without robust\
+    \ measurement is insufficient\n- R2 identified more related work gaps; R1 identified\
+    \ more methodological gaps\n\n---\n\n## Step 3: Convergence Discussion\n\nThe\
+    \ central debate was whether K*=2 is a robust empirical finding or a threshold-dependent\
+    \ artifact:\n\n**R1's argument:** K*=2 stands or falls on θ=0.60. Three configurations\
+    \ have AUC_1v2 within 0.02 of the threshold (Qwen-cont: 0.611, OLMo: 0.615, base:\
+    \ 0.599). If learned features push AUC_2v3 above 0.60, K* changes. Without θ sensitivity\
+    \ analysis and K* under learned features, the headline result is insufficiently\
+    \ grounded.\n\n**R2's argument:** The conceptual contribution (naming and measuring\
+    \ K*) has value even if the specific K*=2 value shifts slightly. The cross-model\
+    \ transfer and degradation ordering results are θ-independent and constitute a\
+    \ real contribution.\n\n**Resolution:** Both reviewers agree that the concept\
+    \ is valuable but the specific measurement needs more robustness analysis. R2\
+    \ revised downward from 4 to 3, agreeing that for a top venue, the combination\
+    \ of (a) threshold sensitivity, (b) learned-features omission, and (c) null application\
+    \ result places this below the acceptance bar. However, both note the paper is\
+    \ close to the bar and could be strengthened with specific revisions.\n\n---\n\
+    \n## Step 4: Consolidated Assessment\n\n### Overall Score: 3/6 (Weak Reject) |\
+    \ Confidence: 4/5\n\n### Contribution Assessment\n\nThe paper introduces K* as\
+    \ a named, measurable quantity for recursive text contamination depth — a genuinely\
+    \ novel concept absent from prior literature. The binary-to-ordinal reframing\
+    \ opens a new research direction. The experimental breadth (4 model configs, cross-scale,\
+    \ cross-model, retrain-chain, 6 filtering strategies, multiple supporting analyses)\
+    \ is commendable. The paper's scientific honesty about weak application results\
+    \ and limitations is exemplary.\n\nHowever, several issues prevent acceptance\
+    \ at a top venue:\n\n### Critical Issues (must address)\n\n1. **θ sensitivity\
+    \ analysis is missing and essential.** The headline K*=2 depends on θ=0.60, with\
+    \ multiple configurations within noise of the boundary. Report K* as a function\
+    \ of θ and demonstrate that the qualitative conclusions hold across reasonable\
+    \ threshold choices.\n\n2. **K* under learned features must be reported.** If\
+    \ frozen-embedding features (which outperform 15D by ~5pp consistently) yield\
+    \ K*=3 or higher, the headline result becomes a feature-set artifact. This is\
+    \ the single most important missing experiment.\n\n3. **C3 (graduated filtering)\
+    \ does not meet the significance bar.** At realistic contamination (10-30%), graduated\
+    \ filtering provides no significant advantage over binary filtering. DSIR matches\
+    \ without depth estimation. The paper is honest about this, but the contribution\
+    \ list should not include C3 as a claim — it should be reported as a negative/null\
+    \ finding.\n\n### Important Issues (should address)\n\n4. **DPI framing is oversold.**\
+    \ The theory provides existence of K* but no quantitative prediction. Reframe\
+    \ §3.1 as motivation, not contribution. Acknowledge more prominently that K*_empirical\
+    \ is a feature-dependent lower bound on K*_theory.\n\n5. **Related work gaps.**\
+    \ Add discussion of: (a) watermarking as alternative provenance tracking, (b)\
+    \ Schaeffer et al. (ICML 2025) model-collapse taxonomy, (c) Kazdan et al. (ICML\
+    \ 2025) replace/accumulate regimes, (d) self-refinement false-positive risk.\n\
+    \n6. **Cross-model transfer figure needs full reporting.** The \"91% retention\"\
+    \ is from the best pair (Pythia↔OLMo). Report the full transfer matrix and average\
+    \ retention across all pairs.\n\n7. **Missing greedy decoding ablation.** The\
+    \ experiment plan lists exp-003 (greedy, expected K*=1) as a running experiment.\
+    \ This result would directly test whether K* varies with decoding strategy and\
+    \ would substantially strengthen the characterization.\n\n8. **Statistical power.**\
+    \ 5 seeds for filtering (power ~0.45) and 1K docs for 7B (wide CIs) limit the\
+    \ informativeness of non-significant results. Either increase sample sizes or\
+    \ explicitly compute and report power.\n\n### Minor Issues\n\n9. **Broken citation\
+    \ \"[?]\" in §1.** Must fix before submission.\n10. **Single-domain limitation.**\
+    \ All experiments on C4 English web text. Acknowledge that K*=2 may not generalize\
+    \ to code, non-English, or domain-specific text.\n\n### What Would Change the\
+    \ Score\n\n- **To 4 (Weak Accept):** Address critical issues 1-2 (θ sensitivity\
+    \ + K* under learned features) and demonstrate that K*=2 is robust. Add greedy\
+    \ decoding ablation.\n- **To 5 (Accept):** Additionally show that K* varies meaningfully\
+    \ with decoding strategy (confirming K* as a controllable property of the generation\
+    \ channel), expand to one additional domain, and increase filtering experiment\
+    \ seeds.\n\n### Verdict\n\nThe paper tackles a well-motivated problem with a novel\
+    \ formulation and thorough experiments, but the central empirical claim (K*=2)\
+    \ rests on an arbitrary threshold with insufficient robustness analysis. The most\
+    \ critical omission — K* under learned features — could either validate or invalidate\
+    \ the headline result. The application contribution (C3) is effectively null at\
+    \ realistic contamination levels. With the specific revisions outlined above,\
+    \ particularly θ sensitivity analysis and K* under learned features, this could\
+    \ become a solid contribution. In its current form, it falls just below the acceptance\
+    \ bar for a top ML venue.\n\n### Recommended Venue Targeting\n\n- **Current form:**\
+    \ EMNLP 2026 Findings (good fit for characterization with caveats)\n- **After\
+    \ revisions:** EMNLP 2026 Main (borderline) or NeurIPS 2026 Datasets & Benchmarks\
+    \ track\n"
+  error: ''
+- tier: worst
+  pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/dream_reports/dream_20260513T080728/worst/paper.pdf
+  imagined_experiments:
+  - name: Decoding strategy ablation
+    plan_id: exp-003
+    description: 'Qwen2.5-1.5B 在 greedy / nucleus p=0.9 / T=0.7 / T=1.2 四种解码策略下的 depth
+      chain， 测试 K* 是否随解码策略剧烈变化。
+
+      '
+    expected_results:
+      greedy:
+        0v1_auc: 0.999
+        1v2_auc: 0.572
+        1v2_ci_lower: 0.563
+        1v2_ci_upper: 0.581
+        2v3_auc: 0.538
+        k_star: 1
+        k_star_note: 1v2 CI upper < 0.60 → K*=1
+      nucleus_p09:
+        0v1_auc: 0.996
+        1v2_auc: 0.628
+        1v2_ci_lower: 0.618
+        1v2_ci_upper: 0.637
+        2v3_auc: 0.554
+        k_star: 2
+      temp_07:
+        0v1_auc: 0.998
+        1v2_auc: 0.591
+        1v2_ci_lower: 0.581
+        1v2_ci_upper: 0.601
+        2v3_auc: 0.546
+        k_star: ambiguous (CI straddles 0.60)
+      temp_12:
+        0v1_auc: 0.992
+        1v2_auc: 0.683
+        1v2_ci_lower: 0.673
+        1v2_ci_upper: 0.694
+        2v3_auc: 0.612
+        2v3_ci_lower: 0.602
+        2v3_ci_upper: 0.623
+        3v4_auc: 0.558
+        k_star: 3
+      k_star_across_decoding: varies 1-3, no stable universal value
+      spearman_rho_feature_ranking_across_decoding: 0.78
+    result_rationale: 'Greedy 解码消除了采样随机性，每轮生成的 output 几乎是确定性函数，递归 chain 极快收敛到模型的 mode
+      distribution。Gen-1 已经高度确定性，gen-2 与 gen-1 的统计差异极小，因此 1v2 AUC 跌破 0.60， K*=1。反之
+      T=1.2 放大了采样噪声，每轮生成引入更多随机变异，递归收敛被延缓——文本的统计 fingerprint 在更多代际间保持可区分性，2v3 也能超过
+      0.60 阈值，K*=3。Nucleus p=0.9 比 p=0.95（baseline） 略收窄采样空间但效果接近，K* 仍为 2。T=0.7 处于边缘——sampling
+      entropy 降低但未降到 greedy 程度， 1v2 CI 横跨 0.60。这证明 K* 不是模型的固有属性，而是解码配置控制的 operational
+      parameter。 Feature ranking 的 Spearman ρ 从 baseline 的 0.85+ 降到 0.78，因为 greedy/low-temp
+      下 surprisal variance 系列特征的 discriminative power 被压缩（分布更窄），tail-thinning 特征 相对重要性上升。
+
+      '
+    tables:
+    - name: 'Table: K* as a function of decoding strategy'
+      columns:
+      - Decoding
+      - K*
+      - AUC 1v2
+      - 95% CI
+      - AUC 2v3
+      - AUC 3v4
+      rows:
+      - - Greedy
+        - 1
+        - 0.572
+        - '[0.563, 0.581]'
+        - 0.538
+        - 0.512
+      - - Nucleus p=0.9
+        - 2
+        - 0.628
+        - '[0.618, 0.637]'
+        - 0.554
+        - 0.517
+      - - Nucleus p=0.95 (baseline)
+        - 2
+        - 0.611
+        - '[0.602, 0.621]'
+        - 0.561
+        - 0.541
+      - - T=0.7
+        - 1-2
+        - 0.591
+        - '[0.581, 0.601]'
+        - 0.546
+        - 0.519
+      - - T=1.2
+        - 3
+        - 0.683
+        - '[0.673, 0.694]'
+        - 0.612
+        - 0.558
+    figures_description:
+    - 'Heatmap: K* (y-axis) × decoding strategy (x-axis)，展示 K* 从 1 到 3 的连续变化'
+    - 'Line plot: AUC decay curve per decoding strategy，展示不同解码下的衰减速率差异'
+    analysis: 'K*=2 universality 被打破。K* 是解码策略的单调递增函数（近似）：更高的 sampling entropy → 更慢的
+      递归收敛 → 更大的 K*。这从根本上改变了论文叙事——不能再 claim "K*=2 is the boundary"，必须说 "K* is configuration-dependent
+      and we map the controlling factors"。对 C3 的打击： 如果 K* 本身不稳定，graduated filtering
+      的 ordinal signal 基础就不牢固。Positive spin： 这是首次系统揭示 K* 与解码策略的依赖关系，是 measurement
+      paper 的核心贡献之一。
+
+      '
+  - name: 'Cross-scale probe: Qwen2.5-7B'
+    plan_id: exp-004
+    description: 'Qwen2.5-7B continuation mode, C4 1K docs, depth 0-3，测试 K* 是否随模型规模变化。
+
+      '
+    expected_results:
+      0v1_auc: 0.999
+      1v2_auc: 0.577
+      1v2_ci_lower: 0.558
+      1v2_ci_upper: 0.596
+      2v3_auc: 0.529
+      2v3_ci_lower: 0.51
+      2v3_ci_upper: 0.548
+      k_star: 1
+      ordinal_accuracy: 0.36
+      ordinal_mae: 0.98
+      top3_features:
+      - surp_d1_std
+      - surp_std
+      - freq_entropy
+      spearman_rho_vs_1_5B: 0.82
+    result_rationale: '7B 模型的 next-token prediction 能力显著强于 1.5B，continuation 生成的文本更"像"原始文本——
+      更低的 perplexity、更准确的 style matching。递归 chain 中，gen-1 已经非常接近原始文本的统计分布， gen-2 与
+      gen-1 的差异极小。信息论上，更强的模型意味着 channel capacity 更高（每轮损耗更小）， DPI 约束下的收敛更快。1v2 AUC
+      CI upper < 0.60 → K*=1。注意 1K docs（vs 5K）导致 CI 更宽 （±0.019 vs ±0.010），但即使 upper
+      bound 0.596 仍低于 0.60。这与 worst tier 假设一致： 更强模型的递归文本更快趋同，K*=2 不是 scale-invariant
+      property。Feature ranking 与 1.5B 保持较高一致性（ρ=0.82），因为 degradation 的物理机制相同（信息压缩），只是速率不同。
+
+      '
+    tables:
+    - name: 'Table: Scale effect on K*'
+      columns:
+      - Model
+      - Scale
+      - K*
+      - AUC 1v2
+      - 95% CI
+      - AUC 2v3
+      rows:
+      - - Qwen2.5-1.5B (cont)
+        - 1.5B
+        - 2
+        - 0.611
+        - '[0.602, 0.621]'
+        - 0.561
+      - - Qwen2.5-7B (cont)
+        - 7B
+        - 1
+        - 0.577
+        - '[0.558, 0.596]'
+        - 0.529
+    figures_description:
+    - 'Bar chart: 1v2 AUC with 95% CI for 1.5B vs 7B，threshold line at 0.60'
+    - 'AUC decay curve overlay: 1.5B vs 7B，展示 7B 的更快衰减'
+    analysis: 'K* 随模型规模递减。这与 DPI 框架完全一致——更强的 channel（更大模型）每轮信息损耗更小， 递归输出更快趋同于 stationary
+      distribution。但这也意味着论文必须放弃 "K*=2 across scales" 的 universal claim。Positive spin：首次揭示
+      scale-K* 关系，对 practitioners 有直接指导意义 （"用更大模型生成的合成数据更难做 depth estimation"）。需要在
+      1K docs 的 smaller sample size 下谨慎表述 CI。
+
+      '
+  - name: Downstream filtering evaluation
+    plan_id: exp-006
+    description: '六种 filtering 策略（no-filter / binary-ours / binary-Drayson / graduated
+      / surprisal-based / DSIR）在 continued pretraining + lm-eval-harness 上的对比。5 seeds
+      paired t-test。 α sensitivity sweep。
+
+      '
+    expected_results:
+      mmlu:
+        no_filter: 25.8
+        binary_ours: 26.4
+        binary_drayson: 26.5
+        graduated_alpha_01: 26.3
+        graduated_alpha_03: 26.5
+        graduated_alpha_05: 26.6
+        graduated_alpha_07: 26.4
+        graduated_alpha_09: 26.3
+        surprisal_based: 26.2
+        dsir: 26.8
+      hellaswag:
+        no_filter: 42.1
+        binary_ours: 43.0
+        binary_drayson: 43.2
+        graduated_alpha_01: 42.9
+        graduated_alpha_03: 43.1
+        graduated_alpha_05: 43.2
+        graduated_alpha_07: 43.0
+        graduated_alpha_09: 42.8
+        surprisal_based: 42.6
+        dsir: 43.5
+      graduated_minus_binary_delta_pp:
+        mmlu: 0.2
+        hellaswag: 0.2
+        mean: 0.2
+      graduated_vs_binary_paired_ttest_p:
+        mmlu: 0.34
+        hellaswag: 0.28
+      dsir_vs_graduated_delta_pp:
+        mmlu: 0.2
+        hellaswag: 0.3
+      best_alpha: 0.5
+      alpha_sensitivity: non-monotonic, peak at 0.5 but flat (range < 0.3pp)
+    result_rationale: 'Graduated filtering 的理论优势在于利用 ordinal signal（human/gen-1/gen-2+）做更
+      calibrated 的权重分配。但在 worst tier 下，这个优势被多个因素抵消：(1) K*=2 意味着 ordinal signal 只有
+      3 个 有效等级（0/1/2+），graduated 退化为接近 binary 的判断——差异仅在于对 gen-1 赋予中间权重而非 hard cutoff，但
+      gen-1 本身质量尚可（1v2 AUC 只有 0.61-0.69），过滤掉它的边际损失本就不大； (2) 15D hand-crafted features
+      的 ordinal accuracy 只有 ~0.38-0.42，depth 估计的噪声很大， graduated weighting 的"精细调控"被预测噪声淹没；(3)
+      continued pretraining 对数据质量的 sensitivity 在小 injection 比例下较低。结果 graduated - binary
+      仅 +0.2pp，paired t-test p > 0.10（5 seeds 下 power 不足以检测 <0.5pp 的差异）。DSIR 表现最好是因为它做分布匹配
+      而非深度过滤，这是一种 complementary 而非 competing 的策略。α sweep 几乎 flat 说明 graduated 的 weighting
+      scheme 不 matter，因为 ordinal signal 本身太弱。
+
+      '
+    tables:
+    - name: 'Table: Filtering strategy comparison (mean ± std over 5 seeds)'
+      columns:
+      - Strategy
+      - MMLU
+      - HellaSwag
+      - Δ vs no-filter
+      rows:
+      - - No filter
+        - 25.8 ± 0.3
+        - 42.1 ± 0.4
+        - —
+      - - Binary (ours)
+        - 26.4 ± 0.3
+        - 43.0 ± 0.3
+        - +0.75pp
+      - - Binary (Drayson)
+        - 26.5 ± 0.3
+        - 43.2 ± 0.4
+        - +0.9pp
+      - - Graduated (α=0.5)
+        - 26.6 ± 0.4
+        - 43.2 ± 0.4
+        - +0.95pp
+      - - Surprisal-based
+        - 26.2 ± 0.3
+        - 42.6 ± 0.3
+        - +0.45pp
+      - - DSIR
+        - 26.8 ± 0.3
+        - 43.5 ± 0.3
+        - +1.2pp
+    - name: 'Table: α sensitivity sweep (graduated filtering)'
+      columns:
+      - α
+      - MMLU
+      - HellaSwag
+      rows:
+      - - 0.1
+        - 26.3
+        - 42.9
+      - - 0.3
+        - 26.5
+        - 43.1
+      - - 0.5
+        - 26.6
+        - 43.2
+      - - 0.7
+        - 26.4
+        - 43.0
+      - - 0.9
+        - 26.3
+        - 42.8
+    figures_description:
+    - 'Bar chart: 六种策略的 MMLU/HellaSwag 得分 + error bars，graduated 和 binary 的 bars 几乎等高'
+    - 'Line plot: α sweep curve，几乎水平，展示 graduated weighting 的无效性'
+    analysis: 'C3 的核心 claim 被否定。graduated - binary < 0.5pp 且统计不显著（p > 0.10）。即使在 best
+      α=0.5 下，graduated 也仅比 binary 好 0.2pp。这不能支撑 "K*-aware graduated filtering outperforms
+      binary" 的 claim。DSIR 反而是最好的，但它不 claim depth awareness。C3 必须删除或降为 "we tested
+      graduated filtering; the improvement was not statistically significant, consistent
+      with the limited ordinal resolution at K*=2" 的 negative result 段落。 论文的 practical
+      contribution 因此大打折扣——从 "method + application" 退化为 "analysis only"。
+
+      '
+  - name: Retrain-chain ecological validity
+    plan_id: exp-008
+    description: 'Pythia-1.4B LoRA retrain-chain vs prompt-chain 的 K* 和特征分布对比。
+
+      '
+    expected_results:
+      retrain_chain:
+        0v1_auc: 0.981
+        1v2_auc: 0.593
+        1v2_ci_lower: 0.583
+        1v2_ci_upper: 0.604
+        2v3_auc: 0.541
+        k_star: 1 (CI upper = 0.604, marginally above 0.60 but inconsistent)
+      prompt_chain_reference:
+        1v2_auc: 0.654
+        k_star: 2
+      feature_distribution_jsd_retrain_vs_prompt:
+        gen1: 0.032
+        gen2: 0.048
+        gen3: 0.061
+      spearman_rho_feature_ranking: 0.8
+    result_rationale: 'Retrain-chain 的递归机制与 prompt-chain 不同：模型参数本身被污染数据更新，而非仅通过 prompt
+      传递。LoRA rank=16 的 fine-tuning 只更新少量参数，但每轮 retrain 会让模型的 generation distribution
+      更快收敛到自身输出的 stationary distribution（positive feedback loop 更紧密）。 因此 retrain-chain
+      的代际差异衰减更快，1v2 AUC 低于 prompt-chain（0.593 vs 0.654）。 在 worst tier 下，retrain-chain
+      K*=1 进一步削弱 K*=2 的 universality——即使在同一模型、 同一 scale 下，递归机制的不同就能改变 K*。Feature ranking
+      的一致性（ρ=0.80）说明 degradation 的本质机制类似（都是信息压缩），但速率和 K* 因机制而异。这支持了 measurement paper
+      的叙事："K* depends on the recursion mechanism, not just the model"。
+
+      '
+    tables:
+    - name: 'Table: Prompt-chain vs Retrain-chain (Pythia-1.4B)'
+      columns:
+      - Chain type
+      - K*
+      - AUC 0v1
+      - AUC 1v2
+      - AUC 2v3
+      rows:
+      - - Prompt-chain
+        - 2
+        - 0.993
+        - 0.654
+        - 0.552
+      - - Retrain-chain (LoRA)
+        - 1
+        - 0.981
+        - 0.593
+        - 0.541
+    figures_description:
+    - 'Feature distribution violin plots: prompt-chain vs retrain-chain at gen-1/2/3'
+    - AUC decay curve overlay for two chain types
+    analysis: 'Retrain-chain 的 K* 更低，进一步证实 K* 是 configuration-dependent。但 retrain-chain
+      的 ecological validity 更高（更接近真实 model collapse 场景），这意味着在最真实的场景下 K* 可能更低。论文可以正面叙述："retrain-chain
+      的更快收敛与 model collapse 文献的预测一致"。 但这也意味着 depth estimation 的 practical value 在
+      retrain 场景下更有限。
+
+      '
+  - name: Contamination dose-response
+    plan_id: exp-009
+    description: '10%/30%/50% synthetic injection 比例下 graduated vs binary filtering
+      的收益差异。
+
+      '
+    expected_results:
+      injection_10pct:
+        binary_mmlu: 25.9
+        graduated_mmlu: 26.0
+        delta_pp: 0.1
+        p_value: 0.61
+      injection_30pct:
+        binary_mmlu: 26.4
+        graduated_mmlu: 26.6
+        delta_pp: 0.2
+        p_value: 0.38
+      injection_50pct:
+        binary_mmlu: 26.2
+        graduated_mmlu: 26.5
+        delta_pp: 0.3
+        p_value: 0.19
+      hellaswag_pattern: similar, delta_pp 0.1-0.4, all p > 0.10
+      dose_response_trend: graduated advantage increases with injection ratio but
+        never reaches significance
+    result_rationale: '即使 injection 比例增大（50%），graduated 的优势仍无法达到显著性，因为根本瓶颈不在 injection
+      比例而在 ordinal signal 的分辨率。K*=2 限制了 ordinal signal 只有 3 个有效等级，而 depth estimator
+      在这 3 个等级上的 accuracy 只有 ~0.38-0.42。更高的 injection 比例放大了 filtering 的绝对效果（binary
+      和 graduated 都比 no-filter 更好），但 graduated 相对 binary 的边际优势 始终被估计噪声淹没。在 50% injection
+      下 delta 达到 0.3pp，但 5 seeds 的 variance 太大， p=0.19 仍不显著。要达到 p<0.05 可能需要 20+ seeds（不现实的
+      GPU budget）。这说明即使 C3 在某种 asymptotic sense 下可能正确，在实际可操作的实验规模下也无法被证实。
+
+      '
+    tables:
+    - name: 'Table: Dose-response (graduated − binary, pp)'
+      columns:
+      - Injection %
+      - Δ MMLU
+      - Δ HellaSwag
+      - p-value (MMLU)
+      rows:
+      - - 10%
+        - '+0.1'
+        - '+0.1'
+        - 0.61
+      - - 30%
+        - '+0.2'
+        - '+0.2'
+        - 0.38
+      - - 50%
+        - '+0.3'
+        - '+0.4'
+        - 0.19
+    figures_description:
+    - 'Line plot: graduated − binary delta (pp) vs injection ratio，带 confidence band'
+    analysis: 'Dose-response 趋势存在但从未达到显著性，进一步确认 C3 无法在本文中被支撑。 可以作为 discussion 段落提及
+      "suggestive but underpowered trend"。
+
+      '
+  - name: LLM zero-shot depth estimation baseline
+    plan_id: exp-011
+    description: 'GPT-4o / Claude 3.5 对 depth 0-4 文本做 zero-shot depth 判断。
+
+      '
+    expected_results:
+      gpt4o:
+        accuracy: 0.23
+        mae: 1.82
+        tau_b: 0.12
+        binary_0v1plus_auc: 0.71
+      claude35:
+        accuracy: 0.25
+        mae: 1.74
+        tau_b: 0.15
+        binary_0v1plus_auc: 0.74
+      random_baseline_accuracy: 0.2
+      our_15D_accuracy: 0.38
+    result_rationale: 'LLM 的 zero-shot depth estimation 接近随机（accuracy 0.23-0.25 vs
+      random 0.20），因为 depth estimation 需要检测微妙的统计 fingerprint（surprisal 分布的高阶矩变化），而不是
+      surface-level 的文本质量判断。LLM 可以做粗粒度的 "is this synthetic?" 判断（0v1+ AUC 0.71-0.74），
+      但无法区分 gen-1 vs gen-2 vs gen-3 这种需要统计工具的细粒度差异。这验证了 depth estimation 需要专门方法的 claim。但在
+      worst tier 下，即使我们的方法也只有 0.38 accuracy，LLM baseline 的弱表现更多地证明了 "depth estimation
+      is hard" 而非 "our method is strong"。
+
+      '
+    tables:
+    - name: 'Table: Zero-shot LLM depth estimation'
+      columns:
+      - Method
+      - Accuracy
+      - MAE
+      - τ_b
+      - Binary AUC
+      rows:
+      - - Random
+        - 0.2
+        - 2.0
+        - 0.0
+        - 0.5
+      - - GPT-4o zero-shot
+        - 0.23
+        - 1.82
+        - 0.12
+        - 0.71
+      - - Claude 3.5 zero-shot
+        - 0.25
+        - 1.74
+        - 0.15
+        - 0.74
+      - - Our 15D features
+        - 0.38
+        - 1.14
+        - 0.47
+        - 0.99
+    figures_description:
+    - 'Confusion matrix: LLM predictions vs true depth，展示 heavy diagonal blur'
+    analysis: 'LLM 不能做 depth estimation，但这主要证明任务本身难，不单独支撑我们方法的 novelty。 在 analysis
+      paper framing 下，这个实验定位为 "calibration of task difficulty"。
+
+      '
+  - name: Binary detector confidence as depth proxy
+    plan_id: exp-012
+    description: 'DivEye/Binoculars score 与 true depth 的 Spearman correlation。
+
+      '
+    expected_results:
+      diveye:
+        spearman_rho_with_depth: 0.18
+        p_value: 0.003
+        0v1_auc: 0.94
+        0v1plus_auc: 0.91
+        1v2_auc: 0.53
+      binoculars:
+        spearman_rho_with_depth: 0.22
+        p_value: 0.001
+        0v1_auc: 0.96
+        0v1plus_auc: 0.93
+        1v2_auc: 0.55
+      our_method:
+        spearman_rho_with_depth: 0.52
+        1v2_auc: 0.65
+    result_rationale: 'Binary detectors 的 confidence score 与 depth 有微弱但显著的相关性（ρ=0.18-0.22），因为
+      更深代的文本更"像"合成文本（更远离原始分布）。但相关性很弱，因为 binary detectors 优化的是 real/synthetic 的 decision
+      boundary，不是 depth ordering。它们的 score 主要反映 gen-0 vs gen-1+ 的巨大差异（0v1 AUC > 0.94），而在
+      gen-1 以上的 depth 差异上几乎没有分辨力 （1v2 AUC 0.53-0.55）。这验证了 "binary confidence ≠ depth"
+      的 claim，但在 worst tier 下，我们自己的方法在 1v2 之上也好不了多少——只是从 "nearly random" 升到 "slightly
+      above random"。
+
+      '
+    tables:
+    - name: 'Table: Binary detector score vs depth'
+      columns:
+      - Detector
+      - ρ(score, depth)
+      - AUC 0v1
+      - AUC 1v2
+      rows:
+      - - DivEye
+        - 0.18
+        - 0.94
+        - 0.53
+      - - Binoculars
+        - 0.22
+        - 0.96
+        - 0.55
+      - - Our 15D (ordinal)
+        - 0.52
+        - 0.99
+        - 0.65
+    figures_description:
+    - 'Scatter plot: detector confidence vs true depth，展示 gen-0 的清晰分离和 gen-1+ 的混杂'
+    analysis: 'Binary confidence 不是 depth 的有效 proxy。我们的方法在 depth correlation 上优势明显
+      （ρ=0.52 vs 0.18-0.22），但 absolute performance 仍有限。在 analysis paper 中定位为 "existing
+      tools cannot estimate depth, motivating dedicated methods"。
+
+      '
+  - name: Naturalistic validation (Common Crawl)
+    plan_id: exp-014
+    description: '对 Common Crawl 2025/2026 snapshot 样本做 depth 预测，与 AlignScore 和 vocabulary
+      richness 做 correlation。
+
+      '
+    expected_results:
+      predicted_depth_distribution:
+        depth_0: 0.72
+        depth_1: 0.19
+        depth_2plus: 0.09
+      correlation_with_alignscore:
+        spearman_rho: 0.31
+        p_value: 0.001
+      correlation_with_vocab_richness:
+        spearman_rho: 0.28
+        p_value: 0.002
+      cross_model_prediction_agreement:
+        pythia_vs_olmo_kappa: 0.41
+    result_rationale: 'Common Crawl 中真正的多代递归文本比例仍然有限（2025/2026 snapshot 中大部分合成文本是
+      单代生成）。Depth predictor 在 in-distribution（C4 prompt-chain）上训练，迁移到 wild data 时
+      feature distribution shift 导致 calibration 下降。与 AlignScore 的中等相关性（ρ=0.31） 说明
+      predicted depth 和文本质量有关联但不等同——AlignScore 测量的是 factual consistency 而非 generational
+      degradation。Pythia vs OLMo 的 predictor agreement 只有 moderate （κ=0.41），反映了 cross-model
+      transfer 在 wild data 上的进一步退化。在 worst tier 下， 这些数据只能支持 "our predictions correlate
+      with independent quality measures" 的 weak claim， 不能做 ground-truth validation（无法知道
+      CC 文本的真实 depth）。
+
+      '
+    tables:
+    - name: 'Table: Naturalistic validation correlations'
+      columns:
+      - Metric pair
+      - Spearman ρ
+      - p-value
+      rows:
+      - - Predicted depth vs AlignScore
+        - 0.31
+        - <0.001
+      - - Predicted depth vs Vocab richness
+        - 0.28
+        - <0.01
+      - - Pythia pred vs OLMo pred (κ)
+        - 0.41
+        - —
+    figures_description:
+    - 'Histogram: predicted depth distribution on CC sample'
+    - 'Scatter plot: predicted depth vs AlignScore'
+    analysis: 'Naturalistic validation 提供了 weak external validity——predicted depth
+      与独立质量指标 相关但相关性中等。在 analysis paper 中定位为 "exploratory application"，不能 overclaim。
+
+      '
+  - name: Learned representation baseline
+    plan_id: exp-015
+    description: 'Frozen Qwen2.5-1.5B embeddings + MLP vs hand-crafted 15D features。
+
+      '
+    expected_results:
+      learned_frozen_embedding_mlp:
+        accuracy: 0.49
+        mae: 0.82
+        tau_b: 0.61
+        1v2_auc: 0.73
+        2v3_auc: 0.62
+        k_star: 3
+      hand_crafted_15D:
+        accuracy: 0.38
+        mae: 1.14
+        tau_b: 0.47
+        1v2_auc: 0.65
+        2v3_auc: 0.55
+        k_star: 2
+      delta_accuracy_pp: 11
+      delta_1v2_auc: 0.08
+    result_rationale: 'Frozen embeddings 保留了预训练模型的全部表征能力（768D 或 2048D vs 15D），MLP
+      可以学习到 hand-crafted features 无法捕捉的非线性组合和高维模式。关键差异在于：(1) embedding 空间中 不同 depth
+      的文本形成了可分离的 cluster，但这种分离性是 high-dimensional 的，无法用 15 个 hand-crafted scalar 特征近似；(2)
+      learned probe 可以自动发现 depth-discriminative 的维度， 而 hand-crafted features 是基于先验知识手动选择的子集。在
+      worst tier 下，learned features 优于 hand-crafted ≥ 10pp（accuracy 0.49 vs 0.38），甚至将
+      effective K* 推到 3（2v3 AUC 0.62 > 0.60）。这证明 depth signal 确实存在于文本中但 15D features
+      无法充分提取。论文必须 承认 hand-crafted features 是 "convenience baseline for interpretability"
+      而非 sufficient tool，并在 future work 中呼吁 learned approaches。这对 analysis paper 叙事是双刃剑：
+      证明了 depth signal 的存在（positive），但削弱了 15D features 作为工具的实用价值（negative）。
+
+      '
+    tables:
+    - name: 'Table: Learned vs hand-crafted features'
+      columns:
+      - Feature type
+      - Accuracy
+      - MAE
+      - τ_b
+      - AUC 1v2
+      - AUC 2v3
+      - K*
+      rows:
+      - - Hand-crafted 15D
+        - 0.38
+        - 1.14
+        - 0.47
+        - 0.65
+        - 0.55
+        - 2
+      - - Frozen embedding + MLP
+        - 0.49
+        - 0.82
+        - 0.61
+        - 0.73
+        - 0.62
+        - 3
+      - - Delta
+        - +11pp
+        - −0.32
+        - '+0.14'
+        - '+0.08'
+        - '+0.07'
+        - '+1'
+    figures_description:
+    - 'Bar chart: accuracy/AUC comparison between learned and hand-crafted'
+    - t-SNE visualization of frozen embeddings colored by depth
+    analysis: 'Learned features 大幅优于 hand-crafted（+11pp accuracy），证明 depth signal
+      存在但 15D features 不够用。K* 被 learned probe 推到 3，说明 K*=2 的 boundary 部分是 feature
+      engineering 的限制而非信号的物理极限。论文必须添加 "our hand-crafted features provide an interpretable
+      but suboptimal window into depth signal" 的 caveat，并在 future work 中呼吁 learned
+      depth estimation。这对 C1'' 的影响：K* 的测量值依赖于 feature set， "K*=2 with 15D features"
+      更准确地说是 "K*_15D=2"，而 K*_learned=3。
+
+      '
+  - name: Base vs Instruct model comparison
+    plan_id: exp-016
+    description: 'Qwen2.5-1.5B base vs Instruct 的 K* 和特征分布差异。
+
+      '
+    expected_results:
+      base_model:
+        0v1_auc: 0.991
+        1v2_auc: 0.639
+        1v2_ci_lower: 0.629
+        1v2_ci_upper: 0.649
+        2v3_auc: 0.568
+        k_star: 2
+        top3_features:
+        - surp_d1_std
+        - surp_std
+        - surp_d2_std
+      instruct_model_cont:
+        0v1_auc: 0.997
+        1v2_auc: 0.611
+        1v2_ci_lower: 0.602
+        1v2_ci_upper: 0.621
+        2v3_auc: 0.561
+        k_star: 2
+      delta_1v2_auc: 0.028
+      feature_distribution_jsd_base_vs_instruct:
+        gen0: 0.008
+        gen1: 0.021
+        gen2: 0.034
+      spearman_rho_feature_ranking: 0.88
+    result_rationale: 'Base model 的 continuation generation 更接近"裸"的 next-token prediction，没有
+      RLHF/DPO 的 style alignment。递归 chain 中，base model 的输出更 diverse（temperature 的实际效果更大），
+      代际差异衰减稍慢。Instruct model 的 alignment training 倾向于产生更 uniform 的 style， 递归 chain
+      更快收敛。但差异不大（Δ1v2 AUC = 0.028pp），K* 都是 2。在 worst tier 下，这个 实验的叙事价值有限——只是 K* 变化图谱中的又一个
+      data point。Feature ranking 一致性高（ρ=0.88）， 说明 base/instruct 的 degradation 机制相似。值得注意的是
+      base model 的 0v1 AUC 略低（0.991 vs 0.997），因为 base model 的 gen-0 → gen-1 转换保留了更多原始文本特征（没有
+      style normalization）。
+
+      '
+    tables:
+    - name: 'Table: Base vs Instruct (Qwen2.5-1.5B, continuation mode)'
+      columns:
+      - Variant
+      - K*
+      - AUC 0v1
+      - AUC 1v2
+      - AUC 2v3
+      rows:
+      - - Base
+        - 2
+        - 0.991
+        - 0.639
+        - 0.568
+      - - Instruct
+        - 2
+        - 0.997
+        - 0.611
+        - 0.561
+    figures_description:
+    - 'Paired AUC decay curves: base vs instruct'
+    - Feature importance comparison heatmap
+    analysis: 'Base 和 Instruct 的 K* 一致（都是 2），但 base model 的 1v2 AUC 略高。在 analysis
+      paper 中作为 "instruction tuning slightly accelerates convergence" 的 supporting
+      evidence， 但不是 major finding。
+
+      '
+  - name: Qwen-cont stricter validation (different seed depth chains)
+    plan_id: worst-tier-auxiliary
+    description: 'Qwen-cont 在不同 random seed 的 depth chain 上重新评估，测试 1v2 CI 的稳定性。 这是
+      worst tier 核心假设之一。
+
+      '
+    expected_results:
+      seed_1_1v2_auc: 0.608
+      seed_1_1v2_ci_lower: 0.597
+      seed_2_1v2_auc: 0.604
+      seed_2_1v2_ci_lower: 0.593
+      seed_3_1v2_auc: 0.615
+      seed_3_1v2_ci_lower: 0.604
+      seeds_with_ci_lower_below_060: 2 out of 3
+      mean_1v2_auc_across_seeds: 0.609
+    result_rationale: 'Qwen-cont 的 1v2 CI lower 在原始实验中仅为 0.6015（高于 0.60 仅 0.0015）。这个
+      margin 极其脆弱——seed randomness 就足以让它跌破阈值。不同 seed 改变了 depth chain 的具体文本 实例，而 Qwen-cont
+      的 1v2 signal 本来就很弱（AUC 0.611），bootstrap CI 的位置对样本 敏感。在 3 个新 seed 中，2 个的 CI lower
+      跌破 0.60，说明 "all 1v2 CI lower > 0.60" 的 claim 不 robust。这打破了 K*=2 的 universal
+      claim——至少对 Qwen-cont 来说，K* 在 1 和 2 之间摇摆。
+
+      '
+    tables:
+    - name: 'Table: Qwen-cont 1v2 AUC stability across seeds'
+      columns:
+      - Seed
+      - AUC 1v2
+      - CI lower
+      - CI upper
+      - CI lower > 0.60?
+      rows:
+      - - Original
+        - 0.611
+        - 0.602
+        - 0.621
+        - ✅ (barely)
+      - - Seed 1
+        - 0.608
+        - 0.597
+        - 0.619
+        - ❌
+      - - Seed 2
+        - 0.604
+        - 0.593
+        - 0.615
+        - ❌
+      - - Seed 3
+        - 0.615
+        - 0.604
+        - 0.626
+        - ✅
+    figures_description:
+    - 'Forest plot: 1v2 AUC with CI across seeds，threshold line at 0.60'
+    analysis: Qwen-cont 的 K*=2 claim 不稳定。这是 worst tier 的关键证据之一——K*=2 universality
+      依赖于一个 margin 仅 0.0015 的 borderline case，在新数据上无法复现。
+  review_report: "---\ndream_id: dream_20260513T080728\ntier: worst\noverall_score:\
+    \ 3/6 Weak Reject\ntimestamp: 2026-05-13T09:05:37.369824+00:00\n---\n\n# Dream\
+    \ Review Report\n\n**Paper**: \"What Controls the Discriminability of Recursive\
+    \ Synthetic Text? An Empirical Analysis via Data Processing Inequality\"\n\n**Review\
+    \ mode**: Full (2 Reviewers + Roundtable)\n\n---\n\n## Reviewer 1 (Methods & Experiments):\
+    \ Score 4/6 (Weak Accept)\n\n### Summary\nThe paper formalizes recursive synthetic\
+    \ text generation as an iterated lossy channel, invokes DPI to argue a discrimination\
+    \ boundary K* must exist, then empirically measures K* across configurations.\
+    \ The core finding is K* varies from 1 to 3 depending on decoding strategy, model\
+    \ scale, recursion mechanism, and feature representation. A graduated filtering\
+    \ application yields a negative result.\n\n### Strengths\n1. **Well-designed evaluation\
+    \ protocol** with grouped cross-validation by doc_id, preventing depth-variant\
+    \ leakage across folds.\n2. **Decoding ablation is the most convincing experiment.**\
+    \ The greedy (K*=1) → nucleus (K*=2) → T=1.2 (K*=3) gradient is theoretically\
+    \ motivated and empirically clean.\n3. **Comprehensive experiment coverage.**\
+    \ All 10 planned experiments are executed, spanning decoding, scale, recursion\
+    \ mechanism, downstream filtering, baselines, and naturalistic validation.\n4.\
+    \ **Cross-model transfer** (Pythia↔OLMo 91% retention) provides strong evidence\
+    \ for text-intrinsic depth signal (70–85%).\n5. **Honest treatment of fragile\
+    \ results.** Seed instability of K*=2 baseline and graduated filtering null result\
+    \ are transparently reported.\n\n### Weaknesses\n1. **(Major) τ=0.60 threshold\
+    \ is the most consequential and least justified design choice.** Every K* value\
+    \ depends on it. AUC=0.60 is only 10pp above chance. At τ=0.55, greedy would yield\
+    \ K*=2; at τ=0.65, most 1.5B configurations drop to K*=1. No sensitivity analysis\
+    \ across τ∈[0.55, 0.65] is provided.\n2. **(Major) Theory-to-empirical bridge\
+    \ is overstated.** DPI operates on full joint distributions; empirical K* operates\
+    \ on 15D projections classified by LightGBM. K*_empirical is a feature-dependent,\
+    \ threshold-dependent lower bound on K*_theory, but the paper's language often\
+    \ conflates them.\n3. **(Major) 7B experiment uses only 1K docs (vs 5K for all\
+    \ others).** CI width inflates by ~√5, undermining comparability of the scale\
+    \ effect claim.\n4. **(Major) Bootstrap resamples: paper claims 10K, but implementation\
+    \ may use only 1K.** This discrepancy must be resolved.\n5. **(Minor) 5 seeds\
+    \ for filtering evaluation yields df=4 for paired t-tests — statistically thin.**\
+    \ Individual per-seed results should be reported.\n6. **(Minor) Surprisal features\
+    \ use the same model that generates the text** — self-referential signal. Cross-model\
+    \ transfer partially mitigates but 15% retention loss may reflect exactly this.\n\
+    7. **(Minor) LoRA rank=16 retrain-chain modifies <0.2% of parameters** — ecological\
+    \ validity claim should be tempered.\n8. **(Minor) K*=2 baseline (Qwen-cont) CI\
+    \ lower exceeds τ=0.60 by only 0.0015.** Seed analysis confirms 2/3 replications\
+    \ fail the criterion.\n9. **(Minor) No domain sensitivity analysis** — all experiments\
+    \ use C4 English web text.\n\n### Key Questions\n- What are K* values at τ={0.55,\
+    \ 0.575, 0.625, 0.65}? Is the qualitative gradient preserved?\n- If surprisal\
+    \ features are removed (leaving only 6D vocabulary + tail features), what happens\
+    \ to K*?\n- What are individual per-seed scores for the filtering evaluation?\n\
+    - Have you run a power analysis for the 1K-doc 7B experiment?\n\n---\n\n## Reviewer\
+    \ 2 (Novelty & Related Work): Score 3/6 (Weak Reject)\n\n### Summary\nThe paper\
+    \ reframes synthetic text detection from binary to ordinal depth estimation, introducing\
+    \ K* as a measurable discrimination boundary. While the problem reframing and\
+    \ decoding ablation gradient are genuine contributions, the DPI theory is standard,\
+    \ the headline K*=2 may partially reflect feature engineering limits, the practical\
+    \ application (graduated filtering) is a negative result, and several important\
+    \ related work connections are missing.\n\n### Strengths\n1. **Genuine problem\
+    \ reframing.** Binary→ordinal depth estimation is a real conceptual shift. No\
+    \ prior work operationalizes a \"generational discrimination boundary.\"\n2. **K*\
+    \ controllability is the strongest novelty claim.** The decoding ablation demonstrates\
+    \ K* responds to theoretically motivated variables, not classifier artifacts.\n\
+    3. **Thorough positioning against Drayson et al. (2025).** The closest prior work\
+    \ is correctly identified with clean differentiation.\n4. **Cross-model transfer**\
+    \ strengthens the claim that depth signal is text-intrinsic.\n5. **Scientific\
+    \ integrity** in reporting negative results and fragile margins.\n\n### Weaknesses\n\
+    1. **(Major) DPI framework is textbook, not a genuine contribution.** Propositions\
+    \ are direct corollaries of standard information theory (Cover & Thomas Ch. 2).\
+    \ The theory makes no quantitative predictions — any K* value is \"consistent\
+    \ with DPI.\" Should be reframed as \"theoretical motivation.\"\n2. **(Major)\
+    \ K*=2 has narrow practical implications.** A 3-class signal (human/gen-1/gen-2+)\
+    \ is structurally close to binary with a soft middle category. Graduated filtering\
+    \ yields no significant improvement at realistic contamination levels. The paper's\
+    \ own practical motivation is not supported by its results.\n3. **(Major) K* under\
+    \ learned features is never reported for the K* boundary.** The paper shows learned\
+    \ features achieve +11pp accuracy and 2v3 AUC=0.62 > 0.60 — meaning K*_learned\
+    \ = 3, not 2. This is mentioned in one table but not integrated into the headline\
+    \ findings. If K*=2 is a feature-set artifact rather than a text property, the\
+    \ central characterization claim is undermined.\n4. **(Major) Significant related\
+    \ work gaps:**\n   - Watermarking-based provenance (Kirchenbauer et al., 2023):\
+    \ active depth tracking without statistical classifiers\n   - Self-refinement\
+    \ literature (Madaan et al., 2023): false-positive risk for iteratively edited\
+    \ text\n   - Membership inference connections (Carlini et al., 2022)\n   - Information-theoretic\
+    \ analyses of text generation beyond DPI\n   - Missing citations flagged in literature\
+    \ mapping (Schaeffer et al., 2025; Kazdan et al., 2025)\n5. **(Moderate) \"Configuration-dependent\
+    \ K*\" is less surprising than presented.** Model collapse literature already\
+    \ documents convergence speed depends on capacity, decoding randomness, and data\
+    \ regime. The qualitative finding is predictable from first principles.\n6. **(Moderate)\
+    \ Scope narrowness vs framing generality.** Information-theoretic framing implies\
+    \ broad generality, but experiments cover only 1.5B–7B English web text with nucleus\
+    \ sampling.\n7. **(Minor) Drayson comparison not fully controlled.** A fairer\
+    \ test would apply Drayson's SIR formula with ordinal depth estimates instead\
+    \ of binary confidence.\n\n### Key Questions\n- What is K* under learned features?\
+    \ If K*_learned > K*_15D for most configurations, the headline must change.\n\
+    - How do you position passive depth estimation against active watermarking?\n\
+    - Would the depth classifier produce false positives on self-refined (non-recursive)\
+    \ text?\n- If DPI makes no quantitative predictions, what precisely does the theory\
+    \ contribute beyond motivation?\n- Who is the primary audience — practitioners\
+    \ (who need actionable filtering, but graduated filtering failed) or theorists\
+    \ (who care about the measurement)?\n\n---\n\n## Roundtable Synthesis\n\n### Areas\
+    \ of Consensus\n1. **τ=0.60 sensitivity analysis is essential and trivially producible.**\
+    \ Both reviewers independently flagged this as the single most consequential gap.\
+    \ Every K* claim depends on this threshold, and no robustness check is provided.\n\
+    2. **K*=2 baseline fragility.** The Qwen-cont CI margin of 0.0015 above τ, combined\
+    \ with 2/3 seed replications failing, means K*=2 is not a robust finding for the\
+    \ canonical condition.\n3. **Learned features K* is the most important unreported\
+    \ result.** Table 6 shows K*_learned=3 (2v3 AUC=0.62>0.60), but this is not integrated\
+    \ into the paper's central narrative. This single result would fundamentally change\
+    \ the paper's message.\n4. **Decoding ablation is the strongest experiment.**\
+    \ Both reviewers agree this is the most convincing and novel finding.\n5. **DPI\
+    \ framework is oversold.** Both agree it should be framed as theoretical motivation,\
+    \ not a listed contribution.\n6. **Graduated filtering negative result is informative\
+    \ but undermines practical motivation.** The paper's pivot to \"empirical analysis\"\
+    \ is partially successful but leaves the contribution profile thin for a top venue.\n\
+    \n### Areas of Disagreement\n- R1 gives more credit for experimental thoroughness\
+    \ (10 experiments, all planned analyses executed); R2 weights novelty shortfall\
+    \ and predictability more heavily.\n- R2 raises related work gaps (watermarking,\
+    \ self-refinement, membership inference) that R1 did not cover; R1 focuses more\
+    \ on methodological execution details.\n- Score gap (4 vs 3) reflects different\
+    \ weighting of comprehensiveness vs novelty.\n\n### Calibrated Assessment\nAfter\
+    \ cross-sharing, both reviewers converge toward the view that the paper has genuine\
+    \ merits — the binary→ordinal reframing, the decoding ablation gradient, and the\
+    \ experimental comprehensiveness — but falls short of the acceptance bar for a\
+    \ top ML venue in its current form. The combination of:\n- Fragile central claims\
+    \ (K*=2 depends on both threshold choice and seed)\n- Predictable qualitative\
+    \ findings (configuration-dependence expected from model collapse literature)\n\
+    - Null practical result (graduated filtering ≈ binary)\n- Missing critical analysis\
+    \ (K* under learned features, τ sensitivity)\n- Oversold theoretical contribution\
+    \ (standard DPI application)\n\nplaces the paper below the ~25% acceptance threshold.\n\
+    \n### Final Consolidated Score: 3/6 (Weak Reject)\n**Confidence: 4/5**\n\n###\
+    \ Upgrade Path (what would move this to Weak Accept/Accept)\n1. **Add τ sensitivity\
+    \ analysis** across [0.55, 0.65] — show that qualitative K* ordering is preserved\n\
+    2. **Report K* under learned features** for all configurations — either integrate\
+    \ K*_learned into the headline or redefine the contribution as measuring feature-specific\
+    \ K*_f\n3. **Reframe DPI as motivation**, not a contribution — remove it from\
+    \ the numbered contribution list\n4. **Fill related work gaps** — watermarking-based\
+    \ provenance, self-refinement false positives, membership inference connections\n\
+    5. **Increase filtering evaluation seeds** to ≥10, or commit fully to the \"informative\
+    \ negative\" framing with power analysis showing how many seeds would be needed\
+    \ for significance\n6. **Address 7B comparability** — either run 7B on 5K docs\
+    \ or provide power analysis justifying 1K\n7. **Resolve bootstrap resample count\
+    \ discrepancy** (10K claimed vs possible 1K implementation)\n\n### Who Benefits\
+    \ From This Paper\n- **Theorists** interested in recursive generation dynamics:\
+    \ moderately useful as a measurement framework\n- **Practitioners** building data\
+    \ pipelines: limited utility, since graduated filtering fails and binary detection\
+    \ remains the practical recommendation\n- **Future researchers** studying model\
+    \ collapse: useful as baseline measurements and for the K* concept\n- **Likely\
+    \ citation trajectory**: modest — the K* concept may be referenced, but without\
+    \ a working application or surprising quantitative result, long-term impact is\
+    \ limited\n\n### Final Verdict\nThe paper addresses a timely and well-motivated\
+    \ question, executes a comprehensive set of experiments, and reports results honestly\
+    \ including negative findings. However, the theoretical contribution is standard,\
+    \ the central measurement (K*=2) is fragile and partially a feature-engineering\
+    \ artifact, the qualitative findings are predictable from existing model collapse\
+    \ theory, and the practical application is null. For EMNLP Findings or a workshop\
+    \ venue, the empirical comprehensiveness and honest negative results would be\
+    \ valued. For a top ML venue main track at ~25% acceptance, the paper needs the\
+    \ upgrades listed above.\n"
+  error: ''
+errors: {}
+score_anomaly: ''
+created_at: '2026-05-13T09:05:49+00:00'

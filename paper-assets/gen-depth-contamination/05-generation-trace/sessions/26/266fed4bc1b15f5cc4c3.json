@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "266fed4bc1b15f5cc4c3",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper audit pythia decoding s10",
+  "task_key": "worker_paper_audit_pythia_decoding_s10_20260523T114930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_audit_pythia_decoding_s10_20260523T114930_result.json",
+    "occurrence": 1,
+    "bytes": 3394,
+    "sha256": "43c4fdc995509d9538f581f5a92d58e6d90e1a9e86ae84a866430901b70e69f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All four server raw files retrieved. Server raw values **exactly match** registry values. Now let me compile the full comparison.\n\n**Server Raw / Registry values** (identical across both sources):\n\n| Pair | Greedy | p=0.9 | T=0.7 | T=1.2 |\n|------|--------|-------|-------|-------|\n| 0v1 | 0.9992 | 0.9948 | 0.9965 | 0.9933 |\n| 1v2 | 0.8838 | 0.6770 | 0.7265 | 0.6172 |\n| 2v3 | 0.5342 | 0.5549 | 0.5941 | 0.5226 |\n| 3v4 | 0.5228 | 0.5299 | 0.5698 | 0.5170 |\n| 4v5 | 0.5162 | 0.5013 | 0.5284 | 0.5051 |\n\n**Paper values** (from `appendix.tex` L386-391):\n\n| Pair | Greedy | p=0.9 | T=0.7 | T=1.2 |\n|------|--------|-------|-------|-------|\n| 0v1 | .999 | .995 | .996 | .994 |\n| 1v2 | .884 | .675 | .728 | .618 |\n| 2v3 | .531 | .559 | .598 | .531 |\n| 3v4 | .522 | .524 | .563 | .520 |\n| 4v5 | .514 | .501 | .527 | .510 |\n\n**Full mismatch table** (server value rounded to 3 decimals vs paper):\n\n| Strategy | Pair | 服务器原始值 | 正确3位四舍五入 | 论文值 | Registry值 | 匹配？ |\n|----------|------|------------|--------------|-------|-----------|--------|\n| Greedy | 0v1 | 0.9992 | .999 | .999 | 0.9992 | **✓** |\n| Greedy | 1v2 | 0.8838 | .884 | .884 | 0.8838 | **✓** |\n| Greedy | 2v3 | 0.5342 | .534 | .531 | 0.5342 | **✗ Δ=0.003** |\n| Greedy | 3v4 | 0.5228 | .523 | .522 | 0.5228 | **✗ Δ=0.001** |\n| Greedy | 4v5 | 0.5162 | .516 | .514 | 0.5162 | **✗ Δ=0.002** |\n| p=0.9 | 0v1 | 0.9948 | .995 | .995 | 0.9948 | **✓** |\n| p=0.9 | 1v2 | 0.6770 | .677 | .675 | 0.6770 | **✗ Δ=0.002** |\n| p=0.9 | 2v3 | 0.5549 | .555 | .559 | 0.5549 | **✗ Δ=0.004** |\n| p=0.9 | 3v4 | 0.5299 | .530 | .524 | 0.5299 | **✗ Δ=0.006** |\n| p=0.9 | 4v5 | 0.5013 | .501 | .501 | 0.5013 | **✓** |\n| T=0.7 | 0v1 | 0.9965 | .997 | .996 | 0.9965 | **✗ Δ=0.001** |\n| T=0.7 | 1v2 | 0.7265 | .727 | .728 | 0.7265 | **✗ Δ=0.001** |\n| T=0.7 | 2v3 | 0.5941 | .594 | .598 | 0.5941 | **✗ Δ=0.004** |\n| T=0.7 | 3v4 | 0.5698 | .570 | .563 | 0.5698 | **✗ Δ=0.007** |\n| T=0.7 | 4v5 | 0.5284 | .528 | .527 | 0.5284 | **✗ Δ=0.001** |\n| T=1.2 | 0v1 | 0.9933 | .993 | .994 | 0.9933 | **✗ Δ=0.001** |\n| T=1.2 | 1v2 | 0.6172 | .617 | .618 | 0.6172 | **✗ Δ=0.001** |\n| T=1.2 | 2v3 | 0.5226 | .523 | .531 | 0.5226 | **✗ Δ=0.008** |\n| T=1.2 | 3v4 | 0.5170 | .517 | .520 | 0.5170 | **✗ Δ=0.003** |\n| T=1.2 | 4v5 | 0.5051 | .505 | .510 | 0.5051 | **✗ Δ=0.005** |\n\n**汇总：**\n- 服务器原始值 = Registry 值：**20/20 完全一致**\n- 论文值与服务器原始值一致：**仅 4/20** (Greedy 0v1, Greedy 1v2, p=0.9 0v1, p=0.9 4v5)\n- **16/20 个 cell 有偏差**：\n  - Δ=0.001 的有 6 个（部分可能是截断 vs 四舍五入导致）\n  - Δ=0.002-0.008 的有 10 个（明确错误）\n  - 最大偏差：**T=1.2 2v3** (服务器 .523, 论文 .531, Δ=0.008) 和 **T=0.7 3v4** (服务器 .570, 论文 .563, Δ=0.007)\n\n论文表格应使用的正确值：\n\n```latex\n    0v1 & $.999$ & $.995$ & $.997$ & $.993$ \\\\\n    1v2 & $.884$ & $.677$ & $.727$ & $.617$ \\\\\n    \\cmidrule(lr){1-5}\n    2v3 & $.534$ & $.555$ & $.594^\\ddagger$ & $.523$ \\\\\n    3v4 & $.523$ & $.530$ & $.570$ & $.517$ \\\\\n    4v5 & $.516$ & $.501$ & $.528$ & $.505$ \\\\\n```\n\n注：`$^\\ddagger$` 注脚中的 CI upper 也需要重新核实（当前写 0.606，对应 t07 2v3 AUC=0.5941 的 bootstrap CI）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-audit-pythia-decoding-s10.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2523059e606366d2aae5",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analyze w3 domain lexical stats",
+  "task_key": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_w3-domain-lexical-stats_20260518T145650_result.json",
+    "occurrence": 1,
+    "bytes": 995,
+    "sha256": "f1f5acece722ffd3f062c29087c7d59c4035ed3e78f3d3c3a443397b9eed896e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。输出文件：\n\n- **LaTeX table**: `artifacts/domain_lexical_stats/domain_ttr_entropy.tex`\n- **Summary**: `artifacts/domain_lexical_stats/summary.md`\n\n核心发现：\n\n1. **Depth 0 TTR 符合 K\\* 排序**：Wiki (0.665) < C4 (0.720) < arXiv (0.755)，Cohen's d(arXiv vs Wiki) = +1.52（大效应）\n2. **Depth 0 entropy 不完全符合 K\\***：C4 (6.22) < Wiki (6.41) < arXiv (6.85)，Wiki 和 C4 位置互换。原因可能是 Wikipedia 的百科全书式跨主题覆盖提升了 entropy，尽管其 TTR 较低\n3. **TTR 排序在 depth ≥ 3 反转**：arXiv 的 TTR 下降最陡（d0→d5 Δ = −0.137），导致 arXiv < Wiki < C4。这表明模型对专业术语词汇的坍缩速度更快\n4. **Entropy 排序在 depth ≥ 3 符合 K\\***：Wiki < C4 < arXiv\n5. **深度平均后 effect size 大幅衰减**：arXiv vs Wiki 的 d 从 ~1.5 降至 ~0.2，说明迭代生成使域间词汇差异趋同，这本身就是词汇维度 model collapse 的信号"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-w3-domain-lexical-stats.md"
+}

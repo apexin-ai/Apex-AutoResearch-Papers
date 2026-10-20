@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0fac22e733d7d70ce6d1",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check olmo depth chain data",
+  "task_key": "worker_check_olmo_depth_chain_data_20260516T152747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_olmo_depth_chain_data_20260516T152747_result.json",
+    "occurrence": 1,
+    "bytes": 1190,
+    "sha256": "ccb8463e135ab274e3740bb4b710b19ac7f191522f7725cefc29ce14ae69fe39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### OLMo depth chain 数据：**不存在**\n\n服务器上没有任何 `olmo`、`exp_002`、`exp002` 相关文件。搜索了整个项目目录（含 `/root/autodl-tmp` 顶层），结果为空。\n\n现有的 depth chain 数据集是：\n- `data_exp016_qwen_base` — Qwen base\n- `data/exp_018_llama8b` — LLaMA-8B\n- `data_exp019_mistral7b` — Mistral-7B\n- `data_exp019b_mistral_cross` — Mistral cross\n- `data_exp020_pythia_*` — Pythia (greedy / nuc09 / t07 / t12)\n- `data/exp_021_length_*` — 长度消融 (128/256/512)\n- `data/exp_023_wiki` — Wiki 域\n- `data/exp_024_arxiv` — ArXiv 域 (进行中)\n- `data_exp022_cross_scorer/qwen_base__qwen_base` — cross-scorer\n\nexp-002 的 OLMo-1B 数据需要重新生成或从其他位置恢复。\n\n### exp-024 进度\n\n已完成 depth 0-2（各 2200 行），depth 3-5 尚未生成。\n\n### GPU 状态\n\n| GPU | 显存占用 | 利用率 | 进程 |\n|-----|---------|--------|------|\n| cuda:0 | 0 MiB | 0% | 空闲 |\n| cuda:1 | 0 MiB | 0% | 空闲 |\n| cuda:2 | 3819 MiB | 70% | python (PID 48295) |\n| cuda:3 | 4617 MiB | 72% | python (PID 50725) |\n\ncuda:2 和 cuda:3 都在跑任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-olmo-depth-chain-data.md"
+}

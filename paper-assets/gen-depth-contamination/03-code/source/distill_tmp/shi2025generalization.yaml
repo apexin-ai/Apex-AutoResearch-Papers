@@ -1,0 +1,45 @@
+paper_key: "shi2025generalization"
+title: "A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective"
+venue: "NeurIPS 2025 Spotlight"
+full_text_available: true
+research:
+  baselines: ["vanilla accumulate", "vanilla replace", "baseline 2N images", "CFG without selection"]
+  metrics: [{name: "Generalization Score", direction: "higher_better"}, {name: "FID", direction: "lower_better"}, {name: "Entropy (KL estimator)", direction: "higher_better"}]
+  datasets: [{name: "CIFAR-10", size: "32K images"}, {name: "FFHQ", size: "8K-32K images"}, {name: "MNIST", size: "12K images"}]
+  ablation_dimensions: ["dataset size", "paradigm", "selection method", "decay rate", "data volume", "CFG"]
+  training_recipe: {architecture: "DDPM UNet ~16M params", optimizer: "Adam", lr: "1e-4", epochs: "500 (CIFAR-10)", feature_extractor: "DINOv2"}
+  method_family: "model collapse analysis + entropy-based data selection"
+positioning:
+  core_claim: "Model collapse is a generalization-to-memorization transition driven by entropy collapse in synthetic data (r=0.91 correlation), mitigated by entropy-maximizing data selection."
+  key_results: "Pearson r=0.91 entropy-GS; accumulate FID 75.7→44.7 (41% improvement) with greedy selection"
+  limitations: ["no theoretical explanation for entropy collapse", "greedy selection computationally expensive", "image-only, not text"]
+  relation_to_us: "foundation"
+narrative:
+  story_type: "突破局限型"
+  hook: "Diffusion models produce realistic images; synthetic data will contaminate future training sets"
+  tension: "Existing explanations (variance/distribution shift) too abstract to explain practical memorization"
+  key_insight: "Entropy collapse drives generalization-to-memorization transition; r=0.91 anchors the causal story"
+  argument_chain: "collapse → memorization observed → entropy collapse mechanism → r=0.91 correlation → entropy selection → FID improvement"
+  contribution_framing: "Three contributions: phenomenon identification, causal mechanism, selection methods"
+  intro_structure: "5 paragraphs: motivation, prior work critique, new phenomenon, mechanism + evidence, contributions"
+  notable_technique: "Front-loading r=0.91 in intro pre-empts skepticism; contrastive scatter (entropy vs variance) eliminates rival explanations"
+figures:
+  figure_count: 9
+  figure1:
+    type: "motivation"
+    description: "Pipeline comparison: vanilla collapse vs mitigated with data selection, plus image strips showing degradation"
+    narrative_role: "Visual evidence of generalization-to-memorization before quantification"
+    design_elements: ["pipeline comparison", "iteration-indexed image strips", "with/without selection"]
+  result_figures:
+    - {figure_id: "Figure 4", viz_type: "scatter", what_compared: "entropy vs GS (r=0.91) vs variance vs GS"}
+    - {figure_id: "Figure 5", viz_type: "line_plot", what_compared: "GS across iterations: vanilla vs selection methods"}
+  figure_narrative_role: "Fig1 (motivation) → Fig2 (GS collapse) → Fig3 (entropy collapse) → Fig4 (causal link) → Fig5-6 (solution) → Fig7 (mechanism validation) → Fig8-9 (interpretability)"
+tables:
+  table_count: 3
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "datasets × paradigms"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run"
+    num_baselines: 2

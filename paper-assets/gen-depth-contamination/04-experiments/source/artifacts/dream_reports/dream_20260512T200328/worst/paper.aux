@@ -1,0 +1,84 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shumailov2024ai}
+\citation{mitchell2023detectgpt,hans2024binoculars}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{shumailov2024ai}
+\citation{mitchell2023detectgpt}
+\citation{hans2024binoculars}
+\citation{feng2024towards,yi2024on}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Theoretical Framework}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Recursive Generation as an Iterated Lossy Channel}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Data Processing Inequality and the Saturation Boundary}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Related Work}{2}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model Collapse.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Binary Synthetic Text Detection.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data Quality Filtering.}{2}{section*.3}\protected@file@percent }
+\citation{cao2020rank}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Experimental Setup}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Depth Chain Construction}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Decoding Strategies.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Feature Extraction}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Depth Estimation Methods}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Downstream Evaluation}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Results}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}$K^*=2$ Is a Universal Ceiling}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scale does not help.}{3}{section*.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Pairwise discrimination across model families and scales. $K^*=2$ at $\tau =0.60$ is universal. JSD decays by an order of magnitude from 0v1 to 1v2 in all cases.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:cross_model}{{1}{4}{Pairwise discrimination across model families and scales. $K^*=2$ at $\tau =0.60$ is universal. JSD decays by an order of magnitude from 0v1 to 1v2 in all cases}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Decoding strategy ablation (Qwen2.5-1.5B). All strategies yield $K^*=2$. The 1v2 AUC range (0.62--0.70) is narrow and never approaches the utility threshold.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:decoding}{{2}{4}{Decoding strategy ablation (Qwen2.5-1.5B). All strategies yield $K^*=2$. The 1v2 AUC range (0.62--0.70) is narrow and never approaches the utility threshold}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Decoding Strategy Cannot Modulate $K^*$}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}$K^*$ Is Robust to Threshold Choice}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Feature Representation Does Not Break the Ceiling}{4}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Depth Estimation Accuracy Is Near-Chance}{4}{subsection.4.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces $K^*$ across AUC thresholds. Robustness reflects rapid signal collapse rather than measurement precision.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:threshold}{{3}{5}{$K^*$ across AUC thresholds. Robustness reflects rapid signal collapse rather than measurement precision}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Handcrafted vs.\ learned representations. The 2pp accuracy gain from 4096-dim learned features does not shift $K^*$.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:features}{{4}{5}{Handcrafted vs.\ learned representations. The 2pp accuracy gain from 4096-dim learned features does not shift $K^*$}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Binary Detector Confidence Is Not a Depth Proxy}{5}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Graduated Filtering Offers No Significant Advantage}{5}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Cross-Model Transfer}{5}{subsection.4.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{5}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Why $K^*=2$? An Information-Theoretic Interpretation}{5}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Classifier comparison. Ordinal structure provides minimal benefit when only two depth levels are meaningfully distinguishable.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:classifiers}{{5}{6}{Classifier comparison. Ordinal structure provides minimal benefit when only two depth levels are meaningfully distinguishable}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Downstream evaluation (3 seeds). Graduated filtering's advantage over binary is $\leq $0.2pp and non-significant ($p > 0.4$).}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:filtering}{{6}{6}{Downstream evaluation (3 seeds). Graduated filtering's advantage over binary is $\leq $0.2pp and non-significant ($p > 0.4$)}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Implications for Data Governance}{6}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Limitations}{6}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Prompt-chain vs.\ retrain-chain.}{6}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scale.}{6}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Feature degradation ordering.}{6}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Naturalistic validation.}{6}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Base vs.\ Instruct Models}{6}{subsection.5.4}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{shumailov2024ai}{{1}{2024}{{Shumailov et~al.}}{{}}}
+\bibcite{mitchell2023detectgpt}{{2}{2023}{{Mitchell et~al.}}{{}}}
+\bibcite{hans2024binoculars}{{3}{2024}{{Hans et~al.}}{{}}}
+\bibcite{cao2020rank}{{4}{2020}{{Cao et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Dose-response: graduated advantage does not scale with contamination level ($\Delta \leq 0.2$pp at all doses).}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:dose}{{7}{7}{Dose-response: graduated advantage does not scale with contamination level ($\Delta \leq 0.2$pp at all doses)}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Cross-model transfer. Binary detection transfers well (avg.\ 81\%); depth estimation does not (avg.\ 28\%). $^*$In-domain.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:transfer}{{8}{7}{Cross-model transfer. Binary detection transfers well (avg.\ 81\%); depth estimation does not (avg.\ 28\%). $^*$In-domain}{table.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\bibcite{feng2024towards}{{5}{2024}{{Feng et~al.}}{{}}}
+\bibcite{yi2024on}{{6}{2024}{{Yi et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Retrain-Chain Ecological Validity}{8}{appendix.A}\protected@file@percent }
+\newlabel{app:retrain}{{A}{8}{Retrain-Chain Ecological Validity}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Prompt-chain vs.\ retrain-chain (Pythia-1.4B). $K^*$ is preserved; absolute signal levels are lower under retraining; feature distributions differ significantly.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:retrain}{{9}{8}{Prompt-chain vs.\ retrain-chain (Pythia-1.4B). $K^*$ is preserved; absolute signal levels are lower under retraining; feature distributions differ significantly}{table.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Feature Group Degradation Analysis}{8}{appendix.B}\protected@file@percent }
+\newlabel{app:features}{{B}{8}{Feature Group Degradation Analysis}{appendix.B}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Per-feature-group 1v2 AUC. All groups saturate at depth 2; degradation ordering is inconsistent across models.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:feat_group}{{10}{8}{Per-feature-group 1v2 AUC. All groups saturate at depth 2; degradation ordering is inconsistent across models}{table.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}LLM Zero-Shot Depth Estimation}{8}{appendix.C}\protected@file@percent }
+\newlabel{app:llm}{{C}{8}{LLM Zero-Shot Depth Estimation}{appendix.C}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Naturalistic Validation}{8}{appendix.D}\protected@file@percent }
+\newlabel{app:naturalistic}{{D}{8}{Naturalistic Validation}{appendix.D}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces LLM zero-shot depth estimation. Frontier LLMs achieve near-random depth accuracy despite reasonable binary detection.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:llm_zeroshot}{{11}{9}{LLM zero-shot depth estimation. Frontier LLMs achieve near-random depth accuracy despite reasonable binary detection}{table.11}{}}
+\gdef \@abspage@last{9}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09c178f92cfdf7c70cbd",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops exp expanded downstream eval",
+  "task_key": "worker_ops_exp_expanded_downstream_eval_20260520T170352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp_expanded_downstream_eval_20260520T170352_result.json",
+    "occurrence": 1,
+    "bytes": 737,
+    "sha256": "a9da08e499da59e667fa8b271e0a2f245c2c78c021f50226e32502883a40c0dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PIQA 评估正常运行中，loglikelihood 推理进行中。任务正常启动，预计总运行时间约 15-20 小时（1 base + 9 策略模型，每个需训练+5 benchmark评估）。\n\n任务总结：\n- 脚本已创建并提交到 `cqa1-22115` 服务器\n- 任务 `exp_expanded_downstream_eval` 已在 tmux 中运行\n- 流程：base model eval → 3 策略 x 3 seeds 的 LoRA 训练+评估 → 统计分析\n- 5 benchmarks: PIQA, TruthfulQA-MC2, WinoGrande, ARC-Challenge, GSM8K\n- 每个模型训练后 merge LoRA、评估、然后清理 checkpoint 节省磁盘\n- 结果会输出到 `results/exp_expanded_downstream_eval/summary.json`\n- 日志：`~/runs/gen-depth-contamination/exp_expanded_downstream_eval.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp-expanded-downstream-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d50ca613cdd7bd4d176",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra prep exp017 dryrun",
+  "task_key": "worker_infra_prep_exp017_dryrun_20260513T020807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_prep_exp017_dryrun_20260513T020807_result.json",
+    "occurrence": 1,
+    "bytes": 1478,
+    "sha256": "3835a98456d811c9bcfc0d733dd5acedbfca58cd525c52cc02e42f72c83b4094"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部检查完毕，汇总结果：\n\n## 检查结果\n\n| 检查项 | 状态 | 详情 |\n|--------|------|------|\n| 模型路径 | ✅ | `model.safetensors` (2.9G) + tokenizer + config 完整 |\n| run_pipeline.py | ✅ | 存在，支持 `continuation` mode（L181, L630-631） |\n| data_exp017_qwen_cont/ | ✅ 无冲突 | 目录不存在，pipeline 会自动创建 |\n| results_exp017_qwen_cont/ | ✅ 无冲突 | 目录不存在，pipeline 会自动创建 |\n| Python 环境 | ✅ | torch=2.10.0+cu128, transformers=4.57.6, CUDA=True, 1 GPU |\n\n**所有前置条件满足。** 提交命令：\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2.5-1.5B-Instruct --data_dir /root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont --results_dir /root/autodl-tmp/gen-depth-contamination/results_exp017_qwen_cont --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\"\n```\n\nexp-002 完成后可直接用此命令通过 `ssh_execute` 提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-prep-exp017-dryrun.md"
+}

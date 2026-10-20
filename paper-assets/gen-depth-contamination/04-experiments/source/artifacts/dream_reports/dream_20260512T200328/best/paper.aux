@@ -1,0 +1,128 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shumailov2024model}
+\citation{mitchell2023detectgpt,hans2024binoculars}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{kirchenbauer2023watermark}
+\citation{mitchell2023detectgpt,hans2024binoculars}
+\citation{tulchinskii2024diveye}
+\citation{zhang2024minkpp}
+\citation{shumailov2024model}
+\citation{dohmatob2024model}
+\citation{feng2024factuality}
+\citation{wettig2024qurating}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Synthetic text detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model collapse.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data quality estimation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Recursive Generation as an Iterated Lossy Channel}{2}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:theory}{{3.1}{2}{Recursive Generation as an Iterated Lossy Channel}{subsection.3.1}{}}
+\newlabel{eq:dpi}{{1}{2}{Recursive Generation as an Iterated Lossy Channel}{equation.1}{}}
+\newlabel{eq:kstar}{{2}{2}{Recursive Generation as an Iterated Lossy Channel}{equation.2}{}}
+\citation{cao2020coral}
+\citation{raffel2020c4}
+\@writefile{toc}{\contentsline {paragraph}{$K^*$ is an information-theoretic quantity.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Feature Design}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:features}{{3.2}{3}{Feature Design}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Vocabulary diversity (5 features).}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Surprisal dynamics (5 features).}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Tail distribution (5 features).}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Ordinal Depth Classifier}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:classifier}{{3.3}{3}{Ordinal Depth Classifier}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Graduated Filtering}{3}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:filtering}{{3.4}{3}{Graduated Filtering}{subsection.3.4}{}}
+\newlabel{eq:weights}{{3}{3}{Graduated Filtering}{equation.3}{}}
+\citation{biderman2023pythia}
+\citation{groeneveld2024olmo}
+\citation{qwen2025qwen25}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Pairwise discrimination across generational depths for three model families. AUC: area under ROC curve (mean $\pm $ std over 5 folds). JSD: Jensen--Shannon divergence between adjacent depth distributions.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:pairwise}{{1}{4}{Pairwise discrimination across generational depths for three model families. AUC: area under ROC curve (mean $\pm $ std over 5 folds). JSD: Jensen--Shannon divergence between adjacent depth distributions}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\newlabel{sec:setup}{{4}{4}{Experimental Setup}{section.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Seed data.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Generation chains.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-scale probe.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Classifier.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Downstream evaluation.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\newlabel{sec:results}{{5}{4}{Results}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}$K^*$ Across Model Families (C1)}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:kstar_results}{{5.1}{4}{$K^*$ Across Model Families (C1)}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Decoding strategy ablation (Qwen2.5-1.5B). $T{=}1.2$ raises $K^*$ from 2 to 3 by increasing generation entropy.}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:decoding}{{2}{5}{Decoding strategy ablation (Qwen2.5-1.5B). $T{=}1.2$ raises $K^*$ from 2 to 3 by increasing generation entropy}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cross-scale comparison: Qwen2.5-7B vs.\ 1.5B under identical decoding ($p{=}0.95$, $T{=}1.0$).}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:7b}{{3}{5}{Cross-scale comparison: Qwen2.5-7B vs.\ 1.5B under identical decoding ($p{=}0.95$, $T{=}1.0$)}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}$K^*$ Modulability: Decoding and Scale (C1)}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:modulability}{{5.2}{5}{$K^*$ Modulability: Decoding and Scale (C1)}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}$K^*$ Sensitivity Analysis}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:sensitivity}{{5.3}{5}{$K^*$ Sensitivity Analysis}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Degradation Ordering (C2)}{5}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:ordering}{{5.4}{5}{Degradation Ordering (C2)}{subsection.5.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces $K^*$ sensitivity to AUC threshold $\theta $. Shaded region $[0.60, 0.65]$ is the recommended operating range.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:sensitivity}{{4}{6}{$K^*$ sensitivity to AUC threshold $\theta $. Shaded region $[0.60, 0.65]$ is the recommended operating range}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Feature group saturation depth by model (depth at which the feature group's discriminative AUC first falls below $\theta {=}0.60$ for adjacent-generation classification).}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:degradation}{{5}{6}{Feature group saturation depth by model (depth at which the feature group's discriminative AUC first falls below $\theta {=}0.60$ for adjacent-generation classification)}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Graduated Filtering (C3)}{6}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:filtering_results}{{5.5}{6}{Graduated Filtering (C3)}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Dose-response analysis.}{6}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Ablations and Baselines}{6}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:ablations}{{5.6}{6}{Ablations and Baselines}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Classifier architecture.}{6}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Hand-crafted vs.\ learned features.}{6}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{LLM zero-shot baseline.}{6}{section*.16}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Cross-model consistency of degradation ordering (Kendall's $\tau $).}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:kendall}{{6}{7}{Cross-model consistency of degradation ordering (Kendall's $\tau $)}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Downstream evaluation: continued pretraining performance on MMLU and HellaSwag (percentage points). 30\% synthetic injection rate. Mean $\pm $ std over 3 seeds.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:downstream}{{7}{7}{Downstream evaluation: continued pretraining performance on MMLU and HellaSwag (percentage points). 30\% synthetic injection rate. Mean $\pm $ std over 3 seeds}{table.7}{}}
+\newlabel{sec:binary_baseline}{{5.6}{7}{Binary detector depth sensitivity}{section*.17}{}}
+\@writefile{toc}{\contentsline {paragraph}{Binary detector depth sensitivity.}{7}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Cross-Model Transfer}{7}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:transfer}{{5.7}{7}{Cross-Model Transfer}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Ecological Validity}{7}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:validity}{{5.8}{7}{Ecological Validity}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Retrain-chain validation.}{7}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Base vs.\ Instruct models.}{7}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Common Crawl validation.}{7}{section*.20}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{biderman2023pythia}{{1}{2023}{{Biderman et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Dose-response: graduated vs.\ binary filtering advantage ($\Delta $ pp) by synthetic injection rate.}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:dose}{{8}{8}{Dose-response: graduated vs.\ binary filtering advantage ($\Delta $ pp) by synthetic injection rate}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Classifier architecture comparison on depth estimation (Qwen2.5-1.5B, 5-fold CV).}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:classifier}{{9}{8}{Classifier architecture comparison on depth estimation (Qwen2.5-1.5B, 5-fold CV)}{table.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{8}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{8}{Discussion}{section.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{$K^*$ as a fundamental quantity.}{8}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical implications.}{8}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{8}{Conclusion}{section.7}{}}
+\bibcite{cao2020coral}{{2}{2020}{{Cao et~al.}}{{}}}
+\bibcite{dohmatob2024model}{{3}{2024}{{Dohmatob et~al.}}{{}}}
+\bibcite{feng2024factuality}{{4}{2024}{{Feng et~al.}}{{}}}
+\bibcite{groeneveld2024olmo}{{5}{2024}{{Groeneveld et~al.}}{{}}}
+\bibcite{hans2024binoculars}{{6}{2024}{{Hans et~al.}}{{}}}
+\bibcite{kirchenbauer2023watermark}{{7}{2023}{{Kirchenbauer et~al.}}{{}}}
+\bibcite{mitchell2023detectgpt}{{8}{2023}{{Mitchell et~al.}}{{}}}
+\bibcite{qwen2025qwen25}{{9}{2025}{{Qwen Team}}{{}}}
+\bibcite{raffel2020c4}{{10}{2020}{{Raffel et~al.}}{{}}}
+\bibcite{shumailov2024model}{{11}{2024}{{Shumailov et~al.}}{{}}}
+\bibcite{tulchinskii2024diveye}{{12}{2024}{{Tulchinskii et~al.}}{{}}}
+\bibcite{wettig2024qurating}{{13}{2024}{{Wettig et~al.}}{{}}}
+\bibcite{zhang2024minkpp}{{14}{2024}{{Zhang et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Hand-crafted (15D) vs.\ learned (4096D frozen embeddings + MLP) features.}}{9}{table.10}\protected@file@percent }
+\newlabel{tab:features}{{10}{9}{Hand-crafted (15D) vs.\ learned (4096D frozen embeddings + MLP) features}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Zero-shot depth estimation by frontier LLMs vs.\ our ordinal classifier.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:llm}{{11}{9}{Zero-shot depth estimation by frontier LLMs vs.\ our ordinal classifier}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Binary detector scores as depth proxies.}}{10}{table.12}\protected@file@percent }
+\newlabel{tab:binary}{{12}{10}{Binary detector scores as depth proxies}{table.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Cross-model transfer accuracy matrix. Diagonal entries (marked *) are in-domain.}}{10}{table.13}\protected@file@percent }
+\newlabel{tab:transfer}{{13}{10}{Cross-model transfer accuracy matrix. Diagonal entries (marked *) are in-domain}{table.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Retrain-chain vs.\ prompt-chain (Pythia-1.4B, both $K^*{=}2$).}}{11}{table.14}\protected@file@percent }
+\newlabel{tab:retrain}{{14}{11}{Retrain-chain vs.\ prompt-chain (Pythia-1.4B, both $K^*{=}2$)}{table.14}{}}
+\gdef \@abspage@last{11}

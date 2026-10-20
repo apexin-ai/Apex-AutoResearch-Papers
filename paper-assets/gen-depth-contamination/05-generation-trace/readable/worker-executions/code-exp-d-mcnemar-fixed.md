@@ -1,0 +1,1988 @@
+# code exp D mcnemar fixed
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 41
+- **Recorded user turns:** 0
+- **Tool calls:** 13
+- **Original source:** `logs/workers/worker_code_exp_D_mcnemar_fixed_20260515T113431.log`
+- **Structured JSON:** [`1eaae8110ab0e8a130af.json`](../../sessions/1e/1eaae8110ab0e8a130af.json)
+
+## Before a recorded user message
+
+41 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "6a914d5b-47de-4a92-8ba7-0dfb71929dfa",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778854800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "34e9ec45-cd7b-4a97-82f4-9bed4eedbc28",
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me break this task down:
+
+1. Read the existing `scripts/exp_D_mcnemar.py` on the server
+2. Create a fixed version `scripts/exp_D_mcnemar_fixed.py` with the specified changes
+3. Run it on the server
+4. Pull the results back to local
+
+Let me start by reading the existing script and understanding the data structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "ff47a6b6-4aa7-4de2-a5ca-a39b37686f0c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014JMfLjbbwCS1nz26yvjgJP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12248,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12248
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先看现有脚本和数据结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "15b39f38-728e-465e-a498-1508d1d254aa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014JMfLjbbwCS1nz26yvjgJP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12248,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12248
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VHthbaGAdEF8nTW9D7cchR`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "42a2ecf1-fbce-4f2a-8600-03646b9b2b91",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014JMfLjbbwCS1nz26yvjgJP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12248,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12248
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T11:34:45.851Z_
+
+<details><summary>↩ Tool result · `toolu_01VHthbaGAdEF8nTW9D7cchR`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "7f826fb7-bd6a-4d24-b8b7-ceabf0837c12",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 24
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the existing script and check the data files on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "004e8a1f-ebc0-481b-8956-9c3977f1eab5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012iVbf2BcHB93FbYmq8u23D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1601,
+      "cache_read_input_tokens": 24089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1601
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013aw4dEGFrUGoHTM5dLxaeM`</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/scripts/exp_D_mcnemar.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "5597aca2-632e-40e1-939c-c4d5569943e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012iVbf2BcHB93FbYmq8u23D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1601,
+      "cache_read_input_tokens": 24089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1601
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T11:34:52.072Z_
+
+<details><summary>↩ Tool result · `toolu_013aw4dEGFrUGoHTM5dLxaeM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"EXP-D McNemar paired test + Bootstrap difference CI: OBD vs LLMs.\\n\\nRe-runs OBD out-of-fold predictions on the same 500 samples as exp-011,\\nthen performs McNemar exact test and bootstrap CI on accuracy differences.\\n\\\"\\\"\\\"\\nimport csv\\nimport json\\nimport re\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nPROJECT = Path(\\\"/root/autodl-tmp/gen-depth-contamination\\\")\\nDATA_DIR = PROJECT / \\\"data_exp001_pythia\\\"\\nSAMPLES_PATH = PROJECT / \\\"artifacts\\\" / \\\"exp011_samples.jsonl\\\"\\nGPT_PATH = PROJECT / \\\"artifacts\\\" / \\\"exp011_results_gpt_5_5.jsonl\\\"\\nCLAUDE_PATH = PROJECT / \\\"artifacts\\\" / \\\"exp011_results_claude_opus_4_6.jsonl\\\"\\nOUT_PATH = PROJECT / \\\"artifacts\\\" / \\\"exp_D_mcnemar.json\\\"\\n\\nFEAT_COLS = [\\n    \\\"surp_mean\\\", \\\"surp_std\\\", \\\"surp_skew\\\", \\\"surp_kurt\\\",\\n    \\\"surp_d1_mean\\\", \\\"surp_d1_std\\\", \\\"surp_d1_skew\\\",\\n    \\\"surp_d2_mean\\\", \\\"surp_d2_std\\\",\\n    \\\"ttr\\\", \\\"hapax_ratio\\\", \\\"self_bleu\\\",\\n    \\\"freq_kurtosis\\\", \\\"freq_entropy\\\", \\\"low_freq_ratio\\\",\\n]\\n\\nMAX_DEPTH = 5\\nN_SPLITS = 5\\nN_BOOTSTRAP = 10000\\nSEED = 42\\n\\n\\ndef load_features():\\n    feat_path = DATA_DIR / \\\"features.csv\\\"\\n    with open(feat_path) as f:\\n        reader = csv.DictReader(f)\\n        rows = list(reader)\\n    depths = np.array([int(r[\\\"depth\\\"]) for r in rows])\\n    doc_ids = np.array([int(r[\\\"doc_id\\\"]) for r in rows])\\n    X = np.array([\\n        [float(r[c]) if r[c] not in (\\\"\\\", \\\"nan\\\") else np.nan for c in FEAT_COLS]\\n        for r in rows\\n    ])\\n    col_means = np.nanmean(X, axis=0)\\n    for j in range(X.shape[1]):\\n        mask = np.isnan(X[:, j])\\n        X[mask, j] = col_means[j]\\n    return X, depths, doc_ids\\n\\n\\ndef run_obd_oof(X, y, groups, max_depth, n_splits):\\n    import lightgbm as lgb\\n    from sklearn.model_selection import GroupKFold\\n\\n    n = len(y)\\n    cum_probs = np.zeros((n, max_depth))\\n    gkf = GroupKFold(n_splits=n_splits)\\n    fold_indices = list(gkf.split(X, y, groups=groups))\\n\\n    for k in range(max_depth):\\n        y_bin = (y > k).astype(int)\\n        for train_idx, test_idx in fold_indices:\\n            clf = lgb.LGBMClassifier(\\n                n_estimators=200, max_depth=6, learning_rate=0.05,\\n                num_leaves=31, verbose=-1, n_jobs=-1,\\n            )\\n            clf.fit(X[train_idx], y_bin[train_idx])\\n            cum_probs[test_idx, k] = clf.predict_proba(X[test_idx])[:, 1]\\n\\n    n_classes = max_depth + 1\\n    class_probs = np.zeros((n, n_classes))\\n    class_probs[:, 0] = 1.0 - cum_probs[:, 0]\\n    for k in range(1, max_depth):\\n        class_probs[:, k] = cum_probs[:, k - 1] - cum_probs[:, k]\\n    class_probs[:, max_depth] = cum_probs[:, max_depth - 1]\\n    class_probs = np.clip(class_probs, 0, None)\\n    row_sums = class_probs.sum(axis=1, keepdims=True)\\n    row_sums[row_sums == 0] = 1.0\\n    class_probs /= row_sums\\n\\n    return class_probs.argmax(axis=1)\\n\\n\\ndef parse_exp011_doc_id(doc_id_str):\\n    m = re.match(r\\\"pythia_d(\\\\d+)_(\\\\d+)\\\", doc_id_str)\\n    if not m:\\n        raise ValueError(f\\\"Cannot parse doc_id: {doc_id_str}\\\")\\n    return int(m.group(1)), int(m.group(2))\\n\\n\\ndef load_llm_predictions(path):\\n    preds = {}\\n    with open(path) as f:\\n        for line in f:\\n            rec = json.loads(line)\\n            preds[rec[\\\"doc_id\\\"]] = rec[\\\"predicted_depth\\\"]\\n    return preds\\n\\n\\ndef mcnemar_test(obd_correct, llm_correct):\\n    from scipy.stats import binomtest\\n\\n    b = int(np.sum(obd_correct & ~llm_correct))\\n    c = int(np.sum(~obd_correct & llm_correct))\\n    a = int(np.sum(obd_correct & llm_correct))\\n    d = int(np.sum(~obd_correct & ~llm_correct))\\n\\n    n_discordant = b + c\\n    if n_discordant == 0:\\n        p_value = 1.0\\n    else:\\n        result = binomtest(b, n_discordant, 0.5, alternative='two-sided')\\n        p_value = result.pvalue\\n\\n    return {\\\"a\\\": a, \\\"b\\\": b, \\\"c\\\": c, \\\"d\\\": d}, p_value\\n\\n\\ndef bootstrap_diff_ci(y_true, obd_preds, llm_preds, n_boot, seed):\\n    rng = np.random.RandomState(seed)\\n    n = len(y_true)\\n    diffs = np.empty(n_boot)\\n    for i in range(n_boot):\\n        idx = rng.randint(0, n, size=n)\\n        acc_obd = np.mean(obd_preds[idx] == y_true[idx])\\n        acc_llm = np.mean(llm_preds[idx] == y_true[idx])\\n        diffs[i] = acc_obd - acc_llm\\n    return diffs\\n\\n\\ndef run_comparison(y_true, obd_preds, llm_preds, llm_name):\\n    obd_correct = obd_preds == y_true\\n    llm_correct = llm_preds == y_true\\n\\n    acc_obd = float(np.mean(obd_correct))\\n    acc_llm = float(np.mean(llm_correct))\\n    diff = acc_obd - acc_llm\\n\\n    table, p_value = mcnemar_test(obd_correct, llm_correct)\\n\\n    diffs = bootstrap_diff_ci(y_true, obd_preds, llm_preds, N_BOOTSTRAP, SEED)\\n    ci_lower = float(np.percentile(diffs, 2.5))\\n    ci_upper = float(np.percentile(diffs, 97.5))\\n\\n    print(f\\\"\\\\n--- OBD vs {llm_name} ---\\\")\\n    print(f\\\"  OBD accuracy:  {acc_obd:.3f}\\\")\\n    print(f\\\"  {llm_name} accuracy: {acc_llm:.3f}\\\")\\n    print(f\\\"  Difference:    {diff:+.3f}\\\")\\n    print(f\\\"  Contingency:   a={table['a']}, b={table['b']}, c={table['c']}, d={table['d']}\\\")\\n    print(f\\\"  McNemar exact p = {p_value:.4f}\\\")\\n    print(f\\\"  Bootstrap 95% CI on diff: [{ci_lower:+.4f}, {ci_upper:+.4f}]\\\")\\n    print(f\\\"  CI includes 0: {'YES' if ci_lower <= 0 <= ci_upper else 'NO'}\\\")\\n\\n    return {\\n        \\\"accuracy_obd\\\": round(acc_obd, 4),\\n        \\\"accuracy_llm\\\": round(acc_llm, 4),\\n        \\\"accuracy_diff\\\": round(diff, 4),\\n        \\\"contingency_table\\\": table,\\n        \\\"mcnemar_p\\\": round(p_value, 4),\\n        \\\"bootstrap_ci_lower\\\": round(ci_lower, 4),\\n        \\\"bootstrap_ci_upper\\\": round(ci_upper, 4),\\n        \\\"bootstrap_n\\\": N_BOOTSTRAP,\\n        \\\"n_samples\\\": len(y_true),\\n    }\\n\\n\\ndef main():\\n    print(\\\"Loading features and running OBD OOF...\\\")\\n    X, depths, doc_ids = load_features()\\n    oof_preds = run_obd_oof(X, depths, doc_ids, MAX_DEPTH, N_SPLITS)\\n\\n    lookup = {}\\n    for i in range(len(depths)):\\n        lookup[(int(depths[i]), int(doc_ids[i]))] = i\\n\\n    with open(SAMPLES_PATH) as f:\\n        samples = [json.loads(line) for line in f]\\n    gpt_preds_map = load_llm_predictions(GPT_PATH)\\n    claude_preds_map = load_llm_predictions(CLAUDE_PATH)\\n\\n    y_true_list = []\\n    obd_pred_list = []\\n    gpt_pred_list = []\\n    claude_pred_list = []\\n    skipped = 0\\n\\n    for s in samples:\\n        doc_id = s[\\\"doc_id\\\"]\\n        d, orig_id = parse_exp011_doc_id(doc_id)\\n        key = (d, orig_id)\\n\\n        if key not in lookup:\\n            skipped += 1\\n            continue\\n        if doc_id not in gpt_preds_map or doc_id not in claude_preds_map:\\n            skipped += 1\\n            continue\\n\\n        true_depth = s[\\\"true_depth\\\"]\\n        if true_depth > 4:\\n            skipped += 1\\n            continue\\n\\n        row_idx = lookup[key]\\n        y_true_list.append(true_depth)\\n        obd_pred_list.append(min(oof_preds[row_idx], 4))\\n        gpt_pred_list.append(min(gpt_preds_map[doc_id], 4))\\n        claude_pred_list.append(min(claude_preds_map[doc_id], 4))\\n\\n    y_true = np.array(y_true_list)\\n    obd_preds = np.array(obd_pred_list)\\n    gpt_preds = np.array(gpt_pred_list)\\n    claude_preds = np.array(claude_pred_list)\\n\\n    print(f\\\"Aligned {len(y_true)} samples (skipped {skipped})\\\")\\n\\n    result_gpt = run_comparison(y_true, obd_preds, gpt_preds, \\\"GPT-5.5\\\")\\n    result_claude = run_comparison(y_true, obd_preds, claude_preds, \\\"Claude\\\")\\n\\n    output = {\\n        \\\"obd_vs_gpt55\\\": result_gpt,\\n        \\\"obd_vs_claude\\\": result_claude,\\n        \\\"method\\\": \\\"McNemar exact test (binomial) + bootstrap 10k difference CI, OBD out-of-fold\\\",\\n        \\\"seed\\\": SEED,\\n    }\\n\\n    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)\\n    with open(OUT_PATH, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nSaved to {OUT_PATH}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.02}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "b3a63fcd-4b2f-43f2-bca4-e25edefaf9cb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"EXP-D McNemar paired test + Bootstrap difference CI: OBD vs LLMs.\\\\n\\\\nRe-runs OBD out-of-fold predictions on the same 500 samples as exp-011,\\\\nthen performs McNemar exact test and bootstrap CI on accuracy differences.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport csv\\\\nimport json\\\\nimport re\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\n\\\\nPROJECT = Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination\\\\\\\")\\\\nDATA_DIR = PROJECT / \\\\\\\"data_exp001_pythia\\\\\\\"\\\\nSAMPLES_PATH = PROJECT / \\\\\\\"artifacts\\\\\\\" / \\\\\\\"exp011_samples.jsonl\\\\\\\"\\\\nGPT_PATH = PROJECT / \\\\\\\"artifacts\\\\\\\" / \\\\\\\"exp011_results_gpt_5_5.jsonl\\\\\\\"\\\\nCLAUDE_PATH = PROJECT / \\\\\\\"artifacts\\\\\\\" / \\\\\\\"exp011_results_claude_opus_4_6.jsonl\\\\\\\"\\\\nOUT_PATH = PROJECT / \\\\\\\"artifacts\\\\\\\" / \\\\\\\"exp_D_mcnemar.json\\\\\\\"\\\\n\\\\nFEAT_COLS = [\\\\n    \\\\\\\"surp_mean\\\\\\\", \\\\\\\"surp_std\\\\\\\", \\\\\\\"surp_skew\\\\\\\", \\\\\\\"surp_kurt\\\\\\\",\\\\n    \\\\\\\"surp_d1_mean\\\\\\\", \\\\\\\"surp_d1_std\\\\\\\", \\\\\\\"surp_d1_skew\\\\\\\",\\\\n    \\\\\\\"surp_d2_mean\\\\\\\", \\\\\\\"surp_d2_std\\\\\\\",\\\\n    \\\\\\\"ttr\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\", \\\\\\\"self_bleu\\\\\\\",\\\\n    \\\\\\\"freq_kurtosis\\\\\\\", \\\\\\\"freq_entropy\\\\\\\", \\\\\\\"low_freq_ratio\\\\\\\",\\\\n]\\\\n\\\\nMAX_DEPTH = 5\\\\nN_SPLITS = 5\\\\nN_BOOTSTRAP = 10000\\\\nSEED = 42\\\\n\\\\n\\\\ndef load_features():\\\\n    feat_path = DATA_DIR / \\\\\\\"features.csv\\\\\\\"\\\\n    with open(feat_path) as f:\\\\n        reader = csv.DictReader(f)\\\\n        rows = list(reader)\\\\n    depths = np.array([int(r[\\\\\\\"depth\\\\\\\"]) for r in rows])\\\\n    doc_ids = np.array([int(r[\\\\\\\"doc_id\\\\\\\"]) for r in rows])\\\\n    X = np.array([\\\\n        [float(r[c]) if r[c] not in (\\\\\\\"\\\\\\\", \\\\\\\"nan\\\\\\\") else np.nan for c in FEAT_COLS]\\\\n        for r in rows\\\\n    ])\\\\n    col_means = np.nanmean(X, axis=0)\\\\n    for j in range(X.shape[1]):\\\\n        mask = np.isnan(X[:, j])\\\\n        X[mask, j] = col_means[j]\\\\n    return X, depths, doc_ids\\\\n\\\\n\\\\ndef run_obd_oof(X, y, groups, max_depth, n_splits):\\\\n    import lightgbm as lgb\\\\n    from sklearn.model_selection import GroupKFold\\\\n\\\\n    n = len(y)\\\\n    cum_probs = np.zeros((n, max_depth))\\\\n    gkf = GroupKFold(n_splits=n_splits)\\\\n    fold_indices = list(gkf.split(X, y, groups=groups))\\\\n\\\\n    for k in range(max_depth):\\\\n        y_bin = (y > k).astype(int)\\\\n        for train_idx, test_idx in fold_indices:\\\\n            clf = lgb.LGBMClassifier(\\\\n                n_estimators=200, max_depth=6, learning_rate=0.05,\\\\n                num_leaves=31, verbose=-1, n_jobs=-1,\\\\n            )\\\\n            clf.fit(X[train_idx], y_bin[train_idx])\\\\n            cum_probs[test_idx, k] = clf.predict_proba(X[test_idx])[:, 1]\\\\n\\\\n    n_classes = max_depth + 1\\\\n    class_probs = np.zeros((n, n_classes))\\\\n    class_probs[:, 0] = 1.0 - cum_probs[:, 0]\\\\n    for k in range(1, max_depth):\\\\n        class_probs[:, k] = cum_probs[:, k - 1] - cum_probs[:, k]\\\\n    class_probs[:, max_depth] = cum_probs[:, max_depth - 1]\\\\n    class_probs = np.clip(class_probs, 0, None)\\\\n    row_sums = class_probs.sum(axis=1, keepdims=True)\\\\n    row_sums[row_sums == 0] = 1.0\\\\n    class_probs /= row_sums\\\\n\\\\n    return class_probs.argmax(axis=1)\\\\n\\\\n\\\\ndef parse_exp011_doc_id(doc_id_str):\\\\n    m = re.match(r\\\\\\\"pythia_d(\\\\\\\\d+)_(\\\\\\\\d+)\\\\\\\", doc_id_str)\\\\n    if not m:\\\\n        raise ValueError(f\\\\\\\"Cannot parse doc_id: {doc_id_str}\\\\\\\")\\\\n    return int(m.group(1)), int(m.group(2))\\\\n\\\\n\\\\ndef load_llm_predictions(path):\\\\n    preds = {}\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            rec = json.loads(line)\\\\n            preds[rec[\\\\\\\"doc_id\\\\\\\"]] = rec[\\\\\\\"predicted_depth\\\\\\\"]\\\\n    return preds\\\\n\\\\n\\\\ndef mcnemar_test(obd_correct, llm_correct):\\\\n    from scipy.stats import binomtest\\\\n\\\\n    b = int(np.sum(obd_correct & ~llm_correct))\\\\n    c = int(np.sum(~obd_correct & llm_correct))\\\\n    a = int(np.sum(obd_correct & llm_correct))\\\\n    d = int(np.sum(~obd_correct & ~llm_correct))\\\\n\\\\n    n_discordant = b + c\\\\n    if n_discordant == 0:\\\\n        p_value = 1.0\\\\n    else:\\\\n        result = binomtest(b, n_discordant, 0.5, alternative='two-sided')\\\\n        p_value = result.pvalue\\\\n\\\\n    return {\\\\\\\"a\\\\\\\": a, \\\\\\\"b\\\\\\\": b, \\\\\\\"c\\\\\\\": c, \\\\\\\"d\\\\\\\": d}, p_value\\\\n\\\\n\\\\ndef bootstrap_diff_ci(y_true, obd_preds, llm_preds, n_boot, seed):\\\\n    rng = np.random.RandomState(seed)\\\\n    n = len(y_true)\\\\n    diffs = np.empty(n_boot)\\\\n    for i in range(n_boot):\\\\n        idx = rng.randint(0, n, size=n)\\\\n        acc_obd = np.mean(obd_preds[idx] == y_true[idx])\\\\n        acc_llm = np.mean(llm_preds[idx] == y_true[idx])\\\\n        diffs[i] = acc_obd - acc_llm\\\\n    return diffs\\\\n\\\\n\\\\ndef run_comparison(y_true, obd_preds, llm_preds, llm_name):\\\\n    obd_correct = obd_preds == y_true\\\\n    llm_correct = llm_preds == y_true\\\\n\\\\n    acc_obd = float(np.mean(obd_correct))\\\\n    acc_llm = float(np.mean(llm_correct))\\\\n    diff = acc_obd - acc_llm\\\\n\\\\n    table, p_value = mcnemar_test(obd_correct, llm_correct)\\\\n\\\\n    diffs = bootstrap_diff_ci(y_true, obd_preds, llm_preds, N_BOOTSTRAP, SEED)\\\\n    ci_lower = float(np.percentile(diffs, 2.5))\\\\n    ci_upper = float(np.percentile(diffs, 97.5))\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n--- OBD vs {llm_name} ---\\\\\\\")\\\\n    print(f\\\\\\\"  OBD accuracy:  {acc_obd:.3f}\\\\\\\")\\\\n    print(f\\\\\\\"  {llm_name} accuracy: {acc_llm:.3f}\\\\\\\")\\\\n    print(f\\\\\\\"  Difference:    {diff:+.3f}\\\\\\\")\\\\n    print(f\\\\\\\"  Contingency:   a={table['a']}, b={table['b']}, c={table['c']}, d={table['d']}\\\\\\\")\\\\n    print(f\\\\\\\"  McNemar exact p = {p_value:.4f}\\\\\\\")\\\\n    print(f\\\\\\\"  Bootstrap 95% CI on diff: [{ci_lower:+.4f}, {ci_upper:+.4f}]\\\\\\\")\\\\n    print(f\\\\\\\"  CI includes 0: {'YES' if ci_lower <= 0 <= ci_upper else 'NO'}\\\\\\\")\\\\n\\\\n    return {\\\\n        \\\\\\\"accuracy_obd\\\\\\\": round(acc_obd, 4),\\\\n        \\\\\\\"accuracy_llm\\\\\\\": round(acc_llm, 4),\\\\n        \\\\\\\"accuracy_diff\\\\\\\": round(diff, 4),\\\\n        \\\\\\\"contingency_table\\\\\\\": table,\\\\n        \\\\\\\"mcnemar_p\\\\\\\": round(p_value, 4),\\\\n        \\\\\\\"bootstrap_ci_lower\\\\\\\": round(ci_lower, 4),\\\\n        \\\\\\\"bootstrap_ci_upper\\\\\\\": round(ci_upper, 4),\\\\n        \\\\\\\"bootstrap_n\\\\\\\": N_BOOTSTRAP,\\\\n        \\\\\\\"n_samples\\\\\\\": len(y_true),\\\\n    }\\\\n\\\\n\\\\ndef main():\\\\n    print(\\\\\\\"Loading features and running OBD OOF...\\\\\\\")\\\\n    X, depths, doc_ids = load_features()\\\\n    oof_preds = run_obd_oof(X, depths, doc_ids, MAX_DEPTH, N_SPLITS)\\\\n\\\\n    lookup = {}\\\\n    for i in range(len(depths)):\\\\n        lookup[(int(depths[i]), int(doc_ids[i]))] = i\\\\n\\\\n    with open(SAMPLES_PATH) as f:\\\\n        samples = [json.loads(line) for line in f]\\\\n    gpt_preds_map = load_llm_predictions(GPT_PATH)\\\\n    claude_preds_map = load_llm_predictions(CLAUDE_PATH)\\\\n\\\\n    y_true_list = []\\\\n    obd_pred_list = []\\\\n    gpt_pred_list = []\\\\n    claude_pred_list = []\\\\n    skipped = 0\\\\n\\\\n    for s in samples:\\\\n        doc_id = s[\\\\\\\"doc_id\\\\\\\"]\\\\n        d, orig_id = parse_exp011_doc_id(doc_id)\\\\n        key = (d, orig_id)\\\\n\\\\n        if key not in lookup:\\\\n            skipped += 1\\\\n            continue\\\\n        if doc_id not in gpt_preds_map or doc_id not in claude_preds_map:\\\\n            skipped += 1\\\\n            continue\\\\n\\\\n        true_depth = s[\\\\\\\"true_depth\\\\\\\"]\\\\n        if true_depth > 4:\\\\n            skipped += 1\\\\n            continue\\\\n\\\\n        row_idx = lookup[key]\\\\n        y_true_list.append(true_depth)\\\\n        obd_pred_list.append(min(oof_preds[row_idx], 4))\\\\n        gpt_pred_list.append(min(gpt_preds_map[doc_id], 4))\\\\n        claude_pred_list.append(min(claude_preds_map[doc_id], 4))\\\\n\\\\n    y_true = np.array(y_true_list)\\\\n    obd_preds = np.array(obd_pred_list)\\\\n    gpt_preds = np.array(gpt_pred_list)\\\\n    claude_preds = np.array(claude_pred_list)\\\\n\\\\n    print(f\\\\\\\"Aligned {len(y_true)} samples (skipped {skipped})\\\\\\\")\\\\n\\\\n    result_gpt = run_comparison(y_true, obd_preds, gpt_preds, \\\\\\\"GPT-5.5\\\\\\\")\\\\n    result_claude = run_comparison(y_true, obd_preds, claude_preds, \\\\\\\"Claude\\\\\\\")\\\\n\\\\n    output = {\\\\n        \\\\\\\"obd_vs_gpt55\\\\\\\": result_gpt,\\\\n        \\\\\\\"obd_vs_claude\\\\\\\": result_claude,\\\\n        \\\\\\\"method\\\\\\\": \\\\\\\"McNemar exact test (binomial) + bootstrap 10k difference CI, OBD out-of-fold\\\\\\\",\\\\n        \\\\\\\"seed\\\\\\\": SEED,\\\\n    }\\\\n\\\\n    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(OUT_PATH, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(output, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\nSaved to {OUT_PATH}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.02}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"EXP-D McNemar paired test + Bootstrap difference CI: OBD vs LLMs.\\n\\nRe-runs OBD out-of-fold predictions on the same 500 samples as exp-011,\\nthen performs McNemar exact test and bootstrap CI on accuracy differences.\\n\\\"\\\"\\\"\\nimport csv\\nimport json\\nimport re\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nPROJECT = Path(\\\"/root/autodl-tmp/gen-depth-contamination\\\")\\nDATA_DIR = PROJECT / \\\"data_exp001_pythia\\\"\\nSAMPLES_PATH = PROJECT / \\\"artifacts\\\" / \\\"exp011_samples.jsonl\\\"\\nGPT_PATH = PROJECT / \\\"artifacts\\\" / \\\"exp011_results_gpt_5_5.jsonl\\\"\\nCLAUDE_PATH = PROJECT / \\\"artifacts\\\" / \\\"exp011_results_claude_opus_4_6.jsonl\\\"\\nOUT_PATH = PROJECT / \\\"artifacts\\\" / \\\"exp_D_mcnemar.json\\\"\\n\\nFEAT_COLS = [\\n    \\\"surp_mean\\\", \\\"surp_std\\\", \\\"surp_skew\\\", \\\"surp_kurt\\\",\\n    \\\"surp_d1_mean\\\", \\\"surp_d1_std\\\", \\\"surp_d1_skew\\\",\\n    \\\"surp_d2_mean\\\", \\\"surp_d2_std\\\",\\n    \\\"ttr\\\", \\\"hapax_ratio\\\", \\\"self_bleu\\\",\\n    \\\"freq_kurtosis\\\", \\\"freq_entropy\\\", \\\"low_freq_ratio\\\",\\n]\\n\\nMAX_DEPTH = 5\\nN_SPLITS = 5\\nN_BOOTSTRAP = 10000\\nSEED = 42\\n\\n\\ndef load_features():\\n    feat_path = DATA_DIR / \\\"features.csv\\\"\\n    with open(feat_path) as f:\\n        reader = csv.DictReader(f)\\n        rows = list(reader)\\n    depths = np.array([int(r[\\\"depth\\\"]) for r in rows])\\n    doc_ids = np.array([int(r[\\\"doc_id\\\"]) for r in rows])\\n    X = np.array([\\n        [float(r[c]) if r[c] not in (\\\"\\\", \\\"nan\\\") else np.nan for c in FEAT_COLS]\\n        for r in rows\\n    ])\\n    col_means = np.nanmean(X, axis=0)\\n    for j in range(X.shape[1]):\\n        mask = np.isnan(X[:, j])\\n        X[mask, j] = col_means[j]\\n    return X, depths, doc_ids\\n\\n\\ndef run_obd_oof(X, y, groups, max_depth, n_splits):\\n    import lightgbm as lgb\\n    from sklearn.model_selection import GroupKFold\\n\\n    n = len(y)\\n    cum_probs = np.zeros((n, max_depth))\\n    gkf = GroupKFold(n_splits=n_splits)\\n    fold_indices = list(gkf.split(X, y, groups=groups))\\n\\n    for k in range(max_depth):\\n        y_bin = (y > k).astype(int)\\n        for train_idx, test_idx in fold_indices:\\n            clf = lgb.LGBMClassifier(\\n                n_estimators=200, max_depth=6, learning_rate=0.05,\\n                num_leaves=31, verbose=-1, n_jobs=-1,\\n            )\\n            clf.fit(X[train_idx], y_bin[train_idx])\\n            cum_probs[test_idx, k] = clf.predict_proba(X[test_idx])[:, 1]\\n\\n    n_classes = max_depth + 1\\n    class_probs = np.zeros((n, n_classes))\\n    class_probs[:, 0] = 1.0 - cum_probs[:, 0]\\n    for k in range(1, max_depth):\\n        class_probs[:, k] = cum_probs[:, k - 1] - cum_probs[:, k]\\n    class_probs[:, max_depth] = cum_probs[:, max_depth - 1]\\n    class_probs = np.clip(class_probs, 0, None)\\n    row_sums = class_probs.sum(axis=1, keepdims=True)\\n    row_sums[row_sums == 0] = 1.0\\n    class_probs /= row_sums\\n\\n    return class_probs.argmax(axis=1)\\n\\n\\ndef parse_exp011_doc_id(doc_id_str):\\n    m = re.match(r\\\"pythia_d(\\\\d+)_(\\\\d+)\\\", doc_id_str)\\n    if not m:\\n        raise ValueError(f\\\"Cannot parse doc_id: {doc_id_str}\\\")\\n    return int(m.group(1)), int(m.group(2))\\n\\n\\ndef load_llm_predictions(path):\\n    preds = {}\\n    with open(path) as f:\\n        for line in f:\\n            rec = json.loads(line)\\n            preds[rec[\\\"doc_id\\\"]] = rec[\\\"predicted_depth\\\"]\\n    return preds\\n\\n\\ndef mcnemar_test(obd_correct, llm_correct):\\n    from scipy.stats import binomtest\\n\\n    b = int(np.sum(obd_correct & ~llm_correct))\\n    c = int(np.sum(~obd_correct & llm_correct))\\n    a = int(np.sum(obd_correct & llm_correct))\\n    d = int(np.sum(~obd_correct & ~llm_correct))\\n\\n    n_discordant = b + c\\n    if n_discordant == 0:\\n        p_value = 1.0\\n    else:\\n        result = binomtest(b, n_discordant, 0.5, alternative='two-sided')\\n        p_value = result.pvalue\\n\\n    return {\\\"a\\\": a, \\\"b\\\": b, \\\"c\\\": c, \\\"d\\\": d}, p_value\\n\\n\\ndef bootstrap_diff_ci(y_true, obd_preds, llm_preds, n_boot, seed):\\n    rng = np.random.RandomState(seed)\\n    n = len(y_true)\\n    diffs = np.empty(n_boot)\\n    for i in range(n_boot):\\n        idx = rng.randint(0, n, size=n)\\n        acc_obd = np.mean(obd_preds[idx] == y_true[idx])\\n        acc_llm = np.mean(llm_preds[idx] == y_true[idx])\\n        diffs[i] = acc_obd - acc_llm\\n    return diffs\\n\\n\\ndef run_comparison(y_true, obd_preds, llm_preds, llm_name):\\n    obd_correct = obd_preds == y_true\\n    llm_correct = llm_preds == y_true\\n\\n    acc_obd = float(np.mean(obd_correct))\\n    acc_llm = float(np.mean(llm_correct))\\n    diff = acc_obd - acc_llm\\n\\n    table, p_value = mcnemar_test(obd_correct, llm_correct)\\n\\n    diffs = bootstrap_diff_ci(y_true, obd_preds, llm_preds, N_BOOTSTRAP, SEED)\\n    ci_lower = float(np.percentile(diffs, 2.5))\\n    ci_upper = float(np.percentile(diffs, 97.5))\\n\\n    print(f\\\"\\\\n--- OBD vs {llm_name} ---\\\")\\n    print(f\\\"  OBD accuracy:  {acc_obd:.3f}\\\")\\n    print(f\\\"  {llm_name} accuracy: {acc_llm:.3f}\\\")\\n    print(f\\\"  Difference:    {diff:+.3f}\\\")\\n    print(f\\\"  Contingency:   a={table['a']}, b={table['b']}, c={table['c']}, d={table['d']}\\\")\\n    print(f\\\"  McNemar exact p = {p_value:.4f}\\\")\\n    print(f\\\"  Bootstrap 95% CI on diff: [{ci_lower:+.4f}, {ci_upper:+.4f}]\\\")\\n    print(f\\\"  CI includes 0: {'YES' if ci_lower <= 0 <= ci_upper else 'NO'}\\\")\\n\\n    return {\\n        \\\"accuracy_obd\\\": round(acc_obd, 4),\\n        \\\"accuracy_llm\\\": round(acc_llm, 4),\\n        \\\"accuracy_diff\\\": round(diff, 4),\\n        \\\"contingency_table\\\": table,\\n        \\\"mcnemar_p\\\": round(p_value, 4),\\n        \\\"bootstrap_ci_lower\\\": round(ci_lower, 4),\\n        \\\"bootstrap_ci_upper\\\": round(ci_upper, 4),\\n        \\\"bootstrap_n\\\": N_BOOTSTRAP,\\n        \\\"n_samples\\\": len(y_true),\\n    }\\n\\n\\ndef main():\\n    print(\\\"Loading features and running OBD OOF...\\\")\\n    X, depths, doc_ids = load_features()\\n    oof_preds = run_obd_oof(X, depths, doc_ids, MAX_DEPTH, N_SPLITS)\\n\\n    lookup = {}\\n    for i in range(len(depths)):\\n        lookup[(int(depths[i]), int(doc_ids[i]))] = i\\n\\n    with open(SAMPLES_PATH) as f:\\n        samples = [json.loads(line) for line in f]\\n    gpt_preds_map = load_llm_predictions(GPT_PATH)\\n    claude_preds_map = load_llm_predictions(CLAUDE_PATH)\\n\\n    y_true_list = []\\n    obd_pred_list = []\\n    gpt_pred_list = []\\n    claude_pred_list = []\\n    skipped = 0\\n\\n    for s in samples:\\n        doc_id = s[\\\"doc_id\\\"]\\n        d, orig_id = parse_exp011_doc_id(doc_id)\\n        key = (d, orig_id)\\n\\n        if key not in lookup:\\n            skipped += 1\\n            continue\\n        if doc_id not in gpt_preds_map or doc_id not in claude_preds_map:\\n            skipped += 1\\n            continue\\n\\n        true_depth = s[\\\"true_depth\\\"]\\n        if true_depth > 4:\\n            skipped += 1\\n            continue\\n\\n        row_idx = lookup[key]\\n        y_true_list.append(true_depth)\\n        obd_pred_list.append(min(oof_preds[row_idx], 4))\\n        gpt_pred_list.append(min(gpt_preds_map[doc_id], 4))\\n        claude_pred_list.append(min(claude_preds_map[doc_id], 4))\\n\\n    y_true = np.array(y_true_list)\\n    obd_preds = np.array(obd_pred_list)\\n    gpt_preds = np.array(gpt_pred_list)\\n    claude_preds = np.array(claude_pred_list)\\n\\n    print(f\\\"Aligned {len(y_true)} samples (skipped {skipped})\\\")\\n\\n    result_gpt = run_comparison(y_true, obd_preds, gpt_preds, \\\"GPT-5.5\\\")\\n    result_claude = run_comparison(y_true, obd_preds, claude_preds, \\\"Claude\\\")\\n\\n    output = {\\n        \\\"obd_vs_gpt55\\\": result_gpt,\\n        \\\"obd_vs_claude\\\": result_claude,\\n        \\\"method\\\": \\\"McNemar exact test (binomial) + bootstrap 10k difference CI, OBD out-of-fold\\\",\\n        \\\"seed\\\": SEED,\\n    }\\n\\n    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)\\n    with open(OUT_PATH, \\\"w\\\") as f:\\n        json.dump(output, f, indent=2)\\n    print(f\\\"\\\\nSaved to {OUT_PATH}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.02}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UsuB1AGygxqkdhg6y8qRSX`</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "ls -la /root/autodl-tmp/gen-depth-contamination/artifacts/exp011_results_gpt_5_5.jsonl /root/autodl-tmp/gen-depth-contamination/artifacts/exp011_results_claude_opus_4_6.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "12d1bc9b-b650-41b1-a64e-0f5fefa355d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012iVbf2BcHB93FbYmq8u23D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1601,
+      "cache_read_input_tokens": 24089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1601
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019LhBxD12YjQNBP5ZEjSzXr`</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "head -5 /root/autodl-tmp/gen-depth-contamination/artifacts/exp011_results_gpt_5_5.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "25397898-e514-4ef3-9b63-0cad2f75ecac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012iVbf2BcHB93FbYmq8u23D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1601,
+      "cache_read_input_tokens": 24089,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1601
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T11:34:54.039Z_
+
+<details><summary>↩ Tool result · `toolu_01UsuB1AGygxqkdhg6y8qRSX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 58428 May 13 19:30 /root/autodl-tmp/gen-depth-contamination/artifacts/exp011_results_claude_opus_4_6.jsonl\\n-rw-r--r-- 1 root root 54379 May 13 19:03 /root/autodl-tmp/gen-depth-contamination/artifacts/exp011_results_gpt_5_5.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.66}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "9d31df57-ef3a-4ad5-8a50-7c6a121855f0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 58428 May 13 19:30 /root/autodl-tmp/gen-depth-contamination/artifacts/exp011_results_claude_opus_4_6.jsonl\\\\n-rw-r--r-- 1 root root 54379 May 13 19:03 /root/autodl-tmp/gen-depth-contamination/artifacts/exp011_results_gpt_5_5.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.66}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 58428 May 13 19:30 /root/autodl-tmp/gen-depth-contamination/artifacts/exp011_results_claude_opus_4_6.jsonl\\n-rw-r--r-- 1 root root 54379 May 13 19:03 /root/autodl-tmp/gen-depth-contamination/artifacts/exp011_results_gpt_5_5.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.66}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T11:34:55.297Z_
+
+<details><summary>↩ Tool result · `toolu_019LhBxD12YjQNBP5ZEjSzXr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": \\\"pythia_d0_3679\\\", \\\"true_depth\\\": 0, \\\"predicted_depth\\\": 0, \\\"raw_response\\\": \\\"0\\\", \\\"model\\\": \\\"gpt-5.5\\\"}\\n{\\\"doc_id\\\": \\\"pythia_d4_1750\\\", \\\"true_depth\\\": 4, \\\"predicted_depth\\\": 3, \\\"raw_response\\\": \\\"3\\\", \\\"model\\\": \\\"gpt-5.5\\\"}\\n{\\\"doc_id\\\": \\\"pythia_d4_1634\\\", \\\"true_depth\\\": 4, \\\"predicted_depth\\\": 3, \\\"raw_response\\\": \\\"3\\\", \\\"model\\\": \\\"gpt-5.5\\\"}\\n{\\\"doc_id\\\": \\\"pythia_d0_3286\\\", \\\"true_depth\\\": 0, \\\"predicted_depth\\\": 1, \\\"raw_response\\\": \\\"1\\\", \\\"model\\\": \\\"gpt-5.5\\\"}\\n{\\\"doc_id\\\": \\\"pythia_d2_1083\\\", \\\"true_depth\\\": 2, \\\"predicted_depth\\\": 0, \\\"raw_response\\\": \\\"0\\\", \\\"model\\\": \\\"gpt-5.5\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "42a90d14-93e0-47c8-81b6-b1ef1968dbec",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"doc_id\\\\\\\": \\\\\\\"pythia_d0_3679\\\\\\\", \\\\\\\"true_depth\\\\\\\": 0, \\\\\\\"predicted_depth\\\\\\\": 0, \\\\\\\"raw_response\\\\\\\": \\\\\\\"0\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"gpt-5.5\\\\\\\"}\\\\n{\\\\\\\"doc_id\\\\\\\": \\\\\\\"pythia_d4_1750\\\\\\\", \\\\\\\"true_depth\\\\\\\": 4, \\\\\\\"predicted_depth\\\\\\\": 3, \\\\\\\"raw_response\\\\\\\": \\\\\\\"3\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"gpt-5.5\\\\\\\"}\\\\n{\\\\\\\"doc_id\\\\\\\": \\\\\\\"pythia_d4_1634\\\\\\\", \\\\\\\"true_depth\\\\\\\": 4, \\\\\\\"predicted_depth\\\\\\\": 3, \\\\\\\"raw_response\\\\\\\": \\\\\\\"3\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"gpt-5.5\\\\\\\"}\\\\n{\\\\\\\"doc_id\\\\\\\": \\\\\\\"pythia_d0_3286\\\\\\\", \\\\\\\"true_depth\\\\\\\": 0, \\\\\\\"predicted_depth\\\\\\\": 1, \\\\\\\"raw_response\\\\\\\": \\\\\\\"1\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"gpt-5.5\\\\\\\"}\\\\n{\\\\\\\"doc_id\\\\\\\": \\\\\\\"pythia_d2_1083\\\\\\\", \\\\\\\"true_depth\\\\\\\": 2, \\\\\\\"predicted_depth\\\\\\\": 0, \\\\\\\"raw_response\\\\\\\": \\\\\\\"0\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"gpt-5.5\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.25}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"doc_id\\\": \\\"pythia_d0_3679\\\", \\\"true_depth\\\": 0, \\\"predicted_depth\\\": 0, \\\"raw_response\\\": \\\"0\\\", \\\"model\\\": \\\"gpt-5.5\\\"}\\n{\\\"doc_id\\\": \\\"pythia_d4_1750\\\", \\\"true_depth\\\": 4, \\\"predicted_depth\\\": 3, \\\"raw_response\\\": \\\"3\\\", \\\"model\\\": \\\"gpt-5.5\\\"}\\n{\\\"doc_id\\\": \\\"pythia_d4_1634\\\", \\\"true_depth\\\": 4, \\\"predicted_depth\\\": 3, \\\"raw_response\\\": \\\"3\\\", \\\"model\\\": \\\"gpt-5.5\\\"}\\n{\\\"doc_id\\\": \\\"pythia_d0_3286\\\", \\\"true_depth\\\": 0, \\\"predicted_depth\\\": 1, \\\"raw_response\\\": \\\"1\\\", \\\"model\\\": \\\"gpt-5.5\\\"}\\n{\\\"doc_id\\\": \\\"pythia_d2_1083\\\", \\\"true_depth\\\": 2, \\\"predicted_depth\\\": 0, \\\"raw_response\\\": \\\"0\\\", \\\"model\\\": \\\"gpt-5.5\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.25}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the existing script. Key observations:
+
+1. `run_obd_oof` uses `MAX_DEPTH = 5`, so it trains 5 binary classifiers (k=0..4), producing 6 classes (0..5)
+2. The capping is done with `min(oof_preds[row_idx], 4)` in main()
+3. No `random_state=42` on LGBMClassifier
+4. Need to return class_probs from `run_obd_oof` instead of just argmax
+
+Let me also check the features.csv to understand the depth distribution.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "63b0a979-6000-45b4-b1b0-c748d88d9c72",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JNVAufmEsm8nWmdDdEVmk8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4798,
+      "cache_read_input_tokens": 25690,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4798
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MASy6VouMJn9JrxXvmUUrf`</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "head -3 /root/autodl-tmp/gen-depth-contamination/data_exp001_pythia/features.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "8bae21e9-20ba-4720-a419-2378e718c870",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JNVAufmEsm8nWmdDdEVmk8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4798,
+      "cache_read_input_tokens": 25690,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4798
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01C9bbNHG9CsPov5r3DgCCZV`</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "head -3 /root/autodl-tmp/gen-depth-contamination/artifacts/exp011_samples.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "6cbca6e3-0723-4bb6-8c1a-b9aea922fd0a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JNVAufmEsm8nWmdDdEVmk8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4798,
+      "cache_read_input_tokens": 25690,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4798
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T11:35:04.579Z_
+
+<details><summary>↩ Tool result · `toolu_01MASy6VouMJn9JrxXvmUUrf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\r\\n0,0,2.3529525981229895,2.4670988231856277,1.4446762094038816,1.879138967688207,-0.029593167342538907,3.4395315457143254,0.09036363214839105,0.018359270962801846,5.9214788903527165,0.7182320441988951,0.8153846153846154,0.0002512986673621978,32.84599954971851,6.72451758445088,0.9230769230769231\\r\\n1,0,2.7734312534332277,2.5914257259764546,1.188244199969116,0.9072596041465188,0.024706262303149606,3.531548163449546,-0.24827936816305463,0.002076642786561265,6.020161218956596,0.694300518134715,0.8059701492537313,0.0,10.486046852634258,6.765095558557913,0.9029850746268657\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "ba4e5dcc-f0e3-4f96-944c-86899540c423",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\\\r\\\\n0,0,2.3529525981229895,2.4670988231856277,1.4446762094038816,1.879138967688207,-0.029593167342538907,3.4395315457143254,0.09036363214839105,0.018359270962801846,5.9214788903527165,0.7182320441988951,0.8153846153846154,0.0002512986673621978,32.84599954971851,6.72451758445088,0.9230769230769231\\\\r\\\\n1,0,2.7734312534332277,2.5914257259764546,1.188244199969116,0.9072596041465188,0.024706262303149606,3.531548163449546,-0.24827936816305463,0.002076642786561265,6.020161218956596,0.694300518134715,0.8059701492537313,0.0,10.486046852634258,6.765095558557913,0.9029850746268657\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\r\\n0,0,2.3529525981229895,2.4670988231856277,1.4446762094038816,1.879138967688207,-0.029593167342538907,3.4395315457143254,0.09036363214839105,0.018359270962801846,5.9214788903527165,0.7182320441988951,0.8153846153846154,0.0002512986673621978,32.84599954971851,6.72451758445088,0.9230769230769231\\r\\n1,0,2.7734312534332277,2.5914257259764546,1.188244199969116,0.9072596041465188,0.024706262303149606,3.531548163449546,-0.24827936816305463,0.002076642786561265,6.020161218956596,0.694300518134715,0.8059701492537313,0.0,10.486046852634258,6.765095558557913,0.9029850746268657\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T11:35:05.476Z_
+
+<details><summary>↩ Tool result · `toolu_01C9bbNHG9CsPov5r3DgCCZV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"text\\\": \\\"Aerobar Cups & Pads Kit - HED CYCLING PRODUCTS INC.\\\\nReplace your worn out aerobar cups and pads with new HED cups and pads! We offer two styles: Corsair, and Butterfly. The Corsair cups are shorter front-to-back, while the Butterfly cups are longer front-to-back.\\\\nThe cups are 100% carbon fiber and will fit all of our aerobars and many other manufactures' bars, too. The pads offer 1.4cm of padding to support your arms. Includes mounting bolts. Each set of cups includes one set of pads.\\\", \\\"true_depth\\\": 0, \\\"source\\\": \\\"pythia_cont\\\", \\\"doc_id\\\": \\\"pythia_d0_3679\\\"}\\n{\\\"text\\\": \\\"the Delete this Archive button.\\\\n\\\\nClick the Delete button.\\\\n\\\\nThe Delete this Archive dialog box will appear.\\\\nClick Delete Archive to delete the folder.\\\\n\\\\nNotes:\\\\n\\\\nIf you delete files and folders within the folder, the Delete Folder dialog box opens and asks you to confirm the deletion of each folder in the folder.\\\\nClick the folder you wish to delete.\\\\nPress the Delete key and choose Delete.\\\\n\\\\nIncorrect or outdated\\\\n\\\\nWhen you delete a folder that is used in a backup or restore process, and you create a new folder within the folder for another purpose, such as a new folder name, you must take the following actions:\\\\n\\\\nClick Delete Archive to remove any archive objects stored in the folder.\\\\n\\\\nClick the Browse button, select the root folder, and click the Browse button.\\\\nSelect all of the folders from the root folder and click the Delete this Archive button.\\\\n\\\\nNote:\\\\nIf you select the root folder and the delete archive button, and press the Delete key, all of the folder objects you have used up in the current session will be removed from the Folder Objects list.\\\\n\\\\nIncorrect or outdated\\\\n\\\\nWhen you delete a folder that is used in a backup\\\", \\\"true_depth\\\": 4, \\\"source\\\": \\\"pythia_cont\\\", \\\"doc_id\\\": \\\"pythia_d4_1750\\\"}\\n{\\\"text\\\": \\\"and cannot wait for the next trip! We are grateful to have found this excellent Preschool in our neighborhood! The teachers are knowledgeable and helpful and the programs are well thought out. In addition, the programs are well balanced and allow for lots of freedom and creativity as well. We had to change our child’s age to make the transition from home to school easier. They were very flexible with this change. I would highly recommend Preschool at 10th Street to anyone.\\\\n\\\\nThe teachers at Preschool at 10th Street are wonderful and have been such a positive influence in our young child’s educational development! I can not tell how much the children have improved at this school. They are now enrolled in the first grade. The teachers are all excellent and have been so kind and helpful. We have never had any issues at Preschool at 10th Street and have always had a positive experience.\\\\n\\\\nWe always had a good time at Preschool at 10th Street and had a great time at the end of our child's second year there. The teachers were great with our little boy and my daughter. The atmosphere was wonderful, as I expected. We will definitely be going back!\\\\n\\\\nWe had the most enjoyable time at the Preschool at 10th Street\\\", \\\"true_depth\\\": 4, \\\"source\\\": \\\"pythia_cont\\\", \\\"doc_id\\\": \\\"pythia_d4_1634\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "6f639f11-6a8b-42b6-9538-2191f4196331",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"text\\\\\\\": \\\\\\\"Aerobar Cups & Pads Kit - HED CYCLING PRODUCTS INC.\\\\\\\\nReplace your worn out aerobar cups and pads with new HED cups and pads! We offer two styles: Corsair, and Butterfly. The Corsair cups are shorter front-to-back, while the Butterfly cups are longer front-to-back.\\\\\\\\nThe cups are 100% carbon fiber and will fit all of our aerobars and many other manufactures' bars, too. The pads offer 1.4cm of padding to support your arms. Includes mounting bolts. Each set of cups includes one set of pads.\\\\\\\", \\\\\\\"true_depth\\\\\\\": 0, \\\\\\\"source\\\\\\\": \\\\\\\"pythia_cont\\\\\\\", \\\\\\\"doc_id\\\\\\\": \\\\\\\"pythia_d0_3679\\\\\\\"}\\\\n{\\\\\\\"text\\\\\\\": \\\\\\\"the Delete this Archive button.\\\\\\\\n\\\\\\\\nClick the Delete button.\\\\\\\\n\\\\\\\\nThe Delete this Archive dialog box will appear.\\\\\\\\nClick Delete Archive to delete the folder.\\\\\\\\n\\\\\\\\nNotes:\\\\\\\\n\\\\\\\\nIf you delete files and folders within the folder, the Delete Folder dialog box opens and asks you to confirm the deletion of each folder in the folder.\\\\\\\\nClick the folder you wish to delete.\\\\\\\\nPress the Delete key and choose Delete.\\\\\\\\n\\\\\\\\nIncorrect or outdated\\\\\\\\n\\\\\\\\nWhen you delete a folder that is used in a backup or restore process, and you create a new folder within the folder for another purpose, such as a new folder name, you must take the following actions:\\\\\\\\n\\\\\\\\nClick Delete Archive to remove any archive objects stored in the folder.\\\\\\\\n\\\\\\\\nClick the Browse button, select the root folder, and click the Browse button.\\\\\\\\nSelect all of the folders from the root folder and click the Delete this Archive button.\\\\\\\\n\\\\\\\\nNote:\\\\\\\\nIf you select the root folder and the delete archive button, and press the Delete key, all of the folder objects you have used up in the current session will be removed from the Folder Objects list.\\\\\\\\n\\\\\\\\nIncorrect or outdated\\\\\\\\n\\\\\\\\nWhen you delete a folder that is used in a backup\\\\\\\", \\\\\\\"true_depth\\\\\\\": 4, \\\\\\\"source\\\\\\\": \\\\\\\"pythia_cont\\\\\\\", \\\\\\\"doc_id\\\\\\\": \\\\\\\"pythia_d4_1750\\\\\\\"}\\\\n{\\\\\\\"text\\\\\\\": \\\\\\\"and cannot wait for the next trip! We are grateful to have found this excellent Preschool in our neighborhood! The teachers are knowledgeable and helpful and the programs are well thought out. In addition, the programs are well balanced and allow for lots of freedom and creativity as well. We had to change our child’s age to make the transition from home to school easier. They were very flexible with this change. I would highly recommend Preschool at 10th Street to anyone.\\\\\\\\n\\\\\\\\nThe teachers at Preschool at 10th Street are wonderful and have been such a positive influence in our young child’s educational development! I can not tell how much the children have improved at this school. They are now enrolled in the first grade. The teachers are all excellent and have been so kind and helpful. We have never had any issues at Preschool at 10th Street and have always had a positive experience.\\\\\\\\n\\\\\\\\nWe always had a good time at Preschool at 10th Street and had a great time at the end of our child's second year there. The teachers were great with our little boy and my daughter. The atmosphere was wonderful, as I expected. We will definitely be going back!\\\\\\\\n\\\\\\\\nWe had the most enjoyable time at the Preschool at 10th Street\\\\\\\", \\\\\\\"true_depth\\\\\\\": 4, \\\\\\\"source\\\\\\\": \\\\\\\"pythia_cont\\\\\\\", \\\\\\\"doc_id\\\\\\\": \\\\\\\"pythia_d4_1634\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"text\\\": \\\"Aerobar Cups & Pads Kit - HED CYCLING PRODUCTS INC.\\\\nReplace your worn out aerobar cups and pads with new HED cups and pads! We offer two styles: Corsair, and Butterfly. The Corsair cups are shorter front-to-back, while the Butterfly cups are longer front-to-back.\\\\nThe cups are 100% carbon fiber and will fit all of our aerobars and many other manufactures' bars, too. The pads offer 1.4cm of padding to support your arms. Includes mounting bolts. Each set of cups includes one set of pads.\\\", \\\"true_depth\\\": 0, \\\"source\\\": \\\"pythia_cont\\\", \\\"doc_id\\\": \\\"pythia_d0_3679\\\"}\\n{\\\"text\\\": \\\"the Delete this Archive button.\\\\n\\\\nClick the Delete button.\\\\n\\\\nThe Delete this Archive dialog box will appear.\\\\nClick Delete Archive to delete the folder.\\\\n\\\\nNotes:\\\\n\\\\nIf you delete files and folders within the folder, the Delete Folder dialog box opens and asks you to confirm the deletion of each folder in the folder.\\\\nClick the folder you wish to delete.\\\\nPress the Delete key and choose Delete.\\\\n\\\\nIncorrect or outdated\\\\n\\\\nWhen you delete a folder that is used in a backup or restore process, and you create a new folder within the folder for another purpose, such as a new folder name, you must take the following actions:\\\\n\\\\nClick Delete Archive to remove any archive objects stored in the folder.\\\\n\\\\nClick the Browse button, select the root folder, and click the Browse button.\\\\nSelect all of the folders from the root folder and click the Delete this Archive button.\\\\n\\\\nNote:\\\\nIf you select the root folder and the delete archive button, and press the Delete key, all of the folder objects you have used up in the current session will be removed from the Folder Objects list.\\\\n\\\\nIncorrect or outdated\\\\n\\\\nWhen you delete a folder that is used in a backup\\\", \\\"true_depth\\\": 4, \\\"source\\\": \\\"pythia_cont\\\", \\\"doc_id\\\": \\\"pythia_d4_1750\\\"}\\n{\\\"text\\\": \\\"and cannot wait for the next trip! We are grateful to have found this excellent Preschool in our neighborhood! The teachers are knowledgeable and helpful and the programs are well thought out. In addition, the programs are well balanced and allow for lots of freedom and creativity as well. We had to change our child’s age to make the transition from home to school easier. They were very flexible with this change. I would highly recommend Preschool at 10th Street to anyone.\\\\n\\\\nThe teachers at Preschool at 10th Street are wonderful and have been such a positive influence in our young child’s educational development! I can not tell how much the children have improved at this school. They are now enrolled in the first grade. The teachers are all excellent and have been so kind and helpful. We have never had any issues at Preschool at 10th Street and have always had a positive experience.\\\\n\\\\nWe always had a good time at Preschool at 10th Street and had a great time at the end of our child's second year there. The teachers were great with our little boy and my daughter. The atmosphere was wonderful, as I expected. We will definitely be going back!\\\\n\\\\nWe had the most enjoyable time at the Preschool at 10th Street\\\", \\\"true_depth\\\": 4, \\\"source\\\": \\\"pythia_cont\\\", \\\"doc_id\\\": \\\"pythia_d4_1634\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. Let me create the fixed script. Key changes:
+
+1. `run_obd_oof` returns 6-class probability matrix instead of argmax predictions
+2. In main(), convert 6-class probs to 5-class by merging P(4)+P(5), then argmax
+3. Add `random_state=42` to LGBMClassifier
+4. Remove `min(pred, 4)` capping for OBD (but keep it for LLM preds)
+5. Compute per-depth accuracy
+6. Add comparison with old results
+
+
+7. Save the results to `exp_D_mcnemar_fixed.json`
+
+Writing the script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "0bbbc385-915f-4b1f-895d-e22e64f6abd3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015iqcAKpXqVAJkYCykb2R1U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1931,
+      "cache_read_input_tokens": 30488,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1931
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+现在创建修复后的脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "e6d5dee0-6b67-4c41-b9df-5c6006c0a620",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015iqcAKpXqVAJkYCykb2R1U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1931,
+      "cache_read_input_tokens": 30488,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1931
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01K8YJMYgAgX3soTPdivnFXr`</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "account": "root",
+  "command": "cat > /root/autodl-tmp/gen-depth-contamination/scripts/exp_D_mcnemar_fixed.py << 'PYEOF'\n\"\"\"EXP-D McNemar fixed: prob merge P(4)+P(5)->P(>=4), random_state=42.\"\"\"\nimport csv\nimport json\nimport re\nfrom pathlib import Path\n\nimport numpy as np\n\nPROJECT = Path(\"/root/autodl-tmp/gen-depth-contamination\")\nDATA_DIR = PROJECT / \"data_exp001_pythia\"\nSAMPLES_PATH = PROJECT / \"artifacts\" / \"exp011_samples.jsonl\"\nGPT_PATH = PROJECT / \"artifacts\" / \"exp011_results_gpt_5_5.jsonl\"\nCLAUDE_PATH = PROJECT / \"artifacts\" / \"exp011_results_claude_opus_4_6.jsonl\"\nOUT_PATH = PROJECT / \"artifacts\" / \"exp_D_mcnemar_fixed.json\"\n\nFEAT_COLS = [\n    \"surp_mean\", \"surp_std\", \"surp_skew\", \"surp_kurt\",\n    \"surp_d1_mean\", \"surp_d1_std\", \"surp_d1_skew\",\n    \"surp_d2_mean\", \"surp_d2_std\",\n    \"ttr\", \"hapax_ratio\", \"self_bleu\",\n    \"freq_kurtosis\", \"freq_entropy\", \"low_freq_ratio\",\n]\n\nMAX_DEPTH = 5\nN_SPLITS = 5\nN_BOOTSTRAP = 10000\nSEED = 42\n\n\ndef load_features():\n    feat_path = DATA_DIR / \"features.csv\"\n    with open(feat_path) as f:\n        reader = csv.DictReader(f)\n        rows = list(reader)\n    depths = np.array([int(r[\"depth\"]) for r in rows])\n    doc_ids = np.array([int(r[\"doc_id\"]) for r in rows])\n    X = np.array([\n        [float(r[c]) if r[c] not in (\"\", \"nan\") else np.nan for c in FEAT_COLS]\n        for r in rows\n    ])\n    col_means = np.nanmean(X, axis=0)\n    for j in range(X.shape[1]):\n        mask = np.isnan(X[:, j])\n        X[mask, j] = col_means[j]\n    return X, depths, doc_ids\n\n\ndef run_obd_oof(X, y, groups, max_depth, n_splits):\n    \"\"\"Returns 6-class probability matrix (N, max_depth+1).\"\"\"\n    import lightgbm as lgb\n    from sklearn.model_selection import GroupKFold\n\n    n = len(y)\n    cum_probs = np.zeros((n, max_depth))\n    gkf = GroupKFold(n_splits=n_splits)\n    fold_indices = list(gkf.split(X, y, groups=groups))\n\n    for k in range(max_depth):\n        y_bin = (y > k).astype(int)\n        for train_idx, test_idx in fold_indices:\n            clf = lgb.LGBMClassifier(\n                n_estimators=200, max_depth=6, learning_rate=0.05,\n                num_leaves=31, verbose=-1, n_jobs=-1,\n                random_state=42,\n            )\n            clf.fit(X[train_idx], y_bin[train_idx])\n            cum_probs[test_idx, k] = clf.predict_proba(X[test_idx])[:, 1]\n\n    n_classes = max_depth + 1\n    class_probs = np.zeros((n, n_classes))\n    class_probs[:, 0] = 1.0 - cum_probs[:, 0]\n    for k in range(1, max_depth):\n        class_probs[:, k] = cum_probs[:, k - 1] - cum_probs[:, k]\n    class_probs[:, max_depth] = cum_probs[:, max_depth - 1]\n    class_probs = np.clip(class_probs, 0, None)\n    row_sums = class_probs.sum(axis=1, keepdims=True)\n    row_sums[row_sums == 0] = 1.0\n    class_probs /= row_sums\n\n    return class_probs\n\n\ndef merge_to_5class(class_probs_6):\n    \"\"\"Merge 6-class probs to 5-class: P(d>=4) = P(d=4) + P(d=5).\"\"\"\n    n = class_probs_6.shape[0]\n    class_probs_5 = np.zeros((n, 5))\n    class_probs_5[:, :4] = class_probs_6[:, :4]\n    class_probs_5[:, 4] = class_probs_6[:, 4] + class_probs_6[:, 5]\n    return class_probs_5\n\n\ndef parse_exp011_doc_id(doc_id_str):\n    m = re.match(r\"pythia_d(\\d+)_(\\d+)\", doc_id_str)\n    if not m:\n        raise ValueError(f\"Cannot parse doc_id: {doc_id_str}\")\n    return int(m.group(1)), int(m.group(2))\n\n\ndef load_llm_predictions(path):\n    preds = {}\n    with open(path) as f:\n        for line in f:\n            rec = json.loads(line)\n            preds[rec[\"doc_id\"]] = rec[\"predicted_depth\"]\n    return preds\n\n\ndef mcnemar_test(obd_correct, llm_correct):\n    from scipy.stats import binomtest\n\n    b = int(np.sum(obd_correct & ~llm_correct))\n    c = int(np.sum(~obd_correct & llm_correct))\n    a = int(np.sum(obd_correct & llm_correct))\n    d = int(np.sum(~obd_correct & ~llm_correct))\n\n    n_discordant = b + c\n    if n_discordant == 0:\n        p_value = 1.0\n    else:\n        result = binomtest(b, n_discordant, 0.5, alternative='two-sided')\n        p_value = result.pvalue\n\n    return {\"a\": a, \"b\": b, \"c\": c, \"d\": d}, p_value\n\n\ndef bootstrap_diff_ci(y_true, obd_preds, llm_preds, n_boot, seed):\n    rng = np.random.RandomState(seed)\n    n = len(y_true)\n    diffs = np.empty(n_boot)\n    for i in range(n_boot):\n        idx = rng.randint(0, n, size=n)\n        acc_obd = np.mean(obd_preds[idx] == y_true[idx])\n        acc_llm = np.mean(llm_preds[idx] == y_true[idx])\n        diffs[i] = acc_obd - acc_llm\n    return diffs\n\n\ndef run_comparison(y_true, obd_preds, llm_preds, llm_name):\n    obd_correct = obd_preds == y_true\n    llm_correct = llm_preds == y_true\n\n    acc_obd = float(np.mean(obd_correct))\n    acc_llm = float(np.mean(llm_correct))\n    diff = acc_obd - acc_llm\n\n    table, p_value = mcnemar_test(obd_correct, llm_correct)\n\n    diffs = bootstrap_diff_ci(y_true, obd_preds, llm_preds, N_BOOTSTRAP, SEED)\n    ci_lower = float(np.percentile(diffs, 2.5))\n    ci_upper = float(np.percentile(diffs, 97.5))\n\n    print(f\"\\n--- OBD vs {llm_name} ---\")\n    print(f\"  OBD accuracy:  {acc_obd:.3f}\")\n    print(f\"  {llm_name} accuracy: {acc_llm:.3f}\")\n    print(f\"  Difference:    {diff:+.3f}\")\n    print(f\"  Contingency:   a={table['a']}, b={table['b']}, c={table['c']}, d={table['d']}\")\n    print(f\"  McNemar exact p = {p_value:.4f}\")\n    print(f\"  Bootstrap 95% CI on diff: [{ci_lower:+.4f}, {ci_upper:+.4f}]\")\n    print(f\"  CI includes 0: {'YES' if ci_lower <= 0 <= ci_upper else 'NO'}\")\n\n    return {\n        \"accuracy_obd\": round(acc_obd, 4),\n        \"accuracy_llm\": round(acc_llm, 4),\n        \"accuracy_diff\": round(diff, 4),\n        \"contingency_table\": table,\n        \"mcnemar_p\": round(p_value, 6),\n        \"bootstrap_ci_lower\": round(ci_lower, 4),\n        \"bootstrap_ci_upper\": round(ci_upper, 4),\n        \"bootstrap_n\": N_BOOTSTRAP,\n    }\n\n\ndef main():\n    print(\"Loading features and running OBD OOF (with random_state=42)...\")\n    X, depths, doc_ids = load_features()\n    class_probs_6 = run_obd_oof(X, depths, doc_ids, MAX_DEPTH, N_SPLITS)\n\n    # 6-class predictions (for reference)\n    preds_6class = class_probs_6.argmax(axis=1)\n    acc_6class = float(np.mean(preds_6class == depths))\n\n    # Merge to 5-class via prob merge\n    class_probs_5 = merge_to_5class(class_probs_6)\n    preds_5class = class_probs_5.argmax(axis=1)\n\n    lookup = {}\n    for i in range(len(depths)):\n        lookup[(int(depths[i]), int(doc_ids[i]))] = i\n\n    with open(SAMPLES_PATH) as f:\n        samples = [json.loads(line) for line in f]\n    gpt_preds_map = load_llm_predictions(GPT_PATH)\n    claude_preds_map = load_llm_predictions(CLAUDE_PATH)\n\n    y_true_list = []\n    obd_pred_list = []\n    gpt_pred_list = []\n    claude_pred_list = []\n    skipped = 0\n\n    for s in samples:\n        doc_id = s[\"doc_id\"]\n        d, orig_id = parse_exp011_doc_id(doc_id)\n        key = (d, orig_id)\n\n        if key not in lookup:\n            skipped += 1\n            continue\n        if doc_id not in gpt_preds_map or doc_id not in claude_preds_map:\n            skipped += 1\n            continue\n\n        true_depth = s[\"true_depth\"]\n        if true_depth > 4:\n            skipped += 1\n            continue\n\n        row_idx = lookup[key]\n        y_true_list.append(true_depth)\n        obd_pred_list.append(int(preds_5class[row_idx]))\n        gpt_pred_list.append(min(gpt_preds_map[doc_id], 4))\n        claude_pred_list.append(min(claude_preds_map[doc_id], 4))\n\n    y_true = np.array(y_true_list)\n    obd_preds = np.array(obd_pred_list)\n    gpt_preds = np.array(gpt_pred_list)\n    claude_preds = np.array(claude_pred_list)\n\n    print(f\"Aligned {len(y_true)} samples (skipped {skipped})\")\n\n    # Overall accuracy\n    obd_acc = float(np.mean(obd_preds == y_true))\n    print(f\"\\nOBD overall accuracy (prob merge): {obd_acc:.4f}\")\n\n    # Per-depth accuracy\n    per_depth = {}\n    for d in range(5):\n        mask = y_true == d\n        if mask.sum() > 0:\n            per_depth[str(d)] = round(float(np.mean(obd_preds[mask] == y_true[mask])), 4)\n        else:\n            per_depth[str(d)] = None\n    print(f\"Per-depth accuracy: {per_depth}\")\n\n    # Bootstrap CI on OBD accuracy\n    rng = np.random.RandomState(SEED)\n    n = len(y_true)\n    boot_accs = np.empty(N_BOOTSTRAP)\n    for i in range(N_BOOTSTRAP):\n        idx = rng.randint(0, n, size=n)\n        boot_accs[i] = np.mean(obd_preds[idx] == y_true[idx])\n    obd_ci = [round(float(np.percentile(boot_accs, 2.5)), 4),\n              round(float(np.percentile(boot_accs, 97.5)), 4)]\n    print(f\"OBD accuracy 95% CI: {obd_ci}\")\n\n    # McNemar comparisons\n    result_gpt = run_comparison(y_true, obd_preds, gpt_preds, \"GPT-5.5\")\n    result_claude = run_comparison(y_true, obd_preds, claude_preds, \"Claude\")\n\n    # Print fix comparison\n    print(\"\\n=== FIX COMPARISON ===\")\n    print(f\"Old (capping, no seed):     43.6%\")\n    print(f\"Old (v2, no seed):          38.0%\")\n    print(f\"New (prob merge, seed=42):  {obd_acc*100:.1f}%\")\n    print(f\"McNemar vs GPT-5.5:  p={result_gpt['mcnemar_p']:.4f}  CI=[{result_gpt['bootstrap_ci_lower']:+.4f}, {result_gpt['bootstrap_ci_upper']:+.4f}]\")\n    print(f\"McNemar vs Claude:   p={result_claude['mcnemar_p']:.4f}  CI=[{result_claude['bootstrap_ci_lower']:+.4f}, {result_claude['bootstrap_ci_upper']:+.4f}]\")\n\n    output = {\n        \"fix_description\": \"概率合并 P(d=4)+P(d=5) 替代 min(pred,4) capping; 加 random_state=42\",\n        \"obd_accuracy\": round(obd_acc, 4),\n        \"obd_accuracy_ci\": obd_ci,\n        \"per_depth_accuracy\": per_depth,\n        \"obd_full_accuracy_6class\": round(acc_6class, 4),\n        \"obd_vs_gpt55\": result_gpt,\n        \"obd_vs_claude\": result_claude,\n        \"comparison_with_old\": {\n            \"old_capping_accuracy\": 0.436,\n            \"old_v2_accuracy\": 0.380,\n            \"new_prob_merge_accuracy\": round(obd_acc, 4),\n            \"note\": \"old used min(pred,4) capping and no random_state; new uses P(4)+P(5) prob merge and random_state=42\",\n        },\n        \"n_samples\": len(y_true),\n        \"method\": \"OBD-LightGBM OOF, prob merge P(4)+P(5)->P(>=4), random_state=42\",\n        \"seed\": SEED,\n    }\n\n    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)\n    with open(OUT_PATH, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nSaved to {OUT_PATH}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "f2cd4bca-4a6c-4693-b9d5-6f56061d87e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015iqcAKpXqVAJkYCykb2R1U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1931,
+      "cache_read_input_tokens": 30488,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1931
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T11:36:09.835Z_
+
+<details><summary>↩ Tool result · `toolu_01K8YJMYgAgX3soTPdivnFXr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.57}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "40a87251-10c5-453f-9f5e-fed3aeccbd63",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.57}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.57}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+脚本已创建，开始执行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "4c696170-735e-47b0-bc95-302c93a727a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014tbydJY5FxJYK4YrFy4zvw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4461,
+      "cache_read_input_tokens": 32419,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4461
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01VrVkBSiRkJY7H5byt5L5ED`</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "account": "root",
+  "command": "cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/exp_D_mcnemar_fixed.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "ed82cad6-41b0-4ab2-8bb8-3a8f96e3ef34",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014tbydJY5FxJYK4YrFy4zvw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4461,
+      "cache_read_input_tokens": 32419,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4461
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T11:36:27.321Z_
+
+<details><summary>↩ Tool result · `toolu_01VrVkBSiRkJY7H5byt5L5ED`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading features and running OBD OOF (with random_state=42)...\\nAligned 500 samples (skipped 0)\\n\\nOBD overall accuracy (prob merge): 0.4440\\nPer-depth accuracy: {'0': 0.96, '1': 0.36, '2': 0.08, '3': 0.02, '4': 0.8}\\nOBD accuracy 95% CI: [0.4, 0.488]\\n\\n--- OBD vs GPT-5.5 ---\\n  OBD accuracy:  0.444\\n  GPT-5.5 accuracy: 0.332\\n  Difference:    +0.112\\n  Contingency:   a=92, b=130, c=74, d=204\\n  McNemar exact p = 0.0001\\n  Bootstrap 95% CI on diff: [+0.0560, +0.1680]\\n  CI includes 0: NO\\n\\n--- OBD vs Claude ---\\n  OBD accuracy:  0.444\\n  Claude accuracy: 0.330\\n  Difference:    +0.114\\n  Contingency:   a=109, b=113, c=56, d=222\\n  McNemar exact p = 0.0000\\n  Bootstrap 95% CI on diff: [+0.0620, +0.1640]\\n  CI includes 0: NO\\n\\n=== FIX COMPARISON ===\\nOld (capping, no seed):     43.6%\\nOld (v2, no seed):          38.0%\\nNew (prob merge, seed=42):  44.4%\\nMcNemar vs GPT-5.5:  p=0.0001  CI=[+0.0560, +0.1680]\\nMcNemar vs Claude:   p=0.0000  CI=[+0.0620, +0.1640]\\n\\nSaved to /root/autodl-tmp/gen-depth-contamination/artifacts/exp_D_mcnemar_fixed.json\\n\", \"stderr\": \"/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 12.8}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "8aa2deb0-ae5f-452b-89c0-53878b4def16",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading features and running OBD OOF (with random_state=42)...\\\\nAligned 500 samples (skipped 0)\\\\n\\\\nOBD overall accuracy (prob merge): 0.4440\\\\nPer-depth accuracy: {'0': 0.96, '1': 0.36, '2': 0.08, '3': 0.02, '4': 0.8}\\\\nOBD accuracy 95% CI: [0.4, 0.488]\\\\n\\\\n--- OBD vs GPT-5.5 ---\\\\n  OBD accuracy:  0.444\\\\n  GPT-5.5 accuracy: 0.332\\\\n  Difference:    +0.112\\\\n  Contingency:   a=92, b=130, c=74, d=204\\\\n  McNemar exact p = 0.0001\\\\n  Bootstrap 95% CI on diff: [+0.0560, +0.1680]\\\\n  CI includes 0: NO\\\\n\\\\n--- OBD vs Claude ---\\\\n  OBD accuracy:  0.444\\\\n  Claude accuracy: 0.330\\\\n  Difference:    +0.114\\\\n  Contingency:   a=109, b=113, c=56, d=222\\\\n  McNemar exact p = 0.0000\\\\n  Bootstrap 95% CI on diff: [+0.0620, +0.1640]\\\\n  CI includes 0: NO\\\\n\\\\n=== FIX COMPARISON ===\\\\nOld (capping, no seed):     43.6%\\\\nOld (v2, no seed):          38.0%\\\\nNew (prob merge, seed=42):  44.4%\\\\nMcNemar vs GPT-5.5:  p=0.0001  CI=[+0.0560, +0.1680]\\\\nMcNemar vs Claude:   p=0.0000  CI=[+0.0620, +0.1640]\\\\n\\\\nSaved to /root/autodl-tmp/gen-depth-contamination/artifacts/exp_D_mcnemar_fixed.json\\\\n\\\", \\\"stderr\\\": \\\"/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 12.8}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading features and running OBD OOF (with random_state=42)...\\nAligned 500 samples (skipped 0)\\n\\nOBD overall accuracy (prob merge): 0.4440\\nPer-depth accuracy: {'0': 0.96, '1': 0.36, '2': 0.08, '3': 0.02, '4': 0.8}\\nOBD accuracy 95% CI: [0.4, 0.488]\\n\\n--- OBD vs GPT-5.5 ---\\n  OBD accuracy:  0.444\\n  GPT-5.5 accuracy: 0.332\\n  Difference:    +0.112\\n  Contingency:   a=92, b=130, c=74, d=204\\n  McNemar exact p = 0.0001\\n  Bootstrap 95% CI on diff: [+0.0560, +0.1680]\\n  CI includes 0: NO\\n\\n--- OBD vs Claude ---\\n  OBD accuracy:  0.444\\n  Claude accuracy: 0.330\\n  Difference:    +0.114\\n  Contingency:   a=109, b=113, c=56, d=222\\n  McNemar exact p = 0.0000\\n  Bootstrap 95% CI on diff: [+0.0620, +0.1640]\\n  CI includes 0: NO\\n\\n=== FIX COMPARISON ===\\nOld (capping, no seed):     43.6%\\nOld (v2, no seed):          38.0%\\nNew (prob merge, seed=42):  44.4%\\nMcNemar vs GPT-5.5:  p=0.0001  CI=[+0.0560, +0.1680]\\nMcNemar vs Claude:   p=0.0000  CI=[+0.0620, +0.1640]\\n\\nSaved to /root/autodl-tmp/gen-depth-contamination/artifacts/exp_D_mcnemar_fixed.json\\n\", \"stderr\": \"/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 12.8}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+执行成功。验证 reproducibility — 再跑一次确认结果一致。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "336056e6-98b7-4faa-9dec-eebfa0dca4df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RkM6xbDVwPCi1XBEmxkDkV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2441,
+      "cache_read_input_tokens": 36880,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2441
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01XU5CfiCmFHZQQxLSM9tVSn`</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "account": "root",
+  "command": "cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport json\n# Run the script again to verify determinism\nexec(open('scripts/exp_D_mcnemar_fixed.py').read().replace('if __name__ == \\\"__main__\\\":', 'if True:').replace('    main()', '    pass'))\nmain()\nwith open('artifacts/exp_D_mcnemar_fixed.json') as f:\n    d = json.load(f)\nprint(f'VERIFY: accuracy={d[\\\"obd_accuracy\\\"]}, mcnemar_gpt_p={d[\\\"obd_vs_gpt55\\\"][\\\"mcnemar_p\\\"]}, mcnemar_claude_p={d[\\\"obd_vs_claude\\\"][\\\"mcnemar_p\\\"]}')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "9395d10d-6b23-45c1-8fa4-1a05caf71df5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RkM6xbDVwPCi1XBEmxkDkV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2441,
+      "cache_read_input_tokens": 36880,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2441
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T11:36:48.218Z_
+
+<details><summary>↩ Tool result · `toolu_01XU5CfiCmFHZQQxLSM9tVSn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading features and running OBD OOF (with random_state=42)...\\nAligned 500 samples (skipped 0)\\n\\nOBD overall accuracy (prob merge): 0.4440\\nPer-depth accuracy: {'0': 0.96, '1': 0.36, '2': 0.08, '3': 0.02, '4': 0.8}\\nOBD accuracy 95% CI: [0.4, 0.488]\\n\\n--- OBD vs GPT-5.5 ---\\n  OBD accuracy:  0.444\\n  GPT-5.5 accuracy: 0.332\\n  Difference:    +0.112\\n  Contingency:   a=92, b=130, c=74, d=204\\n  McNemar exact p = 0.0001\\n  Bootstrap 95% CI on diff: [+0.0560, +0.1680]\\n  CI includes 0: NO\\n\\n--- OBD vs Claude ---\\n  OBD accuracy:  0.444\\n  Claude accuracy: 0.330\\n  Difference:    +0.114\\n  Contingency:   a=109, b=113, c=56, d=222\\n  McNemar exact p = 0.0000\\n  Bootstrap 95% CI on diff: [+0.0620, +0.1640]\\n  CI includes 0: NO\\n\\n=== FIX COMPARISON ===\\nOld (capping, no seed):     43.6%\\nOld (v2, no seed):          38.0%\\nNew (prob merge, seed=42):  44.4%\\nMcNemar vs GPT-5.5:  p=0.0001  CI=[+0.0560, +0.1680]\\nMcNemar vs Claude:   p=0.0000  CI=[+0.0620, +0.1640]\\n\\nSaved to /root/autodl-tmp/gen-depth-contamination/artifacts/exp_D_mcnemar_fixed.json\\nVERIFY: accuracy=0.444, mcnemar_gpt_p=0.000107, mcnemar_claude_p=1.4e-05\\n\", \"stderr\": \"/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 12.94}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "d189b203-e140-44b5-b78a-7a5db313b658",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading features and running OBD OOF (with random_state=42)...\\\\nAligned 500 samples (skipped 0)\\\\n\\\\nOBD overall accuracy (prob merge): 0.4440\\\\nPer-depth accuracy: {'0': 0.96, '1': 0.36, '2': 0.08, '3': 0.02, '4': 0.8}\\\\nOBD accuracy 95% CI: [0.4, 0.488]\\\\n\\\\n--- OBD vs GPT-5.5 ---\\\\n  OBD accuracy:  0.444\\\\n  GPT-5.5 accuracy: 0.332\\\\n  Difference:    +0.112\\\\n  Contingency:   a=92, b=130, c=74, d=204\\\\n  McNemar exact p = 0.0001\\\\n  Bootstrap 95% CI on diff: [+0.0560, +0.1680]\\\\n  CI includes 0: NO\\\\n\\\\n--- OBD vs Claude ---\\\\n  OBD accuracy:  0.444\\\\n  Claude accuracy: 0.330\\\\n  Difference:    +0.114\\\\n  Contingency:   a=109, b=113, c=56, d=222\\\\n  McNemar exact p = 0.0000\\\\n  Bootstrap 95% CI on diff: [+0.0620, +0.1640]\\\\n  CI includes 0: NO\\\\n\\\\n=== FIX COMPARISON ===\\\\nOld (capping, no seed):     43.6%\\\\nOld (v2, no seed):          38.0%\\\\nNew (prob merge, seed=42):  44.4%\\\\nMcNemar vs GPT-5.5:  p=0.0001  CI=[+0.0560, +0.1680]\\\\nMcNemar vs Claude:   p=0.0000  CI=[+0.0620, +0.1640]\\\\n\\\\nSaved to /root/autodl-tmp/gen-depth-contamination/artifacts/exp_D_mcnemar_fixed.json\\\\nVERIFY: accuracy=0.444, mcnemar_gpt_p=0.000107, mcnemar_claude_p=1.4e-05\\\\n\\\", \\\"stderr\\\": \\\"/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 12.94}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading features and running OBD OOF (with random_state=42)...\\nAligned 500 samples (skipped 0)\\n\\nOBD overall accuracy (prob merge): 0.4440\\nPer-depth accuracy: {'0': 0.96, '1': 0.36, '2': 0.08, '3': 0.02, '4': 0.8}\\nOBD accuracy 95% CI: [0.4, 0.488]\\n\\n--- OBD vs GPT-5.5 ---\\n  OBD accuracy:  0.444\\n  GPT-5.5 accuracy: 0.332\\n  Difference:    +0.112\\n  Contingency:   a=92, b=130, c=74, d=204\\n  McNemar exact p = 0.0001\\n  Bootstrap 95% CI on diff: [+0.0560, +0.1680]\\n  CI includes 0: NO\\n\\n--- OBD vs Claude ---\\n  OBD accuracy:  0.444\\n  Claude accuracy: 0.330\\n  Difference:    +0.114\\n  Contingency:   a=109, b=113, c=56, d=222\\n  McNemar exact p = 0.0000\\n  Bootstrap 95% CI on diff: [+0.0620, +0.1640]\\n  CI includes 0: NO\\n\\n=== FIX COMPARISON ===\\nOld (capping, no seed):     43.6%\\nOld (v2, no seed):          38.0%\\nNew (prob merge, seed=42):  44.4%\\nMcNemar vs GPT-5.5:  p=0.0001  CI=[+0.0560, +0.1680]\\nMcNemar vs Claude:   p=0.0000  CI=[+0.0620, +0.1640]\\n\\nSaved to /root/autodl-tmp/gen-depth-contamination/artifacts/exp_D_mcnemar_fixed.json\\nVERIFY: accuracy=0.444, mcnemar_gpt_p=0.000107, mcnemar_claude_p=1.4e-05\\n\", \"stderr\": \"/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 12.94}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+两次结果完全一致，`random_state=42` 生效。拉取结果到本地。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "894c0132-7265-45bf-b6e1-dc459c374b14",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011FL6J9NpDN3RZQSyKFP846",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2560,
+      "cache_read_input_tokens": 39321,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2560
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013c3cggcGjaw4fU5g8Bz3Td`</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/artifacts/exp_D_mcnemar_fixed.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "cf6e8b45-6e67-474f-980a-b223390e393e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011FL6J9NpDN3RZQSyKFP846",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2560,
+      "cache_read_input_tokens": 39321,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2560
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T11:36:58.365Z_
+
+<details><summary>↩ Tool result · `toolu_013c3cggcGjaw4fU5g8Bz3Td`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"fix_description\\\": \\\"\\\\u6982\\\\u7387\\\\u5408\\\\u5e76 P(d=4)+P(d=5) \\\\u66ff\\\\u4ee3 min(pred,4) capping; \\\\u52a0 random_state=42\\\",\\n  \\\"obd_accuracy\\\": 0.444,\\n  \\\"obd_accuracy_ci\\\": [\\n    0.4,\\n    0.488\\n  ],\\n  \\\"per_depth_accuracy\\\": {\\n    \\\"0\\\": 0.96,\\n    \\\"1\\\": 0.36,\\n    \\\"2\\\": 0.08,\\n    \\\"3\\\": 0.02,\\n    \\\"4\\\": 0.8\\n  },\\n  \\\"obd_full_accuracy_6class\\\": 0.3856,\\n  \\\"obd_vs_gpt55\\\": {\\n    \\\"accuracy_obd\\\": 0.444,\\n    \\\"accuracy_llm\\\": 0.332,\\n    \\\"accuracy_diff\\\": 0.112,\\n    \\\"contingency_table\\\": {\\n      \\\"a\\\": 92,\\n      \\\"b\\\": 130,\\n      \\\"c\\\": 74,\\n      \\\"d\\\": 204\\n    },\\n    \\\"mcnemar_p\\\": 0.000107,\\n    \\\"bootstrap_ci_lower\\\": 0.056,\\n    \\\"bootstrap_ci_upper\\\": 0.168,\\n    \\\"bootstrap_n\\\": 10000\\n  },\\n  \\\"obd_vs_claude\\\": {\\n    \\\"accuracy_obd\\\": 0.444,\\n    \\\"accuracy_llm\\\": 0.33,\\n    \\\"accuracy_diff\\\": 0.114,\\n    \\\"contingency_table\\\": {\\n      \\\"a\\\": 109,\\n      \\\"b\\\": 113,\\n      \\\"c\\\": 56,\\n      \\\"d\\\": 222\\n    },\\n    \\\"mcnemar_p\\\": 1.4e-05,\\n    \\\"bootstrap_ci_lower\\\": 0.062,\\n    \\\"bootstrap_ci_upper\\\": 0.164,\\n    \\\"bootstrap_n\\\": 10000\\n  },\\n  \\\"comparison_with_old\\\": {\\n    \\\"old_capping_accuracy\\\": 0.436,\\n    \\\"old_v2_accuracy\\\": 0.38,\\n    \\\"new_prob_merge_accuracy\\\": 0.444,\\n    \\\"note\\\": \\\"old used min(pred,4) capping and no random_state; new uses P(4)+P(5) prob merge and random_state=42\\\"\\n  },\\n  \\\"n_samples\\\": 500,\\n  \\\"method\\\": \\\"OBD-LightGBM OOF, prob merge P(4)+P(5)->P(>=4), random_state=42\\\",\\n  \\\"seed\\\": 42\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "8f0767b1-95d2-496a-a142-1fcf4937bc06",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"fix_description\\\\\\\": \\\\\\\"\\\\\\\\u6982\\\\\\\\u7387\\\\\\\\u5408\\\\\\\\u5e76 P(d=4)+P(d=5) \\\\\\\\u66ff\\\\\\\\u4ee3 min(pred,4) capping; \\\\\\\\u52a0 random_state=42\\\\\\\",\\\\n  \\\\\\\"obd_accuracy\\\\\\\": 0.444,\\\\n  \\\\\\\"obd_accuracy_ci\\\\\\\": [\\\\n    0.4,\\\\n    0.488\\\\n  ],\\\\n  \\\\\\\"per_depth_accuracy\\\\\\\": {\\\\n    \\\\\\\"0\\\\\\\": 0.96,\\\\n    \\\\\\\"1\\\\\\\": 0.36,\\\\n    \\\\\\\"2\\\\\\\": 0.08,\\\\n    \\\\\\\"3\\\\\\\": 0.02,\\\\n    \\\\\\\"4\\\\\\\": 0.8\\\\n  },\\\\n  \\\\\\\"obd_full_accuracy_6class\\\\\\\": 0.3856,\\\\n  \\\\\\\"obd_vs_gpt55\\\\\\\": {\\\\n    \\\\\\\"accuracy_obd\\\\\\\": 0.444,\\\\n    \\\\\\\"accuracy_llm\\\\\\\": 0.332,\\\\n    \\\\\\\"accuracy_diff\\\\\\\": 0.112,\\\\n    \\\\\\\"contingency_table\\\\\\\": {\\\\n      \\\\\\\"a\\\\\\\": 92,\\\\n      \\\\\\\"b\\\\\\\": 130,\\\\n      \\\\\\\"c\\\\\\\": 74,\\\\n      \\\\\\\"d\\\\\\\": 204\\\\n    },\\\\n    \\\\\\\"mcnemar_p\\\\\\\": 0.000107,\\\\n    \\\\\\\"bootstrap_ci_lower\\\\\\\": 0.056,\\\\n    \\\\\\\"bootstrap_ci_upper\\\\\\\": 0.168,\\\\n    \\\\\\\"bootstrap_n\\\\\\\": 10000\\\\n  },\\\\n  \\\\\\\"obd_vs_claude\\\\\\\": {\\\\n    \\\\\\\"accuracy_obd\\\\\\\": 0.444,\\\\n    \\\\\\\"accuracy_llm\\\\\\\": 0.33,\\\\n    \\\\\\\"accuracy_diff\\\\\\\": 0.114,\\\\n    \\\\\\\"contingency_table\\\\\\\": {\\\\n      \\\\\\\"a\\\\\\\": 109,\\\\n      \\\\\\\"b\\\\\\\": 113,\\\\n      \\\\\\\"c\\\\\\\": 56,\\\\n      \\\\\\\"d\\\\\\\": 222\\\\n    },\\\\n    \\\\\\\"mcnemar_p\\\\\\\": 1.4e-05,\\\\n    \\\\\\\"bootstrap_ci_lower\\\\\\\": 0.062,\\\\n    \\\\\\\"bootstrap_ci_upper\\\\\\\": 0.164,\\\\n    \\\\\\\"bootstrap_n\\\\\\\": 10000\\\\n  },\\\\n  \\\\\\\"comparison_with_old\\\\\\\": {\\\\n    \\\\\\\"old_capping_accuracy\\\\\\\": 0.436,\\\\n    \\\\\\\"old_v2_accuracy\\\\\\\": 0.38,\\\\n    \\\\\\\"new_prob_merge_accuracy\\\\\\\": 0.444,\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"old used min(pred,4) capping and no random_state; new uses P(4)+P(5) prob merge and random_state=42\\\\\\\"\\\\n  },\\\\n  \\\\\\\"n_samples\\\\\\\": 500,\\\\n  \\\\\\\"method\\\\\\\": \\\\\\\"OBD-LightGBM OOF, prob merge P(4)+P(5)->P(>=4), random_state=42\\\\\\\",\\\\n  \\\\\\\"seed\\\\\\\": 42\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"fix_description\\\": \\\"\\\\u6982\\\\u7387\\\\u5408\\\\u5e76 P(d=4)+P(d=5) \\\\u66ff\\\\u4ee3 min(pred,4) capping; \\\\u52a0 random_state=42\\\",\\n  \\\"obd_accuracy\\\": 0.444,\\n  \\\"obd_accuracy_ci\\\": [\\n    0.4,\\n    0.488\\n  ],\\n  \\\"per_depth_accuracy\\\": {\\n    \\\"0\\\": 0.96,\\n    \\\"1\\\": 0.36,\\n    \\\"2\\\": 0.08,\\n    \\\"3\\\": 0.02,\\n    \\\"4\\\": 0.8\\n  },\\n  \\\"obd_full_accuracy_6class\\\": 0.3856,\\n  \\\"obd_vs_gpt55\\\": {\\n    \\\"accuracy_obd\\\": 0.444,\\n    \\\"accuracy_llm\\\": 0.332,\\n    \\\"accuracy_diff\\\": 0.112,\\n    \\\"contingency_table\\\": {\\n      \\\"a\\\": 92,\\n      \\\"b\\\": 130,\\n      \\\"c\\\": 74,\\n      \\\"d\\\": 204\\n    },\\n    \\\"mcnemar_p\\\": 0.000107,\\n    \\\"bootstrap_ci_lower\\\": 0.056,\\n    \\\"bootstrap_ci_upper\\\": 0.168,\\n    \\\"bootstrap_n\\\": 10000\\n  },\\n  \\\"obd_vs_claude\\\": {\\n    \\\"accuracy_obd\\\": 0.444,\\n    \\\"accuracy_llm\\\": 0.33,\\n    \\\"accuracy_diff\\\": 0.114,\\n    \\\"contingency_table\\\": {\\n      \\\"a\\\": 109,\\n      \\\"b\\\": 113,\\n      \\\"c\\\": 56,\\n      \\\"d\\\": 222\\n    },\\n    \\\"mcnemar_p\\\": 1.4e-05,\\n    \\\"bootstrap_ci_lower\\\": 0.062,\\n    \\\"bootstrap_ci_upper\\\": 0.164,\\n    \\\"bootstrap_n\\\": 10000\\n  },\\n  \\\"comparison_with_old\\\": {\\n    \\\"old_capping_accuracy\\\": 0.436,\\n    \\\"old_v2_accuracy\\\": 0.38,\\n    \\\"new_prob_merge_accuracy\\\": 0.444,\\n    \\\"note\\\": \\\"old used min(pred,4) capping and no random_state; new uses P(4)+P(5) prob merge and random_state=42\\\"\\n  },\\n  \\\"n_samples\\\": 500,\\n  \\\"method\\\": \\\"OBD-LightGBM OOF, prob merge P(4)+P(5)->P(>=4), random_state=42\\\",\\n  \\\"seed\\\": 42\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01TW7zk8GG2pEGcBsRMLmy3f`</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal",
+  "description": "Create rebuttal artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "6a4f78bd-63fe-41aa-b840-38e317f41733",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012o5jyf6QFcckgGXnuvvshW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1130,
+      "cache_read_input_tokens": 41881,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1130
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T11:37:01.833Z_
+
+<details><summary>↩ Tool result · `toolu_01TW7zk8GG2pEGcBsRMLmy3f`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "ae004b14-d092-43bb-a4fa-c39cc6ac1dda",
+  "tool_use_result": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": true
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01M6X9bUgvXjhpcBzN6t3aBF`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_D_mcnemar_fixed.json",
+  "content": "{\n  \"fix_description\": \"概率合并 P(d=4)+P(d=5) 替代 min(pred,4) capping; 加 random_state=42\",\n  \"obd_accuracy\": 0.444,\n  \"obd_accuracy_ci\": [\n    0.4,\n    0.488\n  ],\n  \"per_depth_accuracy\": {\n    \"0\": 0.96,\n    \"1\": 0.36,\n    \"2\": 0.08,\n    \"3\": 0.02,\n    \"4\": 0.8\n  },\n  \"obd_full_accuracy_6class\": 0.3856,\n  \"obd_vs_gpt55\": {\n    \"accuracy_obd\": 0.444,\n    \"accuracy_llm\": 0.332,\n    \"accuracy_diff\": 0.112,\n    \"contingency_table\": {\n      \"a\": 92,\n      \"b\": 130,\n      \"c\": 74,\n      \"d\": 204\n    },\n    \"mcnemar_p\": 0.000107,\n    \"bootstrap_ci_lower\": 0.056,\n    \"bootstrap_ci_upper\": 0.168,\n    \"bootstrap_n\": 10000\n  },\n  \"obd_vs_claude\": {\n    \"accuracy_obd\": 0.444,\n    \"accuracy_llm\": 0.33,\n    \"accuracy_diff\": 0.114,\n    \"contingency_table\": {\n      \"a\": 109,\n      \"b\": 113,\n      \"c\": 56,\n      \"d\": 222\n    },\n    \"mcnemar_p\": 1.4e-05,\n    \"bootstrap_ci_lower\": 0.062,\n    \"bootstrap_ci_upper\": 0.164,\n    \"bootstrap_n\": 10000\n  },\n  \"comparison_with_old\": {\n    \"old_capping_accuracy\": 0.436,\n    \"old_v2_accuracy\": 0.38,\n    \"new_prob_merge_accuracy\": 0.444,\n    \"note\": \"old used min(pred,4) capping and no random_state; new uses P(4)+P(5) prob merge and random_state=42\"\n  },\n  \"n_samples\": 500,\n  \"method\": \"OBD-LightGBM OOF, prob merge P(4)+P(5)->P(>=4), random_state=42\",\n  \"seed\": 42\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "793bc2aa-17e5-42f0-b733-eba0c0097098",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BYDqHwYiY6iHW2os6z2E3h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 128,
+      "cache_read_input_tokens": 43011,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 128
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T11:37:10.012Z_
+
+<details><summary>↩ Tool result · `toolu_01M6X9bUgvXjhpcBzN6t3aBF`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_D_mcnemar_fixed.json
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "0c0a3e4c-af54-4b85-8e04-f1a27dadb793",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_D_mcnemar_fixed.json",
+    "content": "{\n  \"fix_description\": \"概率合并 P(d=4)+P(d=5) 替代 min(pred,4) capping; 加 random_state=42\",\n  \"obd_accuracy\": 0.444,\n  \"obd_accuracy_ci\": [\n    0.4,\n    0.488\n  ],\n  \"per_depth_accuracy\": {\n    \"0\": 0.96,\n    \"1\": 0.36,\n    \"2\": 0.08,\n    \"3\": 0.02,\n    \"4\": 0.8\n  },\n  \"obd_full_accuracy_6class\": 0.3856,\n  \"obd_vs_gpt55\": {\n    \"accuracy_obd\": 0.444,\n    \"accuracy_llm\": 0.332,\n    \"accuracy_diff\": 0.112,\n    \"contingency_table\": {\n      \"a\": 92,\n      \"b\": 130,\n      \"c\": 74,\n      \"d\": 204\n    },\n    \"mcnemar_p\": 0.000107,\n    \"bootstrap_ci_lower\": 0.056,\n    \"bootstrap_ci_upper\": 0.168,\n    \"bootstrap_n\": 10000\n  },\n  \"obd_vs_claude\": {\n    \"accuracy_obd\": 0.444,\n    \"accuracy_llm\": 0.33,\n    \"accuracy_diff\": 0.114,\n    \"contingency_table\": {\n      \"a\": 109,\n      \"b\": 113,\n      \"c\": 56,\n      \"d\": 222\n    },\n    \"mcnemar_p\": 1.4e-05,\n    \"bootstrap_ci_lower\": 0.062,\n    \"bootstrap_ci_upper\": 0.164,\n    \"bootstrap_n\": 10000\n  },\n  \"comparison_with_old\": {\n    \"old_capping_accuracy\": 0.436,\n    \"old_v2_accuracy\": 0.38,\n    \"new_prob_merge_accuracy\": 0.444,\n    \"note\": \"old used min(pred,4) capping and no random_state; new uses P(4)+P(5) prob merge and random_state=42\"\n  },\n  \"n_samples\": 500,\n  \"method\": \"OBD-LightGBM OOF, prob merge P(4)+P(5)->P(>=4), random_state=42\",\n  \"seed\": 42\n}\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+注册 artifact。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "ca3eab54-f4a8-4b56-9755-cb879a200e07",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mv6QacCnUMhr4hMJbe3z6J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 804,
+      "cache_read_input_tokens": 43139,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 804
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01FU1Zgrk45cFb48oU5LcDdk`</summary>
+
+```json
+{
+  "name": "exp_D_mcnemar_fixed",
+  "type": "data",
+  "description": "EXP-D McNemar fixed results: prob merge P(4)+P(5)->P(>=4) replaces min(pred,4) capping, random_state=42. OBD accuracy 44.4%, significantly beats GPT-5.5 (p=0.0001) and Claude (p=1.4e-5).",
+  "project": "gen-depth-contamination",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/rebuttal/exp_D_mcnemar_fixed.json",
+  "tags": [
+    "rebuttal",
+    "exp-D",
+    "mcnemar",
+    "fixed"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "0ab85310-4789-448d-b858-63186e2249b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mv6QacCnUMhr4hMJbe3z6J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 804,
+      "cache_read_input_tokens": 43139,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 804
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T11:37:17.503Z_
+
+<details><summary>↩ Tool result · `toolu_01FU1Zgrk45cFb48oU5LcDdk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_89fa5f\", \"name\": \"exp_D_mcnemar_fixed\", \"type\": \"data\", \"description\": \"EXP-D McNemar fixed results: prob merge P(4)+P(5)->P(>=4) replaces min(pred,4) capping, random_state=42. OBD accuracy 44.4%, significantly beats GPT-5.5 (p=0.0001) and Claude (p=1.4e-5).\", \"path\": \"projects/gen-depth-contamination/artifacts/_project/data/exp_D_mcnemar_fixed.json\", \"url\": null, \"project\": \"gen-depth-contamination\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T11:37:17.328127+00:00\", \"tags\": [\"rebuttal\", \"exp-D\", \"mcnemar\", \"fixed\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "db0aa43d-3b0e-422f-8e68-7fa26737ff84",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_89fa5f\\\", \\\"name\\\": \\\"exp_D_mcnemar_fixed\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"EXP-D McNemar fixed results: prob merge P(4)+P(5)->P(>=4) replaces min(pred,4) capping, random_state=42. OBD accuracy 44.4%, significantly beats GPT-5.5 (p=0.0001) and Claude (p=1.4e-5).\\\", \\\"path\\\": \\\"projects/gen-depth-contamination/artifacts/_project/data/exp_D_mcnemar_fixed.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T11:37:17.328127+00:00\\\", \\\"tags\\\": [\\\"rebuttal\\\", \\\"exp-D\\\", \\\"mcnemar\\\", \\\"fixed\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_89fa5f\", \"name\": \"exp_D_mcnemar_fixed\", \"type\": \"data\", \"description\": \"EXP-D McNemar fixed results: prob merge P(4)+P(5)->P(>=4) replaces min(pred,4) capping, random_state=42. OBD accuracy 44.4%, significantly beats GPT-5.5 (p=0.0001) and Claude (p=1.4e-5).\", \"path\": \"projects/gen-depth-contamination/artifacts/_project/data/exp_D_mcnemar_fixed.json\", \"url\": null, \"project\": \"gen-depth-contamination\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T11:37:17.328127+00:00\", \"tags\": [\"rebuttal\", \"exp-D\", \"mcnemar\", \"fixed\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+完成。结果摘要：
+
+```
+=== FIX COMPARISON ===
+Old (capping, no seed):     43.6%
+Old (v2, no seed):          38.0%
+New (prob merge, seed=42):  44.4%  CI=[40.0%, 48.8%]
+
+Per-depth: d0=96%, d1=36%, d2=8%, d3=2%, d4=80%
+
+McNemar vs GPT-5.5:  p=0.0001  diff=+11.2%  CI=[+5.6%, +16.8%]
+McNemar vs Claude:   p=1.4e-5  diff=+11.4%  CI=[+6.2%, +16.4%]
+```
+
+- 500 samples 全部对齐，无 skip
+- 两次运行结果完全一致，`random_state=42` 生效
+- 无 `min(pred, 4)` 残留（OBD 用概率合并，LLM 保留 cap at 4）
+- JSON 已保存到 `artifacts/rebuttal/exp_D_mcnemar_fixed.json`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "uuid": "dfe6c24a-e634-437a-89ad-a9e9242b77e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DMUnikugJ8eEKv44tZPpDB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 647,
+      "cache_read_input_tokens": 43943,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 647
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 41_
+
+完成。结果摘要：
+
+```
+=== FIX COMPARISON ===
+Old (capping, no seed):     43.6%
+Old (v2, no seed):          38.0%
+New (prob merge, seed=42):  44.4%  CI=[40.0%, 48.8%]
+
+Per-depth: d0=96%, d1=36%, d2=8%, d3=2%, d4=80%
+
+McNemar vs GPT-5.5:  p=0.0001  diff=+11.2%  CI=[+5.6%, +16.8%]
+McNemar vs Claude:   p=1.4e-5  diff=+11.4%  CI=[+6.2%, +16.4%]
+```
+
+- 500 samples 全部对齐，无 skip
+- 两次运行结果完全一致，`random_state=42` 生效
+- 无 `min(pred, 4)` 残留（OBD 用概率合并，LLM 保留 cap at 4）
+- JSON 已保存到 `artifacts/rebuttal/exp_D_mcnemar_fixed.json`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 166402,
+  "duration_api_ms": 135258,
+  "num_turns": 14,
+  "stop_reason": "end_turn",
+  "session_id": "8a7d6aec-61f6-4424-a085-b75150c439be",
+  "total_cost_usd": 0.58311025,
+  "usage": {
+    "input_tokens": 15,
+    "cache_creation_input_tokens": 32749,
+    "cache_read_input_tokens": 372702,
+    "output_tokens": 7592,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 32749,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 299,
+        "cache_read_input_tokens": 43943,
+        "cache_creation_input_tokens": 647,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 647
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2093,
+      "outputTokens": 22,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0022029999999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 15,
+      "outputTokens": 7592,
+      "cacheReadInputTokens": 372702,
+      "cacheCreationInputTokens": 32749,
+      "webSearchRequests": 0,
+      "costUSD": 0.58090725,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "34ed7b42-f4c7-4388-9db3-1bfcfb24b337"
+}
+```
+
+</details>
+
+---

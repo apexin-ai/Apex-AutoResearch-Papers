@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08cfa6df1a3934147717",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops domain exp status check",
+  "task_key": "worker_ops_domain_exp_status_check_20260517T161737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_domain_exp_status_check_20260517T161737_result.json",
+    "occurrence": 1,
+    "bytes": 1666,
+    "sha256": "6d0ca65a8b759866e4fa7a0753758394cdd06a6cd416476663ce32c8660e2f1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### GPU 状态\n\n| GPU | 型号 | Util% | 显存占用 | 温度 |\n|-----|------|-------|----------|------|\n| 0 | RTX 4090 D | 95% | 15239 / 24564 MiB | 55°C |\n| 1 | RTX 4090 D | 96% | 14587 / 24564 MiB | 60°C |\n| 2 | RTX 4090 D | 96% | 16075 / 24564 MiB | 59°C |\n| 3 | RTX 4090 D | 58% | 4539 / 24564 MiB | 49°C |\n\n4 张卡全部在工作，4 个 tmux session 全部存活。\n\n### 实验进度\n\n| exp_id | GPU | 已完成 depth | 当前阶段 | 进度 | 预计剩余 |\n|--------|-----|-------------|---------|------|---------|\n| exp_arXiv_qwen7b | cuda:0 | depth 0-4 | 生成 depth_5 (214/275) | ~68% | ~15 min |\n| exp_wiki_mistral7b | cuda:1 | depth 0-2 | 生成 depth_3 (27/625) | ~29% | ~3.3 h |\n| exp_wiki_llama8b | cuda:2 | depth 0-2 | 生成 depth_3 (~309/625) | ~36% | ~3 h |\n| exp_arXiv_mistral7b | cuda:3 | depth 0-5 ✅ | 特征提取 Surprisal (~94%) | ~85% | ~5-10 min |\n\n### 关键观察\n\n- **exp_arXiv_mistral7b** 领先，depth 全部生成完毕（depth_0-5），已进入 Surprisal 特征提取阶段（94%），GPU 利用率降至 58%（评分模型较小）。预计几分钟内完成全部流程。\n- **exp_arXiv_qwen7b** depth_5 生成进度 78%，还剩 ~60 batch，之后进入特征提取 + SCS 分析，约 15 分钟可完成。\n- **两个 wiki 实验**（5000 samples）进度较慢：每个 depth 需 ~65 min（vs arXiv 的 ~27 min），目前都在 depth_3，还有 depth_4、depth_5 待生成，预计 3-3.3 小时后完成。\n- 所有实验 results 目录暂为空（features.csv 和 scs_results.json 尚未生成，需等 depth chain 全部完成后才会产出）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-domain-exp-status-check.md"
+}

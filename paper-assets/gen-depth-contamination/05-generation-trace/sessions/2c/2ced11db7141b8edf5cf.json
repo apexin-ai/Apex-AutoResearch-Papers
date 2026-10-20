@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ced11db7141b8edf5cf",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "submit arXiv cross scorer pair",
+  "task_key": "worker_submit_arXiv_cross_scorer_pair_20260518T021326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_arXiv_cross_scorer_pair_20260518T021326_result.json",
+    "occurrence": 1,
+    "bytes": 395,
+    "sha256": "ef0ffbf65d9166129ce6b3fde2c1949106e500fc7ed544ece578f141d4ac7b2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验已提交：\n\n| 实验 | GPU | tmux session | PID |\n|---|---|---|---|\n| exp_arXiv_qwen7b_crossscorer | cuda:0 | exp_arXiv_qwen7b_crossscorer | 190498 |\n| exp_arXiv_qwen1b5_crossscorer | cuda:1 | exp_arXiv_qwen1b5_crossscorer | 190644 |\n\n日志分别在 `~/runs/gen-depth-contamination/exp_arXiv_qwen7b_crossscorer.log` 和 `exp_arXiv_qwen1b5_crossscorer.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-arxiv-cross-scorer-pair.md"
+}

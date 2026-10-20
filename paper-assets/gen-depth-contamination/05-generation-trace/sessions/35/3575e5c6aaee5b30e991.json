@@ -1,0 +1,320 @@
+{
+  "schema_version": "1.0",
+  "id": "3575e5c6aaee5b30e991",
+  "project": "gen-depth-contamination",
+  "kind": "conversation",
+  "title": "research reference verification r22",
+  "task_key": "worker_research_reference_verification_r22_20260520T162247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_reference_verification_r22_20260520T162247.jsonl",
+    "occurrence": 1,
+    "bytes": 20168,
+    "sha256": "56a34f85189ea398fa233460b4c58a56ea934e0d6253cdbae8fc1048a6d20044"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T16:23:55.410959+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_r22_20260520T162247",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T16:23:55.411312+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_r22_20260520T162247",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T16:23:55.411508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_r22_20260520T162247",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arXiv 2602.16065 \"Can Generative AI Survive Data Contamination\""
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T16:23:55.411646+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_r22_20260520T162247",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arXiv 2604.04932 \"Beyond the Final Actor\""
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T16:23:55.411802+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_r22_20260520T162247",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"A Probabilistic Perspective on Model Collapse\" Xu 2025"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T16:23:55.411981+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arXiv 2604.04932 \"Beyond the Final Actor\"\"\n\nLinks: [{\"title\":\"[2604.04932] Beyond the Final Actor: Modeling the Dual Roles of Creator and Editor for Fine-Grained LLM-Generated Text Detection\",\"url\":\"https://arxiv.org/abs/2604.04932\"},{\"title\":\"Beyond the Final Actor: Modeling the Dual Roles of Creator and Editor for Fine-Grained LLM-Generated Text Detection\",\"url\":\"https://arxiv.org/html/2604.04932\"},{\"title\":\"A Deeper Look at Discounting Mismatch in Actor-Critic Algorithms\",\"url\":\"https://arxiv.org/pdf/2010.01069\"},{\"title\":\"Deep Actor-Critics with Tight Risk Certificates\",\"url\":\"https://arxiv.org/pdf/2505.19682\"},{\"title\":\"Mixture of personality improved spiking actor network for efficient multi-agent cooperation\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10361619/\"},{\"title\":\"Pseudorehearsal in actor-critic agents with neural network function   approximation\",\"url\":\"https://arxiv.org/pdf/1712.07686\"},{\"title\":\"A priority experience replay actor-critic algorithm using self-attention mechanism for strategy optimization of discrete problems\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11232580/\"},{\"title\":\"A Finite Time Analysis of Two Time-Scale Actor Critic Methods\",\"url\":\"https://arxiv.org/pdf/2005.01350\"}]\n\nBased on the search results, here's what I found about arXiv paper 2604.04932:\n\nThe paper is titled \"Beyond the Final Actor: Modeling the Dual Roles of Creator and Editor for Fine-Grained LLM-Generated Text Detection\" and was submitted on April 6, 2026. The authors are Yang Li, Qiang Sheng, Zhengjia Wang, Yehan Yang, Danding Wang, and Juan Cao.\n\nThe paper addresses the need for precise detection of synthetic text due to the misuse of large language models (LLMs). Existing works mainly use binary or ternary classification settings which can only distinguish pure human/LLM text or collaborative text at best, but this is insufficient for nuanced regulation, as LLM-polished human text and humanized LLM text often t\n…[truncated 396 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_r22_20260520T162247",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T16:23:55.412157+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"A Probabilistic Perspective on Model Collapse\" Xu 2025\"\n\nLinks: [{\"title\":\"[2505.13947] A Probabilistic Perspective on Model Collapse\",\"url\":\"https://arxiv.org/abs/2505.13947\"},{\"title\":\"A Probabilistic Perspective on Model Collapse\",\"url\":\"https://arxiv.org/html/2505.13947v2\"},{\"title\":\"(PDF) A Probabilistic Perspective on Model Collapse\",\"url\":\"https://www.researchgate.net/publication/391910994_A_Probabilistic_Perspective_on_Model_Collapse\"},{\"title\":\"A Probabilistic Perspective on Model Collapse\",\"url\":\"https://arxiv.org/pdf/2505.13947\"},{\"title\":\"Machine Learning May 2025\",\"url\":\"https://arxiv.org/list/stat.ML/2025-05?skip=125&show=25\"},{\"title\":\"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.\",\"url\":\"https://arxiv.org/html/2510.16657v1\"},{\"title\":\"Statistics May 2025\",\"url\":\"https://arxiv.org/list/stat/2025-05?skip=400&show=100\"},{\"title\":\"Escaping Model Collapse via Synthetic Data Verification:\",\"url\":\"https://arxiv.org/pdf/2510.16657\"}]\n\nI found the paper! Here's what the search results show about \"A Probabilistic Perspective on Model Collapse\" by Xu et al. (2025):\n\n## Overview\n\nThe paper was submitted on May 20, 2025, authored by Shirong Xu, Hengzhi He, and Guang Cheng from UCLA.\n\n## Main Research Focus\n\nThe paper investigates recursive parametric model training from a probabilistic perspective, aiming to characterize the conditions under which model collapse occurs and how it can be mitigated.\n\n## Key Approach\n\nThe researchers conceptualize the recursive training process as a random walk of the model estimate, highlighting how the sample size influ\n…[truncated 653 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_r22_20260520T162247",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T16:23:55.412344+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arXiv 2602.16065 \"Can Generative AI Survive Data Contamination\"\"\n\nLinks: [{\"title\":\"[2602.16065] Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training\",\"url\":\"https://arxiv.org/abs/2602.16065\"},{\"title\":\"Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training\",\"url\":\"https://arxiv.org/html/2602.16065v1\"},{\"title\":\"Can Generative Artificial Intelligence Survive Data ...\",\"url\":\"https://arxiv.org/pdf/2602.16065\"},{\"title\":\"AI-generated data contamination erodes pathological variability and diagnostic reliability\",\"url\":\"https://www.medrxiv.org/content/10.64898/2026.01.19.26344383.full.pdf\"},{\"title\":\"AI-generated data contamination erodes pathological variability and diagnostic reliability\",\"url\":\"https://arxiv.org/pdf/2601.12946\"},{\"title\":\"AI-generated data contamination erodes pathological variability and diagnostic reliability | medRxiv\",\"url\":\"https://www.medrxiv.org/content/10.64898/2026.01.19.26344383v1.full\"},{\"title\":\"[2601.12946] AI-generated data contamination erodes pathological variability and diagnostic reliability\",\"url\":\"https://arxiv.org/abs/2601.12946\"},{\"title\":\"When AI Eats Itself: On the Caveats of AI Autophagy\",\"url\":\"https://arxiv.org/pdf/2405.09597\"}]\n\nI found the paper you're looking for! Here are the key details about arXiv 2602.16065:\n\n**Title:** \"Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training\"\n\n**Authors:** Kevin Wang, Hongqian Niu, and Didong Li\n\n**Submission Date:** February 17, 2026\n\n**Overview:** The paper addresses how web data is increasingly mixed with AI-generated material, and as generative models are updated regularly, later models will be trained on mixtures of human-generated data and AI-generated data from earlier versions, creating a recursive training process with data con\n…[truncated 521 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_r22_20260520T162247",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T16:23:55.412579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_r22_20260520T162247",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2602.16065 \"Can Generative Artificial Intelligence Survive Data Contamination\" abstract recursive training theoretical"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T16:23:55.412721+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_r22_20260520T162247",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2604.04932 \"Beyond the Final Actor\" RACE fine-grained LLM detection abstract"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T16:23:55.412888+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_r22_20260520T162247",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2505.13947 \"A Probabilistic Perspective on Model Collapse\" Xu Cheng abstract random walk"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T16:23:55.413039+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2505.13947 \"A Probabilistic Perspective on Model Collapse\" Xu Cheng abstract random walk\"\n\nLinks: [{\"title\":\"A Probabilistic Perspective on Model Collapse\",\"url\":\"https://arxiv.org/pdf/2505.13947\"},{\"title\":\"[2505.13947] A Probabilistic Perspective on Model Collapse\",\"url\":\"https://arxiv.org/abs/2505.13947\"},{\"title\":\"(PDF) A Probabilistic Perspective on Model Collapse\",\"url\":\"https://www.researchgate.net/publication/391910994_A_Probabilistic_Perspective_on_Model_Collapse\"},{\"title\":\"Statistics May 2025\",\"url\":\"https://arxiv.org/list/stat/2025-05?skip=400&show=100\"},{\"title\":\"Machine Learning May 2025\",\"url\":\"https://arxiv.org/list/stat.ML/2025-05?skip=125&show=25\"},{\"title\":\"Escaping Model Collapse via Synthetic Data Verification:\",\"url\":\"https://arxiv.org/pdf/2510.16657\"},{\"title\":\"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.\",\"url\":\"https://arxiv.org/html/2510.16657v1\"}]\n\nI found the paper successfully. Here's the information about arxiv 2505.13947:\n\n**Title:** A Probabilistic Perspective on Model Collapse\n\n**Authors:** Shirong Xu, Hengzhi He, Guang Cheng\n\n**Abstract:** Model collapse has become a critical issue in language model training, making it essential to understand the underlying mechanisms driving this phenomenon. The paper investigates recursive parametric model training from a probabilistic perspective, aiming to characterize the conditions under which model collapse occurs and how it can be mitigated.\n\n**Key Contribution on Random Walk:** The recursive training process is conceptualized as a random walk of the model estimate, highligh\n…[truncated 496 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_r22_20260520T162247",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T16:23:55.413210+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2602.16065 \"Can Generative Artificial Intelligence Survive Data Contamination\" abstract recursive training theoretical\"\n\nLinks: [{\"title\":\"[2602.16065] Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training\",\"url\":\"https://arxiv.org/abs/2602.16065\"},{\"title\":\"Can Generative Artificial Intelligence Survive Data ...\",\"url\":\"https://arxiv.org/pdf/2602.16065\"},{\"title\":\"Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training\",\"url\":\"https://arxiv.org/html/2602.16065\"},{\"title\":\"AI-generated data contamination erodes pathological variability and diagnostic reliability\",\"url\":\"https://www.medrxiv.org/content/10.64898/2026.01.19.26344383.full.pdf\"},{\"title\":\"AI-generated data contamination erodes pathological variability and diagnostic reliability\",\"url\":\"https://arxiv.org/pdf/2601.12946\"},{\"title\":\"AI-generated data contamination erodes pathological variability and diagnostic reliability | alphaXiv\",\"url\":\"https://www.alphaxiv.org/abs/2601.12946\"},{\"title\":\"AI-generated data contamination erodes pathological variability and diagnostic reliability | medRxiv\",\"url\":\"https://www.medrxiv.org/content/10.64898/2026.01.19.26344383v3\"},{\"title\":\"[2601.12946] AI-generated data contamination erodes pathological variability and diagnostic reliability\",\"url\":\"https://arxiv.org/abs/2601.12946\"},{\"title\":\"AI-generated data contamination erodes pathological variability and diagnostic reliability | Research Square\",\"url\":\"https://www.researchsquare.com/article/rs-8753102/v1\"},{\"title\":\"When AI Eats Itself: On the Caveats of AI Autophagy\",\"url\":\"https://arxiv.org/pdf/2405.09597\"}]\n\nPerfect! I found the paper. Here's what the search revealed about arXiv paper 2602.16065:\n\n## Paper Overview\n\nThe paper is titled \"Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Conta\n…[truncated 1128 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_r22_20260520T162247",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T16:23:55.413375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2604.04932 \"Beyond the Final Actor\" RACE fine-grained LLM detection abstract\"\n\nLinks: [{\"title\":\"[2604.04932] Beyond the Final Actor: Modeling the Dual Roles of Creator and Editor for Fine-Grained LLM-Generated Text Detection\",\"url\":\"https://arxiv.org/abs/2604.04932\"},{\"title\":\"Beyond the Final Actor: Modeling the Dual Roles of Creator and Editor for Fine-Grained LLM-Generated Text Detection\",\"url\":\"https://arxiv.org/html/2604.04932\"},{\"title\":\"Beyond the Final Actor: Modeling the Dual Roles of Creator and Editor for Fine-Grained LLM-Generated Text Detection\",\"url\":\"https://arxiv.org/pdf/2604.04932\"},{\"title\":\"Beyond Binary: Towards Fine-Grained LLM-Generated Text Detection via   Role Recognition and Involvement Measurement\",\"url\":\"https://arxiv.org/pdf/2410.14259\"},{\"title\":\"Beyond Binary: Towards Fine-Grained LLM-Generated Text Detection via Role Recognition and Involvement Measurement\",\"url\":\"https://arxiv.org/html/2410.14259v1\"}]\n\nBased on the search results, here is the abstract for arxiv paper 2604.04932:\n\nThe misuse of large language models (LLMs) requires precise detection of synthetic text. Existing works mainly follow binary or ternary classification settings, which can only distinguish pure human/LLM text or collaborative text at best. This remains insufficient for the nuanced regulation, as the LLM-polished human text and humanized LLM text often trigger different policy consequences. The paper explores fine-grained LLM-generated text detection under a rigorous four-class setting. The authors propose RACE (Rhetorical Analysis for Creator-Editor Modeling), a fine-grained detection method that characterizes the distinct signatures of creator and editor. Specifically, RACE utilizes Rhetorical Structure Theory to construct a logic graph for the creator's foundation while extracting Elementary Discourse Unit-level features for the editor's style. Experiments show that RACE outperforms 12 baselines in identifying fine-grain\n…[truncated 189 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_r22_20260520T162247",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T16:23:55.413596+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 参考文献验证结果\n\n### 1. ✅ \"Can Generative AI Survive Data Contamination?\" — arXiv:2602.16065\n\n| 字段 | 审稿人声称 | 实际 |\n|------|-----------|------|\n| arXiv ID | 2602.16065 | **确认存在** |\n| 标题 | Can Generative AI Survive Data Contamination? | **Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training**（审稿人用了缩略标题） |\n| 作者 | 未提及 | Kevin Wang, Hongqian Niu, Didong Li |\n| 日期 | 2026 | 2026-02-17 |\n| 发表状态 | arXiv preprint | arXiv preprint |\n\n**摘要**：研究网络数据中 AI 生成内容混入后，生成模型递归训练（后代模型在前代合成数据上训练）的理论保证。现有理论仅分析离散/高斯简化设定下的 model collapse，本文扩展到更现实的数据分布和灵活的生成模型。\n\n**与本项目相关性**：🔴 **高度相关**。直接研究 contaminated recursive training 的理论框架，与 generational depth estimation 的核心问题（递归合成文本的代际追踪）高度对口。\n\n---\n\n### 2. ✅ \"Beyond the Final Actor\" — arXiv:2604.04932\n\n| 字段 | 审稿人声称 | 实际 |\n|------|-----------|------|\n| arXiv ID | 2604.04932 | **确认存在** |\n| 标题 | Beyond the Final Actor | **Beyond the Final Actor: Modeling the Dual Roles of Creator and Editor for Fine-Grained LLM-Generated Text Detection**（审稿人用了缩略标题） |\n| 作者 | 未提及 | Yang Li, Qiang Sheng, Zhengjia Wang, Yehan Yang, Danding Wang, Juan Cao |\n| 日期 | 2026 | 2026-04-06 |\n| 发表状态 | arXiv preprint | arXiv preprint |\n\n**摘要**：提出细粒度 LLM 生成文本检测的四分类设定（纯人写、纯 LLM 写、LLM 润色人写文本、人修改 LLM 文本），方法 RACE 利用修辞结构理论（RST）构建逻辑图刻画\"创作者\"签名，提取篇章单元级特征刻画\"编辑者\"风格，超越 12 个 baseline。\n\n**与本项目相关性**：🟡 **中等相关**。关注 LLM 生成文本的细粒度检测，但其四分类设定（creator vs editor）与 generational depth estimation（追踪递归生成代数）是不同的维度。可作为 related work 中 fine-grained detection 的代表性工作引用。\n\n---\n\n### 3. ✅ \"A Probabilistic Perspective on Model Collapse\" — arXiv:2505.13947\n\n| 字段 | 审稿人声称 | 实际 |\n|------|-----------|------|\n| arXiv ID | 未提供 | **arXiv:2505.13947**（存在，审稿人未给 ID 但论文真实） |\n| 标题 | A Probabilistic Perspective on Model Collapse | **完全匹配** |\n| 作者 | Xu et al. (2025) | **Shirong Xu, Hengzhi He, Guang Cheng** (UCLA)，姓氏匹配 |\n| 日期 | 2025 | 2025-05-20 |\n| 发表状态 | 未声称 | arXiv preprint |\n\n**摘要**：从概率视角研究递归参数模型训练中的 model collapse。将递归训练过程建模为模型估计的随机游走，样本量决定步长，估计过程决定方向和偏差。严格证明：逐步增加每步训练的样本量是防止 model collapse 的必要条件；当估计无偏时，所需增长率为超线性。\n\n**与本项目相关性**：🔴 **高度相关**。提供 model collapse 的概率论基础和递归训练的理论刻画（随机游走框架），与 generational depth estimation 的理论动机直接相关。\n\n---\n\n### 总结\n\n| # | 论文 | 验证 | Hallucination 风险 | 建议 |\n|---|------|------|-------------------|------|\n| 1 | Can Generative AI Survive Data Contamination? | ✅ 通过 | 无 | 建议引用，高度相关 |\n| 2 | Beyond the Final Actor | ✅ 通过 | 无 | 可引用，中等相关 |\n| 3 | A Probabilistic Perspective on Model Collapse | ✅ 通过 | 无（审稿人只是没给 arXiv ID） | 建议引用，高度相关 |\n\n三篇均为真实论文，无 hallucination。第 3 篇的完整引用为：Shirong Xu, Hengzhi He, and Guang Cheng. \"A Probabilistic Perspective on Model Collapse.\" arXiv:2505.13947, May 2025.\n\nSources:\n- [Can Generative AI Survive Data Contamination?](https://arxiv.org/abs/2602.16065)\n- [Beyond the Final Actor](https://arxiv.org/abs/2604.04932)\n- [A Probabilistic Perspective on Model Collapse](https://arxiv.org/abs/2505.13947)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_r22_20260520T162247"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/research-reference-verification-r22.md"
+}

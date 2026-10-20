@@ -1,0 +1,57 @@
+{
+  "exp_id": "exp_code_qwen1b5_pythia_scorer",
+  "project": "gen-depth-contamination",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:30:03.239Z",
+    "updated_at": "2026-05-19T06:55:22.421Z",
+    "hypothesis": "Code domain scorer confound control: Qwen-1.5B Code K*=2 uses same-family Qwen scorer. D060 Wikipedia showed Qwen scorer inflates AUC by +0.005~0.027. If Pythia-1.4B scorer yields K*=2 on same Qwen Code text, confirms K*=2 is text-intrinsic (not scorer artifact). If K*=1, Qwen Code K*=2 is partially scorer-driven, weakening domain ceiling claim. Cross-family scorer validation on existing exp_code_qwen1b5 depth 0-5 data.",
+    "parent": "exp_code_qwen1b5",
+    "server": "cqa1-22115",
+    "gpu": "cuda:0",
+    "spec": {
+      "checkpoint_path": "results/exp_code_qwen1b5_pythia_scorer/",
+      "log_path": "~/runs/gen-depth-contamination/exp_code_qwen1b5_pythia_scorer.log"
+    },
+    "pid": "131475",
+    "log_path": "~/runs/gen-depth-contamination/exp_code_qwen1b5_pythia_scorer.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/gen-depth-contamination && bash scripts/exp_code_qwen1b5_pythia_scorer.sh\"",
+      "code_commit": "0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5",
+      "finished_at": "2026-05-19T06:51:51.622Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T06:51:55.524732+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "k_star": 2,
+      "theta": 0.6,
+      "auc_0v1": 0.9076,
+      "auc_1v2": 0.7197,
+      "auc_2v3": 0.5308,
+      "auc_3v4": 0.5236,
+      "auc_4v5": 0.5084,
+      "jsd_0v1": 0.065423,
+      "jsd_1v2": 0.035809,
+      "jsd_2v3": 0.004315,
+      "jsd_3v4": 0.003182,
+      "jsd_4v5": 0.003047,
+      "ordinal_mae": 1.2578,
+      "ordinal_accuracy": 0.3433,
+      "scorer": "pythia-1.4b"
+    },
+    "notes": "Code domain K*=2 confirmed scorer-independent. Pythia-1.4B scorer reproduces K*=2 on Qwen-1.5B Code text (same as Qwen self-scorer). AUC deltas vs original: 0v1 Δ=-0.031, 1v2 Δ=-0.019 (minor drop, Pythia slightly weaker feature extractor), 2v3 Δ=+0.001 (identical). Boundary transition 1v2→2v3 robust: 0.7197→0.5308, clear drop below θ=0.6. JSD pattern consistent: sharp collapse at depth 2→3. Combined with arXiv cross-scorer results (LLaMA/Mistral K*=3 preserved), confirms generational depth K* is a text-intrinsic property governed by domain complexity, not scorer choice."
+  },
+  "timestamp": "2026-05-19T06:55:22.658408+00:00",
+  "trigger": "update_registry"
+}

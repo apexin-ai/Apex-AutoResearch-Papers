@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "34489a452efcd48b6de0",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "diagnose exp 018 llama8b depth",
+  "task_key": "worker_diagnose_exp_018_llama8b_depth_20260516T153756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_018_llama8b_depth_20260516T153756_result.json",
+    "occurrence": 1,
+    "bytes": 2341,
+    "sha256": "39d8e3216e0753a9515498f8945ca2ca89af294d0f22edc07fb0225604d99a3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验**没有失败**——它成功完成了。\n\n## 诊断结论\n\n日志最后一行 `23:27:38 [INFO] Pipeline complete.`，所有产出文件齐全：\n- `data/exp_018_llama8b/`: depth_0 到 depth_5 的 6 个 JSONL（每层 ~4MB，5000 samples）+ features.csv\n- `results/exp_018_llama8b/`: pairwise_auc.json, jsd.json, ordinal_results.json, feature_importance.json, summary.txt\n\n进程在 23:27 正常退出（exit code 0）。cron 检测到\"进程死亡\"是因为进程正常结束后 PID 消失，不是崩溃。没有 W&B metrics 是因为这个 pipeline 没有集成 W&B logging（它直接写 JSON 结果文件）。\n\n## 关键结果\n\n| Metric | Value |\n|--------|-------|\n| K* (max depth AUC > 0.60) | **2** |\n| AUC(0v1) | 0.9225 |\n| AUC(1v2) | 0.6123 |\n| AUC(2v3) | 0.5274 (≈random) |\n| Ordinal MAE | 1.3146 |\n| Top feature | surp_d1_skew |\n\n```json\n{\"root_cause\":\"实验未失败——进程正常完成(exit 0)，日志末尾为 '23:27:38 [INFO] Pipeline complete.'。cron 误报是因为正常退出后 PID 消失\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"无需修复——实验已成功完成\",\"cron 监控脚本应区分正常退出(exit 0)和异常退出(exit != 0)\",\"如需 W&B tracking，需在 run_pipeline.py 中集成 wandb.log\"],\"can_auto_fix\":false,\"partial_results\":\"全部完成: 6 depth layers × 5000 samples 生成完毕，features extracted，pairwise AUC/JSD/ordinal classification 分析完成。K*=2，即 LLaMA-3.1-8B continuation 模式下 depth ≥ 3 后特征分布趋于饱和(AUC ≈ 0.52)\"}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "实验未失败——进程正常完成(exit 0)，日志末尾为 '23:27:38 [INFO] Pipeline complete.'。cron 误报是因为正常退出后 PID 消失",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "无需修复——实验已成功完成",
+                "cron 监控脚本应区分正常退出(exit 0)和异常退出(exit != 0)",
+                "如需 W&B tracking，需在 run_pipeline.py 中集成 wandb.log"
+              ],
+              "can_auto_fix": false,
+              "partial_results": "全部完成: 6 depth layers × 5000 samples 生成完毕，features extracted，pairwise AUC/JSD/ordinal classification 分析完成。K*=2，即 LLaMA-3.1-8B continuation 模式下 depth ≥ 3 后特征分布趋于饱和(AUC ≈ 0.52)"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-018-llama8b-depth.md"
+}

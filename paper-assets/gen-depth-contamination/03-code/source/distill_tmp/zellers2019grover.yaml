@@ -1,0 +1,23 @@
+paper_key: "zellers2019grover"
+title: "Defending Against Neural Fake News"
+venue: "NeurIPS 2019"
+full_text_available: false
+
+research:
+  baselines: [GPT-2 discriminator, BERT discriminator, FastText, stylistic feature classifiers]
+  metrics:
+    - {name: "detection accuracy", direction: "higher_better"}
+    - {name: "human evaluation accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "RealNews", size: "120K articles from Common Crawl"}
+  ablation_dimensions: [generator size, discriminator architecture, training data amount]
+  training_recipe: {details: "Grover generator trained on RealNews corpus; discriminator fine-tuned on generated vs real articles"}
+  method_family: "generator-as-discriminator detection"
+
+positioning:
+  core_claim: "The best defense against neural fake news generators is the generator itself, with Grover achieving 92% detection accuracy vs 73% for standard discriminators"
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

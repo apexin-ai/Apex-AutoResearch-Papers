@@ -1,0 +1,79 @@
+{
+  "exp_id": "exp_002_olmo_depth",
+  "project": "gen-depth-contamination",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T20:06:24.766Z",
+    "updated_at": "2026-05-13T02:35:52.305Z",
+    "hypothesis": "K* 跨模型一致性验证：OLMo-1B 在相同种子数据和解码策略下的 K* 是否与 Qwen2.5-1.5B 一致（K*=2）",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/allenai/OLMo-1B-hf --data_dir /root/autodl-tmp/gen-depth-contamination/data_exp002_olmo --results_dir /root/autodl-tmp/gen-depth-contamination/results_exp002_olmo --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\"",
+      "server": "autodl-4090d",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "20225",
+      "log_path": "~/runs/gen-depth-contamination/exp_002_olmo_depth.log",
+      "submitted_at": "2026-05-13T00:16:07.960Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data_exp002_olmo",
+      "data_count": 5000,
+      "model_name": "allenai/OLMo-1B-hf",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/data_exp002_olmo/"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-13T02:31:18.880Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-13T02:31:19.738113+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "k_star": 2,
+      "pairwise_auc": {
+        "0v1": 0.997,
+        "1v2": 0.6146,
+        "2v3": 0.5497,
+        "3v4": 0.509,
+        "4v5": 0.5044
+      },
+      "pairwise_auc_std": {
+        "0v1": 0.0004,
+        "1v2": 0.0029,
+        "2v3": 0.004,
+        "3v4": 0.0084,
+        "4v5": 0.0136
+      },
+      "pairwise_jsd": {
+        "0v1": 0.23941,
+        "1v2": 0.012972,
+        "2v3": 0.00735,
+        "3v4": 0.003968,
+        "4v5": 0.003851
+      },
+      "ordinal_mae": 1.1813,
+      "ordinal_accuracy": 0.3685,
+      "top_features": [
+        "surp_d1_mean",
+        "surp_d1_skew",
+        "freq_kurtosis",
+        "surp_d2_mean",
+        "surp_mean"
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-13T02:35:52.326493+00:00",
+  "trigger": "update_registry"
+}

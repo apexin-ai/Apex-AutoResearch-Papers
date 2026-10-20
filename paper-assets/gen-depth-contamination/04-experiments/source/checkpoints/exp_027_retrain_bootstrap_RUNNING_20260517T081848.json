@@ -1,0 +1,61 @@
+{
+  "exp_id": "exp_027_retrain_bootstrap",
+  "project": "gen-depth-contamination",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T07:43:03.273Z",
+    "updated_at": "2026-05-17T08:18:48.727Z",
+    "hypothesis": "Retrain-chain 的 pairwise AUC（0v1 到 3v4）在 10000-iteration bootstrap 95% CI 下均显著高于 θ=0.60，确认 K*≥4 具有统计严格性。",
+    "parent": "exp_008_retrain_chain_v2",
+    "spec": {
+      "command": "python scripts/exp027_retrain_bootstrap.py",
+      "server": "cqa1-22115",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/features/exp_008_retrain_chain_v2_features.csv",
+      "data_count": 5000,
+      "model_name": "LightGBM (bootstrap analysis)",
+      "seed": 42,
+      "checkpoint_source": "exp_008_retrain_chain_v2 (retrain-chain AUC data)",
+      "eval_data": "exp_008_retrain_chain_v2 pairwise depth features (0v1, 1v2, 2v3, 3v4)"
+    },
+    "metrics": {
+      "bootstrap_iterations": 10000,
+      "pairs": {
+        "0v1": {
+          "auc_point": 0.9847,
+          "ci_lower": 0.9828,
+          "ci_upper": 0.9864,
+          "perm_p": 0.0001,
+          "ci_lower_gt_theta": true
+        },
+        "1v2": {
+          "auc_point": 0.9482,
+          "ci_lower": 0.9443,
+          "ci_upper": 0.952,
+          "perm_p": 0.0001,
+          "ci_lower_gt_theta": true
+        },
+        "2v3": {
+          "auc_point": 0.8885,
+          "ci_lower": 0.8829,
+          "ci_upper": 0.894,
+          "perm_p": 0.0001,
+          "ci_lower_gt_theta": true
+        },
+        "3v4": {
+          "auc_point": 0.7977,
+          "ci_lower": 0.7903,
+          "ci_upper": 0.8051,
+          "perm_p": 0.0001,
+          "ci_lower_gt_theta": true
+        }
+      },
+      "key_finding": "All 4 retrain-chain pairwise AUCs have CI_lower >> theta=0.60 (min CI_lower=0.7903). K*>=4 statistically confirmed with p<0.001."
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T08:18:48.870796+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17df7f7c069fcb6fdb77",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp 022 accelerate",
+  "task_key": "worker_code_exp_022_accelerate_20260516T163539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_022_accelerate_20260516T163539_result.json",
+    "occurrence": 1,
+    "bytes": 838,
+    "sha256": "93fa0c61e15a6d443a1f0857291c5b6fe7ede3f3453225d19579d93ddb8c08b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both sessions running successfully:\n\n- **cuda:0** (GPU 0, 4772 MiB): Running `qwen_base×qwen_instruct`, feature extraction depth 0\n- **cuda:1** (GPU 1, 4280 MiB): Running `pythia_greedy×pythia`, feature extraction depth 0  \n- **cuda:3** (GPU 3, 5672 MiB): Continuing `pythia_greedy×qwen_base` (will finish soon, then skip combos already done by cuda:0/1)\n\n分配总结：\n| GPU | Session | 组合数 | 内容 |\n|-----|---------|--------|------|\n| cuda:0 | exp022_cuda0 | 5 | qwen_base×qwen_instruct, qwen_cont256×{4 scorers} |\n| cuda:1 | exp022_cuda1 | 2 | pythia_greedy×{pythia, olmo} |\n| cuda:3 | exp022 (原) | ~1剩余 | pythia_greedy×qwen_base (即将完成)，之后跳过已完成的 |\n\ncuda:3 的原始脚本会在到达后续组合时发现 `summary.txt` 已存在自动跳过，不会冲突。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-022-accelerate.md"
+}

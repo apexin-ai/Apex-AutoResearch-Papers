@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_32b_c4_6class",
+  "project": "gen-depth-contamination",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:31:06.464Z",
+    "updated_at": "2026-05-19T22:31:18.157Z",
+    "hypothesis": "32B DeBERTa 6-class rerun (depth 0-5) to fill 4v5 pair in paper table. If K* remains 2, confirms boundary even with full depth range; 4v5 AUC provides additional evidence of signal decay pattern."
+  },
+  "timestamp": "2026-05-19T22:31:18.580930+00:00",
+  "trigger": "update_registry"
+}

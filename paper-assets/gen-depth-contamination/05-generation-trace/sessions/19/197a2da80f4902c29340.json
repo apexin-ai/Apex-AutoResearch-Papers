@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "197a2da80f4902c29340",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp C permutation 10k",
+  "task_key": "worker_code_exp_C_permutation_10k_20260515T102312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_C_permutation_10k_20260515T102312_result.json",
+    "occurrence": 1,
+    "bytes": 1608,
+    "sha256": "7c442bc32a18926996dbb237d34d0123d943e1be4f3a3c03aeb8ccccd3033ab1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "10,000 permutation resamples 完成（~13 分钟）。结果已保存到 `artifacts/exp_C_permutation_10k.json`。\n\n**汇总表：**\n\n| Config | Pair | AUC | 95% CI | p-value |\n|--------|------|-----|--------|---------|\n| **qwen_rw** | 0v1 | 0.9956 | [0.9946, 0.9965] | 0.0001 |\n| | 1v2 | 0.6955 | [0.6860, 0.7044] | 0.0001 |\n| | 2v3 | 0.5893 | [0.5801, 0.5986] | 0.0001 |\n| | 3v4 | 0.5435 | [0.5333, 0.5545] | 0.0001 |\n| | 4v5 | 0.5340 | [0.5236, 0.5459] | 0.0001 |\n| **pythia** | 0v1 | 0.9932 | [0.9921, 0.9943] | 0.0001 |\n| | 1v2 | 0.6539 | [0.6445, 0.6638] | 0.0001 |\n| | 2v3 | 0.5514 | [0.5410, 0.5624] | 0.0001 |\n| | 3v4 | 0.5152 | [0.5044, 0.5255] | 0.0033 |\n| | 4v5 | 0.5136 | [0.5027, 0.5248] | 0.0097 |\n| **olmo** | 0v1 | 0.9970 | [0.9964, 0.9975] | 0.0001 |\n| | 1v2 | 0.6145 | [0.6050, 0.6245] | 0.0001 |\n| | 2v3 | 0.5496 | [0.5399, 0.5593] | 0.0001 |\n| | 3v4 | 0.5091 | [0.4980, 0.5198] | **0.0627** |\n| | 4v5 | 0.5045 | [0.4937, 0.5151] | **0.2258** |\n| **qwen_cont** | 0v1 | 0.9971 | [0.9963, 0.9978] | 0.0001 |\n| | 1v2 | 0.6112 | [0.6003, 0.6212] | 0.0001 |\n| | 2v3 | 0.5609 | [0.5512, 0.5718] | 0.0001 |\n| | 3v4 | 0.5409 | [0.5307, 0.5516] | 0.0001 |\n| | 4v5 | 0.5141 | [0.5035, 0.5249] | 0.0067 |\n\n**关键发现：**\n- 之前 500 次 permutation 时 p=0.002（floor），现在 10k 次大部分变为 p=0.0001（= 1/10001，conservative estimator）\n- OLMo 3v4 和 4v5 是仅有的不显著 pairs（p=0.063, p=0.226），CI 跨越 0.5——符合 depth signal 在深层消失的预期\n- Pythia 4v5 边缘显著（p=0.0097），但 AUC 仅 0.5136"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-c-permutation-10k.md"
+}

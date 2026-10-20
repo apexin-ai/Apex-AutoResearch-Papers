@@ -1,0 +1,74 @@
+{
+  "exp_id": "exp_deberta_c4_1b5_pythia",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T00:14:05.964Z",
+    "updated_at": "2026-05-20T00:19:10.196Z",
+    "hypothesis": "C4 1.5B DeBERTa pythia_greedy config: apple-to-apple comparison with OBD Table 2. If K*=2 consistent with qwen_rw, confirms boundary is generator-invariant at 1.5B scale on C4.",
+    "spec": {
+      "server": "westd-42896",
+      "gpu": [
+        "cuda:1"
+      ],
+      "command": "python scripts/run_deberta_c4_1b5.py --config pythia_greedy --gpu 1",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data_exp020_pythia_greedy/",
+      "data_count": 30000,
+      "model_name": "DeBERTa-v3-base",
+      "seed": 42,
+      "checkpoint_path": "n/a",
+      "log_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_c4_1b5/pythia_greedy.json"
+    },
+    "metrics": {
+      "config": "pythia_greedy",
+      "kstar": 2,
+      "kstar_theta": 0.6,
+      "pairwise_auc": {
+        "0v1": 0.9998,
+        "1v2": 0.9284,
+        "2v3": 0.5419,
+        "3v4": 0.5163,
+        "4v5": 0.5098
+      },
+      "ci_95": {
+        "0v1": [
+          0.9996,
+          0.9999
+        ],
+        "1v2": [
+          0.923,
+          0.9331
+        ],
+        "2v3": [
+          0.5354,
+          0.5486
+        ],
+        "3v4": [
+          0.509,
+          0.5237
+        ],
+        "4v5": [
+          0.5037,
+          0.516
+        ]
+      },
+      "obd_baseline": {
+        "0v1": 0.9992,
+        "1v2": 0.8838,
+        "2v3": 0.5342,
+        "3v4": 0.5228,
+        "4v5": 0.5162
+      },
+      "delta_vs_obd_1v2": 0.0446,
+      "training_time_min": 37.3
+    },
+    "conclusion": "success",
+    "notes": "C4 1.5B DeBERTa pythia_greedy K*=2, consistent with qwen_rw K*=2. 1v2 AUC=0.9284 far exceeds OBD 0.8838 (+4.5pp), but 2v3=0.5419 still below θ=0.60, boundary unchanged. Notably pythia_greedy 1v2 much higher than qwen_rw (0.9284 vs 0.7052), likely due to greedy decoding being more distinguishable. OBD baseline also higher for pythia_greedy (0.8838 vs 0.6262). Results on westd-42896.",
+    "completed_at": "2026-05-20T00:19:10.196Z"
+  },
+  "timestamp": "2026-05-20T00:19:10.429696+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,67 @@
+% C4-only LOFO table (use in main text)
+\begin{table}[t]
+\centering
+\small
+\caption{Leave-One-Family-Out cross-validation for $\theta$ on C4 domain. Each fold removes one architecture family, derives $\hat{\theta}$ from the midpoint of the gap between $\min(\text{AUC}_{1{\text{v}}2})$ and $\max(\text{AUC}_{2{\text{v}}3})$ in the remaining families, then predicts $K^*$ for the held-out family. 8/9 predictions (89\%) agree with $\theta{=}0.60$.}
+\label{tab:theta_lofo_c4}
+\begin{tabular}{l l c c c c c c}
+\toprule
+Held-out & Model & $\text{AUC}_{1\text{v}2}$ & $\text{AUC}_{2\text{v}3}$ & $\hat{\theta}$ & $K^*_{\hat{\theta}}$ & $K^*_{0.60}$ & Match \\
+\midrule
+Pythia & Pythia-1.4B & 0.6539 & 0.5515 & 0.5914 & 2 & 2 & \cmark \\
+OLMo & OLMo-1B & 0.6146 & 0.5497 & 0.5914 & 2 & 2 & \cmark \\
+Qwen & Qwen-1.5B-RW & 0.6957 & 0.5893 & 0.5725 & 3 & 2 & \xmark \\
+ & Qwen-7B & 0.6178 & 0.5460 & 0.5725 & 2 & 2 & \cmark \\
+ & Qwen-1.5B-base & 0.6262 & 0.5496 & 0.5725 & 2 & 2 & \cmark \\
+ & Qwen-1.5B-cont & 0.6114 & 0.5609 & 0.5725 & 2 & 2 & \cmark \\
+ & Qwen-14B & 0.6210 & 0.5494 & 0.5725 & 2 & 2 & \cmark \\
+LLaMA & LLaMA-3.1-8B & 0.6123 & 0.5274 & 0.5914 & 2 & 2 & \cmark \\
+Mistral & Mistral-7B & 0.5935 & 0.5402 & 0.6004 & 1 & 1 & \cmark \\
+\midrule
+\multicolumn{8}{l}{$\hat{\theta}$ range: [0.5725, 0.6004], mean: 0.5819, agreement: 8/9 (89\%)} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% Combined 3-domain LOFO table (use in appendix)
+\begin{table*}[t]
+\centering
+\small
+\caption{Leave-One-Family-Out (LOFO) cross-validation of $\theta$ across three domains. Each fold holds out one architecture family, derives $\hat{\theta}$ as the midpoint between $\min(\text{AUC}_{1\text{v}2})$ and $\max(\text{AUC}_{2\text{v}3})$ over the remaining families, and predicts $K^*$ for held-out models. C4 (primary): 8/9 agreement (89\%). arXiv: 6/6 (100\%). Wikipedia: 1/6 (17\%, see text).}
+\label{tab:theta_lofo}
+\begin{tabular}{l l l c c c c c c}
+\toprule
+Domain & Held-out & Model & $\text{AUC}_{1\text{v}2}$ & $\text{AUC}_{2\text{v}3}$ & $\hat{\theta}$ & $K^*_{\hat{\theta}}$ & $K^*_{0.60}$ & Match \\
+\midrule
+C4 & Pythia & Pythia-1.4B & 0.6539 & 0.5515 & 0.5914 & 2 & 2 & \cmark \\
+ & OLMo & OLMo-1B & 0.6146 & 0.5497 & 0.5914 & 2 & 2 & \cmark \\
+ & Qwen & Qwen-1.5B-RW & 0.6957 & 0.5893 & 0.5725 & 3 & 2 & \xmark \\
+ &  & Qwen-7B & 0.6178 & 0.5460 & 0.5725 & 2 & 2 & \cmark \\
+ &  & Qwen-1.5B-base & 0.6262 & 0.5496 & 0.5725 & 2 & 2 & \cmark \\
+ &  & Qwen-1.5B-cont & 0.6114 & 0.5609 & 0.5725 & 2 & 2 & \cmark \\
+ &  & Qwen-14B & 0.6210 & 0.5494 & 0.5725 & 2 & 2 & \cmark \\
+ & LLaMA & LLaMA-3.1-8B & 0.6123 & 0.5274 & 0.5914 & 2 & 2 & \cmark \\
+ & Mistral & Mistral-7B & 0.5935 & 0.5402 & 0.6004 & 1 & 1 & \cmark \\
+\cmidrule{2-9}
+ & \multicolumn{7}{l}{$\hat{\theta}$ $\in$ [0.5725, 0.6004], agreement: 8/9 (89\%)} \\
+\midrule
+arXiv & Pythia & Pythia-1.4B & 0.8047 & 0.6545 & 0.5735 & 3 & 3 & \cmark \\
+ & OLMo & OLMo-1B & 0.5034 & 0.5069 & 0.7296 & 1 & 1 & \cmark \\
+ & Qwen & Qwen-1.5B & 0.8581 & 0.6436 & 0.5789 & 3 & 3 & \cmark \\
+ &  & Qwen-7B & 0.8347 & 0.6255 & 0.5789 & 3 & 3 & \cmark \\
+ & LLaMA & LLaMA-3.1-8B & 0.8447 & 0.6215 & 0.5789 & 3 & 3 & \cmark \\
+ & Mistral & Mistral-7B & 0.8201 & 0.6275 & 0.5789 & 3 & 3 & \cmark \\
+\cmidrule{2-9}
+ & \multicolumn{7}{l}{$\hat{\theta}$ $\in$ [0.5735, 0.7296], agreement: 6/6 (100\%)} \\
+\midrule
+Wikipedia & Pythia & Pythia-1.4B & 0.5846 & 0.5445 & 0.5274 & 3 & 1 & \xmark \\
+ & OLMo & OLMo-1B & 0.4986 & 0.5012 & 0.5557 & 1 & 1 & \cmark \\
+ & Qwen & Qwen-1.5B & 0.6193 & 0.5498 & 0.5215 & 4 & 2 & \xmark \\
+ &  & Qwen-7B & 0.6108 & 0.5562 & 0.5215 & 4 & 2 & \xmark \\
+ & LLaMA & LLaMA-3.1-8B & 0.5954 & 0.5392 & 0.5274 & 3 & 1 & \xmark \\
+ & Mistral & Mistral-7B & 0.5552 & 0.5236 & 0.5274 & 2 & 1 & \xmark \\
+\cmidrule{2-9}
+ & \multicolumn{7}{l}{$\hat{\theta}$ $\in$ [0.5215, 0.5557], agreement: 1/6 (17\%)} \\
+\bottomrule
+\end{tabular}
+\end{table*}

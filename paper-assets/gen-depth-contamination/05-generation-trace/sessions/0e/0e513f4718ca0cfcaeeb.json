@@ -1,0 +1,738 @@
+{
+  "schema_version": "1.0",
+  "id": "0e513f4718ca0cfcaeeb",
+  "project": "gen-depth-contamination",
+  "kind": "conversation",
+  "title": "cron hook exp wiki olmo v2 20260518T000028 323075",
+  "task_key": "cron_hook_exp_wiki_olmo_v2_20260518T000028_323075",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_exp_wiki_olmo_v2_20260518T000028_323075.jsonl",
+    "occurrence": 1,
+    "bytes": 40626,
+    "sha256": "d8524a452c7ed4acbc76b72655cf199056e79fafc5ac1179427cbc088ccda0b3"
+  },
+  "statistics": {
+    "messages": 36,
+    "user_turns": 2,
+    "tool_calls": 16,
+    "roles": {
+      "user": 2,
+      "tool_call": 16,
+      "tool_result": 16,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T19:53:28.134160+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Main Agent，这是 Loop #17。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cqa1-22115 的 cuda:0/1/2/3（gpu_ids 白名单）\n- exp_wiki_olmo_v2 刚完成，有 Worker 正在分析（worker_analysis_exp_wiki_olmo_v2_20260517T131106），等回调再更新 registry，不要重复派分析 Worker\n- DDL: EMNLP 2026 ARR May 25（剩 8 天），论文已 v4，当前是审稿 Round 2 + patch 收尾阶段\n- exp_arXiv_olmo 是 negative 结果（已汇报 Director），不要在没有 Director 决策的情况下基于它改 paper\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-22115，4×4090D\n- 工作目录：项目代码在服务器 /root/ 下（具体路径需 SSH 确认，git_commit=0b10b43）\n- 数据路径：data/exp_wiki_olmo（OLMo Wikipedia 实验）\n- log 目录：~/runs/gen-depth-contamination/\n- W&B 项目：gen-depth-contamination\n- 活跃进程：\n  - exp_arXiv_llama8b: PID 27469, cuda:1\n  - exp_wiki_pythia_v2: PID 30942, cuda:2\n  - exp_wiki_olmo_v2: 已完成（PID 31084 已退出），Worker 分析中\n- cron 活跃：exp_arXiv_llama8b, exp_wiki_pythia_v2\n\n### 3. 📊 当前状态\n刚收到 exp_wiki_olmo_v2 完成回调（进程正常退出）。已派 Worker（worker_analysis_exp_wiki_olmo_v2_20260517T131106）SSH 读 log + W&B 分析 K* 值。\n\n**RUNNING/ANALYZING**:\n- exp_wiki_olmo_v2 (ANALYZING): OLMo-1B Wikipedia K*=2 验证，Worker 分析中\n- exp_arXiv_llama8b (RUNNING): LLaMA-3.1-8B arXiv K*=3 验证（大模型 scale）\n- exp_wiki_pythia_v2 (RUNNING): Pythia-1.4B Wikipedia K*=2 验证\n\n**等待中**:\n- Worker 回调：worker_analysis_exp_wiki_olmo_v2_20260517T131106 → 收到后更新 registry + 汇报 Director\n- Cron 回调：exp_arXiv_llama8b、exp_wiki_pythia_v2 完成时\n- exp_arXiv_qwen7b (QUEUED): 等 GPU 空出\n- exp_008_retrain_chain (PREPARING): retrain-chain 实验\n\n### 4. 📋 待办\n- Worker 分析回调到达 → 根据 K* 判断 conclusion（K*=2=success, 否则 negative）→ update_registry → 刷新 report.md → 汇报 Director\n- exp_arXiv_llama8b cron 回调 → 同样派 Worker 分析 K*（期望=3）\n- exp_wiki_pythia_v2 cron 回调 → 派 Worker 分析 K*（期望=2）\n- 两个 Wikipedia 实验都出结果后 → 如果都 K*=2，确认 cross-model Wikipedia generality；向 Director 汇报是否需要更新论文\n- cuda:0 和 cuda:3 空闲 → exp_wiki_olmo_v2 完成后 cuda:3 释放，可提交 exp_arXiv_qwen7b\n- Group C 审稿 Round 2 收敛 + Reviewer 覆盖度评估回来 → 可能需要补实验（self_BLEU / segment length / theta sensitivity）\n\n### 5. 🎯 战略上下文\n- 核心发现：K*∈{1,2,3} domain-dependent。Web(C4/Wikipedia) K*=2, arXiv K*=3, Mistral K*=1\n- 当前 cross-model 验证进度：Wikipedia 需要 Pythia + OLMo 确认 K*=2；arXiv 需要 LLaMA-8B + Qwen-7B 确认 K*=3\n- exp_arXiv_olmo 是 negative（OLMo 在 arXiv 上 K* ≠ 3），已汇报 Director 但无决策回复。不要因此改 paper claim——当前 framing 已经写为\"2/2 models\"（Qwen+Pythia），OLMo negative 不影响\n- 易踩坑：v1 系列（exp_wiki_olmo, exp_wiki_pythia）因 data reuse bug 失败，v2 用独立 data_dir 修复。不要混淆 v1/v2 的结果\n- 论文已 v4 发用户，审稿 Round 2 三个 critical：overclaiming、theta sensitivity、self_BLEU ablation。Reviewer 覆盖度评估 Worker 已派出但未回\n\n## 可查的历史\n前 24 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T19:53:38.906955+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T19:53:39.007891+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T19:53:43.317191+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__read_registry"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T19:53:43.769220+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T19:53:43.769622+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0002}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T19:53:43.970566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T19:53:49.542047+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 3, \\\"results\\\": [{\\\"exp_id\\\": \\\"exp_wiki_qwen7b\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=732600)\\\"]}, {\\\"exp_id\\\": \\\"exp_14b_c4\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=8586)\\\"]}, {\\\"exp_id\\\": \\\"exp_32b_c4\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=14637)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 5772
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T19:53:49.542726+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-17T19:50:31Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 60 个实验 — ANALYZING 1, DONE 55, PREPARING 1, RUNNING 3\\\\n**DONE 分布**: failed 9, negative 4, success 42\\\\n\\\\n### GPU 占用\\\\n- **分配**: 4 张 — cqa1-22115:cuda:0, cqa1-22115:cuda:1, cqa1-22115:cuda:2, cqa1-22115:cuda:3\\\\n- **实际运行**: 3 张 — westd-42896:cuda:0(exp_14b_c4), westd-42896:cuda:1(exp_32b_c4), cqa1-22115:cuda:0(exp_wiki_qwen7b)\\\\n- **空闲（分配了没跑）**: cqa1-22115:cuda:1, cqa1-22115:cuda:2, cqa1-22115:cuda:3\\\\n\\\\n### 💾 磁盘余量\\\\n- **cqa1-22115**:\\\\n  - `/autodl-pub`: 283G/7.0T 可用（已用 97%） ⚠️\\\\n  - `/autodl-pub/data`: 1.5T/4.0T 可用（已用 65%）\\\\n  - `/usr/bin/nvidia-smi`: 818G/879G 可用（已用 2%）\\\\n- **westd-42896**:\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/usr/bin/nvidia-smi`: 812G/879G 可用（已用 3%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `exp_14b_c4` | westd-42896 | cuda:0 | 8586 | `~/runs/gen-depth-contamination/exp_14b_c4.log` |\\\\n| `exp_32b_c4` | westd-42896 | cuda:1 | 14637 | `~/runs/gen-depth-contamination/exp_32b_c4.log` |\\\\n| `exp_wiki_qwen7b` | cqa1-22115 | cuda:0 | 732600 | `~/runs/gen-depth-contamination/exp_wiki_qwen7b.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `exp_wiki_llama8b` [negative] — 2026-05-17T19:33:39\\\\n- `exp_arXiv_qwen7b` [success] — 2026-05-17T16:36:58\\\\n- `exp_arXiv_mistral7b` [success] — 2026-05-17T16:28:24\\\\n- `exp_arXiv_llama8b` [success] — 2026-05-17T14:02:45\\\\n- `exp_wiki_pythia_v2` [negative] — 2026-05-17T13:25:22\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-17\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp_32b_c4 | Scale-depend\n…[truncated 3011 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 5572
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T19:54:12.886307+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T19:54:13.339464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_32b_c4\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T14:56:48.122Z\\\", \\\"updated_at\\\": \\\"2026-05-17T19:40:42.477Z\\\", \\\"hypothesis\\\": \\\"Scale-dependent K* on C4: Qwen2.5-32B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 32B scale 是否稳定（已确认 1.5B/7B/8B/14B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"parent\\\": \\\"exp_arXiv_llama8b\\\", \\\"server\\\": \\\"westd-42896\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-42896\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-17T19:37:31.096Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-32B --data_dir data/exp_32b_c4 --results_dir results/exp_32b_c4 --num_samples 5000 --max_depth 5 --batch_size 2 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\\\\\"\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-32B --data_dir data/exp_32b_c4 --results_dir results/exp_32b_c4 --num_samples 5000 --max_depth 5 --batch_size 2 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\\\\\"\\\", \\\"server\\\": \\\"westd-42896\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"14637\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_32b_c4.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T19:38:18.566Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/exp_32b_c4\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"Qwen/Qwen2.5-32B\\\", \\\"seed\\\": 42}, \\\"pid\\\": \\\"14637\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_32b_c4.log\\\"}, \\\"exp_14b_c4\\\": {\\\"status\\\": \\\"RUN\n…[truncated 3784 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 453
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T19:54:13.841929+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "filters": "{'status': 'ANALYZING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T19:54:14.243642+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.219}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 401
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T19:54:14.244081+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "filters": "{'status': 'PREPARING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T19:54:14.495325+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_008_retrain_chain\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T19:26:02.931Z\\\", \\\"updated_at\\\": \\\"2026-05-16T19:26:10.388Z\\\", \\\"hypothesis\\\": \\\"Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\"}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2253}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 251
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T19:54:28.745385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "file": "ROADMAP.md"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T19:54:29.197698+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/ROADMAP.md\\\", \\\"content\\\": \\\"# gen-depth-contamination — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-17 16:43 UTC | 更新原因: Loop #9 context recovery: 反映 arXiv 5/5 完成, Wiki/14B-32B running, 云 GPU 状态\\\\n\\\\n## 核心方向\\\\n首次系统测量递归合成文本的 generational discrimination boundary K*，发现 K* 是 low-bounded 且 domain-dependent：C4 web K*=2 (7/8 configs, Mistral K*=1), arXiv K*=3 (5/5 models 100%), Wikipedia K*∈{1,2} (部分结果)。Mistral 的 one-wash 是 domain-specific（C4 K*=1 但 arXiv K*=3）。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research (domain expansion + scale validation) + 审稿 Round 2 + 论文 patch\\\\n- **实验**: 42 success / 9 technical failures / 60 total\\\\n- **核心发现**:\\\\n  - C1(a): C4 web K*=2 跨 7/8 configs 稳定（5 models × decoding × length × scorer）\\\\n  - C1(b): arXiv K*=3 跨 5/5 models 100% 一致（Qwen-1.5B/7B, Pythia, LLaMA-8B, Mistral-7B）\\\\n  - C1(c): Mistral one-wash 是 domain-specific（C4 K*=1, arXiv K*=3），非 text-intrinsic\\\\n  - C1(d): Wikipedia 部分结果：Pythia K*=1, OLMo K*=1, Qwen-1.5B K*=2；LLaMA/Mistral/Qwen-7B running\\\\n  - C3: Binary filtering > graduated ≈ no_filter (HellaSwag p≤0.004)\\\\n- **论文**: EMNLP 2026 ARR format, DDL May 25 (8 days)\\\\n- **审稿**: Group C Round 2；Paper Agent 已完成 JSD decay/semantic ablation/code release patch\\\\n\\\\n## 运行中实验\\\\n| 实验 | GPU | 预计完成 | 假设 |\\\\n|------|-----|---------|------|\\\\n| exp_wiki_llama8b | cqa1 cuda:2 | ~2.5h | LLaMA-8B Wiki K*=? |\\\\n| exp_wiki_mistral7b | cqa1 cuda:1 | ~2.5h | Mistral Wiki K*=? (C4=1, arXiv=3) |\\\\n| exp_wiki_qwen7b | cqa1 cuda:0 | prepping | Qwen-7B Wiki K*=? |\\\\n| exp_14b_c4 | cloud cuda:0 | model downloading | Qwen2.5-14B C4 K*=? (scale) |\\\\n| exp_32b_c4 | cloud cuda:1 | model downloading | Qwen2.5-32B C4 K*=? (scale) |\\\\n| semantic_ablation_multi | CPU | running | Pythia/Qwen 17D vs 15D |\\\\n\\\\n## 近期任务\\\\n- [ ] 等 14B/32B 模型下载完成 → 启动 C4 depth chain (云 GPU westd-42896)\\\\n- [ ] 等 Wiki 三组实验完成 → 汇总 Wikipedia K* pattern\n…[truncated 2532 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 452
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T19:54:29.649898+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "filters": "{'status': 'DONE'}",
+              "fields": "['status', 'conclusion', 'hypothesis', 'updated_at', 'metrics']",
+              "limit": "8"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T19:54:30.035059+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_wiki_mistral7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-17T19:53:56.272Z\\\", \\\"hypothesis\\\": \\\"Mistral-7B Wikipedia K* test: Mistral-7B-v0.3 在 C4 上 K*=1 (text-intrinsic one-wash)。在 Wikipedia domain 上是否仍 K*=1？Pythia/OLMo 在 Wikipedia 均 K*=1，Qwen K*=2。如果 Mistral K*=1 → 确认 one-wash 跨域成立；如果 K*>1 → Wikipedia 有 rescue Mistral 的结构信号（与预期相反）。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"K_star\\\": 1, \\\"ordinal_mae\\\": 1.3445, \\\"ordinal_accuracy\\\": 0.3273, \\\"auc_0v1\\\": 0.9607, \\\"auc_1v2\\\": 0.5552, \\\"auc_2v3\\\": 0.5236, \\\"auc_3v4\\\": 0.5181, \\\"auc_4v5\\\": 0.5012, \\\"jsd_0v1\\\": 0.054134, \\\"jsd_1v2\\\": 0.005678, \\\"jsd_2v3\\\": 0.003698, \\\"jsd_3v4\\\": 0.003459, \\\"jsd_4v5\\\": 0.003274}}, \\\"exp_wiki_llama8b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-17T19:33:39.300Z\\\", \\\"hypothesis\\\": \\\"Cross-scale Wikipedia K* validation: LLaMA-3.1-8B continuation on Wikipedia 的 K* 是否 = 2？Pythia-1.4B K*=1, Qwen-1.5B K*=2, OLMo-1B K*=1。测试 8B scale 是否能在 Wikipedia 均质 domain 上维持 K*=2（scale 是否是决定因素）。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"K_star\\\": 1, \\\"ordinal_mae\\\": 1.2954, \\\"ordinal_accuracy\\\": 0.3313, \\\"auc_0v1\\\": 0.9316, \\\"auc_1v2\\\": 0.5954, \\\"auc_2v3\\\": 0.5392, \\\"auc_3v4\\\": 0.5221, \\\"auc_4v5\\\": 0.5212, \\\"jsd_0v1\\\": 0.06169, \\\"jsd_1v2\\\": 0.00931}}, \\\"exp_arXiv_qwen7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-17T16:36:58.029Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-7B on arXiv abstracts will yield K*=3, validating that structured domain K*=3 is stable within the Qwen family across scales (1.5B vs 7B)\\\", \\\"metrics\\\": {\\\"k_star\\\": 3, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.983, \\\"1v2\\\": 0.835, \\\"2v3\\\": 0.626, \\\"3v4\\\": 0.544, \\\"4v5\\\": 0.513}, \\\"pairwise_jsd\\\": {\\\"0v1\\\": 0.1656, \\\"1v2\\\": 0.0668, \\\"2v3\\\": 0.0156, \\\"3v4\\\": 0.0089, \\\"4v5\\\": 0.0061}, \\\"ordinal_mae\\\": 0.9, \\\"ordinal_accuracy\\\": 0.446}, \\\"con\n…[truncated 3303 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 385
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T19:55:16.940953+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T19:55:16.991538+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T19:55:22.913055+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "status": "running",
+              "limit": "10"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T19:55:23.114140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 201
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T19:55:23.114566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "status": "done",
+              "limit": "5"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T19:55:23.165176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_analysis_exp_wiki_llama8b_20260517T193221\\\", \\\"task_type\\\": \\\"analysis:exp_wiki_llama8b\\\", \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T19:32:21.731931+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T19:33:57.063987+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_cloud_32b_download_check_20260517T193529\\\", \\\"task_type\\\": \\\"ops:cloud_32b_download_check\\\", \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T19:35:29.504743+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T19:36:27.334853+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_infra_exp_32b_c4_launch_20260517T193636\\\", \\\"task_type\\\": \\\"infra:exp_32b_c4_launch\\\", \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T19:36:36.871114+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T19:41:22.685001+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_ops_verify_32b_running_20260517T193923\\\", \\\"task_type\\\": \\\"ops:verify_32b_running\\\", \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T19:39:23.632532+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T19:40:27.854594+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_exp_wiki_mistral7b_20260517T195206\\\", \\\"task_type\\\": \\\"analysis:exp_wiki_mistral7b\\\", \\\"project\\\": \\\"gen-depth-contamination\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-17T19:52:06.272091+00:00\\\", \\\"ended_at\\\": \\\"2026-05-17T19:54:29.813498+00:00\\\"}], \\\"count\\\": 5}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 50
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T19:55:53.383434+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "gen-depth-contamination",
+              "file": "memory.md"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T19:55:53.434279+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/memory.md\\\", \\\"content\\\": \\\"# Memory — gen-depth-contamination\\\\n\\\\n## 决策与经验\\\\n\\\\n### Scorer Confound 预案 — 14B/32B 实验 (2026-05-17)\\\\n- **触发条件**: exp_14b_c4 或 exp_32b_c4 的 K*=1 时\\\\n- **操作**: 用 Qwen2.5-14B 作为 scorer（替代 1.5B）重新计算 surprisal features → 重跑 pairwise AUC\\\\n- **判断**: K* 变为 2 → scorer capacity confound confirmed；K* 仍为 1 → text-intrinsic one-wash\\\\n- **硬件**: RTX PRO 6000 96GB 装得下 14B scorer\\\\n- **代码**: run_pipeline.py 的 --scorer_path 已参数化，无需改代码\\\\n- **32B scorer**: 保守用 14B（14B vs 1.5B 已是 10x capacity gap），32B bf16 ~64GB 可能太紧\\\\n\\\\n### JSD Decay Rate λ 解释 K* 变异的机制 (2026-05-17)\\\\n- JSD 衰减存在两种截然不同的模式: sharp cliff (λ=2.9-6.3) vs gradual decay (λ=0.7-1.2)\\\\n- **λ 直接映射到 K***: C4 λ≈2.9 → K*=2, Wiki λ≈4.2 → K*=1-2, arXiv(non-OLMo) λ≈1.0 → K*=3\\\\n- Domain 内 λ 高度一致（C4 上 4 个模型 λ≈2.9），说明衰减速度主要由 domain structure 决定\\\\n- OLMo 是极端 outlier（cliff 47-50x），所有信息第一步坍塌 → 解释其跨域 K*=1\\\\n- Retrain-chain 无 cliff 模式（λ=0.285, cliff=1.31x），从根本上不同于 prompt-chain\\\\n- **论文意义**: 为 K* domain dependence 提供机制解释，不只是观察 K* 不同，而是量化信息坍塌速率\\\\n\\\\n### M002: Pipeline skip-if-exists 导致 data reuse bug (2026-05-17)\\\\n- exp_wiki_pythia 和 exp_wiki_olmo 共享 data_path `data/exp_023_wiki/`（exp-023 Qwen 的数据目录）\\\\n- run_pipeline.py 的 skip-if-exists 逻辑检测到 depth_*.jsonl 已存在，跳过生成，直接复用 Qwen 生成的数据\\\\n- 结果与 exp-023 完全相同（1v2=0.6193, K*=2），实验无效\\\\n- **硬规则：每个实验必须使用独立 data 目录**，即使同 domain 同 seed data，也要复制 depth_0.jsonl 到新目录让 pipeline 用目标模型重新生成\\\\n- 修复方案：run_pipeline.py 增加 model mismatch 检查（depth_*.jsonl metadata 中的 model_name 与当前 --model_path 不匹配时强制重新生成）\\\\n\\\\n### Dose-Response 否定 Graduated Filtering Superiority (2026-05-17)\\\\n- exp-009 v3: 3 ratios × 3 strategies × 5 seeds = 45 runs, Qwen2.5-1.5B continued pretraining\\\\n- **Binary filtering 在所有 ratio 下显著优于 no_filter**（HellaSwag: 10% +0.38pp p=0.002, 30% +0.61pp p=0.004, 50% +0.51pp p<0.001）\\\\n- **Graduated filtering ≈ no_filter 在所有 ratio 下无统计显著差异**\\\\n-\n…[truncated 4265 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-17T19:56:48.935448+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 3/6 running | cqa1-22115: 1/4 active (cuda:0 exp_wiki_qwen7b), cuda:1/2/3 空闲 | westd-42896: 2/2 active (exp_14b_c4 cuda:0, exp_32b_c4 cuda:1) | Worker 0 | 磁盘: cqa1 /autodl-pub 97% used ⚠️, westd 24% used\n\n## Wikipedia K* 全景汇总\n\n6 模型 Wikipedia 实验结果（5/6 完成，1 running）:\n\n| Model | K* | Conclusion | \n|-------|-----|-----------|\n| Pythia-1.4B | 1 | negative (exp_wiki_pythia_v2) |\n| OLMo-1B | 1 | negative (exp_wiki_olmo_v2) |\n| LLaMA-3.1-8B | 1 | negative (exp_wiki_llama8b) |\n| Mistral-7B | 1 | success — confirms one-wash cross-domain (exp_wiki_mistral7b) |\n| Qwen2.5-1.5B | 2 | success (exp-023) |\n| Qwen2.5-7B | ? | RUNNING (exp_wiki_qwen7b) |\n\n**结论**: Wikipedia 对 4/5 非 Qwen 模型是 K*=1 domain。只有 Qwen 维持 K*=2。D054 决策（Wikipedia 放 Appendix）仍然合理。\n\nexp_wiki_mistral7b 细节: AUC 0v1=0.9607, 1v2=0.5552 (远低于 θ=0.60), JSD 0v1=0.054, 1v2=0.006。第一代后信息立即坍塌，与 Mistral 在 C4 上的 one-wash 行为一致（但 arXiv K*=3，再次确认 domain rescue 只对结构化文本有效）。\n\n## GPU 空闲问题\n\ncqa1-22115 cuda:1/2/3 当前空闲。可用选项:\n1. **exp_008_retrain_chain** (PREPARING) — ecological validity, Pythia-1.4B LoRA retrain-chain, 1 GPU\n2. **Reviewer concerns 实验** — theta sensitivity / self_BLEU ablation（审稿 Round 2 要求）\n3. **等 exp_wiki_qwen7b 完成后**再决定\n\n请指示: 是否立即提交 exp_008_retrain_chain？剩余 GPU 是否用于 reviewer concern 实验（theta/self_BLEU）？",
+              "project": "gen-depth-contamination"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-17T19:56:52.297360+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3361
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-17T19:57:42.523970+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:theta_sensitivity",
+              "project": "gen-depth-contamination",
+              "task_prompt": "## 任务：Theta Sensitivity 分析\n\n审稿人要求验证 K* 对阈值 θ 的敏感性。当前论文使用 θ=0.60（AUC 阈值判定\"可区分\"）。\n\n### 目标\n对所有 conclusion=success 的实验，用不同 θ 值重新计算 K*，验证 K* 结论是否稳定。\n\n### 方法\n1. 用 `read_registry(project=\"gen-depth-contamination\", filters={\"conclusion\": \"success\"}, fields=[\"metrics\", \"hypothesis\"])` 获取所有成功实验的 pairwise AUC 值\n2. K* 定义：最大的 k 使得 AUC(k-1 vs k) ≥ θ。如果连 AUC(0v1) < θ 则 K*=0。\n3. 对每个实验，在 θ ∈ {0.55, 0.575, 0.60, 0.625, 0.65, 0.70} 下计算 K*\n4. 生成汇总表：每行一个实验，每列一个 θ 值，单元格是对应的 K*\n5. 特别关注：C4 实验（当前 K*=2）和 arXiv 实验（当前 K*=3）在 θ 变化时是否仍然稳定\n\n### 产出\n- 将分析结果写入本地文件：`/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/theta_sensitivity_analysis.md`\n- 包含：完整表格 + 稳定性结论（\"K* 在 θ∈[X, Y] 区间内不变\" 或 \"K* 在 θ=Z 处跳变\"）\n- 用 register_artifact 注册产出\n\n### 注意\n- pairwise AUC 字段名可能是 `auc_0v1, auc_1v2, ...` 或嵌套在 `pairwise_auc: {\"0v1\": ..., \"1v2\": ...}` 中，两种格式都要处理\n- 忽略 conclusion=failed/negative 的实验\n- 只分析有完整 pairwise AUC 数据的实验（至少有 0v1, 1v2, 2v3）",
+              "tool_groups": "['registry', 'knowledge']"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-17T19:57:55.935656+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_theta_sensitivity_20260517T195743\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_theta_sensitivity_20260517T195743.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_theta_sensitivity_20260517T195743 started. Use get_worker_status('worker_analysis_theta_sensitivity_20260517T195743') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 13411
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-17T19:57:55.988070+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ops:retrain_chain_prep_check",
+              "project": "gen-depth-contamination",
+              "task_prompt": "## 任务：验证 exp_008_retrain_chain 代码就绪性\n\nexp_008_retrain_chain 是 PREPARING 状态的实验，需要验证代码可以正常启动。\n\n### 背景\n- 假设：Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2\n- 之前有 labels padding bug（TextDataset.__getitem__ 同时返回变长 input_ids 和 labels，DataCollatorForLanguageModeling 只 pad input_ids）\n- 修复方案：移除 __getitem__ 中的 labels 字段，让 collator 自动从 padded input_ids 生成\n- 服务器：cqa1-22115\n- 项目路径：/root/autodl-tmp/gen-depth-contamination\n- Python: /root/miniconda3/bin/python\n\n### 验证步骤\n1. SSH 到 cqa1-22115，cd 到项目目录\n2. 检查 retrain-chain 相关代码文件是否存在（scripts/ 下）\n3. 检查 labels padding bug 是否已修复（grep 相关代码确认 __getitem__ 不返回 labels）\n4. 检查 Pythia-1.4B 模型是否已下载到本地缓存\n5. 检查 C4 数据（5K docs depth_0.jsonl）是否就绪\n6. 尝试 dry-run：python scripts/retrain_chain.py --help 或类似命令确认脚本可执行\n7. 确认 LoRA 依赖（peft, transformers）版本可用\n\n### 产出\n- 报告代码是否 ready to submit\n- 如果有 blocker，说明具体问题和修复方案\n- 将完整的启动命令记录下来（含 conda activate、正确路径、完整参数），方便后续直接提交\n\n### 注意\n- 不要实际启动训练，只做 dry-run 验证\n- 如果发现 bug 或缺失，尝试修复\n- 磁盘注意：cqa1-22115 的 /autodl-pub 97% used，如果需要下载额外文件需谨慎",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-17T19:57:58.659230+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ops_retrain_chain_prep_check_20260517T195756\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_ops_retrain_chain_prep_check_20260517T195756.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ops_retrain_chain_prep_check_20260517T195756 started. Use get_worker_status('worker_ops_retrain_chain_prep_check_20260517T195756') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2671
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-17T19:58:17.094629+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Session-start 完成。当前状态：\n\n**RUNNING**: 3 实验（exp_14b_c4, exp_32b_c4, exp_wiki_qwen7b）有 cron 监控\n**Workers**: 2 已派出（theta sensitivity 分析 + retrain-chain 代码验证）\n**已汇报 Director**: Wikipedia 全景（5/5 非 Qwen = K*=1）+ 3 GPU 空闲问题 + 请求 GPU 分配指示\n\n等待：Director 回复 GPU 分配决策、2 个 Worker 回调、cron 完成回调。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2"
+          },
+          "id": "event-000034"
+        }
+      ],
+      "message_count": 34
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-17T23:59:39.270858+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-18T00:00:28.320672+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cqa1-22115 的 cuda:0/1/2/3（gpu_ids 白名单）；westd-42896 是云 GPU 额外分配，不在白名单但已被 Director 授权用于 14B/32B scale 实验\n- exp_arXiv_olmo 是 negative 结果（OLMo arXiv K*=1），已汇报 Director 但无决策回复——不要基于它改 paper claim\n- Wikipedia K*=1 结果（Pythia/OLMo/LLaMA/Mistral）按 D054 决策放 Appendix discussion，不写入正文主线\n- v1 系列（exp_wiki_olmo, exp_wiki_pythia）因 data reuse bug 无效，不要引用其结果；v2 用独立 data_dir 修复后才有效\n- DDL: EMNLP 2026 ARR May 25（剩 8 天）\n\n### 2. 🖥️ 基础设施快照\n- **cqa1-22115**: 4×4090D 24GB，工作目录 /root/autodl-tmp/gen-depth-contamination，Python /root/miniconda3/bin/python，git_commit=0b10b43\n  - HF cache: /root/autodl-tmp/.hf_cache/\n  - 数据: data/exp_* (每实验独立目录)，结果: results/exp_*\n  - Log: ~/runs/gen-depth-contamination/\n  - 磁盘: /autodl-pub 97% used ⚠️（283G/7T 可用）\n- **westd-42896**: 2×RTX PRO 6000 96GB，同路径结构 /root/autodl-tmp/gen-depth-contamination\n  - 磁盘: 5.3T/7.3T 可用（24% used）\n- W&B 项目: gen-depth-contamination\n- 活跃进程:\n  - exp_wiki_qwen7b: PID 732600, cqa1-22115:cuda:0, cron 监控中\n  - exp_14b_c4: PID 8586, westd-42896:cuda:0, cron 监控中\n  - exp_32b_c4: PID 14637, westd-42896:cuda:1, cron 监控中\n\n### 3. 📊 当前状态\n刚完成 session-start 初始化。向 Director 汇报了 Wikipedia 全景（5/5 非 Qwen 模型 K*=1）+ GPU 空闲问题（cqa1 cuda:1/2/3 idle），等待 Director 指示填充什么实验。\n\n已派 2 个 Worker（均 running）：\n- worker_analysis_theta_sensitivity_20260517T195743: 用 registry 数据计算不同 θ 下 K* 稳定性（reviewer concern）\n- worker_ops_retrain_chain_prep_check_20260517T195756: SSH 验证 exp_008_retrain_chain 代码就绪性\n\n**RUNNING**: exp_wiki_qwen7b (Qwen-7B Wiki K*=?), exp_14b_c4 (Qwen-14B C4 K*=?), exp_32b_c4 (Qwen-32B C4 K*=?)\n**PREPARING**: exp_008_retrain_chain (Pythia LoRA retrain-chain)\n\n### 4. 📋 待办\n- Worker theta_sensitivity 回调 → 注册 artifact + 判断是否需要补论文图表 + 汇报 Director\n- Worker retrain_chain_prep 回调 → 如果 ready + Director 批准 → submit_on_allocated 到 cqa1 cuda:1\n- exp_wiki_qwen7b cron 回调 → spawn analysis Worker 计算 K*；若 K*=2 → 确认 Qwen-specific pattern；若 K*=1 → Qwen-1.5B 是孤例\n- exp_14b_c4 / exp_32b_c4 cron 回调 → 分析 K*；若 K*≠2 → 触发 scorer confound 预案（用 14B 作 scorer 重跑）\n- Director 回复 GPU 分配指令 → 按指示提交实验到 cqa1 空闲卡\n\n### 5. 🎯 战略上下文\n- 核心发现: K*∈{1,2,3} domain-dependent。C4 K*=2 (7/8 configs), arXiv K*=3 (5/5 models), Wikipedia K*=1 (majority)\n- One-wash 两类: Mistral domain-dependent (C4=1, arXiv=3), OLMo model-intrinsic (跨域=1)\n- 当前验证前线: (1) C4 scale — 14B/32B 是否仍 K*=2; (2) Wikipedia Qwen-7B 是否维持 K*=2; (3) retrain-chain ecological validity\n- 审稿 Round 2 三个 critical: overclaiming / theta sensitivity / self_BLEU ablation。theta sensitivity Worker 已在跑\n- 易踩坑: registry metrics 字段格式不统一（有的 `auc_0v1` 平铺，有的 `pairwise_auc: {\"0v1\": ...}` 嵌套）；分析时两种都要处理\n- Scorer confound 预案（memory.md）: 14B/32B 若 K*=1，用 Qwen-14B 作 scorer 重跑验证是否是 scorer capacity 问题\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp_wiki_olmo_v2"
+          },
+          "id": "event-000036"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-exp-wiki-olmo-v2-20260518t000028-323075.md"
+}

@@ -1,0 +1,1722 @@
+# analysis registry metrics 
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 36
+- **Recorded user turns:** 0
+- **Tool calls:** 12
+- **Original source:** `logs/workers/worker_analysis_registry_metrics____20260513T211333.log`
+- **Structured JSON:** [`56a70bbb29d2e07144a9.json`](../../sessions/56/56a70bbb29d2e07144a9.json)
+
+## Before a recorded user message
+
+36 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "4ade2d56-66c5-47a8-a4b5-d4809c209409",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778723400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "97238b4b-6bff-46ec-bd50-e2b84c44ce12",
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll SSH to the server and extract both missing data points. Let me start by searching for the relevant files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "0153527e-e9ba-4b77-a71b-d9111d3653fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ovBcMepG6jYry84mPruTG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12067,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12067
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01RoJoSdVAFVDWFZHXC21iMB`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "81badfc3-4721-414f-ad6f-d1aaaebd7acc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015ovBcMepG6jYry84mPruTG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12067,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12067
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-13T21:13:47.232Z_
+
+<details><summary>↩ Tool result · `toolu_01RoJoSdVAFVDWFZHXC21iMB`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "8c9c674f-6fe7-474f-90a4-0dde6e667007",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by searching for the relevant data files on the server. I'll run multiple read-only commands in parallel to find both exp-003 config4_t12 data and exp-007 bootstrap CI data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "08b63900-e728-4af7-b237-b71a666af185",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C6tBNc1RvU5U1RFqDyA26G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 896,
+      "cache_read_input_tokens": 23908,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 896
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GdsuiX7NygGARFKL5Xf5kb`</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "ls /root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis*.json 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "c5ab755c-3e2a-4bc1-a2a4-520c0a3604b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C6tBNc1RvU5U1RFqDyA26G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 896,
+      "cache_read_input_tokens": 23908,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 896
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-13T21:13:53.200Z_
+
+<details><summary>↩ Tool result · `toolu_01GdsuiX7NygGARFKL5Xf5kb`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "6b14c8c4-ebb0-407f-beea-c17ce394a3c7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015NUsfhvpHNPuiUtEnVngvP`</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "ls /root/autodl-tmp/gen-depth-contamination/artifacts/bootstrap_ci* 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "f8bf61fc-9182-4ea7-8317-9588c27fab48",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C6tBNc1RvU5U1RFqDyA26G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 896,
+      "cache_read_input_tokens": 23908,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 896
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-13T21:13:54.018Z_
+
+<details><summary>↩ Tool result · `toolu_015NUsfhvpHNPuiUtEnVngvP`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "6e10c4a9-fbc3-4af3-b493-5064c104fe2f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UZNo6DHnyMtphx5zFA6MYK`</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "find /root/autodl-tmp/gen-depth-contamination -maxdepth 1 -type d -name \"*exp003*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "3c614fb1-4aae-4ddd-bf79-feb5960740d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C6tBNc1RvU5U1RFqDyA26G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 896,
+      "cache_read_input_tokens": 23908,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 896
+      },
+      "output_tokens": 26,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-13T21:13:56.588Z_
+
+<details><summary>↩ Tool result · `toolu_01UZNo6DHnyMtphx5zFA6MYK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/data_exp003_greedy\\n/root/autodl-tmp/gen-depth-contamination/results_exp003_greedy\\n/root/autodl-tmp/gen-depth-contamination/data_exp003_nuc09\\n/root/autodl-tmp/gen-depth-contamination/results_exp003_nuc09\\n/root/autodl-tmp/gen-depth-contamination/data_exp003_t07\\n/root/autodl-tmp/gen-depth-contamination/results_exp003_t07\\n/root/autodl-tmp/gen-depth-contamination/data_exp003_t12\\n/root/autodl-tmp/gen-depth-contamination/results_exp003_t12\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.72}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "8cf370ab-a34f-4adc-bbd0-4c3515968bbc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data_exp003_greedy\\\\n/root/autodl-tmp/gen-depth-contamination/results_exp003_greedy\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp003_nuc09\\\\n/root/autodl-tmp/gen-depth-contamination/results_exp003_nuc09\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp003_t07\\\\n/root/autodl-tmp/gen-depth-contamination/results_exp003_t07\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp003_t12\\\\n/root/autodl-tmp/gen-depth-contamination/results_exp003_t12\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.72}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/data_exp003_greedy\\n/root/autodl-tmp/gen-depth-contamination/results_exp003_greedy\\n/root/autodl-tmp/gen-depth-contamination/data_exp003_nuc09\\n/root/autodl-tmp/gen-depth-contamination/results_exp003_nuc09\\n/root/autodl-tmp/gen-depth-contamination/data_exp003_t07\\n/root/autodl-tmp/gen-depth-contamination/results_exp003_t07\\n/root/autodl-tmp/gen-depth-contamination/data_exp003_t12\\n/root/autodl-tmp/gen-depth-contamination/results_exp003_t12\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.72}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `2>/dev/null` redirection is blocked. Let me retry without it. I found the exp003 directories - `data_exp003_t12` and `results_exp003_t12` are what I need for config4_t12. Let me look at the artifacts and results directories.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "66df2e8f-24b0-4e6a-932b-b1fc939e6b6f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014d8DYGTk4K91WLEuWryzzs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 960,
+      "cache_read_input_tokens": 24804,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 960
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+Found `data_exp003_t12` and `results_exp003_t12`. Let me read the artifacts and results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "2a9162cf-ffc2-441a-b5ec-3978161ca1a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014d8DYGTk4K91WLEuWryzzs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 960,
+      "cache_read_input_tokens": 24804,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 960
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UWDsdgx9VXrqPSc2eaW4iY`</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "ls /root/autodl-tmp/gen-depth-contamination/artifacts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "dea075f6-f819-4d2f-ba35-64f84a3ad360",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014d8DYGTk4K91WLEuWryzzs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 960,
+      "cache_read_input_tokens": 24804,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 960
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DKqS61FydfjGCzbyvjb7LQ`</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "ls /root/autodl-tmp/gen-depth-contamination/results_exp003_t12/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "754b13e4-b4d2-4ad9-add7-c487d5dc9321",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014d8DYGTk4K91WLEuWryzzs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 960,
+      "cache_read_input_tokens": 24804,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 960
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-13T21:14:04.277Z_
+
+<details><summary>↩ Tool result · `toolu_01UWDsdgx9VXrqPSc2eaW4iY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bootstrap_ci_4model.json\\nbootstrap_ci_results.json\\ncross_transfer_matrix.csv\\ncross_transfer_matrix.json\\nexp003_analysis.json\\nexp003_decoding_ablation.pdf\\nexp003_decoding_ablation.png\\nexp003_decoding_ablation.tex\\nexp011_analysis.json\\nexp011_results_claude_opus_4_6.jsonl\\nexp011_results_gpt_5_5.jsonl\\nexp011_samples.jsonl\\nexp015_dryrun.json\\nfigures\\nordinal_comparison_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "afe07ec5-803d-40b4-b090-68432e148603",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bootstrap_ci_4model.json\\\\nbootstrap_ci_results.json\\\\ncross_transfer_matrix.csv\\\\ncross_transfer_matrix.json\\\\nexp003_analysis.json\\\\nexp003_decoding_ablation.pdf\\\\nexp003_decoding_ablation.png\\\\nexp003_decoding_ablation.tex\\\\nexp011_analysis.json\\\\nexp011_results_claude_opus_4_6.jsonl\\\\nexp011_results_gpt_5_5.jsonl\\\\nexp011_samples.jsonl\\\\nexp015_dryrun.json\\\\nfigures\\\\nordinal_comparison_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"bootstrap_ci_4model.json\\nbootstrap_ci_results.json\\ncross_transfer_matrix.csv\\ncross_transfer_matrix.json\\nexp003_analysis.json\\nexp003_decoding_ablation.pdf\\nexp003_decoding_ablation.png\\nexp003_decoding_ablation.tex\\nexp011_analysis.json\\nexp011_results_claude_opus_4_6.jsonl\\nexp011_results_gpt_5_5.jsonl\\nexp011_samples.jsonl\\nexp015_dryrun.json\\nfigures\\nordinal_comparison_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JaZU1Ln3ebP9S75EaVMRYk`</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "ls /root/autodl-tmp/gen-depth-contamination/data_exp003_t12/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "c1188261-ad4b-4ddb-bc97-e05bd9056754",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014d8DYGTk4K91WLEuWryzzs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 960,
+      "cache_read_input_tokens": 24804,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 960
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-13T21:14:05.182Z_
+
+<details><summary>↩ Tool result · `toolu_01DKqS61FydfjGCzbyvjb7LQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"feature_importance.json\\njsd.json\\nordinal_results.json\\npairwise_auc.json\\nsummary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "c3381106-af75-4300-bdf1-4a6effe49cfe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"feature_importance.json\\\\njsd.json\\\\nordinal_results.json\\\\npairwise_auc.json\\\\nsummary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"feature_importance.json\\njsd.json\\nordinal_results.json\\npairwise_auc.json\\nsummary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-13T21:14:06.090Z_
+
+<details><summary>↩ Tool result · `toolu_01JaZU1Ln3ebP9S75EaVMRYk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"depth_0.jsonl\\ndepth_1.jsonl\\ndepth_2.jsonl\\ndepth_3.jsonl\\ndepth_4.jsonl\\ndepth_5.jsonl\\nfeatures.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "713b2f37-b3fb-4dca-a222-1a6b14244242",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"depth_0.jsonl\\\\ndepth_1.jsonl\\\\ndepth_2.jsonl\\\\ndepth_3.jsonl\\\\ndepth_4.jsonl\\\\ndepth_5.jsonl\\\\nfeatures.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"depth_0.jsonl\\ndepth_1.jsonl\\ndepth_2.jsonl\\ndepth_3.jsonl\\ndepth_4.jsonl\\ndepth_5.jsonl\\nfeatures.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+Found the key files. Let me read all the relevant data files in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "f12b8d51-658a-4d64-be89-6ee50ec6563b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WaH1qwuG56g9uVFCWqHq2k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 999,
+      "cache_read_input_tokens": 25764,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 999
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SJgP22Wx31Q7VFuh5Vqg4k`</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results_exp003_t12/pairwise_auc.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "1857e066-f165-4212-9af6-64efd9a23c42",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WaH1qwuG56g9uVFCWqHq2k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 999,
+      "cache_read_input_tokens": 25764,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 999
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-13T21:14:10.818Z_
+
+<details><summary>↩ Tool result · `toolu_01SJgP22Wx31Q7VFuh5Vqg4k`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.9982,\\n    \\\"1v2\\\": 0.7039,\\n    \\\"2v3\\\": 0.5823,\\n    \\\"3v4\\\": 0.5293,\\n    \\\"4v5\\\": 0.5237\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.998,\\n      0.9982,\\n      0.9969,\\n      0.999,\\n      0.9991\\n    ],\\n    \\\"1v2\\\": [\\n      0.7086,\\n      0.7054,\\n      0.6996,\\n      0.7085,\\n      0.6974\\n    ],\\n    \\\"2v3\\\": [\\n      0.5681,\\n      0.5687,\\n      0.5869,\\n      0.5927,\\n      0.595\\n    ],\\n    \\\"3v4\\\": [\\n      0.5227,\\n      0.5235,\\n      0.5338,\\n      0.5244,\\n      0.5422\\n    ],\\n    \\\"4v5\\\": [\\n      0.5088,\\n      0.5239,\\n      0.5356,\\n      0.5274,\\n      0.5226\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "e21664cc-6b65-47a7-a9d7-412be122f961",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mean\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": 0.9982,\\\\n    \\\\\\\"1v2\\\\\\\": 0.7039,\\\\n    \\\\\\\"2v3\\\\\\\": 0.5823,\\\\n    \\\\\\\"3v4\\\\\\\": 0.5293,\\\\n    \\\\\\\"4v5\\\\\\\": 0.5237\\\\n  },\\\\n  \\\\\\\"per_fold\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": [\\\\n      0.998,\\\\n      0.9982,\\\\n      0.9969,\\\\n      0.999,\\\\n      0.9991\\\\n    ],\\\\n    \\\\\\\"1v2\\\\\\\": [\\\\n      0.7086,\\\\n      0.7054,\\\\n      0.6996,\\\\n      0.7085,\\\\n      0.6974\\\\n    ],\\\\n    \\\\\\\"2v3\\\\\\\": [\\\\n      0.5681,\\\\n      0.5687,\\\\n      0.5869,\\\\n      0.5927,\\\\n      0.595\\\\n    ],\\\\n    \\\\\\\"3v4\\\\\\\": [\\\\n      0.5227,\\\\n      0.5235,\\\\n      0.5338,\\\\n      0.5244,\\\\n      0.5422\\\\n    ],\\\\n    \\\\\\\"4v5\\\\\\\": [\\\\n      0.5088,\\\\n      0.5239,\\\\n      0.5356,\\\\n      0.5274,\\\\n      0.5226\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.9982,\\n    \\\"1v2\\\": 0.7039,\\n    \\\"2v3\\\": 0.5823,\\n    \\\"3v4\\\": 0.5293,\\n    \\\"4v5\\\": 0.5237\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.998,\\n      0.9982,\\n      0.9969,\\n      0.999,\\n      0.9991\\n    ],\\n    \\\"1v2\\\": [\\n      0.7086,\\n      0.7054,\\n      0.6996,\\n      0.7085,\\n      0.6974\\n    ],\\n    \\\"2v3\\\": [\\n      0.5681,\\n      0.5687,\\n      0.5869,\\n      0.5927,\\n      0.595\\n    ],\\n    \\\"3v4\\\": [\\n      0.5227,\\n      0.5235,\\n      0.5338,\\n      0.5244,\\n      0.5422\\n    ],\\n    \\\"4v5\\\": [\\n      0.5088,\\n      0.5239,\\n      0.5356,\\n      0.5274,\\n      0.5226\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PA8dHGoBPbNimkV5dZNJ9Y`</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results_exp003_t12/feature_importance.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "0c37206d-1a2e-4f9b-b559-25de78cbd642",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WaH1qwuG56g9uVFCWqHq2k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 999,
+      "cache_read_input_tokens": 25764,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 999
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-13T21:14:11.866Z_
+
+<details><summary>↩ Tool result · `toolu_01PA8dHGoBPbNimkV5dZNJ9Y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"feature\\\": \\\"freq_entropy\\\",\\n    \\\"importance\\\": 9473.0\\n  },\\n  {\\n    \\\"feature\\\": \\\"hapax_ratio\\\",\\n    \\\"importance\\\": 8750.6\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_skew\\\",\\n    \\\"importance\\\": 8479.8\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_std\\\",\\n    \\\"importance\\\": 8021.2\\n  },\\n  {\\n    \\\"feature\\\": \\\"freq_kurtosis\\\",\\n    \\\"importance\\\": 7917.2\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_mean\\\",\\n    \\\"importance\\\": 7828.0\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_d1_mean\\\",\\n    \\\"importance\\\": 7800.4\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_d1_skew\\\",\\n    \\\"importance\\\": 7656.8\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_d2_mean\\\",\\n    \\\"importance\\\": 7542.2\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_kurt\\\",\\n    \\\"importance\\\": 7321.2\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "65dcaa2f-48dc-4926-9c55-93bfb6e0af07",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"feature\\\\\\\": \\\\\\\"freq_entropy\\\\\\\",\\\\n    \\\\\\\"importance\\\\\\\": 9473.0\\\\n  },\\\\n  {\\\\n    \\\\\\\"feature\\\\\\\": \\\\\\\"hapax_ratio\\\\\\\",\\\\n    \\\\\\\"importance\\\\\\\": 8750.6\\\\n  },\\\\n  {\\\\n    \\\\\\\"feature\\\\\\\": \\\\\\\"surp_skew\\\\\\\",\\\\n    \\\\\\\"importance\\\\\\\": 8479.8\\\\n  },\\\\n  {\\\\n    \\\\\\\"feature\\\\\\\": \\\\\\\"surp_std\\\\\\\",\\\\n    \\\\\\\"importance\\\\\\\": 8021.2\\\\n  },\\\\n  {\\\\n    \\\\\\\"feature\\\\\\\": \\\\\\\"freq_kurtosis\\\\\\\",\\\\n    \\\\\\\"importance\\\\\\\": 7917.2\\\\n  },\\\\n  {\\\\n    \\\\\\\"feature\\\\\\\": \\\\\\\"surp_mean\\\\\\\",\\\\n    \\\\\\\"importance\\\\\\\": 7828.0\\\\n  },\\\\n  {\\\\n    \\\\\\\"feature\\\\\\\": \\\\\\\"surp_d1_mean\\\\\\\",\\\\n    \\\\\\\"importance\\\\\\\": 7800.4\\\\n  },\\\\n  {\\\\n    \\\\\\\"feature\\\\\\\": \\\\\\\"surp_d1_skew\\\\\\\",\\\\n    \\\\\\\"importance\\\\\\\": 7656.8\\\\n  },\\\\n  {\\\\n    \\\\\\\"feature\\\\\\\": \\\\\\\"surp_d2_mean\\\\\\\",\\\\n    \\\\\\\"importance\\\\\\\": 7542.2\\\\n  },\\\\n  {\\\\n    \\\\\\\"feature\\\\\\\": \\\\\\\"surp_kurt\\\\\\\",\\\\n    \\\\\\\"importance\\\\\\\": 7321.2\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"feature\\\": \\\"freq_entropy\\\",\\n    \\\"importance\\\": 9473.0\\n  },\\n  {\\n    \\\"feature\\\": \\\"hapax_ratio\\\",\\n    \\\"importance\\\": 8750.6\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_skew\\\",\\n    \\\"importance\\\": 8479.8\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_std\\\",\\n    \\\"importance\\\": 8021.2\\n  },\\n  {\\n    \\\"feature\\\": \\\"freq_kurtosis\\\",\\n    \\\"importance\\\": 7917.2\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_mean\\\",\\n    \\\"importance\\\": 7828.0\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_d1_mean\\\",\\n    \\\"importance\\\": 7800.4\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_d1_skew\\\",\\n    \\\"importance\\\": 7656.8\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_d2_mean\\\",\\n    \\\"importance\\\": 7542.2\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_kurt\\\",\\n    \\\"importance\\\": 7321.2\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WfaywQHUyqT5PGKfbzfNbh`</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/artifacts/bootstrap_ci_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "c3b55f0d-54bc-45d2-b4d7-91482f23286e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WaH1qwuG56g9uVFCWqHq2k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 999,
+      "cache_read_input_tokens": 25764,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 999
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011PkCyURjF4mbFY95eXxQ93`</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results_exp003_t12/summary.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "ca390e1e-0a6f-4d2e-9ed3-9e01e2834836",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WaH1qwuG56g9uVFCWqHq2k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 999,
+      "cache_read_input_tokens": 25764,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 999
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-13T21:14:12.777Z_
+
+<details><summary>↩ Tool result · `toolu_01WfaywQHUyqT5PGKfbzfNbh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mvp_001_qwen_rewrite\\\": {\\n    \\\"0v1\\\": {\\n      \\\"mean_auc\\\": 0.9956,\\n      \\\"boot_mean\\\": 0.9956,\\n      \\\"boot_std\\\": 0.0005,\\n      \\\"ci_lower\\\": 0.9946,\\n      \\\"ci_upper\\\": 0.9965,\\n      \\\"ci_width\\\": 0.0019,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"1v2\\\": {\\n      \\\"mean_auc\\\": 0.6955,\\n      \\\"boot_mean\\\": 0.6953,\\n      \\\"boot_std\\\": 0.0045,\\n      \\\"ci_lower\\\": 0.6859,\\n      \\\"ci_upper\\\": 0.7041,\\n      \\\"ci_width\\\": 0.0182,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"2v3\\\": {\\n      \\\"mean_auc\\\": 0.5893,\\n      \\\"boot_mean\\\": 0.5893,\\n      \\\"boot_std\\\": 0.0049,\\n      \\\"ci_lower\\\": 0.5795,\\n      \\\"ci_upper\\\": 0.5991,\\n      \\\"ci_width\\\": 0.0195,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"3v4\\\": {\\n      \\\"mean_auc\\\": 0.5435,\\n      \\\"boot_mean\\\": 0.5437,\\n      \\\"boot_std\\\": 0.0054,\\n      \\\"ci_lower\\\": 0.5333,\\n      \\\"ci_upper\\\": 0.5551,\\n      \\\"ci_width\\\": 0.0218,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"4v5\\\": {\\n      \\\"mean_auc\\\": 0.534,\\n      \\\"boot_mean\\\": 0.5339,\\n      \\\"boot_std\\\": 0.0053,\\n      \\\"ci_lower\\\": 0.5238,\\n      \\\"ci_upper\\\": 0.5448,\\n      \\\"ci_width\\\": 0.021,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    }\\n  },\\n  \\\"exp_001_pythia\\\": {\\n    \\\"0v1\\\": {\\n      \\\"mean_auc\\\": 0.9932,\\n      \\\"boot_mean\\\": 0.9932,\\n      \\\"boot_std\\\": 0.0006,\\n      \\\"ci_lower\\\": 0.9921,\\n      \\\"ci_upper\\\": 0.9943,\\n      \\\"ci_width\\\": 0.0023,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"1v2\\\": {\\n      \\\"mean_auc\\\": 0.6539,\\n      \\\"boot_mean\\\": 0.654,\\n      \\\"boot_std\\\": 0.0045,\\n      \\\"ci_lower\\\": 0.6454,\\n      \\\"ci_upper\\\": 0.663,\\n      \\\"ci_width\\\": 0.0176,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"2v3\\\": {\\n      \\\"mean_auc\\\": 0.5514,\\n      \\\"boot_mean\\\": 0.5514,\\n      \\\"boot_std\\\": 0.0053,\\n      \\\"ci_lower\\\": 0.5417,\\n      \\\"ci_upper\\\": 0.5628,\\n      \\\"ci_width\\\": 0.0211,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"3v4\\\": {\\n      \\\"mean_auc\\\": 0.5152,\\n      \\\"boot_mean\\\": 0.515,\\n      \\\"boot_std\\\": 0.0056,\\n      \\\"ci_lower\\\": 0.5041,\\n      \\\"ci_upper\\\": 0.526,\\n      \\\"ci_width\\\": 0.022,\\n      \\\"perm_pvalue\\\": 0.006,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"4v5\\\": {\\n      \\\"mean_auc\\\": 0.5136,\\n      \\\"boot_mean\\\": 0.5134,\\n      \\\"boot_std\\\": 0.0056,\\n      \\\"ci_lower\\\": 0.5021,\\n      \\\"ci_upper\\\": 0.5249,\\n      \\\"ci_width\\\": 0.0227,\\n      \\\"perm_pvalue\\\": 0.008,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    }\\n  },\\n  \\\"exp_002_olmo\\\": {\\n    \\\"0v1\\\": {\\n      \\\"mean_auc\\\": 0.997,\\n      \\\"boot_mean\\\": 0.997,\\n      \\\"boot_std\\\": 0.0003,\\n      \\\"ci_lower\\\": 0.9964,\\n      \\\"ci_upper\\\": 0.9975,\\n      \\\"ci_width\\\": 0.0011,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"1v2\\\": {\\n      \\\"mean_auc\\\": 0.6145,\\n      \\\"boot_mean\\\": 0.6146,\\n      \\\"boot_std\\\": 0.0051,\\n      \\\"ci_lower\\\": 0.6045,\\n      \\\"ci_upper\\\": 0.6247,\\n      \\\"ci_width\\\": 0.0203,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"2v3\\\": {\\n      \\\"mean_auc\\\": 0.5496,\\n      \\\"boot_mean\\\": 0.5501,\\n      \\\"boot_std\\\": 0.0052,\\n      \\\"ci_lower\\\": 0.5399,\\n      \\\"ci_upper\\\": 0.5596,\\n      \\\"ci_width\\\": 0.0197,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"3v4\\\": {\\n      \\\"mean_auc\\\": 0.5091,\\n      \\\"boot_mean\\\": 0.5088,\\n      \\\"boot_std\\\": 0.0058,\\n      \\\"ci_lower\\\": 0.4973,\\n      \\\"ci_upper\\\": 0.52,\\n      \\\"ci_width\\\": 0.0226,\\n      \\\"perm_pvalue\\\": 0.064,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"4v5\\\": {\\n      \\\"mean_auc\\\": 0.5045,\\n      \\\"boot_mean\\\": 0.5044,\\n      \\\"boot_std\\\": 0.0056,\\n      \\\"ci_lower\\\": 0.4932,\\n      \\\"ci_upper\\\": 0.515,\\n      \\\"ci_width\\\": 0.0218,\\n      \\\"perm_pvalue\\\": 0.232,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "43cf7241-2b7c-48d0-af2a-c710c3fb2d4c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mvp_001_qwen_rewrite\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.9956,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.9956,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0005,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.9946,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.9965,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0019,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"1v2\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.6955,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.6953,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0045,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.6859,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.7041,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0182,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"2v3\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.5893,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.5893,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0049,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5795,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5991,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0195,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"3v4\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.5435,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.5437,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0054,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5333,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5551,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0218,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"4v5\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.534,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.5339,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0053,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5238,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5448,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.021,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    }\\\\n  },\\\\n  \\\\\\\"exp_001_pythia\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.9932,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.9932,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0006,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.9921,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.9943,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0023,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"1v2\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.6539,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.654,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0045,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.6454,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.663,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0176,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"2v3\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.5514,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.5514,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0053,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5417,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5628,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0211,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"3v4\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.5152,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.515,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0056,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5041,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.526,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.022,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.006,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"4v5\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.5136,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.5134,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0056,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5021,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5249,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0227,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.008,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    }\\\\n  },\\\\n  \\\\\\\"exp_002_olmo\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.997,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.997,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0003,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.9964,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.9975,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0011,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"1v2\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.6145,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.6146,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0051,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.6045,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.6247,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0203,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"2v3\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.5496,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.5501,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0052,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5399,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5596,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0197,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"3v4\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.5091,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.5088,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0058,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.4973,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.52,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0226,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.064,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"4v5\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.5045,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.5044,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0056,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.4932,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.515,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0218,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.232,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mvp_001_qwen_rewrite\\\": {\\n    \\\"0v1\\\": {\\n      \\\"mean_auc\\\": 0.9956,\\n      \\\"boot_mean\\\": 0.9956,\\n      \\\"boot_std\\\": 0.0005,\\n      \\\"ci_lower\\\": 0.9946,\\n      \\\"ci_upper\\\": 0.9965,\\n      \\\"ci_width\\\": 0.0019,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"1v2\\\": {\\n      \\\"mean_auc\\\": 0.6955,\\n      \\\"boot_mean\\\": 0.6953,\\n      \\\"boot_std\\\": 0.0045,\\n      \\\"ci_lower\\\": 0.6859,\\n      \\\"ci_upper\\\": 0.7041,\\n      \\\"ci_width\\\": 0.0182,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"2v3\\\": {\\n      \\\"mean_auc\\\": 0.5893,\\n      \\\"boot_mean\\\": 0.5893,\\n      \\\"boot_std\\\": 0.0049,\\n      \\\"ci_lower\\\": 0.5795,\\n      \\\"ci_upper\\\": 0.5991,\\n      \\\"ci_width\\\": 0.0195,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"3v4\\\": {\\n      \\\"mean_auc\\\": 0.5435,\\n      \\\"boot_mean\\\": 0.5437,\\n      \\\"boot_std\\\": 0.0054,\\n      \\\"ci_lower\\\": 0.5333,\\n      \\\"ci_upper\\\": 0.5551,\\n      \\\"ci_width\\\": 0.0218,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"4v5\\\": {\\n      \\\"mean_auc\\\": 0.534,\\n      \\\"boot_mean\\\": 0.5339,\\n      \\\"boot_std\\\": 0.0053,\\n      \\\"ci_lower\\\": 0.5238,\\n      \\\"ci_upper\\\": 0.5448,\\n      \\\"ci_width\\\": 0.021,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    }\\n  },\\n  \\\"exp_001_pythia\\\": {\\n    \\\"0v1\\\": {\\n      \\\"mean_auc\\\": 0.9932,\\n      \\\"boot_mean\\\": 0.9932,\\n      \\\"boot_std\\\": 0.0006,\\n      \\\"ci_lower\\\": 0.9921,\\n      \\\"ci_upper\\\": 0.9943,\\n      \\\"ci_width\\\": 0.0023,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"1v2\\\": {\\n      \\\"mean_auc\\\": 0.6539,\\n      \\\"boot_mean\\\": 0.654,\\n      \\\"boot_std\\\": 0.0045,\\n      \\\"ci_lower\\\": 0.6454,\\n      \\\"ci_upper\\\": 0.663,\\n      \\\"ci_width\\\": 0.0176,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"2v3\\\": {\\n      \\\"mean_auc\\\": 0.5514,\\n      \\\"boot_mean\\\": 0.5514,\\n      \\\"boot_std\\\": 0.0053,\\n      \\\"ci_lower\\\": 0.5417,\\n      \\\"ci_upper\\\": 0.5628,\\n      \\\"ci_width\\\": 0.0211,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"3v4\\\": {\\n      \\\"mean_auc\\\": 0.5152,\\n      \\\"boot_mean\\\": 0.515,\\n      \\\"boot_std\\\": 0.0056,\\n      \\\"ci_lower\\\": 0.5041,\\n      \\\"ci_upper\\\": 0.526,\\n      \\\"ci_width\\\": 0.022,\\n      \\\"perm_pvalue\\\": 0.006,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"4v5\\\": {\\n      \\\"mean_auc\\\": 0.5136,\\n      \\\"boot_mean\\\": 0.5134,\\n      \\\"boot_std\\\": 0.0056,\\n      \\\"ci_lower\\\": 0.5021,\\n      \\\"ci_upper\\\": 0.5249,\\n      \\\"ci_width\\\": 0.0227,\\n      \\\"perm_pvalue\\\": 0.008,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    }\\n  },\\n  \\\"exp_002_olmo\\\": {\\n    \\\"0v1\\\": {\\n      \\\"mean_auc\\\": 0.997,\\n      \\\"boot_mean\\\": 0.997,\\n      \\\"boot_std\\\": 0.0003,\\n      \\\"ci_lower\\\": 0.9964,\\n      \\\"ci_upper\\\": 0.9975,\\n      \\\"ci_width\\\": 0.0011,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"1v2\\\": {\\n      \\\"mean_auc\\\": 0.6145,\\n      \\\"boot_mean\\\": 0.6146,\\n      \\\"boot_std\\\": 0.0051,\\n      \\\"ci_lower\\\": 0.6045,\\n      \\\"ci_upper\\\": 0.6247,\\n      \\\"ci_width\\\": 0.0203,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"2v3\\\": {\\n      \\\"mean_auc\\\": 0.5496,\\n      \\\"boot_mean\\\": 0.5501,\\n      \\\"boot_std\\\": 0.0052,\\n      \\\"ci_lower\\\": 0.5399,\\n      \\\"ci_upper\\\": 0.5596,\\n      \\\"ci_width\\\": 0.0197,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"3v4\\\": {\\n      \\\"mean_auc\\\": 0.5091,\\n      \\\"boot_mean\\\": 0.5088,\\n      \\\"boot_std\\\": 0.0058,\\n      \\\"ci_lower\\\": 0.4973,\\n      \\\"ci_upper\\\": 0.52,\\n      \\\"ci_width\\\": 0.0226,\\n      \\\"perm_pvalue\\\": 0.064,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"4v5\\\": {\\n      \\\"mean_auc\\\": 0.5045,\\n      \\\"boot_mean\\\": 0.5044,\\n      \\\"boot_std\\\": 0.0056,\\n      \\\"ci_lower\\\": 0.4932,\\n      \\\"ci_upper\\\": 0.515,\\n      \\\"ci_width\\\": 0.0218,\\n      \\\"perm_pvalue\\\": 0.232,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-13T21:14:13.682Z_
+
+<details><summary>↩ Tool result · `toolu_011PkCyURjF4mbFY95eXxQ93`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nMVP Pilot Saturation Study — Results Summary\\n============================================================\\n\\nPairwise AUC (adjacent depths):\\n  depth 0 vs 1: AUC = 0.9982 ± 0.0008  folds=[0.998, 0.9982, 0.9969, 0.999, 0.9991]\\n  depth 1 vs 2: AUC = 0.7039 ± 0.0046  folds=[0.7086, 0.7054, 0.6996, 0.7085, 0.6974]\\n  depth 2 vs 3: AUC = 0.5823 ± 0.0116  folds=[0.5681, 0.5687, 0.5869, 0.5927, 0.595]\\n  depth 3 vs 4: AUC = 0.5293 ± 0.0076  folds=[0.5227, 0.5235, 0.5338, 0.5244, 0.5422]\\n  depth 4 vs 5: AUC = 0.5237 ± 0.0087  folds=[0.5088, 0.5239, 0.5356, 0.5274, 0.5226]\\n\\nPairwise JSD (adjacent depths):\\n  depth 0 vs 1: JSD = 0.295971\\n  depth 1 vs 2: JSD = 0.022169\\n  depth 2 vs 3: JSD = 0.007681\\n  depth 3 vs 4: JSD = 0.00437\\n  depth 4 vs 5: JSD = 0.004034\\n\\nK* (max depth with AUC > 0.60): 2\\n\\nOrdinal Classification (6-class, 5-fold CV):\\n  MAE = 1.0060\\n  Accuracy = 0.4220\\n\\nTop-10 Feature Importance:\\n  freq_entropy         9473.0\\n  hapax_ratio          8750.6\\n  surp_skew            8479.8\\n  surp_std             8021.2\\n  freq_kurtosis        7917.2\\n  surp_mean            7828.0\\n  surp_d1_mean         7800.4\\n  surp_d1_skew         7656.8\\n  surp_d2_mean         7542.2\\n  surp_kurt            7321.2\\n\\n============================================================\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "6bb22f9b-1c68-4fa8-afb5-e34b3067a4ef",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nMVP Pilot Saturation Study — Results Summary\\\\n============================================================\\\\n\\\\nPairwise AUC (adjacent depths):\\\\n  depth 0 vs 1: AUC = 0.9982 ± 0.0008  folds=[0.998, 0.9982, 0.9969, 0.999, 0.9991]\\\\n  depth 1 vs 2: AUC = 0.7039 ± 0.0046  folds=[0.7086, 0.7054, 0.6996, 0.7085, 0.6974]\\\\n  depth 2 vs 3: AUC = 0.5823 ± 0.0116  folds=[0.5681, 0.5687, 0.5869, 0.5927, 0.595]\\\\n  depth 3 vs 4: AUC = 0.5293 ± 0.0076  folds=[0.5227, 0.5235, 0.5338, 0.5244, 0.5422]\\\\n  depth 4 vs 5: AUC = 0.5237 ± 0.0087  folds=[0.5088, 0.5239, 0.5356, 0.5274, 0.5226]\\\\n\\\\nPairwise JSD (adjacent depths):\\\\n  depth 0 vs 1: JSD = 0.295971\\\\n  depth 1 vs 2: JSD = 0.022169\\\\n  depth 2 vs 3: JSD = 0.007681\\\\n  depth 3 vs 4: JSD = 0.00437\\\\n  depth 4 vs 5: JSD = 0.004034\\\\n\\\\nK* (max depth with AUC > 0.60): 2\\\\n\\\\nOrdinal Classification (6-class, 5-fold CV):\\\\n  MAE = 1.0060\\\\n  Accuracy = 0.4220\\\\n\\\\nTop-10 Feature Importance:\\\\n  freq_entropy         9473.0\\\\n  hapax_ratio          8750.6\\\\n  surp_skew            8479.8\\\\n  surp_std             8021.2\\\\n  freq_kurtosis        7917.2\\\\n  surp_mean            7828.0\\\\n  surp_d1_mean         7800.4\\\\n  surp_d1_skew         7656.8\\\\n  surp_d2_mean         7542.2\\\\n  surp_kurt            7321.2\\\\n\\\\n============================================================\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nMVP Pilot Saturation Study — Results Summary\\n============================================================\\n\\nPairwise AUC (adjacent depths):\\n  depth 0 vs 1: AUC = 0.9982 ± 0.0008  folds=[0.998, 0.9982, 0.9969, 0.999, 0.9991]\\n  depth 1 vs 2: AUC = 0.7039 ± 0.0046  folds=[0.7086, 0.7054, 0.6996, 0.7085, 0.6974]\\n  depth 2 vs 3: AUC = 0.5823 ± 0.0116  folds=[0.5681, 0.5687, 0.5869, 0.5927, 0.595]\\n  depth 3 vs 4: AUC = 0.5293 ± 0.0076  folds=[0.5227, 0.5235, 0.5338, 0.5244, 0.5422]\\n  depth 4 vs 5: AUC = 0.5237 ± 0.0087  folds=[0.5088, 0.5239, 0.5356, 0.5274, 0.5226]\\n\\nPairwise JSD (adjacent depths):\\n  depth 0 vs 1: JSD = 0.295971\\n  depth 1 vs 2: JSD = 0.022169\\n  depth 2 vs 3: JSD = 0.007681\\n  depth 3 vs 4: JSD = 0.00437\\n  depth 4 vs 5: JSD = 0.004034\\n\\nK* (max depth with AUC > 0.60): 2\\n\\nOrdinal Classification (6-class, 5-fold CV):\\n  MAE = 1.0060\\n  Accuracy = 0.4220\\n\\nTop-10 Feature Importance:\\n  freq_entropy         9473.0\\n  hapax_ratio          8750.6\\n  surp_skew            8479.8\\n  surp_std             8021.2\\n  freq_kurtosis        7917.2\\n  surp_mean            7828.0\\n  surp_d1_mean         7800.4\\n  surp_d1_skew         7656.8\\n  surp_d2_mean         7542.2\\n  surp_kurt            7321.2\\n\\n============================================================\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I have the exp-003 config4_t12 data. Now let me check for exp-007 qwen_cont data. The bootstrap_ci_results.json contains mvp_001_qwen_rewrite, exp_001_pythia, and exp_002_olmo - but no "qwen_cont". Let me check the other bootstrap file (bootstrap_ci_4model.json).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "23fb80b6-6c95-4e31-a2a7-ba197e8ae804",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qm1qMG59Q8Q4y9NxU8Crv5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5182,
+      "cache_read_input_tokens": 26763,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5182
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+`bootstrap_ci_results.json` doesn't have `qwen_cont`. Let me check the 4-model file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "d31c1bd9-b2ce-43ab-a200-818f59ddeb28",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qm1qMG59Q8Q4y9NxU8Crv5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5182,
+      "cache_read_input_tokens": 26763,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5182
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01574zb3RcGtK7VwU8RhJYTM`</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/artifacts/bootstrap_ci_4model.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "3c0cd185-d30d-48d2-a8e6-8dc8ca386eb7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Qm1qMG59Q8Q4y9NxU8Crv5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5182,
+      "cache_read_input_tokens": 26763,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5182
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-13T21:14:22.466Z_
+
+<details><summary>↩ Tool result · `toolu_01574zb3RcGtK7VwU8RhJYTM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mvp_001_qwen_rewrite\\\": {\\n    \\\"0v1\\\": {\\n      \\\"mean_auc\\\": 0.9956,\\n      \\\"boot_mean\\\": 0.9956,\\n      \\\"boot_std\\\": 0.0005,\\n      \\\"ci_lower\\\": 0.9946,\\n      \\\"ci_upper\\\": 0.9965,\\n      \\\"ci_width\\\": 0.0019,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"1v2\\\": {\\n      \\\"mean_auc\\\": 0.6955,\\n      \\\"boot_mean\\\": 0.6953,\\n      \\\"boot_std\\\": 0.0045,\\n      \\\"ci_lower\\\": 0.6859,\\n      \\\"ci_upper\\\": 0.7041,\\n      \\\"ci_width\\\": 0.0182,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"2v3\\\": {\\n      \\\"mean_auc\\\": 0.5893,\\n      \\\"boot_mean\\\": 0.5893,\\n      \\\"boot_std\\\": 0.0049,\\n      \\\"ci_lower\\\": 0.5795,\\n      \\\"ci_upper\\\": 0.5991,\\n      \\\"ci_width\\\": 0.0195,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"3v4\\\": {\\n      \\\"mean_auc\\\": 0.5435,\\n      \\\"boot_mean\\\": 0.5437,\\n      \\\"boot_std\\\": 0.0054,\\n      \\\"ci_lower\\\": 0.5333,\\n      \\\"ci_upper\\\": 0.5551,\\n      \\\"ci_width\\\": 0.0218,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"4v5\\\": {\\n      \\\"mean_auc\\\": 0.534,\\n      \\\"boot_mean\\\": 0.5339,\\n      \\\"boot_std\\\": 0.0053,\\n      \\\"ci_lower\\\": 0.5238,\\n      \\\"ci_upper\\\": 0.5448,\\n      \\\"ci_width\\\": 0.021,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    }\\n  },\\n  \\\"exp_001_pythia\\\": {\\n    \\\"0v1\\\": {\\n      \\\"mean_auc\\\": 0.9932,\\n      \\\"boot_mean\\\": 0.9932,\\n      \\\"boot_std\\\": 0.0006,\\n      \\\"ci_lower\\\": 0.9921,\\n      \\\"ci_upper\\\": 0.9943,\\n      \\\"ci_width\\\": 0.0023,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"1v2\\\": {\\n      \\\"mean_auc\\\": 0.6539,\\n      \\\"boot_mean\\\": 0.654,\\n      \\\"boot_std\\\": 0.0045,\\n      \\\"ci_lower\\\": 0.6454,\\n      \\\"ci_upper\\\": 0.663,\\n      \\\"ci_width\\\": 0.0176,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"2v3\\\": {\\n      \\\"mean_auc\\\": 0.5514,\\n      \\\"boot_mean\\\": 0.5514,\\n      \\\"boot_std\\\": 0.0053,\\n      \\\"ci_lower\\\": 0.5417,\\n      \\\"ci_upper\\\": 0.5628,\\n      \\\"ci_width\\\": 0.0211,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"3v4\\\": {\\n      \\\"mean_auc\\\": 0.5152,\\n      \\\"boot_mean\\\": 0.515,\\n      \\\"boot_std\\\": 0.0056,\\n      \\\"ci_lower\\\": 0.5041,\\n      \\\"ci_upper\\\": 0.526,\\n      \\\"ci_width\\\": 0.022,\\n      \\\"perm_pvalue\\\": 0.006,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"4v5\\\": {\\n      \\\"mean_auc\\\": 0.5136,\\n      \\\"boot_mean\\\": 0.5134,\\n      \\\"boot_std\\\": 0.0056,\\n      \\\"ci_lower\\\": 0.5021,\\n      \\\"ci_upper\\\": 0.5249,\\n      \\\"ci_width\\\": 0.0227,\\n      \\\"perm_pvalue\\\": 0.008,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    }\\n  },\\n  \\\"exp_002_olmo\\\": {\\n    \\\"0v1\\\": {\\n      \\\"mean_auc\\\": 0.997,\\n      \\\"boot_mean\\\": 0.997,\\n      \\\"boot_std\\\": 0.0003,\\n      \\\"ci_lower\\\": 0.9964,\\n      \\\"ci_upper\\\": 0.9975,\\n      \\\"ci_width\\\": 0.0011,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"1v2\\\": {\\n      \\\"mean_auc\\\": 0.6145,\\n      \\\"boot_mean\\\": 0.6146,\\n      \\\"boot_std\\\": 0.0051,\\n      \\\"ci_lower\\\": 0.6045,\\n      \\\"ci_upper\\\": 0.6247,\\n      \\\"ci_width\\\": 0.0203,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"2v3\\\": {\\n      \\\"mean_auc\\\": 0.5496,\\n      \\\"boot_mean\\\": 0.5501,\\n      \\\"boot_std\\\": 0.0052,\\n      \\\"ci_lower\\\": 0.5399,\\n      \\\"ci_upper\\\": 0.5596,\\n      \\\"ci_width\\\": 0.0197,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"3v4\\\": {\\n      \\\"mean_auc\\\": 0.5091,\\n      \\\"boot_mean\\\": 0.5088,\\n      \\\"boot_std\\\": 0.0058,\\n      \\\"ci_lower\\\": 0.4973,\\n      \\\"ci_upper\\\": 0.52,\\n      \\\"ci_width\\\": 0.0226,\\n      \\\"perm_pvalue\\\": 0.064,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"4v5\\\": {\\n      \\\"mean_auc\\\": 0.5045,\\n      \\\"boot_mean\\\": 0.5044,\\n      \\\"boot_std\\\": 0.0056,\\n      \\\"ci_lower\\\": 0.4932,\\n      \\\"ci_upper\\\": 0.515,\\n      \\\"ci_width\\\": 0.0218,\\n      \\\"perm_pvalue\\\": 0.232,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    }\\n  },\\n  \\\"exp_017_qwen_cont\\\": {\\n    \\\"0v1\\\": {\\n      \\\"mean_auc\\\": 0.9971,\\n      \\\"boot_mean\\\": 0.9971,\\n      \\\"boot_std\\\": 0.0004,\\n      \\\"ci_lower\\\": 0.9963,\\n      \\\"ci_upper\\\": 0.9978,\\n      \\\"ci_width\\\": 0.0015,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"1v2\\\": {\\n      \\\"mean_auc\\\": 0.6112,\\n      \\\"boot_mean\\\": 0.6113,\\n      \\\"boot_std\\\": 0.0051,\\n      \\\"ci_lower\\\": 0.6015,\\n      \\\"ci_upper\\\": 0.6213,\\n      \\\"ci_width\\\": 0.0198,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"2v3\\\": {\\n      \\\"mean_auc\\\": 0.5609,\\n      \\\"boot_mean\\\": 0.561,\\n      \\\"boot_std\\\": 0.0053,\\n      \\\"ci_lower\\\": 0.5511,\\n      \\\"ci_upper\\\": 0.5712,\\n      \\\"ci_width\\\": 0.0201,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"3v4\\\": {\\n      \\\"mean_auc\\\": 0.5409,\\n      \\\"boot_mean\\\": 0.541,\\n      \\\"boot_std\\\": 0.0052,\\n      \\\"ci_lower\\\": 0.5308,\\n      \\\"ci_upper\\\": 0.5508,\\n      \\\"ci_width\\\": 0.02,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"4v5\\\": {\\n      \\\"mean_auc\\\": 0.5141,\\n      \\\"boot_mean\\\": 0.5141,\\n      \\\"boot_std\\\": 0.0056,\\n      \\\"ci_lower\\\": 0.5035,\\n      \\\"ci_upper\\\": 0.5255,\\n      \\\"ci_width\\\": 0.022,\\n      \\\"perm_pvalue\\\": 0.006,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "b8f85835-a4d5-4505-a8b4-0e2b49a5f432",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mvp_001_qwen_rewrite\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.9956,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.9956,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0005,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.9946,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.9965,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0019,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"1v2\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.6955,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.6953,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0045,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.6859,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.7041,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0182,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"2v3\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.5893,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.5893,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0049,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5795,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5991,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0195,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"3v4\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.5435,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.5437,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0054,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5333,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5551,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0218,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"4v5\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.534,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.5339,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0053,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5238,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5448,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.021,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    }\\\\n  },\\\\n  \\\\\\\"exp_001_pythia\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.9932,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.9932,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0006,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.9921,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.9943,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0023,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"1v2\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.6539,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.654,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0045,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.6454,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.663,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0176,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"2v3\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.5514,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.5514,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0053,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5417,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5628,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0211,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"3v4\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.5152,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.515,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0056,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5041,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.526,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.022,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.006,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"4v5\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.5136,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.5134,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0056,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5021,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5249,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0227,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.008,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    }\\\\n  },\\\\n  \\\\\\\"exp_002_olmo\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.997,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.997,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0003,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.9964,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.9975,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0011,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"1v2\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.6145,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.6146,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0051,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.6045,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.6247,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0203,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"2v3\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.5496,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.5501,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0052,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5399,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5596,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0197,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"3v4\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.5091,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.5088,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0058,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.4973,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.52,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0226,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.064,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"4v5\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.5045,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.5044,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0056,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.4932,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.515,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0218,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.232,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    }\\\\n  },\\\\n  \\\\\\\"exp_017_qwen_cont\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.9971,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.9971,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0004,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.9963,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.9978,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0015,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"1v2\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.6112,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.6113,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0051,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.6015,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.6213,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0198,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"2v3\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.5609,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.561,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0053,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5511,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5712,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0201,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"3v4\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.5409,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.541,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0052,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5308,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5508,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.02,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    },\\\\n    \\\\\\\"4v5\\\\\\\": {\\\\n      \\\\\\\"mean_auc\\\\\\\": 0.5141,\\\\n      \\\\\\\"boot_mean\\\\\\\": 0.5141,\\\\n      \\\\\\\"boot_std\\\\\\\": 0.0056,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5035,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5255,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.022,\\\\n      \\\\\\\"perm_pvalue\\\\\\\": 0.006,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 1000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 500\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mvp_001_qwen_rewrite\\\": {\\n    \\\"0v1\\\": {\\n      \\\"mean_auc\\\": 0.9956,\\n      \\\"boot_mean\\\": 0.9956,\\n      \\\"boot_std\\\": 0.0005,\\n      \\\"ci_lower\\\": 0.9946,\\n      \\\"ci_upper\\\": 0.9965,\\n      \\\"ci_width\\\": 0.0019,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"1v2\\\": {\\n      \\\"mean_auc\\\": 0.6955,\\n      \\\"boot_mean\\\": 0.6953,\\n      \\\"boot_std\\\": 0.0045,\\n      \\\"ci_lower\\\": 0.6859,\\n      \\\"ci_upper\\\": 0.7041,\\n      \\\"ci_width\\\": 0.0182,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"2v3\\\": {\\n      \\\"mean_auc\\\": 0.5893,\\n      \\\"boot_mean\\\": 0.5893,\\n      \\\"boot_std\\\": 0.0049,\\n      \\\"ci_lower\\\": 0.5795,\\n      \\\"ci_upper\\\": 0.5991,\\n      \\\"ci_width\\\": 0.0195,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"3v4\\\": {\\n      \\\"mean_auc\\\": 0.5435,\\n      \\\"boot_mean\\\": 0.5437,\\n      \\\"boot_std\\\": 0.0054,\\n      \\\"ci_lower\\\": 0.5333,\\n      \\\"ci_upper\\\": 0.5551,\\n      \\\"ci_width\\\": 0.0218,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"4v5\\\": {\\n      \\\"mean_auc\\\": 0.534,\\n      \\\"boot_mean\\\": 0.5339,\\n      \\\"boot_std\\\": 0.0053,\\n      \\\"ci_lower\\\": 0.5238,\\n      \\\"ci_upper\\\": 0.5448,\\n      \\\"ci_width\\\": 0.021,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    }\\n  },\\n  \\\"exp_001_pythia\\\": {\\n    \\\"0v1\\\": {\\n      \\\"mean_auc\\\": 0.9932,\\n      \\\"boot_mean\\\": 0.9932,\\n      \\\"boot_std\\\": 0.0006,\\n      \\\"ci_lower\\\": 0.9921,\\n      \\\"ci_upper\\\": 0.9943,\\n      \\\"ci_width\\\": 0.0023,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"1v2\\\": {\\n      \\\"mean_auc\\\": 0.6539,\\n      \\\"boot_mean\\\": 0.654,\\n      \\\"boot_std\\\": 0.0045,\\n      \\\"ci_lower\\\": 0.6454,\\n      \\\"ci_upper\\\": 0.663,\\n      \\\"ci_width\\\": 0.0176,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"2v3\\\": {\\n      \\\"mean_auc\\\": 0.5514,\\n      \\\"boot_mean\\\": 0.5514,\\n      \\\"boot_std\\\": 0.0053,\\n      \\\"ci_lower\\\": 0.5417,\\n      \\\"ci_upper\\\": 0.5628,\\n      \\\"ci_width\\\": 0.0211,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"3v4\\\": {\\n      \\\"mean_auc\\\": 0.5152,\\n      \\\"boot_mean\\\": 0.515,\\n      \\\"boot_std\\\": 0.0056,\\n      \\\"ci_lower\\\": 0.5041,\\n      \\\"ci_upper\\\": 0.526,\\n      \\\"ci_width\\\": 0.022,\\n      \\\"perm_pvalue\\\": 0.006,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"4v5\\\": {\\n      \\\"mean_auc\\\": 0.5136,\\n      \\\"boot_mean\\\": 0.5134,\\n      \\\"boot_std\\\": 0.0056,\\n      \\\"ci_lower\\\": 0.5021,\\n      \\\"ci_upper\\\": 0.5249,\\n      \\\"ci_width\\\": 0.0227,\\n      \\\"perm_pvalue\\\": 0.008,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    }\\n  },\\n  \\\"exp_002_olmo\\\": {\\n    \\\"0v1\\\": {\\n      \\\"mean_auc\\\": 0.997,\\n      \\\"boot_mean\\\": 0.997,\\n      \\\"boot_std\\\": 0.0003,\\n      \\\"ci_lower\\\": 0.9964,\\n      \\\"ci_upper\\\": 0.9975,\\n      \\\"ci_width\\\": 0.0011,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"1v2\\\": {\\n      \\\"mean_auc\\\": 0.6145,\\n      \\\"boot_mean\\\": 0.6146,\\n      \\\"boot_std\\\": 0.0051,\\n      \\\"ci_lower\\\": 0.6045,\\n      \\\"ci_upper\\\": 0.6247,\\n      \\\"ci_width\\\": 0.0203,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"2v3\\\": {\\n      \\\"mean_auc\\\": 0.5496,\\n      \\\"boot_mean\\\": 0.5501,\\n      \\\"boot_std\\\": 0.0052,\\n      \\\"ci_lower\\\": 0.5399,\\n      \\\"ci_upper\\\": 0.5596,\\n      \\\"ci_width\\\": 0.0197,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"3v4\\\": {\\n      \\\"mean_auc\\\": 0.5091,\\n      \\\"boot_mean\\\": 0.5088,\\n      \\\"boot_std\\\": 0.0058,\\n      \\\"ci_lower\\\": 0.4973,\\n      \\\"ci_upper\\\": 0.52,\\n      \\\"ci_width\\\": 0.0226,\\n      \\\"perm_pvalue\\\": 0.064,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"4v5\\\": {\\n      \\\"mean_auc\\\": 0.5045,\\n      \\\"boot_mean\\\": 0.5044,\\n      \\\"boot_std\\\": 0.0056,\\n      \\\"ci_lower\\\": 0.4932,\\n      \\\"ci_upper\\\": 0.515,\\n      \\\"ci_width\\\": 0.0218,\\n      \\\"perm_pvalue\\\": 0.232,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    }\\n  },\\n  \\\"exp_017_qwen_cont\\\": {\\n    \\\"0v1\\\": {\\n      \\\"mean_auc\\\": 0.9971,\\n      \\\"boot_mean\\\": 0.9971,\\n      \\\"boot_std\\\": 0.0004,\\n      \\\"ci_lower\\\": 0.9963,\\n      \\\"ci_upper\\\": 0.9978,\\n      \\\"ci_width\\\": 0.0015,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"1v2\\\": {\\n      \\\"mean_auc\\\": 0.6112,\\n      \\\"boot_mean\\\": 0.6113,\\n      \\\"boot_std\\\": 0.0051,\\n      \\\"ci_lower\\\": 0.6015,\\n      \\\"ci_upper\\\": 0.6213,\\n      \\\"ci_width\\\": 0.0198,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"2v3\\\": {\\n      \\\"mean_auc\\\": 0.5609,\\n      \\\"boot_mean\\\": 0.561,\\n      \\\"boot_std\\\": 0.0053,\\n      \\\"ci_lower\\\": 0.5511,\\n      \\\"ci_upper\\\": 0.5712,\\n      \\\"ci_width\\\": 0.0201,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"3v4\\\": {\\n      \\\"mean_auc\\\": 0.5409,\\n      \\\"boot_mean\\\": 0.541,\\n      \\\"boot_std\\\": 0.0052,\\n      \\\"ci_lower\\\": 0.5308,\\n      \\\"ci_upper\\\": 0.5508,\\n      \\\"ci_width\\\": 0.02,\\n      \\\"perm_pvalue\\\": 0.0,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    },\\n    \\\"4v5\\\": {\\n      \\\"mean_auc\\\": 0.5141,\\n      \\\"boot_mean\\\": 0.5141,\\n      \\\"boot_std\\\": 0.0056,\\n      \\\"ci_lower\\\": 0.5035,\\n      \\\"ci_upper\\\": 0.5255,\\n      \\\"ci_width\\\": 0.022,\\n      \\\"perm_pvalue\\\": 0.006,\\n      \\\"n_bootstrap\\\": 1000,\\n      \\\"n_permutation\\\": 500\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+两组数据都找到了。
+
+```
+config4_t12:
+  0v1: 0.9982
+  1v2: 0.7039
+  2v3: 0.5823  (确认 < 0.60 ✓，K*=2 成立)
+  3v4: 0.5293
+  4v5: 0.5237
+  top3_features_1v2: [freq_entropy, hapax_ratio, surp_skew]
+
+qwen_cont_0v1:
+  ci_lower: 0.9963
+  ci_upper: 0.9978
+  perm_p: 0.000
+```
+
+数据来源：
+- config4_t12 → `results_exp003_t12/pairwise_auc.json` + `feature_importance.json`
+- qwen_cont_0v1 → `artifacts/bootstrap_ci_4model.json` 中的 `exp_017_qwen_cont.0v1`（注意不在 `bootstrap_ci_results.json` 里，那个只有 3 个模型）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "uuid": "38026615-0616-4594-8510-e9bdeeb64137",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T81NxHxuZbS6W99Mfj6M5u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3928,
+      "cache_read_input_tokens": 31945,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3928
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 36_
+
+两组数据都找到了。
+
+```
+config4_t12:
+  0v1: 0.9982
+  1v2: 0.7039
+  2v3: 0.5823  (确认 < 0.60 ✓，K*=2 成立)
+  3v4: 0.5293
+  4v5: 0.5237
+  top3_features_1v2: [freq_entropy, hapax_ratio, surp_skew]
+
+qwen_cont_0v1:
+  ci_lower: 0.9963
+  ci_upper: 0.9978
+  perm_p: 0.000
+```
+
+数据来源：
+- config4_t12 → `results_exp003_t12/pairwise_auc.json` + `feature_importance.json`
+- qwen_cont_0v1 → `artifacts/bootstrap_ci_4model.json` 中的 `exp_017_qwen_cont.0v1`（注意不在 `bootstrap_ci_results.json` 里，那个只有 3 个模型）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 53110,
+  "duration_api_ms": 49618,
+  "num_turns": 13,
+  "stop_reason": "end_turn",
+  "session_id": "15489d7d-4a7c-4783-b751-04437c57d5d9",
+  "total_cost_usd": 0.2756345,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 24032,
+    "cache_read_input_tokens": 145025,
+    "output_tokens": 2034,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 24032,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 283,
+        "cache_read_input_tokens": 31945,
+        "cache_creation_input_tokens": 3928,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3928
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1922,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002022,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 2034,
+      "cacheReadInputTokens": 145025,
+      "cacheCreationInputTokens": 24032,
+      "webSearchRequests": 0,
+      "costUSD": 0.2736125,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "8b635fd3-a79f-4e33-a820-9c690c11fc0d"
+}
+```
+
+</details>
+
+---

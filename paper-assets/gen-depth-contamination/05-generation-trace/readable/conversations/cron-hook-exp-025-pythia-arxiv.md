@@ -1,0 +1,557 @@
+# cron hook exp 025 pythia arxiv
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 19
+- **Recorded user turns:** 1
+- **Tool calls:** 9
+- **Original source:** `logs/chats/cron_hook_exp_025_pythia_arxiv.jsonl`
+- **Structured JSON:** [`eb7def68bf66b19d5629.json`](../../sessions/eb/eb7def68bf66b19d5629.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+19 recorded events
+
+### User
+
+_source line 1 · 2026-05-16T18:57:30.566477+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: exp_025_pythia_arxiv
+- project: gen-depth-contamination
+- server: cqa1-22115
+- log_path: /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp_025_pythia_arxiv",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-16T18:57:49.714321+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_025_pythia_arxiv",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-16T18:57:49.815570+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_025_pythia_arxiv",
+  "tool": "ToolSearch",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T18:57:54.333364+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_025_pythia_arxiv",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "gen-depth-contamination",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T18:57:54.785637+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_025_pythia_arxiv",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T18:57:54.787554+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_025_pythia_arxiv\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-16T17:16:13.988Z\", \"updated_at\": \"2026-05-16T18:57:28.981Z\", \"hypothesis\": \"Domain × model interaction: Pythia-1.4B on arXiv data 的 K* 是否与 exp-024 (Qwen on arXiv, K*=?) 一致？验证 arXiv domain effect 跨模型一致性，排除 Qwen-specific artifact。Pythia-1.4B continuation, nucleus p=0.95 T=1.0, 2200 docs, depth 0-5, scorer=Qwen2.5-1.5B base。\", \"parent\": \"exp_024_arxiv_domain\"}, \"exp_022_cross_scorer_matrix\": {\"status\": \"DONE\", \"created_at\": \"2026-05-16T04:52:14.132Z\", \"updated_at\": \"2026-05-16T18:56:44.226Z\", \"hypothesis\": \"完整 4×4 cross-scorer 矩阵：4 generator (Qwen-rw/Qwen-cont/Pythia/OLMo) × 4 scorer (Qwen-Instruct/Qwen-base/Pythia/OLMo) 的 K* 和 pairwise AUC，量化 self-scoring advantage 并验证 scorer 独立性。\", \"parent\": \"exp_A_alt_scorer\", \"notes\": \"2026-05-16 15:05: 双 GPU 并行。cuda:1 跑 2×2 子矩阵 (PID 49787, Qwen-cont/Pythia × Qwen-base/Pythia)。cuda:3 跑 3×4=12 组合 (先跑已缓存模型 6 combo，等下载 Qwen-Instruct/OLMo 后补剩余 6)。OLMo generator 无 depth chain 数据，实际 3 generators × 4 scorers。\", \"conclusion\": \"success\", \"metrics\": {\"total_combos\": 12, \"completed\": 12, \"K_star_distribution\": {\"K2\": 11, \"K1\": 1}, \"matrix\": {\"pythia_greedy×olmo\": {\"K_star\": 2, \"1v2\": 0.8811}, \"pythia_greedy×pythia\": {\"K_star\": 2, \"1v2\": 0.8838}, \"pythia_greedy×qwen_base\": {\"K_star\": 2, \"1v2\": 0.8814}, \"pythia_greedy×qwen_instruct\": {\"K_star\": 2, \"1v2\": 0.8818}, \"qwen_base×olmo\": {\"K_star\": 2, \"1v2\": 0.6047}, \"qwen_base×pythia\": {\"K_star\": 2, \"1v2\": 0.617}, \"qwen_base×qwen_base\": {\"K_star\": 2, \"1v2\": 0.6262}, \"qwen_base×qwen_instruct\": {\"K_star\": 2, \"1v2\": 0.6273}, \"qwen_cont256×olmo\": {\"K_star\": 2, \"1v2\": 0.6028}, \"qwen_cont256×pythia\": {\"K_star\": 1, \"1v2\": 0.5979}, \"qwen_cont256×qwen_base\": {\"K_star\": 2, \"1v2\": 0.6282}, \"qwen_cont256×qwen_instruct\": {\"K_star\": 2, \"1v2\": 0.6072}
+…[truncated 37723 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_025_pythia_arxiv",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 454
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-16T18:57:55.189735+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_025_pythia_arxiv",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 404
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-16T18:57:55.190206+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_025_pythia_arxiv",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "gen-depth-contamination",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T18:57:55.190471+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "gen-depth-contamination"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_025_pythia_arxiv",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "gen-depth-contamination"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T18:57:55.241106+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-16T18:57:29Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 30 个实验 — DONE 29, PREPARING 1\\n**DONE 分布**: success 29\\n\\n### GPU 占用\\n- **分配**: 4 张 — cqa1-22115:cuda:0, cqa1-22115:cuda:1, cqa1-22115:cuda:2, cqa1-22115:cuda:3\\n- **空闲（分配了没跑）**: cqa1-22115:cuda:0, cqa1-22115:cuda:1, cqa1-22115:cuda:2, cqa1-22115:cuda:3\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `exp_022_cross_scorer_matrix` [success] — 2026-05-16T18:56:44\\n- `exp_024_arxiv_domain` [success] — 2026-05-16T17:23:12\\n- `exp_020_pythia_decoding` [success] — 2026-05-16T17:18:28\\n- `exp_021_length_ablation` [success] — 2026-05-16T17:18:21 — EXIT_CODE=1 (generic error — check log tail)\\n- `exp_018_llama8b_depth` [success] — 2026-05-16T16:18:02 — null — cron 误报，实验实际成功\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-16\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- exp_025_pythia_arxiv: Domain × model interaction: Pythia-1.4B on arXiv data 的 K* 是否与 exp-024 (Qwen on arXiv, K*=?) 一致？验证 arXiv domain effect 跨模型一致性，排除 Qwen-specific artifact。Pythia-1.4B continuation, nucleus p=0.95 T=1.0, 2200 docs, depth 0-5, scorer=Qwen2.5-1.5B base。（准备中）\\n\\n## 近期结论\\n- **exp_022_cross_scorer_matrix** (success): 完整 4×4 cross-scorer 矩阵：4 generator (Qwen-rw/Qwen-cont/Pythia/OLMo) × 4 scorer (Qwen-Instruct/Qwen-base/Pythia/OLMo) 的 K* 和 pairwise AUC，量化 self-scoring advantage 并验证 scorer 独立性。 ← 基于 exp_A_alt_scorer\\n  [exp022_stats_design_check](/api/workspace-files/projects/gen-depth-contamination/artifacts/exp_022_cross_scorer_matrix/report/exp022_stats_design_check.md)\\n- **exp_024_arxiv_domain** (success): Domain ablation: arXiv abstracts 数据下 K*=2 是否成立？验证 K* 跨数据域（C4 vs Wikipedia vs arXiv）的稳定性。Qwen2.5-1.5B bas
+…[truncated 835 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_025_pythia_arxiv",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T18:57:55.241595+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/ROADMAP.md\", \"content\": \"# gen-depth-contamination — Research Dashboard\\n\\n> 最后更新: 2026-05-16 16:22 UTC | 更新原因: exp-024 arXiv K*=3 发现，framing 从 K*≤2 升级为 K*∈{1,2,3} domain-dependent\\n\\n## 核心方向\\n首次系统测量递归合成文本的 generational discrimination boundary K*，发现 K* 是 low-bounded（≤3）且 domain-dependent：web text K*=2, structured academic text K*=3, 特定模型 K*=1。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research + 审稿进行中\\n- **核心发现**: K* ∈ {1,2,3}，domain 和 model 双因子影响\\n  - C4 web text: 7/8 models K*=2 (Mistral K*=1 唯一例外)\\n  - Wikipedia: K*=2 (Qwen-1.5B verified)\\n  - arXiv abstracts: **K*=3** (Qwen-1.5B, 2v3=0.6436, 5 folds all >0.60)\\n- **实验**: 25 registered, 22 success, 3 running (exp-022/024 + bootstrap CI)\\n- **论文**: 主文 6 页（≤8 限制），Paper Agent 正在更新 arXiv K*=3 framing\\n- **DDL**: EMNLP 2026 ARR May 25 (9 days)\\n\\n## 近期任务\\n- [x] exp-018 LLaMA-8B K*=2 confirmed (D048)\\n- [x] exp-019b Mistral cross-scorer K*=1 text-intrinsic confirmed (D046)\\n- [x] exp-023 Wiki K*=2 cross-domain validated\\n- [x] exp-024 arXiv K*=3 discovered (D049)\\n- [x] Framing: \\\"K*≤2\\\" → \\\"K*∈{1,2,3} domain+model dependent\\\" (D049)\\n- [ ] exp-022 cross-scorer matrix (running cuda:1+3)\\n- [ ] exp-018 bootstrap CI (running CPU, confirm CI lower>0.60)\\n- [ ] Paper Agent: 更新论文全文 framing (dispatched)\\n- [ ] paper_framing.md 最终版更新\\n- [ ] exp-024 registry 更新 DONE\\n- [ ] 考虑：arXiv on 其他模型验证 domain effect 普遍性？(future work or quick check)\\n\\n## GPU 预算\\n- 本项目分配：cqa1-22115 4×4090D (cuda:0-3)\\n- 当前占用：cuda:1+3 exp-022, cuda:2 exp-024 (可能已完成)\\n- cuda:0 空闲（bootstrap CI 是 CPU 任务）\\n\\n## 关键里程碑\\n- MVP 通过 (21/21 P0 success)\\n- K*=2 universality 验证完成（6 模型 × 4 解码 × 3 长度 × 2 域 web text）\\n- Domain effect 发现 (arXiv K*=3) — 论文 story 升级\\n- 待完成：cross-scorer matrix + bootstrap CI + paper finalization\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------
+…[truncated 1084 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_025_pythia_arxiv",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T18:58:15.605660+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__fetch_wandb_metrics",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_025_pythia_arxiv",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__fetch_wandb_metrics",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T18:58:15.656265+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_025_pythia_arxiv",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T18:58:22.282439+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_025_pythia_arxiv",
+  "field": "status",
+  "value": "ANALYZING",
+  "project": "gen-depth-contamination"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_025_pythia_arxiv",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_025_pythia_arxiv",
+    "field": "status",
+    "value": "ANALYZING",
+    "project": "gen-depth-contamination"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T18:58:22.734490+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → ANALYZING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.1767}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_025_pythia_arxiv",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T18:58:41.774376+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "analysis:exp_025_pythia_arxiv",
+  "project": "gen-depth-contamination",
+  "task_prompt": "## 任务：分析 exp_025_pythia_arxiv 实验结果\n\n### 背景\nexp_025_pythia_arxiv 已正常完成退出。这是一个 domain × model interaction 实验：\n- **假设**: Pythia-1.4B on arXiv data 的 K* 是否与 exp-024 (Qwen on arXiv, K*=3) 一致？验证 arXiv domain effect 跨模型一致性，排除 Qwen-specific artifact。\n- **配置**: Pythia-1.4B continuation, nucleus p=0.95 T=1.0, 2200 docs, depth 0-5, scorer=Qwen2.5-1.5B base\n- **服务器**: cqa1-22115\n- **对照**: exp_024_arxiv_domain (Qwen on arXiv, K*=3, 1v2=0.858, 2v3=0.6427)\n\n### 你需要做的\n\n1. **读取日志**：SSH 到 cqa1-22115，读取 `/root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log` 的最后 100 行，确认实验正常完成。\n\n2. **查找结果文件**：在以下可能路径查找结果：\n   - `/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/`\n   - `/root/autodl-tmp/gen-depth-contamination/results/exp025_pythia_arxiv/`\n   - 或日志中提到的输出路径\n   \n3. **提取关键指标**：\n   - K* 值（θ=0.60 阈值）\n   - Pairwise AUC: 0v1, 1v2, 2v3, 3v4, 4v5\n   - Bootstrap CI（如果已经计算的话）\n   - Top features\n   - Ordinal accuracy/MAE\n\n4. **如果结果文件中没有 bootstrap CI**，运行 bootstrap 分析：\n   - 在结果目录找到 predictions/features 文件\n   - 用项目已有的 bootstrap 脚本（参考 `/root/autodl-tmp/gen-depth-contamination/scripts/` 下的 bootstrap 脚本）\n   - 10000 resamples, permutation test 10000 resamples\n   - 输出每对 depth pair 的 CI 和 p-value\n\n5. **与 exp-024 对比**：\n   - exp-024 (Qwen arXiv): K*=3, 1v2=0.858, 2v3=0.6427, 3v4=0.5437\n   - 如果 Pythia arXiv 也是 K*=3，说明 arXiv domain effect 跨模型一致\n   - 如果 K*=2 或 K*=1，说明 domain effect 与 model 交互\n\n6. **产出**：将完整分析结果（K*、所有 AUC、CI、关键发现）作为你的最终输出返回。格式：\n```\nK_star: X\npairwise_auc:\n  0v1: X.XXXX\n  1v2: X.XXXX\n  2v3: X.XXXX\n  3v4: X.XXXX\n  4v5: X.XXXX\nbootstrap_ci:\n  0v1: {auc: X.XXXX, ci_lower: X.XXXX, ci_upper: X.XXXX, perm_p: X.XXXX}\n  ...\nkey_finding: \"...\"\ncomparison_with_exp024: \"...\"\n```\n\n### 环境\n- Python 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径: `/root/autodl-tmp/gen-depth-contamination/`\n- 已有 bootstrap 脚本可能在 `scripts/` 目录下",
+  "tool_groups": "['ssh', 'registry']",
+  "context": "exp_025_pythia_arxiv: Domain × model interaction experiment. Pythia-1.4B on arXiv data, testing if K*=3 (same as exp-024 Qwen arXiv) holds across models. Server: cqa1-22115. Log: /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_025_pythia_arxiv",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:exp_025_pythia_arxiv",
+    "project": "gen-depth-contamination",
+    "task_prompt": "## 任务：分析 exp_025_pythia_arxiv 实验结果\n\n### 背景\nexp_025_pythia_arxiv 已正常完成退出。这是一个 domain × model interaction 实验：\n- **假设**: Pythia-1.4B on arXiv data 的 K* 是否与 exp-024 (Qwen on arXiv, K*=3) 一致？验证 arXiv domain effect 跨模型一致性，排除 Qwen-specific artifact。\n- **配置**: Pythia-1.4B continuation, nucleus p=0.95 T=1.0, 2200 docs, depth 0-5, scorer=Qwen2.5-1.5B base\n- **服务器**: cqa1-22115\n- **对照**: exp_024_arxiv_domain (Qwen on arXiv, K*=3, 1v2=0.858, 2v3=0.6427)\n\n### 你需要做的\n\n1. **读取日志**：SSH 到 cqa1-22115，读取 `/root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log` 的最后 100 行，确认实验正常完成。\n\n2. **查找结果文件**：在以下可能路径查找结果：\n   - `/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/`\n   - `/root/autodl-tmp/gen-depth-contamination/results/exp025_pythia_arxiv/`\n   - 或日志中提到的输出路径\n   \n3. **提取关键指标**：\n   - K* 值（θ=0.60 阈值）\n   - Pairwise AUC: 0v1, 1v2, 2v3, 3v4, 4v5\n   - Bootstrap CI（如果已经计算的话）\n   - Top features\n   - Ordinal accuracy/MAE\n\n4. **如果结果文件中没有 bootstrap CI**，运行 bootstrap 分析：\n   - 在结果目录找到 predictions/features 文件\n   - 用项目已有的 bootstrap 脚本（参考 `/root/autodl-tmp/gen-depth-contamination/scripts/` 下的 bootstrap 脚本）\n   - 10000 resamples, permutation test 10000 resamples\n   - 输出每对 depth pair 的 CI 和 p-value\n\n5. **与 exp-024 对比**：\n   - exp-024 (Qwen arXiv): K*=3, 1v2=0.858, 2v3=0.6427, 3v4=0.5437\n   - 如果 Pythia arXiv 也是 K*=3，说明 arXiv domain effect 跨模型一致\n   - 如果 K*=2 或 K*=1，说明 domain effect 与 model 交互\n\n6. **产出**：将完整分析结果（K*、所有 AUC、CI、关键发现）作为你的最终输出返回。格式：\n```\nK_star: X\npairwise_auc:\n  0v1: X.XXXX\n  1v2: X.XXXX\n  2v3: X.XXXX\n  3v4: X.XXXX\n  4v5: X.XXXX\nbootstrap_ci:\n  0v1: {auc: X.XXXX, ci_lower: X.XXXX, ci_upper: X.XXXX, perm_p: X.XXXX}\n  ...\nkey_finding: \"...\"\ncomparison_with_exp024: \"...\"\n```\n\n### 环境\n- Python 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径: `/root/autodl-tmp/gen-depth-contamination/`\n- 已有 bootstrap 脚本可能在 `scripts/` 目录下",
+    "tool_groups": "['ssh', 'registry']",
+    "context": "exp_025_pythia_arxiv: Domain × model interaction experiment. Pythia-1.4B on arXiv data, testing if K*=3 (same as exp-024 Qwen arXiv) holds across models. Server: cqa1-22115. Log: /root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T18:58:44.487842+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp_025_pythia_arxiv_20260516T185842\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_exp_025_pythia_arxiv_20260516T185842.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_exp_025_pythia_arxiv_20260516T185842 started. Use get_worker_status('worker_analysis_exp_025_pythia_arxiv_20260516T185842') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_025_pythia_arxiv",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2713
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T18:58:58.097741+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_025_pythia_arxiv",
+  "field": "status",
+  "value": "PENDING",
+  "project": "gen-depth-contamination"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_025_pythia_arxiv",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_025_pythia_arxiv",
+    "field": "status",
+    "value": "PENDING",
+    "project": "gen-depth-contamination"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-16T19:17:30.966568+00:00_
+
+Registry 状态转换失败（PREPARING → ANALYZING 不合法）。需要按状态机步进。Worker 已派出分析结果。先推进 registry 状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp_025_pythia_arxiv"
+}
+```
+
+</details>
+
+---

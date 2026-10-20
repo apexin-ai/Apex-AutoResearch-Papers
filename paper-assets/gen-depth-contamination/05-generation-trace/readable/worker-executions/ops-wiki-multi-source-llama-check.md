@@ -1,0 +1,2177 @@
+# ops wiki multi source llama check
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 44
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/workers/worker_ops_wiki_multi_source_llama_check_20260520T113702.log`
+- **Structured JSON:** [`49f8b1bc5552741d8208.json`](../../sessions/49/49f8b1bc5552741d8208.json)
+
+## Before a recorded user message
+
+44 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "9dd524d6-f45a-40ce-833d-2dc150846586",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779279000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "d67fd0d6-f2ee-4277-9d4d-d3904896917d",
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me investigate the LLaMA-8B missing data issue for the Wiki multi-source experiment. I'll start by checking the scripts and data on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "2465a604-51ff-44fe-88cb-2a3f5f385a8d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018nRfdqF8JGWTXapwPvEMVv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12313,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12313
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始排查 LLaMA-8B Wiki 数据缺失原因。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "c4ba6d6d-bcd5-4aa2-a5c2-ac4124f4f295",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018nRfdqF8JGWTXapwPvEMVv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12313,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12313
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_017WdpQe4VqjEQJgQijVnouo`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "71f38cff-93d0-40be-b7b0-704b1f144dbb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018nRfdqF8JGWTXapwPvEMVv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12313,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12313
+      },
+      "output_tokens": 23,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T11:37:19.823Z_
+
+<details><summary>↩ Tool result · `toolu_017WdpQe4VqjEQJgQijVnouo`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "665b1560-a131-4f05-8721-f7d6175a955d",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018kT1B5tTiMPfvrMcDJq7ts`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "head -100 /root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_wiki.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "b15d513a-fea0-4971-8569-08940d3909f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016a11mgWHvzK6EjTvqbUWTN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 846,
+      "cache_read_input_tokens": 24154,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 846
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-20T11:37:24.116Z_
+
+<details><summary>↩ Tool result · `toolu_018kT1B5tTiMPfvrMcDJq7ts`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nWiki Multi-Source Detection: Vocab-Only + Unified Qwen2.5-1.5B Scorer.\\nParallels arXiv/C4 multi-source experiments but on Wiki domain.\\n\\\"\\\"\\\"\\nimport csv\\nimport json\\nimport time\\nimport logging\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport lightgbm as lgb\\nfrom sklearn.model_selection import GroupKFold\\nfrom sklearn.metrics import roc_auc_score\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\", datefmt=\\\"%H:%M:%S\\\")\\nlog = logging.getLogger(__name__)\\n\\nSCORER_PATH = \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\\nSOURCES = {\\n    \\\"qwen1b5\\\": {\\n        \\\"data_dir\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki\\\"),\\n        \\\"features_csv\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/features.csv\\\"),\\n        \\\"needs_rescore\\\": False,\\n    },\\n    \\\"llama8b\\\": {\\n        \\\"data_dir\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_llama8b\\\"),\\n        \\\"features_csv\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_llama8b/features.csv\\\"),\\n        \\\"needs_rescore\\\": True,\\n    },\\n    \\\"mistral7b\\\": {\\n        \\\"data_dir\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_mistral7b\\\"),\\n        \\\"features_csv\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_mistral7b/features.csv\\\"),\\n        \\\"needs_rescore\\\": True,\\n    },\\n}\\n\\nSURPRISAL_COLS = [\\\"surp_mean\\\",\\\"surp_std\\\",\\\"surp_skew\\\",\\\"surp_kurt\\\",\\\"surp_d1_mean\\\",\\\"surp_d1_std\\\",\\\"surp_d1_skew\\\",\\\"surp_d2_mean\\\",\\\"surp_d2_std\\\"]\\nTEXT_COLS = [\\\"ttr\\\",\\\"hapax_ratio\\\",\\\"self_bleu\\\",\\\"freq_kurtosis\\\",\\\"freq_entropy\\\",\\\"low_freq_ratio\\\"]\\nALL_FEAT_COLS = SURPRISAL_COLS + TEXT_COLS\\n\\nDOCS_PER_GEN = 1000\\nMAX_DEPTH = 5\\nN_BOOT = 10000\\nTHETA = 0.60\\nSEED = 42\\nOUT_DIR = Path(\\\"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_multi_source\\\")\\n\\n\\ndef load_features_csv(path, feat_cols):\\n    with open(path) as f:\\n        rows = list(csv.DictReader(f))\\n    doc_ids_raw = [r[\\\"doc_id\\\"] for r in rows]\\n    try:\\n        doc_ids = np.array([int(d) for d in doc_ids_raw])\\n    except (ValueError, TypeError):\\n        uid_map = {d: i for i, d in enumerate(sorted(set(doc_ids_raw)))}\\n        doc_ids = np.array([uid_map[d] for d in doc_ids_raw])\\n    depths = np.array([int(r[\\\"depth\\\"]) for r in rows])\\n    X = np.array(\\n        [[float(r[c]) if r[c] not in (\\\"\\\", \\\"nan\\\") else np.nan for c in feat_cols] for r in rows]\\n    )\\n    col_means = np.nanmean(X, axis=0)\\n    for j in range(X.shape[1]):\\n        mask = np.isnan(X[:, j])\\n        if mask.any():\\n            X[mask, j] = col_means[j]\\n    return X, depths, doc_ids\\n\\n\\ndef load_text_features(csv_path):\\n    with open(csv_path) as f:\\n        rows = list(csv.DictReader(f))\\n    result = {}\\n    for r in rows:\\n        key = (str(r[\\\"doc_id\\\"]), int(r[\\\"depth\\\"]))\\n        result[key] = {col: r[col] for col in TEXT_COLS}\\n    return result\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef sample_and_merge(all_data, feat_cols, rng):\\n    all_X, all_depths, all_doc_ids, all_gen_ids = [], [], [], []\\n    doc_offset = 0\\n    for gen_idx, (gen_name, data) in enumerate(all_data.items()):\\n        X, depths, doc_ids = data[\\\"X\\\"], data[\\\"depths\\\"], data[\\\"doc_ids\\\"]\\n        unique_docs = np.unique(doc_ids)\\n        n_sample = min(DOCS_PER_GEN, len(unique_docs))\\n        sampled_docs = rng.choice(unique_docs, size=n_sample, replace=False)\\n        sampled_set = set(sampled_docs.tolist())\\n        mask = np.array([d in sampled_set for d in doc_ids])\\n\\n        all_X.append(X[mask])\\n        all_depths.append(depths[mask])\\n        all_doc_ids.append(doc_ids[mask] + doc_offset)\\n        all_gen_ids.append(np.full(mask.sum(), gen_idx))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "4b089734-6a13-4d8c-8d80-dca2ba147d96",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nWiki Multi-Source Detection: Vocab-Only + Unified Qwen2.5-1.5B Scorer.\\\\nParallels arXiv/C4 multi-source experiments but on Wiki domain.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport csv\\\\nimport json\\\\nimport time\\\\nimport logging\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport lightgbm as lgb\\\\nfrom sklearn.model_selection import GroupKFold\\\\nfrom sklearn.metrics import roc_auc_score\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\", datefmt=\\\\\\\"%H:%M:%S\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSCORER_PATH = \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\\\\\"\\\\nSOURCES = {\\\\n    \\\\\\\"qwen1b5\\\\\\\": {\\\\n        \\\\\\\"data_dir\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki\\\\\\\"),\\\\n        \\\\\\\"features_csv\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/features.csv\\\\\\\"),\\\\n        \\\\\\\"needs_rescore\\\\\\\": False,\\\\n    },\\\\n    \\\\\\\"llama8b\\\\\\\": {\\\\n        \\\\\\\"data_dir\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_llama8b\\\\\\\"),\\\\n        \\\\\\\"features_csv\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_llama8b/features.csv\\\\\\\"),\\\\n        \\\\\\\"needs_rescore\\\\\\\": True,\\\\n    },\\\\n    \\\\\\\"mistral7b\\\\\\\": {\\\\n        \\\\\\\"data_dir\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_mistral7b\\\\\\\"),\\\\n        \\\\\\\"features_csv\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_mistral7b/features.csv\\\\\\\"),\\\\n        \\\\\\\"needs_rescore\\\\\\\": True,\\\\n    },\\\\n}\\\\n\\\\nSURPRISAL_COLS = [\\\\\\\"surp_mean\\\\\\\",\\\\\\\"surp_std\\\\\\\",\\\\\\\"surp_skew\\\\\\\",\\\\\\\"surp_kurt\\\\\\\",\\\\\\\"surp_d1_mean\\\\\\\",\\\\\\\"surp_d1_std\\\\\\\",\\\\\\\"surp_d1_skew\\\\\\\",\\\\\\\"surp_d2_mean\\\\\\\",\\\\\\\"surp_d2_std\\\\\\\"]\\\\nTEXT_COLS = [\\\\\\\"ttr\\\\\\\",\\\\\\\"hapax_ratio\\\\\\\",\\\\\\\"self_bleu\\\\\\\",\\\\\\\"freq_kurtosis\\\\\\\",\\\\\\\"freq_entropy\\\\\\\",\\\\\\\"low_freq_ratio\\\\\\\"]\\\\nALL_FEAT_COLS = SURPRISAL_COLS + TEXT_COLS\\\\n\\\\nDOCS_PER_GEN = 1000\\\\nMAX_DEPTH = 5\\\\nN_BOOT = 10000\\\\nTHETA = 0.60\\\\nSEED = 42\\\\nOUT_DIR = Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_multi_source\\\\\\\")\\\\n\\\\n\\\\ndef load_features_csv(path, feat_cols):\\\\n    with open(path) as f:\\\\n        rows = list(csv.DictReader(f))\\\\n    doc_ids_raw = [r[\\\\\\\"doc_id\\\\\\\"] for r in rows]\\\\n    try:\\\\n        doc_ids = np.array([int(d) for d in doc_ids_raw])\\\\n    except (ValueError, TypeError):\\\\n        uid_map = {d: i for i, d in enumerate(sorted(set(doc_ids_raw)))}\\\\n        doc_ids = np.array([uid_map[d] for d in doc_ids_raw])\\\\n    depths = np.array([int(r[\\\\\\\"depth\\\\\\\"]) for r in rows])\\\\n    X = np.array(\\\\n        [[float(r[c]) if r[c] not in (\\\\\\\"\\\\\\\", \\\\\\\"nan\\\\\\\") else np.nan for c in feat_cols] for r in rows]\\\\n    )\\\\n    col_means = np.nanmean(X, axis=0)\\\\n    for j in range(X.shape[1]):\\\\n        mask = np.isnan(X[:, j])\\\\n        if mask.any():\\\\n            X[mask, j] = col_means[j]\\\\n    return X, depths, doc_ids\\\\n\\\\n\\\\ndef load_text_features(csv_path):\\\\n    with open(csv_path) as f:\\\\n        rows = list(csv.DictReader(f))\\\\n    result = {}\\\\n    for r in rows:\\\\n        key = (str(r[\\\\\\\"doc_id\\\\\\\"]), int(r[\\\\\\\"depth\\\\\\\"]))\\\\n        result[key] = {col: r[col] for col in TEXT_COLS}\\\\n    return result\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f]\\\\n\\\\n\\\\ndef sample_and_merge(all_data, feat_cols, rng):\\\\n    all_X, all_depths, all_doc_ids, all_gen_ids = [], [], [], []\\\\n    doc_offset = 0\\\\n    for gen_idx, (gen_name, data) in enumerate(all_data.items()):\\\\n        X, depths, doc_ids = data[\\\\\\\"X\\\\\\\"], data[\\\\\\\"depths\\\\\\\"], data[\\\\\\\"doc_ids\\\\\\\"]\\\\n        unique_docs = np.unique(doc_ids)\\\\n        n_sample = min(DOCS_PER_GEN, len(unique_docs))\\\\n        sampled_docs = rng.choice(unique_docs, size=n_sample, replace=False)\\\\n        sampled_set = set(sampled_docs.tolist())\\\\n        mask = np.array([d in sampled_set for d in doc_ids])\\\\n\\\\n        all_X.append(X[mask])\\\\n        all_depths.append(depths[mask])\\\\n        all_doc_ids.append(doc_ids[mask] + doc_offset)\\\\n        all_gen_ids.append(np.full(mask.sum(), gen_idx))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nWiki Multi-Source Detection: Vocab-Only + Unified Qwen2.5-1.5B Scorer.\\nParallels arXiv/C4 multi-source experiments but on Wiki domain.\\n\\\"\\\"\\\"\\nimport csv\\nimport json\\nimport time\\nimport logging\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport lightgbm as lgb\\nfrom sklearn.model_selection import GroupKFold\\nfrom sklearn.metrics import roc_auc_score\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\", datefmt=\\\"%H:%M:%S\\\")\\nlog = logging.getLogger(__name__)\\n\\nSCORER_PATH = \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\\nSOURCES = {\\n    \\\"qwen1b5\\\": {\\n        \\\"data_dir\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki\\\"),\\n        \\\"features_csv\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/features.csv\\\"),\\n        \\\"needs_rescore\\\": False,\\n    },\\n    \\\"llama8b\\\": {\\n        \\\"data_dir\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_llama8b\\\"),\\n        \\\"features_csv\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_llama8b/features.csv\\\"),\\n        \\\"needs_rescore\\\": True,\\n    },\\n    \\\"mistral7b\\\": {\\n        \\\"data_dir\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_mistral7b\\\"),\\n        \\\"features_csv\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_mistral7b/features.csv\\\"),\\n        \\\"needs_rescore\\\": True,\\n    },\\n}\\n\\nSURPRISAL_COLS = [\\\"surp_mean\\\",\\\"surp_std\\\",\\\"surp_skew\\\",\\\"surp_kurt\\\",\\\"surp_d1_mean\\\",\\\"surp_d1_std\\\",\\\"surp_d1_skew\\\",\\\"surp_d2_mean\\\",\\\"surp_d2_std\\\"]\\nTEXT_COLS = [\\\"ttr\\\",\\\"hapax_ratio\\\",\\\"self_bleu\\\",\\\"freq_kurtosis\\\",\\\"freq_entropy\\\",\\\"low_freq_ratio\\\"]\\nALL_FEAT_COLS = SURPRISAL_COLS + TEXT_COLS\\n\\nDOCS_PER_GEN = 1000\\nMAX_DEPTH = 5\\nN_BOOT = 10000\\nTHETA = 0.60\\nSEED = 42\\nOUT_DIR = Path(\\\"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_multi_source\\\")\\n\\n\\ndef load_features_csv(path, feat_cols):\\n    with open(path) as f:\\n        rows = list(csv.DictReader(f))\\n    doc_ids_raw = [r[\\\"doc_id\\\"] for r in rows]\\n    try:\\n        doc_ids = np.array([int(d) for d in doc_ids_raw])\\n    except (ValueError, TypeError):\\n        uid_map = {d: i for i, d in enumerate(sorted(set(doc_ids_raw)))}\\n        doc_ids = np.array([uid_map[d] for d in doc_ids_raw])\\n    depths = np.array([int(r[\\\"depth\\\"]) for r in rows])\\n    X = np.array(\\n        [[float(r[c]) if r[c] not in (\\\"\\\", \\\"nan\\\") else np.nan for c in feat_cols] for r in rows]\\n    )\\n    col_means = np.nanmean(X, axis=0)\\n    for j in range(X.shape[1]):\\n        mask = np.isnan(X[:, j])\\n        if mask.any():\\n            X[mask, j] = col_means[j]\\n    return X, depths, doc_ids\\n\\n\\ndef load_text_features(csv_path):\\n    with open(csv_path) as f:\\n        rows = list(csv.DictReader(f))\\n    result = {}\\n    for r in rows:\\n        key = (str(r[\\\"doc_id\\\"]), int(r[\\\"depth\\\"]))\\n        result[key] = {col: r[col] for col in TEXT_COLS}\\n    return result\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef sample_and_merge(all_data, feat_cols, rng):\\n    all_X, all_depths, all_doc_ids, all_gen_ids = [], [], [], []\\n    doc_offset = 0\\n    for gen_idx, (gen_name, data) in enumerate(all_data.items()):\\n        X, depths, doc_ids = data[\\\"X\\\"], data[\\\"depths\\\"], data[\\\"doc_ids\\\"]\\n        unique_docs = np.unique(doc_ids)\\n        n_sample = min(DOCS_PER_GEN, len(unique_docs))\\n        sampled_docs = rng.choice(unique_docs, size=n_sample, replace=False)\\n        sampled_set = set(sampled_docs.tolist())\\n        mask = np.array([d in sampled_set for d in doc_ids])\\n\\n        all_X.append(X[mask])\\n        all_depths.append(depths[mask])\\n        all_doc_ids.append(doc_ids[mask] + doc_offset)\\n        all_gen_ids.append(np.full(mask.sum(), gen_idx))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PZSiW39C4xUjUJxWzPVxnV`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls -la /root/autodl-tmp/gen-depth-contamination/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "7fb9710d-7d8f-4eae-b161-b8882e7b9aa3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016a11mgWHvzK6EjTvqbUWTN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 846,
+      "cache_read_input_tokens": 24154,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 846
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_016RvyzZHgnKAwd9Zkx1FhaY`</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "filters": {
+    "experiment_id": "exp_wiki_llama8b"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "7145d9fe-eeed-43c9-b1b3-eb7279cd9f51",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016a11mgWHvzK6EjTvqbUWTN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 846,
+      "cache_read_input_tokens": 24154,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 846
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T11:37:24.665Z_
+
+<details><summary>↩ Tool result · `toolu_01PZSiW39C4xUjUJxWzPVxnV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 7740\\ndrwxr-xr-x 67 root root    4096 May 20 19:20 .\\ndrwxr-xr-x 27 root root    4096 May 19 09:09 ..\\ndrwxr-xr-x  2 root root      77 May 19 11:46 analysis_pythia_retrain_depth7\\ndrwxr-xr-x  2 root root     108 May 18 18:26 c4_power_curve\\n-rw-r--r--  1 root root    1392 May 18 15:47 c4_subsample_control.json\\ndrwxr-xr-x  2 root root      86 May 20 02:00 cross_scorer_f1\\ndrwxr-xr-x  2 root root    4096 May 20 12:02 deberta_cross_transfer\\ndrwxr-xr-x  2 root root    4096 May 20 12:30 exp_008_retrain_chain\\ndrwxr-xr-x  5 root root      70 May 17 06:23 exp_009_dose_response\\ndrwxr-xr-x  2 root root     142 May 20 19:26 exp_014_naturalistic\\n-rw-r--r--  1 root root 6825853 May 20 19:37 exp_014_naturalistic.log\\ndrwxr-xr-x  2 root root     149 May 16 23:27 exp_018_llama8b\\ndrwxr-xr-x  2 root root     149 May 16 16:13 exp_021_length_128\\ndrwxr-xr-x  2 root root     149 May 16 18:06 exp_021_length_256\\ndrwxr-xr-x  2 root root     149 May 16 21:42 exp_021_length_512\\ndrwxr-xr-x  2 root root     149 May 16 22:10 exp_023_wiki\\ndrwxr-xr-x  2 root root     149 May 16 23:56 exp_024_arxiv\\ndrwxr-xr-x  2 root root     149 May 17 02:59 exp_025_pythia_arxiv\\ndrwxr-xr-x 11 root root    4096 May 18 17:20 exp_025_pythia_filtering\\ndrwxr-xr-x 17 root root    4096 May 18 19:07 exp_026_arxiv_filtering\\ndrwxr-xr-x  2 root root     186 May 18 19:31 exp_027_latex_ablation\\ndrwxr-xr-x  2 root root      94 May 19 06:58 exp_028_power_curve\\n-rw-r--r--  1 root root   63339 May 19 06:58 exp_028_power_curve.log\\ndrwxr-xr-x  2 root root     186 May 18 17:47 exp_14b_c4\\ndrwxr-xr-x  2 root root      47 May 19 21:56 exp_7b_cross_transfer\\ndrwxr-xr-x  2 root root     149 May 17 21:59 exp_arXiv_llama8b\\ndrwxr-xr-x  2 root root     149 May 18 10:56 exp_arXiv_llama8b_crossscorer\\ndrwxr-xr-x  2 root root     149 May 18 00:24 exp_arXiv_mistral7b\\ndrwxr-xr-x  2 root root     149 May 18 10:53 exp_arXiv_mistral7b_crossscorer\\ndrwxr-xr-x  2 root root     149 May 17 19:56 exp_arXiv_olmo\\ndrwxr-xr-x  2 root root     149 May 18 10:56 exp_arXiv_qwen1b5_crossscorer\\ndrwxr-xr-x  2 root root     149 May 18 00:33 exp_arXiv_qwen7b\\ndrwxr-xr-x  2 root root     149 May 18 10:56 exp_arXiv_qwen7b_crossscorer\\ndrwxr-xr-x  2 root root     153 May 20 15:17 exp_changepoint_kstar\\ndrwxr-xr-x  2 root root     149 May 19 16:11 exp_code_llama8b\\ndrwxr-xr-x  2 root root     149 May 19 18:54 exp_code_mistral7b\\n-rw-r--r--  1 root root  978768 May 19 18:54 exp_code_mistral7b.log\\ndrwxr-xr-x  2 root root    4096 May 20 19:04 exp_code_multi_source\\n-rw-r--r--  1 root root  472285 May 20 19:04 exp_code_multi_source.log\\ndrwxr-xr-x  2 root root     170 May 19 08:22 exp_code_pythia1b4\\ndrwxr-xr-x  2 root root     149 May 19 05:21 exp_code_qwen1b5\\ndrwxr-xr-x  2 root root     149 May 19 14:49 exp_code_qwen1b5_pythia_scorer\\ndrwxr-xr-x  2 root root     149 May 19 20:10 exp_code_qwen7b\\ndrwxr-xr-x  2 root root      98 May 20 11:53 exp_deberta_arxiv\\ndrwxr-xr-x  2 root root      44 May 20 11:53 exp_deberta_arxiv_qwen1b5\\ndrwxr-xr-x  2 root root     179 May 20 12:03 exp_deberta_c4_1b5\\ndrwxr-xr-x  2 root root      82 May 20 17:09 exp_deberta_code_qwen1b5\\ndrwxr-xr-x  2 root root    4096 May 20 12:03 exp_deberta_upperbound\\n-rw-r--r--  1 root root   76008 May 20 05:39 exp_deberta_upperbound.log\\ndrwxr-xr-x  2 root root     149 May 20 17:33 exp_gemma2b_depth\\ndrwxr-xr-x  2 root root     159 May 20 16:41 exp_multi_source_arxiv\\ndrwxr-xr-x  2 root root      95 May 20 15:38 exp_multi_source_detection\\ndrwxr-xr-x  2 root root      47 May 20 15:21 exp_multi_source_detection_v2\\ndrwxr-xr-x  2 root root     168 May 20 15:58 exp_multi_source_unified_scorer\\ndrwxr-xr-x  2 root root      10 May 19 00:08 exp_olmo_retrain_chain\\ndrwxr-xr-x  2 root root     119 May 20 12:29 exp_pythia_retrain_depth7\\ndrwxr-xr-x  2 root root      88 May 19 06:07 exp_qwen_retrain_chain\\ndrwxr-xr-x  2 root root     119 May 20 12:30 exp_qwen_retrain_chain_ext\\ndrwxr-xr-x  2 root root     149 May 18 03:28 exp_wiki_llama8b\\ndrwxr-xr-x  2 root root     149 May 18 03:48 exp_wiki_mistral7b\\ndrwxr-xr-x  2 root root     159 May 20 19:30 exp_wiki_multi_source\\n-rw-r--r--  1 root root  297383 May 20 19:30 exp_wiki_multi_source.log\\ndrwxr-xr-x  2 root root     149 May 17 19:24 exp_wiki_olmo\\ndrwxr-xr-x  2 root root     149 May 17 21:07 exp_wiki_olmo_v2\\ndrwxr-xr-x  2 root root     149 May 17 19:24 exp_wiki_pythia\\ndrwxr-xr-x  2 root root     149 May 17 21:14 exp_wiki_pythia_v2\\ndrwxr-xr-x  2 root root     149 May 18 06:21 exp_wiki_qwen7b\\ndrwxr-xr-x  2 root root     149 May 18 07:12 exp_wiki_scorer_confound\\ndrwxr-xr-x  2 root root     149 May 18 09:18 exp_wiki_scorer_confound_1b5\\ndrwxr-xr-x  2 root root      45 May 20 01:10 f1_optimal_threshold\\ndrwxr-xr-x  2 root root     174 May 18 21:54 feature_ablation\\ndrwxr-xr-x  2 root root     134 May 20 03:04 lofo_importance\\ndrwxr-xr-x  2 root root      42 May 18 23:26 mcnemar_obd_vs_baselines\\n-rw-r--r--  1 root root   23097 May 20 12:50 monotonicity_check.json\\ndrwxr-xr-x  2 root root     149 May 20 14:12 olmo_c4_cont\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "1937d3a0-0e07-40be-8a92-550d184b78b0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 7740\\\\ndrwxr-xr-x 67 root root    4096 May 20 19:20 .\\\\ndrwxr-xr-x 27 root root    4096 May 19 09:09 ..\\\\ndrwxr-xr-x  2 root root      77 May 19 11:46 analysis_pythia_retrain_depth7\\\\ndrwxr-xr-x  2 root root     108 May 18 18:26 c4_power_curve\\\\n-rw-r--r--  1 root root    1392 May 18 15:47 c4_subsample_control.json\\\\ndrwxr-xr-x  2 root root      86 May 20 02:00 cross_scorer_f1\\\\ndrwxr-xr-x  2 root root    4096 May 20 12:02 deberta_cross_transfer\\\\ndrwxr-xr-x  2 root root    4096 May 20 12:30 exp_008_retrain_chain\\\\ndrwxr-xr-x  5 root root      70 May 17 06:23 exp_009_dose_response\\\\ndrwxr-xr-x  2 root root     142 May 20 19:26 exp_014_naturalistic\\\\n-rw-r--r--  1 root root 6825853 May 20 19:37 exp_014_naturalistic.log\\\\ndrwxr-xr-x  2 root root     149 May 16 23:27 exp_018_llama8b\\\\ndrwxr-xr-x  2 root root     149 May 16 16:13 exp_021_length_128\\\\ndrwxr-xr-x  2 root root     149 May 16 18:06 exp_021_length_256\\\\ndrwxr-xr-x  2 root root     149 May 16 21:42 exp_021_length_512\\\\ndrwxr-xr-x  2 root root     149 May 16 22:10 exp_023_wiki\\\\ndrwxr-xr-x  2 root root     149 May 16 23:56 exp_024_arxiv\\\\ndrwxr-xr-x  2 root root     149 May 17 02:59 exp_025_pythia_arxiv\\\\ndrwxr-xr-x 11 root root    4096 May 18 17:20 exp_025_pythia_filtering\\\\ndrwxr-xr-x 17 root root    4096 May 18 19:07 exp_026_arxiv_filtering\\\\ndrwxr-xr-x  2 root root     186 May 18 19:31 exp_027_latex_ablation\\\\ndrwxr-xr-x  2 root root      94 May 19 06:58 exp_028_power_curve\\\\n-rw-r--r--  1 root root   63339 May 19 06:58 exp_028_power_curve.log\\\\ndrwxr-xr-x  2 root root     186 May 18 17:47 exp_14b_c4\\\\ndrwxr-xr-x  2 root root      47 May 19 21:56 exp_7b_cross_transfer\\\\ndrwxr-xr-x  2 root root     149 May 17 21:59 exp_arXiv_llama8b\\\\ndrwxr-xr-x  2 root root     149 May 18 10:56 exp_arXiv_llama8b_crossscorer\\\\ndrwxr-xr-x  2 root root     149 May 18 00:24 exp_arXiv_mistral7b\\\\ndrwxr-xr-x  2 root root     149 May 18 10:53 exp_arXiv_mistral7b_crossscorer\\\\ndrwxr-xr-x  2 root root     149 May 17 19:56 exp_arXiv_olmo\\\\ndrwxr-xr-x  2 root root     149 May 18 10:56 exp_arXiv_qwen1b5_crossscorer\\\\ndrwxr-xr-x  2 root root     149 May 18 00:33 exp_arXiv_qwen7b\\\\ndrwxr-xr-x  2 root root     149 May 18 10:56 exp_arXiv_qwen7b_crossscorer\\\\ndrwxr-xr-x  2 root root     153 May 20 15:17 exp_changepoint_kstar\\\\ndrwxr-xr-x  2 root root     149 May 19 16:11 exp_code_llama8b\\\\ndrwxr-xr-x  2 root root     149 May 19 18:54 exp_code_mistral7b\\\\n-rw-r--r--  1 root root  978768 May 19 18:54 exp_code_mistral7b.log\\\\ndrwxr-xr-x  2 root root    4096 May 20 19:04 exp_code_multi_source\\\\n-rw-r--r--  1 root root  472285 May 20 19:04 exp_code_multi_source.log\\\\ndrwxr-xr-x  2 root root     170 May 19 08:22 exp_code_pythia1b4\\\\ndrwxr-xr-x  2 root root     149 May 19 05:21 exp_code_qwen1b5\\\\ndrwxr-xr-x  2 root root     149 May 19 14:49 exp_code_qwen1b5_pythia_scorer\\\\ndrwxr-xr-x  2 root root     149 May 19 20:10 exp_code_qwen7b\\\\ndrwxr-xr-x  2 root root      98 May 20 11:53 exp_deberta_arxiv\\\\ndrwxr-xr-x  2 root root      44 May 20 11:53 exp_deberta_arxiv_qwen1b5\\\\ndrwxr-xr-x  2 root root     179 May 20 12:03 exp_deberta_c4_1b5\\\\ndrwxr-xr-x  2 root root      82 May 20 17:09 exp_deberta_code_qwen1b5\\\\ndrwxr-xr-x  2 root root    4096 May 20 12:03 exp_deberta_upperbound\\\\n-rw-r--r--  1 root root   76008 May 20 05:39 exp_deberta_upperbound.log\\\\ndrwxr-xr-x  2 root root     149 May 20 17:33 exp_gemma2b_depth\\\\ndrwxr-xr-x  2 root root     159 May 20 16:41 exp_multi_source_arxiv\\\\ndrwxr-xr-x  2 root root      95 May 20 15:38 exp_multi_source_detection\\\\ndrwxr-xr-x  2 root root      47 May 20 15:21 exp_multi_source_detection_v2\\\\ndrwxr-xr-x  2 root root     168 May 20 15:58 exp_multi_source_unified_scorer\\\\ndrwxr-xr-x  2 root root      10 May 19 00:08 exp_olmo_retrain_chain\\\\ndrwxr-xr-x  2 root root     119 May 20 12:29 exp_pythia_retrain_depth7\\\\ndrwxr-xr-x  2 root root      88 May 19 06:07 exp_qwen_retrain_chain\\\\ndrwxr-xr-x  2 root root     119 May 20 12:30 exp_qwen_retrain_chain_ext\\\\ndrwxr-xr-x  2 root root     149 May 18 03:28 exp_wiki_llama8b\\\\ndrwxr-xr-x  2 root root     149 May 18 03:48 exp_wiki_mistral7b\\\\ndrwxr-xr-x  2 root root     159 May 20 19:30 exp_wiki_multi_source\\\\n-rw-r--r--  1 root root  297383 May 20 19:30 exp_wiki_multi_source.log\\\\ndrwxr-xr-x  2 root root     149 May 17 19:24 exp_wiki_olmo\\\\ndrwxr-xr-x  2 root root     149 May 17 21:07 exp_wiki_olmo_v2\\\\ndrwxr-xr-x  2 root root     149 May 17 19:24 exp_wiki_pythia\\\\ndrwxr-xr-x  2 root root     149 May 17 21:14 exp_wiki_pythia_v2\\\\ndrwxr-xr-x  2 root root     149 May 18 06:21 exp_wiki_qwen7b\\\\ndrwxr-xr-x  2 root root     149 May 18 07:12 exp_wiki_scorer_confound\\\\ndrwxr-xr-x  2 root root     149 May 18 09:18 exp_wiki_scorer_confound_1b5\\\\ndrwxr-xr-x  2 root root      45 May 20 01:10 f1_optimal_threshold\\\\ndrwxr-xr-x  2 root root     174 May 18 21:54 feature_ablation\\\\ndrwxr-xr-x  2 root root     134 May 20 03:04 lofo_importance\\\\ndrwxr-xr-x  2 root root      42 May 18 23:26 mcnemar_obd_vs_baselines\\\\n-rw-r--r--  1 root root   23097 May 20 12:50 monotonicity_check.json\\\\ndrwxr-xr-x  2 root root     149 May 20 14:12 olmo_c4_cont\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 7740\\ndrwxr-xr-x 67 root root    4096 May 20 19:20 .\\ndrwxr-xr-x 27 root root    4096 May 19 09:09 ..\\ndrwxr-xr-x  2 root root      77 May 19 11:46 analysis_pythia_retrain_depth7\\ndrwxr-xr-x  2 root root     108 May 18 18:26 c4_power_curve\\n-rw-r--r--  1 root root    1392 May 18 15:47 c4_subsample_control.json\\ndrwxr-xr-x  2 root root      86 May 20 02:00 cross_scorer_f1\\ndrwxr-xr-x  2 root root    4096 May 20 12:02 deberta_cross_transfer\\ndrwxr-xr-x  2 root root    4096 May 20 12:30 exp_008_retrain_chain\\ndrwxr-xr-x  5 root root      70 May 17 06:23 exp_009_dose_response\\ndrwxr-xr-x  2 root root     142 May 20 19:26 exp_014_naturalistic\\n-rw-r--r--  1 root root 6825853 May 20 19:37 exp_014_naturalistic.log\\ndrwxr-xr-x  2 root root     149 May 16 23:27 exp_018_llama8b\\ndrwxr-xr-x  2 root root     149 May 16 16:13 exp_021_length_128\\ndrwxr-xr-x  2 root root     149 May 16 18:06 exp_021_length_256\\ndrwxr-xr-x  2 root root     149 May 16 21:42 exp_021_length_512\\ndrwxr-xr-x  2 root root     149 May 16 22:10 exp_023_wiki\\ndrwxr-xr-x  2 root root     149 May 16 23:56 exp_024_arxiv\\ndrwxr-xr-x  2 root root     149 May 17 02:59 exp_025_pythia_arxiv\\ndrwxr-xr-x 11 root root    4096 May 18 17:20 exp_025_pythia_filtering\\ndrwxr-xr-x 17 root root    4096 May 18 19:07 exp_026_arxiv_filtering\\ndrwxr-xr-x  2 root root     186 May 18 19:31 exp_027_latex_ablation\\ndrwxr-xr-x  2 root root      94 May 19 06:58 exp_028_power_curve\\n-rw-r--r--  1 root root   63339 May 19 06:58 exp_028_power_curve.log\\ndrwxr-xr-x  2 root root     186 May 18 17:47 exp_14b_c4\\ndrwxr-xr-x  2 root root      47 May 19 21:56 exp_7b_cross_transfer\\ndrwxr-xr-x  2 root root     149 May 17 21:59 exp_arXiv_llama8b\\ndrwxr-xr-x  2 root root     149 May 18 10:56 exp_arXiv_llama8b_crossscorer\\ndrwxr-xr-x  2 root root     149 May 18 00:24 exp_arXiv_mistral7b\\ndrwxr-xr-x  2 root root     149 May 18 10:53 exp_arXiv_mistral7b_crossscorer\\ndrwxr-xr-x  2 root root     149 May 17 19:56 exp_arXiv_olmo\\ndrwxr-xr-x  2 root root     149 May 18 10:56 exp_arXiv_qwen1b5_crossscorer\\ndrwxr-xr-x  2 root root     149 May 18 00:33 exp_arXiv_qwen7b\\ndrwxr-xr-x  2 root root     149 May 18 10:56 exp_arXiv_qwen7b_crossscorer\\ndrwxr-xr-x  2 root root     153 May 20 15:17 exp_changepoint_kstar\\ndrwxr-xr-x  2 root root     149 May 19 16:11 exp_code_llama8b\\ndrwxr-xr-x  2 root root     149 May 19 18:54 exp_code_mistral7b\\n-rw-r--r--  1 root root  978768 May 19 18:54 exp_code_mistral7b.log\\ndrwxr-xr-x  2 root root    4096 May 20 19:04 exp_code_multi_source\\n-rw-r--r--  1 root root  472285 May 20 19:04 exp_code_multi_source.log\\ndrwxr-xr-x  2 root root     170 May 19 08:22 exp_code_pythia1b4\\ndrwxr-xr-x  2 root root     149 May 19 05:21 exp_code_qwen1b5\\ndrwxr-xr-x  2 root root     149 May 19 14:49 exp_code_qwen1b5_pythia_scorer\\ndrwxr-xr-x  2 root root     149 May 19 20:10 exp_code_qwen7b\\ndrwxr-xr-x  2 root root      98 May 20 11:53 exp_deberta_arxiv\\ndrwxr-xr-x  2 root root      44 May 20 11:53 exp_deberta_arxiv_qwen1b5\\ndrwxr-xr-x  2 root root     179 May 20 12:03 exp_deberta_c4_1b5\\ndrwxr-xr-x  2 root root      82 May 20 17:09 exp_deberta_code_qwen1b5\\ndrwxr-xr-x  2 root root    4096 May 20 12:03 exp_deberta_upperbound\\n-rw-r--r--  1 root root   76008 May 20 05:39 exp_deberta_upperbound.log\\ndrwxr-xr-x  2 root root     149 May 20 17:33 exp_gemma2b_depth\\ndrwxr-xr-x  2 root root     159 May 20 16:41 exp_multi_source_arxiv\\ndrwxr-xr-x  2 root root      95 May 20 15:38 exp_multi_source_detection\\ndrwxr-xr-x  2 root root      47 May 20 15:21 exp_multi_source_detection_v2\\ndrwxr-xr-x  2 root root     168 May 20 15:58 exp_multi_source_unified_scorer\\ndrwxr-xr-x  2 root root      10 May 19 00:08 exp_olmo_retrain_chain\\ndrwxr-xr-x  2 root root     119 May 20 12:29 exp_pythia_retrain_depth7\\ndrwxr-xr-x  2 root root      88 May 19 06:07 exp_qwen_retrain_chain\\ndrwxr-xr-x  2 root root     119 May 20 12:30 exp_qwen_retrain_chain_ext\\ndrwxr-xr-x  2 root root     149 May 18 03:28 exp_wiki_llama8b\\ndrwxr-xr-x  2 root root     149 May 18 03:48 exp_wiki_mistral7b\\ndrwxr-xr-x  2 root root     159 May 20 19:30 exp_wiki_multi_source\\n-rw-r--r--  1 root root  297383 May 20 19:30 exp_wiki_multi_source.log\\ndrwxr-xr-x  2 root root     149 May 17 19:24 exp_wiki_olmo\\ndrwxr-xr-x  2 root root     149 May 17 21:07 exp_wiki_olmo_v2\\ndrwxr-xr-x  2 root root     149 May 17 19:24 exp_wiki_pythia\\ndrwxr-xr-x  2 root root     149 May 17 21:14 exp_wiki_pythia_v2\\ndrwxr-xr-x  2 root root     149 May 18 06:21 exp_wiki_qwen7b\\ndrwxr-xr-x  2 root root     149 May 18 07:12 exp_wiki_scorer_confound\\ndrwxr-xr-x  2 root root     149 May 18 09:18 exp_wiki_scorer_confound_1b5\\ndrwxr-xr-x  2 root root      45 May 20 01:10 f1_optimal_threshold\\ndrwxr-xr-x  2 root root     174 May 18 21:54 feature_ablation\\ndrwxr-xr-x  2 root root     134 May 20 03:04 lofo_importance\\ndrwxr-xr-x  2 root root      42 May 18 23:26 mcnemar_obd_vs_baselines\\n-rw-r--r--  1 root root   23097 May 20 12:50 monotonicity_check.json\\ndrwxr-xr-x  2 root root     149 May 20 14:12 olmo_c4_cont\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T11:37:25.111Z_
+
+<details><summary>↩ Tool result · `toolu_016RvyzZHgnKAwd9Zkx1FhaY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4355}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "c0db03f6-b503-4191-9bba-b81cde7f0984",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4355}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4355}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key findings so far:
+
+1. The script `run_multi_source_wiki.py` defines 3 SOURCES: `qwen1b5`, `llama8b`, `mistral7b` - so LLaMA-8B was intended to be included.
+2. The results directory has `exp_wiki_llama8b` (dated May 18 03:28) - so the experiment was run.
+3. No registry entry for `exp_wiki_llama8b`.
+
+Now I need to:
+- Check what's in the `exp_wiki_llama8b` results and data directories
+- Check the wiki multi-source log for LLaMA errors
+
+
+- Look deeper into the script to understand how it manages missing or incomplete data
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "dc09261f-d349-4700-9643-ae3402f5a5e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014TkhG6sFLtLXrthCozSe3u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5005,
+      "cache_read_input_tokens": 25000,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5005
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+脚本确实定义了 3 个 generators 包括 llama8b，且 `exp_wiki_llama8b` 结果目录存在。继续查数据目录和日志。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "9fd862eb-f780-4102-9d23-fb8d8c668454",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014TkhG6sFLtLXrthCozSe3u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5005,
+      "cache_read_input_tokens": 25000,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5005
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TV29tT3pwsV5eLjctXQUHM`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls -la /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_llama8b/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "7a089b29-b427-4bb3-8891-adde9189c8eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014TkhG6sFLtLXrthCozSe3u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5005,
+      "cache_read_input_tokens": 25000,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5005
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T11:37:34.721Z_
+
+<details><summary>↩ Tool result · `toolu_01TV29tT3pwsV5eLjctXQUHM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 38332\\ndrwxr-xr-x  2 root root     184 May 18 03:27 .\\ndrwxr-xr-x 38 root root    4096 May 20 14:50 ..\\n-rw-r--r--  1 root root 5560755 May 17 21:29 depth_0.jsonl\\n-rw-r--r--  1 root root 5230791 May 17 22:37 depth_1.jsonl\\n-rw-r--r--  1 root root 5063709 May 17 23:44 depth_2.jsonl\\n-rw-r--r--  1 root root 4978225 May 18 00:54 depth_3.jsonl\\n-rw-r--r--  1 root root 5014279 May 18 02:03 depth_4.jsonl\\n-rw-r--r--  1 root root 5020667 May 18 03:09 depth_5.jsonl\\n-rw-r--r--  1 root root 8363624 May 18 03:27 features.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "cc86ebe5-482a-4690-a1c3-edb61c52c1e7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 38332\\\\ndrwxr-xr-x  2 root root     184 May 18 03:27 .\\\\ndrwxr-xr-x 38 root root    4096 May 20 14:50 ..\\\\n-rw-r--r--  1 root root 5560755 May 17 21:29 depth_0.jsonl\\\\n-rw-r--r--  1 root root 5230791 May 17 22:37 depth_1.jsonl\\\\n-rw-r--r--  1 root root 5063709 May 17 23:44 depth_2.jsonl\\\\n-rw-r--r--  1 root root 4978225 May 18 00:54 depth_3.jsonl\\\\n-rw-r--r--  1 root root 5014279 May 18 02:03 depth_4.jsonl\\\\n-rw-r--r--  1 root root 5020667 May 18 03:09 depth_5.jsonl\\\\n-rw-r--r--  1 root root 8363624 May 18 03:27 features.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 38332\\ndrwxr-xr-x  2 root root     184 May 18 03:27 .\\ndrwxr-xr-x 38 root root    4096 May 20 14:50 ..\\n-rw-r--r--  1 root root 5560755 May 17 21:29 depth_0.jsonl\\n-rw-r--r--  1 root root 5230791 May 17 22:37 depth_1.jsonl\\n-rw-r--r--  1 root root 5063709 May 17 23:44 depth_2.jsonl\\n-rw-r--r--  1 root root 4978225 May 18 00:54 depth_3.jsonl\\n-rw-r--r--  1 root root 5014279 May 18 02:03 depth_4.jsonl\\n-rw-r--r--  1 root root 5020667 May 18 03:09 depth_5.jsonl\\n-rw-r--r--  1 root root 8363624 May 18 03:27 features.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LjLFq1rMysVD5AdbHLJyze`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls -la /root/autodl-tmp/gen-depth-contamination/results/exp_wiki_llama8b/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "ea2d7867-c323-4a71-abaf-f09a2e58d30e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014TkhG6sFLtLXrthCozSe3u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5005,
+      "cache_read_input_tokens": 25000,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5005
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T11:37:36.018Z_
+
+<details><summary>↩ Tool result · `toolu_01LjLFq1rMysVD5AdbHLJyze`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 24\\ndrwxr-xr-x  2 root root  149 May 18 03:28 .\\ndrwxr-xr-x 67 root root 4096 May 20 19:20 ..\\n-rw-r--r--  1 root root  639 May 18 03:28 feature_importance.json\\n-rw-r--r--  1 root root   95 May 18 03:28 jsd.json\\n-rw-r--r--  1 root root   56 May 18 03:28 ordinal_results.json\\n-rw-r--r--  1 root root  577 May 18 03:28 pairwise_auc.json\\n-rw-r--r--  1 root root 1327 May 18 03:28 summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.65}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "97689f46-a84c-471c-9e78-66c349a2fa67",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 24\\\\ndrwxr-xr-x  2 root root  149 May 18 03:28 .\\\\ndrwxr-xr-x 67 root root 4096 May 20 19:20 ..\\\\n-rw-r--r--  1 root root  639 May 18 03:28 feature_importance.json\\\\n-rw-r--r--  1 root root   95 May 18 03:28 jsd.json\\\\n-rw-r--r--  1 root root   56 May 18 03:28 ordinal_results.json\\\\n-rw-r--r--  1 root root  577 May 18 03:28 pairwise_auc.json\\\\n-rw-r--r--  1 root root 1327 May 18 03:28 summary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.65}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 24\\ndrwxr-xr-x  2 root root  149 May 18 03:28 .\\ndrwxr-xr-x 67 root root 4096 May 20 19:20 ..\\n-rw-r--r--  1 root root  639 May 18 03:28 feature_importance.json\\n-rw-r--r--  1 root root   95 May 18 03:28 jsd.json\\n-rw-r--r--  1 root root   56 May 18 03:28 ordinal_results.json\\n-rw-r--r--  1 root root  577 May 18 03:28 pairwise_auc.json\\n-rw-r--r--  1 root root 1327 May 18 03:28 summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.65}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AqV41KnhESZ2A7wqNzPR9H`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -i \"llama\\|error\\|skip\\|missing\\|not found\\|fail\\|exclude\" /root/autodl-tmp/gen-depth-contamination/results/exp_wiki_multi_source.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "4860be92-e3aa-4956-9be1-4bccaceebaba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014TkhG6sFLtLXrthCozSe3u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5005,
+      "cache_read_input_tokens": 25000,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5005
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T11:37:36.766Z_
+
+<details><summary>↩ Tool result · `toolu_01AqV41KnhESZ2A7wqNzPR9H`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "2e2da223-1942-423d-8ecc-089fff974de6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XKJkYhtVtYCU2msWFEG95d`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "tail -50 /root/autodl-tmp/gen-depth-contamination/results/exp_wiki_multi_source.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "e9bf5faa-23d2-4b61-8f8d-016149668928",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014TkhG6sFLtLXrthCozSe3u",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5005,
+      "cache_read_input_tokens": 25000,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5005
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-20T11:37:37.873Z_
+
+<details><summary>↩ Tool result · `toolu_01XKJkYhtVtYCU2msWFEG95d`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n  4v5 AUC: 0.5153 [0.5009, 0.5297]  folds=[0.529, 0.5227, 0.5087, 0.4882, 0.5258]\\n  K*(unified, with label, theta=0.6) = 1\\n19:30:22 [INFO] Full results saved to /root/autodl-tmp/gen-depth-contamination/results/exp_wiki_multi_source/results.json\\n\\n============================================================\\n=== Wiki Multi-Source Results ===\\n============================================================\\n\\n--- Vocab-Only (6 scorer-independent features) ---\\n  [no_label]\\n    0v1 AUC: 0.7616 [0.7505, 0.7723]\\n    1v2 AUC: 0.5434 [0.5292, 0.5575]\\n    2v3 AUC: 0.5170 [0.5030, 0.5312]\\n    K* (theta=0.60): 1\\n  [with_label]\\n    0v1 AUC: 0.7779 [0.7675, 0.7884]\\n    1v2 AUC: 0.5520 [0.5382, 0.5658]\\n    2v3 AUC: 0.5248 [0.5106, 0.5390]\\n    K* (theta=0.60): 1\\n\\n--- Unified Qwen Scorer (15D OBD features) ---\\n  [no_label]\\n    0v1 AUC: 0.9603 [0.9558, 0.9645]\\n    1v2 AUC: 0.5685 [0.5548, 0.5816]\\n    2v3 AUC: 0.5190 [0.5054, 0.5329]\\n    K* (theta=0.60): 1\\n  [with_label]\\n    0v1 AUC: 0.9685 [0.9647, 0.9721]\\n    1v2 AUC: 0.5790 [0.5654, 0.5924]\\n    2v3 AUC: 0.5299 [0.5162, 0.5439]\\n    K* (theta=0.60): 1\\n\\n--- Cross-Domain Comparison ---\\n  C4 multi-source unified K*: 2  (1v2 AUC: 0.7105)\\n  arXiv multi-source unified K*: 3  (1v2 AUC: 0.8117)\\n  Wiki single-source K*: 2  (from exp_023_wiki, 1v2 AUC: 0.6193)\\n  Wiki multi-source vocab-only K*: 1\\n  Wiki multi-source unified K*: 1\\n\\nTotal time: 3498.6s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "283f63d7-215e-45c6-b87a-825946ce5b80",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n  4v5 AUC: 0.5153 [0.5009, 0.5297]  folds=[0.529, 0.5227, 0.5087, 0.4882, 0.5258]\\\\n  K*(unified, with label, theta=0.6) = 1\\\\n19:30:22 [INFO] Full results saved to /root/autodl-tmp/gen-depth-contamination/results/exp_wiki_multi_source/results.json\\\\n\\\\n============================================================\\\\n=== Wiki Multi-Source Results ===\\\\n============================================================\\\\n\\\\n--- Vocab-Only (6 scorer-independent features) ---\\\\n  [no_label]\\\\n    0v1 AUC: 0.7616 [0.7505, 0.7723]\\\\n    1v2 AUC: 0.5434 [0.5292, 0.5575]\\\\n    2v3 AUC: 0.5170 [0.5030, 0.5312]\\\\n    K* (theta=0.60): 1\\\\n  [with_label]\\\\n    0v1 AUC: 0.7779 [0.7675, 0.7884]\\\\n    1v2 AUC: 0.5520 [0.5382, 0.5658]\\\\n    2v3 AUC: 0.5248 [0.5106, 0.5390]\\\\n    K* (theta=0.60): 1\\\\n\\\\n--- Unified Qwen Scorer (15D OBD features) ---\\\\n  [no_label]\\\\n    0v1 AUC: 0.9603 [0.9558, 0.9645]\\\\n    1v2 AUC: 0.5685 [0.5548, 0.5816]\\\\n    2v3 AUC: 0.5190 [0.5054, 0.5329]\\\\n    K* (theta=0.60): 1\\\\n  [with_label]\\\\n    0v1 AUC: 0.9685 [0.9647, 0.9721]\\\\n    1v2 AUC: 0.5790 [0.5654, 0.5924]\\\\n    2v3 AUC: 0.5299 [0.5162, 0.5439]\\\\n    K* (theta=0.60): 1\\\\n\\\\n--- Cross-Domain Comparison ---\\\\n  C4 multi-source unified K*: 2  (1v2 AUC: 0.7105)\\\\n  arXiv multi-source unified K*: 3  (1v2 AUC: 0.8117)\\\\n  Wiki single-source K*: 2  (from exp_023_wiki, 1v2 AUC: 0.6193)\\\\n  Wiki multi-source vocab-only K*: 1\\\\n  Wiki multi-source unified K*: 1\\\\n\\\\nTotal time: 3498.6s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n  4v5 AUC: 0.5153 [0.5009, 0.5297]  folds=[0.529, 0.5227, 0.5087, 0.4882, 0.5258]\\n  K*(unified, with label, theta=0.6) = 1\\n19:30:22 [INFO] Full results saved to /root/autodl-tmp/gen-depth-contamination/results/exp_wiki_multi_source/results.json\\n\\n============================================================\\n=== Wiki Multi-Source Results ===\\n============================================================\\n\\n--- Vocab-Only (6 scorer-independent features) ---\\n  [no_label]\\n    0v1 AUC: 0.7616 [0.7505, 0.7723]\\n    1v2 AUC: 0.5434 [0.5292, 0.5575]\\n    2v3 AUC: 0.5170 [0.5030, 0.5312]\\n    K* (theta=0.60): 1\\n  [with_label]\\n    0v1 AUC: 0.7779 [0.7675, 0.7884]\\n    1v2 AUC: 0.5520 [0.5382, 0.5658]\\n    2v3 AUC: 0.5248 [0.5106, 0.5390]\\n    K* (theta=0.60): 1\\n\\n--- Unified Qwen Scorer (15D OBD features) ---\\n  [no_label]\\n    0v1 AUC: 0.9603 [0.9558, 0.9645]\\n    1v2 AUC: 0.5685 [0.5548, 0.5816]\\n    2v3 AUC: 0.5190 [0.5054, 0.5329]\\n    K* (theta=0.60): 1\\n  [with_label]\\n    0v1 AUC: 0.9685 [0.9647, 0.9721]\\n    1v2 AUC: 0.5790 [0.5654, 0.5924]\\n    2v3 AUC: 0.5299 [0.5162, 0.5439]\\n    K* (theta=0.60): 1\\n\\n--- Cross-Domain Comparison ---\\n  C4 multi-source unified K*: 2  (1v2 AUC: 0.7105)\\n  arXiv multi-source unified K*: 3  (1v2 AUC: 0.8117)\\n  Wiki single-source K*: 2  (from exp_023_wiki, 1v2 AUC: 0.6193)\\n  Wiki multi-source vocab-only K*: 1\\n  Wiki multi-source unified K*: 1\\n\\nTotal time: 3498.6s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see the log tail. Let me check if the log contains info about llama being processed. Let me also look at the script more carefully to see what happens with the loaded data. Let me check the log for llama-specific mentions and also look at the results.json to see which generators are actually in the final metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "33a51924-2cc6-424d-accc-9b0f6684486a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013DPxMGXhPbehkMNtE4nv1U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2860,
+      "cache_read_input_tokens": 30005,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2860
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+LLaMA-8B 数据完整存在（depth 0-5 + features.csv）。日志尾部没有 llama 错误。继续查日志头部和 results.json 确认 llama 是否被处理。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "de15fa52-15aa-47fb-bd30-3903b3e29974",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013DPxMGXhPbehkMNtE4nv1U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2860,
+      "cache_read_input_tokens": 30005,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2860
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MaT6HNWqhzSoBZRZTrcUkW`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "head -80 /root/autodl-tmp/gen-depth-contamination/results/exp_wiki_multi_source.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "0d693ca6-1d3d-4cfa-bf21-4e9a618517da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013DPxMGXhPbehkMNtE4nv1U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2860,
+      "cache_read_input_tokens": 30005,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2860
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-20T11:37:44.969Z_
+
+<details><summary>↩ Tool result · `toolu_01MaT6HNWqhzSoBZRZTrcUkW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\n  PATH A: Wiki Vocab-Only (6 scorer-independent features)\\n============================================================\\nFeatures: ['ttr', 'hapax_ratio', 'self_bleu', 'freq_kurtosis', 'freq_entropy', 'low_freq_ratio']\\n  Loaded qwen1b5: 30000 rows, 5000 docs\\n  Loaded llama8b: 30000 rows, 5000 docs\\n  Loaded mistral7b: 30000 rows, 5000 docs\\n\\nSampling and merging...\\n  qwen1b5: sampled 1000 docs -> 6000 rows\\n  llama8b: sampled 1000 docs -> 6000 rows\\n  mistral7b: sampled 1000 docs -> 6000 rows\\nTotal: 18000 rows, 3000 unique docs\\n\\n--- no_label (vocab-only) ---\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n  0v1 AUC: 0.7616 [0.7505, 0.7723]  folds=[0.764, 0.7696, 0.7491, 0.7595, 0.7662]\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n  1v2 AUC: 0.5434 [0.5292, 0.5575]  folds=[0.5696, 0.5165, 0.5338, 0.543, 0.5533]\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n  2v3 AUC: 0.5170 [0.5030, 0.5312]  folds=[0.5274, 0.4981, 0.5323, 0.5071, 0.521]\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n  3v4 AUC: 0.5017 [0.4874, 0.5160]  folds=[0.4993, 0.4811, 0.5254, 0.4895, 0.5146]\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n  4v5 AUC: 0.5084 [0.4941, 0.5227]  folds=[0.512, 0.5001, 0.5158, 0.5093, 0.5059]\\n  K*(vocab-only, no label, theta=0.6) = 1\\n\\n--- with_label (vocab-only + generator identity) ---\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "8e644488-a1f0-4f5f-a864-98136951d357",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  PATH A: Wiki Vocab-Only (6 scorer-independent features)\\\\n============================================================\\\\nFeatures: ['ttr', 'hapax_ratio', 'self_bleu', 'freq_kurtosis', 'freq_entropy', 'low_freq_ratio']\\\\n  Loaded qwen1b5: 30000 rows, 5000 docs\\\\n  Loaded llama8b: 30000 rows, 5000 docs\\\\n  Loaded mistral7b: 30000 rows, 5000 docs\\\\n\\\\nSampling and merging...\\\\n  qwen1b5: sampled 1000 docs -> 6000 rows\\\\n  llama8b: sampled 1000 docs -> 6000 rows\\\\n  mistral7b: sampled 1000 docs -> 6000 rows\\\\nTotal: 18000 rows, 3000 unique docs\\\\n\\\\n--- no_label (vocab-only) ---\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n  0v1 AUC: 0.7616 [0.7505, 0.7723]  folds=[0.764, 0.7696, 0.7491, 0.7595, 0.7662]\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n  1v2 AUC: 0.5434 [0.5292, 0.5575]  folds=[0.5696, 0.5165, 0.5338, 0.543, 0.5533]\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n  2v3 AUC: 0.5170 [0.5030, 0.5312]  folds=[0.5274, 0.4981, 0.5323, 0.5071, 0.521]\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n  3v4 AUC: 0.5017 [0.4874, 0.5160]  folds=[0.4993, 0.4811, 0.5254, 0.4895, 0.5146]\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n  4v5 AUC: 0.5084 [0.4941, 0.5227]  folds=[0.512, 0.5001, 0.5158, 0.5093, 0.5059]\\\\n  K*(vocab-only, no label, theta=0.6) = 1\\\\n\\\\n--- with_label (vocab-only + generator identity) ---\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\\\n  warnings.warn(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n============================================================\\n  PATH A: Wiki Vocab-Only (6 scorer-independent features)\\n============================================================\\nFeatures: ['ttr', 'hapax_ratio', 'self_bleu', 'freq_kurtosis', 'freq_entropy', 'low_freq_ratio']\\n  Loaded qwen1b5: 30000 rows, 5000 docs\\n  Loaded llama8b: 30000 rows, 5000 docs\\n  Loaded mistral7b: 30000 rows, 5000 docs\\n\\nSampling and merging...\\n  qwen1b5: sampled 1000 docs -> 6000 rows\\n  llama8b: sampled 1000 docs -> 6000 rows\\n  mistral7b: sampled 1000 docs -> 6000 rows\\nTotal: 18000 rows, 3000 unique docs\\n\\n--- no_label (vocab-only) ---\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n  0v1 AUC: 0.7616 [0.7505, 0.7723]  folds=[0.764, 0.7696, 0.7491, 0.7595, 0.7662]\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n  1v2 AUC: 0.5434 [0.5292, 0.5575]  folds=[0.5696, 0.5165, 0.5338, 0.543, 0.5533]\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n  2v3 AUC: 0.5170 [0.5030, 0.5312]  folds=[0.5274, 0.4981, 0.5323, 0.5071, 0.521]\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n  3v4 AUC: 0.5017 [0.4874, 0.5160]  folds=[0.4993, 0.4811, 0.5254, 0.4895, 0.5146]\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n  4v5 AUC: 0.5084 [0.4941, 0.5227]  folds=[0.512, 0.5001, 0.5158, 0.5093, 0.5059]\\n  K*(vocab-only, no label, theta=0.6) = 1\\n\\n--- with_label (vocab-only + generator identity) ---\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\\n  warnings.warn(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014X1pgLn8xUm4csdqbj7GEb`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_wiki_multi_source/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "423947fb-99f9-4d6c-9b0d-35fe621ccdcb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013DPxMGXhPbehkMNtE4nv1U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2860,
+      "cache_read_input_tokens": 30005,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2860
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-20T11:37:45.923Z_
+
+<details><summary>↩ Tool result · `toolu_014X1pgLn8xUm4csdqbj7GEb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp_wiki_multi_source\\\",\\n  \\\"domain\\\": \\\"Wiki\\\",\\n  \\\"scorer\\\": \\\"Qwen2.5-1.5B\\\",\\n  \\\"generators\\\": [\\n    \\\"qwen1b5\\\",\\n    \\\"llama8b\\\",\\n    \\\"mistral7b\\\"\\n  ],\\n  \\\"docs_per_generator\\\": 1000,\\n  \\\"n_bootstrap\\\": 10000,\\n  \\\"theta\\\": 0.6,\\n  \\\"seed\\\": 42,\\n  \\\"total_seconds\\\": 3498.6,\\n  \\\"vocab_only\\\": {\\n    \\\"no_label\\\": {\\n      \\\"pairs\\\": {\\n        \\\"0v1\\\": {\\n          \\\"auc\\\": 0.7616,\\n          \\\"fold_aucs\\\": [\\n            0.764,\\n            0.7696,\\n            0.7491,\\n            0.7595,\\n            0.7662\\n          ],\\n          \\\"ci_lower\\\": 0.7505,\\n          \\\"ci_upper\\\": 0.7723,\\n          \\\"boot_mean\\\": 0.7616,\\n          \\\"boot_std\\\": 0.0055\\n        },\\n        \\\"1v2\\\": {\\n          \\\"auc\\\": 0.5434,\\n          \\\"fold_aucs\\\": [\\n            0.5696,\\n            0.5165,\\n            0.5338,\\n            0.543,\\n            0.5533\\n          ],\\n          \\\"ci_lower\\\": 0.5292,\\n          \\\"ci_upper\\\": 0.5575,\\n          \\\"boot_mean\\\": 0.5434,\\n          \\\"boot_std\\\": 0.0072\\n        },\\n        \\\"2v3\\\": {\\n          \\\"auc\\\": 0.517,\\n          \\\"fold_aucs\\\": [\\n            0.5274,\\n            0.4981,\\n            0.5323,\\n            0.5071,\\n            0.521\\n          ],\\n          \\\"ci_lower\\\": 0.503,\\n          \\\"ci_upper\\\": 0.5312,\\n          \\\"boot_mean\\\": 0.517,\\n          \\\"boot_std\\\": 0.0072\\n        },\\n        \\\"3v4\\\": {\\n          \\\"auc\\\": 0.5017,\\n          \\\"fold_aucs\\\": [\\n            0.4993,\\n            0.4811,\\n            0.5254,\\n            0.4895,\\n            0.5146\\n          ],\\n          \\\"ci_lower\\\": 0.4874,\\n          \\\"ci_upper\\\": 0.516,\\n          \\\"boot_mean\\\": 0.5016,\\n          \\\"boot_std\\\": 0.0072\\n        },\\n        \\\"4v5\\\": {\\n          \\\"auc\\\": 0.5084,\\n          \\\"fold_aucs\\\": [\\n            0.512,\\n            0.5001,\\n            0.5158,\\n            0.5093,\\n            0.5059\\n          ],\\n          \\\"ci_lower\\\": 0.4941,\\n          \\\"ci_upper\\\": 0.5227,\\n          \\\"boot_mean\\\": 0.5081,\\n          \\\"boot_std\\\": 0.0072\\n        }\\n      },\\n      \\\"kstar\\\": 1\\n    },\\n    \\\"with_label\\\": {\\n      \\\"pairs\\\": {\\n        \\\"0v1\\\": {\\n          \\\"auc\\\": 0.7779,\\n          \\\"fold_aucs\\\": [\\n            0.7871,\\n            0.7821,\\n            0.7703,\\n            0.7726,\\n            0.7791\\n          ],\\n          \\\"ci_lower\\\": 0.7675,\\n          \\\"ci_upper\\\": 0.7884,\\n          \\\"boot_mean\\\": 0.7779,\\n          \\\"boot_std\\\": 0.0053\\n        },\\n        \\\"1v2\\\": {\\n          \\\"auc\\\": 0.552,\\n          \\\"fold_aucs\\\": [\\n            0.5703,\\n            0.5245,\\n            0.5476,\\n            0.5641,\\n            0.5544\\n          ],\\n          \\\"ci_lower\\\": 0.5382,\\n          \\\"ci_upper\\\": 0.5658,\\n          \\\"boot_mean\\\": 0.552,\\n          \\\"boot_std\\\": 0.0071\\n        },\\n        \\\"2v3\\\": {\\n          \\\"auc\\\": 0.5248,\\n          \\\"fold_aucs\\\": [\\n            0.5384,\\n            0.5024,\\n            0.5424,\\n            0.5092,\\n            0.531\\n          ],\\n          \\\"ci_lower\\\": 0.5106,\\n          \\\"ci_upper\\\": 0.539,\\n          \\\"boot_mean\\\": 0.5247,\\n          \\\"boot_std\\\": 0.0072\\n        },\\n        \\\"3v4\\\": {\\n          \\\"auc\\\": 0.5112,\\n          \\\"fold_aucs\\\": [\\n            0.5079,\\n            0.4942,\\n            0.5367,\\n            0.5033,\\n            0.5156\\n          ],\\n          \\\"ci_lower\\\": 0.4967,\\n          \\\"ci_upper\\\": 0.5252,\\n          \\\"boot_mean\\\": 0.5111,\\n          \\\"boot_std\\\": 0.0073\\n        },\\n        \\\"4v5\\\": {\\n          \\\"auc\\\": 0.5094,\\n          \\\"fold_aucs\\\": [\\n            0.5149,\\n            0.4921,\\n            0.5126,\\n            0.5084,\\n            0.5209\\n          ],\\n          \\\"ci_lower\\\": 0.4952,\\n          \\\"ci_upper\\\": 0.5233,\\n          \\\"boot_mean\\\": 0.5092,\\n          \\\"boot_std\\\": 0.0072\\n        }\\n      },\\n      \\\"kstar\\\": 1\\n    }\\n  },\\n  \\\"unified_scorer_no_label\\\": {\\n    \\\"pairs\\\": {\\n      \\\"0v1\\\": {\\n        \\\"auc\\\": 0.9603,\\n        \\\"fold_aucs\\\": [\\n          0.9543,\\n          0.9677,\\n          0.9584,\\n          0.9618,\\n          0.9599\\n        ],\\n        \\\"ci_lower\\\": 0.9558,\\n        \\\"ci_upper\\\": 0.9645,\\n        \\\"boot_mean\\\": 0.9603,\\n        \\\"boot_std\\\": 0.0022\\n      },\\n      \\\"1v2\\\": {\\n        \\\"auc\\\": 0.5685,\\n        \\\"fold_aucs\\\": [\\n          0.5685,\\n          0.5664,\\n          0.5838,\\n          0.5677,\\n          0.555\\n        ],\\n        \\\"ci_lower\\\": 0.5548,\\n        \\\"ci_upper\\\": 0.5816,\\n        \\\"boot_mean\\\": 0.5685,\\n        \\\"boot_std\\\": 0.0069\\n      },\\n      \\\"2v3\\\": {\\n        \\\"auc\\\": 0.519,\\n        \\\"fold_aucs\\\": [\\n          0.5104,\\n          0.517,\\n          0.5108,\\n          0.5271,\\n          0.5291\\n        ],\\n        \\\"ci_lower\\\": 0.5054,\\n        \\\"ci_upper\\\": 0.5329,\\n        \\\"boot_mean\\\": 0.519,\\n        \\\"boot_std\\\": 0.0071\\n      },\\n      \\\"3v4\\\": {\\n        \\\"auc\\\": 0.5044,\\n        \\\"fold_aucs\\\": [\\n          0.5155,\\n          0.4871,\\n          0.5159,\\n          0.4988,\\n          0.5044\\n        ],\\n        \\\"ci_lower\\\": 0.4902,\\n        \\\"ci_upper\\\": 0.5188,\\n        \\\"boot_mean\\\": 0.5044,\\n        \\\"boot_std\\\": 0.0073\\n      },\\n      \\\"4v5\\\": {\\n        \\\"auc\\\": 0.5106,\\n        \\\"fold_aucs\\\": [\\n          0.5269,\\n          0.5216,\\n          0.4855,\\n          0.4873,\\n          0.5312\\n        ],\\n        \\\"ci_lower\\\": 0.4962,\\n        \\\"ci_upper\\\": 0.525,\\n        \\\"boot_mean\\\": 0.5105,\\n        \\\"boot_std\\\": 0.0074\\n      }\\n    },\\n    \\\"kstar\\\": 1\\n  },\\n  \\\"unified_scorer_with_label\\\": {\\n    \\\"pairs\\\": {\\n      \\\"0v1\\\": {\\n        \\\"auc\\\": 0.9685,\\n        \\\"fold_aucs\\\": [\\n          0.962,\\n          0.9754,\\n          0.9683,\\n          0.9692,\\n          0.9682\\n        ],\\n        \\\"ci_lower\\\": 0.9647,\\n        \\\"ci_upper\\\": 0.9721,\\n        \\\"boot_mean\\\": 0.9685,\\n        \\\"boot_std\\\": 0.0019\\n      },\\n      \\\"1v2\\\": {\\n        \\\"auc\\\": 0.579,\\n        \\\"fold_aucs\\\": [\\n          0.578,\\n          0.571,\\n          0.5915,\\n          0.5784,\\n          0.5766\\n        ],\\n        \\\"ci_lower\\\": 0.5654,\\n        \\\"ci_upper\\\": 0.5924,\\n        \\\"boot_mean\\\": 0.579,\\n        \\\"boot_std\\\": 0.0069\\n      },\\n      \\\"2v3\\\": {\\n        \\\"auc\\\": 0.5299,\\n        \\\"fold_aucs\\\": [\\n          0.5239,\\n          0.5186,\\n          0.5304,\\n          0.5322,\\n          0.5456\\n        ],\\n        \\\"ci_lower\\\": 0.5162,\\n        \\\"ci_upper\\\": 0.5439,\\n        \\\"boot_mean\\\": 0.53,\\n        \\\"boot_std\\\": 0.007\\n      },\\n      \\\"3v4\\\": {\\n        \\\"auc\\\": 0.509,\\n        \\\"fold_aucs\\\": [\\n          0.523,\\n          0.4895,\\n          0.5134,\\n          0.505,\\n          0.5151\\n        ],\\n        \\\"ci_lower\\\": 0.4951,\\n        \\\"ci_upper\\\": 0.5233,\\n        \\\"boot_mean\\\": 0.5091,\\n        \\\"boot_std\\\": 0.0072\\n      },\\n      \\\"4v5\\\": {\\n        \\\"auc\\\": 0.5153,\\n        \\\"fold_aucs\\\": [\\n          0.529,\\n          0.5227,\\n          0.5087,\\n          0.4882,\\n          0.5258\\n        ],\\n        \\\"ci_lower\\\": 0.5009,\\n        \\\"ci_upper\\\": 0.5297,\\n        \\\"boot_mean\\\": 0.5153,\\n        \\\"boot_std\\\": 0.0073\\n      }\\n    },\\n    \\\"kstar\\\": 1\\n  },\\n  \\\"cross_domain_comparison\\\": {\\n    \\\"c4_unified_kstar\\\": 2,\\n    \\\"arxiv_unified_kstar\\\": 3,\\n    \\\"wiki_single_source_kstar\\\": 2\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "ab7a51a0-97fb-46d5-8dab-38a914dcf1e0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp_wiki_multi_source\\\\\\\",\\\\n  \\\\\\\"domain\\\\\\\": \\\\\\\"Wiki\\\\\\\",\\\\n  \\\\\\\"scorer\\\\\\\": \\\\\\\"Qwen2.5-1.5B\\\\\\\",\\\\n  \\\\\\\"generators\\\\\\\": [\\\\n    \\\\\\\"qwen1b5\\\\\\\",\\\\n    \\\\\\\"llama8b\\\\\\\",\\\\n    \\\\\\\"mistral7b\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"docs_per_generator\\\\\\\": 1000,\\\\n  \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n  \\\\\\\"theta\\\\\\\": 0.6,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"total_seconds\\\\\\\": 3498.6,\\\\n  \\\\\\\"vocab_only\\\\\\\": {\\\\n    \\\\\\\"no_label\\\\\\\": {\\\\n      \\\\\\\"pairs\\\\\\\": {\\\\n        \\\\\\\"0v1\\\\\\\": {\\\\n          \\\\\\\"auc\\\\\\\": 0.7616,\\\\n          \\\\\\\"fold_aucs\\\\\\\": [\\\\n            0.764,\\\\n            0.7696,\\\\n            0.7491,\\\\n            0.7595,\\\\n            0.7662\\\\n          ],\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.7505,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.7723,\\\\n          \\\\\\\"boot_mean\\\\\\\": 0.7616,\\\\n          \\\\\\\"boot_std\\\\\\\": 0.0055\\\\n        },\\\\n        \\\\\\\"1v2\\\\\\\": {\\\\n          \\\\\\\"auc\\\\\\\": 0.5434,\\\\n          \\\\\\\"fold_aucs\\\\\\\": [\\\\n            0.5696,\\\\n            0.5165,\\\\n            0.5338,\\\\n            0.543,\\\\n            0.5533\\\\n          ],\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.5292,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.5575,\\\\n          \\\\\\\"boot_mean\\\\\\\": 0.5434,\\\\n          \\\\\\\"boot_std\\\\\\\": 0.0072\\\\n        },\\\\n        \\\\\\\"2v3\\\\\\\": {\\\\n          \\\\\\\"auc\\\\\\\": 0.517,\\\\n          \\\\\\\"fold_aucs\\\\\\\": [\\\\n            0.5274,\\\\n            0.4981,\\\\n            0.5323,\\\\n            0.5071,\\\\n            0.521\\\\n          ],\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.503,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.5312,\\\\n          \\\\\\\"boot_mean\\\\\\\": 0.517,\\\\n          \\\\\\\"boot_std\\\\\\\": 0.0072\\\\n        },\\\\n        \\\\\\\"3v4\\\\\\\": {\\\\n          \\\\\\\"auc\\\\\\\": 0.5017,\\\\n          \\\\\\\"fold_aucs\\\\\\\": [\\\\n            0.4993,\\\\n            0.4811,\\\\n            0.5254,\\\\n            0.4895,\\\\n            0.5146\\\\n          ],\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.4874,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.516,\\\\n          \\\\\\\"boot_mean\\\\\\\": 0.5016,\\\\n          \\\\\\\"boot_std\\\\\\\": 0.0072\\\\n        },\\\\n        \\\\\\\"4v5\\\\\\\": {\\\\n          \\\\\\\"auc\\\\\\\": 0.5084,\\\\n          \\\\\\\"fold_aucs\\\\\\\": [\\\\n            0.512,\\\\n            0.5001,\\\\n            0.5158,\\\\n            0.5093,\\\\n            0.5059\\\\n          ],\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.4941,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.5227,\\\\n          \\\\\\\"boot_mean\\\\\\\": 0.5081,\\\\n          \\\\\\\"boot_std\\\\\\\": 0.0072\\\\n        }\\\\n      },\\\\n      \\\\\\\"kstar\\\\\\\": 1\\\\n    },\\\\n    \\\\\\\"with_label\\\\\\\": {\\\\n      \\\\\\\"pairs\\\\\\\": {\\\\n        \\\\\\\"0v1\\\\\\\": {\\\\n          \\\\\\\"auc\\\\\\\": 0.7779,\\\\n          \\\\\\\"fold_aucs\\\\\\\": [\\\\n            0.7871,\\\\n            0.7821,\\\\n            0.7703,\\\\n            0.7726,\\\\n            0.7791\\\\n          ],\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.7675,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.7884,\\\\n          \\\\\\\"boot_mean\\\\\\\": 0.7779,\\\\n          \\\\\\\"boot_std\\\\\\\": 0.0053\\\\n        },\\\\n        \\\\\\\"1v2\\\\\\\": {\\\\n          \\\\\\\"auc\\\\\\\": 0.552,\\\\n          \\\\\\\"fold_aucs\\\\\\\": [\\\\n            0.5703,\\\\n            0.5245,\\\\n            0.5476,\\\\n            0.5641,\\\\n            0.5544\\\\n          ],\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.5382,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.5658,\\\\n          \\\\\\\"boot_mean\\\\\\\": 0.552,\\\\n          \\\\\\\"boot_std\\\\\\\": 0.0071\\\\n        },\\\\n        \\\\\\\"2v3\\\\\\\": {\\\\n          \\\\\\\"auc\\\\\\\": 0.5248,\\\\n          \\\\\\\"fold_aucs\\\\\\\": [\\\\n            0.5384,\\\\n            0.5024,\\\\n            0.5424,\\\\n            0.5092,\\\\n            0.531\\\\n          ],\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.5106,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.539,\\\\n          \\\\\\\"boot_mean\\\\\\\": 0.5247,\\\\n          \\\\\\\"boot_std\\\\\\\": 0.0072\\\\n        },\\\\n        \\\\\\\"3v4\\\\\\\": {\\\\n          \\\\\\\"auc\\\\\\\": 0.5112,\\\\n          \\\\\\\"fold_aucs\\\\\\\": [\\\\n            0.5079,\\\\n            0.4942,\\\\n            0.5367,\\\\n            0.5033,\\\\n            0.5156\\\\n          ],\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.4967,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.5252,\\\\n          \\\\\\\"boot_mean\\\\\\\": 0.5111,\\\\n          \\\\\\\"boot_std\\\\\\\": 0.0073\\\\n        },\\\\n        \\\\\\\"4v5\\\\\\\": {\\\\n          \\\\\\\"auc\\\\\\\": 0.5094,\\\\n          \\\\\\\"fold_aucs\\\\\\\": [\\\\n            0.5149,\\\\n            0.4921,\\\\n            0.5126,\\\\n            0.5084,\\\\n            0.5209\\\\n          ],\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.4952,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.5233,\\\\n          \\\\\\\"boot_mean\\\\\\\": 0.5092,\\\\n          \\\\\\\"boot_std\\\\\\\": 0.0072\\\\n        }\\\\n      },\\\\n      \\\\\\\"kstar\\\\\\\": 1\\\\n    }\\\\n  },\\\\n  \\\\\\\"unified_scorer_no_label\\\\\\\": {\\\\n    \\\\\\\"pairs\\\\\\\": {\\\\n      \\\\\\\"0v1\\\\\\\": {\\\\n        \\\\\\\"auc\\\\\\\": 0.9603,\\\\n        \\\\\\\"fold_aucs\\\\\\\": [\\\\n          0.9543,\\\\n          0.9677,\\\\n          0.9584,\\\\n          0.9618,\\\\n          0.9599\\\\n        ],\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.9558,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.9645,\\\\n        \\\\\\\"boot_mean\\\\\\\": 0.9603,\\\\n        \\\\\\\"boot_std\\\\\\\": 0.0022\\\\n      },\\\\n      \\\\\\\"1v2\\\\\\\": {\\\\n        \\\\\\\"auc\\\\\\\": 0.5685,\\\\n        \\\\\\\"fold_aucs\\\\\\\": [\\\\n          0.5685,\\\\n          0.5664,\\\\n          0.5838,\\\\n          0.5677,\\\\n          0.555\\\\n        ],\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.5548,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.5816,\\\\n        \\\\\\\"boot_mean\\\\\\\": 0.5685,\\\\n        \\\\\\\"boot_std\\\\\\\": 0.0069\\\\n      },\\\\n      \\\\\\\"2v3\\\\\\\": {\\\\n        \\\\\\\"auc\\\\\\\": 0.519,\\\\n        \\\\\\\"fold_aucs\\\\\\\": [\\\\n          0.5104,\\\\n          0.517,\\\\n          0.5108,\\\\n          0.5271,\\\\n          0.5291\\\\n        ],\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.5054,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.5329,\\\\n        \\\\\\\"boot_mean\\\\\\\": 0.519,\\\\n        \\\\\\\"boot_std\\\\\\\": 0.0071\\\\n      },\\\\n      \\\\\\\"3v4\\\\\\\": {\\\\n        \\\\\\\"auc\\\\\\\": 0.5044,\\\\n        \\\\\\\"fold_aucs\\\\\\\": [\\\\n          0.5155,\\\\n          0.4871,\\\\n          0.5159,\\\\n          0.4988,\\\\n          0.5044\\\\n        ],\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.4902,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.5188,\\\\n        \\\\\\\"boot_mean\\\\\\\": 0.5044,\\\\n        \\\\\\\"boot_std\\\\\\\": 0.0073\\\\n      },\\\\n      \\\\\\\"4v5\\\\\\\": {\\\\n        \\\\\\\"auc\\\\\\\": 0.5106,\\\\n        \\\\\\\"fold_aucs\\\\\\\": [\\\\n          0.5269,\\\\n          0.5216,\\\\n          0.4855,\\\\n          0.4873,\\\\n          0.5312\\\\n        ],\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.4962,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.525,\\\\n        \\\\\\\"boot_mean\\\\\\\": 0.5105,\\\\n        \\\\\\\"boot_std\\\\\\\": 0.0074\\\\n      }\\\\n    },\\\\n    \\\\\\\"kstar\\\\\\\": 1\\\\n  },\\\\n  \\\\\\\"unified_scorer_with_label\\\\\\\": {\\\\n    \\\\\\\"pairs\\\\\\\": {\\\\n      \\\\\\\"0v1\\\\\\\": {\\\\n        \\\\\\\"auc\\\\\\\": 0.9685,\\\\n        \\\\\\\"fold_aucs\\\\\\\": [\\\\n          0.962,\\\\n          0.9754,\\\\n          0.9683,\\\\n          0.9692,\\\\n          0.9682\\\\n        ],\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.9647,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.9721,\\\\n        \\\\\\\"boot_mean\\\\\\\": 0.9685,\\\\n        \\\\\\\"boot_std\\\\\\\": 0.0019\\\\n      },\\\\n      \\\\\\\"1v2\\\\\\\": {\\\\n        \\\\\\\"auc\\\\\\\": 0.579,\\\\n        \\\\\\\"fold_aucs\\\\\\\": [\\\\n          0.578,\\\\n          0.571,\\\\n          0.5915,\\\\n          0.5784,\\\\n          0.5766\\\\n        ],\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.5654,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.5924,\\\\n        \\\\\\\"boot_mean\\\\\\\": 0.579,\\\\n        \\\\\\\"boot_std\\\\\\\": 0.0069\\\\n      },\\\\n      \\\\\\\"2v3\\\\\\\": {\\\\n        \\\\\\\"auc\\\\\\\": 0.5299,\\\\n        \\\\\\\"fold_aucs\\\\\\\": [\\\\n          0.5239,\\\\n          0.5186,\\\\n          0.5304,\\\\n          0.5322,\\\\n          0.5456\\\\n        ],\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.5162,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.5439,\\\\n        \\\\\\\"boot_mean\\\\\\\": 0.53,\\\\n        \\\\\\\"boot_std\\\\\\\": 0.007\\\\n      },\\\\n      \\\\\\\"3v4\\\\\\\": {\\\\n        \\\\\\\"auc\\\\\\\": 0.509,\\\\n        \\\\\\\"fold_aucs\\\\\\\": [\\\\n          0.523,\\\\n          0.4895,\\\\n          0.5134,\\\\n          0.505,\\\\n          0.5151\\\\n        ],\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.4951,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.5233,\\\\n        \\\\\\\"boot_mean\\\\\\\": 0.5091,\\\\n        \\\\\\\"boot_std\\\\\\\": 0.0072\\\\n      },\\\\n      \\\\\\\"4v5\\\\\\\": {\\\\n        \\\\\\\"auc\\\\\\\": 0.5153,\\\\n        \\\\\\\"fold_aucs\\\\\\\": [\\\\n          0.529,\\\\n          0.5227,\\\\n          0.5087,\\\\n          0.4882,\\\\n          0.5258\\\\n        ],\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.5009,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.5297,\\\\n        \\\\\\\"boot_mean\\\\\\\": 0.5153,\\\\n        \\\\\\\"boot_std\\\\\\\": 0.0073\\\\n      }\\\\n    },\\\\n    \\\\\\\"kstar\\\\\\\": 1\\\\n  },\\\\n  \\\\\\\"cross_domain_comparison\\\\\\\": {\\\\n    \\\\\\\"c4_unified_kstar\\\\\\\": 2,\\\\n    \\\\\\\"arxiv_unified_kstar\\\\\\\": 3,\\\\n    \\\\\\\"wiki_single_source_kstar\\\\\\\": 2\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp_wiki_multi_source\\\",\\n  \\\"domain\\\": \\\"Wiki\\\",\\n  \\\"scorer\\\": \\\"Qwen2.5-1.5B\\\",\\n  \\\"generators\\\": [\\n    \\\"qwen1b5\\\",\\n    \\\"llama8b\\\",\\n    \\\"mistral7b\\\"\\n  ],\\n  \\\"docs_per_generator\\\": 1000,\\n  \\\"n_bootstrap\\\": 10000,\\n  \\\"theta\\\": 0.6,\\n  \\\"seed\\\": 42,\\n  \\\"total_seconds\\\": 3498.6,\\n  \\\"vocab_only\\\": {\\n    \\\"no_label\\\": {\\n      \\\"pairs\\\": {\\n        \\\"0v1\\\": {\\n          \\\"auc\\\": 0.7616,\\n          \\\"fold_aucs\\\": [\\n            0.764,\\n            0.7696,\\n            0.7491,\\n            0.7595,\\n            0.7662\\n          ],\\n          \\\"ci_lower\\\": 0.7505,\\n          \\\"ci_upper\\\": 0.7723,\\n          \\\"boot_mean\\\": 0.7616,\\n          \\\"boot_std\\\": 0.0055\\n        },\\n        \\\"1v2\\\": {\\n          \\\"auc\\\": 0.5434,\\n          \\\"fold_aucs\\\": [\\n            0.5696,\\n            0.5165,\\n            0.5338,\\n            0.543,\\n            0.5533\\n          ],\\n          \\\"ci_lower\\\": 0.5292,\\n          \\\"ci_upper\\\": 0.5575,\\n          \\\"boot_mean\\\": 0.5434,\\n          \\\"boot_std\\\": 0.0072\\n        },\\n        \\\"2v3\\\": {\\n          \\\"auc\\\": 0.517,\\n          \\\"fold_aucs\\\": [\\n            0.5274,\\n            0.4981,\\n            0.5323,\\n            0.5071,\\n            0.521\\n          ],\\n          \\\"ci_lower\\\": 0.503,\\n          \\\"ci_upper\\\": 0.5312,\\n          \\\"boot_mean\\\": 0.517,\\n          \\\"boot_std\\\": 0.0072\\n        },\\n        \\\"3v4\\\": {\\n          \\\"auc\\\": 0.5017,\\n          \\\"fold_aucs\\\": [\\n            0.4993,\\n            0.4811,\\n            0.5254,\\n            0.4895,\\n            0.5146\\n          ],\\n          \\\"ci_lower\\\": 0.4874,\\n          \\\"ci_upper\\\": 0.516,\\n          \\\"boot_mean\\\": 0.5016,\\n          \\\"boot_std\\\": 0.0072\\n        },\\n        \\\"4v5\\\": {\\n          \\\"auc\\\": 0.5084,\\n          \\\"fold_aucs\\\": [\\n            0.512,\\n            0.5001,\\n            0.5158,\\n            0.5093,\\n            0.5059\\n          ],\\n          \\\"ci_lower\\\": 0.4941,\\n          \\\"ci_upper\\\": 0.5227,\\n          \\\"boot_mean\\\": 0.5081,\\n          \\\"boot_std\\\": 0.0072\\n        }\\n      },\\n      \\\"kstar\\\": 1\\n    },\\n    \\\"with_label\\\": {\\n      \\\"pairs\\\": {\\n        \\\"0v1\\\": {\\n          \\\"auc\\\": 0.7779,\\n          \\\"fold_aucs\\\": [\\n            0.7871,\\n            0.7821,\\n            0.7703,\\n            0.7726,\\n            0.7791\\n          ],\\n          \\\"ci_lower\\\": 0.7675,\\n          \\\"ci_upper\\\": 0.7884,\\n          \\\"boot_mean\\\": 0.7779,\\n          \\\"boot_std\\\": 0.0053\\n        },\\n        \\\"1v2\\\": {\\n          \\\"auc\\\": 0.552,\\n          \\\"fold_aucs\\\": [\\n            0.5703,\\n            0.5245,\\n            0.5476,\\n            0.5641,\\n            0.5544\\n          ],\\n          \\\"ci_lower\\\": 0.5382,\\n          \\\"ci_upper\\\": 0.5658,\\n          \\\"boot_mean\\\": 0.552,\\n          \\\"boot_std\\\": 0.0071\\n        },\\n        \\\"2v3\\\": {\\n          \\\"auc\\\": 0.5248,\\n          \\\"fold_aucs\\\": [\\n            0.5384,\\n            0.5024,\\n            0.5424,\\n            0.5092,\\n            0.531\\n          ],\\n          \\\"ci_lower\\\": 0.5106,\\n          \\\"ci_upper\\\": 0.539,\\n          \\\"boot_mean\\\": 0.5247,\\n          \\\"boot_std\\\": 0.0072\\n        },\\n        \\\"3v4\\\": {\\n          \\\"auc\\\": 0.5112,\\n          \\\"fold_aucs\\\": [\\n            0.5079,\\n            0.4942,\\n            0.5367,\\n            0.5033,\\n            0.5156\\n          ],\\n          \\\"ci_lower\\\": 0.4967,\\n          \\\"ci_upper\\\": 0.5252,\\n          \\\"boot_mean\\\": 0.5111,\\n          \\\"boot_std\\\": 0.0073\\n        },\\n        \\\"4v5\\\": {\\n          \\\"auc\\\": 0.5094,\\n          \\\"fold_aucs\\\": [\\n            0.5149,\\n            0.4921,\\n            0.5126,\\n            0.5084,\\n            0.5209\\n          ],\\n          \\\"ci_lower\\\": 0.4952,\\n          \\\"ci_upper\\\": 0.5233,\\n          \\\"boot_mean\\\": 0.5092,\\n          \\\"boot_std\\\": 0.0072\\n        }\\n      },\\n      \\\"kstar\\\": 1\\n    }\\n  },\\n  \\\"unified_scorer_no_label\\\": {\\n    \\\"pairs\\\": {\\n      \\\"0v1\\\": {\\n        \\\"auc\\\": 0.9603,\\n        \\\"fold_aucs\\\": [\\n          0.9543,\\n          0.9677,\\n          0.9584,\\n          0.9618,\\n          0.9599\\n        ],\\n        \\\"ci_lower\\\": 0.9558,\\n        \\\"ci_upper\\\": 0.9645,\\n        \\\"boot_mean\\\": 0.9603,\\n        \\\"boot_std\\\": 0.0022\\n      },\\n      \\\"1v2\\\": {\\n        \\\"auc\\\": 0.5685,\\n        \\\"fold_aucs\\\": [\\n          0.5685,\\n          0.5664,\\n          0.5838,\\n          0.5677,\\n          0.555\\n        ],\\n        \\\"ci_lower\\\": 0.5548,\\n        \\\"ci_upper\\\": 0.5816,\\n        \\\"boot_mean\\\": 0.5685,\\n        \\\"boot_std\\\": 0.0069\\n      },\\n      \\\"2v3\\\": {\\n        \\\"auc\\\": 0.519,\\n        \\\"fold_aucs\\\": [\\n          0.5104,\\n          0.517,\\n          0.5108,\\n          0.5271,\\n          0.5291\\n        ],\\n        \\\"ci_lower\\\": 0.5054,\\n        \\\"ci_upper\\\": 0.5329,\\n        \\\"boot_mean\\\": 0.519,\\n        \\\"boot_std\\\": 0.0071\\n      },\\n      \\\"3v4\\\": {\\n        \\\"auc\\\": 0.5044,\\n        \\\"fold_aucs\\\": [\\n          0.5155,\\n          0.4871,\\n          0.5159,\\n          0.4988,\\n          0.5044\\n        ],\\n        \\\"ci_lower\\\": 0.4902,\\n        \\\"ci_upper\\\": 0.5188,\\n        \\\"boot_mean\\\": 0.5044,\\n        \\\"boot_std\\\": 0.0073\\n      },\\n      \\\"4v5\\\": {\\n        \\\"auc\\\": 0.5106,\\n        \\\"fold_aucs\\\": [\\n          0.5269,\\n          0.5216,\\n          0.4855,\\n          0.4873,\\n          0.5312\\n        ],\\n        \\\"ci_lower\\\": 0.4962,\\n        \\\"ci_upper\\\": 0.525,\\n        \\\"boot_mean\\\": 0.5105,\\n        \\\"boot_std\\\": 0.0074\\n      }\\n    },\\n    \\\"kstar\\\": 1\\n  },\\n  \\\"unified_scorer_with_label\\\": {\\n    \\\"pairs\\\": {\\n      \\\"0v1\\\": {\\n        \\\"auc\\\": 0.9685,\\n        \\\"fold_aucs\\\": [\\n          0.962,\\n          0.9754,\\n          0.9683,\\n          0.9692,\\n          0.9682\\n        ],\\n        \\\"ci_lower\\\": 0.9647,\\n        \\\"ci_upper\\\": 0.9721,\\n        \\\"boot_mean\\\": 0.9685,\\n        \\\"boot_std\\\": 0.0019\\n      },\\n      \\\"1v2\\\": {\\n        \\\"auc\\\": 0.579,\\n        \\\"fold_aucs\\\": [\\n          0.578,\\n          0.571,\\n          0.5915,\\n          0.5784,\\n          0.5766\\n        ],\\n        \\\"ci_lower\\\": 0.5654,\\n        \\\"ci_upper\\\": 0.5924,\\n        \\\"boot_mean\\\": 0.579,\\n        \\\"boot_std\\\": 0.0069\\n      },\\n      \\\"2v3\\\": {\\n        \\\"auc\\\": 0.5299,\\n        \\\"fold_aucs\\\": [\\n          0.5239,\\n          0.5186,\\n          0.5304,\\n          0.5322,\\n          0.5456\\n        ],\\n        \\\"ci_lower\\\": 0.5162,\\n        \\\"ci_upper\\\": 0.5439,\\n        \\\"boot_mean\\\": 0.53,\\n        \\\"boot_std\\\": 0.007\\n      },\\n      \\\"3v4\\\": {\\n        \\\"auc\\\": 0.509,\\n        \\\"fold_aucs\\\": [\\n          0.523,\\n          0.4895,\\n          0.5134,\\n          0.505,\\n          0.5151\\n        ],\\n        \\\"ci_lower\\\": 0.4951,\\n        \\\"ci_upper\\\": 0.5233,\\n        \\\"boot_mean\\\": 0.5091,\\n        \\\"boot_std\\\": 0.0072\\n      },\\n      \\\"4v5\\\": {\\n        \\\"auc\\\": 0.5153,\\n        \\\"fold_aucs\\\": [\\n          0.529,\\n          0.5227,\\n          0.5087,\\n          0.4882,\\n          0.5258\\n        ],\\n        \\\"ci_lower\\\": 0.5009,\\n        \\\"ci_upper\\\": 0.5297,\\n        \\\"boot_mean\\\": 0.5153,\\n        \\\"boot_std\\\": 0.0073\\n      }\\n    },\\n    \\\"kstar\\\": 1\\n  },\\n  \\\"cross_domain_comparison\\\": {\\n    \\\"c4_unified_kstar\\\": 2,\\n    \\\"arxiv_unified_kstar\\\": 3,\\n    \\\"wiki_single_source_kstar\\\": 2\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017zdezjcvxTmgeGw3q23GT4`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -i \"llama\" /root/autodl-tmp/gen-depth-contamination/results/exp_wiki_multi_source.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "36476071-76e9-446b-a4fc-ca76a6ab610e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013DPxMGXhPbehkMNtE4nv1U",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2860,
+      "cache_read_input_tokens": 30005,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2860
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T11:37:46.473Z_
+
+<details><summary>↩ Tool result · `toolu_017zdezjcvxTmgeGw3q23GT4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  Loaded llama8b: 30000 rows, 5000 docs\\n  llama8b: sampled 1000 docs -> 6000 rows\\n18:53:09 [INFO] Processing llama8b (needs_rescore=True)\\n\\rSurprisal:   0%|          | 0/313 [00:00<?, ?it/s]\\rSurprisal:   0%|          | 1/313 [00:00<01:16,  4.09it/s]\\rSurprisal:   1%|          | 2/313 [00:00<01:34,  3.29it/s]\\rSurprisal:   1%|          | 3/313 [00:00<01:28,  3.49it/s]\\rSurprisal:   1%|▏         | 4/313 [00:01<01:22,  3.74it/s]\\rSurprisal:   2%|▏         | 5/313 [00:01<01:19,  3.88it/s]\\rSurprisal:   2%|▏         | 6/313 [00:01<01:23,  3.67it/s]\\rSurprisal:   2%|▏         | 7/313 [00:01<01:21,  3.75it/s]\\rSurprisal:   3%|▎         | 8/313 [00:02<01:18,  3.90it/s]\\rSurprisal:   3%|▎         | 9/313 [00:02<01:17,  3.95it/s]\\rSurprisal:   3%|▎         | 10/313 [00:02<01:34,  3.20it/s]\\rSurprisal:   4%|▎         | 11/313 [00:03<01:28,  3.39it/s]\\rSurprisal:   4%|▍         | 12/313 [00:03<01:28,  3.40it/s]\\rSurprisal:   4%|▍         | 13/313 [00:03<01:23,  3.58it/s]\\rSurprisal:   4%|▍         | 14/313 [00:03<01:23,  3.58it/s]\\rSurprisal:   5%|▍         | 15/313 [00:04<01:20,  3.68it/s]\\rSurprisal:   5%|▌         | 16/313 [00:04<01:18,  3.78it/s]\\rSurprisal:   5%|▌         | 17/313 [00:04<01:16,  3.85it/s]\\rSurprisal:   6%|▌         | 18/313 [00:04<01:15,  3.91it/s]\\rSurprisal:   6%|▌         | 19/313 [00:05<01:13,  4.01it/s]\\rSurprisal:   6%|▋         | 20/313 [00:05<01:19,  3.67it/s]\\rSurprisal:   7%|▋         | 21/313 [00:05<01:19,  3.68it/s]\\rSurprisal:   7%|▋         | 22/313 [00:05<01:17,  3.73it/s]\\rSurprisal:   7%|▋         | 23/313 [00:06<01:16,  3.78it/s]\\rSurprisal:   8%|▊         | 24/313 [00:06<01:14,  3.89it/s]\\rSurprisal:   8%|▊         | 25/313 [00:06<01:13,  3.93it/s]\\rSurprisal:   8%|▊         | 26/313 [00:07<01:20,  3.57it/s]\\rSurprisal:   9%|▊         | 27/313 [00:07<01:20,  3.55it/s]\\rSurprisal:   9%|▉         | 28/313 [00:07<01:29,  3.18it/s]\\rSurprisal:   9%|▉         | 29/313 [00:08<01:27,  3.26it/s]\\rSurprisal:  10%|▉         | 30/313 [00:08<01:24,  3.37it/s]\\rSurprisal:  10%|▉         | 31/313 [00:08<01:24,  3.34it/s]\\rSurprisal:  10%|█         | 32/313 [00:08<01:23,  3.38it/s]\\rSurprisal:  11%|█         | 33/313 [00:09<01:21,  3.43it/s]\\rSurprisal:  11%|█         | 34/313 [00:09<01:21,  3.42it/s]\\rSurprisal:  11%|█         | 35/313 [00:09<01:21,  3.41it/s]\\rSurprisal:  12%|█▏        | 36/313 [00:10<01:20,  3.45it/s]\\rSurprisal:  12%|█▏        | 37/313 [00:10<01:19,  3.49it/s]\\rSurprisal:  12%|█▏        | 38/313 [00:10<01:18,  3.50it/s]\\rSurprisal:  12%|█▏        | 39/313 [00:10<01:19,  3.46it/s]\\rSurprisal:  13%|█▎        | 40/313 [00:11<01:17,  3.54it/s]\\rSurprisal:  13%|█▎        | 41/313 [00:11<01:15,  3.60it/s]\\rSurprisal:  13%|█▎        | 42/313 [00:11<01:16,  3.54it/s]\\rSurprisal:  14%|█▎        | 43/313 [00:12<01:17,  3.47it/s]\\rSurprisal:  14%|█▍        | 44/313 [00:12<01:16,  3.53it/s]\\rSurprisal:  14%|█▍        | 45/313 [00:12<01:27,  3.06it/s]\\rSurprisal:  15%|█▍        | 46/313 [00:13<01:27,  3.05it/s]\\rSurprisal:  15%|█▌        | 47/313 [00:13<01:26,  3.09it/s]\\rSurprisal:  15%|█▌        | 48/313 [00:13<01:24,  3.14it/s]\\rSurprisal:  16%|█▌        | 49/313 [00:13<01:21,  3.24it/s]\\rSurprisal:  16%|█▌        | 50/313 [00:14<01:19,  3.31it/s]\\rSurprisal:  16%|█▋        | 51/313 [00:14<01:21,  3.23it/s]\\rSurprisal:  17%|█▋        | 52/313 [00:14<01:19,  3.30it/s]\\rSurprisal:  17%|█▋        | 53/313 [00:15<01:21,  3.18it/s]\\rSurprisal:  17%|█▋        | 54/313 [00:15<01:19,  3.24it/s]\\rSurprisal:  18%|█▊        | 55/313 [00:15<01:18,  3.28it/s]\\rSurprisal:  18%|█▊        | 56/313 [00:16<01:18,  3.26it/s]\\rSurprisal:  18%|█▊        | 57/313 [00:16<01:16,  3.36it/s]\\rSurprisal:  19%|█▊        | 58/313 [00:16<01:14,  3.42it/s]\\rSurprisal:  19%|█▉        | 59/313 [00:16<01:12,  3.48it/s]\\rSurprisal:  19%|█▉        | 60/313 [00:17<01:15,  3.35it/s]\\rSurprisal:  19%|█▉        | 61/313 [00:17<01:21,  3.11it/s]\\rSurprisal:  20%|█▉        | 62/313 [00:17<01:20,  3.10it/s]\\rSurprisal:  20%|██        | 63/313 [00:18<01:17,  3.22it/s]\\rSurprisal:  20%|██        | 64/313 [00:\\n\\n... [截断: 输出过长，省略 11424 字符] ...\\n\\n2/313 [01:14<00:18,  3.33it/s]\\rSurprisal:  81%|████████  | 253/313 [01:14<00:17,  3.42it/s]\\rSurprisal:  81%|████████  | 254/313 [01:15<00:17,  3.34it/s]\\rSurprisal:  81%|████████▏ | 255/313 [01:15<00:17,  3.38it/s]\\rSurprisal:  82%|████████▏ | 256/313 [01:15<00:17,  3.30it/s]\\rSurprisal:  82%|████████▏ | 257/313 [01:16<00:17,  3.19it/s]\\rSurprisal:  82%|████████▏ | 258/313 [01:16<00:16,  3.26it/s]\\rSurprisal:  83%|████████▎ | 259/313 [01:16<00:16,  3.25it/s]\\rSurprisal:  83%|████████▎ | 260/313 [01:16<00:16,  3.25it/s]\\rSurprisal:  83%|████████▎ | 261/313 [01:17<00:16,  3.25it/s]\\rSurprisal:  84%|████████▎ | 262/313 [01:17<00:15,  3.35it/s]\\rSurprisal:  84%|████████▍ | 263/313 [01:17<00:14,  3.43it/s]\\rSurprisal:  84%|████████▍ | 264/313 [01:18<00:14,  3.42it/s]\\rSurprisal:  85%|████████▍ | 265/313 [01:18<00:14,  3.31it/s]\\rSurprisal:  85%|████████▍ | 266/313 [01:18<00:16,  2.93it/s]\\rSurprisal:  85%|████████▌ | 267/313 [01:19<00:15,  2.91it/s]\\rSurprisal:  86%|████████▌ | 268/313 [01:19<00:14,  3.10it/s]\\rSurprisal:  86%|████████▌ | 269/313 [01:19<00:13,  3.32it/s]\\rSurprisal:  86%|████████▋ | 270/313 [01:19<00:12,  3.51it/s]\\rSurprisal:  87%|████████▋ | 271/313 [01:20<00:11,  3.65it/s]\\rSurprisal:  87%|████████▋ | 272/313 [01:20<00:11,  3.43it/s]\\rSurprisal:  87%|████████▋ | 273/313 [01:20<00:11,  3.41it/s]\\rSurprisal:  88%|████████▊ | 274/313 [01:21<00:11,  3.53it/s]\\rSurprisal:  88%|████████▊ | 275/313 [01:21<00:10,  3.60it/s]\\rSurprisal:  88%|████████▊ | 276/313 [01:21<00:10,  3.65it/s]\\rSurprisal:  88%|████████▊ | 277/313 [01:21<00:09,  3.61it/s]\\rSurprisal:  89%|████████▉ | 278/313 [01:22<00:09,  3.63it/s]\\rSurprisal:  89%|████████▉ | 279/313 [01:22<00:10,  3.40it/s]\\rSurprisal:  89%|████████▉ | 280/313 [01:22<00:10,  3.23it/s]\\rSurprisal:  90%|████████▉ | 281/313 [01:23<00:09,  3.25it/s]\\rSurprisal:  90%|██████���██ | 282/313 [01:23<00:09,  3.23it/s]\\rSurprisal:  90%|█████████ | 283/313 [01:23<00:09,  3.27it/s]\\rSurprisal:  91%|█████████ | 284/313 [01:24<00:08,  3.33it/s]\\rSurprisal:  91%|█████████ | 285/313 [01:24<00:08,  3.38it/s]\\rSurprisal:  91%|█████████▏| 286/313 [01:24<00:07,  3.47it/s]\\rSurprisal:  92%|█████████▏| 287/313 [01:24<00:07,  3.39it/s]\\rSurprisal:  92%|█████████▏| 288/313 [01:25<00:07,  3.41it/s]\\rSurprisal:  92%|█████████▏| 289/313 [01:25<00:07,  3.27it/s]\\rSurprisal:  93%|█████████▎| 290/313 [01:25<00:06,  3.31it/s]\\rSurprisal:  93%|█████████▎| 291/313 [01:26<00:06,  3.38it/s]\\rSurprisal:  93%|█████████▎| 292/313 [01:26<00:05,  3.58it/s]\\rSurprisal:  94%|█████████▎| 293/313 [01:26<00:05,  3.75it/s]\\rSurprisal:  94%|█████████▍| 294/313 [01:26<00:04,  3.91it/s]\\rSurprisal:  94%|█████████▍| 295/313 [01:27<00:04,  3.83it/s]\\rSurprisal:  95%|█████████▍| 296/313 [01:27<00:04,  3.69it/s]\\rSurprisal:  95%|█████████▍| 297/313 [01:27<00:04,  3.55it/s]\\rSurprisal:  95%|█████████▌| 298/313 [01:27<00:04,  3.60it/s]\\rSurprisal:  96%|█████████▌| 299/313 [01:28<00:03,  3.68it/s]\\rSurprisal:  96%|█████████▌| 300/313 [01:28<00:03,  3.59it/s]\\rSurprisal:  96%|█████████▌| 301/313 [01:28<00:03,  3.50it/s]\\rSurprisal:  96%|█████████▋| 302/313 [01:29<00:03,  3.30it/s]\\rSurprisal:  97%|█████████▋| 303/313 [01:29<00:03,  3.21it/s]\\rSurprisal:  97%|█████████▋| 304/313 [01:29<00:02,  3.08it/s]\\rSurprisal:  97%|█████████▋| 305/313 [01:30<00:02,  3.31it/s]\\rSurprisal:  98%|█████████▊| 306/313 [01:30<00:02,  3.44it/s]\\rSurprisal:  98%|��████████▊| 307/313 [01:30<00:01,  3.57it/s]\\rSurprisal:  98%|█████████▊| 308/313 [01:30<00:01,  3.55it/s]\\rSurprisal:  99%|█████████▊| 309/313 [01:31<00:01,  3.57it/s]\\rSurprisal:  99%|█████████▉| 310/313 [01:31<00:00,  3.61it/s]\\rSurprisal:  99%|█████████▉| 311/313 [01:31<00:00,  3.64it/s]\\rSurprisal: 100%|█████████▉| 312/313 [01:31<00:00,  3.80it/s]\\rSurprisal: 100%|██████████| 313/313 [01:32<00:00,  4.16it/s]\\r                                                            \\r19:02:00 [INFO]   Saved 30000 rows to /root/autodl-tmp/gen-depth-contamination/results/exp_wiki_multi_source/features_llama8b_qwen_scorer.csv\\n  llama8b: sampled 1000 docs -> 6000 rows\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "8c08392b-490d-4b89-9f20-70c428468b1d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Loaded llama8b: 30000 rows, 5000 docs\\\\n  llama8b: sampled 1000 docs -> 6000 rows\\\\n18:53:09 [INFO] Processing llama8b (needs_rescore=True)\\\\n\\\\rSurprisal:   0%|          | 0/313 [00:00<?, ?it/s]\\\\rSurprisal:   0%|          | 1/313 [00:00<01:16,  4.09it/s]\\\\rSurprisal:   1%|          | 2/313 [00:00<01:34,  3.29it/s]\\\\rSurprisal:   1%|          | 3/313 [00:00<01:28,  3.49it/s]\\\\rSurprisal:   1%|▏         | 4/313 [00:01<01:22,  3.74it/s]\\\\rSurprisal:   2%|▏         | 5/313 [00:01<01:19,  3.88it/s]\\\\rSurprisal:   2%|▏         | 6/313 [00:01<01:23,  3.67it/s]\\\\rSurprisal:   2%|▏         | 7/313 [00:01<01:21,  3.75it/s]\\\\rSurprisal:   3%|▎         | 8/313 [00:02<01:18,  3.90it/s]\\\\rSurprisal:   3%|▎         | 9/313 [00:02<01:17,  3.95it/s]\\\\rSurprisal:   3%|▎         | 10/313 [00:02<01:34,  3.20it/s]\\\\rSurprisal:   4%|▎         | 11/313 [00:03<01:28,  3.39it/s]\\\\rSurprisal:   4%|▍         | 12/313 [00:03<01:28,  3.40it/s]\\\\rSurprisal:   4%|▍         | 13/313 [00:03<01:23,  3.58it/s]\\\\rSurprisal:   4%|▍         | 14/313 [00:03<01:23,  3.58it/s]\\\\rSurprisal:   5%|▍         | 15/313 [00:04<01:20,  3.68it/s]\\\\rSurprisal:   5%|▌         | 16/313 [00:04<01:18,  3.78it/s]\\\\rSurprisal:   5%|▌         | 17/313 [00:04<01:16,  3.85it/s]\\\\rSurprisal:   6%|▌         | 18/313 [00:04<01:15,  3.91it/s]\\\\rSurprisal:   6%|▌         | 19/313 [00:05<01:13,  4.01it/s]\\\\rSurprisal:   6%|▋         | 20/313 [00:05<01:19,  3.67it/s]\\\\rSurprisal:   7%|▋         | 21/313 [00:05<01:19,  3.68it/s]\\\\rSurprisal:   7%|▋         | 22/313 [00:05<01:17,  3.73it/s]\\\\rSurprisal:   7%|▋         | 23/313 [00:06<01:16,  3.78it/s]\\\\rSurprisal:   8%|▊         | 24/313 [00:06<01:14,  3.89it/s]\\\\rSurprisal:   8%|▊         | 25/313 [00:06<01:13,  3.93it/s]\\\\rSurprisal:   8%|▊         | 26/313 [00:07<01:20,  3.57it/s]\\\\rSurprisal:   9%|▊         | 27/313 [00:07<01:20,  3.55it/s]\\\\rSurprisal:   9%|▉         | 28/313 [00:07<01:29,  3.18it/s]\\\\rSurprisal:   9%|▉         | 29/313 [00:08<01:27,  3.26it/s]\\\\rSurprisal:  10%|▉         | 30/313 [00:08<01:24,  3.37it/s]\\\\rSurprisal:  10%|▉         | 31/313 [00:08<01:24,  3.34it/s]\\\\rSurprisal:  10%|█         | 32/313 [00:08<01:23,  3.38it/s]\\\\rSurprisal:  11%|█         | 33/313 [00:09<01:21,  3.43it/s]\\\\rSurprisal:  11%|█         | 34/313 [00:09<01:21,  3.42it/s]\\\\rSurprisal:  11%|█         | 35/313 [00:09<01:21,  3.41it/s]\\\\rSurprisal:  12%|█▏        | 36/313 [00:10<01:20,  3.45it/s]\\\\rSurprisal:  12%|█▏        | 37/313 [00:10<01:19,  3.49it/s]\\\\rSurprisal:  12%|█▏        | 38/313 [00:10<01:18,  3.50it/s]\\\\rSurprisal:  12%|█▏        | 39/313 [00:10<01:19,  3.46it/s]\\\\rSurprisal:  13%|█▎        | 40/313 [00:11<01:17,  3.54it/s]\\\\rSurprisal:  13%|█▎        | 41/313 [00:11<01:15,  3.60it/s]\\\\rSurprisal:  13%|█▎        | 42/313 [00:11<01:16,  3.54it/s]\\\\rSurprisal:  14%|█▎        | 43/313 [00:12<01:17,  3.47it/s]\\\\rSurprisal:  14%|█▍        | 44/313 [00:12<01:16,  3.53it/s]\\\\rSurprisal:  14%|█▍        | 45/313 [00:12<01:27,  3.06it/s]\\\\rSurprisal:  15%|█▍        | 46/313 [00:13<01:27,  3.05it/s]\\\\rSurprisal:  15%|█▌        | 47/313 [00:13<01:26,  3.09it/s]\\\\rSurprisal:  15%|█▌        | 48/313 [00:13<01:24,  3.14it/s]\\\\rSurprisal:  16%|█▌        | 49/313 [00:13<01:21,  3.24it/s]\\\\rSurprisal:  16%|█▌        | 50/313 [00:14<01:19,  3.31it/s]\\\\rSurprisal:  16%|█▋        | 51/313 [00:14<01:21,  3.23it/s]\\\\rSurprisal:  17%|█▋        | 52/313 [00:14<01:19,  3.30it/s]\\\\rSurprisal:  17%|█▋        | 53/313 [00:15<01:21,  3.18it/s]\\\\rSurprisal:  17%|█▋        | 54/313 [00:15<01:19,  3.24it/s]\\\\rSurprisal:  18%|█▊        | 55/313 [00:15<01:18,  3.28it/s]\\\\rSurprisal:  18%|█▊        | 56/313 [00:16<01:18,  3.26it/s]\\\\rSurprisal:  18%|█▊        | 57/313 [00:16<01:16,  3.36it/s]\\\\rSurprisal:  19%|█▊        | 58/313 [00:16<01:14,  3.42it/s]\\\\rSurprisal:  19%|█▉        | 59/313 [00:16<01:12,  3.48it/s]\\\\rSurprisal:  19%|█▉        | 60/313 [00:17<01:15,  3.35it/s]\\\\rSurprisal:  19%|█▉        | 61/313 [00:17<01:21,  3.11it/s]\\\\rSurprisal:  20%|█▉        | 62/313 [00:17<01:20,  3.10it/s]\\\\rSurprisal:  20%|██        | 63/313 [00:18<01:17,  3.22it/s]\\\\rSurprisal:  20%|██        | 64/313 [00:\\\\n\\\\n... [截断: 输出过长，省略 11424 字符] ...\\\\n\\\\n2/313 [01:14<00:18,  3.33it/s]\\\\rSurprisal:  81%|████████  | 253/313 [01:14<00:17,  3.42it/s]\\\\rSurprisal:  81%|████████  | 254/313 [01:15<00:17,  3.34it/s]\\\\rSurprisal:  81%|████████▏ | 255/313 [01:15<00:17,  3.38it/s]\\\\rSurprisal:  82%|████████▏ | 256/313 [01:15<00:17,  3.30it/s]\\\\rSurprisal:  82%|████████▏ | 257/313 [01:16<00:17,  3.19it/s]\\\\rSurprisal:  82%|████████▏ | 258/313 [01:16<00:16,  3.26it/s]\\\\rSurprisal:  83%|████████▎ | 259/313 [01:16<00:16,  3.25it/s]\\\\rSurprisal:  83%|████████▎ | 260/313 [01:16<00:16,  3.25it/s]\\\\rSurprisal:  83%|████████▎ | 261/313 [01:17<00:16,  3.25it/s]\\\\rSurprisal:  84%|████████▎ | 262/313 [01:17<00:15,  3.35it/s]\\\\rSurprisal:  84%|████████▍ | 263/313 [01:17<00:14,  3.43it/s]\\\\rSurprisal:  84%|████████▍ | 264/313 [01:18<00:14,  3.42it/s]\\\\rSurprisal:  85%|████████▍ | 265/313 [01:18<00:14,  3.31it/s]\\\\rSurprisal:  85%|████████▍ | 266/313 [01:18<00:16,  2.93it/s]\\\\rSurprisal:  85%|████████▌ | 267/313 [01:19<00:15,  2.91it/s]\\\\rSurprisal:  86%|████████▌ | 268/313 [01:19<00:14,  3.10it/s]\\\\rSurprisal:  86%|████████▌ | 269/313 [01:19<00:13,  3.32it/s]\\\\rSurprisal:  86%|████████▋ | 270/313 [01:19<00:12,  3.51it/s]\\\\rSurprisal:  87%|████████▋ | 271/313 [01:20<00:11,  3.65it/s]\\\\rSurprisal:  87%|████████▋ | 272/313 [01:20<00:11,  3.43it/s]\\\\rSurprisal:  87%|████████▋ | 273/313 [01:20<00:11,  3.41it/s]\\\\rSurprisal:  88%|████████▊ | 274/313 [01:21<00:11,  3.53it/s]\\\\rSurprisal:  88%|████████▊ | 275/313 [01:21<00:10,  3.60it/s]\\\\rSurprisal:  88%|████████▊ | 276/313 [01:21<00:10,  3.65it/s]\\\\rSurprisal:  88%|████████▊ | 277/313 [01:21<00:09,  3.61it/s]\\\\rSurprisal:  89%|████████▉ | 278/313 [01:22<00:09,  3.63it/s]\\\\rSurprisal:  89%|████████▉ | 279/313 [01:22<00:10,  3.40it/s]\\\\rSurprisal:  89%|████████▉ | 280/313 [01:22<00:10,  3.23it/s]\\\\rSurprisal:  90%|████████▉ | 281/313 [01:23<00:09,  3.25it/s]\\\\rSurprisal:  90%|██████���██ | 282/313 [01:23<00:09,  3.23it/s]\\\\rSurprisal:  90%|█████████ | 283/313 [01:23<00:09,  3.27it/s]\\\\rSurprisal:  91%|█████████ | 284/313 [01:24<00:08,  3.33it/s]\\\\rSurprisal:  91%|█████████ | 285/313 [01:24<00:08,  3.38it/s]\\\\rSurprisal:  91%|█████████▏| 286/313 [01:24<00:07,  3.47it/s]\\\\rSurprisal:  92%|█████████▏| 287/313 [01:24<00:07,  3.39it/s]\\\\rSurprisal:  92%|█████████▏| 288/313 [01:25<00:07,  3.41it/s]\\\\rSurprisal:  92%|█████████▏| 289/313 [01:25<00:07,  3.27it/s]\\\\rSurprisal:  93%|█████████▎| 290/313 [01:25<00:06,  3.31it/s]\\\\rSurprisal:  93%|█████████▎| 291/313 [01:26<00:06,  3.38it/s]\\\\rSurprisal:  93%|█████████▎| 292/313 [01:26<00:05,  3.58it/s]\\\\rSurprisal:  94%|█████████▎| 293/313 [01:26<00:05,  3.75it/s]\\\\rSurprisal:  94%|█████████▍| 294/313 [01:26<00:04,  3.91it/s]\\\\rSurprisal:  94%|█████████▍| 295/313 [01:27<00:04,  3.83it/s]\\\\rSurprisal:  95%|█████████▍| 296/313 [01:27<00:04,  3.69it/s]\\\\rSurprisal:  95%|█████████▍| 297/313 [01:27<00:04,  3.55it/s]\\\\rSurprisal:  95%|█████████▌| 298/313 [01:27<00:04,  3.60it/s]\\\\rSurprisal:  96%|█████████▌| 299/313 [01:28<00:03,  3.68it/s]\\\\rSurprisal:  96%|█████████▌| 300/313 [01:28<00:03,  3.59it/s]\\\\rSurprisal:  96%|█████████▌| 301/313 [01:28<00:03,  3.50it/s]\\\\rSurprisal:  96%|█████████▋| 302/313 [01:29<00:03,  3.30it/s]\\\\rSurprisal:  97%|█████████▋| 303/313 [01:29<00:03,  3.21it/s]\\\\rSurprisal:  97%|█████████▋| 304/313 [01:29<00:02,  3.08it/s]\\\\rSurprisal:  97%|█████████▋| 305/313 [01:30<00:02,  3.31it/s]\\\\rSurprisal:  98%|█████████▊| 306/313 [01:30<00:02,  3.44it/s]\\\\rSurprisal:  98%|��████████▊| 307/313 [01:30<00:01,  3.57it/s]\\\\rSurprisal:  98%|█████████▊| 308/313 [01:30<00:01,  3.55it/s]\\\\rSurprisal:  99%|█████████▊| 309/313 [01:31<00:01,  3.57it/s]\\\\rSurprisal:  99%|█████████▉| 310/313 [01:31<00:00,  3.61it/s]\\\\rSurprisal:  99%|█████████▉| 311/313 [01:31<00:00,  3.64it/s]\\\\rSurprisal: 100%|█████████▉| 312/313 [01:31<00:00,  3.80it/s]\\\\rSurprisal: 100%|██████████| 313/313 [01:32<00:00,  4.16it/s]\\\\r                                                            \\\\r19:02:00 [INFO]   Saved 30000 rows to /root/autodl-tmp/gen-depth-contamination/results/exp_wiki_multi_source/features_llama8b_qwen_scorer.csv\\\\n  llama8b: sampled 1000 docs -> 6000 rows\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"  Loaded llama8b: 30000 rows, 5000 docs\\n  llama8b: sampled 1000 docs -> 6000 rows\\n18:53:09 [INFO] Processing llama8b (needs_rescore=True)\\n\\rSurprisal:   0%|          | 0/313 [00:00<?, ?it/s]\\rSurprisal:   0%|          | 1/313 [00:00<01:16,  4.09it/s]\\rSurprisal:   1%|          | 2/313 [00:00<01:34,  3.29it/s]\\rSurprisal:   1%|          | 3/313 [00:00<01:28,  3.49it/s]\\rSurprisal:   1%|▏         | 4/313 [00:01<01:22,  3.74it/s]\\rSurprisal:   2%|▏         | 5/313 [00:01<01:19,  3.88it/s]\\rSurprisal:   2%|▏         | 6/313 [00:01<01:23,  3.67it/s]\\rSurprisal:   2%|▏         | 7/313 [00:01<01:21,  3.75it/s]\\rSurprisal:   3%|▎         | 8/313 [00:02<01:18,  3.90it/s]\\rSurprisal:   3%|▎         | 9/313 [00:02<01:17,  3.95it/s]\\rSurprisal:   3%|▎         | 10/313 [00:02<01:34,  3.20it/s]\\rSurprisal:   4%|▎         | 11/313 [00:03<01:28,  3.39it/s]\\rSurprisal:   4%|▍         | 12/313 [00:03<01:28,  3.40it/s]\\rSurprisal:   4%|▍         | 13/313 [00:03<01:23,  3.58it/s]\\rSurprisal:   4%|▍         | 14/313 [00:03<01:23,  3.58it/s]\\rSurprisal:   5%|▍         | 15/313 [00:04<01:20,  3.68it/s]\\rSurprisal:   5%|▌         | 16/313 [00:04<01:18,  3.78it/s]\\rSurprisal:   5%|▌         | 17/313 [00:04<01:16,  3.85it/s]\\rSurprisal:   6%|▌         | 18/313 [00:04<01:15,  3.91it/s]\\rSurprisal:   6%|▌         | 19/313 [00:05<01:13,  4.01it/s]\\rSurprisal:   6%|▋         | 20/313 [00:05<01:19,  3.67it/s]\\rSurprisal:   7%|▋         | 21/313 [00:05<01:19,  3.68it/s]\\rSurprisal:   7%|▋         | 22/313 [00:05<01:17,  3.73it/s]\\rSurprisal:   7%|▋         | 23/313 [00:06<01:16,  3.78it/s]\\rSurprisal:   8%|▊         | 24/313 [00:06<01:14,  3.89it/s]\\rSurprisal:   8%|▊         | 25/313 [00:06<01:13,  3.93it/s]\\rSurprisal:   8%|▊         | 26/313 [00:07<01:20,  3.57it/s]\\rSurprisal:   9%|▊         | 27/313 [00:07<01:20,  3.55it/s]\\rSurprisal:   9%|▉         | 28/313 [00:07<01:29,  3.18it/s]\\rSurprisal:   9%|▉         | 29/313 [00:08<01:27,  3.26it/s]\\rSurprisal:  10%|▉         | 30/313 [00:08<01:24,  3.37it/s]\\rSurprisal:  10%|▉         | 31/313 [00:08<01:24,  3.34it/s]\\rSurprisal:  10%|█         | 32/313 [00:08<01:23,  3.38it/s]\\rSurprisal:  11%|█         | 33/313 [00:09<01:21,  3.43it/s]\\rSurprisal:  11%|█         | 34/313 [00:09<01:21,  3.42it/s]\\rSurprisal:  11%|█         | 35/313 [00:09<01:21,  3.41it/s]\\rSurprisal:  12%|█▏        | 36/313 [00:10<01:20,  3.45it/s]\\rSurprisal:  12%|█▏        | 37/313 [00:10<01:19,  3.49it/s]\\rSurprisal:  12%|█▏        | 38/313 [00:10<01:18,  3.50it/s]\\rSurprisal:  12%|█▏        | 39/313 [00:10<01:19,  3.46it/s]\\rSurprisal:  13%|█▎        | 40/313 [00:11<01:17,  3.54it/s]\\rSurprisal:  13%|█▎        | 41/313 [00:11<01:15,  3.60it/s]\\rSurprisal:  13%|█▎        | 42/313 [00:11<01:16,  3.54it/s]\\rSurprisal:  14%|█▎        | 43/313 [00:12<01:17,  3.47it/s]\\rSurprisal:  14%|█▍        | 44/313 [00:12<01:16,  3.53it/s]\\rSurprisal:  14%|█▍        | 45/313 [00:12<01:27,  3.06it/s]\\rSurprisal:  15%|█▍        | 46/313 [00:13<01:27,  3.05it/s]\\rSurprisal:  15%|█▌        | 47/313 [00:13<01:26,  3.09it/s]\\rSurprisal:  15%|█▌        | 48/313 [00:13<01:24,  3.14it/s]\\rSurprisal:  16%|█▌        | 49/313 [00:13<01:21,  3.24it/s]\\rSurprisal:  16%|█▌        | 50/313 [00:14<01:19,  3.31it/s]\\rSurprisal:  16%|█▋        | 51/313 [00:14<01:21,  3.23it/s]\\rSurprisal:  17%|█▋        | 52/313 [00:14<01:19,  3.30it/s]\\rSurprisal:  17%|█▋        | 53/313 [00:15<01:21,  3.18it/s]\\rSurprisal:  17%|█▋        | 54/313 [00:15<01:19,  3.24it/s]\\rSurprisal:  18%|█▊        | 55/313 [00:15<01:18,  3.28it/s]\\rSurprisal:  18%|█▊        | 56/313 [00:16<01:18,  3.26it/s]\\rSurprisal:  18%|█▊        | 57/313 [00:16<01:16,  3.36it/s]\\rSurprisal:  19%|█▊        | 58/313 [00:16<01:14,  3.42it/s]\\rSurprisal:  19%|█▉        | 59/313 [00:16<01:12,  3.48it/s]\\rSurprisal:  19%|█▉        | 60/313 [00:17<01:15,  3.35it/s]\\rSurprisal:  19%|█▉        | 61/313 [00:17<01:21,  3.11it/s]\\rSurprisal:  20%|█▉        | 62/313 [00:17<01:20,  3.10it/s]\\rSurprisal:  20%|██        | 63/313 [00:18<01:17,  3.22it/s]\\rSurprisal:  20%|██        | 64/313 [00:\\n\\n... [截断: 输出过长，省略 11424 字符] ...\\n\\n2/313 [01:14<00:18,  3.33it/s]\\rSurprisal:  81%|████████  | 253/313 [01:14<00:17,  3.42it/s]\\rSurprisal:  81%|████████  | 254/313 [01:15<00:17,  3.34it/s]\\rSurprisal:  81%|████████▏ | 255/313 [01:15<00:17,  3.38it/s]\\rSurprisal:  82%|████████▏ | 256/313 [01:15<00:17,  3.30it/s]\\rSurprisal:  82%|████████▏ | 257/313 [01:16<00:17,  3.19it/s]\\rSurprisal:  82%|████████▏ | 258/313 [01:16<00:16,  3.26it/s]\\rSurprisal:  83%|████████▎ | 259/313 [01:16<00:16,  3.25it/s]\\rSurprisal:  83%|████████▎ | 260/313 [01:16<00:16,  3.25it/s]\\rSurprisal:  83%|████████▎ | 261/313 [01:17<00:16,  3.25it/s]\\rSurprisal:  84%|████████▎ | 262/313 [01:17<00:15,  3.35it/s]\\rSurprisal:  84%|████████▍ | 263/313 [01:17<00:14,  3.43it/s]\\rSurprisal:  84%|████████▍ | 264/313 [01:18<00:14,  3.42it/s]\\rSurprisal:  85%|████████▍ | 265/313 [01:18<00:14,  3.31it/s]\\rSurprisal:  85%|████████▍ | 266/313 [01:18<00:16,  2.93it/s]\\rSurprisal:  85%|████████▌ | 267/313 [01:19<00:15,  2.91it/s]\\rSurprisal:  86%|████████▌ | 268/313 [01:19<00:14,  3.10it/s]\\rSurprisal:  86%|████████▌ | 269/313 [01:19<00:13,  3.32it/s]\\rSurprisal:  86%|████████▋ | 270/313 [01:19<00:12,  3.51it/s]\\rSurprisal:  87%|████████▋ | 271/313 [01:20<00:11,  3.65it/s]\\rSurprisal:  87%|████████▋ | 272/313 [01:20<00:11,  3.43it/s]\\rSurprisal:  87%|████████▋ | 273/313 [01:20<00:11,  3.41it/s]\\rSurprisal:  88%|████████▊ | 274/313 [01:21<00:11,  3.53it/s]\\rSurprisal:  88%|████████▊ | 275/313 [01:21<00:10,  3.60it/s]\\rSurprisal:  88%|████████▊ | 276/313 [01:21<00:10,  3.65it/s]\\rSurprisal:  88%|████████▊ | 277/313 [01:21<00:09,  3.61it/s]\\rSurprisal:  89%|████████▉ | 278/313 [01:22<00:09,  3.63it/s]\\rSurprisal:  89%|████████▉ | 279/313 [01:22<00:10,  3.40it/s]\\rSurprisal:  89%|████████▉ | 280/313 [01:22<00:10,  3.23it/s]\\rSurprisal:  90%|████████▉ | 281/313 [01:23<00:09,  3.25it/s]\\rSurprisal:  90%|██████���██ | 282/313 [01:23<00:09,  3.23it/s]\\rSurprisal:  90%|█████████ | 283/313 [01:23<00:09,  3.27it/s]\\rSurprisal:  91%|█████████ | 284/313 [01:24<00:08,  3.33it/s]\\rSurprisal:  91%|█████████ | 285/313 [01:24<00:08,  3.38it/s]\\rSurprisal:  91%|█████████▏| 286/313 [01:24<00:07,  3.47it/s]\\rSurprisal:  92%|█████████▏| 287/313 [01:24<00:07,  3.39it/s]\\rSurprisal:  92%|█████████▏| 288/313 [01:25<00:07,  3.41it/s]\\rSurprisal:  92%|█████████▏| 289/313 [01:25<00:07,  3.27it/s]\\rSurprisal:  93%|█████████▎| 290/313 [01:25<00:06,  3.31it/s]\\rSurprisal:  93%|█████████▎| 291/313 [01:26<00:06,  3.38it/s]\\rSurprisal:  93%|█████████▎| 292/313 [01:26<00:05,  3.58it/s]\\rSurprisal:  94%|█████████▎| 293/313 [01:26<00:05,  3.75it/s]\\rSurprisal:  94%|█████████▍| 294/313 [01:26<00:04,  3.91it/s]\\rSurprisal:  94%|█████████▍| 295/313 [01:27<00:04,  3.83it/s]\\rSurprisal:  95%|█████████▍| 296/313 [01:27<00:04,  3.69it/s]\\rSurprisal:  95%|█████████▍| 297/313 [01:27<00:04,  3.55it/s]\\rSurprisal:  95%|█████████▌| 298/313 [01:27<00:04,  3.60it/s]\\rSurprisal:  96%|█████████▌| 299/313 [01:28<00:03,  3.68it/s]\\rSurprisal:  96%|█████████▌| 300/313 [01:28<00:03,  3.59it/s]\\rSurprisal:  96%|█████████▌| 301/313 [01:28<00:03,  3.50it/s]\\rSurprisal:  96%|█████████▋| 302/313 [01:29<00:03,  3.30it/s]\\rSurprisal:  97%|█████████▋| 303/313 [01:29<00:03,  3.21it/s]\\rSurprisal:  97%|█████████▋| 304/313 [01:29<00:02,  3.08it/s]\\rSurprisal:  97%|█████████▋| 305/313 [01:30<00:02,  3.31it/s]\\rSurprisal:  98%|█████████▊| 306/313 [01:30<00:02,  3.44it/s]\\rSurprisal:  98%|��████████▊| 307/313 [01:30<00:01,  3.57it/s]\\rSurprisal:  98%|█████████▊| 308/313 [01:30<00:01,  3.55it/s]\\rSurprisal:  99%|█████████▊| 309/313 [01:31<00:01,  3.57it/s]\\rSurprisal:  99%|█████████▉| 310/313 [01:31<00:00,  3.61it/s]\\rSurprisal:  99%|█████████▉| 311/313 [01:31<00:00,  3.64it/s]\\rSurprisal: 100%|█████████▉| 312/313 [01:31<00:00,  3.80it/s]\\rSurprisal: 100%|██████████| 313/313 [01:32<00:00,  4.16it/s]\\r                                                            \\r19:02:00 [INFO]   Saved 30000 rows to /root/autodl-tmp/gen-depth-contamination/results/exp_wiki_multi_source/features_llama8b_qwen_scorer.csv\\n  llama8b: sampled 1000 docs -> 6000 rows\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me check the registry for the wiki multi-source experiment to see if it records only 2 generators in metrics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "229fe675-bcc6-463a-b18e-b63f49199f3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V8ySFLi3imnXs1opwXtGNz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11965,
+      "cache_read_input_tokens": 32865,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11965
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+现在情况很清楚了。让我确认 registry 中 wiki_multi_source 的记录。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "f540b901-2725-456b-adb3-98a5e1fe42a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V8ySFLi3imnXs1opwXtGNz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11965,
+      "cache_read_input_tokens": 32865,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11965
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01QAQi7i9kZYUjsLpGXLp4ML`</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "filters": {
+    "experiment_id": "exp_wiki_multi_source"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "a442a248-5594-48e4-9c17-94e82cbf479c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V8ySFLi3imnXs1opwXtGNz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11965,
+      "cache_read_input_tokens": 32865,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11965
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-20T11:37:52.629Z_
+
+<details><summary>↩ Tool result · `toolu_01QAQi7i9kZYUjsLpGXLp4ML`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4351}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "6b652691-1e4a-40d4-b21b-570277403b5f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4351}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4351}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry doesn't have entries for either exp_wiki_llama8b or exp_wiki_multi_source. Let me now check if the question is about the metrics in the registry for this experiment. The user says "metrics 只有 2 个 (qwen_base, mistral7b)" - but based on the logs, the multi-source experiment actually loaded all 3 generators. Let me re-read the user's question more carefully.
+
+The user says: "exp_wiki_multi_source 的 hypothesis 写了 3 generators (Qwen/LLaMA-8B/Mistral)，但 metrics 只有 2 个 (qwen_base, mistral7b)"
+
+
+The metrics they're referring to might be in the project artifacts or the individual single-source wiki experiment registries rather than the multi-source one itself. Let me look at those per-generator experiments to see what metrics are actually recorded there.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "ebb595ec-3495-40e4-ac2d-c46bd49057c6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HBfvZwbpFVQi8fcRznNtf9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 264,
+      "cache_read_input_tokens": 44830,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 264
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+Registry 没有 wiki_multi_source 条目。让我查下 registry 里 wiki 相关实验的完整情况，以及 multi-source results 目录里的详细文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "ad84d2b7-18d8-47cb-a75e-e1e1903bfae0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HBfvZwbpFVQi8fcRznNtf9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 264,
+      "cache_read_input_tokens": 44830,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 264
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01BBcssx6VqH7ZLSoCcwLJP5`</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "filters": {
+    "status": "DONE"
+  },
+  "fields": [
+    "experiment_id",
+    "status",
+    "metrics",
+    "hypothesis"
+  ],
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "40f48af5-91d6-4b57-ba42-ed1a7c875521",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HBfvZwbpFVQi8fcRznNtf9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 264,
+      "cache_read_input_tokens": 44830,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 264
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-20T11:38:03.109Z_
+
+<details><summary>↩ Tool result · `toolu_01BBcssx6VqH7ZLSoCcwLJP5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp-014\": {\"status\": \"DONE\", \"hypothesis\": \"OBD depth classifiers trained on synthetic generation-chain data will assign low depth (d0) to most real Common Crawl texts, and predicted AI probability will correlate negatively with vocabulary richness metrics (freq_entropy, TTR), confirming that the 15D feature space captures genuine human-vs-synthetic distributional differences rather than overfitting to synthetic artifacts.\", \"metrics\": {\"superseded_by\": \"exp_014_naturalistic\", \"note\": \"Stale duplicate. All metrics and results are in exp_014_naturalistic.\"}}, \"exp_gemma2b_depth\": {\"status\": \"DONE\", \"hypothesis\": \"Gemma-2-2B (6th architecture family) yields K*=2 on C4 web text under continuation mode, consistent with domain ceiling K*=2 observed across 5 other families (Qwen/Pythia/OLMo/LLaMA/Mistral), strengthening the claim that C4 ceiling is architecture-independent.\", \"metrics\": {\"k_star\": 1, \"pairwise_auc\": {\"0v1\": 0.9534, \"1v2\": 0.5981, \"2v3\": 0.5342, \"3v4\": 0.503, \"4v5\": 0.5026}, \"pairwise_auc_std\": {\"0v1\": 0.003, \"1v2\": 0.008, \"2v3\": 0.013, \"3v4\": 0.003, \"4v5\": 0.013}, \"bootstrap_ci_1v2\": {\"ci_lower\": 0.5882, \"ci_upper\": 0.6076}, \"jsd\": {\"0v1\": 0.09882, \"1v2\": 0.008852, \"2v3\": 0.004904, \"3v4\": 0.003742, \"4v5\": 0.003167}, \"ordinal_mae\": 1.3152, \"ordinal_accuracy\": 0.3321, \"note\": \"K*=1, NOT borderline K*=2. 1v2 AUC=0.5981 < theta=0.60. CI upper=0.6076 crosses theta but point estimate below.\"}}, \"exp_deberta_code_qwen1b5\": {\"status\": \"DONE\", \"hypothesis\": \"DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).\", \"metrics\": {\"K_star\": 2, \"theta\": 0.6, \"auc_0v1\": 1, \"auc_1v2\": 0.8076, \"auc_2v3\": 0.5933, \"auc_3v4\": 0.5492, \"auc_4v5\": 0.5311, \"ci_0v1\": [0.9999, 1], \"ci_1v2\": [0.8001, 0.8147], \"ci_2v3\": [0.5847, 0.6018], \"ci_3v4\": [0.541, 0.5573], \"ci_4v5\": [0.5235, 0.5388], \"obd_auc_0v1\": 0.9388, \"obd_auc_1v2\": 0.7382, \"obd_auc_2v3\": 0.53, \"obd_auc_3v4\": 0.5022, \"obd_auc_4v5\": 0.5219, \"elapsed_seconds\": 5780}}, \"exp_multi_source_arxiv\": {\"status\": \"DONE\", \"hypothesis\": \"Multi-source OBD K* on arXiv domain preserves domain ceiling K*=3 when mixing 3 generators (Qwen/Pythia/LLaMA-8B) with unified Qwen2.5-1.5B scorer, consistent with single-source arXiv K*=3 and higher than C4 multi-source K*=2, confirming domain hierarchy in multi-source setting.\", \"metrics\": {\"domain\": \"arxiv\", \"generators\": [\"qwen1b5\", \"pythia1b4\", \"llama8b\"], \"unified_scorer\": \"qwen2.5-1.5b\", \"docs_per_generator\": 1000, \"vocab_only_no_label_0v1\": 0.9431, \"vocab_only_no_label_1v2\": 0.6922, \"vocab_only_no_label_2v3\": 0.589, \"vocab_only_no_label_kstar\": 2, \"vocab_only_with_label_0v1\": 0.9436, \"vocab_only_with_label_1v2\": 0.702, \"vocab_only_with_label_2v3\": 0.5883, \"vocab_only_with_label_kstar\": 2, \"unified_no_label_0v1\": 0.9899, \"unified_no_label_1v2\": 0.8117, \"unified_no_label_2v3\": 0.6247, \"unified_no_label_3v4\": 0.5269, \"unified_no_label_kstar\": 3, \"unified_with_label_0v1\": 0.9911, \"unified_with_label_1v2\": 0.8338, \"unified_with_label_2v3\": 0.6276, \"unified_with_label_2v3_ci\": [0.615, 0.6401], \"unified_with_label_3v4\": 0.533, \"unified_with_label_kstar\": 3}}, \"exp_multi_source_detection\": {\"status\": \"DONE\", \"hypothesis\": \"OBD K* is preserved when training on a mixed pool of outputs from 3 different generators (Qwen-1.5B, Pythia-1.4B, OLMo-1B), and adding generator identity as an extra feature does not improve depth discrimination.\", \"metrics\": {\"v2_generators\": [\"qwen1b5\", \"pythia1b4\", \"llama8b\"], \"v2_kstar_no_label\": 2, \"v2_kstar_with_label\": 2, \"v2_0v1_auc_no_label\": 0.968, \"v2_0v1_auc_with_label\": 0.9785, \"v2_1v2_auc_no_label\": 0.7144, \"v2_1v2_auc_with_label\": 0.7251, \"v2_2v3_auc_no_label\": 0.5321, \"v2_2v3_auc_with_label\": 0.5362, \"vocab_only_v1_0v1\": 0.8675, \"vocab_only_v1_1v2\": 0.676, \"vocab_only_v1_2v3\": 0.4938, \"vocab_only_v1_kstar\": 2, \"vocab_only_v2_0v1\": 0.8296, \"vocab_only_v2_1v2\": 0.683, \"vocab_only_v2_2v3\": 0.5057, \"vocab_only_v2_kstar\": 2, \"vocab_only_features\": [\"ttr\", \"hapax_ratio\", \"self_bleu\", \"freq_kurtosis\", \"freq_entropy\", \"low_freq_ratio\"], \"scorer_confound_affects_kstar\": false, \"unified_scorer\": \"qwen2.5-1.5b\", \"unified_no_label_0v1\": 0.9663, \"unified_no_label_1v2\": 0.7105, \"unified_no_label_2v3\": 0.519, \"unified_no_label_kstar\": 2, \"unified_with_label_0v1\": 0.9769, \"unified_with_label_1v2\": 0.7183, \"unified_with_label_2v3\": 0.5165, \"unified_with_label_kstar\": 2, \"unified_single_qwen_kstar\": 2, \"unified_single_pythia_kstar\": 2, \"unified_single_llama8b_kstar\": 1, \"unified_single_qwen_1v2\": 0.6306, \"unified_single_pythia_1v2\": 0.8806, \"unified_single_llama8b_1v2\": 0.6077}}, \"exp_changepoint_kstar\": {\"status\": \"DONE\", \"hypothesis\": \"Non-parametric changepoint detection (PELT) on pairwise AUC sequences should recover K* consistent with the fixed θ=0.60 threshold, validating that K* is not an artifact of threshold choice.\", \"metrics\": {\"exact_agreement\": 0.459, \"exact_agreement_n\": \"17/37\", \"within_1_agreement\": 0.946, \"within_1_agreement_n\": \"35/37\", \"cp_direction\": \"always_conservative\", \"disagreement_auc_range\": [0.607, 0.654], \"best_penalty\": 0.1, \"methods_tested\": [\"PELT\", \"BinSeg\", \"BottomUp\"], \"bootstrap_samples\": 2000}}, \"exp_cross_transfer_llama8b_to_qwen7b_v2\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer). Rerun of exp_cross_transfer_llama8b_to_qwen7b which crashed due to --gpu 1 device error.\", \"metrics\": {\"K_star\": 3, \"2v3_auc_ci_lower\": 0.6124, \"theta\": 0.6, \"margin_pp\": 1.24}}, \"exp_deberta_arxiv_qwen1b5\": {\"status\": \"DONE\", \"hypothesis\": \"DeBERTa supervised classifier on arXiv domain yields K*=3 (matching OBD K*=3), confirming representation-independent domain ceiling holds across all 4 domains (C4 K*=2, wiki K*=3, code K*=2, arXiv K*=3).\", \"metrics\": {\"K_star\": 4, \"0v1_auc\": 0.9997, \"1v2_auc\": 0.9214, \"2v3_auc\": 0.7446, \"3v4_auc\": 0.6238, \"4v5_auc\": 0.5771, \"3v4_ci_lower\": 0.6127, \"3v4_ci_upper\": 0.6349, \"theta\": 0.6}}, \"exp_cross_transfer_llama8b_to_qwen7b\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\"}, \"exp_cross_transfer_qwen7b_to_llama8b\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-model transfer: DeBERTa trained on Qwen-7B wiki depth data can discriminate LLaMA-8B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\", \"metrics\": {\"kstar\": 3, \"kstar_indexing\": \"1-indexed\", \"pairwise_auc\": {\"0v1\": 0.9998, \"1v2\": 0.7384, \"2v3\": 0.6278, \"3v4\": 0.587, \"4v5\": 0.5519}, \"elapsed_s\": 3621}}, \"exp_deberta_cross_transfer_gpu3\": {\"status\": \"DONE\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU3 ran olmo↔llama8b, pythia↔mistral7b pairs (mistral7b pairs were bonus, qwen7b↔llama8b missing).\"}, \"exp_deberta_cross_transfer_gpu2\": {\"status\": \"DONE\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU2 ran olmo↔qwen7b, pythia→llama8b, llama8b→pythia pairs.\"}, \"exp_deberta_cross_transfer_gpu1\": {\"status\": \"DONE\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU1 ran pythia↔olmo and pythia↔qwen7b pairs.\"}, \"exp_deberta_cross_transfer_wiki\": {\"status\": \"DONE\", \"hypothesis\": \"DeBERTa cross-model transfer on wiki domain: if off-diagonal retention is high (>90%), depth signals are model-family invariant even with neural features; if wiki retention exceeds C4 retention, domain complexity affects transfer more than feature representation.\", \"metrics\": {\"total_pairs_expected\": 12, \"completed_pairs\": 10, \"missing_pairs\": [\"qwen7b→llama8b\", \"llama8b→qwen7b\"], \"bonus_pairs\": [\"pythia→mistral7b (K*=2)\", \"mistral7b→pythia (K*=2)\"], \"kstar_distribution\": {\"K*=1\": 3, \"K*=2\": 5, \"K*=3\": 1}, \"kstar_1_pairs\": [\"pythia→olmo\", \"qwen7b→olmo\", \"llama8b→olmo\"], \"kstar_3_pair\": \"pythia→qwen7b\", \"kstar_2_pairs\": [\"olmo→qwen7b\", \"olmo→llama8b\", \"qwen7b→pythia\", \"llama8b→pythia\", \"pythia→llama8b\"], \"pattern\": \"All X→OLMo = K*=1. pythia→qwen7b highest at K*=3. GPU3 ran mistral7b pairs instead of expected qwen7b↔llama8b, causing 2 missing pairs.\", \"json_kstar_fix\": \"3 JSONs fixed +1 (pythia→olmo 0→1, olmo→qwen7b 1→2, olmo→llama8b 1→2)\"}}, \"exp_deberta_c4_1b5_qwen_cont\": {\"status\": \"DONE\", \"hypothesis\": \"C4 1.5B DeBERTa qwen_cont256 config (length-256 continuation): if K*=2, confirms boundary holds across generation strategies (base vs continuation) at 1.5B scale.\", \"metrics\": {\"config\": \"qwen_cont256\", \"kstar\": 2, \"kstar_theta\": 0.6, \"pairwise_auc\": {\"0v1\": 0.9955, \"1v2\": 0.7194, \"2v3\": 0.5954, \"3v4\": 0.5689, \"4v5\": 0.5502}, \"ci_95\": {\"0v1\": [0.9944, 0.9965], \"1v2\": [0.712, 0.7273], \"2v3\": [0.587, 0.6028], \"3v4\": [0.5613, 0.5766], \"4v5\": [0.5431, 0.5577]}, \"obd_baseline\": {\"0v1\": 0.9914, \"1v2\": 0.6282, \"2v3\": 0.5556, \"3v4\": 0.5298, \"4v5\": 0.5137}, \"delta_vs_obd\": {\"1v2\": 0.0912}, \"key_finding\": \"C4 1.5B qwen_cont256 K*=2, boundary holds across continuation generation strategy.\"}}, \"exp_deberta_c4_1b5_pythia\": {\"status\": \"DONE\", \"hypothesis\": \"C4 1.5B DeBERTa pythia_greedy config: apple-to-apple comparison with OBD Table 2. If K*=2 consistent with qwen_rw, confirms boundary is generator-invariant at 1.5B scale on C4.\", \"metrics\": {\"config\": \"pythia_greedy\", \"kstar\": 2, \"kstar_theta\": 0.6, \"pairwise_auc\": {\"0v1\": 0.9998, \"1v2\": 0.9284, \"2v3\": 0.5419, \"3v4\": 0.5163, \"4v5\": 0.5098}, \"ci_95\": {\"0v1\": [0.9996, 0.9999], \"1v2\": [0.923, 0.9331], \"2v3\": [0.5354, 0.5486], \"3v4\": [0.509, 0.5237], \"4v5\": [0.5037, 0.516]}, \"obd_baseline\": {\"0v1\": 0.9992, \"1v2\": 0.8838, \"2v3\": 0.5342, \"3v4\": 0.5228, \"4v5\": 0.5162}, \"delta_vs_obd_1v2\": 0.0446, \"training_time_min\": 37.3}}, \"exp_32b_c4_6class\": {\"status\": \"DONE\", \"hypothesis\": \"32B DeBERTa 6-class rerun (depth 0-5) to fill 4v5 pair in paper table. If K* remains 2, confirms boundary even with full depth range; 4v5 AUC provides additional evidence of signal decay pattern.\", \"metrics\": {\"config\": \"exp_32b_c4\", \"kstar\": 2, \"kstar_indexing\": \"1-indexed\", \"num_classes\": 6, \"pairwise_auc\": {\"0v1\": 0.9923, \"1v2\": 0.6945, \"2v3\": 0.5978, \"3v4\": 0.5669, \"4v5\": 0.5426}, \"ci_95\": {\"0v1\": [0.991, 0.9936], \"1v2\": [0.6864, 0.7026], \"2v3\": [0.5898, 0.6058], \"3v4\": [0.559, 0.5746], \"4v5\": [0.5351, 0.5501]}, \"training_time_min\": 48.2}}, \"exp_deberta_c4_1b5\": {\"status\": \"DONE\", \"hypothesis\": \"C4 1.5B DeBERTa apple-to-apple comparison with Table 2 OBD results: if DeBERTa K*=2 on same 1.5B C4 data as OBD, confirms boundary is intrinsic; if K*>2, quantifies neural vs handcrafted gap at 1.5B scale.\", \"metrics\": {\"config\": \"qwen_rw\", \"kstar\": 2, \"kstar_theta\": 0.6, \"pairwise_auc\": {\"0v1\": 0.9923, \"1v2\": 0.7052, \"2v3\": 0.5988, \"3v4\": 0.5698, \"4v5\": 0.5475}, \"ci_95\": {\"0v1\": [0.9907, 0.9937], \"1v2\": [0.6977, 0.7129], \"2v3\": [0.5905, 0.6063], \"3v4\": [0.5626, 0.5774], \"4v5\": [0.5404, 0.5542]}, \"obd_baseline\": {\"0v1\": 0.987, \"1v2\": 0.6262, \"2v3\": 0.5496, \"3v4\": 0.5294, \"4v5\": 0.5182}, \"delta_vs_obd\": {\"1v2\": 0.079}, \"key_finding\": \"C4 1.5B DeBERTa qwen_rw K*=2, matching OBD K*=2. DeBERTa 1v2 +7.9pp vs OBD but does not extend K*. Note: only qwen_rw config done; pythia_greedy running on westd, qwen_cont256 starting on cqa1.\"}}, \"exp_deberta_upperbound\": {\"status\": \"DONE\", \"hypothesis\": \"DeBERTa-v3-base fine-tuned ordinal classifier as upper-bound baseline for 15D handcrafted features: if DeBERTa also yields K*=2 on C4 depth chains, the saturation boundary is near-intrinsic to generation process rather than a feature ceiling; if K*=3+, quantifies the gap between handcrafted and neural representations. Uses same 5-fold GroupKFold, pairwise AUC evaluation, θ=0.60 K* criterion.\", \"metrics\": {\"wiki_pythia\": {\"kstar\": 3, \"0v1_auc\": 0.9993, \"1v2_auc\": 0.725, \"2v3_auc\": 0.6137, \"3v4_auc\": 0.5733, \"4v5_auc\": 0.5527}, \"wiki_olmo\": {\"kstar\": 1, \"0v1_auc\": 0.9999, \"1v2_auc\": 0.5183, \"2v3_auc\": 0.5048, \"3v4_auc\": 0.5021, \"4v5_auc\": 0.4989}, \"wiki_qwen7b\": {\"kstar\": 3, \"0v1_auc\": 0.9998, \"1v2_auc\": 0.7619, \"2v3_auc\": 0.6108, \"3v4_auc\": 0.5587, \"4v5_auc\": 0.5412}, \"wiki_llama8b\": {\"kstar\": 3, \"0v1_auc\": 0.9997, \"1v2_auc\": 0.7452, \"2v3_auc\": 0.5954, \"3v4_auc\": 0.5601, \"4v5_auc\": 0.5389}, \"wiki_mistral7b\": {\"kstar\": 3, \"0v1_auc\": 0.9998, \"1v2_auc\": 0.7483, \"2v3_auc\": 0.5552, \"3v4_auc\": 0.5434, \"4v5_auc\": 0.5298}, \"obd_baseline_bug_fixed\": true, \"wiki_olmo_obd_rerun\": {\"0v1\": 0.9933, \"1v2\": 0.4983, \"2v3\": 0.5041, \"3v4\": 0.4986, \"4v5\": 0.5089}, \"key_finding\": \"Wiki DeBERTa K*=3 for 4/5 configs (pythia/qwen7b/llama8b/mistral7b), exceeding OBD K*=2. DeBERTa breaks OBD boundary on wiki domain. OLMo K*=1 anomalous (near-random 1v2). OBD baseline bug for olmo fixed (was copy of pythia).\"}}, \"exp_32b_c4\": {\"status\": \"DONE\", \"hypothesis\": \"Scale-dependent K* on C4: Qwen2.5-32B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 32B scale 是否稳定（已确认 1.5B/7B/8B/14B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"lgbm_kstar\": 2, \"deberta_kstar\": 2, \"kstar_theta\": 0.6, \"scale\": \"32B\", \"domain\": \"C4\", \"n_docs\": 5000, \"max_depth\": 5, \"key_finding\": \"Qwen2.5-32B C4 K*=2, confirming scale-invariance of K*=2 dominant mode from 1.5B to 32B. Both LightGBM and DeBERTa classifiers agree on K*=2.\"}}, \"exp_deberta_c4\": {\"status\": \"DONE\", \"hypothesis\": \"DeBERTa-v3-base fine-tuned on raw text provides an upper-bound for C4 depth distinguishability compared to 15D LightGBM on handcrafted features. Pairwise AUC should exceed LightGBM at all depth pairs since the model has access to full lexical/semantic signal.\", \"metrics\": {\"pairwise_auc\": {\"0v1\": 0.9941, \"1v2\": 0.6781, \"2v3\": 0.5895, \"3v4\": 0.5651, \"4v5\": 0.5485}, \"ci_95\": {\"0v1\": [0.993, 0.9951], \"1v2\": [0.6696, 0.6866], \"2v3\": [0.5814, 0.5979], \"3v4\": [0.5573, 0.5732], \"4v5\": [0.5411, 0.5562]}, \"f1_at_050\": {\"0v1\": 0.9352, \"1v2\": 0.6751, \"2v3\": 0.6607, \"3v4\": 0.6204, \"4v5\": 0.2869}, \"kstar\": 2, \"kstar_theta\": 0.6, \"config\": \"exp_14b_c4\", \"n_samples\": 30000, \"n_docs\": 5000, \"bootstrap_resamples\": 10000, \"training_time_min\": 48.3}}, \"exp_code_qwen7b\": {\"status\": \"DONE\", \"hypothesis\": \"Qwen2.5-7B code domain K* measurement: Qwen family scale invariance test on CodeSearchNet Python. Pythia Code K*=1 弱化了跨模型一致性。Qwen-7B 测试两个方向：(1) Qwen 家族内 Code 的 scale invariance（1.5B K*=2, 7B K*=?），(2) 若 LLaMA/Mistral 也 K*=1，Qwen-7B K*=2 能维持 \\\"code-competent models reach K*=2\\\" 叙事。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"pairwise_auc\": {\"0v1\": {\"mean\": 0.9051, \"ci95_half\": 0.0043, \"folds\": [0.9073, 0.9012, 0.912, 0.9049, 0.9003]}, \"1v2\": {\"mean\": 0.7276, \"ci95_half\": 0.0055, \"folds\": [0.7377, 0.7254, 0.724, 0.722, 0.7289]}, \"2v3\": {\"mean\": 0.5368, \"ci95_half\": 0.0145, \"folds\": [0.5179, 0.5332, 0.5275, 0.5462, 0.5593]}, \"3v4\": {\"mean\": 0.509, \"ci95_half\": 0.0055, \"folds\": [0.5029, 0.5054, 0.5085, 0.5092, 0.5191]}, \"4v5\": {\"mean\": 0.5139, \"ci95_half\": 0.0128, \"folds\": [0.5016, 0.5317, 0.5264, 0.509, 0.5007]}}, \"pairwise_jsd\": {\"0v1\": 0.061265, \"1v2\": 0.042256, \"2v3\": 0.00413, \"3v4\": 0.003198, \"4v5\": 0.003393}, \"k_star\": 2, \"ordinal\": {\"mae\": 1.2651, \"accuracy\": 0.3423}, \"top_features\": [{\"name\": \"freq_entropy\", \"importance\": 9730}, {\"name\": \"surp_d2_mean\", \"importance\": 9236.2}, {\"name\": \"surp_d1_mean\", \"importance\": 9126.2}, {\"name\": \"surp_d1_skew\", \"importance\": 8833.4}, {\"name\": \"surp_std\", \"importance\": 8110.2}, {\"name\": \"freq_kurtosis\", \"importance\": 7838.6}, {\"name\": \"surp_mean\", \"importance\": 7586}, {\"name\": \"surp_kurt\", \"importance\": 6769.2}, {\"name\": \"hapax_ratio\", \"importance\": 6636.4}, {\"name\": \"ttr\", \"importance\": 6332.6}]}}, \"exp_code_mistral7b\": {\"status\": \"DONE\", \"hypothesis\": \"Mistral-7B code domain K* measurement: Mistral-7B-v0.3 continuation on CodeSearchNet Python subset. Mistral 是唯一展现极端 domain dependence 的模型（C4 K*=1, arXiv K*=3）。若 code K*=2（与 Qwen/LLaMA 一致）→ code K* domain-governed, Mistral one-wash 仅限 C4。若 code K*=1 → one-wash 是 model-intrinsic property for non-academic text。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9191, \"1v2\": 0.6152, \"2v3\": 0.5293, \"3v4\": 0.5286, \"4v5\": 0.5099}, \"pairwise_auc_ci\": {\"0v1\": 0.0017, \"1v2\": 0.012, \"2v3\": 0.0091, \"3v4\": 0.0104, \"4v5\": 0.006}, \"pairwise_jsd\": {\"0v1\": 0.046984, \"1v2\": 0.011845, \"2v3\": 0.003717, \"3v4\": 0.003206, \"4v5\": 0.003083}, \"ordinal_mae\": 1.3191, \"ordinal_accuracy\": 0.3243, \"top3_features\": [\"freq_entropy\", \"surp_d2_mean\", \"surp_d1_mean\"]}}, \"exp_code_llama8b\": {\"status\": \"DONE\", \"hypothesis\": \"Code domain (Python) cross-model K* validation: LLaMA-3.1-8B continuation on CodeSearchNet Python subset (Husain et al. 2019). 验证 code domain K* 跨模型一致性（与 exp_code_qwen1b5 对比）。如果 K* 一致，确认 code domain K* 是 domain-governed 而非 model-specific。5500 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"K_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9161, \"1v2\": 0.7394, \"2v3\": 0.5112, \"3v4\": 0.52, \"4v5\": 0.4996}, \"pairwise_auc_std\": {\"0v1\": 0.004, \"1v2\": 0.0101, \"2v3\": 0.0095, \"3v4\": 0.0137, \"4v5\": 0.0069}, \"pairwise_jsd\": {\"0v1\": 0.060406, \"1v2\": 0.047034, \"2v3\": 0.003473, \"3v4\": 0.003026, \"4v5\": 0.002892}, \"ordinal_mae\": 1.2542, \"ordinal_accuracy\": 0.3485, \"top_features\": [\"freq_entropy\", \"surp_d1_mean\", \"surp_d2_mean\"]}}, \"exp_code_qwen1b5_pythia_scorer\": {\"status\": \"DONE\", \"hypothesis\": \"Code domain scorer confound control: Qwen-1.5B Code K*=2 uses same-family Qwen scorer. D060 Wikipedia showed Qwen scorer inflates AUC by +0.005~0.027. If Pythia-1.4B scorer yields K*=2 on same Qwen Code text, confirms K*=2 is text-intrinsic (not scorer artifact). If K*=1, Qwen Code K*=2 is partially scorer-driven, weakening domain ceiling claim. Cross-family scorer validation on existing exp_code_qwen1b5 depth 0-5 data.\", \"metrics\": {\"k_star\": 2, \"theta\": 0.6, \"auc_0v1\": 0.9076, \"auc_1v2\": 0.7197, \"auc_2v3\": 0.5308, \"auc_3v4\": 0.5236, \"auc_4v5\": 0.5084, \"jsd_0v1\": 0.065423, \"jsd_1v2\": 0.035809, \"jsd_2v3\": 0.004315, \"jsd_3v4\": 0.003182, \"jsd_4v5\": 0.003047, \"ordinal_mae\": 1.2578, \"ordinal_accuracy\": 0.3433, \"scorer\": \"pythia-1.4b\"}}, \"exp_pythia_retrain_depth7\": {\"status\": \"DONE\", \"hypothesis\": \"Pythia-1.4B retrain-chain depth extension to 7: 验证 retrain-chain K* >> prompt-chain K* 是否跨模型家族一致（Qwen retrain K*≥7）。如果 Pythia 也 K*≥5-7，confirms retrain artifacts are model-independent。C4 5K docs, LoRA rank=16 alpha=32, depth 0-7。\", \"metrics\": {\"kstar\": 7, \"pairwise_auc\": {\"0v1\": 0.9844, \"1v2\": 0.947, \"2v3\": 0.8891, \"3v4\": 0.7999, \"4v5\": 0.6907, \"5v6\": 0.6497, \"6v7\": 0.634}, \"pairwise_auc_ci\": {\"0v1\": [0.9829, 0.9858], \"1v2\": [0.9418, 0.9522], \"2v3\": [0.8822, 0.896], \"3v4\": [0.7951, 0.8047], \"4v5\": [0.688, 0.6934], \"5v6\": [0.6429, 0.6565], \"6v7\": [0.6275, 0.6406]}, \"pairwise_jsd\": {\"0v1\": 0.1775, \"1v2\": 0.1286, \"2v3\": 0.1069, \"3v4\": 0.0643, \"4v5\": 0.0331, \"5v6\": 0.0271, \"6v7\": 0.0138}}}, \"exp_qwen_retrain_depth7\": {\"status\": \"DONE\", \"hypothesis\": \"Qwen2.5-1.5B retrain-chain extended to depth 7: K* measurement at higher depths. Retrain-chain with LoRA rank=16, alpha=32, 1 epoch per generation. Each depth uses independently trained LoRA merged before next generation. C4 5K docs, depth 0-7, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B (self-scoring). Extends exp_qwen_retrain_chain (depth 0-4).\", \"metrics\": {\"k_star\": 7, \"theta\": 0.6, \"max_depth\": 7, \"analysis_method\": \"5-fold GroupKFold CV\", \"pairwise_auc\": {\"0v1\": {\"mean\": 0.9837, \"std\": 0.0019, \"ci_95\": [0.9821, 0.9854], \"folds\": [0.9832, 0.9821, 0.9837, 0.9823, 0.9873]}, \"1v2\": {\"mean\": 0.8971, \"std\": 0.0025, \"ci_95\": [0.8949, 0.8993], \"folds\": [0.8923, 0.8988, 0.8986, 0.8991, 0.8967]}, \"2v3\": {\"mean\": 0.8098, \"std\": 0.0052, \"ci_95\": [0.8052, 0.8144], \"folds\": [0.8086, 0.8074, 0.818, 0.8024, 0.8128]}, \"3v4\": {\"mean\": 0.76, \"std\": 0.0082, \"ci_95\": [0.7528, 0.7672], \"folds\": [0.7534, 0.7617, 0.7753, 0.7566, 0.7531]}, \"4v5\": {\"mean\": 0.7459, \"std\": 0.0091, \"ci_95\": [0.7379, 0.7538], \"folds\": [0.7429, 0.7562, 0.7521, 0.73, 0.7482]}, \"5v6\": {\"mean\": 0.7017, \"std\": 0.0068, \"ci_95\": [0.6958, 0.7076], \"folds\": [0.7006, 0.7077, 0.7104, 0.6915, 0.6984]}, \"6v7\": {\"mean\": 0.641, \"std\": 0.0039, \"ci_95\": [0.6376, 0.6445], \"folds\": [0.6419, 0.6349, 0.6464, 0.639, 0.643]}}, \"jsd\": {\"0v1\": 0.23005, \"1v2\": 0.103924, \"2v3\": 0.075049, \"3v4\": 0.065398, \"4v5\": 0.060509, \"5v6\": 0.034998, \"6v7\": 0.017652}}}, \"exp_code_pythia1b4\": {\"status\": \"DONE\", \"hypothesis\": \"Pythia-1.4B on Code domain (Python/CodeSearchNet) will show K*=2 consistent with Qwen code domain results, indicating generalization depth saturation is model-independent for code data.\", \"metrics\": {\"k_star\": 1, \"theta\": 0.6, \"pairwise_auc\": {\"0v1\": {\"mean\": 0.9592, \"std\": 0.0036, \"folds\": [0.9576, 0.9576, 0.9657, 0.96, 0.9552]}, \"1v2\": {\"mean\": 0.5983, \"std\": 0.005, \"folds\": [0.601, 0.5884, 0.6, 0.5997, 0.6024]}, \"2v3\": {\"mean\": 0.5215, \"std\": 0.0128, \"folds\": [0.5236, 0.5124, 0.5311, 0.5024, 0.5381]}, \"3v4\": {\"mean\": 0.5152, \"std\": 0.012, \"folds\": [0.4981, 0.5327, 0.5092, 0.5123, 0.5238]}, \"4v5\": {\"mean\": 0.5046, \"std\": 0.0137, \"folds\": [0.4983, 0.4822, 0.5074, 0.5224, 0.5128]}}, \"jsd\": {\"0v1\": 0.070173, \"1v2\": 0.008211, \"2v3\": 0.003674, \"3v4\": 0.002902, \"4v5\": 0.002685}, \"ordinal\": {\"mae\": 1.3268, \"accuracy\": 0.3357}, \"top_features\": [\"freq_entropy\", \"surp_d1_mean\", \"surp_d2_mean\", \"surp_mean\", \"surp_d1_skew\"], \"features_csv\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_code_pythia1b4/features.csv\"}}, \"exp_028_power_curve\": {\"status\": \"DONE\", \"hypothesis\": \"Subsampling power analysis: K*=2 判定在 C4 上所需的最低样本量。在 n={500,1000,2000,3000,4000,5000} 下 10 次 random resample，每次 5-fold CV 计算 1v2 AUC。输出 power curve（K*=2 判定成功率 vs n）。验证类实验，回应 Reviewer 对 statistical power / sample size adequacy 的质疑。\", \"metrics\": {\"min_n_100pct\": 2000, \"n500_auc\": 0.5808, \"n500_rate\": 0.2, \"n1000_auc\": 0.5911, \"n1000_rate\": 0.3, \"n2000_auc\": 0.6101, \"n2000_rate\": 1, \"n3000_auc\": 0.6166, \"n3000_rate\": 1, \"n4000_auc\": 0.622, \"n4000_rate\": 1, \"n5000_auc\": 0.6288, \"n5000_rate\": 1}}, \"exp_qwen_retrain_chain\": {\"status\": \"DONE\", \"hypothesis\": \"Qwen2.5-1.5B retrain-chain ecological validity: LoRA rank=16, alpha=32, 1 epoch per generation. Retrain-chain K* ≤ prompt-chain K*=2, confirming prompt-chain as conservative upper bound across a second architecture family (Qwen vs Pythia). C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B (self-scoring).\", \"metrics\": {\"K_star_lower_bound\": 4, \"theta\": 0.6, \"auc_0v1\": 0.9838, \"auc_1v2\": 0.8969, \"auc_2v3\": 0.81, \"auc_3v4\": 0.7624, \"ci_0v1\": [0.982, 0.9855], \"ci_1v2\": [0.8937, 0.9001], \"ci_2v3\": [0.8052, 0.8147], \"ci_3v4\": [0.7543, 0.7706], \"ci_method\": \"5-fold CV\", \"jsd_0v1\": 0.2263, \"jsd_1v2\": 0.1046, \"jsd_2v3\": 0.0752, \"jsd_3v4\": 0.0654}}, \"exp_code_qwen1b5\": {\"status\": \"DONE\", \"hypothesis\": \"Code domain (Python) K* measurement: Qwen2.5-1.5B continuation on CodeSearchNet Python subset (Husain et al. 2019). Code 的高度结构化特性（语法约束、缩进、函数签名）应使代际退化慢于 C4 (K*≥2)，可能接近 arXiv (K*=3)。5500 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"K_star\": 2, \"theta\": 0.6, \"auc_0v1\": 0.9388, \"auc_1v2\": 0.7382, \"auc_2v3\": 0.53, \"auc_3v4\": 0.5022, \"auc_4v5\": 0.5219, \"ci_0v1\": [0.929, 0.949], \"ci_1v2\": [0.709, 0.767], \"ci_2v3\": [0.514, 0.546], \"jsd_0v1\": 0.0814, \"jsd_1v2\": 0.0443, \"jsd_2v3\": 0.0038, \"ordinal_accuracy\": 0.359, \"ordinal_mae\": 1.204}}, \"exp_olmo_retrain_chain\": {\"status\": \"DONE\", \"hypothesis\": \"OLMo-1B retrain-chain (LoRA rank=16, 1 epoch per generation) on C4 produces K* ≤ 2, confirming prompt-chain as conservative upper bound for K*.\"}, \"exp_028_subsampling_power\": {\"status\": \"DONE\", \"hypothesis\": \"C4 K*=2 信号的 minimum sample size: 在 n={1000..5000} 范围内，GroupKFold(5) 1v2 AUC 是否稳定超过 θ=0.60？确定可靠判定 K*=2 所需的最小样本量。\", \"metrics\": {\"n_1000\": {\"mean_auc\": 0.608, \"std\": 0.012, \"detection_prob\": 0.9}, \"n_2500\": {\"mean_auc\": 0.618, \"std\": 0.006, \"detection_prob\": 1}, \"n_5000\": {\"mean_auc\": 0.629, \"std\": 0, \"detection_prob\": 1}, \"key_finding\": \"n>=2500 gives 100% reliable K*=2 detection. n=1000 already 90%. Signal is robust, not large-sample artifact.\"}}, \"exp_026_arxiv_filtering\": {\"status\": \"DONE\", \"hypothesis\": \"Graduated depth weighting (α=0.9^d) on arXiv depth chains will outperform both no-filter and binary-cut baselines on downstream benchmarks (MMLU, HellaSwag), because it preserves useful signal from deeper generations while down-weighting accumulated contamination, rather than discarding data entirely.\", \"metrics\": {\"runs_completed\": \"15/15\", \"strategies\": [\"no_filter\", \"binary\", \"graduated_a09\"], \"seeds\": [42, 123, 456, 789, 1024], \"mmlu\": {\"no_filter\": \"0.5899±0.0008\", \"binary\": \"0.5876±0.0004\", \"graduated_a09\": \"0.5900±0.0011\"}, \"hellaswag\": {\"no_filter\": \"0.6600±0.0002\", \"binary\": \"0.6642±0.0004\", \"graduated_a09\": \"0.6599±0.0003\"}, \"delta_vs_no_filter\": {\"binary_mmlu\": \"-0.0023\", \"binary_hellaswag\": \"+0.0042\", \"graduated_mmlu\": \"+0.0001\", \"graduated_hellaswag\": \"-0.0001\"}, \"key_finding\": \"All three strategies produce nearly identical results. Graduated ≈ no_filter; binary slightly better on HellaSwag (+0.004) but worse on MMLU (-0.002). Hypothesized ordering graduated>binary>no_filter NOT confirmed.\"}}, \"exp_027_latex_ablation\": {\"status\": \"DONE\", \"hypothesis\": \"arXiv K*=3 不依赖 LaTeX 格式特征。去除 LaTeX markup 后重新提取 15D features 并跑 pairwise classification，K* 应仍=3，排除 LaTeX 语法作为 confound。\", \"metrics\": {\"k_star\": 3, \"k_star_preserved\": true, \"pairwise_auc_original\": {\"0v1\": 0.9948, \"1v2\": 0.8581, \"2v3\": 0.6436, \"3v4\": 0.544, \"4v5\": 0.5299}, \"pairwise_auc_stripped\": {\"0v1\": 0.9948, \"1v2\": 0.8297, \"2v3\": 0.6229, \"3v4\": 0.5468, \"4v5\": 0.5476}, \"auc_delta\": {\"0v1\": 0, \"1v2\": -0.028, \"2v3\": -0.021, \"3v4\": 0.003, \"4v5\": 0.018}, \"latex_reduction_by_depth\": {\"depth_0\": \"0.6%\", \"depth_5\": \"4.4%\"}, \"key_finding\": \"K*=3 preserved after LaTeX removal. 2v3 AUC 0.6436→0.6229 (still >θ=0.60). LaTeX format is NOT a confound.\"}}, \"exp_025_pythia_filtering\": {\"status\": \"DONE\", \"hypothesis\": \"Filtering strategy ordering (binary > graduated > no-filter) 在 Pythia-1.4B 上与 Qwen 一致，验证 K*=2 对 curation 策略选择的跨模型预测价值。Pythia-1.4B LoRA rank=8 continued pretraining on C4 depth chain, 3 strategies × 3 seeds, eval MMLU+HellaSwag.\", \"metrics\": {\"runs_completed\": \"9/9\", \"strategies\": [\"no_filter\", \"binary_ours\", \"graduated_a09\"], \"seeds\": [42, 123, 456], \"mmlu\": {\"no_filter\": \"0.2568±0.0012\", \"binary_ours\": \"0.2585±0.0004\", \"graduated_a09\": \"0.2561±0.0009\"}, \"hellaswag\": {\"no_filter\": \"0.5250±0.0008\", \"binary_ours\": \"0.5251±0.0001\", \"graduated_a09\": \"0.5253±0.0007\"}, \"delta_vs_no_filter\": {\"binary_ours_mmlu\": \"+0.0017\", \"binary_ours_hellaswag\": \"+0.0000\", \"graduated_a09_mmlu\": \"-0.0007\", \"graduated_a09_hellaswag\": \"+0.0003\"}, \"key_finding\": \"All three filtering strategies produce nearly identical results on Pythia-1.4B. Deltas are within noise (max 0.0017 MMLU). Hypothesized ordering binary>graduated>no_filter NOT confirmed.\"}}, \"exp_14b_c4\": {\"status\": \"DONE\", \"hypothesis\": \"Scale-dependent K* on C4: Qwen2.5-14B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 14B scale 是否稳定（已确认 1.5B/7B/8B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9598, \"1v2\": 0.621, \"2v3\": 0.5494, \"3v4\": 0.5243, \"4v5\": 0.5154}, \"pairwise_jsd\": {\"0v1\": 0.1097, \"1v2\": 0.0112, \"2v3\": 0.0062, \"3v4\": 0.0044, \"4v5\": 0.0036}, \"bootstrap_ci\": {\"0v1\": [0.9564, 0.963], \"1v2\": [0.6119, 0.6304], \"2v3\": [0.5392, 0.5594], \"3v4\": [0.514, 0.5346], \"4v5\": [0.5045, 0.5265]}, \"permutation_p\": {\"0v1\": \"<0.001\", \"1v2\": \"<0.001\", \"2v3\": \"<0.001\", \"3v4\": \"<0.001\", \"4v5\": \"<0.001\"}, \"k_star_statistically_confirmed\": true, \"ordinal_mae\": 1.2266, \"ordinal_accuracy\": 0.3497, \"top_features\": [\"freq_entropy\", \"surp_d1_skew\", \"surp_std\", \"surp_d1_mean\", \"surp_d2_mean\"], \"key_finding\": \"K*=2 confirmed at 14B scale with bootstrap CI. 1v2 CI lower (0.6119) > theta=0.60; 2v3 CI upper (0.5594) < theta=0.60. All permutation p<0.001.\"}}, \"exp_arXiv_mistral7b_crossscorer\": {\"status\": \"DONE\", \"hypothesis\": \"arXiv cross-scorer (Mistral-7B): Pythia scorer 验证 Mistral arXiv K*=3 是否 scorer-independent。\", \"metrics\": {\"k_star\": 3, \"scorer\": \"pythia-1.4b\", \"auc_0v1\": 0.9798, \"auc_1v2\": 0.8141, \"auc_2v3\": 0.6075, \"auc_3v4\": 0.5489, \"auc_4v5\": 0.5391, \"jsd_0v1\": 0.135575, \"jsd_1v2\": 0.078, \"jsd_2v3\": 0.020452, \"jsd_3v4\": 0.010992, \"jsd_4v5\": 0.008831, \"ordinal_mae\": 0.9061, \"ordinal_accuracy\": 0.4412}}, \"exp_arXiv_llama8b_crossscorer\": {\"status\": \"DONE\", \"hypothesis\": \"Replacing Qwen-1.5B scorer with Pythia-1.4B on arXiv LLaMA-8B depth 0-5 texts should yield the same K*=3 boundary, because the saturation signal is a genuine property of LLaMA-8B generated text rather than a scorer family artifact\", \"metrics\": {\"k_star\": 3, \"auc_0v1\": 0.9629, \"auc_1v2\": 0.8433, \"auc_2v3\": 0.6201, \"auc_3v4\": 0.523, \"auc_4v5\": 0.5245, \"jsd_0v1\": 0.1214, \"jsd_1v2\": 0.0815, \"jsd_2v3\": 0.0195, \"jsd_3v4\": 0.0083, \"jsd_4v5\": 0.0082, \"ordinal_mae\": 0.9025, \"ordinal_accuracy\": 0.4407, \"scorer\": \"pythia-1.4b\"}}, \"exp_arXiv_qwen7b_crossscorer\": {\"status\": \"DONE\", \"hypothesis\": \"arXiv cross-scorer (7B): Pythia-1.4B scorer 重评 Qwen-7B arXiv depth 0-5。D060 Wiki scorer confound 推导。关键 2v3 AUC ≥0.60 → K*=3 scorer-independent。\", \"metrics\": {\"k_star\": 2, \"auc_0v1\": 0.9575, \"auc_1v2\": 0.8171, \"auc_2v3\": 0.5989, \"auc_3v4\": 0.5417, \"auc_4v5\": 0.5192, \"jsd_0v1\": 0.137085, \"jsd_1v2\": 0.059688, \"jsd_2v3\": 0.013508, \"jsd_3v4\": 0.009125, \"jsd_4v5\": 0.006738, \"ordinal_mae\": 0.9617, \"ordinal_accuracy\": 0.4255}}, \"exp_arXiv_qwen1b5_crossscorer\": {\"status\": \"DONE\", \"hypothesis\": \"arXiv cross-scorer (1.5B): Pythia-1.4B scorer 重评 Qwen-1.5B arXiv depth 0-5。验证 K*=3 scorer-independent。\", \"metrics\": {\"k_star\": 3, \"auc_0v1\": 0.9748, \"auc_1v2\": 0.8105, \"auc_2v3\": 0.6317, \"auc_3v4\": 0.5437, \"auc_4v5\": 0.5294, \"jsd_0v1\": 0.154297, \"jsd_1v2\": 0.066782, \"jsd_2v3\": 0.019268, \"jsd_3v4\": 0.008867, \"jsd_4v5\": 0.006991, \"ordinal_mae\": 0.9017, \"ordinal_accuracy\": 0.4402}}, \"exp_wiki_scorer_confound_1b5\": {\"status\": \"DONE\", \"hypothesis\": \"Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。\", \"metrics\": {\"k_star\": 1, \"confound_verdict\": \"confirmed\", \"auc_0v1\": 0.9729, \"auc_1v2\": 0.5994, \"auc_2v3\": 0.533, \"auc_3v4\": 0.5214, \"auc_4v5\": 0.5068, \"jsd_0v1\": 0.0886, \"ordinal_mae\": 1.2995, \"ordinal_accuracy\": 0.3466}}, \"exp_wiki_scorer_confound\": {\"status\": \"DONE\", \"hypothesis\": \"Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。\", \"metrics\": {\"k_star\": 1, \"confound_verdict\": \"confirmed\", \"auc_0v1\": 0.9404, \"auc_1v2\": 0.587, \"auc_2v3\": 0.5456, \"auc_3v4\": 0.525, \"auc_4v5\": 0.5172, \"critical_delta_1v2\": -0.0238}}, \"exp_wiki_qwen7b\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-scale Wikipedia K* validation: Qwen2.5-7B continuation on Wikipedia 的 K* 是否 = 2？Qwen2.5-1.5B 在 Wikipedia K*=2（唯一维持 K*=2 的模型），Pythia/OLMo/均 K*=1。测试 7B 规模是否仍维持 Qwen 家族在 Wikipedia 上的 K*=2 pattern。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"K_star\": 2, \"auc_0v1\": 0.9673, \"auc_1v2\": 0.6108, \"auc_2v3\": 0.5562, \"auc_3v4\": 0.5297, \"auc_4v5\": 0.529, \"jsd_0v1\": 0.083514, \"jsd_1v2\": 0.010991, \"jsd_2v3\": 0.00555, \"jsd_3v4\": 0.004611, \"jsd_4v5\": 0.003894, \"ordinal_mae\": 1.2501, \"ordinal_accuracy\": 0.3532}}, \"exp_wiki_mistral7b\": {\"status\": \"DONE\", \"hypothesis\": \"Mistral-7B Wikipedia K* test: Mistral-7B-v0.3 在 C4 上 K*=1 (text-intrinsic one-wash)。在 Wikipedia domain 上是否仍 K*=1？Pythia/OLMo 在 Wikipedia 均 K*=1，Qwen K*=2。如果 Mistral K*=1 → 确认 one-wash 跨域成立；如果 K*>1 → Wikipedia 有 rescue Mistral 的结构信号（与预期相反）。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"K_star\": 1, \"ordinal_mae\": 1.3445, \"ordinal_accuracy\": 0.3273, \"auc_0v1\": 0.9607, \"auc_1v2\": 0.5552, \"auc_2v3\": 0.5236, \"auc_3v4\": 0.5181, \"auc_4v5\": 0.5012, \"jsd_0v1\": 0.054134, \"jsd_1v2\": 0.005678, \"jsd_2v3\": 0.003698, \"jsd_3v4\": 0.003459, \"jsd_4v5\": 0.003274}}, \"exp_wiki_llama8b\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-scale Wikipedia K* validation: LLaMA-3.1-8B continuation on Wikipedia 的 K* 是否 = 2？Pythia-1.4B K*=1, Qwen-1.5B K*=2, OLMo-1B K*=1。测试 8B scale 是否能在 Wikipedia 均质 domain 上维持 K*=2（scale 是否是决定因素）。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"K_star\": 1, \"ordinal_mae\": 1.2954, \"ordinal_accuracy\": 0.3313, \"auc_0v1\": 0.9316, \"auc_1v2\": 0.5954, \"auc_2v3\": 0.5392, \"auc_3v4\": 0.5221, \"auc_4v5\": 0.5212, \"jsd_0v1\": 0.06169, \"jsd_1v2\": 0.00931}}, \"exp_arXiv_qwen7b\": {\"status\": \"DONE\", \"hypothesis\": \"Qwen2.5-7B on arXiv abstracts will yield K*=3, validating that structured domain K*=3 is stable within the Qwen family across scales (1.5B vs 7B)\", \"metrics\": {\"k_star\": 3, \"pairwise_auc\": {\"0v1\": 0.983, \"1v2\": 0.835, \"2v3\": 0.626, \"3v4\": 0.544, \"4v5\": 0.513}, \"pairwise_jsd\": {\"0v1\": 0.1656, \"1v2\": 0.0668, \"2v3\": 0.0156, \"3v4\": 0.0089, \"4v5\": 0.0061}, \"ordinal_mae\": 0.9, \"ordinal_accuracy\": 0.446}}, \"exp_arXiv_mistral7b\": {\"status\": \"DONE\", \"hypothesis\": \"Mistral-7B arXiv K* test: Mistral-7B-v0.3 在 C4 上 K*=1 (one-wash model)。在 arXiv structured domain 上是否仍 K*=1？如果 K*=1 → 确认 Mistral 的 one-wash 是 text-intrinsic (与 domain 无关)；如果 K*>1 → domain complexity 可以 rescue one-wash models，K* 同时受 model 和 domain 驱动。2200 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"k_star\": 3, \"pairwise_auc\": {\"0v1\": 0.9848, \"1v2\": 0.8201, \"2v3\": 0.6275, \"3v4\": 0.5295, \"4v5\": 0.5295}, \"jsd\": {\"0v1\": 0.14249, \"1v2\": 0.076232, \"2v3\": 0.018972, \"3v4\": 0.009908, \"4v5\": 0.008877}, \"ordinal_mae\": 0.8958, \"ordinal_accuracy\": 0.4474, \"top_features\": [\"freq_entropy\", \"surp_std\", \"surp_d1_skew\", \"surp_mean\", \"surp_d2_mean\"]}}, \"exp_arXiv_llama8b\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-architecture arXiv K* validation: LLaMA-3.1-8B continuation on arXiv abstracts 的 K* 是否 = 3？验证 structured domain K*=3 在大模型（8B scale）上是否成立，排除小模型 capacity artifact。2200 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"K_star\": 3, \"auc_0v1\": 0.9754, \"auc_1v2\": 0.8447, \"auc_2v3\": 0.6215, \"auc_3v4\": 0.5362, \"auc_4v5\": 0.5331, \"jsd_0v1\": 0.1296, \"jsd_1v2\": 0.0785, \"jsd_2v3\": 0.0177, \"ordinal_acc\": 0.4549, \"ordinal_mae\": 0.8806}}, \"exp_wiki_pythia_v2\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-model Wikipedia K* validation (v2 fix): Pythia-1.4B continuation on Wikipedia 的 K* 是否 = 2？使用独立 data_dir 避免 v1 的 data reuse bug，让 pipeline 用 Pythia 重新生成 depth 1-5。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"K_star\": 1, \"auc_0v1\": 0.975, \"auc_1v2\": 0.5846, \"auc_2v3\": 0.5445, \"auc_3v4\": 0.5205, \"auc_4v5\": 0.5168, \"jsd_0v1\": 0.080065, \"jsd_1v2\": 0.007773, \"ordinal_acc\": 0.3503}}}, \"count\": 50, \"total\": 100, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4027}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "6846fee6-2ed3-4d7d-90ff-514a777fdd2a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-014\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"OBD depth classifiers trained on synthetic generation-chain data will assign low depth (d0) to most real Common Crawl texts, and predicted AI probability will correlate negatively with vocabulary richness metrics (freq_entropy, TTR), confirming that the 15D feature space captures genuine human-vs-synthetic distributional differences rather than overfitting to synthetic artifacts.\\\", \\\"metrics\\\": {\\\"superseded_by\\\": \\\"exp_014_naturalistic\\\", \\\"note\\\": \\\"Stale duplicate. All metrics and results are in exp_014_naturalistic.\\\"}}, \\\"exp_gemma2b_depth\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Gemma-2-2B (6th architecture family) yields K*=2 on C4 web text under continuation mode, consistent with domain ceiling K*=2 observed across 5 other families (Qwen/Pythia/OLMo/LLaMA/Mistral), strengthening the claim that C4 ceiling is architecture-independent.\\\", \\\"metrics\\\": {\\\"k_star\\\": 1, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9534, \\\"1v2\\\": 0.5981, \\\"2v3\\\": 0.5342, \\\"3v4\\\": 0.503, \\\"4v5\\\": 0.5026}, \\\"pairwise_auc_std\\\": {\\\"0v1\\\": 0.003, \\\"1v2\\\": 0.008, \\\"2v3\\\": 0.013, \\\"3v4\\\": 0.003, \\\"4v5\\\": 0.013}, \\\"bootstrap_ci_1v2\\\": {\\\"ci_lower\\\": 0.5882, \\\"ci_upper\\\": 0.6076}, \\\"jsd\\\": {\\\"0v1\\\": 0.09882, \\\"1v2\\\": 0.008852, \\\"2v3\\\": 0.004904, \\\"3v4\\\": 0.003742, \\\"4v5\\\": 0.003167}, \\\"ordinal_mae\\\": 1.3152, \\\"ordinal_accuracy\\\": 0.3321, \\\"note\\\": \\\"K*=1, NOT borderline K*=2. 1v2 AUC=0.5981 < theta=0.60. CI upper=0.6076 crosses theta but point estimate below.\\\"}}, \\\"exp_deberta_code_qwen1b5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).\\\", \\\"metrics\\\": {\\\"K_star\\\": 2, \\\"theta\\\": 0.6, \\\"auc_0v1\\\": 1, \\\"auc_1v2\\\": 0.8076, \\\"auc_2v3\\\": 0.5933, \\\"auc_3v4\\\": 0.5492, \\\"auc_4v5\\\": 0.5311, \\\"ci_0v1\\\": [0.9999, 1], \\\"ci_1v2\\\": [0.8001, 0.8147], \\\"ci_2v3\\\": [0.5847, 0.6018], \\\"ci_3v4\\\": [0.541, 0.5573], \\\"ci_4v5\\\": [0.5235, 0.5388], \\\"obd_auc_0v1\\\": 0.9388, \\\"obd_auc_1v2\\\": 0.7382, \\\"obd_auc_2v3\\\": 0.53, \\\"obd_auc_3v4\\\": 0.5022, \\\"obd_auc_4v5\\\": 0.5219, \\\"elapsed_seconds\\\": 5780}}, \\\"exp_multi_source_arxiv\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Multi-source OBD K* on arXiv domain preserves domain ceiling K*=3 when mixing 3 generators (Qwen/Pythia/LLaMA-8B) with unified Qwen2.5-1.5B scorer, consistent with single-source arXiv K*=3 and higher than C4 multi-source K*=2, confirming domain hierarchy in multi-source setting.\\\", \\\"metrics\\\": {\\\"domain\\\": \\\"arxiv\\\", \\\"generators\\\": [\\\"qwen1b5\\\", \\\"pythia1b4\\\", \\\"llama8b\\\"], \\\"unified_scorer\\\": \\\"qwen2.5-1.5b\\\", \\\"docs_per_generator\\\": 1000, \\\"vocab_only_no_label_0v1\\\": 0.9431, \\\"vocab_only_no_label_1v2\\\": 0.6922, \\\"vocab_only_no_label_2v3\\\": 0.589, \\\"vocab_only_no_label_kstar\\\": 2, \\\"vocab_only_with_label_0v1\\\": 0.9436, \\\"vocab_only_with_label_1v2\\\": 0.702, \\\"vocab_only_with_label_2v3\\\": 0.5883, \\\"vocab_only_with_label_kstar\\\": 2, \\\"unified_no_label_0v1\\\": 0.9899, \\\"unified_no_label_1v2\\\": 0.8117, \\\"unified_no_label_2v3\\\": 0.6247, \\\"unified_no_label_3v4\\\": 0.5269, \\\"unified_no_label_kstar\\\": 3, \\\"unified_with_label_0v1\\\": 0.9911, \\\"unified_with_label_1v2\\\": 0.8338, \\\"unified_with_label_2v3\\\": 0.6276, \\\"unified_with_label_2v3_ci\\\": [0.615, 0.6401], \\\"unified_with_label_3v4\\\": 0.533, \\\"unified_with_label_kstar\\\": 3}}, \\\"exp_multi_source_detection\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"OBD K* is preserved when training on a mixed pool of outputs from 3 different generators (Qwen-1.5B, Pythia-1.4B, OLMo-1B), and adding generator identity as an extra feature does not improve depth discrimination.\\\", \\\"metrics\\\": {\\\"v2_generators\\\": [\\\"qwen1b5\\\", \\\"pythia1b4\\\", \\\"llama8b\\\"], \\\"v2_kstar_no_label\\\": 2, \\\"v2_kstar_with_label\\\": 2, \\\"v2_0v1_auc_no_label\\\": 0.968, \\\"v2_0v1_auc_with_label\\\": 0.9785, \\\"v2_1v2_auc_no_label\\\": 0.7144, \\\"v2_1v2_auc_with_label\\\": 0.7251, \\\"v2_2v3_auc_no_label\\\": 0.5321, \\\"v2_2v3_auc_with_label\\\": 0.5362, \\\"vocab_only_v1_0v1\\\": 0.8675, \\\"vocab_only_v1_1v2\\\": 0.676, \\\"vocab_only_v1_2v3\\\": 0.4938, \\\"vocab_only_v1_kstar\\\": 2, \\\"vocab_only_v2_0v1\\\": 0.8296, \\\"vocab_only_v2_1v2\\\": 0.683, \\\"vocab_only_v2_2v3\\\": 0.5057, \\\"vocab_only_v2_kstar\\\": 2, \\\"vocab_only_features\\\": [\\\"ttr\\\", \\\"hapax_ratio\\\", \\\"self_bleu\\\", \\\"freq_kurtosis\\\", \\\"freq_entropy\\\", \\\"low_freq_ratio\\\"], \\\"scorer_confound_affects_kstar\\\": false, \\\"unified_scorer\\\": \\\"qwen2.5-1.5b\\\", \\\"unified_no_label_0v1\\\": 0.9663, \\\"unified_no_label_1v2\\\": 0.7105, \\\"unified_no_label_2v3\\\": 0.519, \\\"unified_no_label_kstar\\\": 2, \\\"unified_with_label_0v1\\\": 0.9769, \\\"unified_with_label_1v2\\\": 0.7183, \\\"unified_with_label_2v3\\\": 0.5165, \\\"unified_with_label_kstar\\\": 2, \\\"unified_single_qwen_kstar\\\": 2, \\\"unified_single_pythia_kstar\\\": 2, \\\"unified_single_llama8b_kstar\\\": 1, \\\"unified_single_qwen_1v2\\\": 0.6306, \\\"unified_single_pythia_1v2\\\": 0.8806, \\\"unified_single_llama8b_1v2\\\": 0.6077}}, \\\"exp_changepoint_kstar\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Non-parametric changepoint detection (PELT) on pairwise AUC sequences should recover K* consistent with the fixed θ=0.60 threshold, validating that K* is not an artifact of threshold choice.\\\", \\\"metrics\\\": {\\\"exact_agreement\\\": 0.459, \\\"exact_agreement_n\\\": \\\"17/37\\\", \\\"within_1_agreement\\\": 0.946, \\\"within_1_agreement_n\\\": \\\"35/37\\\", \\\"cp_direction\\\": \\\"always_conservative\\\", \\\"disagreement_auc_range\\\": [0.607, 0.654], \\\"best_penalty\\\": 0.1, \\\"methods_tested\\\": [\\\"PELT\\\", \\\"BinSeg\\\", \\\"BottomUp\\\"], \\\"bootstrap_samples\\\": 2000}}, \\\"exp_cross_transfer_llama8b_to_qwen7b_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer). Rerun of exp_cross_transfer_llama8b_to_qwen7b which crashed due to --gpu 1 device error.\\\", \\\"metrics\\\": {\\\"K_star\\\": 3, \\\"2v3_auc_ci_lower\\\": 0.6124, \\\"theta\\\": 0.6, \\\"margin_pp\\\": 1.24}}, \\\"exp_deberta_arxiv_qwen1b5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"DeBERTa supervised classifier on arXiv domain yields K*=3 (matching OBD K*=3), confirming representation-independent domain ceiling holds across all 4 domains (C4 K*=2, wiki K*=3, code K*=2, arXiv K*=3).\\\", \\\"metrics\\\": {\\\"K_star\\\": 4, \\\"0v1_auc\\\": 0.9997, \\\"1v2_auc\\\": 0.9214, \\\"2v3_auc\\\": 0.7446, \\\"3v4_auc\\\": 0.6238, \\\"4v5_auc\\\": 0.5771, \\\"3v4_ci_lower\\\": 0.6127, \\\"3v4_ci_upper\\\": 0.6349, \\\"theta\\\": 0.6}}, \\\"exp_cross_transfer_llama8b_to_qwen7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\\\"}, \\\"exp_cross_transfer_qwen7b_to_llama8b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Cross-model transfer: DeBERTa trained on Qwen-7B wiki depth data can discriminate LLaMA-8B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\\\", \\\"metrics\\\": {\\\"kstar\\\": 3, \\\"kstar_indexing\\\": \\\"1-indexed\\\", \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9998, \\\"1v2\\\": 0.7384, \\\"2v3\\\": 0.6278, \\\"3v4\\\": 0.587, \\\"4v5\\\": 0.5519}, \\\"elapsed_s\\\": 3621}}, \\\"exp_deberta_cross_transfer_gpu3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU3 ran olmo↔llama8b, pythia↔mistral7b pairs (mistral7b pairs were bonus, qwen7b↔llama8b missing).\\\"}, \\\"exp_deberta_cross_transfer_gpu2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU2 ran olmo↔qwen7b, pythia→llama8b, llama8b→pythia pairs.\\\"}, \\\"exp_deberta_cross_transfer_gpu1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU1 ran pythia↔olmo and pythia↔qwen7b pairs.\\\"}, \\\"exp_deberta_cross_transfer_wiki\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"DeBERTa cross-model transfer on wiki domain: if off-diagonal retention is high (>90%), depth signals are model-family invariant even with neural features; if wiki retention exceeds C4 retention, domain complexity affects transfer more than feature representation.\\\", \\\"metrics\\\": {\\\"total_pairs_expected\\\": 12, \\\"completed_pairs\\\": 10, \\\"missing_pairs\\\": [\\\"qwen7b→llama8b\\\", \\\"llama8b→qwen7b\\\"], \\\"bonus_pairs\\\": [\\\"pythia→mistral7b (K*=2)\\\", \\\"mistral7b→pythia (K*=2)\\\"], \\\"kstar_distribution\\\": {\\\"K*=1\\\": 3, \\\"K*=2\\\": 5, \\\"K*=3\\\": 1}, \\\"kstar_1_pairs\\\": [\\\"pythia→olmo\\\", \\\"qwen7b→olmo\\\", \\\"llama8b→olmo\\\"], \\\"kstar_3_pair\\\": \\\"pythia→qwen7b\\\", \\\"kstar_2_pairs\\\": [\\\"olmo→qwen7b\\\", \\\"olmo→llama8b\\\", \\\"qwen7b→pythia\\\", \\\"llama8b→pythia\\\", \\\"pythia→llama8b\\\"], \\\"pattern\\\": \\\"All X→OLMo = K*=1. pythia→qwen7b highest at K*=3. GPU3 ran mistral7b pairs instead of expected qwen7b↔llama8b, causing 2 missing pairs.\\\", \\\"json_kstar_fix\\\": \\\"3 JSONs fixed +1 (pythia→olmo 0→1, olmo→qwen7b 1→2, olmo→llama8b 1→2)\\\"}}, \\\"exp_deberta_c4_1b5_qwen_cont\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"C4 1.5B DeBERTa qwen_cont256 config (length-256 continuation): if K*=2, confirms boundary holds across generation strategies (base vs continuation) at 1.5B scale.\\\", \\\"metrics\\\": {\\\"config\\\": \\\"qwen_cont256\\\", \\\"kstar\\\": 2, \\\"kstar_theta\\\": 0.6, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9955, \\\"1v2\\\": 0.7194, \\\"2v3\\\": 0.5954, \\\"3v4\\\": 0.5689, \\\"4v5\\\": 0.5502}, \\\"ci_95\\\": {\\\"0v1\\\": [0.9944, 0.9965], \\\"1v2\\\": [0.712, 0.7273], \\\"2v3\\\": [0.587, 0.6028], \\\"3v4\\\": [0.5613, 0.5766], \\\"4v5\\\": [0.5431, 0.5577]}, \\\"obd_baseline\\\": {\\\"0v1\\\": 0.9914, \\\"1v2\\\": 0.6282, \\\"2v3\\\": 0.5556, \\\"3v4\\\": 0.5298, \\\"4v5\\\": 0.5137}, \\\"delta_vs_obd\\\": {\\\"1v2\\\": 0.0912}, \\\"key_finding\\\": \\\"C4 1.5B qwen_cont256 K*=2, boundary holds across continuation generation strategy.\\\"}}, \\\"exp_deberta_c4_1b5_pythia\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"C4 1.5B DeBERTa pythia_greedy config: apple-to-apple comparison with OBD Table 2. If K*=2 consistent with qwen_rw, confirms boundary is generator-invariant at 1.5B scale on C4.\\\", \\\"metrics\\\": {\\\"config\\\": \\\"pythia_greedy\\\", \\\"kstar\\\": 2, \\\"kstar_theta\\\": 0.6, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9998, \\\"1v2\\\": 0.9284, \\\"2v3\\\": 0.5419, \\\"3v4\\\": 0.5163, \\\"4v5\\\": 0.5098}, \\\"ci_95\\\": {\\\"0v1\\\": [0.9996, 0.9999], \\\"1v2\\\": [0.923, 0.9331], \\\"2v3\\\": [0.5354, 0.5486], \\\"3v4\\\": [0.509, 0.5237], \\\"4v5\\\": [0.5037, 0.516]}, \\\"obd_baseline\\\": {\\\"0v1\\\": 0.9992, \\\"1v2\\\": 0.8838, \\\"2v3\\\": 0.5342, \\\"3v4\\\": 0.5228, \\\"4v5\\\": 0.5162}, \\\"delta_vs_obd_1v2\\\": 0.0446, \\\"training_time_min\\\": 37.3}}, \\\"exp_32b_c4_6class\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"32B DeBERTa 6-class rerun (depth 0-5) to fill 4v5 pair in paper table. If K* remains 2, confirms boundary even with full depth range; 4v5 AUC provides additional evidence of signal decay pattern.\\\", \\\"metrics\\\": {\\\"config\\\": \\\"exp_32b_c4\\\", \\\"kstar\\\": 2, \\\"kstar_indexing\\\": \\\"1-indexed\\\", \\\"num_classes\\\": 6, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9923, \\\"1v2\\\": 0.6945, \\\"2v3\\\": 0.5978, \\\"3v4\\\": 0.5669, \\\"4v5\\\": 0.5426}, \\\"ci_95\\\": {\\\"0v1\\\": [0.991, 0.9936], \\\"1v2\\\": [0.6864, 0.7026], \\\"2v3\\\": [0.5898, 0.6058], \\\"3v4\\\": [0.559, 0.5746], \\\"4v5\\\": [0.5351, 0.5501]}, \\\"training_time_min\\\": 48.2}}, \\\"exp_deberta_c4_1b5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"C4 1.5B DeBERTa apple-to-apple comparison with Table 2 OBD results: if DeBERTa K*=2 on same 1.5B C4 data as OBD, confirms boundary is intrinsic; if K*>2, quantifies neural vs handcrafted gap at 1.5B scale.\\\", \\\"metrics\\\": {\\\"config\\\": \\\"qwen_rw\\\", \\\"kstar\\\": 2, \\\"kstar_theta\\\": 0.6, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9923, \\\"1v2\\\": 0.7052, \\\"2v3\\\": 0.5988, \\\"3v4\\\": 0.5698, \\\"4v5\\\": 0.5475}, \\\"ci_95\\\": {\\\"0v1\\\": [0.9907, 0.9937], \\\"1v2\\\": [0.6977, 0.7129], \\\"2v3\\\": [0.5905, 0.6063], \\\"3v4\\\": [0.5626, 0.5774], \\\"4v5\\\": [0.5404, 0.5542]}, \\\"obd_baseline\\\": {\\\"0v1\\\": 0.987, \\\"1v2\\\": 0.6262, \\\"2v3\\\": 0.5496, \\\"3v4\\\": 0.5294, \\\"4v5\\\": 0.5182}, \\\"delta_vs_obd\\\": {\\\"1v2\\\": 0.079}, \\\"key_finding\\\": \\\"C4 1.5B DeBERTa qwen_rw K*=2, matching OBD K*=2. DeBERTa 1v2 +7.9pp vs OBD but does not extend K*. Note: only qwen_rw config done; pythia_greedy running on westd, qwen_cont256 starting on cqa1.\\\"}}, \\\"exp_deberta_upperbound\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"DeBERTa-v3-base fine-tuned ordinal classifier as upper-bound baseline for 15D handcrafted features: if DeBERTa also yields K*=2 on C4 depth chains, the saturation boundary is near-intrinsic to generation process rather than a feature ceiling; if K*=3+, quantifies the gap between handcrafted and neural representations. Uses same 5-fold GroupKFold, pairwise AUC evaluation, θ=0.60 K* criterion.\\\", \\\"metrics\\\": {\\\"wiki_pythia\\\": {\\\"kstar\\\": 3, \\\"0v1_auc\\\": 0.9993, \\\"1v2_auc\\\": 0.725, \\\"2v3_auc\\\": 0.6137, \\\"3v4_auc\\\": 0.5733, \\\"4v5_auc\\\": 0.5527}, \\\"wiki_olmo\\\": {\\\"kstar\\\": 1, \\\"0v1_auc\\\": 0.9999, \\\"1v2_auc\\\": 0.5183, \\\"2v3_auc\\\": 0.5048, \\\"3v4_auc\\\": 0.5021, \\\"4v5_auc\\\": 0.4989}, \\\"wiki_qwen7b\\\": {\\\"kstar\\\": 3, \\\"0v1_auc\\\": 0.9998, \\\"1v2_auc\\\": 0.7619, \\\"2v3_auc\\\": 0.6108, \\\"3v4_auc\\\": 0.5587, \\\"4v5_auc\\\": 0.5412}, \\\"wiki_llama8b\\\": {\\\"kstar\\\": 3, \\\"0v1_auc\\\": 0.9997, \\\"1v2_auc\\\": 0.7452, \\\"2v3_auc\\\": 0.5954, \\\"3v4_auc\\\": 0.5601, \\\"4v5_auc\\\": 0.5389}, \\\"wiki_mistral7b\\\": {\\\"kstar\\\": 3, \\\"0v1_auc\\\": 0.9998, \\\"1v2_auc\\\": 0.7483, \\\"2v3_auc\\\": 0.5552, \\\"3v4_auc\\\": 0.5434, \\\"4v5_auc\\\": 0.5298}, \\\"obd_baseline_bug_fixed\\\": true, \\\"wiki_olmo_obd_rerun\\\": {\\\"0v1\\\": 0.9933, \\\"1v2\\\": 0.4983, \\\"2v3\\\": 0.5041, \\\"3v4\\\": 0.4986, \\\"4v5\\\": 0.5089}, \\\"key_finding\\\": \\\"Wiki DeBERTa K*=3 for 4/5 configs (pythia/qwen7b/llama8b/mistral7b), exceeding OBD K*=2. DeBERTa breaks OBD boundary on wiki domain. OLMo K*=1 anomalous (near-random 1v2). OBD baseline bug for olmo fixed (was copy of pythia).\\\"}}, \\\"exp_32b_c4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Scale-dependent K* on C4: Qwen2.5-32B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 32B scale 是否稳定（已确认 1.5B/7B/8B/14B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"metrics\\\": {\\\"lgbm_kstar\\\": 2, \\\"deberta_kstar\\\": 2, \\\"kstar_theta\\\": 0.6, \\\"scale\\\": \\\"32B\\\", \\\"domain\\\": \\\"C4\\\", \\\"n_docs\\\": 5000, \\\"max_depth\\\": 5, \\\"key_finding\\\": \\\"Qwen2.5-32B C4 K*=2, confirming scale-invariance of K*=2 dominant mode from 1.5B to 32B. Both LightGBM and DeBERTa classifiers agree on K*=2.\\\"}}, \\\"exp_deberta_c4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"DeBERTa-v3-base fine-tuned on raw text provides an upper-bound for C4 depth distinguishability compared to 15D LightGBM on handcrafted features. Pairwise AUC should exceed LightGBM at all depth pairs since the model has access to full lexical/semantic signal.\\\", \\\"metrics\\\": {\\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9941, \\\"1v2\\\": 0.6781, \\\"2v3\\\": 0.5895, \\\"3v4\\\": 0.5651, \\\"4v5\\\": 0.5485}, \\\"ci_95\\\": {\\\"0v1\\\": [0.993, 0.9951], \\\"1v2\\\": [0.6696, 0.6866], \\\"2v3\\\": [0.5814, 0.5979], \\\"3v4\\\": [0.5573, 0.5732], \\\"4v5\\\": [0.5411, 0.5562]}, \\\"f1_at_050\\\": {\\\"0v1\\\": 0.9352, \\\"1v2\\\": 0.6751, \\\"2v3\\\": 0.6607, \\\"3v4\\\": 0.6204, \\\"4v5\\\": 0.2869}, \\\"kstar\\\": 2, \\\"kstar_theta\\\": 0.6, \\\"config\\\": \\\"exp_14b_c4\\\", \\\"n_samples\\\": 30000, \\\"n_docs\\\": 5000, \\\"bootstrap_resamples\\\": 10000, \\\"training_time_min\\\": 48.3}}, \\\"exp_code_qwen7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Qwen2.5-7B code domain K* measurement: Qwen family scale invariance test on CodeSearchNet Python. Pythia Code K*=1 弱化了跨模型一致性。Qwen-7B 测试两个方向：(1) Qwen 家族内 Code 的 scale invariance（1.5B K*=2, 7B K*=?），(2) 若 LLaMA/Mistral 也 K*=1，Qwen-7B K*=2 能维持 \\\\\\\"code-competent models reach K*=2\\\\\\\" 叙事。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"metrics\\\": {\\\"pairwise_auc\\\": {\\\"0v1\\\": {\\\"mean\\\": 0.9051, \\\"ci95_half\\\": 0.0043, \\\"folds\\\": [0.9073, 0.9012, 0.912, 0.9049, 0.9003]}, \\\"1v2\\\": {\\\"mean\\\": 0.7276, \\\"ci95_half\\\": 0.0055, \\\"folds\\\": [0.7377, 0.7254, 0.724, 0.722, 0.7289]}, \\\"2v3\\\": {\\\"mean\\\": 0.5368, \\\"ci95_half\\\": 0.0145, \\\"folds\\\": [0.5179, 0.5332, 0.5275, 0.5462, 0.5593]}, \\\"3v4\\\": {\\\"mean\\\": 0.509, \\\"ci95_half\\\": 0.0055, \\\"folds\\\": [0.5029, 0.5054, 0.5085, 0.5092, 0.5191]}, \\\"4v5\\\": {\\\"mean\\\": 0.5139, \\\"ci95_half\\\": 0.0128, \\\"folds\\\": [0.5016, 0.5317, 0.5264, 0.509, 0.5007]}}, \\\"pairwise_jsd\\\": {\\\"0v1\\\": 0.061265, \\\"1v2\\\": 0.042256, \\\"2v3\\\": 0.00413, \\\"3v4\\\": 0.003198, \\\"4v5\\\": 0.003393}, \\\"k_star\\\": 2, \\\"ordinal\\\": {\\\"mae\\\": 1.2651, \\\"accuracy\\\": 0.3423}, \\\"top_features\\\": [{\\\"name\\\": \\\"freq_entropy\\\", \\\"importance\\\": 9730}, {\\\"name\\\": \\\"surp_d2_mean\\\", \\\"importance\\\": 9236.2}, {\\\"name\\\": \\\"surp_d1_mean\\\", \\\"importance\\\": 9126.2}, {\\\"name\\\": \\\"surp_d1_skew\\\", \\\"importance\\\": 8833.4}, {\\\"name\\\": \\\"surp_std\\\", \\\"importance\\\": 8110.2}, {\\\"name\\\": \\\"freq_kurtosis\\\", \\\"importance\\\": 7838.6}, {\\\"name\\\": \\\"surp_mean\\\", \\\"importance\\\": 7586}, {\\\"name\\\": \\\"surp_kurt\\\", \\\"importance\\\": 6769.2}, {\\\"name\\\": \\\"hapax_ratio\\\", \\\"importance\\\": 6636.4}, {\\\"name\\\": \\\"ttr\\\", \\\"importance\\\": 6332.6}]}}, \\\"exp_code_mistral7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Mistral-7B code domain K* measurement: Mistral-7B-v0.3 continuation on CodeSearchNet Python subset. Mistral 是唯一展现极端 domain dependence 的模型（C4 K*=1, arXiv K*=3）。若 code K*=2（与 Qwen/LLaMA 一致）→ code K* domain-governed, Mistral one-wash 仅限 C4。若 code K*=1 → one-wash 是 model-intrinsic property for non-academic text。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"metrics\\\": {\\\"k_star\\\": 2, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9191, \\\"1v2\\\": 0.6152, \\\"2v3\\\": 0.5293, \\\"3v4\\\": 0.5286, \\\"4v5\\\": 0.5099}, \\\"pairwise_auc_ci\\\": {\\\"0v1\\\": 0.0017, \\\"1v2\\\": 0.012, \\\"2v3\\\": 0.0091, \\\"3v4\\\": 0.0104, \\\"4v5\\\": 0.006}, \\\"pairwise_jsd\\\": {\\\"0v1\\\": 0.046984, \\\"1v2\\\": 0.011845, \\\"2v3\\\": 0.003717, \\\"3v4\\\": 0.003206, \\\"4v5\\\": 0.003083}, \\\"ordinal_mae\\\": 1.3191, \\\"ordinal_accuracy\\\": 0.3243, \\\"top3_features\\\": [\\\"freq_entropy\\\", \\\"surp_d2_mean\\\", \\\"surp_d1_mean\\\"]}}, \\\"exp_code_llama8b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Code domain (Python) cross-model K* validation: LLaMA-3.1-8B continuation on CodeSearchNet Python subset (Husain et al. 2019). 验证 code domain K* 跨模型一致性（与 exp_code_qwen1b5 对比）。如果 K* 一致，确认 code domain K* 是 domain-governed 而非 model-specific。5500 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"metrics\\\": {\\\"K_star\\\": 2, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9161, \\\"1v2\\\": 0.7394, \\\"2v3\\\": 0.5112, \\\"3v4\\\": 0.52, \\\"4v5\\\": 0.4996}, \\\"pairwise_auc_std\\\": {\\\"0v1\\\": 0.004, \\\"1v2\\\": 0.0101, \\\"2v3\\\": 0.0095, \\\"3v4\\\": 0.0137, \\\"4v5\\\": 0.0069}, \\\"pairwise_jsd\\\": {\\\"0v1\\\": 0.060406, \\\"1v2\\\": 0.047034, \\\"2v3\\\": 0.003473, \\\"3v4\\\": 0.003026, \\\"4v5\\\": 0.002892}, \\\"ordinal_mae\\\": 1.2542, \\\"ordinal_accuracy\\\": 0.3485, \\\"top_features\\\": [\\\"freq_entropy\\\", \\\"surp_d1_mean\\\", \\\"surp_d2_mean\\\"]}}, \\\"exp_code_qwen1b5_pythia_scorer\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Code domain scorer confound control: Qwen-1.5B Code K*=2 uses same-family Qwen scorer. D060 Wikipedia showed Qwen scorer inflates AUC by +0.005~0.027. If Pythia-1.4B scorer yields K*=2 on same Qwen Code text, confirms K*=2 is text-intrinsic (not scorer artifact). If K*=1, Qwen Code K*=2 is partially scorer-driven, weakening domain ceiling claim. Cross-family scorer validation on existing exp_code_qwen1b5 depth 0-5 data.\\\", \\\"metrics\\\": {\\\"k_star\\\": 2, \\\"theta\\\": 0.6, \\\"auc_0v1\\\": 0.9076, \\\"auc_1v2\\\": 0.7197, \\\"auc_2v3\\\": 0.5308, \\\"auc_3v4\\\": 0.5236, \\\"auc_4v5\\\": 0.5084, \\\"jsd_0v1\\\": 0.065423, \\\"jsd_1v2\\\": 0.035809, \\\"jsd_2v3\\\": 0.004315, \\\"jsd_3v4\\\": 0.003182, \\\"jsd_4v5\\\": 0.003047, \\\"ordinal_mae\\\": 1.2578, \\\"ordinal_accuracy\\\": 0.3433, \\\"scorer\\\": \\\"pythia-1.4b\\\"}}, \\\"exp_pythia_retrain_depth7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Pythia-1.4B retrain-chain depth extension to 7: 验证 retrain-chain K* >> prompt-chain K* 是否跨模型家族一致（Qwen retrain K*≥7）。如果 Pythia 也 K*≥5-7，confirms retrain artifacts are model-independent。C4 5K docs, LoRA rank=16 alpha=32, depth 0-7。\\\", \\\"metrics\\\": {\\\"kstar\\\": 7, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9844, \\\"1v2\\\": 0.947, \\\"2v3\\\": 0.8891, \\\"3v4\\\": 0.7999, \\\"4v5\\\": 0.6907, \\\"5v6\\\": 0.6497, \\\"6v7\\\": 0.634}, \\\"pairwise_auc_ci\\\": {\\\"0v1\\\": [0.9829, 0.9858], \\\"1v2\\\": [0.9418, 0.9522], \\\"2v3\\\": [0.8822, 0.896], \\\"3v4\\\": [0.7951, 0.8047], \\\"4v5\\\": [0.688, 0.6934], \\\"5v6\\\": [0.6429, 0.6565], \\\"6v7\\\": [0.6275, 0.6406]}, \\\"pairwise_jsd\\\": {\\\"0v1\\\": 0.1775, \\\"1v2\\\": 0.1286, \\\"2v3\\\": 0.1069, \\\"3v4\\\": 0.0643, \\\"4v5\\\": 0.0331, \\\"5v6\\\": 0.0271, \\\"6v7\\\": 0.0138}}}, \\\"exp_qwen_retrain_depth7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Qwen2.5-1.5B retrain-chain extended to depth 7: K* measurement at higher depths. Retrain-chain with LoRA rank=16, alpha=32, 1 epoch per generation. Each depth uses independently trained LoRA merged before next generation. C4 5K docs, depth 0-7, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B (self-scoring). Extends exp_qwen_retrain_chain (depth 0-4).\\\", \\\"metrics\\\": {\\\"k_star\\\": 7, \\\"theta\\\": 0.6, \\\"max_depth\\\": 7, \\\"analysis_method\\\": \\\"5-fold GroupKFold CV\\\", \\\"pairwise_auc\\\": {\\\"0v1\\\": {\\\"mean\\\": 0.9837, \\\"std\\\": 0.0019, \\\"ci_95\\\": [0.9821, 0.9854], \\\"folds\\\": [0.9832, 0.9821, 0.9837, 0.9823, 0.9873]}, \\\"1v2\\\": {\\\"mean\\\": 0.8971, \\\"std\\\": 0.0025, \\\"ci_95\\\": [0.8949, 0.8993], \\\"folds\\\": [0.8923, 0.8988, 0.8986, 0.8991, 0.8967]}, \\\"2v3\\\": {\\\"mean\\\": 0.8098, \\\"std\\\": 0.0052, \\\"ci_95\\\": [0.8052, 0.8144], \\\"folds\\\": [0.8086, 0.8074, 0.818, 0.8024, 0.8128]}, \\\"3v4\\\": {\\\"mean\\\": 0.76, \\\"std\\\": 0.0082, \\\"ci_95\\\": [0.7528, 0.7672], \\\"folds\\\": [0.7534, 0.7617, 0.7753, 0.7566, 0.7531]}, \\\"4v5\\\": {\\\"mean\\\": 0.7459, \\\"std\\\": 0.0091, \\\"ci_95\\\": [0.7379, 0.7538], \\\"folds\\\": [0.7429, 0.7562, 0.7521, 0.73, 0.7482]}, \\\"5v6\\\": {\\\"mean\\\": 0.7017, \\\"std\\\": 0.0068, \\\"ci_95\\\": [0.6958, 0.7076], \\\"folds\\\": [0.7006, 0.7077, 0.7104, 0.6915, 0.6984]}, \\\"6v7\\\": {\\\"mean\\\": 0.641, \\\"std\\\": 0.0039, \\\"ci_95\\\": [0.6376, 0.6445], \\\"folds\\\": [0.6419, 0.6349, 0.6464, 0.639, 0.643]}}, \\\"jsd\\\": {\\\"0v1\\\": 0.23005, \\\"1v2\\\": 0.103924, \\\"2v3\\\": 0.075049, \\\"3v4\\\": 0.065398, \\\"4v5\\\": 0.060509, \\\"5v6\\\": 0.034998, \\\"6v7\\\": 0.017652}}}, \\\"exp_code_pythia1b4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Pythia-1.4B on Code domain (Python/CodeSearchNet) will show K*=2 consistent with Qwen code domain results, indicating generalization depth saturation is model-independent for code data.\\\", \\\"metrics\\\": {\\\"k_star\\\": 1, \\\"theta\\\": 0.6, \\\"pairwise_auc\\\": {\\\"0v1\\\": {\\\"mean\\\": 0.9592, \\\"std\\\": 0.0036, \\\"folds\\\": [0.9576, 0.9576, 0.9657, 0.96, 0.9552]}, \\\"1v2\\\": {\\\"mean\\\": 0.5983, \\\"std\\\": 0.005, \\\"folds\\\": [0.601, 0.5884, 0.6, 0.5997, 0.6024]}, \\\"2v3\\\": {\\\"mean\\\": 0.5215, \\\"std\\\": 0.0128, \\\"folds\\\": [0.5236, 0.5124, 0.5311, 0.5024, 0.5381]}, \\\"3v4\\\": {\\\"mean\\\": 0.5152, \\\"std\\\": 0.012, \\\"folds\\\": [0.4981, 0.5327, 0.5092, 0.5123, 0.5238]}, \\\"4v5\\\": {\\\"mean\\\": 0.5046, \\\"std\\\": 0.0137, \\\"folds\\\": [0.4983, 0.4822, 0.5074, 0.5224, 0.5128]}}, \\\"jsd\\\": {\\\"0v1\\\": 0.070173, \\\"1v2\\\": 0.008211, \\\"2v3\\\": 0.003674, \\\"3v4\\\": 0.002902, \\\"4v5\\\": 0.002685}, \\\"ordinal\\\": {\\\"mae\\\": 1.3268, \\\"accuracy\\\": 0.3357}, \\\"top_features\\\": [\\\"freq_entropy\\\", \\\"surp_d1_mean\\\", \\\"surp_d2_mean\\\", \\\"surp_mean\\\", \\\"surp_d1_skew\\\"], \\\"features_csv\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data/exp_code_pythia1b4/features.csv\\\"}}, \\\"exp_028_power_curve\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Subsampling power analysis: K*=2 判定在 C4 上所需的最低样本量。在 n={500,1000,2000,3000,4000,5000} 下 10 次 random resample，每次 5-fold CV 计算 1v2 AUC。输出 power curve（K*=2 判定成功率 vs n）。验证类实验，回应 Reviewer 对 statistical power / sample size adequacy 的质疑。\\\", \\\"metrics\\\": {\\\"min_n_100pct\\\": 2000, \\\"n500_auc\\\": 0.5808, \\\"n500_rate\\\": 0.2, \\\"n1000_auc\\\": 0.5911, \\\"n1000_rate\\\": 0.3, \\\"n2000_auc\\\": 0.6101, \\\"n2000_rate\\\": 1, \\\"n3000_auc\\\": 0.6166, \\\"n3000_rate\\\": 1, \\\"n4000_auc\\\": 0.622, \\\"n4000_rate\\\": 1, \\\"n5000_auc\\\": 0.6288, \\\"n5000_rate\\\": 1}}, \\\"exp_qwen_retrain_chain\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Qwen2.5-1.5B retrain-chain ecological validity: LoRA rank=16, alpha=32, 1 epoch per generation. Retrain-chain K* ≤ prompt-chain K*=2, confirming prompt-chain as conservative upper bound across a second architecture family (Qwen vs Pythia). C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B (self-scoring).\\\", \\\"metrics\\\": {\\\"K_star_lower_bound\\\": 4, \\\"theta\\\": 0.6, \\\"auc_0v1\\\": 0.9838, \\\"auc_1v2\\\": 0.8969, \\\"auc_2v3\\\": 0.81, \\\"auc_3v4\\\": 0.7624, \\\"ci_0v1\\\": [0.982, 0.9855], \\\"ci_1v2\\\": [0.8937, 0.9001], \\\"ci_2v3\\\": [0.8052, 0.8147], \\\"ci_3v4\\\": [0.7543, 0.7706], \\\"ci_method\\\": \\\"5-fold CV\\\", \\\"jsd_0v1\\\": 0.2263, \\\"jsd_1v2\\\": 0.1046, \\\"jsd_2v3\\\": 0.0752, \\\"jsd_3v4\\\": 0.0654}}, \\\"exp_code_qwen1b5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Code domain (Python) K* measurement: Qwen2.5-1.5B continuation on CodeSearchNet Python subset (Husain et al. 2019). Code 的高度结构化特性（语法约束、缩进、函数签名）应使代际退化慢于 C4 (K*≥2)，可能接近 arXiv (K*=3)。5500 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"metrics\\\": {\\\"K_star\\\": 2, \\\"theta\\\": 0.6, \\\"auc_0v1\\\": 0.9388, \\\"auc_1v2\\\": 0.7382, \\\"auc_2v3\\\": 0.53, \\\"auc_3v4\\\": 0.5022, \\\"auc_4v5\\\": 0.5219, \\\"ci_0v1\\\": [0.929, 0.949], \\\"ci_1v2\\\": [0.709, 0.767], \\\"ci_2v3\\\": [0.514, 0.546], \\\"jsd_0v1\\\": 0.0814, \\\"jsd_1v2\\\": 0.0443, \\\"jsd_2v3\\\": 0.0038, \\\"ordinal_accuracy\\\": 0.359, \\\"ordinal_mae\\\": 1.204}}, \\\"exp_olmo_retrain_chain\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"OLMo-1B retrain-chain (LoRA rank=16, 1 epoch per generation) on C4 produces K* ≤ 2, confirming prompt-chain as conservative upper bound for K*.\\\"}, \\\"exp_028_subsampling_power\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"C4 K*=2 信号的 minimum sample size: 在 n={1000..5000} 范围内，GroupKFold(5) 1v2 AUC 是否稳定超过 θ=0.60？确定可靠判定 K*=2 所需的最小样本量。\\\", \\\"metrics\\\": {\\\"n_1000\\\": {\\\"mean_auc\\\": 0.608, \\\"std\\\": 0.012, \\\"detection_prob\\\": 0.9}, \\\"n_2500\\\": {\\\"mean_auc\\\": 0.618, \\\"std\\\": 0.006, \\\"detection_prob\\\": 1}, \\\"n_5000\\\": {\\\"mean_auc\\\": 0.629, \\\"std\\\": 0, \\\"detection_prob\\\": 1}, \\\"key_finding\\\": \\\"n>=2500 gives 100% reliable K*=2 detection. n=1000 already 90%. Signal is robust, not large-sample artifact.\\\"}}, \\\"exp_026_arxiv_filtering\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Graduated depth weighting (α=0.9^d) on arXiv depth chains will outperform both no-filter and binary-cut baselines on downstream benchmarks (MMLU, HellaSwag), because it preserves useful signal from deeper generations while down-weighting accumulated contamination, rather than discarding data entirely.\\\", \\\"metrics\\\": {\\\"runs_completed\\\": \\\"15/15\\\", \\\"strategies\\\": [\\\"no_filter\\\", \\\"binary\\\", \\\"graduated_a09\\\"], \\\"seeds\\\": [42, 123, 456, 789, 1024], \\\"mmlu\\\": {\\\"no_filter\\\": \\\"0.5899±0.0008\\\", \\\"binary\\\": \\\"0.5876±0.0004\\\", \\\"graduated_a09\\\": \\\"0.5900±0.0011\\\"}, \\\"hellaswag\\\": {\\\"no_filter\\\": \\\"0.6600±0.0002\\\", \\\"binary\\\": \\\"0.6642±0.0004\\\", \\\"graduated_a09\\\": \\\"0.6599±0.0003\\\"}, \\\"delta_vs_no_filter\\\": {\\\"binary_mmlu\\\": \\\"-0.0023\\\", \\\"binary_hellaswag\\\": \\\"+0.0042\\\", \\\"graduated_mmlu\\\": \\\"+0.0001\\\", \\\"graduated_hellaswag\\\": \\\"-0.0001\\\"}, \\\"key_finding\\\": \\\"All three strategies produce nearly identical results. Graduated ≈ no_filter; binary slightly better on HellaSwag (+0.004) but worse on MMLU (-0.002). Hypothesized ordering graduated>binary>no_filter NOT confirmed.\\\"}}, \\\"exp_027_latex_ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"arXiv K*=3 不依赖 LaTeX 格式特征。去除 LaTeX markup 后重新提取 15D features 并跑 pairwise classification，K* 应仍=3，排除 LaTeX 语法作为 confound。\\\", \\\"metrics\\\": {\\\"k_star\\\": 3, \\\"k_star_preserved\\\": true, \\\"pairwise_auc_original\\\": {\\\"0v1\\\": 0.9948, \\\"1v2\\\": 0.8581, \\\"2v3\\\": 0.6436, \\\"3v4\\\": 0.544, \\\"4v5\\\": 0.5299}, \\\"pairwise_auc_stripped\\\": {\\\"0v1\\\": 0.9948, \\\"1v2\\\": 0.8297, \\\"2v3\\\": 0.6229, \\\"3v4\\\": 0.5468, \\\"4v5\\\": 0.5476}, \\\"auc_delta\\\": {\\\"0v1\\\": 0, \\\"1v2\\\": -0.028, \\\"2v3\\\": -0.021, \\\"3v4\\\": 0.003, \\\"4v5\\\": 0.018}, \\\"latex_reduction_by_depth\\\": {\\\"depth_0\\\": \\\"0.6%\\\", \\\"depth_5\\\": \\\"4.4%\\\"}, \\\"key_finding\\\": \\\"K*=3 preserved after LaTeX removal. 2v3 AUC 0.6436→0.6229 (still >θ=0.60). LaTeX format is NOT a confound.\\\"}}, \\\"exp_025_pythia_filtering\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Filtering strategy ordering (binary > graduated > no-filter) 在 Pythia-1.4B 上与 Qwen 一致，验证 K*=2 对 curation 策略选择的跨模型预测价值。Pythia-1.4B LoRA rank=8 continued pretraining on C4 depth chain, 3 strategies × 3 seeds, eval MMLU+HellaSwag.\\\", \\\"metrics\\\": {\\\"runs_completed\\\": \\\"9/9\\\", \\\"strategies\\\": [\\\"no_filter\\\", \\\"binary_ours\\\", \\\"graduated_a09\\\"], \\\"seeds\\\": [42, 123, 456], \\\"mmlu\\\": {\\\"no_filter\\\": \\\"0.2568±0.0012\\\", \\\"binary_ours\\\": \\\"0.2585±0.0004\\\", \\\"graduated_a09\\\": \\\"0.2561±0.0009\\\"}, \\\"hellaswag\\\": {\\\"no_filter\\\": \\\"0.5250±0.0008\\\", \\\"binary_ours\\\": \\\"0.5251±0.0001\\\", \\\"graduated_a09\\\": \\\"0.5253±0.0007\\\"}, \\\"delta_vs_no_filter\\\": {\\\"binary_ours_mmlu\\\": \\\"+0.0017\\\", \\\"binary_ours_hellaswag\\\": \\\"+0.0000\\\", \\\"graduated_a09_mmlu\\\": \\\"-0.0007\\\", \\\"graduated_a09_hellaswag\\\": \\\"+0.0003\\\"}, \\\"key_finding\\\": \\\"All three filtering strategies produce nearly identical results on Pythia-1.4B. Deltas are within noise (max 0.0017 MMLU). Hypothesized ordering binary>graduated>no_filter NOT confirmed.\\\"}}, \\\"exp_14b_c4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Scale-dependent K* on C4: Qwen2.5-14B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 14B scale 是否稳定（已确认 1.5B/7B/8B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"metrics\\\": {\\\"k_star\\\": 2, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9598, \\\"1v2\\\": 0.621, \\\"2v3\\\": 0.5494, \\\"3v4\\\": 0.5243, \\\"4v5\\\": 0.5154}, \\\"pairwise_jsd\\\": {\\\"0v1\\\": 0.1097, \\\"1v2\\\": 0.0112, \\\"2v3\\\": 0.0062, \\\"3v4\\\": 0.0044, \\\"4v5\\\": 0.0036}, \\\"bootstrap_ci\\\": {\\\"0v1\\\": [0.9564, 0.963], \\\"1v2\\\": [0.6119, 0.6304], \\\"2v3\\\": [0.5392, 0.5594], \\\"3v4\\\": [0.514, 0.5346], \\\"4v5\\\": [0.5045, 0.5265]}, \\\"permutation_p\\\": {\\\"0v1\\\": \\\"<0.001\\\", \\\"1v2\\\": \\\"<0.001\\\", \\\"2v3\\\": \\\"<0.001\\\", \\\"3v4\\\": \\\"<0.001\\\", \\\"4v5\\\": \\\"<0.001\\\"}, \\\"k_star_statistically_confirmed\\\": true, \\\"ordinal_mae\\\": 1.2266, \\\"ordinal_accuracy\\\": 0.3497, \\\"top_features\\\": [\\\"freq_entropy\\\", \\\"surp_d1_skew\\\", \\\"surp_std\\\", \\\"surp_d1_mean\\\", \\\"surp_d2_mean\\\"], \\\"key_finding\\\": \\\"K*=2 confirmed at 14B scale with bootstrap CI. 1v2 CI lower (0.6119) > theta=0.60; 2v3 CI upper (0.5594) < theta=0.60. All permutation p<0.001.\\\"}}, \\\"exp_arXiv_mistral7b_crossscorer\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"arXiv cross-scorer (Mistral-7B): Pythia scorer 验证 Mistral arXiv K*=3 是否 scorer-independent。\\\", \\\"metrics\\\": {\\\"k_star\\\": 3, \\\"scorer\\\": \\\"pythia-1.4b\\\", \\\"auc_0v1\\\": 0.9798, \\\"auc_1v2\\\": 0.8141, \\\"auc_2v3\\\": 0.6075, \\\"auc_3v4\\\": 0.5489, \\\"auc_4v5\\\": 0.5391, \\\"jsd_0v1\\\": 0.135575, \\\"jsd_1v2\\\": 0.078, \\\"jsd_2v3\\\": 0.020452, \\\"jsd_3v4\\\": 0.010992, \\\"jsd_4v5\\\": 0.008831, \\\"ordinal_mae\\\": 0.9061, \\\"ordinal_accuracy\\\": 0.4412}}, \\\"exp_arXiv_llama8b_crossscorer\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Replacing Qwen-1.5B scorer with Pythia-1.4B on arXiv LLaMA-8B depth 0-5 texts should yield the same K*=3 boundary, because the saturation signal is a genuine property of LLaMA-8B generated text rather than a scorer family artifact\\\", \\\"metrics\\\": {\\\"k_star\\\": 3, \\\"auc_0v1\\\": 0.9629, \\\"auc_1v2\\\": 0.8433, \\\"auc_2v3\\\": 0.6201, \\\"auc_3v4\\\": 0.523, \\\"auc_4v5\\\": 0.5245, \\\"jsd_0v1\\\": 0.1214, \\\"jsd_1v2\\\": 0.0815, \\\"jsd_2v3\\\": 0.0195, \\\"jsd_3v4\\\": 0.0083, \\\"jsd_4v5\\\": 0.0082, \\\"ordinal_mae\\\": 0.9025, \\\"ordinal_accuracy\\\": 0.4407, \\\"scorer\\\": \\\"pythia-1.4b\\\"}}, \\\"exp_arXiv_qwen7b_crossscorer\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"arXiv cross-scorer (7B): Pythia-1.4B scorer 重评 Qwen-7B arXiv depth 0-5。D060 Wiki scorer confound 推导。关键 2v3 AUC ≥0.60 → K*=3 scorer-independent。\\\", \\\"metrics\\\": {\\\"k_star\\\": 2, \\\"auc_0v1\\\": 0.9575, \\\"auc_1v2\\\": 0.8171, \\\"auc_2v3\\\": 0.5989, \\\"auc_3v4\\\": 0.5417, \\\"auc_4v5\\\": 0.5192, \\\"jsd_0v1\\\": 0.137085, \\\"jsd_1v2\\\": 0.059688, \\\"jsd_2v3\\\": 0.013508, \\\"jsd_3v4\\\": 0.009125, \\\"jsd_4v5\\\": 0.006738, \\\"ordinal_mae\\\": 0.9617, \\\"ordinal_accuracy\\\": 0.4255}}, \\\"exp_arXiv_qwen1b5_crossscorer\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"arXiv cross-scorer (1.5B): Pythia-1.4B scorer 重评 Qwen-1.5B arXiv depth 0-5。验证 K*=3 scorer-independent。\\\", \\\"metrics\\\": {\\\"k_star\\\": 3, \\\"auc_0v1\\\": 0.9748, \\\"auc_1v2\\\": 0.8105, \\\"auc_2v3\\\": 0.6317, \\\"auc_3v4\\\": 0.5437, \\\"auc_4v5\\\": 0.5294, \\\"jsd_0v1\\\": 0.154297, \\\"jsd_1v2\\\": 0.066782, \\\"jsd_2v3\\\": 0.019268, \\\"jsd_3v4\\\": 0.008867, \\\"jsd_4v5\\\": 0.006991, \\\"ordinal_mae\\\": 0.9017, \\\"ordinal_accuracy\\\": 0.4402}}, \\\"exp_wiki_scorer_confound_1b5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。\\\", \\\"metrics\\\": {\\\"k_star\\\": 1, \\\"confound_verdict\\\": \\\"confirmed\\\", \\\"auc_0v1\\\": 0.9729, \\\"auc_1v2\\\": 0.5994, \\\"auc_2v3\\\": 0.533, \\\"auc_3v4\\\": 0.5214, \\\"auc_4v5\\\": 0.5068, \\\"jsd_0v1\\\": 0.0886, \\\"ordinal_mae\\\": 1.2995, \\\"ordinal_accuracy\\\": 0.3466}}, \\\"exp_wiki_scorer_confound\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。\\\", \\\"metrics\\\": {\\\"k_star\\\": 1, \\\"confound_verdict\\\": \\\"confirmed\\\", \\\"auc_0v1\\\": 0.9404, \\\"auc_1v2\\\": 0.587, \\\"auc_2v3\\\": 0.5456, \\\"auc_3v4\\\": 0.525, \\\"auc_4v5\\\": 0.5172, \\\"critical_delta_1v2\\\": -0.0238}}, \\\"exp_wiki_qwen7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Cross-scale Wikipedia K* validation: Qwen2.5-7B continuation on Wikipedia 的 K* 是否 = 2？Qwen2.5-1.5B 在 Wikipedia K*=2（唯一维持 K*=2 的模型），Pythia/OLMo/均 K*=1。测试 7B 规模是否仍维持 Qwen 家族在 Wikipedia 上的 K*=2 pattern。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"metrics\\\": {\\\"K_star\\\": 2, \\\"auc_0v1\\\": 0.9673, \\\"auc_1v2\\\": 0.6108, \\\"auc_2v3\\\": 0.5562, \\\"auc_3v4\\\": 0.5297, \\\"auc_4v5\\\": 0.529, \\\"jsd_0v1\\\": 0.083514, \\\"jsd_1v2\\\": 0.010991, \\\"jsd_2v3\\\": 0.00555, \\\"jsd_3v4\\\": 0.004611, \\\"jsd_4v5\\\": 0.003894, \\\"ordinal_mae\\\": 1.2501, \\\"ordinal_accuracy\\\": 0.3532}}, \\\"exp_wiki_mistral7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Mistral-7B Wikipedia K* test: Mistral-7B-v0.3 在 C4 上 K*=1 (text-intrinsic one-wash)。在 Wikipedia domain 上是否仍 K*=1？Pythia/OLMo 在 Wikipedia 均 K*=1，Qwen K*=2。如果 Mistral K*=1 → 确认 one-wash 跨域成立；如果 K*>1 → Wikipedia 有 rescue Mistral 的结构信号（与预期相反）。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"metrics\\\": {\\\"K_star\\\": 1, \\\"ordinal_mae\\\": 1.3445, \\\"ordinal_accuracy\\\": 0.3273, \\\"auc_0v1\\\": 0.9607, \\\"auc_1v2\\\": 0.5552, \\\"auc_2v3\\\": 0.5236, \\\"auc_3v4\\\": 0.5181, \\\"auc_4v5\\\": 0.5012, \\\"jsd_0v1\\\": 0.054134, \\\"jsd_1v2\\\": 0.005678, \\\"jsd_2v3\\\": 0.003698, \\\"jsd_3v4\\\": 0.003459, \\\"jsd_4v5\\\": 0.003274}}, \\\"exp_wiki_llama8b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Cross-scale Wikipedia K* validation: LLaMA-3.1-8B continuation on Wikipedia 的 K* 是否 = 2？Pythia-1.4B K*=1, Qwen-1.5B K*=2, OLMo-1B K*=1。测试 8B scale 是否能在 Wikipedia 均质 domain 上维持 K*=2（scale 是否是决定因素）。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"metrics\\\": {\\\"K_star\\\": 1, \\\"ordinal_mae\\\": 1.2954, \\\"ordinal_accuracy\\\": 0.3313, \\\"auc_0v1\\\": 0.9316, \\\"auc_1v2\\\": 0.5954, \\\"auc_2v3\\\": 0.5392, \\\"auc_3v4\\\": 0.5221, \\\"auc_4v5\\\": 0.5212, \\\"jsd_0v1\\\": 0.06169, \\\"jsd_1v2\\\": 0.00931}}, \\\"exp_arXiv_qwen7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Qwen2.5-7B on arXiv abstracts will yield K*=3, validating that structured domain K*=3 is stable within the Qwen family across scales (1.5B vs 7B)\\\", \\\"metrics\\\": {\\\"k_star\\\": 3, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.983, \\\"1v2\\\": 0.835, \\\"2v3\\\": 0.626, \\\"3v4\\\": 0.544, \\\"4v5\\\": 0.513}, \\\"pairwise_jsd\\\": {\\\"0v1\\\": 0.1656, \\\"1v2\\\": 0.0668, \\\"2v3\\\": 0.0156, \\\"3v4\\\": 0.0089, \\\"4v5\\\": 0.0061}, \\\"ordinal_mae\\\": 0.9, \\\"ordinal_accuracy\\\": 0.446}}, \\\"exp_arXiv_mistral7b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Mistral-7B arXiv K* test: Mistral-7B-v0.3 在 C4 上 K*=1 (one-wash model)。在 arXiv structured domain 上是否仍 K*=1？如果 K*=1 → 确认 Mistral 的 one-wash 是 text-intrinsic (与 domain 无关)；如果 K*>1 → domain complexity 可以 rescue one-wash models，K* 同时受 model 和 domain 驱动。2200 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"metrics\\\": {\\\"k_star\\\": 3, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9848, \\\"1v2\\\": 0.8201, \\\"2v3\\\": 0.6275, \\\"3v4\\\": 0.5295, \\\"4v5\\\": 0.5295}, \\\"jsd\\\": {\\\"0v1\\\": 0.14249, \\\"1v2\\\": 0.076232, \\\"2v3\\\": 0.018972, \\\"3v4\\\": 0.009908, \\\"4v5\\\": 0.008877}, \\\"ordinal_mae\\\": 0.8958, \\\"ordinal_accuracy\\\": 0.4474, \\\"top_features\\\": [\\\"freq_entropy\\\", \\\"surp_std\\\", \\\"surp_d1_skew\\\", \\\"surp_mean\\\", \\\"surp_d2_mean\\\"]}}, \\\"exp_arXiv_llama8b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Cross-architecture arXiv K* validation: LLaMA-3.1-8B continuation on arXiv abstracts 的 K* 是否 = 3？验证 structured domain K*=3 在大模型（8B scale）上是否成立，排除小模型 capacity artifact。2200 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"metrics\\\": {\\\"K_star\\\": 3, \\\"auc_0v1\\\": 0.9754, \\\"auc_1v2\\\": 0.8447, \\\"auc_2v3\\\": 0.6215, \\\"auc_3v4\\\": 0.5362, \\\"auc_4v5\\\": 0.5331, \\\"jsd_0v1\\\": 0.1296, \\\"jsd_1v2\\\": 0.0785, \\\"jsd_2v3\\\": 0.0177, \\\"ordinal_acc\\\": 0.4549, \\\"ordinal_mae\\\": 0.8806}}, \\\"exp_wiki_pythia_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Cross-model Wikipedia K* validation (v2 fix): Pythia-1.4B continuation on Wikipedia 的 K* 是否 = 2？使用独立 data_dir 避免 v1 的 data reuse bug，让 pipeline 用 Pythia 重新生成 depth 1-5。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\\\", \\\"metrics\\\": {\\\"K_star\\\": 1, \\\"auc_0v1\\\": 0.975, \\\"auc_1v2\\\": 0.5846, \\\"auc_2v3\\\": 0.5445, \\\"auc_3v4\\\": 0.5205, \\\"auc_4v5\\\": 0.5168, \\\"jsd_0v1\\\": 0.080065, \\\"jsd_1v2\\\": 0.007773, \\\"ordinal_acc\\\": 0.3503}}}, \\\"count\\\": 50, \\\"total\\\": 100, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4027}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp-014\": {\"status\": \"DONE\", \"hypothesis\": \"OBD depth classifiers trained on synthetic generation-chain data will assign low depth (d0) to most real Common Crawl texts, and predicted AI probability will correlate negatively with vocabulary richness metrics (freq_entropy, TTR), confirming that the 15D feature space captures genuine human-vs-synthetic distributional differences rather than overfitting to synthetic artifacts.\", \"metrics\": {\"superseded_by\": \"exp_014_naturalistic\", \"note\": \"Stale duplicate. All metrics and results are in exp_014_naturalistic.\"}}, \"exp_gemma2b_depth\": {\"status\": \"DONE\", \"hypothesis\": \"Gemma-2-2B (6th architecture family) yields K*=2 on C4 web text under continuation mode, consistent with domain ceiling K*=2 observed across 5 other families (Qwen/Pythia/OLMo/LLaMA/Mistral), strengthening the claim that C4 ceiling is architecture-independent.\", \"metrics\": {\"k_star\": 1, \"pairwise_auc\": {\"0v1\": 0.9534, \"1v2\": 0.5981, \"2v3\": 0.5342, \"3v4\": 0.503, \"4v5\": 0.5026}, \"pairwise_auc_std\": {\"0v1\": 0.003, \"1v2\": 0.008, \"2v3\": 0.013, \"3v4\": 0.003, \"4v5\": 0.013}, \"bootstrap_ci_1v2\": {\"ci_lower\": 0.5882, \"ci_upper\": 0.6076}, \"jsd\": {\"0v1\": 0.09882, \"1v2\": 0.008852, \"2v3\": 0.004904, \"3v4\": 0.003742, \"4v5\": 0.003167}, \"ordinal_mae\": 1.3152, \"ordinal_accuracy\": 0.3321, \"note\": \"K*=1, NOT borderline K*=2. 1v2 AUC=0.5981 < theta=0.60. CI upper=0.6076 crosses theta but point estimate below.\"}}, \"exp_deberta_code_qwen1b5\": {\"status\": \"DONE\", \"hypothesis\": \"DeBERTa supervised classifier on Code domain yields K*=2 (matching OBD K*=2), confirming representation-independent domain ceiling holds for Code domain (C4 K*=2, wiki K*=3, arXiv K*=3, code K*=2).\", \"metrics\": {\"K_star\": 2, \"theta\": 0.6, \"auc_0v1\": 1, \"auc_1v2\": 0.8076, \"auc_2v3\": 0.5933, \"auc_3v4\": 0.5492, \"auc_4v5\": 0.5311, \"ci_0v1\": [0.9999, 1], \"ci_1v2\": [0.8001, 0.8147], \"ci_2v3\": [0.5847, 0.6018], \"ci_3v4\": [0.541, 0.5573], \"ci_4v5\": [0.5235, 0.5388], \"obd_auc_0v1\": 0.9388, \"obd_auc_1v2\": 0.7382, \"obd_auc_2v3\": 0.53, \"obd_auc_3v4\": 0.5022, \"obd_auc_4v5\": 0.5219, \"elapsed_seconds\": 5780}}, \"exp_multi_source_arxiv\": {\"status\": \"DONE\", \"hypothesis\": \"Multi-source OBD K* on arXiv domain preserves domain ceiling K*=3 when mixing 3 generators (Qwen/Pythia/LLaMA-8B) with unified Qwen2.5-1.5B scorer, consistent with single-source arXiv K*=3 and higher than C4 multi-source K*=2, confirming domain hierarchy in multi-source setting.\", \"metrics\": {\"domain\": \"arxiv\", \"generators\": [\"qwen1b5\", \"pythia1b4\", \"llama8b\"], \"unified_scorer\": \"qwen2.5-1.5b\", \"docs_per_generator\": 1000, \"vocab_only_no_label_0v1\": 0.9431, \"vocab_only_no_label_1v2\": 0.6922, \"vocab_only_no_label_2v3\": 0.589, \"vocab_only_no_label_kstar\": 2, \"vocab_only_with_label_0v1\": 0.9436, \"vocab_only_with_label_1v2\": 0.702, \"vocab_only_with_label_2v3\": 0.5883, \"vocab_only_with_label_kstar\": 2, \"unified_no_label_0v1\": 0.9899, \"unified_no_label_1v2\": 0.8117, \"unified_no_label_2v3\": 0.6247, \"unified_no_label_3v4\": 0.5269, \"unified_no_label_kstar\": 3, \"unified_with_label_0v1\": 0.9911, \"unified_with_label_1v2\": 0.8338, \"unified_with_label_2v3\": 0.6276, \"unified_with_label_2v3_ci\": [0.615, 0.6401], \"unified_with_label_3v4\": 0.533, \"unified_with_label_kstar\": 3}}, \"exp_multi_source_detection\": {\"status\": \"DONE\", \"hypothesis\": \"OBD K* is preserved when training on a mixed pool of outputs from 3 different generators (Qwen-1.5B, Pythia-1.4B, OLMo-1B), and adding generator identity as an extra feature does not improve depth discrimination.\", \"metrics\": {\"v2_generators\": [\"qwen1b5\", \"pythia1b4\", \"llama8b\"], \"v2_kstar_no_label\": 2, \"v2_kstar_with_label\": 2, \"v2_0v1_auc_no_label\": 0.968, \"v2_0v1_auc_with_label\": 0.9785, \"v2_1v2_auc_no_label\": 0.7144, \"v2_1v2_auc_with_label\": 0.7251, \"v2_2v3_auc_no_label\": 0.5321, \"v2_2v3_auc_with_label\": 0.5362, \"vocab_only_v1_0v1\": 0.8675, \"vocab_only_v1_1v2\": 0.676, \"vocab_only_v1_2v3\": 0.4938, \"vocab_only_v1_kstar\": 2, \"vocab_only_v2_0v1\": 0.8296, \"vocab_only_v2_1v2\": 0.683, \"vocab_only_v2_2v3\": 0.5057, \"vocab_only_v2_kstar\": 2, \"vocab_only_features\": [\"ttr\", \"hapax_ratio\", \"self_bleu\", \"freq_kurtosis\", \"freq_entropy\", \"low_freq_ratio\"], \"scorer_confound_affects_kstar\": false, \"unified_scorer\": \"qwen2.5-1.5b\", \"unified_no_label_0v1\": 0.9663, \"unified_no_label_1v2\": 0.7105, \"unified_no_label_2v3\": 0.519, \"unified_no_label_kstar\": 2, \"unified_with_label_0v1\": 0.9769, \"unified_with_label_1v2\": 0.7183, \"unified_with_label_2v3\": 0.5165, \"unified_with_label_kstar\": 2, \"unified_single_qwen_kstar\": 2, \"unified_single_pythia_kstar\": 2, \"unified_single_llama8b_kstar\": 1, \"unified_single_qwen_1v2\": 0.6306, \"unified_single_pythia_1v2\": 0.8806, \"unified_single_llama8b_1v2\": 0.6077}}, \"exp_changepoint_kstar\": {\"status\": \"DONE\", \"hypothesis\": \"Non-parametric changepoint detection (PELT) on pairwise AUC sequences should recover K* consistent with the fixed θ=0.60 threshold, validating that K* is not an artifact of threshold choice.\", \"metrics\": {\"exact_agreement\": 0.459, \"exact_agreement_n\": \"17/37\", \"within_1_agreement\": 0.946, \"within_1_agreement_n\": \"35/37\", \"cp_direction\": \"always_conservative\", \"disagreement_auc_range\": [0.607, 0.654], \"best_penalty\": 0.1, \"methods_tested\": [\"PELT\", \"BinSeg\", \"BottomUp\"], \"bootstrap_samples\": 2000}}, \"exp_cross_transfer_llama8b_to_qwen7b_v2\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer). Rerun of exp_cross_transfer_llama8b_to_qwen7b which crashed due to --gpu 1 device error.\", \"metrics\": {\"K_star\": 3, \"2v3_auc_ci_lower\": 0.6124, \"theta\": 0.6, \"margin_pp\": 1.24}}, \"exp_deberta_arxiv_qwen1b5\": {\"status\": \"DONE\", \"hypothesis\": \"DeBERTa supervised classifier on arXiv domain yields K*=3 (matching OBD K*=3), confirming representation-independent domain ceiling holds across all 4 domains (C4 K*=2, wiki K*=3, code K*=2, arXiv K*=3).\", \"metrics\": {\"K_star\": 4, \"0v1_auc\": 0.9997, \"1v2_auc\": 0.9214, \"2v3_auc\": 0.7446, \"3v4_auc\": 0.6238, \"4v5_auc\": 0.5771, \"3v4_ci_lower\": 0.6127, \"3v4_ci_upper\": 0.6349, \"theta\": 0.6}}, \"exp_cross_transfer_llama8b_to_qwen7b\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\"}, \"exp_cross_transfer_qwen7b_to_llama8b\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-model transfer: DeBERTa trained on Qwen-7B wiki depth data can discriminate LLaMA-8B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain.\", \"metrics\": {\"kstar\": 3, \"kstar_indexing\": \"1-indexed\", \"pairwise_auc\": {\"0v1\": 0.9998, \"1v2\": 0.7384, \"2v3\": 0.6278, \"3v4\": 0.587, \"4v5\": 0.5519}, \"elapsed_s\": 3621}}, \"exp_deberta_cross_transfer_gpu3\": {\"status\": \"DONE\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU3 ran olmo↔llama8b, pythia↔mistral7b pairs (mistral7b pairs were bonus, qwen7b↔llama8b missing).\"}, \"exp_deberta_cross_transfer_gpu2\": {\"status\": \"DONE\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU2 ran olmo↔qwen7b, pythia→llama8b, llama8b→pythia pairs.\"}, \"exp_deberta_cross_transfer_gpu1\": {\"status\": \"DONE\", \"hypothesis\": \"Sub-experiment of exp_deberta_cross_transfer_wiki: GPU1 ran pythia↔olmo and pythia↔qwen7b pairs.\"}, \"exp_deberta_cross_transfer_wiki\": {\"status\": \"DONE\", \"hypothesis\": \"DeBERTa cross-model transfer on wiki domain: if off-diagonal retention is high (>90%), depth signals are model-family invariant even with neural features; if wiki retention exceeds C4 retention, domain complexity affects transfer more than feature representation.\", \"metrics\": {\"total_pairs_expected\": 12, \"completed_pairs\": 10, \"missing_pairs\": [\"qwen7b→llama8b\", \"llama8b→qwen7b\"], \"bonus_pairs\": [\"pythia→mistral7b (K*=2)\", \"mistral7b→pythia (K*=2)\"], \"kstar_distribution\": {\"K*=1\": 3, \"K*=2\": 5, \"K*=3\": 1}, \"kstar_1_pairs\": [\"pythia→olmo\", \"qwen7b→olmo\", \"llama8b→olmo\"], \"kstar_3_pair\": \"pythia→qwen7b\", \"kstar_2_pairs\": [\"olmo→qwen7b\", \"olmo→llama8b\", \"qwen7b→pythia\", \"llama8b→pythia\", \"pythia→llama8b\"], \"pattern\": \"All X→OLMo = K*=1. pythia→qwen7b highest at K*=3. GPU3 ran mistral7b pairs instead of expected qwen7b↔llama8b, causing 2 missing pairs.\", \"json_kstar_fix\": \"3 JSONs fixed +1 (pythia→olmo 0→1, olmo→qwen7b 1→2, olmo→llama8b 1→2)\"}}, \"exp_deberta_c4_1b5_qwen_cont\": {\"status\": \"DONE\", \"hypothesis\": \"C4 1.5B DeBERTa qwen_cont256 config (length-256 continuation): if K*=2, confirms boundary holds across generation strategies (base vs continuation) at 1.5B scale.\", \"metrics\": {\"config\": \"qwen_cont256\", \"kstar\": 2, \"kstar_theta\": 0.6, \"pairwise_auc\": {\"0v1\": 0.9955, \"1v2\": 0.7194, \"2v3\": 0.5954, \"3v4\": 0.5689, \"4v5\": 0.5502}, \"ci_95\": {\"0v1\": [0.9944, 0.9965], \"1v2\": [0.712, 0.7273], \"2v3\": [0.587, 0.6028], \"3v4\": [0.5613, 0.5766], \"4v5\": [0.5431, 0.5577]}, \"obd_baseline\": {\"0v1\": 0.9914, \"1v2\": 0.6282, \"2v3\": 0.5556, \"3v4\": 0.5298, \"4v5\": 0.5137}, \"delta_vs_obd\": {\"1v2\": 0.0912}, \"key_finding\": \"C4 1.5B qwen_cont256 K*=2, boundary holds across continuation generation strategy.\"}}, \"exp_deberta_c4_1b5_pythia\": {\"status\": \"DONE\", \"hypothesis\": \"C4 1.5B DeBERTa pythia_greedy config: apple-to-apple comparison with OBD Table 2. If K*=2 consistent with qwen_rw, confirms boundary is generator-invariant at 1.5B scale on C4.\", \"metrics\": {\"config\": \"pythia_greedy\", \"kstar\": 2, \"kstar_theta\": 0.6, \"pairwise_auc\": {\"0v1\": 0.9998, \"1v2\": 0.9284, \"2v3\": 0.5419, \"3v4\": 0.5163, \"4v5\": 0.5098}, \"ci_95\": {\"0v1\": [0.9996, 0.9999], \"1v2\": [0.923, 0.9331], \"2v3\": [0.5354, 0.5486], \"3v4\": [0.509, 0.5237], \"4v5\": [0.5037, 0.516]}, \"obd_baseline\": {\"0v1\": 0.9992, \"1v2\": 0.8838, \"2v3\": 0.5342, \"3v4\": 0.5228, \"4v5\": 0.5162}, \"delta_vs_obd_1v2\": 0.0446, \"training_time_min\": 37.3}}, \"exp_32b_c4_6class\": {\"status\": \"DONE\", \"hypothesis\": \"32B DeBERTa 6-class rerun (depth 0-5) to fill 4v5 pair in paper table. If K* remains 2, confirms boundary even with full depth range; 4v5 AUC provides additional evidence of signal decay pattern.\", \"metrics\": {\"config\": \"exp_32b_c4\", \"kstar\": 2, \"kstar_indexing\": \"1-indexed\", \"num_classes\": 6, \"pairwise_auc\": {\"0v1\": 0.9923, \"1v2\": 0.6945, \"2v3\": 0.5978, \"3v4\": 0.5669, \"4v5\": 0.5426}, \"ci_95\": {\"0v1\": [0.991, 0.9936], \"1v2\": [0.6864, 0.7026], \"2v3\": [0.5898, 0.6058], \"3v4\": [0.559, 0.5746], \"4v5\": [0.5351, 0.5501]}, \"training_time_min\": 48.2}}, \"exp_deberta_c4_1b5\": {\"status\": \"DONE\", \"hypothesis\": \"C4 1.5B DeBERTa apple-to-apple comparison with Table 2 OBD results: if DeBERTa K*=2 on same 1.5B C4 data as OBD, confirms boundary is intrinsic; if K*>2, quantifies neural vs handcrafted gap at 1.5B scale.\", \"metrics\": {\"config\": \"qwen_rw\", \"kstar\": 2, \"kstar_theta\": 0.6, \"pairwise_auc\": {\"0v1\": 0.9923, \"1v2\": 0.7052, \"2v3\": 0.5988, \"3v4\": 0.5698, \"4v5\": 0.5475}, \"ci_95\": {\"0v1\": [0.9907, 0.9937], \"1v2\": [0.6977, 0.7129], \"2v3\": [0.5905, 0.6063], \"3v4\": [0.5626, 0.5774], \"4v5\": [0.5404, 0.5542]}, \"obd_baseline\": {\"0v1\": 0.987, \"1v2\": 0.6262, \"2v3\": 0.5496, \"3v4\": 0.5294, \"4v5\": 0.5182}, \"delta_vs_obd\": {\"1v2\": 0.079}, \"key_finding\": \"C4 1.5B DeBERTa qwen_rw K*=2, matching OBD K*=2. DeBERTa 1v2 +7.9pp vs OBD but does not extend K*. Note: only qwen_rw config done; pythia_greedy running on westd, qwen_cont256 starting on cqa1.\"}}, \"exp_deberta_upperbound\": {\"status\": \"DONE\", \"hypothesis\": \"DeBERTa-v3-base fine-tuned ordinal classifier as upper-bound baseline for 15D handcrafted features: if DeBERTa also yields K*=2 on C4 depth chains, the saturation boundary is near-intrinsic to generation process rather than a feature ceiling; if K*=3+, quantifies the gap between handcrafted and neural representations. Uses same 5-fold GroupKFold, pairwise AUC evaluation, θ=0.60 K* criterion.\", \"metrics\": {\"wiki_pythia\": {\"kstar\": 3, \"0v1_auc\": 0.9993, \"1v2_auc\": 0.725, \"2v3_auc\": 0.6137, \"3v4_auc\": 0.5733, \"4v5_auc\": 0.5527}, \"wiki_olmo\": {\"kstar\": 1, \"0v1_auc\": 0.9999, \"1v2_auc\": 0.5183, \"2v3_auc\": 0.5048, \"3v4_auc\": 0.5021, \"4v5_auc\": 0.4989}, \"wiki_qwen7b\": {\"kstar\": 3, \"0v1_auc\": 0.9998, \"1v2_auc\": 0.7619, \"2v3_auc\": 0.6108, \"3v4_auc\": 0.5587, \"4v5_auc\": 0.5412}, \"wiki_llama8b\": {\"kstar\": 3, \"0v1_auc\": 0.9997, \"1v2_auc\": 0.7452, \"2v3_auc\": 0.5954, \"3v4_auc\": 0.5601, \"4v5_auc\": 0.5389}, \"wiki_mistral7b\": {\"kstar\": 3, \"0v1_auc\": 0.9998, \"1v2_auc\": 0.7483, \"2v3_auc\": 0.5552, \"3v4_auc\": 0.5434, \"4v5_auc\": 0.5298}, \"obd_baseline_bug_fixed\": true, \"wiki_olmo_obd_rerun\": {\"0v1\": 0.9933, \"1v2\": 0.4983, \"2v3\": 0.5041, \"3v4\": 0.4986, \"4v5\": 0.5089}, \"key_finding\": \"Wiki DeBERTa K*=3 for 4/5 configs (pythia/qwen7b/llama8b/mistral7b), exceeding OBD K*=2. DeBERTa breaks OBD boundary on wiki domain. OLMo K*=1 anomalous (near-random 1v2). OBD baseline bug for olmo fixed (was copy of pythia).\"}}, \"exp_32b_c4\": {\"status\": \"DONE\", \"hypothesis\": \"Scale-dependent K* on C4: Qwen2.5-32B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 32B scale 是否稳定（已确认 1.5B/7B/8B/14B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"lgbm_kstar\": 2, \"deberta_kstar\": 2, \"kstar_theta\": 0.6, \"scale\": \"32B\", \"domain\": \"C4\", \"n_docs\": 5000, \"max_depth\": 5, \"key_finding\": \"Qwen2.5-32B C4 K*=2, confirming scale-invariance of K*=2 dominant mode from 1.5B to 32B. Both LightGBM and DeBERTa classifiers agree on K*=2.\"}}, \"exp_deberta_c4\": {\"status\": \"DONE\", \"hypothesis\": \"DeBERTa-v3-base fine-tuned on raw text provides an upper-bound for C4 depth distinguishability compared to 15D LightGBM on handcrafted features. Pairwise AUC should exceed LightGBM at all depth pairs since the model has access to full lexical/semantic signal.\", \"metrics\": {\"pairwise_auc\": {\"0v1\": 0.9941, \"1v2\": 0.6781, \"2v3\": 0.5895, \"3v4\": 0.5651, \"4v5\": 0.5485}, \"ci_95\": {\"0v1\": [0.993, 0.9951], \"1v2\": [0.6696, 0.6866], \"2v3\": [0.5814, 0.5979], \"3v4\": [0.5573, 0.5732], \"4v5\": [0.5411, 0.5562]}, \"f1_at_050\": {\"0v1\": 0.9352, \"1v2\": 0.6751, \"2v3\": 0.6607, \"3v4\": 0.6204, \"4v5\": 0.2869}, \"kstar\": 2, \"kstar_theta\": 0.6, \"config\": \"exp_14b_c4\", \"n_samples\": 30000, \"n_docs\": 5000, \"bootstrap_resamples\": 10000, \"training_time_min\": 48.3}}, \"exp_code_qwen7b\": {\"status\": \"DONE\", \"hypothesis\": \"Qwen2.5-7B code domain K* measurement: Qwen family scale invariance test on CodeSearchNet Python. Pythia Code K*=1 弱化了跨模型一致性。Qwen-7B 测试两个方向：(1) Qwen 家族内 Code 的 scale invariance（1.5B K*=2, 7B K*=?），(2) 若 LLaMA/Mistral 也 K*=1，Qwen-7B K*=2 能维持 \\\"code-competent models reach K*=2\\\" 叙事。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"pairwise_auc\": {\"0v1\": {\"mean\": 0.9051, \"ci95_half\": 0.0043, \"folds\": [0.9073, 0.9012, 0.912, 0.9049, 0.9003]}, \"1v2\": {\"mean\": 0.7276, \"ci95_half\": 0.0055, \"folds\": [0.7377, 0.7254, 0.724, 0.722, 0.7289]}, \"2v3\": {\"mean\": 0.5368, \"ci95_half\": 0.0145, \"folds\": [0.5179, 0.5332, 0.5275, 0.5462, 0.5593]}, \"3v4\": {\"mean\": 0.509, \"ci95_half\": 0.0055, \"folds\": [0.5029, 0.5054, 0.5085, 0.5092, 0.5191]}, \"4v5\": {\"mean\": 0.5139, \"ci95_half\": 0.0128, \"folds\": [0.5016, 0.5317, 0.5264, 0.509, 0.5007]}}, \"pairwise_jsd\": {\"0v1\": 0.061265, \"1v2\": 0.042256, \"2v3\": 0.00413, \"3v4\": 0.003198, \"4v5\": 0.003393}, \"k_star\": 2, \"ordinal\": {\"mae\": 1.2651, \"accuracy\": 0.3423}, \"top_features\": [{\"name\": \"freq_entropy\", \"importance\": 9730}, {\"name\": \"surp_d2_mean\", \"importance\": 9236.2}, {\"name\": \"surp_d1_mean\", \"importance\": 9126.2}, {\"name\": \"surp_d1_skew\", \"importance\": 8833.4}, {\"name\": \"surp_std\", \"importance\": 8110.2}, {\"name\": \"freq_kurtosis\", \"importance\": 7838.6}, {\"name\": \"surp_mean\", \"importance\": 7586}, {\"name\": \"surp_kurt\", \"importance\": 6769.2}, {\"name\": \"hapax_ratio\", \"importance\": 6636.4}, {\"name\": \"ttr\", \"importance\": 6332.6}]}}, \"exp_code_mistral7b\": {\"status\": \"DONE\", \"hypothesis\": \"Mistral-7B code domain K* measurement: Mistral-7B-v0.3 continuation on CodeSearchNet Python subset. Mistral 是唯一展现极端 domain dependence 的模型（C4 K*=1, arXiv K*=3）。若 code K*=2（与 Qwen/LLaMA 一致）→ code K* domain-governed, Mistral one-wash 仅限 C4。若 code K*=1 → one-wash 是 model-intrinsic property for non-academic text。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9191, \"1v2\": 0.6152, \"2v3\": 0.5293, \"3v4\": 0.5286, \"4v5\": 0.5099}, \"pairwise_auc_ci\": {\"0v1\": 0.0017, \"1v2\": 0.012, \"2v3\": 0.0091, \"3v4\": 0.0104, \"4v5\": 0.006}, \"pairwise_jsd\": {\"0v1\": 0.046984, \"1v2\": 0.011845, \"2v3\": 0.003717, \"3v4\": 0.003206, \"4v5\": 0.003083}, \"ordinal_mae\": 1.3191, \"ordinal_accuracy\": 0.3243, \"top3_features\": [\"freq_entropy\", \"surp_d2_mean\", \"surp_d1_mean\"]}}, \"exp_code_llama8b\": {\"status\": \"DONE\", \"hypothesis\": \"Code domain (Python) cross-model K* validation: LLaMA-3.1-8B continuation on CodeSearchNet Python subset (Husain et al. 2019). 验证 code domain K* 跨模型一致性（与 exp_code_qwen1b5 对比）。如果 K* 一致，确认 code domain K* 是 domain-governed 而非 model-specific。5500 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"K_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9161, \"1v2\": 0.7394, \"2v3\": 0.5112, \"3v4\": 0.52, \"4v5\": 0.4996}, \"pairwise_auc_std\": {\"0v1\": 0.004, \"1v2\": 0.0101, \"2v3\": 0.0095, \"3v4\": 0.0137, \"4v5\": 0.0069}, \"pairwise_jsd\": {\"0v1\": 0.060406, \"1v2\": 0.047034, \"2v3\": 0.003473, \"3v4\": 0.003026, \"4v5\": 0.002892}, \"ordinal_mae\": 1.2542, \"ordinal_accuracy\": 0.3485, \"top_features\": [\"freq_entropy\", \"surp_d1_mean\", \"surp_d2_mean\"]}}, \"exp_code_qwen1b5_pythia_scorer\": {\"status\": \"DONE\", \"hypothesis\": \"Code domain scorer confound control: Qwen-1.5B Code K*=2 uses same-family Qwen scorer. D060 Wikipedia showed Qwen scorer inflates AUC by +0.005~0.027. If Pythia-1.4B scorer yields K*=2 on same Qwen Code text, confirms K*=2 is text-intrinsic (not scorer artifact). If K*=1, Qwen Code K*=2 is partially scorer-driven, weakening domain ceiling claim. Cross-family scorer validation on existing exp_code_qwen1b5 depth 0-5 data.\", \"metrics\": {\"k_star\": 2, \"theta\": 0.6, \"auc_0v1\": 0.9076, \"auc_1v2\": 0.7197, \"auc_2v3\": 0.5308, \"auc_3v4\": 0.5236, \"auc_4v5\": 0.5084, \"jsd_0v1\": 0.065423, \"jsd_1v2\": 0.035809, \"jsd_2v3\": 0.004315, \"jsd_3v4\": 0.003182, \"jsd_4v5\": 0.003047, \"ordinal_mae\": 1.2578, \"ordinal_accuracy\": 0.3433, \"scorer\": \"pythia-1.4b\"}}, \"exp_pythia_retrain_depth7\": {\"status\": \"DONE\", \"hypothesis\": \"Pythia-1.4B retrain-chain depth extension to 7: 验证 retrain-chain K* >> prompt-chain K* 是否跨模型家族一致（Qwen retrain K*≥7）。如果 Pythia 也 K*≥5-7，confirms retrain artifacts are model-independent。C4 5K docs, LoRA rank=16 alpha=32, depth 0-7。\", \"metrics\": {\"kstar\": 7, \"pairwise_auc\": {\"0v1\": 0.9844, \"1v2\": 0.947, \"2v3\": 0.8891, \"3v4\": 0.7999, \"4v5\": 0.6907, \"5v6\": 0.6497, \"6v7\": 0.634}, \"pairwise_auc_ci\": {\"0v1\": [0.9829, 0.9858], \"1v2\": [0.9418, 0.9522], \"2v3\": [0.8822, 0.896], \"3v4\": [0.7951, 0.8047], \"4v5\": [0.688, 0.6934], \"5v6\": [0.6429, 0.6565], \"6v7\": [0.6275, 0.6406]}, \"pairwise_jsd\": {\"0v1\": 0.1775, \"1v2\": 0.1286, \"2v3\": 0.1069, \"3v4\": 0.0643, \"4v5\": 0.0331, \"5v6\": 0.0271, \"6v7\": 0.0138}}}, \"exp_qwen_retrain_depth7\": {\"status\": \"DONE\", \"hypothesis\": \"Qwen2.5-1.5B retrain-chain extended to depth 7: K* measurement at higher depths. Retrain-chain with LoRA rank=16, alpha=32, 1 epoch per generation. Each depth uses independently trained LoRA merged before next generation. C4 5K docs, depth 0-7, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B (self-scoring). Extends exp_qwen_retrain_chain (depth 0-4).\", \"metrics\": {\"k_star\": 7, \"theta\": 0.6, \"max_depth\": 7, \"analysis_method\": \"5-fold GroupKFold CV\", \"pairwise_auc\": {\"0v1\": {\"mean\": 0.9837, \"std\": 0.0019, \"ci_95\": [0.9821, 0.9854], \"folds\": [0.9832, 0.9821, 0.9837, 0.9823, 0.9873]}, \"1v2\": {\"mean\": 0.8971, \"std\": 0.0025, \"ci_95\": [0.8949, 0.8993], \"folds\": [0.8923, 0.8988, 0.8986, 0.8991, 0.8967]}, \"2v3\": {\"mean\": 0.8098, \"std\": 0.0052, \"ci_95\": [0.8052, 0.8144], \"folds\": [0.8086, 0.8074, 0.818, 0.8024, 0.8128]}, \"3v4\": {\"mean\": 0.76, \"std\": 0.0082, \"ci_95\": [0.7528, 0.7672], \"folds\": [0.7534, 0.7617, 0.7753, 0.7566, 0.7531]}, \"4v5\": {\"mean\": 0.7459, \"std\": 0.0091, \"ci_95\": [0.7379, 0.7538], \"folds\": [0.7429, 0.7562, 0.7521, 0.73, 0.7482]}, \"5v6\": {\"mean\": 0.7017, \"std\": 0.0068, \"ci_95\": [0.6958, 0.7076], \"folds\": [0.7006, 0.7077, 0.7104, 0.6915, 0.6984]}, \"6v7\": {\"mean\": 0.641, \"std\": 0.0039, \"ci_95\": [0.6376, 0.6445], \"folds\": [0.6419, 0.6349, 0.6464, 0.639, 0.643]}}, \"jsd\": {\"0v1\": 0.23005, \"1v2\": 0.103924, \"2v3\": 0.075049, \"3v4\": 0.065398, \"4v5\": 0.060509, \"5v6\": 0.034998, \"6v7\": 0.017652}}}, \"exp_code_pythia1b4\": {\"status\": \"DONE\", \"hypothesis\": \"Pythia-1.4B on Code domain (Python/CodeSearchNet) will show K*=2 consistent with Qwen code domain results, indicating generalization depth saturation is model-independent for code data.\", \"metrics\": {\"k_star\": 1, \"theta\": 0.6, \"pairwise_auc\": {\"0v1\": {\"mean\": 0.9592, \"std\": 0.0036, \"folds\": [0.9576, 0.9576, 0.9657, 0.96, 0.9552]}, \"1v2\": {\"mean\": 0.5983, \"std\": 0.005, \"folds\": [0.601, 0.5884, 0.6, 0.5997, 0.6024]}, \"2v3\": {\"mean\": 0.5215, \"std\": 0.0128, \"folds\": [0.5236, 0.5124, 0.5311, 0.5024, 0.5381]}, \"3v4\": {\"mean\": 0.5152, \"std\": 0.012, \"folds\": [0.4981, 0.5327, 0.5092, 0.5123, 0.5238]}, \"4v5\": {\"mean\": 0.5046, \"std\": 0.0137, \"folds\": [0.4983, 0.4822, 0.5074, 0.5224, 0.5128]}}, \"jsd\": {\"0v1\": 0.070173, \"1v2\": 0.008211, \"2v3\": 0.003674, \"3v4\": 0.002902, \"4v5\": 0.002685}, \"ordinal\": {\"mae\": 1.3268, \"accuracy\": 0.3357}, \"top_features\": [\"freq_entropy\", \"surp_d1_mean\", \"surp_d2_mean\", \"surp_mean\", \"surp_d1_skew\"], \"features_csv\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_code_pythia1b4/features.csv\"}}, \"exp_028_power_curve\": {\"status\": \"DONE\", \"hypothesis\": \"Subsampling power analysis: K*=2 判定在 C4 上所需的最低样本量。在 n={500,1000,2000,3000,4000,5000} 下 10 次 random resample，每次 5-fold CV 计算 1v2 AUC。输出 power curve（K*=2 判定成功率 vs n）。验证类实验，回应 Reviewer 对 statistical power / sample size adequacy 的质疑。\", \"metrics\": {\"min_n_100pct\": 2000, \"n500_auc\": 0.5808, \"n500_rate\": 0.2, \"n1000_auc\": 0.5911, \"n1000_rate\": 0.3, \"n2000_auc\": 0.6101, \"n2000_rate\": 1, \"n3000_auc\": 0.6166, \"n3000_rate\": 1, \"n4000_auc\": 0.622, \"n4000_rate\": 1, \"n5000_auc\": 0.6288, \"n5000_rate\": 1}}, \"exp_qwen_retrain_chain\": {\"status\": \"DONE\", \"hypothesis\": \"Qwen2.5-1.5B retrain-chain ecological validity: LoRA rank=16, alpha=32, 1 epoch per generation. Retrain-chain K* ≤ prompt-chain K*=2, confirming prompt-chain as conservative upper bound across a second architecture family (Qwen vs Pythia). C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B (self-scoring).\", \"metrics\": {\"K_star_lower_bound\": 4, \"theta\": 0.6, \"auc_0v1\": 0.9838, \"auc_1v2\": 0.8969, \"auc_2v3\": 0.81, \"auc_3v4\": 0.7624, \"ci_0v1\": [0.982, 0.9855], \"ci_1v2\": [0.8937, 0.9001], \"ci_2v3\": [0.8052, 0.8147], \"ci_3v4\": [0.7543, 0.7706], \"ci_method\": \"5-fold CV\", \"jsd_0v1\": 0.2263, \"jsd_1v2\": 0.1046, \"jsd_2v3\": 0.0752, \"jsd_3v4\": 0.0654}}, \"exp_code_qwen1b5\": {\"status\": \"DONE\", \"hypothesis\": \"Code domain (Python) K* measurement: Qwen2.5-1.5B continuation on CodeSearchNet Python subset (Husain et al. 2019). Code 的高度结构化特性（语法约束、缩进、函数签名）应使代际退化慢于 C4 (K*≥2)，可能接近 arXiv (K*=3)。5500 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"K_star\": 2, \"theta\": 0.6, \"auc_0v1\": 0.9388, \"auc_1v2\": 0.7382, \"auc_2v3\": 0.53, \"auc_3v4\": 0.5022, \"auc_4v5\": 0.5219, \"ci_0v1\": [0.929, 0.949], \"ci_1v2\": [0.709, 0.767], \"ci_2v3\": [0.514, 0.546], \"jsd_0v1\": 0.0814, \"jsd_1v2\": 0.0443, \"jsd_2v3\": 0.0038, \"ordinal_accuracy\": 0.359, \"ordinal_mae\": 1.204}}, \"exp_olmo_retrain_chain\": {\"status\": \"DONE\", \"hypothesis\": \"OLMo-1B retrain-chain (LoRA rank=16, 1 epoch per generation) on C4 produces K* ≤ 2, confirming prompt-chain as conservative upper bound for K*.\"}, \"exp_028_subsampling_power\": {\"status\": \"DONE\", \"hypothesis\": \"C4 K*=2 信号的 minimum sample size: 在 n={1000..5000} 范围内，GroupKFold(5) 1v2 AUC 是否稳定超过 θ=0.60？确定可靠判定 K*=2 所需的最小样本量。\", \"metrics\": {\"n_1000\": {\"mean_auc\": 0.608, \"std\": 0.012, \"detection_prob\": 0.9}, \"n_2500\": {\"mean_auc\": 0.618, \"std\": 0.006, \"detection_prob\": 1}, \"n_5000\": {\"mean_auc\": 0.629, \"std\": 0, \"detection_prob\": 1}, \"key_finding\": \"n>=2500 gives 100% reliable K*=2 detection. n=1000 already 90%. Signal is robust, not large-sample artifact.\"}}, \"exp_026_arxiv_filtering\": {\"status\": \"DONE\", \"hypothesis\": \"Graduated depth weighting (α=0.9^d) on arXiv depth chains will outperform both no-filter and binary-cut baselines on downstream benchmarks (MMLU, HellaSwag), because it preserves useful signal from deeper generations while down-weighting accumulated contamination, rather than discarding data entirely.\", \"metrics\": {\"runs_completed\": \"15/15\", \"strategies\": [\"no_filter\", \"binary\", \"graduated_a09\"], \"seeds\": [42, 123, 456, 789, 1024], \"mmlu\": {\"no_filter\": \"0.5899±0.0008\", \"binary\": \"0.5876±0.0004\", \"graduated_a09\": \"0.5900±0.0011\"}, \"hellaswag\": {\"no_filter\": \"0.6600±0.0002\", \"binary\": \"0.6642±0.0004\", \"graduated_a09\": \"0.6599±0.0003\"}, \"delta_vs_no_filter\": {\"binary_mmlu\": \"-0.0023\", \"binary_hellaswag\": \"+0.0042\", \"graduated_mmlu\": \"+0.0001\", \"graduated_hellaswag\": \"-0.0001\"}, \"key_finding\": \"All three strategies produce nearly identical results. Graduated ≈ no_filter; binary slightly better on HellaSwag (+0.004) but worse on MMLU (-0.002). Hypothesized ordering graduated>binary>no_filter NOT confirmed.\"}}, \"exp_027_latex_ablation\": {\"status\": \"DONE\", \"hypothesis\": \"arXiv K*=3 不依赖 LaTeX 格式特征。去除 LaTeX markup 后重新提取 15D features 并跑 pairwise classification，K* 应仍=3，排除 LaTeX 语法作为 confound。\", \"metrics\": {\"k_star\": 3, \"k_star_preserved\": true, \"pairwise_auc_original\": {\"0v1\": 0.9948, \"1v2\": 0.8581, \"2v3\": 0.6436, \"3v4\": 0.544, \"4v5\": 0.5299}, \"pairwise_auc_stripped\": {\"0v1\": 0.9948, \"1v2\": 0.8297, \"2v3\": 0.6229, \"3v4\": 0.5468, \"4v5\": 0.5476}, \"auc_delta\": {\"0v1\": 0, \"1v2\": -0.028, \"2v3\": -0.021, \"3v4\": 0.003, \"4v5\": 0.018}, \"latex_reduction_by_depth\": {\"depth_0\": \"0.6%\", \"depth_5\": \"4.4%\"}, \"key_finding\": \"K*=3 preserved after LaTeX removal. 2v3 AUC 0.6436→0.6229 (still >θ=0.60). LaTeX format is NOT a confound.\"}}, \"exp_025_pythia_filtering\": {\"status\": \"DONE\", \"hypothesis\": \"Filtering strategy ordering (binary > graduated > no-filter) 在 Pythia-1.4B 上与 Qwen 一致，验证 K*=2 对 curation 策略选择的跨模型预测价值。Pythia-1.4B LoRA rank=8 continued pretraining on C4 depth chain, 3 strategies × 3 seeds, eval MMLU+HellaSwag.\", \"metrics\": {\"runs_completed\": \"9/9\", \"strategies\": [\"no_filter\", \"binary_ours\", \"graduated_a09\"], \"seeds\": [42, 123, 456], \"mmlu\": {\"no_filter\": \"0.2568±0.0012\", \"binary_ours\": \"0.2585±0.0004\", \"graduated_a09\": \"0.2561±0.0009\"}, \"hellaswag\": {\"no_filter\": \"0.5250±0.0008\", \"binary_ours\": \"0.5251±0.0001\", \"graduated_a09\": \"0.5253±0.0007\"}, \"delta_vs_no_filter\": {\"binary_ours_mmlu\": \"+0.0017\", \"binary_ours_hellaswag\": \"+0.0000\", \"graduated_a09_mmlu\": \"-0.0007\", \"graduated_a09_hellaswag\": \"+0.0003\"}, \"key_finding\": \"All three filtering strategies produce nearly identical results on Pythia-1.4B. Deltas are within noise (max 0.0017 MMLU). Hypothesized ordering binary>graduated>no_filter NOT confirmed.\"}}, \"exp_14b_c4\": {\"status\": \"DONE\", \"hypothesis\": \"Scale-dependent K* on C4: Qwen2.5-14B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 14B scale 是否稳定（已确认 1.5B/7B/8B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9598, \"1v2\": 0.621, \"2v3\": 0.5494, \"3v4\": 0.5243, \"4v5\": 0.5154}, \"pairwise_jsd\": {\"0v1\": 0.1097, \"1v2\": 0.0112, \"2v3\": 0.0062, \"3v4\": 0.0044, \"4v5\": 0.0036}, \"bootstrap_ci\": {\"0v1\": [0.9564, 0.963], \"1v2\": [0.6119, 0.6304], \"2v3\": [0.5392, 0.5594], \"3v4\": [0.514, 0.5346], \"4v5\": [0.5045, 0.5265]}, \"permutation_p\": {\"0v1\": \"<0.001\", \"1v2\": \"<0.001\", \"2v3\": \"<0.001\", \"3v4\": \"<0.001\", \"4v5\": \"<0.001\"}, \"k_star_statistically_confirmed\": true, \"ordinal_mae\": 1.2266, \"ordinal_accuracy\": 0.3497, \"top_features\": [\"freq_entropy\", \"surp_d1_skew\", \"surp_std\", \"surp_d1_mean\", \"surp_d2_mean\"], \"key_finding\": \"K*=2 confirmed at 14B scale with bootstrap CI. 1v2 CI lower (0.6119) > theta=0.60; 2v3 CI upper (0.5594) < theta=0.60. All permutation p<0.001.\"}}, \"exp_arXiv_mistral7b_crossscorer\": {\"status\": \"DONE\", \"hypothesis\": \"arXiv cross-scorer (Mistral-7B): Pythia scorer 验证 Mistral arXiv K*=3 是否 scorer-independent。\", \"metrics\": {\"k_star\": 3, \"scorer\": \"pythia-1.4b\", \"auc_0v1\": 0.9798, \"auc_1v2\": 0.8141, \"auc_2v3\": 0.6075, \"auc_3v4\": 0.5489, \"auc_4v5\": 0.5391, \"jsd_0v1\": 0.135575, \"jsd_1v2\": 0.078, \"jsd_2v3\": 0.020452, \"jsd_3v4\": 0.010992, \"jsd_4v5\": 0.008831, \"ordinal_mae\": 0.9061, \"ordinal_accuracy\": 0.4412}}, \"exp_arXiv_llama8b_crossscorer\": {\"status\": \"DONE\", \"hypothesis\": \"Replacing Qwen-1.5B scorer with Pythia-1.4B on arXiv LLaMA-8B depth 0-5 texts should yield the same K*=3 boundary, because the saturation signal is a genuine property of LLaMA-8B generated text rather than a scorer family artifact\", \"metrics\": {\"k_star\": 3, \"auc_0v1\": 0.9629, \"auc_1v2\": 0.8433, \"auc_2v3\": 0.6201, \"auc_3v4\": 0.523, \"auc_4v5\": 0.5245, \"jsd_0v1\": 0.1214, \"jsd_1v2\": 0.0815, \"jsd_2v3\": 0.0195, \"jsd_3v4\": 0.0083, \"jsd_4v5\": 0.0082, \"ordinal_mae\": 0.9025, \"ordinal_accuracy\": 0.4407, \"scorer\": \"pythia-1.4b\"}}, \"exp_arXiv_qwen7b_crossscorer\": {\"status\": \"DONE\", \"hypothesis\": \"arXiv cross-scorer (7B): Pythia-1.4B scorer 重评 Qwen-7B arXiv depth 0-5。D060 Wiki scorer confound 推导。关键 2v3 AUC ≥0.60 → K*=3 scorer-independent。\", \"metrics\": {\"k_star\": 2, \"auc_0v1\": 0.9575, \"auc_1v2\": 0.8171, \"auc_2v3\": 0.5989, \"auc_3v4\": 0.5417, \"auc_4v5\": 0.5192, \"jsd_0v1\": 0.137085, \"jsd_1v2\": 0.059688, \"jsd_2v3\": 0.013508, \"jsd_3v4\": 0.009125, \"jsd_4v5\": 0.006738, \"ordinal_mae\": 0.9617, \"ordinal_accuracy\": 0.4255}}, \"exp_arXiv_qwen1b5_crossscorer\": {\"status\": \"DONE\", \"hypothesis\": \"arXiv cross-scorer (1.5B): Pythia-1.4B scorer 重评 Qwen-1.5B arXiv depth 0-5。验证 K*=3 scorer-independent。\", \"metrics\": {\"k_star\": 3, \"auc_0v1\": 0.9748, \"auc_1v2\": 0.8105, \"auc_2v3\": 0.6317, \"auc_3v4\": 0.5437, \"auc_4v5\": 0.5294, \"jsd_0v1\": 0.154297, \"jsd_1v2\": 0.066782, \"jsd_2v3\": 0.019268, \"jsd_3v4\": 0.008867, \"jsd_4v5\": 0.006991, \"ordinal_mae\": 0.9017, \"ordinal_accuracy\": 0.4402}}, \"exp_wiki_scorer_confound_1b5\": {\"status\": \"DONE\", \"hypothesis\": \"Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。\", \"metrics\": {\"k_star\": 1, \"confound_verdict\": \"confirmed\", \"auc_0v1\": 0.9729, \"auc_1v2\": 0.5994, \"auc_2v3\": 0.533, \"auc_3v4\": 0.5214, \"auc_4v5\": 0.5068, \"jsd_0v1\": 0.0886, \"ordinal_mae\": 1.2995, \"ordinal_accuracy\": 0.3466}}, \"exp_wiki_scorer_confound\": {\"status\": \"DONE\", \"hypothesis\": \"Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。\", \"metrics\": {\"k_star\": 1, \"confound_verdict\": \"confirmed\", \"auc_0v1\": 0.9404, \"auc_1v2\": 0.587, \"auc_2v3\": 0.5456, \"auc_3v4\": 0.525, \"auc_4v5\": 0.5172, \"critical_delta_1v2\": -0.0238}}, \"exp_wiki_qwen7b\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-scale Wikipedia K* validation: Qwen2.5-7B continuation on Wikipedia 的 K* 是否 = 2？Qwen2.5-1.5B 在 Wikipedia K*=2（唯一维持 K*=2 的模型），Pythia/OLMo/均 K*=1。测试 7B 规模是否仍维持 Qwen 家族在 Wikipedia 上的 K*=2 pattern。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"K_star\": 2, \"auc_0v1\": 0.9673, \"auc_1v2\": 0.6108, \"auc_2v3\": 0.5562, \"auc_3v4\": 0.5297, \"auc_4v5\": 0.529, \"jsd_0v1\": 0.083514, \"jsd_1v2\": 0.010991, \"jsd_2v3\": 0.00555, \"jsd_3v4\": 0.004611, \"jsd_4v5\": 0.003894, \"ordinal_mae\": 1.2501, \"ordinal_accuracy\": 0.3532}}, \"exp_wiki_mistral7b\": {\"status\": \"DONE\", \"hypothesis\": \"Mistral-7B Wikipedia K* test: Mistral-7B-v0.3 在 C4 上 K*=1 (text-intrinsic one-wash)。在 Wikipedia domain 上是否仍 K*=1？Pythia/OLMo 在 Wikipedia 均 K*=1，Qwen K*=2。如果 Mistral K*=1 → 确认 one-wash 跨域成立；如果 K*>1 → Wikipedia 有 rescue Mistral 的结构信号（与预期相反）。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"K_star\": 1, \"ordinal_mae\": 1.3445, \"ordinal_accuracy\": 0.3273, \"auc_0v1\": 0.9607, \"auc_1v2\": 0.5552, \"auc_2v3\": 0.5236, \"auc_3v4\": 0.5181, \"auc_4v5\": 0.5012, \"jsd_0v1\": 0.054134, \"jsd_1v2\": 0.005678, \"jsd_2v3\": 0.003698, \"jsd_3v4\": 0.003459, \"jsd_4v5\": 0.003274}}, \"exp_wiki_llama8b\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-scale Wikipedia K* validation: LLaMA-3.1-8B continuation on Wikipedia 的 K* 是否 = 2？Pythia-1.4B K*=1, Qwen-1.5B K*=2, OLMo-1B K*=1。测试 8B scale 是否能在 Wikipedia 均质 domain 上维持 K*=2（scale 是否是决定因素）。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"K_star\": 1, \"ordinal_mae\": 1.2954, \"ordinal_accuracy\": 0.3313, \"auc_0v1\": 0.9316, \"auc_1v2\": 0.5954, \"auc_2v3\": 0.5392, \"auc_3v4\": 0.5221, \"auc_4v5\": 0.5212, \"jsd_0v1\": 0.06169, \"jsd_1v2\": 0.00931}}, \"exp_arXiv_qwen7b\": {\"status\": \"DONE\", \"hypothesis\": \"Qwen2.5-7B on arXiv abstracts will yield K*=3, validating that structured domain K*=3 is stable within the Qwen family across scales (1.5B vs 7B)\", \"metrics\": {\"k_star\": 3, \"pairwise_auc\": {\"0v1\": 0.983, \"1v2\": 0.835, \"2v3\": 0.626, \"3v4\": 0.544, \"4v5\": 0.513}, \"pairwise_jsd\": {\"0v1\": 0.1656, \"1v2\": 0.0668, \"2v3\": 0.0156, \"3v4\": 0.0089, \"4v5\": 0.0061}, \"ordinal_mae\": 0.9, \"ordinal_accuracy\": 0.446}}, \"exp_arXiv_mistral7b\": {\"status\": \"DONE\", \"hypothesis\": \"Mistral-7B arXiv K* test: Mistral-7B-v0.3 在 C4 上 K*=1 (one-wash model)。在 arXiv structured domain 上是否仍 K*=1？如果 K*=1 → 确认 Mistral 的 one-wash 是 text-intrinsic (与 domain 无关)；如果 K*>1 → domain complexity 可以 rescue one-wash models，K* 同时受 model 和 domain 驱动。2200 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"k_star\": 3, \"pairwise_auc\": {\"0v1\": 0.9848, \"1v2\": 0.8201, \"2v3\": 0.6275, \"3v4\": 0.5295, \"4v5\": 0.5295}, \"jsd\": {\"0v1\": 0.14249, \"1v2\": 0.076232, \"2v3\": 0.018972, \"3v4\": 0.009908, \"4v5\": 0.008877}, \"ordinal_mae\": 0.8958, \"ordinal_accuracy\": 0.4474, \"top_features\": [\"freq_entropy\", \"surp_std\", \"surp_d1_skew\", \"surp_mean\", \"surp_d2_mean\"]}}, \"exp_arXiv_llama8b\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-architecture arXiv K* validation: LLaMA-3.1-8B continuation on arXiv abstracts 的 K* 是否 = 3？验证 structured domain K*=3 在大模型（8B scale）上是否成立，排除小模型 capacity artifact。2200 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"K_star\": 3, \"auc_0v1\": 0.9754, \"auc_1v2\": 0.8447, \"auc_2v3\": 0.6215, \"auc_3v4\": 0.5362, \"auc_4v5\": 0.5331, \"jsd_0v1\": 0.1296, \"jsd_1v2\": 0.0785, \"jsd_2v3\": 0.0177, \"ordinal_acc\": 0.4549, \"ordinal_mae\": 0.8806}}, \"exp_wiki_pythia_v2\": {\"status\": \"DONE\", \"hypothesis\": \"Cross-model Wikipedia K* validation (v2 fix): Pythia-1.4B continuation on Wikipedia 的 K* 是否 = 2？使用独立 data_dir 避免 v1 的 data reuse bug，让 pipeline 用 Pythia 重新生成 depth 1-5。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"metrics\": {\"K_star\": 1, \"auc_0v1\": 0.975, \"auc_1v2\": 0.5846, \"auc_2v3\": 0.5445, \"auc_3v4\": 0.5205, \"auc_4v5\": 0.5168, \"jsd_0v1\": 0.080065, \"jsd_1v2\": 0.007773, \"ordinal_acc\": 0.3503}}}, \"count\": 50, \"total\": 100, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4027}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MdzXVZk6ZNX3brXm7jegJQ`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls -la /root/autodl-tmp/gen-depth-contamination/results/exp_wiki_multi_source/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "9df9d84a-17ed-42c9-90aa-020945d436f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HBfvZwbpFVQi8fcRznNtf9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 264,
+      "cache_read_input_tokens": 44830,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 264
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-20T11:38:04.161Z_
+
+<details><summary>↩ Tool result · `toolu_01MdzXVZk6ZNX3brXm7jegJQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 16428\\ndrwxr-xr-x  2 root root     159 May 20 19:30 .\\ndrwxr-xr-x 67 root root    4096 May 20 19:20 ..\\n-rw-r--r--  1 root root 8363417 May 20 19:02 features_llama8b_qwen_scorer.csv\\n-rw-r--r--  1 root root 8438869 May 20 19:09 features_mistral7b_qwen_scorer.csv\\n-rw-r--r--  1 root root    6593 May 20 19:30 results.json\\n-rw-r--r--  1 root root    3494 May 20 18:53 results_vocab_only.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "13a5b54c-5109-4506-a635-ec84a38e834c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 16428\\\\ndrwxr-xr-x  2 root root     159 May 20 19:30 .\\\\ndrwxr-xr-x 67 root root    4096 May 20 19:20 ..\\\\n-rw-r--r--  1 root root 8363417 May 20 19:02 features_llama8b_qwen_scorer.csv\\\\n-rw-r--r--  1 root root 8438869 May 20 19:09 features_mistral7b_qwen_scorer.csv\\\\n-rw-r--r--  1 root root    6593 May 20 19:30 results.json\\\\n-rw-r--r--  1 root root    3494 May 20 18:53 results_vocab_only.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 16428\\ndrwxr-xr-x  2 root root     159 May 20 19:30 .\\ndrwxr-xr-x 67 root root    4096 May 20 19:20 ..\\n-rw-r--r--  1 root root 8363417 May 20 19:02 features_llama8b_qwen_scorer.csv\\n-rw-r--r--  1 root root 8438869 May 20 19:09 features_mistral7b_qwen_scorer.csv\\n-rw-r--r--  1 root root    6593 May 20 19:30 results.json\\n-rw-r--r--  1 root root    3494 May 20 18:53 results_vocab_only.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture. Let me summarize the findings:
+
+1. **LLaMA-8B Wiki depth chain data EXISTS**: `/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_llama8b/` has depth 0-5 JSONL files and features.csv (30,000 rows, 5000 docs).
+
+2. **exp_wiki_llama8b single-source experiment COMPLETED**: Registry shows it with status DONE, K*=1, 1v2 AUC=0.5954.
+   
+3. **The multi-source experiment successfully processed all three generators**: The script configured all three sources (qwen1b5, llama8b, mistral7b) and the logs confirm each loaded 30,000 rows with 5,000 docs, then sampled one instance from each.
+
+4. **The results file contains all three generators**: The results.json explicitly lists all three in the generators field, and the sampling produced 18,000 total rows across 3,000 unique docs.
+
+5. **The registry hasn't indexed this experiment yet**: There's no exp_wiki_multi_source entry in the registry, which might be why the user is confused about what data was actually processed. Looking back at their original question about only seeing 2 generators in the metrics, they might be checking the registry entries for individual experiments rather than the multi-source results themselves.
+
+6. **The combined AUC of 0.579 represents all three generators**: This isn't a result from just two models—it's the merged output from LLaMA-8B, Qwen, and Mistral all together. Since it falls below the 0.60 threshold, it gives K*=1.
+
+7. **The registry gap is a red herring**: The exp_wiki_multi_source entry doesn't exist in the registry, but that doesn't mean the experiment didn't run or that LLaMA was excluded. The script executed with all three generators loaded and sampled.
+
+So the user's question about whether two generators are sufficient is actually based on a misunderstanding—all three were used, not two.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "77f6b16a-7ba2-4fbd-aa5f-02677a606362",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B9TrNW5V5w9THJbnH8kMQY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19715,
+      "cache_read_input_tokens": 45094,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19715
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+## 结论：LLaMA-8B 未缺失，3 个 generator 全部参与了 multi-source 实验
+
+Director 的前提有误。以下是完整证据链：
+
+### 1. 数据完整存在
+`/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_llama8b/` 包含 depth 0-5 的 JSONL 文件 + features.csv（30,000 rows, 5,000 docs）。
+
+### 2. 单源实验已完成
+Registry 中 `exp_wiki_llama8b` 状态 DONE，K\*=1，1v2 AUC=0.5954。
+
+### 3. Multi-source 脚本确实定义了 3 个 generator
+```python
+SOURCES = {
+    "qwen1b5": {...},
+    "llama8b": {...},   # ← 在列表中
+    "mistral7b": {...},
+}
+```
+
+### 4. 日志确认 3 个 generator 全部加载并采样
+```
+Loaded qwen1b5: 30000 rows, 5000 docs
+Loaded llama8b: 30000 rows, 5000 docs
+Loaded mistral7b: 30000 rows, 5000 docs
+→ 每个采样 1000 docs → 6000 rows，总计 18000 rows
+```
+
+llama8b 还经过了完整的 Qwen scorer rescore 流程（313 batches），产出保存在 `features_llama8b_qwen_scorer.csv`。
+
+### 5. results.json 明确记录 3 个 generator
+```json
+"generators": ["qwen1b5", "llama8b", "mistral7b"]
+```
+
+### 6. "metrics 只有 2 个" 的原因
+Registry 中没有 `exp_wiki_multi_source` 条目（未注册）。Director 可能看的是 registry 里的**单源实验**（`exp_wiki_llama8b` K\*=1 不如 `exp_023_wiki` 和 `exp_wiki_mistral7b` 显眼），或者误读了某个中间报告。实际 multi-source 结果用了全部 3 个 generator。
+
+### 7. 关于 1v2 AUC 0.579
+这是**3 个 generator 混合后**的 unified scorer with\_label 结果，不是 2 个。K\*=1（低于 θ=0.60），与 Wiki 域 single-source 中多数 generator K\*=1 一致（llama8b K\*=1, mistral7b K\*=1, 仅 qwen K\*=2）。混合后被两个 K\*=1 的 generator 拉低是预期行为。
+
+**建议**：将 `exp_wiki_multi_source` 的 results.json 注册到 registry，避免后续再产生混淆。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "uuid": "63c10557-4656-43cd-9b90-a8ad875688e7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B9TrNW5V5w9THJbnH8kMQY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19715,
+      "cache_read_input_tokens": 45094,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 19715
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 44_
+
+## 结论：LLaMA-8B 未缺失，3 个 generator 全部参与了 multi-source 实验
+
+Director 的前提有误。以下是完整证据链：
+
+### 1. 数据完整存在
+`/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_llama8b/` 包含 depth 0-5 的 JSONL 文件 + features.csv（30,000 rows, 5,000 docs）。
+
+### 2. 单源实验已完成
+Registry 中 `exp_wiki_llama8b` 状态 DONE，K\*=1，1v2 AUC=0.5954。
+
+### 3. Multi-source 脚本确实定义了 3 个 generator
+```python
+SOURCES = {
+    "qwen1b5": {...},
+    "llama8b": {...},   # ← 在列表中
+    "mistral7b": {...},
+}
+```
+
+### 4. 日志确认 3 个 generator 全部加载并采样
+```
+Loaded qwen1b5: 30000 rows, 5000 docs
+Loaded llama8b: 30000 rows, 5000 docs
+Loaded mistral7b: 30000 rows, 5000 docs
+→ 每个采样 1000 docs → 6000 rows，总计 18000 rows
+```
+
+llama8b 还经过了完整的 Qwen scorer rescore 流程（313 batches），产出保存在 `features_llama8b_qwen_scorer.csv`。
+
+### 5. results.json 明确记录 3 个 generator
+```json
+"generators": ["qwen1b5", "llama8b", "mistral7b"]
+```
+
+### 6. "metrics 只有 2 个" 的原因
+Registry 中没有 `exp_wiki_multi_source` 条目（未注册）。Director 可能看的是 registry 里的**单源实验**（`exp_wiki_llama8b` K\*=1 不如 `exp_023_wiki` 和 `exp_wiki_mistral7b` 显眼），或者误读了某个中间报告。实际 multi-source 结果用了全部 3 个 generator。
+
+### 7. 关于 1v2 AUC 0.579
+这是**3 个 generator 混合后**的 unified scorer with\_label 结果，不是 2 个。K\*=1（低于 θ=0.60），与 Wiki 域 single-source 中多数 generator K\*=1 一致（llama8b K\*=1, mistral7b K\*=1, 仅 qwen K\*=2）。混合后被两个 K\*=1 的 generator 拉低是预期行为。
+
+**建议**：将 `exp_wiki_multi_source` 的 results.json 注册到 registry，避免后续再产生混淆。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 87142,
+  "duration_api_ms": 86448,
+  "num_turns": 15,
+  "stop_reason": "end_turn",
+  "session_id": "fee288b6-c8d2-498f-ae84-cbd19605e303",
+  "total_cost_usd": 0.5447225,
+  "usage": {
+    "input_tokens": 11,
+    "cache_creation_input_tokens": 52968,
+    "cache_read_input_tokens": 213789,
+    "output_tokens": 4207,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 52968,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1722,
+        "cache_read_input_tokens": 45094,
+        "cache_creation_input_tokens": 19715,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 19715
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1428,
+      "outputTokens": 24,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0015480000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 11,
+      "outputTokens": 4207,
+      "cacheReadInputTokens": 213789,
+      "cacheCreationInputTokens": 52968,
+      "webSearchRequests": 0,
+      "costUSD": 0.5431745,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "454cec4d-bdf9-421b-b180-ed1d4d55b351"
+}
+```
+
+</details>
+
+---

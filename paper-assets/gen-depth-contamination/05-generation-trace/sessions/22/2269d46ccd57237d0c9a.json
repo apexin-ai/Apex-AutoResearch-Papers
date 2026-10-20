@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2269d46ccd57237d0c9a",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "writing llm confidence depth",
+  "task_key": "worker_writing_llm-confidence-depth_20260514T084315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_llm-confidence-depth_20260514T084315_result.json",
+    "occurrence": 1,
+    "bytes": 918,
+    "sha256": "32bda09f9d51b414efb3e12d2051433b319acfef1cea12855f04a1d2007a69ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Inserted at `discussion.tex:101-103` (Section 5.5, between the existing qualitative argument and the future-work caveat). Full paragraph (~80 words):\n\n> Per-depth analysis sharpens this conclusion. Both models achieve high depth-0 recall (GPT-5.5: 0.77, Claude: 0.69), indicating reliable human-text identification, but recall for depths 1–4 collapses to 0.08–0.38, with confusion matrices (Table S3) showing predictions scattered nearly uniformly across non-human classes. The resulting Spearman correlations between predicted and true depth are weak (ρ = 0.38 for GPT-5.5, ρ = 0.42 for Claude), confirming that frontier LLMs function as binary human-vs.-AI detectors augmented by near-random depth guessing—confidence scores cannot serve as a depth proxy.\n\nData sources: Spearman ρ values from the exp-011 checkpoint; per-depth recall and confusion matrices from Table S3 in appendix.tex."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-llm-confidence-depth.md"
+}

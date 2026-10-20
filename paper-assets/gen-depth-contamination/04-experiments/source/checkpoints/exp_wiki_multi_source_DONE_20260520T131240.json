@@ -1,0 +1,64 @@
+{
+  "exp_id": "exp_wiki_multi_source",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:31:50.277Z",
+    "updated_at": "2026-05-20T13:12:39.770Z",
+    "hypothesis": "Wiki domain multi-source OBD K* preserves single-source ceiling when mixing 3 generators (Qwen1.5B, LLaMA-8B, Mistral-7B) with unified Qwen2.5-1.5B scorer, consistent with C4 multi-source K*=2 and arXiv multi-source K*=3.",
+    "spec": {
+      "command": "python /root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_wiki.py",
+      "server": "cqa1-22115",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki,exp_wiki_llama8b,exp_wiki_mistral7b",
+      "data_count": 90000,
+      "model_name": "Qwen2.5-1.5B (scorer)",
+      "seed": 42,
+      "checkpoint_path": "N/A (eval-only)",
+      "log_path": "/root/autodl-tmp/gen-depth-contamination/data/wiki_multi_source/"
+    },
+    "metrics": {
+      "k_star": 1,
+      "generators": [
+        "qwen1b5",
+        "llama8b",
+        "mistral7b"
+      ],
+      "docs_per_generator": 1000,
+      "total_rows": 18000,
+      "unified_scorer": "qwen2.5-1.5b",
+      "vocab_only_no_label": {
+        "0v1": 0.7616,
+        "1v2": 0.5434,
+        "2v3": 0.517,
+        "kstar": 1
+      },
+      "vocab_only_with_label": {
+        "0v1": 0.7779,
+        "1v2": 0.552,
+        "2v3": 0.5248,
+        "kstar": 1
+      },
+      "unified_no_label": {
+        "0v1": 0.9603,
+        "1v2": 0.5685,
+        "2v3": 0.519,
+        "kstar": 1
+      },
+      "unified_with_label": {
+        "0v1": 0.9685,
+        "1v2": 0.579,
+        "2v3": 0.5299,
+        "kstar": 1
+      },
+      "elapsed_seconds": 3499,
+      "note": "All 3 generators (qwen1b5/llama8b/mistral7b) participated. K*=1 consistent with cross-scorer single-source results (llama8b K*=1, mistral7b K*=1, qwen K*=2). Mixed pool pulled to K*=1 by majority."
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T13:12:39.770Z"
+  },
+  "timestamp": "2026-05-20T13:12:40.061080+00:00",
+  "trigger": "update_registry"
+}

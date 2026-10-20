@@ -1,0 +1,70 @@
+{
+  "exp_id": "exp_wiki_mistral7b",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T14:04:15.959Z",
+    "updated_at": "2026-05-17T19:53:56.272Z",
+    "hypothesis": "Mistral-7B Wikipedia K* test: Mistral-7B-v0.3 在 C4 上 K*=1 (text-intrinsic one-wash)。在 Wikipedia domain 上是否仍 K*=1？Pythia/OLMo 在 Wikipedia 均 K*=1，Qwen K*=2。如果 Mistral K*=1 → 确认 one-wash 跨域成立；如果 K*>1 → Wikipedia 有 rescue Mistral 的结构信号（与预期相反）。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "parent": "exp_wiki_pythia_v2",
+    "server": "cqa1-22115",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "cqa1-22115",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-17T14:05:42.553Z",
+      "command": "cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python3.12 scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-v0___3 --data_dir data/exp_wiki_mistral7b --results_dir results/exp_wiki_mistral7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B",
+      "code_commit": "0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5",
+      "finished_at": "2026-05-17T19:50:28.711Z",
+      "training_hours": 5.75
+    },
+    "spec": {
+      "command": "cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python3.12 scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-v0___3 --data_dir data/exp_wiki_mistral7b --results_dir results/exp_wiki_mistral7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:1"
+      ],
+      "data_path": "data/exp_wiki_mistral7b",
+      "data_count": 5000,
+      "model_name": "mistralai/Mistral-7B-v0.3",
+      "seed": 42,
+      "checkpoint_source": "pretrained:mistralai/Mistral-7B-v0.3",
+      "eval_data": "Wikipedia depth 0-5, scorer=Qwen2.5-1.5B"
+    },
+    "pid": "41845",
+    "log_path": "~/runs/gen-depth-contamination/exp_wiki_mistral7b.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T19:50:32.601540+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_mistral7b",
+    "metrics": {
+      "K_star": 1,
+      "ordinal_mae": 1.3445,
+      "ordinal_accuracy": 0.3273,
+      "auc_0v1": 0.9607,
+      "auc_1v2": 0.5552,
+      "auc_2v3": 0.5236,
+      "auc_3v4": 0.5181,
+      "auc_4v5": 0.5012,
+      "jsd_0v1": 0.054134,
+      "jsd_1v2": 0.005678,
+      "jsd_2v3": 0.003698,
+      "jsd_3v4": 0.003459,
+      "jsd_4v5": 0.003274
+    },
+    "completed_at": "2026-05-17T19:53:56.272Z"
+  },
+  "timestamp": "2026-05-17T19:53:56.419867+00:00",
+  "trigger": "update_registry"
+}

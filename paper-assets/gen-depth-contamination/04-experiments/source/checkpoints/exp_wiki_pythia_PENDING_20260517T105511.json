@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_wiki_pythia",
+  "project": "gen-depth-contamination",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T10:54:00.154Z",
+    "updated_at": "2026-05-17T10:55:11.669Z",
+    "hypothesis": "Cross-model Wikipedia K* validation: Pythia-1.4B continuation on Wikipedia 的 K* 是否 = 2（与 exp-023 Qwen 一致）？验证 Wikipedia domain K*=2 跨模型稳定性，补全 domain × model 覆盖矩阵。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "parent": "exp_023_domain_ablation"
+  },
+  "timestamp": "2026-05-17T10:55:11.814154+00:00",
+  "trigger": "update_registry"
+}

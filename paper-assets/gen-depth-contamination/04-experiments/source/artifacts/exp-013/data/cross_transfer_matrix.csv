@@ -1,0 +1,17 @@
+train_model,test_model,accuracy,mae,kendall_tau_b,mean_pairwise_auc
+Qwen-rewrite,Qwen-rewrite,0.4229,0.9836,0.5518,0.6214
+Qwen-rewrite,Pythia,0.259,1.9823,0.2768,0.5787
+Qwen-rewrite,OLMo,0.2653,1.976,0.2492,0.5791
+Qwen-rewrite,Qwen-cont,0.3466,1.5157,0.4595,0.6247
+Pythia,Qwen-rewrite,0.2718,1.9026,0.1695,0.5603
+Pythia,Pythia,0.3856,1.1072,0.4745,0.6055
+Pythia,OLMo,0.3531,1.2809,0.41,0.5937
+Pythia,Qwen-cont,0.3287,1.5016,0.3801,0.6082
+OLMo,Qwen-rewrite,0.2768,1.8935,0.1708,0.5607
+OLMo,Pythia,0.345,1.3494,0.3979,0.5999
+OLMo,OLMo,0.3822,1.1469,0.4683,0.6015
+OLMo,Qwen-cont,0.3244,1.5574,0.3542,0.5926
+Qwen-cont,Qwen-rewrite,0.344,1.3404,0.4126,0.5767
+Qwen-cont,Pythia,0.3284,1.3363,0.3912,0.6025
+Qwen-cont,OLMo,0.3112,1.475,0.3241,0.5988
+Qwen-cont,Qwen-cont,0.3875,1.1209,0.4769,0.6111

@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_027",
+  "project": "gen-depth-contamination",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:09:21.384Z",
+    "updated_at": "2026-05-17T08:09:42.249Z",
+    "hypothesis": "Document-level bootstrap CI (10000 iterations) on exp-008 v2 retrain-chain data will confirm that all 4 pairwise AUCs have CI_lower > theta=0.60, supporting K*>=4 with statistical significance.",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T08:09:42.420049+00:00",
+  "trigger": "update_registry"
+}

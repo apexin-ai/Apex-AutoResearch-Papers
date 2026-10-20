@@ -1,0 +1,4756 @@
+# ops expanded eval parallel seed2
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 88
+- **Recorded user turns:** 0
+- **Tool calls:** 31
+- **Original source:** `logs/workers/worker_ops_expanded_eval_parallel_seed2_20260520T200822.log`
+- **Structured JSON:** [`95c982b34b56455be7b0.json`](../../sessions/95/95c982b34b56455be7b0.json)
+
+## Before a recorded user message
+
+88 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__submit_training_job",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "d2b2176a-5e72-45e1-a317-3523d751d05b",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779318000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "ddff3e68-5ffd-49a9-aec7-30a38e003e30",
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me break down the tasks:
+
+1. Read the current script, modify it to add `--strategy` and `--skip_train` parameters, deploy to server
+2. Submit seed2 jobs on cuda:1,2,3
+3. Check seed0/seed1 checkpoints for GSM8K补跑
+4. Collect results when done
+
+Let me start by reading the current script and checking the server state.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "4b7f0bbc-7138-4ecb-a3fa-f9ef593b84ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013CXALCDXYjc6TnJYN7kpPK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12937,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12937
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先读脚本和检查服务器状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "ea3e2f0d-1177-434c-acfc-8aed4a9c1444",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013CXALCDXYjc6TnJYN7kpPK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12937,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12937
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01XTiRQjQZ8KnUjtKxn4wUky`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__detect_image",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "a148148b-837c-47cf-8fd9-c4f5bbaf6b68",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013CXALCDXYjc6TnJYN7kpPK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12937,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12937
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-20T20:08:37.570Z_
+
+<details><summary>↩ Tool result · `toolu_01XTiRQjQZ8KnUjtKxn4wUky`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__submit_training_job"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "ebadf341-47a6-4ab7-bb44-4d95eb44e338",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 27
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LLjgyuG4V7UqYTGtiuQF5i`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/scripts/exp_expanded_downstream_eval.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "f9095b19-d018-4983-87e5-9c7730e4cc29",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015a47cSRhTd3FLojSevL5JL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1768,
+      "cache_read_input_tokens": 24778,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1768
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UBMZGuiC8BnojovwneSjgy`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/ -name \"adapter_config.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "e659d83d-047c-4716-92e0-2a95a28a721f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015a47cSRhTd3FLojSevL5JL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1768,
+      "cache_read_input_tokens": 24778,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1768
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T20:08:42.318Z_
+
+<details><summary>↩ Tool result · `toolu_01LLjgyuG4V7UqYTGtiuQF5i`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Expanded downstream evaluation for K*-guided filtering strategies.\\n\\nRetrains LoRA models on Qwen2.5-1.5B with 3 filtering strategies\\n(no_filter, binary_ours, graduated), then evaluates on 5 benchmarks:\\nPIQA, TruthfulQA-MC2, WinoGrande, ARC-Challenge, GSM8K.\\n\\nUsage:\\n    python scripts/exp_expanded_downstream_eval.py --device cuda:0 --num_seeds 3\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport json\\nimport logging\\nimport os\\nimport shutil\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom scipy import stats\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    datefmt=\\\"%H:%M:%S\\\",\\n    handlers=[logging.StreamHandler(sys.stdout)],\\n)\\nlog = logging.getLogger(__name__)\\n\\nPROJECT_ROOT = Path(\\\"/root/autodl-tmp/gen-depth-contamination\\\")\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\\nDATA_DIR = PROJECT_ROOT / \\\"data_exp020_pythia_greedy\\\"\\n\\nKSTAR = 2\\nGRADUATED_ALPHA = 0.9\\nMAX_DEPTH = 5\\nSTRATEGIES = [\\\"no_filter\\\", \\\"binary_ours\\\", \\\"graduated\\\"]\\n\\nLORA_RANK = 8\\nLORA_ALPHA = 16\\nLORA_TARGET_MODULES = [\\\"q_proj\\\", \\\"v_proj\\\"]\\nLORA_DROPOUT = 0.05\\n\\nTRAIN_LR = 2e-4\\nTRAIN_BATCH_SIZE = 4\\nGRADIENT_ACCUMULATION = 4\\nTRAIN_EPOCHS = 1\\nMAX_LENGTH = 256\\n\\nBENCHMARKS = [\\n    (\\\"piqa\\\", 0),\\n    (\\\"truthfulqa_mc2\\\", 0),\\n    (\\\"winogrande\\\", 5),\\n    (\\\"arc_challenge\\\", 25),\\n    (\\\"gsm8k\\\", 8),\\n]\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef set_seed(seed):\\n    np.random.seed(seed)\\n    torch.manual_seed(seed)\\n    if torch.cuda.is_available():\\n        torch.cuda.manual_seed_all(seed)\\n\\n\\ndef prepare_data(strategy, seed):\\n    rng = np.random.RandomState(seed)\\n    all_texts = []\\n    all_weights = []\\n\\n    if strategy == \\\"no_filter\\\":\\n        for d in range(MAX_DEPTH + 1):\\n            records = load_jsonl(DATA_DIR / f\\\"depth_{d}.jsonl\\\")\\n            all_texts.extend(r[\\\"text\\\"] for r in records)\\n            all_weights.extend([1.0] * len(records))\\n    elif strategy == \\\"binary_ours\\\":\\n        for d in range(KSTAR + 1):\\n            records = load_jsonl(DATA_DIR / f\\\"depth_{d}.jsonl\\\")\\n            all_texts.extend(r[\\\"text\\\"] for r in records)\\n            all_weights.extend([1.0] * len(records))\\n    elif strategy == \\\"graduated\\\":\\n        for d in range(MAX_DEPTH + 1):\\n            records = load_jsonl(DATA_DIR / f\\\"depth_{d}.jsonl\\\")\\n            w = GRADUATED_ALPHA ** d\\n            all_texts.extend(r[\\\"text\\\"] for r in records)\\n            all_weights.extend([w] * len(records))\\n    else:\\n        raise ValueError(f\\\"Unknown strategy: {strategy}\\\")\\n\\n    indices = list(range(len(all_texts)))\\n    rng.shuffle(indices)\\n    all_texts = [all_texts[i] for i in indices]\\n    all_weights = [all_weights[i] for i in indices]\\n\\n    log.info(f\\\"Data: strategy={strategy}, n={len(all_texts)}, \\\"\\n             f\\\"mean_weight={np.mean(all_weights):.4f}\\\")\\n    return all_texts, all_weights\\n\\n\\ndef train_lora(texts, weights, output_dir, device, seed):\\n    from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments\\n    from peft import LoraConfig, get_peft_model, TaskType\\n    from torch.utils.data import Dataset\\n\\n    set_seed(seed)\\n\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n        tokenizer.pad_token_id = tokenizer.eos_token_id\\n\\n    class WeightedTextDataset(Dataset):\\n        def __init__(self, texts, weights, tokenizer, max_length):\\n            self.encodings = []\\n            self.weights = []\\n            for text, w in zip(texts, weights):\\n                enc = tokenizer(text, truncation=True, max_length=max_length,\\n                                padding=\\\"max_length\\\", return_tensors=\\\"pt\\\")\\n                self.encodings.append({k: v.squeeze(0) for k, v in enc.items()})\\n                self.weights.append(w)\\n\\n        def __len__(self):\\n            return len(self.encodings)\\n\\n        def __getitem__(self, idx):\\n     \\n\\n... [截断: 输出过长，省略 8426 字符] ...\\n\\nering\\\")\\n    parser.add_argument(\\\"--device\\\", type=str, default=\\\"cuda:0\\\")\\n    parser.add_argument(\\\"--num_seeds\\\", type=int, default=3)\\n    parser.add_argument(\\\"--seed_start\\\", type=int, default=0)\\n    parser.add_argument(\\\"--skip_base\\\", action=\\\"store_true\\\")\\n    args = parser.parse_args()\\n\\n    results_dir = PROJECT_ROOT / \\\"results\\\" / \\\"exp_expanded_downstream_eval\\\"\\n    results_dir.mkdir(parents=True, exist_ok=True)\\n\\n    log_path = PROJECT_ROOT / \\\"logs\\\" / \\\"exp_expanded_downstream_eval.log\\\"\\n    log_path.parent.mkdir(parents=True, exist_ok=True)\\n    fh = logging.FileHandler(log_path)\\n    fh.setFormatter(logging.Formatter(\\n        \\\"%(asctime)s [%(levelname)s] %(message)s\\\", datefmt=\\\"%H:%M:%S\\\"))\\n    logging.getLogger().addHandler(fh)\\n\\n    log.info(\\\"=\\\" * 60)\\n    log.info(\\\"Expanded Downstream Evaluation\\\")\\n    log.info(f\\\"Model: {MODEL_PATH}\\\")\\n    log.info(f\\\"Data: {DATA_DIR}\\\")\\n    log.info(f\\\"Strategies: {STRATEGIES}\\\")\\n    log.info(f\\\"Seeds: {args.seed_start}-{args.seed_start + args.num_seeds - 1}\\\")\\n    log.info(f\\\"Benchmarks: {[b[0] for b in BENCHMARKS]}\\\")\\n    log.info(f\\\"LoRA: rank={LORA_RANK}, alpha={LORA_ALPHA}, target={LORA_TARGET_MODULES}\\\")\\n    log.info(\\\"=\\\" * 60)\\n\\n    if not args.skip_base:\\n        base_eval_path = results_dir / \\\"base_model_eval.json\\\"\\n        if base_eval_path.exists():\\n            log.info(\\\"Base model eval exists, skipping\\\")\\n        else:\\n            log.info(\\\"Evaluating base model...\\\")\\n            base_scores = evaluate_model(MODEL_PATH, args.device, base_eval_path)\\n            log.info(f\\\"Base model scores: {base_scores}\\\")\\n\\n    for seed in range(args.seed_start, args.seed_start + args.num_seeds):\\n        for strategy in STRATEGIES:\\n            run_name = f\\\"{strategy}_seed{seed}\\\"\\n            eval_path = results_dir / f\\\"{run_name}_eval.json\\\"\\n\\n            if eval_path.exists():\\n                log.info(f\\\"[{run_name}] Already completed, skipping\\\")\\n                continue\\n\\n            log.info(f\\\"\\\\n{'='*60}\\\\n  {run_name}\\\\n{'='*60}\\\")\\n\\n            texts, weights = prepare_data(strategy, seed)\\n\\n            train_dir = results_dir / f\\\"{run_name}_train\\\"\\n            model_dir = train_lora(texts, weights, train_dir, args.device, seed)\\n\\n            scores = evaluate_model(model_dir, args.device, eval_path)\\n            log.info(f\\\"[{run_name}] Scores: {scores}\\\")\\n\\n            if train_dir.exists():\\n                shutil.rmtree(train_dir, ignore_errors=True)\\n                log.info(f\\\"Cleaned up {train_dir}\\\")\\n\\n    log.info(\\\"\\\\n\\\" + \\\"=\\\" * 60 + \\\"\\\\n  STATISTICAL ANALYSIS\\\\n\\\" + \\\"=\\\" * 60)\\n    analysis = run_statistical_analysis(\\n        results_dir, args.num_seeds, args.seed_start)\\n\\n    log.info(\\\"\\\\n=== SUMMARY ===\\\")\\n\\n    base_eval_path = results_dir / \\\"base_model_eval.json\\\"\\n    if base_eval_path.exists():\\n        with open(base_eval_path) as f:\\n            base_scores = json.load(f)[\\\"scores\\\"]\\n        log.info(\\\"  base_model: \\\" + \\\", \\\".join(\\n            f\\\"{k}={v:.4f}\\\" for k, v in base_scores.items() if v is not None))\\n\\n    for strategy in STRATEGIES:\\n        strat = analysis[\\\"strategies\\\"].get(strategy, {})\\n        if strat:\\n            parts = []\\n            for bench in sorted(strat.keys()):\\n                m = strat[bench][\\\"mean\\\"]\\n                s = strat[bench][\\\"std\\\"]\\n                parts.append(f\\\"{bench}={m:.4f}+/-{s:.4f}\\\")\\n            log.info(f\\\"  {strategy}: {', '.join(parts)}\\\")\\n\\n    for comp in analysis.get(\\\"comparisons\\\", []):\\n        sig = \\\"***\\\" if comp.get(\\\"holm_significant\\\") else \\\"n.s.\\\"\\n        log.info(f\\\"  {comp['benchmark']}: {comp['comparison']}: \\\"\\n                 f\\\"d={comp['cohens_d']:.3f}, p={comp['p_value']:.4f} {sig}\\\")\\n\\n    summary = {\\\"base_model\\\": {}, \\\"strategies\\\": analysis[\\\"strategies\\\"],\\n               \\\"comparisons\\\": analysis[\\\"comparisons\\\"]}\\n    if base_eval_path.exists():\\n        with open(base_eval_path) as f:\\n            summary[\\\"base_model\\\"] = json.load(f)[\\\"scores\\\"]\\n    with open(results_dir / \\\"summary.json\\\", \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n\\n    log.info(\\\"\\\\nDone!\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "1e12c13d-e5d2-45fd-ad66-7edcc215217e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Expanded downstream evaluation for K*-guided filtering strategies.\\\\n\\\\nRetrains LoRA models on Qwen2.5-1.5B with 3 filtering strategies\\\\n(no_filter, binary_ours, graduated), then evaluates on 5 benchmarks:\\\\nPIQA, TruthfulQA-MC2, WinoGrande, ARC-Challenge, GSM8K.\\\\n\\\\nUsage:\\\\n    python scripts/exp_expanded_downstream_eval.py --device cuda:0 --num_seeds 3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport gc\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport shutil\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom scipy import stats\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    datefmt=\\\\\\\"%H:%M:%S\\\\\\\",\\\\n    handlers=[logging.StreamHandler(sys.stdout)],\\\\n)\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nPROJECT_ROOT = Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination\\\\\\\")\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\\\\\"\\\\nDATA_DIR = PROJECT_ROOT / \\\\\\\"data_exp020_pythia_greedy\\\\\\\"\\\\n\\\\nKSTAR = 2\\\\nGRADUATED_ALPHA = 0.9\\\\nMAX_DEPTH = 5\\\\nSTRATEGIES = [\\\\\\\"no_filter\\\\\\\", \\\\\\\"binary_ours\\\\\\\", \\\\\\\"graduated\\\\\\\"]\\\\n\\\\nLORA_RANK = 8\\\\nLORA_ALPHA = 16\\\\nLORA_TARGET_MODULES = [\\\\\\\"q_proj\\\\\\\", \\\\\\\"v_proj\\\\\\\"]\\\\nLORA_DROPOUT = 0.05\\\\n\\\\nTRAIN_LR = 2e-4\\\\nTRAIN_BATCH_SIZE = 4\\\\nGRADIENT_ACCUMULATION = 4\\\\nTRAIN_EPOCHS = 1\\\\nMAX_LENGTH = 256\\\\n\\\\nBENCHMARKS = [\\\\n    (\\\\\\\"piqa\\\\\\\", 0),\\\\n    (\\\\\\\"truthfulqa_mc2\\\\\\\", 0),\\\\n    (\\\\\\\"winogrande\\\\\\\", 5),\\\\n    (\\\\\\\"arc_challenge\\\\\\\", 25),\\\\n    (\\\\\\\"gsm8k\\\\\\\", 8),\\\\n]\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f]\\\\n\\\\n\\\\ndef set_seed(seed):\\\\n    np.random.seed(seed)\\\\n    torch.manual_seed(seed)\\\\n    if torch.cuda.is_available():\\\\n        torch.cuda.manual_seed_all(seed)\\\\n\\\\n\\\\ndef prepare_data(strategy, seed):\\\\n    rng = np.random.RandomState(seed)\\\\n    all_texts = []\\\\n    all_weights = []\\\\n\\\\n    if strategy == \\\\\\\"no_filter\\\\\\\":\\\\n        for d in range(MAX_DEPTH + 1):\\\\n            records = load_jsonl(DATA_DIR / f\\\\\\\"depth_{d}.jsonl\\\\\\\")\\\\n            all_texts.extend(r[\\\\\\\"text\\\\\\\"] for r in records)\\\\n            all_weights.extend([1.0] * len(records))\\\\n    elif strategy == \\\\\\\"binary_ours\\\\\\\":\\\\n        for d in range(KSTAR + 1):\\\\n            records = load_jsonl(DATA_DIR / f\\\\\\\"depth_{d}.jsonl\\\\\\\")\\\\n            all_texts.extend(r[\\\\\\\"text\\\\\\\"] for r in records)\\\\n            all_weights.extend([1.0] * len(records))\\\\n    elif strategy == \\\\\\\"graduated\\\\\\\":\\\\n        for d in range(MAX_DEPTH + 1):\\\\n            records = load_jsonl(DATA_DIR / f\\\\\\\"depth_{d}.jsonl\\\\\\\")\\\\n            w = GRADUATED_ALPHA ** d\\\\n            all_texts.extend(r[\\\\\\\"text\\\\\\\"] for r in records)\\\\n            all_weights.extend([w] * len(records))\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown strategy: {strategy}\\\\\\\")\\\\n\\\\n    indices = list(range(len(all_texts)))\\\\n    rng.shuffle(indices)\\\\n    all_texts = [all_texts[i] for i in indices]\\\\n    all_weights = [all_weights[i] for i in indices]\\\\n\\\\n    log.info(f\\\\\\\"Data: strategy={strategy}, n={len(all_texts)}, \\\\\\\"\\\\n             f\\\\\\\"mean_weight={np.mean(all_weights):.4f}\\\\\\\")\\\\n    return all_texts, all_weights\\\\n\\\\n\\\\ndef train_lora(texts, weights, output_dir, device, seed):\\\\n    from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments\\\\n    from peft import LoraConfig, get_peft_model, TaskType\\\\n    from torch.utils.data import Dataset\\\\n\\\\n    set_seed(seed)\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n        tokenizer.pad_token_id = tokenizer.eos_token_id\\\\n\\\\n    class WeightedTextDataset(Dataset):\\\\n        def __init__(self, texts, weights, tokenizer, max_length):\\\\n            self.encodings = []\\\\n            self.weights = []\\\\n            for text, w in zip(texts, weights):\\\\n                enc = tokenizer(text, truncation=True, max_length=max_length,\\\\n                                padding=\\\\\\\"max_length\\\\\\\", return_tensors=\\\\\\\"pt\\\\\\\")\\\\n                self.encodings.append({k: v.squeeze(0) for k, v in enc.items()})\\\\n                self.weights.append(w)\\\\n\\\\n        def __len__(self):\\\\n            return len(self.encodings)\\\\n\\\\n        def __getitem__(self, idx):\\\\n     \\\\n\\\\n... [截断: 输出过长，省略 8426 字符] ...\\\\n\\\\nering\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--device\\\\\\\", type=str, default=\\\\\\\"cuda:0\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--num_seeds\\\\\\\", type=int, default=3)\\\\n    parser.add_argument(\\\\\\\"--seed_start\\\\\\\", type=int, default=0)\\\\n    parser.add_argument(\\\\\\\"--skip_base\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    results_dir = PROJECT_ROOT / \\\\\\\"results\\\\\\\" / \\\\\\\"exp_expanded_downstream_eval\\\\\\\"\\\\n    results_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    log_path = PROJECT_ROOT / \\\\\\\"logs\\\\\\\" / \\\\\\\"exp_expanded_downstream_eval.log\\\\\\\"\\\\n    log_path.parent.mkdir(parents=True, exist_ok=True)\\\\n    fh = logging.FileHandler(log_path)\\\\n    fh.setFormatter(logging.Formatter(\\\\n        \\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\", datefmt=\\\\\\\"%H:%M:%S\\\\\\\"))\\\\n    logging.getLogger().addHandler(fh)\\\\n\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    log.info(\\\\\\\"Expanded Downstream Evaluation\\\\\\\")\\\\n    log.info(f\\\\\\\"Model: {MODEL_PATH}\\\\\\\")\\\\n    log.info(f\\\\\\\"Data: {DATA_DIR}\\\\\\\")\\\\n    log.info(f\\\\\\\"Strategies: {STRATEGIES}\\\\\\\")\\\\n    log.info(f\\\\\\\"Seeds: {args.seed_start}-{args.seed_start + args.num_seeds - 1}\\\\\\\")\\\\n    log.info(f\\\\\\\"Benchmarks: {[b[0] for b in BENCHMARKS]}\\\\\\\")\\\\n    log.info(f\\\\\\\"LoRA: rank={LORA_RANK}, alpha={LORA_ALPHA}, target={LORA_TARGET_MODULES}\\\\\\\")\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    if not args.skip_base:\\\\n        base_eval_path = results_dir / \\\\\\\"base_model_eval.json\\\\\\\"\\\\n        if base_eval_path.exists():\\\\n            log.info(\\\\\\\"Base model eval exists, skipping\\\\\\\")\\\\n        else:\\\\n            log.info(\\\\\\\"Evaluating base model...\\\\\\\")\\\\n            base_scores = evaluate_model(MODEL_PATH, args.device, base_eval_path)\\\\n            log.info(f\\\\\\\"Base model scores: {base_scores}\\\\\\\")\\\\n\\\\n    for seed in range(args.seed_start, args.seed_start + args.num_seeds):\\\\n        for strategy in STRATEGIES:\\\\n            run_name = f\\\\\\\"{strategy}_seed{seed}\\\\\\\"\\\\n            eval_path = results_dir / f\\\\\\\"{run_name}_eval.json\\\\\\\"\\\\n\\\\n            if eval_path.exists():\\\\n                log.info(f\\\\\\\"[{run_name}] Already completed, skipping\\\\\\\")\\\\n                continue\\\\n\\\\n            log.info(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\\n  {run_name}\\\\\\\\n{'='*60}\\\\\\\")\\\\n\\\\n            texts, weights = prepare_data(strategy, seed)\\\\n\\\\n            train_dir = results_dir / f\\\\\\\"{run_name}_train\\\\\\\"\\\\n            model_dir = train_lora(texts, weights, train_dir, args.device, seed)\\\\n\\\\n            scores = evaluate_model(model_dir, args.device, eval_path)\\\\n            log.info(f\\\\\\\"[{run_name}] Scores: {scores}\\\\\\\")\\\\n\\\\n            if train_dir.exists():\\\\n                shutil.rmtree(train_dir, ignore_errors=True)\\\\n                log.info(f\\\\\\\"Cleaned up {train_dir}\\\\\\\")\\\\n\\\\n    log.info(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60 + \\\\\\\"\\\\\\\\n  STATISTICAL ANALYSIS\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    analysis = run_statistical_analysis(\\\\n        results_dir, args.num_seeds, args.seed_start)\\\\n\\\\n    log.info(\\\\\\\"\\\\\\\\n=== SUMMARY ===\\\\\\\")\\\\n\\\\n    base_eval_path = results_dir / \\\\\\\"base_model_eval.json\\\\\\\"\\\\n    if base_eval_path.exists():\\\\n        with open(base_eval_path) as f:\\\\n            base_scores = json.load(f)[\\\\\\\"scores\\\\\\\"]\\\\n        log.info(\\\\\\\"  base_model: \\\\\\\" + \\\\\\\", \\\\\\\".join(\\\\n            f\\\\\\\"{k}={v:.4f}\\\\\\\" for k, v in base_scores.items() if v is not None))\\\\n\\\\n    for strategy in STRATEGIES:\\\\n        strat = analysis[\\\\\\\"strategies\\\\\\\"].get(strategy, {})\\\\n        if strat:\\\\n            parts = []\\\\n            for bench in sorted(strat.keys()):\\\\n                m = strat[bench][\\\\\\\"mean\\\\\\\"]\\\\n                s = strat[bench][\\\\\\\"std\\\\\\\"]\\\\n                parts.append(f\\\\\\\"{bench}={m:.4f}+/-{s:.4f}\\\\\\\")\\\\n            log.info(f\\\\\\\"  {strategy}: {', '.join(parts)}\\\\\\\")\\\\n\\\\n    for comp in analysis.get(\\\\\\\"comparisons\\\\\\\", []):\\\\n        sig = \\\\\\\"***\\\\\\\" if comp.get(\\\\\\\"holm_significant\\\\\\\") else \\\\\\\"n.s.\\\\\\\"\\\\n        log.info(f\\\\\\\"  {comp['benchmark']}: {comp['comparison']}: \\\\\\\"\\\\n                 f\\\\\\\"d={comp['cohens_d']:.3f}, p={comp['p_value']:.4f} {sig}\\\\\\\")\\\\n\\\\n    summary = {\\\\\\\"base_model\\\\\\\": {}, \\\\\\\"strategies\\\\\\\": analysis[\\\\\\\"strategies\\\\\\\"],\\\\n               \\\\\\\"comparisons\\\\\\\": analysis[\\\\\\\"comparisons\\\\\\\"]}\\\\n    if base_eval_path.exists():\\\\n        with open(base_eval_path) as f:\\\\n            summary[\\\\\\\"base_model\\\\\\\"] = json.load(f)[\\\\\\\"scores\\\\\\\"]\\\\n    with open(results_dir / \\\\\\\"summary.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n\\\\n    log.info(\\\\\\\"\\\\\\\\nDone!\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Expanded downstream evaluation for K*-guided filtering strategies.\\n\\nRetrains LoRA models on Qwen2.5-1.5B with 3 filtering strategies\\n(no_filter, binary_ours, graduated), then evaluates on 5 benchmarks:\\nPIQA, TruthfulQA-MC2, WinoGrande, ARC-Challenge, GSM8K.\\n\\nUsage:\\n    python scripts/exp_expanded_downstream_eval.py --device cuda:0 --num_seeds 3\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport json\\nimport logging\\nimport os\\nimport shutil\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom scipy import stats\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    datefmt=\\\"%H:%M:%S\\\",\\n    handlers=[logging.StreamHandler(sys.stdout)],\\n)\\nlog = logging.getLogger(__name__)\\n\\nPROJECT_ROOT = Path(\\\"/root/autodl-tmp/gen-depth-contamination\\\")\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\\nDATA_DIR = PROJECT_ROOT / \\\"data_exp020_pythia_greedy\\\"\\n\\nKSTAR = 2\\nGRADUATED_ALPHA = 0.9\\nMAX_DEPTH = 5\\nSTRATEGIES = [\\\"no_filter\\\", \\\"binary_ours\\\", \\\"graduated\\\"]\\n\\nLORA_RANK = 8\\nLORA_ALPHA = 16\\nLORA_TARGET_MODULES = [\\\"q_proj\\\", \\\"v_proj\\\"]\\nLORA_DROPOUT = 0.05\\n\\nTRAIN_LR = 2e-4\\nTRAIN_BATCH_SIZE = 4\\nGRADIENT_ACCUMULATION = 4\\nTRAIN_EPOCHS = 1\\nMAX_LENGTH = 256\\n\\nBENCHMARKS = [\\n    (\\\"piqa\\\", 0),\\n    (\\\"truthfulqa_mc2\\\", 0),\\n    (\\\"winogrande\\\", 5),\\n    (\\\"arc_challenge\\\", 25),\\n    (\\\"gsm8k\\\", 8),\\n]\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef set_seed(seed):\\n    np.random.seed(seed)\\n    torch.manual_seed(seed)\\n    if torch.cuda.is_available():\\n        torch.cuda.manual_seed_all(seed)\\n\\n\\ndef prepare_data(strategy, seed):\\n    rng = np.random.RandomState(seed)\\n    all_texts = []\\n    all_weights = []\\n\\n    if strategy == \\\"no_filter\\\":\\n        for d in range(MAX_DEPTH + 1):\\n            records = load_jsonl(DATA_DIR / f\\\"depth_{d}.jsonl\\\")\\n            all_texts.extend(r[\\\"text\\\"] for r in records)\\n            all_weights.extend([1.0] * len(records))\\n    elif strategy == \\\"binary_ours\\\":\\n        for d in range(KSTAR + 1):\\n            records = load_jsonl(DATA_DIR / f\\\"depth_{d}.jsonl\\\")\\n            all_texts.extend(r[\\\"text\\\"] for r in records)\\n            all_weights.extend([1.0] * len(records))\\n    elif strategy == \\\"graduated\\\":\\n        for d in range(MAX_DEPTH + 1):\\n            records = load_jsonl(DATA_DIR / f\\\"depth_{d}.jsonl\\\")\\n            w = GRADUATED_ALPHA ** d\\n            all_texts.extend(r[\\\"text\\\"] for r in records)\\n            all_weights.extend([w] * len(records))\\n    else:\\n        raise ValueError(f\\\"Unknown strategy: {strategy}\\\")\\n\\n    indices = list(range(len(all_texts)))\\n    rng.shuffle(indices)\\n    all_texts = [all_texts[i] for i in indices]\\n    all_weights = [all_weights[i] for i in indices]\\n\\n    log.info(f\\\"Data: strategy={strategy}, n={len(all_texts)}, \\\"\\n             f\\\"mean_weight={np.mean(all_weights):.4f}\\\")\\n    return all_texts, all_weights\\n\\n\\ndef train_lora(texts, weights, output_dir, device, seed):\\n    from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments\\n    from peft import LoraConfig, get_peft_model, TaskType\\n    from torch.utils.data import Dataset\\n\\n    set_seed(seed)\\n\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n        tokenizer.pad_token_id = tokenizer.eos_token_id\\n\\n    class WeightedTextDataset(Dataset):\\n        def __init__(self, texts, weights, tokenizer, max_length):\\n            self.encodings = []\\n            self.weights = []\\n            for text, w in zip(texts, weights):\\n                enc = tokenizer(text, truncation=True, max_length=max_length,\\n                                padding=\\\"max_length\\\", return_tensors=\\\"pt\\\")\\n                self.encodings.append({k: v.squeeze(0) for k, v in enc.items()})\\n                self.weights.append(w)\\n\\n        def __len__(self):\\n            return len(self.encodings)\\n\\n        def __getitem__(self, idx):\\n     \\n\\n... [截断: 输出过长，省略 8426 字符] ...\\n\\nering\\\")\\n    parser.add_argument(\\\"--device\\\", type=str, default=\\\"cuda:0\\\")\\n    parser.add_argument(\\\"--num_seeds\\\", type=int, default=3)\\n    parser.add_argument(\\\"--seed_start\\\", type=int, default=0)\\n    parser.add_argument(\\\"--skip_base\\\", action=\\\"store_true\\\")\\n    args = parser.parse_args()\\n\\n    results_dir = PROJECT_ROOT / \\\"results\\\" / \\\"exp_expanded_downstream_eval\\\"\\n    results_dir.mkdir(parents=True, exist_ok=True)\\n\\n    log_path = PROJECT_ROOT / \\\"logs\\\" / \\\"exp_expanded_downstream_eval.log\\\"\\n    log_path.parent.mkdir(parents=True, exist_ok=True)\\n    fh = logging.FileHandler(log_path)\\n    fh.setFormatter(logging.Formatter(\\n        \\\"%(asctime)s [%(levelname)s] %(message)s\\\", datefmt=\\\"%H:%M:%S\\\"))\\n    logging.getLogger().addHandler(fh)\\n\\n    log.info(\\\"=\\\" * 60)\\n    log.info(\\\"Expanded Downstream Evaluation\\\")\\n    log.info(f\\\"Model: {MODEL_PATH}\\\")\\n    log.info(f\\\"Data: {DATA_DIR}\\\")\\n    log.info(f\\\"Strategies: {STRATEGIES}\\\")\\n    log.info(f\\\"Seeds: {args.seed_start}-{args.seed_start + args.num_seeds - 1}\\\")\\n    log.info(f\\\"Benchmarks: {[b[0] for b in BENCHMARKS]}\\\")\\n    log.info(f\\\"LoRA: rank={LORA_RANK}, alpha={LORA_ALPHA}, target={LORA_TARGET_MODULES}\\\")\\n    log.info(\\\"=\\\" * 60)\\n\\n    if not args.skip_base:\\n        base_eval_path = results_dir / \\\"base_model_eval.json\\\"\\n        if base_eval_path.exists():\\n            log.info(\\\"Base model eval exists, skipping\\\")\\n        else:\\n            log.info(\\\"Evaluating base model...\\\")\\n            base_scores = evaluate_model(MODEL_PATH, args.device, base_eval_path)\\n            log.info(f\\\"Base model scores: {base_scores}\\\")\\n\\n    for seed in range(args.seed_start, args.seed_start + args.num_seeds):\\n        for strategy in STRATEGIES:\\n            run_name = f\\\"{strategy}_seed{seed}\\\"\\n            eval_path = results_dir / f\\\"{run_name}_eval.json\\\"\\n\\n            if eval_path.exists():\\n                log.info(f\\\"[{run_name}] Already completed, skipping\\\")\\n                continue\\n\\n            log.info(f\\\"\\\\n{'='*60}\\\\n  {run_name}\\\\n{'='*60}\\\")\\n\\n            texts, weights = prepare_data(strategy, seed)\\n\\n            train_dir = results_dir / f\\\"{run_name}_train\\\"\\n            model_dir = train_lora(texts, weights, train_dir, args.device, seed)\\n\\n            scores = evaluate_model(model_dir, args.device, eval_path)\\n            log.info(f\\\"[{run_name}] Scores: {scores}\\\")\\n\\n            if train_dir.exists():\\n                shutil.rmtree(train_dir, ignore_errors=True)\\n                log.info(f\\\"Cleaned up {train_dir}\\\")\\n\\n    log.info(\\\"\\\\n\\\" + \\\"=\\\" * 60 + \\\"\\\\n  STATISTICAL ANALYSIS\\\\n\\\" + \\\"=\\\" * 60)\\n    analysis = run_statistical_analysis(\\n        results_dir, args.num_seeds, args.seed_start)\\n\\n    log.info(\\\"\\\\n=== SUMMARY ===\\\")\\n\\n    base_eval_path = results_dir / \\\"base_model_eval.json\\\"\\n    if base_eval_path.exists():\\n        with open(base_eval_path) as f:\\n            base_scores = json.load(f)[\\\"scores\\\"]\\n        log.info(\\\"  base_model: \\\" + \\\", \\\".join(\\n            f\\\"{k}={v:.4f}\\\" for k, v in base_scores.items() if v is not None))\\n\\n    for strategy in STRATEGIES:\\n        strat = analysis[\\\"strategies\\\"].get(strategy, {})\\n        if strat:\\n            parts = []\\n            for bench in sorted(strat.keys()):\\n                m = strat[bench][\\\"mean\\\"]\\n                s = strat[bench][\\\"std\\\"]\\n                parts.append(f\\\"{bench}={m:.4f}+/-{s:.4f}\\\")\\n            log.info(f\\\"  {strategy}: {', '.join(parts)}\\\")\\n\\n    for comp in analysis.get(\\\"comparisons\\\", []):\\n        sig = \\\"***\\\" if comp.get(\\\"holm_significant\\\") else \\\"n.s.\\\"\\n        log.info(f\\\"  {comp['benchmark']}: {comp['comparison']}: \\\"\\n                 f\\\"d={comp['cohens_d']:.3f}, p={comp['p_value']:.4f} {sig}\\\")\\n\\n    summary = {\\\"base_model\\\": {}, \\\"strategies\\\": analysis[\\\"strategies\\\"],\\n               \\\"comparisons\\\": analysis[\\\"comparisons\\\"]}\\n    if base_eval_path.exists():\\n        with open(base_eval_path) as f:\\n            summary[\\\"base_model\\\"] = json.load(f)[\\\"scores\\\"]\\n    with open(results_dir / \\\"summary.json\\\", \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n\\n    log.info(\\\"\\\\nDone!\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T20:08:42.769Z_
+
+<details><summary>↩ Tool result · `toolu_01UBMZGuiC8BnojovwneSjgy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "6a15d4dd-d492-4775-9e8e-f6782d02dc2e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AoSzbUABHrjScmD9G3Ddry`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/ -name \"*_eval.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "f684edc0-72d0-4360-b2d9-38e4d5936a27",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015a47cSRhTd3FLojSevL5JL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1768,
+      "cache_read_input_tokens": 24778,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1768
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T20:08:43.224Z_
+
+<details><summary>↩ Tool result · `toolu_01AoSzbUABHrjScmD9G3Ddry`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/base_model_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/no_filter_seed0_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/binary_ours_seed0_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/graduated_seed0_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/no_filter_seed1_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/binary_ours_seed1_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/graduated_seed1_eval.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "a01f9a4f-683a-40fd-94ed-3f14b6e48db5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/base_model_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/no_filter_seed0_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/binary_ours_seed0_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/graduated_seed0_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/no_filter_seed1_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/binary_ours_seed1_eval.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/graduated_seed1_eval.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/base_model_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/no_filter_seed0_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/binary_ours_seed0_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/graduated_seed0_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/no_filter_seed1_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/binary_ours_seed1_eval.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/graduated_seed1_eval.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key findings:
+1. Script read successfully - I can see the full structure
+2. No adapter_config.json files found - checkpoints were cleaned up (the script has `shutil.rmtree(train_dir, ignore_errors=True)`)
+3. Existing eval files: seed0 and seed1 for all 3 strategies (6 files) + base_model_eval
+
+Since checkpoints don't exist, skip_train won't work for seed0/seed1 GSM8K补跑 - we'll need to retrain. Let me check the eval results to see which ones have null GSM8K.
+
+
+I need to see the full script content, particularly the evaluate_model function and __getitem__ method that got cut off. Let me also check the current GPU usage and what's in the existing eval results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "73a746cd-61ac-4e48-b0cb-27a73a427f1a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PjeLi9GCe26itmTXeozndS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4326,
+      "cache_read_input_tokens": 26546,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4326
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+脚本输出被截断了，需要看完整内容。同时检查现有 eval 结果和 GPU 状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "09ff8f63-eafa-4c7f-abe2-6a9c41cc39fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PjeLi9GCe26itmTXeozndS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4326,
+      "cache_read_input_tokens": 26546,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4326
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WqgCSBLMiP3MyXq5jxsUSR`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "wc -l /root/autodl-tmp/gen-depth-contamination/scripts/exp_expanded_downstream_eval.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "34efb359-b9ab-47b7-9cc2-7f5feb405507",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PjeLi9GCe26itmTXeozndS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4326,
+      "cache_read_input_tokens": 26546,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4326
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T20:08:53.669Z_
+
+<details><summary>↩ Tool result · `toolu_01WqgCSBLMiP3MyXq5jxsUSR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"466 /root/autodl-tmp/gen-depth-contamination/scripts/exp_expanded_downstream_eval.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "c601d1bb-b8b4-40f1-bf0a-79a300c36e5f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"466 /root/autodl-tmp/gen-depth-contamination/scripts/exp_expanded_downstream_eval.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"466 /root/autodl-tmp/gen-depth-contamination/scripts/exp_expanded_downstream_eval.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Bkd1akrnygDzEUdMX9Rp4n`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/no_filter_seed0_eval.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "db8e5c49-4711-46e5-b22b-6482a062f5ee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PjeLi9GCe26itmTXeozndS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4326,
+      "cache_read_input_tokens": 26546,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4326
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T20:08:54.641Z_
+
+<details><summary>↩ Tool result · `toolu_01Bkd1akrnygDzEUdMX9Rp4n`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scores\\\": {\\n    \\\"piqa\\\": 0.7519042437431991,\\n    \\\"truthfulqa_mc2\\\": 0.42238503754437356,\\n    \\\"winogrande\\\": 0.6519337016574586,\\n    \\\"arc_challenge\\\": 0.5127986348122867,\\n    \\\"gsm8k\\\": null\\n  },\\n  \\\"full\\\": {\\n    \\\"piqa\\\": {\\n      \\\"name\\\": \\\"piqa\\\",\\n      \\\"alias\\\": \\\"piqa\\\",\\n      \\\"sample_len\\\": 1838,\\n      \\\"acc,none\\\": 0.7519042437431991,\\n      \\\"acc_stderr,none\\\": 0.010077118315574635,\\n      \\\"acc_norm,none\\\": 0.7540805223068553,\\n      \\\"acc_norm_stderr,none\\\": 0.010047331865625083\\n    },\\n    \\\"truthfulqa_mc2\\\": {\\n      \\\"name\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"alias\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"sample_len\\\": 817,\\n      \\\"acc,none\\\": 0.42238503754437356,\\n      \\\"acc_stderr,none\\\": 0.014329641559600582\\n    },\\n    \\\"winogrande\\\": {\\n      \\\"name\\\": \\\"winogrande\\\",\\n      \\\"alias\\\": \\\"winogrande\\\",\\n      \\\"sample_len\\\": 1267,\\n      \\\"acc,none\\\": 0.6519337016574586,\\n      \\\"acc_stderr,none\\\": 0.013388004531085948\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"name\\\": \\\"arc_challenge\\\",\\n      \\\"alias\\\": \\\"arc_challenge\\\",\\n      \\\"sample_len\\\": 1172,\\n      \\\"acc,none\\\": 0.46928327645051193,\\n      \\\"acc_stderr,none\\\": 0.014583792546304033,\\n      \\\"acc_norm,none\\\": 0.5127986348122867,\\n      \\\"acc_norm_stderr,none\\\": 0.014606603181012609\\n    }\\n  },\\n  \\\"benchmarks\\\": [\\n    [\\n      \\\"piqa\\\",\\n      0\\n    ],\\n    [\\n      \\\"truthfulqa_mc2\\\",\\n      0\\n    ],\\n    [\\n      \\\"winogrande\\\",\\n      5\\n    ],\\n    [\\n      \\\"arc_challenge\\\",\\n      25\\n    ],\\n    [\\n      \\\"gsm8k\\\",\\n      8\\n    ]\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "90dd9233-7adc-456d-94e4-c875ea0c3686",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"scores\\\\\\\": {\\\\n    \\\\\\\"piqa\\\\\\\": 0.7519042437431991,\\\\n    \\\\\\\"truthfulqa_mc2\\\\\\\": 0.42238503754437356,\\\\n    \\\\\\\"winogrande\\\\\\\": 0.6519337016574586,\\\\n    \\\\\\\"arc_challenge\\\\\\\": 0.5127986348122867,\\\\n    \\\\\\\"gsm8k\\\\\\\": null\\\\n  },\\\\n  \\\\\\\"full\\\\\\\": {\\\\n    \\\\\\\"piqa\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"piqa\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"piqa\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 1838,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.7519042437431991,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.010077118315574635,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.7540805223068553,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.010047331865625083\\\\n    },\\\\n    \\\\\\\"truthfulqa_mc2\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"truthfulqa_mc2\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"truthfulqa_mc2\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 817,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.42238503754437356,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.014329641559600582\\\\n    },\\\\n    \\\\\\\"winogrande\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 1267,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6519337016574586,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.013388004531085948\\\\n    },\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\n      \\\\\\\"name\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n      \\\\\\\"sample_len\\\\\\\": 1172,\\\\n      \\\\\\\"acc,none\\\\\\\": 0.46928327645051193,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.014583792546304033,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.5127986348122867,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.014606603181012609\\\\n    }\\\\n  },\\\\n  \\\\\\\"benchmarks\\\\\\\": [\\\\n    [\\\\n      \\\\\\\"piqa\\\\\\\",\\\\n      0\\\\n    ],\\\\n    [\\\\n      \\\\\\\"truthfulqa_mc2\\\\\\\",\\\\n      0\\\\n    ],\\\\n    [\\\\n      \\\\\\\"winogrande\\\\\\\",\\\\n      5\\\\n    ],\\\\n    [\\\\n      \\\\\\\"arc_challenge\\\\\\\",\\\\n      25\\\\n    ],\\\\n    [\\\\n      \\\\\\\"gsm8k\\\\\\\",\\\\n      8\\\\n    ]\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"scores\\\": {\\n    \\\"piqa\\\": 0.7519042437431991,\\n    \\\"truthfulqa_mc2\\\": 0.42238503754437356,\\n    \\\"winogrande\\\": 0.6519337016574586,\\n    \\\"arc_challenge\\\": 0.5127986348122867,\\n    \\\"gsm8k\\\": null\\n  },\\n  \\\"full\\\": {\\n    \\\"piqa\\\": {\\n      \\\"name\\\": \\\"piqa\\\",\\n      \\\"alias\\\": \\\"piqa\\\",\\n      \\\"sample_len\\\": 1838,\\n      \\\"acc,none\\\": 0.7519042437431991,\\n      \\\"acc_stderr,none\\\": 0.010077118315574635,\\n      \\\"acc_norm,none\\\": 0.7540805223068553,\\n      \\\"acc_norm_stderr,none\\\": 0.010047331865625083\\n    },\\n    \\\"truthfulqa_mc2\\\": {\\n      \\\"name\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"alias\\\": \\\"truthfulqa_mc2\\\",\\n      \\\"sample_len\\\": 817,\\n      \\\"acc,none\\\": 0.42238503754437356,\\n      \\\"acc_stderr,none\\\": 0.014329641559600582\\n    },\\n    \\\"winogrande\\\": {\\n      \\\"name\\\": \\\"winogrande\\\",\\n      \\\"alias\\\": \\\"winogrande\\\",\\n      \\\"sample_len\\\": 1267,\\n      \\\"acc,none\\\": 0.6519337016574586,\\n      \\\"acc_stderr,none\\\": 0.013388004531085948\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"name\\\": \\\"arc_challenge\\\",\\n      \\\"alias\\\": \\\"arc_challenge\\\",\\n      \\\"sample_len\\\": 1172,\\n      \\\"acc,none\\\": 0.46928327645051193,\\n      \\\"acc_stderr,none\\\": 0.014583792546304033,\\n      \\\"acc_norm,none\\\": 0.5127986348122867,\\n      \\\"acc_norm_stderr,none\\\": 0.014606603181012609\\n    }\\n  },\\n  \\\"benchmarks\\\": [\\n    [\\n      \\\"piqa\\\",\\n      0\\n    ],\\n    [\\n      \\\"truthfulqa_mc2\\\",\\n      0\\n    ],\\n    [\\n      \\\"winogrande\\\",\\n      5\\n    ],\\n    [\\n      \\\"arc_challenge\\\",\\n      25\\n    ],\\n    [\\n      \\\"gsm8k\\\",\\n      8\\n    ]\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018Diak6Nu112RPKWPLxHX7w`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/gen-depth-contamination/results/exp_expanded_downstream_eval/no_filter_seed0_eval.json')); print({k:v for k,v in d['scores'].items()})\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "85b23778-b853-42d5-9ca6-3dd6bd0f97c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PjeLi9GCe26itmTXeozndS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4326,
+      "cache_read_input_tokens": 26546,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4326
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T20:08:55.406Z_
+
+<details><summary>↩ Tool result · `toolu_018Diak6Nu112RPKWPLxHX7w`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "497c0a8e-65e4-453d-b122-285bfd6b995a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK so:
+1. Script is 466 lines
+2. GSM8K is null in seed0 results, confirming the issue
+3. No adapter_config.json files exist - checkpoints were cleaned up
+
+This means for the GSM8K补跑, we'll need to retrain since checkpoints are gone. The `--skip_train` feature won't help for seed0/seed1.
+
+Let me get the full script and GPU status. The script was truncated in the middle. 
+
+Now I need to look at the key functions - the data loading method, how models are evaluated, and the statistical analysis logic.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "dfe7c7ee-90f2-4e9d-853a-f6edc8c590fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P5tERRaea7Cm2uXZxrLpWF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1896,
+      "cache_read_input_tokens": 30872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1896
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+Checkpoints 已被清理，seed0/seed1 的 GSM8K 补跑需要重训。先看完整脚本和 GPU 状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "c722b1df-22c1-489b-8b73-420cfe6d427a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P5tERRaea7Cm2uXZxrLpWF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1896,
+      "cache_read_input_tokens": 30872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1896
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YU6CUHdK2FG6jectiPgSX2`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "head -250 /root/autodl-tmp/gen-depth-contamination/scripts/exp_expanded_downstream_eval.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "69a587b7-f86b-43e8-91b8-1ea0919f6563",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P5tERRaea7Cm2uXZxrLpWF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1896,
+      "cache_read_input_tokens": 30872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1896
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T20:09:01.966Z_
+
+<details><summary>↩ Tool result · `toolu_01YU6CUHdK2FG6jectiPgSX2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Expanded downstream evaluation for K*-guided filtering strategies.\\n\\nRetrains LoRA models on Qwen2.5-1.5B with 3 filtering strategies\\n(no_filter, binary_ours, graduated), then evaluates on 5 benchmarks:\\nPIQA, TruthfulQA-MC2, WinoGrande, ARC-Challenge, GSM8K.\\n\\nUsage:\\n    python scripts/exp_expanded_downstream_eval.py --device cuda:0 --num_seeds 3\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport json\\nimport logging\\nimport os\\nimport shutil\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom scipy import stats\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    datefmt=\\\"%H:%M:%S\\\",\\n    handlers=[logging.StreamHandler(sys.stdout)],\\n)\\nlog = logging.getLogger(__name__)\\n\\nPROJECT_ROOT = Path(\\\"/root/autodl-tmp/gen-depth-contamination\\\")\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\\nDATA_DIR = PROJECT_ROOT / \\\"data_exp020_pythia_greedy\\\"\\n\\nKSTAR = 2\\nGRADUATED_ALPHA = 0.9\\nMAX_DEPTH = 5\\nSTRATEGIES = [\\\"no_filter\\\", \\\"binary_ours\\\", \\\"graduated\\\"]\\n\\nLORA_RANK = 8\\nLORA_ALPHA = 16\\nLORA_TARGET_MODULES = [\\\"q_proj\\\", \\\"v_proj\\\"]\\nLORA_DROPOUT = 0.05\\n\\nTRAIN_LR = 2e-4\\nTRAIN_BATCH_SIZE = 4\\nGRADIENT_ACCUMULATION = 4\\nTRAIN_EPOCHS = 1\\nMAX_LENGTH = 256\\n\\nBENCHMARKS = [\\n    (\\\"piqa\\\", 0),\\n    (\\\"truthfulqa_mc2\\\", 0),\\n    (\\\"winogrande\\\", 5),\\n    (\\\"arc_challenge\\\", 25),\\n    (\\\"gsm8k\\\", 8),\\n]\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef set_seed(seed):\\n    np.random.seed(seed)\\n    torch.manual_seed(seed)\\n    if torch.cuda.is_available():\\n        torch.cuda.manual_seed_all(seed)\\n\\n\\ndef prepare_data(strategy, seed):\\n    rng = np.random.RandomState(seed)\\n    all_texts = []\\n    all_weights = []\\n\\n    if strategy == \\\"no_filter\\\":\\n        for d in range(MAX_DEPTH + 1):\\n            records = load_jsonl(DATA_DIR / f\\\"depth_{d}.jsonl\\\")\\n            all_texts.extend(r[\\\"text\\\"] for r in records)\\n            all_weights.extend([1.0] * len(records))\\n    elif strategy == \\\"binary_ours\\\":\\n        for d in range(KSTAR + 1):\\n            records = load_jsonl(DATA_DIR / f\\\"depth_{d}.jsonl\\\")\\n            all_texts.extend(r[\\\"text\\\"] for r in records)\\n            all_weights.extend([1.0] * len(records))\\n    elif strategy == \\\"graduated\\\":\\n        for d in range(MAX_DEPTH + 1):\\n            records = load_jsonl(DATA_DIR / f\\\"depth_{d}.jsonl\\\")\\n            w = GRADUATED_ALPHA ** d\\n            all_texts.extend(r[\\\"text\\\"] for r in records)\\n            all_weights.extend([w] * len(records))\\n    else:\\n        raise ValueError(f\\\"Unknown strategy: {strategy}\\\")\\n\\n    indices = list(range(len(all_texts)))\\n    rng.shuffle(indices)\\n    all_texts = [all_texts[i] for i in indices]\\n    all_weights = [all_weights[i] for i in indices]\\n\\n    log.info(f\\\"Data: strategy={strategy}, n={len(all_texts)}, \\\"\\n             f\\\"mean_weight={np.mean(all_weights):.4f}\\\")\\n    return all_texts, all_weights\\n\\n\\ndef train_lora(texts, weights, output_dir, device, seed):\\n    from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments\\n    from peft import LoraConfig, get_peft_model, TaskType\\n    from torch.utils.data import Dataset\\n\\n    set_seed(seed)\\n\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n        tokenizer.pad_token_id = tokenizer.eos_token_id\\n\\n    class WeightedTextDataset(Dataset):\\n        def __init__(self, texts, weights, tokenizer, max_length):\\n            self.encodings = []\\n            self.weights = []\\n            for text, w in zip(texts, weights):\\n                enc = tokenizer(text, truncation=True, max_length=max_length,\\n                                padding=\\\"max_length\\\", return_tensors=\\\"pt\\\")\\n                self.encodings.append({k: v.squeeze(0) for k, v in enc.items()})\\n                self.weights.append(w)\\n\\n        def __len__(self):\\n            return len(self.encodings)\\n\\n        def __getitem__(self, idx):\\n            item = {k: v.clone() for k, v in self.encodings[idx].items()}\\n            item[\\\"labels\\\"] = item[\\\"input_ids\\\"].clone()\\n            item[\\\"labels\\\"][item[\\\"attention_mask\\\"] == 0] = -100\\n            item[\\\"weight\\\"] = torch.tensor(self.weights[idx], dtype=torch.float32)\\n            return item\\n\\n    class WeightedTrainer(Trainer):\\n        def compute_loss(self, model, inputs, return_outputs=False, **kwargs):\\n            weights_val = inputs.pop(\\\"weight\\\", None)\\n            outputs = model(**inputs)\\n            loss = outputs.loss\\n            if weights_val is not None and weights_val.numel() > 0:\\n                loss = loss * weights_val.mean()\\n            return (loss, outputs) if return_outputs else loss\\n\\n    log.info(f\\\"Tokenizing {len(texts)} texts...\\\")\\n    dataset = WeightedTextDataset(texts, weights, tokenizer, MAX_LENGTH)\\n\\n    log.info(\\\"Loading Qwen2.5-1.5B...\\\")\\n    model = AutoModelForCausalLM.from_pretrained(\\n        MODEL_PATH, torch_dtype=torch.bfloat16, trust_remote_code=True,\\n    ).to(device)\\n\\n    lora_config = LoraConfig(\\n        task_type=TaskType.CAUSAL_LM,\\n        r=LORA_RANK,\\n        lora_alpha=LORA_ALPHA,\\n        target_modules=LORA_TARGET_MODULES,\\n        lora_dropout=LORA_DROPOUT,\\n        bias=\\\"none\\\",\\n    )\\n    model = get_peft_model(model, lora_config)\\n    trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)\\n    total = sum(p.numel() for p in model.parameters())\\n    log.info(f\\\"LoRA: {trainable:,} trainable / {total:,} total \\\"\\n             f\\\"({trainable/total*100:.2f}%)\\\")\\n\\n    training_args = TrainingArguments(\\n        output_dir=str(output_dir),\\n        num_train_epochs=TRAIN_EPOCHS,\\n        per_device_train_batch_size=TRAIN_BATCH_SIZE,\\n        gradient_accumulation_steps=GRADIENT_ACCUMULATION,\\n        learning_rate=TRAIN_LR,\\n        warmup_ratio=0.05,\\n        weight_decay=0.01,\\n        logging_steps=50,\\n        save_strategy=\\\"no\\\",\\n        bf16=True,\\n        dataloader_pin_memory=False,\\n        seed=seed,\\n        report_to=\\\"none\\\",\\n        remove_unused_columns=False,\\n    )\\n\\n    trainer = WeightedTrainer(\\n        model=model,\\n        args=training_args,\\n        train_dataset=dataset,\\n    )\\n\\n    log.info(f\\\"Training: {len(dataset)} samples, bs={TRAIN_BATCH_SIZE}x{GRADIENT_ACCUMULATION}, \\\"\\n             f\\\"lr={TRAIN_LR}, device={device}\\\")\\n    trainer.train()\\n\\n    merged_dir = output_dir / \\\"merged\\\"\\n    log.info(\\\"Merging LoRA weights into base model...\\\")\\n    merged_model = model.merge_and_unload()\\n    merged_model.save_pretrained(merged_dir)\\n    tokenizer.save_pretrained(merged_dir)\\n    log.info(f\\\"Merged model saved to {merged_dir}\\\")\\n\\n    del model, merged_model, trainer, dataset\\n    torch.cuda.empty_cache()\\n    gc.collect()\\n\\n    return merged_dir\\n\\n\\ndef evaluate_model(model_path, device, results_path):\\n    import lm_eval\\n    from lm_eval.models.huggingface import HFLM\\n\\n    log.info(f\\\"Evaluating {model_path} on {len(BENCHMARKS)} benchmarks...\\\")\\n\\n    lm = HFLM(\\n        pretrained=str(model_path),\\n        device=device,\\n        dtype=\\\"float16\\\",\\n        batch_size=\\\"auto:4\\\",\\n        max_length=2048,\\n        trust_remote_code=True,\\n    )\\n\\n    all_scores = {}\\n    all_full = {}\\n\\n    for task_name, n_fewshot in BENCHMARKS:\\n        log.info(f\\\"  Running {task_name} ({n_fewshot}-shot)...\\\")\\n        t0 = time.time()\\n\\n        success = False\\n        for attempt in range(3):\\n            try:\\n                results = lm_eval.simple_evaluate(\\n                    model=lm,\\n                    tasks=[task_name],\\n                    num_fewshot=n_fewshot,\\n                )\\n                success = True\\n                break\\n            except Exception as e:\\n                if attempt < 2:\\n                    wait = 30 * (attempt + 1)\\n                    log.warning(f\\\"  Attempt {attempt+1} failed: {e}. Retrying in {wait}s...\\\")\\n                    time.sleep(wait)\\n                else:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "6877b5d3-33e2-42d1-9a30-44314cde25da",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Expanded downstream evaluation for K*-guided filtering strategies.\\\\n\\\\nRetrains LoRA models on Qwen2.5-1.5B with 3 filtering strategies\\\\n(no_filter, binary_ours, graduated), then evaluates on 5 benchmarks:\\\\nPIQA, TruthfulQA-MC2, WinoGrande, ARC-Challenge, GSM8K.\\\\n\\\\nUsage:\\\\n    python scripts/exp_expanded_downstream_eval.py --device cuda:0 --num_seeds 3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport gc\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport shutil\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom scipy import stats\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    datefmt=\\\\\\\"%H:%M:%S\\\\\\\",\\\\n    handlers=[logging.StreamHandler(sys.stdout)],\\\\n)\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nPROJECT_ROOT = Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination\\\\\\\")\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\\\\\"\\\\nDATA_DIR = PROJECT_ROOT / \\\\\\\"data_exp020_pythia_greedy\\\\\\\"\\\\n\\\\nKSTAR = 2\\\\nGRADUATED_ALPHA = 0.9\\\\nMAX_DEPTH = 5\\\\nSTRATEGIES = [\\\\\\\"no_filter\\\\\\\", \\\\\\\"binary_ours\\\\\\\", \\\\\\\"graduated\\\\\\\"]\\\\n\\\\nLORA_RANK = 8\\\\nLORA_ALPHA = 16\\\\nLORA_TARGET_MODULES = [\\\\\\\"q_proj\\\\\\\", \\\\\\\"v_proj\\\\\\\"]\\\\nLORA_DROPOUT = 0.05\\\\n\\\\nTRAIN_LR = 2e-4\\\\nTRAIN_BATCH_SIZE = 4\\\\nGRADIENT_ACCUMULATION = 4\\\\nTRAIN_EPOCHS = 1\\\\nMAX_LENGTH = 256\\\\n\\\\nBENCHMARKS = [\\\\n    (\\\\\\\"piqa\\\\\\\", 0),\\\\n    (\\\\\\\"truthfulqa_mc2\\\\\\\", 0),\\\\n    (\\\\\\\"winogrande\\\\\\\", 5),\\\\n    (\\\\\\\"arc_challenge\\\\\\\", 25),\\\\n    (\\\\\\\"gsm8k\\\\\\\", 8),\\\\n]\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f]\\\\n\\\\n\\\\ndef set_seed(seed):\\\\n    np.random.seed(seed)\\\\n    torch.manual_seed(seed)\\\\n    if torch.cuda.is_available():\\\\n        torch.cuda.manual_seed_all(seed)\\\\n\\\\n\\\\ndef prepare_data(strategy, seed):\\\\n    rng = np.random.RandomState(seed)\\\\n    all_texts = []\\\\n    all_weights = []\\\\n\\\\n    if strategy == \\\\\\\"no_filter\\\\\\\":\\\\n        for d in range(MAX_DEPTH + 1):\\\\n            records = load_jsonl(DATA_DIR / f\\\\\\\"depth_{d}.jsonl\\\\\\\")\\\\n            all_texts.extend(r[\\\\\\\"text\\\\\\\"] for r in records)\\\\n            all_weights.extend([1.0] * len(records))\\\\n    elif strategy == \\\\\\\"binary_ours\\\\\\\":\\\\n        for d in range(KSTAR + 1):\\\\n            records = load_jsonl(DATA_DIR / f\\\\\\\"depth_{d}.jsonl\\\\\\\")\\\\n            all_texts.extend(r[\\\\\\\"text\\\\\\\"] for r in records)\\\\n            all_weights.extend([1.0] * len(records))\\\\n    elif strategy == \\\\\\\"graduated\\\\\\\":\\\\n        for d in range(MAX_DEPTH + 1):\\\\n            records = load_jsonl(DATA_DIR / f\\\\\\\"depth_{d}.jsonl\\\\\\\")\\\\n            w = GRADUATED_ALPHA ** d\\\\n            all_texts.extend(r[\\\\\\\"text\\\\\\\"] for r in records)\\\\n            all_weights.extend([w] * len(records))\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown strategy: {strategy}\\\\\\\")\\\\n\\\\n    indices = list(range(len(all_texts)))\\\\n    rng.shuffle(indices)\\\\n    all_texts = [all_texts[i] for i in indices]\\\\n    all_weights = [all_weights[i] for i in indices]\\\\n\\\\n    log.info(f\\\\\\\"Data: strategy={strategy}, n={len(all_texts)}, \\\\\\\"\\\\n             f\\\\\\\"mean_weight={np.mean(all_weights):.4f}\\\\\\\")\\\\n    return all_texts, all_weights\\\\n\\\\n\\\\ndef train_lora(texts, weights, output_dir, device, seed):\\\\n    from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments\\\\n    from peft import LoraConfig, get_peft_model, TaskType\\\\n    from torch.utils.data import Dataset\\\\n\\\\n    set_seed(seed)\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n        tokenizer.pad_token_id = tokenizer.eos_token_id\\\\n\\\\n    class WeightedTextDataset(Dataset):\\\\n        def __init__(self, texts, weights, tokenizer, max_length):\\\\n            self.encodings = []\\\\n            self.weights = []\\\\n            for text, w in zip(texts, weights):\\\\n                enc = tokenizer(text, truncation=True, max_length=max_length,\\\\n                                padding=\\\\\\\"max_length\\\\\\\", return_tensors=\\\\\\\"pt\\\\\\\")\\\\n                self.encodings.append({k: v.squeeze(0) for k, v in enc.items()})\\\\n                self.weights.append(w)\\\\n\\\\n        def __len__(self):\\\\n            return len(self.encodings)\\\\n\\\\n        def __getitem__(self, idx):\\\\n            item = {k: v.clone() for k, v in self.encodings[idx].items()}\\\\n            item[\\\\\\\"labels\\\\\\\"] = item[\\\\\\\"input_ids\\\\\\\"].clone()\\\\n            item[\\\\\\\"labels\\\\\\\"][item[\\\\\\\"attention_mask\\\\\\\"] == 0] = -100\\\\n            item[\\\\\\\"weight\\\\\\\"] = torch.tensor(self.weights[idx], dtype=torch.float32)\\\\n            return item\\\\n\\\\n    class WeightedTrainer(Trainer):\\\\n        def compute_loss(self, model, inputs, return_outputs=False, **kwargs):\\\\n            weights_val = inputs.pop(\\\\\\\"weight\\\\\\\", None)\\\\n            outputs = model(**inputs)\\\\n            loss = outputs.loss\\\\n            if weights_val is not None and weights_val.numel() > 0:\\\\n                loss = loss * weights_val.mean()\\\\n            return (loss, outputs) if return_outputs else loss\\\\n\\\\n    log.info(f\\\\\\\"Tokenizing {len(texts)} texts...\\\\\\\")\\\\n    dataset = WeightedTextDataset(texts, weights, tokenizer, MAX_LENGTH)\\\\n\\\\n    log.info(\\\\\\\"Loading Qwen2.5-1.5B...\\\\\\\")\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        MODEL_PATH, torch_dtype=torch.bfloat16, trust_remote_code=True,\\\\n    ).to(device)\\\\n\\\\n    lora_config = LoraConfig(\\\\n        task_type=TaskType.CAUSAL_LM,\\\\n        r=LORA_RANK,\\\\n        lora_alpha=LORA_ALPHA,\\\\n        target_modules=LORA_TARGET_MODULES,\\\\n        lora_dropout=LORA_DROPOUT,\\\\n        bias=\\\\\\\"none\\\\\\\",\\\\n    )\\\\n    model = get_peft_model(model, lora_config)\\\\n    trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)\\\\n    total = sum(p.numel() for p in model.parameters())\\\\n    log.info(f\\\\\\\"LoRA: {trainable:,} trainable / {total:,} total \\\\\\\"\\\\n             f\\\\\\\"({trainable/total*100:.2f}%)\\\\\\\")\\\\n\\\\n    training_args = TrainingArguments(\\\\n        output_dir=str(output_dir),\\\\n        num_train_epochs=TRAIN_EPOCHS,\\\\n        per_device_train_batch_size=TRAIN_BATCH_SIZE,\\\\n        gradient_accumulation_steps=GRADIENT_ACCUMULATION,\\\\n        learning_rate=TRAIN_LR,\\\\n        warmup_ratio=0.05,\\\\n        weight_decay=0.01,\\\\n        logging_steps=50,\\\\n        save_strategy=\\\\\\\"no\\\\\\\",\\\\n        bf16=True,\\\\n        dataloader_pin_memory=False,\\\\n        seed=seed,\\\\n        report_to=\\\\\\\"none\\\\\\\",\\\\n        remove_unused_columns=False,\\\\n    )\\\\n\\\\n    trainer = WeightedTrainer(\\\\n        model=model,\\\\n        args=training_args,\\\\n        train_dataset=dataset,\\\\n    )\\\\n\\\\n    log.info(f\\\\\\\"Training: {len(dataset)} samples, bs={TRAIN_BATCH_SIZE}x{GRADIENT_ACCUMULATION}, \\\\\\\"\\\\n             f\\\\\\\"lr={TRAIN_LR}, device={device}\\\\\\\")\\\\n    trainer.train()\\\\n\\\\n    merged_dir = output_dir / \\\\\\\"merged\\\\\\\"\\\\n    log.info(\\\\\\\"Merging LoRA weights into base model...\\\\\\\")\\\\n    merged_model = model.merge_and_unload()\\\\n    merged_model.save_pretrained(merged_dir)\\\\n    tokenizer.save_pretrained(merged_dir)\\\\n    log.info(f\\\\\\\"Merged model saved to {merged_dir}\\\\\\\")\\\\n\\\\n    del model, merged_model, trainer, dataset\\\\n    torch.cuda.empty_cache()\\\\n    gc.collect()\\\\n\\\\n    return merged_dir\\\\n\\\\n\\\\ndef evaluate_model(model_path, device, results_path):\\\\n    import lm_eval\\\\n    from lm_eval.models.huggingface import HFLM\\\\n\\\\n    log.info(f\\\\\\\"Evaluating {model_path} on {len(BENCHMARKS)} benchmarks...\\\\\\\")\\\\n\\\\n    lm = HFLM(\\\\n        pretrained=str(model_path),\\\\n        device=device,\\\\n        dtype=\\\\\\\"float16\\\\\\\",\\\\n        batch_size=\\\\\\\"auto:4\\\\\\\",\\\\n        max_length=2048,\\\\n        trust_remote_code=True,\\\\n    )\\\\n\\\\n    all_scores = {}\\\\n    all_full = {}\\\\n\\\\n    for task_name, n_fewshot in BENCHMARKS:\\\\n        log.info(f\\\\\\\"  Running {task_name} ({n_fewshot}-shot)...\\\\\\\")\\\\n        t0 = time.time()\\\\n\\\\n        success = False\\\\n        for attempt in range(3):\\\\n            try:\\\\n                results = lm_eval.simple_evaluate(\\\\n                    model=lm,\\\\n                    tasks=[task_name],\\\\n                    num_fewshot=n_fewshot,\\\\n                )\\\\n                success = True\\\\n                break\\\\n            except Exception as e:\\\\n                if attempt < 2:\\\\n                    wait = 30 * (attempt + 1)\\\\n                    log.warning(f\\\\\\\"  Attempt {attempt+1} failed: {e}. Retrying in {wait}s...\\\\\\\")\\\\n                    time.sleep(wait)\\\\n                else:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Expanded downstream evaluation for K*-guided filtering strategies.\\n\\nRetrains LoRA models on Qwen2.5-1.5B with 3 filtering strategies\\n(no_filter, binary_ours, graduated), then evaluates on 5 benchmarks:\\nPIQA, TruthfulQA-MC2, WinoGrande, ARC-Challenge, GSM8K.\\n\\nUsage:\\n    python scripts/exp_expanded_downstream_eval.py --device cuda:0 --num_seeds 3\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport json\\nimport logging\\nimport os\\nimport shutil\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom scipy import stats\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    datefmt=\\\"%H:%M:%S\\\",\\n    handlers=[logging.StreamHandler(sys.stdout)],\\n)\\nlog = logging.getLogger(__name__)\\n\\nPROJECT_ROOT = Path(\\\"/root/autodl-tmp/gen-depth-contamination\\\")\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\\nDATA_DIR = PROJECT_ROOT / \\\"data_exp020_pythia_greedy\\\"\\n\\nKSTAR = 2\\nGRADUATED_ALPHA = 0.9\\nMAX_DEPTH = 5\\nSTRATEGIES = [\\\"no_filter\\\", \\\"binary_ours\\\", \\\"graduated\\\"]\\n\\nLORA_RANK = 8\\nLORA_ALPHA = 16\\nLORA_TARGET_MODULES = [\\\"q_proj\\\", \\\"v_proj\\\"]\\nLORA_DROPOUT = 0.05\\n\\nTRAIN_LR = 2e-4\\nTRAIN_BATCH_SIZE = 4\\nGRADIENT_ACCUMULATION = 4\\nTRAIN_EPOCHS = 1\\nMAX_LENGTH = 256\\n\\nBENCHMARKS = [\\n    (\\\"piqa\\\", 0),\\n    (\\\"truthfulqa_mc2\\\", 0),\\n    (\\\"winogrande\\\", 5),\\n    (\\\"arc_challenge\\\", 25),\\n    (\\\"gsm8k\\\", 8),\\n]\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef set_seed(seed):\\n    np.random.seed(seed)\\n    torch.manual_seed(seed)\\n    if torch.cuda.is_available():\\n        torch.cuda.manual_seed_all(seed)\\n\\n\\ndef prepare_data(strategy, seed):\\n    rng = np.random.RandomState(seed)\\n    all_texts = []\\n    all_weights = []\\n\\n    if strategy == \\\"no_filter\\\":\\n        for d in range(MAX_DEPTH + 1):\\n            records = load_jsonl(DATA_DIR / f\\\"depth_{d}.jsonl\\\")\\n            all_texts.extend(r[\\\"text\\\"] for r in records)\\n            all_weights.extend([1.0] * len(records))\\n    elif strategy == \\\"binary_ours\\\":\\n        for d in range(KSTAR + 1):\\n            records = load_jsonl(DATA_DIR / f\\\"depth_{d}.jsonl\\\")\\n            all_texts.extend(r[\\\"text\\\"] for r in records)\\n            all_weights.extend([1.0] * len(records))\\n    elif strategy == \\\"graduated\\\":\\n        for d in range(MAX_DEPTH + 1):\\n            records = load_jsonl(DATA_DIR / f\\\"depth_{d}.jsonl\\\")\\n            w = GRADUATED_ALPHA ** d\\n            all_texts.extend(r[\\\"text\\\"] for r in records)\\n            all_weights.extend([w] * len(records))\\n    else:\\n        raise ValueError(f\\\"Unknown strategy: {strategy}\\\")\\n\\n    indices = list(range(len(all_texts)))\\n    rng.shuffle(indices)\\n    all_texts = [all_texts[i] for i in indices]\\n    all_weights = [all_weights[i] for i in indices]\\n\\n    log.info(f\\\"Data: strategy={strategy}, n={len(all_texts)}, \\\"\\n             f\\\"mean_weight={np.mean(all_weights):.4f}\\\")\\n    return all_texts, all_weights\\n\\n\\ndef train_lora(texts, weights, output_dir, device, seed):\\n    from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments\\n    from peft import LoraConfig, get_peft_model, TaskType\\n    from torch.utils.data import Dataset\\n\\n    set_seed(seed)\\n\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n        tokenizer.pad_token_id = tokenizer.eos_token_id\\n\\n    class WeightedTextDataset(Dataset):\\n        def __init__(self, texts, weights, tokenizer, max_length):\\n            self.encodings = []\\n            self.weights = []\\n            for text, w in zip(texts, weights):\\n                enc = tokenizer(text, truncation=True, max_length=max_length,\\n                                padding=\\\"max_length\\\", return_tensors=\\\"pt\\\")\\n                self.encodings.append({k: v.squeeze(0) for k, v in enc.items()})\\n                self.weights.append(w)\\n\\n        def __len__(self):\\n            return len(self.encodings)\\n\\n        def __getitem__(self, idx):\\n            item = {k: v.clone() for k, v in self.encodings[idx].items()}\\n            item[\\\"labels\\\"] = item[\\\"input_ids\\\"].clone()\\n            item[\\\"labels\\\"][item[\\\"attention_mask\\\"] == 0] = -100\\n            item[\\\"weight\\\"] = torch.tensor(self.weights[idx], dtype=torch.float32)\\n            return item\\n\\n    class WeightedTrainer(Trainer):\\n        def compute_loss(self, model, inputs, return_outputs=False, **kwargs):\\n            weights_val = inputs.pop(\\\"weight\\\", None)\\n            outputs = model(**inputs)\\n            loss = outputs.loss\\n            if weights_val is not None and weights_val.numel() > 0:\\n                loss = loss * weights_val.mean()\\n            return (loss, outputs) if return_outputs else loss\\n\\n    log.info(f\\\"Tokenizing {len(texts)} texts...\\\")\\n    dataset = WeightedTextDataset(texts, weights, tokenizer, MAX_LENGTH)\\n\\n    log.info(\\\"Loading Qwen2.5-1.5B...\\\")\\n    model = AutoModelForCausalLM.from_pretrained(\\n        MODEL_PATH, torch_dtype=torch.bfloat16, trust_remote_code=True,\\n    ).to(device)\\n\\n    lora_config = LoraConfig(\\n        task_type=TaskType.CAUSAL_LM,\\n        r=LORA_RANK,\\n        lora_alpha=LORA_ALPHA,\\n        target_modules=LORA_TARGET_MODULES,\\n        lora_dropout=LORA_DROPOUT,\\n        bias=\\\"none\\\",\\n    )\\n    model = get_peft_model(model, lora_config)\\n    trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)\\n    total = sum(p.numel() for p in model.parameters())\\n    log.info(f\\\"LoRA: {trainable:,} trainable / {total:,} total \\\"\\n             f\\\"({trainable/total*100:.2f}%)\\\")\\n\\n    training_args = TrainingArguments(\\n        output_dir=str(output_dir),\\n        num_train_epochs=TRAIN_EPOCHS,\\n        per_device_train_batch_size=TRAIN_BATCH_SIZE,\\n        gradient_accumulation_steps=GRADIENT_ACCUMULATION,\\n        learning_rate=TRAIN_LR,\\n        warmup_ratio=0.05,\\n        weight_decay=0.01,\\n        logging_steps=50,\\n        save_strategy=\\\"no\\\",\\n        bf16=True,\\n        dataloader_pin_memory=False,\\n        seed=seed,\\n        report_to=\\\"none\\\",\\n        remove_unused_columns=False,\\n    )\\n\\n    trainer = WeightedTrainer(\\n        model=model,\\n        args=training_args,\\n        train_dataset=dataset,\\n    )\\n\\n    log.info(f\\\"Training: {len(dataset)} samples, bs={TRAIN_BATCH_SIZE}x{GRADIENT_ACCUMULATION}, \\\"\\n             f\\\"lr={TRAIN_LR}, device={device}\\\")\\n    trainer.train()\\n\\n    merged_dir = output_dir / \\\"merged\\\"\\n    log.info(\\\"Merging LoRA weights into base model...\\\")\\n    merged_model = model.merge_and_unload()\\n    merged_model.save_pretrained(merged_dir)\\n    tokenizer.save_pretrained(merged_dir)\\n    log.info(f\\\"Merged model saved to {merged_dir}\\\")\\n\\n    del model, merged_model, trainer, dataset\\n    torch.cuda.empty_cache()\\n    gc.collect()\\n\\n    return merged_dir\\n\\n\\ndef evaluate_model(model_path, device, results_path):\\n    import lm_eval\\n    from lm_eval.models.huggingface import HFLM\\n\\n    log.info(f\\\"Evaluating {model_path} on {len(BENCHMARKS)} benchmarks...\\\")\\n\\n    lm = HFLM(\\n        pretrained=str(model_path),\\n        device=device,\\n        dtype=\\\"float16\\\",\\n        batch_size=\\\"auto:4\\\",\\n        max_length=2048,\\n        trust_remote_code=True,\\n    )\\n\\n    all_scores = {}\\n    all_full = {}\\n\\n    for task_name, n_fewshot in BENCHMARKS:\\n        log.info(f\\\"  Running {task_name} ({n_fewshot}-shot)...\\\")\\n        t0 = time.time()\\n\\n        success = False\\n        for attempt in range(3):\\n            try:\\n                results = lm_eval.simple_evaluate(\\n                    model=lm,\\n                    tasks=[task_name],\\n                    num_fewshot=n_fewshot,\\n                )\\n                success = True\\n                break\\n            except Exception as e:\\n                if attempt < 2:\\n                    wait = 30 * (attempt + 1)\\n                    log.warning(f\\\"  Attempt {attempt+1} failed: {e}. Retrying in {wait}s...\\\")\\n                    time.sleep(wait)\\n                else:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MSsiHNzRyAho4cBjyBXcYY`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "tail -250 /root/autodl-tmp/gen-depth-contamination/scripts/exp_expanded_downstream_eval.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "95c42837-9f7d-42ce-9eaa-a9b690a44be1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P5tERRaea7Cm2uXZxrLpWF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1896,
+      "cache_read_input_tokens": 30872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1896
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-20T20:09:02.917Z_
+
+<details><summary>↩ Tool result · `toolu_01MSsiHNzRyAho4cBjyBXcYY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    log.info(f\\\"Evaluating {model_path} on {len(BENCHMARKS)} benchmarks...\\\")\\n\\n    lm = HFLM(\\n        pretrained=str(model_path),\\n        device=device,\\n        dtype=\\\"float16\\\",\\n        batch_size=\\\"auto:4\\\",\\n        max_length=2048,\\n        trust_remote_code=True,\\n    )\\n\\n    all_scores = {}\\n    all_full = {}\\n\\n    for task_name, n_fewshot in BENCHMARKS:\\n        log.info(f\\\"  Running {task_name} ({n_fewshot}-shot)...\\\")\\n        t0 = time.time()\\n\\n        success = False\\n        for attempt in range(3):\\n            try:\\n                results = lm_eval.simple_evaluate(\\n                    model=lm,\\n                    tasks=[task_name],\\n                    num_fewshot=n_fewshot,\\n                )\\n                success = True\\n                break\\n            except Exception as e:\\n                if attempt < 2:\\n                    wait = 30 * (attempt + 1)\\n                    log.warning(f\\\"  Attempt {attempt+1} failed: {e}. Retrying in {wait}s...\\\")\\n                    time.sleep(wait)\\n                else:\\n                    log.error(f\\\"  Failed {task_name} after 3 attempts: {e}\\\")\\n\\n        if not success:\\n            all_scores[task_name] = None\\n            continue\\n\\n        task_results = results.get(\\\"results\\\", {}).get(task_name, {})\\n\\n        if task_name == \\\"gsm8k\\\":\\n            score = task_results.get(\\\"exact_match,strict-match\\\",\\n                     task_results.get(\\\"exact_match,get-answer\\\",\\n                      task_results.get(\\\"acc,none\\\", 0)))\\n        elif task_name == \\\"arc_challenge\\\":\\n            score = task_results.get(\\\"acc_norm,none\\\",\\n                     task_results.get(\\\"acc,none\\\", 0))\\n        elif task_name == \\\"truthfulqa_mc2\\\":\\n            score = task_results.get(\\\"acc,none\\\", 0)\\n        elif task_name in (\\\"piqa\\\", \\\"winogrande\\\"):\\n            score = task_results.get(\\\"acc,none\\\", 0)\\n        else:\\n            score = task_results.get(\\\"acc,none\\\", 0)\\n\\n        all_scores[task_name] = float(score) if score is not None else None\\n        all_full[task_name] = {k: v for k, v in task_results.items()}\\n        elapsed = time.time() - t0\\n        log.info(f\\\"  {task_name}: {score:.4f} ({elapsed:.0f}s)\\\")\\n\\n    results_path.parent.mkdir(parents=True, exist_ok=True)\\n    with open(results_path, \\\"w\\\") as f:\\n        json.dump({\\n            \\\"scores\\\": all_scores,\\n            \\\"full\\\": all_full,\\n            \\\"benchmarks\\\": [[b, n] for b, n in BENCHMARKS],\\n        }, f, indent=2, default=str)\\n\\n    del lm\\n    torch.cuda.empty_cache()\\n    gc.collect()\\n\\n    return all_scores\\n\\n\\ndef run_statistical_analysis(results_dir, num_seeds, seed_start):\\n    log.info(\\\"Running statistical analysis...\\\")\\n\\n    strategy_scores = {s: {} for s in STRATEGIES}\\n\\n    for strategy in STRATEGIES:\\n        for seed in range(seed_start, seed_start + num_seeds):\\n            eval_path = results_dir / f\\\"{strategy}_seed{seed}_eval.json\\\"\\n            if eval_path.exists():\\n                with open(eval_path) as f:\\n                    data = json.load(f)\\n                strategy_scores[strategy][seed] = data[\\\"scores\\\"]\\n\\n    all_benchmarks = set()\\n    for scores_by_seed in strategy_scores.values():\\n        for scores in scores_by_seed.values():\\n            all_benchmarks.update(k for k, v in scores.items() if v is not None)\\n\\n    analysis = {\\\"strategies\\\": {}, \\\"comparisons\\\": []}\\n\\n    for strategy in STRATEGIES:\\n        strat_data = {}\\n        for bench in sorted(all_benchmarks):\\n            vals = [strategy_scores[strategy][s][bench]\\n                    for s in strategy_scores[strategy]\\n                    if bench in strategy_scores[strategy][s]\\n                    and strategy_scores[strategy][s][bench] is not None]\\n            if vals:\\n                strat_data[bench] = {\\n                    \\\"mean\\\": float(np.mean(vals)),\\n                    \\\"std\\\": float(np.std(vals)),\\n                    \\\"values\\\": vals,\\n                }\\n        analysis[\\\"strategies\\\"][strategy] = strat_data\\n\\n    comparisons = []\\n    for bench in sorted(all_benchmarks):\\n        for s1, s2 in [(\\\"binary_ours\\\", \\\"no_filter\\\"),\\n\\n... [截断: 输出过长，省略 1576 字符] ...\\n\\nering\\\")\\n    parser.add_argument(\\\"--device\\\", type=str, default=\\\"cuda:0\\\")\\n    parser.add_argument(\\\"--num_seeds\\\", type=int, default=3)\\n    parser.add_argument(\\\"--seed_start\\\", type=int, default=0)\\n    parser.add_argument(\\\"--skip_base\\\", action=\\\"store_true\\\")\\n    args = parser.parse_args()\\n\\n    results_dir = PROJECT_ROOT / \\\"results\\\" / \\\"exp_expanded_downstream_eval\\\"\\n    results_dir.mkdir(parents=True, exist_ok=True)\\n\\n    log_path = PROJECT_ROOT / \\\"logs\\\" / \\\"exp_expanded_downstream_eval.log\\\"\\n    log_path.parent.mkdir(parents=True, exist_ok=True)\\n    fh = logging.FileHandler(log_path)\\n    fh.setFormatter(logging.Formatter(\\n        \\\"%(asctime)s [%(levelname)s] %(message)s\\\", datefmt=\\\"%H:%M:%S\\\"))\\n    logging.getLogger().addHandler(fh)\\n\\n    log.info(\\\"=\\\" * 60)\\n    log.info(\\\"Expanded Downstream Evaluation\\\")\\n    log.info(f\\\"Model: {MODEL_PATH}\\\")\\n    log.info(f\\\"Data: {DATA_DIR}\\\")\\n    log.info(f\\\"Strategies: {STRATEGIES}\\\")\\n    log.info(f\\\"Seeds: {args.seed_start}-{args.seed_start + args.num_seeds - 1}\\\")\\n    log.info(f\\\"Benchmarks: {[b[0] for b in BENCHMARKS]}\\\")\\n    log.info(f\\\"LoRA: rank={LORA_RANK}, alpha={LORA_ALPHA}, target={LORA_TARGET_MODULES}\\\")\\n    log.info(\\\"=\\\" * 60)\\n\\n    if not args.skip_base:\\n        base_eval_path = results_dir / \\\"base_model_eval.json\\\"\\n        if base_eval_path.exists():\\n            log.info(\\\"Base model eval exists, skipping\\\")\\n        else:\\n            log.info(\\\"Evaluating base model...\\\")\\n            base_scores = evaluate_model(MODEL_PATH, args.device, base_eval_path)\\n            log.info(f\\\"Base model scores: {base_scores}\\\")\\n\\n    for seed in range(args.seed_start, args.seed_start + args.num_seeds):\\n        for strategy in STRATEGIES:\\n            run_name = f\\\"{strategy}_seed{seed}\\\"\\n            eval_path = results_dir / f\\\"{run_name}_eval.json\\\"\\n\\n            if eval_path.exists():\\n                log.info(f\\\"[{run_name}] Already completed, skipping\\\")\\n                continue\\n\\n            log.info(f\\\"\\\\n{'='*60}\\\\n  {run_name}\\\\n{'='*60}\\\")\\n\\n            texts, weights = prepare_data(strategy, seed)\\n\\n            train_dir = results_dir / f\\\"{run_name}_train\\\"\\n            model_dir = train_lora(texts, weights, train_dir, args.device, seed)\\n\\n            scores = evaluate_model(model_dir, args.device, eval_path)\\n            log.info(f\\\"[{run_name}] Scores: {scores}\\\")\\n\\n            if train_dir.exists():\\n                shutil.rmtree(train_dir, ignore_errors=True)\\n                log.info(f\\\"Cleaned up {train_dir}\\\")\\n\\n    log.info(\\\"\\\\n\\\" + \\\"=\\\" * 60 + \\\"\\\\n  STATISTICAL ANALYSIS\\\\n\\\" + \\\"=\\\" * 60)\\n    analysis = run_statistical_analysis(\\n        results_dir, args.num_seeds, args.seed_start)\\n\\n    log.info(\\\"\\\\n=== SUMMARY ===\\\")\\n\\n    base_eval_path = results_dir / \\\"base_model_eval.json\\\"\\n    if base_eval_path.exists():\\n        with open(base_eval_path) as f:\\n            base_scores = json.load(f)[\\\"scores\\\"]\\n        log.info(\\\"  base_model: \\\" + \\\", \\\".join(\\n            f\\\"{k}={v:.4f}\\\" for k, v in base_scores.items() if v is not None))\\n\\n    for strategy in STRATEGIES:\\n        strat = analysis[\\\"strategies\\\"].get(strategy, {})\\n        if strat:\\n            parts = []\\n            for bench in sorted(strat.keys()):\\n                m = strat[bench][\\\"mean\\\"]\\n                s = strat[bench][\\\"std\\\"]\\n                parts.append(f\\\"{bench}={m:.4f}+/-{s:.4f}\\\")\\n            log.info(f\\\"  {strategy}: {', '.join(parts)}\\\")\\n\\n    for comp in analysis.get(\\\"comparisons\\\", []):\\n        sig = \\\"***\\\" if comp.get(\\\"holm_significant\\\") else \\\"n.s.\\\"\\n        log.info(f\\\"  {comp['benchmark']}: {comp['comparison']}: \\\"\\n                 f\\\"d={comp['cohens_d']:.3f}, p={comp['p_value']:.4f} {sig}\\\")\\n\\n    summary = {\\\"base_model\\\": {}, \\\"strategies\\\": analysis[\\\"strategies\\\"],\\n               \\\"comparisons\\\": analysis[\\\"comparisons\\\"]}\\n    if base_eval_path.exists():\\n        with open(base_eval_path) as f:\\n            summary[\\\"base_model\\\"] = json.load(f)[\\\"scores\\\"]\\n    with open(results_dir / \\\"summary.json\\\", \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n\\n    log.info(\\\"\\\\nDone!\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "7da3112a-55a3-4504-90af-6fb328e582b7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    log.info(f\\\\\\\"Evaluating {model_path} on {len(BENCHMARKS)} benchmarks...\\\\\\\")\\\\n\\\\n    lm = HFLM(\\\\n        pretrained=str(model_path),\\\\n        device=device,\\\\n        dtype=\\\\\\\"float16\\\\\\\",\\\\n        batch_size=\\\\\\\"auto:4\\\\\\\",\\\\n        max_length=2048,\\\\n        trust_remote_code=True,\\\\n    )\\\\n\\\\n    all_scores = {}\\\\n    all_full = {}\\\\n\\\\n    for task_name, n_fewshot in BENCHMARKS:\\\\n        log.info(f\\\\\\\"  Running {task_name} ({n_fewshot}-shot)...\\\\\\\")\\\\n        t0 = time.time()\\\\n\\\\n        success = False\\\\n        for attempt in range(3):\\\\n            try:\\\\n                results = lm_eval.simple_evaluate(\\\\n                    model=lm,\\\\n                    tasks=[task_name],\\\\n                    num_fewshot=n_fewshot,\\\\n                )\\\\n                success = True\\\\n                break\\\\n            except Exception as e:\\\\n                if attempt < 2:\\\\n                    wait = 30 * (attempt + 1)\\\\n                    log.warning(f\\\\\\\"  Attempt {attempt+1} failed: {e}. Retrying in {wait}s...\\\\\\\")\\\\n                    time.sleep(wait)\\\\n                else:\\\\n                    log.error(f\\\\\\\"  Failed {task_name} after 3 attempts: {e}\\\\\\\")\\\\n\\\\n        if not success:\\\\n            all_scores[task_name] = None\\\\n            continue\\\\n\\\\n        task_results = results.get(\\\\\\\"results\\\\\\\", {}).get(task_name, {})\\\\n\\\\n        if task_name == \\\\\\\"gsm8k\\\\\\\":\\\\n            score = task_results.get(\\\\\\\"exact_match,strict-match\\\\\\\",\\\\n                     task_results.get(\\\\\\\"exact_match,get-answer\\\\\\\",\\\\n                      task_results.get(\\\\\\\"acc,none\\\\\\\", 0)))\\\\n        elif task_name == \\\\\\\"arc_challenge\\\\\\\":\\\\n            score = task_results.get(\\\\\\\"acc_norm,none\\\\\\\",\\\\n                     task_results.get(\\\\\\\"acc,none\\\\\\\", 0))\\\\n        elif task_name == \\\\\\\"truthfulqa_mc2\\\\\\\":\\\\n            score = task_results.get(\\\\\\\"acc,none\\\\\\\", 0)\\\\n        elif task_name in (\\\\\\\"piqa\\\\\\\", \\\\\\\"winogrande\\\\\\\"):\\\\n            score = task_results.get(\\\\\\\"acc,none\\\\\\\", 0)\\\\n        else:\\\\n            score = task_results.get(\\\\\\\"acc,none\\\\\\\", 0)\\\\n\\\\n        all_scores[task_name] = float(score) if score is not None else None\\\\n        all_full[task_name] = {k: v for k, v in task_results.items()}\\\\n        elapsed = time.time() - t0\\\\n        log.info(f\\\\\\\"  {task_name}: {score:.4f} ({elapsed:.0f}s)\\\\\\\")\\\\n\\\\n    results_path.parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(results_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump({\\\\n            \\\\\\\"scores\\\\\\\": all_scores,\\\\n            \\\\\\\"full\\\\\\\": all_full,\\\\n            \\\\\\\"benchmarks\\\\\\\": [[b, n] for b, n in BENCHMARKS],\\\\n        }, f, indent=2, default=str)\\\\n\\\\n    del lm\\\\n    torch.cuda.empty_cache()\\\\n    gc.collect()\\\\n\\\\n    return all_scores\\\\n\\\\n\\\\ndef run_statistical_analysis(results_dir, num_seeds, seed_start):\\\\n    log.info(\\\\\\\"Running statistical analysis...\\\\\\\")\\\\n\\\\n    strategy_scores = {s: {} for s in STRATEGIES}\\\\n\\\\n    for strategy in STRATEGIES:\\\\n        for seed in range(seed_start, seed_start + num_seeds):\\\\n            eval_path = results_dir / f\\\\\\\"{strategy}_seed{seed}_eval.json\\\\\\\"\\\\n            if eval_path.exists():\\\\n                with open(eval_path) as f:\\\\n                    data = json.load(f)\\\\n                strategy_scores[strategy][seed] = data[\\\\\\\"scores\\\\\\\"]\\\\n\\\\n    all_benchmarks = set()\\\\n    for scores_by_seed in strategy_scores.values():\\\\n        for scores in scores_by_seed.values():\\\\n            all_benchmarks.update(k for k, v in scores.items() if v is not None)\\\\n\\\\n    analysis = {\\\\\\\"strategies\\\\\\\": {}, \\\\\\\"comparisons\\\\\\\": []}\\\\n\\\\n    for strategy in STRATEGIES:\\\\n        strat_data = {}\\\\n        for bench in sorted(all_benchmarks):\\\\n            vals = [strategy_scores[strategy][s][bench]\\\\n                    for s in strategy_scores[strategy]\\\\n                    if bench in strategy_scores[strategy][s]\\\\n                    and strategy_scores[strategy][s][bench] is not None]\\\\n            if vals:\\\\n                strat_data[bench] = {\\\\n                    \\\\\\\"mean\\\\\\\": float(np.mean(vals)),\\\\n                    \\\\\\\"std\\\\\\\": float(np.std(vals)),\\\\n                    \\\\\\\"values\\\\\\\": vals,\\\\n                }\\\\n        analysis[\\\\\\\"strategies\\\\\\\"][strategy] = strat_data\\\\n\\\\n    comparisons = []\\\\n    for bench in sorted(all_benchmarks):\\\\n        for s1, s2 in [(\\\\\\\"binary_ours\\\\\\\", \\\\\\\"no_filter\\\\\\\"),\\\\n\\\\n... [截断: 输出过长，省略 1576 字符] ...\\\\n\\\\nering\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--device\\\\\\\", type=str, default=\\\\\\\"cuda:0\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--num_seeds\\\\\\\", type=int, default=3)\\\\n    parser.add_argument(\\\\\\\"--seed_start\\\\\\\", type=int, default=0)\\\\n    parser.add_argument(\\\\\\\"--skip_base\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    results_dir = PROJECT_ROOT / \\\\\\\"results\\\\\\\" / \\\\\\\"exp_expanded_downstream_eval\\\\\\\"\\\\n    results_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    log_path = PROJECT_ROOT / \\\\\\\"logs\\\\\\\" / \\\\\\\"exp_expanded_downstream_eval.log\\\\\\\"\\\\n    log_path.parent.mkdir(parents=True, exist_ok=True)\\\\n    fh = logging.FileHandler(log_path)\\\\n    fh.setFormatter(logging.Formatter(\\\\n        \\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\", datefmt=\\\\\\\"%H:%M:%S\\\\\\\"))\\\\n    logging.getLogger().addHandler(fh)\\\\n\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    log.info(\\\\\\\"Expanded Downstream Evaluation\\\\\\\")\\\\n    log.info(f\\\\\\\"Model: {MODEL_PATH}\\\\\\\")\\\\n    log.info(f\\\\\\\"Data: {DATA_DIR}\\\\\\\")\\\\n    log.info(f\\\\\\\"Strategies: {STRATEGIES}\\\\\\\")\\\\n    log.info(f\\\\\\\"Seeds: {args.seed_start}-{args.seed_start + args.num_seeds - 1}\\\\\\\")\\\\n    log.info(f\\\\\\\"Benchmarks: {[b[0] for b in BENCHMARKS]}\\\\\\\")\\\\n    log.info(f\\\\\\\"LoRA: rank={LORA_RANK}, alpha={LORA_ALPHA}, target={LORA_TARGET_MODULES}\\\\\\\")\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    if not args.skip_base:\\\\n        base_eval_path = results_dir / \\\\\\\"base_model_eval.json\\\\\\\"\\\\n        if base_eval_path.exists():\\\\n            log.info(\\\\\\\"Base model eval exists, skipping\\\\\\\")\\\\n        else:\\\\n            log.info(\\\\\\\"Evaluating base model...\\\\\\\")\\\\n            base_scores = evaluate_model(MODEL_PATH, args.device, base_eval_path)\\\\n            log.info(f\\\\\\\"Base model scores: {base_scores}\\\\\\\")\\\\n\\\\n    for seed in range(args.seed_start, args.seed_start + args.num_seeds):\\\\n        for strategy in STRATEGIES:\\\\n            run_name = f\\\\\\\"{strategy}_seed{seed}\\\\\\\"\\\\n            eval_path = results_dir / f\\\\\\\"{run_name}_eval.json\\\\\\\"\\\\n\\\\n            if eval_path.exists():\\\\n                log.info(f\\\\\\\"[{run_name}] Already completed, skipping\\\\\\\")\\\\n                continue\\\\n\\\\n            log.info(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\\n  {run_name}\\\\\\\\n{'='*60}\\\\\\\")\\\\n\\\\n            texts, weights = prepare_data(strategy, seed)\\\\n\\\\n            train_dir = results_dir / f\\\\\\\"{run_name}_train\\\\\\\"\\\\n            model_dir = train_lora(texts, weights, train_dir, args.device, seed)\\\\n\\\\n            scores = evaluate_model(model_dir, args.device, eval_path)\\\\n            log.info(f\\\\\\\"[{run_name}] Scores: {scores}\\\\\\\")\\\\n\\\\n            if train_dir.exists():\\\\n                shutil.rmtree(train_dir, ignore_errors=True)\\\\n                log.info(f\\\\\\\"Cleaned up {train_dir}\\\\\\\")\\\\n\\\\n    log.info(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60 + \\\\\\\"\\\\\\\\n  STATISTICAL ANALYSIS\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    analysis = run_statistical_analysis(\\\\n        results_dir, args.num_seeds, args.seed_start)\\\\n\\\\n    log.info(\\\\\\\"\\\\\\\\n=== SUMMARY ===\\\\\\\")\\\\n\\\\n    base_eval_path = results_dir / \\\\\\\"base_model_eval.json\\\\\\\"\\\\n    if base_eval_path.exists():\\\\n        with open(base_eval_path) as f:\\\\n            base_scores = json.load(f)[\\\\\\\"scores\\\\\\\"]\\\\n        log.info(\\\\\\\"  base_model: \\\\\\\" + \\\\\\\", \\\\\\\".join(\\\\n            f\\\\\\\"{k}={v:.4f}\\\\\\\" for k, v in base_scores.items() if v is not None))\\\\n\\\\n    for strategy in STRATEGIES:\\\\n        strat = analysis[\\\\\\\"strategies\\\\\\\"].get(strategy, {})\\\\n        if strat:\\\\n            parts = []\\\\n            for bench in sorted(strat.keys()):\\\\n                m = strat[bench][\\\\\\\"mean\\\\\\\"]\\\\n                s = strat[bench][\\\\\\\"std\\\\\\\"]\\\\n                parts.append(f\\\\\\\"{bench}={m:.4f}+/-{s:.4f}\\\\\\\")\\\\n            log.info(f\\\\\\\"  {strategy}: {', '.join(parts)}\\\\\\\")\\\\n\\\\n    for comp in analysis.get(\\\\\\\"comparisons\\\\\\\", []):\\\\n        sig = \\\\\\\"***\\\\\\\" if comp.get(\\\\\\\"holm_significant\\\\\\\") else \\\\\\\"n.s.\\\\\\\"\\\\n        log.info(f\\\\\\\"  {comp['benchmark']}: {comp['comparison']}: \\\\\\\"\\\\n                 f\\\\\\\"d={comp['cohens_d']:.3f}, p={comp['p_value']:.4f} {sig}\\\\\\\")\\\\n\\\\n    summary = {\\\\\\\"base_model\\\\\\\": {}, \\\\\\\"strategies\\\\\\\": analysis[\\\\\\\"strategies\\\\\\\"],\\\\n               \\\\\\\"comparisons\\\\\\\": analysis[\\\\\\\"comparisons\\\\\\\"]}\\\\n    if base_eval_path.exists():\\\\n        with open(base_eval_path) as f:\\\\n            summary[\\\\\\\"base_model\\\\\\\"] = json.load(f)[\\\\\\\"scores\\\\\\\"]\\\\n    with open(results_dir / \\\\\\\"summary.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n\\\\n    log.info(\\\\\\\"\\\\\\\\nDone!\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    log.info(f\\\"Evaluating {model_path} on {len(BENCHMARKS)} benchmarks...\\\")\\n\\n    lm = HFLM(\\n        pretrained=str(model_path),\\n        device=device,\\n        dtype=\\\"float16\\\",\\n        batch_size=\\\"auto:4\\\",\\n        max_length=2048,\\n        trust_remote_code=True,\\n    )\\n\\n    all_scores = {}\\n    all_full = {}\\n\\n    for task_name, n_fewshot in BENCHMARKS:\\n        log.info(f\\\"  Running {task_name} ({n_fewshot}-shot)...\\\")\\n        t0 = time.time()\\n\\n        success = False\\n        for attempt in range(3):\\n            try:\\n                results = lm_eval.simple_evaluate(\\n                    model=lm,\\n                    tasks=[task_name],\\n                    num_fewshot=n_fewshot,\\n                )\\n                success = True\\n                break\\n            except Exception as e:\\n                if attempt < 2:\\n                    wait = 30 * (attempt + 1)\\n                    log.warning(f\\\"  Attempt {attempt+1} failed: {e}. Retrying in {wait}s...\\\")\\n                    time.sleep(wait)\\n                else:\\n                    log.error(f\\\"  Failed {task_name} after 3 attempts: {e}\\\")\\n\\n        if not success:\\n            all_scores[task_name] = None\\n            continue\\n\\n        task_results = results.get(\\\"results\\\", {}).get(task_name, {})\\n\\n        if task_name == \\\"gsm8k\\\":\\n            score = task_results.get(\\\"exact_match,strict-match\\\",\\n                     task_results.get(\\\"exact_match,get-answer\\\",\\n                      task_results.get(\\\"acc,none\\\", 0)))\\n        elif task_name == \\\"arc_challenge\\\":\\n            score = task_results.get(\\\"acc_norm,none\\\",\\n                     task_results.get(\\\"acc,none\\\", 0))\\n        elif task_name == \\\"truthfulqa_mc2\\\":\\n            score = task_results.get(\\\"acc,none\\\", 0)\\n        elif task_name in (\\\"piqa\\\", \\\"winogrande\\\"):\\n            score = task_results.get(\\\"acc,none\\\", 0)\\n        else:\\n            score = task_results.get(\\\"acc,none\\\", 0)\\n\\n        all_scores[task_name] = float(score) if score is not None else None\\n        all_full[task_name] = {k: v for k, v in task_results.items()}\\n        elapsed = time.time() - t0\\n        log.info(f\\\"  {task_name}: {score:.4f} ({elapsed:.0f}s)\\\")\\n\\n    results_path.parent.mkdir(parents=True, exist_ok=True)\\n    with open(results_path, \\\"w\\\") as f:\\n        json.dump({\\n            \\\"scores\\\": all_scores,\\n            \\\"full\\\": all_full,\\n            \\\"benchmarks\\\": [[b, n] for b, n in BENCHMARKS],\\n        }, f, indent=2, default=str)\\n\\n    del lm\\n    torch.cuda.empty_cache()\\n    gc.collect()\\n\\n    return all_scores\\n\\n\\ndef run_statistical_analysis(results_dir, num_seeds, seed_start):\\n    log.info(\\\"Running statistical analysis...\\\")\\n\\n    strategy_scores = {s: {} for s in STRATEGIES}\\n\\n    for strategy in STRATEGIES:\\n        for seed in range(seed_start, seed_start + num_seeds):\\n            eval_path = results_dir / f\\\"{strategy}_seed{seed}_eval.json\\\"\\n            if eval_path.exists():\\n                with open(eval_path) as f:\\n                    data = json.load(f)\\n                strategy_scores[strategy][seed] = data[\\\"scores\\\"]\\n\\n    all_benchmarks = set()\\n    for scores_by_seed in strategy_scores.values():\\n        for scores in scores_by_seed.values():\\n            all_benchmarks.update(k for k, v in scores.items() if v is not None)\\n\\n    analysis = {\\\"strategies\\\": {}, \\\"comparisons\\\": []}\\n\\n    for strategy in STRATEGIES:\\n        strat_data = {}\\n        for bench in sorted(all_benchmarks):\\n            vals = [strategy_scores[strategy][s][bench]\\n                    for s in strategy_scores[strategy]\\n                    if bench in strategy_scores[strategy][s]\\n                    and strategy_scores[strategy][s][bench] is not None]\\n            if vals:\\n                strat_data[bench] = {\\n                    \\\"mean\\\": float(np.mean(vals)),\\n                    \\\"std\\\": float(np.std(vals)),\\n                    \\\"values\\\": vals,\\n                }\\n        analysis[\\\"strategies\\\"][strategy] = strat_data\\n\\n    comparisons = []\\n    for bench in sorted(all_benchmarks):\\n        for s1, s2 in [(\\\"binary_ours\\\", \\\"no_filter\\\"),\\n\\n... [截断: 输出过长，省略 1576 字符] ...\\n\\nering\\\")\\n    parser.add_argument(\\\"--device\\\", type=str, default=\\\"cuda:0\\\")\\n    parser.add_argument(\\\"--num_seeds\\\", type=int, default=3)\\n    parser.add_argument(\\\"--seed_start\\\", type=int, default=0)\\n    parser.add_argument(\\\"--skip_base\\\", action=\\\"store_true\\\")\\n    args = parser.parse_args()\\n\\n    results_dir = PROJECT_ROOT / \\\"results\\\" / \\\"exp_expanded_downstream_eval\\\"\\n    results_dir.mkdir(parents=True, exist_ok=True)\\n\\n    log_path = PROJECT_ROOT / \\\"logs\\\" / \\\"exp_expanded_downstream_eval.log\\\"\\n    log_path.parent.mkdir(parents=True, exist_ok=True)\\n    fh = logging.FileHandler(log_path)\\n    fh.setFormatter(logging.Formatter(\\n        \\\"%(asctime)s [%(levelname)s] %(message)s\\\", datefmt=\\\"%H:%M:%S\\\"))\\n    logging.getLogger().addHandler(fh)\\n\\n    log.info(\\\"=\\\" * 60)\\n    log.info(\\\"Expanded Downstream Evaluation\\\")\\n    log.info(f\\\"Model: {MODEL_PATH}\\\")\\n    log.info(f\\\"Data: {DATA_DIR}\\\")\\n    log.info(f\\\"Strategies: {STRATEGIES}\\\")\\n    log.info(f\\\"Seeds: {args.seed_start}-{args.seed_start + args.num_seeds - 1}\\\")\\n    log.info(f\\\"Benchmarks: {[b[0] for b in BENCHMARKS]}\\\")\\n    log.info(f\\\"LoRA: rank={LORA_RANK}, alpha={LORA_ALPHA}, target={LORA_TARGET_MODULES}\\\")\\n    log.info(\\\"=\\\" * 60)\\n\\n    if not args.skip_base:\\n        base_eval_path = results_dir / \\\"base_model_eval.json\\\"\\n        if base_eval_path.exists():\\n            log.info(\\\"Base model eval exists, skipping\\\")\\n        else:\\n            log.info(\\\"Evaluating base model...\\\")\\n            base_scores = evaluate_model(MODEL_PATH, args.device, base_eval_path)\\n            log.info(f\\\"Base model scores: {base_scores}\\\")\\n\\n    for seed in range(args.seed_start, args.seed_start + args.num_seeds):\\n        for strategy in STRATEGIES:\\n            run_name = f\\\"{strategy}_seed{seed}\\\"\\n            eval_path = results_dir / f\\\"{run_name}_eval.json\\\"\\n\\n            if eval_path.exists():\\n                log.info(f\\\"[{run_name}] Already completed, skipping\\\")\\n                continue\\n\\n            log.info(f\\\"\\\\n{'='*60}\\\\n  {run_name}\\\\n{'='*60}\\\")\\n\\n            texts, weights = prepare_data(strategy, seed)\\n\\n            train_dir = results_dir / f\\\"{run_name}_train\\\"\\n            model_dir = train_lora(texts, weights, train_dir, args.device, seed)\\n\\n            scores = evaluate_model(model_dir, args.device, eval_path)\\n            log.info(f\\\"[{run_name}] Scores: {scores}\\\")\\n\\n            if train_dir.exists():\\n                shutil.rmtree(train_dir, ignore_errors=True)\\n                log.info(f\\\"Cleaned up {train_dir}\\\")\\n\\n    log.info(\\\"\\\\n\\\" + \\\"=\\\" * 60 + \\\"\\\\n  STATISTICAL ANALYSIS\\\\n\\\" + \\\"=\\\" * 60)\\n    analysis = run_statistical_analysis(\\n        results_dir, args.num_seeds, args.seed_start)\\n\\n    log.info(\\\"\\\\n=== SUMMARY ===\\\")\\n\\n    base_eval_path = results_dir / \\\"base_model_eval.json\\\"\\n    if base_eval_path.exists():\\n        with open(base_eval_path) as f:\\n            base_scores = json.load(f)[\\\"scores\\\"]\\n        log.info(\\\"  base_model: \\\" + \\\", \\\".join(\\n            f\\\"{k}={v:.4f}\\\" for k, v in base_scores.items() if v is not None))\\n\\n    for strategy in STRATEGIES:\\n        strat = analysis[\\\"strategies\\\"].get(strategy, {})\\n        if strat:\\n            parts = []\\n            for bench in sorted(strat.keys()):\\n                m = strat[bench][\\\"mean\\\"]\\n                s = strat[bench][\\\"std\\\"]\\n                parts.append(f\\\"{bench}={m:.4f}+/-{s:.4f}\\\")\\n            log.info(f\\\"  {strategy}: {', '.join(parts)}\\\")\\n\\n    for comp in analysis.get(\\\"comparisons\\\", []):\\n        sig = \\\"***\\\" if comp.get(\\\"holm_significant\\\") else \\\"n.s.\\\"\\n        log.info(f\\\"  {comp['benchmark']}: {comp['comparison']}: \\\"\\n                 f\\\"d={comp['cohens_d']:.3f}, p={comp['p_value']:.4f} {sig}\\\")\\n\\n    summary = {\\\"base_model\\\": {}, \\\"strategies\\\": analysis[\\\"strategies\\\"],\\n               \\\"comparisons\\\": analysis[\\\"comparisons\\\"]}\\n    if base_eval_path.exists():\\n        with open(base_eval_path) as f:\\n            summary[\\\"base_model\\\"] = json.load(f)[\\\"scores\\\"]\\n    with open(results_dir / \\\"summary.json\\\", \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n\\n    log.info(\\\"\\\\nDone!\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01X2uH5aerxdCKLSjpoo46fC`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "nvidia-smi --query-gpu=index,name,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "71c8017b-96e1-4fc5-aa01-21b41e75e997",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P5tERRaea7Cm2uXZxrLpWF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1896,
+      "cache_read_input_tokens": 30872,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1896
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-20T20:09:03.791Z_
+
+<details><summary>↩ Tool result · `toolu_01X2uH5aerxdCKLSjpoo46fC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA GeForce RTX 4090 D, 78 %, 11091 MiB, 24564 MiB\\n1, NVIDIA GeForce RTX 4090 D, 0 %, 0 MiB, 24564 MiB\\n2, NVIDIA GeForce RTX 4090 D, 0 %, 0 MiB, 24564 MiB\\n3, NVIDIA GeForce RTX 4090 D, 0 %, 0 MiB, 24564 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "26e68e29-8c47-4097-bec1-a30a127b9b41",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA GeForce RTX 4090 D, 78 %, 11091 MiB, 24564 MiB\\\\n1, NVIDIA GeForce RTX 4090 D, 0 %, 0 MiB, 24564 MiB\\\\n2, NVIDIA GeForce RTX 4090 D, 0 %, 0 MiB, 24564 MiB\\\\n3, NVIDIA GeForce RTX 4090 D, 0 %, 0 MiB, 24564 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, NVIDIA GeForce RTX 4090 D, 78 %, 11091 MiB, 24564 MiB\\n1, NVIDIA GeForce RTX 4090 D, 0 %, 0 MiB, 24564 MiB\\n2, NVIDIA GeForce RTX 4090 D, 0 %, 0 MiB, 24564 MiB\\n3, NVIDIA GeForce RTX 4090 D, 0 %, 0 MiB, 24564 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture:
+
+1. Script is 466 lines
+2. GPU status: cuda:0 is busy (78%, 11GB used), cuda:1,2,3 are free
+3. No checkpoints exist (adapter_config.json not found)
+4. seed0/seed1 eval files exist but GSM8K is null
+
+I still need to see the middle part of the script that was truncated. Let me get lines 250-300 which should have the rest of evaluate_model and the statistical analysis.
+
+Actually, looking more carefully at what I got:
+
+
+- head -250 gave me up to the retry logic in evaluate_model 
+- tail -250 starts from evaluate_model's HFLM initialization
+
+So there's overlap and I think I have the full content. Let me piece it together:
+
+The script structure:
+1. Constants and imports (lines 1-60)
+2. load_jsonl, set_seed, prepare_data (lines 62-107)
+3. train_lora (lines 110-200ish)
+4. evaluate_model (lines ~215-290)
+5. run_statistical_analysis (lines ~292-370ish)
+6. main() (lines ~372-466)
+
+I need to see the part between what head -250 and tail -250 gave me to understand the full flow.
+
+Looking at the overlap, head -250 ends at evaluate_model's retry logic while tail -250 starts there too, so I likely have everything. Now I'm thinking through the modifications: I need to add --strategy and --skip_train arguments, filter strategies in the main loop, and handle the case where --skip_train tries to load an existing merged model. But there's a problem—the training function cleans up the checkpoint directory after merging, so I need to figure out how to preserve or reload that merged model if training is skipped. For the GSM8K补跑, since the checkpoints are gone, I need to retrain those models anyway. The cleanest solution is to add a `--benchmarks` parameter that lets me run evaluation on only specific benchmarks, so I can retrain with just GSM8K eval instead of all five benchmarks. 3. Or: modify the script to check existing eval files and only run missing benchmarks
+
+Actually the simplest approach: Add an option to the evaluate_model or main flow that:
+- When an eval file exists but has null values, re-run only the null benchmarks
+- This requires retraining (since merged model is gone), then eval only missing benchmarks
+
+Hmm, but that's still expensive - retrain just to eval one benchmark.
+
+Let me think about this differently. The --skip_train approach needs a model to evaluate. Without checkpoints, we need to retrain. But we want to:
+1. Retrain the same model
+2. Only evaluate GSM8K (not re-evaluate the other 4 benchmarks)
+
+So I'll add command-line flags to filter by strategy and benchmarks, plus a `--patch_null` option that retrains but only evaluates the benchmarks with missing values in an existing eval file. Adding `--only_benchmarks` for specifying which benchmarks to run, and `--strategy` to select a specific strategy variant. I'm checking the eval results file to see which benchmarks are missing scores, then I'll retrain the model and only run evaluations for those null benchmarks before merging the results back into the existing file. For the `--skip_train` flag, I need to locate the merged model directory and error out if it doesn't exist, and I'm also planning to add the strategy filter to the main loop so it only processes runs matching the selected strategy. Writing the modified script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "b9c1e5ff-a9c9-465c-b8dd-14b0398b8f6b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nf9vGr24nwzTEsE1c6ADqs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7414,
+      "cache_read_input_tokens": 32768,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7414
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+还需要看脚本中间截断的部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "4126f104-b0fb-4d09-b0b9-a20fd0c314a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nf9vGr24nwzTEsE1c6ADqs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7414,
+      "cache_read_input_tokens": 32768,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7414
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013cgBnqLRY9kscoYCWCbHjZ`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "head -320 /root/autodl-tmp/gen-depth-contamination/scripts/exp_expanded_downstream_eval.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "7313fb6f-f0e6-4dcf-af15-d0f3e87dc7e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nf9vGr24nwzTEsE1c6ADqs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7414,
+      "cache_read_input_tokens": 32768,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7414
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-20T20:09:50.213Z_
+
+<details><summary>↩ Tool result · `toolu_013cgBnqLRY9kscoYCWCbHjZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Expanded downstream evaluation for K*-guided filtering strategies.\\n\\nRetrains LoRA models on Qwen2.5-1.5B with 3 filtering strategies\\n(no_filter, binary_ours, graduated), then evaluates on 5 benchmarks:\\nPIQA, TruthfulQA-MC2, WinoGrande, ARC-Challenge, GSM8K.\\n\\nUsage:\\n    python scripts/exp_expanded_downstream_eval.py --device cuda:0 --num_seeds 3\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport json\\nimport logging\\nimport os\\nimport shutil\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom scipy import stats\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    datefmt=\\\"%H:%M:%S\\\",\\n    handlers=[logging.StreamHandler(sys.stdout)],\\n)\\nlog = logging.getLogger(__name__)\\n\\nPROJECT_ROOT = Path(\\\"/root/autodl-tmp/gen-depth-contamination\\\")\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\\nDATA_DIR = PROJECT_ROOT / \\\"data_exp020_pythia_greedy\\\"\\n\\nKSTAR = 2\\nGRADUATED_ALPHA = 0.9\\nMAX_DEPTH = 5\\nSTRATEGIES = [\\\"no_filter\\\", \\\"binary_ours\\\", \\\"graduated\\\"]\\n\\nLORA_RANK = 8\\nLORA_ALPHA = 16\\nLORA_TARGET_MODULES = [\\\"q_proj\\\", \\\"v_proj\\\"]\\nLORA_DROPOUT = 0.05\\n\\nTRAIN_LR = 2e-4\\nTRAIN_BATCH_SIZE = 4\\nGRADIENT_ACCUMULATION = 4\\nTRAIN_EPOCHS = 1\\nMAX_LENGTH = 256\\n\\nBENCHMARKS = [\\n    (\\\"piqa\\\", 0),\\n    (\\\"truthfulqa_mc2\\\", 0),\\n    (\\\"winogrande\\\", 5),\\n    (\\\"arc_challenge\\\", 25),\\n    (\\\"gsm8k\\\", 8),\\n]\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef set_seed(seed):\\n    np.random.seed(seed)\\n    torch.manual_seed(seed)\\n    if torch.cuda.is_available():\\n        torch.cuda.manual_seed_all(seed)\\n\\n\\ndef prepare_data(strategy, seed):\\n    rng = np.random.RandomState(seed)\\n    all_texts = []\\n    all_weights = []\\n\\n    if strategy == \\\"no_filter\\\":\\n        for d in range(MAX_DEPTH + 1):\\n            records = load_jsonl(DATA_DIR / f\\\"depth_{d}.jsonl\\\")\\n            all_texts.extend(r[\\\"text\\\"] for r in records)\\n            all_weights.extend([1.0] * len(records))\\n    elif strategy == \\\"binary_ours\\\":\\n        for d in range(KSTAR + 1):\\n            records = load_jsonl(DATA_DIR / f\\\"depth_{d}.jsonl\\\")\\n            all_texts.extend(r[\\\"text\\\"] for r in records)\\n            all_weights.extend([1.0] * len(records))\\n    elif strategy == \\\"graduated\\\":\\n        for d in range(MAX_DEPTH + 1):\\n            records = load_jsonl(DATA_DIR / f\\\"depth_{d}.jsonl\\\")\\n            w = GRADUATED_ALPHA ** d\\n            all_texts.extend(r[\\\"text\\\"] for r in records)\\n            all_weights.extend([w] * len(records))\\n    else:\\n        raise ValueError(f\\\"Unknown strategy: {strategy}\\\")\\n\\n    indices = list(range(len(all_texts)))\\n    rng.shuffle(indices)\\n    all_texts = [all_texts[i] for i in indices]\\n    all_weights = [all_weights[i] for i in indices]\\n\\n    log.info(f\\\"Data: strategy={strategy}, n={len(all_texts)}, \\\"\\n             f\\\"mean_weight={np.mean(all_weights):.4f}\\\")\\n    return all_texts, all_weights\\n\\n\\ndef train_lora(texts, weights, output_dir, device, seed):\\n    from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments\\n    from peft import LoraConfig, get_peft_model, TaskType\\n    from torch.utils.data import Dataset\\n\\n    set_seed(seed)\\n\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n        tokenizer.pad_token_id = tokenizer.eos_token_id\\n\\n    class WeightedTextDataset(Dataset):\\n        def __init__(self, texts, weights, tokenizer, max_length):\\n            self.encodings = []\\n            self.weights = []\\n            for text, w in zip(texts, weights):\\n                enc = tokenizer(text, truncation=True, max_length=max_length,\\n                                padding=\\\"max_length\\\", return_tensors=\\\"pt\\\")\\n                self.encodings.append({k: v.squeeze(0) for k, v in enc.items()})\\n                self.weights.append(w)\\n\\n        def __len__(self):\\n            return len(self.encodings)\\n\\n        def __getitem__(self, idx):\\n     \\n\\n... [截断: 输出过长，省略 2491 字符] ...\\n\\ne_pretrained(merged_dir)\\n    tokenizer.save_pretrained(merged_dir)\\n    log.info(f\\\"Merged model saved to {merged_dir}\\\")\\n\\n    del model, merged_model, trainer, dataset\\n    torch.cuda.empty_cache()\\n    gc.collect()\\n\\n    return merged_dir\\n\\n\\ndef evaluate_model(model_path, device, results_path):\\n    import lm_eval\\n    from lm_eval.models.huggingface import HFLM\\n\\n    log.info(f\\\"Evaluating {model_path} on {len(BENCHMARKS)} benchmarks...\\\")\\n\\n    lm = HFLM(\\n        pretrained=str(model_path),\\n        device=device,\\n        dtype=\\\"float16\\\",\\n        batch_size=\\\"auto:4\\\",\\n        max_length=2048,\\n        trust_remote_code=True,\\n    )\\n\\n    all_scores = {}\\n    all_full = {}\\n\\n    for task_name, n_fewshot in BENCHMARKS:\\n        log.info(f\\\"  Running {task_name} ({n_fewshot}-shot)...\\\")\\n        t0 = time.time()\\n\\n        success = False\\n        for attempt in range(3):\\n            try:\\n                results = lm_eval.simple_evaluate(\\n                    model=lm,\\n                    tasks=[task_name],\\n                    num_fewshot=n_fewshot,\\n                )\\n                success = True\\n                break\\n            except Exception as e:\\n                if attempt < 2:\\n                    wait = 30 * (attempt + 1)\\n                    log.warning(f\\\"  Attempt {attempt+1} failed: {e}. Retrying in {wait}s...\\\")\\n                    time.sleep(wait)\\n                else:\\n                    log.error(f\\\"  Failed {task_name} after 3 attempts: {e}\\\")\\n\\n        if not success:\\n            all_scores[task_name] = None\\n            continue\\n\\n        task_results = results.get(\\\"results\\\", {}).get(task_name, {})\\n\\n        if task_name == \\\"gsm8k\\\":\\n            score = task_results.get(\\\"exact_match,strict-match\\\",\\n                     task_results.get(\\\"exact_match,get-answer\\\",\\n                      task_results.get(\\\"acc,none\\\", 0)))\\n        elif task_name == \\\"arc_challenge\\\":\\n            score = task_results.get(\\\"acc_norm,none\\\",\\n                     task_results.get(\\\"acc,none\\\", 0))\\n        elif task_name == \\\"truthfulqa_mc2\\\":\\n            score = task_results.get(\\\"acc,none\\\", 0)\\n        elif task_name in (\\\"piqa\\\", \\\"winogrande\\\"):\\n            score = task_results.get(\\\"acc,none\\\", 0)\\n        else:\\n            score = task_results.get(\\\"acc,none\\\", 0)\\n\\n        all_scores[task_name] = float(score) if score is not None else None\\n        all_full[task_name] = {k: v for k, v in task_results.items()}\\n        elapsed = time.time() - t0\\n        log.info(f\\\"  {task_name}: {score:.4f} ({elapsed:.0f}s)\\\")\\n\\n    results_path.parent.mkdir(parents=True, exist_ok=True)\\n    with open(results_path, \\\"w\\\") as f:\\n        json.dump({\\n            \\\"scores\\\": all_scores,\\n            \\\"full\\\": all_full,\\n            \\\"benchmarks\\\": [[b, n] for b, n in BENCHMARKS],\\n        }, f, indent=2, default=str)\\n\\n    del lm\\n    torch.cuda.empty_cache()\\n    gc.collect()\\n\\n    return all_scores\\n\\n\\ndef run_statistical_analysis(results_dir, num_seeds, seed_start):\\n    log.info(\\\"Running statistical analysis...\\\")\\n\\n    strategy_scores = {s: {} for s in STRATEGIES}\\n\\n    for strategy in STRATEGIES:\\n        for seed in range(seed_start, seed_start + num_seeds):\\n            eval_path = results_dir / f\\\"{strategy}_seed{seed}_eval.json\\\"\\n            if eval_path.exists():\\n                with open(eval_path) as f:\\n                    data = json.load(f)\\n                strategy_scores[strategy][seed] = data[\\\"scores\\\"]\\n\\n    all_benchmarks = set()\\n    for scores_by_seed in strategy_scores.values():\\n        for scores in scores_by_seed.values():\\n            all_benchmarks.update(k for k, v in scores.items() if v is not None)\\n\\n    analysis = {\\\"strategies\\\": {}, \\\"comparisons\\\": []}\\n\\n    for strategy in STRATEGIES:\\n        strat_data = {}\\n        for bench in sorted(all_benchmarks):\\n            vals = [strategy_scores[strategy][s][bench]\\n                    for s in strategy_scores[strategy]\\n                    if bench in strategy_scores[strategy][s]\\n                    and strategy_scores[strategy][s][bench] is not None]\\n            if vals:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "fd4a3a75-a88f-4cab-858f-52589d74b57c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Expanded downstream evaluation for K*-guided filtering strategies.\\\\n\\\\nRetrains LoRA models on Qwen2.5-1.5B with 3 filtering strategies\\\\n(no_filter, binary_ours, graduated), then evaluates on 5 benchmarks:\\\\nPIQA, TruthfulQA-MC2, WinoGrande, ARC-Challenge, GSM8K.\\\\n\\\\nUsage:\\\\n    python scripts/exp_expanded_downstream_eval.py --device cuda:0 --num_seeds 3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport gc\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport shutil\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom scipy import stats\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    datefmt=\\\\\\\"%H:%M:%S\\\\\\\",\\\\n    handlers=[logging.StreamHandler(sys.stdout)],\\\\n)\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nPROJECT_ROOT = Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination\\\\\\\")\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\\\\\"\\\\nDATA_DIR = PROJECT_ROOT / \\\\\\\"data_exp020_pythia_greedy\\\\\\\"\\\\n\\\\nKSTAR = 2\\\\nGRADUATED_ALPHA = 0.9\\\\nMAX_DEPTH = 5\\\\nSTRATEGIES = [\\\\\\\"no_filter\\\\\\\", \\\\\\\"binary_ours\\\\\\\", \\\\\\\"graduated\\\\\\\"]\\\\n\\\\nLORA_RANK = 8\\\\nLORA_ALPHA = 16\\\\nLORA_TARGET_MODULES = [\\\\\\\"q_proj\\\\\\\", \\\\\\\"v_proj\\\\\\\"]\\\\nLORA_DROPOUT = 0.05\\\\n\\\\nTRAIN_LR = 2e-4\\\\nTRAIN_BATCH_SIZE = 4\\\\nGRADIENT_ACCUMULATION = 4\\\\nTRAIN_EPOCHS = 1\\\\nMAX_LENGTH = 256\\\\n\\\\nBENCHMARKS = [\\\\n    (\\\\\\\"piqa\\\\\\\", 0),\\\\n    (\\\\\\\"truthfulqa_mc2\\\\\\\", 0),\\\\n    (\\\\\\\"winogrande\\\\\\\", 5),\\\\n    (\\\\\\\"arc_challenge\\\\\\\", 25),\\\\n    (\\\\\\\"gsm8k\\\\\\\", 8),\\\\n]\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f]\\\\n\\\\n\\\\ndef set_seed(seed):\\\\n    np.random.seed(seed)\\\\n    torch.manual_seed(seed)\\\\n    if torch.cuda.is_available():\\\\n        torch.cuda.manual_seed_all(seed)\\\\n\\\\n\\\\ndef prepare_data(strategy, seed):\\\\n    rng = np.random.RandomState(seed)\\\\n    all_texts = []\\\\n    all_weights = []\\\\n\\\\n    if strategy == \\\\\\\"no_filter\\\\\\\":\\\\n        for d in range(MAX_DEPTH + 1):\\\\n            records = load_jsonl(DATA_DIR / f\\\\\\\"depth_{d}.jsonl\\\\\\\")\\\\n            all_texts.extend(r[\\\\\\\"text\\\\\\\"] for r in records)\\\\n            all_weights.extend([1.0] * len(records))\\\\n    elif strategy == \\\\\\\"binary_ours\\\\\\\":\\\\n        for d in range(KSTAR + 1):\\\\n            records = load_jsonl(DATA_DIR / f\\\\\\\"depth_{d}.jsonl\\\\\\\")\\\\n            all_texts.extend(r[\\\\\\\"text\\\\\\\"] for r in records)\\\\n            all_weights.extend([1.0] * len(records))\\\\n    elif strategy == \\\\\\\"graduated\\\\\\\":\\\\n        for d in range(MAX_DEPTH + 1):\\\\n            records = load_jsonl(DATA_DIR / f\\\\\\\"depth_{d}.jsonl\\\\\\\")\\\\n            w = GRADUATED_ALPHA ** d\\\\n            all_texts.extend(r[\\\\\\\"text\\\\\\\"] for r in records)\\\\n            all_weights.extend([w] * len(records))\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown strategy: {strategy}\\\\\\\")\\\\n\\\\n    indices = list(range(len(all_texts)))\\\\n    rng.shuffle(indices)\\\\n    all_texts = [all_texts[i] for i in indices]\\\\n    all_weights = [all_weights[i] for i in indices]\\\\n\\\\n    log.info(f\\\\\\\"Data: strategy={strategy}, n={len(all_texts)}, \\\\\\\"\\\\n             f\\\\\\\"mean_weight={np.mean(all_weights):.4f}\\\\\\\")\\\\n    return all_texts, all_weights\\\\n\\\\n\\\\ndef train_lora(texts, weights, output_dir, device, seed):\\\\n    from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments\\\\n    from peft import LoraConfig, get_peft_model, TaskType\\\\n    from torch.utils.data import Dataset\\\\n\\\\n    set_seed(seed)\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n        tokenizer.pad_token_id = tokenizer.eos_token_id\\\\n\\\\n    class WeightedTextDataset(Dataset):\\\\n        def __init__(self, texts, weights, tokenizer, max_length):\\\\n            self.encodings = []\\\\n            self.weights = []\\\\n            for text, w in zip(texts, weights):\\\\n                enc = tokenizer(text, truncation=True, max_length=max_length,\\\\n                                padding=\\\\\\\"max_length\\\\\\\", return_tensors=\\\\\\\"pt\\\\\\\")\\\\n                self.encodings.append({k: v.squeeze(0) for k, v in enc.items()})\\\\n                self.weights.append(w)\\\\n\\\\n        def __len__(self):\\\\n            return len(self.encodings)\\\\n\\\\n        def __getitem__(self, idx):\\\\n     \\\\n\\\\n... [截断: 输出过长，省略 2491 字符] ...\\\\n\\\\ne_pretrained(merged_dir)\\\\n    tokenizer.save_pretrained(merged_dir)\\\\n    log.info(f\\\\\\\"Merged model saved to {merged_dir}\\\\\\\")\\\\n\\\\n    del model, merged_model, trainer, dataset\\\\n    torch.cuda.empty_cache()\\\\n    gc.collect()\\\\n\\\\n    return merged_dir\\\\n\\\\n\\\\ndef evaluate_model(model_path, device, results_path):\\\\n    import lm_eval\\\\n    from lm_eval.models.huggingface import HFLM\\\\n\\\\n    log.info(f\\\\\\\"Evaluating {model_path} on {len(BENCHMARKS)} benchmarks...\\\\\\\")\\\\n\\\\n    lm = HFLM(\\\\n        pretrained=str(model_path),\\\\n        device=device,\\\\n        dtype=\\\\\\\"float16\\\\\\\",\\\\n        batch_size=\\\\\\\"auto:4\\\\\\\",\\\\n        max_length=2048,\\\\n        trust_remote_code=True,\\\\n    )\\\\n\\\\n    all_scores = {}\\\\n    all_full = {}\\\\n\\\\n    for task_name, n_fewshot in BENCHMARKS:\\\\n        log.info(f\\\\\\\"  Running {task_name} ({n_fewshot}-shot)...\\\\\\\")\\\\n        t0 = time.time()\\\\n\\\\n        success = False\\\\n        for attempt in range(3):\\\\n            try:\\\\n                results = lm_eval.simple_evaluate(\\\\n                    model=lm,\\\\n                    tasks=[task_name],\\\\n                    num_fewshot=n_fewshot,\\\\n                )\\\\n                success = True\\\\n                break\\\\n            except Exception as e:\\\\n                if attempt < 2:\\\\n                    wait = 30 * (attempt + 1)\\\\n                    log.warning(f\\\\\\\"  Attempt {attempt+1} failed: {e}. Retrying in {wait}s...\\\\\\\")\\\\n                    time.sleep(wait)\\\\n                else:\\\\n                    log.error(f\\\\\\\"  Failed {task_name} after 3 attempts: {e}\\\\\\\")\\\\n\\\\n        if not success:\\\\n            all_scores[task_name] = None\\\\n            continue\\\\n\\\\n        task_results = results.get(\\\\\\\"results\\\\\\\", {}).get(task_name, {})\\\\n\\\\n        if task_name == \\\\\\\"gsm8k\\\\\\\":\\\\n            score = task_results.get(\\\\\\\"exact_match,strict-match\\\\\\\",\\\\n                     task_results.get(\\\\\\\"exact_match,get-answer\\\\\\\",\\\\n                      task_results.get(\\\\\\\"acc,none\\\\\\\", 0)))\\\\n        elif task_name == \\\\\\\"arc_challenge\\\\\\\":\\\\n            score = task_results.get(\\\\\\\"acc_norm,none\\\\\\\",\\\\n                     task_results.get(\\\\\\\"acc,none\\\\\\\", 0))\\\\n        elif task_name == \\\\\\\"truthfulqa_mc2\\\\\\\":\\\\n            score = task_results.get(\\\\\\\"acc,none\\\\\\\", 0)\\\\n        elif task_name in (\\\\\\\"piqa\\\\\\\", \\\\\\\"winogrande\\\\\\\"):\\\\n            score = task_results.get(\\\\\\\"acc,none\\\\\\\", 0)\\\\n        else:\\\\n            score = task_results.get(\\\\\\\"acc,none\\\\\\\", 0)\\\\n\\\\n        all_scores[task_name] = float(score) if score is not None else None\\\\n        all_full[task_name] = {k: v for k, v in task_results.items()}\\\\n        elapsed = time.time() - t0\\\\n        log.info(f\\\\\\\"  {task_name}: {score:.4f} ({elapsed:.0f}s)\\\\\\\")\\\\n\\\\n    results_path.parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(results_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump({\\\\n            \\\\\\\"scores\\\\\\\": all_scores,\\\\n            \\\\\\\"full\\\\\\\": all_full,\\\\n            \\\\\\\"benchmarks\\\\\\\": [[b, n] for b, n in BENCHMARKS],\\\\n        }, f, indent=2, default=str)\\\\n\\\\n    del lm\\\\n    torch.cuda.empty_cache()\\\\n    gc.collect()\\\\n\\\\n    return all_scores\\\\n\\\\n\\\\ndef run_statistical_analysis(results_dir, num_seeds, seed_start):\\\\n    log.info(\\\\\\\"Running statistical analysis...\\\\\\\")\\\\n\\\\n    strategy_scores = {s: {} for s in STRATEGIES}\\\\n\\\\n    for strategy in STRATEGIES:\\\\n        for seed in range(seed_start, seed_start + num_seeds):\\\\n            eval_path = results_dir / f\\\\\\\"{strategy}_seed{seed}_eval.json\\\\\\\"\\\\n            if eval_path.exists():\\\\n                with open(eval_path) as f:\\\\n                    data = json.load(f)\\\\n                strategy_scores[strategy][seed] = data[\\\\\\\"scores\\\\\\\"]\\\\n\\\\n    all_benchmarks = set()\\\\n    for scores_by_seed in strategy_scores.values():\\\\n        for scores in scores_by_seed.values():\\\\n            all_benchmarks.update(k for k, v in scores.items() if v is not None)\\\\n\\\\n    analysis = {\\\\\\\"strategies\\\\\\\": {}, \\\\\\\"comparisons\\\\\\\": []}\\\\n\\\\n    for strategy in STRATEGIES:\\\\n        strat_data = {}\\\\n        for bench in sorted(all_benchmarks):\\\\n            vals = [strategy_scores[strategy][s][bench]\\\\n                    for s in strategy_scores[strategy]\\\\n                    if bench in strategy_scores[strategy][s]\\\\n                    and strategy_scores[strategy][s][bench] is not None]\\\\n            if vals:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Expanded downstream evaluation for K*-guided filtering strategies.\\n\\nRetrains LoRA models on Qwen2.5-1.5B with 3 filtering strategies\\n(no_filter, binary_ours, graduated), then evaluates on 5 benchmarks:\\nPIQA, TruthfulQA-MC2, WinoGrande, ARC-Challenge, GSM8K.\\n\\nUsage:\\n    python scripts/exp_expanded_downstream_eval.py --device cuda:0 --num_seeds 3\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport json\\nimport logging\\nimport os\\nimport shutil\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom scipy import stats\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    datefmt=\\\"%H:%M:%S\\\",\\n    handlers=[logging.StreamHandler(sys.stdout)],\\n)\\nlog = logging.getLogger(__name__)\\n\\nPROJECT_ROOT = Path(\\\"/root/autodl-tmp/gen-depth-contamination\\\")\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\\nDATA_DIR = PROJECT_ROOT / \\\"data_exp020_pythia_greedy\\\"\\n\\nKSTAR = 2\\nGRADUATED_ALPHA = 0.9\\nMAX_DEPTH = 5\\nSTRATEGIES = [\\\"no_filter\\\", \\\"binary_ours\\\", \\\"graduated\\\"]\\n\\nLORA_RANK = 8\\nLORA_ALPHA = 16\\nLORA_TARGET_MODULES = [\\\"q_proj\\\", \\\"v_proj\\\"]\\nLORA_DROPOUT = 0.05\\n\\nTRAIN_LR = 2e-4\\nTRAIN_BATCH_SIZE = 4\\nGRADIENT_ACCUMULATION = 4\\nTRAIN_EPOCHS = 1\\nMAX_LENGTH = 256\\n\\nBENCHMARKS = [\\n    (\\\"piqa\\\", 0),\\n    (\\\"truthfulqa_mc2\\\", 0),\\n    (\\\"winogrande\\\", 5),\\n    (\\\"arc_challenge\\\", 25),\\n    (\\\"gsm8k\\\", 8),\\n]\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef set_seed(seed):\\n    np.random.seed(seed)\\n    torch.manual_seed(seed)\\n    if torch.cuda.is_available():\\n        torch.cuda.manual_seed_all(seed)\\n\\n\\ndef prepare_data(strategy, seed):\\n    rng = np.random.RandomState(seed)\\n    all_texts = []\\n    all_weights = []\\n\\n    if strategy == \\\"no_filter\\\":\\n        for d in range(MAX_DEPTH + 1):\\n            records = load_jsonl(DATA_DIR / f\\\"depth_{d}.jsonl\\\")\\n            all_texts.extend(r[\\\"text\\\"] for r in records)\\n            all_weights.extend([1.0] * len(records))\\n    elif strategy == \\\"binary_ours\\\":\\n        for d in range(KSTAR + 1):\\n            records = load_jsonl(DATA_DIR / f\\\"depth_{d}.jsonl\\\")\\n            all_texts.extend(r[\\\"text\\\"] for r in records)\\n            all_weights.extend([1.0] * len(records))\\n    elif strategy == \\\"graduated\\\":\\n        for d in range(MAX_DEPTH + 1):\\n            records = load_jsonl(DATA_DIR / f\\\"depth_{d}.jsonl\\\")\\n            w = GRADUATED_ALPHA ** d\\n            all_texts.extend(r[\\\"text\\\"] for r in records)\\n            all_weights.extend([w] * len(records))\\n    else:\\n        raise ValueError(f\\\"Unknown strategy: {strategy}\\\")\\n\\n    indices = list(range(len(all_texts)))\\n    rng.shuffle(indices)\\n    all_texts = [all_texts[i] for i in indices]\\n    all_weights = [all_weights[i] for i in indices]\\n\\n    log.info(f\\\"Data: strategy={strategy}, n={len(all_texts)}, \\\"\\n             f\\\"mean_weight={np.mean(all_weights):.4f}\\\")\\n    return all_texts, all_weights\\n\\n\\ndef train_lora(texts, weights, output_dir, device, seed):\\n    from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments\\n    from peft import LoraConfig, get_peft_model, TaskType\\n    from torch.utils.data import Dataset\\n\\n    set_seed(seed)\\n\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n        tokenizer.pad_token_id = tokenizer.eos_token_id\\n\\n    class WeightedTextDataset(Dataset):\\n        def __init__(self, texts, weights, tokenizer, max_length):\\n            self.encodings = []\\n            self.weights = []\\n            for text, w in zip(texts, weights):\\n                enc = tokenizer(text, truncation=True, max_length=max_length,\\n                                padding=\\\"max_length\\\", return_tensors=\\\"pt\\\")\\n                self.encodings.append({k: v.squeeze(0) for k, v in enc.items()})\\n                self.weights.append(w)\\n\\n        def __len__(self):\\n            return len(self.encodings)\\n\\n        def __getitem__(self, idx):\\n     \\n\\n... [截断: 输出过长，省略 2491 字符] ...\\n\\ne_pretrained(merged_dir)\\n    tokenizer.save_pretrained(merged_dir)\\n    log.info(f\\\"Merged model saved to {merged_dir}\\\")\\n\\n    del model, merged_model, trainer, dataset\\n    torch.cuda.empty_cache()\\n    gc.collect()\\n\\n    return merged_dir\\n\\n\\ndef evaluate_model(model_path, device, results_path):\\n    import lm_eval\\n    from lm_eval.models.huggingface import HFLM\\n\\n    log.info(f\\\"Evaluating {model_path} on {len(BENCHMARKS)} benchmarks...\\\")\\n\\n    lm = HFLM(\\n        pretrained=str(model_path),\\n        device=device,\\n        dtype=\\\"float16\\\",\\n        batch_size=\\\"auto:4\\\",\\n        max_length=2048,\\n        trust_remote_code=True,\\n    )\\n\\n    all_scores = {}\\n    all_full = {}\\n\\n    for task_name, n_fewshot in BENCHMARKS:\\n        log.info(f\\\"  Running {task_name} ({n_fewshot}-shot)...\\\")\\n        t0 = time.time()\\n\\n        success = False\\n        for attempt in range(3):\\n            try:\\n                results = lm_eval.simple_evaluate(\\n                    model=lm,\\n                    tasks=[task_name],\\n                    num_fewshot=n_fewshot,\\n                )\\n                success = True\\n                break\\n            except Exception as e:\\n                if attempt < 2:\\n                    wait = 30 * (attempt + 1)\\n                    log.warning(f\\\"  Attempt {attempt+1} failed: {e}. Retrying in {wait}s...\\\")\\n                    time.sleep(wait)\\n                else:\\n                    log.error(f\\\"  Failed {task_name} after 3 attempts: {e}\\\")\\n\\n        if not success:\\n            all_scores[task_name] = None\\n            continue\\n\\n        task_results = results.get(\\\"results\\\", {}).get(task_name, {})\\n\\n        if task_name == \\\"gsm8k\\\":\\n            score = task_results.get(\\\"exact_match,strict-match\\\",\\n                     task_results.get(\\\"exact_match,get-answer\\\",\\n                      task_results.get(\\\"acc,none\\\", 0)))\\n        elif task_name == \\\"arc_challenge\\\":\\n            score = task_results.get(\\\"acc_norm,none\\\",\\n                     task_results.get(\\\"acc,none\\\", 0))\\n        elif task_name == \\\"truthfulqa_mc2\\\":\\n            score = task_results.get(\\\"acc,none\\\", 0)\\n        elif task_name in (\\\"piqa\\\", \\\"winogrande\\\"):\\n            score = task_results.get(\\\"acc,none\\\", 0)\\n        else:\\n            score = task_results.get(\\\"acc,none\\\", 0)\\n\\n        all_scores[task_name] = float(score) if score is not None else None\\n        all_full[task_name] = {k: v for k, v in task_results.items()}\\n        elapsed = time.time() - t0\\n        log.info(f\\\"  {task_name}: {score:.4f} ({elapsed:.0f}s)\\\")\\n\\n    results_path.parent.mkdir(parents=True, exist_ok=True)\\n    with open(results_path, \\\"w\\\") as f:\\n        json.dump({\\n            \\\"scores\\\": all_scores,\\n            \\\"full\\\": all_full,\\n            \\\"benchmarks\\\": [[b, n] for b, n in BENCHMARKS],\\n        }, f, indent=2, default=str)\\n\\n    del lm\\n    torch.cuda.empty_cache()\\n    gc.collect()\\n\\n    return all_scores\\n\\n\\ndef run_statistical_analysis(results_dir, num_seeds, seed_start):\\n    log.info(\\\"Running statistical analysis...\\\")\\n\\n    strategy_scores = {s: {} for s in STRATEGIES}\\n\\n    for strategy in STRATEGIES:\\n        for seed in range(seed_start, seed_start + num_seeds):\\n            eval_path = results_dir / f\\\"{strategy}_seed{seed}_eval.json\\\"\\n            if eval_path.exists():\\n                with open(eval_path) as f:\\n                    data = json.load(f)\\n                strategy_scores[strategy][seed] = data[\\\"scores\\\"]\\n\\n    all_benchmarks = set()\\n    for scores_by_seed in strategy_scores.values():\\n        for scores in scores_by_seed.values():\\n            all_benchmarks.update(k for k, v in scores.items() if v is not None)\\n\\n    analysis = {\\\"strategies\\\": {}, \\\"comparisons\\\": []}\\n\\n    for strategy in STRATEGIES:\\n        strat_data = {}\\n        for bench in sorted(all_benchmarks):\\n            vals = [strategy_scores[strategy][s][bench]\\n                    for s in strategy_scores[strategy]\\n                    if bench in strategy_scores[strategy][s]\\n                    and strategy_scores[strategy][s][bench] is not None]\\n            if vals:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Still truncated. Let me get the remaining parts I need - the statistical analysis function's rest and the comparisons section.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "7ad2bed9-0ba8-4bc8-87b2-6676087b11ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Avm1Qu56uViWYYDyjFgSkW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5427,
+      "cache_read_input_tokens": 40182,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5427
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0194JWhjATok5aKe8qhASV7z`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "tail -130 /root/autodl-tmp/gen-depth-contamination/scripts/exp_expanded_downstream_eval.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "3413b9e2-9ecd-461a-b87c-8dd6ba4d4e54",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Avm1Qu56uViWYYDyjFgSkW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5427,
+      "cache_read_input_tokens": 40182,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5427
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T20:09:55.224Z_
+
+<details><summary>↩ Tool result · `toolu_0194JWhjATok5aKe8qhASV7z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"                pooled_std = np.sqrt((np.var(v1) + np.var(v2)) / 2)\\n                cohens_d = diff / pooled_std if pooled_std > 0 else 0.0\\n                comparisons.append({\\n                    \\\"benchmark\\\": bench,\\n                    \\\"comparison\\\": f\\\"{s1}_vs_{s2}\\\",\\n                    \\\"mean_diff\\\": float(diff),\\n                    \\\"t_stat\\\": float(t_stat),\\n                    \\\"p_value\\\": float(p_val),\\n                    \\\"cohens_d\\\": float(cohens_d),\\n                })\\n\\n    if comparisons:\\n        p_values = [c[\\\"p_value\\\"] for c in comparisons]\\n        sorted_indices = np.argsort(p_values)\\n        m = len(p_values)\\n        for rank, idx in enumerate(sorted_indices):\\n            adjusted_alpha = 0.05 / (m - rank)\\n            comparisons[idx][\\\"holm_significant\\\"] = p_values[idx] < adjusted_alpha\\n\\n    analysis[\\\"comparisons\\\"] = comparisons\\n\\n    out_path = results_dir / \\\"statistical_analysis.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(analysis, f, indent=2)\\n    log.info(f\\\"Statistical analysis saved to {out_path}\\\")\\n    return analysis\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"Expanded downstream eval for K*-guided filtering\\\")\\n    parser.add_argument(\\\"--device\\\", type=str, default=\\\"cuda:0\\\")\\n    parser.add_argument(\\\"--num_seeds\\\", type=int, default=3)\\n    parser.add_argument(\\\"--seed_start\\\", type=int, default=0)\\n    parser.add_argument(\\\"--skip_base\\\", action=\\\"store_true\\\")\\n    args = parser.parse_args()\\n\\n    results_dir = PROJECT_ROOT / \\\"results\\\" / \\\"exp_expanded_downstream_eval\\\"\\n    results_dir.mkdir(parents=True, exist_ok=True)\\n\\n    log_path = PROJECT_ROOT / \\\"logs\\\" / \\\"exp_expanded_downstream_eval.log\\\"\\n    log_path.parent.mkdir(parents=True, exist_ok=True)\\n    fh = logging.FileHandler(log_path)\\n    fh.setFormatter(logging.Formatter(\\n        \\\"%(asctime)s [%(levelname)s] %(message)s\\\", datefmt=\\\"%H:%M:%S\\\"))\\n    logging.getLogger().addHandler(fh)\\n\\n    log.info(\\\"=\\\" * 60)\\n    log.info(\\\"Expanded Downstream Evaluation\\\")\\n    log.info(f\\\"Model: {MODEL_PATH}\\\")\\n    log.info(f\\\"Data: {DATA_DIR}\\\")\\n    log.info(f\\\"Strategies: {STRATEGIES}\\\")\\n    log.info(f\\\"Seeds: {args.seed_start}-{args.seed_start + args.num_seeds - 1}\\\")\\n    log.info(f\\\"Benchmarks: {[b[0] for b in BENCHMARKS]}\\\")\\n    log.info(f\\\"LoRA: rank={LORA_RANK}, alpha={LORA_ALPHA}, target={LORA_TARGET_MODULES}\\\")\\n    log.info(\\\"=\\\" * 60)\\n\\n    if not args.skip_base:\\n        base_eval_path = results_dir / \\\"base_model_eval.json\\\"\\n        if base_eval_path.exists():\\n            log.info(\\\"Base model eval exists, skipping\\\")\\n        else:\\n            log.info(\\\"Evaluating base model...\\\")\\n            base_scores = evaluate_model(MODEL_PATH, args.device, base_eval_path)\\n            log.info(f\\\"Base model scores: {base_scores}\\\")\\n\\n    for seed in range(args.seed_start, args.seed_start + args.num_seeds):\\n        for strategy in STRATEGIES:\\n            run_name = f\\\"{strategy}_seed{seed}\\\"\\n            eval_path = results_dir / f\\\"{run_name}_eval.json\\\"\\n\\n            if eval_path.exists():\\n                log.info(f\\\"[{run_name}] Already completed, skipping\\\")\\n                continue\\n\\n            log.info(f\\\"\\\\n{'='*60}\\\\n  {run_name}\\\\n{'='*60}\\\")\\n\\n            texts, weights = prepare_data(strategy, seed)\\n\\n            train_dir = results_dir / f\\\"{run_name}_train\\\"\\n            model_dir = train_lora(texts, weights, train_dir, args.device, seed)\\n\\n            scores = evaluate_model(model_dir, args.device, eval_path)\\n            log.info(f\\\"[{run_name}] Scores: {scores}\\\")\\n\\n            if train_dir.exists():\\n                shutil.rmtree(train_dir, ignore_errors=True)\\n                log.info(f\\\"Cleaned up {train_dir}\\\")\\n\\n    log.info(\\\"\\\\n\\\" + \\\"=\\\" * 60 + \\\"\\\\n  STATISTICAL ANALYSIS\\\\n\\\" + \\\"=\\\" * 60)\\n    analysis = run_statistical_analysis(\\n        results_dir, args.num_seeds, args.seed_start)\\n\\n    log.info(\\\"\\\\n=== SUMMARY ===\\\")\\n\\n    base_eval_path = results_dir / \\\"base_model_eval.json\\\"\\n    if base_eval_path.exists():\\n        with open(base_eval_path) as f:\\n            base_scores = json.load(f)[\\\"scores\\\"]\\n        log.info(\\\"  base_model: \\\" + \\\", \\\".join(\\n            f\\\"{k}={v:.4f}\\\" for k, v in base_scores.items() if v is not None))\\n\\n    for strategy in STRATEGIES:\\n        strat = analysis[\\\"strategies\\\"].get(strategy, {})\\n        if strat:\\n            parts = []\\n            for bench in sorted(strat.keys()):\\n                m = strat[bench][\\\"mean\\\"]\\n                s = strat[bench][\\\"std\\\"]\\n                parts.append(f\\\"{bench}={m:.4f}+/-{s:.4f}\\\")\\n            log.info(f\\\"  {strategy}: {', '.join(parts)}\\\")\\n\\n    for comp in analysis.get(\\\"comparisons\\\", []):\\n        sig = \\\"***\\\" if comp.get(\\\"holm_significant\\\") else \\\"n.s.\\\"\\n        log.info(f\\\"  {comp['benchmark']}: {comp['comparison']}: \\\"\\n                 f\\\"d={comp['cohens_d']:.3f}, p={comp['p_value']:.4f} {sig}\\\")\\n\\n    summary = {\\\"base_model\\\": {}, \\\"strategies\\\": analysis[\\\"strategies\\\"],\\n               \\\"comparisons\\\": analysis[\\\"comparisons\\\"]}\\n    if base_eval_path.exists():\\n        with open(base_eval_path) as f:\\n            summary[\\\"base_model\\\"] = json.load(f)[\\\"scores\\\"]\\n    with open(results_dir / \\\"summary.json\\\", \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n\\n    log.info(\\\"\\\\nDone!\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "ab101b52-224e-4e15-897b-2396e6aadecd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"                pooled_std = np.sqrt((np.var(v1) + np.var(v2)) / 2)\\\\n                cohens_d = diff / pooled_std if pooled_std > 0 else 0.0\\\\n                comparisons.append({\\\\n                    \\\\\\\"benchmark\\\\\\\": bench,\\\\n                    \\\\\\\"comparison\\\\\\\": f\\\\\\\"{s1}_vs_{s2}\\\\\\\",\\\\n                    \\\\\\\"mean_diff\\\\\\\": float(diff),\\\\n                    \\\\\\\"t_stat\\\\\\\": float(t_stat),\\\\n                    \\\\\\\"p_value\\\\\\\": float(p_val),\\\\n                    \\\\\\\"cohens_d\\\\\\\": float(cohens_d),\\\\n                })\\\\n\\\\n    if comparisons:\\\\n        p_values = [c[\\\\\\\"p_value\\\\\\\"] for c in comparisons]\\\\n        sorted_indices = np.argsort(p_values)\\\\n        m = len(p_values)\\\\n        for rank, idx in enumerate(sorted_indices):\\\\n            adjusted_alpha = 0.05 / (m - rank)\\\\n            comparisons[idx][\\\\\\\"holm_significant\\\\\\\"] = p_values[idx] < adjusted_alpha\\\\n\\\\n    analysis[\\\\\\\"comparisons\\\\\\\"] = comparisons\\\\n\\\\n    out_path = results_dir / \\\\\\\"statistical_analysis.json\\\\\\\"\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(analysis, f, indent=2)\\\\n    log.info(f\\\\\\\"Statistical analysis saved to {out_path}\\\\\\\")\\\\n    return analysis\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Expanded downstream eval for K*-guided filtering\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--device\\\\\\\", type=str, default=\\\\\\\"cuda:0\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--num_seeds\\\\\\\", type=int, default=3)\\\\n    parser.add_argument(\\\\\\\"--seed_start\\\\\\\", type=int, default=0)\\\\n    parser.add_argument(\\\\\\\"--skip_base\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    results_dir = PROJECT_ROOT / \\\\\\\"results\\\\\\\" / \\\\\\\"exp_expanded_downstream_eval\\\\\\\"\\\\n    results_dir.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    log_path = PROJECT_ROOT / \\\\\\\"logs\\\\\\\" / \\\\\\\"exp_expanded_downstream_eval.log\\\\\\\"\\\\n    log_path.parent.mkdir(parents=True, exist_ok=True)\\\\n    fh = logging.FileHandler(log_path)\\\\n    fh.setFormatter(logging.Formatter(\\\\n        \\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\", datefmt=\\\\\\\"%H:%M:%S\\\\\\\"))\\\\n    logging.getLogger().addHandler(fh)\\\\n\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n    log.info(\\\\\\\"Expanded Downstream Evaluation\\\\\\\")\\\\n    log.info(f\\\\\\\"Model: {MODEL_PATH}\\\\\\\")\\\\n    log.info(f\\\\\\\"Data: {DATA_DIR}\\\\\\\")\\\\n    log.info(f\\\\\\\"Strategies: {STRATEGIES}\\\\\\\")\\\\n    log.info(f\\\\\\\"Seeds: {args.seed_start}-{args.seed_start + args.num_seeds - 1}\\\\\\\")\\\\n    log.info(f\\\\\\\"Benchmarks: {[b[0] for b in BENCHMARKS]}\\\\\\\")\\\\n    log.info(f\\\\\\\"LoRA: rank={LORA_RANK}, alpha={LORA_ALPHA}, target={LORA_TARGET_MODULES}\\\\\\\")\\\\n    log.info(\\\\\\\"=\\\\\\\" * 60)\\\\n\\\\n    if not args.skip_base:\\\\n        base_eval_path = results_dir / \\\\\\\"base_model_eval.json\\\\\\\"\\\\n        if base_eval_path.exists():\\\\n            log.info(\\\\\\\"Base model eval exists, skipping\\\\\\\")\\\\n        else:\\\\n            log.info(\\\\\\\"Evaluating base model...\\\\\\\")\\\\n            base_scores = evaluate_model(MODEL_PATH, args.device, base_eval_path)\\\\n            log.info(f\\\\\\\"Base model scores: {base_scores}\\\\\\\")\\\\n\\\\n    for seed in range(args.seed_start, args.seed_start + args.num_seeds):\\\\n        for strategy in STRATEGIES:\\\\n            run_name = f\\\\\\\"{strategy}_seed{seed}\\\\\\\"\\\\n            eval_path = results_dir / f\\\\\\\"{run_name}_eval.json\\\\\\\"\\\\n\\\\n            if eval_path.exists():\\\\n                log.info(f\\\\\\\"[{run_name}] Already completed, skipping\\\\\\\")\\\\n                continue\\\\n\\\\n            log.info(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\\n  {run_name}\\\\\\\\n{'='*60}\\\\\\\")\\\\n\\\\n            texts, weights = prepare_data(strategy, seed)\\\\n\\\\n            train_dir = results_dir / f\\\\\\\"{run_name}_train\\\\\\\"\\\\n            model_dir = train_lora(texts, weights, train_dir, args.device, seed)\\\\n\\\\n            scores = evaluate_model(model_dir, args.device, eval_path)\\\\n            log.info(f\\\\\\\"[{run_name}] Scores: {scores}\\\\\\\")\\\\n\\\\n            if train_dir.exists():\\\\n                shutil.rmtree(train_dir, ignore_errors=True)\\\\n                log.info(f\\\\\\\"Cleaned up {train_dir}\\\\\\\")\\\\n\\\\n    log.info(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60 + \\\\\\\"\\\\\\\\n  STATISTICAL ANALYSIS\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n    analysis = run_statistical_analysis(\\\\n        results_dir, args.num_seeds, args.seed_start)\\\\n\\\\n    log.info(\\\\\\\"\\\\\\\\n=== SUMMARY ===\\\\\\\")\\\\n\\\\n    base_eval_path = results_dir / \\\\\\\"base_model_eval.json\\\\\\\"\\\\n    if base_eval_path.exists():\\\\n        with open(base_eval_path) as f:\\\\n            base_scores = json.load(f)[\\\\\\\"scores\\\\\\\"]\\\\n        log.info(\\\\\\\"  base_model: \\\\\\\" + \\\\\\\", \\\\\\\".join(\\\\n            f\\\\\\\"{k}={v:.4f}\\\\\\\" for k, v in base_scores.items() if v is not None))\\\\n\\\\n    for strategy in STRATEGIES:\\\\n        strat = analysis[\\\\\\\"strategies\\\\\\\"].get(strategy, {})\\\\n        if strat:\\\\n            parts = []\\\\n            for bench in sorted(strat.keys()):\\\\n                m = strat[bench][\\\\\\\"mean\\\\\\\"]\\\\n                s = strat[bench][\\\\\\\"std\\\\\\\"]\\\\n                parts.append(f\\\\\\\"{bench}={m:.4f}+/-{s:.4f}\\\\\\\")\\\\n            log.info(f\\\\\\\"  {strategy}: {', '.join(parts)}\\\\\\\")\\\\n\\\\n    for comp in analysis.get(\\\\\\\"comparisons\\\\\\\", []):\\\\n        sig = \\\\\\\"***\\\\\\\" if comp.get(\\\\\\\"holm_significant\\\\\\\") else \\\\\\\"n.s.\\\\\\\"\\\\n        log.info(f\\\\\\\"  {comp['benchmark']}: {comp['comparison']}: \\\\\\\"\\\\n                 f\\\\\\\"d={comp['cohens_d']:.3f}, p={comp['p_value']:.4f} {sig}\\\\\\\")\\\\n\\\\n    summary = {\\\\\\\"base_model\\\\\\\": {}, \\\\\\\"strategies\\\\\\\": analysis[\\\\\\\"strategies\\\\\\\"],\\\\n               \\\\\\\"comparisons\\\\\\\": analysis[\\\\\\\"comparisons\\\\\\\"]}\\\\n    if base_eval_path.exists():\\\\n        with open(base_eval_path) as f:\\\\n            summary[\\\\\\\"base_model\\\\\\\"] = json.load(f)[\\\\\\\"scores\\\\\\\"]\\\\n    with open(results_dir / \\\\\\\"summary.json\\\\\\\", \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(summary, f, indent=2)\\\\n\\\\n    log.info(\\\\\\\"\\\\\\\\nDone!\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"                pooled_std = np.sqrt((np.var(v1) + np.var(v2)) / 2)\\n                cohens_d = diff / pooled_std if pooled_std > 0 else 0.0\\n                comparisons.append({\\n                    \\\"benchmark\\\": bench,\\n                    \\\"comparison\\\": f\\\"{s1}_vs_{s2}\\\",\\n                    \\\"mean_diff\\\": float(diff),\\n                    \\\"t_stat\\\": float(t_stat),\\n                    \\\"p_value\\\": float(p_val),\\n                    \\\"cohens_d\\\": float(cohens_d),\\n                })\\n\\n    if comparisons:\\n        p_values = [c[\\\"p_value\\\"] for c in comparisons]\\n        sorted_indices = np.argsort(p_values)\\n        m = len(p_values)\\n        for rank, idx in enumerate(sorted_indices):\\n            adjusted_alpha = 0.05 / (m - rank)\\n            comparisons[idx][\\\"holm_significant\\\"] = p_values[idx] < adjusted_alpha\\n\\n    analysis[\\\"comparisons\\\"] = comparisons\\n\\n    out_path = results_dir / \\\"statistical_analysis.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(analysis, f, indent=2)\\n    log.info(f\\\"Statistical analysis saved to {out_path}\\\")\\n    return analysis\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"Expanded downstream eval for K*-guided filtering\\\")\\n    parser.add_argument(\\\"--device\\\", type=str, default=\\\"cuda:0\\\")\\n    parser.add_argument(\\\"--num_seeds\\\", type=int, default=3)\\n    parser.add_argument(\\\"--seed_start\\\", type=int, default=0)\\n    parser.add_argument(\\\"--skip_base\\\", action=\\\"store_true\\\")\\n    args = parser.parse_args()\\n\\n    results_dir = PROJECT_ROOT / \\\"results\\\" / \\\"exp_expanded_downstream_eval\\\"\\n    results_dir.mkdir(parents=True, exist_ok=True)\\n\\n    log_path = PROJECT_ROOT / \\\"logs\\\" / \\\"exp_expanded_downstream_eval.log\\\"\\n    log_path.parent.mkdir(parents=True, exist_ok=True)\\n    fh = logging.FileHandler(log_path)\\n    fh.setFormatter(logging.Formatter(\\n        \\\"%(asctime)s [%(levelname)s] %(message)s\\\", datefmt=\\\"%H:%M:%S\\\"))\\n    logging.getLogger().addHandler(fh)\\n\\n    log.info(\\\"=\\\" * 60)\\n    log.info(\\\"Expanded Downstream Evaluation\\\")\\n    log.info(f\\\"Model: {MODEL_PATH}\\\")\\n    log.info(f\\\"Data: {DATA_DIR}\\\")\\n    log.info(f\\\"Strategies: {STRATEGIES}\\\")\\n    log.info(f\\\"Seeds: {args.seed_start}-{args.seed_start + args.num_seeds - 1}\\\")\\n    log.info(f\\\"Benchmarks: {[b[0] for b in BENCHMARKS]}\\\")\\n    log.info(f\\\"LoRA: rank={LORA_RANK}, alpha={LORA_ALPHA}, target={LORA_TARGET_MODULES}\\\")\\n    log.info(\\\"=\\\" * 60)\\n\\n    if not args.skip_base:\\n        base_eval_path = results_dir / \\\"base_model_eval.json\\\"\\n        if base_eval_path.exists():\\n            log.info(\\\"Base model eval exists, skipping\\\")\\n        else:\\n            log.info(\\\"Evaluating base model...\\\")\\n            base_scores = evaluate_model(MODEL_PATH, args.device, base_eval_path)\\n            log.info(f\\\"Base model scores: {base_scores}\\\")\\n\\n    for seed in range(args.seed_start, args.seed_start + args.num_seeds):\\n        for strategy in STRATEGIES:\\n            run_name = f\\\"{strategy}_seed{seed}\\\"\\n            eval_path = results_dir / f\\\"{run_name}_eval.json\\\"\\n\\n            if eval_path.exists():\\n                log.info(f\\\"[{run_name}] Already completed, skipping\\\")\\n                continue\\n\\n            log.info(f\\\"\\\\n{'='*60}\\\\n  {run_name}\\\\n{'='*60}\\\")\\n\\n            texts, weights = prepare_data(strategy, seed)\\n\\n            train_dir = results_dir / f\\\"{run_name}_train\\\"\\n            model_dir = train_lora(texts, weights, train_dir, args.device, seed)\\n\\n            scores = evaluate_model(model_dir, args.device, eval_path)\\n            log.info(f\\\"[{run_name}] Scores: {scores}\\\")\\n\\n            if train_dir.exists():\\n                shutil.rmtree(train_dir, ignore_errors=True)\\n                log.info(f\\\"Cleaned up {train_dir}\\\")\\n\\n    log.info(\\\"\\\\n\\\" + \\\"=\\\" * 60 + \\\"\\\\n  STATISTICAL ANALYSIS\\\\n\\\" + \\\"=\\\" * 60)\\n    analysis = run_statistical_analysis(\\n        results_dir, args.num_seeds, args.seed_start)\\n\\n    log.info(\\\"\\\\n=== SUMMARY ===\\\")\\n\\n    base_eval_path = results_dir / \\\"base_model_eval.json\\\"\\n    if base_eval_path.exists():\\n        with open(base_eval_path) as f:\\n            base_scores = json.load(f)[\\\"scores\\\"]\\n        log.info(\\\"  base_model: \\\" + \\\", \\\".join(\\n            f\\\"{k}={v:.4f}\\\" for k, v in base_scores.items() if v is not None))\\n\\n    for strategy in STRATEGIES:\\n        strat = analysis[\\\"strategies\\\"].get(strategy, {})\\n        if strat:\\n            parts = []\\n            for bench in sorted(strat.keys()):\\n                m = strat[bench][\\\"mean\\\"]\\n                s = strat[bench][\\\"std\\\"]\\n                parts.append(f\\\"{bench}={m:.4f}+/-{s:.4f}\\\")\\n            log.info(f\\\"  {strategy}: {', '.join(parts)}\\\")\\n\\n    for comp in analysis.get(\\\"comparisons\\\", []):\\n        sig = \\\"***\\\" if comp.get(\\\"holm_significant\\\") else \\\"n.s.\\\"\\n        log.info(f\\\"  {comp['benchmark']}: {comp['comparison']}: \\\"\\n                 f\\\"d={comp['cohens_d']:.3f}, p={comp['p_value']:.4f} {sig}\\\")\\n\\n    summary = {\\\"base_model\\\": {}, \\\"strategies\\\": analysis[\\\"strategies\\\"],\\n               \\\"comparisons\\\": analysis[\\\"comparisons\\\"]}\\n    if base_eval_path.exists():\\n        with open(base_eval_path) as f:\\n            summary[\\\"base_model\\\"] = json.load(f)[\\\"scores\\\"]\\n    with open(results_dir / \\\"summary.json\\\", \\\"w\\\") as f:\\n        json.dump(summary, f, indent=2)\\n\\n    log.info(\\\"\\\\nDone!\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need lines 300-340 approximately, which would include the statistical analysis comparisons section. Let me get lines 300-350.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "4fc15613-f9dd-4142-9bac-c40ef64fbd06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XLRanY7V1hLch7v7h178tT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2373,
+      "cache_read_input_tokens": 45609,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2373
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01449mHfYsVX8QWRebbKdpBK`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "head -370 /root/autodl-tmp/gen-depth-contamination/scripts/exp_expanded_downstream_eval.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "2bd0cb17-02e6-41a0-8ee9-357ccd1698cb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XLRanY7V1hLch7v7h178tT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2373,
+      "cache_read_input_tokens": 45609,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2373
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-20T20:09:59.540Z_
+
+<details><summary>↩ Tool result · `toolu_01449mHfYsVX8QWRebbKdpBK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Expanded downstream evaluation for K*-guided filtering strategies.\\n\\nRetrains LoRA models on Qwen2.5-1.5B with 3 filtering strategies\\n(no_filter, binary_ours, graduated), then evaluates on 5 benchmarks:\\nPIQA, TruthfulQA-MC2, WinoGrande, ARC-Challenge, GSM8K.\\n\\nUsage:\\n    python scripts/exp_expanded_downstream_eval.py --device cuda:0 --num_seeds 3\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport json\\nimport logging\\nimport os\\nimport shutil\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom scipy import stats\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    datefmt=\\\"%H:%M:%S\\\",\\n    handlers=[logging.StreamHandler(sys.stdout)],\\n)\\nlog = logging.getLogger(__name__)\\n\\nPROJECT_ROOT = Path(\\\"/root/autodl-tmp/gen-depth-contamination\\\")\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\\nDATA_DIR = PROJECT_ROOT / \\\"data_exp020_pythia_greedy\\\"\\n\\nKSTAR = 2\\nGRADUATED_ALPHA = 0.9\\nMAX_DEPTH = 5\\nSTRATEGIES = [\\\"no_filter\\\", \\\"binary_ours\\\", \\\"graduated\\\"]\\n\\nLORA_RANK = 8\\nLORA_ALPHA = 16\\nLORA_TARGET_MODULES = [\\\"q_proj\\\", \\\"v_proj\\\"]\\nLORA_DROPOUT = 0.05\\n\\nTRAIN_LR = 2e-4\\nTRAIN_BATCH_SIZE = 4\\nGRADIENT_ACCUMULATION = 4\\nTRAIN_EPOCHS = 1\\nMAX_LENGTH = 256\\n\\nBENCHMARKS = [\\n    (\\\"piqa\\\", 0),\\n    (\\\"truthfulqa_mc2\\\", 0),\\n    (\\\"winogrande\\\", 5),\\n    (\\\"arc_challenge\\\", 25),\\n    (\\\"gsm8k\\\", 8),\\n]\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef set_seed(seed):\\n    np.random.seed(seed)\\n    torch.manual_seed(seed)\\n    if torch.cuda.is_available():\\n        torch.cuda.manual_seed_all(seed)\\n\\n\\ndef prepare_data(strategy, seed):\\n    rng = np.random.RandomState(seed)\\n    all_texts = []\\n    all_weights = []\\n\\n    if strategy == \\\"no_filter\\\":\\n        for d in range(MAX_DEPTH + 1):\\n            records = load_jsonl(DATA_DIR / f\\\"depth_{d}.jsonl\\\")\\n            all_texts.extend(r[\\\"text\\\"] for r in records)\\n            all_weights.extend([1.0] * len(records))\\n    elif strategy == \\\"binary_ours\\\":\\n        for d in range(KSTAR + 1):\\n            records = load_jsonl(DATA_DIR / f\\\"depth_{d}.jsonl\\\")\\n            all_texts.extend(r[\\\"text\\\"] for r in records)\\n            all_weights.extend([1.0] * len(records))\\n    elif strategy == \\\"graduated\\\":\\n        for d in range(MAX_DEPTH + 1):\\n            records = load_jsonl(DATA_DIR / f\\\"depth_{d}.jsonl\\\")\\n            w = GRADUATED_ALPHA ** d\\n            all_texts.extend(r[\\\"text\\\"] for r in records)\\n            all_weights.extend([w] * len(records))\\n    else:\\n        raise ValueError(f\\\"Unknown strategy: {strategy}\\\")\\n\\n    indices = list(range(len(all_texts)))\\n    rng.shuffle(indices)\\n    all_texts = [all_texts[i] for i in indices]\\n    all_weights = [all_weights[i] for i in indices]\\n\\n    log.info(f\\\"Data: strategy={strategy}, n={len(all_texts)}, \\\"\\n             f\\\"mean_weight={np.mean(all_weights):.4f}\\\")\\n    return all_texts, all_weights\\n\\n\\ndef train_lora(texts, weights, output_dir, device, seed):\\n    from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments\\n    from peft import LoraConfig, get_peft_model, TaskType\\n    from torch.utils.data import Dataset\\n\\n    set_seed(seed)\\n\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n        tokenizer.pad_token_id = tokenizer.eos_token_id\\n\\n    class WeightedTextDataset(Dataset):\\n        def __init__(self, texts, weights, tokenizer, max_length):\\n            self.encodings = []\\n            self.weights = []\\n            for text, w in zip(texts, weights):\\n                enc = tokenizer(text, truncation=True, max_length=max_length,\\n                                padding=\\\"max_length\\\", return_tensors=\\\"pt\\\")\\n                self.encodings.append({k: v.squeeze(0) for k, v in enc.items()})\\n                self.weights.append(w)\\n\\n        def __len__(self):\\n            return len(self.encodings)\\n\\n        def __getitem__(self, idx):\\n     \\n\\n... [截断: 输出过长，省略 4619 字符] ...\\n\\n          score = task_results.get(\\\"acc,none\\\", 0)\\n        else:\\n            score = task_results.get(\\\"acc,none\\\", 0)\\n\\n        all_scores[task_name] = float(score) if score is not None else None\\n        all_full[task_name] = {k: v for k, v in task_results.items()}\\n        elapsed = time.time() - t0\\n        log.info(f\\\"  {task_name}: {score:.4f} ({elapsed:.0f}s)\\\")\\n\\n    results_path.parent.mkdir(parents=True, exist_ok=True)\\n    with open(results_path, \\\"w\\\") as f:\\n        json.dump({\\n            \\\"scores\\\": all_scores,\\n            \\\"full\\\": all_full,\\n            \\\"benchmarks\\\": [[b, n] for b, n in BENCHMARKS],\\n        }, f, indent=2, default=str)\\n\\n    del lm\\n    torch.cuda.empty_cache()\\n    gc.collect()\\n\\n    return all_scores\\n\\n\\ndef run_statistical_analysis(results_dir, num_seeds, seed_start):\\n    log.info(\\\"Running statistical analysis...\\\")\\n\\n    strategy_scores = {s: {} for s in STRATEGIES}\\n\\n    for strategy in STRATEGIES:\\n        for seed in range(seed_start, seed_start + num_seeds):\\n            eval_path = results_dir / f\\\"{strategy}_seed{seed}_eval.json\\\"\\n            if eval_path.exists():\\n                with open(eval_path) as f:\\n                    data = json.load(f)\\n                strategy_scores[strategy][seed] = data[\\\"scores\\\"]\\n\\n    all_benchmarks = set()\\n    for scores_by_seed in strategy_scores.values():\\n        for scores in scores_by_seed.values():\\n            all_benchmarks.update(k for k, v in scores.items() if v is not None)\\n\\n    analysis = {\\\"strategies\\\": {}, \\\"comparisons\\\": []}\\n\\n    for strategy in STRATEGIES:\\n        strat_data = {}\\n        for bench in sorted(all_benchmarks):\\n            vals = [strategy_scores[strategy][s][bench]\\n                    for s in strategy_scores[strategy]\\n                    if bench in strategy_scores[strategy][s]\\n                    and strategy_scores[strategy][s][bench] is not None]\\n            if vals:\\n                strat_data[bench] = {\\n                    \\\"mean\\\": float(np.mean(vals)),\\n                    \\\"std\\\": float(np.std(vals)),\\n                    \\\"values\\\": vals,\\n                }\\n        analysis[\\\"strategies\\\"][strategy] = strat_data\\n\\n    comparisons = []\\n    for bench in sorted(all_benchmarks):\\n        for s1, s2 in [(\\\"binary_ours\\\", \\\"no_filter\\\"), (\\\"binary_ours\\\", \\\"graduated\\\"),\\n                       (\\\"graduated\\\", \\\"no_filter\\\")]:\\n            v1 = analysis[\\\"strategies\\\"].get(s1, {}).get(bench, {}).get(\\\"values\\\", [])\\n            v2 = analysis[\\\"strategies\\\"].get(s2, {}).get(bench, {}).get(\\\"values\\\", [])\\n            if len(v1) >= 2 and len(v2) >= 2:\\n                t_stat, p_val = stats.ttest_ind(v1, v2)\\n                diff = np.mean(v1) - np.mean(v2)\\n                pooled_std = np.sqrt((np.var(v1) + np.var(v2)) / 2)\\n                cohens_d = diff / pooled_std if pooled_std > 0 else 0.0\\n                comparisons.append({\\n                    \\\"benchmark\\\": bench,\\n                    \\\"comparison\\\": f\\\"{s1}_vs_{s2}\\\",\\n                    \\\"mean_diff\\\": float(diff),\\n                    \\\"t_stat\\\": float(t_stat),\\n                    \\\"p_value\\\": float(p_val),\\n                    \\\"cohens_d\\\": float(cohens_d),\\n                })\\n\\n    if comparisons:\\n        p_values = [c[\\\"p_value\\\"] for c in comparisons]\\n        sorted_indices = np.argsort(p_values)\\n        m = len(p_values)\\n        for rank, idx in enumerate(sorted_indices):\\n            adjusted_alpha = 0.05 / (m - rank)\\n            comparisons[idx][\\\"holm_significant\\\"] = p_values[idx] < adjusted_alpha\\n\\n    analysis[\\\"comparisons\\\"] = comparisons\\n\\n    out_path = results_dir / \\\"statistical_analysis.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(analysis, f, indent=2)\\n    log.info(f\\\"Statistical analysis saved to {out_path}\\\")\\n    return analysis\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"Expanded downstream eval for K*-guided filtering\\\")\\n    parser.add_argument(\\\"--device\\\", type=str, default=\\\"cuda:0\\\")\\n    parser.add_argument(\\\"--num_seeds\\\", type=int, default=3)\\n    parser.add_argument(\\\"--seed_start\\\", type=int, default=0)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "dacb8d3b-5cb7-40fc-8902-f68f4eec63e5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Expanded downstream evaluation for K*-guided filtering strategies.\\\\n\\\\nRetrains LoRA models on Qwen2.5-1.5B with 3 filtering strategies\\\\n(no_filter, binary_ours, graduated), then evaluates on 5 benchmarks:\\\\nPIQA, TruthfulQA-MC2, WinoGrande, ARC-Challenge, GSM8K.\\\\n\\\\nUsage:\\\\n    python scripts/exp_expanded_downstream_eval.py --device cuda:0 --num_seeds 3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport gc\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport shutil\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom scipy import stats\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    datefmt=\\\\\\\"%H:%M:%S\\\\\\\",\\\\n    handlers=[logging.StreamHandler(sys.stdout)],\\\\n)\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nPROJECT_ROOT = Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination\\\\\\\")\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\\\\\"\\\\nDATA_DIR = PROJECT_ROOT / \\\\\\\"data_exp020_pythia_greedy\\\\\\\"\\\\n\\\\nKSTAR = 2\\\\nGRADUATED_ALPHA = 0.9\\\\nMAX_DEPTH = 5\\\\nSTRATEGIES = [\\\\\\\"no_filter\\\\\\\", \\\\\\\"binary_ours\\\\\\\", \\\\\\\"graduated\\\\\\\"]\\\\n\\\\nLORA_RANK = 8\\\\nLORA_ALPHA = 16\\\\nLORA_TARGET_MODULES = [\\\\\\\"q_proj\\\\\\\", \\\\\\\"v_proj\\\\\\\"]\\\\nLORA_DROPOUT = 0.05\\\\n\\\\nTRAIN_LR = 2e-4\\\\nTRAIN_BATCH_SIZE = 4\\\\nGRADIENT_ACCUMULATION = 4\\\\nTRAIN_EPOCHS = 1\\\\nMAX_LENGTH = 256\\\\n\\\\nBENCHMARKS = [\\\\n    (\\\\\\\"piqa\\\\\\\", 0),\\\\n    (\\\\\\\"truthfulqa_mc2\\\\\\\", 0),\\\\n    (\\\\\\\"winogrande\\\\\\\", 5),\\\\n    (\\\\\\\"arc_challenge\\\\\\\", 25),\\\\n    (\\\\\\\"gsm8k\\\\\\\", 8),\\\\n]\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f]\\\\n\\\\n\\\\ndef set_seed(seed):\\\\n    np.random.seed(seed)\\\\n    torch.manual_seed(seed)\\\\n    if torch.cuda.is_available():\\\\n        torch.cuda.manual_seed_all(seed)\\\\n\\\\n\\\\ndef prepare_data(strategy, seed):\\\\n    rng = np.random.RandomState(seed)\\\\n    all_texts = []\\\\n    all_weights = []\\\\n\\\\n    if strategy == \\\\\\\"no_filter\\\\\\\":\\\\n        for d in range(MAX_DEPTH + 1):\\\\n            records = load_jsonl(DATA_DIR / f\\\\\\\"depth_{d}.jsonl\\\\\\\")\\\\n            all_texts.extend(r[\\\\\\\"text\\\\\\\"] for r in records)\\\\n            all_weights.extend([1.0] * len(records))\\\\n    elif strategy == \\\\\\\"binary_ours\\\\\\\":\\\\n        for d in range(KSTAR + 1):\\\\n            records = load_jsonl(DATA_DIR / f\\\\\\\"depth_{d}.jsonl\\\\\\\")\\\\n            all_texts.extend(r[\\\\\\\"text\\\\\\\"] for r in records)\\\\n            all_weights.extend([1.0] * len(records))\\\\n    elif strategy == \\\\\\\"graduated\\\\\\\":\\\\n        for d in range(MAX_DEPTH + 1):\\\\n            records = load_jsonl(DATA_DIR / f\\\\\\\"depth_{d}.jsonl\\\\\\\")\\\\n            w = GRADUATED_ALPHA ** d\\\\n            all_texts.extend(r[\\\\\\\"text\\\\\\\"] for r in records)\\\\n            all_weights.extend([w] * len(records))\\\\n    else:\\\\n        raise ValueError(f\\\\\\\"Unknown strategy: {strategy}\\\\\\\")\\\\n\\\\n    indices = list(range(len(all_texts)))\\\\n    rng.shuffle(indices)\\\\n    all_texts = [all_texts[i] for i in indices]\\\\n    all_weights = [all_weights[i] for i in indices]\\\\n\\\\n    log.info(f\\\\\\\"Data: strategy={strategy}, n={len(all_texts)}, \\\\\\\"\\\\n             f\\\\\\\"mean_weight={np.mean(all_weights):.4f}\\\\\\\")\\\\n    return all_texts, all_weights\\\\n\\\\n\\\\ndef train_lora(texts, weights, output_dir, device, seed):\\\\n    from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments\\\\n    from peft import LoraConfig, get_peft_model, TaskType\\\\n    from torch.utils.data import Dataset\\\\n\\\\n    set_seed(seed)\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n        tokenizer.pad_token_id = tokenizer.eos_token_id\\\\n\\\\n    class WeightedTextDataset(Dataset):\\\\n        def __init__(self, texts, weights, tokenizer, max_length):\\\\n            self.encodings = []\\\\n            self.weights = []\\\\n            for text, w in zip(texts, weights):\\\\n                enc = tokenizer(text, truncation=True, max_length=max_length,\\\\n                                padding=\\\\\\\"max_length\\\\\\\", return_tensors=\\\\\\\"pt\\\\\\\")\\\\n                self.encodings.append({k: v.squeeze(0) for k, v in enc.items()})\\\\n                self.weights.append(w)\\\\n\\\\n        def __len__(self):\\\\n            return len(self.encodings)\\\\n\\\\n        def __getitem__(self, idx):\\\\n     \\\\n\\\\n... [截断: 输出过长，省略 4619 字符] ...\\\\n\\\\n          score = task_results.get(\\\\\\\"acc,none\\\\\\\", 0)\\\\n        else:\\\\n            score = task_results.get(\\\\\\\"acc,none\\\\\\\", 0)\\\\n\\\\n        all_scores[task_name] = float(score) if score is not None else None\\\\n        all_full[task_name] = {k: v for k, v in task_results.items()}\\\\n        elapsed = time.time() - t0\\\\n        log.info(f\\\\\\\"  {task_name}: {score:.4f} ({elapsed:.0f}s)\\\\\\\")\\\\n\\\\n    results_path.parent.mkdir(parents=True, exist_ok=True)\\\\n    with open(results_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump({\\\\n            \\\\\\\"scores\\\\\\\": all_scores,\\\\n            \\\\\\\"full\\\\\\\": all_full,\\\\n            \\\\\\\"benchmarks\\\\\\\": [[b, n] for b, n in BENCHMARKS],\\\\n        }, f, indent=2, default=str)\\\\n\\\\n    del lm\\\\n    torch.cuda.empty_cache()\\\\n    gc.collect()\\\\n\\\\n    return all_scores\\\\n\\\\n\\\\ndef run_statistical_analysis(results_dir, num_seeds, seed_start):\\\\n    log.info(\\\\\\\"Running statistical analysis...\\\\\\\")\\\\n\\\\n    strategy_scores = {s: {} for s in STRATEGIES}\\\\n\\\\n    for strategy in STRATEGIES:\\\\n        for seed in range(seed_start, seed_start + num_seeds):\\\\n            eval_path = results_dir / f\\\\\\\"{strategy}_seed{seed}_eval.json\\\\\\\"\\\\n            if eval_path.exists():\\\\n                with open(eval_path) as f:\\\\n                    data = json.load(f)\\\\n                strategy_scores[strategy][seed] = data[\\\\\\\"scores\\\\\\\"]\\\\n\\\\n    all_benchmarks = set()\\\\n    for scores_by_seed in strategy_scores.values():\\\\n        for scores in scores_by_seed.values():\\\\n            all_benchmarks.update(k for k, v in scores.items() if v is not None)\\\\n\\\\n    analysis = {\\\\\\\"strategies\\\\\\\": {}, \\\\\\\"comparisons\\\\\\\": []}\\\\n\\\\n    for strategy in STRATEGIES:\\\\n        strat_data = {}\\\\n        for bench in sorted(all_benchmarks):\\\\n            vals = [strategy_scores[strategy][s][bench]\\\\n                    for s in strategy_scores[strategy]\\\\n                    if bench in strategy_scores[strategy][s]\\\\n                    and strategy_scores[strategy][s][bench] is not None]\\\\n            if vals:\\\\n                strat_data[bench] = {\\\\n                    \\\\\\\"mean\\\\\\\": float(np.mean(vals)),\\\\n                    \\\\\\\"std\\\\\\\": float(np.std(vals)),\\\\n                    \\\\\\\"values\\\\\\\": vals,\\\\n                }\\\\n        analysis[\\\\\\\"strategies\\\\\\\"][strategy] = strat_data\\\\n\\\\n    comparisons = []\\\\n    for bench in sorted(all_benchmarks):\\\\n        for s1, s2 in [(\\\\\\\"binary_ours\\\\\\\", \\\\\\\"no_filter\\\\\\\"), (\\\\\\\"binary_ours\\\\\\\", \\\\\\\"graduated\\\\\\\"),\\\\n                       (\\\\\\\"graduated\\\\\\\", \\\\\\\"no_filter\\\\\\\")]:\\\\n            v1 = analysis[\\\\\\\"strategies\\\\\\\"].get(s1, {}).get(bench, {}).get(\\\\\\\"values\\\\\\\", [])\\\\n            v2 = analysis[\\\\\\\"strategies\\\\\\\"].get(s2, {}).get(bench, {}).get(\\\\\\\"values\\\\\\\", [])\\\\n            if len(v1) >= 2 and len(v2) >= 2:\\\\n                t_stat, p_val = stats.ttest_ind(v1, v2)\\\\n                diff = np.mean(v1) - np.mean(v2)\\\\n                pooled_std = np.sqrt((np.var(v1) + np.var(v2)) / 2)\\\\n                cohens_d = diff / pooled_std if pooled_std > 0 else 0.0\\\\n                comparisons.append({\\\\n                    \\\\\\\"benchmark\\\\\\\": bench,\\\\n                    \\\\\\\"comparison\\\\\\\": f\\\\\\\"{s1}_vs_{s2}\\\\\\\",\\\\n                    \\\\\\\"mean_diff\\\\\\\": float(diff),\\\\n                    \\\\\\\"t_stat\\\\\\\": float(t_stat),\\\\n                    \\\\\\\"p_value\\\\\\\": float(p_val),\\\\n                    \\\\\\\"cohens_d\\\\\\\": float(cohens_d),\\\\n                })\\\\n\\\\n    if comparisons:\\\\n        p_values = [c[\\\\\\\"p_value\\\\\\\"] for c in comparisons]\\\\n        sorted_indices = np.argsort(p_values)\\\\n        m = len(p_values)\\\\n        for rank, idx in enumerate(sorted_indices):\\\\n            adjusted_alpha = 0.05 / (m - rank)\\\\n            comparisons[idx][\\\\\\\"holm_significant\\\\\\\"] = p_values[idx] < adjusted_alpha\\\\n\\\\n    analysis[\\\\\\\"comparisons\\\\\\\"] = comparisons\\\\n\\\\n    out_path = results_dir / \\\\\\\"statistical_analysis.json\\\\\\\"\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(analysis, f, indent=2)\\\\n    log.info(f\\\\\\\"Statistical analysis saved to {out_path}\\\\\\\")\\\\n    return analysis\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(\\\\n        description=\\\\\\\"Expanded downstream eval for K*-guided filtering\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--device\\\\\\\", type=str, default=\\\\\\\"cuda:0\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--num_seeds\\\\\\\", type=int, default=3)\\\\n    parser.add_argument(\\\\\\\"--seed_start\\\\\\\", type=int, default=0)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Expanded downstream evaluation for K*-guided filtering strategies.\\n\\nRetrains LoRA models on Qwen2.5-1.5B with 3 filtering strategies\\n(no_filter, binary_ours, graduated), then evaluates on 5 benchmarks:\\nPIQA, TruthfulQA-MC2, WinoGrande, ARC-Challenge, GSM8K.\\n\\nUsage:\\n    python scripts/exp_expanded_downstream_eval.py --device cuda:0 --num_seeds 3\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport gc\\nimport json\\nimport logging\\nimport os\\nimport shutil\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom scipy import stats\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n    datefmt=\\\"%H:%M:%S\\\",\\n    handlers=[logging.StreamHandler(sys.stdout)],\\n)\\nlog = logging.getLogger(__name__)\\n\\nPROJECT_ROOT = Path(\\\"/root/autodl-tmp/gen-depth-contamination\\\")\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\\nDATA_DIR = PROJECT_ROOT / \\\"data_exp020_pythia_greedy\\\"\\n\\nKSTAR = 2\\nGRADUATED_ALPHA = 0.9\\nMAX_DEPTH = 5\\nSTRATEGIES = [\\\"no_filter\\\", \\\"binary_ours\\\", \\\"graduated\\\"]\\n\\nLORA_RANK = 8\\nLORA_ALPHA = 16\\nLORA_TARGET_MODULES = [\\\"q_proj\\\", \\\"v_proj\\\"]\\nLORA_DROPOUT = 0.05\\n\\nTRAIN_LR = 2e-4\\nTRAIN_BATCH_SIZE = 4\\nGRADIENT_ACCUMULATION = 4\\nTRAIN_EPOCHS = 1\\nMAX_LENGTH = 256\\n\\nBENCHMARKS = [\\n    (\\\"piqa\\\", 0),\\n    (\\\"truthfulqa_mc2\\\", 0),\\n    (\\\"winogrande\\\", 5),\\n    (\\\"arc_challenge\\\", 25),\\n    (\\\"gsm8k\\\", 8),\\n]\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef set_seed(seed):\\n    np.random.seed(seed)\\n    torch.manual_seed(seed)\\n    if torch.cuda.is_available():\\n        torch.cuda.manual_seed_all(seed)\\n\\n\\ndef prepare_data(strategy, seed):\\n    rng = np.random.RandomState(seed)\\n    all_texts = []\\n    all_weights = []\\n\\n    if strategy == \\\"no_filter\\\":\\n        for d in range(MAX_DEPTH + 1):\\n            records = load_jsonl(DATA_DIR / f\\\"depth_{d}.jsonl\\\")\\n            all_texts.extend(r[\\\"text\\\"] for r in records)\\n            all_weights.extend([1.0] * len(records))\\n    elif strategy == \\\"binary_ours\\\":\\n        for d in range(KSTAR + 1):\\n            records = load_jsonl(DATA_DIR / f\\\"depth_{d}.jsonl\\\")\\n            all_texts.extend(r[\\\"text\\\"] for r in records)\\n            all_weights.extend([1.0] * len(records))\\n    elif strategy == \\\"graduated\\\":\\n        for d in range(MAX_DEPTH + 1):\\n            records = load_jsonl(DATA_DIR / f\\\"depth_{d}.jsonl\\\")\\n            w = GRADUATED_ALPHA ** d\\n            all_texts.extend(r[\\\"text\\\"] for r in records)\\n            all_weights.extend([w] * len(records))\\n    else:\\n        raise ValueError(f\\\"Unknown strategy: {strategy}\\\")\\n\\n    indices = list(range(len(all_texts)))\\n    rng.shuffle(indices)\\n    all_texts = [all_texts[i] for i in indices]\\n    all_weights = [all_weights[i] for i in indices]\\n\\n    log.info(f\\\"Data: strategy={strategy}, n={len(all_texts)}, \\\"\\n             f\\\"mean_weight={np.mean(all_weights):.4f}\\\")\\n    return all_texts, all_weights\\n\\n\\ndef train_lora(texts, weights, output_dir, device, seed):\\n    from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments\\n    from peft import LoraConfig, get_peft_model, TaskType\\n    from torch.utils.data import Dataset\\n\\n    set_seed(seed)\\n\\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n        tokenizer.pad_token_id = tokenizer.eos_token_id\\n\\n    class WeightedTextDataset(Dataset):\\n        def __init__(self, texts, weights, tokenizer, max_length):\\n            self.encodings = []\\n            self.weights = []\\n            for text, w in zip(texts, weights):\\n                enc = tokenizer(text, truncation=True, max_length=max_length,\\n                                padding=\\\"max_length\\\", return_tensors=\\\"pt\\\")\\n                self.encodings.append({k: v.squeeze(0) for k, v in enc.items()})\\n                self.weights.append(w)\\n\\n        def __len__(self):\\n            return len(self.encodings)\\n\\n        def __getitem__(self, idx):\\n     \\n\\n... [截断: 输出过长，省略 4619 字符] ...\\n\\n          score = task_results.get(\\\"acc,none\\\", 0)\\n        else:\\n            score = task_results.get(\\\"acc,none\\\", 0)\\n\\n        all_scores[task_name] = float(score) if score is not None else None\\n        all_full[task_name] = {k: v for k, v in task_results.items()}\\n        elapsed = time.time() - t0\\n        log.info(f\\\"  {task_name}: {score:.4f} ({elapsed:.0f}s)\\\")\\n\\n    results_path.parent.mkdir(parents=True, exist_ok=True)\\n    with open(results_path, \\\"w\\\") as f:\\n        json.dump({\\n            \\\"scores\\\": all_scores,\\n            \\\"full\\\": all_full,\\n            \\\"benchmarks\\\": [[b, n] for b, n in BENCHMARKS],\\n        }, f, indent=2, default=str)\\n\\n    del lm\\n    torch.cuda.empty_cache()\\n    gc.collect()\\n\\n    return all_scores\\n\\n\\ndef run_statistical_analysis(results_dir, num_seeds, seed_start):\\n    log.info(\\\"Running statistical analysis...\\\")\\n\\n    strategy_scores = {s: {} for s in STRATEGIES}\\n\\n    for strategy in STRATEGIES:\\n        for seed in range(seed_start, seed_start + num_seeds):\\n            eval_path = results_dir / f\\\"{strategy}_seed{seed}_eval.json\\\"\\n            if eval_path.exists():\\n                with open(eval_path) as f:\\n                    data = json.load(f)\\n                strategy_scores[strategy][seed] = data[\\\"scores\\\"]\\n\\n    all_benchmarks = set()\\n    for scores_by_seed in strategy_scores.values():\\n        for scores in scores_by_seed.values():\\n            all_benchmarks.update(k for k, v in scores.items() if v is not None)\\n\\n    analysis = {\\\"strategies\\\": {}, \\\"comparisons\\\": []}\\n\\n    for strategy in STRATEGIES:\\n        strat_data = {}\\n        for bench in sorted(all_benchmarks):\\n            vals = [strategy_scores[strategy][s][bench]\\n                    for s in strategy_scores[strategy]\\n                    if bench in strategy_scores[strategy][s]\\n                    and strategy_scores[strategy][s][bench] is not None]\\n            if vals:\\n                strat_data[bench] = {\\n                    \\\"mean\\\": float(np.mean(vals)),\\n                    \\\"std\\\": float(np.std(vals)),\\n                    \\\"values\\\": vals,\\n                }\\n        analysis[\\\"strategies\\\"][strategy] = strat_data\\n\\n    comparisons = []\\n    for bench in sorted(all_benchmarks):\\n        for s1, s2 in [(\\\"binary_ours\\\", \\\"no_filter\\\"), (\\\"binary_ours\\\", \\\"graduated\\\"),\\n                       (\\\"graduated\\\", \\\"no_filter\\\")]:\\n            v1 = analysis[\\\"strategies\\\"].get(s1, {}).get(bench, {}).get(\\\"values\\\", [])\\n            v2 = analysis[\\\"strategies\\\"].get(s2, {}).get(bench, {}).get(\\\"values\\\", [])\\n            if len(v1) >= 2 and len(v2) >= 2:\\n                t_stat, p_val = stats.ttest_ind(v1, v2)\\n                diff = np.mean(v1) - np.mean(v2)\\n                pooled_std = np.sqrt((np.var(v1) + np.var(v2)) / 2)\\n                cohens_d = diff / pooled_std if pooled_std > 0 else 0.0\\n                comparisons.append({\\n                    \\\"benchmark\\\": bench,\\n                    \\\"comparison\\\": f\\\"{s1}_vs_{s2}\\\",\\n                    \\\"mean_diff\\\": float(diff),\\n                    \\\"t_stat\\\": float(t_stat),\\n                    \\\"p_value\\\": float(p_val),\\n                    \\\"cohens_d\\\": float(cohens_d),\\n                })\\n\\n    if comparisons:\\n        p_values = [c[\\\"p_value\\\"] for c in comparisons]\\n        sorted_indices = np.argsort(p_values)\\n        m = len(p_values)\\n        for rank, idx in enumerate(sorted_indices):\\n            adjusted_alpha = 0.05 / (m - rank)\\n            comparisons[idx][\\\"holm_significant\\\"] = p_values[idx] < adjusted_alpha\\n\\n    analysis[\\\"comparisons\\\"] = comparisons\\n\\n    out_path = results_dir / \\\"statistical_analysis.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(analysis, f, indent=2)\\n    log.info(f\\\"Statistical analysis saved to {out_path}\\\")\\n    return analysis\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(\\n        description=\\\"Expanded downstream eval for K*-guided filtering\\\")\\n    parser.add_argument(\\\"--device\\\", type=str, default=\\\"cuda:0\\\")\\n    parser.add_argument(\\\"--num_seeds\\\", type=int, default=3)\\n    parser.add_argument(\\\"--seed_start\\\", type=int, default=0)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full script. Let me piece it together. The only missing part is between `__getitem__` and the rest of train_lora which I already have from the previous reads. Let me check what lines are missing.
+
+From head -250, the script cuts off at line ~250 at the retry logic.
+From head -320, the script cuts off after the evaluate_model function at around line 320.
+From head -370, I can see up to the statistical analysis and into main().
+From tail -130, I have the full end.
+From tail -250, I have from evaluate_model to the end.
+
+
+I can now reconstruct the full script by combining these sections—the first read gives me the beginning through `__getitem__`, the head -250 read extends through the training and merging logic, head -320 covers the evaluation function, and head -370 captures the statistical analysis before main(). Setting up logging and configuration constants...
+
+Now I'm defining the training hyperparameters like batch size and gradient accumulation, along with the benchmark datasets I'll evaluate on. I'm also writing utility functions to load JSONL data, set random seeds across numpy and torch, and begin implementing the data preparation logic that handles different filtering strategies based on depth.
+
+Continuing with data loading... Defining the dataset class... Loading the model with bfloat16 precision and setting up LoRA configuration with the specified rank and target modules, then calculating how many parameters are trainable versus total.
+
+Setting up training arguments...
+
+Initializing the trainer with the weighted loss function, then logging the training configuration and starting the training loop. After training completes, I'm merging the LoRA weights back into the base model, saving both the merged model and tokenizer, then cleaning up memory before returning the path to the merged model directory.
+
+Now I'm setting up the evaluation phase by importing the language model evaluation framework and creating an HuggingFace language model instance with specific configuration for inference. I'm preparing to run the model through a series of benchmarks, iterating through each task with retry logic to handle potential failures. Extracting scores from the task results with different metric keys depending on the task type, then storing both the numeric score and full results dictionary for each task.
+
+Now I'm calculating the elapsed time for each task evaluation, logging the results, and then saving all scores and full results to a JSON file before cleaning up the language model and GPU memory. After that, I'm setting up a function to run statistical analysis across different strategies and seeds, loading evaluation results from files for each combination.
+
+Loading evaluation data and computing statistics... Writing statistical analysis... Setting up the logging configuration with a file handler and then logging the experiment parameters like the model path, data directory, strategies, seed range, and benchmarks being evaluated. Writing training loop...
+
+Now I'm moving into the analysis phase, running statistical tests across all the results and then compiling a summary that shows the base model's performance alongside the mean and standard deviation for each strategy across the different benchmarks. Writing the summary output and planning command-line argument additions for strategy filtering, training skipping, and null benchmark handling.
+
+For the GSM8K rerun case, I need to detect partial results in the eval file, identify which benchmarks are missing or null, retrain only for those specific benchmarks, then merge the new results back into the existing file.
+
+Modifying the main loop... Setting up the training directory and checking if I can skip training by using an existing merged model, otherwise preparing the data and training a LoRA model, then evaluating it against the specified benchmarks.
+
+Now I'm logging the evaluation scores, cleaning up the training directory, and modifying the evaluate_model function to accept optional benchmark overrides and merge in any existing results from previous runs.
+
+Writing the full script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "e9a00fad-6da1-49c2-8809-bf3564edb2e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TKrtiKCcoS9T2gM78WQeyT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3454,
+      "cache_read_input_tokens": 47982,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3454
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+现在有完整脚本了。状态：
+- **Checkpoints 不存在** (已被 shutil.rmtree 清理)
+- seed0/seed1 GSM8K 为 null，补跑需要重训
+- GPU: cuda:0 占用，cuda:1,2,3 空闲
+
+开始写修改后的脚本。除了 `--strategy` 和 `--skip_train`，还需加 **null benchmark 自动检测**：eval 文件存在但有 null 值时，重训 + 只跑缺失的 benchmark。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "09e38499-58b5-4543-947e-0cebafa9abe9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TKrtiKCcoS9T2gM78WQeyT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3454,
+      "cache_read_input_tokens": 47982,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3454
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Woi4VMHnM1X9PMcKxBVTYh`</summary>
+
+```json
+{
+  "query": "select:TodoWrite",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "1a15fcdc-9e30-491f-a0a6-542bfb13d71c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TKrtiKCcoS9T2gM78WQeyT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3454,
+      "cache_read_input_tokens": 47982,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3454
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-20T20:11:20.275Z_
+
+<details><summary>↩ Tool result · `toolu_01Woi4VMHnM1X9PMcKxBVTYh`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "TodoWrite"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "f2d88272-5565-474c-b7c0-b152b06dc58d",
+  "tool_use_result": {
+    "matches": [
+      "TodoWrite"
+    ],
+    "query": "select:TodoWrite",
+    "total_deferred_tools": 27
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_01JUGcjYNk9QihAxgAbKPNqv`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Modify script: add --strategy, --skip_train, null-benchmark auto-patch",
+      "status": "in_progress",
+      "activeForm": "Modifying script with new arguments and null-benchmark detection"
+    },
+    {
+      "content": "Deploy modified script to server",
+      "status": "pending",
+      "activeForm": "Deploying modified script to server"
+    },
+    {
+      "content": "Submit seed2 parallel jobs on cuda:1,2,3",
+      "status": "pending",
+      "activeForm": "Submitting seed2 parallel jobs"
+    },
+    {
+      "content": "Submit seed0/seed1 GSM8K补跑 (after GPU available)",
+      "status": "pending",
+      "activeForm": "Submitting seed0/seed1 GSM8K patch jobs"
+    },
+    {
+      "content": "Collect full 3×5×3 results table",
+      "status": "pending",
+      "activeForm": "Collecting all results"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "d3b1e3cb-f94c-4294-b5c0-5663ca8dfe73",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QaYywTCod5yYcqaz3ojYEx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9373,
+      "cache_read_input_tokens": 51436,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9373
+      },
+      "output_tokens": 56,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-20T20:11:27.024Z_
+
+<details><summary>↩ Tool result · `toolu_01JUGcjYNk9QihAxgAbKPNqv`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "f49c19b0-9a79-4d98-ae56-b1bb5fa6340c",
+  "tool_use_result": {
+    "oldTodos": [],
+    "newTodos": [
+      {
+        "content": "Modify script: add --strategy, --skip_train, null-benchmark auto-patch",
+        "status": "in_progress",
+        "activeForm": "Modifying script with new arguments and null-benchmark detection"
+      },
+      {
+        "content": "Deploy modified script to server",
+        "status": "pending",
+        "activeForm": "Deploying modified script to server"
+      },
+      {
+        "content": "Submit seed2 parallel jobs on cuda:1,2,3",
+        "status": "pending",
+        "activeForm": "Submitting seed2 parallel jobs"
+      },
+      {
+        "content": "Submit seed0/seed1 GSM8K补跑 (after GPU available)",
+        "status": "pending",
+        "activeForm": "Submitting seed0/seed1 GSM8K patch jobs"
+      },
+      {
+        "content": "Collect full 3×5×3 results table",
+        "status": "pending",
+        "activeForm": "Collecting all results"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me write the modified script. I need to make these changes:
+
+1. Add `--strategy` argument (choices: no_filter, binary_ours, graduated, all; default=all)
+2. Add `--skip_train` argument (store_true)
+3. Modify evaluate_model to accept benchmarks_override and existing data
+4. Modify main loop to:
+   - Filter by strategy
+   - Detect null benchmarks and only re-eval those
+   - Support skip_train
+
+Let me write the full script. I'll use ssh_execute with a heredoc or cat to write it.
+
+
+Actually, for a 466+ line script, writing via ssh_execute with a cat heredoc is risky due to special characters and escaping issues. I need to use ssh_execute to write the file on the remote server since I can't use local tools. The cleanest approach is to write the full modified file via ssh_execute with a heredoc, being very careful with escaping. Alternatively, I could use a Python script on the remote server to write the file directly.
+
+Let me think through the safest approach: I could write the modified script locally and then use ssh_execute with a single-quoted heredoc delimiter to prevent shell expansion. Looking at the script content, I need to check what special characters are present—single quotes, double quotes, backslashes in f-strings—to determine if the heredoc approach will work without escaping nightmares.
+
+Since a single-quoted heredoc prevents all expansion, the main risk is if the content contains the delimiter itself on its own line. I could use a unique marker like `SCRIPT_EOF_MARKER` to avoid that collision. Alternatively, I'm considering a base64 encoding approach where I encode the script content, transmit it, and decode it on the remote server—this sidesteps all the quoting and escaping issues entirely.
+
+Rather than trying to patch specific sections of the file remotely, it's simpler to just write the whole modified script locally, encode it, and deploy it to the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "1cf36b4a-9a8b-4f27-8c5d-fbbae9ed6118",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJgore7WeGuKBDXZkWFpgK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 316,
+      "cache_read_input_tokens": 60809,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 316
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+先在本地写修改后的脚本，然后用 base64 部署到服务器。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "52db69a7-7551-4912-bc88-63c56ece2199",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJgore7WeGuKBDXZkWFpgK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 316,
+      "cache_read_input_tokens": 60809,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 316
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01VMQvNZkbSeK86x3cFtuVF1`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp_expanded_downstream_eval_v2.py",
+  "content": "#!/usr/bin/env python3\n\"\"\"Expanded downstream evaluation for K*-guided filtering strategies.\n\nRetrains LoRA models on Qwen2.5-1.5B with 3 filtering strategies\n(no_filter, binary_ours, graduated), then evaluates on 5 benchmarks:\nPIQA, TruthfulQA-MC2, WinoGrande, ARC-Challenge, GSM8K.\n\nUsage:\n    python scripts/exp_expanded_downstream_eval.py --device cuda:0 --num_seeds 3\n    python scripts/exp_expanded_downstream_eval.py --device cuda:0 --seed_start 2 --num_seeds 1 --strategy no_filter --skip_base\n\"\"\"\n\nimport argparse\nimport gc\nimport json\nimport logging\nimport os\nimport shutil\nimport sys\nimport time\nfrom pathlib import Path\n\nimport numpy as np\nimport torch\nfrom scipy import stats\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    datefmt=\"%H:%M:%S\",\n    handlers=[logging.StreamHandler(sys.stdout)],\n)\nlog = logging.getLogger(__name__)\n\nPROJECT_ROOT = Path(\"/root/autodl-tmp/gen-depth-contamination\")\nMODEL_PATH = \"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\"\nDATA_DIR = PROJECT_ROOT / \"data_exp020_pythia_greedy\"\n\nKSTAR = 2\nGRADUATED_ALPHA = 0.9\nMAX_DEPTH = 5\nSTRATEGIES = [\"no_filter\", \"binary_ours\", \"graduated\"]\n\nLORA_RANK = 8\nLORA_ALPHA = 16\nLORA_TARGET_MODULES = [\"q_proj\", \"v_proj\"]\nLORA_DROPOUT = 0.05\n\nTRAIN_LR = 2e-4\nTRAIN_BATCH_SIZE = 4\nGRADIENT_ACCUMULATION = 4\nTRAIN_EPOCHS = 1\nMAX_LENGTH = 256\n\nBENCHMARKS = [\n    (\"piqa\", 0),\n    (\"truthfulqa_mc2\", 0),\n    (\"winogrande\", 5),\n    (\"arc_challenge\", 25),\n    (\"gsm8k\", 8),\n]\n\n\ndef load_jsonl(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f]\n\n\ndef set_seed(seed):\n    np.random.seed(seed)\n    torch.manual_seed(seed)\n    if torch.cuda.is_available():\n        torch.cuda.manual_seed_all(seed)\n\n\ndef prepare_data(strategy, seed):\n    rng = np.random.RandomState(seed)\n    all_texts = []\n    all_weights = []\n\n    if strategy == \"no_filter\":\n        for d in range(MAX_DEPTH + 1):\n            records = load_jsonl(DATA_DIR / f\"depth_{d}.jsonl\")\n            all_texts.extend(r[\"text\"] for r in records)\n            all_weights.extend([1.0] * len(records))\n    elif strategy == \"binary_ours\":\n        for d in range(KSTAR + 1):\n            records = load_jsonl(DATA_DIR / f\"depth_{d}.jsonl\")\n            all_texts.extend(r[\"text\"] for r in records)\n            all_weights.extend([1.0] * len(records))\n    elif strategy == \"graduated\":\n        for d in range(MAX_DEPTH + 1):\n            records = load_jsonl(DATA_DIR / f\"depth_{d}.jsonl\")\n            w = GRADUATED_ALPHA ** d\n            all_texts.extend(r[\"text\"] for r in records)\n            all_weights.extend([w] * len(records))\n    else:\n        raise ValueError(f\"Unknown strategy: {strategy}\")\n\n    indices = list(range(len(all_texts)))\n    rng.shuffle(indices)\n    all_texts = [all_texts[i] for i in indices]\n    all_weights = [all_weights[i] for i in indices]\n\n    log.info(f\"Data: strategy={strategy}, n={len(all_texts)}, \"\n             f\"mean_weight={np.mean(all_weights):.4f}\")\n    return all_texts, all_weights\n\n\ndef train_lora(texts, weights, output_dir, device, seed):\n    from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments\n    from peft import LoraConfig, get_peft_model, TaskType\n    from torch.utils.data import Dataset\n\n    set_seed(seed)\n\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n        tokenizer.pad_token_id = tokenizer.eos_token_id\n\n    class WeightedTextDataset(Dataset):\n        def __init__(self, texts, weights, tokenizer, max_length):\n            self.encodings = []\n            self.weights = []\n            for text, w in zip(texts, weights):\n                enc = tokenizer(text, truncation=True, max_length=max_length,\n                                padding=\"max_length\", return_tensors=\"pt\")\n                self.encodings.append({k: v.squeeze(0) for k, v in enc.items()})\n                self.weights.append(w)\n\n        def __len__(self):\n            return len(self.encodings)\n\n        def __getitem__(self, idx):\n            item = {k: v.clone() for k, v in self.encodings[idx].items()}\n            item[\"labels\"] = item[\"input_ids\"].clone()\n            item[\"labels\"][item[\"attention_mask\"] == 0] = -100\n            item[\"weight\"] = torch.tensor(self.weights[idx], dtype=torch.float32)\n            return item\n\n    class WeightedTrainer(Trainer):\n        def compute_loss(self, model, inputs, return_outputs=False, **kwargs):\n            weights_val = inputs.pop(\"weight\", None)\n            outputs = model(**inputs)\n            loss = outputs.loss\n            if weights_val is not None and weights_val.numel() > 0:\n                loss = loss * weights_val.mean()\n            return (loss, outputs) if return_outputs else loss\n\n    log.info(f\"Tokenizing {len(texts)} texts...\")\n    dataset = WeightedTextDataset(texts, weights, tokenizer, MAX_LENGTH)\n\n    log.info(\"Loading Qwen2.5-1.5B...\")\n    model = AutoModelForCausalLM.from_pretrained(\n        MODEL_PATH, torch_dtype=torch.bfloat16, trust_remote_code=True,\n    ).to(device)\n\n    lora_config = LoraConfig(\n        task_type=TaskType.CAUSAL_LM,\n        r=LORA_RANK,\n        lora_alpha=LORA_ALPHA,\n        target_modules=LORA_TARGET_MODULES,\n        lora_dropout=LORA_DROPOUT,\n        bias=\"none\",\n    )\n    model = get_peft_model(model, lora_config)\n    trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)\n    total = sum(p.numel() for p in model.parameters())\n    log.info(f\"LoRA: {trainable:,} trainable / {total:,} total \"\n             f\"({trainable/total*100:.2f}%)\")\n\n    training_args = TrainingArguments(\n        output_dir=str(output_dir),\n        num_train_epochs=TRAIN_EPOCHS,\n        per_device_train_batch_size=TRAIN_BATCH_SIZE,\n        gradient_accumulation_steps=GRADIENT_ACCUMULATION,\n        learning_rate=TRAIN_LR,\n        warmup_ratio=0.05,\n        weight_decay=0.01,\n        logging_steps=50,\n        save_strategy=\"no\",\n        bf16=True,\n        dataloader_pin_memory=False,\n        seed=seed,\n        report_to=\"none\",\n        remove_unused_columns=False,\n    )\n\n    trainer = WeightedTrainer(\n        model=model,\n        args=training_args,\n        train_dataset=dataset,\n    )\n\n    log.info(f\"Training: {len(dataset)} samples, bs={TRAIN_BATCH_SIZE}x{GRADIENT_ACCUMULATION}, \"\n             f\"lr={TRAIN_LR}, device={device}\")\n    trainer.train()\n\n    merged_dir = output_dir / \"merged\"\n    log.info(\"Merging LoRA weights into base model...\")\n    merged_model = model.merge_and_unload()\n    merged_model.save_pretrained(merged_dir)\n    tokenizer.save_pretrained(merged_dir)\n    log.info(f\"Merged model saved to {merged_dir}\")\n\n    del model, merged_model, trainer, dataset\n    torch.cuda.empty_cache()\n    gc.collect()\n\n    return merged_dir\n\n\ndef evaluate_model(model_path, device, results_path,\n                   benchmarks_override=None, existing_scores=None, existing_full=None):\n    import lm_eval\n    from lm_eval.models.huggingface import HFLM\n\n    benchmarks = benchmarks_override if benchmarks_override is not None else BENCHMARKS\n    log.info(f\"Evaluating {model_path} on {len(benchmarks)} benchmarks: {[b for b,_ in benchmarks]}\")\n\n    lm = HFLM(\n        pretrained=str(model_path),\n        device=device,\n        dtype=\"float16\",\n        batch_size=\"auto:4\",\n        max_length=2048,\n        trust_remote_code=True,\n    )\n\n    all_scores = dict(existing_scores) if existing_scores else {}\n    all_full = dict(existing_full) if existing_full else {}\n\n    for task_name, n_fewshot in benchmarks:\n        log.info(f\"  Running {task_name} ({n_fewshot}-shot)...\")\n        t0 = time.time()\n\n        success = False\n        for attempt in range(3):\n            try:\n                results = lm_eval.simple_evaluate(\n                    model=lm,\n                    tasks=[task_name],\n                    num_fewshot=n_fewshot,\n                )\n                success = True\n                break\n            except Exception as e:\n                if attempt < 2:\n                    wait = 30 * (attempt + 1)\n                    log.warning(f\"  Attempt {attempt+1} failed: {e}. Retrying in {wait}s...\")\n                    time.sleep(wait)\n                else:\n                    log.error(f\"  Failed {task_name} after 3 attempts: {e}\")\n\n        if not success:\n            all_scores[task_name] = None\n            continue\n\n        task_results = results.get(\"results\", {}).get(task_name, {})\n\n        if task_name == \"gsm8k\":\n            score = task_results.get(\"exact_match,strict-match\",\n                     task_results.get(\"exact_match,get-answer\",\n                      task_results.get(\"acc,none\", 0)))\n        elif task_name == \"arc_challenge\":\n            score = task_results.get(\"acc_norm,none\",\n                     task_results.get(\"acc,none\", 0))\n        elif task_name == \"truthfulqa_mc2\":\n            score = task_results.get(\"acc,none\", 0)\n        elif task_name in (\"piqa\", \"winogrande\"):\n            score = task_results.get(\"acc,none\", 0)\n        else:\n            score = task_results.get(\"acc,none\", 0)\n\n        all_scores[task_name] = float(score) if score is not None else None\n        all_full[task_name] = {k: v for k, v in task_results.items()}\n        elapsed = time.time() - t0\n        log.info(f\"  {task_name}: {score:.4f} ({elapsed:.0f}s)\")\n\n    results_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(results_path, \"w\") as f:\n        json.dump({\n            \"scores\": all_scores,\n            \"full\": all_full,\n            \"benchmarks\": [[b, n] for b, n in BENCHMARKS],\n        }, f, indent=2, default=str)\n\n    del lm\n    torch.cuda.empty_cache()\n    gc.collect()\n\n    return all_scores\n\n\ndef run_statistical_analysis(results_dir, num_seeds, seed_start):\n    log.info(\"Running statistical analysis...\")\n\n    strategy_scores = {s: {} for s in STRATEGIES}\n\n    for strategy in STRATEGIES:\n        for seed in range(seed_start, seed_start + num_seeds):\n            eval_path = results_dir / f\"{strategy}_seed{seed}_eval.json\"\n            if eval_path.exists():\n                with open(eval_path) as f:\n                    data = json.load(f)\n                strategy_scores[strategy][seed] = data[\"scores\"]\n\n    all_benchmarks = set()\n    for scores_by_seed in strategy_scores.values():\n        for scores in scores_by_seed.values():\n            all_benchmarks.update(k for k, v in scores.items() if v is not None)\n\n    analysis = {\"strategies\": {}, \"comparisons\": []}\n\n    for strategy in STRATEGIES:\n        strat_data = {}\n        for bench in sorted(all_benchmarks):\n            vals = [strategy_scores[strategy][s][bench]\n                    for s in strategy_scores[strategy]\n                    if bench in strategy_scores[strategy][s]\n                    and strategy_scores[strategy][s][bench] is not None]\n            if vals:\n                strat_data[bench] = {\n                    \"mean\": float(np.mean(vals)),\n                    \"std\": float(np.std(vals)),\n                    \"values\": vals,\n                }\n        analysis[\"strategies\"][strategy] = strat_data\n\n    comparisons = []\n    for bench in sorted(all_benchmarks):\n        for s1, s2 in [(\"binary_ours\", \"no_filter\"), (\"binary_ours\", \"graduated\"),\n                       (\"graduated\", \"no_filter\")]:\n            v1 = analysis[\"strategies\"].get(s1, {}).get(bench, {}).get(\"values\", [])\n            v2 = analysis[\"strategies\"].get(s2, {}).get(bench, {}).get(\"values\", [])\n            if len(v1) >= 2 and len(v2) >= 2:\n                t_stat, p_val = stats.ttest_ind(v1, v2)\n                diff = np.mean(v1) - np.mean(v2)\n                pooled_std = np.sqrt((np.var(v1) + np.var(v2)) / 2)\n                cohens_d = diff / pooled_std if pooled_std > 0 else 0.0\n                comparisons.append({\n                    \"benchmark\": bench,\n                    \"comparison\": f\"{s1}_vs_{s2}\",\n                    \"mean_diff\": float(diff),\n                    \"t_stat\": float(t_stat),\n                    \"p_value\": float(p_val),\n                    \"cohens_d\": float(cohens_d),\n                })\n\n    if comparisons:\n        p_values = [c[\"p_value\"] for c in comparisons]\n        sorted_indices = np.argsort(p_values)\n        m = len(p_values)\n        for rank, idx in enumerate(sorted_indices):\n            adjusted_alpha = 0.05 / (m - rank)\n            comparisons[idx][\"holm_significant\"] = p_values[idx] < adjusted_alpha\n\n    analysis[\"comparisons\"] = comparisons\n\n    out_path = results_dir / \"statistical_analysis.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(analysis, f, indent=2)\n    log.info(f\"Statistical analysis saved to {out_path}\")\n    return analysis\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Expanded downstream eval for K*-guided filtering\")\n    parser.add_argument(\"--device\", type=str, default=\"cuda:0\")\n    parser.add_argument(\"--num_seeds\", type=int, default=3)\n    parser.add_argument(\"--seed_start\", type=int, default=0)\n    parser.add_argument(\"--skip_base\", action=\"store_true\")\n    parser.add_argument(\"--strategy\", type=str, default=\"all\",\n                        choices=[\"no_filter\", \"binary_ours\", \"graduated\", \"all\"])\n    parser.add_argument(\"--skip_train\", action=\"store_true\",\n                        help=\"Skip training, load from existing merged model dir\")\n    args = parser.parse_args()\n\n    results_dir = PROJECT_ROOT / \"results\" / \"exp_expanded_downstream_eval\"\n    results_dir.mkdir(parents=True, exist_ok=True)\n\n    log_path = PROJECT_ROOT / \"logs\" / \"exp_expanded_downstream_eval.log\"\n    log_path.parent.mkdir(parents=True, exist_ok=True)\n    fh = logging.FileHandler(log_path)\n    fh.setFormatter(logging.Formatter(\n        \"%(asctime)s [%(levelname)s] %(message)s\", datefmt=\"%H:%M:%S\"))\n    logging.getLogger().addHandler(fh)\n\n    log.info(\"=\" * 60)\n    log.info(\"Expanded Downstream Evaluation\")\n    log.info(f\"Model: {MODEL_PATH}\")\n    log.info(f\"Data: {DATA_DIR}\")\n    log.info(f\"Strategy filter: {args.strategy}\")\n    log.info(f\"Seeds: {args.seed_start}-{args.seed_start + args.num_seeds - 1}\")\n    log.info(f\"Benchmarks: {[b[0] for b in BENCHMARKS]}\")\n    log.info(f\"LoRA: rank={LORA_RANK}, alpha={LORA_ALPHA}, target={LORA_TARGET_MODULES}\")\n    log.info(f\"skip_train={args.skip_train}\")\n    log.info(\"=\" * 60)\n\n    if not args.skip_base:\n        base_eval_path = results_dir / \"base_model_eval.json\"\n        if base_eval_path.exists():\n            log.info(\"Base model eval exists, skipping\")\n        else:\n            log.info(\"Evaluating base model...\")\n            base_scores = evaluate_model(MODEL_PATH, args.device, base_eval_path)\n            log.info(f\"Base model scores: {base_scores}\")\n\n    for seed in range(args.seed_start, args.seed_start + args.num_seeds):\n        for strategy in STRATEGIES:\n            if args.strategy != \"all\" and strategy != args.strategy:\n                continue\n\n            run_name = f\"{strategy}_seed{seed}\"\n            eval_path = results_dir / f\"{run_name}_eval.json\"\n\n            benchmarks_to_run = BENCHMARKS\n            existing_scores = {}\n            existing_full = {}\n\n            if eval_path.exists():\n                with open(eval_path) as f:\n                    existing_data = json.load(f)\n                existing_scores = existing_data.get(\"scores\", {})\n                existing_full = existing_data.get(\"full\", {})\n                null_benchmarks = [(b, n) for b, n in BENCHMARKS\n                                   if existing_scores.get(b) is None]\n                if not null_benchmarks:\n                    log.info(f\"[{run_name}] All benchmarks complete, skipping\")\n                    continue\n                benchmarks_to_run = null_benchmarks\n                log.info(f\"[{run_name}] Patching null benchmarks: {[b for b,_ in null_benchmarks]}\")\n\n            log.info(f\"\\n{'='*60}\\n  {run_name}\\n{'='*60}\")\n\n            train_dir = results_dir / f\"{run_name}_train\"\n            merged_dir = train_dir / \"merged\"\n\n            if args.skip_train and merged_dir.exists():\n                log.info(f\"[{run_name}] skip_train: using existing model at {merged_dir}\")\n                model_dir = merged_dir\n            else:\n                if args.skip_train:\n                    log.warning(f\"[{run_name}] --skip_train but no model at {merged_dir}, training from scratch\")\n                texts, weights = prepare_data(strategy, seed)\n                model_dir = train_lora(texts, weights, train_dir, args.device, seed)\n\n            scores = evaluate_model(model_dir, args.device, eval_path,\n                                    benchmarks_override=benchmarks_to_run,\n                                    existing_scores=existing_scores,\n                                    existing_full=existing_full)\n            log.info(f\"[{run_name}] Scores: {scores}\")\n\n            if train_dir.exists():\n                shutil.rmtree(train_dir, ignore_errors=True)\n                log.info(f\"Cleaned up {train_dir}\")\n\n    log.info(\"\\n\" + \"=\" * 60 + \"\\n  STATISTICAL ANALYSIS\\n\" + \"=\" * 60)\n    analysis = run_statistical_analysis(\n        results_dir, args.num_seeds, args.seed_start)\n\n    log.info(\"\\n=== SUMMARY ===\")\n\n    base_eval_path = results_dir / \"base_model_eval.json\"\n    if base_eval_path.exists():\n        with open(base_eval_path) as f:\n            base_scores = json.load(f)[\"scores\"]\n        log.info(\"  base_model: \" + \", \".join(\n            f\"{k}={v:.4f}\" for k, v in base_scores.items() if v is not None))\n\n    for strategy in STRATEGIES:\n        strat = analysis[\"strategies\"].get(strategy, {})\n        if strat:\n            parts = []\n            for bench in sorted(strat.keys()):\n                m = strat[bench][\"mean\"]\n                s = strat[bench][\"std\"]\n                parts.append(f\"{bench}={m:.4f}+/-{s:.4f}\")\n            log.info(f\"  {strategy}: {', '.join(parts)}\")\n\n    for comp in analysis.get(\"comparisons\", []):\n        sig = \"***\" if comp.get(\"holm_significant\") else \"n.s.\"\n        log.info(f\"  {comp['benchmark']}: {comp['comparison']}: \"\n                 f\"d={comp['cohens_d']:.3f}, p={comp['p_value']:.4f} {sig}\")\n\n    summary = {\"base_model\": {}, \"strategies\": analysis[\"strategies\"],\n               \"comparisons\": analysis[\"comparisons\"]}\n    if base_eval_path.exists():\n        with open(base_eval_path) as f:\n            summary[\"base_model\"] = json.load(f)[\"scores\"]\n    with open(results_dir / \"summary.json\", \"w\") as f:\n        json.dump(summary, f, indent=2)\n\n    log.info(\"\\nDone!\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "fb5d9159-9213-44b4-a46e-15c21f37b0fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RJgore7WeGuKBDXZkWFpgK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 316,
+      "cache_read_input_tokens": 60809,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 316
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-20T20:13:02.703Z_
+
+<details><summary>↩ Tool result · `toolu_01VMQvNZkbSeK86x3cFtuVF1`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp_expanded_downstream_eval_v2.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "5aeee69d-d05e-4360-9576-896042910475",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp_expanded_downstream_eval_v2.py",
+    "content": "#!/usr/bin/env python3\n\"\"\"Expanded downstream evaluation for K*-guided filtering strategies.\n\nRetrains LoRA models on Qwen2.5-1.5B with 3 filtering strategies\n(no_filter, binary_ours, graduated), then evaluates on 5 benchmarks:\nPIQA, TruthfulQA-MC2, WinoGrande, ARC-Challenge, GSM8K.\n\nUsage:\n    python scripts/exp_expanded_downstream_eval.py --device cuda:0 --num_seeds 3\n    python scripts/exp_expanded_downstream_eval.py --device cuda:0 --seed_start 2 --num_seeds 1 --strategy no_filter --skip_base\n\"\"\"\n\nimport argparse\nimport gc\nimport json\nimport logging\nimport os\nimport shutil\nimport sys\nimport time\nfrom pathlib import Path\n\nimport numpy as np\nimport torch\nfrom scipy import stats\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    datefmt=\"%H:%M:%S\",\n    handlers=[logging.StreamHandler(sys.stdout)],\n)\nlog = logging.getLogger(__name__)\n\nPROJECT_ROOT = Path(\"/root/autodl-tmp/gen-depth-contamination\")\nMODEL_PATH = \"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\"\nDATA_DIR = PROJECT_ROOT / \"data_exp020_pythia_greedy\"\n\nKSTAR = 2\nGRADUATED_ALPHA = 0.9\nMAX_DEPTH = 5\nSTRATEGIES = [\"no_filter\", \"binary_ours\", \"graduated\"]\n\nLORA_RANK = 8\nLORA_ALPHA = 16\nLORA_TARGET_MODULES = [\"q_proj\", \"v_proj\"]\nLORA_DROPOUT = 0.05\n\nTRAIN_LR = 2e-4\nTRAIN_BATCH_SIZE = 4\nGRADIENT_ACCUMULATION = 4\nTRAIN_EPOCHS = 1\nMAX_LENGTH = 256\n\nBENCHMARKS = [\n    (\"piqa\", 0),\n    (\"truthfulqa_mc2\", 0),\n    (\"winogrande\", 5),\n    (\"arc_challenge\", 25),\n    (\"gsm8k\", 8),\n]\n\n\ndef load_jsonl(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f]\n\n\ndef set_seed(seed):\n    np.random.seed(seed)\n    torch.manual_seed(seed)\n    if torch.cuda.is_available():\n        torch.cuda.manual_seed_all(seed)\n\n\ndef prepare_data(strategy, seed):\n    rng = np.random.RandomState(seed)\n    all_texts = []\n    all_weights = []\n\n    if strategy == \"no_filter\":\n        for d in range(MAX_DEPTH + 1):\n            records = load_jsonl(DATA_DIR / f\"depth_{d}.jsonl\")\n            all_texts.extend(r[\"text\"] for r in records)\n            all_weights.extend([1.0] * len(records))\n    elif strategy == \"binary_ours\":\n        for d in range(KSTAR + 1):\n            records = load_jsonl(DATA_DIR / f\"depth_{d}.jsonl\")\n            all_texts.extend(r[\"text\"] for r in records)\n            all_weights.extend([1.0] * len(records))\n    elif strategy == \"graduated\":\n        for d in range(MAX_DEPTH + 1):\n            records = load_jsonl(DATA_DIR / f\"depth_{d}.jsonl\")\n            w = GRADUATED_ALPHA ** d\n            all_texts.extend(r[\"text\"] for r in records)\n            all_weights.extend([w] * len(records))\n    else:\n        raise ValueError(f\"Unknown strategy: {strategy}\")\n\n    indices = list(range(len(all_texts)))\n    rng.shuffle(indices)\n    all_texts = [all_texts[i] for i in indices]\n    all_weights = [all_weights[i] for i in indices]\n\n    log.info(f\"Data: strategy={strategy}, n={len(all_texts)}, \"\n             f\"mean_weight={np.mean(all_weights):.4f}\")\n    return all_texts, all_weights\n\n\ndef train_lora(texts, weights, output_dir, device, seed):\n    from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments\n    from peft import LoraConfig, get_peft_model, TaskType\n    from torch.utils.data import Dataset\n\n    set_seed(seed)\n\n    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n        tokenizer.pad_token_id = tokenizer.eos_token_id\n\n    class WeightedTextDataset(Dataset):\n        def __init__(self, texts, weights, tokenizer, max_length):\n            self.encodings = []\n            self.weights = []\n            for text, w in zip(texts, weights):\n                enc = tokenizer(text, truncation=True, max_length=max_length,\n                                padding=\"max_length\", return_tensors=\"pt\")\n                self.encodings.append({k: v.squeeze(0) for k, v in enc.items()})\n                self.weights.append(w)\n\n        def __len__(self):\n            return len(self.encodings)\n\n        def __getitem__(self, idx):\n            item = {k: v.clone() for k, v in self.encodings[idx].items()}\n            item[\"labels\"] = item[\"input_ids\"].clone()\n            item[\"labels\"][item[\"attention_mask\"] == 0] = -100\n            item[\"weight\"] = torch.tensor(self.weights[idx], dtype=torch.float32)\n            return item\n\n    class WeightedTrainer(Trainer):\n        def compute_loss(self, model, inputs, return_outputs=False, **kwargs):\n            weights_val = inputs.pop(\"weight\", None)\n            outputs = model(**inputs)\n            loss = outputs.loss\n            if weights_val is not None and weights_val.numel() > 0:\n                loss = loss * weights_val.mean()\n            return (loss, outputs) if return_outputs else loss\n\n    log.info(f\"Tokenizing {len(texts)} texts...\")\n    dataset = WeightedTextDataset(texts, weights, tokenizer, MAX_LENGTH)\n\n    log.info(\"Loading Qwen2.5-1.5B...\")\n    model = AutoModelForCausalLM.from_pretrained(\n        MODEL_PATH, torch_dtype=torch.bfloat16, trust_remote_code=True,\n    ).to(device)\n\n    lora_config = LoraConfig(\n        task_type=TaskType.CAUSAL_LM,\n        r=LORA_RANK,\n        lora_alpha=LORA_ALPHA,\n        target_modules=LORA_TARGET_MODULES,\n        lora_dropout=LORA_DROPOUT,\n        bias=\"none\",\n    )\n    model = get_peft_model(model, lora_config)\n    trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)\n    total = sum(p.numel() for p in model.parameters())\n    log.info(f\"LoRA: {trainable:,} trainable / {total:,} total \"\n             f\"({trainable/total*100:.2f}%)\")\n\n    training_args = TrainingArguments(\n        output_dir=str(output_dir),\n        num_train_epochs=TRAIN_EPOCHS,\n        per_device_train_batch_size=TRAIN_BATCH_SIZE,\n        gradient_accumulation_steps=GRADIENT_ACCUMULATION,\n        learning_rate=TRAIN_LR,\n        warmup_ratio=0.05,\n        weight_decay=0.01,\n        logging_steps=50,\n        save_strategy=\"no\",\n        bf16=True,\n        dataloader_pin_memory=False,\n        seed=seed,\n        report_to=\"none\",\n        remove_unused_columns=False,\n    )\n\n    trainer = WeightedTrainer(\n        model=model,\n        args=training_args,\n        train_dataset=dataset,\n    )\n\n    log.info(f\"Training: {len(dataset)} samples, bs={TRAIN_BATCH_SIZE}x{GRADIENT_ACCUMULATION}, \"\n             f\"lr={TRAIN_LR}, device={device}\")\n    trainer.train()\n\n    merged_dir = output_dir / \"merged\"\n    log.info(\"Merging LoRA weights into base model...\")\n    merged_model = model.merge_and_unload()\n    merged_model.save_pretrained(merged_dir)\n    tokenizer.save_pretrained(merged_dir)\n    log.info(f\"Merged model saved to {merged_dir}\")\n\n    del model, merged_model, trainer, dataset\n    torch.cuda.empty_cache()\n    gc.collect()\n\n    return merged_dir\n\n\ndef evaluate_model(model_path, device, results_path,\n                   benchmarks_override=None, existing_scores=None, existing_full=None):\n    import lm_eval\n    from lm_eval.models.huggingface import HFLM\n\n    benchmarks = benchmarks_override if benchmarks_override is not None else BENCHMARKS\n    log.info(f\"Evaluating {model_path} on {len(benchmarks)} benchmarks: {[b for b,_ in benchmarks]}\")\n\n    lm = HFLM(\n        pretrained=str(model_path),\n        device=device,\n        dtype=\"float16\",\n        batch_size=\"auto:4\",\n        max_length=2048,\n        trust_remote_code=True,\n    )\n\n    all_scores = dict(existing_scores) if existing_scores else {}\n    all_full = dict(existing_full) if existing_full else {}\n\n    for task_name, n_fewshot in benchmarks:\n        log.info(f\"  Running {task_name} ({n_fewshot}-shot)...\")\n        t0 = time.time()\n\n        success = False\n        for attempt in range(3):\n            try:\n                results = lm_eval.simple_evaluate(\n                    model=lm,\n                    tasks=[task_name],\n                    num_fewshot=n_fewshot,\n                )\n                success = True\n                break\n            except Exception as e:\n                if attempt < 2:\n                    wait = 30 * (attempt + 1)\n                    log.warning(f\"  Attempt {attempt+1} failed: {e}. Retrying in {wait}s...\")\n                    time.sleep(wait)\n                else:\n                    log.error(f\"  Failed {task_name} after 3 attempts: {e}\")\n\n        if not success:\n            all_scores[task_name] = None\n            continue\n\n        task_results = results.get(\"results\", {}).get(task_name, {})\n\n        if task_name == \"gsm8k\":\n            score = task_results.get(\"exact_match,strict-match\",\n                     task_results.get(\"exact_match,get-answer\",\n                      task_results.get(\"acc,none\", 0)))\n        elif task_name == \"arc_challenge\":\n            score = task_results.get(\"acc_norm,none\",\n                     task_results.get(\"acc,none\", 0))\n        elif task_name == \"truthfulqa_mc2\":\n            score = task_results.get(\"acc,none\", 0)\n        elif task_name in (\"piqa\", \"winogrande\"):\n            score = task_results.get(\"acc,none\", 0)\n        else:\n            score = task_results.get(\"acc,none\", 0)\n\n        all_scores[task_name] = float(score) if score is not None else None\n        all_full[task_name] = {k: v for k, v in task_results.items()}\n        elapsed = time.time() - t0\n        log.info(f\"  {task_name}: {score:.4f} ({elapsed:.0f}s)\")\n\n    results_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(results_path, \"w\") as f:\n        json.dump({\n            \"scores\": all_scores,\n            \"full\": all_full,\n            \"benchmarks\": [[b, n] for b, n in BENCHMARKS],\n        }, f, indent=2, default=str)\n\n    del lm\n    torch.cuda.empty_cache()\n    gc.collect()\n\n    return all_scores\n\n\ndef run_statistical_analysis(results_dir, num_seeds, seed_start):\n    log.info(\"Running statistical analysis...\")\n\n    strategy_scores = {s: {} for s in STRATEGIES}\n\n    for strategy in STRATEGIES:\n        for seed in range(seed_start, seed_start + num_seeds):\n            eval_path = results_dir / f\"{strategy}_seed{seed}_eval.json\"\n            if eval_path.exists():\n                with open(eval_path) as f:\n                    data = json.load(f)\n                strategy_scores[strategy][seed] = data[\"scores\"]\n\n    all_benchmarks = set()\n    for scores_by_seed in strategy_scores.values():\n        for scores in scores_by_seed.values():\n            all_benchmarks.update(k for k, v in scores.items() if v is not None)\n\n    analysis = {\"strategies\": {}, \"comparisons\": []}\n\n    for strategy in STRATEGIES:\n        strat_data = {}\n        for bench in sorted(all_benchmarks):\n            vals = [strategy_scores[strategy][s][bench]\n                    for s in strategy_scores[strategy]\n                    if bench in strategy_scores[strategy][s]\n                    and strategy_scores[strategy][s][bench] is not None]\n            if vals:\n                strat_data[bench] = {\n                    \"mean\": float(np.mean(vals)),\n                    \"std\": float(np.std(vals)),\n                    \"values\": vals,\n                }\n        analysis[\"strategies\"][strategy] = strat_data\n\n    comparisons = []\n    for bench in sorted(all_benchmarks):\n        for s1, s2 in [(\"binary_ours\", \"no_filter\"), (\"binary_ours\", \"graduated\"),\n                       (\"graduated\", \"no_filter\")]:\n            v1 = analysis[\"strategies\"].get(s1, {}).get(bench, {}).get(\"values\", [])\n            v2 = analysis[\"strategies\"].get(s2, {}).get(bench, {}).get(\"values\", [])\n            if len(v1) >= 2 and len(v2) >= 2:\n                t_stat, p_val = stats.ttest_ind(v1, v2)\n                diff = np.mean(v1) - np.mean(v2)\n                pooled_std = np.sqrt((np.var(v1) + np.var(v2)) / 2)\n                cohens_d = diff / pooled_std if pooled_std > 0 else 0.0\n                comparisons.append({\n                    \"benchmark\": bench,\n                    \"comparison\": f\"{s1}_vs_{s2}\",\n                    \"mean_diff\": float(diff),\n                    \"t_stat\": float(t_stat),\n                    \"p_value\": float(p_val),\n                    \"cohens_d\": float(cohens_d),\n                })\n\n    if comparisons:\n        p_values = [c[\"p_value\"] for c in comparisons]\n        sorted_indices = np.argsort(p_values)\n        m = len(p_values)\n        for rank, idx in enumerate(sorted_indices):\n            adjusted_alpha = 0.05 / (m - rank)\n            comparisons[idx][\"holm_significant\"] = p_values[idx] < adjusted_alpha\n\n    analysis[\"comparisons\"] = comparisons\n\n    out_path = results_dir / \"statistical_analysis.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(analysis, f, indent=2)\n    log.info(f\"Statistical analysis saved to {out_path}\")\n    return analysis\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Expanded downstream eval for K*-guided filtering\")\n    parser.add_argument(\"--device\", type=str, default=\"cuda:0\")\n    parser.add_argument(\"--num_seeds\", type=int, default=3)\n    parser.add_argument(\"--seed_start\", type=int, default=0)\n    parser.add_argument(\"--skip_base\", action=\"store_true\")\n    parser.add_argument(\"--strategy\", type=str, default=\"all\",\n                        choices=[\"no_filter\", \"binary_ours\", \"graduated\", \"all\"])\n    parser.add_argument(\"--skip_train\", action=\"store_true\",\n                        help=\"Skip training, load from existing merged model dir\")\n    args = parser.parse_args()\n\n    results_dir = PROJECT_ROOT / \"results\" / \"exp_expanded_downstream_eval\"\n    results_dir.mkdir(parents=True, exist_ok=True)\n\n    log_path = PROJECT_ROOT / \"logs\" / \"exp_expanded_downstream_eval.log\"\n    log_path.parent.mkdir(parents=True, exist_ok=True)\n    fh = logging.FileHandler(log_path)\n    fh.setFormatter(logging.Formatter(\n        \"%(asctime)s [%(levelname)s] %(message)s\", datefmt=\"%H:%M:%S\"))\n    logging.getLogger().addHandler(fh)\n\n    log.info(\"=\" * 60)\n    log.info(\"Expanded Downstream Evaluation\")\n    log.info(f\"Model: {MODEL_PATH}\")\n    log.info(f\"Data: {DATA_DIR}\")\n    log.info(f\"Strategy filter: {args.strategy}\")\n    log.info(f\"Seeds: {args.seed_start}-{args.seed_start + args.num_seeds - 1}\")\n    log.info(f\"Benchmarks: {[b[0] for b in BENCHMARKS]}\")\n    log.info(f\"LoRA: rank={LORA_RANK}, alpha={LORA_ALPHA}, target={LORA_TARGET_MODULES}\")\n    log.info(f\"skip_train={args.skip_train}\")\n    log.info(\"=\" * 60)\n\n    if not args.skip_base:\n        base_eval_path = results_dir / \"base_model_eval.json\"\n        if base_eval_path.exists():\n            log.info(\"Base model eval exists, skipping\")\n        else:\n            log.info(\"Evaluating base model...\")\n            base_scores = evaluate_model(MODEL_PATH, args.device, base_eval_path)\n            log.info(f\"Base model scores: {base_scores}\")\n\n    for seed in range(args.seed_start, args.seed_start + args.num_seeds):\n        for strategy in STRATEGIES:\n            if args.strategy != \"all\" and strategy != args.strategy:\n                continue\n\n            run_name = f\"{strategy}_seed{seed}\"\n            eval_path = results_dir / f\"{run_name}_eval.json\"\n\n            benchmarks_to_run = BENCHMARKS\n            existing_scores = {}\n            existing_full = {}\n\n            if eval_path.exists():\n                with open(eval_path) as f:\n                    existing_data = json.load(f)\n                existing_scores = existing_data.get(\"scores\", {})\n                existing_full = existing_data.get(\"full\", {})\n                null_benchmarks = [(b, n) for b, n in BENCHMARKS\n                                   if existing_scores.get(b) is None]\n                if not null_benchmarks:\n                    log.info(f\"[{run_name}] All benchmarks complete, skipping\")\n                    continue\n                benchmarks_to_run = null_benchmarks\n                log.info(f\"[{run_name}] Patching null benchmarks: {[b for b,_ in null_benchmarks]}\")\n\n            log.info(f\"\\n{'='*60}\\n  {run_name}\\n{'='*60}\")\n\n            train_dir = results_dir / f\"{run_name}_train\"\n            merged_dir = train_dir / \"merged\"\n\n            if args.skip_train and merged_dir.exists():\n                log.info(f\"[{run_name}] skip_train: using existing model at {merged_dir}\")\n                model_dir = merged_dir\n            else:\n                if args.skip_train:\n                    log.warning(f\"[{run_name}] --skip_train but no model at {merged_dir}, training from scratch\")\n                texts, weights = prepare_data(strategy, seed)\n                model_dir = train_lora(texts, weights, train_dir, args.device, seed)\n\n            scores = evaluate_model(model_dir, args.device, eval_path,\n                                    benchmarks_override=benchmarks_to_run,\n                                    existing_scores=existing_scores,\n                                    existing_full=existing_full)\n            log.info(f\"[{run_name}] Scores: {scores}\")\n\n            if train_dir.exists():\n                shutil.rmtree(train_dir, ignore_errors=True)\n                log.info(f\"Cleaned up {train_dir}\")\n\n    log.info(\"\\n\" + \"=\" * 60 + \"\\n  STATISTICAL ANALYSIS\\n\" + \"=\" * 60)\n    analysis = run_statistical_analysis(\n        results_dir, args.num_seeds, args.seed_start)\n\n    log.info(\"\\n=== SUMMARY ===\")\n\n    base_eval_path = results_dir / \"base_model_eval.json\"\n    if base_eval_path.exists():\n        with open(base_eval_path) as f:\n            base_scores = json.load(f)[\"scores\"]\n        log.info(\"  base_model: \" + \", \".join(\n            f\"{k}={v:.4f}\" for k, v in base_scores.items() if v is not None))\n\n    for strategy in STRATEGIES:\n        strat = analysis[\"strategies\"].get(strategy, {})\n        if strat:\n            parts = []\n            for bench in sorted(strat.keys()):\n                m = strat[bench][\"mean\"]\n                s = strat[bench][\"std\"]\n                parts.append(f\"{bench}={m:.4f}+/-{s:.4f}\")\n            log.info(f\"  {strategy}: {', '.join(parts)}\")\n\n    for comp in analysis.get(\"comparisons\", []):\n        sig = \"***\" if comp.get(\"holm_significant\") else \"n.s.\"\n        log.info(f\"  {comp['benchmark']}: {comp['comparison']}: \"\n                 f\"d={comp['cohens_d']:.3f}, p={comp['p_value']:.4f} {sig}\")\n\n    summary = {\"base_model\": {}, \"strategies\": analysis[\"strategies\"],\n               \"comparisons\": analysis[\"comparisons\"]}\n    if base_eval_path.exists():\n        with open(base_eval_path) as f:\n            summary[\"base_model\"] = json.load(f)[\"scores\"]\n    with open(results_dir / \"summary.json\", \"w\") as f:\n        json.dump(summary, f, indent=2)\n\n    log.info(\"\\nDone!\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+脚本修改完成。用 base64 部署到服务器。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "361a2327-ea3f-4625-9905-4e76a2860f54",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ARDw8wRSPaVaurpNiYf3sW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7057,
+      "cache_read_input_tokens": 61125,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7057
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_012KgBtFQid8WTuMM8idkYSw`</summary>
+
+```json
+{
+  "command": "base64 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp_expanded_downstream_eval_v2.py | wc -c",
+  "description": "Check base64 size of script"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "ec307d4d-431d-4cd6-b8fd-7f6e63e0ef99",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ARDw8wRSPaVaurpNiYf3sW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7057,
+      "cache_read_input_tokens": 61125,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7057
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T20:13:06.647Z_
+
+<details><summary>↩ Tool result · `toolu_012KgBtFQid8WTuMM8idkYSw`</summary>
+
+```text
+25086
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "0a964397-88f4-4000-bfdb-f05378c92c05",
+  "tool_use_result": {
+    "stdout": "25086",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01NdaPsDW7dSV7x74No37USB`</summary>
+
+```json
+{
+  "command": "base64 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp_expanded_downstream_eval_v2.py",
+  "description": "Base64 encode the modified script"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "648b55c3-e401-47b8-aaa7-612f7af9e95e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTkDgeabVHytNXUzuWCDkq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 160,
+      "cache_read_input_tokens": 68182,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 160
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T20:13:09.792Z_
+
+<details><summary>↩ Tool result · `toolu_01NdaPsDW7dSV7x74No37USB`</summary>
+
+```text
+IyEvdXNyL2Jpbi9lbnYgcHl0aG9uMwoiIiJFeHBhbmRlZCBkb3duc3RyZWFtIGV2YWx1YXRpb24g
+Zm9yIEsqLWd1aWRlZCBmaWx0ZXJpbmcgc3RyYXRlZ2llcy4KClJldHJhaW5zIExvUkEgbW9kZWxz
+IG9uIFF3ZW4yLjUtMS41QiB3aXRoIDMgZmlsdGVyaW5nIHN0cmF0ZWdpZXMKKG5vX2ZpbHRlciwg
+YmluYXJ5X291cnMsIGdyYWR1YXRlZCksIHRoZW4gZXZhbHVhdGVzIG9uIDUgYmVuY2htYXJrczoK
+UElRQSwgVHJ1dGhmdWxRQS1NQzIsIFdpbm9HcmFuZGUsIEFSQy1DaGFsbGVuZ2UsIEdTTThLLgoK
+VXNhZ2U6CiAgICBweXRob24gc2NyaXB0cy9leHBfZXhwYW5kZWRfZG93bnN0cmVhbV9ldmFsLnB5
+IC0tZGV2aWNlIGN1ZGE6MCAtLW51bV9zZWVkcyAzCiAgICBweXRob24gc2NyaXB0cy9leHBfZXhw
+YW5kZWRfZG93bnN0cmVhbV9ldmFsLnB5IC0tZGV2aWNlIGN1ZGE6MCAtLXNlZWRfc3RhcnQgMiAt
+LW51bV9zZWVkcyAxIC0tc3RyYXRlZ3kgbm9fZmlsdGVyIC0tc2tpcF9iYXNlCiIiIgoKaW1wb3J0
+IGFyZ3BhcnNlCmltcG9ydCBnYwppbXBvcnQganNvbgppbXBvcnQgbG9nZ2luZwppbXBvcnQgb3MK
+aW1wb3J0IHNodXRpbAppbXBvcnQgc3lzCmltcG9ydCB0aW1lCmZyb20gcGF0aGxpYiBpbXBvcnQg
+UGF0aAoKaW1wb3J0IG51bXB5IGFzIG5wCmltcG9ydCB0b3JjaApmcm9tIHNjaXB5IGltcG9ydCBz
+dGF0cwoKbG9nZ2luZy5iYXNpY0NvbmZpZygKICAgIGxldmVsPWxvZ2dpbmcuSU5GTywKICAgIGZv
+cm1hdD0iJShhc2N0aW1lKXMgWyUobGV2ZWxuYW1lKXNdICUobWVzc2FnZSlzIiwKICAgIGRhdGVm
+bXQ9IiVIOiVNOiVTIiwKICAgIGhhbmRsZXJzPVtsb2dnaW5nLlN0cmVhbUhhbmRsZXIoc3lzLnN0
+ZG91dCldLAopCmxvZyA9IGxvZ2dpbmcuZ2V0TG9nZ2VyKF9fbmFtZV9fKQoKUFJPSkVDVF9ST09U
+ID0gUGF0aCgiL3Jvb3QvYXV0b2RsLXRtcC9nZW4tZGVwdGgtY29udGFtaW5hdGlvbiIpCk1PREVM
+X1BBVEggPSAiL3Jvb3QvYXV0b2RsLXRtcC8uaGZfY2FjaGUvUXdlbi9Rd2VuMl9fXzUtMV9fXzVC
+IgpEQVRBX0RJUiA9IFBST0pFQ1RfUk9PVCAvICJkYXRhX2V4cDAyMF9weXRoaWFfZ3JlZWR5IgoK
+S1NUQVIgPSAyCkdSQURVQVRFRF9BTFBIQSA9IDAuOQpNQVhfREVQVEggPSA1ClNUUkFURUdJRVMg
+PSBbIm5vX2ZpbHRlciIsICJiaW5hcnlfb3VycyIsICJncmFkdWF0ZWQiXQoKTE9SQV9SQU5LID0g
+OApMT1JBX0FMUEhBID0gMTYKTE9SQV9UQVJHRVRfTU9EVUxFUyA9IFsicV9wcm9qIiwgInZfcHJv
+aiJdCkxPUkFfRFJPUE9VVCA9IDAuMDUKClRSQUlOX0xSID0gMmUtNApUUkFJTl9CQVRDSF9TSVpF
+ID0gNApHUkFESUVOVF9BQ0NVTVVMQVRJT04gPSA0ClRSQUlOX0VQT0NIUyA9IDEKTUFYX0xFTkdU
+SCA9IDI1NgoKQkVOQ0hNQVJLUyA9IFsKICAgICgicGlxYSIsIDApLAogICAgKCJ0cnV0aGZ1bHFh
+X21jMiIsIDApLAogICAgKCJ3aW5vZ3JhbmRlIiwgNSksCiAgICAoImFyY19jaGFsbGVuZ2UiLCAy
+NSksCiAgICAoImdzbThrIiwgOCksCl0KCgpkZWYgbG9hZF9qc29ubChwYXRoKToKICAgIHdpdGgg
+b3BlbihwYXRoKSBhcyBmOgogICAgICAgIHJldHVybiBbanNvbi5sb2FkcyhsaW5lKSBmb3IgbGlu
+ZSBpbiBmXQoKCmRlZiBzZXRfc2VlZChzZWVkKToKICAgIG5wLnJhbmRvbS5zZWVkKHNlZWQpCiAg
+ICB0b3JjaC5tYW51YWxfc2VlZChzZWVkKQogICAgaWYgdG9yY2guY3VkYS5pc19hdmFpbGFibGUo
+KToKICAgICAgICB0b3JjaC5jdWRhLm1hbnVhbF9zZWVkX2FsbChzZWVkKQoKCmRlZiBwcmVwYXJl
+X2RhdGEoc3RyYXRlZ3ksIHNlZWQpOgogICAgcm5nID0gbnAucmFuZG9tLlJhbmRvbVN0YXRlKHNl
+ZWQpCiAgICBhbGxfdGV4dHMgPSBbXQogICAgYWxsX3dlaWdodHMgPSBbXQoKICAgIGlmIHN0cmF0
+ZWd5ID09ICJub19maWx0ZXIiOgogICAgICAgIGZvciBkIGluIHJhbmdlKE1BWF9ERVBUSCArIDEp
+OgogICAgICAgICAgICByZWNvcmRzID0gbG9hZF9qc29ubChEQVRBX0RJUiAvIGYiZGVwdGhfe2R9
+Lmpzb25sIikKICAgICAgICAgICAgYWxsX3RleHRzLmV4dGVuZChyWyJ0ZXh0Il0gZm9yIHIgaW4g
+cmVjb3JkcykKICAgICAgICAgICAgYWxsX3dlaWdodHMuZXh0ZW5kKFsxLjBdICogbGVuKHJlY29y
+ZHMpKQogICAgZWxpZiBzdHJhdGVneSA9PSAiYmluYXJ5X291cnMiOgogICAgICAgIGZvciBkIGlu
+IHJhbmdlKEtTVEFSICsgMSk6CiAgICAgICAgICAgIHJlY29yZHMgPSBsb2FkX2pzb25sKERBVEFf
+RElSIC8gZiJkZXB0aF97ZH0uanNvbmwiKQogICAgICAgICAgICBhbGxfdGV4dHMuZXh0ZW5kKHJb
+InRleHQiXSBmb3IgciBpbiByZWNvcmRzKQogICAgICAgICAgICBhbGxfd2VpZ2h0cy5leHRlbmQo
+WzEuMF0gKiBsZW4ocmVjb3JkcykpCiAgICBlbGlmIHN0cmF0ZWd5ID09ICJncmFkdWF0ZWQiOgog
+ICAgICAgIGZvciBkIGluIHJhbmdlKE1BWF9ERVBUSCArIDEpOgogICAgICAgICAgICByZWNvcmRz
+ID0gbG9hZF9qc29ubChEQVRBX0RJUiAvIGYiZGVwdGhfe2R9Lmpzb25sIikKICAgICAgICAgICAg
+dyA9IEdSQURVQVRFRF9BTFBIQSAqKiBkCiAgICAgICAgICAgIGFsbF90ZXh0cy5leHRlbmQoclsi
+dGV4dCJdIGZvciByIGluIHJlY29yZHMpCiAgICAgICAgICAgIGFsbF93ZWlnaHRzLmV4dGVuZChb
+d10gKiBsZW4ocmVjb3JkcykpCiAgICBlbHNlOgogICAgICAgIHJhaXNlIFZhbHVlRXJyb3IoZiJV
+bmtub3duIHN0cmF0ZWd5OiB7c3RyYXRlZ3l9IikKCiAgICBpbmRpY2VzID0gbGlzdChyYW5nZShs
+ZW4oYWxsX3RleHRzKSkpCiAgICBybmcuc2h1ZmZsZShpbmRpY2VzKQogICAgYWxsX3RleHRzID0g
+W2FsbF90ZXh0c1tpXSBmb3IgaSBpbiBpbmRpY2VzXQogICAgYWxsX3dlaWdodHMgPSBbYWxsX3dl
+aWdodHNbaV0gZm9yIGkgaW4gaW5kaWNlc10KCiAgICBsb2cuaW5mbyhmIkRhdGE6IHN0cmF0ZWd5
+PXtzdHJhdGVneX0sIG49e2xlbihhbGxfdGV4dHMpfSwgIgogICAgICAgICAgICAgZiJtZWFuX3dl
+aWdodD17bnAubWVhbihhbGxfd2VpZ2h0cyk6LjRmfSIpCiAgICByZXR1cm4gYWxsX3RleHRzLCBh
+bGxfd2VpZ2h0cwoKCmRlZiB0cmFpbl9sb3JhKHRleHRzLCB3ZWlnaHRzLCBvdXRwdXRfZGlyLCBk
+ZXZpY2UsIHNlZWQpOgogICAgZnJvbSB0cmFuc2Zvcm1lcnMgaW1wb3J0IEF1dG9Nb2RlbEZvckNh
+dXNhbExNLCBBdXRvVG9rZW5pemVyLCBUcmFpbmVyLCBUcmFpbmluZ0FyZ3VtZW50cwogICAgZnJv
+bSBwZWZ0IGltcG9ydCBMb3JhQ29uZmlnLCBnZXRfcGVmdF9tb2RlbCwgVGFza1R5cGUKICAgIGZy
+b20gdG9yY2gudXRpbHMuZGF0YSBpbXBvcnQgRGF0YXNldAoKICAgIHNldF9zZWVkKHNlZWQpCgog
+ICAgdG9rZW5pemVyID0gQXV0b1Rva2VuaXplci5mcm9tX3ByZXRyYWluZWQoTU9ERUxfUEFUSCwg
+dHJ1c3RfcmVtb3RlX2NvZGU9VHJ1ZSkKICAgIGlmIHRva2VuaXplci5wYWRfdG9rZW4gaXMgTm9u
+ZToKICAgICAgICB0b2tlbml6ZXIucGFkX3Rva2VuID0gdG9rZW5pemVyLmVvc190b2tlbgogICAg
+ICAgIHRva2VuaXplci5wYWRfdG9rZW5faWQgPSB0b2tlbml6ZXIuZW9zX3Rva2VuX2lkCgogICAg
+Y2xhc3MgV2VpZ2h0ZWRUZXh0RGF0YXNldChEYXRhc2V0KToKICAgICAgICBkZWYgX19pbml0X18o
+c2VsZiwgdGV4dHMsIHdlaWdodHMsIHRva2VuaXplciwgbWF4X2xlbmd0aCk6CiAgICAgICAgICAg
+IHNlbGYuZW5jb2RpbmdzID0gW10KICAgICAgICAgICAgc2VsZi53ZWlnaHRzID0gW10KICAgICAg
+ICAgICAgZm9yIHRleHQsIHcgaW4gemlwKHRleHRzLCB3ZWlnaHRzKToKICAgICAgICAgICAgICAg
+IGVuYyA9IHRva2VuaXplcih0ZXh0LCB0cnVuY2F0aW9uPVRydWUsIG1heF9sZW5ndGg9bWF4X2xl
+bmd0aCwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwYWRkaW5nPSJtYXhfbGVuZ3Ro
+IiwgcmV0dXJuX3RlbnNvcnM9InB0IikKICAgICAgICAgICAgICAgIHNlbGYuZW5jb2RpbmdzLmFw
+cGVuZCh7azogdi5zcXVlZXplKDApIGZvciBrLCB2IGluIGVuYy5pdGVtcygpfSkKICAgICAgICAg
+ICAgICAgIHNlbGYud2VpZ2h0cy5hcHBlbmQodykKCiAgICAgICAgZGVmIF9fbGVuX18oc2VsZik6
+CiAgICAgICAgICAgIHJldHVybiBsZW4oc2VsZi5lbmNvZGluZ3MpCgogICAgICAgIGRlZiBfX2dl
+dGl0ZW1fXyhzZWxmLCBpZHgpOgogICAgICAgICAgICBpdGVtID0ge2s6IHYuY2xvbmUoKSBmb3Ig
+aywgdiBpbiBzZWxmLmVuY29kaW5nc1tpZHhdLml0ZW1zKCl9CiAgICAgICAgICAgIGl0ZW1bImxh
+YmVscyJdID0gaXRlbVsiaW5wdXRfaWRzIl0uY2xvbmUoKQogICAgICAgICAgICBpdGVtWyJsYWJl
+bHMiXVtpdGVtWyJhdHRlbnRpb25fbWFzayJdID09IDBdID0gLTEwMAogICAgICAgICAgICBpdGVt
+WyJ3ZWlnaHQiXSA9IHRvcmNoLnRlbnNvcihzZWxmLndlaWdodHNbaWR4XSwgZHR5cGU9dG9yY2gu
+ZmxvYXQzMikKICAgICAgICAgICAgcmV0dXJuIGl0ZW0KCiAgICBjbGFzcyBXZWlnaHRlZFRyYWlu
+ZXIoVHJhaW5lcik6CiAgICAgICAgZGVmIGNvbXB1dGVfbG9zcyhzZWxmLCBtb2RlbCwgaW5wdXRz
+LCByZXR1cm5fb3V0cHV0cz1GYWxzZSwgKiprd2FyZ3MpOgogICAgICAgICAgICB3ZWlnaHRzX3Zh
+bCA9IGlucHV0cy5wb3AoIndlaWdodCIsIE5vbmUpCiAgICAgICAgICAgIG91dHB1dHMgPSBtb2Rl
+bCgqKmlucHV0cykKICAgICAgICAgICAgbG9zcyA9IG91dHB1dHMubG9zcwogICAgICAgICAgICBp
+ZiB3ZWlnaHRzX3ZhbCBpcyBub3QgTm9uZSBhbmQgd2VpZ2h0c192YWwubnVtZWwoKSA+IDA6CiAg
+ICAgICAgICAgICAgICBsb3NzID0gbG9zcyAqIHdlaWdodHNfdmFsLm1lYW4oKQogICAgICAgICAg
+ICByZXR1cm4gKGxvc3MsIG91dHB1dHMpIGlmIHJldHVybl9vdXRwdXRzIGVsc2UgbG9zcwoKICAg
+IGxvZy5pbmZvKGYiVG9rZW5pemluZyB7bGVuKHRleHRzKX0gdGV4dHMuLi4iKQogICAgZGF0YXNl
+dCA9IFdlaWdodGVkVGV4dERhdGFzZXQodGV4dHMsIHdlaWdodHMsIHRva2VuaXplciwgTUFYX0xF
+TkdUSCkKCiAgICBsb2cuaW5mbygiTG9hZGluZyBRd2VuMi41LTEuNUIuLi4iKQogICAgbW9kZWwg
+PSBBdXRvTW9kZWxGb3JDYXVzYWxMTS5mcm9tX3ByZXRyYWluZWQoCiAgICAgICAgTU9ERUxfUEFU
+SCwgdG9yY2hfZHR5cGU9dG9yY2guYmZsb2F0MTYsIHRydXN0X3JlbW90ZV9jb2RlPVRydWUsCiAg
+ICApLnRvKGRldmljZSkKCiAgICBsb3JhX2NvbmZpZyA9IExvcmFDb25maWcoCiAgICAgICAgdGFz
+a190eXBlPVRhc2tUeXBlLkNBVVNBTF9MTSwKICAgICAgICByPUxPUkFfUkFOSywKICAgICAgICBs
+b3JhX2FscGhhPUxPUkFfQUxQSEEsCiAgICAgICAgdGFyZ2V0X21vZHVsZXM9TE9SQV9UQVJHRVRf
+TU9EVUxFUywKICAgICAgICBsb3JhX2Ryb3BvdXQ9TE9SQV9EUk9QT1VULAogICAgICAgIGJpYXM9
+Im5vbmUiLAogICAgKQogICAgbW9kZWwgPSBnZXRfcGVmdF9tb2RlbChtb2RlbCwgbG9yYV9jb25m
+aWcpCiAgICB0cmFpbmFibGUgPSBzdW0ocC5udW1lbCgpIGZvciBwIGluIG1vZGVsLnBhcmFtZXRl
+cnMoKSBpZiBwLnJlcXVpcmVzX2dyYWQpCiAgICB0b3RhbCA9IHN1bShwLm51bWVsKCkgZm9yIHAg
+aW4gbW9kZWwucGFyYW1ldGVycygpKQogICAgbG9nLmluZm8oZiJMb1JBOiB7dHJhaW5hYmxlOix9
+IHRyYWluYWJsZSAvIHt0b3RhbDosfSB0b3RhbCAiCiAgICAgICAgICAgICBmIih7dHJhaW5hYmxl
+L3RvdGFsKjEwMDouMmZ9JSkiKQoKICAgIHRyYWluaW5nX2FyZ3MgPSBUcmFpbmluZ0FyZ3VtZW50
+cygKICAgICAgICBvdXRwdXRfZGlyPXN0cihvdXRwdXRfZGlyKSwKICAgICAgICBudW1fdHJhaW5f
+ZXBvY2hzPVRSQUlOX0VQT0NIUywKICAgICAgICBwZXJfZGV2aWNlX3RyYWluX2JhdGNoX3NpemU9
+VFJBSU5fQkFUQ0hfU0laRSwKICAgICAgICBncmFkaWVudF9hY2N1bXVsYXRpb25fc3RlcHM9R1JB
+RElFTlRfQUNDVU1VTEFUSU9OLAogICAgICAgIGxlYXJuaW5nX3JhdGU9VFJBSU5fTFIsCiAgICAg
+ICAgd2FybXVwX3JhdGlvPTAuMDUsCiAgICAgICAgd2VpZ2h0X2RlY2F5PTAuMDEsCiAgICAgICAg
+bG9nZ2luZ19zdGVwcz01MCwKICAgICAgICBzYXZlX3N0cmF0ZWd5PSJubyIsCiAgICAgICAgYmYx
+Nj1UcnVlLAogICAgICAgIGRhdGFsb2FkZXJfcGluX21lbW9yeT1GYWxzZSwKICAgICAgICBzZWVk
+PXNlZWQsCiAgICAgICAgcmVwb3J0X3RvPSJub25lIiwKICAgICAgICByZW1vdmVfdW51c2VkX2Nv
+bHVtbnM9RmFsc2UsCiAgICApCgogICAgdHJhaW5lciA9IFdlaWdodGVkVHJhaW5lcigKICAgICAg
+ICBtb2RlbD1tb2RlbCwKICAgICAgICBhcmdzPXRyYWluaW5nX2FyZ3MsCiAgICAgICAgdHJhaW5f
+ZGF0YXNldD1kYXRhc2V0LAogICAgKQoKICAgIGxvZy5pbmZvKGYiVHJhaW5pbmc6IHtsZW4oZGF0
+YXNldCl9IHNhbXBsZXMsIGJzPXtUUkFJTl9CQVRDSF9TSVpFfXh7R1JBRElFTlRfQUNDVU1VTEFU
+SU9OfSwgIgogICAgICAgICAgICAgZiJscj17VFJBSU5fTFJ9LCBkZXZpY2U9e2RldmljZX0iKQog
+ICAgdHJhaW5lci50cmFpbigpCgogICAgbWVyZ2VkX2RpciA9IG91dHB1dF9kaXIgLyAibWVyZ2Vk
+IgogICAgbG9nLmluZm8oIk1lcmdpbmcgTG9SQSB3ZWlnaHRzIGludG8gYmFzZSBtb2RlbC4uLiIp
+CiAgICBtZXJnZWRfbW9kZWwgPSBtb2RlbC5tZXJnZV9hbmRfdW5sb2FkKCkKICAgIG1lcmdlZF9t
+b2RlbC5zYXZlX3ByZXRyYWluZWQobWVyZ2VkX2RpcikKICAgIHRva2VuaXplci5zYXZlX3ByZXRy
+YWluZWQobWVyZ2VkX2RpcikKICAgIGxvZy5pbmZvKGYiTWVyZ2VkIG1vZGVsIHNhdmVkIHRvIHtt
+ZXJnZWRfZGlyfSIpCgogICAgZGVsIG1vZGVsLCBtZXJnZWRfbW9kZWwsIHRyYWluZXIsIGRhdGFz
+ZXQKICAgIHRvcmNoLmN1ZGEuZW1wdHlfY2FjaGUoKQogICAgZ2MuY29sbGVjdCgpCgogICAgcmV0
+dXJuIG1lcmdlZF9kaXIKCgpkZWYgZXZhbHVhdGVfbW9kZWwobW9kZWxfcGF0aCwgZGV2aWNlLCBy
+ZXN1bHRzX3BhdGgsCiAgICAgICAgICAgICAgICAgICBiZW5jaG1hcmtzX292ZXJyaWRlPU5vbmUs
+IGV4aXN0aW5nX3Njb3Jlcz1Ob25lLCBleGlzdGluZ19mdWxsPU5vbmUpOgogICAgaW1wb3J0IGxt
+X2V2YWwKICAgIGZyb20gbG1fZXZhbC5tb2RlbHMuaHVnZ2luZ2ZhY2UgaW1wb3J0IEhGTE0KCiAg
+ICBiZW5jaG1hcmtzID0gYmVuY2htYXJrc19vdmVycmlkZSBpZiBiZW5jaG1hcmtzX292ZXJyaWRl
+IGlzIG5vdCBOb25lIGVsc2UgQkVOQ0hNQVJLUwogICAgbG9nLmluZm8oZiJFdmFsdWF0aW5nIHtt
+b2RlbF9wYXRofSBvbiB7bGVuKGJlbmNobWFya3MpfSBiZW5jaG1hcmtzOiB7W2IgZm9yIGIsXyBp
+biBiZW5jaG1hcmtzXX0iKQoKICAgIGxtID0gSEZMTSgKICAgICAgICBwcmV0cmFpbmVkPXN0ciht
+b2RlbF9wYXRoKSwKICAgICAgICBkZXZpY2U9ZGV2aWNlLAogICAgICAgIGR0eXBlPSJmbG9hdDE2
+IiwKICAgICAgICBiYXRjaF9zaXplPSJhdXRvOjQiLAogICAgICAgIG1heF9sZW5ndGg9MjA0OCwK
+ICAgICAgICB0cnVzdF9yZW1vdGVfY29kZT1UcnVlLAogICAgKQoKICAgIGFsbF9zY29yZXMgPSBk
+aWN0KGV4aXN0aW5nX3Njb3JlcykgaWYgZXhpc3Rpbmdfc2NvcmVzIGVsc2Uge30KICAgIGFsbF9m
+dWxsID0gZGljdChleGlzdGluZ19mdWxsKSBpZiBleGlzdGluZ19mdWxsIGVsc2Uge30KCiAgICBm
+b3IgdGFza19uYW1lLCBuX2Zld3Nob3QgaW4gYmVuY2htYXJrczoKICAgICAgICBsb2cuaW5mbyhm
+IiAgUnVubmluZyB7dGFza19uYW1lfSAoe25fZmV3c2hvdH0tc2hvdCkuLi4iKQogICAgICAgIHQw
+ID0gdGltZS50aW1lKCkKCiAgICAgICAgc3VjY2VzcyA9IEZhbHNlCiAgICAgICAgZm9yIGF0dGVt
+cHQgaW4gcmFuZ2UoMyk6CiAgICAgICAgICAgIHRyeToKICAgICAgICAgICAgICAgIHJlc3VsdHMg
+PSBsbV9ldmFsLnNpbXBsZV9ldmFsdWF0ZSgKICAgICAgICAgICAgICAgICAgICBtb2RlbD1sbSwK
+ICAgICAgICAgICAgICAgICAgICB0YXNrcz1bdGFza19uYW1lXSwKICAgICAgICAgICAgICAgICAg
+ICBudW1fZmV3c2hvdD1uX2Zld3Nob3QsCiAgICAgICAgICAgICAgICApCiAgICAgICAgICAgICAg
+ICBzdWNjZXNzID0gVHJ1ZQogICAgICAgICAgICAgICAgYnJlYWsKICAgICAgICAgICAgZXhjZXB0
+IEV4Y2VwdGlvbiBhcyBlOgogICAgICAgICAgICAgICAgaWYgYXR0ZW1wdCA8IDI6CiAgICAgICAg
+ICAgICAgICAgICAgd2FpdCA9IDMwICogKGF0dGVtcHQgKyAxKQogICAgICAgICAgICAgICAgICAg
+IGxvZy53YXJuaW5nKGYiICBBdHRlbXB0IHthdHRlbXB0KzF9IGZhaWxlZDoge2V9LiBSZXRyeWlu
+ZyBpbiB7d2FpdH1zLi4uIikKICAgICAgICAgICAgICAgICAgICB0aW1lLnNsZWVwKHdhaXQpCiAg
+ICAgICAgICAgICAgICBlbHNlOgogICAgICAgICAgICAgICAgICAgIGxvZy5lcnJvcihmIiAgRmFp
+bGVkIHt0YXNrX25hbWV9IGFmdGVyIDMgYXR0ZW1wdHM6IHtlfSIpCgogICAgICAgIGlmIG5vdCBz
+dWNjZXNzOgogICAgICAgICAgICBhbGxfc2NvcmVzW3Rhc2tfbmFtZV0gPSBOb25lCiAgICAgICAg
+ICAgIGNvbnRpbnVlCgogICAgICAgIHRhc2tfcmVzdWx0cyA9IHJlc3VsdHMuZ2V0KCJyZXN1bHRz
+Iiwge30pLmdldCh0YXNrX25hbWUsIHt9KQoKICAgICAgICBpZiB0YXNrX25hbWUgPT0gImdzbThr
+IjoKICAgICAgICAgICAgc2NvcmUgPSB0YXNrX3Jlc3VsdHMuZ2V0KCJleGFjdF9tYXRjaCxzdHJp
+Y3QtbWF0Y2giLAogICAgICAgICAgICAgICAgICAgICB0YXNrX3Jlc3VsdHMuZ2V0KCJleGFjdF9t
+YXRjaCxnZXQtYW5zd2VyIiwKICAgICAgICAgICAgICAgICAgICAgIHRhc2tfcmVzdWx0cy5nZXQo
+ImFjYyxub25lIiwgMCkpKQogICAgICAgIGVsaWYgdGFza19uYW1lID09ICJhcmNfY2hhbGxlbmdl
+IjoKICAgICAgICAgICAgc2NvcmUgPSB0YXNrX3Jlc3VsdHMuZ2V0KCJhY2Nfbm9ybSxub25lIiwK
+ICAgICAgICAgICAgICAgICAgICAgdGFza19yZXN1bHRzLmdldCgiYWNjLG5vbmUiLCAwKSkKICAg
+ICAgICBlbGlmIHRhc2tfbmFtZSA9PSAidHJ1dGhmdWxxYV9tYzIiOgogICAgICAgICAgICBzY29y
+ZSA9IHRhc2tfcmVzdWx0cy5nZXQoImFjYyxub25lIiwgMCkKICAgICAgICBlbGlmIHRhc2tfbmFt
+ZSBpbiAoInBpcWEiLCAid2lub2dyYW5kZSIpOgogICAgICAgICAgICBzY29yZSA9IHRhc2tfcmVz
+dWx0cy5nZXQoImFjYyxub25lIiwgMCkKICAgICAgICBlbHNlOgogICAgICAgICAgICBzY29yZSA9
+IHRhc2tfcmVzdWx0cy5nZXQoImFjYyxub25lIiwgMCkKCiAgICAgICAgYWxsX3Njb3Jlc1t0YXNr
+X25hbWVdID0gZmxvYXQoc2NvcmUpIGlmIHNjb3JlIGlzIG5vdCBOb25lIGVsc2UgTm9uZQogICAg
+ICAgIGFsbF9mdWxsW3Rhc2tfbmFtZV0gPSB7azogdiBmb3IgaywgdiBpbiB0YXNrX3Jlc3VsdHMu
+aXRlbXMoKX0KICAgICAgICBlbGFwc2VkID0gdGltZS50aW1lKCkgLSB0MAogICAgICAgIGxvZy5p
+bmZvKGYiICB7dGFza19uYW1lfToge3Njb3JlOi40Zn0gKHtlbGFwc2VkOi4wZn1zKSIpCgogICAg
+cmVzdWx0c19wYXRoLnBhcmVudC5ta2RpcihwYXJlbnRzPVRydWUsIGV4aXN0X29rPVRydWUpCiAg
+ICB3aXRoIG9wZW4ocmVzdWx0c19wYXRoLCAidyIpIGFzIGY6CiAgICAgICAganNvbi5kdW1wKHsK
+ICAgICAgICAgICAgInNjb3JlcyI6IGFsbF9zY29yZXMsCiAgICAgICAgICAgICJmdWxsIjogYWxs
+X2Z1bGwsCiAgICAgICAgICAgICJiZW5jaG1hcmtzIjogW1tiLCBuXSBmb3IgYiwgbiBpbiBCRU5D
+SE1BUktTXSwKICAgICAgICB9LCBmLCBpbmRlbnQ9MiwgZGVmYXVsdD1zdHIpCgogICAgZGVsIGxt
+CiAgICB0b3JjaC5jdWRhLmVtcHR5X2NhY2hlKCkKICAgIGdjLmNvbGxlY3QoKQoKICAgIHJldHVy
+biBhbGxfc2NvcmVzCgoKZGVmIHJ1bl9zdGF0aXN0aWNhbF9hbmFseXNpcyhyZXN1bHRzX2Rpciwg
+bnVtX3NlZWRzLCBzZWVkX3N0YXJ0KToKICAgIGxvZy5pbmZvKCJSdW5uaW5nIHN0YXRpc3RpY2Fs
+IGFuYWx5c2lzLi4uIikKCiAgICBzdHJhdGVneV9zY29yZXMgPSB7czoge30gZm9yIHMgaW4gU1RS
+QVRFR0lFU30KCiAgICBmb3Igc3RyYXRlZ3kgaW4gU1RSQVRFR0lFUzoKICAgICAgICBmb3Igc2Vl
+ZCBpbiByYW5nZShzZWVkX3N0YXJ0LCBzZWVkX3N0YXJ0ICsgbnVtX3NlZWRzKToKICAgICAgICAg
+ICAgZXZhbF9wYXRoID0gcmVzdWx0c19kaXIgLyBmIntzdHJhdGVneX1fc2VlZHtzZWVkfV9ldmFs
+Lmpzb24iCiAgICAgICAgICAgIGlmIGV2YWxfcGF0aC5leGlzdHMoKToKICAgICAgICAgICAgICAg
+IHdpdGggb3BlbihldmFsX3BhdGgpIGFzIGY6CiAgICAgICAgICAgICAgICAgICAgZGF0YSA9IGpz
+b24ubG9hZChmKQogICAgICAgICAgICAgICAgc3RyYXRlZ3lfc2NvcmVzW3N0cmF0ZWd5XVtzZWVk
+XSA9IGRhdGFbInNjb3JlcyJdCgogICAgYWxsX2JlbmNobWFya3MgPSBzZXQoKQogICAgZm9yIHNj
+b3Jlc19ieV9zZWVkIGluIHN0cmF0ZWd5X3Njb3Jlcy52YWx1ZXMoKToKICAgICAgICBmb3Igc2Nv
+cmVzIGluIHNjb3Jlc19ieV9zZWVkLnZhbHVlcygpOgogICAgICAgICAgICBhbGxfYmVuY2htYXJr
+cy51cGRhdGUoayBmb3IgaywgdiBpbiBzY29yZXMuaXRlbXMoKSBpZiB2IGlzIG5vdCBOb25lKQoK
+ICAgIGFuYWx5c2lzID0geyJzdHJhdGVnaWVzIjoge30sICJjb21wYXJpc29ucyI6IFtdfQoKICAg
+IGZvciBzdHJhdGVneSBpbiBTVFJBVEVHSUVTOgogICAgICAgIHN0cmF0X2RhdGEgPSB7fQogICAg
+ICAgIGZvciBiZW5jaCBpbiBzb3J0ZWQoYWxsX2JlbmNobWFya3MpOgogICAgICAgICAgICB2YWxz
+ID0gW3N0cmF0ZWd5X3Njb3Jlc1tzdHJhdGVneV1bc11bYmVuY2hdCiAgICAgICAgICAgICAgICAg
+ICAgZm9yIHMgaW4gc3RyYXRlZ3lfc2NvcmVzW3N0cmF0ZWd5XQogICAgICAgICAgICAgICAgICAg
+IGlmIGJlbmNoIGluIHN0cmF0ZWd5X3Njb3Jlc1tzdHJhdGVneV1bc10KICAgICAgICAgICAgICAg
+ICAgICBhbmQgc3RyYXRlZ3lfc2NvcmVzW3N0cmF0ZWd5XVtzXVtiZW5jaF0gaXMgbm90IE5vbmVd
+CiAgICAgICAgICAgIGlmIHZhbHM6CiAgICAgICAgICAgICAgICBzdHJhdF9kYXRhW2JlbmNoXSA9
+IHsKICAgICAgICAgICAgICAgICAgICAibWVhbiI6IGZsb2F0KG5wLm1lYW4odmFscykpLAogICAg
+ICAgICAgICAgICAgICAgICJzdGQiOiBmbG9hdChucC5zdGQodmFscykpLAogICAgICAgICAgICAg
+ICAgICAgICJ2YWx1ZXMiOiB2YWxzLAogICAgICAgICAgICAgICAgfQogICAgICAgIGFuYWx5c2lz
+WyJzdHJhdGVnaWVzIl1bc3RyYXRlZ3ldID0gc3RyYXRfZGF0YQoKICAgIGNvbXBhcmlzb25zID0g
+W10KICAgIGZvciBiZW5jaCBpbiBzb3J0ZWQoYWxsX2JlbmNobWFya3MpOgogICAgICAgIGZvciBz
+MSwgczIgaW4gWygiYmluYXJ5X291cnMiLCAibm9fZmlsdGVyIiksICgiYmluYXJ5X291cnMiLCAi
+Z3JhZHVhdGVkIiksCiAgICAgICAgICAgICAgICAgICAgICAgKCJncmFkdWF0ZWQiLCAibm9fZmls
+dGVyIildOgogICAgICAgICAgICB2MSA9IGFuYWx5c2lzWyJzdHJhdGVnaWVzIl0uZ2V0KHMxLCB7
+fSkuZ2V0KGJlbmNoLCB7fSkuZ2V0KCJ2YWx1ZXMiLCBbXSkKICAgICAgICAgICAgdjIgPSBhbmFs
+eXNpc1sic3RyYXRlZ2llcyJdLmdldChzMiwge30pLmdldChiZW5jaCwge30pLmdldCgidmFsdWVz
+IiwgW10pCiAgICAgICAgICAgIGlmIGxlbih2MSkgPj0gMiBhbmQgbGVuKHYyKSA+PSAyOgogICAg
+ICAgICAgICAgICAgdF9zdGF0LCBwX3ZhbCA9IHN0YXRzLnR0ZXN0X2luZCh2MSwgdjIpCiAgICAg
+ICAgICAgICAgICBkaWZmID0gbnAubWVhbih2MSkgLSBucC5tZWFuKHYyKQogICAgICAgICAgICAg
+ICAgcG9vbGVkX3N0ZCA9IG5wLnNxcnQoKG5wLnZhcih2MSkgKyBucC52YXIodjIpKSAvIDIpCiAg
+ICAgICAgICAgICAgICBjb2hlbnNfZCA9IGRpZmYgLyBwb29sZWRfc3RkIGlmIHBvb2xlZF9zdGQg
+PiAwIGVsc2UgMC4wCiAgICAgICAgICAgICAgICBjb21wYXJpc29ucy5hcHBlbmQoewogICAgICAg
+ICAgICAgICAgICAgICJiZW5jaG1hcmsiOiBiZW5jaCwKICAgICAgICAgICAgICAgICAgICAiY29t
+cGFyaXNvbiI6IGYie3MxfV92c197czJ9IiwKICAgICAgICAgICAgICAgICAgICAibWVhbl9kaWZm
+IjogZmxvYXQoZGlmZiksCiAgICAgICAgICAgICAgICAgICAgInRfc3RhdCI6IGZsb2F0KHRfc3Rh
+dCksCiAgICAgICAgICAgICAgICAgICAgInBfdmFsdWUiOiBmbG9hdChwX3ZhbCksCiAgICAgICAg
+ICAgICAgICAgICAgImNvaGVuc19kIjogZmxvYXQoY29oZW5zX2QpLAogICAgICAgICAgICAgICAg
+fSkKCiAgICBpZiBjb21wYXJpc29uczoKICAgICAgICBwX3ZhbHVlcyA9IFtjWyJwX3ZhbHVlIl0g
+Zm9yIGMgaW4gY29tcGFyaXNvbnNdCiAgICAgICAgc29ydGVkX2luZGljZXMgPSBucC5hcmdzb3J0
+KHBfdmFsdWVzKQogICAgICAgIG0gPSBsZW4ocF92YWx1ZXMpCiAgICAgICAgZm9yIHJhbmssIGlk
+eCBpbiBlbnVtZXJhdGUoc29ydGVkX2luZGljZXMpOgogICAgICAgICAgICBhZGp1c3RlZF9hbHBo
+YSA9IDAuMDUgLyAobSAtIHJhbmspCiAgICAgICAgICAgIGNvbXBhcmlzb25zW2lkeF1bImhvbG1f
+c2lnbmlmaWNhbnQiXSA9IHBfdmFsdWVzW2lkeF0gPCBhZGp1c3RlZF9hbHBoYQoKICAgIGFuYWx5
+c2lzWyJjb21wYXJpc29ucyJdID0gY29tcGFyaXNvbnMKCiAgICBvdXRfcGF0aCA9IHJlc3VsdHNf
+ZGlyIC8gInN0YXRpc3RpY2FsX2FuYWx5c2lzLmpzb24iCiAgICB3aXRoIG9wZW4ob3V0X3BhdGgs
+ICJ3IikgYXMgZjoKICAgICAgICBqc29uLmR1bXAoYW5hbHlzaXMsIGYsIGluZGVudD0yKQogICAg
+bG9nLmluZm8oZiJTdGF0aXN0aWNhbCBhbmFseXNpcyBzYXZlZCB0byB7b3V0X3BhdGh9IikKICAg
+IHJldHVybiBhbmFseXNpcwoKCmRlZiBtYWluKCk6CiAgICBwYXJzZXIgPSBhcmdwYXJzZS5Bcmd1
+bWVudFBhcnNlcigKICAgICAgICBkZXNjcmlwdGlvbj0iRXhwYW5kZWQgZG93bnN0cmVhbSBldmFs
+IGZvciBLKi1ndWlkZWQgZmlsdGVyaW5nIikKICAgIHBhcnNlci5hZGRfYXJndW1lbnQoIi0tZGV2
+aWNlIiwgdHlwZT1zdHIsIGRlZmF1bHQ9ImN1ZGE6MCIpCiAgICBwYXJzZXIuYWRkX2FyZ3VtZW50
+KCItLW51bV9zZWVkcyIsIHR5cGU9aW50LCBkZWZhdWx0PTMpCiAgICBwYXJzZXIuYWRkX2FyZ3Vt
+ZW50KCItLXNlZWRfc3RhcnQiLCB0eXBlPWludCwgZGVmYXVsdD0wKQogICAgcGFyc2VyLmFkZF9h
+cmd1bWVudCgiLS1za2lwX2Jhc2UiLCBhY3Rpb249InN0b3JlX3RydWUiKQogICAgcGFyc2VyLmFk
+ZF9hcmd1bWVudCgiLS1zdHJhdGVneSIsIHR5cGU9c3RyLCBkZWZhdWx0PSJhbGwiLAogICAgICAg
+ICAgICAgICAgICAgICAgICBjaG9pY2VzPVsibm9fZmlsdGVyIiwgImJpbmFyeV9vdXJzIiwgImdy
+YWR1YXRlZCIsICJhbGwiXSkKICAgIHBhcnNlci5hZGRfYXJndW1lbnQoIi0tc2tpcF90cmFpbiIs
+IGFjdGlvbj0ic3RvcmVfdHJ1ZSIsCiAgICAgICAgICAgICAgICAgICAgICAgIGhlbHA9IlNraXAg
+dHJhaW5pbmcsIGxvYWQgZnJvbSBleGlzdGluZyBtZXJnZWQgbW9kZWwgZGlyIikKICAgIGFyZ3Mg
+PSBwYXJzZXIucGFyc2VfYXJncygpCgogICAgcmVzdWx0c19kaXIgPSBQUk9KRUNUX1JPT1QgLyAi
+cmVzdWx0cyIgLyAiZXhwX2V4cGFuZGVkX2Rvd25zdHJlYW1fZXZhbCIKICAgIHJlc3VsdHNfZGly
+Lm1rZGlyKHBhcmVudHM9VHJ1ZSwgZXhpc3Rfb2s9VHJ1ZSkKCiAgICBsb2dfcGF0aCA9IFBST0pF
+Q1RfUk9PVCAvICJsb2dzIiAvICJleHBfZXhwYW5kZWRfZG93bnN0cmVhbV9ldmFsLmxvZyIKICAg
+IGxvZ19wYXRoLnBhcmVudC5ta2RpcihwYXJlbnRzPVRydWUsIGV4aXN0X29rPVRydWUpCiAgICBm
+aCA9IGxvZ2dpbmcuRmlsZUhhbmRsZXIobG9nX3BhdGgpCiAgICBmaC5zZXRGb3JtYXR0ZXIobG9n
+Z2luZy5Gb3JtYXR0ZXIoCiAgICAgICAgIiUoYXNjdGltZSlzIFslKGxldmVsbmFtZSlzXSAlKG1l
+c3NhZ2UpcyIsIGRhdGVmbXQ9IiVIOiVNOiVTIikpCiAgICBsb2dnaW5nLmdldExvZ2dlcigpLmFk
+ZEhhbmRsZXIoZmgpCgogICAgbG9nLmluZm8oIj0iICogNjApCiAgICBsb2cuaW5mbygiRXhwYW5k
+ZWQgRG93bnN0cmVhbSBFdmFsdWF0aW9uIikKICAgIGxvZy5pbmZvKGYiTW9kZWw6IHtNT0RFTF9Q
+QVRIfSIpCiAgICBsb2cuaW5mbyhmIkRhdGE6IHtEQVRBX0RJUn0iKQogICAgbG9nLmluZm8oZiJT
+dHJhdGVneSBmaWx0ZXI6IHthcmdzLnN0cmF0ZWd5fSIpCiAgICBsb2cuaW5mbyhmIlNlZWRzOiB7
+YXJncy5zZWVkX3N0YXJ0fS17YXJncy5zZWVkX3N0YXJ0ICsgYXJncy5udW1fc2VlZHMgLSAxfSIp
+CiAgICBsb2cuaW5mbyhmIkJlbmNobWFya3M6IHtbYlswXSBmb3IgYiBpbiBCRU5DSE1BUktTXX0i
+KQogICAgbG9nLmluZm8oZiJMb1JBOiByYW5rPXtMT1JBX1JBTkt9LCBhbHBoYT17TE9SQV9BTFBI
+QX0sIHRhcmdldD17TE9SQV9UQVJHRVRfTU9EVUxFU30iKQogICAgbG9nLmluZm8oZiJza2lwX3Ry
+YWluPXthcmdzLnNraXBfdHJhaW59IikKICAgIGxvZy5pbmZvKCI9IiAqIDYwKQoKICAgIGlmIG5v
+dCBhcmdzLnNraXBfYmFzZToKICAgICAgICBiYXNlX2V2YWxfcGF0aCA9IHJlc3VsdHNfZGlyIC8g
+ImJhc2VfbW9kZWxfZXZhbC5qc29uIgogICAgICAgIGlmIGJhc2VfZXZhbF9wYXRoLmV4aXN0cygp
+OgogICAgICAgICAgICBsb2cuaW5mbygiQmFzZSBtb2RlbCBldmFsIGV4aXN0cywgc2tpcHBpbmci
+KQogICAgICAgIGVsc2U6CiAgICAgICAgICAgIGxvZy5pbmZvKCJFdmFsdWF0aW5nIGJhc2UgbW9k
+ZWwuLi4iKQogICAgICAgICAgICBiYXNlX3Njb3JlcyA9IGV2YWx1YXRlX21vZGVsKE1PREVMX1BB
+VEgsIGFyZ3MuZGV2aWNlLCBiYXNlX2V2YWxfcGF0aCkKICAgICAgICAgICAgbG9nLmluZm8oZiJC
+YXNlIG1vZGVsIHNjb3Jlczoge2Jhc2Vfc2NvcmVzfSIpCgogICAgZm9yIHNlZWQgaW4gcmFuZ2Uo
+YXJncy5zZWVkX3N0YXJ0LCBhcmdzLnNlZWRfc3RhcnQgKyBhcmdzLm51bV9zZWVkcyk6CiAgICAg
+ICAgZm9yIHN0cmF0ZWd5IGluIFNUUkFURUdJRVM6CiAgICAgICAgICAgIGlmIGFyZ3Muc3RyYXRl
+Z3kgIT0gImFsbCIgYW5kIHN0cmF0ZWd5ICE9IGFyZ3Muc3RyYXRlZ3k6CiAgICAgICAgICAgICAg
+ICBjb250aW51ZQoKICAgICAgICAgICAgcnVuX25hbWUgPSBmIntzdHJhdGVneX1fc2VlZHtzZWVk
+fSIKICAgICAgICAgICAgZXZhbF9wYXRoID0gcmVzdWx0c19kaXIgLyBmIntydW5fbmFtZX1fZXZh
+bC5qc29uIgoKICAgICAgICAgICAgYmVuY2htYXJrc190b19ydW4gPSBCRU5DSE1BUktTCiAgICAg
+ICAgICAgIGV4aXN0aW5nX3Njb3JlcyA9IHt9CiAgICAgICAgICAgIGV4aXN0aW5nX2Z1bGwgPSB7
+fQoKICAgICAgICAgICAgaWYgZXZhbF9wYXRoLmV4aXN0cygpOgogICAgICAgICAgICAgICAgd2l0
+aCBvcGVuKGV2YWxfcGF0aCkgYXMgZjoKICAgICAgICAgICAgICAgICAgICBleGlzdGluZ19kYXRh
+ID0ganNvbi5sb2FkKGYpCiAgICAgICAgICAgICAgICBleGlzdGluZ19zY29yZXMgPSBleGlzdGlu
+Z19kYXRhLmdldCgic2NvcmVzIiwge30pCiAgICAgICAgICAgICAgICBleGlzdGluZ19mdWxsID0g
+ZXhpc3RpbmdfZGF0YS5nZXQoImZ1bGwiLCB7fSkKICAgICAgICAgICAgICAgIG51bGxfYmVuY2ht
+YXJrcyA9IFsoYiwgbikgZm9yIGIsIG4gaW4gQkVOQ0hNQVJLUwogICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIGlmIGV4aXN0aW5nX3Njb3Jlcy5nZXQoYikgaXMgTm9uZV0KICAgICAg
+ICAgICAgICAgIGlmIG5vdCBudWxsX2JlbmNobWFya3M6CiAgICAgICAgICAgICAgICAgICAgbG9n
+LmluZm8oZiJbe3J1bl9uYW1lfV0gQWxsIGJlbmNobWFya3MgY29tcGxldGUsIHNraXBwaW5nIikK
+ICAgICAgICAgICAgICAgICAgICBjb250aW51ZQogICAgICAgICAgICAgICAgYmVuY2htYXJrc190
+b19ydW4gPSBudWxsX2JlbmNobWFya3MKICAgICAgICAgICAgICAgIGxvZy5pbmZvKGYiW3tydW5f
+bmFtZX1dIFBhdGNoaW5nIG51bGwgYmVuY2htYXJrczoge1tiIGZvciBiLF8gaW4gbnVsbF9iZW5j
+aG1hcmtzXX0iKQoKICAgICAgICAgICAgbG9nLmluZm8oZiJcbnsnPScqNjB9XG4gIHtydW5fbmFt
+ZX1cbnsnPScqNjB9IikKCiAgICAgICAgICAgIHRyYWluX2RpciA9IHJlc3VsdHNfZGlyIC8gZiJ7
+cnVuX25hbWV9X3RyYWluIgogICAgICAgICAgICBtZXJnZWRfZGlyID0gdHJhaW5fZGlyIC8gIm1l
+cmdlZCIKCiAgICAgICAgICAgIGlmIGFyZ3Muc2tpcF90cmFpbiBhbmQgbWVyZ2VkX2Rpci5leGlz
+dHMoKToKICAgICAgICAgICAgICAgIGxvZy5pbmZvKGYiW3tydW5fbmFtZX1dIHNraXBfdHJhaW46
+IHVzaW5nIGV4aXN0aW5nIG1vZGVsIGF0IHttZXJnZWRfZGlyfSIpCiAgICAgICAgICAgICAgICBt
+b2RlbF9kaXIgPSBtZXJnZWRfZGlyCiAgICAgICAgICAgIGVsc2U6CiAgICAgICAgICAgICAgICBp
+ZiBhcmdzLnNraXBfdHJhaW46CiAgICAgICAgICAgICAgICAgICAgbG9nLndhcm5pbmcoZiJbe3J1
+bl9uYW1lfV0gLS1za2lwX3RyYWluIGJ1dCBubyBtb2RlbCBhdCB7bWVyZ2VkX2Rpcn0sIHRyYWlu
+aW5nIGZyb20gc2NyYXRjaCIpCiAgICAgICAgICAgICAgICB0ZXh0cywgd2VpZ2h0cyA9IHByZXBh
+cmVfZGF0YShzdHJhdGVneSwgc2VlZCkKICAgICAgICAgICAgICAgIG1vZGVsX2RpciA9IHRyYWlu
+X2xvcmEodGV4dHMsIHdlaWdodHMsIHRyYWluX2RpciwgYXJncy5kZXZpY2UsIHNlZWQpCgogICAg
+ICAgICAgICBzY29yZXMgPSBldmFsdWF0ZV9tb2RlbChtb2RlbF9kaXIsIGFyZ3MuZGV2aWNlLCBl
+dmFsX3BhdGgsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGJlbmNobWFya3Nf
+b3ZlcnJpZGU9YmVuY2htYXJrc190b19ydW4sCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgIGV4aXN0aW5nX3Njb3Jlcz1leGlzdGluZ19zY29yZXMsCiAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIGV4aXN0aW5nX2Z1bGw9ZXhpc3RpbmdfZnVsbCkKICAgICAgICAg
+ICAgbG9nLmluZm8oZiJbe3J1bl9uYW1lfV0gU2NvcmVzOiB7c2NvcmVzfSIpCgogICAgICAgICAg
+ICBpZiB0cmFpbl9kaXIuZXhpc3RzKCk6CiAgICAgICAgICAgICAgICBzaHV0aWwucm10cmVlKHRy
+YWluX2RpciwgaWdub3JlX2Vycm9ycz1UcnVlKQogICAgICAgICAgICAgICAgbG9nLmluZm8oZiJD
+bGVhbmVkIHVwIHt0cmFpbl9kaXJ9IikKCiAgICBsb2cuaW5mbygiXG4iICsgIj0iICogNjAgKyAi
+XG4gIFNUQVRJU1RJQ0FMIEFOQUxZU0lTXG4iICsgIj0iICogNjApCiAgICBhbmFseXNpcyA9IHJ1
+bl9zdGF0aXN0aWNhbF9hbmFseXNpcygKICAgICAgICByZXN1bHRzX2RpciwgYXJncy5udW1fc2Vl
+ZHMsIGFyZ3Muc2VlZF9zdGFydCkKCiAgICBsb2cuaW5mbygiXG49PT0gU1VNTUFSWSA9PT0iKQoK
+ICAgIGJhc2VfZXZhbF9wYXRoID0gcmVzdWx0c19kaXIgLyAiYmFzZV9tb2RlbF9ldmFsLmpzb24i
+CiAgICBpZiBiYXNlX2V2YWxfcGF0aC5leGlzdHMoKToKICAgICAgICB3aXRoIG9wZW4oYmFzZV9l
+dmFsX3BhdGgpIGFzIGY6CiAgICAgICAgICAgIGJhc2Vfc2NvcmVzID0ganNvbi5sb2FkKGYpWyJz
+Y29yZXMiXQogICAgICAgIGxvZy5pbmZvKCIgIGJhc2VfbW9kZWw6ICIgKyAiLCAiLmpvaW4oCiAg
+ICAgICAgICAgIGYie2t9PXt2Oi40Zn0iIGZvciBrLCB2IGluIGJhc2Vfc2NvcmVzLml0ZW1zKCkg
+aWYgdiBpcyBub3QgTm9uZSkpCgogICAgZm9yIHN0cmF0ZWd5IGluIFNUUkFURUdJRVM6CiAgICAg
+ICAgc3RyYXQgPSBhbmFseXNpc1sic3RyYXRlZ2llcyJdLmdldChzdHJhdGVneSwge30pCiAgICAg
+ICAgaWYgc3RyYXQ6CiAgICAgICAgICAgIHBhcnRzID0gW10KICAgICAgICAgICAgZm9yIGJlbmNo
+IGluIHNvcnRlZChzdHJhdC5rZXlzKCkpOgogICAgICAgICAgICAgICAgbSA9IHN0cmF0W2JlbmNo
+XVsibWVhbiJdCiAgICAgICAgICAgICAgICBzID0gc3RyYXRbYmVuY2hdWyJzdGQiXQogICAgICAg
+ICAgICAgICAgcGFydHMuYXBwZW5kKGYie2JlbmNofT17bTouNGZ9Ky8te3M6LjRmfSIpCiAgICAg
+ICAgICAgIGxvZy5pbmZvKGYiICB7c3RyYXRlZ3l9OiB7JywgJy5qb2luKHBhcnRzKX0iKQoKICAg
+IGZvciBjb21wIGluIGFuYWx5c2lzLmdldCgiY29tcGFyaXNvbnMiLCBbXSk6CiAgICAgICAgc2ln
+ID0gIioqKiIgaWYgY29tcC5nZXQoImhvbG1fc2lnbmlmaWNhbnQiKSBlbHNlICJuLnMuIgogICAg
+ICAgIGxvZy5pbmZvKGYiICB7Y29tcFsnYmVuY2htYXJrJ119OiB7Y29tcFsnY29tcGFyaXNvbidd
+fTogIgogICAgICAgICAgICAgICAgIGYiZD17Y29tcFsnY29oZW5zX2QnXTouM2Z9LCBwPXtjb21w
+WydwX3ZhbHVlJ106LjRmfSB7c2lnfSIpCgogICAgc3VtbWFyeSA9IHsiYmFzZV9tb2RlbCI6IHt9
+LCAic3RyYXRlZ2llcyI6IGFuYWx5c2lzWyJzdHJhdGVnaWVzIl0sCiAgICAgICAgICAgICAgICJj
+b21wYXJpc29ucyI6IGFuYWx5c2lzWyJjb21wYXJpc29ucyJdfQogICAgaWYgYmFzZV9ldmFsX3Bh
+dGguZXhpc3RzKCk6CiAgICAgICAgd2l0aCBvcGVuKGJhc2VfZXZhbF9wYXRoKSBhcyBmOgogICAg
+ICAgICAgICBzdW1tYXJ5WyJiYXNlX21vZGVsIl0gPSBqc29uLmxvYWQoZilbInNjb3JlcyJdCiAg
+ICB3aXRoIG9wZW4ocmVzdWx0c19kaXIgLyAic3VtbWFyeS5qc29uIiwgInciKSBhcyBmOgogICAg
+ICAgIGpzb24uZHVtcChzdW1tYXJ5LCBmLCBpbmRlbnQ9MikKCiAgICBsb2cuaW5mbygiXG5Eb25l
+ISIpCgoKaWYgX19uYW1lX18gPT0gIl9fbWFpbl9fIjoKICAgIG1haW4oKQo=
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "fc152471-dcf0-4e97-ba38-f0e78c382570",
+  "tool_use_result": {
+    "stdout": "IyEvdXNyL2Jpbi9lbnYgcHl0aG9uMwoiIiJFeHBhbmRlZCBkb3duc3RyZWFtIGV2YWx1YXRpb24g\nZm9yIEsqLWd1aWRlZCBmaWx0ZXJpbmcgc3RyYXRlZ2llcy4KClJldHJhaW5zIExvUkEgbW9kZWxz\nIG9uIFF3ZW4yLjUtMS41QiB3aXRoIDMgZmlsdGVyaW5nIHN0cmF0ZWdpZXMKKG5vX2ZpbHRlciwg\nYmluYXJ5X291cnMsIGdyYWR1YXRlZCksIHRoZW4gZXZhbHVhdGVzIG9uIDUgYmVuY2htYXJrczoK\nUElRQSwgVHJ1dGhmdWxRQS1NQzIsIFdpbm9HcmFuZGUsIEFSQy1DaGFsbGVuZ2UsIEdTTThLLgoK\nVXNhZ2U6CiAgICBweXRob24gc2NyaXB0cy9leHBfZXhwYW5kZWRfZG93bnN0cmVhbV9ldmFsLnB5\nIC0tZGV2aWNlIGN1ZGE6MCAtLW51bV9zZWVkcyAzCiAgICBweXRob24gc2NyaXB0cy9leHBfZXhw\nYW5kZWRfZG93bnN0cmVhbV9ldmFsLnB5IC0tZGV2aWNlIGN1ZGE6MCAtLXNlZWRfc3RhcnQgMiAt\nLW51bV9zZWVkcyAxIC0tc3RyYXRlZ3kgbm9fZmlsdGVyIC0tc2tpcF9iYXNlCiIiIgoKaW1wb3J0\nIGFyZ3BhcnNlCmltcG9ydCBnYwppbXBvcnQganNvbgppbXBvcnQgbG9nZ2luZwppbXBvcnQgb3MK\naW1wb3J0IHNodXRpbAppbXBvcnQgc3lzCmltcG9ydCB0aW1lCmZyb20gcGF0aGxpYiBpbXBvcnQg\nUGF0aAoKaW1wb3J0IG51bXB5IGFzIG5wCmltcG9ydCB0b3JjaApmcm9tIHNjaXB5IGltcG9ydCBz\ndGF0cwoKbG9nZ2luZy5iYXNpY0NvbmZpZygKICAgIGxldmVsPWxvZ2dpbmcuSU5GTywKICAgIGZv\ncm1hdD0iJShhc2N0aW1lKXMgWyUobGV2ZWxuYW1lKXNdICUobWVzc2FnZSlzIiwKICAgIGRhdGVm\nbXQ9IiVIOiVNOiVTIiwKICAgIGhhbmRsZXJzPVtsb2dnaW5nLlN0cmVhbUhhbmRsZXIoc3lzLnN0\nZG91dCldLAopCmxvZyA9IGxvZ2dpbmcuZ2V0TG9nZ2VyKF9fbmFtZV9fKQoKUFJPSkVDVF9ST09U\nID0gUGF0aCgiL3Jvb3QvYXV0b2RsLXRtcC9nZW4tZGVwdGgtY29udGFtaW5hdGlvbiIpCk1PREVM\nX1BBVEggPSAiL3Jvb3QvYXV0b2RsLXRtcC8uaGZfY2FjaGUvUXdlbi9Rd2VuMl9fXzUtMV9fXzVC\nIgpEQVRBX0RJUiA9IFBST0pFQ1RfUk9PVCAvICJkYXRhX2V4cDAyMF9weXRoaWFfZ3JlZWR5IgoK\nS1NUQVIgPSAyCkdSQURVQVRFRF9BTFBIQSA9IDAuOQpNQVhfREVQVEggPSA1ClNUUkFURUdJRVMg\nPSBbIm5vX2ZpbHRlciIsICJiaW5hcnlfb3VycyIsICJncmFkdWF0ZWQiXQoKTE9SQV9SQU5LID0g\nOApMT1JBX0FMUEhBID0gMTYKTE9SQV9UQVJHRVRfTU9EVUxFUyA9IFsicV9wcm9qIiwgInZfcHJv\naiJdCkxPUkFfRFJPUE9VVCA9IDAuMDUKClRSQUlOX0xSID0gMmUtNApUUkFJTl9CQVRDSF9TSVpF\nID0gNApHUkFESUVOVF9BQ0NVTVVMQVRJT04gPSA0ClRSQUlOX0VQT0NIUyA9IDEKTUFYX0xFTkdU\nSCA9IDI1NgoKQkVOQ0hNQVJLUyA9IFsKICAgICgicGlxYSIsIDApLAogICAgKCJ0cnV0aGZ1bHFh\nX21jMiIsIDApLAogICAgKCJ3aW5vZ3JhbmRlIiwgNSksCiAgICAoImFyY19jaGFsbGVuZ2UiLCAy\nNSksCiAgICAoImdzbThrIiwgOCksCl0KCgpkZWYgbG9hZF9qc29ubChwYXRoKToKICAgIHdpdGgg\nb3BlbihwYXRoKSBhcyBmOgogICAgICAgIHJldHVybiBbanNvbi5sb2FkcyhsaW5lKSBmb3IgbGlu\nZSBpbiBmXQoKCmRlZiBzZXRfc2VlZChzZWVkKToKICAgIG5wLnJhbmRvbS5zZWVkKHNlZWQpCiAg\nICB0b3JjaC5tYW51YWxfc2VlZChzZWVkKQogICAgaWYgdG9yY2guY3VkYS5pc19hdmFpbGFibGUo\nKToKICAgICAgICB0b3JjaC5jdWRhLm1hbnVhbF9zZWVkX2FsbChzZWVkKQoKCmRlZiBwcmVwYXJl\nX2RhdGEoc3RyYXRlZ3ksIHNlZWQpOgogICAgcm5nID0gbnAucmFuZG9tLlJhbmRvbVN0YXRlKHNl\nZWQpCiAgICBhbGxfdGV4dHMgPSBbXQogICAgYWxsX3dlaWdodHMgPSBbXQoKICAgIGlmIHN0cmF0\nZWd5ID09ICJub19maWx0ZXIiOgogICAgICAgIGZvciBkIGluIHJhbmdlKE1BWF9ERVBUSCArIDEp\nOgogICAgICAgICAgICByZWNvcmRzID0gbG9hZF9qc29ubChEQVRBX0RJUiAvIGYiZGVwdGhfe2R9\nLmpzb25sIikKICAgICAgICAgICAgYWxsX3RleHRzLmV4dGVuZChyWyJ0ZXh0Il0gZm9yIHIgaW4g\ncmVjb3JkcykKICAgICAgICAgICAgYWxsX3dlaWdodHMuZXh0ZW5kKFsxLjBdICogbGVuKHJlY29y\nZHMpKQogICAgZWxpZiBzdHJhdGVneSA9PSAiYmluYXJ5X291cnMiOgogICAgICAgIGZvciBkIGlu\nIHJhbmdlKEtTVEFSICsgMSk6CiAgICAgICAgICAgIHJlY29yZHMgPSBsb2FkX2pzb25sKERBVEFf\nRElSIC8gZiJkZXB0aF97ZH0uanNvbmwiKQogICAgICAgICAgICBhbGxfdGV4dHMuZXh0ZW5kKHJb\nInRleHQiXSBmb3IgciBpbiByZWNvcmRzKQogICAgICAgICAgICBhbGxfd2VpZ2h0cy5leHRlbmQo\nWzEuMF0gKiBsZW4ocmVjb3JkcykpCiAgICBlbGlmIHN0cmF0ZWd5ID09ICJncmFkdWF0ZWQiOgog\nICAgICAgIGZvciBkIGluIHJhbmdlKE1BWF9ERVBUSCArIDEpOgogICAgICAgICAgICByZWNvcmRz\nID0gbG9hZF9qc29ubChEQVRBX0RJUiAvIGYiZGVwdGhfe2R9Lmpzb25sIikKICAgICAgICAgICAg\ndyA9IEdSQURVQVRFRF9BTFBIQSAqKiBkCiAgICAgICAgICAgIGFsbF90ZXh0cy5leHRlbmQoclsi\ndGV4dCJdIGZvciByIGluIHJlY29yZHMpCiAgICAgICAgICAgIGFsbF93ZWlnaHRzLmV4dGVuZChb\nd10gKiBsZW4ocmVjb3JkcykpCiAgICBlbHNlOgogICAgICAgIHJhaXNlIFZhbHVlRXJyb3IoZiJV\nbmtub3duIHN0cmF0ZWd5OiB7c3RyYXRlZ3l9IikKCiAgICBpbmRpY2VzID0gbGlzdChyYW5nZShs\nZW4oYWxsX3RleHRzKSkpCiAgICBybmcuc2h1ZmZsZShpbmRpY2VzKQogICAgYWxsX3RleHRzID0g\nW2FsbF90ZXh0c1tpXSBmb3IgaSBpbiBpbmRpY2VzXQogICAgYWxsX3dlaWdodHMgPSBbYWxsX3dl\naWdodHNbaV0gZm9yIGkgaW4gaW5kaWNlc10KCiAgICBsb2cuaW5mbyhmIkRhdGE6IHN0cmF0ZWd5\nPXtzdHJhdGVneX0sIG49e2xlbihhbGxfdGV4dHMpfSwgIgogICAgICAgICAgICAgZiJtZWFuX3dl\naWdodD17bnAubWVhbihhbGxfd2VpZ2h0cyk6LjRmfSIpCiAgICByZXR1cm4gYWxsX3RleHRzLCBh\nbGxfd2VpZ2h0cwoKCmRlZiB0cmFpbl9sb3JhKHRleHRzLCB3ZWlnaHRzLCBvdXRwdXRfZGlyLCBk\nZXZpY2UsIHNlZWQpOgogICAgZnJvbSB0cmFuc2Zvcm1lcnMgaW1wb3J0IEF1dG9Nb2RlbEZvckNh\ndXNhbExNLCBBdXRvVG9rZW5pemVyLCBUcmFpbmVyLCBUcmFpbmluZ0FyZ3VtZW50cwogICAgZnJv\nbSBwZWZ0IGltcG9ydCBMb3JhQ29uZmlnLCBnZXRfcGVmdF9tb2RlbCwgVGFza1R5cGUKICAgIGZy\nb20gdG9yY2gudXRpbHMuZGF0YSBpbXBvcnQgRGF0YXNldAoKICAgIHNldF9zZWVkKHNlZWQpCgog\nICAgdG9rZW5pemVyID0gQXV0b1Rva2VuaXplci5mcm9tX3ByZXRyYWluZWQoTU9ERUxfUEFUSCwg\ndHJ1c3RfcmVtb3RlX2NvZGU9VHJ1ZSkKICAgIGlmIHRva2VuaXplci5wYWRfdG9rZW4gaXMgTm9u\nZToKICAgICAgICB0b2tlbml6ZXIucGFkX3Rva2VuID0gdG9rZW5pemVyLmVvc190b2tlbgogICAg\nICAgIHRva2VuaXplci5wYWRfdG9rZW5faWQgPSB0b2tlbml6ZXIuZW9zX3Rva2VuX2lkCgogICAg\nY2xhc3MgV2VpZ2h0ZWRUZXh0RGF0YXNldChEYXRhc2V0KToKICAgICAgICBkZWYgX19pbml0X18o\nc2VsZiwgdGV4dHMsIHdlaWdodHMsIHRva2VuaXplciwgbWF4X2xlbmd0aCk6CiAgICAgICAgICAg\nIHNlbGYuZW5jb2RpbmdzID0gW10KICAgICAgICAgICAgc2VsZi53ZWlnaHRzID0gW10KICAgICAg\nICAgICAgZm9yIHRleHQsIHcgaW4gemlwKHRleHRzLCB3ZWlnaHRzKToKICAgICAgICAgICAgICAg\nIGVuYyA9IHRva2VuaXplcih0ZXh0LCB0cnVuY2F0aW9uPVRydWUsIG1heF9sZW5ndGg9bWF4X2xl\nbmd0aCwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwYWRkaW5nPSJtYXhfbGVuZ3Ro\nIiwgcmV0dXJuX3RlbnNvcnM9InB0IikKICAgICAgICAgICAgICAgIHNlbGYuZW5jb2RpbmdzLmFw\ncGVuZCh7azogdi5zcXVlZXplKDApIGZvciBrLCB2IGluIGVuYy5pdGVtcygpfSkKICAgICAgICAg\nICAgICAgIHNlbGYud2VpZ2h0cy5hcHBlbmQodykKCiAgICAgICAgZGVmIF9fbGVuX18oc2VsZik6\nCiAgICAgICAgICAgIHJldHVybiBsZW4oc2VsZi5lbmNvZGluZ3MpCgogICAgICAgIGRlZiBfX2dl\ndGl0ZW1fXyhzZWxmLCBpZHgpOgogICAgICAgICAgICBpdGVtID0ge2s6IHYuY2xvbmUoKSBmb3Ig\naywgdiBpbiBzZWxmLmVuY29kaW5nc1tpZHhdLml0ZW1zKCl9CiAgICAgICAgICAgIGl0ZW1bImxh\nYmVscyJdID0gaXRlbVsiaW5wdXRfaWRzIl0uY2xvbmUoKQogICAgICAgICAgICBpdGVtWyJsYWJl\nbHMiXVtpdGVtWyJhdHRlbnRpb25fbWFzayJdID09IDBdID0gLTEwMAogICAgICAgICAgICBpdGVt\nWyJ3ZWlnaHQiXSA9IHRvcmNoLnRlbnNvcihzZWxmLndlaWdodHNbaWR4XSwgZHR5cGU9dG9yY2gu\nZmxvYXQzMikKICAgICAgICAgICAgcmV0dXJuIGl0ZW0KCiAgICBjbGFzcyBXZWlnaHRlZFRyYWlu\nZXIoVHJhaW5lcik6CiAgICAgICAgZGVmIGNvbXB1dGVfbG9zcyhzZWxmLCBtb2RlbCwgaW5wdXRz\nLCByZXR1cm5fb3V0cHV0cz1GYWxzZSwgKiprd2FyZ3MpOgogICAgICAgICAgICB3ZWlnaHRzX3Zh\nbCA9IGlucHV0cy5wb3AoIndlaWdodCIsIE5vbmUpCiAgICAgICAgICAgIG91dHB1dHMgPSBtb2Rl\nbCgqKmlucHV0cykKICAgICAgICAgICAgbG9zcyA9IG91dHB1dHMubG9zcwogICAgICAgICAgICBp\nZiB3ZWlnaHRzX3ZhbCBpcyBub3QgTm9uZSBhbmQgd2VpZ2h0c192YWwubnVtZWwoKSA+IDA6CiAg\nICAgICAgICAgICAgICBsb3NzID0gbG9zcyAqIHdlaWdodHNfdmFsLm1lYW4oKQogICAgICAgICAg\nICByZXR1cm4gKGxvc3MsIG91dHB1dHMpIGlmIHJldHVybl9vdXRwdXRzIGVsc2UgbG9zcwoKICAg\nIGxvZy5pbmZvKGYiVG9rZW5pemluZyB7bGVuKHRleHRzKX0gdGV4dHMuLi4iKQogICAgZGF0YXNl\ndCA9IFdlaWdodGVkVGV4dERhdGFzZXQodGV4dHMsIHdlaWdodHMsIHRva2VuaXplciwgTUFYX0xF\nTkdUSCkKCiAgICBsb2cuaW5mbygiTG9hZGluZyBRd2VuMi41LTEuNUIuLi4iKQogICAgbW9kZWwg\nPSBBdXRvTW9kZWxGb3JDYXVzYWxMTS5mcm9tX3ByZXRyYWluZWQoCiAgICAgICAgTU9ERUxfUEFU\nSCwgdG9yY2hfZHR5cGU9dG9yY2guYmZsb2F0MTYsIHRydXN0X3JlbW90ZV9jb2RlPVRydWUsCiAg\nICApLnRvKGRldmljZSkKCiAgICBsb3JhX2NvbmZpZyA9IExvcmFDb25maWcoCiAgICAgICAgdGFz\na190eXBlPVRhc2tUeXBlLkNBVVNBTF9MTSwKICAgICAgICByPUxPUkFfUkFOSywKICAgICAgICBs\nb3JhX2FscGhhPUxPUkFfQUxQSEEsCiAgICAgICAgdGFyZ2V0X21vZHVsZXM9TE9SQV9UQVJHRVRf\nTU9EVUxFUywKICAgICAgICBsb3JhX2Ryb3BvdXQ9TE9SQV9EUk9QT1VULAogICAgICAgIGJpYXM9\nIm5vbmUiLAogICAgKQogICAgbW9kZWwgPSBnZXRfcGVmdF9tb2RlbChtb2RlbCwgbG9yYV9jb25m\naWcpCiAgICB0cmFpbmFibGUgPSBzdW0ocC5udW1lbCgpIGZvciBwIGluIG1vZGVsLnBhcmFtZXRl\ncnMoKSBpZiBwLnJlcXVpcmVzX2dyYWQpCiAgICB0b3RhbCA9IHN1bShwLm51bWVsKCkgZm9yIHAg\naW4gbW9kZWwucGFyYW1ldGVycygpKQogICAgbG9nLmluZm8oZiJMb1JBOiB7dHJhaW5hYmxlOix9\nIHRyYWluYWJsZSAvIHt0b3RhbDosfSB0b3RhbCAiCiAgICAgICAgICAgICBmIih7dHJhaW5hYmxl\nL3RvdGFsKjEwMDouMmZ9JSkiKQoKICAgIHRyYWluaW5nX2FyZ3MgPSBUcmFpbmluZ0FyZ3VtZW50\ncygKICAgICAgICBvdXRwdXRfZGlyPXN0cihvdXRwdXRfZGlyKSwKICAgICAgICBudW1fdHJhaW5f\nZXBvY2hzPVRSQUlOX0VQT0NIUywKICAgICAgICBwZXJfZGV2aWNlX3RyYWluX2JhdGNoX3NpemU9\nVFJBSU5fQkFUQ0hfU0laRSwKICAgICAgICBncmFkaWVudF9hY2N1bXVsYXRpb25fc3RlcHM9R1JB\nRElFTlRfQUNDVU1VTEFUSU9OLAogICAgICAgIGxlYXJuaW5nX3JhdGU9VFJBSU5fTFIsCiAgICAg\nICAgd2FybXVwX3JhdGlvPTAuMDUsCiAgICAgICAgd2VpZ2h0X2RlY2F5PTAuMDEsCiAgICAgICAg\nbG9nZ2luZ19zdGVwcz01MCwKICAgICAgICBzYXZlX3N0cmF0ZWd5PSJubyIsCiAgICAgICAgYmYx\nNj1UcnVlLAogICAgICAgIGRhdGFsb2FkZXJfcGluX21lbW9yeT1GYWxzZSwKICAgICAgICBzZWVk\nPXNlZWQsCiAgICAgICAgcmVwb3J0X3RvPSJub25lIiwKICAgICAgICByZW1vdmVfdW51c2VkX2Nv\nbHVtbnM9RmFsc2UsCiAgICApCgogICAgdHJhaW5lciA9IFdlaWdodGVkVHJhaW5lcigKICAgICAg\nICBtb2RlbD1tb2RlbCwKICAgICAgICBhcmdzPXRyYWluaW5nX2FyZ3MsCiAgICAgICAgdHJhaW5f\nZGF0YXNldD1kYXRhc2V0LAogICAgKQoKICAgIGxvZy5pbmZvKGYiVHJhaW5pbmc6IHtsZW4oZGF0\nYXNldCl9IHNhbXBsZXMsIGJzPXtUUkFJTl9CQVRDSF9TSVpFfXh7R1JBRElFTlRfQUNDVU1VTEFU\nSU9OfSwgIgogICAgICAgICAgICAgZiJscj17VFJBSU5fTFJ9LCBkZXZpY2U9e2RldmljZX0iKQog\nICAgdHJhaW5lci50cmFpbigpCgogICAgbWVyZ2VkX2RpciA9IG91dHB1dF9kaXIgLyAibWVyZ2Vk\nIgogICAgbG9nLmluZm8oIk1lcmdpbmcgTG9SQSB3ZWlnaHRzIGludG8gYmFzZSBtb2RlbC4uLiIp\nCiAgICBtZXJnZWRfbW9kZWwgPSBtb2RlbC5tZXJnZV9hbmRfdW5sb2FkKCkKICAgIG1lcmdlZF9t\nb2RlbC5zYXZlX3ByZXRyYWluZWQobWVyZ2VkX2RpcikKICAgIHRva2VuaXplci5zYXZlX3ByZXRy\nYWluZWQobWVyZ2VkX2RpcikKICAgIGxvZy5pbmZvKGYiTWVyZ2VkIG1vZGVsIHNhdmVkIHRvIHtt\nZXJnZWRfZGlyfSIpCgogICAgZGVsIG1vZGVsLCBtZXJnZWRfbW9kZWwsIHRyYWluZXIsIGRhdGFz\nZXQKICAgIHRvcmNoLmN1ZGEuZW1wdHlfY2FjaGUoKQogICAgZ2MuY29sbGVjdCgpCgogICAgcmV0\ndXJuIG1lcmdlZF9kaXIKCgpkZWYgZXZhbHVhdGVfbW9kZWwobW9kZWxfcGF0aCwgZGV2aWNlLCBy\nZXN1bHRzX3BhdGgsCiAgICAgICAgICAgICAgICAgICBiZW5jaG1hcmtzX292ZXJyaWRlPU5vbmUs\nIGV4aXN0aW5nX3Njb3Jlcz1Ob25lLCBleGlzdGluZ19mdWxsPU5vbmUpOgogICAgaW1wb3J0IGxt\nX2V2YWwKICAgIGZyb20gbG1fZXZhbC5tb2RlbHMuaHVnZ2luZ2ZhY2UgaW1wb3J0IEhGTE0KCiAg\nICBiZW5jaG1hcmtzID0gYmVuY2htYXJrc19vdmVycmlkZSBpZiBiZW5jaG1hcmtzX292ZXJyaWRl\nIGlzIG5vdCBOb25lIGVsc2UgQkVOQ0hNQVJLUwogICAgbG9nLmluZm8oZiJFdmFsdWF0aW5nIHtt\nb2RlbF9wYXRofSBvbiB7bGVuKGJlbmNobWFya3MpfSBiZW5jaG1hcmtzOiB7W2IgZm9yIGIsXyBp\nbiBiZW5jaG1hcmtzXX0iKQoKICAgIGxtID0gSEZMTSgKICAgICAgICBwcmV0cmFpbmVkPXN0ciht\nb2RlbF9wYXRoKSwKICAgICAgICBkZXZpY2U9ZGV2aWNlLAogICAgICAgIGR0eXBlPSJmbG9hdDE2\nIiwKICAgICAgICBiYXRjaF9zaXplPSJhdXRvOjQiLAogICAgICAgIG1heF9sZW5ndGg9MjA0OCwK\nICAgICAgICB0cnVzdF9yZW1vdGVfY29kZT1UcnVlLAogICAgKQoKICAgIGFsbF9zY29yZXMgPSBk\naWN0KGV4aXN0aW5nX3Njb3JlcykgaWYgZXhpc3Rpbmdfc2NvcmVzIGVsc2Uge30KICAgIGFsbF9m\ndWxsID0gZGljdChleGlzdGluZ19mdWxsKSBpZiBleGlzdGluZ19mdWxsIGVsc2Uge30KCiAgICBm\nb3IgdGFza19uYW1lLCBuX2Zld3Nob3QgaW4gYmVuY2htYXJrczoKICAgICAgICBsb2cuaW5mbyhm\nIiAgUnVubmluZyB7dGFza19uYW1lfSAoe25fZmV3c2hvdH0tc2hvdCkuLi4iKQogICAgICAgIHQw\nID0gdGltZS50aW1lKCkKCiAgICAgICAgc3VjY2VzcyA9IEZhbHNlCiAgICAgICAgZm9yIGF0dGVt\ncHQgaW4gcmFuZ2UoMyk6CiAgICAgICAgICAgIHRyeToKICAgICAgICAgICAgICAgIHJlc3VsdHMg\nPSBsbV9ldmFsLnNpbXBsZV9ldmFsdWF0ZSgKICAgICAgICAgICAgICAgICAgICBtb2RlbD1sbSwK\nICAgICAgICAgICAgICAgICAgICB0YXNrcz1bdGFza19uYW1lXSwKICAgICAgICAgICAgICAgICAg\nICBudW1fZmV3c2hvdD1uX2Zld3Nob3QsCiAgICAgICAgICAgICAgICApCiAgICAgICAgICAgICAg\nICBzdWNjZXNzID0gVHJ1ZQogICAgICAgICAgICAgICAgYnJlYWsKICAgICAgICAgICAgZXhjZXB0\nIEV4Y2VwdGlvbiBhcyBlOgogICAgICAgICAgICAgICAgaWYgYXR0ZW1wdCA8IDI6CiAgICAgICAg\nICAgICAgICAgICAgd2FpdCA9IDMwICogKGF0dGVtcHQgKyAxKQogICAgICAgICAgICAgICAgICAg\nIGxvZy53YXJuaW5nKGYiICBBdHRlbXB0IHthdHRlbXB0KzF9IGZhaWxlZDoge2V9LiBSZXRyeWlu\nZyBpbiB7d2FpdH1zLi4uIikKICAgICAgICAgICAgICAgICAgICB0aW1lLnNsZWVwKHdhaXQpCiAg\nICAgICAgICAgICAgICBlbHNlOgogICAgICAgICAgICAgICAgICAgIGxvZy5lcnJvcihmIiAgRmFp\nbGVkIHt0YXNrX25hbWV9IGFmdGVyIDMgYXR0ZW1wdHM6IHtlfSIpCgogICAgICAgIGlmIG5vdCBz\ndWNjZXNzOgogICAgICAgICAgICBhbGxfc2NvcmVzW3Rhc2tfbmFtZV0gPSBOb25lCiAgICAgICAg\nICAgIGNvbnRpbnVlCgogICAgICAgIHRhc2tfcmVzdWx0cyA9IHJlc3VsdHMuZ2V0KCJyZXN1bHRz\nIiwge30pLmdldCh0YXNrX25hbWUsIHt9KQoKICAgICAgICBpZiB0YXNrX25hbWUgPT0gImdzbThr\nIjoKICAgICAgICAgICAgc2NvcmUgPSB0YXNrX3Jlc3VsdHMuZ2V0KCJleGFjdF9tYXRjaCxzdHJp\nY3QtbWF0Y2giLAogICAgICAgICAgICAgICAgICAgICB0YXNrX3Jlc3VsdHMuZ2V0KCJleGFjdF9t\nYXRjaCxnZXQtYW5zd2VyIiwKICAgICAgICAgICAgICAgICAgICAgIHRhc2tfcmVzdWx0cy5nZXQo\nImFjYyxub25lIiwgMCkpKQogICAgICAgIGVsaWYgdGFza19uYW1lID09ICJhcmNfY2hhbGxlbmdl\nIjoKICAgICAgICAgICAgc2NvcmUgPSB0YXNrX3Jlc3VsdHMuZ2V0KCJhY2Nfbm9ybSxub25lIiwK\nICAgICAgICAgICAgICAgICAgICAgdGFza19yZXN1bHRzLmdldCgiYWNjLG5vbmUiLCAwKSkKICAg\nICAgICBlbGlmIHRhc2tfbmFtZSA9PSAidHJ1dGhmdWxxYV9tYzIiOgogICAgICAgICAgICBzY29y\nZSA9IHRhc2tfcmVzdWx0cy5nZXQoImFjYyxub25lIiwgMCkKICAgICAgICBlbGlmIHRhc2tfbmFt\nZSBpbiAoInBpcWEiLCAid2lub2dyYW5kZSIpOgogICAgICAgICAgICBzY29yZSA9IHRhc2tfcmVz\ndWx0cy5nZXQoImFjYyxub25lIiwgMCkKICAgICAgICBlbHNlOgogICAgICAgICAgICBzY29yZSA9\nIHRhc2tfcmVzdWx0cy5nZXQoImFjYyxub25lIiwgMCkKCiAgICAgICAgYWxsX3Njb3Jlc1t0YXNr\nX25hbWVdID0gZmxvYXQoc2NvcmUpIGlmIHNjb3JlIGlzIG5vdCBOb25lIGVsc2UgTm9uZQogICAg\nICAgIGFsbF9mdWxsW3Rhc2tfbmFtZV0gPSB7azogdiBmb3IgaywgdiBpbiB0YXNrX3Jlc3VsdHMu\naXRlbXMoKX0KICAgICAgICBlbGFwc2VkID0gdGltZS50aW1lKCkgLSB0MAogICAgICAgIGxvZy5p\nbmZvKGYiICB7dGFza19uYW1lfToge3Njb3JlOi40Zn0gKHtlbGFwc2VkOi4wZn1zKSIpCgogICAg\ncmVzdWx0c19wYXRoLnBhcmVudC5ta2RpcihwYXJlbnRzPVRydWUsIGV4aXN0X29rPVRydWUpCiAg\nICB3aXRoIG9wZW4ocmVzdWx0c19wYXRoLCAidyIpIGFzIGY6CiAgICAgICAganNvbi5kdW1wKHsK\nICAgICAgICAgICAgInNjb3JlcyI6IGFsbF9zY29yZXMsCiAgICAgICAgICAgICJmdWxsIjogYWxs\nX2Z1bGwsCiAgICAgICAgICAgICJiZW5jaG1hcmtzIjogW1tiLCBuXSBmb3IgYiwgbiBpbiBCRU5D\nSE1BUktTXSwKICAgICAgICB9LCBmLCBpbmRlbnQ9MiwgZGVmYXVsdD1zdHIpCgogICAgZGVsIGxt\nCiAgICB0b3JjaC5jdWRhLmVtcHR5X2NhY2hlKCkKICAgIGdjLmNvbGxlY3QoKQoKICAgIHJldHVy\nbiBhbGxfc2NvcmVzCgoKZGVmIHJ1bl9zdGF0aXN0aWNhbF9hbmFseXNpcyhyZXN1bHRzX2Rpciwg\nbnVtX3NlZWRzLCBzZWVkX3N0YXJ0KToKICAgIGxvZy5pbmZvKCJSdW5uaW5nIHN0YXRpc3RpY2Fs\nIGFuYWx5c2lzLi4uIikKCiAgICBzdHJhdGVneV9zY29yZXMgPSB7czoge30gZm9yIHMgaW4gU1RS\nQVRFR0lFU30KCiAgICBmb3Igc3RyYXRlZ3kgaW4gU1RSQVRFR0lFUzoKICAgICAgICBmb3Igc2Vl\nZCBpbiByYW5nZShzZWVkX3N0YXJ0LCBzZWVkX3N0YXJ0ICsgbnVtX3NlZWRzKToKICAgICAgICAg\nICAgZXZhbF9wYXRoID0gcmVzdWx0c19kaXIgLyBmIntzdHJhdGVneX1fc2VlZHtzZWVkfV9ldmFs\nLmpzb24iCiAgICAgICAgICAgIGlmIGV2YWxfcGF0aC5leGlzdHMoKToKICAgICAgICAgICAgICAg\nIHdpdGggb3BlbihldmFsX3BhdGgpIGFzIGY6CiAgICAgICAgICAgICAgICAgICAgZGF0YSA9IGpz\nb24ubG9hZChmKQogICAgICAgICAgICAgICAgc3RyYXRlZ3lfc2NvcmVzW3N0cmF0ZWd5XVtzZWVk\nXSA9IGRhdGFbInNjb3JlcyJdCgogICAgYWxsX2JlbmNobWFya3MgPSBzZXQoKQogICAgZm9yIHNj\nb3Jlc19ieV9zZWVkIGluIHN0cmF0ZWd5X3Njb3Jlcy52YWx1ZXMoKToKICAgICAgICBmb3Igc2Nv\ncmVzIGluIHNjb3Jlc19ieV9zZWVkLnZhbHVlcygpOgogICAgICAgICAgICBhbGxfYmVuY2htYXJr\ncy51cGRhdGUoayBmb3IgaywgdiBpbiBzY29yZXMuaXRlbXMoKSBpZiB2IGlzIG5vdCBOb25lKQoK\nICAgIGFuYWx5c2lzID0geyJzdHJhdGVnaWVzIjoge30sICJjb21wYXJpc29ucyI6IFtdfQoKICAg\nIGZvciBzdHJhdGVneSBpbiBTVFJBVEVHSUVTOgogICAgICAgIHN0cmF0X2RhdGEgPSB7fQogICAg\nICAgIGZvciBiZW5jaCBpbiBzb3J0ZWQoYWxsX2JlbmNobWFya3MpOgogICAgICAgICAgICB2YWxz\nID0gW3N0cmF0ZWd5X3Njb3Jlc1tzdHJhdGVneV1bc11bYmVuY2hdCiAgICAgICAgICAgICAgICAg\nICAgZm9yIHMgaW4gc3RyYXRlZ3lfc2NvcmVzW3N0cmF0ZWd5XQogICAgICAgICAgICAgICAgICAg\nIGlmIGJlbmNoIGluIHN0cmF0ZWd5X3Njb3Jlc1tzdHJhdGVneV1bc10KICAgICAgICAgICAgICAg\nICAgICBhbmQgc3RyYXRlZ3lfc2NvcmVzW3N0cmF0ZWd5XVtzXVtiZW5jaF0gaXMgbm90IE5vbmVd\nCiAgICAgICAgICAgIGlmIHZhbHM6CiAgICAgICAgICAgICAgICBzdHJhdF9kYXRhW2JlbmNoXSA9\nIHsKICAgICAgICAgICAgICAgICAgICAibWVhbiI6IGZsb2F0KG5wLm1lYW4odmFscykpLAogICAg\nICAgICAgICAgICAgICAgICJzdGQiOiBmbG9hdChucC5zdGQodmFscykpLAogICAgICAgICAgICAg\nICAgICAgICJ2YWx1ZXMiOiB2YWxzLAogICAgICAgICAgICAgICAgfQogICAgICAgIGFuYWx5c2lz\nWyJzdHJhdGVnaWVzIl1bc3RyYXRlZ3ldID0gc3RyYXRfZGF0YQoKICAgIGNvbXBhcmlzb25zID0g\nW10KICAgIGZvciBiZW5jaCBpbiBzb3J0ZWQoYWxsX2JlbmNobWFya3MpOgogICAgICAgIGZvciBz\nMSwgczIgaW4gWygiYmluYXJ5X291cnMiLCAibm9fZmlsdGVyIiksICgiYmluYXJ5X291cnMiLCAi\nZ3JhZHVhdGVkIiksCiAgICAgICAgICAgICAgICAgICAgICAgKCJncmFkdWF0ZWQiLCAibm9fZmls\ndGVyIildOgogICAgICAgICAgICB2MSA9IGFuYWx5c2lzWyJzdHJhdGVnaWVzIl0uZ2V0KHMxLCB7\nfSkuZ2V0KGJlbmNoLCB7fSkuZ2V0KCJ2YWx1ZXMiLCBbXSkKICAgICAgICAgICAgdjIgPSBhbmFs\neXNpc1sic3RyYXRlZ2llcyJdLmdldChzMiwge30pLmdldChiZW5jaCwge30pLmdldCgidmFsdWVz\nIiwgW10pCiAgICAgICAgICAgIGlmIGxlbih2MSkgPj0gMiBhbmQgbGVuKHYyKSA+PSAyOgogICAg\nICAgICAgICAgICAgdF9zdGF0LCBwX3ZhbCA9IHN0YXRzLnR0ZXN0X2luZCh2MSwgdjIpCiAgICAg\nICAgICAgICAgICBkaWZmID0gbnAubWVhbih2MSkgLSBucC5tZWFuKHYyKQogICAgICAgICAgICAg\nICAgcG9vbGVkX3N0ZCA9IG5wLnNxcnQoKG5wLnZhcih2MSkgKyBucC52YXIodjIpKSAvIDIpCiAg\nICAgICAgICAgICAgICBjb2hlbnNfZCA9IGRpZmYgLyBwb29sZWRfc3RkIGlmIHBvb2xlZF9zdGQg\nPiAwIGVsc2UgMC4wCiAgICAgICAgICAgICAgICBjb21wYXJpc29ucy5hcHBlbmQoewogICAgICAg\nICAgICAgICAgICAgICJiZW5jaG1hcmsiOiBiZW5jaCwKICAgICAgICAgICAgICAgICAgICAiY29t\ncGFyaXNvbiI6IGYie3MxfV92c197czJ9IiwKICAgICAgICAgICAgICAgICAgICAibWVhbl9kaWZm\nIjogZmxvYXQoZGlmZiksCiAgICAgICAgICAgICAgICAgICAgInRfc3RhdCI6IGZsb2F0KHRfc3Rh\ndCksCiAgICAgICAgICAgICAgICAgICAgInBfdmFsdWUiOiBmbG9hdChwX3ZhbCksCiAgICAgICAg\nICAgICAgICAgICAgImNvaGVuc19kIjogZmxvYXQoY29oZW5zX2QpLAogICAgICAgICAgICAgICAg\nfSkKCiAgICBpZiBjb21wYXJpc29uczoKICAgICAgICBwX3ZhbHVlcyA9IFtjWyJwX3ZhbHVlIl0g\nZm9yIGMgaW4gY29tcGFyaXNvbnNdCiAgICAgICAgc29ydGVkX2luZGljZXMgPSBucC5hcmdzb3J0\nKHBfdmFsdWVzKQogICAgICAgIG0gPSBsZW4ocF92YWx1ZXMpCiAgICAgICAgZm9yIHJhbmssIGlk\neCBpbiBlbnVtZXJhdGUoc29ydGVkX2luZGljZXMpOgogICAgICAgICAgICBhZGp1c3RlZF9hbHBo\nYSA9IDAuMDUgLyAobSAtIHJhbmspCiAgICAgICAgICAgIGNvbXBhcmlzb25zW2lkeF1bImhvbG1f\nc2lnbmlmaWNhbnQiXSA9IHBfdmFsdWVzW2lkeF0gPCBhZGp1c3RlZF9hbHBoYQoKICAgIGFuYWx5\nc2lzWyJjb21wYXJpc29ucyJdID0gY29tcGFyaXNvbnMKCiAgICBvdXRfcGF0aCA9IHJlc3VsdHNf\nZGlyIC8gInN0YXRpc3RpY2FsX2FuYWx5c2lzLmpzb24iCiAgICB3aXRoIG9wZW4ob3V0X3BhdGgs\nICJ3IikgYXMgZjoKICAgICAgICBqc29uLmR1bXAoYW5hbHlzaXMsIGYsIGluZGVudD0yKQogICAg\nbG9nLmluZm8oZiJTdGF0aXN0aWNhbCBhbmFseXNpcyBzYXZlZCB0byB7b3V0X3BhdGh9IikKICAg\nIHJldHVybiBhbmFseXNpcwoKCmRlZiBtYWluKCk6CiAgICBwYXJzZXIgPSBhcmdwYXJzZS5Bcmd1\nbWVudFBhcnNlcigKICAgICAgICBkZXNjcmlwdGlvbj0iRXhwYW5kZWQgZG93bnN0cmVhbSBldmFs\nIGZvciBLKi1ndWlkZWQgZmlsdGVyaW5nIikKICAgIHBhcnNlci5hZGRfYXJndW1lbnQoIi0tZGV2\naWNlIiwgdHlwZT1zdHIsIGRlZmF1bHQ9ImN1ZGE6MCIpCiAgICBwYXJzZXIuYWRkX2FyZ3VtZW50\nKCItLW51bV9zZWVkcyIsIHR5cGU9aW50LCBkZWZhdWx0PTMpCiAgICBwYXJzZXIuYWRkX2FyZ3Vt\nZW50KCItLXNlZWRfc3RhcnQiLCB0eXBlPWludCwgZGVmYXVsdD0wKQogICAgcGFyc2VyLmFkZF9h\ncmd1bWVudCgiLS1za2lwX2Jhc2UiLCBhY3Rpb249InN0b3JlX3RydWUiKQogICAgcGFyc2VyLmFk\nZF9hcmd1bWVudCgiLS1zdHJhdGVneSIsIHR5cGU9c3RyLCBkZWZhdWx0PSJhbGwiLAogICAgICAg\nICAgICAgICAgICAgICAgICBjaG9pY2VzPVsibm9fZmlsdGVyIiwgImJpbmFyeV9vdXJzIiwgImdy\nYWR1YXRlZCIsICJhbGwiXSkKICAgIHBhcnNlci5hZGRfYXJndW1lbnQoIi0tc2tpcF90cmFpbiIs\nIGFjdGlvbj0ic3RvcmVfdHJ1ZSIsCiAgICAgICAgICAgICAgICAgICAgICAgIGhlbHA9IlNraXAg\ndHJhaW5pbmcsIGxvYWQgZnJvbSBleGlzdGluZyBtZXJnZWQgbW9kZWwgZGlyIikKICAgIGFyZ3Mg\nPSBwYXJzZXIucGFyc2VfYXJncygpCgogICAgcmVzdWx0c19kaXIgPSBQUk9KRUNUX1JPT1QgLyAi\ncmVzdWx0cyIgLyAiZXhwX2V4cGFuZGVkX2Rvd25zdHJlYW1fZXZhbCIKICAgIHJlc3VsdHNfZGly\nLm1rZGlyKHBhcmVudHM9VHJ1ZSwgZXhpc3Rfb2s9VHJ1ZSkKCiAgICBsb2dfcGF0aCA9IFBST0pF\nQ1RfUk9PVCAvICJsb2dzIiAvICJleHBfZXhwYW5kZWRfZG93bnN0cmVhbV9ldmFsLmxvZyIKICAg\nIGxvZ19wYXRoLnBhcmVudC5ta2RpcihwYXJlbnRzPVRydWUsIGV4aXN0X29rPVRydWUpCiAgICBm\naCA9IGxvZ2dpbmcuRmlsZUhhbmRsZXIobG9nX3BhdGgpCiAgICBmaC5zZXRGb3JtYXR0ZXIobG9n\nZ2luZy5Gb3JtYXR0ZXIoCiAgICAgICAgIiUoYXNjdGltZSlzIFslKGxldmVsbmFtZSlzXSAlKG1l\nc3NhZ2UpcyIsIGRhdGVmbXQ9IiVIOiVNOiVTIikpCiAgICBsb2dnaW5nLmdldExvZ2dlcigpLmFk\nZEhhbmRsZXIoZmgpCgogICAgbG9nLmluZm8oIj0iICogNjApCiAgICBsb2cuaW5mbygiRXhwYW5k\nZWQgRG93bnN0cmVhbSBFdmFsdWF0aW9uIikKICAgIGxvZy5pbmZvKGYiTW9kZWw6IHtNT0RFTF9Q\nQVRIfSIpCiAgICBsb2cuaW5mbyhmIkRhdGE6IHtEQVRBX0RJUn0iKQogICAgbG9nLmluZm8oZiJT\ndHJhdGVneSBmaWx0ZXI6IHthcmdzLnN0cmF0ZWd5fSIpCiAgICBsb2cuaW5mbyhmIlNlZWRzOiB7\nYXJncy5zZWVkX3N0YXJ0fS17YXJncy5zZWVkX3N0YXJ0ICsgYXJncy5udW1fc2VlZHMgLSAxfSIp\nCiAgICBsb2cuaW5mbyhmIkJlbmNobWFya3M6IHtbYlswXSBmb3IgYiBpbiBCRU5DSE1BUktTXX0i\nKQogICAgbG9nLmluZm8oZiJMb1JBOiByYW5rPXtMT1JBX1JBTkt9LCBhbHBoYT17TE9SQV9BTFBI\nQX0sIHRhcmdldD17TE9SQV9UQVJHRVRfTU9EVUxFU30iKQogICAgbG9nLmluZm8oZiJza2lwX3Ry\nYWluPXthcmdzLnNraXBfdHJhaW59IikKICAgIGxvZy5pbmZvKCI9IiAqIDYwKQoKICAgIGlmIG5v\ndCBhcmdzLnNraXBfYmFzZToKICAgICAgICBiYXNlX2V2YWxfcGF0aCA9IHJlc3VsdHNfZGlyIC8g\nImJhc2VfbW9kZWxfZXZhbC5qc29uIgogICAgICAgIGlmIGJhc2VfZXZhbF9wYXRoLmV4aXN0cygp\nOgogICAgICAgICAgICBsb2cuaW5mbygiQmFzZSBtb2RlbCBldmFsIGV4aXN0cywgc2tpcHBpbmci\nKQogICAgICAgIGVsc2U6CiAgICAgICAgICAgIGxvZy5pbmZvKCJFdmFsdWF0aW5nIGJhc2UgbW9k\nZWwuLi4iKQogICAgICAgICAgICBiYXNlX3Njb3JlcyA9IGV2YWx1YXRlX21vZGVsKE1PREVMX1BB\nVEgsIGFyZ3MuZGV2aWNlLCBiYXNlX2V2YWxfcGF0aCkKICAgICAgICAgICAgbG9nLmluZm8oZiJC\nYXNlIG1vZGVsIHNjb3Jlczoge2Jhc2Vfc2NvcmVzfSIpCgogICAgZm9yIHNlZWQgaW4gcmFuZ2Uo\nYXJncy5zZWVkX3N0YXJ0LCBhcmdzLnNlZWRfc3RhcnQgKyBhcmdzLm51bV9zZWVkcyk6CiAgICAg\nICAgZm9yIHN0cmF0ZWd5IGluIFNUUkFURUdJRVM6CiAgICAgICAgICAgIGlmIGFyZ3Muc3RyYXRl\nZ3kgIT0gImFsbCIgYW5kIHN0cmF0ZWd5ICE9IGFyZ3Muc3RyYXRlZ3k6CiAgICAgICAgICAgICAg\nICBjb250aW51ZQoKICAgICAgICAgICAgcnVuX25hbWUgPSBmIntzdHJhdGVneX1fc2VlZHtzZWVk\nfSIKICAgICAgICAgICAgZXZhbF9wYXRoID0gcmVzdWx0c19kaXIgLyBmIntydW5fbmFtZX1fZXZh\nbC5qc29uIgoKICAgICAgICAgICAgYmVuY2htYXJrc190b19ydW4gPSBCRU5DSE1BUktTCiAgICAg\nICAgICAgIGV4aXN0aW5nX3Njb3JlcyA9IHt9CiAgICAgICAgICAgIGV4aXN0aW5nX2Z1bGwgPSB7\nfQoKICAgICAgICAgICAgaWYgZXZhbF9wYXRoLmV4aXN0cygpOgogICAgICAgICAgICAgICAgd2l0\naCBvcGVuKGV2YWxfcGF0aCkgYXMgZjoKICAgICAgICAgICAgICAgICAgICBleGlzdGluZ19kYXRh\nID0ganNvbi5sb2FkKGYpCiAgICAgICAgICAgICAgICBleGlzdGluZ19zY29yZXMgPSBleGlzdGlu\nZ19kYXRhLmdldCgic2NvcmVzIiwge30pCiAgICAgICAgICAgICAgICBleGlzdGluZ19mdWxsID0g\nZXhpc3RpbmdfZGF0YS5nZXQoImZ1bGwiLCB7fSkKICAgICAgICAgICAgICAgIG51bGxfYmVuY2ht\nYXJrcyA9IFsoYiwgbikgZm9yIGIsIG4gaW4gQkVOQ0hNQVJLUwogICAgICAgICAgICAgICAgICAg\nICAgICAgICAgICAgICAgIGlmIGV4aXN0aW5nX3Njb3Jlcy5nZXQoYikgaXMgTm9uZV0KICAgICAg\nICAgICAgICAgIGlmIG5vdCBudWxsX2JlbmNobWFya3M6CiAgICAgICAgICAgICAgICAgICAgbG9n\nLmluZm8oZiJbe3J1bl9uYW1lfV0gQWxsIGJlbmNobWFya3MgY29tcGxldGUsIHNraXBwaW5nIikK\nICAgICAgICAgICAgICAgICAgICBjb250aW51ZQogICAgICAgICAgICAgICAgYmVuY2htYXJrc190\nb19ydW4gPSBudWxsX2JlbmNobWFya3MKICAgICAgICAgICAgICAgIGxvZy5pbmZvKGYiW3tydW5f\nbmFtZX1dIFBhdGNoaW5nIG51bGwgYmVuY2htYXJrczoge1tiIGZvciBiLF8gaW4gbnVsbF9iZW5j\naG1hcmtzXX0iKQoKICAgICAgICAgICAgbG9nLmluZm8oZiJcbnsnPScqNjB9XG4gIHtydW5fbmFt\nZX1cbnsnPScqNjB9IikKCiAgICAgICAgICAgIHRyYWluX2RpciA9IHJlc3VsdHNfZGlyIC8gZiJ7\ncnVuX25hbWV9X3RyYWluIgogICAgICAgICAgICBtZXJnZWRfZGlyID0gdHJhaW5fZGlyIC8gIm1l\ncmdlZCIKCiAgICAgICAgICAgIGlmIGFyZ3Muc2tpcF90cmFpbiBhbmQgbWVyZ2VkX2Rpci5leGlz\ndHMoKToKICAgICAgICAgICAgICAgIGxvZy5pbmZvKGYiW3tydW5fbmFtZX1dIHNraXBfdHJhaW46\nIHVzaW5nIGV4aXN0aW5nIG1vZGVsIGF0IHttZXJnZWRfZGlyfSIpCiAgICAgICAgICAgICAgICBt\nb2RlbF9kaXIgPSBtZXJnZWRfZGlyCiAgICAgICAgICAgIGVsc2U6CiAgICAgICAgICAgICAgICBp\nZiBhcmdzLnNraXBfdHJhaW46CiAgICAgICAgICAgICAgICAgICAgbG9nLndhcm5pbmcoZiJbe3J1\nbl9uYW1lfV0gLS1za2lwX3RyYWluIGJ1dCBubyBtb2RlbCBhdCB7bWVyZ2VkX2Rpcn0sIHRyYWlu\naW5nIGZyb20gc2NyYXRjaCIpCiAgICAgICAgICAgICAgICB0ZXh0cywgd2VpZ2h0cyA9IHByZXBh\ncmVfZGF0YShzdHJhdGVneSwgc2VlZCkKICAgICAgICAgICAgICAgIG1vZGVsX2RpciA9IHRyYWlu\nX2xvcmEodGV4dHMsIHdlaWdodHMsIHRyYWluX2RpciwgYXJncy5kZXZpY2UsIHNlZWQpCgogICAg\nICAgICAgICBzY29yZXMgPSBldmFsdWF0ZV9tb2RlbChtb2RlbF9kaXIsIGFyZ3MuZGV2aWNlLCBl\ndmFsX3BhdGgsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGJlbmNobWFya3Nf\nb3ZlcnJpZGU9YmVuY2htYXJrc190b19ydW4sCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAg\nICAgICAgIGV4aXN0aW5nX3Njb3Jlcz1leGlzdGluZ19zY29yZXMsCiAgICAgICAgICAgICAgICAg\nICAgICAgICAgICAgICAgICAgIGV4aXN0aW5nX2Z1bGw9ZXhpc3RpbmdfZnVsbCkKICAgICAgICAg\nICAgbG9nLmluZm8oZiJbe3J1bl9uYW1lfV0gU2NvcmVzOiB7c2NvcmVzfSIpCgogICAgICAgICAg\nICBpZiB0cmFpbl9kaXIuZXhpc3RzKCk6CiAgICAgICAgICAgICAgICBzaHV0aWwucm10cmVlKHRy\nYWluX2RpciwgaWdub3JlX2Vycm9ycz1UcnVlKQogICAgICAgICAgICAgICAgbG9nLmluZm8oZiJD\nbGVhbmVkIHVwIHt0cmFpbl9kaXJ9IikKCiAgICBsb2cuaW5mbygiXG4iICsgIj0iICogNjAgKyAi\nXG4gIFNUQVRJU1RJQ0FMIEFOQUxZU0lTXG4iICsgIj0iICogNjApCiAgICBhbmFseXNpcyA9IHJ1\nbl9zdGF0aXN0aWNhbF9hbmFseXNpcygKICAgICAgICByZXN1bHRzX2RpciwgYXJncy5udW1fc2Vl\nZHMsIGFyZ3Muc2VlZF9zdGFydCkKCiAgICBsb2cuaW5mbygiXG49PT0gU1VNTUFSWSA9PT0iKQoK\nICAgIGJhc2VfZXZhbF9wYXRoID0gcmVzdWx0c19kaXIgLyAiYmFzZV9tb2RlbF9ldmFsLmpzb24i\nCiAgICBpZiBiYXNlX2V2YWxfcGF0aC5leGlzdHMoKToKICAgICAgICB3aXRoIG9wZW4oYmFzZV9l\ndmFsX3BhdGgpIGFzIGY6CiAgICAgICAgICAgIGJhc2Vfc2NvcmVzID0ganNvbi5sb2FkKGYpWyJz\nY29yZXMiXQogICAgICAgIGxvZy5pbmZvKCIgIGJhc2VfbW9kZWw6ICIgKyAiLCAiLmpvaW4oCiAg\nICAgICAgICAgIGYie2t9PXt2Oi40Zn0iIGZvciBrLCB2IGluIGJhc2Vfc2NvcmVzLml0ZW1zKCkg\naWYgdiBpcyBub3QgTm9uZSkpCgogICAgZm9yIHN0cmF0ZWd5IGluIFNUUkFURUdJRVM6CiAgICAg\nICAgc3RyYXQgPSBhbmFseXNpc1sic3RyYXRlZ2llcyJdLmdldChzdHJhdGVneSwge30pCiAgICAg\nICAgaWYgc3RyYXQ6CiAgICAgICAgICAgIHBhcnRzID0gW10KICAgICAgICAgICAgZm9yIGJlbmNo\nIGluIHNvcnRlZChzdHJhdC5rZXlzKCkpOgogICAgICAgICAgICAgICAgbSA9IHN0cmF0W2JlbmNo\nXVsibWVhbiJdCiAgICAgICAgICAgICAgICBzID0gc3RyYXRbYmVuY2hdWyJzdGQiXQogICAgICAg\nICAgICAgICAgcGFydHMuYXBwZW5kKGYie2JlbmNofT17bTouNGZ9Ky8te3M6LjRmfSIpCiAgICAg\nICAgICAgIGxvZy5pbmZvKGYiICB7c3RyYXRlZ3l9OiB7JywgJy5qb2luKHBhcnRzKX0iKQoKICAg\nIGZvciBjb21wIGluIGFuYWx5c2lzLmdldCgiY29tcGFyaXNvbnMiLCBbXSk6CiAgICAgICAgc2ln\nID0gIioqKiIgaWYgY29tcC5nZXQoImhvbG1fc2lnbmlmaWNhbnQiKSBlbHNlICJuLnMuIgogICAg\nICAgIGxvZy5pbmZvKGYiICB7Y29tcFsnYmVuY2htYXJrJ119OiB7Y29tcFsnY29tcGFyaXNvbidd\nfTogIgogICAgICAgICAgICAgICAgIGYiZD17Y29tcFsnY29oZW5zX2QnXTouM2Z9LCBwPXtjb21w\nWydwX3ZhbHVlJ106LjRmfSB7c2lnfSIpCgogICAgc3VtbWFyeSA9IHsiYmFzZV9tb2RlbCI6IHt9\nLCAic3RyYXRlZ2llcyI6IGFuYWx5c2lzWyJzdHJhdGVnaWVzIl0sCiAgICAgICAgICAgICAgICJj\nb21wYXJpc29ucyI6IGFuYWx5c2lzWyJjb21wYXJpc29ucyJdfQogICAgaWYgYmFzZV9ldmFsX3Bh\ndGguZXhpc3RzKCk6CiAgICAgICAgd2l0aCBvcGVuKGJhc2VfZXZhbF9wYXRoKSBhcyBmOgogICAg\nICAgICAgICBzdW1tYXJ5WyJiYXNlX21vZGVsIl0gPSBqc29uLmxvYWQoZilbInNjb3JlcyJdCiAg\nICB3aXRoIG9wZW4ocmVzdWx0c19kaXIgLyAic3VtbWFyeS5qc29uIiwgInciKSBhcyBmOgogICAg\nICAgIGpzb24uZHVtcChzdW1tYXJ5LCBmLCBpbmRlbnQ9MikKCiAgICBsb2cuaW5mbygiXG5Eb25l\nISIpCgoKaWYgX19uYW1lX18gPT0gIl9fbWFpbl9fIjoKICAgIG1haW4oKQo=",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_011ySkUMeyDbB5cvht6chiB8`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "echo 'IyEvdXNyL2Jpbi9lbnYgcHl0aG9uMwoiIiJFeHBhbmRlZCBkb3duc3RyZWFtIGV2YWx1YXRpb24gZm9yIEsqLWd1aWRlZCBmaWx0ZXJpbmcgc3RyYXRlZ2llcy4KClJldHJhaW5zIExvUkEgbW9kZWxzIG9uIFF3ZW4yLjUtMS41QiB3aXRoIDMgZmlsdGVyaW5nIHN0cmF0ZWdpZXMKKG5vX2ZpbHRlciwgYmluYXJ5X291cnMsIGdyYWR1YXRlZCksIHRoZW4gZXZhbHVhdGVzIG9uIDUgYmVuY2htYXJrczoKUElRQSwgVHJ1dGhmdWxRQS1NQzIsIFdpbm9HcmFuZGUsIEFSQy1DaGFsbGVuZ2UsIEdTTThLLgoKVXNhZ2U6CiAgICBweXRob24gc2NyaXB0cy9leHBfZXhwYW5kZWRfZG93bnN0cmVhbV9ldmFsLnB5IC0tZGV2aWNlIGN1ZGE6MCAtLW51bV9zZWVkcyAzCiAgICBweXRob24gc2NyaXB0cy9leHBfZXhwYW5kZWRfZG93bnN0cmVhbV9ldmFsLnB5IC0tZGV2aWNlIGN1ZGE6MCAtLXNlZWRfc3RhcnQgMiAtLW51bV9zZWVkcyAxIC0tc3RyYXRlZ3kgbm9fZmlsdGVyIC0tc2tpcF9iYXNlCiIiIgoKaW1wb3J0IGFyZ3BhcnNlCmltcG9ydCBnYwppbXBvcnQganNvbgppbXBvcnQgbG9nZ2luZwppbXBvcnQgb3MKaW1wb3J0IHNodXRpbAppbXBvcnQgc3lzCmltcG9ydCB0aW1lCmZyb20gcGF0aGxpYiBpbXBvcnQgUGF0aAoKaW1wb3J0IG51bXB5IGFzIG5wCmltcG9ydCB0b3JjaApmcm9tIHNjaXB5IGltcG9ydCBzdGF0cwoKbG9nZ2luZy5iYXNpY0NvbmZpZygKICAgIGxldmVsPWxvZ2dpbmcuSU5GTywKICAgIGZvcm1hdD0iJShhc2N0aW1lKXMgWyUobGV2ZWxuYW1lKXNdICUobWVzc2FnZSlzIiwKICAgIGRhdGVmbXQ9IiVIOiVNOiVTIiwKICAgIGhhbmRsZXJzPVtsb2dnaW5nLlN0cmVhbUhhbmRsZXIoc3lzLnN0ZG91dCldLAopCmxvZyA9IGxvZ2dpbmcuZ2V0TG9nZ2VyKF9fbmFtZV9fKQoKUFJPSkVDVF9ST09UID0gUGF0aCgiL3Jvb3QvYXV0b2RsLXRtcC9nZW4tZGVwdGgtY29udGFtaW5hdGlvbiIpCk1PREVMX1BBVEggPSAiL3Jvb3QvYXV0b2RsLXRtcC8uaGZfY2FjaGUvUXdlbi9Rd2VuMl9fXzUtMV9fXzVCIgpEQVRBX0RJUiA9IFBST0pFQ1RfUk9PVCAvICJkYXRhX2V4cDAyMF9weXRoaWFfZ3JlZWR5IgoKS1NUQVIgPSAyCkdSQURVQVRFRF9BTFBIQSA9IDAuOQpNQVhfREVQVEggPSA1ClNUUkFURUdJRVMgPSBbIm5vX2ZpbHRlciIsICJiaW5hcnlfb3VycyIsICJncmFkdWF0ZWQiXQoKTE9SQV9SQU5LID0gOApMT1JBX0FMUEhBID0gMTYKTE9SQV9UQVJHRVRfTU9EVUxFUyA9IFsicV9wcm9qIiwgInZfcHJvaiJdCkxPUkFfRFJPUE9VVCA9IDAuMDUKClRSQUlOX0xSID0gMmUtNApUUkFJTl9CQVRDSF9TSVpFID0gNApHUkFESUVOVF9BQ0NVTVVMQVRJT04gPSA0ClRSQUlOX0VQT0NIUyA9IDEKTUFYX0xFTkdUSCA9IDI1NgoKQkVOQ0hNQVJLUyA9IFsKICAgICgicGlxYSIsIDApLAogICAgKCJ0cnV0aGZ1bHFhX21jMiIsIDApLAogICAgKCJ3aW5vZ3JhbmRlIiwgNSksCiAgICAoImFyY19jaGFsbGVuZ2UiLCAyNSksCiAgICAoImdzbThrIiwgOCksCl0KCgpkZWYgbG9hZF9qc29ubChwYXRoKToKICAgIHdpdGggb3BlbihwYXRoKSBhcyBmOgogICAgICAgIHJldHVybiBbanNvbi5sb2FkcyhsaW5lKSBmb3IgbGluZSBpbiBmXQoKCmRlZiBzZXRfc2VlZChzZWVkKToKICAgIG5wLnJhbmRvbS5zZWVkKHNlZWQpCiAgICB0b3JjaC5tYW51YWxfc2VlZChzZWVkKQogICAgaWYgdG9yY2guY3VkYS5pc19hdmFpbGFibGUoKToKICAgICAgICB0b3JjaC5jdWRhLm1hbnVhbF9zZWVkX2FsbChzZWVkKQoKCmRlZiBwcmVwYXJlX2RhdGEoc3RyYXRlZ3ksIHNlZWQpOgogICAgcm5nID0gbnAucmFuZG9tLlJhbmRvbVN0YXRlKHNlZWQpCiAgICBhbGxfdGV4dHMgPSBbXQogICAgYWxsX3dlaWdodHMgPSBbXQoKICAgIGlmIHN0cmF0ZWd5ID09ICJub19maWx0ZXIiOgogICAgICAgIGZvciBkIGluIHJhbmdlKE1BWF9ERVBUSCArIDEpOgogICAgICAgICAgICByZWNvcmRzID0gbG9hZF9qc29ubChEQVRBX0RJUiAvIGYiZGVwdGhfe2R9Lmpzb25sIikKICAgICAgICAgICAgYWxsX3RleHRzLmV4dGVuZChyWyJ0ZXh0Il0gZm9yIHIgaW4gcmVjb3JkcykKICAgICAgICAgICAgYWxsX3dlaWdodHMuZXh0ZW5kKFsxLjBdICogbGVuKHJlY29yZHMpKQogICAgZWxpZiBzdHJhdGVneSA9PSAiYmluYXJ5X291cnMiOgogICAgICAgIGZvciBkIGluIHJhbmdlKEtTVEFSICsgMSk6CiAgICAgICAgICAgIHJlY29yZHMgPSBsb2FkX2pzb25sKERBVEFfRElSIC8gZiJkZXB0aF97ZH0uanNvbmwiKQogICAgICAgICAgICBhbGxfdGV4dHMuZXh0ZW5kKHJbInRleHQiXSBmb3IgciBpbiByZWNvcmRzKQogICAgICAgICAgICBhbGxfd2VpZ2h0cy5leHRlbmQoWzEuMF0gKiBsZW4ocmVjb3JkcykpCiAgICBlbGlmIHN0cmF0ZWd5ID09ICJncmFkdWF0ZWQiOgogICAgICAgIGZvciBkIGluIHJhbmdlKE1BWF9ERVBUSCArIDEpOgogICAgICAgICAgICByZWNvcmRzID0gbG9hZF9qc29ubChEQVRBX0RJUiAvIGYiZGVwdGhfe2R9Lmpzb25sIikKICAgICAgICAgICAgdyA9IEdSQURVQVRFRF9BTFBIQSAqKiBkCiAgICAgICAgICAgIGFsbF90ZXh0cy5leHRlbmQoclsidGV4dCJdIGZvciByIGluIHJlY29yZHMpCiAgICAgICAgICAgIGFsbF93ZWlnaHRzLmV4dGVuZChbd10gKiBsZW4ocmVjb3JkcykpCiAgICBlbHNlOgogICAgICAgIHJhaXNlIFZhbHVlRXJyb3IoZiJVbmtub3duIHN0cmF0ZWd5OiB7c3RyYXRlZ3l9IikKCiAgICBpbmRpY2VzID0gbGlzdChyYW5nZShsZW4oYWxsX3RleHRzKSkpCiAgICBybmcuc2h1ZmZsZShpbmRpY2VzKQogICAgYWxsX3RleHRzID0gW2FsbF90ZXh0c1tpXSBmb3IgaSBpbiBpbmRpY2VzXQogICAgYWxsX3dlaWdodHMgPSBbYWxsX3dlaWdodHNbaV0gZm9yIGkgaW4gaW5kaWNlc10KCiAgICBsb2cuaW5mbyhmIkRhdGE6IHN0cmF0ZWd5PXtzdHJhdGVneX0sIG49e2xlbihhbGxfdGV4dHMpfSwgIgogICAgICAgICAgICAgZiJtZWFuX3dlaWdodD17bnAubWVhbihhbGxfd2VpZ2h0cyk6LjRmfSIpCiAgICByZXR1cm4gYWxsX3RleHRzLCBhbGxfd2VpZ2h0cwoKCmRlZiB0cmFpbl9sb3JhKHRleHRzLCB3ZWlnaHRzLCBvdXRwdXRfZGlyLCBkZXZpY2UsIHNlZWQpOgogICAgZnJvbSB0cmFuc2Zvcm1lcnMgaW1wb3J0IEF1dG9Nb2RlbEZvckNhdXNhbExNLCBBdXRvVG9rZW5pemVyLCBUcmFpbmVyLCBUcmFpbmluZ0FyZ3VtZW50cwogICAgZnJvbSBwZWZ0IGltcG9ydCBMb3JhQ29uZmlnLCBnZXRfcGVmdF9tb2RlbCwgVGFza1R5cGUKICAgIGZyb20gdG9yY2gudXRpbHMuZGF0YSBpbXBvcnQgRGF0YXNldAoKICAgIHNldF9zZWVkKHNlZWQpCgogICAgdG9rZW5pemVyID0gQXV0b1Rva2VuaXplci5mcm9tX3ByZXRyYWluZWQoTU9ERUxfUEFUSCwgdHJ1c3RfcmVtb3RlX2NvZGU9VHJ1ZSkKICAgIGlmIHRva2VuaXplci5wYWRfdG9rZW4gaXMgTm9uZToKICAgICAgICB0b2tlbml6ZXIucGFkX3Rva2VuID0gdG9rZW5pemVyLmVvc190b2tlbgogICAgICAgIHRva2VuaXplci5wYWRfdG9rZW5faWQgPSB0b2tlbml6ZXIuZW9zX3Rva2VuX2lkCgogICAgY2xhc3MgV2VpZ2h0ZWRUZXh0RGF0YXNldChEYXRhc2V0KToKICAgICAgICBkZWYgX19pbml0X18oc2VsZiwgdGV4dHMsIHdlaWdodHMsIHRva2VuaXplciwgbWF4X2xlbmd0aCk6CiAgICAgICAgICAgIHNlbGYuZW5jb2RpbmdzID0gW10KICAgICAgICAgICAgc2VsZi53ZWlnaHRzID0gW10KICAgICAgICAgICAgZm9yIHRleHQsIHcgaW4gemlwKHRleHRzLCB3ZWlnaHRzKToKICAgICAgICAgICAgICAgIGVuYyA9IHRva2VuaXplcih0ZXh0LCB0cnVuY2F0aW9uPVRydWUsIG1heF9sZW5ndGg9bWF4X2xlbmd0aCwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwYWRkaW5nPSJtYXhfbGVuZ3RoIiwgcmV0dXJuX3RlbnNvcnM9InB0IikKICAgICAgICAgICAgICAgIHNlbGYuZW5jb2RpbmdzLmFwcGVuZCh7azogdi5zcXVlZXplKDApIGZvciBrLCB2IGluIGVuYy5pdGVtcygpfSkKICAgICAgICAgICAgICAgIHNlbGYud2VpZ2h0cy5hcHBlbmQodykKCiAgICAgICAgZGVmIF9fbGVuX18oc2VsZik6CiAgICAgICAgICAgIHJldHVybiBsZW4oc2VsZi5lbmNvZGluZ3MpCgogICAgICAgIGRlZiBfX2dldGl0ZW1fXyhzZWxmLCBpZHgpOgogICAgICAgICAgICBpdGVtID0ge2s6IHYuY2xvbmUoKSBmb3IgaywgdiBpbiBzZWxmLmVuY29kaW5nc1tpZHhdLml0ZW1zKCl9CiAgICAgICAgICAgIGl0ZW1bImxhYmVscyJdID0gaXRlbVsiaW5wdXRfaWRzIl0uY2xvbmUoKQogICAgICAgICAgICBpdGVtWyJsYWJlbHMiXVtpdGVtWyJhdHRlbnRpb25fbWFzayJdID09IDBdID0gLTEwMAogICAgICAgICAgICBpdGVtWyJ3ZWlnaHQiXSA9IHRvcmNoLnRlbnNvcihzZWxmLndlaWdodHNbaWR4XSwgZHR5cGU9dG9yY2guZmxvYXQzMikKICAgICAgICAgICAgcmV0dXJuIGl0ZW0KCiAgICBjbGFzcyBXZWlnaHRlZFRyYWluZXIoVHJhaW5lcik6CiAgICAgICAgZGVmIGNvbXB1dGVfbG9zcyhzZWxmLCBtb2RlbCwgaW5wdXRzLCByZXR1cm5fb3V0cHV0cz1GYWxzZSwgKiprd2FyZ3MpOgogICAgICAgICAgICB3ZWlnaHRzX3ZhbCA9IGlucHV0cy5wb3AoIndlaWdodCIsIE5vbmUpCiAgICAgICAgICAgIG91dHB1dHMgPSBtb2RlbCgqKmlucHV0cykKICAgICAgICAgICAgbG9zcyA9IG91dHB1dHMubG9zcwogICAgICAgICAgICBpZiB3ZWlnaHRzX3ZhbCBpcyBub3QgTm9uZSBhbmQgd2VpZ2h0c192YWwubnVtZWwoKSA+IDA6CiAgICAgICAgICAgICAgICBsb3NzID0gbG9zcyAqIHdlaWdodHNfdmFsLm1lYW4oKQogICAgICAgICAgICByZXR1cm4gKGxvc3MsIG91dHB1dHMpIGlmIHJldHVybl9vdXRwdXRzIGVsc2UgbG9zcwoKICAgIGxvZy5pbmZvKGYiVG9rZW5pemluZyB7bGVuKHRleHRzKX0gdGV4dHMuLi4iKQogICAgZGF0YXNldCA9IFdlaWdodGVkVGV4dERhdGFzZXQodGV4dHMsIHdlaWdodHMsIHRva2VuaXplciwgTUFYX0xFTkdUSCkKCiAgICBsb2cuaW5mbygiTG9hZGluZyBRd2VuMi41LTEuNUIuLi4iKQogICAgbW9kZWwgPSBBdXRvTW9kZWxGb3JDYXVzYWxMTS5mcm9tX3ByZXRyYWluZWQoCiAgICAgICAgTU9ERUxfUEFUSCwgdG9yY2hfZHR5cGU9dG9yY2guYmZsb2F0MTYsIHRydXN0X3JlbW90ZV9jb2RlPVRydWUsCiAgICApLnRvKGRldmljZSkKCiAgICBsb3JhX2NvbmZpZyA9IExvcmFDb25maWcoCiAgICAgICAgdGFza190eXBlPVRhc2tUeXBlLkNBVVNBTF9MTSwKICAgICAgICByPUxPUkFfUkFOSywKICAgICAgICBsb3JhX2FscGhhPUxPUkFfQUxQSEEsCiAgICAgICAgdGFyZ2V0X21vZHVsZXM9TE9SQV9UQVJHRVRfTU9EVUxFUywKICAgICAgICBsb3JhX2Ryb3BvdXQ9TE9SQV9EUk9QT1VULAogICAgICAgIGJpYXM9Im5vbmUiLAogICAgKQogICAgbW9kZWwgPSBnZXRfcGVmdF9tb2RlbChtb2RlbCwgbG9yYV9jb25maWcpCiAgICB0cmFpbmFibGUgPSBzdW0ocC5udW1lbCgpIGZvciBwIGluIG1vZGVsLnBhcmFtZXRlcnMoKSBpZiBwLnJlcXVpcmVzX2dyYWQpCiAgICB0b3RhbCA9IHN1bShwLm51bWVsKCkgZm9yIHAgaW4gbW9kZWwucGFyYW1ldGVycygpKQogICAgbG9nLmluZm8oZiJMb1JBOiB7dHJhaW5hYmxlOix9IHRyYWluYWJsZSAvIHt0b3RhbDosfSB0b3RhbCAiCiAgICAgICAgICAgICBmIih7dHJhaW5hYmxlL3RvdGFsKjEwMDouMmZ9JSkiKQoKICAgIHRyYWluaW5nX2FyZ3MgPSBUcmFpbmluZ0FyZ3VtZW50cygKICAgICAgICBvdXRwdXRfZGlyPXN0cihvdXRwdXRfZGlyKSwKICAgICAgICBudW1fdHJhaW5fZXBvY2hzPVRSQUlOX0VQT0NIUywKICAgICAgICBwZXJfZGV2aWNlX3RyYWluX2JhdGNoX3NpemU9VFJBSU5fQkFUQ0hfU0laRSwKICAgICAgICBncmFkaWVudF9hY2N1bXVsYXRpb25fc3RlcHM9R1JBRElFTlRfQUNDVU1VTEFUSU9OLAogICAgICAgIGxlYXJuaW5nX3JhdGU9VFJBSU5fTFIsCiAgICAgICAgd2FybXVwX3JhdGlvPTAuMDUsCiAgICAgICAgd2VpZ2h0X2RlY2F5PTAuMDEsCiAgICAgICAgbG9nZ2luZ19zdGVwcz01MCwKICAgICAgICBzYXZlX3N0cmF0ZWd5PSJubyIsCiAgICAgICAgYmYxNj1UcnVlLAogICAgICAgIGRhdGFsb2FkZXJfcGluX21lbW9yeT1GYWxzZSwKICAgICAgICBzZWVkPXNlZWQsCiAgICAgICAgcmVwb3J0X3RvPSJub25lIiwKICAgICAgICByZW1vdmVfdW51c2VkX2NvbHVtbnM9RmFsc2UsCiAgICApCgogICAgdHJhaW5lciA9IFdlaWdodGVkVHJhaW5lcigKICAgICAgICBtb2RlbD1tb2RlbCwKICAgICAgICBhcmdzPXRyYWluaW5nX2FyZ3MsCiAgICAgICAgdHJhaW5fZGF0YXNldD1kYXRhc2V0LAogICAgKQoKICAgIGxvZy5pbmZvKGYiVHJhaW5pbmc6IHtsZW4oZGF0YXNldCl9IHNhbXBsZXMsIGJzPXtUUkFJTl9CQVRDSF9TSVpFfXh7R1JBRElFTlRfQUNDVU1VTEFUSU9OfSwgIgogICAgICAgICAgICAgZiJscj17VFJBSU5fTFJ9LCBkZXZpY2U9e2RldmljZX0iKQogICAgdHJhaW5lci50cmFpbigpCgogICAgbWVyZ2VkX2RpciA9IG91dHB1dF9kaXIgLyAibWVyZ2VkIgogICAgbG9nLmluZm8oIk1lcmdpbmcgTG9SQSB3ZWlnaHRzIGludG8gYmFzZSBtb2RlbC4uLiIpCiAgICBtZXJnZWRfbW9kZWwgPSBtb2RlbC5tZXJnZV9hbmRfdW5sb2FkKCkKICAgIG1lcmdlZF9tb2RlbC5zYXZlX3ByZXRyYWluZWQobWVyZ2VkX2RpcikKICAgIHRva2VuaXplci5zYXZlX3ByZXRyYWluZWQobWVyZ2VkX2RpcikKICAgIGxvZy5pbmZvKGYiTWVyZ2VkIG1vZGVsIHNhdmVkIHRvIHttZXJnZWRfZGlyfSIpCgogICAgZGVsIG1vZGVsLCBtZXJnZWRfbW9kZWwsIHRyYWluZXIsIGRhdGFzZXQKICAgIHRvcmNoLmN1ZGEuZW1wdHlfY2FjaGUoKQogICAgZ2MuY29sbGVjdCgpCgogICAgcmV0dXJuIG1lcmdlZF9kaXIKCgpkZWYgZXZhbHVhdGVfbW9kZWwobW9kZWxfcGF0aCwgZGV2aWNlLCByZXN1bHRzX3BhdGgsCiAgICAgICAgICAgICAgICAgICBiZW5jaG1hcmtzX292ZXJyaWRlPU5vbmUsIGV4aXN0aW5nX3Njb3Jlcz1Ob25lLCBleGlzdGluZ19mdWxsPU5vbmUpOgogICAgaW1wb3J0IGxtX2V2YWwKICAgIGZyb20gbG1fZXZhbC5tb2RlbHMuaHVnZ2luZ2ZhY2UgaW1wb3J0IEhGTE0KCiAgICBiZW5jaG1hcmtzID0gYmVuY2htYXJrc19vdmVycmlkZSBpZiBiZW5jaG1hcmtzX292ZXJyaWRlIGlzIG5vdCBOb25lIGVsc2UgQkVOQ0hNQVJLUwogICAgbG9nLmluZm8oZiJFdmFsdWF0aW5nIHttb2RlbF9wYXRofSBvbiB7bGVuKGJlbmNobWFya3MpfSBiZW5jaG1hcmtzOiB7W2IgZm9yIGIsXyBpbiBiZW5jaG1hcmtzXX0iKQoKICAgIGxtID0gSEZMTSgKICAgICAgICBwcmV0cmFpbmVkPXN0cihtb2RlbF9wYXRoKSwKICAgICAgICBkZXZpY2U9ZGV2aWNlLAogICAgICAgIGR0eXBlPSJmbG9hdDE2IiwKICAgICAgICBiYXRjaF9zaXplPSJhdXRvOjQiLAogICAgICAgIG1heF9sZW5ndGg9MjA0OCwKICAgICAgICB0cnVzdF9yZW1vdGVfY29kZT1UcnVlLAogICAgKQoKICAgIGFsbF9zY29yZXMgPSBkaWN0KGV4aXN0aW5nX3Njb3JlcykgaWYgZXhpc3Rpbmdfc2NvcmVzIGVsc2Uge30KICAgIGFsbF9mdWxsID0gZGljdChleGlzdGluZ19mdWxsKSBpZiBleGlzdGluZ19mdWxsIGVsc2Uge30KCiAgICBmb3IgdGFza19uYW1lLCBuX2Zld3Nob3QgaW4gYmVuY2htYXJrczoKICAgICAgICBsb2cuaW5mbyhmIiAgUnVubmluZyB7dGFza19uYW1lfSAoe25fZmV3c2hvdH0tc2hvdCkuLi4iKQogICAgICAgIHQwID0gdGltZS50aW1lKCkKCiAgICAgICAgc3VjY2VzcyA9IEZhbHNlCiAgICAgICAgZm9yIGF0dGVtcHQgaW4gcmFuZ2UoMyk6CiAgICAgICAgICAgIHRyeToKICAgICAgICAgICAgICAgIHJlc3VsdHMgPSBsbV9ldmFsLnNpbXBsZV9ldmFsdWF0ZSgKICAgICAgICAgICAgICAgICAgICBtb2RlbD1sbSwKICAgICAgICAgICAgICAgICAgICB0YXNrcz1bdGFza19uYW1lXSwKICAgICAgICAgICAgICAgICAgICBudW1fZmV3c2hvdD1uX2Zld3Nob3QsCiAgICAgICAgICAgICAgICApCiAgICAgICAgICAgICAgICBzdWNjZXNzID0gVHJ1ZQogICAgICAgICAgICAgICAgYnJlYWsKICAgICAgICAgICAgZXhjZXB0IEV4Y2VwdGlvbiBhcyBlOgogICAgICAgICAgICAgICAgaWYgYXR0ZW1wdCA8IDI6CiAgICAgICAgICAgICAgICAgICAgd2FpdCA9IDMwICogKGF0dGVtcHQgKyAxKQogICAgICAgICAgICAgICAgICAgIGxvZy53YXJuaW5nKGYiICBBdHRlbXB0IHthdHRlbXB0KzF9IGZhaWxlZDoge2V9LiBSZXRyeWluZyBpbiB7d2FpdH1zLi4uIikKICAgICAgICAgICAgICAgICAgICB0aW1lLnNsZWVwKHdhaXQpCiAgICAgICAgICAgICAgICBlbHNlOgogICAgICAgICAgICAgICAgICAgIGxvZy5lcnJvcihmIiAgRmFpbGVkIHt0YXNrX25hbWV9IGFmdGVyIDMgYXR0ZW1wdHM6IHtlfSIpCgogICAgICAgIGlmIG5vdCBzdWNjZXNzOgogICAgICAgICAgICBhbGxfc2NvcmVzW3Rhc2tfbmFtZV0gPSBOb25lCiAgICAgICAgICAgIGNvbnRpbnVlCgogICAgICAgIHRhc2tfcmVzdWx0cyA9IHJlc3VsdHMuZ2V0KCJyZXN1bHRzIiwge30pLmdldCh0YXNrX25hbWUsIHt9KQoKICAgICAgICBpZiB0YXNrX25hbWUgPT0gImdzbThrIjoKICAgICAgICAgICAgc2NvcmUgPSB0YXNrX3Jlc3VsdHMuZ2V0KCJleGFjdF9tYXRjaCxzdHJpY3QtbWF0Y2giLAogICAgICAgICAgICAgICAgICAgICB0YXNrX3Jlc3VsdHMuZ2V0KCJleGFjdF9tYXRjaCxnZXQtYW5zd2VyIiwKICAgICAgICAgICAgICAgICAgICAgIHRhc2tfcmVzdWx0cy5nZXQoImFjYyxub25lIiwgMCkpKQogICAgICAgIGVsaWYgdGFza19uYW1lID09ICJhcmNfY2hhbGxlbmdlIjoKICAgICAgICAgICAgc2NvcmUgPSB0YXNrX3Jlc3VsdHMuZ2V0KCJhY2Nfbm9ybSxub25lIiwKICAgICAgICAgICAgICAgICAgICAgdGFza19yZXN1bHRzLmdldCgiYWNjLG5vbmUiLCAwKSkKICAgICAgICBlbGlmIHRhc2tfbmFtZSA9PSAidHJ1dGhmdWxxYV9tYzIiOgogICAgICAgICAgICBzY29yZSA9IHRhc2tfcmVzdWx0cy5nZXQoImFjYyxub25lIiwgMCkKICAgICAgICBlbGlmIHRhc2tfbmFtZSBpbiAoInBpcWEiLCAid2lub2dyYW5kZSIpOgogICAgICAgICAgICBzY29yZSA9IHRhc2tfcmVzdWx0cy5nZXQoImFjYyxub25lIiwgMCkKICAgICAgICBlbHNlOgogICAgICAgICAgICBzY29yZSA9IHRhc2tfcmVzdWx0cy5nZXQoImFjYyxub25lIiwgMCkKCiAgICAgICAgYWxsX3Njb3Jlc1t0YXNrX25hbWVdID0gZmxvYXQoc2NvcmUpIGlmIHNjb3JlIGlzIG5vdCBOb25lIGVsc2UgTm9uZQogICAgICAgIGFsbF9mdWxsW3Rhc2tfbmFtZV0gPSB7azogdiBmb3IgaywgdiBpbiB0YXNrX3Jlc3VsdHMuaXRlbXMoKX0KICAgICAgICBlbGFwc2VkID0gdGltZS50aW1lKCkgLSB0MAogICAgICAgIGxvZy5pbmZvKGYiICB7dGFza19uYW1lfToge3Njb3JlOi40Zn0gKHtlbGFwc2VkOi4wZn1zKSIpCgogICAgcmVzdWx0c19wYXRoLnBhcmVudC5ta2RpcihwYXJlbnRzPVRydWUsIGV4aXN0X29rPVRydWUpCiAgICB3aXRoIG9wZW4ocmVzdWx0c19wYXRoLCAidyIpIGFzIGY6CiAgICAgICAganNvbi5kdW1wKHsKICAgICAgICAgICAgInNjb3JlcyI6IGFsbF9zY29yZXMsCiAgICAgICAgICAgICJmdWxsIjogYWxsX2Z1bGwsCiAgICAgICAgICAgICJiZW5jaG1hcmtzIjogW1tiLCBuXSBmb3IgYiwgbiBpbiBCRU5DSE1BUktTXSwKICAgICAgICB9LCBmLCBpbmRlbnQ9MiwgZGVmYXVsdD1zdHIpCgogICAgZGVsIGxtCiAgICB0b3JjaC5jdWRhLmVtcHR5X2NhY2hlKCkKICAgIGdjLmNvbGxlY3QoKQoKICAgIHJldHVybiBhbGxfc2NvcmVzCgoKZGVmIHJ1bl9zdGF0aXN0aWNhbF9hbmFseXNpcyhyZXN1bHRzX2RpciwgbnVtX3NlZWRzLCBzZWVkX3N0YXJ0KToKICAgIGxvZy5pbmZvKCJSdW5uaW5nIHN0YXRpc3RpY2FsIGFuYWx5c2lzLi4uIikKCiAgICBzdHJhdGVneV9zY29yZXMgPSB7czoge30gZm9yIHMgaW4gU1RSQVRFR0lFU30KCiAgICBmb3Igc3RyYXRlZ3kgaW4gU1RSQVRFR0lFUzoKICAgICAgICBmb3Igc2VlZCBpbiByYW5nZShzZWVkX3N0YXJ0LCBzZWVkX3N0YXJ0ICsgbnVtX3NlZWRzKToKICAgICAgICAgICAgZXZhbF9wYXRoID0gcmVzdWx0c19kaXIgLyBmIntzdHJhdGVneX1fc2VlZHtzZWVkfV9ldmFsLmpzb24iCiAgICAgICAgICAgIGlmIGV2YWxfcGF0aC5leGlzdHMoKToKICAgICAgICAgICAgICAgIHdpdGggb3BlbihldmFsX3BhdGgpIGFzIGY6CiAgICAgICAgICAgICAgICAgICAgZGF0YSA9IGpzb24ubG9hZChmKQogICAgICAgICAgICAgICAgc3RyYXRlZ3lfc2NvcmVzW3N0cmF0ZWd5XVtzZWVkXSA9IGRhdGFbInNjb3JlcyJdCgogICAgYWxsX2JlbmNobWFya3MgPSBzZXQoKQogICAgZm9yIHNjb3Jlc19ieV9zZWVkIGluIHN0cmF0ZWd5X3Njb3Jlcy52YWx1ZXMoKToKICAgICAgICBmb3Igc2NvcmVzIGluIHNjb3Jlc19ieV9zZWVkLnZhbHVlcygpOgogICAgICAgICAgICBhbGxfYmVuY2htYXJrcy51cGRhdGUoayBmb3IgaywgdiBpbiBzY29yZXMuaXRlbXMoKSBpZiB2IGlzIG5vdCBOb25lKQoKICAgIGFuYWx5c2lzID0geyJzdHJhdGVnaWVzIjoge30sICJjb21wYXJpc29ucyI6IFtdfQoKICAgIGZvciBzdHJhdGVneSBpbiBTVFJBVEVHSUVTOgogICAgICAgIHN0cmF0X2RhdGEgPSB7fQogICAgICAgIGZvciBiZW5jaCBpbiBzb3J0ZWQoYWxsX2JlbmNobWFya3MpOgogICAgICAgICAgICB2YWxzID0gW3N0cmF0ZWd5X3Njb3Jlc1tzdHJhdGVneV1bc11bYmVuY2hdCiAgICAgICAgICAgICAgICAgICAgZm9yIHMgaW4gc3RyYXRlZ3lfc2NvcmVzW3N0cmF0ZWd5XQogICAgICAgICAgICAgICAgICAgIGlmIGJlbmNoIGluIHN0cmF0ZWd5X3Njb3Jlc1tzdHJhdGVneV1bc10KICAgICAgICAgICAgICAgICAgICBhbmQgc3RyYXRlZ3lfc2NvcmVzW3N0cmF0ZWd5XVtzXVtiZW5jaF0gaXMgbm90IE5vbmVdCiAgICAgICAgICAgIGlmIHZhbHM6CiAgICAgICAgICAgICAgICBzdHJhdF9kYXRhW2JlbmNoXSA9IHsKICAgICAgICAgICAgICAgICAgICAibWVhbiI6IGZsb2F0KG5wLm1lYW4odmFscykpLAogICAgICAgICAgICAgICAgICAgICJzdGQiOiBmbG9hdChucC5zdGQodmFscykpLAogICAgICAgICAgICAgICAgICAgICJ2YWx1ZXMiOiB2YWxzLAogICAgICAgICAgICAgICAgfQogICAgICAgIGFuYWx5c2lzWyJzdHJhdGVnaWVzIl1bc3RyYXRlZ3ldID0gc3RyYXRfZGF0YQoKICAgIGNvbXBhcmlzb25zID0gW10KICAgIGZvciBiZW5jaCBpbiBzb3J0ZWQoYWxsX2JlbmNobWFya3MpOgogICAgICAgIGZvciBzMSwgczIgaW4gWygiYmluYXJ5X291cnMiLCAibm9fZmlsdGVyIiksICgiYmluYXJ5X291cnMiLCAiZ3JhZHVhdGVkIiksCiAgICAgICAgICAgICAgICAgICAgICAgKCJncmFkdWF0ZWQiLCAibm9fZmlsdGVyIildOgogICAgICAgICAgICB2MSA9IGFuYWx5c2lzWyJzdHJhdGVnaWVzIl0uZ2V0KHMxLCB7fSkuZ2V0KGJlbmNoLCB7fSkuZ2V0KCJ2YWx1ZXMiLCBbXSkKICAgICAgICAgICAgdjIgPSBhbmFseXNpc1sic3RyYXRlZ2llcyJdLmdldChzMiwge30pLmdldChiZW5jaCwge30pLmdldCgidmFsdWVzIiwgW10pCiAgICAgICAgICAgIGlmIGxlbih2MSkgPj0gMiBhbmQgbGVuKHYyKSA+PSAyOgogICAgICAgICAgICAgICAgdF9zdGF0LCBwX3ZhbCA9IHN0YXRzLnR0ZXN0X2luZCh2MSwgdjIpCiAgICAgICAgICAgICAgICBkaWZmID0gbnAubWVhbih2MSkgLSBucC5tZWFuKHYyKQogICAgICAgICAgICAgICAgcG9vbGVkX3N0ZCA9IG5wLnNxcnQoKG5wLnZhcih2MSkgKyBucC52YXIodjIpKSAvIDIpCiAgICAgICAgICAgICAgICBjb2hlbnNfZCA9IGRpZmYgLyBwb29sZWRfc3RkIGlmIHBvb2xlZF9zdGQgPiAwIGVsc2UgMC4wCiAgICAgICAgICAgICAgICBjb21wYXJpc29ucy5hcHBlbmQoewogICAgICAgICAgICAgICAgICAgICJiZW5jaG1hcmsiOiBiZW5jaCwKICAgICAgICAgICAgICAgICAgICAiY29tcGFyaXNvbiI6IGYie3MxfV92c197czJ9IiwKICAgICAgICAgICAgICAgICAgICAibWVhbl9kaWZmIjogZmxvYXQoZGlmZiksCiAgICAgICAgICAgICAgICAgICAgInRfc3RhdCI6IGZsb2F0KHRfc3RhdCksCiAgICAgICAgICAgICAgICAgICAgInBfdmFsdWUiOiBmbG9hdChwX3ZhbCksCiAgICAgICAgICAgICAgICAgICAgImNvaGVuc19kIjogZmxvYXQoY29oZW5zX2QpLAogICAgICAgICAgICAgICAgfSkKCiAgICBpZiBjb21wYXJpc29uczoKICAgICAgICBwX3ZhbHVlcyA9IFtjWyJwX3ZhbHVlIl0gZm9yIGMgaW4gY29tcGFyaXNvbnNdCiAgICAgICAgc29ydGVkX2luZGljZXMgPSBucC5hcmdzb3J0KHBfdmFsdWVzKQogICAgICAgIG0gPSBsZW4ocF92YWx1ZXMpCiAgICAgICAgZm9yIHJhbmssIGlkeCBpbiBlbnVtZXJhdGUoc29ydGVkX2luZGljZXMpOgogICAgICAgICAgICBhZGp1c3RlZF9hbHBoYSA9IDAuMDUgLyAobSAtIHJhbmspCiAgICAgICAgICAgIGNvbXBhcmlzb25zW2lkeF1bImhvbG1fc2lnbmlmaWNhbnQiXSA9IHBfdmFsdWVzW2lkeF0gPCBhZGp1c3RlZF9hbHBoYQoKICAgIGFuYWx5c2lzWyJjb21wYXJpc29ucyJdID0gY29tcGFyaXNvbnMKCiAgICBvdXRfcGF0aCA9IHJlc3VsdHNfZGlyIC8gInN0YXRpc3RpY2FsX2FuYWx5c2lzLmpzb24iCiAgICB3aXRoIG9wZW4ob3V0X3BhdGgsICJ3IikgYXMgZjoKICAgICAgICBqc29uLmR1bXAoYW5hbHlzaXMsIGYsIGluZGVudD0yKQogICAgbG9nLmluZm8oZiJTdGF0aXN0aWNhbCBhbmFseXNpcyBzYXZlZCB0byB7b3V0X3BhdGh9IikKICAgIHJldHVybiBhbmFseXNpcwoKCmRlZiBtYWluKCk6CiAgICBwYXJzZXIgPSBhcmdwYXJzZS5Bcmd1bWVudFBhcnNlcigKICAgICAgICBkZXNjcmlwdGlvbj0iRXhwYW5kZWQgZG93bnN0cmVhbSBldmFsIGZvciBLKi1ndWlkZWQgZmlsdGVyaW5nIikKICAgIHBhcnNlci5hZGRfYXJndW1lbnQoIi0tZGV2aWNlIiwgdHlwZT1zdHIsIGRlZmF1bHQ9ImN1ZGE6MCIpCiAgICBwYXJzZXIuYWRkX2FyZ3VtZW50KCItLW51bV9zZWVkcyIsIHR5cGU9aW50LCBkZWZhdWx0PTMpCiAgICBwYXJzZXIuYWRkX2FyZ3VtZW50KCItLXNlZWRfc3RhcnQiLCB0eXBlPWludCwgZGVmYXVsdD0wKQogICAgcGFyc2VyLmFkZF9hcmd1bWVudCgiLS1za2lwX2Jhc2UiLCBhY3Rpb249InN0b3JlX3RydWUiKQogICAgcGFyc2VyLmFkZF9hcmd1bWVudCgiLS1zdHJhdGVneSIsIHR5cGU9c3RyLCBkZWZhdWx0PSJhbGwiLAogICAgICAgICAgICAgICAgICAgICAgICBjaG9pY2VzPVsibm9fZmlsdGVyIiwgImJpbmFyeV9vdXJzIiwgImdyYWR1YXRlZCIsICJhbGwiXSkKICAgIHBhcnNlci5hZGRfYXJndW1lbnQoIi0tc2tpcF90cmFpbiIsIGFjdGlvbj0ic3RvcmVfdHJ1ZSIsCiAgICAgICAgICAgICAgICAgICAgICAgIGhlbHA9IlNraXAgdHJhaW5pbmcsIGxvYWQgZnJvbSBleGlzdGluZyBtZXJnZWQgbW9kZWwgZGlyIikKICAgIGFyZ3MgPSBwYXJzZXIucGFyc2VfYXJncygpCgogICAgcmVzdWx0c19kaXIgPSBQUk9KRUNUX1JPT1QgLyAicmVzdWx0cyIgLyAiZXhwX2V4cGFuZGVkX2Rvd25zdHJlYW1fZXZhbCIKICAgIHJlc3VsdHNfZGlyLm1rZGlyKHBhcmVudHM9VHJ1ZSwgZXhpc3Rfb2s9VHJ1ZSkKCiAgICBsb2dfcGF0aCA9IFBST0pFQ1RfUk9PVCAvICJsb2dzIiAvICJleHBfZXhwYW5kZWRfZG93bnN0cmVhbV9ldmFsLmxvZyIKICAgIGxvZ19wYXRoLnBhcmVudC5ta2RpcihwYXJlbnRzPVRydWUsIGV4aXN0X29rPVRydWUpCiAgICBmaCA9IGxvZ2dpbmcuRmlsZUhhbmRsZXIobG9nX3BhdGgpCiAgICBmaC5zZXRGb3JtYXR0ZXIobG9nZ2luZy5Gb3JtYXR0ZXIoCiAgICAgICAgIiUoYXNjdGltZSlzIFslKGxldmVsbmFtZSlzXSAlKG1lc3NhZ2UpcyIsIGRhdGVmbXQ9IiVIOiVNOiVTIikpCiAgICBsb2dnaW5nLmdldExvZ2dlcigpLmFkZEhhbmRsZXIoZmgpCgogICAgbG9nLmluZm8oIj0iICogNjApCiAgICBsb2cuaW5mbygiRXhwYW5kZWQgRG93bnN0cmVhbSBFdmFsdWF0aW9uIikKICAgIGxvZy5pbmZvKGYiTW9kZWw6IHtNT0RFTF9QQVRIfSIpCiAgICBsb2cuaW5mbyhmIkRhdGE6IHtEQVRBX0RJUn0iKQogICAgbG9nLmluZm8oZiJTdHJhdGVneSBmaWx0ZXI6IHthcmdzLnN0cmF0ZWd5fSIpCiAgICBsb2cuaW5mbyhmIlNlZWRzOiB7YXJncy5zZWVkX3N0YXJ0fS17YXJncy5zZWVkX3N0YXJ0ICsgYXJncy5udW1fc2VlZHMgLSAxfSIpCiAgICBsb2cuaW5mbyhmIkJlbmNobWFya3M6IHtbYlswXSBmb3IgYiBpbiBCRU5DSE1BUktTXX0iKQogICAgbG9nLmluZm8oZiJMb1JBOiByYW5rPXtMT1JBX1JBTkt9LCBhbHBoYT17TE9SQV9BTFBIQX0sIHRhcmdldD17TE9SQV9UQVJHRVRfTU9EVUxFU30iKQogICAgbG9nLmluZm8oZiJza2lwX3RyYWluPXthcmdzLnNraXBfdHJhaW59IikKICAgIGxvZy5pbmZvKCI9IiAqIDYwKQoKICAgIGlmIG5vdCBhcmdzLnNraXBfYmFzZToKICAgICAgICBiYXNlX2V2YWxfcGF0aCA9IHJlc3VsdHNfZGlyIC8gImJhc2VfbW9kZWxfZXZhbC5qc29uIgogICAgICAgIGlmIGJhc2VfZXZhbF9wYXRoLmV4aXN0cygpOgogICAgICAgICAgICBsb2cuaW5mbygiQmFzZSBtb2RlbCBldmFsIGV4aXN0cywgc2tpcHBpbmciKQogICAgICAgIGVsc2U6CiAgICAgICAgICAgIGxvZy5pbmZvKCJFdmFsdWF0aW5nIGJhc2UgbW9kZWwuLi4iKQogICAgICAgICAgICBiYXNlX3Njb3JlcyA9IGV2YWx1YXRlX21vZGVsKE1PREVMX1BBVEgsIGFyZ3MuZGV2aWNlLCBiYXNlX2V2YWxfcGF0aCkKICAgICAgICAgICAgbG9nLmluZm8oZiJCYXNlIG1vZGVsIHNjb3Jlczoge2Jhc2Vfc2NvcmVzfSIpCgogICAgZm9yIHNlZWQgaW4gcmFuZ2UoYXJncy5zZWVkX3N0YXJ0LCBhcmdzLnNlZWRfc3RhcnQgKyBhcmdzLm51bV9zZWVkcyk6CiAgICAgICAgZm9yIHN0cmF0ZWd5IGluIFNUUkFURUdJRVM6CiAgICAgICAgICAgIGlmIGFyZ3Muc3RyYXRlZ3kgIT0gImFsbCIgYW5kIHN0cmF0ZWd5ICE9IGFyZ3Muc3RyYXRlZ3k6CiAgICAgICAgICAgICAgICBjb250aW51ZQoKICAgICAgICAgICAgcnVuX25hbWUgPSBmIntzdHJhdGVneX1fc2VlZHtzZWVkfSIKICAgICAgICAgICAgZXZhbF9wYXRoID0gcmVzdWx0c19kaXIgLyBmIntydW5fbmFtZX1fZXZhbC5qc29uIgoKICAgICAgICAgICAgYmVuY2htYXJrc190b19ydW4gPSBCRU5DSE1BUktTCiAgICAgICAgICAgIGV4aXN0aW5nX3Njb3JlcyA9IHt9CiAgICAgICAgICAgIGV4aXN0aW5nX2Z1bGwgPSB7fQoKICAgICAgICAgICAgaWYgZXZhbF9wYXRoLmV4aXN0cygpOgogICAgICAgICAgICAgICAgd2l0aCBvcGVuKGV2YWxfcGF0aCkgYXMgZjoKICAgICAgICAgICAgICAgICAgICBleGlzdGluZ19kYXRhID0ganNvbi5sb2FkKGYpCiAgICAgICAgICAgICAgICBleGlzdGluZ19zY29yZXMgPSBleGlzdGluZ19kYXRhLmdldCgic2NvcmVzIiwge30pCiAgICAgICAgICAgICAgICBleGlzdGluZ19mdWxsID0gZXhpc3RpbmdfZGF0YS5nZXQoImZ1bGwiLCB7fSkKICAgICAgICAgICAgICAgIG51bGxfYmVuY2htYXJrcyA9IFsoYiwgbikgZm9yIGIsIG4gaW4gQkVOQ0hNQVJLUwogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlmIGV4aXN0aW5nX3Njb3Jlcy5nZXQoYikgaXMgTm9uZV0KICAgICAgICAgICAgICAgIGlmIG5vdCBudWxsX2JlbmNobWFya3M6CiAgICAgICAgICAgICAgICAgICAgbG9nLmluZm8oZiJbe3J1bl9uYW1lfV0gQWxsIGJlbmNobWFya3MgY29tcGxldGUsIHNraXBwaW5nIikKICAgICAgICAgICAgICAgICAgICBjb250aW51ZQogICAgICAgICAgICAgICAgYmVuY2htYXJrc190b19ydW4gPSBudWxsX2JlbmNobWFya3MKICAgICAgICAgICAgICAgIGxvZy5pbmZvKGYiW3tydW5fbmFtZX1dIFBhdGNoaW5nIG51bGwgYmVuY2htYXJrczoge1tiIGZvciBiLF8gaW4gbnVsbF9iZW5jaG1hcmtzXX0iKQoKICAgICAgICAgICAgbG9nLmluZm8oZiJcbnsnPScqNjB9XG4gIHtydW5fbmFtZX1cbnsnPScqNjB9IikKCiAgICAgICAgICAgIHRyYWluX2RpciA9IHJlc3VsdHNfZGlyIC8gZiJ7cnVuX25hbWV9X3RyYWluIgogICAgICAgICAgICBtZXJnZWRfZGlyID0gdHJhaW5fZGlyIC8gIm1lcmdlZCIKCiAgICAgICAgICAgIGlmIGFyZ3Muc2tpcF90cmFpbiBhbmQgbWVyZ2VkX2Rpci5leGlzdHMoKToKICAgICAgICAgICAgICAgIGxvZy5pbmZvKGYiW3tydW5fbmFtZX1dIHNraXBfdHJhaW46IHVzaW5nIGV4aXN0aW5nIG1vZGVsIGF0IHttZXJnZWRfZGlyfSIpCiAgICAgICAgICAgICAgICBtb2RlbF9kaXIgPSBtZXJnZWRfZGlyCiAgICAgICAgICAgIGVsc2U6CiAgICAgICAgICAgICAgICBpZiBhcmdzLnNraXBfdHJhaW46CiAgICAgICAgICAgICAgICAgICAgbG9nLndhcm5pbmcoZiJbe3J1bl9uYW1lfV0gLS1za2lwX3RyYWluIGJ1dCBubyBtb2RlbCBhdCB7bWVyZ2VkX2Rpcn0sIHRyYWluaW5nIGZyb20gc2NyYXRjaCIpCiAgICAgICAgICAgICAgICB0ZXh0cywgd2VpZ2h0cyA9IHByZXBhcmVfZGF0YShzdHJhdGVneSwgc2VlZCkKICAgICAgICAgICAgICAgIG1vZGVsX2RpciA9IHRyYWluX2xvcmEodGV4dHMsIHdlaWdodHMsIHRyYWluX2RpciwgYXJncy5kZXZpY2UsIHNlZWQpCgogICAgICAgICAgICBzY29yZXMgPSBldmFsdWF0ZV9tb2RlbChtb2RlbF9kaXIsIGFyZ3MuZGV2aWNlLCBldmFsX3BhdGgsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGJlbmNobWFya3Nfb3ZlcnJpZGU9YmVuY2htYXJrc190b19ydW4sCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGV4aXN0aW5nX3Njb3Jlcz1leGlzdGluZ19zY29yZXMsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGV4aXN0aW5nX2Z1bGw9ZXhpc3RpbmdfZnVsbCkKICAgICAgICAgICAgbG9nLmluZm8oZiJbe3J1bl9uYW1lfV0gU2NvcmVzOiB7c2NvcmVzfSIpCgogICAgICAgICAgICBpZiB0cmFpbl9kaXIuZXhpc3RzKCk6CiAgICAgICAgICAgICAgICBzaHV0aWwucm10cmVlKHRyYWluX2RpciwgaWdub3JlX2Vycm9ycz1UcnVlKQogICAgICAgICAgICAgICAgbG9nLmluZm8oZiJDbGVhbmVkIHVwIHt0cmFpbl9kaXJ9IikKCiAgICBsb2cuaW5mbygiXG4iICsgIj0iICogNjAgKyAiXG4gIFNUQVRJU1RJQ0FMIEFOQUxZU0lTXG4iICsgIj0iICogNjApCiAgICBhbmFseXNpcyA9IHJ1bl9zdGF0aXN0aWNhbF9hbmFseXNpcygKICAgICAgICByZXN1bHRzX2RpciwgYXJncy5udW1fc2VlZHMsIGFyZ3Muc2VlZF9zdGFydCkKCiAgICBsb2cuaW5mbygiXG49PT0gU1VNTUFSWSA9PT0iKQoKICAgIGJhc2VfZXZhbF9wYXRoID0gcmVzdWx0c19kaXIgLyAiYmFzZV9tb2RlbF9ldmFsLmpzb24iCiAgICBpZiBiYXNlX2V2YWxfcGF0aC5leGlzdHMoKToKICAgICAgICB3aXRoIG9wZW4oYmFzZV9ldmFsX3BhdGgpIGFzIGY6CiAgICAgICAgICAgIGJhc2Vfc2NvcmVzID0ganNvbi5sb2FkKGYpWyJzY29yZXMiXQogICAgICAgIGxvZy5pbmZvKCIgIGJhc2VfbW9kZWw6ICIgKyAiLCAiLmpvaW4oCiAgICAgICAgICAgIGYie2t9PXt2Oi40Zn0iIGZvciBrLCB2IGluIGJhc2Vfc2NvcmVzLml0ZW1zKCkgaWYgdiBpcyBub3QgTm9uZSkpCgogICAgZm9yIHN0cmF0ZWd5IGluIFNUUkFURUdJRVM6CiAgICAgICAgc3RyYXQgPSBhbmFseXNpc1sic3RyYXRlZ2llcyJdLmdldChzdHJhdGVneSwge30pCiAgICAgICAgaWYgc3RyYXQ6CiAgICAgICAgICAgIHBhcnRzID0gW10KICAgICAgICAgICAgZm9yIGJlbmNoIGluIHNvcnRlZChzdHJhdC5rZXlzKCkpOgogICAgICAgICAgICAgICAgbSA9IHN0cmF0W2JlbmNoXVsibWVhbiJdCiAgICAgICAgICAgICAgICBzID0gc3RyYXRbYmVuY2hdWyJzdGQiXQogICAgICAgICAgICAgICAgcGFydHMuYXBwZW5kKGYie2JlbmNofT17bTouNGZ9Ky8te3M6LjRmfSIpCiAgICAgICAgICAgIGxvZy5pbmZvKGYiICB7c3RyYXRlZ3l9OiB7JywgJy5qb2luKHBhcnRzKX0iKQoKICAgIGZvciBjb21wIGluIGFuYWx5c2lzLmdldCgiY29tcGFyaXNvbnMiLCBbXSk6CiAgICAgICAgc2lnID0gIioqKiIgaWYgY29tcC5nZXQoImhvbG1fc2lnbmlmaWNhbnQiKSBlbHNlICJuLnMuIgogICAgICAgIGxvZy5pbmZvKGYiICB7Y29tcFsnYmVuY2htYXJrJ119OiB7Y29tcFsnY29tcGFyaXNvbiddfTogIgogICAgICAgICAgICAgICAgIGYiZD17Y29tcFsnY29oZW5zX2QnXTouM2Z9LCBwPXtjb21wWydwX3ZhbHVlJ106LjRmfSB7c2lnfSIpCgogICAgc3VtbWFyeSA9IHsiYmFzZV9tb2RlbCI6IHt9LCAic3RyYXRlZ2llcyI6IGFuYWx5c2lzWyJzdHJhdGVnaWVzIl0sCiAgICAgICAgICAgICAgICJjb21wYXJpc29ucyI6IGFuYWx5c2lzWyJjb21wYXJpc29ucyJdfQogICAgaWYgYmFzZV9ldmFsX3BhdGguZXhpc3RzKCk6CiAgICAgICAgd2l0aCBvcGVuKGJhc2VfZXZhbF9wYXRoKSBhcyBmOgogICAgICAgICAgICBzdW1tYXJ5WyJiYXNlX21vZGVsIl0gPSBqc29uLmxvYWQoZilbInNjb3JlcyJdCiAgICB3aXRoIG9wZW4ocmVzdWx0c19kaXIgLyAic3VtbWFyeS5qc29uIiwgInciKSBhcyBmOgogICAgICAgIGpzb24uZHVtcChzdW1tYXJ5LCBmLCBpbmRlbnQ9MikKCiAgICBsb2cuaW5mbygiXG5Eb25lISIpCgoKaWYgX19uYW1lX18gPT0gIl9fbWFpbl9fIjoKICAgIG1haW4oKQo=' | base64 -d > /root/autodl-tmp/gen-depth-contamination/scripts/exp_expanded_downstream_eval.py && wc -l /root/autodl-tmp/gen-depth-contamination/scripts/exp_expanded_downstream_eval.py && echo \"DEPLOY_OK\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "88dbc57f-8ced-4008-81e2-6869985c8013",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AuC347FUjAuBhsboU2VH9P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20542,
+      "cache_read_input_tokens": 68342,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 20542
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-20T20:20:13.074Z_
+
+<details><summary>↩ Tool result · `toolu_011ySkUMeyDbB5cvht6chiB8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"500 /root/autodl-tmp/gen-depth-contamination/scripts/exp_expanded_downstream_eval.py\\nDEPLOY_OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "e29c18f5-20bf-4e67-99db-2610cafc8d3d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"500 /root/autodl-tmp/gen-depth-contamination/scripts/exp_expanded_downstream_eval.py\\\\nDEPLOY_OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"500 /root/autodl-tmp/gen-depth-contamination/scripts/exp_expanded_downstream_eval.py\\nDEPLOY_OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 57_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Script deployed (500 lines vs 466 original). Let me verify the key modifications are correct.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "da993469-a388-4458-a394-bde24b4703bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011At2ztmZz38n9iHXD1gJDp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20288,
+      "cache_read_input_tokens": 88884,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 20288
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+脚本部署成功（500行 vs 原466行）。验证关键修改点。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "01231785-7429-4782-aaaa-dbf718ec0d68",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011At2ztmZz38n9iHXD1gJDp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20288,
+      "cache_read_input_tokens": 88884,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 20288
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UKS2T4DqVe1uciuARvwWWC`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -n \"strategy\\|skip_train\\|null_benchmarks\\|benchmarks_override\\|existing_scores\" /root/autodl-tmp/gen-depth-contamination/scripts/exp_expanded_downstream_eval.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "df1612c0-7563-4d9f-8c78-e93e7d29aa5c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011At2ztmZz38n9iHXD1gJDp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 20288,
+      "cache_read_input_tokens": 88884,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 20288
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-20T20:20:21.052Z_
+
+<details><summary>↩ Tool result · `toolu_01UKS2T4DqVe1uciuARvwWWC`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "34a7ace6-010a-41a2-8c13-7d50a9f7482b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BWN8LVV8ubfigoDas7gocy`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -n \"strategy\\|skip_train\\|null_benchmarks\\|benchmarks_override\" /root/autodl-tmp/gen-depth-contamination/scripts/exp_expanded_downstream_eval.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "905402b7-bff3-4594-871c-33784fb62c54",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014XDoTUUMNDvhhFJHvStpjQ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 312,
+      "cache_read_input_tokens": 109172,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 312
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-20T20:20:24.675Z_
+
+<details><summary>↩ Tool result · `toolu_01BWN8LVV8ubfigoDas7gocy`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "a91231d4-4c23-448a-8d90-8f5ea6bc07dd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CfEuRxfTBGnjZeFkFA7Ku2`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -n \"skip_train\" /root/autodl-tmp/gen-depth-contamination/scripts/exp_expanded_downstream_eval.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "ea8d3130-8a81-4cfa-8f5a-1dc1f5be6887",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015wWuwKTin4rAjqzZ4fumkd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 244,
+      "cache_read_input_tokens": 109484,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 244
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-20T20:20:29.288Z_
+
+<details><summary>↩ Tool result · `toolu_01CfEuRxfTBGnjZeFkFA7Ku2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"377:    parser.add_argument(\\\"--skip_train\\\", action=\\\"store_true\\\",\\n399:    log.info(f\\\"skip_train={args.skip_train}\\\")\\n441:            if args.skip_train and merged_dir.exists():\\n442:                log.info(f\\\"[{run_name}] skip_train: using existing model at {merged_dir}\\\")\\n445:                if args.skip_train:\\n446:                    log.warning(f\\\"[{run_name}] --skip_train but no model at {merged_dir}, training from scratch\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "e341540a-aa44-4348-99a0-9edc59a2fa95",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"377:    parser.add_argument(\\\\\\\"--skip_train\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n399:    log.info(f\\\\\\\"skip_train={args.skip_train}\\\\\\\")\\\\n441:            if args.skip_train and merged_dir.exists():\\\\n442:                log.info(f\\\\\\\"[{run_name}] skip_train: using existing model at {merged_dir}\\\\\\\")\\\\n445:                if args.skip_train:\\\\n446:                    log.warning(f\\\\\\\"[{run_name}] --skip_train but no model at {merged_dir}, training from scratch\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"377:    parser.add_argument(\\\"--skip_train\\\", action=\\\"store_true\\\",\\n399:    log.info(f\\\"skip_train={args.skip_train}\\\")\\n441:            if args.skip_train and merged_dir.exists():\\n442:                log.info(f\\\"[{run_name}] skip_train: using existing model at {merged_dir}\\\")\\n445:                if args.skip_train:\\n446:                    log.warning(f\\\"[{run_name}] --skip_train but no model at {merged_dir}, training from scratch\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VvGMCj7eg27xGknVDwcM4n`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -n \"null_benchmarks\" /root/autodl-tmp/gen-depth-contamination/scripts/exp_expanded_downstream_eval.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "90984bca-175e-43d8-b54e-97b85b78de45",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015wWuwKTin4rAjqzZ4fumkd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 244,
+      "cache_read_input_tokens": 109484,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 244
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-20T20:20:30.270Z_
+
+<details><summary>↩ Tool result · `toolu_01VvGMCj7eg27xGknVDwcM4n`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"428:                null_benchmarks = [(b, n) for b, n in BENCHMARKS\\n430:                if not null_benchmarks:\\n433:                benchmarks_to_run = null_benchmarks\\n434:                log.info(f\\\"[{run_name}] Patching null benchmarks: {[b for b,_ in null_benchmarks]}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "bf10edca-5825-4b5c-b337-78440c2b6aa3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"428:                null_benchmarks = [(b, n) for b, n in BENCHMARKS\\\\n430:                if not null_benchmarks:\\\\n433:                benchmarks_to_run = null_benchmarks\\\\n434:                log.info(f\\\\\\\"[{run_name}] Patching null benchmarks: {[b for b,_ in null_benchmarks]}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"428:                null_benchmarks = [(b, n) for b, n in BENCHMARKS\\n430:                if not null_benchmarks:\\n433:                benchmarks_to_run = null_benchmarks\\n434:                log.info(f\\\"[{run_name}] Patching null benchmarks: {[b for b,_ in null_benchmarks]}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MgdsrdeszoShpgMa21nu8n`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -n \"args.strategy\" /root/autodl-tmp/gen-depth-contamination/scripts/exp_expanded_downstream_eval.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "9cd9d2d1-063f-4702-b0cf-2ac64c9c37ba",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015wWuwKTin4rAjqzZ4fumkd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 244,
+      "cache_read_input_tokens": 109484,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 244
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-20T20:20:30.929Z_
+
+<details><summary>↩ Tool result · `toolu_01MgdsrdeszoShpgMa21nu8n`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"395:    log.info(f\\\"Strategy filter: {args.strategy}\\\")\\n413:            if args.strategy != \\\"all\\\" and strategy != args.strategy:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "3a00a8be-16a3-4179-a034-95a3029aac87",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"395:    log.info(f\\\\\\\"Strategy filter: {args.strategy}\\\\\\\")\\\\n413:            if args.strategy != \\\\\\\"all\\\\\\\" and strategy != args.strategy:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"395:    log.info(f\\\"Strategy filter: {args.strategy}\\\")\\n413:            if args.strategy != \\\"all\\\" and strategy != args.strategy:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69_
+
+所有修改点验证通过。提交 seed2 的 3 个并行 job。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "699bb54d-27e9-4b29-910b-855174cbc66d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hmn71p2iGYhnPXg3DtkMVR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1189,
+      "cache_read_input_tokens": 109728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1189
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_01E5GHSfgEiVr7RMdeKJzEjn`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Modify script: add --strategy, --skip_train, null-benchmark auto-patch",
+      "status": "completed",
+      "activeForm": "Modifying script with new arguments and null-benchmark detection"
+    },
+    {
+      "content": "Deploy modified script to server",
+      "status": "completed",
+      "activeForm": "Deploying modified script to server"
+    },
+    {
+      "content": "Submit seed2 parallel jobs on cuda:1,2,3",
+      "status": "in_progress",
+      "activeForm": "Submitting seed2 parallel jobs"
+    },
+    {
+      "content": "Submit seed0/seed1 GSM8K补跑 (after GPU available)",
+      "status": "pending",
+      "activeForm": "Submitting seed0/seed1 GSM8K patch jobs"
+    },
+    {
+      "content": "Collect full 3×5×3 results table",
+      "status": "pending",
+      "activeForm": "Collecting all results"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "8da34ece-5487-44ee-8b35-13c99f761464",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hmn71p2iGYhnPXg3DtkMVR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1189,
+      "cache_read_input_tokens": 109728,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1189
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-20T20:20:36.958Z_
+
+<details><summary>↩ Tool result · `toolu_01E5GHSfgEiVr7RMdeKJzEjn`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "75b2a146-3f2b-4d91-ad5c-c3ab52330e2a",
+  "tool_use_result": {
+    "oldTodos": [
+      {
+        "content": "Modify script: add --strategy, --skip_train, null-benchmark auto-patch",
+        "status": "in_progress",
+        "activeForm": "Modifying script with new arguments and null-benchmark detection"
+      },
+      {
+        "content": "Deploy modified script to server",
+        "status": "pending",
+        "activeForm": "Deploying modified script to server"
+      },
+      {
+        "content": "Submit seed2 parallel jobs on cuda:1,2,3",
+        "status": "pending",
+        "activeForm": "Submitting seed2 parallel jobs"
+      },
+      {
+        "content": "Submit seed0/seed1 GSM8K补跑 (after GPU available)",
+        "status": "pending",
+        "activeForm": "Submitting seed0/seed1 GSM8K patch jobs"
+      },
+      {
+        "content": "Collect full 3×5×3 results table",
+        "status": "pending",
+        "activeForm": "Collecting all results"
+      }
+    ],
+    "newTodos": [
+      {
+        "content": "Modify script: add --strategy, --skip_train, null-benchmark auto-patch",
+        "status": "completed",
+        "activeForm": "Modifying script with new arguments and null-benchmark detection"
+      },
+      {
+        "content": "Deploy modified script to server",
+        "status": "completed",
+        "activeForm": "Deploying modified script to server"
+      },
+      {
+        "content": "Submit seed2 parallel jobs on cuda:1,2,3",
+        "status": "in_progress",
+        "activeForm": "Submitting seed2 parallel jobs"
+      },
+      {
+        "content": "Submit seed0/seed1 GSM8K补跑 (after GPU available)",
+        "status": "pending",
+        "activeForm": "Submitting seed0/seed1 GSM8K patch jobs"
+      },
+      {
+        "content": "Collect full 3×5×3 results table",
+        "status": "pending",
+        "activeForm": "Collecting all results"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_training_job · `toolu_01WvtWtLBjDi7LLoZz9YgKnM`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "gpu_ids": [
+    "cuda:1"
+  ],
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_DISABLE_XET=1 HF_ENDPOINT=https://hf-mirror.com python scripts/exp_expanded_downstream_eval.py --device cuda:0 --seed_start 2 --num_seeds 1 --strategy no_filter --skip_base\"",
+  "exp_id": "seed2_no_filter",
+  "account": "root",
+  "project": "gen-depth-contamination",
+  "timeout_hours": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "73e3a7b9-5fbe-4fdc-83fa-9c20313ca68b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JNAaTU9VfoKsNiC2CNYKYT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 340,
+      "cache_read_input_tokens": 110917,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 340
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-20T20:20:45.686Z_
+
+<details><summary>↩ Tool result · `toolu_01WvtWtLBjDi7LLoZz9YgKnM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"pid\": \"362953\", \"log_file\": \"~/runs/gen-depth-contamination/seed2_no_filter.log\", \"gpu_ids\": [\"cuda:1\"], \"server\": \"cqa1-22115\", \"account\": \"root\", \"cuda_visible_devices\": \"1\", \"backend\": \"tmux\", \"tmux_session\": \"seed2_no_filter\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.83}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "5ed58ccd-394f-4a5a-bbe6-c4926d609a4a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"362953\\\", \\\"log_file\\\": \\\"~/runs/gen-depth-contamination/seed2_no_filter.log\\\", \\\"gpu_ids\\\": [\\\"cuda:1\\\"], \\\"server\\\": \\\"cqa1-22115\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"1\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"seed2_no_filter\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.83}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"pid\": \"362953\", \"log_file\": \"~/runs/gen-depth-contamination/seed2_no_filter.log\", \"gpu_ids\": [\"cuda:1\"], \"server\": \"cqa1-22115\", \"account\": \"root\", \"cuda_visible_devices\": \"1\", \"backend\": \"tmux\", \"tmux_session\": \"seed2_no_filter\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.83}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_training_job · `toolu_01371JhVuvso9kEDn9jKNnTV`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "gpu_ids": [
+    "cuda:2"
+  ],
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_DISABLE_XET=1 HF_ENDPOINT=https://hf-mirror.com python scripts/exp_expanded_downstream_eval.py --device cuda:0 --seed_start 2 --num_seeds 1 --strategy binary_ours --skip_base\"",
+  "exp_id": "seed2_binary_ours",
+  "account": "root",
+  "project": "gen-depth-contamination",
+  "timeout_hours": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "9756986a-8094-4b55-9487-6dc7b604efa4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JNAaTU9VfoKsNiC2CNYKYT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 340,
+      "cache_read_input_tokens": 110917,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 340
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-20T20:20:48.068Z_
+
+<details><summary>↩ Tool result · `toolu_01371JhVuvso9kEDn9jKNnTV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"pid\": \"363095\", \"log_file\": \"~/runs/gen-depth-contamination/seed2_binary_ours.log\", \"gpu_ids\": [\"cuda:2\"], \"server\": \"cqa1-22115\", \"account\": \"root\", \"cuda_visible_devices\": \"2\", \"backend\": \"tmux\", \"tmux_session\": \"seed2_binary_ours\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "2adca81b-ebb4-4c54-ae3c-4587be77b8ca",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"363095\\\", \\\"log_file\\\": \\\"~/runs/gen-depth-contamination/seed2_binary_ours.log\\\", \\\"gpu_ids\\\": [\\\"cuda:2\\\"], \\\"server\\\": \\\"cqa1-22115\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"2\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"seed2_binary_ours\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"pid\": \"363095\", \"log_file\": \"~/runs/gen-depth-contamination/seed2_binary_ours.log\", \"gpu_ids\": [\"cuda:2\"], \"server\": \"cqa1-22115\", \"account\": \"root\", \"cuda_visible_devices\": \"2\", \"backend\": \"tmux\", \"tmux_session\": \"seed2_binary_ours\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_training_job · `toolu_01RtnePtvyBv6WPr44m6KKup`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "gpu_ids": [
+    "cuda:3"
+  ],
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_DISABLE_XET=1 HF_ENDPOINT=https://hf-mirror.com python scripts/exp_expanded_downstream_eval.py --device cuda:0 --seed_start 2 --num_seeds 1 --strategy graduated --skip_base\"",
+  "exp_id": "seed2_graduated",
+  "account": "root",
+  "project": "gen-depth-contamination",
+  "timeout_hours": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "491f3785-c7a1-4d81-9ee5-cb9726f5ae84",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JNAaTU9VfoKsNiC2CNYKYT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 340,
+      "cache_read_input_tokens": 110917,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 340
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-20T20:20:49.917Z_
+
+<details><summary>↩ Tool result · `toolu_01RtnePtvyBv6WPr44m6KKup`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"pid\": \"363242\", \"log_file\": \"~/runs/gen-depth-contamination/seed2_graduated.log\", \"gpu_ids\": [\"cuda:3\"], \"server\": \"cqa1-22115\", \"account\": \"root\", \"cuda_visible_devices\": \"3\", \"backend\": \"tmux\", \"tmux_session\": \"seed2_graduated\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.78}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "ba4ca4cb-5037-43d4-9377-a78d32bb71f3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"363242\\\", \\\"log_file\\\": \\\"~/runs/gen-depth-contamination/seed2_graduated.log\\\", \\\"gpu_ids\\\": [\\\"cuda:3\\\"], \\\"server\\\": \\\"cqa1-22115\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"3\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"seed2_graduated\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.78}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"pid\": \"363242\", \"log_file\": \"~/runs/gen-depth-contamination/seed2_graduated.log\", \"gpu_ids\": [\"cuda:3\"], \"server\": \"cqa1-22115\", \"account\": \"root\", \"cuda_visible_devices\": \"3\", \"backend\": \"tmux\", \"tmux_session\": \"seed2_graduated\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.78}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+3 seed2 jobs submitted successfully:
+- cuda:1 → seed2_no_filter (PID 362953)
+- cuda:2 → seed2_binary_ours (PID 363095)
+- cuda:3 → seed2_graduated (PID 363242)
+
+Now for Task 2 - seed0/seed1 GSM8K补跑:
+- Checkpoints are gone, so we need to retrain
+- The modified script has null-benchmark auto-patch, which will detect GSM8K is null and only retrain + eval GSM8K
+- But we need a free GPU for this. 
+
+cuda:0 has an existing process while cuda:1,2,3 are running seed2 jobs. I need to check what's on cuda:0 and when it'll finish, since GSM8K补跑 should only start after seed2 completes if GPUs are constrained.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "eaaf8f81-4e0e-489d-b213-e89835a9081b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012vMFUnd3HRxTusqUZ3MAFz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1430,
+      "cache_read_input_tokens": 111257,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1430
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 79_
+
+seed2 三个 job 已提交到 cuda:1,2,3。检查 cuda:0 进程状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "a6eb1232-edf3-4f92-819c-ac8a8fa67d19",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012vMFUnd3HRxTusqUZ3MAFz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1430,
+      "cache_read_input_tokens": 111257,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1430
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011jH7RcnFtBmAuexeDsjGrd`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "9d184d8c-0d3b-4df0-a58b-46d813dd36f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012vMFUnd3HRxTusqUZ3MAFz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1430,
+      "cache_read_input_tokens": 111257,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1430
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-20T20:21:00.419Z_
+
+<details><summary>↩ Tool result · `toolu_011jH7RcnFtBmAuexeDsjGrd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 100 %, 23781 MiB, 24564 MiB\\n1, 0 %, 3 MiB, 24564 MiB\\n2, 0 %, 3 MiB, 24564 MiB\\n3, 0 %, 3 MiB, 24564 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "01f6d115-ec29-4ebe-b8fd-0ad038e19512",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 100 %, 23781 MiB, 24564 MiB\\\\n1, 0 %, 3 MiB, 24564 MiB\\\\n2, 0 %, 3 MiB, 24564 MiB\\\\n3, 0 %, 3 MiB, 24564 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"0, 100 %, 23781 MiB, 24564 MiB\\n1, 0 %, 3 MiB, 24564 MiB\\n2, 0 %, 3 MiB, 24564 MiB\\n3, 0 %, 3 MiB, 24564 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UUG2nkJYyZSbU972p9BbZS`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "tail -5 /root/autodl-tmp/gen-depth-contamination/logs/exp_expanded_downstream_eval.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "1cb95a19-cb6a-4670-88f1-21a93f621622",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012vMFUnd3HRxTusqUZ3MAFz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1430,
+      "cache_read_input_tokens": 111257,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1430
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-20T20:21:01.135Z_
+
+<details><summary>↩ Tool result · `toolu_01UUG2nkJYyZSbU972p9BbZS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"04:20:51 [WARNING] Skipping import of cpp extensions due to incompatible torch version. Please upgrade to torch >= 2.11.0 (found 2.8.0+cu128).\\n04:20:52 [INFO] Tokenizing 15000 texts...\\n04:20:52 [WARNING] Skipping import of cpp extensions due to incompatible torch version. Please upgrade to torch >= 2.11.0 (found 2.8.0+cu128).\\n04:20:54 [INFO] Tokenizing 30000 texts...\\n04:21:00 [INFO] Loading Qwen2.5-1.5B...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "3d38f02c-ad49-48d3-93c9-9232bc87b789",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"04:20:51 [WARNING] Skipping import of cpp extensions due to incompatible torch version. Please upgrade to torch >= 2.11.0 (found 2.8.0+cu128).\\\\n04:20:52 [INFO] Tokenizing 15000 texts...\\\\n04:20:52 [WARNING] Skipping import of cpp extensions due to incompatible torch version. Please upgrade to torch >= 2.11.0 (found 2.8.0+cu128).\\\\n04:20:54 [INFO] Tokenizing 30000 texts...\\\\n04:21:00 [INFO] Loading Qwen2.5-1.5B...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"04:20:51 [WARNING] Skipping import of cpp extensions due to incompatible torch version. Please upgrade to torch >= 2.11.0 (found 2.8.0+cu128).\\n04:20:52 [INFO] Tokenizing 15000 texts...\\n04:20:52 [WARNING] Skipping import of cpp extensions due to incompatible torch version. Please upgrade to torch >= 2.11.0 (found 2.8.0+cu128).\\n04:20:54 [INFO] Tokenizing 30000 texts...\\n04:21:00 [INFO] Loading Qwen2.5-1.5B...\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, so:
+- cuda:0 is at 100% utilization, 23.7GB used - the original process is still running
+- cuda:1,2,3 just started the seed2 jobs but haven't begun GPU work yet (3MB memory)
+- The log shows the seed2 jobs are tokenizing data
+
+The original cuda:0 process is running the old script which does seed2 all strategies serially. Since we've now submitted seed2 parallelly on cuda:1,2,3, the old process on cuda:0 will be redundant for seed2. But what's it currently running?
+
+
+Looking at the log entries more carefully, the "Tokenizing 15000 texts" and "Tokenizing 30000 texts" messages are actually from the new parallel seed2 jobs I just submitted on cuda:1,2,3, not from the original cuda:0 process - they're writing to the same shared log file since all processes append to it.
+
+The real concern is whether there's a race condition between the old cuda:0 process (which runs seed2 evaluations serially for all strategies) and the new parallel jobs. The old process would run no_filter_seed2 first, and if it finishes and writes the eval file before the new no_filter job on cuda:1 checks, the new job should skip it since the script checks if the eval file already exists.
+
+The bigger issue is that cuda:0 is currently using 23.7GB, meaning it's actively training or evaluating. Once it moves to the next strategy, those tasks could be skipped if the parallel jobs finish first, which would just waste some compute but avoid data corruption.
+
+For the GSM8K补跑, I need to wait for a free GPU since each seed2 job (training plus five benchmark evaluations) will take roughly 25-35 minutes total, while seed0/seed1 will need retraining since the checkpoints are gone but only require GSM8K evaluation.
+
+The instructions say to finish seed2 first before补跑, so I should wait for those jobs to complete. But I'm realizing the old process on cuda:0 is running the outdated script version without the null-benchmark detection or strategy filtering, so it might not even be relevant to what we're trying to accomplish now.
+
+Once seed2 finishes and frees up the GPUs, I can run the new script with the auto-patch logic on seed0 and seed1 across all three strategies—that's six total runs that will each detect GSM8K as null and automatically retrain plus evaluate just that benchmark.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "e2380851-63e5-424a-87c8-9fbd5253638b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dfi3RoZuD3siD2YpbYfsPE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1031,
+      "cache_read_input_tokens": 112687,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1031
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85_
+
+<details open><summary>🔧 Tool call — TodoWrite · `toolu_01RWP1ktNBTdFHNjJCdfweUg`</summary>
+
+```json
+{
+  "todos": [
+    {
+      "content": "Modify script: add --strategy, --skip_train, null-benchmark auto-patch",
+      "status": "completed",
+      "activeForm": "Modifying script with new arguments and null-benchmark detection"
+    },
+    {
+      "content": "Deploy modified script to server",
+      "status": "completed",
+      "activeForm": "Deploying modified script to server"
+    },
+    {
+      "content": "Submit seed2 parallel jobs on cuda:1,2,3",
+      "status": "completed",
+      "activeForm": "Submitting seed2 parallel jobs"
+    },
+    {
+      "content": "Submit seed0/seed1 GSM8K补跑 (after GPU available)",
+      "status": "pending",
+      "activeForm": "Submitting seed0/seed1 GSM8K patch jobs"
+    },
+    {
+      "content": "Collect full 3×5×3 results table",
+      "status": "pending",
+      "activeForm": "Collecting all results"
+    }
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "c8e38d54-8caf-4cde-83b8-02c3ecd04a86",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dfi3RoZuD3siD2YpbYfsPE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1031,
+      "cache_read_input_tokens": 112687,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1031
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-20T20:21:28.103Z_
+
+<details><summary>↩ Tool result · `toolu_01RWP1ktNBTdFHNjJCdfweUg`</summary>
+
+```text
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "4591904e-1735-4d9f-bb03-9b70eccaf614",
+  "tool_use_result": {
+    "oldTodos": [
+      {
+        "content": "Modify script: add --strategy, --skip_train, null-benchmark auto-patch",
+        "status": "completed",
+        "activeForm": "Modifying script with new arguments and null-benchmark detection"
+      },
+      {
+        "content": "Deploy modified script to server",
+        "status": "completed",
+        "activeForm": "Deploying modified script to server"
+      },
+      {
+        "content": "Submit seed2 parallel jobs on cuda:1,2,3",
+        "status": "in_progress",
+        "activeForm": "Submitting seed2 parallel jobs"
+      },
+      {
+        "content": "Submit seed0/seed1 GSM8K补跑 (after GPU available)",
+        "status": "pending",
+        "activeForm": "Submitting seed0/seed1 GSM8K patch jobs"
+      },
+      {
+        "content": "Collect full 3×5×3 results table",
+        "status": "pending",
+        "activeForm": "Collecting all results"
+      }
+    ],
+    "newTodos": [
+      {
+        "content": "Modify script: add --strategy, --skip_train, null-benchmark auto-patch",
+        "status": "completed",
+        "activeForm": "Modifying script with new arguments and null-benchmark detection"
+      },
+      {
+        "content": "Deploy modified script to server",
+        "status": "completed",
+        "activeForm": "Deploying modified script to server"
+      },
+      {
+        "content": "Submit seed2 parallel jobs on cuda:1,2,3",
+        "status": "completed",
+        "activeForm": "Submitting seed2 parallel jobs"
+      },
+      {
+        "content": "Submit seed0/seed1 GSM8K补跑 (after GPU available)",
+        "status": "pending",
+        "activeForm": "Submitting seed0/seed1 GSM8K patch jobs"
+      },
+      {
+        "content": "Collect full 3×5×3 results table",
+        "status": "pending",
+        "activeForm": "Collecting all results"
+      }
+    ],
+    "verificationNudgeNeeded": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 87_
+
+当前状态总结：
+
+**已完成：**
+- 脚本修改：加了 `--strategy`（单策略过滤）、`--skip_train`（跳过训练）、null benchmark 自动检测（发现 eval 文件有 null 值时只重训+补跑缺失 benchmark）
+- seed2 三个策略已并行提交：
+  - cuda:1 → `seed2_no_filter`
+  - cuda:2 → `seed2_binary_ours`  
+  - cuda:3 → `seed2_graduated`
+
+**待处理：**
+- cuda:0 上原进程还在跑（也在跑 seed2 串行版，与并行 job 存在重叠但不会冲突——先完成的写 eval 文件，后来的会跳过）
+- seed0/seed1 GSM8K 补跑需要重训（checkpoint 已被清理），每个 run 约 15-20 min（训练+仅 GSM8K eval）
+- 6 个 GSM8K 补跑 run（3 strategies × 2 seeds），等 GPU 空出后再提交
+
+**计划：** 等 seed2 任一 GPU 空出后，提交 GSM8K 补跑 job。需要我现在轮询监控进度，还是你想稍后手动检查？
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "uuid": "34c7ad0e-9b77-47f4-9829-ec2945463564",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014bmXqZNVPsWsVd95XTBTGr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1405,
+      "cache_read_input_tokens": 113718,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1405
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 88_
+
+当前状态总结：
+
+**已完成：**
+- 脚本修改：加了 `--strategy`（单策略过滤）、`--skip_train`（跳过训练）、null benchmark 自动检测（发现 eval 文件有 null 值时只重训+补跑缺失 benchmark）
+- seed2 三个策略已并行提交：
+  - cuda:1 → `seed2_no_filter`
+  - cuda:2 → `seed2_binary_ours`  
+  - cuda:3 → `seed2_graduated`
+
+**待处理：**
+- cuda:0 上原进程还在跑（也在跑 seed2 串行版，与并行 job 存在重叠但不会冲突——先完成的写 eval 文件，后来的会跳过）
+- seed0/seed1 GSM8K 补跑需要重训（checkpoint 已被清理），每个 run 约 15-20 min（训练+仅 GSM8K eval）
+- 6 个 GSM8K 补跑 run（3 strategies × 2 seeds），等 GPU 空出后再提交
+
+**计划：** 等 seed2 任一 GPU 空出后，提交 GSM8K 补跑 job。需要我现在轮询监控进度，还是你想稍后手动检查？
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 788486,
+  "duration_api_ms": 785167,
+  "num_turns": 32,
+  "stop_reason": "end_turn",
+  "session_id": "a1e2968a-b8b2-4601-9229-2d73c488d84c",
+  "total_cost_usd": 2.4504280000000005,
+  "usage": {
+    "input_tokens": 26,
+    "cache_creation_input_tokens": 103282,
+    "cache_read_input_tokens": 1436319,
+    "output_tokens": 43379,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 103282,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 374,
+        "cache_read_input_tokens": 113718,
+        "cache_creation_input_tokens": 1405,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1405
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2036,
+      "outputTokens": 23,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002151,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 26,
+      "outputTokens": 43379,
+      "cacheReadInputTokens": 1436319,
+      "cacheCreationInputTokens": 103282,
+      "webSearchRequests": 0,
+      "costUSD": 2.4482770000000005,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "93b5086b-a365-4eab-a812-6da448fa4bbf"
+}
+```
+
+</details>
+
+---

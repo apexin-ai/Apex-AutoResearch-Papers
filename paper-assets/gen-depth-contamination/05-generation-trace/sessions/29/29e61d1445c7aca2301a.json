@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29e61d1445c7aca2301a",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "audit paper vs data consistency",
+  "task_key": "worker_audit_paper_vs_data_consistency_20260518T050440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_paper_vs_data_consistency_20260518T050440_result.json",
+    "occurrence": 1,
+    "bytes": 852,
+    "sha256": "a4e1a2376b50b8e00d44ee059c970d891273a98f1784eacdacb4e84e753ab5d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计报告已写入 `artifacts/paper_audit/numerical_consistency_report.md`。\n\n核心发现：\n\n**2 个重大问题需在提交前修复：**\n\n1. **experiments_c1.tex:82** — arXiv Qwen-7B self-scored 2v3 写的是 0.654，实际数据是 0.6255。\"0.654\" 是 Pythia 的值被误归到了 Qwen-7B。Δ 也应从 -5.5pp 改为 -2.7pp。\n\n2. **discussion.tex:51 vs appendix_extended.tex:80-89** — 正文和附录表的 retrain-chain AUC 值不一致（如 1v2: 0.9484 vs 0.9482），CI 也与 bootstrap_ci_v2.json 不匹配。需统一到同一数据源。\n\n**5 个小问题**（rounding/跨表不一致）已记录在报告中，均不影响核心结论。\n\n约 80 个数值经核对确认一致，包括 C4 主表全部 AUC/CI、ANOVA 全部 F/η²、cross-scorer 表、Wikipedia 域表、filtering 降幅计算等。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-paper-vs-data-consistency.md"
+}

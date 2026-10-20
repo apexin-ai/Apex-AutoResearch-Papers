@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a59d58218833595df6d",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "knowledge update literature map",
+  "task_key": "worker_knowledge_update_literature_map_20260513T014713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_update_literature_map_20260513T014713_result.json",
+    "occurrence": 1,
+    "bytes": 228,
+    "sha256": "16afccf1db1411147c3cd3ef46b7c23922c82e4137c2c5b40498daa1379df940"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`literature_map.yaml` 已创建，包含 8 篇论文（4 must-cite + 4 should-cite），项目工具可正常读取。每条包含 id、title、authors、venue、url、category、role、relevance、cited 字段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-update-literature-map.md"
+}

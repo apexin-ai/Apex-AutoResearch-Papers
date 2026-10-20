@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_C_permutation_10k",
+  "project": "gen-depth-contamination",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:18:26.152Z",
+    "updated_at": "2026-05-15T11:18:59.652Z",
+    "hypothesis": "10K permutation resamples 替换 500 resamples，验证 p-value 精度（FR-11 Warning）"
+  },
+  "timestamp": "2026-05-15T11:18:59.762402+00:00",
+  "trigger": "update_registry"
+}

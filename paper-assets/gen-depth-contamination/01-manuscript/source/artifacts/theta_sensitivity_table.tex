@@ -1,0 +1,29 @@
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Sensitivity of $K^*$ to threshold $\theta$. The qualitative pattern (web text $K^*\!\leq\!2$, arXiv $K^*\!=\!3$, cross-scorer $K^*\!=\!1$) is stable across $\theta\in[0.55,\,0.70]$. \textbf{Bold column} marks $\theta=0.60$, the default used throughout the paper. $\dagger$\,Self-scorer. $\ddagger$\,Cross-scorer (Qwen scores Mistral generations).}
+\label{tab:theta_sensitivity}
+\begin{tabular}{l c c c c c c}
+\toprule
+Model-Config & $\theta=0.55$ & $\theta=0.575$ & \textbf{$\theta=0.60$} & $\theta=0.625$ & $\theta=0.65$ & $\theta=0.70$ \\
+\midrule
+\multicolumn{7}{l}{\textit{C4 Web-text}} \\
+~~Qwen-1.5B-Inst (rewrite) & 3 & 3 & \textbf{2} & 2 & 2 & 1 \\
+~~Pythia-1.4B (cont.) & 3 & 2 & \textbf{2} & 2 & 2 & 1 \\
+~~OLMo-1B (cont.) & 2 & 2 & \textbf{2} & 1 & 1 & 1 \\
+~~Qwen-1.5B-Inst (cont.) & 3 & 2 & \textbf{2} & 1 & 1 & 1 \\
+~~LLaMA-3.1-8B (cont.) & 2 & 2 & \textbf{2} & 1 & 1 & 1 \\
+~~Mistral-7B (cont.)$^\dagger$ & 2 & 2 & \textbf{1} & 1 & 1 & 1 \\
+~~Qwen-1.5B-base (cont.) & 2 & 2 & \textbf{2} & 2 & 1 & 1 \\
+~~Qwen-7B (cont.) & 2 & 2 & \textbf{2} & 1 & 1 & 1 \\
+\midrule
+\multicolumn{7}{l}{\textit{arXiv}} \\
+~~Qwen-1.5B-Inst (rewrite) & 3 & 3 & \textbf{3} & 3 & 2 & 2 \\
+~~Pythia-1.4B (cont.) & 4 & 3 & \textbf{3} & 3 & 3 & 2 \\
+\midrule
+\multicolumn{7}{l}{\textit{Cross-scorer}} \\
+~~Mistral-7B (Qwen scorer)$^\ddagger$ & 2 & 1 & \textbf{1} & 1 & 1 & 1 \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -1,0 +1,82 @@
+{
+  "exp_id": "exp_024_arxiv_domain",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T14:43:59.323Z",
+    "updated_at": "2026-05-16T17:23:12.939Z",
+    "hypothesis": "Domain ablation: arXiv abstracts 数据下 K*=2 是否成立？验证 K* 跨数据域（C4 vs Wikipedia vs arXiv）的稳定性。Qwen2.5-1.5B base, continuation, nucleus p=0.95 T=1.0, 5K docs, depth 0-5。",
+    "spec": {
+      "command": "bash scripts/exp024_arxiv_domain.sh",
+      "server": "cqa1-22115",
+      "gpu": "cuda:2",
+      "pid": 46766,
+      "log_path": "~/runs/gen-depth-contamination/exp_024_arxiv_domain.log",
+      "submitted_at": "2026-05-16T14:44:07.168Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/",
+      "data_count": 2200,
+      "model_name": "Qwen2.5-1.5B (base)",
+      "seed": 42,
+      "wall_clock_seconds": 9545.8,
+      "gpu_hours": 2.65
+    },
+    "notes": "2026-05-16 15:05 重启成功。PID 48295, cuda:2, 73% util。修复：depth_0.jsonl 已有 2200 行 arXiv 数据，prepare_seed_data 行数检查通过后跳过 C4 下载，HF_DATASETS_OFFLINE=1 不再冲突。n_docs=2200。预计 ~20 min 完成剩余 depth。",
+    "metrics": {
+      "K_star": 3,
+      "pairwise_auc": {
+        "0v1": 0.9946,
+        "1v2": 0.858,
+        "2v3": 0.6427,
+        "3v4": 0.5437,
+        "4v5": 0.5294
+      },
+      "bootstrap_ci": {
+        "0v1": {
+          "auc": 0.9946,
+          "ci_lower": 0.9929,
+          "ci_upper": 0.9961,
+          "perm_p": 0.0001
+        },
+        "1v2": {
+          "auc": 0.858,
+          "ci_lower": 0.848,
+          "ci_upper": 0.8679,
+          "perm_p": 0.0001
+        },
+        "2v3": {
+          "auc": 0.6427,
+          "ci_lower": 0.6275,
+          "ci_upper": 0.6575,
+          "perm_p": 0.0001
+        },
+        "3v4": {
+          "auc": 0.5437,
+          "ci_lower": 0.5276,
+          "ci_upper": 0.5598,
+          "perm_p": 0.0001
+        },
+        "4v5": {
+          "auc": 0.5294,
+          "ci_lower": 0.5133,
+          "ci_upper": 0.5455,
+          "perm_p": 0.0006
+        }
+      },
+      "bootstrap_resamples": 10000,
+      "permutation_resamples": 10000,
+      "key_finding": "arXiv domain K*=3 (CI-confirmed). 2v3 CI lower=0.6275 > θ=0.60. First condition with K*>2. 1v2 AUC=0.858 far exceeds C4/Wiki (~0.61-0.69)."
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv/",
+    "log_path": "~/runs/gen-depth-contamination/exp_024_arxiv_domain.log",
+    "completed_at": "2026-05-16T17:23:12.939Z"
+  },
+  "timestamp": "2026-05-16T17:23:13.049407+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_B_14d_ablation",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:18:25.666Z",
+    "updated_at": "2026-05-15T11:18:50.893Z",
+    "hypothesis": "移除 self_BLEU（14D vs 15D）后 K*=2 是否稳定？排除 self_BLEU information leakage（FR-3 Critical）"
+  },
+  "timestamp": "2026-05-15T11:18:50.943175+00:00",
+  "trigger": "update_registry"
+}

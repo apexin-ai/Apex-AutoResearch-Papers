@@ -1,0 +1,28 @@
+%%% Code Domain Cross-Model K* Table
+\begin{table*}[t]
+  \centering
+  \footnotesize
+  \caption{Code domain (Python, CodeSearchNet) pairwise AUC with 5-fold cross-validated 95\% CIs across five models (four architecture families).
+  Each model generates depth-0 through depth-5 text via iterative continuation of Python code snippets;
+  LightGBM classifiers (5-fold GroupKFold) distinguish consecutive depths using surprisal and lexical features.
+  $K^*$ denotes the empirical saturation depth at threshold $\theta = 0.60$.
+  Qwen2.5-1.5B/7B, LLaMA-3.1-8B, and Mistral-7B-v0.3 yield $K^* = 2$ (4/5 models); Pythia-1.4B yields $K^* = 1$ (capacity-limited).}
+  \label{tab:code_crossmodel_kstar}
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{lcccccccccc}
+    \toprule
+     & \multicolumn{2}{c}{Qwen2.5-1.5B} & \multicolumn{2}{c}{Qwen2.5-7B} & \multicolumn{2}{c}{Pythia-1.4B} & \multicolumn{2}{c}{LLaMA-3.1-8B} & \multicolumn{2}{c}{Mistral-7B-v0.3} \\
+    \cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}\cmidrule(lr){10-11}
+     & AUC & 95\% CI & AUC & 95\% CI & AUC & 95\% CI & AUC & 95\% CI & AUC & 95\% CI \\
+    \midrule
+    0v1 & .9388 & [.929,\,.949] & .9051 & [.901,\,.909] & \textbf{.9592} & [.956,\,.963] & .9161 & [.912,\,.920] & .9191 & [.917,\,.921] \\
+    1v2 & \textbf{.7382} & [.709,\,.767]\rlap{$^*$} & .7276 & [.722,\,.733]\rlap{$^*$} & .5983 & [.593,\,.603] & \textbf{.7394} & [.729,\,.750]\rlap{$^*$} & .6152 & [.603,\,.627]\rlap{$^*$} \\
+    2v3 & .5300 & [.514,\,.546] & .5368 & [.522,\,.551] & .5215 & [.509,\,.534] & .5112 & [.502,\,.521] & .5293 & [.520,\,.538] \\
+    3v4 & .5022 & [.486,\,.518] & .5090 & [.504,\,.515] & .5152 & [.503,\,.527] & .5200 & [.506,\,.534] & .5286 & [.518,\,.539] \\
+    4v5 & .5219 & [.510,\,.534] & .5139 & [.501,\,.527] & .5046 & [.491,\,.518] & .4996 & [.493,\,.507] & .5099 & [.504,\,.516] \\
+    \midrule
+    $K^*$ & \multicolumn{2}{c}{\textbf{2}} & \multicolumn{2}{c}{\textbf{2}} & \multicolumn{2}{c}{1} & \multicolumn{2}{c}{\textbf{2}} & \multicolumn{2}{c}{\textbf{2}} \\
+    \bottomrule
+    \multicolumn{11}{l}{\footnotesize $^*$Permutation $p < 0.001$. $K^*$ defined as max $k$ where CI lower bound of $k$v$(k{+}1)$ AUC $> \theta = 0.60$.}
+  \end{tabular}}
+\end{table*}

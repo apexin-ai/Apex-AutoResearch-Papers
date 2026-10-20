@@ -1,0 +1,20 @@
+\begin{table*}[t]
+\centering
+\small
+\caption{Feature-level analysis of C4 1v2 classification across model categories. ``Imp.'' = normalized LightGBM gain importance (\%). $d$ = Cohen's $d$ between depth-1 and depth-2 samples. $\bar{|d|}$ = mean absolute $d$ over all features.}
+\label{tab:borderline_features}
+\begin{tabular}{@{}llc lcc@{}}
+\toprule
+Category & Model & AUC & Top-3 Features (Imp.\%) & $\bar{|d|}$ & $\Delta\text{surp}_{1\to2}$ \\
+\midrule
+Strong & Pythia-greedy & 0.884 & hapax\_ratio (47), surp\_mean (11), low\_freq\_ratio (8) & 0.365 & -0.160 \\
+Strong & Pythia-nuc09 & 0.677 & surp\_std (20), freq\_entropy (11), surp\_d1\_std (8) & 0.170 & -0.196 \\
+Strong & Qwen-1.5B-base & 0.626 & surp\_std (13), freq\_entropy (10), surp\_mean (9) & 0.125 & -0.159 \\
+\midrule
+Borderline & Pythia-t12 & 0.617 & surp\_std (15), freq\_entropy (10), surp\_kurt (8) & 0.112 & -0.059 \\
+Borderline & LLaMA-3.1-8B & 0.612 & surp\_std (12), surp\_d1\_std (10), freq\_entropy (9) & 0.137 & -0.215 \\
+\midrule
+Below $\theta$ & Mistral-7B & 0.594 & surp\_std (13), freq\_entropy (9), surp\_d1\_skew (9) & 0.112 & -0.086 \\
+\bottomrule
+\end{tabular}
+\end{table*}

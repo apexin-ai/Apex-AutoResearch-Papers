@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_llama8b_10k",
+  "project": "gen-depth-contamination",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T09:25:55.895Z",
+    "updated_at": "2026-05-22T09:31:10.398Z",
+    "hypothesis": "增加 LLaMA-8B C4 样本量从 5k→10k 可将 1v2 bootstrap std 缩小 ~√2 倍，使 Bonferroni 99.5% CI lower bound 恢复到 θ=0.60 以上",
+    "spec": {
+      "command": "python3 scripts/run_pipeline.py --model_path LLaMA-3.1-8B + Qwen2.5-1.5B-Instruct (two-phase) --num_samples 10000 --max_depth 5 --batch_size 8 --generation_mode continuation",
+      "server": "cqa1-22115",
+      "data_path": "data/exp_llama8b_10k",
+      "data_count": 10000,
+      "model_name": "LLaMA-3.1-8B (gen) + Qwen2.5-1.5B-Instruct (scorer)",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-22T09:31:10.734305+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,95 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{xie2023dsir}
+\citation{mitchell2023detectgpt}
+\citation{bao2024diveye}
+\citation{shumailov2024modelcollapse}
+\citation{alemohammad2024selfconsuming}
+\citation{dohmatob2024tale}
+\citation{drayson2025}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{shumailov2024modelcollapse}
+\citation{alemohammad2024selfconsuming}
+\citation{dohmatob2024tale}
+\citation{mitchell2023detectgpt}
+\citation{bao2024diveye}
+\citation{shi2024minkpp}
+\citation{drayson2025}
+\citation{xie2023dsir}
+\citation{tirumala2024d4}
+\citation{xie2024doremi}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model Collapse and Recursive Contamination.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Machine-Generated Text Detection.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data Selection and Curation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Feature Design}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Classifier and $K^{*}$ Measurement Protocol}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Data Generation Pipeline}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces 1-vs-2 pairwise AUC on C4 web text (continuation mode). $\theta = 0.60$. All 2-vs-3 AUC CI upper bounds fall below 0.60, confirming $K^{*}= 2$ for the seven passing configurations. Qwen-1.5B rewrite (rw) is included for comparison but is not part of the canonical continuation-mode evaluation.}}{4}{table.caption.4}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:kstar-c4}{{1}{4}{1-vs-2 pairwise AUC on C4 web text (continuation mode). $\theta = 0.60$. All 2-vs-3 AUC CI upper bounds fall below 0.60, confirming $\Kstar = 2$ for the seven passing configurations. Qwen-1.5B rewrite (rw) is included for comparison but is not part of the canonical continuation-mode evaluation}{table.caption.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Decoding strategy invariance of $K^{*}$ (Qwen-1.5B rewrite on C4). All strategies produce $K^{*}= 2$.}}{4}{table.caption.5}\protected@file@percent }
+\newlabel{tab:decoding}{{2}{4}{Decoding strategy invariance of $\Kstar $ (Qwen-1.5B rewrite on C4). All strategies produce $\Kstar = 2$}{table.caption.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}K* Characterization on Web Text (C4)}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:webtext}{{4.1}{4}{K* Characterization on Web Text (C4)}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Domain Dependence: A Three-Level Hierarchy}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:domain}{{4.2}{4}{Domain Dependence: A Three-Level Hierarchy}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{arXiv ($K^{*}= 3$).}{4}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Wikipedia ($K^{*}= 1$).}{4}{section*.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces 2-vs-3 pairwise AUC on arXiv (continuation mode). All five domain-competent models yield $K^{*}= 3$, cross-validated across four architecture families.}}{5}{table.caption.7}\protected@file@percent }
+\newlabel{tab:arxiv}{{3}{5}{2-vs-3 pairwise AUC on arXiv (continuation mode). All five domain-competent models yield $\Kstar = 3$, cross-validated across four architecture families}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Domain hierarchy summary.}{5}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Cross-Model Transfer and Scorer Invariance}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:cross-model}{{4.3}{5}{Cross-Model Transfer and Scorer Invariance}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Mistral One-Wash Effect}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:mistral}{{4.4}{5}{Mistral One-Wash Effect}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Neural Probe Comparison}{5}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:neural-probe}{{4.5}{5}{Neural Probe Comparison}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Generation Mode Analysis}{5}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:genmode}{{4.6}{5}{Generation Mode Analysis}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Downstream performance at 30\% contamination ratio (mean over 5 seeds). Binary $K^{*}$-aware filtering outperforms all baselines. HellaSwag differences are significant ($p \leq 0.004$) at all contamination ratios; MMLU at 30\% shows a directional advantage ($p = 0.074$).}}{6}{table.caption.10}\protected@file@percent }
+\newlabel{tab:curation}{{4}{6}{Downstream performance at 30\% contamination ratio (mean over 5 seeds). Binary $\Kstar $-aware filtering outperforms all baselines. HellaSwag differences are significant ($p \leq 0.004$) at all contamination ratios; MMLU at 30\% shows a directional advantage ($p = 0.074$)}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Threshold Sensitivity}{6}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}K*-Aware Data Curation}{6}{subsection.4.8}\protected@file@percent }
+\newlabel{sec:curation}{{4.8}{6}{K*-Aware Data Curation}{subsection.4.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Prompt-Chain vs. Retrain-Chain}{7}{subsection.4.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}Naturalistic Common Crawl Validation}{7}{appendix.A}\protected@file@percent }
+\newlabel{app:cc-validation}{{A}{7}{Naturalistic Common Crawl Validation}{appendix.A}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Predicted depth distributions on Common Crawl snapshots ($n = 10{,}000$ per snapshot). The year-over-year shift toward higher predicted depths is significant (Mann-Whitney $U$, $p < 0.001$, Cohen's $d = 0.31$).}}{8}{table.caption.12}\protected@file@percent }
+\newlabel{tab:cc-depth}{{5}{8}{Predicted depth distributions on Common Crawl snapshots ($n = 10{,}000$ per snapshot). The year-over-year shift toward higher predicted depths is significant (Mann-Whitney $U$, $p < 0.001$, Cohen's $d = 0.31$)}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Spearman correlations between predicted depth and quality metrics ($n = 20{,}000$). All correlations significant at $p < 0.001$.}}{8}{table.caption.14}\protected@file@percent }
+\newlabel{tab:cc-corr}{{6}{8}{Spearman correlations between predicted depth and quality metrics ($n = 20{,}000$). All correlations significant at $p < 0.001$}{table.caption.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{Depth distribution shift.}{8}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Correlation with quality metrics.}{8}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Monotonic quality degradation.}{8}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {B}Subsampling Power Analysis}{8}{appendix.B}\protected@file@percent }
+\newlabel{app:power}{{B}{8}{Subsampling Power Analysis}{appendix.B}{}}
+\bibcite{alemohammad2024selfconsuming}{1}
+\bibcite{bao2024diveye}{2}
+\bibcite{dohmatob2024tale}{3}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Mean quality metrics by predicted depth bin ($n = 20{,}000$ combined). Monotonic decrease confirmed by Jonckheere-Terpstra test ($p < 0.001$ for all metrics).}}{9}{table.caption.16}\protected@file@percent }
+\newlabel{tab:cc-quality}{{7}{9}{Mean quality metrics by predicted depth bin ($n = 20{,}000$ combined). Monotonic decrease confirmed by Jonckheere-Terpstra test ($p < 0.001$ for all metrics)}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces $K^{*}= 2$ determination rate (out of 10 resamples) by sample size and model. $^\dagger n = 5{,}000$ is the full dataset; result is deterministic.}}{9}{table.caption.18}\protected@file@percent }
+\newlabel{tab:power-rate}{{8}{9}{$\Kstar = 2$ determination rate (out of 10 resamples) by sample size and model. $^\dagger n = 5{,}000$ is the full dataset; result is deterministic}{table.caption.18}{}}
+\@writefile{toc}{\contentsline {paragraph}{Determination rate by sample size.}{9}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{AUC stability and CI width.}{9}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Minimum sample size by effect size.}{9}{section*.21}\protected@file@percent }
+\bibcite{drayson2025}{4}
+\bibcite{mitchell2023detectgpt}{5}
+\bibcite{shi2024minkpp}{6}
+\bibcite{shumailov2024modelcollapse}{7}
+\bibcite{tirumala2024d4}{8}
+\bibcite{xie2023dsir}{9}
+\bibcite{xie2024doremi}{10}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Mean 1-vs-2 AUC and CI width (in parentheses) by sample size. Format: AUC (CI width). Point estimates are stable across $n$; CI width differences across models are negligible.}}{10}{table.caption.20}\protected@file@percent }
+\newlabel{tab:power-auc}{{9}{10}{Mean 1-vs-2 AUC and CI width (in parentheses) by sample size. Format: AUC (CI width). Point estimates are stable across $n$; CI width differences across models are negligible}{table.caption.20}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Minimum $n$ per depth for 80\% $K^{*}= 2$ determination power. $^\dagger $Qwen-cont passes deterministically at $n = 5{,}000$ (full data); probabilistic 80\% power extrapolates to $n \approx 6{,}000$--$7{,}000$.}}{10}{table.caption.22}\protected@file@percent }
+\newlabel{tab:power-min}{{10}{10}{Minimum $n$ per depth for 80\% $\Kstar = 2$ determination power. $^\dagger $Qwen-cont passes deterministically at $n = 5{,}000$ (full data); probabilistic 80\% power extrapolates to $n \approx 6{,}000$--$7{,}000$}{table.caption.22}{}}
+\gdef \@abspage@last{10}

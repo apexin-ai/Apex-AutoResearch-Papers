@@ -1,0 +1,28 @@
+\begin{table}[t]
+\centering
+\caption{Generative depth $K^*$ across domains and models (scorer: Qwen2.5-1.5B, $\theta{=}0.60$). Bold values indicate the dominant mode per domain. $K^*$ is remarkably consistent within each domain: C4 yields $K^*{=}2$, arXiv yields $K^*{=}3$, and Wikipedia yields $K^*{=}1$; generative depth is domain-dependent and low-bounded.}
+\label{tab:domain_model_kstar}
+{\small
+\begin{tabular}{llccc}
+\toprule
+\textbf{Model} & \textbf{Size} & \textbf{C4}~$K^*$ & \textbf{arXiv}~$K^*$ & \textbf{Wiki}~$K^*$ \\
+\midrule
+Qwen2.5       & 1.5B & \textbf{2} & \textbf{3} & \textbf{1}\textsuperscript{$\dagger$} \\
+Qwen2.5       & 7B   & \textbf{2} & \textbf{3} & \textbf{1}\textsuperscript{$\dagger$} \\
+Pythia        & 1.4B & \textbf{2} & \textbf{3} & \textbf{1} \\
+LLaMA-3.1    & 8B   & \textbf{2} & \textbf{3} & \textbf{1} \\
+Mistral       & 7B   & 1\textsuperscript{$\ddagger$} & \textbf{3} & \textbf{1} \\
+OLMo          & 1B   & 1 & 1\textsuperscript{$*$} & \textbf{1} \\
+\midrule
+\textit{Dominant} & & \textbf{2} & \textbf{3} & \textbf{1} \\
+\bottomrule
+\end{tabular}
+}
+\vspace{2pt}
+
+{\footnotesize
+\textsuperscript{$\dagger$}Scorer artifact: Qwen-1.5B scorer yields $K^*{=}2$; Pythia scorer yields $K^*{=}1$ (see \S\ref{sec:crossscorer}).\\
+\textsuperscript{$\ddagger$}Domain-specific one-wash: AUC(1v2)${=}0.570{<}\theta$; arXiv rescues to $K^*{=}3$. Cross-scorer validated.\\
+\textsuperscript{$*$}Capacity failure: OLMo-1B generates out-of-domain text on arXiv.
+}
+\end{table}

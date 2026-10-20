@@ -1,0 +1,10 @@
+Remote files on westc-26893 (v3 final):
+- /root/autodl-tmp/gen-depth-contamination/artifacts/kstar_theta_curve.pdf
+- /root/autodl-tmp/gen-depth-contamination/artifacts/kstar_theta_curve.png
+
+Fix: compute_kstar() uses hardcoded ci_lower from exp-007 (1000 bootstrap resamples).
+Panel A error bars use correct ci_half from exp-007.
+
+θ=0.60: 4/4 unanimous K*=2
+Unanimous K*=2 range: θ∈[0.580, 0.600]
+K*∈{2,3} range: θ∈[0.535, 0.600]

@@ -1,0 +1,24 @@
+paper_key: "ippolito2020detection"
+title: "Automatic Detection of Generated Text is Easiest when Humans are Fooled"
+venue: "ACL 2020"
+full_text_available: false
+
+research:
+  baselines: [GLTR, GPT-2 zero-shot detector, fine-tuned BERT classifier, human raters]
+  metrics:
+    - {name: "detection accuracy", direction: "higher_better"}
+    - {name: "human deception rate", direction: "context_dependent"}
+    - {name: "AUROC", direction: "higher_better"}
+  datasets:
+    - {name: "GPT-2 generated text with varying decoding strategies", size: "not specified"}
+  ablation_dimensions: [decoding strategy (top-k / nucleus / random), text excerpt length, detector type]
+  training_recipe: {details: "Benchmark study comparing human and automatic detectors across three sampling-based decoding strategies"}
+  method_family: "detection benchmarking / decoding-artifact analysis"
+
+positioning:
+  core_claim: "Decoding improvements that better fool humans simultaneously introduce statistical artifacts that make automatic detection easier, revealing an inverse relationship between human and machine detectability"
+  relation_to_us: "foundation"
+
+narrative: N/A
+figures: N/A
+tables: N/A

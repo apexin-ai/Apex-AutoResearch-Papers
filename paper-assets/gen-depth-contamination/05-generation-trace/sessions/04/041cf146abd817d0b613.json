@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "041cf146abd817d0b613",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "status check cqa1 all",
+  "task_key": "worker_status-check_cqa1-all_20260520T032953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status-check_cqa1-all_20260520T032953_result.json",
+    "occurrence": 1,
+    "bytes": 1152,
+    "sha256": "954091f509a6d91f52b987353e0181935b66039df667aef8f189606914b1010e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n### 1. exp_cross_transfer_llama8b_to_qwen7b_v2\n状态: 运行中 (PID 275366, cuda:0)\n命令: python scripts/run_deberta_cross_transfer.py --train_model wiki_llama8b --test_model wiki_qwen7b --gpu 0\n进度: 5-fold CV, Fold 2/5 进行中, Epoch 2 step 1200/1500\n      Fold 0-1 已完成, 每 fold ~12min\n预计完成: ~12:00 CST (约 28 分钟后)\n\n### 2. exp_deberta_arxiv_qwen1b5\n状态: 运行中 (PID 276486, cuda:1)\n命令: python scripts/run_deberta_arxiv.py\n数据可用性: 是, 13200 samples (2200 docs × 6 depths), 加载成功\n进度: 5-fold CV, Fold 3/5 进行中, Epoch 1 step 200/660\n      Fold 0-2 已完成, 每 fold ~6.5min\n预计完成: ~11:45 CST (约 13 分钟后)\n\n### 3. GPU 状态 (nvidia-smi)\ncuda:0 - RTX 4090 D | 20613/24564 MiB | 96% util | PID 275366 (cross_transfer llama8b→qwen7b)\ncuda:1 - RTX 4090 D | 18173/24564 MiB | 97% util | PID 276486 (deberta arxiv qwen1b5)\ncuda:2 - RTX 4090 D | 0/24564 MiB     | 0% util  | 空闲\ncuda:3 - RTX 4090 D | 0/24564 MiB     | 0% util  | 空闲\n```\n\n两个实验在服务重启后均已重新启动并正常运行，cuda:2/3 空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-check-cqa1-all.md"
+}

@@ -1,0 +1,39 @@
+{
+  "exp_id": "exp_llama8b_10k",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T09:25:55.895Z",
+    "updated_at": "2026-05-22T19:21:09.215Z",
+    "hypothesis": "增加 LLaMA-8B C4 样本量从 5k→10k 可将 1v2 bootstrap std 缩小 ~√2 倍，使 Bonferroni 99.5% CI lower bound 恢复到 θ=0.60 以上",
+    "spec": {
+      "server": "cqa1-22115",
+      "pid": 23232,
+      "checkpoint_path": "results/exp_llama8b_10k/",
+      "log_path": "/tmp/exp_llama8b_10k.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "K_star": 2,
+      "AUC_0v1": 0.9798,
+      "AUC_1v2": 0.6316,
+      "AUC_2v3": 0.5409,
+      "AUC_3v4": 0.5236,
+      "AUC_4v5": 0.5149,
+      "JSD_0v1": 0.098271,
+      "JSD_1v2": 0.008323,
+      "JSD_2v3": 0.00331,
+      "JSD_3v4": 0.002612,
+      "JSD_4v5": 0.002523,
+      "ordinal_MAE": 1.2288,
+      "ordinal_acc": 0.3612,
+      "top_feature": "freq_entropy"
+    },
+    "completed_at": "2026-05-22T19:21:09.215Z"
+  },
+  "timestamp": "2026-05-22T19:21:09.528185+00:00",
+  "trigger": "update_registry"
+}

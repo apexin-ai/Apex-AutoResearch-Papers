@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16c3079076f9ecfa73a2",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ssh fix h5 tab s3c",
+  "task_key": "worker_ssh_fix_h5_tab_s3c_20260525T203719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_h5_tab_s3c_20260525T203719_result.json",
+    "occurrence": 1,
+    "bytes": 800,
+    "sha256": "3ee69fc35236beaddec39cff43eb750e0ca9dca8ebd0e6af07070dec80e0f006"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fix applied. Summary:\n\n**Tab s3c OBD per-depth recall** changed from `96, 39, 14, 19, 22` (sum=190, 38.0%) to `94, 44, 17, 15, 23` (sum=193, **38.6%**).\n\n**Reproduction**: 6-class multiclass LightGBM (pipeline hyperparams: n_est=300, md=8, nl=63) trained on full 30K data, OOF predictions on first 100 doc_ids per depth (depths 0-4), N=500. Gives exactly 193/500 = 38.6%.\n\n**LaTeX**: `appendix.tex:205` updated. Bold pattern unchanged. GPT-5.5 and Claude rows remain untouched (already self-consistent).\n\n**Report**: `artifacts/h5_fix_recall_values.md`\n\n**Note**: The caption claims \"gap originates from depth-0\" but with corrected values, Depth 1 contributes more (+25) than Depth 0 (+17) to OBD's advantage over LLMs. This is a minor wording issue, not a numerical error."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-h5-tab-s3c.md"
+}

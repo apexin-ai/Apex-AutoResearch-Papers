@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "23512f7a962b7a317481",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp 020 pythia decoding",
+  "task_key": "worker_code_exp_020_pythia_decoding_20260516T051528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_020_pythia_decoding_20260516T051528_result.json",
+    "occurrence": 1,
+    "bytes": 2867035,
+    "sha256": "e9f050233372998833e64072c8940c44d934753ea0400222025e77605d44171f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2867055,
+                "serialized_sha256": "bf30edd8e106d17294b5cf0ae255ddb3a97408920fa6527994edbcfa0fb62823",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-020-pythia-decoding.md"
+}

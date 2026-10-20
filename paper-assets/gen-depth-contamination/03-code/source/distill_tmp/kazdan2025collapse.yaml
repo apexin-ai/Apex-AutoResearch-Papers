@@ -1,0 +1,39 @@
+paper_key: "kazdan2025collapse"
+title: "Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World"
+venue: "arXiv 2024"
+full_text_available: true
+research:
+  baselines: ["replace workflow", "accumulate workflow", "accumulate-subsample", "real-data-only"]
+  metrics: [{name: "test loss (NLL)", direction: "lower_better"}, {name: "Wasserstein-2 distance", direction: "lower_better"}, {name: "R²", direction: "higher_better"}]
+  datasets: [{name: "HelpSteer2", size: "12.5k"}, {name: "TinyStories", size: "GPT-generated"}, {name: "sklearn benchmarks", size: "standard"}]
+  ablation_dimensions: ["training workflow", "cardinality of real data", "proportion real vs synthetic", "iterations"]
+  training_recipe: {model: "Gemma2 2B (SFT)"}
+  method_family: "synthetic data / model collapse analysis"
+positioning:
+  core_claim: "Model collapse is a workflow artifact: replace causes collapse, accumulate prevents it; cardinality of real data (R²=0.59) predicts synthetic data value better than proportion (R²=0.34)."
+  key_results: "Replace diverges; accumulate bounded; below ~1024 real samples synthetic helps, above that it hurts"
+  limitations: ["ignores data quality filtering", "loss metrics not downstream tasks", "no adversarial generation"]
+  relation_to_us: "foundation"
+narrative:
+  story_type: "化繁为简型"
+  hook: "With each passing day, the internet contains more AI-generated content"
+  tension: "Collapse alarmists vs optimists disagree; paper resolves by identifying implicit workflow assumptions"
+  key_insight: "Both camps are right under different workflow assumptions; reframes binary debate as conditional"
+  argument_chain: "AI contamination → conflicting literature → workflow assumptions differ → test 3 workflows × 5 settings → replace=collapse, accumulate=stable → data composition analysis"
+  contribution_framing: "Three contributions: universality validation, accumulate-subsample paradigm, data composition analysis"
+  intro_structure: "6 paragraphs: hook, conflicting lit, definitions, adopted definition, workflows, contributions"
+  notable_technique: "Reframing binary debate as conditional; validates both camps while positioning as reconciling synthesis"
+figures:
+  figure_count: 5
+  figure1:
+    type: "motivation"
+    description: "Replace vs accumulate on Gaussian: distributions, means, covariances across iterations"
+    narrative_role: "Simplest-case intuition building"
+    design_elements: ["3-row panel", "side-by-side replace vs accumulate", "iteration x-axis"]
+  result_figures:
+    - {figure_id: "Figure 4", viz_type: "line_plot", what_compared: "3 workflows × 5 tasks"}
+    - {figure_id: "Figure 5", viz_type: "heatmap", what_compared: "real cardinality × synthetic proportion"}
+  figure_narrative_role: "Fig1 (toy) → Fig2 (KDE) → Fig3 (LLM SFT) → Fig4 (all tasks) → Fig5 (data composition)"
+tables:
+  table_count: 1
+  main_result_table: {note: "primarily figure-driven paper"}

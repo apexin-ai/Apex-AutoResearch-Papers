@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_pythia69b_c4_depth_chain_v3",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T03:21:54.364Z",
+    "updated_at": "2026-05-21T03:22:04.302Z",
+    "hypothesis": "Pythia-6.9B 在 C4 上的 K*=2，与其他 ≥7B 模型一致，验证 K*=2 不依赖 Qwen 家族。使用 Qwen-1.5B scorer（D095）。",
+    "parent": "exp_pythia69b_c4_depth_chain_v2"
+  },
+  "timestamp": "2026-05-21T03:22:04.880171+00:00",
+  "trigger": "update_registry"
+}

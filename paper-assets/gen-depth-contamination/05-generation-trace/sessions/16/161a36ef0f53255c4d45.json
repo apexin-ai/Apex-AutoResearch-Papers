@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "161a36ef0f53255c4d45",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper integrate exp012",
+  "task_key": "worker_paper_integrate_exp012_20260516T001041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_integrate_exp012_20260516T001041_result.json",
+    "occurrence": 1,
+    "bytes": 1667,
+    "sha256": "cc354f80816c1e6db7046ad5d912c9eacc218950e2ccdb405bfa61b147f1d971"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Consistent — no changes needed there. Introduction (line 11) and related_work are also already consistent.\n\n---\n\n修改摘要：\n\n**experiments_c1.tex** (Section 5.6 Binary Detector Confidence and Depth):\n- 修正 6-class accuracy 范围：`0.119→0.127`（匹配 registry: olmo=0.127）\n- 添加 per-generator 6-class accuracy 明细：Qwen-rw 0.199, Qwen-cont 0.183, Pythia 0.130, OLMo 0.127\n- 添加 per-generator Spearman ρ 分层描述：Pythia/OLMo ~0.45, Qwen-cont ≤0.39, Qwen-rw 0.08-0.12（sign reversed）\n- 强化 Spearman nuance：\"driven almost entirely by the human–synthetic boundary...do not monotonically track generational depth\"\n- K* 标注改为 `$\\Kempirical^{\\text{binary}} \\leq 1$` 与 OBD 的 `$\\Kempirical = 2$` 明确对比\n- 引用新增 appendix 表 `\\ref{tab:s9_binary_spearman}`\n\n**discussion.tex** (Section 5.3 Why Graduated Filtering Fails):\n- 新增一句：binary K*≤1 从 binary detector 自身角度解释了为什么 graduated→binary 收敛——binary detector 只能感知 human/synthetic 边界，任何基于其 confidence 的 depth-graduated 策略本质上就是 binary filtering\n\n**appendix.tex**:\n- 新增 Table S9 (`tab:s9_binary_spearman`)：exp-012 完整 Spearman ρ per generator × per metric（log-PPL ref, log-PPL observer, PPL ratio）+ 6-class accuracy + K* 对比\n\n**未修改的文件**（已验证一致性）：\n- `introduction.tex` line 11 已正确引用 `\\ref{sec:binary_confidence}`\n- `related_work.tex` DivEye/Binoculars 论述与 exp-012 结果不矛盾\n- `discussion.tex` lines 23-25 的现有 binary confidence 段落数字与 registry 一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-integrate-exp012.md"
+}

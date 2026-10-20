@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_14b_c4",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T14:56:44.366Z",
+    "updated_at": "2026-05-17T17:08:37.182Z",
+    "hypothesis": "Scale-dependent K* on C4: Qwen2.5-14B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 14B scale 是否稳定（已确认 1.5B/7B/8B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "parent": "exp_arXiv_llama8b"
+  },
+  "timestamp": "2026-05-17T17:08:37.328453+00:00",
+  "trigger": "update_registry"
+}

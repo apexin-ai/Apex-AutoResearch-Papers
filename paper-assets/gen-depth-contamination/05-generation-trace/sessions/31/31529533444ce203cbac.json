@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31529533444ce203cbac",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "infra exp006 handoff check",
+  "task_key": "worker_infra_exp006-handoff-check_20260514T181301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_exp006-handoff-check_20260514T181301_result.json",
+    "occurrence": 1,
+    "bytes": 1358,
+    "sha256": "8467c52c49eadc3a22148322f1ba41316067e4263f637c83bc2ef0182efbfe8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查结果\n\n### 1. exp-006 tmux session & 监控\n\n| 项目 | 状态 |\n|------|------|\n| tmux session | **PASS** — `exp_006_graduated_filtering` 运行中（创建于 May 14 05:02） |\n| 当前 run | `graduated_a0.5_s789`，训练进度 37%（1033/2814 steps），~1.29 it/s |\n| 完成进度 | **29/50 runs 完成**，第 30 个正在训练 |\n| exit trap | 已配置，写入 `/tmp/agent-ml-exit/exp_006_graduated_filtering.exit`，尚未触发（符合预期） |\n| cron 监控 | **FAIL** — `CronList` 无任何 scheduled job，服务器也无 `crontab`。当前没有轮询进程存活或完成的 cron 回调 |\n\n### 2. exp-015 重跑脚本\n\n| 项目 | 状态 |\n|------|------|\n| 脚本 `run_exp015_neural_probe.py` | **PASS** |\n| Qwen2.5-1.5B-Instruct | **PASS** |\n| Pythia-1.4B | **PASS** |\n| OLMo-1B-hf | **PASS** |\n| depth_{0..5}.jsonl | **PASS** — 6 个文件全在 |\n\n### 3. exp-006 分析脚本\n\n| 项目 | 状态 |\n|------|------|\n| 脚本 `exp006_analyze.py` | **PASS** |\n| 输出目录 `outputs/exp006/` | **PASS**（30 个子目录，29 个含 eval_results.json） |\n\n### 需要处理\n\ncron 监控缺失。exp-006 的 tmux exit trap 会在完成时写 exit 文件，但没有 cron job 来轮询这个文件并触发后续衔接（通知 / 启动 exp-015）。需要补建 cron 监控吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp006-handoff-check.md"
+}

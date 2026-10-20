@@ -1,0 +1,71 @@
+{
+  "exp_id": "exp_32b_c4",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T14:56:48.122Z",
+    "updated_at": "2026-05-19T21:55:27.105Z",
+    "hypothesis": "Scale-dependent K* on C4: Qwen2.5-32B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 32B scale 是否稳定（已确认 1.5B/7B/8B/14B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "parent": "exp_arXiv_llama8b",
+    "server": "westd-42896",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-42896",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-17T19:37:31.096Z",
+      "command": "bash -c \"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-32B --data_dir data/exp_32b_c4 --results_dir results/exp_32b_c4 --num_samples 5000 --max_depth 5 --batch_size 2 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\"",
+      "finished_at": "2026-05-19T21:33:12.076Z",
+      "training_hours": 49.93
+    },
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-32B --data_dir data/exp_32b_c4 --results_dir results/exp_32b_c4 --num_samples 5000 --max_depth 5 --batch_size 2 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\"",
+      "server": "westd-42896",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "44715",
+      "log_path": "~/runs/gen-depth-contamination/exp_32b_c4.log",
+      "submitted_at": "2026-05-18T07:04:19.556Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/exp_32b_c4",
+      "data_count": 5000,
+      "model_name": "Qwen2.5-32B",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_32b_c4/",
+      "wall_clock_seconds": 139867.5,
+      "gpu_hours": 38.85
+    },
+    "pid": "14637",
+    "log_path": "~/runs/gen-depth-contamination/exp_32b_c4.log",
+    "notes": "Resubmit #2 (2026-05-18T07:05): killed at depth 2 18% per Director, 72h timeout. depth 0-1 complete (5000 lines each), pipeline auto-skips. PID 44715 cuda:1.",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T21:33:15.741057+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "lgbm_kstar": 2,
+      "deberta_kstar": 2,
+      "kstar_theta": 0.6,
+      "scale": "32B",
+      "domain": "C4",
+      "n_docs": 5000,
+      "max_depth": 5,
+      "key_finding": "Qwen2.5-32B C4 K*=2, confirming scale-invariance of K*=2 dominant mode from 1.5B to 32B. Both LightGBM and DeBERTa classifiers agree on K*=2."
+    },
+    "completed_at": "2026-05-19T21:55:27.105Z"
+  },
+  "timestamp": "2026-05-19T21:55:27.330599+00:00",
+  "trigger": "update_registry"
+}

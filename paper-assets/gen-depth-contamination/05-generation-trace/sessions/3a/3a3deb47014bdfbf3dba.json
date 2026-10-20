@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a3deb47014bdfbf3dba",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check exp016 urgent",
+  "task_key": "worker_check_exp016_urgent_20260516T044820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp016_urgent_20260516T044820_result.json",
+    "occurrence": 1,
+    "bytes": 1744,
+    "sha256": "4f6e05d9766efd1ae8475c5a2867960a88ba1caf9ccb3041504090bc1a17e241"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。以下是完整报告。\n\n---\n\n## exp-016 状态报告\n\n### 1. 进程状态：已完成\n- PID 3442 已退出，无 Python 进程在运行\n- 4 卡 GPU 全部空闲（0MiB / 0%）— 符合预期，pipeline 已跑完\n- 日志末尾：`Pipeline complete.`\n\n### 2. 结果：K* = 2\n\n| Pair | AUC (±std) | JSD |\n|------|-----------|-----|\n| 0v1 | **0.987** ± 0.0015 | 0.1637 |\n| 1v2 | **0.6262** ± 0.0152 | 0.0108 |\n| 2v3 | 0.5496 ± 0.0067 | 0.0053 |\n| 3v4 | 0.5294 ± 0.0132 | 0.0039 |\n| 4v5 | 0.5182 ± 0.0139 | 0.0035 |\n\nOrdinal: MAE=1.169, Accuracy=37.2%\n\n### 3. exp-016 (Base) vs exp-017 (Instruct) 对比\n\n| Metric | exp-016 Base | exp-017 Instruct |\n|--------|-------------|-----------------|\n| **K\\*** | **2** | **2** |\n| 0v1 AUC | 0.987 | 0.9972 |\n| 1v2 AUC | 0.6262 | 0.6114 |\n\n**结论：K\\*=2 在 base model 上完全复现，NOT an instruct-tuning artifact。** Base 的 0v1 略低（生成文本更接近 human），1v2 略高（depth 1→2 区分度稍强）。差异不影响 K\\* 判定。\n\n### 4. 数据完整性\n- features.csv: 30001 行（header + 30000 = 6 depths × 5000 samples）✓\n- results 目录: pairwise_auc.json, jsd.json, ordinal_results.json, feature_importance.json, summary.txt 全部存在 ✓\n\n### 5. 模型下载进度\n| 模型 | 大小 | 状态 |\n|------|------|------|\n| LLaMA-3.1-8B | 30GB | ✓ 完成 |\n| Mistral-7B (mistralai/) | 4.3GB | ⚠️ 可能不完整（fp16 应~15GB） |\n| Mistral-7B (AI-ModelScope/) | 4KB | ✗ 仅占位符 |\n\nMistral-7B 下载可能中断或只下载了部分文件，后续使用前需确认。\n\n### 6. Registry\n已更新：status=DONE, conclusion=success, metrics 已写入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp016-urgent.md"
+}

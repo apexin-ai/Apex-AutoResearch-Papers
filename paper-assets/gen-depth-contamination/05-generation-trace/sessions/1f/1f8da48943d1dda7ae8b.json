@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f8da48943d1dda7ae8b",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops gsm8k round1 collect",
+  "task_key": "worker_ops_gsm8k_round1_collect_20260520T220544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gsm8k_round1_collect_20260520T220544_result.json",
+    "occurrence": 1,
+    "bytes": 2128,
+    "sha256": "e3a9920a0043adfe2085f76e6ceec8e70cf03f8997b192ad135393f9c0099f2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## cuda:1,2,3 Round 1 状态: 完成\n\n三个 seed0 GSM8K 补跑全部完成（05:46-06:01 UTC）。\n\n**GSM8K 结果:**\n| Config | GSM8K |\n|---|---|\n| no_filter_seed0 | 0.5610 |\n| binary_ours_seed0 | 0.5861 |\n| graduated_seed0 | 0.5572 |\n\n## cuda:0 Serial 状态: 进行中\n\n当前任务: **no_filter_seed1** 重训练（训练阶段，`no_filter_seed1_train/` 目录已创建）\n- GPU 利用率 83%, 显存 8116/24564 MiB\n- cmdline: `python scripts/exp_expanded_downstream_eval.py --device cuda:0 --seed_start 1 --num_seeds 1 --strategy no_filter --skip_base`\n- 完成后还需补: **binary_ours_seed1**, **base_model**\n\n## 完整 GSM8K 汇总\n\n| Config | GSM8K | 状态 |\n|---|---|---|\n| base_model | null | 待补 |\n| no_filter_seed0 | **0.5610** | 完成 |\n| no_filter_seed1 | null | **cuda:0 训练中** |\n| no_filter_seed2 | **0.5671** | 完成 |\n| binary_ours_seed0 | **0.5861** | 完成 |\n| binary_ours_seed1 | null | 待补 |\n| binary_ours_seed2 | **0.5853** | 完成 |\n| graduated_seed0 | **0.5572** | 完成 |\n| graduated_seed1 | **0.5618** | 完成 |\n| graduated_seed2 | **0.5648** | 完成 |\n\n**仍缺 3 个**: base_model, no_filter_seed1, binary_ours_seed1。cuda:0 正在跑 no_filter_seed1（训练+eval 约 45min），之后还需串行跑 binary_ours_seed1。base_model 的 GSM8K 需要单独补。\n\n## 完整 5-benchmark 数据（已完成的文件）\n\n| Config | PIQA | TruthfulQA | WinoGrande | ARC-C | GSM8K |\n|---|---|---|---|---|---|\n| base_model | 0.7579 | 0.4659 | 0.6456 | 0.5486 | - |\n| no_filter_s0 | 0.7519 | 0.4224 | 0.6519 | 0.5128 | 0.5610 |\n| no_filter_s1 | 0.7508 | 0.4237 | 0.6456 | 0.5213 | - |\n| no_filter_s2 | 0.7497 | 0.4277 | 0.6480 | 0.5239 | 0.5671 |\n| binary_ours_s0 | 0.7530 | 0.4359 | 0.6385 | 0.5196 | 0.5861 |\n| binary_ours_s1 | 0.7524 | 0.4456 | 0.6425 | 0.5188 | - |\n| binary_ours_s2 | 0.7530 | 0.4378 | 0.6409 | 0.5128 | 0.5853 |\n| graduated_s0 | 0.7514 | 0.4225 | 0.6488 | 0.5128 | 0.5572 |\n| graduated_s1 | 0.7508 | 0.4234 | 0.6440 | 0.5230 | 0.5618 |\n| graduated_s2 | 0.7492 | 0.4275 | 0.6456 | 0.5213 | 0.5648 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gsm8k-round1-collect.md"
+}

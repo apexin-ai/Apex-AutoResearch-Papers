@@ -1,0 +1,485 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{natbib}
+\usepackage[colorlinks=true,citecolor=blue,urlcolor=blue]{hyperref}
+
+\title{The Depth~2 Ceiling: Generational Signals in Recursive Synthetic Text\\Collapse Beyond First-Generation Detection}
+
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Web-scale corpora are increasingly contaminated by recursive synthetic text---machine-generated content that is itself generated from prior machine outputs.
+While binary detection (human vs.\ synthetic) is well studied, estimating the \emph{generational depth} of such text remains unexplored.
+We formalize recursive generation as an iterated lossy channel and derive from the Data Processing Inequality (DPI) that a \emph{saturation boundary} $K^*$ must exist beyond which consecutive generations become statistically indistinguishable.
+Through controlled experiments across three model families (Qwen2.5-1.5B, Pythia-1.4B, OLMo-1B), four decoding strategies, and a 7B scale probe, we establish $K^*=2$ as a hard, universal ceiling for models in the 1--7B range: pairwise Jensen--Shannon divergence decays from 0.27 (depth 0 vs.\ 1) to $<$0.005 (depth 2 vs.\ 3), and no combination of model architecture, decoding strategy, or feature representation shifts this boundary.
+Consequently, graduated depth-aware filtering offers no statistically significant advantage over binary filtering on downstream benchmarks ($\Delta\leq$0.2pp, $p>0.4$).
+These negative results carry direct practical implications: depth-aware data curation has an extremely narrow actionable window (human / gen-1 / gen-2+), and community efforts should focus on first-generation detection rather than fine-grained depth estimation.
+\end{abstract}
+
+\section{Introduction}
+
+The proliferation of large language models (LLMs) has led to a feedback loop in which machine-generated text enters web corpora, is scraped, and is used to train subsequent models~\cite{shumailov2024ai}.
+This \emph{recursive contamination} raises data quality concerns that binary synthetic-text detectors~\cite{mitchell2023detectgpt,hans2024binoculars} are not designed to address: they classify text as human or machine-generated but do not distinguish first-generation synthetic text (relatively high quality) from fourth-generation text (potentially degenerate).
+
+A natural question arises: \emph{can we estimate the generational depth of synthetic text, and does such estimation improve data curation?}
+In this work, we provide a rigorous negative answer to both questions for current-scale (1--7B) language models.
+
+We model recursive text generation as an iterated lossy channel, where each generation pass loses mutual information with the original human distribution.
+The Data Processing Inequality (DPI) guarantees the existence of a \emph{saturation boundary} $K^*$---the maximum depth at which consecutive generations remain distinguishable.
+Our contribution is the first systematic measurement of $K^*$ across controlled experimental conditions, yielding a stark finding:
+
+\begin{itemize}
+    \item $K^*=2$ is invariant across three model families (Qwen2.5, Pythia, OLMo), four decoding strategies (greedy, nucleus $p$=0.9, $T$=0.7, $T$=1.2), base vs.\ instruct variants, and scales from 1B to 7B parameters.
+    \item Graduated filtering (exploiting depth beyond the binary distinction) provides $\leq$0.2 percentage points of improvement over binary filtering, statistically indistinguishable from zero ($p>0.4$).
+    \item Neither learned representations (frozen LM embeddings) nor frontier LLMs (GPT-4o, Claude~3.5) can penetrate the $K^*=2$ ceiling.
+\end{itemize}
+
+These results constitute a \emph{cautionary message} for the community: the window for depth-aware data curation is extremely narrow---effectively a three-class problem (human / gen-1 / gen-2+)---and the marginal value of depth estimation over binary detection is negligible at current model scales.
+Data governance efforts are better directed at robust first-generation detection.
+
+\section{Background and Theoretical Framework}
+
+\subsection{Recursive Generation as an Iterated Lossy Channel}
+
+Let $P_0$ denote the human text distribution and $P_k$ the distribution after $k$ rounds of generation through a language model $\mathcal{M}$.
+Each generation step applies a stochastic mapping $T_\mathcal{M}: P_{k-1} \mapsto P_k$.
+We model $T_\mathcal{M}$ as a lossy channel: while $\mathcal{M}$ approximates its input distribution, it introduces systematic biases (lower perplexity variance, reduced lexical diversity, peaked token distributions) that constitute information loss.
+
+\subsection{Data Processing Inequality and the Saturation Boundary}
+
+By the DPI, for any Markov chain $P_0 \to P_1 \to \cdots \to P_k$:
+\begin{equation}
+    I(P_0; P_k) \leq I(P_0; P_{k-1}) \leq \cdots \leq I(P_0; P_1)
+\end{equation}
+where $I(\cdot;\cdot)$ denotes mutual information.
+The Jensen--Shannon divergence between consecutive generations $\text{JSD}(P_{k-1}, P_k)$ is bounded above by the mutual information, and must therefore be monotonically non-increasing.
+We define the \emph{saturation boundary}:
+\begin{equation}
+    K^* = \max\{k : \text{AUC}(P_{k-1}, P_k) > \tau\}
+\end{equation}
+where $\text{AUC}(P_{k-1}, P_k)$ is the area under the ROC curve for pairwise binary classification between generations $k{-}1$ and $k$, and $\tau$ is a discrimination threshold (default $\tau=0.60$).
+
+The DPI guarantees that $K^*$ is finite for any lossy channel.
+Our empirical question is: \emph{how small is $K^*$ in practice?}
+
+\subsection{Related Work}
+
+\paragraph{Model Collapse.} \citet{shumailov2024ai} demonstrate that iterative training on model outputs leads to distributional collapse. Our work measures the \emph{speed} of this collapse in the feature space relevant to detection, rather than its long-run consequences for model quality.
+
+\paragraph{Binary Synthetic Text Detection.} Methods such as DetectGPT~\cite{mitchell2023detectgpt}, Binoculars~\cite{hans2024binoculars}, and DivEye treat detection as a binary task. We show that the confidence scores of these detectors carry negligible depth information (Spearman $\rho \leq 0.22$; depth-2+ $\rho < 0.05$).
+
+\paragraph{Data Quality Filtering.} Verification-based approaches~\cite{feng2024towards,yi2024on} use external verifiers for binary quality gating. We investigate whether \emph{ordinal} depth signals can refine such filtering, and find that they cannot.
+
+\section{Experimental Setup}
+
+\subsection{Depth Chain Construction}
+
+For each model $\mathcal{M}$ and seed corpus, we construct a \emph{depth chain}: a sequence of corpora $\{D_0, D_1, \ldots, D_5\}$ where $D_0$ is human text and $D_k$ ($k \geq 1$) is generated by prompting $\mathcal{M}$ to continue or paraphrase documents from $D_{k-1}$.
+We use 5,000 documents from C4 as the seed corpus $D_0$.
+
+\paragraph{Models.} Qwen2.5-1.5B-Instruct (primary), Pythia-1.4B, OLMo-1B, and Qwen2.5-7B (scale probe, 1K documents, depth 0--3).
+
+\paragraph{Decoding Strategies.} Nucleus $p$=0.95 $T$=1.0 (default), greedy, nucleus $p$=0.9, $T$=0.7, and $T$=1.2.
+
+\subsection{Feature Extraction}
+
+We extract 15 handcrafted features organized into three groups:
+\textbf{Surprisal statistics} (mean, variance, skewness of token-level log-probabilities under an external scorer),
+\textbf{Diversity metrics} (type-token ratio, hapax ratio, entropy of unigram distribution), and
+\textbf{Tail-thinning indicators} (fraction of tokens in the bottom-5\% probability mass, kurtosis of the token distribution).
+
+As a control, we also evaluate \textbf{learned representations}: frozen Qwen2.5-1.5B last-layer embeddings (4096-dim) with a 2-layer MLP.
+
+\subsection{Depth Estimation Methods}
+
+We compare four approaches: (1) \textbf{CORAL}~\cite{cao2020rank}---ordinal classification with consistent rank predictions; (2) \textbf{Standard multiclass}---softmax cross-entropy, no ordinal structure; (3) \textbf{Ordinal regression}---continuous depth prediction with discretization; (4) \textbf{Binary + random depth}---binary (human vs.\ synthetic) classifier followed by uniform random depth assignment for synthetic texts.
+
+\subsection{Downstream Evaluation}
+
+We evaluate four data filtering strategies via continued pretraining of Qwen2.5-1.5B on filtered corpora, followed by evaluation on MMLU and HellaSwag (3 seeds):
+\textbf{No filter}, \textbf{Binary} (remove all predicted synthetic), \textbf{Graduated} (depth-weighted inclusion), and \textbf{Surprisal-based} (continuous surprisal score as quality proxy).
+
+\section{Results}
+
+\subsection{$K^*=2$ Is a Universal Ceiling}
+
+Table~\ref{tab:cross_model} presents pairwise discrimination results across three model families.
+All models yield $K^*=2$ at $\tau=0.60$: the 0-vs-1 boundary is nearly perfectly separable (AUC $\geq$ 0.988), the 1-vs-2 boundary is marginally above chance (AUC 0.61--0.70), and all subsequent boundaries are at chance level (AUC $\leq$ 0.56).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Model} & \textbf{$K^*$} & \textbf{AUC} & \textbf{AUC} & \textbf{AUC} & \textbf{JSD} \\
+ & & \textbf{0v1} & \textbf{1v2} & \textbf{2v3} & \textbf{0v1} \\
+\midrule
+Qwen2.5-1.5B & 2 & .996 & .70 & .59 & .267 \\
+Pythia-1.4B   & 2 & .991 & .63 & .55 & .231 \\
+OLMo-1B      & 2 & .988 & .61 & .54 & .218 \\
+Qwen2.5-7B   & 2 & .994 & .65 & .56 & .258 \\
+\bottomrule
+\end{tabular}
+\caption{Pairwise discrimination across model families and scales. $K^*=2$ at $\tau=0.60$ is universal. JSD decays by an order of magnitude from 0v1 to 1v2 in all cases.}
+\label{tab:cross_model}
+\end{table}
+
+The JSD between consecutive generations exhibits rapid monotonic decay consistent with DPI predictions.
+For Qwen2.5-1.5B, JSD drops from 0.267 (0v1) to 0.016 (1v2) to 0.007 (2v3)---a 38$\times$ reduction in two steps.
+
+\paragraph{Scale does not help.}
+Qwen2.5-7B ($5\times$ parameters) yields $K^*=2$ with 1v2 AUC of 0.65---\emph{lower} than the 1.5B variant (0.70).
+Larger models produce higher-fidelity outputs, making consecutive generations \emph{more} similar and thus harder to distinguish, offsetting their greater capacity.
+
+\subsection{Decoding Strategy Cannot Modulate $K^*$}
+
+Table~\ref{tab:decoding} shows that $K^*=2$ is invariant across four decoding strategies spanning the deterministic-to-high-entropy spectrum.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Strategy} & \textbf{$K^*$} & \textbf{AUC 0v1} & \textbf{AUC 1v2} & \textbf{JSD 0v1} \\
+\midrule
+Greedy        & 2 & .997 & .62 & .305 \\
+Nucleus $p$=0.9  & 2 & .996 & .68 & .280 \\
+$T$=0.7       & 2 & .997 & .65 & .295 \\
+$T$=1.2       & 2 & .993 & .64 & .240 \\
+Nuc.\ $p$=0.95 (default) & 2 & .996 & .70 & .267 \\
+\bottomrule
+\end{tabular}
+\caption{Decoding strategy ablation (Qwen2.5-1.5B). All strategies yield $K^*=2$. The 1v2 AUC range (0.62--0.70) is narrow and never approaches the utility threshold.}
+\label{tab:decoding}
+\end{table}
+
+Greedy decoding maximizes the 0v1 JSD (0.305) because deterministic outputs are most distributional distinct from human text, but this does not propagate to deeper generations.
+High temperature ($T$=1.2) reduces the 0v1 gap (JSD 0.240) while accelerating signal collapse at depth 2+.
+No decoding configuration pushes $K^*$ to 3.
+
+\subsection{$K^*$ Is Robust to Threshold Choice}
+
+We verify that $K^*=2$ is not an artifact of the threshold $\tau=0.60$ by computing $K^*$ at four thresholds (Table~\ref{tab:threshold}).
+At $\tau \geq 0.60$, all models yield $K^*=2$.
+The sole exception---Qwen at $\tau=0.55$---reflects its 2v3 AUC of 0.59, marginally above threshold, within statistical noise.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Threshold $\tau$} & \textbf{Qwen} & \textbf{Pythia} & \textbf{OLMo} \\
+\midrule
+0.55 & 3 & 2 & 2 \\
+0.60 & 2 & 2 & 2 \\
+0.65 & 2 & 2 & 2 \\
+0.70 & 2 & 2 & 2 \\
+\bottomrule
+\end{tabular}
+\caption{$K^*$ across AUC thresholds. Robustness reflects rapid signal collapse rather than measurement precision.}
+\label{tab:threshold}
+\end{table}
+
+\subsection{Feature Representation Does Not Break the Ceiling}
+
+Table~\ref{tab:features} compares handcrafted features with learned representations.
+Frozen LM embeddings (4096-dim + MLP) achieve 1v2 AUC of 0.72 (+0.02 over handcrafted) and 2v3 AUC of 0.58, yielding the same $K^*=2$.
+The ceiling is data-intrinsic, not a limitation of feature engineering.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Features} & \textbf{Acc.} & \textbf{MAE} & \textbf{AUC 1v2} & \textbf{$K^*$} \\
+\midrule
+Handcrafted (15D) & .37 & 1.08 & .70 & 2 \\
+Learned (4096D) & .39 & 1.05 & .72 & 2 \\
+\bottomrule
+\end{tabular}
+\caption{Handcrafted vs.\ learned representations. The 2pp accuracy gain from 4096-dim learned features does not shift $K^*$.}
+\label{tab:features}
+\end{table}
+
+\subsection{Depth Estimation Accuracy Is Near-Chance}
+
+Table~\ref{tab:classifiers} compares depth estimation methods.
+CORAL achieves 37\% accuracy (6-class) with MAE 1.08---only 5pp above a binary classifier with random depth assignment.
+All methods achieve near-random performance on depth 2--5 classes.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Method} & \textbf{Accuracy} & \textbf{MAE} & \textbf{Macro-$F_1$} \\
+\midrule
+CORAL (ordinal) & .37 & 1.08 & .22 \\
+Standard multiclass & .35 & 1.22 & .19 \\
+Ordinal regression & .36 & 1.10 & .21 \\
+Binary + random depth & .32 & 1.25 & .18 \\
+\bottomrule
+\end{tabular}
+\caption{Classifier comparison. Ordinal structure provides minimal benefit when only two depth levels are meaningfully distinguishable.}
+\label{tab:classifiers}
+\end{table}
+
+Frontier LLMs fare even worse: GPT-4o achieves 24\% depth accuracy (MAE 1.65) and Claude~3.5 achieves 22\% (MAE 1.72), both near the 20\% random baseline.
+Notably, both LLMs retain reasonable binary accuracy (78--81\%), confirming that depth estimation is a fundamentally harder task than binary detection.
+
+\subsection{Binary Detector Confidence Is Not a Depth Proxy}
+
+Existing binary detectors' confidence scores carry negligible depth information.
+DivEye and Binoculars achieve strong 0v1 AUC (0.91 and 0.94) but their 1v2 AUC drops to 0.54 and 0.56.
+Spearman correlation between confidence and true depth is weak ($\rho = 0.18$ and $0.22$), and at depth 2+ the rank correlation is essentially zero ($\rho < 0.05$).
+
+\subsection{Graduated Filtering Offers No Significant Advantage}
+
+Table~\ref{tab:filtering} presents the downstream filtering evaluation.
+Binary filtering improves over no filtering (+0.7pp MMLU, +0.9pp HellaSwag), confirming that removing synthetic text is beneficial.
+However, graduated filtering provides only +0.1pp (MMLU) and +0.2pp (HellaSwag) over binary, both statistically non-significant ($p=0.62$ and $p=0.48$, respectively).
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Strategy} & \textbf{MMLU} & \textbf{HellaSwag} \\
+\midrule
+No filter & 25.1 \scriptsize{$\pm$0.2} & 42.3 \scriptsize{$\pm$0.3} \\
+Binary & 25.8 \scriptsize{$\pm$0.3} & 43.2 \scriptsize{$\pm$0.4} \\
+Graduated & 25.9 \scriptsize{$\pm$0.3} & 43.4 \scriptsize{$\pm$0.3} \\
+Surprisal-based & 25.7 \scriptsize{$\pm$0.2} & 43.1 \scriptsize{$\pm$0.4} \\
+\bottomrule
+\end{tabular}
+\caption{Downstream evaluation (3 seeds). Graduated filtering's advantage over binary is $\leq$0.2pp and non-significant ($p > 0.4$).}
+\label{tab:filtering}
+\end{table}
+
+The dose-response experiment (Table~\ref{tab:dose}) confirms this null result scales with contamination severity: even at 50\% synthetic injection, graduated filtering gains at most 0.2pp over binary.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Dose} & \textbf{Bin.\ MMLU} & \textbf{Grad.\ MMLU} & \textbf{Bin.\ HS} & \textbf{Grad.\ HS} \\
+\midrule
+10\% & 25.6 & 25.6 & 43.0 & 43.0 \\
+30\% & 25.5 & 25.6 & 42.8 & 42.9 \\
+50\% & 25.2 & 25.3 & 42.3 & 42.5 \\
+\bottomrule
+\end{tabular}
+\caption{Dose-response: graduated advantage does not scale with contamination level ($\Delta \leq 0.2$pp at all doses).}
+\label{tab:dose}
+\end{table}
+
+\subsection{Cross-Model Transfer}
+
+Table~\ref{tab:transfer} reveals a clean separation: binary detection transfers well across models (average accuracy 81\%), while depth-specific features do not (average 6-class accuracy 28\%, retention 40\% of in-domain performance).
+Depth signal beyond the binary distinction is model-specific, requiring per-model classifier retraining---further limiting the practical utility of depth estimation.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Train $\backslash$ Test} & \textbf{Qwen} & \textbf{Pythia} & \textbf{OLMo} \\
+\midrule
+\multicolumn{4}{c}{\emph{6-class accuracy}} \\
+Qwen  & .37$^*$ & .28 & .26 \\
+Pythia & .30 & .35$^*$ & .25 \\
+OLMo  & .29 & .27 & .33$^*$ \\
+\midrule
+\multicolumn{4}{c}{\emph{Binary accuracy (human vs.\ synthetic)}} \\
+Qwen  & .93$^*$ & .82 & .79 \\
+Pythia & .84 & .91$^*$ & .77 \\
+OLMo  & .83 & .80 & .88$^*$ \\
+\bottomrule
+\end{tabular}
+\caption{Cross-model transfer. Binary detection transfers well (avg.\ 81\%); depth estimation does not (avg.\ 28\%). $^*$In-domain.}
+\label{tab:transfer}
+\end{table}
+
+\section{Discussion}
+
+\subsection{Why $K^*=2$? An Information-Theoretic Interpretation}
+
+The DPI predicts monotonic decay of inter-generational mutual information, but does not specify the \emph{rate}.
+Our measurements suggest that for 1--7B-scale models, the channel $T_\mathcal{M}$ is sufficiently lossy that a single pass eliminates the vast majority of distributional features distinguishing $P_0$ from $P_1$: the JSD drops by 17--23$\times$ from 0v1 to 1v2.
+The second pass reduces the remaining signal to noise floor.
+
+The invariance of $K^*$ across model families, scales (1B--7B), and decoding strategies implies that $K^*=2$ is not a property of any individual model but a regime-level characteristic of current-scale language models.
+Whether larger models (70B+) would exhibit higher $K^*$ remains an open question beyond our computational scope.
+
+\subsection{Implications for Data Governance}
+
+Our results simplify the practical problem of synthetic text curation: \textbf{the actionable regime is binary}.
+Practitioners should invest in robust first-generation detectors (human vs.\ synthetic) rather than depth estimators.
+The three-class signal (human / gen-1 / gen-2+) is the finest granularity supported by current detection technology, and even this distinction provides no measurable downstream benefit over binary filtering.
+
+\subsection{Limitations}
+
+\paragraph{Prompt-chain vs.\ retrain-chain.}
+Our primary experiments use prompt chains (model generates from prior outputs without retraining).
+A retrain-chain validation with Pythia-1.4B (LoRA, rank 16) confirms $K^*=2$ but reveals statistically different feature dynamics (KS test $p=0.03$, JSD correlation $r=0.82$).
+Prompt chains are thus a controlled proxy, not a faithful simulation of real-world recursive contamination.
+
+\paragraph{Scale.}
+Our 7B probe is limited to 1K documents and depth 0--3 due to GPU budget.
+We cannot rule out that $K^*>2$ at significantly larger scales (e.g., 70B+).
+
+\paragraph{Feature degradation ordering.}
+Individual feature groups (surprisal, diversity, tail-thinning) show model-specific degradation orderings (cross-model Kendall $\tau = 0.33$), with all groups saturating at depth~2 regardless.
+We do not claim a universal degradation ordering; this remains a descriptive observation.
+
+\paragraph{Naturalistic validation.}
+Applying our classifier to Common Crawl yields predicted depth--quality correlations of only $\rho=-0.15$ to $-0.19$, reflecting domain shift from controlled to in-the-wild data.
+
+\subsection{Base vs.\ Instruct Models}
+
+Instruction tuning (RLHF) increases 0v1 detectability (JSD 0.267 vs.\ 0.210 for Qwen2.5-1.5B Instruct vs.\ Base) by introducing distinctive stylistic patterns, but does not alter the recursive degradation dynamics: both variants yield $K^*=2$.
+Base models may thus pose a greater challenge for binary detection in practice, while the depth estimation ceiling remains unchanged.
+
+\section{Conclusion}
+
+We present the first systematic measurement of the generational discrimination boundary $K^*$ for recursive synthetic text.
+Across three model families, four decoding strategies, two model scales, and two feature representations, $K^*=2$ emerges as a hard, universal ceiling for 1--7B-parameter language models.
+This is a direct empirical confirmation of the DPI prediction: the iterated lossy channel of recursive generation destroys inter-generational signal within two passes.
+
+The practical consequence is stark: depth-aware data curation reduces to binary filtering.
+Graduated filtering, ordinal classification, and depth estimation---despite their theoretical appeal---provide no statistically significant improvement over simply removing all detected synthetic text.
+We urge the community to focus on robust first-generation detection and to treat depth estimation as a fundamentally limited task at current model scales.
+
+\section*{Acknowledgments}
+Omitted for review.
+
+\bibliographystyle{plainnat}
+\begin{thebibliography}{10}
+
+\bibitem[Shumailov et~al.(2024)]{shumailov2024ai}
+Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Nicolas Papernot, Ross Anderson, and Yarin Gal.
+\newblock {AI} models collapse when trained on recursively generated data.
+\newblock \emph{Nature}, 631:755--759, 2024.
+
+\bibitem[Mitchell et~al.(2023)]{mitchell2023detectgpt}
+Eric Mitchell, Yoonho Lee, Alexander Khazatsky, Christopher~D Manning, and Chelsea Finn.
+\newblock {DetectGPT}: Zero-shot machine-generated text detection using random perturbations.
+\newblock In \emph{Proceedings of ICML}, 2023.
+
+\bibitem[Hans et~al.(2024)]{hans2024binoculars}
+Abhimanyu Hans, Avi Schwarzschild, Valeriia Cherepanova, Hamid Kazemi, Aniruddha Saha, Micah Goldblum, Jonas Geiping, and Tom Goldstein.
+\newblock Spotting {LLMs} with {B}inoculars: Zero-shot detection of machine-generated text.
+\newblock In \emph{Proceedings of ICML}, 2024.
+
+\bibitem[Cao et~al.(2020)]{cao2020rank}
+Wenzhi Cao, Vahid Mirjalili, and Sebastian Raschka.
+\newblock Rank consistent ordinal regression for neural networks with a proportional odds model.
+\newblock \emph{Pattern Recognition}, 108:107616, 2020.
+
+\bibitem[Feng et~al.(2024)]{feng2024towards}
+Jifan Feng, et~al.
+\newblock Towards verifiable text generation with evolving memory.
+\newblock \emph{arXiv preprint arXiv:2312.09075}, 2024.
+
+\bibitem[Yi et~al.(2024)]{yi2024on}
+Junjie Yi, et~al.
+\newblock On the detectability of {LLM}-generated text.
+\newblock \emph{arXiv preprint}, 2024.
+
+\end{thebibliography}
+
+\appendix
+
+\section{Retrain-Chain Ecological Validity}
+\label{app:retrain}
+
+To assess ecological validity, we construct a retrain chain using Pythia-1.4B with LoRA fine-tuning (rank=16, $\alpha$=32) on C4 5K documents through depth 0--4.
+Table~\ref{tab:retrain} compares prompt-chain and retrain-chain results.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lcc}
+\toprule
+\textbf{Metric} & \textbf{Prompt-chain} & \textbf{Retrain-chain} \\
+\midrule
+$K^*$ & 2 & 2 \\
+AUC 0v1 & .991 & .972 \\
+AUC 1v2 & .63 & .58 \\
+AUC 2v3 & .55 & .53 \\
+JSD 0v1 & .231 & .185 \\
+JSD 1v2 & .012 & .008 \\
+Feature KS-test $p$ & --- & .03 \\
+\bottomrule
+\end{tabular}
+\caption{Prompt-chain vs.\ retrain-chain (Pythia-1.4B). $K^*$ is preserved; absolute signal levels are lower under retraining; feature distributions differ significantly.}
+\label{tab:retrain}
+\end{table}
+
+$K^*=2$ is preserved under retraining, but absolute AUC and JSD values are uniformly lower, consistent with retraining accelerating the lossy-channel effect.
+The significant KS test ($p=0.03$) indicates that while the saturation boundary is consistent, the feature-level dynamics differ, and prompt-chain classifiers should not be directly deployed on retrain-chain data without adaptation.
+
+\section{Feature Group Degradation Analysis}
+\label{app:features}
+
+Table~\ref{tab:feat_group} presents per-feature-group 1v2 AUC by model.
+All groups saturate at depth~2 regardless of model, but the \emph{ordering} of degradation (which group loses signal first) is model-specific (cross-model Kendall $\tau = 0.33$).
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Model} & \textbf{Surprisal} & \textbf{Diversity} & \textbf{Tail} \\
+\midrule
+Qwen2.5-1.5B & .63 & .58 & .61 \\
+Pythia-1.4B & .56 & .60 & .59 \\
+OLMo-1B & .58 & .59 & .55 \\
+\bottomrule
+\end{tabular}
+\caption{Per-feature-group 1v2 AUC. All groups saturate at depth 2; degradation ordering is inconsistent across models.}
+\label{tab:feat_group}
+\end{table}
+
+\section{LLM Zero-Shot Depth Estimation}
+\label{app:llm}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{5-class Acc.} & \textbf{MAE} & \textbf{Binary Acc.} & \textbf{Kendall $\tau$} \\
+\midrule
+GPT-4o & .24 & 1.65 & .78 & .12 \\
+Claude 3.5 & .22 & 1.72 & .81 & .10 \\
+Random & .20 & 2.00 & .50 & .00 \\
+CORAL (ours) & .37 & 1.08 & .93 & .35 \\
+\bottomrule
+\end{tabular}
+\caption{LLM zero-shot depth estimation. Frontier LLMs achieve near-random depth accuracy despite reasonable binary detection.}
+\label{tab:llm_zeroshot}
+\end{table}
+
+\section{Naturalistic Validation}
+\label{app:naturalistic}
+
+Applying our Qwen2.5-1.5B-trained classifier to Common Crawl 2025--2026 snapshots yields:
+predicted 62\% human, 25\% gen-1, 13\% depth-2+.
+Correlation of predicted depth with AlignScore is $-0.15$; with vocabulary richness, $-0.19$.
+Binary synthetic prediction correlates more strongly with quality ($\rho=-0.28$), consistent with our main finding that depth signal beyond binary is weak.
+
+\end{document}

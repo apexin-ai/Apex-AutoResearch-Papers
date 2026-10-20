@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28ffeabd425de66876d7",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp wiki mistral7b prep",
+  "task_key": "worker_code_exp_wiki_mistral7b_prep_20260517T140433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_wiki_mistral7b_prep_20260517T140433_result.json",
+    "occurrence": 1,
+    "bytes": 200,
+    "sha256": "2c9786d7200501ab415846bb82f1b2a53f7132bd2ba26b833a8cdc7ddca017b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- 数据：`data/exp_wiki_mistral7b/depth_0.jsonl` — **5000 行**，确认。\n- 模型：`/root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-v0___3/config.json` 存在，路径可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-wiki-mistral7b-prep.md"
+}

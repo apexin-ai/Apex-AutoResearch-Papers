@@ -1,0 +1,1 @@
+Key Results: exact agreement 17/37 (45.9%), within ±1 agreement 35/37 (94.6%), CP always ≤ θ. Off-by-1 cases: disputed pairs have AUC ∈ [0.607, 0.654]. 2 outliers: long retrain chains. Server files: results/exp_changepoint_kstar/{changepoint_results,agreement_summary,penalty_sensitivity,bootstrap_comparison}.json

@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_code_pythia1b4",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:49:01.762Z",
+    "updated_at": "2026-05-18T22:09:02.457Z",
+    "hypothesis": "Code domain (Python) cross-model K* validation: Pythia-1.4B continuation on CodeSearchNet Python subset (Husain et al. 2019). 验证 code domain K* 跨第 3 家族（Pythia）一致性。若 K*=2，code domain 的 domain-governed claim 与 C4 同等强度。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "parent": "exp_code_qwen1b5"
+  },
+  "timestamp": "2026-05-18T22:09:02.647560+00:00",
+  "trigger": "update_registry"
+}

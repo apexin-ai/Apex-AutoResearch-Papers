@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "335c7b9a4d578e7d7386",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "code retrain depth extension",
+  "task_key": "worker_code_retrain-depth-extension_20260518T223123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_retrain-depth-extension_20260518T223123.log",
+    "occurrence": 1,
+    "bytes": 610021,
+    "sha256": "df9fb260e9333fd42cae5773d170162d3c0e3b9f8d653d18011a116f0e9bc6da"
+  },
+  "statistics": {
+    "messages": 196,
+    "user_turns": 0,
+    "tool_calls": 34,
+    "roles": {
+      "log": 1,
+      "system": 37,
+      "record": 1,
+      "assistant": 61,
+      "tool_call": 34,
+      "tool_result": 34,
+      "result": 28
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 196,
+      "chunks": [
+        {
+          "path": "335c7b9a4d578e7d7386-part-0001.json",
+          "message_count": 166
+        },
+        {
+          "path": "335c7b9a4d578e7d7386-part-0002.json",
+          "message_count": 30
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-retrain-depth-extension.md"
+}

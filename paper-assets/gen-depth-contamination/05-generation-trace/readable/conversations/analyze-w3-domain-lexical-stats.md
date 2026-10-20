@@ -1,0 +1,816 @@
+# analyze w3 domain lexical stats
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 27
+- **Recorded user turns:** 0
+- **Tool calls:** 13
+- **Original source:** `logs/chats/worker_analyze_w3-domain-lexical-stats_20260518T145650.jsonl`
+- **Structured JSON:** [`2e7639b80e18fa1236cf.json`](../../sessions/2e/2e7639b80e18fa1236cf.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+27 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T14:59:18.972457+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T14:59:18.972770+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T14:59:18.972997+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/gen-depth-contamination/ -name \"features.csv\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "find /root/autodl-tmp/gen-depth-contamination/ -name \"features.csv\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-18T14:59:18.973180+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/data_exp016_qwen_base/features.csv\\n/root/autodl-tmp/gen-depth-contamination/data/exp_018_llama8b/features.csv\\n/root/autodl-tmp/gen-depth-contamination/data/exp_021_length_128/features.csv\\n/root/autodl-tmp/gen-depth-contamination/data/exp_021_length_256/features.csv\\n/root/autodl-tmp/gen-depth-contamination/data/exp_021_length_512/features.csv\\n/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/features.csv\\n/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/features.csv\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/features.csv\\n/root/autodl-tmp/gen-depth-contamination/data/exp_008_retrain_chain/features.csv\\n/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/features.csv\\n/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b/features.csv\\n/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_pythia/features.csv\\n/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_olmo/features.csv\\n/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_qwen7b/features.csv\\n/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_llama8b/features.csv\\n/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_mistral7b/features.csv\\n/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_mistral7b/features.csv\\n/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/features.csv\\n/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_scorer_confound/features.csv\\n/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_scorer_confound_1b5/features.csv\\n/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_qwen7b_crossscorer/features.csv\\n/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_qwen1b5_crossscorer/features.csv\\n/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b_crossscorer/features.csv\\n/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_mistral7b_crossscorer/features
+…[truncated 1917 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-18T14:59:18.973358+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "head -1 /root/autodl-tmp/gen-depth-contamination/data/exp_018_llama8b/features.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "head -1 /root/autodl-tmp/gen-depth-contamination/data/exp_018_llama8b/features.csv",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T14:59:18.973496+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T14:59:18.973632+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "head -1 /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/features.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "head -1 /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/features.csv",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-18T14:59:18.973759+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "head -1 /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/features.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "head -1 /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/features.csv",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-18T14:59:18.973937+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T14:59:18.974078+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T14:59:18.974246+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat << 'PYEOF' > /tmp/w3_ttr_entropy.py\nimport pandas as pd\nimport numpy as np\nimport json\n\nfiles = {\n    'C4': '/root/autodl-tmp/gen-depth-contamination/data/exp_018_llama8b/features.csv',\n    'Wikipedia': '/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/features.csv',\n    'arXiv': '/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/features.csv',\n}\n\nall_stats = []\nraw_data = {}\n\nfor domain, path in files.items():\n    df = pd.read_csv(path)\n    raw_data[domain] = df\n    for depth in sorted(df['depth'].unique()):\n        sub = df[df['depth'] == depth]\n        all_stats.append({\n            'domain': domain,\n            'depth': int(depth),\n            'n': len(sub),\n            'mean_ttr': sub['ttr'].mean(),\n            'std_ttr': sub['ttr'].std(),\n            'mean_entropy': sub['freq_entropy'].mean(),\n            'std_entropy': sub['freq_entropy'].std(),\n        })\n\nstats_df = pd.DataFrame(all_stats)\n\n# Print summary table\nprint(\"=\" * 90)\nprint(\"Domain × Depth Statistics: TTR and Freq Entropy\")\nprint(\"=\" * 90)\nprint(f\"{'Domain':<12} {'Depth':>5} {'N':>6}  {'TTR (mean±std)':>20}  {'Entropy (mean±std)':>22}\")\nprint(\"-\" * 90)\nfor _, row in stats_df.iterrows():\n    print(f\"{row['domain']:<12} {row['depth']:>5} {row['n']:>6}  \"\n          f\"{row['mean_ttr']:.4f} ± {row['std_ttr']:.4f}  \"\n          f\"{row['mean_entropy']:.4f} ± {row['std_entropy']:.4f}\")\n\n# Domain ranking per depth\nprint(\"\\n\" + \"=\" * 90)\nprint(\"Domain Ranking per Depth (ascending order)\")\nprint(\"Expected K* order: Wiki < C4 < arXiv\")\nprint(\"=\" * 90)\nfor depth in sorted(stats_df['depth'].unique()):\n    sub = stats_df[stats_df['depth'] == depth].copy()\n    ttr_rank = sub.sort_values('mean_ttr')['domain'].tolist()\n    ent_rank = sub.sort_values('mean_entropy')['domain'].tolist()\n    print(f\"Depth {depth}:\")\n    print(f\"  TTR ranking (low→high):     {' < '.join(ttr_rank)}\")\n    print(f\"  Entropy ranking (low→high): {' < '.join(ent_rank)}\")\n    # Check consistency with K*\n    expected = ['Wikipedia', 'C4', 'arXiv']\n    ttr_match = ttr_rank == expected\n    ent_match = ent_rank == expected\n    print(f\"  TTR matches K* order: {ttr_match}\")\n    print(f\"  Entropy matches K* order: {ent_match}\")\n\n# Cohen's d computation\ndef cohens_d(x, y):\n    nx, ny = len(x), len(y)\n    pooled_std = np.sqrt(((nx - 1) * x.std()**2 + (ny - 1) * y.std()**2) / (nx + ny - 2))\n    if pooled_std == 0:\n        return 0.0\n    return (x.mean() - y.mean()) / pooled_std\n\nprint(\"\\n\" + \"=\" * 90)\nprint(\"Cohen's d (Effect Size)\")\nprint(\"=\" * 90)\n\n# Depth 0 (original human text)\nprint(\"\\n--- Depth 0 (original human text) ---\")\nfor metric, col in [('TTR', 'ttr'), ('Entropy', 'freq_entropy')]:\n    wiki_d0 = raw_data['Wikipedia'][raw_data['Wikipedia']['depth'] == 0][col]\n    c4_d0 = raw_data['C4'][raw_data['C4']['depth'] == 0][col]\n    arxiv_d0 = raw_data['arXiv'][raw_data['arXiv']['depth'] == 0][col]\n    \n    d_wiki_c4 = cohens_d(c4_d0, wiki_d0)\n    d_c4_arxiv = cohens_d(arxiv_d0, c4_d0)\n    d_wiki_arxiv = cohens_d(arxiv_d0, wiki_d0)\n    print(f\"  {metric}:\")\n    print(f\"    C4 vs Wiki:   d = {d_wiki_c4:+.4f}\")\n    print(f\"    arXiv vs C4:  d = {d_c4_arxiv:+.4f}\")\n    print(f\"    arXiv vs Wiki: d = {d_wiki_arxiv:+.4f}\")\n\n# Depth-averaged\nprint(\"\\n--- Depth-averaged ---\")\nfor metric, col in [('TTR', 'ttr'), ('Entropy', 'freq_entropy')]:\n    wiki_all = raw_data['Wikipedia'][col]\n    c4_all = raw_data['C4'][col]\n    arxiv_all = raw_data['arXiv'][col]\n    \n    d_wiki_c4 = cohens_d(c4_all, wiki_all)\n    d_c4_arxiv = cohens_d(arxiv_all, c4_all)\n    d_wiki_arxiv = cohens_d(arxiv_all, wiki_all)\n    print(f\"  {metric}:\")\n    print(f\"    C4 vs Wiki:   d = {d_wiki_c4:+.4f}\")\n    print(f\"    arXiv vs C4:  d = {d_c4_arxiv:+.4f}\")\n    print(f\"    arXiv vs Wiki: d = {d_wiki_arxiv:+.4f}\")\n\n# Export JSON for local processing\noutput = {\n    'stats': all_stats,\n    'cohens_d': {}\n}\nfor label, depth_filter in [('depth_0', 0), ('all_depths', None)]:\n    output['cohens_d'][label] = {}\n    for metric, col in [('ttr', 'ttr'), ('entropy', 'freq_entropy')]:\n        pairs = {}\n        for pair_name, (d1, d2) in [('C4_vs_Wiki', ('C4', 'Wikipedia')), \n                                      ('arXiv_vs_C4', ('arXiv', 'C4')),\n                                      ('arXiv_vs_Wiki', ('arXiv', 'Wikipedia'))]:\n            if depth_filter is not None:\n                x = raw_data[d1][raw_data[d1]['depth'] == depth_filter][col]\n                y = raw_data[d2][raw_data[d2]['depth'] == depth_filter][col]\n            else:\n                x = raw_data[d1][col]\n                y = raw_data[d2][col]\n            pairs[pair_name] = round(cohens_d(x, y), 4)\n        output['cohens_d'][label][metric] = pairs\n\nprint(\"\\n\\n===JSON_START===\")\nprint(json.dumps(output, indent=2))\nprint(\"===JSON_END===\")\nPYEOF\npython3 /tmp/w3_ttr_entropy.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-22115",
+    "command": "cat << 'PYEOF' > /tmp/w3_ttr_entropy.py\nimport pandas as pd\nimport numpy as np\nimport json\n\nfiles = {\n    'C4': '/root/autodl-tmp/gen-depth-contamination/data/exp_018_llama8b/features.csv',\n    'Wikipedia': '/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/features.csv',\n    'arXiv': '/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/features.csv',\n}\n\nall_stats = []\nraw_data = {}\n\nfor domain, path in files.items():\n    df = pd.read_csv(path)\n    raw_data[domain] = df\n    for depth in sorted(df['depth'].unique()):\n        sub = df[df['depth'] == depth]\n        all_stats.append({\n            'domain': domain,\n            'depth': int(depth),\n            'n': len(sub),\n            'mean_ttr': sub['ttr'].mean(),\n            'std_ttr': sub['ttr'].std(),\n            'mean_entropy': sub['freq_entropy'].mean(),\n            'std_entropy': sub['freq_entropy'].std(),\n        })\n\nstats_df = pd.DataFrame(all_stats)\n\n# Print summary table\nprint(\"=\" * 90)\nprint(\"Domain × Depth Statistics: TTR and Freq Entropy\")\nprint(\"=\" * 90)\nprint(f\"{'Domain':<12} {'Depth':>5} {'N':>6}  {'TTR (mean±std)':>20}  {'Entropy (mean±std)':>22}\")\nprint(\"-\" * 90)\nfor _, row in stats_df.iterrows():\n    print(f\"{row['domain']:<12} {row['depth']:>5} {row['n']:>6}  \"\n          f\"{row['mean_ttr']:.4f} ± {row['std_ttr']:.4f}  \"\n          f\"{row['mean_entropy']:.4f} ± {row['std_entropy']:.4f}\")\n\n# Domain ranking per depth\nprint(\"\\n\" + \"=\" * 90)\nprint(\"Domain Ranking per Depth (ascending order)\")\nprint(\"Expected K* order: Wiki < C4 < arXiv\")\nprint(\"=\" * 90)\nfor depth in sorted(stats_df['depth'].unique()):\n    sub = stats_df[stats_df['depth'] == depth].copy()\n    ttr_rank = sub.sort_values('mean_ttr')['domain'].tolist()\n    ent_rank = sub.sort_values('mean_entropy')['domain'].tolist()\n    print(f\"Depth {depth}:\")\n    print(f\"  TTR ranking (low→high):     {' < '.join(ttr_rank)}\")\n    print(f\"  Entropy ranking (low→high): {' < '.join(ent_rank)}\")\n    # Check consistency with K*\n    expected = ['Wikipedia', 'C4', 'arXiv']\n    ttr_match = ttr_rank == expected\n    ent_match = ent_rank == expected\n    print(f\"  TTR matches K* order: {ttr_match}\")\n    print(f\"  Entropy matches K* order: {ent_match}\")\n\n# Cohen's d computation\ndef cohens_d(x, y):\n    nx, ny = len(x), len(y)\n    pooled_std = np.sqrt(((nx - 1) * x.std()**2 + (ny - 1) * y.std()**2) / (nx + ny - 2))\n    if pooled_std == 0:\n        return 0.0\n    return (x.mean() - y.mean()) / pooled_std\n\nprint(\"\\n\" + \"=\" * 90)\nprint(\"Cohen's d (Effect Size)\")\nprint(\"=\" * 90)\n\n# Depth 0 (original human text)\nprint(\"\\n--- Depth 0 (original human text) ---\")\nfor metric, col in [('TTR', 'ttr'), ('Entropy', 'freq_entropy')]:\n    wiki_d0 = raw_data['Wikipedia'][raw_data['Wikipedia']['depth'] == 0][col]\n    c4_d0 = raw_data['C4'][raw_data['C4']['depth'] == 0][col]\n    arxiv_d0 = raw_data['arXiv'][raw_data['arXiv']['depth'] == 0][col]\n    \n    d_wiki_c4 = cohens_d(c4_d0, wiki_d0)\n    d_c4_arxiv = cohens_d(arxiv_d0, c4_d0)\n    d_wiki_arxiv = cohens_d(arxiv_d0, wiki_d0)\n    print(f\"  {metric}:\")\n    print(f\"    C4 vs Wiki:   d = {d_wiki_c4:+.4f}\")\n    print(f\"    arXiv vs C4:  d = {d_c4_arxiv:+.4f}\")\n    print(f\"    arXiv vs Wiki: d = {d_wiki_arxiv:+.4f}\")\n\n# Depth-averaged\nprint(\"\\n--- Depth-averaged ---\")\nfor metric, col in [('TTR', 'ttr'), ('Entropy', 'freq_entropy')]:\n    wiki_all = raw_data['Wikipedia'][col]\n    c4_all = raw_data['C4'][col]\n    arxiv_all = raw_data['arXiv'][col]\n    \n    d_wiki_c4 = cohens_d(c4_all, wiki_all)\n    d_c4_arxiv = cohens_d(arxiv_all, c4_all)\n    d_wiki_arxiv = cohens_d(arxiv_all, wiki_all)\n    print(f\"  {metric}:\")\n    print(f\"    C4 vs Wiki:   d = {d_wiki_c4:+.4f}\")\n    print(f\"    arXiv vs C4:  d = {d_c4_arxiv:+.4f}\")\n    print(f\"    arXiv vs Wiki: d = {d_wiki_arxiv:+.4f}\")\n\n# Export JSON for local processing\noutput = {\n    'stats': all_stats,\n    'cohens_d': {}\n}\nfor label, depth_filter in [('depth_0', 0), ('all_depths', None)]:\n    output['cohens_d'][label] = {}\n    for metric, col in [('ttr', 'ttr'), ('entropy', 'freq_entropy')]:\n        pairs = {}\n        for pair_name, (d1, d2) in [('C4_vs_Wiki', ('C4', 'Wikipedia')), \n                                      ('arXiv_vs_C4', ('arXiv', 'C4')),\n                                      ('arXiv_vs_Wiki', ('arXiv', 'Wikipedia'))]:\n            if depth_filter is not None:\n                x = raw_data[d1][raw_data[d1]['depth'] == depth_filter][col]\n                y = raw_data[d2][raw_data[d2]['depth'] == depth_filter][col]\n            else:\n                x = raw_data[d1][col]\n                y = raw_data[d2][col]\n            pairs[pair_name] = round(cohens_d(x, y), 4)\n        output['cohens_d'][label][metric] = pairs\n\nprint(\"\\n\\n===JSON_START===\")\nprint(json.dumps(output, indent=2))\nprint(\"===JSON_END===\")\nPYEOF\npython3 /tmp/w3_ttr_entropy.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T14:59:18.974580+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"==========================================================================================\\nDomain × Depth Statistics: TTR and Freq Entropy\\n==========================================================================================\\nDomain       Depth      N        TTR (mean±std)      Entropy (mean±std)\\n------------------------------------------------------------------------------------------\\nC4               0   5000  0.7200 ± 0.1048  6.2245 ± 0.7060\\nC4               1   5000  0.7071 ± 0.1487  5.7374 ± 1.1892\\nC4               2   5000  0.6758 ± 0.1592  5.7735 ± 1.1392\\nC4               3   5000  0.6621 ± 0.1643  5.7429 ± 1.1610\\nC4               4   5000  0.6467 ± 0.1694  5.7583 ± 1.1666\\nC4               5   5000  0.6360 ± 0.1747  5.7722 ± 1.1409\\nWikipedia        0   5000  0.6646 ± 0.0613  6.4080 ± 0.2843\\nWikipedia        1   5000  0.6552 ± 0.1206  5.9325 ± 0.8429\\nWikipedia        2   5000  0.6475 ± 0.1446  5.7837 ± 0.9054\\nWikipedia        3   5000  0.6452 ± 0.1595  5.6638 ± 1.0845\\nWikipedia        4   5000  0.6364 ± 0.1643  5.6600 ± 1.0622\\nWikipedia        5   5000  0.6324 ± 0.1715  5.5929 ± 1.1302\\narXiv            0   2200  0.7545 ± 0.0546  6.8526 ± 0.2945\\narXiv            1   2200  0.7322 ± 0.0977  6.1133 ± 0.6547\\narXiv            2   2200  0.6766 ± 0.1310  5.9981 ± 0.9669\\narXiv            3   2200  0.6351 ± 0.1338  5.9635 ± 0.9332\\narXiv            4   2200  0.6214 ± 0.1404  5.8982 ± 0.9420\\narXiv            5   2200  0.6179 ± 0.1502  5.8160 ± 0.9677\\n\\n==========================================================================================\\nDomain Ranking per Depth (ascending order)\\nExpected K* order: Wiki < C4 < arXiv\\n==========================================================================================\\nDepth 0:\\n  TTR ranking (low→high):     Wikipedia < C4 < arXiv\\n  Entropy ranking (low→high): C4 < Wikipedia < arXiv\\n  TTR matches K* order: True\\n
+…[truncated 7679 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T14:59:18.974806+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/domain_lexical_stats",
+  "description": "Create output directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/domain_lexical_stats",
+    "description": "Create output directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T14:59:18.974949+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T14:59:18.975087+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/domain_lexical_stats/domain_ttr_entropy.tex",
+  "content": "% Domain × Depth lexical statistics: TTR and Vocabulary Entropy\n% Data sources: C4 (exp_018, LLaMA-3.1-8B), Wikipedia (exp_023), arXiv (exp_024, Qwen)\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Type-Token Ratio (TTR) and vocabulary entropy across three domains and generation depths.\nAt depth~0 (original human text), arXiv exhibits the highest lexical diversity (TTR\\,=\\,0.755, $H$\\,=\\,6.853),\nfollowed by C4 and Wikipedia.\nAs depth increases, all domains converge, with arXiv showing the steepest decline.\nCohen's $d$ values are computed at depth~0 for pairwise domain comparisons.}\n\\label{tab:domain-ttr-entropy}\n\\begin{tabular}{ll rrr rrr}\n\\toprule\n& & \\multicolumn{3}{c}{\\textbf{TTR}} & \\multicolumn{3}{c}{\\textbf{Vocab Entropy ($H$)}} \\\\\n\\cmidrule(lr){3-5} \\cmidrule(lr){6-8}\n\\textbf{Depth} & $N$ & \\textbf{Wiki} & \\textbf{C4} & \\textbf{arXiv} & \\textbf{Wiki} & \\textbf{C4} & \\textbf{arXiv} \\\\\n\\midrule\n0 & 5k/5k/2.2k & .665\\tpm.061 & .720\\tpm.105 & \\textbf{.755}\\tpm.055 & 6.408\\tpm.284 & 6.225\\tpm.706 & \\textbf{6.853}\\tpm.295 \\\\\n1 &             & .655\\tpm.121 & .707\\tpm.149 & \\textbf{.732}\\tpm.098 & 5.932\\tpm.843 & 5.737\\tpm1.189 & \\textbf{6.113}\\tpm.655 \\\\\n2 &             & .647\\tpm.145 & .676\\tpm.159 & \\textbf{.677}\\tpm.131 & 5.784\\tpm.905 & 5.774\\tpm1.139 & \\textbf{5.998}\\tpm.967 \\\\\n3 &             & .645\\tpm.159 & \\textbf{.662}\\tpm.164 & .635\\tpm.134 & 5.664\\tpm1.085 & 5.743\\tpm1.161 & \\textbf{5.964}\\tpm.933 \\\\\n4 &             & .636\\tpm.164 & \\textbf{.647}\\tpm.169 & .621\\tpm.140 & 5.660\\tpm1.062 & 5.758\\tpm1.167 & \\textbf{5.898}\\tpm.942 \\\\\n5 &             & .632\\tpm.172 & \\textbf{.636}\\tpm.175 & .618\\tpm.150 & 5.593\\tpm1.130 & 5.772\\tpm1.141 & \\textbf{5.816}\\tpm.968 \\\\\n\\midrule\n\\multicolumn{8}{l}{\\textit{Cohen's $d$ at depth 0 (positive $=$ second domain higher):}} \\\\\n\\multicolumn{2}{l}{C4 vs.\\ Wiki}   & \\multicolumn{3}{c}{$d = +0.65$} & \\multicolumn{3}{c}{$d = -0.34$} \\\\\n\\multicolumn{2}{l}{arXiv vs.\\ C4}  & \\multicolumn{3}{c}{$d = +0.37$} & \\multicolumn{3}{c}{$d = +1.03$} \\\\\n\\multicolumn{2}{l}{arXiv vs.\\ Wiki} & \\multicolumn{3}{c}{$d = +1.52$} & \\multicolumn{3}{c}{$d = +1.55$} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/domain_lexical_stats/domain_ttr_entropy.tex",
+    "content": "% Domain × Depth lexical statistics: TTR and Vocabulary Entropy\n% Data sources: C4 (exp_018, LLaMA-3.1-8B), Wikipedia (exp_023), arXiv (exp_024, Qwen)\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Type-Token Ratio (TTR) and vocabulary entropy across three domains and generation depths.\nAt depth~0 (original human text), arXiv exhibits the highest lexical diversity (TTR\\,=\\,0.755, $H$\\,=\\,6.853),\nfollowed by C4 and Wikipedia.\nAs depth increases, all domains converge, with arXiv showing the steepest decline.\nCohen's $d$ values are computed at depth~0 for pairwise domain comparisons.}\n\\label{tab:domain-ttr-entropy}\n\\begin{tabular}{ll rrr rrr}\n\\toprule\n& & \\multicolumn{3}{c}{\\textbf{TTR}} & \\multicolumn{3}{c}{\\textbf{Vocab Entropy ($H$)}} \\\\\n\\cmidrule(lr){3-5} \\cmidrule(lr){6-8}\n\\textbf{Depth} & $N$ & \\textbf{Wiki} & \\textbf{C4} & \\textbf{arXiv} & \\textbf{Wiki} & \\textbf{C4} & \\textbf{arXiv} \\\\\n\\midrule\n0 & 5k/5k/2.2k & .665\\tpm.061 & .720\\tpm.105 & \\textbf{.755}\\tpm.055 & 6.408\\tpm.284 & 6.225\\tpm.706 & \\textbf{6.853}\\tpm.295 \\\\\n1 &             & .655\\tpm.121 & .707\\tpm.149 & \\textbf{.732}\\tpm.098 & 5.932\\tpm.843 & 5.737\\tpm1.189 & \\textbf{6.113}\\tpm.655 \\\\\n2 &             & .647\\tpm.145 & .676\\tpm.159 & \\textbf{.677}\\tpm.131 & 5.784\\tpm.905 & 5.774\\tpm1.139 & \\textbf{5.998}\\tpm.967 \\\\\n3 &             & .645\\tpm.159 & \\textbf{.662}\\tpm.164 & .635\\tpm.134 & 5.664\\tpm1.085 & 5.743\\tpm1.161 & \\textbf{5.964}\\tpm.933 \\\\\n4 &             & .636\\tpm.164 & \\textbf{.647}\\tpm.169 & .621\\tpm.140 & 5.660\\tpm1.062 & 5.758\\tpm1.167 & \\textbf{5.898}\\tpm.942 \\\\\n5 &             & .632\\tpm.172 & \\textbf{.636}\\tpm.175 & .618\\tpm.150 & 5.593\\tpm1.130 & 5.772\\tpm1.141 & \\textbf{5.816}\\tpm.968 \\\\\n\\midrule\n\\multicolumn{8}{l}{\\textit{Cohen's $d$ at depth 0 (positive $=$ second domain higher):}} \\\\\n\\multicolumn{2}{l}{C4 vs.\\ Wiki}   & \\multicolumn{3}{c}{$d = +0.65$} & \\multicolumn{3}{c}{$d = -0.34$} \\\\\n\\multicolumn{2}{l}{arXiv vs.\\ C4}  & \\multicolumn{3}{c}{$d = +0.37$} & \\multicolumn{3}{c}{$d = +1.03$} \\\\\n\\multicolumn{2}{l}{arXiv vs.\\ Wiki} & \\multicolumn{3}{c}{$d = +1.52$} & \\multicolumn{3}{c}{$d = +1.55$} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T14:59:18.975298+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/domain_lexical_stats/domain_ttr_entropy.tex
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T14:59:18.975467+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/domain_lexical_stats/summary.md",
+  "content": "# W3: Domain TTR & Vocabulary Entropy Statistics\n\n## Data Sources\n| Domain | Experiment | Model | N per depth |\n|--------|-----------|-------|-------------|\n| C4 | exp_018 | LLaMA-3.1-8B | 5,000 |\n| Wikipedia | exp_023 | domain ablation | 5,000 |\n| arXiv | exp_024 | Qwen | 2,200 |\n\n## Summary Table (mean ± std)\n\n### TTR\n| Depth | Wikipedia | C4 | arXiv |\n|-------|-----------|-----|-------|\n| 0 | 0.665 ± 0.061 | 0.720 ± 0.105 | **0.755 ± 0.055** |\n| 1 | 0.655 ± 0.121 | 0.707 ± 0.149 | **0.732 ± 0.098** |\n| 2 | 0.647 ± 0.145 | 0.676 ± 0.159 | **0.677 ± 0.131** |\n| 3 | 0.645 ± 0.159 | **0.662 ± 0.164** | 0.635 ± 0.134 |\n| 4 | 0.636 ± 0.164 | **0.647 ± 0.169** | 0.621 ± 0.140 |\n| 5 | 0.632 ± 0.172 | **0.636 ± 0.175** | 0.618 ± 0.150 |\n\n### Vocabulary Entropy (freq_entropy)\n| Depth | Wikipedia | C4 | arXiv |\n|-------|-----------|-----|-------|\n| 0 | 6.408 ± 0.284 | 6.225 ± 0.706 | **6.853 ± 0.295** |\n| 1 | 5.932 ± 0.843 | 5.737 ± 1.189 | **6.113 ± 0.655** |\n| 2 | 5.784 ± 0.905 | 5.774 ± 1.139 | **5.998 ± 0.967** |\n| 3 | 5.664 ± 1.085 | 5.743 ± 1.161 | **5.964 ± 0.933** |\n| 4 | 5.660 ± 1.062 | 5.758 ± 1.167 | **5.898 ± 0.942** |\n| 5 | 5.593 ± 1.130 | 5.772 ± 1.141 | **5.816 ± 0.968** |\n\n## Domain Ranking Analysis\n\n### TTR ranking (ascending)\n| Depth | Ranking | Matches K* (Wiki < C4 < arXiv)? |\n|-------|---------|-------------------------------|\n| 0 | Wiki < C4 < arXiv | ✅ Yes |\n| 1 | Wiki < C4 < arXiv | ✅ Yes |\n| 2 | Wiki < C4 ≈ arXiv | ✅ Yes (marginal) |\n| 3 | arXiv < Wiki < C4 | ❌ No (inversion) |\n| 4 | arXiv < Wiki < C4 | ❌ No (inversion) |\n| 5 | arXiv < Wiki < C4 | ❌ No (inversion) |\n\n### Entropy ranking (ascending)\n| Depth | Ranking | Matches K* (Wiki < C4 < arXiv)? |\n|-------|---------|-------------------------------|\n| 0 | C4 < Wiki < arXiv | ❌ No (C4 and Wiki swapped) |\n| 1 | C4 < Wiki < arXiv | ❌ No |\n| 2 | C4 < Wiki < arXiv | ❌ No |\n| 3 | Wiki < C4 < arXiv | ✅ Yes |\n| 4 | Wiki < C4 < arXiv | ✅ Yes |\n| 5 | Wiki < C4 < arXiv | ✅ Yes |\n\n### Interpretation\n- **TTR at depth 0** follows K* order: arXiv text has the richest vocabulary, Wikipedia the least diverse among these three. This aligns with domain complexity (K*).\n- **TTR ranking inverts at depth ≥ 3**: arXiv TTR drops most steeply across depths (Δ = −0.137 from d0 to d5), while C4 and Wiki decay more slowly. This suggests the model collapses arXiv's specialized vocabulary faster.\n- **Entropy at depth 0** does NOT follow K*: C4 (6.22) < Wiki (6.41) < arXiv (6.85). Wikipedia's higher entropy than C4 likely reflects its encyclopedic coverage across topics despite lower TTR.\n- **Entropy ranking flips to K* order at depth ≥ 3**: as generation depth increases, Wikipedia entropy drops below C4, aligning with K*.\n\n## Cohen's d (Effect Size)\n\n### Depth 0 (original human text)\n| Comparison | TTR (d) | Entropy (d) | Interpretation |\n|------------|---------|-------------|----------------|\n| C4 vs Wiki | +0.65 | −0.34 | C4 has medium-higher TTR; Wiki has slightly higher entropy |\n| arXiv vs C4 | +0.37 | +1.03 | arXiv has small-medium higher TTR; large higher entropy |\n| arXiv vs Wiki | +1.52 | +1.55 | Both very large effects: arXiv >> Wiki on both metrics |\n\n### Depth-averaged (all depths pooled)\n| Comparison | TTR (d) | Entropy (d) | Interpretation |\n|------------|---------|-------------|----------------|\n| C4 vs Wiki | +0.18 | −0.01 | Negligible after averaging across depths |\n| arXiv vs C4 | −0.01 | +0.26 | TTR difference vanishes; small entropy gap remains |\n| arXiv vs Wiki | +0.19 | +0.28 | Small effects only when pooling all depths |\n\n### Key takeaway\nThe large domain differences at depth 0 (d > 1.5 for arXiv vs Wiki) are dramatically attenuated when pooling across depths, because iterative generation homogenizes lexical properties. This convergence itself is a signature of model collapse in the lexical dimension.\n\n## Artifact\n- LaTeX table: `domain_ttr_entropy.tex`\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/domain_lexical_stats/summary.md",
+    "content": "# W3: Domain TTR & Vocabulary Entropy Statistics\n\n## Data Sources\n| Domain | Experiment | Model | N per depth |\n|--------|-----------|-------|-------------|\n| C4 | exp_018 | LLaMA-3.1-8B | 5,000 |\n| Wikipedia | exp_023 | domain ablation | 5,000 |\n| arXiv | exp_024 | Qwen | 2,200 |\n\n## Summary Table (mean ± std)\n\n### TTR\n| Depth | Wikipedia | C4 | arXiv |\n|-------|-----------|-----|-------|\n| 0 | 0.665 ± 0.061 | 0.720 ± 0.105 | **0.755 ± 0.055** |\n| 1 | 0.655 ± 0.121 | 0.707 ± 0.149 | **0.732 ± 0.098** |\n| 2 | 0.647 ± 0.145 | 0.676 ± 0.159 | **0.677 ± 0.131** |\n| 3 | 0.645 ± 0.159 | **0.662 ± 0.164** | 0.635 ± 0.134 |\n| 4 | 0.636 ± 0.164 | **0.647 ± 0.169** | 0.621 ± 0.140 |\n| 5 | 0.632 ± 0.172 | **0.636 ± 0.175** | 0.618 ± 0.150 |\n\n### Vocabulary Entropy (freq_entropy)\n| Depth | Wikipedia | C4 | arXiv |\n|-------|-----------|-----|-------|\n| 0 | 6.408 ± 0.284 | 6.225 ± 0.706 | **6.853 ± 0.295** |\n| 1 | 5.932 ± 0.843 | 5.737 ± 1.189 | **6.113 ± 0.655** |\n| 2 | 5.784 ± 0.905 | 5.774 ± 1.139 | **5.998 ± 0.967** |\n| 3 | 5.664 ± 1.085 | 5.743 ± 1.161 | **5.964 ± 0.933** |\n| 4 | 5.660 ± 1.062 | 5.758 ± 1.167 | **5.898 ± 0.942** |\n| 5 | 5.593 ± 1.130 | 5.772 ± 1.141 | **5.816 ± 0.968** |\n\n## Domain Ranking Analysis\n\n### TTR ranking (ascending)\n| Depth | Ranking | Matches K* (Wiki < C4 < arXiv)? |\n|-------|---------|-------------------------------|\n| 0 | Wiki < C4 < arXiv | ✅ Yes |\n| 1 | Wiki < C4 < arXiv | ✅ Yes |\n| 2 | Wiki < C4 ≈ arXiv | ✅ Yes (marginal) |\n| 3 | arXiv < Wiki < C4 | ❌ No (inversion) |\n| 4 | arXiv < Wiki < C4 | ❌ No (inversion) |\n| 5 | arXiv < Wiki < C4 | ❌ No (inversion) |\n\n### Entropy ranking (ascending)\n| Depth | Ranking | Matches K* (Wiki < C4 < arXiv)? |\n|-------|---------|-------------------------------|\n| 0 | C4 < Wiki < arXiv | ❌ No (C4 and Wiki swapped) |\n| 1 | C4 < Wiki < arXiv | ❌ No |\n| 2 | C4 < Wiki < arXiv | ❌ No |\n| 3 | Wiki < C4 < arXiv | ✅ Yes |\n| 4 | Wiki < C4 < arXiv | ✅ Yes |\n| 5 | Wiki < C4 < arXiv | ✅ Yes |\n\n### Interpretation\n- **TTR at depth 0** follows K* order: arXiv text has the richest vocabulary, Wikipedia the least diverse among these three. This aligns with domain complexity (K*).\n- **TTR ranking inverts at depth ≥ 3**: arXiv TTR drops most steeply across depths (Δ = −0.137 from d0 to d5), while C4 and Wiki decay more slowly. This suggests the model collapses arXiv's specialized vocabulary faster.\n- **Entropy at depth 0** does NOT follow K*: C4 (6.22) < Wiki (6.41) < arXiv (6.85). Wikipedia's higher entropy than C4 likely reflects its encyclopedic coverage across topics despite lower TTR.\n- **Entropy ranking flips to K* order at depth ≥ 3**: as generation depth increases, Wikipedia entropy drops below C4, aligning with K*.\n\n## Cohen's d (Effect Size)\n\n### Depth 0 (original human text)\n| Comparison | TTR (d) | Entropy (d) | Interpretation |\n|------------|---------|-------------|----------------|\n| C4 vs Wiki | +0.65 | −0.34 | C4 has medium-higher TTR; Wiki has slightly higher entropy |\n| arXiv vs C4 | +0.37 | +1.03 | arXiv has small-medium higher TTR; large higher entropy |\n| arXiv vs Wiki | +1.52 | +1.55 | Both very large effects: arXiv >> Wiki on both metrics |\n\n### Depth-averaged (all depths pooled)\n| Comparison | TTR (d) | Entropy (d) | Interpretation |\n|------------|---------|-------------|----------------|\n| C4 vs Wiki | +0.18 | −0.01 | Negligible after averaging across depths |\n| arXiv vs C4 | −0.01 | +0.26 | TTR difference vanishes; small entropy gap remains |\n| arXiv vs Wiki | +0.19 | +0.28 | Small effects only when pooling all depths |\n\n### Key takeaway\nThe large domain differences at depth 0 (d > 1.5 for arXiv vs Wiki) are dramatically attenuated when pooling across depths, because iterative generation homogenizes lexical properties. This convergence itself is a signature of model collapse in the lexical dimension.\n\n## Artifact\n- LaTeX table: `domain_ttr_entropy.tex`\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T14:59:18.975658+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/domain_lexical_stats/summary.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T14:59:18.975818+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__save_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T14:59:18.975951+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-18T14:59:18.976084+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "register artifact",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "register artifact",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T14:59:18.976202+00:00_
+
+No matching deferred tools found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-18T14:59:18.976336+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/domain_lexical_stats/domain_ttr_entropy.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/domain_lexical_stats/domain_ttr_entropy.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T14:59:18.976485+00:00_
+
+1	% Domain × Depth lexical statistics: TTR and Vocabulary Entropy
+2	% Data sources: C4 (exp_018, LLaMA-3.1-8B), Wikipedia (exp_023), arXiv (exp_024, Qwen)
+3	\begin{table*}[t]
+4	\centering
+5	\small
+6	\caption{Type-Token Ratio (TTR) and vocabulary entropy across three domains and generation depths.
+7	At depth~0 (original human text), arXiv exhibits the highest lexical diversity (TTR\,=\,0.755, $H$\,=\,6.853),
+8	followed by C4 and Wikipedia.
+9	As depth increases, all domains converge, with arXiv showing the steepest decline.
+10	Cohen's $d$ values are computed at depth~0 for pairwise domain comparisons.}
+11	\label{tab:domain-ttr-entropy}
+12	\begin{tabular}{ll rrr rrr}
+13	\toprule
+14	& & \multicolumn{3}{c}{\textbf{TTR}} & \multicolumn{3}{c}{\textbf{Vocab Entropy ($H$)}} \\
+15	\cmidrule(lr){3-5} \cmidrule(lr){6-8}
+16	\textbf{Depth} & $N$ & \textbf{Wiki} & \textbf{C4} & \textbf{arXiv} & \textbf{Wiki} & \textbf{C4} & \textbf{arXiv} \\
+17	\midrule
+18	0 & 5k/5k/2.2k & .665\tpm.061 & .720\tpm.105 & \textbf{.755}\tpm.055 & 6.408\tpm.284 & 6.225\tpm.706 & \textbf{6.853}\tpm.295 \\
+19	1 &             & .655\tpm.121 & .707\tpm.149 & \textbf{.732}\tpm.098 & 5.932\tpm.843 & 5.737\tpm1.189 & \textbf{6.113}\tpm.655 \\
+20	2 &             & .647\tpm.145 & .676\tpm.159 & \textbf{.677}\tpm.131 & 5.784\tpm.905 & 5.774\tpm1.139 & \textbf{5.998}\tpm.967 \\
+21	3 &             & .645\tpm.159 & \textbf{.662}\tpm.164 & .635\tpm.134 & 5.664\tpm1.085 & 5.743\tpm1.161 & \textbf{5.964}\tpm.933 \\
+22	4 &             & .636\tpm.164 & \textbf{.647}\tpm.169 & .621\tpm.140 & 5.660\tpm1.062 & 5.758\tpm1.167 & \textbf{5.898}\tpm.942 \\
+23	5 &             & .632\tpm.172 & \textbf{.636}\tpm.175 & .618\tpm.150 & 5.593\tpm1.130 & 5.772\tpm1.141 & \textbf{5.816}\tpm.968 \\
+24	\midrule
+25	\multicolumn{8}{l}{\textit{Cohen's $d$ at depth 0 (positive $=$ second domain higher):}} \\
+26	\multicolumn{2}{l}{C4 vs.\ Wiki}   & \multicolumn{3}{c}{$d = +0.65$} & \multicolumn{3}{c}{$d = -0.34$} \\
+27	\multicolumn{2}{l}{arXi
+…[truncated 244 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T14:59:18.976648+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/domain_lexical_stats/domain_ttr_entropy.tex",
+  "content": "% Domain × Depth lexical statistics: TTR and Vocabulary Entropy\n% Data sources: C4 (exp_018, LLaMA-3.1-8B), Wikipedia (exp_023), arXiv (exp_024, Qwen)\n% Requires: \\usepackage{booktabs}\n\\newcommand{\\tpm}{\\ensuremath{\\,\\pm\\,}}\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Type-Token Ratio (TTR) and vocabulary entropy across three domains and generation depths.\nAt depth~0 (original human text), arXiv exhibits the highest lexical diversity (TTR\\,=\\,0.755, $H$\\,=\\,6.853),\nfollowed by C4 and Wikipedia.\nAs depth increases, all domains converge, with arXiv showing the steepest decline.\nCohen's $d$ values are computed at depth~0 for pairwise domain comparisons.}\n\\label{tab:domain-ttr-entropy}\n\\begin{tabular}{ll rrr rrr}\n\\toprule\n& & \\multicolumn{3}{c}{\\textbf{TTR}} & \\multicolumn{3}{c}{\\textbf{Vocab Entropy ($H$)}} \\\\\n\\cmidrule(lr){3-5} \\cmidrule(lr){6-8}\n\\textbf{Depth} & $N$ & \\textbf{Wiki} & \\textbf{C4} & \\textbf{arXiv} & \\textbf{Wiki} & \\textbf{C4} & \\textbf{arXiv} \\\\\n\\midrule\n0 & 5k/5k/2.2k & .665\\tpm.061 & .720\\tpm.105 & \\textbf{.755}\\tpm.055 & 6.408\\tpm.284 & 6.225\\tpm.706 & \\textbf{6.853}\\tpm.295 \\\\\n1 &             & .655\\tpm.121 & .707\\tpm.149 & \\textbf{.732}\\tpm.098 & 5.932\\tpm.843 & 5.737\\tpm1.189 & \\textbf{6.113}\\tpm.655 \\\\\n2 &             & .647\\tpm.145 & .676\\tpm.159 & \\textbf{.677}\\tpm.131 & 5.784\\tpm.905 & 5.774\\tpm1.139 & \\textbf{5.998}\\tpm.967 \\\\\n3 &             & .645\\tpm.159 & \\textbf{.662}\\tpm.164 & .635\\tpm.134 & 5.664\\tpm1.085 & 5.743\\tpm1.161 & \\textbf{5.964}\\tpm.933 \\\\\n4 &             & .636\\tpm.164 & \\textbf{.647}\\tpm.169 & .621\\tpm.140 & 5.660\\tpm1.062 & 5.758\\tpm1.167 & \\textbf{5.898}\\tpm.942 \\\\\n5 &             & .632\\tpm.172 & \\textbf{.636}\\tpm.175 & .618\\tpm.150 & 5.593\\tpm1.130 & 5.772\\tpm1.141 & \\textbf{5.816}\\tpm.968 \\\\\n\\midrule\n\\multicolumn{8}{l}{\\textit{Cohen's $d$ at depth 0 (positive $=$ second domain higher):}} \\\\\n\\multicolumn{2}{l}{C4 vs.\\ Wiki}   & \\multicolumn{3}{c}{$d = +0.65$} & \\multicolumn{3}{c}{$d = -0.34$} \\\\\n\\multicolumn{2}{l}{arXiv vs.\\ C4}  & \\multicolumn{3}{c}{$d = +0.37$} & \\multicolumn{3}{c}{$d = +1.03$} \\\\\n\\multicolumn{2}{l}{arXiv vs.\\ Wiki} & \\multicolumn{3}{c}{$d = +1.52$} & \\multicolumn{3}{c}{$d = +1.55$} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/domain_lexical_stats/domain_ttr_entropy.tex",
+    "content": "% Domain × Depth lexical statistics: TTR and Vocabulary Entropy\n% Data sources: C4 (exp_018, LLaMA-3.1-8B), Wikipedia (exp_023), arXiv (exp_024, Qwen)\n% Requires: \\usepackage{booktabs}\n\\newcommand{\\tpm}{\\ensuremath{\\,\\pm\\,}}\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Type-Token Ratio (TTR) and vocabulary entropy across three domains and generation depths.\nAt depth~0 (original human text), arXiv exhibits the highest lexical diversity (TTR\\,=\\,0.755, $H$\\,=\\,6.853),\nfollowed by C4 and Wikipedia.\nAs depth increases, all domains converge, with arXiv showing the steepest decline.\nCohen's $d$ values are computed at depth~0 for pairwise domain comparisons.}\n\\label{tab:domain-ttr-entropy}\n\\begin{tabular}{ll rrr rrr}\n\\toprule\n& & \\multicolumn{3}{c}{\\textbf{TTR}} & \\multicolumn{3}{c}{\\textbf{Vocab Entropy ($H$)}} \\\\\n\\cmidrule(lr){3-5} \\cmidrule(lr){6-8}\n\\textbf{Depth} & $N$ & \\textbf{Wiki} & \\textbf{C4} & \\textbf{arXiv} & \\textbf{Wiki} & \\textbf{C4} & \\textbf{arXiv} \\\\\n\\midrule\n0 & 5k/5k/2.2k & .665\\tpm.061 & .720\\tpm.105 & \\textbf{.755}\\tpm.055 & 6.408\\tpm.284 & 6.225\\tpm.706 & \\textbf{6.853}\\tpm.295 \\\\\n1 &             & .655\\tpm.121 & .707\\tpm.149 & \\textbf{.732}\\tpm.098 & 5.932\\tpm.843 & 5.737\\tpm1.189 & \\textbf{6.113}\\tpm.655 \\\\\n2 &             & .647\\tpm.145 & .676\\tpm.159 & \\textbf{.677}\\tpm.131 & 5.784\\tpm.905 & 5.774\\tpm1.139 & \\textbf{5.998}\\tpm.967 \\\\\n3 &             & .645\\tpm.159 & \\textbf{.662}\\tpm.164 & .635\\tpm.134 & 5.664\\tpm1.085 & 5.743\\tpm1.161 & \\textbf{5.964}\\tpm.933 \\\\\n4 &             & .636\\tpm.164 & \\textbf{.647}\\tpm.169 & .621\\tpm.140 & 5.660\\tpm1.062 & 5.758\\tpm1.167 & \\textbf{5.898}\\tpm.942 \\\\\n5 &             & .632\\tpm.172 & \\textbf{.636}\\tpm.175 & .618\\tpm.150 & 5.593\\tpm1.130 & 5.772\\tpm1.141 & \\textbf{5.816}\\tpm.968 \\\\\n\\midrule\n\\multicolumn{8}{l}{\\textit{Cohen's $d$ at depth 0 (positive $=$ second domain higher):}} \\\\\n\\multicolumn{2}{l}{C4 vs.\\ Wiki}   & \\multicolumn{3}{c}{$d = +0.65$} & \\multicolumn{3}{c}{$d = -0.34$} \\\\\n\\multicolumn{2}{l}{arXiv vs.\\ C4}  & \\multicolumn{3}{c}{$d = +0.37$} & \\multicolumn{3}{c}{$d = +1.03$} \\\\\n\\multicolumn{2}{l}{arXiv vs.\\ Wiki} & \\multicolumn{3}{c}{$d = +1.52$} & \\multicolumn{3}{c}{$d = +1.55$} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T14:59:18.976837+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/domain_lexical_stats/domain_ttr_entropy.tex has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-18T14:59:18.977015+00:00_
+
+完成。输出文件：
+
+- **LaTeX table**: `artifacts/domain_lexical_stats/domain_ttr_entropy.tex`
+- **Summary**: `artifacts/domain_lexical_stats/summary.md`
+
+核心发现：
+
+1. **Depth 0 TTR 符合 K\* 排序**：Wiki (0.665) < C4 (0.720) < arXiv (0.755)，Cohen's d(arXiv vs Wiki) = +1.52（大效应）
+2. **Depth 0 entropy 不完全符合 K\***：C4 (6.22) < Wiki (6.41) < arXiv (6.85)，Wiki 和 C4 位置互换。原因可能是 Wikipedia 的百科全书式跨主题覆盖提升了 entropy，尽管其 TTR 较低
+3. **TTR 排序在 depth ≥ 3 反转**：arXiv 的 TTR 下降最陡（d0→d5 Δ = −0.137），导致 arXiv < Wiki < C4。这表明模型对专业术语词汇的坍缩速度更快
+4. **Entropy 排序在 depth ≥ 3 符合 K\***：Wiki < C4 < arXiv
+5. **深度平均后 effect size 大幅衰减**：arXiv vs Wiki 的 d 从 ~1.5 降至 ~0.2，说明迭代生成使域间词汇差异趋同，这本身就是词汇维度 model collapse 的信号
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analyze_w3-domain-lexical-stats_20260518T145650"
+}
+```
+
+</details>
+
+---

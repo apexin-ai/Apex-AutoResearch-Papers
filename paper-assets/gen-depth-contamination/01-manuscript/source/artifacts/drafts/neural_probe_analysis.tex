@@ -1,0 +1,63 @@
+% Neural Probe Analysis — draft for §4.x or §5.x
+% Status: preliminary (Qwen-cont only). Pythia/OLMo pending rerun.
+% All single-dataset numbers marked with TODO.
+
+\subsection{Neural Probing: Representation-Dependent Deepening}
+\label{sec:neural_probe}
+
+The preceding experiments establish $\Kempirical = 2$ using 15 hand-crafted statistical features.
+To test whether this boundary reflects an intrinsic limit of recursive generation or information loss in the feature projection, we train a \emph{neural probe} on frozen LLM hidden states that bypass hand-crafted engineering entirely.
+
+\paragraph{Setup.}
+We extract last-layer hidden states from a frozen Qwen2.5-1.5B-Instruct encoder and average-pool across sequence length to obtain 1536-dimensional document embeddings.
+A three-layer MLP ($1536 \to 512 \to 256 \to 6$) with ReLU activations and dropout is trained to predict generation depth (0--5) under the same 5-fold GroupKFold protocol as the OBD-LightGBM experiments.
+% TODO: pending cross-model validation — Qwen-cont only
+
+\paragraph{Results.}
+Table~\ref{tab:neural_probe} reports pairwise $\auc$ on the Qwen-continuation dataset.% TODO: pending cross-model validation
+The neural probe achieves $\Kempirical^{\text{neural}} = 3$: the critical 2v3 pair yields $\auc = 0.6195 \pm 0.0094$, exceeding $\theta = 0.60$ across all five folds (range: 0.6052--0.6323), whereas the LightGBM baseline scores $0.5609$---well below threshold.% TODO: pending cross-model validation
+At 1v2, the margin above $\theta$ widens from $+$0.0112 (LightGBM) to $+$0.0983 (neural probe), confirming that the LightGBM's narrow pass reflects genuine information loss in the 15D projection.% TODO: pending cross-model validation
+At 3v4, the probe reaches $0.5930 \pm 0.0051$---below $\theta$ by only 0.007---indicating residual depth signal that the operational threshold does not capture.% TODO: pending cross-model validation
+
+% Pythia-1.4B and OLMo-1B neural probe results:
+% \textit{Pending rerun (blocked on exp-006 GPU). Do NOT fabricate numbers.}
+% Placeholder: $\Kempirical^{\text{neural}}_{\text{Pythia}} = \text{TBD}$, $\Kempirical^{\text{neural}}_{\text{OLMo}} = \text{TBD}$
+
+\paragraph{Interpretation.}
+The result establishes a $\Kstar$ hierarchy:
+\[
+  \Ktheory \;\geq\; \Kempirical^{\text{neural}} = 3 \;\geq\; \Kempirical = 2.
+\]
+$\Kempirical = 2$ is thus an \emph{operational lower bound} of the 15D feature set, not an information-theoretic ceiling.
+The frozen 1536-dimensional representation encodes richer depth signal than the hand-crafted summary, pushing the discrimination boundary one level deeper---a phenomenon we term \emph{representation-dependent deepening}.
+Yet the gain is modest: even with access to the generator's own internal representations, 3v4 falls short of $\theta$, confirming that the recursive channel destroys most depth-distinguishing structure within 2--3 steps.% TODO: pending cross-model validation
+
+Two caveats apply.
+First, these results cover a single model-dataset pair (Qwen-continuation); cross-model validation on Pythia-1.4B and OLMo-1B is pending.
+Second, the probe uses the \emph{same} frozen model that generated the text; self-recognition artifacts may inflate discriminability (cf.\ the cross-model transfer analysis in Section~\ref{sec:transfer}).
+
+%% ================================================================
+%% TEXT BRANCH (a): exp-006 graduated filtering succeeds
+%% ================================================================
+% \paragraph{Connection to graduated filtering.}
+% The representation gap between $\Kempirical = 2$ and $\Kempirical^{\text{neural}} = 3$
+% further motivates our graduated filtering approach (Section~\ref{sec:graduated_filtering}),
+% which exploits the human\,/\,gen-1\,/\,gen-$\geq$2 trichotomy.
+% While the 15D classifier collapses depths $\geq 2$ into a single bin,
+% the neural probe's ability to resolve one additional boundary suggests
+% that representation-aware filtering could refine the depth-$\geq$2 bin
+% into sub-categories with measurably different training utility---
+% precisely the signal that graduated weighting leverages on MMLU and HellaSwag.
+
+%% ================================================================
+%% TEXT BRANCH (b): exp-006 results not significant
+%% ================================================================
+% \paragraph{Practical relevance of the third boundary.}
+% While the neural probe reveals additional discriminability beyond the
+% 15-feature set, the limited downstream utility of fine-grained depth
+% distinction (Section~\ref{sec:graduated_filtering}) suggests that the
+% two-generation boundary may be the practically relevant threshold.
+% The gap between $\Kempirical^{\text{neural}} = 3$ and $\Kempirical = 2$
+% is thus primarily of theoretical interest: it tightens the lower bound
+% on $\Ktheory$ without altering the operational recommendation that
+% depths $\geq 2$ can be treated as a single category for data curation.

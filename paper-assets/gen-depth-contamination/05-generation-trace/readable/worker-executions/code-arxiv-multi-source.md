@@ -1,0 +1,4850 @@
+# code arxiv multi source
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 101
+- **Recorded user turns:** 0
+- **Tool calls:** 37
+- **Original source:** `logs/workers/worker_code_arxiv_multi_source_20260524T084745.log`
+- **Structured JSON:** [`57758f107268a82aa2a3.json`](../../sessions/57/57758f107268a82aa2a3.json)
+
+## Before a recorded user message
+
+101 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "af2edf6a-40b5-478c-86ca-dedb2a97c0e7",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779630000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "0dde7cb3-707f-4626-85fc-5f086e9bff17",
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by connecting to the server to check the current state: exp-024 arXiv seed data, existing scripts, model availability, and any residual data from previous attempts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "73991967-c9a7-4a2d-add8-f221b1e2263a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BgZLo3jdJ3wjmP8bfFx3Bn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12533,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12533
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+开始检查服务器状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "600da820-df76-4465-b8bf-e9f3d413db82",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BgZLo3jdJ3wjmP8bfFx3Bn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12533,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12533
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VV8YYCuCVnqDNeNunWGicP`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "266d4dcf-104b-474f-a010-0ec48f5ff990",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BgZLo3jdJ3wjmP8bfFx3Bn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12533,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12533
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-24T08:47:57.286Z_
+
+<details><summary>↩ Tool result · `toolu_01VV8YYCuCVnqDNeNunWGicP`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "7e53015a-ef2c-47d7-aac1-101bc72563e5",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by checking the server state - exp-024 data, models, existing scripts, and any residual data from previous arxiv_multi_source attempts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "b981cd7a-8b69-4ae9-8a8b-085bfd15289e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QmfeNMHHGs7sJ6vUtLmwCt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1549,
+      "cache_read_input_tokens": 24374,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1549
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Qm7oGHWqDW65pkk4URrXY6`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls /root/autodl-tmp/gen-depth-contamination/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "e57bd881-50da-4915-9b36-b4710bee2238",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QmfeNMHHGs7sJ6vUtLmwCt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1549,
+      "cache_read_input_tokens": 24374,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1549
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011tNuF7hPD9jUFxDC6sv5jA`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/gen-depth-contamination/data/ -maxdepth 3 -name \"*.jsonl\" -path \"*arxiv*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "e2f15791-47e9-4d42-a550-775663bbfbaa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QmfeNMHHGs7sJ6vUtLmwCt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1549,
+      "cache_read_input_tokens": 24374,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1549
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-24T08:48:04.064Z_
+
+<details><summary>↩ Tool result · `toolu_01Qm7oGHWqDW65pkk4URrXY6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"analysis_pythia_retrain_depth7\\nbootstrap_kstar\\nbootstrap_stability\\nc4_power_curve\\nc4_subsample_control.json\\ncontamination_sweep\\ncross_scorer_f1\\ndata_consistency_snapshot_corrected.json\\ndeberta_cross_transfer\\nexp007_olmo_rerun\\nexp013_olmo_rerun\\nexp013_olmo_rerun_v2\\nexp015_olmo_rerun\\nexp_008_retrain_chain\\nexp_009_dose_response\\nexp_014_naturalistic\\nexp_014_naturalistic.log\\nexp_018_llama8b\\nexp_021_length_128\\nexp_021_length_256\\nexp_021_length_512\\nexp_023_wiki\\nexp_024_arxiv\\nexp_025_pythia_arxiv\\nexp_025_pythia_filtering\\nexp_026_arxiv_filtering\\nexp_027_latex_ablation\\nexp_028_power_curve\\nexp_028_power_curve.log\\nexp_14b_c4\\nexp_7b_cross_transfer\\nexp_7b_scorer_ablation\\nexp_7b_scorer_arxiv\\nexp_7b_scorer_arxiv.log\\nexp_arXiv_llama8b\\nexp_arXiv_llama8b_crossscorer\\nexp_arXiv_mistral7b\\nexp_arXiv_mistral7b_crossscorer\\nexp_arXiv_olmo\\nexp_arXiv_qwen1b5_crossscorer\\nexp_arXiv_qwen7b\\nexp_arXiv_qwen7b_crossscorer\\nexp_bootstrap_10k\\nexp_bootstrap_10k_log.txt\\nexp_changepoint_kstar\\nexp_code_llama8b\\nexp_code_mistral7b\\nexp_code_mistral7b.log\\nexp_code_multi_source\\nexp_code_multi_source.log\\nexp_code_pythia1b4\\nexp_code_qwen1b5\\nexp_code_qwen1b5_pythia_scorer\\nexp_code_qwen7b\\nexp_contamination_rate_sweep\\nexp_deberta_arxiv\\nexp_deberta_arxiv_qwen1b5\\nexp_deberta_c4_1b5\\nexp_deberta_code_qwen1b5\\nexp_deberta_filtering_comparison\\nexp_deberta_upperbound\\nexp_deberta_upperbound.log\\nexp_expanded_downstream_eval\\nexp_gemma27b_c4\\nexp_gemma27b_c4_qwen_scorer\\nexp_gemma2b_10k\\nexp_gemma2b_10k_qwen_scorer\\nexp_gemma2b_depth\\nexp_llama8b_10k\\nexp_multi_source_arxiv\\nexp_multi_source_detection\\nexp_multi_source_detection_v2\\nexp_multi_source_unified_scorer\\nexp_olmo1b_c4_rerun\\nexp_olmo_retrain_chain\\nexp_pythia14b_c4_10k\\nexp_pythia14b_c4_nuc\\nexp_pythia14b_c4_rerun\\nexp_pythia69b_c4\\nexp_pythia69b_c4_nuc\\nexp_pythia69b_c4_nuc_qwen\\nexp_pythia_retrain_depth7\\nexp_qwen_cont_10k\\nexp_qwen_retrain_chain\\nexp_qwen_retrain_chain_ext\\nexp_wiki_llama8b\\nexp_wiki_mistral7b\\nexp_wiki_multi_source\\nexp_wiki_multi_source.log\\nexp_wiki_olmo\\nexp_wiki_olmo_v2\\nexp_wiki_pythia\\nexp_wiki_pythia_v2\\nexp_wiki_qwen7b\\nexp_wiki_scorer_confound\\nexp_wiki_scorer_confound_1b5\\nf1_optimal_threshold\\nfeature_ablation\\nfeature_importance\\nfeature_importance_correct\\nfeature_importance_olmo\\nfeature_importance_pythia\\nfeature_importance_qwen_base\\nfeature_importance_qwen_cont\\nfeature_importance_qwen_cont_corrected\\nlofo_importance\\nlofo_theta_validation\\nmcnemar_obd_vs_baselines\\nmissing_tables_data.json\\nmonotonicity_check.json\\nolmo1b_c4_10k\\nolmo_c4_cont\\nolmo_c4_qwen_scorer\\nolmo_feature_importance\\npythia_c4_qwen_scorer\\nruntime_benchmark\\nseed_pythia14b_wiki_s123\\nseed_qwen15b_c4_s123\\nseed_qwen15b_wiki_s123\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "939eaf46-0483-45f5-935f-7c2d30a7dce8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"analysis_pythia_retrain_depth7\\\\nbootstrap_kstar\\\\nbootstrap_stability\\\\nc4_power_curve\\\\nc4_subsample_control.json\\\\ncontamination_sweep\\\\ncross_scorer_f1\\\\ndata_consistency_snapshot_corrected.json\\\\ndeberta_cross_transfer\\\\nexp007_olmo_rerun\\\\nexp013_olmo_rerun\\\\nexp013_olmo_rerun_v2\\\\nexp015_olmo_rerun\\\\nexp_008_retrain_chain\\\\nexp_009_dose_response\\\\nexp_014_naturalistic\\\\nexp_014_naturalistic.log\\\\nexp_018_llama8b\\\\nexp_021_length_128\\\\nexp_021_length_256\\\\nexp_021_length_512\\\\nexp_023_wiki\\\\nexp_024_arxiv\\\\nexp_025_pythia_arxiv\\\\nexp_025_pythia_filtering\\\\nexp_026_arxiv_filtering\\\\nexp_027_latex_ablation\\\\nexp_028_power_curve\\\\nexp_028_power_curve.log\\\\nexp_14b_c4\\\\nexp_7b_cross_transfer\\\\nexp_7b_scorer_ablation\\\\nexp_7b_scorer_arxiv\\\\nexp_7b_scorer_arxiv.log\\\\nexp_arXiv_llama8b\\\\nexp_arXiv_llama8b_crossscorer\\\\nexp_arXiv_mistral7b\\\\nexp_arXiv_mistral7b_crossscorer\\\\nexp_arXiv_olmo\\\\nexp_arXiv_qwen1b5_crossscorer\\\\nexp_arXiv_qwen7b\\\\nexp_arXiv_qwen7b_crossscorer\\\\nexp_bootstrap_10k\\\\nexp_bootstrap_10k_log.txt\\\\nexp_changepoint_kstar\\\\nexp_code_llama8b\\\\nexp_code_mistral7b\\\\nexp_code_mistral7b.log\\\\nexp_code_multi_source\\\\nexp_code_multi_source.log\\\\nexp_code_pythia1b4\\\\nexp_code_qwen1b5\\\\nexp_code_qwen1b5_pythia_scorer\\\\nexp_code_qwen7b\\\\nexp_contamination_rate_sweep\\\\nexp_deberta_arxiv\\\\nexp_deberta_arxiv_qwen1b5\\\\nexp_deberta_c4_1b5\\\\nexp_deberta_code_qwen1b5\\\\nexp_deberta_filtering_comparison\\\\nexp_deberta_upperbound\\\\nexp_deberta_upperbound.log\\\\nexp_expanded_downstream_eval\\\\nexp_gemma27b_c4\\\\nexp_gemma27b_c4_qwen_scorer\\\\nexp_gemma2b_10k\\\\nexp_gemma2b_10k_qwen_scorer\\\\nexp_gemma2b_depth\\\\nexp_llama8b_10k\\\\nexp_multi_source_arxiv\\\\nexp_multi_source_detection\\\\nexp_multi_source_detection_v2\\\\nexp_multi_source_unified_scorer\\\\nexp_olmo1b_c4_rerun\\\\nexp_olmo_retrain_chain\\\\nexp_pythia14b_c4_10k\\\\nexp_pythia14b_c4_nuc\\\\nexp_pythia14b_c4_rerun\\\\nexp_pythia69b_c4\\\\nexp_pythia69b_c4_nuc\\\\nexp_pythia69b_c4_nuc_qwen\\\\nexp_pythia_retrain_depth7\\\\nexp_qwen_cont_10k\\\\nexp_qwen_retrain_chain\\\\nexp_qwen_retrain_chain_ext\\\\nexp_wiki_llama8b\\\\nexp_wiki_mistral7b\\\\nexp_wiki_multi_source\\\\nexp_wiki_multi_source.log\\\\nexp_wiki_olmo\\\\nexp_wiki_olmo_v2\\\\nexp_wiki_pythia\\\\nexp_wiki_pythia_v2\\\\nexp_wiki_qwen7b\\\\nexp_wiki_scorer_confound\\\\nexp_wiki_scorer_confound_1b5\\\\nf1_optimal_threshold\\\\nfeature_ablation\\\\nfeature_importance\\\\nfeature_importance_correct\\\\nfeature_importance_olmo\\\\nfeature_importance_pythia\\\\nfeature_importance_qwen_base\\\\nfeature_importance_qwen_cont\\\\nfeature_importance_qwen_cont_corrected\\\\nlofo_importance\\\\nlofo_theta_validation\\\\nmcnemar_obd_vs_baselines\\\\nmissing_tables_data.json\\\\nmonotonicity_check.json\\\\nolmo1b_c4_10k\\\\nolmo_c4_cont\\\\nolmo_c4_qwen_scorer\\\\nolmo_feature_importance\\\\npythia_c4_qwen_scorer\\\\nruntime_benchmark\\\\nseed_pythia14b_wiki_s123\\\\nseed_qwen15b_c4_s123\\\\nseed_qwen15b_wiki_s123\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"analysis_pythia_retrain_depth7\\nbootstrap_kstar\\nbootstrap_stability\\nc4_power_curve\\nc4_subsample_control.json\\ncontamination_sweep\\ncross_scorer_f1\\ndata_consistency_snapshot_corrected.json\\ndeberta_cross_transfer\\nexp007_olmo_rerun\\nexp013_olmo_rerun\\nexp013_olmo_rerun_v2\\nexp015_olmo_rerun\\nexp_008_retrain_chain\\nexp_009_dose_response\\nexp_014_naturalistic\\nexp_014_naturalistic.log\\nexp_018_llama8b\\nexp_021_length_128\\nexp_021_length_256\\nexp_021_length_512\\nexp_023_wiki\\nexp_024_arxiv\\nexp_025_pythia_arxiv\\nexp_025_pythia_filtering\\nexp_026_arxiv_filtering\\nexp_027_latex_ablation\\nexp_028_power_curve\\nexp_028_power_curve.log\\nexp_14b_c4\\nexp_7b_cross_transfer\\nexp_7b_scorer_ablation\\nexp_7b_scorer_arxiv\\nexp_7b_scorer_arxiv.log\\nexp_arXiv_llama8b\\nexp_arXiv_llama8b_crossscorer\\nexp_arXiv_mistral7b\\nexp_arXiv_mistral7b_crossscorer\\nexp_arXiv_olmo\\nexp_arXiv_qwen1b5_crossscorer\\nexp_arXiv_qwen7b\\nexp_arXiv_qwen7b_crossscorer\\nexp_bootstrap_10k\\nexp_bootstrap_10k_log.txt\\nexp_changepoint_kstar\\nexp_code_llama8b\\nexp_code_mistral7b\\nexp_code_mistral7b.log\\nexp_code_multi_source\\nexp_code_multi_source.log\\nexp_code_pythia1b4\\nexp_code_qwen1b5\\nexp_code_qwen1b5_pythia_scorer\\nexp_code_qwen7b\\nexp_contamination_rate_sweep\\nexp_deberta_arxiv\\nexp_deberta_arxiv_qwen1b5\\nexp_deberta_c4_1b5\\nexp_deberta_code_qwen1b5\\nexp_deberta_filtering_comparison\\nexp_deberta_upperbound\\nexp_deberta_upperbound.log\\nexp_expanded_downstream_eval\\nexp_gemma27b_c4\\nexp_gemma27b_c4_qwen_scorer\\nexp_gemma2b_10k\\nexp_gemma2b_10k_qwen_scorer\\nexp_gemma2b_depth\\nexp_llama8b_10k\\nexp_multi_source_arxiv\\nexp_multi_source_detection\\nexp_multi_source_detection_v2\\nexp_multi_source_unified_scorer\\nexp_olmo1b_c4_rerun\\nexp_olmo_retrain_chain\\nexp_pythia14b_c4_10k\\nexp_pythia14b_c4_nuc\\nexp_pythia14b_c4_rerun\\nexp_pythia69b_c4\\nexp_pythia69b_c4_nuc\\nexp_pythia69b_c4_nuc_qwen\\nexp_pythia_retrain_depth7\\nexp_qwen_cont_10k\\nexp_qwen_retrain_chain\\nexp_qwen_retrain_chain_ext\\nexp_wiki_llama8b\\nexp_wiki_mistral7b\\nexp_wiki_multi_source\\nexp_wiki_multi_source.log\\nexp_wiki_olmo\\nexp_wiki_olmo_v2\\nexp_wiki_pythia\\nexp_wiki_pythia_v2\\nexp_wiki_qwen7b\\nexp_wiki_scorer_confound\\nexp_wiki_scorer_confound_1b5\\nf1_optimal_threshold\\nfeature_ablation\\nfeature_importance\\nfeature_importance_correct\\nfeature_importance_olmo\\nfeature_importance_pythia\\nfeature_importance_qwen_base\\nfeature_importance_qwen_cont\\nfeature_importance_qwen_cont_corrected\\nlofo_importance\\nlofo_theta_validation\\nmcnemar_obd_vs_baselines\\nmissing_tables_data.json\\nmonotonicity_check.json\\nolmo1b_c4_10k\\nolmo_c4_cont\\nolmo_c4_qwen_scorer\\nolmo_feature_importance\\npythia_c4_qwen_scorer\\nruntime_benchmark\\nseed_pythia14b_wiki_s123\\nseed_qwen15b_c4_s123\\nseed_qwen15b_wiki_s123\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-24T08:48:04.505Z_
+
+<details><summary>↩ Tool result · `toolu_011tNuF7hPD9jUFxDC6sv5jA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_0.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_1.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_2.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_3.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_4.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_5.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_0.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_1.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_2.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_3.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_4.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_5.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "f8fc1130-d0ef-4308-b318-d7368d777075",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_0.jsonl\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_1.jsonl\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_2.jsonl\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_3.jsonl\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_4.jsonl\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_5.jsonl\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_0.jsonl\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_1.jsonl\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_2.jsonl\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_3.jsonl\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_4.jsonl\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_5.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_0.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_1.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_2.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_3.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_4.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_5.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_0.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_1.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_2.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_3.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_4.jsonl\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_5.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012SBQ2bfuYo74MkVcyQLceX`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls /root/autodl-tmp/gen-depth-contamination/scripts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "af2b51ed-7532-4ade-8c9a-603f2aaaab49",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QmfeNMHHGs7sJ6vUtLmwCt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1549,
+      "cache_read_input_tokens": 24374,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1549
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-24T08:48:05.442Z_
+
+<details><summary>↩ Tool result · `toolu_012SBQ2bfuYo74MkVcyQLceX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nanalyze_code_crossmodel.py\\nanalyze_deberta_results.py\\nanalyze_pythia_retrain_depth7.py\\narxiv_2v3_bootstrap_ci.py\\nbootstrap_kstar.py\\nbootstrap_stability_check.py\\nborderline_bootstrap_ci.py\\nborderline_bootstrap_ci.py.bak\\nc4_power_curve.py\\nc4_subsample_control.py\\ncase_study_refine.py\\ncase_study_select.py\\ncheck_doc2000.py\\ncheck_doc3000.py\\ncheck_monotonicity.py\\ncollect_exp009_v3.py\\ncompute_f1_threshold.py\\ncompute_missing_tables.py\\ncross_scorer_f1.py\\ncrossscorer_bootstrap_ci.py\\ndownload_arxiv_seed.py\\ndownload_code_seed.py\\ndownload_wiki_seed.py\\ndraw_kstar_theta.py\\ndraw_sweep_figure.py\\nexp007_olmo_rerun_bootstrap_ci.py\\nexp008_retrain_chain.py\\nexp009_dose_response.py\\nexp009_launch_all.sh\\nexp016_bootstrap_ci.py\\nexp018_bootstrap_ci.py\\nexp019_bootstrap_ci.py\\nexp020_pythia_decoding.sh\\nexp021_length_ablation.sh\\nexp022_cross_scorer_matrix.sh\\nexp022_cuda0.sh\\nexp022_cuda1.sh\\nexp023_wiki_domain.sh\\nexp024_arxiv_domain.sh\\nexp024_bootstrap_ci.py\\nexp025_bootstrap_ci.py\\nexp025_pythia_filtering.py\\nexp026_arxiv_filtering.py\\nexp026_feature_stability.py\\nexp026_feature_stability_v2.py\\nexp027_bootstrap_ci.py\\nexp027_retrain_bootstrap.py\\nexp027_run_pipeline.sh\\nexp027_strip_latex.py\\nexp_028_power_curve.py\\nexp_14b_scorer_confound.sh\\nexp_14d_ablation_detail.py\\nexp_code_qwen1b5_pythia_scorer.sh\\nexp_contamination_rate_sweep.py\\nexp_deberta_filtering_comparison.py\\nexp_deberta_filtering_predict.py\\nexp_expanded_downstream_eval.py\\nexp_llama8b_10k_bootstrap_ci.py\\nexp_olmo_retrain_chain.py\\nexp_olmo_retrain_v3.py\\nexp_pythia_retrain_depth7.py\\nexp_qwen_retrain_chain.py\\nexp_qwen_retrain_chain_ext.py\\nextract_texts.py\\nfeature_group_ablation.py\\nfeature_importance_analysis.py\\nfeature_importance_batch.py\\nfeature_importance_correct.py\\nfeature_importance_pythia.py\\nfeature_importance_qwen_cont.py\\nfetch_14b_data.sh\\ngemma2b_10k_qwen_bootstrap_ci.py\\ngen_case_study_latex.py\\ngen_case_study_latex_v2.py\\ngen_case_study_latex_v3.py\\nlofo_importance.py\\nlofo_nonqwen_reframing.py\\nlofo_theta_validation.py\\nmcnemar_obd_vs_baselines.py\\nolmo_c4_bootstrap_ci.py\\nolmo_rerun_feature_importance.py\\npatch_pythia_results.py\\nplot_auc_decay_ci.py\\nplot_feature_importance.py\\nplot_fig2_merged.py\\nplot_fig_jsd_decay.py\\nplot_filtering_strategies.py\\nplot_retrain_decay.py\\nplot_retrain_decay_v2.py\\npythia_qwen_bootstrap_ci.py\\nretrain_chain_bootstrap_ci.py\\nrun_7b_cross_transfer.py\\nrun_7b_scorer_ablation.py\\nrun_7b_scorer_arxiv.py\\nrun_bootstrap_10k.py\\nrun_changepoint_kstar.py\\nrun_code_qwen14b.sh\\nrun_deberta_arxiv.py\\nrun_deberta_c4_1b5.py\\nrun_deberta_code.py\\nrun_deberta_cross_transfer.py\\nrun_deberta_upperbound.py\\nrun_exp013_cross_transfer_olmo_rerun.py\\nrun_exp013_cross_transfer_v2.py\\nrun_exp015_neural_probe.py\\nrun_exp025.sh\\nrun_exp026.sh\\nrun_fi_pythia.py\\nrun_gemma27b_c4.sh\\nrun_gemma27b_depth.py\\nrun_gemma2b_depth.py\\nrun_multi_source.py\\nrun_multi_source_arxiv.py\\nrun_multi_source_code.py\\nrun_multi_source_unified_scorer.py\\nrun_multi_source_v2.py\\nrun_multi_source_vocab_only.py\\nrun_multi_source_wiki.py\\nrun_naturalistic_validation.py\\nrun_olmo_ablation.py\\nrun_pipeline.py\\nruntime_benchmark.py\\nscore_14b_confound.py\\nselected_cases.json\\nsemantic_ablation.py\\nsemantic_ablation_multi_model.py\\ntheta_sensitivity_c4_wiki.py\\ntransfer_heatmap.py\\ntransfer_heatmap.py.bak\\ntransfer_heatmap_v2.py\\ntransfer_heatmap_v2.py.bak\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "a629adc7-d326-43b2-9813-e82067214553",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\nanalyze_code_crossmodel.py\\\\nanalyze_deberta_results.py\\\\nanalyze_pythia_retrain_depth7.py\\\\narxiv_2v3_bootstrap_ci.py\\\\nbootstrap_kstar.py\\\\nbootstrap_stability_check.py\\\\nborderline_bootstrap_ci.py\\\\nborderline_bootstrap_ci.py.bak\\\\nc4_power_curve.py\\\\nc4_subsample_control.py\\\\ncase_study_refine.py\\\\ncase_study_select.py\\\\ncheck_doc2000.py\\\\ncheck_doc3000.py\\\\ncheck_monotonicity.py\\\\ncollect_exp009_v3.py\\\\ncompute_f1_threshold.py\\\\ncompute_missing_tables.py\\\\ncross_scorer_f1.py\\\\ncrossscorer_bootstrap_ci.py\\\\ndownload_arxiv_seed.py\\\\ndownload_code_seed.py\\\\ndownload_wiki_seed.py\\\\ndraw_kstar_theta.py\\\\ndraw_sweep_figure.py\\\\nexp007_olmo_rerun_bootstrap_ci.py\\\\nexp008_retrain_chain.py\\\\nexp009_dose_response.py\\\\nexp009_launch_all.sh\\\\nexp016_bootstrap_ci.py\\\\nexp018_bootstrap_ci.py\\\\nexp019_bootstrap_ci.py\\\\nexp020_pythia_decoding.sh\\\\nexp021_length_ablation.sh\\\\nexp022_cross_scorer_matrix.sh\\\\nexp022_cuda0.sh\\\\nexp022_cuda1.sh\\\\nexp023_wiki_domain.sh\\\\nexp024_arxiv_domain.sh\\\\nexp024_bootstrap_ci.py\\\\nexp025_bootstrap_ci.py\\\\nexp025_pythia_filtering.py\\\\nexp026_arxiv_filtering.py\\\\nexp026_feature_stability.py\\\\nexp026_feature_stability_v2.py\\\\nexp027_bootstrap_ci.py\\\\nexp027_retrain_bootstrap.py\\\\nexp027_run_pipeline.sh\\\\nexp027_strip_latex.py\\\\nexp_028_power_curve.py\\\\nexp_14b_scorer_confound.sh\\\\nexp_14d_ablation_detail.py\\\\nexp_code_qwen1b5_pythia_scorer.sh\\\\nexp_contamination_rate_sweep.py\\\\nexp_deberta_filtering_comparison.py\\\\nexp_deberta_filtering_predict.py\\\\nexp_expanded_downstream_eval.py\\\\nexp_llama8b_10k_bootstrap_ci.py\\\\nexp_olmo_retrain_chain.py\\\\nexp_olmo_retrain_v3.py\\\\nexp_pythia_retrain_depth7.py\\\\nexp_qwen_retrain_chain.py\\\\nexp_qwen_retrain_chain_ext.py\\\\nextract_texts.py\\\\nfeature_group_ablation.py\\\\nfeature_importance_analysis.py\\\\nfeature_importance_batch.py\\\\nfeature_importance_correct.py\\\\nfeature_importance_pythia.py\\\\nfeature_importance_qwen_cont.py\\\\nfetch_14b_data.sh\\\\ngemma2b_10k_qwen_bootstrap_ci.py\\\\ngen_case_study_latex.py\\\\ngen_case_study_latex_v2.py\\\\ngen_case_study_latex_v3.py\\\\nlofo_importance.py\\\\nlofo_nonqwen_reframing.py\\\\nlofo_theta_validation.py\\\\nmcnemar_obd_vs_baselines.py\\\\nolmo_c4_bootstrap_ci.py\\\\nolmo_rerun_feature_importance.py\\\\npatch_pythia_results.py\\\\nplot_auc_decay_ci.py\\\\nplot_feature_importance.py\\\\nplot_fig2_merged.py\\\\nplot_fig_jsd_decay.py\\\\nplot_filtering_strategies.py\\\\nplot_retrain_decay.py\\\\nplot_retrain_decay_v2.py\\\\npythia_qwen_bootstrap_ci.py\\\\nretrain_chain_bootstrap_ci.py\\\\nrun_7b_cross_transfer.py\\\\nrun_7b_scorer_ablation.py\\\\nrun_7b_scorer_arxiv.py\\\\nrun_bootstrap_10k.py\\\\nrun_changepoint_kstar.py\\\\nrun_code_qwen14b.sh\\\\nrun_deberta_arxiv.py\\\\nrun_deberta_c4_1b5.py\\\\nrun_deberta_code.py\\\\nrun_deberta_cross_transfer.py\\\\nrun_deberta_upperbound.py\\\\nrun_exp013_cross_transfer_olmo_rerun.py\\\\nrun_exp013_cross_transfer_v2.py\\\\nrun_exp015_neural_probe.py\\\\nrun_exp025.sh\\\\nrun_exp026.sh\\\\nrun_fi_pythia.py\\\\nrun_gemma27b_c4.sh\\\\nrun_gemma27b_depth.py\\\\nrun_gemma2b_depth.py\\\\nrun_multi_source.py\\\\nrun_multi_source_arxiv.py\\\\nrun_multi_source_code.py\\\\nrun_multi_source_unified_scorer.py\\\\nrun_multi_source_v2.py\\\\nrun_multi_source_vocab_only.py\\\\nrun_multi_source_wiki.py\\\\nrun_naturalistic_validation.py\\\\nrun_olmo_ablation.py\\\\nrun_pipeline.py\\\\nruntime_benchmark.py\\\\nscore_14b_confound.py\\\\nselected_cases.json\\\\nsemantic_ablation.py\\\\nsemantic_ablation_multi_model.py\\\\ntheta_sensitivity_c4_wiki.py\\\\ntransfer_heatmap.py\\\\ntransfer_heatmap.py.bak\\\\ntransfer_heatmap_v2.py\\\\ntransfer_heatmap_v2.py.bak\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nanalyze_code_crossmodel.py\\nanalyze_deberta_results.py\\nanalyze_pythia_retrain_depth7.py\\narxiv_2v3_bootstrap_ci.py\\nbootstrap_kstar.py\\nbootstrap_stability_check.py\\nborderline_bootstrap_ci.py\\nborderline_bootstrap_ci.py.bak\\nc4_power_curve.py\\nc4_subsample_control.py\\ncase_study_refine.py\\ncase_study_select.py\\ncheck_doc2000.py\\ncheck_doc3000.py\\ncheck_monotonicity.py\\ncollect_exp009_v3.py\\ncompute_f1_threshold.py\\ncompute_missing_tables.py\\ncross_scorer_f1.py\\ncrossscorer_bootstrap_ci.py\\ndownload_arxiv_seed.py\\ndownload_code_seed.py\\ndownload_wiki_seed.py\\ndraw_kstar_theta.py\\ndraw_sweep_figure.py\\nexp007_olmo_rerun_bootstrap_ci.py\\nexp008_retrain_chain.py\\nexp009_dose_response.py\\nexp009_launch_all.sh\\nexp016_bootstrap_ci.py\\nexp018_bootstrap_ci.py\\nexp019_bootstrap_ci.py\\nexp020_pythia_decoding.sh\\nexp021_length_ablation.sh\\nexp022_cross_scorer_matrix.sh\\nexp022_cuda0.sh\\nexp022_cuda1.sh\\nexp023_wiki_domain.sh\\nexp024_arxiv_domain.sh\\nexp024_bootstrap_ci.py\\nexp025_bootstrap_ci.py\\nexp025_pythia_filtering.py\\nexp026_arxiv_filtering.py\\nexp026_feature_stability.py\\nexp026_feature_stability_v2.py\\nexp027_bootstrap_ci.py\\nexp027_retrain_bootstrap.py\\nexp027_run_pipeline.sh\\nexp027_strip_latex.py\\nexp_028_power_curve.py\\nexp_14b_scorer_confound.sh\\nexp_14d_ablation_detail.py\\nexp_code_qwen1b5_pythia_scorer.sh\\nexp_contamination_rate_sweep.py\\nexp_deberta_filtering_comparison.py\\nexp_deberta_filtering_predict.py\\nexp_expanded_downstream_eval.py\\nexp_llama8b_10k_bootstrap_ci.py\\nexp_olmo_retrain_chain.py\\nexp_olmo_retrain_v3.py\\nexp_pythia_retrain_depth7.py\\nexp_qwen_retrain_chain.py\\nexp_qwen_retrain_chain_ext.py\\nextract_texts.py\\nfeature_group_ablation.py\\nfeature_importance_analysis.py\\nfeature_importance_batch.py\\nfeature_importance_correct.py\\nfeature_importance_pythia.py\\nfeature_importance_qwen_cont.py\\nfetch_14b_data.sh\\ngemma2b_10k_qwen_bootstrap_ci.py\\ngen_case_study_latex.py\\ngen_case_study_latex_v2.py\\ngen_case_study_latex_v3.py\\nlofo_importance.py\\nlofo_nonqwen_reframing.py\\nlofo_theta_validation.py\\nmcnemar_obd_vs_baselines.py\\nolmo_c4_bootstrap_ci.py\\nolmo_rerun_feature_importance.py\\npatch_pythia_results.py\\nplot_auc_decay_ci.py\\nplot_feature_importance.py\\nplot_fig2_merged.py\\nplot_fig_jsd_decay.py\\nplot_filtering_strategies.py\\nplot_retrain_decay.py\\nplot_retrain_decay_v2.py\\npythia_qwen_bootstrap_ci.py\\nretrain_chain_bootstrap_ci.py\\nrun_7b_cross_transfer.py\\nrun_7b_scorer_ablation.py\\nrun_7b_scorer_arxiv.py\\nrun_bootstrap_10k.py\\nrun_changepoint_kstar.py\\nrun_code_qwen14b.sh\\nrun_deberta_arxiv.py\\nrun_deberta_c4_1b5.py\\nrun_deberta_code.py\\nrun_deberta_cross_transfer.py\\nrun_deberta_upperbound.py\\nrun_exp013_cross_transfer_olmo_rerun.py\\nrun_exp013_cross_transfer_v2.py\\nrun_exp015_neural_probe.py\\nrun_exp025.sh\\nrun_exp026.sh\\nrun_fi_pythia.py\\nrun_gemma27b_c4.sh\\nrun_gemma27b_depth.py\\nrun_gemma2b_depth.py\\nrun_multi_source.py\\nrun_multi_source_arxiv.py\\nrun_multi_source_code.py\\nrun_multi_source_unified_scorer.py\\nrun_multi_source_v2.py\\nrun_multi_source_vocab_only.py\\nrun_multi_source_wiki.py\\nrun_naturalistic_validation.py\\nrun_olmo_ablation.py\\nrun_pipeline.py\\nruntime_benchmark.py\\nscore_14b_confound.py\\nselected_cases.json\\nsemantic_ablation.py\\nsemantic_ablation_multi_model.py\\ntheta_sensitivity_c4_wiki.py\\ntransfer_heatmap.py\\ntransfer_heatmap.py.bak\\ntransfer_heatmap_v2.py\\ntransfer_heatmap_v2.py.bak\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012t3QyStgoboQxnx8Efd5tb`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/ -maxdepth 2 -type d -name \"pythia*\" -o -type d -name \"olmo*\" -o -type d -name \"Pythia*\" -o -type d -name \"OLMo*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "ff16ebf1-807c-4b5f-804a-1c6675e7ff35",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QmfeNMHHGs7sJ6vUtLmwCt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1549,
+      "cache_read_input_tokens": 24374,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1549
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-24T08:48:06.611Z_
+
+<details><summary>↩ Tool result · `toolu_012t3QyStgoboQxnx8Efd5tb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "95caff9a-eba1-4b63-aea5-2045935e312b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key findings so far:
+1. **arXiv seed data**: exp_024_arxiv has depth_0 through depth_5, and exp_025_pythia_arxiv also has depth_0 through depth_5
+2. **Existing results**: There are already `exp_multi_source_arxiv` and `exp_025_pythia_arxiv` results
+3. **Scripts**: `run_multi_source_arxiv.py` exists
+4. **Models**: No Pythia/OLMo directories found under autodl-tmp at depth 2
+
+
+5. **Next steps**: I need to verify whether the Pythia experiments have already been completed, check what's in the multi-source results, locate where the models are stored, and review what the existing script does.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "72589a6c-c830-4254-8176-2ec389a02653",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LqnEi6zCSjZZ3kATqFu7sB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4133,
+      "cache_read_input_tokens": 25923,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4133
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+发现 exp_025_pythia_arxiv 已有 depth 0-5 数据，且有 `run_multi_source_arxiv.py` 脚本和 `exp_multi_source_arxiv` 结果。继续深入检查。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "e03590ae-2026-43fb-9aa6-be1b281aaac2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LqnEi6zCSjZZ3kATqFu7sB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4133,
+      "cache_read_input_tokens": 25923,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4133
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013aZci51CcifGFJoyJag4om`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "wc -l /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_0.jsonl /root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_0.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "4fa07c56-aa16-4f9d-81bf-ebbb57079da7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LqnEi6zCSjZZ3kATqFu7sB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4133,
+      "cache_read_input_tokens": 25923,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4133
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-24T08:48:19.231Z_
+
+<details><summary>↩ Tool result · `toolu_013aZci51CcifGFJoyJag4om`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   2200 /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_0.jsonl\\n   2200 /root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_0.jsonl\\n   4400 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "847c62a9-5796-4f93-85f7-ce025164a0cc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   2200 /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_0.jsonl\\\\n   2200 /root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_0.jsonl\\\\n   4400 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"   2200 /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_0.jsonl\\n   2200 /root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/depth_0.jsonl\\n   4400 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MCWVzn4WaFb6gV8TqghFrc`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls /root/autodl-tmp/gen-depth-contamination/results/exp_multi_source_arxiv/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "d929303c-0eeb-4c8c-b01f-c12f5907f587",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LqnEi6zCSjZZ3kATqFu7sB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4133,
+      "cache_read_input_tokens": 25923,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4133
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-24T08:48:20.024Z_
+
+<details><summary>↩ Tool result · `toolu_01MCWVzn4WaFb6gV8TqghFrc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"features_llama8b_qwen_scorer.csv\\nfeatures_pythia1b4_qwen_scorer.csv\\nresults.json\\nresults_vocab_only.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "f26d6a52-4a28-4039-b401-85ce36e578e2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"features_llama8b_qwen_scorer.csv\\\\nfeatures_pythia1b4_qwen_scorer.csv\\\\nresults.json\\\\nresults_vocab_only.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"features_llama8b_qwen_scorer.csv\\nfeatures_pythia1b4_qwen_scorer.csv\\nresults.json\\nresults_vocab_only.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013rVphkJXQXJ6x8CpvF5T8T`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "head -80 /root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_arxiv.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "26f20c84-0549-4d3f-b44d-83cacc1b54c8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LqnEi6zCSjZZ3kATqFu7sB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4133,
+      "cache_read_input_tokens": 25923,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4133
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-24T08:48:21.041Z_
+
+<details><summary>↩ Tool result · `toolu_013rVphkJXQXJ6x8CpvF5T8T`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\narXiv Multi-Source Detection: Vocab-Only + Unified Qwen2.5-1.5B Scorer.\\nParallels C4 multi-source experiments but on arXiv domain.\\n\\\"\\\"\\\"\\nimport csv\\nimport json\\nimport time\\nimport logging\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport lightgbm as lgb\\nfrom sklearn.model_selection import GroupKFold\\nfrom sklearn.metrics import roc_auc_score\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\", datefmt=\\\"%H:%M:%S\\\")\\nlog = logging.getLogger(__name__)\\n\\nSCORER_PATH = \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\\nSOURCES = {\\n    \\\"qwen1b5\\\": {\\n        \\\"data_dir\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv\\\"),\\n        \\\"features_csv\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/features.csv\\\"),\\n        \\\"needs_rescore\\\": False,\\n    },\\n    \\\"pythia1b4\\\": {\\n        \\\"data_dir\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv\\\"),\\n        \\\"features_csv\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/features.csv\\\"),\\n        \\\"needs_rescore\\\": True,\\n    },\\n    \\\"llama8b\\\": {\\n        \\\"data_dir\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b\\\"),\\n        \\\"features_csv\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b/features.csv\\\"),\\n        \\\"needs_rescore\\\": True,\\n    },\\n}\\n\\nSURPRISAL_COLS = [\\\"surp_mean\\\",\\\"surp_std\\\",\\\"surp_skew\\\",\\\"surp_kurt\\\",\\\"surp_d1_mean\\\",\\\"surp_d1_std\\\",\\\"surp_d1_skew\\\",\\\"surp_d2_mean\\\",\\\"surp_d2_std\\\"]\\nTEXT_COLS = [\\\"ttr\\\",\\\"hapax_ratio\\\",\\\"self_bleu\\\",\\\"freq_kurtosis\\\",\\\"freq_entropy\\\",\\\"low_freq_ratio\\\"]\\nALL_FEAT_COLS = SURPRISAL_COLS + TEXT_COLS\\n\\nDOCS_PER_GEN = 1000\\nMAX_DEPTH = 5\\nN_BOOT = 10000\\nTHETA = 0.60\\nSEED = 42\\nOUT_DIR = Path(\\\"/root/autodl-tmp/gen-depth-contamination/results/exp_multi_source_arxiv\\\")\\n\\n\\ndef load_features_csv(path, feat_cols):\\n    with open(path) as f:\\n        rows = list(csv.DictReader(f))\\n    doc_ids_raw = [r[\\\"doc_id\\\"] for r in rows]\\n    try:\\n        doc_ids = np.array([int(d) for d in doc_ids_raw])\\n    except (ValueError, TypeError):\\n        uid_map = {d: i for i, d in enumerate(sorted(set(doc_ids_raw)))}\\n        doc_ids = np.array([uid_map[d] for d in doc_ids_raw])\\n    depths = np.array([int(r[\\\"depth\\\"]) for r in rows])\\n    X = np.array(\\n        [[float(r[c]) if r[c] not in (\\\"\\\", \\\"nan\\\") else np.nan for c in feat_cols] for r in rows]\\n    )\\n    col_means = np.nanmean(X, axis=0)\\n    for j in range(X.shape[1]):\\n        mask = np.isnan(X[:, j])\\n        if mask.any():\\n            X[mask, j] = col_means[j]\\n    return X, depths, doc_ids\\n\\n\\ndef load_text_features(csv_path):\\n    with open(csv_path) as f:\\n        rows = list(csv.DictReader(f))\\n    result = {}\\n    for r in rows:\\n        key = (str(r[\\\"doc_id\\\"]), int(r[\\\"depth\\\"]))\\n        result[key] = {col: r[col] for col in TEXT_COLS}\\n    return result\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "53d13e70-a33b-41a5-acc7-22b3e8d35e34",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\narXiv Multi-Source Detection: Vocab-Only + Unified Qwen2.5-1.5B Scorer.\\\\nParallels C4 multi-source experiments but on arXiv domain.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport csv\\\\nimport json\\\\nimport time\\\\nimport logging\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport lightgbm as lgb\\\\nfrom sklearn.model_selection import GroupKFold\\\\nfrom sklearn.metrics import roc_auc_score\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\", datefmt=\\\\\\\"%H:%M:%S\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSCORER_PATH = \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\\\\\"\\\\nSOURCES = {\\\\n    \\\\\\\"qwen1b5\\\\\\\": {\\\\n        \\\\\\\"data_dir\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv\\\\\\\"),\\\\n        \\\\\\\"features_csv\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/features.csv\\\\\\\"),\\\\n        \\\\\\\"needs_rescore\\\\\\\": False,\\\\n    },\\\\n    \\\\\\\"pythia1b4\\\\\\\": {\\\\n        \\\\\\\"data_dir\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv\\\\\\\"),\\\\n        \\\\\\\"features_csv\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/features.csv\\\\\\\"),\\\\n        \\\\\\\"needs_rescore\\\\\\\": True,\\\\n    },\\\\n    \\\\\\\"llama8b\\\\\\\": {\\\\n        \\\\\\\"data_dir\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b\\\\\\\"),\\\\n        \\\\\\\"features_csv\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b/features.csv\\\\\\\"),\\\\n        \\\\\\\"needs_rescore\\\\\\\": True,\\\\n    },\\\\n}\\\\n\\\\nSURPRISAL_COLS = [\\\\\\\"surp_mean\\\\\\\",\\\\\\\"surp_std\\\\\\\",\\\\\\\"surp_skew\\\\\\\",\\\\\\\"surp_kurt\\\\\\\",\\\\\\\"surp_d1_mean\\\\\\\",\\\\\\\"surp_d1_std\\\\\\\",\\\\\\\"surp_d1_skew\\\\\\\",\\\\\\\"surp_d2_mean\\\\\\\",\\\\\\\"surp_d2_std\\\\\\\"]\\\\nTEXT_COLS = [\\\\\\\"ttr\\\\\\\",\\\\\\\"hapax_ratio\\\\\\\",\\\\\\\"self_bleu\\\\\\\",\\\\\\\"freq_kurtosis\\\\\\\",\\\\\\\"freq_entropy\\\\\\\",\\\\\\\"low_freq_ratio\\\\\\\"]\\\\nALL_FEAT_COLS = SURPRISAL_COLS + TEXT_COLS\\\\n\\\\nDOCS_PER_GEN = 1000\\\\nMAX_DEPTH = 5\\\\nN_BOOT = 10000\\\\nTHETA = 0.60\\\\nSEED = 42\\\\nOUT_DIR = Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/results/exp_multi_source_arxiv\\\\\\\")\\\\n\\\\n\\\\ndef load_features_csv(path, feat_cols):\\\\n    with open(path) as f:\\\\n        rows = list(csv.DictReader(f))\\\\n    doc_ids_raw = [r[\\\\\\\"doc_id\\\\\\\"] for r in rows]\\\\n    try:\\\\n        doc_ids = np.array([int(d) for d in doc_ids_raw])\\\\n    except (ValueError, TypeError):\\\\n        uid_map = {d: i for i, d in enumerate(sorted(set(doc_ids_raw)))}\\\\n        doc_ids = np.array([uid_map[d] for d in doc_ids_raw])\\\\n    depths = np.array([int(r[\\\\\\\"depth\\\\\\\"]) for r in rows])\\\\n    X = np.array(\\\\n        [[float(r[c]) if r[c] not in (\\\\\\\"\\\\\\\", \\\\\\\"nan\\\\\\\") else np.nan for c in feat_cols] for r in rows]\\\\n    )\\\\n    col_means = np.nanmean(X, axis=0)\\\\n    for j in range(X.shape[1]):\\\\n        mask = np.isnan(X[:, j])\\\\n        if mask.any():\\\\n            X[mask, j] = col_means[j]\\\\n    return X, depths, doc_ids\\\\n\\\\n\\\\ndef load_text_features(csv_path):\\\\n    with open(csv_path) as f:\\\\n        rows = list(csv.DictReader(f))\\\\n    result = {}\\\\n    for r in rows:\\\\n        key = (str(r[\\\\\\\"doc_id\\\\\\\"]), int(r[\\\\\\\"depth\\\\\\\"]))\\\\n        result[key] = {col: r[col] for col in TEXT_COLS}\\\\n    return result\\\\n\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\narXiv Multi-Source Detection: Vocab-Only + Unified Qwen2.5-1.5B Scorer.\\nParallels C4 multi-source experiments but on arXiv domain.\\n\\\"\\\"\\\"\\nimport csv\\nimport json\\nimport time\\nimport logging\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport lightgbm as lgb\\nfrom sklearn.model_selection import GroupKFold\\nfrom sklearn.metrics import roc_auc_score\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\", datefmt=\\\"%H:%M:%S\\\")\\nlog = logging.getLogger(__name__)\\n\\nSCORER_PATH = \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\\nSOURCES = {\\n    \\\"qwen1b5\\\": {\\n        \\\"data_dir\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv\\\"),\\n        \\\"features_csv\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/features.csv\\\"),\\n        \\\"needs_rescore\\\": False,\\n    },\\n    \\\"pythia1b4\\\": {\\n        \\\"data_dir\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv\\\"),\\n        \\\"features_csv\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/features.csv\\\"),\\n        \\\"needs_rescore\\\": True,\\n    },\\n    \\\"llama8b\\\": {\\n        \\\"data_dir\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b\\\"),\\n        \\\"features_csv\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b/features.csv\\\"),\\n        \\\"needs_rescore\\\": True,\\n    },\\n}\\n\\nSURPRISAL_COLS = [\\\"surp_mean\\\",\\\"surp_std\\\",\\\"surp_skew\\\",\\\"surp_kurt\\\",\\\"surp_d1_mean\\\",\\\"surp_d1_std\\\",\\\"surp_d1_skew\\\",\\\"surp_d2_mean\\\",\\\"surp_d2_std\\\"]\\nTEXT_COLS = [\\\"ttr\\\",\\\"hapax_ratio\\\",\\\"self_bleu\\\",\\\"freq_kurtosis\\\",\\\"freq_entropy\\\",\\\"low_freq_ratio\\\"]\\nALL_FEAT_COLS = SURPRISAL_COLS + TEXT_COLS\\n\\nDOCS_PER_GEN = 1000\\nMAX_DEPTH = 5\\nN_BOOT = 10000\\nTHETA = 0.60\\nSEED = 42\\nOUT_DIR = Path(\\\"/root/autodl-tmp/gen-depth-contamination/results/exp_multi_source_arxiv\\\")\\n\\n\\ndef load_features_csv(path, feat_cols):\\n    with open(path) as f:\\n        rows = list(csv.DictReader(f))\\n    doc_ids_raw = [r[\\\"doc_id\\\"] for r in rows]\\n    try:\\n        doc_ids = np.array([int(d) for d in doc_ids_raw])\\n    except (ValueError, TypeError):\\n        uid_map = {d: i for i, d in enumerate(sorted(set(doc_ids_raw)))}\\n        doc_ids = np.array([uid_map[d] for d in doc_ids_raw])\\n    depths = np.array([int(r[\\\"depth\\\"]) for r in rows])\\n    X = np.array(\\n        [[float(r[c]) if r[c] not in (\\\"\\\", \\\"nan\\\") else np.nan for c in feat_cols] for r in rows]\\n    )\\n    col_means = np.nanmean(X, axis=0)\\n    for j in range(X.shape[1]):\\n        mask = np.isnan(X[:, j])\\n        if mask.any():\\n            X[mask, j] = col_means[j]\\n    return X, depths, doc_ids\\n\\n\\ndef load_text_features(csv_path):\\n    with open(csv_path) as f:\\n        rows = list(csv.DictReader(f))\\n    result = {}\\n    for r in rows:\\n        key = (str(r[\\\"doc_id\\\"]), int(r[\\\"depth\\\"]))\\n        result[key] = {col: r[col] for col in TEXT_COLS}\\n    return result\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015grvXMzXEXdC9yXuVkSQFx`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls /root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "88fa115d-0c10-4c3b-a5d0-b9839b579f29",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LqnEi6zCSjZZ3kATqFu7sB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4133,
+      "cache_read_input_tokens": 25923,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4133
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-24T08:48:21.934Z_
+
+<details><summary>↩ Tool result · `toolu_015grvXMzXEXdC9yXuVkSQFx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"feature_importance.json\\njsd.json\\nordinal_results.json\\npairwise_auc.json\\nsummary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "a35d2dfb-82ad-4b37-8c83-f41a4acf77f4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"feature_importance.json\\\\njsd.json\\\\nordinal_results.json\\\\npairwise_auc.json\\\\nsummary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"feature_importance.json\\njsd.json\\nordinal_results.json\\npairwise_auc.json\\nsummary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018evmAvNFgueaX3x2DyN8iC`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/ -maxdepth 3 -type d -iname \"*pythia*\" -o -type d -iname \"*olmo*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "24132de8-ed07-4545-ab39-a011aa8a70ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LqnEi6zCSjZZ3kATqFu7sB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4133,
+      "cache_read_input_tokens": 25923,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4133
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-24T08:48:22.932Z_
+
+<details><summary>↩ Tool result · `toolu_018evmAvNFgueaX3x2DyN8iC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/.hf_cache/.locks/models--EleutherAI--pythia-1.4b\\n/root/autodl-tmp/.hf_cache/.locks/models--EleutherAI--pythia-6.9b\\n/root/autodl-tmp/.hf_cache/allenai/OLMo-1B-hf\\n/root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b\\n/root/autodl-tmp/.hf_cache/hub/models--allenai--OLMo-1B-hf\\n/root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-1.4b\\n/root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-6.9b\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv\\n/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo\\n/root/autodl-tmp/gen-depth-contamination/data/exp_code_pythia1b4\\n/root/autodl-tmp/gen-depth-contamination/data/exp_code_qwen1b5_pythia_scorer\\n/root/autodl-tmp/gen-depth-contamination/data/exp_olmo1b_c4_rerun\\n/root/autodl-tmp/gen-depth-contamination/data/exp_pythia14b_c4_nuc\\n/root/autodl-tmp/gen-depth-contamination/data/exp_pythia14b_c4_rerun\\n/root/autodl-tmp/gen-depth-contamination/data/exp_pythia69b_c4\\n/root/autodl-tmp/gen-depth-contamination/data/exp_pythia69b_c4_nuc\\n/root/autodl-tmp/gen-depth-contamination/data/exp_pythia69b_c4_nuc_qwen\\n/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_olmo\\n/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_pythia\\n/root/autodl-tmp/gen-depth-contamination/data/olmo_c4_cont\\n/root/autodl-tmp/gen-depth-contamination/data/olmo_c4_qwen_scorer\\n/root/autodl-tmp/gen-depth-contamination/data/olmo_retrain_chain\\n/root/autodl-tmp/gen-depth-contamination/data/pythia_c4_qwen_scorer\\n/root/autodl-tmp/gen-depth-contamination/data/exp_pythia14b_c4_10k\\n/root/autodl-tmp/gen-depth-contamination/data/olmo1b_c4_10k\\n/root/autodl-tmp/gen-depth-contamination/data_exp020_pythia_greedy\\n/root/autodl-tmp/gen-depth-contamination/data_exp020_pythia_nuc09\\n/root/autodl-tmp/gen-depth-contamination/data_exp020_pythia_t07\\n/root/autodl-tmp/gen-depth-contamination/data_exp020_pythia_t12\\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/pythia_greedy__olmo\\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/pythia_greedy__pythia\\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/pythia_greedy__qwen_base\\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/pythia_greedy__qwen_instruct\\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/qwen_base__olmo\\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/qwen_base__pythia\\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/qwen_cont256__olmo\\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/qwen_cont256__pythia\\n/root/autodl-tmp/gen-depth-contamination/results/analysis_pythia_retrain_depth7\\n/root/autodl-tmp/gen-depth-contamination/results/exp007_olmo_rerun\\n/root/autodl-tmp/gen-depth-contamination/results/exp013_olmo_rerun\\n/root/autodl-tmp/gen-depth-contamination/results/exp013_olmo_rerun_v2\\n/root/autodl-tmp/gen-depth-contamination/results/exp015_olmo_rerun\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_filtering\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_olmo\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_pythia1b4\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen1b5_pythia_scorer\\n/root/autodl-tmp/gen-depth-contamination/results/exp_olmo1b_c4_rerun\\n/root/autodl-tmp/gen-depth-contamination/results/exp_olmo_retrain_chain\\n/root/autodl-tmp/gen-depth-contamination/results/exp_pythia14b_c4_nuc\\n/root/autodl-tmp/gen-depth-contamination/results/exp_pythia14b_c4_rerun\\n/root/autodl-tmp/gen-depth-contamination/results/exp_pythia69b_c4\\n/root/autodl-tmp/gen-depth-contamination/results/exp_pythia69b_c4_nuc\\n/root/autodl-tmp/gen-depth-contamination/results/exp_pythia69b_c4_nuc_qwen\\n/root/autodl-tmp/gen-depth-contamination/results/exp_pythia_retrain_depth7\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo_v2\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_pythia\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_pythia_v2\\n/root/autodl-tmp/gen-depth-contamination/results/feature_importance_olmo\\n/root/autodl-tmp/gen-depth-contamination/results/feature_importance_pythia\\n/root/autodl-tmp/gen-depth-contamination/results/olmo_c4_cont\\n/root/autodl-tmp/gen-depth-contamination/results/olmo_c4_qwen_scorer\\n/root/autodl-tmp/gen-depth-contamination/results/olmo_feature_importance\\n/root/autodl-tmp/gen-depth-contamination/results/pythia_c4_qwen_scorer\\n/root/autodl-tmp/gen-depth-contamination/results/seed_pythia14b_wiki_s123\\n/root/autodl-tmp/gen-depth-contamination/results/exp_pythia14b_c4_10k\\n/root/autodl-tmp/gen-depth-contamination/results/olmo1b_c4_10k\\n/root/autodl-tmp/gen-depth-contamination/results_exp020_pythia_greedy\\n/root/autodl-tmp/gen-depth-contamination/results_exp020_pythia_nuc09\\n/root/autodl-tmp/gen-depth-contamination/results_exp020_pythia_t07\\n/root/autodl-tmp/gen-depth-contamination/results_exp020_pythia_t12\\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__olmo\\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__pythia\\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__qwen_base\\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__qwen_instruct\\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__olmo\\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__pythia\\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__olmo\\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__pythia\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "dea326a6-3fd7-4582-a9f2-473ace222f8b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/.hf_cache/.locks/models--EleutherAI--pythia-1.4b\\\\n/root/autodl-tmp/.hf_cache/.locks/models--EleutherAI--pythia-6.9b\\\\n/root/autodl-tmp/.hf_cache/allenai/OLMo-1B-hf\\\\n/root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b\\\\n/root/autodl-tmp/.hf_cache/hub/models--allenai--OLMo-1B-hf\\\\n/root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-1.4b\\\\n/root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-6.9b\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_code_pythia1b4\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_code_qwen1b5_pythia_scorer\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_olmo1b_c4_rerun\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_pythia14b_c4_nuc\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_pythia14b_c4_rerun\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_pythia69b_c4\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_pythia69b_c4_nuc\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_pythia69b_c4_nuc_qwen\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_olmo\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_pythia\\\\n/root/autodl-tmp/gen-depth-contamination/data/olmo_c4_cont\\\\n/root/autodl-tmp/gen-depth-contamination/data/olmo_c4_qwen_scorer\\\\n/root/autodl-tmp/gen-depth-contamination/data/olmo_retrain_chain\\\\n/root/autodl-tmp/gen-depth-contamination/data/pythia_c4_qwen_scorer\\\\n/root/autodl-tmp/gen-depth-contamination/data/exp_pythia14b_c4_10k\\\\n/root/autodl-tmp/gen-depth-contamination/data/olmo1b_c4_10k\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp020_pythia_greedy\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp020_pythia_nuc09\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp020_pythia_t07\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp020_pythia_t12\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/pythia_greedy__olmo\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/pythia_greedy__pythia\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/pythia_greedy__qwen_base\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/pythia_greedy__qwen_instruct\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/qwen_base__olmo\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/qwen_base__pythia\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/qwen_cont256__olmo\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/qwen_cont256__pythia\\\\n/root/autodl-tmp/gen-depth-contamination/results/analysis_pythia_retrain_depth7\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp007_olmo_rerun\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp013_olmo_rerun\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp013_olmo_rerun_v2\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp015_olmo_rerun\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_filtering\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_olmo\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_pythia1b4\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen1b5_pythia_scorer\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_olmo1b_c4_rerun\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_olmo_retrain_chain\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_pythia14b_c4_nuc\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_pythia14b_c4_rerun\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_pythia69b_c4\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_pythia69b_c4_nuc\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_pythia69b_c4_nuc_qwen\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_pythia_retrain_depth7\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo_v2\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_pythia\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_pythia_v2\\\\n/root/autodl-tmp/gen-depth-contamination/results/feature_importance_olmo\\\\n/root/autodl-tmp/gen-depth-contamination/results/feature_importance_pythia\\\\n/root/autodl-tmp/gen-depth-contamination/results/olmo_c4_cont\\\\n/root/autodl-tmp/gen-depth-contamination/results/olmo_c4_qwen_scorer\\\\n/root/autodl-tmp/gen-depth-contamination/results/olmo_feature_importance\\\\n/root/autodl-tmp/gen-depth-contamination/results/pythia_c4_qwen_scorer\\\\n/root/autodl-tmp/gen-depth-contamination/results/seed_pythia14b_wiki_s123\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_pythia14b_c4_10k\\\\n/root/autodl-tmp/gen-depth-contamination/results/olmo1b_c4_10k\\\\n/root/autodl-tmp/gen-depth-contamination/results_exp020_pythia_greedy\\\\n/root/autodl-tmp/gen-depth-contamination/results_exp020_pythia_nuc09\\\\n/root/autodl-tmp/gen-depth-contamination/results_exp020_pythia_t07\\\\n/root/autodl-tmp/gen-depth-contamination/results_exp020_pythia_t12\\\\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__olmo\\\\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__pythia\\\\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__qwen_base\\\\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__qwen_instruct\\\\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__olmo\\\\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__pythia\\\\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__olmo\\\\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__pythia\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/.hf_cache/.locks/models--EleutherAI--pythia-1.4b\\n/root/autodl-tmp/.hf_cache/.locks/models--EleutherAI--pythia-6.9b\\n/root/autodl-tmp/.hf_cache/allenai/OLMo-1B-hf\\n/root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b\\n/root/autodl-tmp/.hf_cache/hub/models--allenai--OLMo-1B-hf\\n/root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-1.4b\\n/root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-6.9b\\n/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv\\n/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo\\n/root/autodl-tmp/gen-depth-contamination/data/exp_code_pythia1b4\\n/root/autodl-tmp/gen-depth-contamination/data/exp_code_qwen1b5_pythia_scorer\\n/root/autodl-tmp/gen-depth-contamination/data/exp_olmo1b_c4_rerun\\n/root/autodl-tmp/gen-depth-contamination/data/exp_pythia14b_c4_nuc\\n/root/autodl-tmp/gen-depth-contamination/data/exp_pythia14b_c4_rerun\\n/root/autodl-tmp/gen-depth-contamination/data/exp_pythia69b_c4\\n/root/autodl-tmp/gen-depth-contamination/data/exp_pythia69b_c4_nuc\\n/root/autodl-tmp/gen-depth-contamination/data/exp_pythia69b_c4_nuc_qwen\\n/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_olmo\\n/root/autodl-tmp/gen-depth-contamination/data/exp_wiki_pythia\\n/root/autodl-tmp/gen-depth-contamination/data/olmo_c4_cont\\n/root/autodl-tmp/gen-depth-contamination/data/olmo_c4_qwen_scorer\\n/root/autodl-tmp/gen-depth-contamination/data/olmo_retrain_chain\\n/root/autodl-tmp/gen-depth-contamination/data/pythia_c4_qwen_scorer\\n/root/autodl-tmp/gen-depth-contamination/data/exp_pythia14b_c4_10k\\n/root/autodl-tmp/gen-depth-contamination/data/olmo1b_c4_10k\\n/root/autodl-tmp/gen-depth-contamination/data_exp020_pythia_greedy\\n/root/autodl-tmp/gen-depth-contamination/data_exp020_pythia_nuc09\\n/root/autodl-tmp/gen-depth-contamination/data_exp020_pythia_t07\\n/root/autodl-tmp/gen-depth-contamination/data_exp020_pythia_t12\\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/pythia_greedy__olmo\\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/pythia_greedy__pythia\\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/pythia_greedy__qwen_base\\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/pythia_greedy__qwen_instruct\\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/qwen_base__olmo\\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/qwen_base__pythia\\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/qwen_cont256__olmo\\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/qwen_cont256__pythia\\n/root/autodl-tmp/gen-depth-contamination/results/analysis_pythia_retrain_depth7\\n/root/autodl-tmp/gen-depth-contamination/results/exp007_olmo_rerun\\n/root/autodl-tmp/gen-depth-contamination/results/exp013_olmo_rerun\\n/root/autodl-tmp/gen-depth-contamination/results/exp013_olmo_rerun_v2\\n/root/autodl-tmp/gen-depth-contamination/results/exp015_olmo_rerun\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_filtering\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_olmo\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_pythia1b4\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen1b5_pythia_scorer\\n/root/autodl-tmp/gen-depth-contamination/results/exp_olmo1b_c4_rerun\\n/root/autodl-tmp/gen-depth-contamination/results/exp_olmo_retrain_chain\\n/root/autodl-tmp/gen-depth-contamination/results/exp_pythia14b_c4_nuc\\n/root/autodl-tmp/gen-depth-contamination/results/exp_pythia14b_c4_rerun\\n/root/autodl-tmp/gen-depth-contamination/results/exp_pythia69b_c4\\n/root/autodl-tmp/gen-depth-contamination/results/exp_pythia69b_c4_nuc\\n/root/autodl-tmp/gen-depth-contamination/results/exp_pythia69b_c4_nuc_qwen\\n/root/autodl-tmp/gen-depth-contamination/results/exp_pythia_retrain_depth7\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo_v2\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_pythia\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_pythia_v2\\n/root/autodl-tmp/gen-depth-contamination/results/feature_importance_olmo\\n/root/autodl-tmp/gen-depth-contamination/results/feature_importance_pythia\\n/root/autodl-tmp/gen-depth-contamination/results/olmo_c4_cont\\n/root/autodl-tmp/gen-depth-contamination/results/olmo_c4_qwen_scorer\\n/root/autodl-tmp/gen-depth-contamination/results/olmo_feature_importance\\n/root/autodl-tmp/gen-depth-contamination/results/pythia_c4_qwen_scorer\\n/root/autodl-tmp/gen-depth-contamination/results/seed_pythia14b_wiki_s123\\n/root/autodl-tmp/gen-depth-contamination/results/exp_pythia14b_c4_10k\\n/root/autodl-tmp/gen-depth-contamination/results/olmo1b_c4_10k\\n/root/autodl-tmp/gen-depth-contamination/results_exp020_pythia_greedy\\n/root/autodl-tmp/gen-depth-contamination/results_exp020_pythia_nuc09\\n/root/autodl-tmp/gen-depth-contamination/results_exp020_pythia_t07\\n/root/autodl-tmp/gen-depth-contamination/results_exp020_pythia_t12\\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__olmo\\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__pythia\\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__qwen_base\\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__qwen_instruct\\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__olmo\\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__pythia\\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__olmo\\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__pythia\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent findings! Let me summarize what I've discovered:
+
+1. **arXiv seed data**: exp_024_arxiv has 2200 docs at depth_0 (not 5K as stated in the task), and exp_025_pythia_arxiv also has 2200 docs at depth_0
+2. **Pythia-1.4B arXiv data already exists**: `data/exp_025_pythia_arxiv/` has depth_0 through depth_5
+3. **OLMo arXiv data exists too**: `data/exp_arXiv_olmo/` directory exists
+
+
+4. **Models and prior results are already in place**: Both Pythia-1.4B and OLMo-1B models are cached locally, and there are existing feature files and evaluation metrics from previous runs with these datasets.
+
+5. **Need to verify what's been computed**: I should check what's actually in the OLMo arXiv directory, review the results from both experiments to confirm whether K*=3 was validated, and see if all depth levels have been processed for the OLMo data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "241a2d2e-9d4c-434e-9e54-a7c5af8e6409",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ADkCTqAnXu1MeKixZXAvKM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5421,
+      "cache_read_input_tokens": 30056,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5421
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+大量已有数据。Pythia arXiv 和 OLMo arXiv 数据目录都存在，模型也已下载。检查详细状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "77ee6fba-32b5-4699-b782-83978b26d2bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ADkCTqAnXu1MeKixZXAvKM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5421,
+      "cache_read_input_tokens": 30056,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5421
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Tiy6uVcZX89cyCbsmPB4k6`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "76b39242-a538-4f19-814b-ab2716ec3372",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ADkCTqAnXu1MeKixZXAvKM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5421,
+      "cache_read_input_tokens": 30056,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5421
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-24T08:48:40.754Z_
+
+<details><summary>↩ Tool result · `toolu_01Tiy6uVcZX89cyCbsmPB4k6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"depth_0.jsonl\\ndepth_1.jsonl\\ndepth_2.jsonl\\ndepth_3.jsonl\\ndepth_4.jsonl\\ndepth_5.jsonl\\nfeatures.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "749a80c8-354f-43b1-9c92-763f6bae193d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"depth_0.jsonl\\\\ndepth_1.jsonl\\\\ndepth_2.jsonl\\\\ndepth_3.jsonl\\\\ndepth_4.jsonl\\\\ndepth_5.jsonl\\\\nfeatures.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"depth_0.jsonl\\ndepth_1.jsonl\\ndepth_2.jsonl\\ndepth_3.jsonl\\ndepth_4.jsonl\\ndepth_5.jsonl\\nfeatures.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011zpr7n6fTUhGjrvPRKvZdU`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_multi_source_arxiv/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "6bd697f8-b4b3-437c-9fc2-6af8d958b50e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ADkCTqAnXu1MeKixZXAvKM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5421,
+      "cache_read_input_tokens": 30056,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5421
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-24T08:48:41.551Z_
+
+<details><summary>↩ Tool result · `toolu_011zpr7n6fTUhGjrvPRKvZdU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp_multi_source_arxiv\\\",\\n  \\\"domain\\\": \\\"arXiv\\\",\\n  \\\"scorer\\\": \\\"Qwen2.5-1.5B\\\",\\n  \\\"generators\\\": [\\n    \\\"qwen1b5\\\",\\n    \\\"pythia1b4\\\",\\n    \\\"llama8b\\\"\\n  ],\\n  \\\"docs_per_generator\\\": 1000,\\n  \\\"n_bootstrap\\\": 10000,\\n  \\\"theta\\\": 0.6,\\n  \\\"seed\\\": 42,\\n  \\\"total_seconds\\\": 914.8,\\n  \\\"vocab_only\\\": {\\n    \\\"no_label\\\": {\\n      \\\"pairs\\\": {\\n        \\\"0v1\\\": {\\n          \\\"auc\\\": 0.9431,\\n          \\\"fold_aucs\\\": [\\n            0.9492,\\n            0.9602,\\n            0.9342,\\n            0.9354,\\n            0.937\\n          ],\\n          \\\"ci_lower\\\": 0.9378,\\n          \\\"ci_upper\\\": 0.9482,\\n          \\\"boot_mean\\\": 0.9431,\\n          \\\"boot_std\\\": 0.0026\\n        },\\n        \\\"1v2\\\": {\\n          \\\"auc\\\": 0.6922,\\n          \\\"fold_aucs\\\": [\\n            0.6861,\\n            0.7229,\\n            0.6779,\\n            0.6676,\\n            0.7068\\n          ],\\n          \\\"ci_lower\\\": 0.68,\\n          \\\"ci_upper\\\": 0.7044,\\n          \\\"boot_mean\\\": 0.6922,\\n          \\\"boot_std\\\": 0.0062\\n        },\\n        \\\"2v3\\\": {\\n          \\\"auc\\\": 0.589,\\n          \\\"fold_aucs\\\": [\\n            0.5814,\\n            0.5918,\\n            0.5757,\\n            0.5893,\\n            0.6071\\n          ],\\n          \\\"ci_lower\\\": 0.5755,\\n          \\\"ci_upper\\\": 0.6026,\\n          \\\"boot_mean\\\": 0.589,\\n          \\\"boot_std\\\": 0.0069\\n        },\\n        \\\"3v4\\\": {\\n          \\\"auc\\\": 0.5082,\\n          \\\"fold_aucs\\\": [\\n            0.5053,\\n            0.5034,\\n            0.5289,\\n            0.505,\\n            0.4995\\n          ],\\n          \\\"ci_lower\\\": 0.4941,\\n          \\\"ci_upper\\\": 0.5222,\\n          \\\"boot_mean\\\": 0.5082,\\n          \\\"boot_std\\\": 0.0071\\n        },\\n        \\\"4v5\\\": {\\n          \\\"auc\\\": 0.5176,\\n          \\\"fold_aucs\\\": [\\n            0.5203,\\n            0.5131,\\n            0.5165,\\n            0.5214,\\n            0.5181\\n          ],\\n          \\\"ci_lower\\\": 0.5035,\\n          \\\"ci_upper\\\": 0.5316,\\n          \\\"boot_mean\\\": 0.5176,\\n          \\\"boot_std\\\": 0.0072\\n        }\\n      },\\n      \\\"kstar\\\": 2\\n    },\\n    \\\"with_label\\\": {\\n      \\\"pairs\\\": {\\n        \\\"0v1\\\": {\\n          \\\"auc\\\": 0.9436,\\n          \\\"fold_aucs\\\": [\\n            0.9489,\\n            0.9618,\\n            0.9337,\\n            0.9347,\\n            0.9405\\n          ],\\n          \\\"ci_lower\\\": 0.9383,\\n          \\\"ci_upper\\\": 0.9487,\\n          \\\"boot_mean\\\": 0.9436,\\n          \\\"boot_std\\\": 0.0026\\n        },\\n        \\\"1v2\\\": {\\n          \\\"auc\\\": 0.702,\\n          \\\"fold_aucs\\\": [\\n            0.6924,\\n            0.7358,\\n            0.6909,\\n            0.6794,\\n            0.7105\\n          ],\\n          \\\"ci_lower\\\": 0.6898,\\n          \\\"ci_upper\\\": 0.7141,\\n          \\\"boot_mean\\\": 0.7021,\\n          \\\"boot_std\\\": 0.0062\\n        },\\n        \\\"2v3\\\": {\\n          \\\"auc\\\": 0.5883,\\n          \\\"fold_aucs\\\": [\\n            0.5814,\\n            0.5965,\\n            0.5719,\\n            0.583,\\n            0.6103\\n          ],\\n          \\\"ci_lower\\\": 0.5749,\\n          \\\"ci_upper\\\": 0.6019,\\n          \\\"boot_mean\\\": 0.5883,\\n          \\\"boot_std\\\": 0.0069\\n        },\\n        \\\"3v4\\\": {\\n          \\\"auc\\\": 0.5077,\\n          \\\"fold_aucs\\\": [\\n            0.5128,\\n            0.5076,\\n            0.5258,\\n            0.4932,\\n            0.4999\\n          ],\\n          \\\"ci_lower\\\": 0.4937,\\n          \\\"ci_upper\\\": 0.5215,\\n          \\\"boot_mean\\\": 0.5077,\\n          \\\"boot_std\\\": 0.0071\\n        },\\n        \\\"4v5\\\": {\\n          \\\"auc\\\": 0.5163,\\n          \\\"fold_aucs\\\": [\\n            0.5101,\\n            0.5053,\\n            0.5125,\\n            0.5283,\\n            0.5261\\n          ],\\n          \\\"ci_lower\\\": 0.5022,\\n          \\\"ci_upper\\\": 0.5301,\\n          \\\"boot_mean\\\": 0.5163,\\n          \\\"boot_std\\\": 0.0072\\n        }\\n      },\\n      \\\"kstar\\\": 2\\n    }\\n  },\\n  \\\"unified_scorer_no_label\\\": {\\n    \\\"pairs\\\": {\\n      \\\"0v1\\\": {\\n        \\\"auc\\\": 0.9899,\\n        \\\"fold_aucs\\\": [\\n          0.9903,\\n          0.9916,\\n          0.9914,\\n          0.9885,\\n          0.9881\\n        ],\\n        \\\"ci_lower\\\": 0.988,\\n        \\\"ci_upper\\\": 0.9918,\\n        \\\"boot_mean\\\": 0.9899,\\n        \\\"boot_std\\\": 0.001\\n      },\\n      \\\"1v2\\\": {\\n        \\\"auc\\\": 0.8117,\\n        \\\"fold_aucs\\\": [\\n          0.8011,\\n          0.8058,\\n          0.8295,\\n          0.7947,\\n          0.8299\\n        ],\\n        \\\"ci_lower\\\": 0.8021,\\n        \\\"ci_upper\\\": 0.8211,\\n        \\\"boot_mean\\\": 0.8116,\\n        \\\"boot_std\\\": 0.0048\\n      },\\n      \\\"2v3\\\": {\\n        \\\"auc\\\": 0.6247,\\n        \\\"fold_aucs\\\": [\\n          0.6182,\\n          0.6358,\\n          0.6201,\\n          0.6133,\\n          0.6353\\n        ],\\n        \\\"ci_lower\\\": 0.6119,\\n        \\\"ci_upper\\\": 0.6374,\\n        \\\"boot_mean\\\": 0.6248,\\n        \\\"boot_std\\\": 0.0065\\n      },\\n      \\\"3v4\\\": {\\n        \\\"auc\\\": 0.5269,\\n        \\\"fold_aucs\\\": [\\n          0.521,\\n          0.5229,\\n          0.5451,\\n          0.5114,\\n          0.535\\n        ],\\n        \\\"ci_lower\\\": 0.5136,\\n        \\\"ci_upper\\\": 0.5405,\\n        \\\"boot_mean\\\": 0.527,\\n        \\\"boot_std\\\": 0.0069\\n      },\\n      \\\"4v5\\\": {\\n        \\\"auc\\\": 0.5321,\\n        \\\"fold_aucs\\\": [\\n          0.541,\\n          0.5404,\\n          0.5197,\\n          0.5419,\\n          0.5183\\n        ],\\n        \\\"ci_lower\\\": 0.5181,\\n        \\\"ci_upper\\\": 0.5462,\\n        \\\"boot_mean\\\": 0.5321,\\n        \\\"boot_std\\\": 0.0072\\n      }\\n    },\\n    \\\"kstar\\\": 3\\n  },\\n  \\\"unified_scorer_with_label\\\": {\\n    \\\"pairs\\\": {\\n      \\\"0v1\\\": {\\n        \\\"auc\\\": 0.9911,\\n        \\\"fold_aucs\\\": [\\n          0.9911,\\n          0.9932,\\n          0.9927,\\n          0.9906,\\n          0.9884\\n        ],\\n        \\\"ci_lower\\\": 0.9892,\\n        \\\"ci_upper\\\": 0.9928,\\n        \\\"boot_mean\\\": 0.9911,\\n        \\\"boot_std\\\": 0.0009\\n      },\\n      \\\"1v2\\\": {\\n        \\\"auc\\\": 0.8338,\\n        \\\"fold_aucs\\\": [\\n          0.8229,\\n          0.8276,\\n          0.8534,\\n          0.8255,\\n          0.8415\\n        ],\\n        \\\"ci_lower\\\": 0.8244,\\n        \\\"ci_upper\\\": 0.8428,\\n        \\\"boot_mean\\\": 0.8337,\\n        \\\"boot_std\\\": 0.0047\\n      },\\n      \\\"2v3\\\": {\\n        \\\"auc\\\": 0.6276,\\n        \\\"fold_aucs\\\": [\\n          0.628,\\n          0.6403,\\n          0.6233,\\n          0.6099,\\n          0.6359\\n        ],\\n        \\\"ci_lower\\\": 0.615,\\n        \\\"ci_upper\\\": 0.6401,\\n        \\\"boot_mean\\\": 0.6276,\\n        \\\"boot_std\\\": 0.0065\\n      },\\n      \\\"3v4\\\": {\\n        \\\"auc\\\": 0.533,\\n        \\\"fold_aucs\\\": [\\n          0.5355,\\n          0.5314,\\n          0.554,\\n          0.513,\\n          0.5326\\n        ],\\n        \\\"ci_lower\\\": 0.5193,\\n        \\\"ci_upper\\\": 0.5464,\\n        \\\"boot_mean\\\": 0.533,\\n        \\\"boot_std\\\": 0.0069\\n      },\\n      \\\"4v5\\\": {\\n        \\\"auc\\\": 0.5359,\\n        \\\"fold_aucs\\\": [\\n          0.5347,\\n          0.5496,\\n          0.5318,\\n          0.5388,\\n          0.5263\\n        ],\\n        \\\"ci_lower\\\": 0.5217,\\n        \\\"ci_upper\\\": 0.5496,\\n        \\\"boot_mean\\\": 0.5358,\\n        \\\"boot_std\\\": 0.0071\\n      }\\n    },\\n    \\\"kstar\\\": 3\\n  },\\n  \\\"c4_comparison\\\": {\\n    \\\"c4_unified_no_label_kstar\\\": 2,\\n    \\\"c4_unified_with_label_kstar\\\": 2,\\n    \\\"c4_vocab_only_kstar\\\": 2\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "eec666bf-44b8-4c96-9892-836b6f662074",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp_multi_source_arxiv\\\\\\\",\\\\n  \\\\\\\"domain\\\\\\\": \\\\\\\"arXiv\\\\\\\",\\\\n  \\\\\\\"scorer\\\\\\\": \\\\\\\"Qwen2.5-1.5B\\\\\\\",\\\\n  \\\\\\\"generators\\\\\\\": [\\\\n    \\\\\\\"qwen1b5\\\\\\\",\\\\n    \\\\\\\"pythia1b4\\\\\\\",\\\\n    \\\\\\\"llama8b\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"docs_per_generator\\\\\\\": 1000,\\\\n  \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n  \\\\\\\"theta\\\\\\\": 0.6,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"total_seconds\\\\\\\": 914.8,\\\\n  \\\\\\\"vocab_only\\\\\\\": {\\\\n    \\\\\\\"no_label\\\\\\\": {\\\\n      \\\\\\\"pairs\\\\\\\": {\\\\n        \\\\\\\"0v1\\\\\\\": {\\\\n          \\\\\\\"auc\\\\\\\": 0.9431,\\\\n          \\\\\\\"fold_aucs\\\\\\\": [\\\\n            0.9492,\\\\n            0.9602,\\\\n            0.9342,\\\\n            0.9354,\\\\n            0.937\\\\n          ],\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9378,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.9482,\\\\n          \\\\\\\"boot_mean\\\\\\\": 0.9431,\\\\n          \\\\\\\"boot_std\\\\\\\": 0.0026\\\\n        },\\\\n        \\\\\\\"1v2\\\\\\\": {\\\\n          \\\\\\\"auc\\\\\\\": 0.6922,\\\\n          \\\\\\\"fold_aucs\\\\\\\": [\\\\n            0.6861,\\\\n            0.7229,\\\\n            0.6779,\\\\n            0.6676,\\\\n            0.7068\\\\n          ],\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.68,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.7044,\\\\n          \\\\\\\"boot_mean\\\\\\\": 0.6922,\\\\n          \\\\\\\"boot_std\\\\\\\": 0.0062\\\\n        },\\\\n        \\\\\\\"2v3\\\\\\\": {\\\\n          \\\\\\\"auc\\\\\\\": 0.589,\\\\n          \\\\\\\"fold_aucs\\\\\\\": [\\\\n            0.5814,\\\\n            0.5918,\\\\n            0.5757,\\\\n            0.5893,\\\\n            0.6071\\\\n          ],\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.5755,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.6026,\\\\n          \\\\\\\"boot_mean\\\\\\\": 0.589,\\\\n          \\\\\\\"boot_std\\\\\\\": 0.0069\\\\n        },\\\\n        \\\\\\\"3v4\\\\\\\": {\\\\n          \\\\\\\"auc\\\\\\\": 0.5082,\\\\n          \\\\\\\"fold_aucs\\\\\\\": [\\\\n            0.5053,\\\\n            0.5034,\\\\n            0.5289,\\\\n            0.505,\\\\n            0.4995\\\\n          ],\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.4941,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.5222,\\\\n          \\\\\\\"boot_mean\\\\\\\": 0.5082,\\\\n          \\\\\\\"boot_std\\\\\\\": 0.0071\\\\n        },\\\\n        \\\\\\\"4v5\\\\\\\": {\\\\n          \\\\\\\"auc\\\\\\\": 0.5176,\\\\n          \\\\\\\"fold_aucs\\\\\\\": [\\\\n            0.5203,\\\\n            0.5131,\\\\n            0.5165,\\\\n            0.5214,\\\\n            0.5181\\\\n          ],\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.5035,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.5316,\\\\n          \\\\\\\"boot_mean\\\\\\\": 0.5176,\\\\n          \\\\\\\"boot_std\\\\\\\": 0.0072\\\\n        }\\\\n      },\\\\n      \\\\\\\"kstar\\\\\\\": 2\\\\n    },\\\\n    \\\\\\\"with_label\\\\\\\": {\\\\n      \\\\\\\"pairs\\\\\\\": {\\\\n        \\\\\\\"0v1\\\\\\\": {\\\\n          \\\\\\\"auc\\\\\\\": 0.9436,\\\\n          \\\\\\\"fold_aucs\\\\\\\": [\\\\n            0.9489,\\\\n            0.9618,\\\\n            0.9337,\\\\n            0.9347,\\\\n            0.9405\\\\n          ],\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.9383,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.9487,\\\\n          \\\\\\\"boot_mean\\\\\\\": 0.9436,\\\\n          \\\\\\\"boot_std\\\\\\\": 0.0026\\\\n        },\\\\n        \\\\\\\"1v2\\\\\\\": {\\\\n          \\\\\\\"auc\\\\\\\": 0.702,\\\\n          \\\\\\\"fold_aucs\\\\\\\": [\\\\n            0.6924,\\\\n            0.7358,\\\\n            0.6909,\\\\n            0.6794,\\\\n            0.7105\\\\n          ],\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.6898,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.7141,\\\\n          \\\\\\\"boot_mean\\\\\\\": 0.7021,\\\\n          \\\\\\\"boot_std\\\\\\\": 0.0062\\\\n        },\\\\n        \\\\\\\"2v3\\\\\\\": {\\\\n          \\\\\\\"auc\\\\\\\": 0.5883,\\\\n          \\\\\\\"fold_aucs\\\\\\\": [\\\\n            0.5814,\\\\n            0.5965,\\\\n            0.5719,\\\\n            0.583,\\\\n            0.6103\\\\n          ],\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.5749,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.6019,\\\\n          \\\\\\\"boot_mean\\\\\\\": 0.5883,\\\\n          \\\\\\\"boot_std\\\\\\\": 0.0069\\\\n        },\\\\n        \\\\\\\"3v4\\\\\\\": {\\\\n          \\\\\\\"auc\\\\\\\": 0.5077,\\\\n          \\\\\\\"fold_aucs\\\\\\\": [\\\\n            0.5128,\\\\n            0.5076,\\\\n            0.5258,\\\\n            0.4932,\\\\n            0.4999\\\\n          ],\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.4937,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.5215,\\\\n          \\\\\\\"boot_mean\\\\\\\": 0.5077,\\\\n          \\\\\\\"boot_std\\\\\\\": 0.0071\\\\n        },\\\\n        \\\\\\\"4v5\\\\\\\": {\\\\n          \\\\\\\"auc\\\\\\\": 0.5163,\\\\n          \\\\\\\"fold_aucs\\\\\\\": [\\\\n            0.5101,\\\\n            0.5053,\\\\n            0.5125,\\\\n            0.5283,\\\\n            0.5261\\\\n          ],\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.5022,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.5301,\\\\n          \\\\\\\"boot_mean\\\\\\\": 0.5163,\\\\n          \\\\\\\"boot_std\\\\\\\": 0.0072\\\\n        }\\\\n      },\\\\n      \\\\\\\"kstar\\\\\\\": 2\\\\n    }\\\\n  },\\\\n  \\\\\\\"unified_scorer_no_label\\\\\\\": {\\\\n    \\\\\\\"pairs\\\\\\\": {\\\\n      \\\\\\\"0v1\\\\\\\": {\\\\n        \\\\\\\"auc\\\\\\\": 0.9899,\\\\n        \\\\\\\"fold_aucs\\\\\\\": [\\\\n          0.9903,\\\\n          0.9916,\\\\n          0.9914,\\\\n          0.9885,\\\\n          0.9881\\\\n        ],\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.988,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.9918,\\\\n        \\\\\\\"boot_mean\\\\\\\": 0.9899,\\\\n        \\\\\\\"boot_std\\\\\\\": 0.001\\\\n      },\\\\n      \\\\\\\"1v2\\\\\\\": {\\\\n        \\\\\\\"auc\\\\\\\": 0.8117,\\\\n        \\\\\\\"fold_aucs\\\\\\\": [\\\\n          0.8011,\\\\n          0.8058,\\\\n          0.8295,\\\\n          0.7947,\\\\n          0.8299\\\\n        ],\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.8021,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.8211,\\\\n        \\\\\\\"boot_mean\\\\\\\": 0.8116,\\\\n        \\\\\\\"boot_std\\\\\\\": 0.0048\\\\n      },\\\\n      \\\\\\\"2v3\\\\\\\": {\\\\n        \\\\\\\"auc\\\\\\\": 0.6247,\\\\n        \\\\\\\"fold_aucs\\\\\\\": [\\\\n          0.6182,\\\\n          0.6358,\\\\n          0.6201,\\\\n          0.6133,\\\\n          0.6353\\\\n        ],\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.6119,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.6374,\\\\n        \\\\\\\"boot_mean\\\\\\\": 0.6248,\\\\n        \\\\\\\"boot_std\\\\\\\": 0.0065\\\\n      },\\\\n      \\\\\\\"3v4\\\\\\\": {\\\\n        \\\\\\\"auc\\\\\\\": 0.5269,\\\\n        \\\\\\\"fold_aucs\\\\\\\": [\\\\n          0.521,\\\\n          0.5229,\\\\n          0.5451,\\\\n          0.5114,\\\\n          0.535\\\\n        ],\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.5136,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.5405,\\\\n        \\\\\\\"boot_mean\\\\\\\": 0.527,\\\\n        \\\\\\\"boot_std\\\\\\\": 0.0069\\\\n      },\\\\n      \\\\\\\"4v5\\\\\\\": {\\\\n        \\\\\\\"auc\\\\\\\": 0.5321,\\\\n        \\\\\\\"fold_aucs\\\\\\\": [\\\\n          0.541,\\\\n          0.5404,\\\\n          0.5197,\\\\n          0.5419,\\\\n          0.5183\\\\n        ],\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.5181,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.5462,\\\\n        \\\\\\\"boot_mean\\\\\\\": 0.5321,\\\\n        \\\\\\\"boot_std\\\\\\\": 0.0072\\\\n      }\\\\n    },\\\\n    \\\\\\\"kstar\\\\\\\": 3\\\\n  },\\\\n  \\\\\\\"unified_scorer_with_label\\\\\\\": {\\\\n    \\\\\\\"pairs\\\\\\\": {\\\\n      \\\\\\\"0v1\\\\\\\": {\\\\n        \\\\\\\"auc\\\\\\\": 0.9911,\\\\n        \\\\\\\"fold_aucs\\\\\\\": [\\\\n          0.9911,\\\\n          0.9932,\\\\n          0.9927,\\\\n          0.9906,\\\\n          0.9884\\\\n        ],\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.9892,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.9928,\\\\n        \\\\\\\"boot_mean\\\\\\\": 0.9911,\\\\n        \\\\\\\"boot_std\\\\\\\": 0.0009\\\\n      },\\\\n      \\\\\\\"1v2\\\\\\\": {\\\\n        \\\\\\\"auc\\\\\\\": 0.8338,\\\\n        \\\\\\\"fold_aucs\\\\\\\": [\\\\n          0.8229,\\\\n          0.8276,\\\\n          0.8534,\\\\n          0.8255,\\\\n          0.8415\\\\n        ],\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.8244,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.8428,\\\\n        \\\\\\\"boot_mean\\\\\\\": 0.8337,\\\\n        \\\\\\\"boot_std\\\\\\\": 0.0047\\\\n      },\\\\n      \\\\\\\"2v3\\\\\\\": {\\\\n        \\\\\\\"auc\\\\\\\": 0.6276,\\\\n        \\\\\\\"fold_aucs\\\\\\\": [\\\\n          0.628,\\\\n          0.6403,\\\\n          0.6233,\\\\n          0.6099,\\\\n          0.6359\\\\n        ],\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.615,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.6401,\\\\n        \\\\\\\"boot_mean\\\\\\\": 0.6276,\\\\n        \\\\\\\"boot_std\\\\\\\": 0.0065\\\\n      },\\\\n      \\\\\\\"3v4\\\\\\\": {\\\\n        \\\\\\\"auc\\\\\\\": 0.533,\\\\n        \\\\\\\"fold_aucs\\\\\\\": [\\\\n          0.5355,\\\\n          0.5314,\\\\n          0.554,\\\\n          0.513,\\\\n          0.5326\\\\n        ],\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.5193,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.5464,\\\\n        \\\\\\\"boot_mean\\\\\\\": 0.533,\\\\n        \\\\\\\"boot_std\\\\\\\": 0.0069\\\\n      },\\\\n      \\\\\\\"4v5\\\\\\\": {\\\\n        \\\\\\\"auc\\\\\\\": 0.5359,\\\\n        \\\\\\\"fold_aucs\\\\\\\": [\\\\n          0.5347,\\\\n          0.5496,\\\\n          0.5318,\\\\n          0.5388,\\\\n          0.5263\\\\n        ],\\\\n        \\\\\\\"ci_lower\\\\\\\": 0.5217,\\\\n        \\\\\\\"ci_upper\\\\\\\": 0.5496,\\\\n        \\\\\\\"boot_mean\\\\\\\": 0.5358,\\\\n        \\\\\\\"boot_std\\\\\\\": 0.0071\\\\n      }\\\\n    },\\\\n    \\\\\\\"kstar\\\\\\\": 3\\\\n  },\\\\n  \\\\\\\"c4_comparison\\\\\\\": {\\\\n    \\\\\\\"c4_unified_no_label_kstar\\\\\\\": 2,\\\\n    \\\\\\\"c4_unified_with_label_kstar\\\\\\\": 2,\\\\n    \\\\\\\"c4_vocab_only_kstar\\\\\\\": 2\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp_multi_source_arxiv\\\",\\n  \\\"domain\\\": \\\"arXiv\\\",\\n  \\\"scorer\\\": \\\"Qwen2.5-1.5B\\\",\\n  \\\"generators\\\": [\\n    \\\"qwen1b5\\\",\\n    \\\"pythia1b4\\\",\\n    \\\"llama8b\\\"\\n  ],\\n  \\\"docs_per_generator\\\": 1000,\\n  \\\"n_bootstrap\\\": 10000,\\n  \\\"theta\\\": 0.6,\\n  \\\"seed\\\": 42,\\n  \\\"total_seconds\\\": 914.8,\\n  \\\"vocab_only\\\": {\\n    \\\"no_label\\\": {\\n      \\\"pairs\\\": {\\n        \\\"0v1\\\": {\\n          \\\"auc\\\": 0.9431,\\n          \\\"fold_aucs\\\": [\\n            0.9492,\\n            0.9602,\\n            0.9342,\\n            0.9354,\\n            0.937\\n          ],\\n          \\\"ci_lower\\\": 0.9378,\\n          \\\"ci_upper\\\": 0.9482,\\n          \\\"boot_mean\\\": 0.9431,\\n          \\\"boot_std\\\": 0.0026\\n        },\\n        \\\"1v2\\\": {\\n          \\\"auc\\\": 0.6922,\\n          \\\"fold_aucs\\\": [\\n            0.6861,\\n            0.7229,\\n            0.6779,\\n            0.6676,\\n            0.7068\\n          ],\\n          \\\"ci_lower\\\": 0.68,\\n          \\\"ci_upper\\\": 0.7044,\\n          \\\"boot_mean\\\": 0.6922,\\n          \\\"boot_std\\\": 0.0062\\n        },\\n        \\\"2v3\\\": {\\n          \\\"auc\\\": 0.589,\\n          \\\"fold_aucs\\\": [\\n            0.5814,\\n            0.5918,\\n            0.5757,\\n            0.5893,\\n            0.6071\\n          ],\\n          \\\"ci_lower\\\": 0.5755,\\n          \\\"ci_upper\\\": 0.6026,\\n          \\\"boot_mean\\\": 0.589,\\n          \\\"boot_std\\\": 0.0069\\n        },\\n        \\\"3v4\\\": {\\n          \\\"auc\\\": 0.5082,\\n          \\\"fold_aucs\\\": [\\n            0.5053,\\n            0.5034,\\n            0.5289,\\n            0.505,\\n            0.4995\\n          ],\\n          \\\"ci_lower\\\": 0.4941,\\n          \\\"ci_upper\\\": 0.5222,\\n          \\\"boot_mean\\\": 0.5082,\\n          \\\"boot_std\\\": 0.0071\\n        },\\n        \\\"4v5\\\": {\\n          \\\"auc\\\": 0.5176,\\n          \\\"fold_aucs\\\": [\\n            0.5203,\\n            0.5131,\\n            0.5165,\\n            0.5214,\\n            0.5181\\n          ],\\n          \\\"ci_lower\\\": 0.5035,\\n          \\\"ci_upper\\\": 0.5316,\\n          \\\"boot_mean\\\": 0.5176,\\n          \\\"boot_std\\\": 0.0072\\n        }\\n      },\\n      \\\"kstar\\\": 2\\n    },\\n    \\\"with_label\\\": {\\n      \\\"pairs\\\": {\\n        \\\"0v1\\\": {\\n          \\\"auc\\\": 0.9436,\\n          \\\"fold_aucs\\\": [\\n            0.9489,\\n            0.9618,\\n            0.9337,\\n            0.9347,\\n            0.9405\\n          ],\\n          \\\"ci_lower\\\": 0.9383,\\n          \\\"ci_upper\\\": 0.9487,\\n          \\\"boot_mean\\\": 0.9436,\\n          \\\"boot_std\\\": 0.0026\\n        },\\n        \\\"1v2\\\": {\\n          \\\"auc\\\": 0.702,\\n          \\\"fold_aucs\\\": [\\n            0.6924,\\n            0.7358,\\n            0.6909,\\n            0.6794,\\n            0.7105\\n          ],\\n          \\\"ci_lower\\\": 0.6898,\\n          \\\"ci_upper\\\": 0.7141,\\n          \\\"boot_mean\\\": 0.7021,\\n          \\\"boot_std\\\": 0.0062\\n        },\\n        \\\"2v3\\\": {\\n          \\\"auc\\\": 0.5883,\\n          \\\"fold_aucs\\\": [\\n            0.5814,\\n            0.5965,\\n            0.5719,\\n            0.583,\\n            0.6103\\n          ],\\n          \\\"ci_lower\\\": 0.5749,\\n          \\\"ci_upper\\\": 0.6019,\\n          \\\"boot_mean\\\": 0.5883,\\n          \\\"boot_std\\\": 0.0069\\n        },\\n        \\\"3v4\\\": {\\n          \\\"auc\\\": 0.5077,\\n          \\\"fold_aucs\\\": [\\n            0.5128,\\n            0.5076,\\n            0.5258,\\n            0.4932,\\n            0.4999\\n          ],\\n          \\\"ci_lower\\\": 0.4937,\\n          \\\"ci_upper\\\": 0.5215,\\n          \\\"boot_mean\\\": 0.5077,\\n          \\\"boot_std\\\": 0.0071\\n        },\\n        \\\"4v5\\\": {\\n          \\\"auc\\\": 0.5163,\\n          \\\"fold_aucs\\\": [\\n            0.5101,\\n            0.5053,\\n            0.5125,\\n            0.5283,\\n            0.5261\\n          ],\\n          \\\"ci_lower\\\": 0.5022,\\n          \\\"ci_upper\\\": 0.5301,\\n          \\\"boot_mean\\\": 0.5163,\\n          \\\"boot_std\\\": 0.0072\\n        }\\n      },\\n      \\\"kstar\\\": 2\\n    }\\n  },\\n  \\\"unified_scorer_no_label\\\": {\\n    \\\"pairs\\\": {\\n      \\\"0v1\\\": {\\n        \\\"auc\\\": 0.9899,\\n        \\\"fold_aucs\\\": [\\n          0.9903,\\n          0.9916,\\n          0.9914,\\n          0.9885,\\n          0.9881\\n        ],\\n        \\\"ci_lower\\\": 0.988,\\n        \\\"ci_upper\\\": 0.9918,\\n        \\\"boot_mean\\\": 0.9899,\\n        \\\"boot_std\\\": 0.001\\n      },\\n      \\\"1v2\\\": {\\n        \\\"auc\\\": 0.8117,\\n        \\\"fold_aucs\\\": [\\n          0.8011,\\n          0.8058,\\n          0.8295,\\n          0.7947,\\n          0.8299\\n        ],\\n        \\\"ci_lower\\\": 0.8021,\\n        \\\"ci_upper\\\": 0.8211,\\n        \\\"boot_mean\\\": 0.8116,\\n        \\\"boot_std\\\": 0.0048\\n      },\\n      \\\"2v3\\\": {\\n        \\\"auc\\\": 0.6247,\\n        \\\"fold_aucs\\\": [\\n          0.6182,\\n          0.6358,\\n          0.6201,\\n          0.6133,\\n          0.6353\\n        ],\\n        \\\"ci_lower\\\": 0.6119,\\n        \\\"ci_upper\\\": 0.6374,\\n        \\\"boot_mean\\\": 0.6248,\\n        \\\"boot_std\\\": 0.0065\\n      },\\n      \\\"3v4\\\": {\\n        \\\"auc\\\": 0.5269,\\n        \\\"fold_aucs\\\": [\\n          0.521,\\n          0.5229,\\n          0.5451,\\n          0.5114,\\n          0.535\\n        ],\\n        \\\"ci_lower\\\": 0.5136,\\n        \\\"ci_upper\\\": 0.5405,\\n        \\\"boot_mean\\\": 0.527,\\n        \\\"boot_std\\\": 0.0069\\n      },\\n      \\\"4v5\\\": {\\n        \\\"auc\\\": 0.5321,\\n        \\\"fold_aucs\\\": [\\n          0.541,\\n          0.5404,\\n          0.5197,\\n          0.5419,\\n          0.5183\\n        ],\\n        \\\"ci_lower\\\": 0.5181,\\n        \\\"ci_upper\\\": 0.5462,\\n        \\\"boot_mean\\\": 0.5321,\\n        \\\"boot_std\\\": 0.0072\\n      }\\n    },\\n    \\\"kstar\\\": 3\\n  },\\n  \\\"unified_scorer_with_label\\\": {\\n    \\\"pairs\\\": {\\n      \\\"0v1\\\": {\\n        \\\"auc\\\": 0.9911,\\n        \\\"fold_aucs\\\": [\\n          0.9911,\\n          0.9932,\\n          0.9927,\\n          0.9906,\\n          0.9884\\n        ],\\n        \\\"ci_lower\\\": 0.9892,\\n        \\\"ci_upper\\\": 0.9928,\\n        \\\"boot_mean\\\": 0.9911,\\n        \\\"boot_std\\\": 0.0009\\n      },\\n      \\\"1v2\\\": {\\n        \\\"auc\\\": 0.8338,\\n        \\\"fold_aucs\\\": [\\n          0.8229,\\n          0.8276,\\n          0.8534,\\n          0.8255,\\n          0.8415\\n        ],\\n        \\\"ci_lower\\\": 0.8244,\\n        \\\"ci_upper\\\": 0.8428,\\n        \\\"boot_mean\\\": 0.8337,\\n        \\\"boot_std\\\": 0.0047\\n      },\\n      \\\"2v3\\\": {\\n        \\\"auc\\\": 0.6276,\\n        \\\"fold_aucs\\\": [\\n          0.628,\\n          0.6403,\\n          0.6233,\\n          0.6099,\\n          0.6359\\n        ],\\n        \\\"ci_lower\\\": 0.615,\\n        \\\"ci_upper\\\": 0.6401,\\n        \\\"boot_mean\\\": 0.6276,\\n        \\\"boot_std\\\": 0.0065\\n      },\\n      \\\"3v4\\\": {\\n        \\\"auc\\\": 0.533,\\n        \\\"fold_aucs\\\": [\\n          0.5355,\\n          0.5314,\\n          0.554,\\n          0.513,\\n          0.5326\\n        ],\\n        \\\"ci_lower\\\": 0.5193,\\n        \\\"ci_upper\\\": 0.5464,\\n        \\\"boot_mean\\\": 0.533,\\n        \\\"boot_std\\\": 0.0069\\n      },\\n      \\\"4v5\\\": {\\n        \\\"auc\\\": 0.5359,\\n        \\\"fold_aucs\\\": [\\n          0.5347,\\n          0.5496,\\n          0.5318,\\n          0.5388,\\n          0.5263\\n        ],\\n        \\\"ci_lower\\\": 0.5217,\\n        \\\"ci_upper\\\": 0.5496,\\n        \\\"boot_mean\\\": 0.5358,\\n        \\\"boot_std\\\": 0.0071\\n      }\\n    },\\n    \\\"kstar\\\": 3\\n  },\\n  \\\"c4_comparison\\\": {\\n    \\\"c4_unified_no_label_kstar\\\": 2,\\n    \\\"c4_unified_with_label_kstar\\\": 2,\\n    \\\"c4_vocab_only_kstar\\\": 2\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MF3S83bQgmBUNJJ6omum8h`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/pairwise_auc.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "1cf370eb-215f-48ab-94b3-b73898d665dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ADkCTqAnXu1MeKixZXAvKM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5421,
+      "cache_read_input_tokens": 30056,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5421
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-24T08:48:42.339Z_
+
+<details><summary>↩ Tool result · `toolu_01MF3S83bQgmBUNJJ6omum8h`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.9877,\\n    \\\"1v2\\\": 0.8047,\\n    \\\"2v3\\\": 0.6545,\\n    \\\"3v4\\\": 0.5507,\\n    \\\"4v5\\\": 0.5287\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.9914,\\n      0.9889,\\n      0.9844,\\n      0.9895,\\n      0.9845\\n    ],\\n    \\\"1v2\\\": [\\n      0.7906,\\n      0.8278,\\n      0.8018,\\n      0.8065,\\n      0.7967\\n    ],\\n    \\\"2v3\\\": [\\n      0.6409,\\n      0.6433,\\n      0.6764,\\n      0.6548,\\n      0.6572\\n    ],\\n    \\\"3v4\\\": [\\n      0.5496,\\n      0.5418,\\n      0.5499,\\n      0.5675,\\n      0.5444\\n    ],\\n    \\\"4v5\\\": [\\n      0.5253,\\n      0.5101,\\n      0.5413,\\n      0.5432,\\n      0.5235\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "3b36ca03-790f-417a-8c12-f3eab91bb318",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mean\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": 0.9877,\\\\n    \\\\\\\"1v2\\\\\\\": 0.8047,\\\\n    \\\\\\\"2v3\\\\\\\": 0.6545,\\\\n    \\\\\\\"3v4\\\\\\\": 0.5507,\\\\n    \\\\\\\"4v5\\\\\\\": 0.5287\\\\n  },\\\\n  \\\\\\\"per_fold\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": [\\\\n      0.9914,\\\\n      0.9889,\\\\n      0.9844,\\\\n      0.9895,\\\\n      0.9845\\\\n    ],\\\\n    \\\\\\\"1v2\\\\\\\": [\\\\n      0.7906,\\\\n      0.8278,\\\\n      0.8018,\\\\n      0.8065,\\\\n      0.7967\\\\n    ],\\\\n    \\\\\\\"2v3\\\\\\\": [\\\\n      0.6409,\\\\n      0.6433,\\\\n      0.6764,\\\\n      0.6548,\\\\n      0.6572\\\\n    ],\\\\n    \\\\\\\"3v4\\\\\\\": [\\\\n      0.5496,\\\\n      0.5418,\\\\n      0.5499,\\\\n      0.5675,\\\\n      0.5444\\\\n    ],\\\\n    \\\\\\\"4v5\\\\\\\": [\\\\n      0.5253,\\\\n      0.5101,\\\\n      0.5413,\\\\n      0.5432,\\\\n      0.5235\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.9877,\\n    \\\"1v2\\\": 0.8047,\\n    \\\"2v3\\\": 0.6545,\\n    \\\"3v4\\\": 0.5507,\\n    \\\"4v5\\\": 0.5287\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.9914,\\n      0.9889,\\n      0.9844,\\n      0.9895,\\n      0.9845\\n    ],\\n    \\\"1v2\\\": [\\n      0.7906,\\n      0.8278,\\n      0.8018,\\n      0.8065,\\n      0.7967\\n    ],\\n    \\\"2v3\\\": [\\n      0.6409,\\n      0.6433,\\n      0.6764,\\n      0.6548,\\n      0.6572\\n    ],\\n    \\\"3v4\\\": [\\n      0.5496,\\n      0.5418,\\n      0.5499,\\n      0.5675,\\n      0.5444\\n    ],\\n    \\\"4v5\\\": [\\n      0.5253,\\n      0.5101,\\n      0.5413,\\n      0.5432,\\n      0.5235\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FEk5r1KV5qYPBNfcAJMqXx`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_olmo/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "08d86e62-f036-4689-8826-d72f812d060b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ADkCTqAnXu1MeKixZXAvKM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5421,
+      "cache_read_input_tokens": 30056,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5421
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-24T08:48:43.218Z_
+
+<details><summary>↩ Tool result · `toolu_01FEk5r1KV5qYPBNfcAJMqXx`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_olmo/: Is a directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "eb336c8c-eb0f-4199-9199-27afa7e8fbc4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_olmo/: Is a directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_olmo/: Is a directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015TE3Gy2tQUztbvMR3fiFcF`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "wc -l /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_0.jsonl /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_1.jsonl /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_5.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "0e5eeb08-98f5-4729-af46-6ce3d575bd99",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ADkCTqAnXu1MeKixZXAvKM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5421,
+      "cache_read_input_tokens": 30056,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5421
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-24T08:48:44.751Z_
+
+<details><summary>↩ Tool result · `toolu_015TE3Gy2tQUztbvMR3fiFcF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_0.jsonl\\n   2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_1.jsonl\\n   2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_5.jsonl\\n   6600 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "7c499a74-654b-4eb7-8c12-ef1403fea9e2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_0.jsonl\\\\n   2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_1.jsonl\\\\n   2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_5.jsonl\\\\n   6600 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"   2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_0.jsonl\\n   2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_1.jsonl\\n   2200 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/depth_5.jsonl\\n   6600 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is very revealing. Let me consolidate what I've found:
+
+1. **exp_024_arxiv**: Qwen2.5-1.5B generator on arXiv, depth 0-5, 2200 docs each
+2. **exp_025_pythia_arxiv**: Pythia-1.4B generator on arXiv, depth 0-5, 2200 docs each. Already has results: pairwise AUC shows K*=3 (3v4 AUC=0.5507, essentially chance)
+3. **exp_arXiv_olmo**: OLMo-1B generator on arXiv, depth 0-5, 2200 docs each. 
+
+The multi-source arXiv experiment has already been completed with three generators (Qwen1.5B, Pythia1.4B, and Llama8B), and the unified scorer consistently identifies K*=3 across both the label-aware and label-free configurations, while the vocabulary-only baseline points to K*=2.
+
+However, the task specifies expanding to at least 2-3 models using Pythia-1.4B and OLMo-1B specifically—both 1.5B-class models to align with the C4 experiments—whereas the existing multi-source setup uses Llama8B, which is a different size tier. I need to verify whether OLMo results already exist separately and determine if we should run a new multi-source comparison with the correct model pairing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "59838a55-c754-4fe1-a5d8-2d352f42446d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QmGJt85Bp5H8TsqA63xZ9k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5981,
+      "cache_read_input_tokens": 35477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5981
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+OLMo arXiv 数据完整（depth 0-5, 2200 docs each），但未包含在 multi_source_arxiv 实验中。检查 OLMo 结果和 features 状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "36dab4c4-a809-4cd6-b90b-67bdd0d9745a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QmGJt85Bp5H8TsqA63xZ9k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5981,
+      "cache_read_input_tokens": 35477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5981
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MgPttjzCbLMmWQJ8PqsHnK`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls /root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_olmo/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "54bfd269-3a81-4acf-b008-16b14d372ae8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QmGJt85Bp5H8TsqA63xZ9k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5981,
+      "cache_read_input_tokens": 35477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5981
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-24T08:49:02.930Z_
+
+<details><summary>↩ Tool result · `toolu_01MgPttjzCbLMmWQJ8PqsHnK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"feature_importance.json\\njsd.json\\nordinal_results.json\\npairwise_auc.json\\nsummary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "5df543f6-4b28-48fb-9931-a1134cf6fe13",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"feature_importance.json\\\\njsd.json\\\\nordinal_results.json\\\\npairwise_auc.json\\\\nsummary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"feature_importance.json\\njsd.json\\nordinal_results.json\\npairwise_auc.json\\nsummary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01328J6rPiRU6q1vYSiPbPau`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "head -3 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/features.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "2cd501e7-6047-4d72-82b2-14a227af6913",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QmGJt85Bp5H8TsqA63xZ9k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5981,
+      "cache_read_input_tokens": 35477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5981
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-24T08:49:03.887Z_
+
+<details><summary>↩ Tool result · `toolu_01328J6rPiRU6q1vYSiPbPau`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\r\\n0,0,3.2879585653332106,3.0793082857085046,1.002563714711493,0.21755137393208557,-0.01426267793594306,4.022438980985233,0.10207318395016106,0.0479762784072331,6.815073036762189,0.7371134020618557,0.8391608391608392,0.0,17.058097793268516,6.885246847578275,0.9300699300699301\\r\\n1,0,3.2793416883985875,2.833478491910853,0.9376288192537588,0.4514552590258276,-0.02118874893707483,3.7920126585918927,-0.13375485242975355,0.018907983148464164,6.439248239232176,0.7316017316017316,0.834319526627219,0.0009856785965805328,16.14255093488592,7.129627829265425,0.9171597633136095\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "9c775a2f-5182-4c2d-b3ce-8bdc8c4f8f46",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\\\r\\\\n0,0,3.2879585653332106,3.0793082857085046,1.002563714711493,0.21755137393208557,-0.01426267793594306,4.022438980985233,0.10207318395016106,0.0479762784072331,6.815073036762189,0.7371134020618557,0.8391608391608392,0.0,17.058097793268516,6.885246847578275,0.9300699300699301\\\\r\\\\n1,0,3.2793416883985875,2.833478491910853,0.9376288192537588,0.4514552590258276,-0.02118874893707483,3.7920126585918927,-0.13375485242975355,0.018907983148464164,6.439248239232176,0.7316017316017316,0.834319526627219,0.0009856785965805328,16.14255093488592,7.129627829265425,0.9171597633136095\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\r\\n0,0,3.2879585653332106,3.0793082857085046,1.002563714711493,0.21755137393208557,-0.01426267793594306,4.022438980985233,0.10207318395016106,0.0479762784072331,6.815073036762189,0.7371134020618557,0.8391608391608392,0.0,17.058097793268516,6.885246847578275,0.9300699300699301\\r\\n1,0,3.2793416883985875,2.833478491910853,0.9376288192537588,0.4514552590258276,-0.02118874893707483,3.7920126585918927,-0.13375485242975355,0.018907983148464164,6.439248239232176,0.7316017316017316,0.834319526627219,0.0009856785965805328,16.14255093488592,7.129627829265425,0.9171597633136095\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FJZiZdQVeadMe4L42wjuHZ`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "wc -l /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/features.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "8492a17b-5869-4cd3-b852-079a3ca6cd35",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QmGJt85Bp5H8TsqA63xZ9k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5981,
+      "cache_read_input_tokens": 35477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5981
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-24T08:49:05.170Z_
+
+<details><summary>↩ Tool result · `toolu_01FJZiZdQVeadMe4L42wjuHZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/features.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "08594218-ed2a-4dcd-a65f-85007c120e1c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/features.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"13201 /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_olmo/features.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Y4LHfEQkV9J1ruWTyiNqcx`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_olmo/pairwise_auc.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "59c59e55-3b93-4ec7-82fe-af9f93f1c0ec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QmGJt85Bp5H8TsqA63xZ9k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5981,
+      "cache_read_input_tokens": 35477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5981
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NLwskPcx8quiygoWjoU2oX`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "head -5 /root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/features.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "304afd08-ffd7-4f17-a30c-79a26fc8d2b1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QmGJt85Bp5H8TsqA63xZ9k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5981,
+      "cache_read_input_tokens": 35477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5981
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-24T08:49:06.226Z_
+
+<details><summary>↩ Tool result · `toolu_01Y4LHfEQkV9J1ruWTyiNqcx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.9958,\\n    \\\"1v2\\\": 0.5034,\\n    \\\"2v3\\\": 0.5069,\\n    \\\"3v4\\\": 0.5021,\\n    \\\"4v5\\\": 0.5037\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.9951,\\n      0.9963,\\n      0.9949,\\n      0.9985,\\n      0.9943\\n    ],\\n    \\\"1v2\\\": [\\n      0.5079,\\n      0.5066,\\n      0.5063,\\n      0.5163,\\n      0.4801\\n    ],\\n    \\\"2v3\\\": [\\n      0.506,\\n      0.507,\\n      0.5275,\\n      0.5247,\\n      0.4694\\n    ],\\n    \\\"3v4\\\": [\\n      0.4891,\\n      0.4779,\\n      0.51,\\n      0.5238,\\n      0.5096\\n    ],\\n    \\\"4v5\\\": [\\n      0.5116,\\n      0.4891,\\n      0.5118,\\n      0.5113,\\n      0.4947\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "51a498fa-8b0f-422e-b663-9606d17cfff3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mean\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": 0.9958,\\\\n    \\\\\\\"1v2\\\\\\\": 0.5034,\\\\n    \\\\\\\"2v3\\\\\\\": 0.5069,\\\\n    \\\\\\\"3v4\\\\\\\": 0.5021,\\\\n    \\\\\\\"4v5\\\\\\\": 0.5037\\\\n  },\\\\n  \\\\\\\"per_fold\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": [\\\\n      0.9951,\\\\n      0.9963,\\\\n      0.9949,\\\\n      0.9985,\\\\n      0.9943\\\\n    ],\\\\n    \\\\\\\"1v2\\\\\\\": [\\\\n      0.5079,\\\\n      0.5066,\\\\n      0.5063,\\\\n      0.5163,\\\\n      0.4801\\\\n    ],\\\\n    \\\\\\\"2v3\\\\\\\": [\\\\n      0.506,\\\\n      0.507,\\\\n      0.5275,\\\\n      0.5247,\\\\n      0.4694\\\\n    ],\\\\n    \\\\\\\"3v4\\\\\\\": [\\\\n      0.4891,\\\\n      0.4779,\\\\n      0.51,\\\\n      0.5238,\\\\n      0.5096\\\\n    ],\\\\n    \\\\\\\"4v5\\\\\\\": [\\\\n      0.5116,\\\\n      0.4891,\\\\n      0.5118,\\\\n      0.5113,\\\\n      0.4947\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.9958,\\n    \\\"1v2\\\": 0.5034,\\n    \\\"2v3\\\": 0.5069,\\n    \\\"3v4\\\": 0.5021,\\n    \\\"4v5\\\": 0.5037\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.9951,\\n      0.9963,\\n      0.9949,\\n      0.9985,\\n      0.9943\\n    ],\\n    \\\"1v2\\\": [\\n      0.5079,\\n      0.5066,\\n      0.5063,\\n      0.5163,\\n      0.4801\\n    ],\\n    \\\"2v3\\\": [\\n      0.506,\\n      0.507,\\n      0.5275,\\n      0.5247,\\n      0.4694\\n    ],\\n    \\\"3v4\\\": [\\n      0.4891,\\n      0.4779,\\n      0.51,\\n      0.5238,\\n      0.5096\\n    ],\\n    \\\"4v5\\\": [\\n      0.5116,\\n      0.4891,\\n      0.5118,\\n      0.5113,\\n      0.4947\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-24T08:49:06.669Z_
+
+<details><summary>↩ Tool result · `toolu_01NLwskPcx8quiygoWjoU2oX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\r\\n0,0,3.2880189076383064,3.0792762398852567,1.0022333493853872,0.21667259078267787,-0.014234875444839857,4.021983532992029,0.10126073360253228,0.047920460786138264,6.8147699031169005,0.7371134020618557,0.8391608391608392,0.0,17.058097793268516,6.885246847578275,0.9300699300699301\\r\\n1,0,3.2794168031821815,2.833895853612952,0.9374791895368758,0.44950793517850096,-0.021321614583333332,3.7925839759708673,-0.1340113795964952,0.01903463630546075,6.440128629716455,0.7316017316017316,0.834319526627219,0.0009856785965805328,16.14255093488592,7.129627829265425,0.9171597633136095\\r\\n2,0,3.0938011670370824,2.954434952406342,1.255056281991935,1.6837834655473802,-0.036267266757246376,4.154031386365944,0.11634950638814805,-0.03517755681818182,7.0201805159815995,0.77,0.8701298701298701,0.0011255609338216583,34.74738939157717,7.013290519860275,0.9285714285714286\\r\\n3,0,2.884087640404325,2.69169765791734,1.4338538449752491,2.311602942483712,-0.0365098397943038,3.7739995429879,-0.12477247971181679,0.03308829655722966,6.5111658460372,0.7238493723849372,0.8265895953757225,0.0002402523611793236,23.156214211579314,7.156529260433471,0.9190751445086706\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "442c4488-0dd1-4186-a33b-8e1cdda2d3da",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\\\r\\\\n0,0,3.2880189076383064,3.0792762398852567,1.0022333493853872,0.21667259078267787,-0.014234875444839857,4.021983532992029,0.10126073360253228,0.047920460786138264,6.8147699031169005,0.7371134020618557,0.8391608391608392,0.0,17.058097793268516,6.885246847578275,0.9300699300699301\\\\r\\\\n1,0,3.2794168031821815,2.833895853612952,0.9374791895368758,0.44950793517850096,-0.021321614583333332,3.7925839759708673,-0.1340113795964952,0.01903463630546075,6.440128629716455,0.7316017316017316,0.834319526627219,0.0009856785965805328,16.14255093488592,7.129627829265425,0.9171597633136095\\\\r\\\\n2,0,3.0938011670370824,2.954434952406342,1.255056281991935,1.6837834655473802,-0.036267266757246376,4.154031386365944,0.11634950638814805,-0.03517755681818182,7.0201805159815995,0.77,0.8701298701298701,0.0011255609338216583,34.74738939157717,7.013290519860275,0.9285714285714286\\\\r\\\\n3,0,2.884087640404325,2.69169765791734,1.4338538449752491,2.311602942483712,-0.0365098397943038,3.7739995429879,-0.12477247971181679,0.03308829655722966,6.5111658460372,0.7238493723849372,0.8265895953757225,0.0002402523611793236,23.156214211579314,7.156529260433471,0.9190751445086706\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"doc_id,depth,surp_mean,surp_std,surp_skew,surp_kurt,surp_d1_mean,surp_d1_std,surp_d1_skew,surp_d2_mean,surp_d2_std,ttr,hapax_ratio,self_bleu,freq_kurtosis,freq_entropy,low_freq_ratio\\r\\n0,0,3.2880189076383064,3.0792762398852567,1.0022333493853872,0.21667259078267787,-0.014234875444839857,4.021983532992029,0.10126073360253228,0.047920460786138264,6.8147699031169005,0.7371134020618557,0.8391608391608392,0.0,17.058097793268516,6.885246847578275,0.9300699300699301\\r\\n1,0,3.2794168031821815,2.833895853612952,0.9374791895368758,0.44950793517850096,-0.021321614583333332,3.7925839759708673,-0.1340113795964952,0.01903463630546075,6.440128629716455,0.7316017316017316,0.834319526627219,0.0009856785965805328,16.14255093488592,7.129627829265425,0.9171597633136095\\r\\n2,0,3.0938011670370824,2.954434952406342,1.255056281991935,1.6837834655473802,-0.036267266757246376,4.154031386365944,0.11634950638814805,-0.03517755681818182,7.0201805159815995,0.77,0.8701298701298701,0.0011255609338216583,34.74738939157717,7.013290519860275,0.9285714285714286\\r\\n3,0,2.884087640404325,2.69169765791734,1.4338538449752491,2.311602942483712,-0.0365098397943038,3.7739995429879,-0.12477247971181679,0.03308829655722966,6.5111658460372,0.7238493723849372,0.8265895953757225,0.0002402523611793236,23.156214211579314,7.156529260433471,0.9190751445086706\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Very important findings:
+
+1. **exp_arXiv_olmo**: OLMo-1B on arXiv already has complete results, BUT the pairwise AUC shows K*=1 (not K*=3!):
+   - 0v1: 0.9958 (very high)
+   - 1v2: 0.5034 (chance!)
+   - 2v3: 0.5069 (chance)
+   - All subsequent pairs near 0.50
+
+   This is a self-scored result (OLMo scoring itself), not cross-scored with Qwen2.5-1.5B-Instruct.
+   
+2. **exp_025_pythia_arxiv**: Pythia on arXiv with cross-scoring shows a different pattern where K* ≈ 3, with the pairwise AUC degrading more gradually from 0.9877 down to chance level around the 3v4 comparison.
+
+3. **exp_multi_source_arxiv**: Looking at the combined results from qwen1b5, pythia1b4, and llama8b with a unified scorer...
+
+4. **OLMo features**: The features.csv file is complete with 13201 lines representing 2200 documents across 6 depths. I'm checking whether these were scored with Qwen2.5-1.5B as a cross-scorer or self-scored. Comparing OLMo and Pythia at depth_0, the surprisal values are nearly identical (3.2879 vs 3.2880), which makes sense since depth_0 uses the same seed data for both models, though the slight differences suggest they weren't computed identically.
+
+Looking at the pairwise AUC pattern for exp_arXiv_olmo—0v1 is 0.9958 while all other comparisons hover near 0.50—this is the telltale signature of self-scoring, where OLMo easily separates its own generations from human text but struggles to distinguish between its own outputs at different depths. Since the task requires cross-scoring with Qwen2.5-1.5B-Instruct, I need to find whether there's a separate cross-scored version of the OLMo results.
+
+Scanning through the available results, I can see cross-scorer variants for Llama, Mistral, and Qwen models on arXiv, but there's no exp_arXiv_olmo_crossscorer. And looking at the multi-source experiments, OLMo wasn't even included in that evaluation—only Qwen, Pythia, and Llama were tested. So the critical issue is whether the OLMo arXiv data actually needs to be re-scored with the Qwen cross-scorer.
+
+Checking the existing OLMo features more closely, I notice the surprisal values at depth_0 are nearly identical between the OLMo and Pythia experiments (both around 3.288), which makes sense since they're using the same seed text. This suggests the surprisal columns might already be cross-scored rather than self-scored.
+
+But that creates a puzzle: if OLMo were cross-scored with Qwen like the other generators, I'd expect the pairwise AUC pattern to show K*≈3, yet it shows K*=1 instead. This could mean OLMo's generations diverge so dramatically from the seed that it hits a plateau by depth 1, or I need to verify the actual scoring methodology in the experiment metadata.
+
+Let me verify the feature counts match what I'd expect—exp_arXiv_olmo should have 13201 lines for 2200 documents across 6 depths, and I should check whether the multi-source experiment already has OLMo cross-scored or if that needs to be done.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "453386c0-3955-43b9-aef5-3f8666d53adc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWLMRGqDLMPu11i5cUndHW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3386,
+      "cache_read_input_tokens": 41458,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3386
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54_
+
+关键发现：OLMo arXiv 自评结果 K*=1（说明是自评不是 cross-scoring），需要用 Qwen cross-score。继续检查。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "f3e5d776-d5fc-4914-8af5-0f1555b7cb89",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWLMRGqDLMPu11i5cUndHW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3386,
+      "cache_read_input_tokens": 41458,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3386
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GDd9e9dzWQ1BP3eyBcWNnx`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_olmo/summary.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "d863edc8-58b9-44e2-bf69-8b8ba727e8f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWLMRGqDLMPu11i5cUndHW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3386,
+      "cache_read_input_tokens": 41458,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3386
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-24T08:49:42.696Z_
+
+<details><summary>↩ Tool result · `toolu_01GDd9e9dzWQ1BP3eyBcWNnx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nMVP Pilot Saturation Study — Results Summary\\n============================================================\\n\\nPairwise AUC (adjacent depths):\\n  depth 0 vs 1: AUC = 0.9958 ± 0.0015  folds=[0.9951, 0.9963, 0.9949, 0.9985, 0.9943]\\n  depth 1 vs 2: AUC = 0.5034 ± 0.0122  folds=[0.5079, 0.5066, 0.5063, 0.5163, 0.4801]\\n  depth 2 vs 3: AUC = 0.5069 ± 0.0207  folds=[0.506, 0.507, 0.5275, 0.5247, 0.4694]\\n  depth 3 vs 4: AUC = 0.5021 ± 0.0164  folds=[0.4891, 0.4779, 0.51, 0.5238, 0.5096]\\n  depth 4 vs 5: AUC = 0.5037 ± 0.0098  folds=[0.5116, 0.4891, 0.5118, 0.5113, 0.4947]\\n\\nPairwise JSD (adjacent depths):\\n  depth 0 vs 1: JSD = 0.32917\\n  depth 1 vs 2: JSD = 0.006963\\n  depth 2 vs 3: JSD = 0.00654\\n  depth 3 vs 4: JSD = 0.007673\\n  depth 4 vs 5: JSD = 0.006765\\n\\nK* (max depth with AUC > 0.60): 1\\n\\nOrdinal Classification (6-class, 5-fold CV):\\n  MAE = 1.3479\\n  Accuracy = 0.3305\\n\\nTop-10 Feature Importance:\\n  surp_d1_mean         7970.6\\n  ttr                  7535.8\\n  freq_entropy         7363.0\\n  surp_mean            7159.4\\n  surp_d1_skew         7154.0\\n  surp_d2_mean         7143.8\\n  freq_kurtosis        6851.2\\n  surp_kurt            6711.8\\n  hapax_ratio          6326.2\\n  surp_std             6262.4\\n\\n============================================================\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "15fcf982-cd8a-4d3e-875b-66d82fff64b1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nMVP Pilot Saturation Study — Results Summary\\\\n============================================================\\\\n\\\\nPairwise AUC (adjacent depths):\\\\n  depth 0 vs 1: AUC = 0.9958 ± 0.0015  folds=[0.9951, 0.9963, 0.9949, 0.9985, 0.9943]\\\\n  depth 1 vs 2: AUC = 0.5034 ± 0.0122  folds=[0.5079, 0.5066, 0.5063, 0.5163, 0.4801]\\\\n  depth 2 vs 3: AUC = 0.5069 ± 0.0207  folds=[0.506, 0.507, 0.5275, 0.5247, 0.4694]\\\\n  depth 3 vs 4: AUC = 0.5021 ± 0.0164  folds=[0.4891, 0.4779, 0.51, 0.5238, 0.5096]\\\\n  depth 4 vs 5: AUC = 0.5037 ± 0.0098  folds=[0.5116, 0.4891, 0.5118, 0.5113, 0.4947]\\\\n\\\\nPairwise JSD (adjacent depths):\\\\n  depth 0 vs 1: JSD = 0.32917\\\\n  depth 1 vs 2: JSD = 0.006963\\\\n  depth 2 vs 3: JSD = 0.00654\\\\n  depth 3 vs 4: JSD = 0.007673\\\\n  depth 4 vs 5: JSD = 0.006765\\\\n\\\\nK* (max depth with AUC > 0.60): 1\\\\n\\\\nOrdinal Classification (6-class, 5-fold CV):\\\\n  MAE = 1.3479\\\\n  Accuracy = 0.3305\\\\n\\\\nTop-10 Feature Importance:\\\\n  surp_d1_mean         7970.6\\\\n  ttr                  7535.8\\\\n  freq_entropy         7363.0\\\\n  surp_mean            7159.4\\\\n  surp_d1_skew         7154.0\\\\n  surp_d2_mean         7143.8\\\\n  freq_kurtosis        6851.2\\\\n  surp_kurt            6711.8\\\\n  hapax_ratio          6326.2\\\\n  surp_std             6262.4\\\\n\\\\n============================================================\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nMVP Pilot Saturation Study — Results Summary\\n============================================================\\n\\nPairwise AUC (adjacent depths):\\n  depth 0 vs 1: AUC = 0.9958 ± 0.0015  folds=[0.9951, 0.9963, 0.9949, 0.9985, 0.9943]\\n  depth 1 vs 2: AUC = 0.5034 ± 0.0122  folds=[0.5079, 0.5066, 0.5063, 0.5163, 0.4801]\\n  depth 2 vs 3: AUC = 0.5069 ± 0.0207  folds=[0.506, 0.507, 0.5275, 0.5247, 0.4694]\\n  depth 3 vs 4: AUC = 0.5021 ± 0.0164  folds=[0.4891, 0.4779, 0.51, 0.5238, 0.5096]\\n  depth 4 vs 5: AUC = 0.5037 ± 0.0098  folds=[0.5116, 0.4891, 0.5118, 0.5113, 0.4947]\\n\\nPairwise JSD (adjacent depths):\\n  depth 0 vs 1: JSD = 0.32917\\n  depth 1 vs 2: JSD = 0.006963\\n  depth 2 vs 3: JSD = 0.00654\\n  depth 3 vs 4: JSD = 0.007673\\n  depth 4 vs 5: JSD = 0.006765\\n\\nK* (max depth with AUC > 0.60): 1\\n\\nOrdinal Classification (6-class, 5-fold CV):\\n  MAE = 1.3479\\n  Accuracy = 0.3305\\n\\nTop-10 Feature Importance:\\n  surp_d1_mean         7970.6\\n  ttr                  7535.8\\n  freq_entropy         7363.0\\n  surp_mean            7159.4\\n  surp_d1_skew         7154.0\\n  surp_d2_mean         7143.8\\n  freq_kurtosis        6851.2\\n  surp_kurt            6711.8\\n  hapax_ratio          6326.2\\n  surp_std             6262.4\\n\\n============================================================\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Fnfrby2wyYtN7u87YqRR5o`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "head -200 /root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_arxiv.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "eda32332-2c78-47cc-af68-2bb9acb906c8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWLMRGqDLMPu11i5cUndHW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3386,
+      "cache_read_input_tokens": 41458,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3386
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-24T08:49:44.114Z_
+
+<details><summary>↩ Tool result · `toolu_01Fnfrby2wyYtN7u87YqRR5o`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\narXiv Multi-Source Detection: Vocab-Only + Unified Qwen2.5-1.5B Scorer.\\nParallels C4 multi-source experiments but on arXiv domain.\\n\\\"\\\"\\\"\\nimport csv\\nimport json\\nimport time\\nimport logging\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport lightgbm as lgb\\nfrom sklearn.model_selection import GroupKFold\\nfrom sklearn.metrics import roc_auc_score\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\", datefmt=\\\"%H:%M:%S\\\")\\nlog = logging.getLogger(__name__)\\n\\nSCORER_PATH = \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\\nSOURCES = {\\n    \\\"qwen1b5\\\": {\\n        \\\"data_dir\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv\\\"),\\n        \\\"features_csv\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/features.csv\\\"),\\n        \\\"needs_rescore\\\": False,\\n    },\\n    \\\"pythia1b4\\\": {\\n        \\\"data_dir\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv\\\"),\\n        \\\"features_csv\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/features.csv\\\"),\\n        \\\"needs_rescore\\\": True,\\n    },\\n    \\\"llama8b\\\": {\\n        \\\"data_dir\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b\\\"),\\n        \\\"features_csv\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b/features.csv\\\"),\\n        \\\"needs_rescore\\\": True,\\n    },\\n}\\n\\nSURPRISAL_COLS = [\\\"surp_mean\\\",\\\"surp_std\\\",\\\"surp_skew\\\",\\\"surp_kurt\\\",\\\"surp_d1_mean\\\",\\\"surp_d1_std\\\",\\\"surp_d1_skew\\\",\\\"surp_d2_mean\\\",\\\"surp_d2_std\\\"]\\nTEXT_COLS = [\\\"ttr\\\",\\\"hapax_ratio\\\",\\\"self_bleu\\\",\\\"freq_kurtosis\\\",\\\"freq_entropy\\\",\\\"low_freq_ratio\\\"]\\nALL_FEAT_COLS = SURPRISAL_COLS + TEXT_COLS\\n\\nDOCS_PER_GEN = 1000\\nMAX_DEPTH = 5\\nN_BOOT = 10000\\nTHETA = 0.60\\nSEED = 42\\nOUT_DIR = Path(\\\"/root/autodl-tmp/gen-depth-contamination/results/exp_multi_source_arxiv\\\")\\n\\n\\ndef load_features_csv(path, feat_cols):\\n    with open(path) as f:\\n        rows = list(csv.DictReader(f))\\n    doc_ids_raw = [r[\\\"doc_id\\\"] for r in rows]\\n    try:\\n        doc_ids = np.array([int(d) for d in doc_ids_raw])\\n    except (ValueError, TypeError):\\n        uid_map = {d: i for i, d in enumerate(sorted(set(doc_ids_raw)))}\\n        doc_ids = np.array([uid_map[d] for d in doc_ids_raw])\\n    depths = np.array([int(r[\\\"depth\\\"]) for r in rows])\\n    X = np.array(\\n        [[float(r[c]) if r[c] not in (\\\"\\\", \\\"nan\\\") else np.nan for c in feat_cols] for r in rows]\\n    )\\n    col_means = np.nanmean(X, axis=0)\\n    for j in range(X.shape[1]):\\n        mask = np.isnan(X[:, j])\\n        if mask.any():\\n            X[mask, j] = col_means[j]\\n    return X, depths, doc_ids\\n\\n\\ndef load_text_features(csv_path):\\n    with open(csv_path) as f:\\n        rows = list(csv.DictReader(f))\\n    result = {}\\n    for r in rows:\\n        key = (str(r[\\\"doc_id\\\"]), int(r[\\\"depth\\\"]))\\n        result[key] = {col: r[col] for col in TEXT_COLS}\\n    return result\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef sample_and_merge(all_data, feat_cols, rng):\\n    all_X, all_depths, all_doc_ids, all_gen_ids = [], [], [], []\\n    doc_offset = 0\\n    for gen_idx, (gen_name, data) in enumerate(all_data.items()):\\n        X, depths, doc_ids = data[\\\"X\\\"], data[\\\"depths\\\"], data[\\\"doc_ids\\\"]\\n        unique_docs = np.unique(doc_ids)\\n        n_sample = min(DOCS_PER_GEN, len(unique_docs))\\n        sampled_docs = rng.choice(unique_docs, size=n_sample, replace=False)\\n        sampled_set = set(sampled_docs.tolist())\\n        mask = np.array([d in sampled_set for d in doc_ids])\\n\\n        all_X.append(X[mask])\\n        all_depths.append(depths[mask])\\n        all_doc_ids.append(doc_ids[mask] + doc_offset)\\n        all_gen_ids.append(np.full(mask.sum(), gen_idx))\\n        doc_offset += int(unique_docs.max()) + 1\\n        print(f\\\"  {gen_name}: sampled {n_sample} docs -> {mask.sum()} rows\\\", flush=True)\\n\\n    X = np.vstack(all_X)\\n    depths = np.concatenate(all_depths)\\n    doc_ids = np.concatenate(all_doc_ids)\\n    gen_ids = np.concatenate(all_gen_ids)\\n    return X, depths, doc_ids, gen_ids\\n\\n\\ndef get_oof_predictions(X, y, groups):\\n    gkf = GroupKFold(n_splits=5)\\n    oof_proba = np.zeros(len(y))\\n    fold_aucs = []\\n    for train_idx, test_idx in gkf.split(X, y, groups=groups):\\n        clf = lgb.LGBMClassifier(\\n            n_estimators=200, max_depth=6, learning_rate=0.05,\\n            num_leaves=31, verbose=-1, n_jobs=-1,\\n        )\\n        clf.fit(X[train_idx], y[train_idx])\\n        proba = clf.predict_proba(X[test_idx])[:, 1]\\n        oof_proba[test_idx] = proba\\n        fold_aucs.append(roc_auc_score(y[test_idx], proba))\\n    return oof_proba, fold_aucs\\n\\n\\ndef bootstrap_ci(y, oof_proba, doc_ids, n_boot, rng):\\n    unique_docs = np.unique(doc_ids)\\n    n_docs = len(unique_docs)\\n    doc_indices = [np.where(doc_ids == d)[0] for d in unique_docs]\\n    point_auc = roc_auc_score(y, oof_proba)\\n    boot_aucs = np.empty(n_boot)\\n    for b in range(n_boot):\\n        sampled = rng.randint(0, n_docs, size=n_docs)\\n        indices = np.concatenate([doc_indices[s] for s in sampled])\\n        try:\\n            boot_aucs[b] = roc_auc_score(y[indices], oof_proba[indices])\\n        except ValueError:\\n            boot_aucs[b] = np.nan\\n    boot_aucs = boot_aucs[~np.isnan(boot_aucs)]\\n    ci_lower = float(np.percentile(boot_aucs, 2.5))\\n    ci_upper = float(np.percentile(boot_aucs, 97.5))\\n    return point_auc, ci_lower, ci_upper, boot_aucs\\n\\n\\ndef run_pairwise(X, depths, doc_ids, label, gen_ids=None):\\n    results = {}\\n    for k in range(1, MAX_DEPTH + 1):\\n        pair = f\\\"{k-1}v{k}\\\"\\n        t0 = time.time()\\n        mask = (depths == k - 1) | (depths == k)\\n        X_pair = X[mask]\\n        y_pair = (depths[mask] == k).astype(int)\\n        doc_pair = doc_ids[mask]\\n        if gen_ids is not None:\\n            X_pair = np.hstack([X_pair, gen_ids[mask].reshape(-1, 1)])\\n        rng = np.random.RandomState(SEED + k)\\n        oof_proba, fold_aucs = get_oof_predictions(X_pair, y_pair, doc_pair)\\n        point_auc, ci_lower, ci_upper, boot_aucs = bootstrap_ci(\\n            y_pair, oof_proba, doc_pair, N_BOOT, rng\\n        )\\n        elapsed = time.time() - t0\\n        print(f\\\"  {label} {pair}: AUC={point_auc:.4f}  CI=[{ci_lower:.4f}, {ci_upper:.4f}]  ({elapsed:.1f}s)\\\", flush=True)\\n        results[pair] = {\\n            \\\"auc\\\": round(point_auc, 4),\\n            \\\"fold_aucs\\\": [round(a, 4) for a in fold_aucs],\\n            \\\"ci_lower\\\": round(ci_lower, 4),\\n            \\\"ci_upper\\\": round(ci_upper, 4),\\n            \\\"boot_mean\\\": round(float(np.mean(boot_aucs)), 4),\\n            \\\"boot_std\\\": round(float(np.std(boot_aucs)), 4),\\n        }\\n    return results\\n\\n\\ndef compute_kstar(results, theta):\\n    kstar = 0\\n    for k in range(1, MAX_DEPTH + 1):\\n        pair = f\\\"{k-1}v{k}\\\"\\n        if results[pair][\\\"ci_lower\\\"] > theta:\\n            kstar = k\\n        else:\\n            break\\n    return kstar\\n\\n\\ndef run_vocab_only():\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60, flush=True)\\n    print(\\\"  PATH A: arXiv Vocab-Only (6 scorer-independent features)\\\", flush=True)\\n    print(\\\"=\\\" * 60, flush=True)\\n    print(f\\\"Features: {TEXT_COLS}\\\", flush=True)\\n\\n    all_data = {}\\n    for gen_name, src in SOURCES.items():\\n        X, depths, doc_ids = load_features_csv(src[\\\"features_csv\\\"], TEXT_COLS)\\n        all_data[gen_name] = {\\\"X\\\": X, \\\"depths\\\": depths, \\\"doc_ids\\\": doc_ids}\\n        print(f\\\"  Loaded {gen_name}: {len(depths)} rows, {len(np.unique(doc_ids))} docs\\\", flush=True)\\n\\n    rng = np.random.RandomState(SEED)\\n    print(\\\"\\\\nSampling and merging...\\\", flush=True)\\n    X, depths, doc_ids, gen_ids = sample_and_merge(all_data, TEXT_COLS, rng)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "299ec5e7-3ff4-4fd0-a338-d13f2924b4bb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\narXiv Multi-Source Detection: Vocab-Only + Unified Qwen2.5-1.5B Scorer.\\\\nParallels C4 multi-source experiments but on arXiv domain.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport csv\\\\nimport json\\\\nimport time\\\\nimport logging\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport lightgbm as lgb\\\\nfrom sklearn.model_selection import GroupKFold\\\\nfrom sklearn.metrics import roc_auc_score\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\", datefmt=\\\\\\\"%H:%M:%S\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSCORER_PATH = \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\\\\\"\\\\nSOURCES = {\\\\n    \\\\\\\"qwen1b5\\\\\\\": {\\\\n        \\\\\\\"data_dir\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv\\\\\\\"),\\\\n        \\\\\\\"features_csv\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/features.csv\\\\\\\"),\\\\n        \\\\\\\"needs_rescore\\\\\\\": False,\\\\n    },\\\\n    \\\\\\\"pythia1b4\\\\\\\": {\\\\n        \\\\\\\"data_dir\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv\\\\\\\"),\\\\n        \\\\\\\"features_csv\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/features.csv\\\\\\\"),\\\\n        \\\\\\\"needs_rescore\\\\\\\": True,\\\\n    },\\\\n    \\\\\\\"llama8b\\\\\\\": {\\\\n        \\\\\\\"data_dir\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b\\\\\\\"),\\\\n        \\\\\\\"features_csv\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b/features.csv\\\\\\\"),\\\\n        \\\\\\\"needs_rescore\\\\\\\": True,\\\\n    },\\\\n}\\\\n\\\\nSURPRISAL_COLS = [\\\\\\\"surp_mean\\\\\\\",\\\\\\\"surp_std\\\\\\\",\\\\\\\"surp_skew\\\\\\\",\\\\\\\"surp_kurt\\\\\\\",\\\\\\\"surp_d1_mean\\\\\\\",\\\\\\\"surp_d1_std\\\\\\\",\\\\\\\"surp_d1_skew\\\\\\\",\\\\\\\"surp_d2_mean\\\\\\\",\\\\\\\"surp_d2_std\\\\\\\"]\\\\nTEXT_COLS = [\\\\\\\"ttr\\\\\\\",\\\\\\\"hapax_ratio\\\\\\\",\\\\\\\"self_bleu\\\\\\\",\\\\\\\"freq_kurtosis\\\\\\\",\\\\\\\"freq_entropy\\\\\\\",\\\\\\\"low_freq_ratio\\\\\\\"]\\\\nALL_FEAT_COLS = SURPRISAL_COLS + TEXT_COLS\\\\n\\\\nDOCS_PER_GEN = 1000\\\\nMAX_DEPTH = 5\\\\nN_BOOT = 10000\\\\nTHETA = 0.60\\\\nSEED = 42\\\\nOUT_DIR = Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/results/exp_multi_source_arxiv\\\\\\\")\\\\n\\\\n\\\\ndef load_features_csv(path, feat_cols):\\\\n    with open(path) as f:\\\\n        rows = list(csv.DictReader(f))\\\\n    doc_ids_raw = [r[\\\\\\\"doc_id\\\\\\\"] for r in rows]\\\\n    try:\\\\n        doc_ids = np.array([int(d) for d in doc_ids_raw])\\\\n    except (ValueError, TypeError):\\\\n        uid_map = {d: i for i, d in enumerate(sorted(set(doc_ids_raw)))}\\\\n        doc_ids = np.array([uid_map[d] for d in doc_ids_raw])\\\\n    depths = np.array([int(r[\\\\\\\"depth\\\\\\\"]) for r in rows])\\\\n    X = np.array(\\\\n        [[float(r[c]) if r[c] not in (\\\\\\\"\\\\\\\", \\\\\\\"nan\\\\\\\") else np.nan for c in feat_cols] for r in rows]\\\\n    )\\\\n    col_means = np.nanmean(X, axis=0)\\\\n    for j in range(X.shape[1]):\\\\n        mask = np.isnan(X[:, j])\\\\n        if mask.any():\\\\n            X[mask, j] = col_means[j]\\\\n    return X, depths, doc_ids\\\\n\\\\n\\\\ndef load_text_features(csv_path):\\\\n    with open(csv_path) as f:\\\\n        rows = list(csv.DictReader(f))\\\\n    result = {}\\\\n    for r in rows:\\\\n        key = (str(r[\\\\\\\"doc_id\\\\\\\"]), int(r[\\\\\\\"depth\\\\\\\"]))\\\\n        result[key] = {col: r[col] for col in TEXT_COLS}\\\\n    return result\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f]\\\\n\\\\n\\\\ndef sample_and_merge(all_data, feat_cols, rng):\\\\n    all_X, all_depths, all_doc_ids, all_gen_ids = [], [], [], []\\\\n    doc_offset = 0\\\\n    for gen_idx, (gen_name, data) in enumerate(all_data.items()):\\\\n        X, depths, doc_ids = data[\\\\\\\"X\\\\\\\"], data[\\\\\\\"depths\\\\\\\"], data[\\\\\\\"doc_ids\\\\\\\"]\\\\n        unique_docs = np.unique(doc_ids)\\\\n        n_sample = min(DOCS_PER_GEN, len(unique_docs))\\\\n        sampled_docs = rng.choice(unique_docs, size=n_sample, replace=False)\\\\n        sampled_set = set(sampled_docs.tolist())\\\\n        mask = np.array([d in sampled_set for d in doc_ids])\\\\n\\\\n        all_X.append(X[mask])\\\\n        all_depths.append(depths[mask])\\\\n        all_doc_ids.append(doc_ids[mask] + doc_offset)\\\\n        all_gen_ids.append(np.full(mask.sum(), gen_idx))\\\\n        doc_offset += int(unique_docs.max()) + 1\\\\n        print(f\\\\\\\"  {gen_name}: sampled {n_sample} docs -> {mask.sum()} rows\\\\\\\", flush=True)\\\\n\\\\n    X = np.vstack(all_X)\\\\n    depths = np.concatenate(all_depths)\\\\n    doc_ids = np.concatenate(all_doc_ids)\\\\n    gen_ids = np.concatenate(all_gen_ids)\\\\n    return X, depths, doc_ids, gen_ids\\\\n\\\\n\\\\ndef get_oof_predictions(X, y, groups):\\\\n    gkf = GroupKFold(n_splits=5)\\\\n    oof_proba = np.zeros(len(y))\\\\n    fold_aucs = []\\\\n    for train_idx, test_idx in gkf.split(X, y, groups=groups):\\\\n        clf = lgb.LGBMClassifier(\\\\n            n_estimators=200, max_depth=6, learning_rate=0.05,\\\\n            num_leaves=31, verbose=-1, n_jobs=-1,\\\\n        )\\\\n        clf.fit(X[train_idx], y[train_idx])\\\\n        proba = clf.predict_proba(X[test_idx])[:, 1]\\\\n        oof_proba[test_idx] = proba\\\\n        fold_aucs.append(roc_auc_score(y[test_idx], proba))\\\\n    return oof_proba, fold_aucs\\\\n\\\\n\\\\ndef bootstrap_ci(y, oof_proba, doc_ids, n_boot, rng):\\\\n    unique_docs = np.unique(doc_ids)\\\\n    n_docs = len(unique_docs)\\\\n    doc_indices = [np.where(doc_ids == d)[0] for d in unique_docs]\\\\n    point_auc = roc_auc_score(y, oof_proba)\\\\n    boot_aucs = np.empty(n_boot)\\\\n    for b in range(n_boot):\\\\n        sampled = rng.randint(0, n_docs, size=n_docs)\\\\n        indices = np.concatenate([doc_indices[s] for s in sampled])\\\\n        try:\\\\n            boot_aucs[b] = roc_auc_score(y[indices], oof_proba[indices])\\\\n        except ValueError:\\\\n            boot_aucs[b] = np.nan\\\\n    boot_aucs = boot_aucs[~np.isnan(boot_aucs)]\\\\n    ci_lower = float(np.percentile(boot_aucs, 2.5))\\\\n    ci_upper = float(np.percentile(boot_aucs, 97.5))\\\\n    return point_auc, ci_lower, ci_upper, boot_aucs\\\\n\\\\n\\\\ndef run_pairwise(X, depths, doc_ids, label, gen_ids=None):\\\\n    results = {}\\\\n    for k in range(1, MAX_DEPTH + 1):\\\\n        pair = f\\\\\\\"{k-1}v{k}\\\\\\\"\\\\n        t0 = time.time()\\\\n        mask = (depths == k - 1) | (depths == k)\\\\n        X_pair = X[mask]\\\\n        y_pair = (depths[mask] == k).astype(int)\\\\n        doc_pair = doc_ids[mask]\\\\n        if gen_ids is not None:\\\\n            X_pair = np.hstack([X_pair, gen_ids[mask].reshape(-1, 1)])\\\\n        rng = np.random.RandomState(SEED + k)\\\\n        oof_proba, fold_aucs = get_oof_predictions(X_pair, y_pair, doc_pair)\\\\n        point_auc, ci_lower, ci_upper, boot_aucs = bootstrap_ci(\\\\n            y_pair, oof_proba, doc_pair, N_BOOT, rng\\\\n        )\\\\n        elapsed = time.time() - t0\\\\n        print(f\\\\\\\"  {label} {pair}: AUC={point_auc:.4f}  CI=[{ci_lower:.4f}, {ci_upper:.4f}]  ({elapsed:.1f}s)\\\\\\\", flush=True)\\\\n        results[pair] = {\\\\n            \\\\\\\"auc\\\\\\\": round(point_auc, 4),\\\\n            \\\\\\\"fold_aucs\\\\\\\": [round(a, 4) for a in fold_aucs],\\\\n            \\\\\\\"ci_lower\\\\\\\": round(ci_lower, 4),\\\\n            \\\\\\\"ci_upper\\\\\\\": round(ci_upper, 4),\\\\n            \\\\\\\"boot_mean\\\\\\\": round(float(np.mean(boot_aucs)), 4),\\\\n            \\\\\\\"boot_std\\\\\\\": round(float(np.std(boot_aucs)), 4),\\\\n        }\\\\n    return results\\\\n\\\\n\\\\ndef compute_kstar(results, theta):\\\\n    kstar = 0\\\\n    for k in range(1, MAX_DEPTH + 1):\\\\n        pair = f\\\\\\\"{k-1}v{k}\\\\\\\"\\\\n        if results[pair][\\\\\\\"ci_lower\\\\\\\"] > theta:\\\\n            kstar = k\\\\n        else:\\\\n            break\\\\n    return kstar\\\\n\\\\n\\\\ndef run_vocab_only():\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60, flush=True)\\\\n    print(\\\\\\\"  PATH A: arXiv Vocab-Only (6 scorer-independent features)\\\\\\\", flush=True)\\\\n    print(\\\\\\\"=\\\\\\\" * 60, flush=True)\\\\n    print(f\\\\\\\"Features: {TEXT_COLS}\\\\\\\", flush=True)\\\\n\\\\n    all_data = {}\\\\n    for gen_name, src in SOURCES.items():\\\\n        X, depths, doc_ids = load_features_csv(src[\\\\\\\"features_csv\\\\\\\"], TEXT_COLS)\\\\n        all_data[gen_name] = {\\\\\\\"X\\\\\\\": X, \\\\\\\"depths\\\\\\\": depths, \\\\\\\"doc_ids\\\\\\\": doc_ids}\\\\n        print(f\\\\\\\"  Loaded {gen_name}: {len(depths)} rows, {len(np.unique(doc_ids))} docs\\\\\\\", flush=True)\\\\n\\\\n    rng = np.random.RandomState(SEED)\\\\n    print(\\\\\\\"\\\\\\\\nSampling and merging...\\\\\\\", flush=True)\\\\n    X, depths, doc_ids, gen_ids = sample_and_merge(all_data, TEXT_COLS, rng)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\narXiv Multi-Source Detection: Vocab-Only + Unified Qwen2.5-1.5B Scorer.\\nParallels C4 multi-source experiments but on arXiv domain.\\n\\\"\\\"\\\"\\nimport csv\\nimport json\\nimport time\\nimport logging\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport lightgbm as lgb\\nfrom sklearn.model_selection import GroupKFold\\nfrom sklearn.metrics import roc_auc_score\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\", datefmt=\\\"%H:%M:%S\\\")\\nlog = logging.getLogger(__name__)\\n\\nSCORER_PATH = \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\\nSOURCES = {\\n    \\\"qwen1b5\\\": {\\n        \\\"data_dir\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv\\\"),\\n        \\\"features_csv\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/features.csv\\\"),\\n        \\\"needs_rescore\\\": False,\\n    },\\n    \\\"pythia1b4\\\": {\\n        \\\"data_dir\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv\\\"),\\n        \\\"features_csv\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/features.csv\\\"),\\n        \\\"needs_rescore\\\": True,\\n    },\\n    \\\"llama8b\\\": {\\n        \\\"data_dir\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b\\\"),\\n        \\\"features_csv\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b/features.csv\\\"),\\n        \\\"needs_rescore\\\": True,\\n    },\\n}\\n\\nSURPRISAL_COLS = [\\\"surp_mean\\\",\\\"surp_std\\\",\\\"surp_skew\\\",\\\"surp_kurt\\\",\\\"surp_d1_mean\\\",\\\"surp_d1_std\\\",\\\"surp_d1_skew\\\",\\\"surp_d2_mean\\\",\\\"surp_d2_std\\\"]\\nTEXT_COLS = [\\\"ttr\\\",\\\"hapax_ratio\\\",\\\"self_bleu\\\",\\\"freq_kurtosis\\\",\\\"freq_entropy\\\",\\\"low_freq_ratio\\\"]\\nALL_FEAT_COLS = SURPRISAL_COLS + TEXT_COLS\\n\\nDOCS_PER_GEN = 1000\\nMAX_DEPTH = 5\\nN_BOOT = 10000\\nTHETA = 0.60\\nSEED = 42\\nOUT_DIR = Path(\\\"/root/autodl-tmp/gen-depth-contamination/results/exp_multi_source_arxiv\\\")\\n\\n\\ndef load_features_csv(path, feat_cols):\\n    with open(path) as f:\\n        rows = list(csv.DictReader(f))\\n    doc_ids_raw = [r[\\\"doc_id\\\"] for r in rows]\\n    try:\\n        doc_ids = np.array([int(d) for d in doc_ids_raw])\\n    except (ValueError, TypeError):\\n        uid_map = {d: i for i, d in enumerate(sorted(set(doc_ids_raw)))}\\n        doc_ids = np.array([uid_map[d] for d in doc_ids_raw])\\n    depths = np.array([int(r[\\\"depth\\\"]) for r in rows])\\n    X = np.array(\\n        [[float(r[c]) if r[c] not in (\\\"\\\", \\\"nan\\\") else np.nan for c in feat_cols] for r in rows]\\n    )\\n    col_means = np.nanmean(X, axis=0)\\n    for j in range(X.shape[1]):\\n        mask = np.isnan(X[:, j])\\n        if mask.any():\\n            X[mask, j] = col_means[j]\\n    return X, depths, doc_ids\\n\\n\\ndef load_text_features(csv_path):\\n    with open(csv_path) as f:\\n        rows = list(csv.DictReader(f))\\n    result = {}\\n    for r in rows:\\n        key = (str(r[\\\"doc_id\\\"]), int(r[\\\"depth\\\"]))\\n        result[key] = {col: r[col] for col in TEXT_COLS}\\n    return result\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef sample_and_merge(all_data, feat_cols, rng):\\n    all_X, all_depths, all_doc_ids, all_gen_ids = [], [], [], []\\n    doc_offset = 0\\n    for gen_idx, (gen_name, data) in enumerate(all_data.items()):\\n        X, depths, doc_ids = data[\\\"X\\\"], data[\\\"depths\\\"], data[\\\"doc_ids\\\"]\\n        unique_docs = np.unique(doc_ids)\\n        n_sample = min(DOCS_PER_GEN, len(unique_docs))\\n        sampled_docs = rng.choice(unique_docs, size=n_sample, replace=False)\\n        sampled_set = set(sampled_docs.tolist())\\n        mask = np.array([d in sampled_set for d in doc_ids])\\n\\n        all_X.append(X[mask])\\n        all_depths.append(depths[mask])\\n        all_doc_ids.append(doc_ids[mask] + doc_offset)\\n        all_gen_ids.append(np.full(mask.sum(), gen_idx))\\n        doc_offset += int(unique_docs.max()) + 1\\n        print(f\\\"  {gen_name}: sampled {n_sample} docs -> {mask.sum()} rows\\\", flush=True)\\n\\n    X = np.vstack(all_X)\\n    depths = np.concatenate(all_depths)\\n    doc_ids = np.concatenate(all_doc_ids)\\n    gen_ids = np.concatenate(all_gen_ids)\\n    return X, depths, doc_ids, gen_ids\\n\\n\\ndef get_oof_predictions(X, y, groups):\\n    gkf = GroupKFold(n_splits=5)\\n    oof_proba = np.zeros(len(y))\\n    fold_aucs = []\\n    for train_idx, test_idx in gkf.split(X, y, groups=groups):\\n        clf = lgb.LGBMClassifier(\\n            n_estimators=200, max_depth=6, learning_rate=0.05,\\n            num_leaves=31, verbose=-1, n_jobs=-1,\\n        )\\n        clf.fit(X[train_idx], y[train_idx])\\n        proba = clf.predict_proba(X[test_idx])[:, 1]\\n        oof_proba[test_idx] = proba\\n        fold_aucs.append(roc_auc_score(y[test_idx], proba))\\n    return oof_proba, fold_aucs\\n\\n\\ndef bootstrap_ci(y, oof_proba, doc_ids, n_boot, rng):\\n    unique_docs = np.unique(doc_ids)\\n    n_docs = len(unique_docs)\\n    doc_indices = [np.where(doc_ids == d)[0] for d in unique_docs]\\n    point_auc = roc_auc_score(y, oof_proba)\\n    boot_aucs = np.empty(n_boot)\\n    for b in range(n_boot):\\n        sampled = rng.randint(0, n_docs, size=n_docs)\\n        indices = np.concatenate([doc_indices[s] for s in sampled])\\n        try:\\n            boot_aucs[b] = roc_auc_score(y[indices], oof_proba[indices])\\n        except ValueError:\\n            boot_aucs[b] = np.nan\\n    boot_aucs = boot_aucs[~np.isnan(boot_aucs)]\\n    ci_lower = float(np.percentile(boot_aucs, 2.5))\\n    ci_upper = float(np.percentile(boot_aucs, 97.5))\\n    return point_auc, ci_lower, ci_upper, boot_aucs\\n\\n\\ndef run_pairwise(X, depths, doc_ids, label, gen_ids=None):\\n    results = {}\\n    for k in range(1, MAX_DEPTH + 1):\\n        pair = f\\\"{k-1}v{k}\\\"\\n        t0 = time.time()\\n        mask = (depths == k - 1) | (depths == k)\\n        X_pair = X[mask]\\n        y_pair = (depths[mask] == k).astype(int)\\n        doc_pair = doc_ids[mask]\\n        if gen_ids is not None:\\n            X_pair = np.hstack([X_pair, gen_ids[mask].reshape(-1, 1)])\\n        rng = np.random.RandomState(SEED + k)\\n        oof_proba, fold_aucs = get_oof_predictions(X_pair, y_pair, doc_pair)\\n        point_auc, ci_lower, ci_upper, boot_aucs = bootstrap_ci(\\n            y_pair, oof_proba, doc_pair, N_BOOT, rng\\n        )\\n        elapsed = time.time() - t0\\n        print(f\\\"  {label} {pair}: AUC={point_auc:.4f}  CI=[{ci_lower:.4f}, {ci_upper:.4f}]  ({elapsed:.1f}s)\\\", flush=True)\\n        results[pair] = {\\n            \\\"auc\\\": round(point_auc, 4),\\n            \\\"fold_aucs\\\": [round(a, 4) for a in fold_aucs],\\n            \\\"ci_lower\\\": round(ci_lower, 4),\\n            \\\"ci_upper\\\": round(ci_upper, 4),\\n            \\\"boot_mean\\\": round(float(np.mean(boot_aucs)), 4),\\n            \\\"boot_std\\\": round(float(np.std(boot_aucs)), 4),\\n        }\\n    return results\\n\\n\\ndef compute_kstar(results, theta):\\n    kstar = 0\\n    for k in range(1, MAX_DEPTH + 1):\\n        pair = f\\\"{k-1}v{k}\\\"\\n        if results[pair][\\\"ci_lower\\\"] > theta:\\n            kstar = k\\n        else:\\n            break\\n    return kstar\\n\\n\\ndef run_vocab_only():\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60, flush=True)\\n    print(\\\"  PATH A: arXiv Vocab-Only (6 scorer-independent features)\\\", flush=True)\\n    print(\\\"=\\\" * 60, flush=True)\\n    print(f\\\"Features: {TEXT_COLS}\\\", flush=True)\\n\\n    all_data = {}\\n    for gen_name, src in SOURCES.items():\\n        X, depths, doc_ids = load_features_csv(src[\\\"features_csv\\\"], TEXT_COLS)\\n        all_data[gen_name] = {\\\"X\\\": X, \\\"depths\\\": depths, \\\"doc_ids\\\": doc_ids}\\n        print(f\\\"  Loaded {gen_name}: {len(depths)} rows, {len(np.unique(doc_ids))} docs\\\", flush=True)\\n\\n    rng = np.random.RandomState(SEED)\\n    print(\\\"\\\\nSampling and merging...\\\", flush=True)\\n    X, depths, doc_ids, gen_ids = sample_and_merge(all_data, TEXT_COLS, rng)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TSDvWzVoyPcR3bBJMuBzXv`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -l \"olmo\" /root/autodl-tmp/gen-depth-contamination/results/exp_multi_source_arxiv/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "dd90291a-bd01-413c-8632-06a64fc95606",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HWLMRGqDLMPu11i5cUndHW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3386,
+      "cache_read_input_tokens": 41458,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3386
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-24T08:49:44.622Z_
+
+<details><summary>↩ Tool result · `toolu_01TSDvWzVoyPcR3bBJMuBzXv`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/autodl-tmp/gen-depth-contamination/results/exp_multi_source_arxiv/: Is a directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "79e204c4-3f1e-4216-bbde-3ca5e3fab37b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"grep: /root/autodl-tmp/gen-depth-contamination/results/exp_multi_source_arxiv/: Is a directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"grep: /root/autodl-tmp/gen-depth-contamination/results/exp_multi_source_arxiv/: Is a directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. Let me summarize:
+
+**Current State:**
+
+1. **exp_024_arxiv** (Qwen2.5-1.5B base generator): depth 0-5, 2200 docs, features.csv exists
+2. **exp_025_pythia_arxiv** (Pythia-1.4B generator): depth 0-5, 2200 docs, features.csv exists, cross-scored with Qwen2.5-1.5B
+   - Pairwise AUC: 0v1=0.9877, 1v2=0.8047, 2v3=0.6545, 3v4=0.5507, 4v5=0.5287 → K*≈3
+
+
+3. **exp_arXiv_olmo** (OLMo-1B generator): depth 0-5, 2200 docs, features.csv exists, but was self-scored by OLMo rather than cross-scored with Qwen2.5-1.5B-Instruct, showing K*=1
+4. **exp_multi_source_arxiv**: Already ran with qwen1b5 + pythia1b4 + llama8b using unified_scorer with K*=3, but doesn't include OLMo
+
+The key gap is that OLMo's arXiv features need to be cross-scored with Qwen2.5-1.5B-Instruct, and OLMo should be added to the multi-source experiment. Looking at the OLMo features, the depth_0 surprise values match Pythia's almost exactly, which suggests they were scored by the same model rather than self-scored. I need to check the metadata for Pythia to confirm whether it needs re-scoring, and if so, I'll need to generate a Qwen-scored version of the OLMo features before adding it to the multi-source experiment. the slight differences in surprisal values suggest they might have used different scorers. Looking at the pairwise AUC patterns, exp_025_pythia_arxiv shows a gradual decay characteristic of cross-scoring (Qwen scoring Pythia text), while exp_arXiv_olmo's steeper initial drop suggests self-scoring where OLMo evaluated its own generations.
+
+I need to find the re-scoring infrastructure in the script to understand how to apply Qwen2.5-1.5B scoring to the OLMo data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "0ac8d356-5534-4a4a-bdb7-d54eac25bbbb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SqsxegneNkGHsQFwSKHSXA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6311,
+      "cache_read_input_tokens": 44844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6311
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+需要看 multi_source 脚本的 rescore 逻辑，以及检查是否有通用的 cross-scoring pipeline。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "c2bfb32c-ee1c-4fc7-893e-58a725b9a04d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SqsxegneNkGHsQFwSKHSXA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6311,
+      "cache_read_input_tokens": 44844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6311
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01E11fUpyKBAs61sABbxZXvm`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "tail -200 /root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_arxiv.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "ea367c5d-d744-43c7-98ef-65dd9b84df85",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SqsxegneNkGHsQFwSKHSXA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6311,
+      "cache_read_input_tokens": 44844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6311
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-24T08:50:18.924Z_
+
+<details><summary>↩ Tool result · `toolu_01E11fUpyKBAs61sABbxZXvm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    all_gen_features = {}\\n    for gen_name, src in SOURCES.items():\\n        data_dir = src[\\\"data_dir\\\"]\\n        csv_path = src[\\\"features_csv\\\"]\\n        needs_rescore = src[\\\"needs_rescore\\\"]\\n\\n        log.info(f\\\"\\\\n{'='*40}\\\")\\n        log.info(f\\\"Processing {gen_name} (needs_rescore={needs_rescore})\\\")\\n\\n        text_feats = load_text_features(csv_path)\\n        log.info(f\\\"  Loaded {len(text_feats)} text-based feature rows\\\")\\n\\n        if needs_rescore:\\n            rows = []\\n            for d in range(MAX_DEPTH + 1):\\n                records = load_jsonl(data_dir / f\\\"depth_{d}.jsonl\\\")\\n                texts = [r[\\\"text\\\"] for r in records]\\n                doc_ids_list = [r[\\\"doc_id\\\"] for r in records]\\n                log.info(f\\\"  depth {d}: computing surprisal for {len(texts)} texts\\\")\\n                surp_feats = compute_surprisal_features(model, tokenizer, texts, batch_size=16)\\n                for i in range(len(texts)):\\n                    key = (str(doc_ids_list[i]), d)\\n                    tf = text_feats.get(key, {col: \\\"0.0\\\" for col in TEXT_COLS})\\n                    row = {\\\"doc_id\\\": doc_ids_list[i], \\\"depth\\\": d}\\n                    for j, col in enumerate(SURPRISAL_COLS):\\n                        row[col] = surp_feats[i][j]\\n                    for col in TEXT_COLS:\\n                        row[col] = float(tf[col]) if tf[col] not in (\\\"\\\", \\\"nan\\\") else 0.0\\n                    rows.append(row)\\n\\n            feat_path = OUT_DIR / f\\\"features_{gen_name}_qwen_scorer.csv\\\"\\n            with open(feat_path, \\\"w\\\", newline=\\\"\\\") as f:\\n                writer = csv.DictWriter(f, fieldnames=[\\\"doc_id\\\", \\\"depth\\\"] + ALL_FEAT_COLS)\\n                writer.writeheader()\\n                writer.writerows(rows)\\n            log.info(f\\\"  Saved {len(rows)} rows to {feat_path}\\\")\\n        else:\\n            with open(csv_path) as f:\\n                rows = list(csv.DictReader(f))\\n            for r in rows:\\n                for col in ALL_FEAT_COLS:\\n                    r[col] = float(r[col]) if r[col] not in (\\\"\\\", \\\"nan\\\") else 0.0\\n            log.info(f\\\"  Reusing existing features ({gen_name} is self-scorer)\\\")\\n\\n        all_gen_features[gen_name] = rows\\n\\n    del model\\n    torch.cuda.empty_cache()\\n    import gc; gc.collect()\\n    log.info(\\\"Scorer unloaded\\\")\\n\\n    rng = np.random.RandomState(SEED)\\n    all_X, all_depths, all_doc_ids, all_gen_ids = [], [], [], []\\n    doc_offset = 0\\n\\n    for gen_idx, (gen_name, feat_rows) in enumerate(all_gen_features.items()):\\n        doc_ids_raw = [r[\\\"doc_id\\\"] for r in feat_rows]\\n        try:\\n            doc_ids = np.array([int(d) for d in doc_ids_raw])\\n        except (ValueError, TypeError):\\n            uid_map = {d: i for i, d in enumerate(sorted(set(doc_ids_raw)))}\\n            doc_ids = np.array([uid_map[d] for d in doc_ids_raw])\\n        depths = np.array([int(r[\\\"depth\\\"]) for r in feat_rows])\\n        X = np.array([[float(r[c]) for c in ALL_FEAT_COLS] for r in feat_rows])\\n        col_means = np.nanmean(X, axis=0)\\n        for j in range(X.shape[1]):\\n            m = np.isnan(X[:, j])\\n            if m.any():\\n                X[m, j] = col_means[j]\\n\\n        unique_docs = np.unique(doc_ids)\\n        n_sample = min(DOCS_PER_GEN, len(unique_docs))\\n        sampled_docs = rng.choice(unique_docs, size=n_sample, replace=False)\\n        sampled_set = set(sampled_docs.tolist())\\n        mask = np.array([d in sampled_set for d in doc_ids])\\n\\n        all_X.append(X[mask])\\n        all_depths.append(depths[mask])\\n        all_doc_ids.append(doc_ids[mask] + doc_offset)\\n        all_gen_ids.append(np.full(mask.sum(), gen_idx))\\n        doc_offset += int(unique_docs.max()) + 1\\n        print(f\\\"  {gen_name}: sampled {n_sample} docs -> {mask.sum()} rows\\\", flush=True)\\n\\n    X = np.vstack(all_X)\\n    depths = np.concatenate(all_depths)\\n    doc_ids = np.concatenate(all_doc_ids)\\n    gen_ids = np.concatenate(all_gen_ids)\\n\\n    print(\\\"\\\\n=== Unified Scorer: no_label ===\\\", flush=True)\\n    results_no_label = run_pairwise(X, depths, doc_ids, \\\"unified-no-label\\\")\\n    kstar_no_label = compute_kstar(re\\n\\n... [截断: 输出过长，省略 283 字符] ...\\n\\nabel = compute_kstar(results_with_label, THETA)\\n    print(f\\\"  K*(unified, with label, theta={THETA}) = {kstar_with_label}\\\", flush=True)\\n\\n    return {\\n        \\\"no_label\\\": {\\\"pairs\\\": results_no_label, \\\"kstar\\\": kstar_no_label},\\n        \\\"with_label\\\": {\\\"pairs\\\": results_with_label, \\\"kstar\\\": kstar_with_label},\\n    }\\n\\n\\ndef print_summary(vocab_results, unified_results):\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60, flush=True)\\n    print(\\\"=== arXiv Multi-Source Results ===\\\", flush=True)\\n    print(\\\"=\\\" * 60, flush=True)\\n\\n    print(\\\"\\\\n--- Vocab-Only (6 scorer-independent features) ---\\\", flush=True)\\n    for cond_name, cond_data in vocab_results.items():\\n        print(f\\\"  [{cond_name}]\\\", flush=True)\\n        for k in range(1, 4):\\n            pair = f\\\"{k-1}v{k}\\\"\\n            r = cond_data[\\\"pairs\\\"][pair]\\n            print(f\\\"    {pair} AUC: {r['auc']:.4f} [{r['ci_lower']:.4f}, {r['ci_upper']:.4f}]\\\", flush=True)\\n        print(f\\\"    K* (theta=0.60): {cond_data['kstar']}\\\", flush=True)\\n\\n    if unified_results:\\n        print(\\\"\\\\n--- Unified Qwen Scorer (15D OBD features) ---\\\", flush=True)\\n        for cond_name, cond_data in unified_results.items():\\n            print(f\\\"  [{cond_name}]\\\", flush=True)\\n            for k in range(1, 4):\\n                pair = f\\\"{k-1}v{k}\\\"\\n                r = cond_data[\\\"pairs\\\"][pair]\\n                print(f\\\"    {pair} AUC: {r['auc']:.4f} [{r['ci_lower']:.4f}, {r['ci_upper']:.4f}]\\\", flush=True)\\n            print(f\\\"    K* (theta=0.60): {cond_data['kstar']}\\\", flush=True)\\n\\n    print(\\\"\\\\n--- vs C4 Multi-Source (comparison) ---\\\", flush=True)\\n    print(\\\"  C4 unified no_label  K*: 2  (1v2 AUC: 0.7105)\\\", flush=True)\\n    print(\\\"  C4 unified with_label K*: 2  (1v2 AUC: 0.7183)\\\", flush=True)\\n    print(\\\"  C4 vocab-only K*: 2  (1v2 AUC: 0.6830)\\\", flush=True)\\n    vocab_kstar = vocab_results[\\\"no_label\\\"][\\\"kstar\\\"]\\n    print(f\\\"  arXiv vocab-only K*: {vocab_kstar}\\\", flush=True)\\n    if unified_results:\\n        uni_kstar = unified_results[\\\"no_label\\\"][\\\"kstar\\\"]\\n        print(f\\\"  arXiv unified K*: {uni_kstar}\\\", flush=True)\\n    print(\\\"  arXiv single-source K*: 3 (from exp_deberta_arxiv)\\\", flush=True)\\n\\n\\ndef main():\\n    t_start = time.time()\\n    OUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\n    vocab_results = run_vocab_only()\\n\\n    vocab_time = time.time() - t_start\\n    log.info(f\\\"Vocab-only completed in {vocab_time:.1f}s\\\")\\n\\n    interim_output = {\\n        \\\"experiment\\\": \\\"exp_multi_source_arxiv\\\",\\n        \\\"domain\\\": \\\"arXiv\\\",\\n        \\\"generators\\\": list(SOURCES.keys()),\\n        \\\"docs_per_generator\\\": DOCS_PER_GEN,\\n        \\\"n_bootstrap\\\": N_BOOT,\\n        \\\"theta\\\": THETA,\\n        \\\"seed\\\": SEED,\\n        \\\"vocab_only\\\": vocab_results,\\n        \\\"vocab_only_seconds\\\": round(vocab_time, 1),\\n    }\\n    interim_path = OUT_DIR / \\\"results_vocab_only.json\\\"\\n    with open(interim_path, \\\"w\\\") as f:\\n        json.dump(interim_output, f, indent=2)\\n    log.info(f\\\"Vocab-only results saved to {interim_path}\\\")\\n\\n    print_summary(vocab_results, None)\\n\\n    unified_results = run_unified_scorer()\\n\\n    total_time = time.time() - t_start\\n    full_output = {\\n        \\\"experiment\\\": \\\"exp_multi_source_arxiv\\\",\\n        \\\"domain\\\": \\\"arXiv\\\",\\n        \\\"scorer\\\": \\\"Qwen2.5-1.5B\\\",\\n        \\\"generators\\\": list(SOURCES.keys()),\\n        \\\"docs_per_generator\\\": DOCS_PER_GEN,\\n        \\\"n_bootstrap\\\": N_BOOT,\\n        \\\"theta\\\": THETA,\\n        \\\"seed\\\": SEED,\\n        \\\"total_seconds\\\": round(total_time, 1),\\n        \\\"vocab_only\\\": vocab_results,\\n        \\\"unified_scorer_no_label\\\": unified_results[\\\"no_label\\\"],\\n        \\\"unified_scorer_with_label\\\": unified_results[\\\"with_label\\\"],\\n        \\\"c4_comparison\\\": {\\n            \\\"c4_unified_no_label_kstar\\\": 2,\\n            \\\"c4_unified_with_label_kstar\\\": 2,\\n            \\\"c4_vocab_only_kstar\\\": 2,\\n        },\\n    }\\n    out_path = OUT_DIR / \\\"results.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(full_output, f, indent=2)\\n    log.info(f\\\"Full results saved to {out_path}\\\")\\n\\n    print_summary(vocab_results, unified_results)\\n    print(f\\\"\\\\nTotal time: {total_time:.1f}s\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "35f3aee1-f805-4b7b-a43d-e2c1532d5718",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    all_gen_features = {}\\\\n    for gen_name, src in SOURCES.items():\\\\n        data_dir = src[\\\\\\\"data_dir\\\\\\\"]\\\\n        csv_path = src[\\\\\\\"features_csv\\\\\\\"]\\\\n        needs_rescore = src[\\\\\\\"needs_rescore\\\\\\\"]\\\\n\\\\n        log.info(f\\\\\\\"\\\\\\\\n{'='*40}\\\\\\\")\\\\n        log.info(f\\\\\\\"Processing {gen_name} (needs_rescore={needs_rescore})\\\\\\\")\\\\n\\\\n        text_feats = load_text_features(csv_path)\\\\n        log.info(f\\\\\\\"  Loaded {len(text_feats)} text-based feature rows\\\\\\\")\\\\n\\\\n        if needs_rescore:\\\\n            rows = []\\\\n            for d in range(MAX_DEPTH + 1):\\\\n                records = load_jsonl(data_dir / f\\\\\\\"depth_{d}.jsonl\\\\\\\")\\\\n                texts = [r[\\\\\\\"text\\\\\\\"] for r in records]\\\\n                doc_ids_list = [r[\\\\\\\"doc_id\\\\\\\"] for r in records]\\\\n                log.info(f\\\\\\\"  depth {d}: computing surprisal for {len(texts)} texts\\\\\\\")\\\\n                surp_feats = compute_surprisal_features(model, tokenizer, texts, batch_size=16)\\\\n                for i in range(len(texts)):\\\\n                    key = (str(doc_ids_list[i]), d)\\\\n                    tf = text_feats.get(key, {col: \\\\\\\"0.0\\\\\\\" for col in TEXT_COLS})\\\\n                    row = {\\\\\\\"doc_id\\\\\\\": doc_ids_list[i], \\\\\\\"depth\\\\\\\": d}\\\\n                    for j, col in enumerate(SURPRISAL_COLS):\\\\n                        row[col] = surp_feats[i][j]\\\\n                    for col in TEXT_COLS:\\\\n                        row[col] = float(tf[col]) if tf[col] not in (\\\\\\\"\\\\\\\", \\\\\\\"nan\\\\\\\") else 0.0\\\\n                    rows.append(row)\\\\n\\\\n            feat_path = OUT_DIR / f\\\\\\\"features_{gen_name}_qwen_scorer.csv\\\\\\\"\\\\n            with open(feat_path, \\\\\\\"w\\\\\\\", newline=\\\\\\\"\\\\\\\") as f:\\\\n                writer = csv.DictWriter(f, fieldnames=[\\\\\\\"doc_id\\\\\\\", \\\\\\\"depth\\\\\\\"] + ALL_FEAT_COLS)\\\\n                writer.writeheader()\\\\n                writer.writerows(rows)\\\\n            log.info(f\\\\\\\"  Saved {len(rows)} rows to {feat_path}\\\\\\\")\\\\n        else:\\\\n            with open(csv_path) as f:\\\\n                rows = list(csv.DictReader(f))\\\\n            for r in rows:\\\\n                for col in ALL_FEAT_COLS:\\\\n                    r[col] = float(r[col]) if r[col] not in (\\\\\\\"\\\\\\\", \\\\\\\"nan\\\\\\\") else 0.0\\\\n            log.info(f\\\\\\\"  Reusing existing features ({gen_name} is self-scorer)\\\\\\\")\\\\n\\\\n        all_gen_features[gen_name] = rows\\\\n\\\\n    del model\\\\n    torch.cuda.empty_cache()\\\\n    import gc; gc.collect()\\\\n    log.info(\\\\\\\"Scorer unloaded\\\\\\\")\\\\n\\\\n    rng = np.random.RandomState(SEED)\\\\n    all_X, all_depths, all_doc_ids, all_gen_ids = [], [], [], []\\\\n    doc_offset = 0\\\\n\\\\n    for gen_idx, (gen_name, feat_rows) in enumerate(all_gen_features.items()):\\\\n        doc_ids_raw = [r[\\\\\\\"doc_id\\\\\\\"] for r in feat_rows]\\\\n        try:\\\\n            doc_ids = np.array([int(d) for d in doc_ids_raw])\\\\n        except (ValueError, TypeError):\\\\n            uid_map = {d: i for i, d in enumerate(sorted(set(doc_ids_raw)))}\\\\n            doc_ids = np.array([uid_map[d] for d in doc_ids_raw])\\\\n        depths = np.array([int(r[\\\\\\\"depth\\\\\\\"]) for r in feat_rows])\\\\n        X = np.array([[float(r[c]) for c in ALL_FEAT_COLS] for r in feat_rows])\\\\n        col_means = np.nanmean(X, axis=0)\\\\n        for j in range(X.shape[1]):\\\\n            m = np.isnan(X[:, j])\\\\n            if m.any():\\\\n                X[m, j] = col_means[j]\\\\n\\\\n        unique_docs = np.unique(doc_ids)\\\\n        n_sample = min(DOCS_PER_GEN, len(unique_docs))\\\\n        sampled_docs = rng.choice(unique_docs, size=n_sample, replace=False)\\\\n        sampled_set = set(sampled_docs.tolist())\\\\n        mask = np.array([d in sampled_set for d in doc_ids])\\\\n\\\\n        all_X.append(X[mask])\\\\n        all_depths.append(depths[mask])\\\\n        all_doc_ids.append(doc_ids[mask] + doc_offset)\\\\n        all_gen_ids.append(np.full(mask.sum(), gen_idx))\\\\n        doc_offset += int(unique_docs.max()) + 1\\\\n        print(f\\\\\\\"  {gen_name}: sampled {n_sample} docs -> {mask.sum()} rows\\\\\\\", flush=True)\\\\n\\\\n    X = np.vstack(all_X)\\\\n    depths = np.concatenate(all_depths)\\\\n    doc_ids = np.concatenate(all_doc_ids)\\\\n    gen_ids = np.concatenate(all_gen_ids)\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n=== Unified Scorer: no_label ===\\\\\\\", flush=True)\\\\n    results_no_label = run_pairwise(X, depths, doc_ids, \\\\\\\"unified-no-label\\\\\\\")\\\\n    kstar_no_label = compute_kstar(re\\\\n\\\\n... [截断: 输出过长，省略 283 字符] ...\\\\n\\\\nabel = compute_kstar(results_with_label, THETA)\\\\n    print(f\\\\\\\"  K*(unified, with label, theta={THETA}) = {kstar_with_label}\\\\\\\", flush=True)\\\\n\\\\n    return {\\\\n        \\\\\\\"no_label\\\\\\\": {\\\\\\\"pairs\\\\\\\": results_no_label, \\\\\\\"kstar\\\\\\\": kstar_no_label},\\\\n        \\\\\\\"with_label\\\\\\\": {\\\\\\\"pairs\\\\\\\": results_with_label, \\\\\\\"kstar\\\\\\\": kstar_with_label},\\\\n    }\\\\n\\\\n\\\\ndef print_summary(vocab_results, unified_results):\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60, flush=True)\\\\n    print(\\\\\\\"=== arXiv Multi-Source Results ===\\\\\\\", flush=True)\\\\n    print(\\\\\\\"=\\\\\\\" * 60, flush=True)\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n--- Vocab-Only (6 scorer-independent features) ---\\\\\\\", flush=True)\\\\n    for cond_name, cond_data in vocab_results.items():\\\\n        print(f\\\\\\\"  [{cond_name}]\\\\\\\", flush=True)\\\\n        for k in range(1, 4):\\\\n            pair = f\\\\\\\"{k-1}v{k}\\\\\\\"\\\\n            r = cond_data[\\\\\\\"pairs\\\\\\\"][pair]\\\\n            print(f\\\\\\\"    {pair} AUC: {r['auc']:.4f} [{r['ci_lower']:.4f}, {r['ci_upper']:.4f}]\\\\\\\", flush=True)\\\\n        print(f\\\\\\\"    K* (theta=0.60): {cond_data['kstar']}\\\\\\\", flush=True)\\\\n\\\\n    if unified_results:\\\\n        print(\\\\\\\"\\\\\\\\n--- Unified Qwen Scorer (15D OBD features) ---\\\\\\\", flush=True)\\\\n        for cond_name, cond_data in unified_results.items():\\\\n            print(f\\\\\\\"  [{cond_name}]\\\\\\\", flush=True)\\\\n            for k in range(1, 4):\\\\n                pair = f\\\\\\\"{k-1}v{k}\\\\\\\"\\\\n                r = cond_data[\\\\\\\"pairs\\\\\\\"][pair]\\\\n                print(f\\\\\\\"    {pair} AUC: {r['auc']:.4f} [{r['ci_lower']:.4f}, {r['ci_upper']:.4f}]\\\\\\\", flush=True)\\\\n            print(f\\\\\\\"    K* (theta=0.60): {cond_data['kstar']}\\\\\\\", flush=True)\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n--- vs C4 Multi-Source (comparison) ---\\\\\\\", flush=True)\\\\n    print(\\\\\\\"  C4 unified no_label  K*: 2  (1v2 AUC: 0.7105)\\\\\\\", flush=True)\\\\n    print(\\\\\\\"  C4 unified with_label K*: 2  (1v2 AUC: 0.7183)\\\\\\\", flush=True)\\\\n    print(\\\\\\\"  C4 vocab-only K*: 2  (1v2 AUC: 0.6830)\\\\\\\", flush=True)\\\\n    vocab_kstar = vocab_results[\\\\\\\"no_label\\\\\\\"][\\\\\\\"kstar\\\\\\\"]\\\\n    print(f\\\\\\\"  arXiv vocab-only K*: {vocab_kstar}\\\\\\\", flush=True)\\\\n    if unified_results:\\\\n        uni_kstar = unified_results[\\\\\\\"no_label\\\\\\\"][\\\\\\\"kstar\\\\\\\"]\\\\n        print(f\\\\\\\"  arXiv unified K*: {uni_kstar}\\\\\\\", flush=True)\\\\n    print(\\\\\\\"  arXiv single-source K*: 3 (from exp_deberta_arxiv)\\\\\\\", flush=True)\\\\n\\\\n\\\\ndef main():\\\\n    t_start = time.time()\\\\n    OUT_DIR.mkdir(parents=True, exist_ok=True)\\\\n\\\\n    vocab_results = run_vocab_only()\\\\n\\\\n    vocab_time = time.time() - t_start\\\\n    log.info(f\\\\\\\"Vocab-only completed in {vocab_time:.1f}s\\\\\\\")\\\\n\\\\n    interim_output = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"exp_multi_source_arxiv\\\\\\\",\\\\n        \\\\\\\"domain\\\\\\\": \\\\\\\"arXiv\\\\\\\",\\\\n        \\\\\\\"generators\\\\\\\": list(SOURCES.keys()),\\\\n        \\\\\\\"docs_per_generator\\\\\\\": DOCS_PER_GEN,\\\\n        \\\\\\\"n_bootstrap\\\\\\\": N_BOOT,\\\\n        \\\\\\\"theta\\\\\\\": THETA,\\\\n        \\\\\\\"seed\\\\\\\": SEED,\\\\n        \\\\\\\"vocab_only\\\\\\\": vocab_results,\\\\n        \\\\\\\"vocab_only_seconds\\\\\\\": round(vocab_time, 1),\\\\n    }\\\\n    interim_path = OUT_DIR / \\\\\\\"results_vocab_only.json\\\\\\\"\\\\n    with open(interim_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(interim_output, f, indent=2)\\\\n    log.info(f\\\\\\\"Vocab-only results saved to {interim_path}\\\\\\\")\\\\n\\\\n    print_summary(vocab_results, None)\\\\n\\\\n    unified_results = run_unified_scorer()\\\\n\\\\n    total_time = time.time() - t_start\\\\n    full_output = {\\\\n        \\\\\\\"experiment\\\\\\\": \\\\\\\"exp_multi_source_arxiv\\\\\\\",\\\\n        \\\\\\\"domain\\\\\\\": \\\\\\\"arXiv\\\\\\\",\\\\n        \\\\\\\"scorer\\\\\\\": \\\\\\\"Qwen2.5-1.5B\\\\\\\",\\\\n        \\\\\\\"generators\\\\\\\": list(SOURCES.keys()),\\\\n        \\\\\\\"docs_per_generator\\\\\\\": DOCS_PER_GEN,\\\\n        \\\\\\\"n_bootstrap\\\\\\\": N_BOOT,\\\\n        \\\\\\\"theta\\\\\\\": THETA,\\\\n        \\\\\\\"seed\\\\\\\": SEED,\\\\n        \\\\\\\"total_seconds\\\\\\\": round(total_time, 1),\\\\n        \\\\\\\"vocab_only\\\\\\\": vocab_results,\\\\n        \\\\\\\"unified_scorer_no_label\\\\\\\": unified_results[\\\\\\\"no_label\\\\\\\"],\\\\n        \\\\\\\"unified_scorer_with_label\\\\\\\": unified_results[\\\\\\\"with_label\\\\\\\"],\\\\n        \\\\\\\"c4_comparison\\\\\\\": {\\\\n            \\\\\\\"c4_unified_no_label_kstar\\\\\\\": 2,\\\\n            \\\\\\\"c4_unified_with_label_kstar\\\\\\\": 2,\\\\n            \\\\\\\"c4_vocab_only_kstar\\\\\\\": 2,\\\\n        },\\\\n    }\\\\n    out_path = OUT_DIR / \\\\\\\"results.json\\\\\\\"\\\\n    with open(out_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(full_output, f, indent=2)\\\\n    log.info(f\\\\\\\"Full results saved to {out_path}\\\\\\\")\\\\n\\\\n    print_summary(vocab_results, unified_results)\\\\n    print(f\\\\\\\"\\\\\\\\nTotal time: {total_time:.1f}s\\\\\\\", flush=True)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    all_gen_features = {}\\n    for gen_name, src in SOURCES.items():\\n        data_dir = src[\\\"data_dir\\\"]\\n        csv_path = src[\\\"features_csv\\\"]\\n        needs_rescore = src[\\\"needs_rescore\\\"]\\n\\n        log.info(f\\\"\\\\n{'='*40}\\\")\\n        log.info(f\\\"Processing {gen_name} (needs_rescore={needs_rescore})\\\")\\n\\n        text_feats = load_text_features(csv_path)\\n        log.info(f\\\"  Loaded {len(text_feats)} text-based feature rows\\\")\\n\\n        if needs_rescore:\\n            rows = []\\n            for d in range(MAX_DEPTH + 1):\\n                records = load_jsonl(data_dir / f\\\"depth_{d}.jsonl\\\")\\n                texts = [r[\\\"text\\\"] for r in records]\\n                doc_ids_list = [r[\\\"doc_id\\\"] for r in records]\\n                log.info(f\\\"  depth {d}: computing surprisal for {len(texts)} texts\\\")\\n                surp_feats = compute_surprisal_features(model, tokenizer, texts, batch_size=16)\\n                for i in range(len(texts)):\\n                    key = (str(doc_ids_list[i]), d)\\n                    tf = text_feats.get(key, {col: \\\"0.0\\\" for col in TEXT_COLS})\\n                    row = {\\\"doc_id\\\": doc_ids_list[i], \\\"depth\\\": d}\\n                    for j, col in enumerate(SURPRISAL_COLS):\\n                        row[col] = surp_feats[i][j]\\n                    for col in TEXT_COLS:\\n                        row[col] = float(tf[col]) if tf[col] not in (\\\"\\\", \\\"nan\\\") else 0.0\\n                    rows.append(row)\\n\\n            feat_path = OUT_DIR / f\\\"features_{gen_name}_qwen_scorer.csv\\\"\\n            with open(feat_path, \\\"w\\\", newline=\\\"\\\") as f:\\n                writer = csv.DictWriter(f, fieldnames=[\\\"doc_id\\\", \\\"depth\\\"] + ALL_FEAT_COLS)\\n                writer.writeheader()\\n                writer.writerows(rows)\\n            log.info(f\\\"  Saved {len(rows)} rows to {feat_path}\\\")\\n        else:\\n            with open(csv_path) as f:\\n                rows = list(csv.DictReader(f))\\n            for r in rows:\\n                for col in ALL_FEAT_COLS:\\n                    r[col] = float(r[col]) if r[col] not in (\\\"\\\", \\\"nan\\\") else 0.0\\n            log.info(f\\\"  Reusing existing features ({gen_name} is self-scorer)\\\")\\n\\n        all_gen_features[gen_name] = rows\\n\\n    del model\\n    torch.cuda.empty_cache()\\n    import gc; gc.collect()\\n    log.info(\\\"Scorer unloaded\\\")\\n\\n    rng = np.random.RandomState(SEED)\\n    all_X, all_depths, all_doc_ids, all_gen_ids = [], [], [], []\\n    doc_offset = 0\\n\\n    for gen_idx, (gen_name, feat_rows) in enumerate(all_gen_features.items()):\\n        doc_ids_raw = [r[\\\"doc_id\\\"] for r in feat_rows]\\n        try:\\n            doc_ids = np.array([int(d) for d in doc_ids_raw])\\n        except (ValueError, TypeError):\\n            uid_map = {d: i for i, d in enumerate(sorted(set(doc_ids_raw)))}\\n            doc_ids = np.array([uid_map[d] for d in doc_ids_raw])\\n        depths = np.array([int(r[\\\"depth\\\"]) for r in feat_rows])\\n        X = np.array([[float(r[c]) for c in ALL_FEAT_COLS] for r in feat_rows])\\n        col_means = np.nanmean(X, axis=0)\\n        for j in range(X.shape[1]):\\n            m = np.isnan(X[:, j])\\n            if m.any():\\n                X[m, j] = col_means[j]\\n\\n        unique_docs = np.unique(doc_ids)\\n        n_sample = min(DOCS_PER_GEN, len(unique_docs))\\n        sampled_docs = rng.choice(unique_docs, size=n_sample, replace=False)\\n        sampled_set = set(sampled_docs.tolist())\\n        mask = np.array([d in sampled_set for d in doc_ids])\\n\\n        all_X.append(X[mask])\\n        all_depths.append(depths[mask])\\n        all_doc_ids.append(doc_ids[mask] + doc_offset)\\n        all_gen_ids.append(np.full(mask.sum(), gen_idx))\\n        doc_offset += int(unique_docs.max()) + 1\\n        print(f\\\"  {gen_name}: sampled {n_sample} docs -> {mask.sum()} rows\\\", flush=True)\\n\\n    X = np.vstack(all_X)\\n    depths = np.concatenate(all_depths)\\n    doc_ids = np.concatenate(all_doc_ids)\\n    gen_ids = np.concatenate(all_gen_ids)\\n\\n    print(\\\"\\\\n=== Unified Scorer: no_label ===\\\", flush=True)\\n    results_no_label = run_pairwise(X, depths, doc_ids, \\\"unified-no-label\\\")\\n    kstar_no_label = compute_kstar(re\\n\\n... [截断: 输出过长，省略 283 字符] ...\\n\\nabel = compute_kstar(results_with_label, THETA)\\n    print(f\\\"  K*(unified, with label, theta={THETA}) = {kstar_with_label}\\\", flush=True)\\n\\n    return {\\n        \\\"no_label\\\": {\\\"pairs\\\": results_no_label, \\\"kstar\\\": kstar_no_label},\\n        \\\"with_label\\\": {\\\"pairs\\\": results_with_label, \\\"kstar\\\": kstar_with_label},\\n    }\\n\\n\\ndef print_summary(vocab_results, unified_results):\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60, flush=True)\\n    print(\\\"=== arXiv Multi-Source Results ===\\\", flush=True)\\n    print(\\\"=\\\" * 60, flush=True)\\n\\n    print(\\\"\\\\n--- Vocab-Only (6 scorer-independent features) ---\\\", flush=True)\\n    for cond_name, cond_data in vocab_results.items():\\n        print(f\\\"  [{cond_name}]\\\", flush=True)\\n        for k in range(1, 4):\\n            pair = f\\\"{k-1}v{k}\\\"\\n            r = cond_data[\\\"pairs\\\"][pair]\\n            print(f\\\"    {pair} AUC: {r['auc']:.4f} [{r['ci_lower']:.4f}, {r['ci_upper']:.4f}]\\\", flush=True)\\n        print(f\\\"    K* (theta=0.60): {cond_data['kstar']}\\\", flush=True)\\n\\n    if unified_results:\\n        print(\\\"\\\\n--- Unified Qwen Scorer (15D OBD features) ---\\\", flush=True)\\n        for cond_name, cond_data in unified_results.items():\\n            print(f\\\"  [{cond_name}]\\\", flush=True)\\n            for k in range(1, 4):\\n                pair = f\\\"{k-1}v{k}\\\"\\n                r = cond_data[\\\"pairs\\\"][pair]\\n                print(f\\\"    {pair} AUC: {r['auc']:.4f} [{r['ci_lower']:.4f}, {r['ci_upper']:.4f}]\\\", flush=True)\\n            print(f\\\"    K* (theta=0.60): {cond_data['kstar']}\\\", flush=True)\\n\\n    print(\\\"\\\\n--- vs C4 Multi-Source (comparison) ---\\\", flush=True)\\n    print(\\\"  C4 unified no_label  K*: 2  (1v2 AUC: 0.7105)\\\", flush=True)\\n    print(\\\"  C4 unified with_label K*: 2  (1v2 AUC: 0.7183)\\\", flush=True)\\n    print(\\\"  C4 vocab-only K*: 2  (1v2 AUC: 0.6830)\\\", flush=True)\\n    vocab_kstar = vocab_results[\\\"no_label\\\"][\\\"kstar\\\"]\\n    print(f\\\"  arXiv vocab-only K*: {vocab_kstar}\\\", flush=True)\\n    if unified_results:\\n        uni_kstar = unified_results[\\\"no_label\\\"][\\\"kstar\\\"]\\n        print(f\\\"  arXiv unified K*: {uni_kstar}\\\", flush=True)\\n    print(\\\"  arXiv single-source K*: 3 (from exp_deberta_arxiv)\\\", flush=True)\\n\\n\\ndef main():\\n    t_start = time.time()\\n    OUT_DIR.mkdir(parents=True, exist_ok=True)\\n\\n    vocab_results = run_vocab_only()\\n\\n    vocab_time = time.time() - t_start\\n    log.info(f\\\"Vocab-only completed in {vocab_time:.1f}s\\\")\\n\\n    interim_output = {\\n        \\\"experiment\\\": \\\"exp_multi_source_arxiv\\\",\\n        \\\"domain\\\": \\\"arXiv\\\",\\n        \\\"generators\\\": list(SOURCES.keys()),\\n        \\\"docs_per_generator\\\": DOCS_PER_GEN,\\n        \\\"n_bootstrap\\\": N_BOOT,\\n        \\\"theta\\\": THETA,\\n        \\\"seed\\\": SEED,\\n        \\\"vocab_only\\\": vocab_results,\\n        \\\"vocab_only_seconds\\\": round(vocab_time, 1),\\n    }\\n    interim_path = OUT_DIR / \\\"results_vocab_only.json\\\"\\n    with open(interim_path, \\\"w\\\") as f:\\n        json.dump(interim_output, f, indent=2)\\n    log.info(f\\\"Vocab-only results saved to {interim_path}\\\")\\n\\n    print_summary(vocab_results, None)\\n\\n    unified_results = run_unified_scorer()\\n\\n    total_time = time.time() - t_start\\n    full_output = {\\n        \\\"experiment\\\": \\\"exp_multi_source_arxiv\\\",\\n        \\\"domain\\\": \\\"arXiv\\\",\\n        \\\"scorer\\\": \\\"Qwen2.5-1.5B\\\",\\n        \\\"generators\\\": list(SOURCES.keys()),\\n        \\\"docs_per_generator\\\": DOCS_PER_GEN,\\n        \\\"n_bootstrap\\\": N_BOOT,\\n        \\\"theta\\\": THETA,\\n        \\\"seed\\\": SEED,\\n        \\\"total_seconds\\\": round(total_time, 1),\\n        \\\"vocab_only\\\": vocab_results,\\n        \\\"unified_scorer_no_label\\\": unified_results[\\\"no_label\\\"],\\n        \\\"unified_scorer_with_label\\\": unified_results[\\\"with_label\\\"],\\n        \\\"c4_comparison\\\": {\\n            \\\"c4_unified_no_label_kstar\\\": 2,\\n            \\\"c4_unified_with_label_kstar\\\": 2,\\n            \\\"c4_vocab_only_kstar\\\": 2,\\n        },\\n    }\\n    out_path = OUT_DIR / \\\"results.json\\\"\\n    with open(out_path, \\\"w\\\") as f:\\n        json.dump(full_output, f, indent=2)\\n    log.info(f\\\"Full results saved to {out_path}\\\")\\n\\n    print_summary(vocab_results, unified_results)\\n    print(f\\\"\\\\nTotal time: {total_time:.1f}s\\\", flush=True)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019ZXCbh87wYbmR568urrC5a`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "head -100 /root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "f69bd977-46fc-47b3-abb1-fa7ffc305ab4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SqsxegneNkGHsQFwSKHSXA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6311,
+      "cache_read_input_tokens": 44844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6311
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-24T08:50:19.611Z_
+
+<details><summary>↩ Tool result · `toolu_019ZXCbh87wYbmR568urrC5a`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import csv\\nimport json\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport lightgbm as lgb\\nfrom sklearn.model_selection import GroupKFold\\nfrom sklearn.metrics import roc_auc_score\\n\\nFEAT_COLS = [\\n    \\\"surp_mean\\\", \\\"surp_std\\\", \\\"surp_skew\\\", \\\"surp_kurt\\\",\\n    \\\"surp_d1_mean\\\", \\\"surp_d1_std\\\", \\\"surp_d1_skew\\\",\\n    \\\"surp_d2_mean\\\", \\\"surp_d2_std\\\",\\n    \\\"ttr\\\", \\\"hapax_ratio\\\", \\\"self_bleu\\\",\\n    \\\"freq_kurtosis\\\", \\\"freq_entropy\\\", \\\"low_freq_ratio\\\",\\n]\\n\\nSOURCES = {\\n    \\\"qwen1b5\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data_exp016_qwen_base/features.csv\\\"),\\n    \\\"pythia1b4\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data_exp020_pythia_greedy/features.csv\\\"),\\n    \\\"olmo1b\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/olmo_c4_cont/features.csv\\\"),\\n}\\n\\nDOCS_PER_GEN = 1000\\nMAX_DEPTH = 5\\nN_BOOT = 10000\\nTHETA = 0.60\\nSEED = 42\\nOUT_DIR = Path(\\\"/root/autodl-tmp/gen-depth-contamination/results/exp_multi_source_detection\\\")\\n\\n\\ndef load_features(path):\\n    with open(path) as f:\\n        rows = list(csv.DictReader(f))\\n    doc_ids = np.array([int(r[\\\"doc_id\\\"]) for r in rows])\\n    depths = np.array([int(r[\\\"depth\\\"]) for r in rows])\\n    X = np.array(\\n        [[float(r[c]) if r[c] not in (\\\"\\\", \\\"nan\\\") else np.nan for c in FEAT_COLS] for r in rows]\\n    )\\n    col_means = np.nanmean(X, axis=0)\\n    for j in range(X.shape[1]):\\n        mask = np.isnan(X[:, j])\\n        X[mask, j] = col_means[j]\\n    return X, depths, doc_ids\\n\\n\\ndef sample_and_merge(rng):\\n    all_X, all_depths, all_doc_ids, all_gen_ids = [], [], [], []\\n    doc_offset = 0\\n\\n    for gen_idx, (gen_name, path) in enumerate(SOURCES.items()):\\n        X, depths, doc_ids = load_features(path)\\n        unique_docs = np.unique(doc_ids)\\n        sampled_docs = rng.choice(unique_docs, size=DOCS_PER_GEN, replace=False)\\n        sampled_set = set(sampled_docs)\\n        mask = np.array([d in sampled_set for d in doc_ids])\\n\\n        X_s = X[mask]\\n        depths_s = depths[mask]\\n        doc_ids_s = doc_ids[mask] + doc_offset\\n        gen_ids_s = np.full(mask.sum(), gen_idx)\\n\\n        all_X.append(X_s)\\n        all_depths.append(depths_s)\\n        all_doc_ids.append(doc_ids_s)\\n        all_gen_ids.append(gen_ids_s)\\n\\n        doc_offset += unique_docs.max() + 1\\n        print(f\\\"  {gen_name}: sampled {DOCS_PER_GEN} docs -> {mask.sum()} rows\\\")\\n\\n    X = np.vstack(all_X)\\n    depths = np.concatenate(all_depths)\\n    doc_ids = np.concatenate(all_doc_ids)\\n    gen_ids = np.concatenate(all_gen_ids)\\n    return X, depths, doc_ids, gen_ids\\n\\n\\ndef get_oof_predictions(X, y, groups):\\n    gkf = GroupKFold(n_splits=5)\\n    oof_proba = np.zeros(len(y))\\n    fold_aucs = []\\n    for train_idx, test_idx in gkf.split(X, y, groups=groups):\\n        clf = lgb.LGBMClassifier(\\n            n_estimators=200, max_depth=6, learning_rate=0.05,\\n            num_leaves=31, verbose=-1, n_jobs=-1,\\n        )\\n        clf.fit(X[train_idx], y[train_idx])\\n        proba = clf.predict_proba(X[test_idx])[:, 1]\\n        oof_proba[test_idx] = proba\\n        fold_aucs.append(roc_auc_score(y[test_idx], proba))\\n    return oof_proba, fold_aucs\\n\\n\\ndef bootstrap_ci(y, oof_proba, doc_ids, n_boot, rng):\\n    unique_docs = np.unique(doc_ids)\\n    n_docs = len(unique_docs)\\n    doc_indices = [np.where(doc_ids == d)[0] for d in unique_docs]\\n\\n    point_auc = roc_auc_score(y, oof_proba)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "62aa9015-ea47-4834-8fff-34d0e62e03f2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import csv\\\\nimport json\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport lightgbm as lgb\\\\nfrom sklearn.model_selection import GroupKFold\\\\nfrom sklearn.metrics import roc_auc_score\\\\n\\\\nFEAT_COLS = [\\\\n    \\\\\\\"surp_mean\\\\\\\", \\\\\\\"surp_std\\\\\\\", \\\\\\\"surp_skew\\\\\\\", \\\\\\\"surp_kurt\\\\\\\",\\\\n    \\\\\\\"surp_d1_mean\\\\\\\", \\\\\\\"surp_d1_std\\\\\\\", \\\\\\\"surp_d1_skew\\\\\\\",\\\\n    \\\\\\\"surp_d2_mean\\\\\\\", \\\\\\\"surp_d2_std\\\\\\\",\\\\n    \\\\\\\"ttr\\\\\\\", \\\\\\\"hapax_ratio\\\\\\\", \\\\\\\"self_bleu\\\\\\\",\\\\n    \\\\\\\"freq_kurtosis\\\\\\\", \\\\\\\"freq_entropy\\\\\\\", \\\\\\\"low_freq_ratio\\\\\\\",\\\\n]\\\\n\\\\nSOURCES = {\\\\n    \\\\\\\"qwen1b5\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data_exp016_qwen_base/features.csv\\\\\\\"),\\\\n    \\\\\\\"pythia1b4\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data_exp020_pythia_greedy/features.csv\\\\\\\"),\\\\n    \\\\\\\"olmo1b\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/olmo_c4_cont/features.csv\\\\\\\"),\\\\n}\\\\n\\\\nDOCS_PER_GEN = 1000\\\\nMAX_DEPTH = 5\\\\nN_BOOT = 10000\\\\nTHETA = 0.60\\\\nSEED = 42\\\\nOUT_DIR = Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/results/exp_multi_source_detection\\\\\\\")\\\\n\\\\n\\\\ndef load_features(path):\\\\n    with open(path) as f:\\\\n        rows = list(csv.DictReader(f))\\\\n    doc_ids = np.array([int(r[\\\\\\\"doc_id\\\\\\\"]) for r in rows])\\\\n    depths = np.array([int(r[\\\\\\\"depth\\\\\\\"]) for r in rows])\\\\n    X = np.array(\\\\n        [[float(r[c]) if r[c] not in (\\\\\\\"\\\\\\\", \\\\\\\"nan\\\\\\\") else np.nan for c in FEAT_COLS] for r in rows]\\\\n    )\\\\n    col_means = np.nanmean(X, axis=0)\\\\n    for j in range(X.shape[1]):\\\\n        mask = np.isnan(X[:, j])\\\\n        X[mask, j] = col_means[j]\\\\n    return X, depths, doc_ids\\\\n\\\\n\\\\ndef sample_and_merge(rng):\\\\n    all_X, all_depths, all_doc_ids, all_gen_ids = [], [], [], []\\\\n    doc_offset = 0\\\\n\\\\n    for gen_idx, (gen_name, path) in enumerate(SOURCES.items()):\\\\n        X, depths, doc_ids = load_features(path)\\\\n        unique_docs = np.unique(doc_ids)\\\\n        sampled_docs = rng.choice(unique_docs, size=DOCS_PER_GEN, replace=False)\\\\n        sampled_set = set(sampled_docs)\\\\n        mask = np.array([d in sampled_set for d in doc_ids])\\\\n\\\\n        X_s = X[mask]\\\\n        depths_s = depths[mask]\\\\n        doc_ids_s = doc_ids[mask] + doc_offset\\\\n        gen_ids_s = np.full(mask.sum(), gen_idx)\\\\n\\\\n        all_X.append(X_s)\\\\n        all_depths.append(depths_s)\\\\n        all_doc_ids.append(doc_ids_s)\\\\n        all_gen_ids.append(gen_ids_s)\\\\n\\\\n        doc_offset += unique_docs.max() + 1\\\\n        print(f\\\\\\\"  {gen_name}: sampled {DOCS_PER_GEN} docs -> {mask.sum()} rows\\\\\\\")\\\\n\\\\n    X = np.vstack(all_X)\\\\n    depths = np.concatenate(all_depths)\\\\n    doc_ids = np.concatenate(all_doc_ids)\\\\n    gen_ids = np.concatenate(all_gen_ids)\\\\n    return X, depths, doc_ids, gen_ids\\\\n\\\\n\\\\ndef get_oof_predictions(X, y, groups):\\\\n    gkf = GroupKFold(n_splits=5)\\\\n    oof_proba = np.zeros(len(y))\\\\n    fold_aucs = []\\\\n    for train_idx, test_idx in gkf.split(X, y, groups=groups):\\\\n        clf = lgb.LGBMClassifier(\\\\n            n_estimators=200, max_depth=6, learning_rate=0.05,\\\\n            num_leaves=31, verbose=-1, n_jobs=-1,\\\\n        )\\\\n        clf.fit(X[train_idx], y[train_idx])\\\\n        proba = clf.predict_proba(X[test_idx])[:, 1]\\\\n        oof_proba[test_idx] = proba\\\\n        fold_aucs.append(roc_auc_score(y[test_idx], proba))\\\\n    return oof_proba, fold_aucs\\\\n\\\\n\\\\ndef bootstrap_ci(y, oof_proba, doc_ids, n_boot, rng):\\\\n    unique_docs = np.unique(doc_ids)\\\\n    n_docs = len(unique_docs)\\\\n    doc_indices = [np.where(doc_ids == d)[0] for d in unique_docs]\\\\n\\\\n    point_auc = roc_auc_score(y, oof_proba)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"import csv\\nimport json\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport lightgbm as lgb\\nfrom sklearn.model_selection import GroupKFold\\nfrom sklearn.metrics import roc_auc_score\\n\\nFEAT_COLS = [\\n    \\\"surp_mean\\\", \\\"surp_std\\\", \\\"surp_skew\\\", \\\"surp_kurt\\\",\\n    \\\"surp_d1_mean\\\", \\\"surp_d1_std\\\", \\\"surp_d1_skew\\\",\\n    \\\"surp_d2_mean\\\", \\\"surp_d2_std\\\",\\n    \\\"ttr\\\", \\\"hapax_ratio\\\", \\\"self_bleu\\\",\\n    \\\"freq_kurtosis\\\", \\\"freq_entropy\\\", \\\"low_freq_ratio\\\",\\n]\\n\\nSOURCES = {\\n    \\\"qwen1b5\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data_exp016_qwen_base/features.csv\\\"),\\n    \\\"pythia1b4\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data_exp020_pythia_greedy/features.csv\\\"),\\n    \\\"olmo1b\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/olmo_c4_cont/features.csv\\\"),\\n}\\n\\nDOCS_PER_GEN = 1000\\nMAX_DEPTH = 5\\nN_BOOT = 10000\\nTHETA = 0.60\\nSEED = 42\\nOUT_DIR = Path(\\\"/root/autodl-tmp/gen-depth-contamination/results/exp_multi_source_detection\\\")\\n\\n\\ndef load_features(path):\\n    with open(path) as f:\\n        rows = list(csv.DictReader(f))\\n    doc_ids = np.array([int(r[\\\"doc_id\\\"]) for r in rows])\\n    depths = np.array([int(r[\\\"depth\\\"]) for r in rows])\\n    X = np.array(\\n        [[float(r[c]) if r[c] not in (\\\"\\\", \\\"nan\\\") else np.nan for c in FEAT_COLS] for r in rows]\\n    )\\n    col_means = np.nanmean(X, axis=0)\\n    for j in range(X.shape[1]):\\n        mask = np.isnan(X[:, j])\\n        X[mask, j] = col_means[j]\\n    return X, depths, doc_ids\\n\\n\\ndef sample_and_merge(rng):\\n    all_X, all_depths, all_doc_ids, all_gen_ids = [], [], [], []\\n    doc_offset = 0\\n\\n    for gen_idx, (gen_name, path) in enumerate(SOURCES.items()):\\n        X, depths, doc_ids = load_features(path)\\n        unique_docs = np.unique(doc_ids)\\n        sampled_docs = rng.choice(unique_docs, size=DOCS_PER_GEN, replace=False)\\n        sampled_set = set(sampled_docs)\\n        mask = np.array([d in sampled_set for d in doc_ids])\\n\\n        X_s = X[mask]\\n        depths_s = depths[mask]\\n        doc_ids_s = doc_ids[mask] + doc_offset\\n        gen_ids_s = np.full(mask.sum(), gen_idx)\\n\\n        all_X.append(X_s)\\n        all_depths.append(depths_s)\\n        all_doc_ids.append(doc_ids_s)\\n        all_gen_ids.append(gen_ids_s)\\n\\n        doc_offset += unique_docs.max() + 1\\n        print(f\\\"  {gen_name}: sampled {DOCS_PER_GEN} docs -> {mask.sum()} rows\\\")\\n\\n    X = np.vstack(all_X)\\n    depths = np.concatenate(all_depths)\\n    doc_ids = np.concatenate(all_doc_ids)\\n    gen_ids = np.concatenate(all_gen_ids)\\n    return X, depths, doc_ids, gen_ids\\n\\n\\ndef get_oof_predictions(X, y, groups):\\n    gkf = GroupKFold(n_splits=5)\\n    oof_proba = np.zeros(len(y))\\n    fold_aucs = []\\n    for train_idx, test_idx in gkf.split(X, y, groups=groups):\\n        clf = lgb.LGBMClassifier(\\n            n_estimators=200, max_depth=6, learning_rate=0.05,\\n            num_leaves=31, verbose=-1, n_jobs=-1,\\n        )\\n        clf.fit(X[train_idx], y[train_idx])\\n        proba = clf.predict_proba(X[test_idx])[:, 1]\\n        oof_proba[test_idx] = proba\\n        fold_aucs.append(roc_auc_score(y[test_idx], proba))\\n    return oof_proba, fold_aucs\\n\\n\\ndef bootstrap_ci(y, oof_proba, doc_ids, n_boot, rng):\\n    unique_docs = np.unique(doc_ids)\\n    n_docs = len(unique_docs)\\n    doc_indices = [np.where(doc_ids == d)[0] for d in unique_docs]\\n\\n    point_auc = roc_auc_score(y, oof_proba)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the full picture. Let me also check the `compute_surprisal_features` function that the multi_source_arxiv script uses, and check the `run_unified_scorer` function.
+
+Let me now look at what I need to do:
+
+1. The OLMo arXiv data exists at `data/exp_arXiv_olmo/` with depth 0-5 (2200 docs each) and features.csv
+2. However, the features.csv is self-scored (by OLMo), resulting in K*=1
+3. Need to cross-score with Qwen2.5-1.5B and recompute features
+
+
+4. Then run the multi-source detection with OLMo included
+
+The most efficient approach would be to modify `run_multi_source_arxiv.py` to add OLMo as a 4th source with `needs_rescore: True`, which should handle the cross-scoring and feature recomputation automatically. I need to locate the `compute_surprisal_features` and model loading functions to understand how they work.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "610aaffe-e13c-41fe-8c3e-18030a7199ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Sz47eY3Yz3bujvd9VpTJr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6884,
+      "cache_read_input_tokens": 51155,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6884
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68_
+
+需要看 compute_surprisal_features 函数和 run_unified_scorer 的模型加载逻辑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "e691751e-f1c6-41b5-8ec2-52f2944b9a6a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Sz47eY3Yz3bujvd9VpTJr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6884,
+      "cache_read_input_tokens": 51155,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6884
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01B5VvPUXMQmbz93f85yDvsN`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -n \"def compute_surprisal\\|def run_unified\\|import torch\\|from transformers\" /root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_arxiv.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "b64cdd05-c975-4fe6-b26c-a317e36a2005",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Sz47eY3Yz3bujvd9VpTJr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6884,
+      "cache_read_input_tokens": 51155,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6884
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-24T08:50:35.043Z_
+
+<details><summary>↩ Tool result · `toolu_01B5VvPUXMQmbz93f85yDvsN`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "878eff48-2c2c-4d18-bd1a-3c1154476b2d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01778SwvFLxUCdXfgLeoDmNm`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "head -1 /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_0.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "e6a991af-dc04-4083-84a3-053336f39939",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Sz47eY3Yz3bujvd9VpTJr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6884,
+      "cache_read_input_tokens": 51155,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6884
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KtL2yocNAkmQNVYDuaG6u7`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "nvidia-smi --query-gpu=name,memory.total,memory.free --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "f0cf695b-e563-4092-9685-e60dc147107e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Sz47eY3Yz3bujvd9VpTJr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6884,
+      "cache_read_input_tokens": 51155,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6884
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-24T08:50:39.541Z_
+
+<details><summary>↩ Tool result · `toolu_01778SwvFLxUCdXfgLeoDmNm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"text\\\": \\\"Multi-shot video generation extends single-shot generation to coherent visual narratives, yet maintaining consistent characters, objects, and locations across shots remains a challenge over long sequences. Existing evaluations typically use independently generated prompt sets with limited entity coverage and simple consistency metrics, making standardized comparison difficult. We introduce EntityBench, a benchmark of 140 episodes (2,491 shots) derived from real narrative media, with explicit per-shot entity schedules tracking characters, objects, and locations simultaneously across easy / medium / hard tiers of up to 50 shots, 13 cross-shot characters, 8 cross-shot locations, 22 cross-shot objects, and recurrence gaps spanning up to 48 shots. It is paired with a three-pillar evaluation suite that disentangles intra-shot quality, prompt-following alignment, and cross-shot consistency, with a fidelity gate that admits only accurate entity appearances into cross-shot scoring. As a baseline, we propose EntityMem, a memory-augmented generation system that stores verified per-entity visual references in a persistent memory bank before generation begins. Experiments show that cross-shot entity consistency degrades sharply with recurrence distance in existing methods, and that explicit per-entity memory yields the highest character fidelity (Cohen's d = +2.33) and presence among methods evaluated. Code and data are available at https://github.com/Catherine-R-He/EntityBench/.\\\", \\\"doc_id\\\": 0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "a3e8c15e-cbed-4e01-8116-65502572bf1f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"text\\\\\\\": \\\\\\\"Multi-shot video generation extends single-shot generation to coherent visual narratives, yet maintaining consistent characters, objects, and locations across shots remains a challenge over long sequences. Existing evaluations typically use independently generated prompt sets with limited entity coverage and simple consistency metrics, making standardized comparison difficult. We introduce EntityBench, a benchmark of 140 episodes (2,491 shots) derived from real narrative media, with explicit per-shot entity schedules tracking characters, objects, and locations simultaneously across easy / medium / hard tiers of up to 50 shots, 13 cross-shot characters, 8 cross-shot locations, 22 cross-shot objects, and recurrence gaps spanning up to 48 shots. It is paired with a three-pillar evaluation suite that disentangles intra-shot quality, prompt-following alignment, and cross-shot consistency, with a fidelity gate that admits only accurate entity appearances into cross-shot scoring. As a baseline, we propose EntityMem, a memory-augmented generation system that stores verified per-entity visual references in a persistent memory bank before generation begins. Experiments show that cross-shot entity consistency degrades sharply with recurrence distance in existing methods, and that explicit per-entity memory yields the highest character fidelity (Cohen's d = +2.33) and presence among methods evaluated. Code and data are available at https://github.com/Catherine-R-He/EntityBench/.\\\\\\\", \\\\\\\"doc_id\\\\\\\": 0}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"text\\\": \\\"Multi-shot video generation extends single-shot generation to coherent visual narratives, yet maintaining consistent characters, objects, and locations across shots remains a challenge over long sequences. Existing evaluations typically use independently generated prompt sets with limited entity coverage and simple consistency metrics, making standardized comparison difficult. We introduce EntityBench, a benchmark of 140 episodes (2,491 shots) derived from real narrative media, with explicit per-shot entity schedules tracking characters, objects, and locations simultaneously across easy / medium / hard tiers of up to 50 shots, 13 cross-shot characters, 8 cross-shot locations, 22 cross-shot objects, and recurrence gaps spanning up to 48 shots. It is paired with a three-pillar evaluation suite that disentangles intra-shot quality, prompt-following alignment, and cross-shot consistency, with a fidelity gate that admits only accurate entity appearances into cross-shot scoring. As a baseline, we propose EntityMem, a memory-augmented generation system that stores verified per-entity visual references in a persistent memory bank before generation begins. Experiments show that cross-shot entity consistency degrades sharply with recurrence distance in existing methods, and that explicit per-entity memory yields the highest character fidelity (Cohen's d = +2.33) and presence among methods evaluated. Code and data are available at https://github.com/Catherine-R-He/EntityBench/.\\\", \\\"doc_id\\\": 0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-24T08:50:40.094Z_
+
+<details><summary>↩ Tool result · `toolu_01KtL2yocNAkmQNVYDuaG6u7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 97253 MiB\\nNVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 97253 MiB\\nNVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 97253 MiB\\nNVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 97253 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "ca2bb347-5f0a-4d46-9488-8a0f8678baf8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 97253 MiB\\\\nNVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 97253 MiB\\\\nNVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 97253 MiB\\\\nNVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 97253 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"NVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 97253 MiB\\nNVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 97253 MiB\\nNVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 97253 MiB\\nNVIDIA RTX PRO 6000 Blackwell Server Edition, 97887 MiB, 97253 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+4x RTX PRO 6000 Blackwell Server Edition with 97GB each, all free. Massive GPU resources.
+
+Let me now find the compute_surprisal_features function and run_unified_scorer.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "6ed08497-9241-4a16-8a8d-e69450bf27d4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eid2Cunt2pDqBrLZKg3yoD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1594,
+      "cache_read_input_tokens": 58039,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1594
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76_
+
+4x RTX PRO 6000 (97GB each) 全空闲。找 compute_surprisal_features 函数。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "df546a2c-06fb-461b-804c-80f7f66871b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eid2Cunt2pDqBrLZKg3yoD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1594,
+      "cache_read_input_tokens": 58039,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1594
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Y274qKk2wa6XxFDmGTuVjV`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -n \"def compute_surprisal\\|def run_unified\\|from transformers\\|import torch\" /root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_arxiv.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "6b019f48-4dc5-4b02-afd3-2069a8f23225",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Eid2Cunt2pDqBrLZKg3yoD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1594,
+      "cache_read_input_tokens": 58039,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1594
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-24T08:50:46.218Z_
+
+<details><summary>↩ Tool result · `toolu_01Y274qKk2wa6XxFDmGTuVjV`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "68703318-b1a3-434f-9c97-e52b628f45f2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UdaCaahUjv8z2HPe2cDaE8`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -n \"def compute_surprisal\\|def run_unified\" /root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_arxiv.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "e4c28440-1a23-4c3b-bfa5-b4cd691c5b7d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GCUXbqe5m5vgKUHUFLD6Lv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 348,
+      "cache_read_input_tokens": 59633,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 348
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-24T08:50:49.495Z_
+
+<details><summary>↩ Tool result · `toolu_01UdaCaahUjv8z2HPe2cDaE8`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "28d317f1-4bb9-4715-a939-a8b9f467cdf6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XS4wXkRT1CgRKtYNgYsW7Q`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -n \"def compute_surprisal\" /root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_arxiv.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "4bcc19ed-f0c7-4411-9ce2-ce6ba08e65e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SjQ2xxS3Ye4gC8yVLaLwo8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 239,
+      "cache_read_input_tokens": 59981,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 239
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-24T08:50:52.607Z_
+
+<details><summary>↩ Tool result · `toolu_01XS4wXkRT1CgRKtYNgYsW7Q`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"219:def compute_surprisal_features(model, tokenizer, texts, batch_size=16):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "78d64f1c-e038-4d45-b8a0-64e033036b8a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"219:def compute_surprisal_features(model, tokenizer, texts, batch_size=16):\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"219:def compute_surprisal_features(model, tokenizer, texts, batch_size=16):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HJJQ3SYZTrMijrYGMS6ST7`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -n \"def run_unified\" /root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_arxiv.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "0cf7a7fa-3fba-45eb-99d7-e0ef60cd646d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SjQ2xxS3Ye4gC8yVLaLwo8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 239,
+      "cache_read_input_tokens": 59981,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 239
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-24T08:50:53.178Z_
+
+<details><summary>↩ Tool result · `toolu_01HJJQ3SYZTrMijrYGMS6ST7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"262:def run_unified_scorer():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "692b14bb-fd98-46d0-8ea8-43d6fa2d569e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"262:def run_unified_scorer():\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"262:def run_unified_scorer():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013iPeC4hL1jueVUTXUKpsru`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "head -320 /root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_arxiv.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "6145d614-3aea-4e92-be7e-8b717f5b3c17",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XRUzQB5GkdWE4HANTCxtgB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 505,
+      "cache_read_input_tokens": 60220,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 505
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-24T08:50:56.718Z_
+
+<details><summary>↩ Tool result · `toolu_013iPeC4hL1jueVUTXUKpsru`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\narXiv Multi-Source Detection: Vocab-Only + Unified Qwen2.5-1.5B Scorer.\\nParallels C4 multi-source experiments but on arXiv domain.\\n\\\"\\\"\\\"\\nimport csv\\nimport json\\nimport time\\nimport logging\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport lightgbm as lgb\\nfrom sklearn.model_selection import GroupKFold\\nfrom sklearn.metrics import roc_auc_score\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\", datefmt=\\\"%H:%M:%S\\\")\\nlog = logging.getLogger(__name__)\\n\\nSCORER_PATH = \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\\nSOURCES = {\\n    \\\"qwen1b5\\\": {\\n        \\\"data_dir\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv\\\"),\\n        \\\"features_csv\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/features.csv\\\"),\\n        \\\"needs_rescore\\\": False,\\n    },\\n    \\\"pythia1b4\\\": {\\n        \\\"data_dir\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv\\\"),\\n        \\\"features_csv\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/features.csv\\\"),\\n        \\\"needs_rescore\\\": True,\\n    },\\n    \\\"llama8b\\\": {\\n        \\\"data_dir\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b\\\"),\\n        \\\"features_csv\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b/features.csv\\\"),\\n        \\\"needs_rescore\\\": True,\\n    },\\n}\\n\\nSURPRISAL_COLS = [\\\"surp_mean\\\",\\\"surp_std\\\",\\\"surp_skew\\\",\\\"surp_kurt\\\",\\\"surp_d1_mean\\\",\\\"surp_d1_std\\\",\\\"surp_d1_skew\\\",\\\"surp_d2_mean\\\",\\\"surp_d2_std\\\"]\\nTEXT_COLS = [\\\"ttr\\\",\\\"hapax_ratio\\\",\\\"self_bleu\\\",\\\"freq_kurtosis\\\",\\\"freq_entropy\\\",\\\"low_freq_ratio\\\"]\\nALL_FEAT_COLS = SURPRISAL_COLS + TEXT_COLS\\n\\nDOCS_PER_GEN = 1000\\nMAX_DEPTH = 5\\nN_BOOT = 10000\\nTHETA = 0.60\\nSEED = 42\\nOUT_DIR = Path(\\\"/root/autodl-tmp/gen-depth-contamination/results/exp_multi_source_arxiv\\\")\\n\\n\\ndef load_features_csv(path, feat_cols):\\n    with open(path) as f:\\n        rows = list(csv.DictReader(f))\\n    doc_ids_raw = [r[\\\"doc_id\\\"] for r in rows]\\n    try:\\n        doc_ids = np.array([int(d) for d in doc_ids_raw])\\n    except (ValueError, TypeError):\\n        uid_map = {d: i for i, d in enumerate(sorted(set(doc_ids_raw)))}\\n        doc_ids = np.array([uid_map[d] for d in doc_ids_raw])\\n    depths = np.array([int(r[\\\"depth\\\"]) for r in rows])\\n    X = np.array(\\n        [[float(r[c]) if r[c] not in (\\\"\\\", \\\"nan\\\") else np.nan for c in feat_cols] for r in rows]\\n    )\\n    col_means = np.nanmean(X, axis=0)\\n    for j in range(X.shape[1]):\\n        mask = np.isnan(X[:, j])\\n        if mask.any():\\n            X[mask, j] = col_means[j]\\n    return X, depths, doc_ids\\n\\n\\ndef load_text_features(csv_path):\\n    with open(csv_path) as f:\\n        rows = list(csv.DictReader(f))\\n    result = {}\\n    for r in rows:\\n        key = (str(r[\\\"doc_id\\\"]), int(r[\\\"depth\\\"]))\\n        result[key] = {col: r[col] for col in TEXT_COLS}\\n    return result\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef sample_and_merge(all_data, feat_cols, rng):\\n    all_X, all_depths, all_doc_ids, all_gen_ids = [], [], [], []\\n    doc_offset = 0\\n    for gen_idx, (gen_name, data) in enumerate(all_data.items()):\\n        X, depths, doc_ids = data[\\\"X\\\"], data[\\\"depths\\\"], data[\\\"doc_ids\\\"]\\n        unique_docs = np.unique(doc_ids)\\n        n_sample = min(DOCS_PER_GEN, len(unique_docs))\\n        sampled_docs = rng.choice(unique_docs, size=n_sample, replace=False)\\n        sampled_set = set(sampled_docs.tolist())\\n        mask = np.array([d in sampled_set for d in doc_ids])\\n\\n        all_X.append(X[mask])\\n        all_depths.append(depths[mask])\\n        all_doc_ids.append(doc_ids[mask] + doc_offset)\\n        all_gen_ids.append(np.full(mask.sum(), gen_idx))\\n        doc_offset += int(unique_docs.max()) + 1\\n        print(f\\\"  {gen_name}: sampled {n_sample} docs -> {mask.sum()} rows\\\", flush=True)\\n\\n    X = np.vstack(all_X)\\n    depths = np.concatenate(all_depths)\\n    doc_ids = np.concatenate(all_doc_ids)\\n    gen_ids = np.concatenate(all_gen_ids)\\n    return X, depths, doc_ids, gen_ids\\n\\n\\ndef get_oof_predictions(\\n\\n... [截断: 输出过长，省略 4811 字符] ...\\n\\n:\\n            logits = model(**inputs).logits\\n        log_probs = torch.log_softmax(logits, dim=-1)\\n        input_ids = inputs[\\\"input_ids\\\"]\\n        for i in range(len(batch_texts)):\\n            attn_mask = inputs[\\\"attention_mask\\\"][i].bool()\\n            seq_len = attn_mask.sum().item()\\n            if seq_len < 3:\\n                all_features.append([0.0] * 9)\\n                continue\\n            offset = input_ids.shape[1] - seq_len\\n            token_ids = input_ids[i, offset:]\\n            token_log_probs = []\\n            for t in range(1, seq_len):\\n                lp = log_probs[i, offset + t - 1, token_ids[t]].item()\\n                token_log_probs.append(-lp)\\n            arr = np.array(token_log_probs)\\n            if len(arr) < 3:\\n                all_features.append([0.0] * 9)\\n                continue\\n            d1 = np.diff(arr)\\n            d2 = np.diff(d1) if len(d1) > 1 else np.array([0.0])\\n            feats = [\\n                float(np.mean(arr)), float(np.std(arr)),\\n                float(sp_stats.skew(arr)), float(sp_stats.kurtosis(arr)),\\n                float(np.mean(d1)), float(np.std(d1)),\\n                float(sp_stats.skew(d1)) if len(d1) >= 3 else 0.0,\\n                float(np.mean(d2)), float(np.std(d2)),\\n            ]\\n            all_features.append(feats)\\n        torch.cuda.empty_cache()\\n    return all_features\\n\\n\\ndef run_unified_scorer():\\n    import torch\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60, flush=True)\\n    print(\\\"  PATH B: arXiv Unified Qwen2.5-1.5B Scorer (15D OBD features)\\\", flush=True)\\n    print(\\\"=\\\" * 60, flush=True)\\n\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\n    log.info(f\\\"Loading scorer: {SCORER_PATH}\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(SCORER_PATH, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n        tokenizer.pad_token_id = tokenizer.eos_token_id\\n    tokenizer.padding_side = \\\"left\\\"\\n    model = AutoModelForCausalLM.from_pretrained(\\n        SCORER_PATH, torch_dtype=torch.float16, device_map=\\\"auto\\\", trust_remote_code=True\\n    )\\n    model.eval()\\n    log.info(f\\\"Scorer loaded on {model.device}\\\")\\n\\n    all_gen_features = {}\\n    for gen_name, src in SOURCES.items():\\n        data_dir = src[\\\"data_dir\\\"]\\n        csv_path = src[\\\"features_csv\\\"]\\n        needs_rescore = src[\\\"needs_rescore\\\"]\\n\\n        log.info(f\\\"\\\\n{'='*40}\\\")\\n        log.info(f\\\"Processing {gen_name} (needs_rescore={needs_rescore})\\\")\\n\\n        text_feats = load_text_features(csv_path)\\n        log.info(f\\\"  Loaded {len(text_feats)} text-based feature rows\\\")\\n\\n        if needs_rescore:\\n            rows = []\\n            for d in range(MAX_DEPTH + 1):\\n                records = load_jsonl(data_dir / f\\\"depth_{d}.jsonl\\\")\\n                texts = [r[\\\"text\\\"] for r in records]\\n                doc_ids_list = [r[\\\"doc_id\\\"] for r in records]\\n                log.info(f\\\"  depth {d}: computing surprisal for {len(texts)} texts\\\")\\n                surp_feats = compute_surprisal_features(model, tokenizer, texts, batch_size=16)\\n                for i in range(len(texts)):\\n                    key = (str(doc_ids_list[i]), d)\\n                    tf = text_feats.get(key, {col: \\\"0.0\\\" for col in TEXT_COLS})\\n                    row = {\\\"doc_id\\\": doc_ids_list[i], \\\"depth\\\": d}\\n                    for j, col in enumerate(SURPRISAL_COLS):\\n                        row[col] = surp_feats[i][j]\\n                    for col in TEXT_COLS:\\n                        row[col] = float(tf[col]) if tf[col] not in (\\\"\\\", \\\"nan\\\") else 0.0\\n                    rows.append(row)\\n\\n            feat_path = OUT_DIR / f\\\"features_{gen_name}_qwen_scorer.csv\\\"\\n            with open(feat_path, \\\"w\\\", newline=\\\"\\\") as f:\\n                writer = csv.DictWriter(f, fieldnames=[\\\"doc_id\\\", \\\"depth\\\"] + ALL_FEAT_COLS)\\n                writer.writeheader()\\n                writer.writerows(rows)\\n            log.info(f\\\"  Saved {len(rows)} rows to {feat_path}\\\")\\n        else:\\n            with open(csv_path) as f:\\n                rows = list(csv.DictReader(f))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "c94851ff-f82a-43f4-940c-cb22cac0f2db",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\narXiv Multi-Source Detection: Vocab-Only + Unified Qwen2.5-1.5B Scorer.\\\\nParallels C4 multi-source experiments but on arXiv domain.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport csv\\\\nimport json\\\\nimport time\\\\nimport logging\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport lightgbm as lgb\\\\nfrom sklearn.model_selection import GroupKFold\\\\nfrom sklearn.metrics import roc_auc_score\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\", datefmt=\\\\\\\"%H:%M:%S\\\\\\\")\\\\nlog = logging.getLogger(__name__)\\\\n\\\\nSCORER_PATH = \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\\\\\"\\\\nSOURCES = {\\\\n    \\\\\\\"qwen1b5\\\\\\\": {\\\\n        \\\\\\\"data_dir\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv\\\\\\\"),\\\\n        \\\\\\\"features_csv\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/features.csv\\\\\\\"),\\\\n        \\\\\\\"needs_rescore\\\\\\\": False,\\\\n    },\\\\n    \\\\\\\"pythia1b4\\\\\\\": {\\\\n        \\\\\\\"data_dir\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv\\\\\\\"),\\\\n        \\\\\\\"features_csv\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/features.csv\\\\\\\"),\\\\n        \\\\\\\"needs_rescore\\\\\\\": True,\\\\n    },\\\\n    \\\\\\\"llama8b\\\\\\\": {\\\\n        \\\\\\\"data_dir\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b\\\\\\\"),\\\\n        \\\\\\\"features_csv\\\\\\\": Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b/features.csv\\\\\\\"),\\\\n        \\\\\\\"needs_rescore\\\\\\\": True,\\\\n    },\\\\n}\\\\n\\\\nSURPRISAL_COLS = [\\\\\\\"surp_mean\\\\\\\",\\\\\\\"surp_std\\\\\\\",\\\\\\\"surp_skew\\\\\\\",\\\\\\\"surp_kurt\\\\\\\",\\\\\\\"surp_d1_mean\\\\\\\",\\\\\\\"surp_d1_std\\\\\\\",\\\\\\\"surp_d1_skew\\\\\\\",\\\\\\\"surp_d2_mean\\\\\\\",\\\\\\\"surp_d2_std\\\\\\\"]\\\\nTEXT_COLS = [\\\\\\\"ttr\\\\\\\",\\\\\\\"hapax_ratio\\\\\\\",\\\\\\\"self_bleu\\\\\\\",\\\\\\\"freq_kurtosis\\\\\\\",\\\\\\\"freq_entropy\\\\\\\",\\\\\\\"low_freq_ratio\\\\\\\"]\\\\nALL_FEAT_COLS = SURPRISAL_COLS + TEXT_COLS\\\\n\\\\nDOCS_PER_GEN = 1000\\\\nMAX_DEPTH = 5\\\\nN_BOOT = 10000\\\\nTHETA = 0.60\\\\nSEED = 42\\\\nOUT_DIR = Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination/results/exp_multi_source_arxiv\\\\\\\")\\\\n\\\\n\\\\ndef load_features_csv(path, feat_cols):\\\\n    with open(path) as f:\\\\n        rows = list(csv.DictReader(f))\\\\n    doc_ids_raw = [r[\\\\\\\"doc_id\\\\\\\"] for r in rows]\\\\n    try:\\\\n        doc_ids = np.array([int(d) for d in doc_ids_raw])\\\\n    except (ValueError, TypeError):\\\\n        uid_map = {d: i for i, d in enumerate(sorted(set(doc_ids_raw)))}\\\\n        doc_ids = np.array([uid_map[d] for d in doc_ids_raw])\\\\n    depths = np.array([int(r[\\\\\\\"depth\\\\\\\"]) for r in rows])\\\\n    X = np.array(\\\\n        [[float(r[c]) if r[c] not in (\\\\\\\"\\\\\\\", \\\\\\\"nan\\\\\\\") else np.nan for c in feat_cols] for r in rows]\\\\n    )\\\\n    col_means = np.nanmean(X, axis=0)\\\\n    for j in range(X.shape[1]):\\\\n        mask = np.isnan(X[:, j])\\\\n        if mask.any():\\\\n            X[mask, j] = col_means[j]\\\\n    return X, depths, doc_ids\\\\n\\\\n\\\\ndef load_text_features(csv_path):\\\\n    with open(csv_path) as f:\\\\n        rows = list(csv.DictReader(f))\\\\n    result = {}\\\\n    for r in rows:\\\\n        key = (str(r[\\\\\\\"doc_id\\\\\\\"]), int(r[\\\\\\\"depth\\\\\\\"]))\\\\n        result[key] = {col: r[col] for col in TEXT_COLS}\\\\n    return result\\\\n\\\\n\\\\ndef load_jsonl(path):\\\\n    with open(path) as f:\\\\n        return [json.loads(line) for line in f]\\\\n\\\\n\\\\ndef sample_and_merge(all_data, feat_cols, rng):\\\\n    all_X, all_depths, all_doc_ids, all_gen_ids = [], [], [], []\\\\n    doc_offset = 0\\\\n    for gen_idx, (gen_name, data) in enumerate(all_data.items()):\\\\n        X, depths, doc_ids = data[\\\\\\\"X\\\\\\\"], data[\\\\\\\"depths\\\\\\\"], data[\\\\\\\"doc_ids\\\\\\\"]\\\\n        unique_docs = np.unique(doc_ids)\\\\n        n_sample = min(DOCS_PER_GEN, len(unique_docs))\\\\n        sampled_docs = rng.choice(unique_docs, size=n_sample, replace=False)\\\\n        sampled_set = set(sampled_docs.tolist())\\\\n        mask = np.array([d in sampled_set for d in doc_ids])\\\\n\\\\n        all_X.append(X[mask])\\\\n        all_depths.append(depths[mask])\\\\n        all_doc_ids.append(doc_ids[mask] + doc_offset)\\\\n        all_gen_ids.append(np.full(mask.sum(), gen_idx))\\\\n        doc_offset += int(unique_docs.max()) + 1\\\\n        print(f\\\\\\\"  {gen_name}: sampled {n_sample} docs -> {mask.sum()} rows\\\\\\\", flush=True)\\\\n\\\\n    X = np.vstack(all_X)\\\\n    depths = np.concatenate(all_depths)\\\\n    doc_ids = np.concatenate(all_doc_ids)\\\\n    gen_ids = np.concatenate(all_gen_ids)\\\\n    return X, depths, doc_ids, gen_ids\\\\n\\\\n\\\\ndef get_oof_predictions(\\\\n\\\\n... [截断: 输出过长，省略 4811 字符] ...\\\\n\\\\n:\\\\n            logits = model(**inputs).logits\\\\n        log_probs = torch.log_softmax(logits, dim=-1)\\\\n        input_ids = inputs[\\\\\\\"input_ids\\\\\\\"]\\\\n        for i in range(len(batch_texts)):\\\\n            attn_mask = inputs[\\\\\\\"attention_mask\\\\\\\"][i].bool()\\\\n            seq_len = attn_mask.sum().item()\\\\n            if seq_len < 3:\\\\n                all_features.append([0.0] * 9)\\\\n                continue\\\\n            offset = input_ids.shape[1] - seq_len\\\\n            token_ids = input_ids[i, offset:]\\\\n            token_log_probs = []\\\\n            for t in range(1, seq_len):\\\\n                lp = log_probs[i, offset + t - 1, token_ids[t]].item()\\\\n                token_log_probs.append(-lp)\\\\n            arr = np.array(token_log_probs)\\\\n            if len(arr) < 3:\\\\n                all_features.append([0.0] * 9)\\\\n                continue\\\\n            d1 = np.diff(arr)\\\\n            d2 = np.diff(d1) if len(d1) > 1 else np.array([0.0])\\\\n            feats = [\\\\n                float(np.mean(arr)), float(np.std(arr)),\\\\n                float(sp_stats.skew(arr)), float(sp_stats.kurtosis(arr)),\\\\n                float(np.mean(d1)), float(np.std(d1)),\\\\n                float(sp_stats.skew(d1)) if len(d1) >= 3 else 0.0,\\\\n                float(np.mean(d2)), float(np.std(d2)),\\\\n            ]\\\\n            all_features.append(feats)\\\\n        torch.cuda.empty_cache()\\\\n    return all_features\\\\n\\\\n\\\\ndef run_unified_scorer():\\\\n    import torch\\\\n\\\\n    print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60, flush=True)\\\\n    print(\\\\\\\"  PATH B: arXiv Unified Qwen2.5-1.5B Scorer (15D OBD features)\\\\\\\", flush=True)\\\\n    print(\\\\\\\"=\\\\\\\" * 60, flush=True)\\\\n\\\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\\\n    log.info(f\\\\\\\"Loading scorer: {SCORER_PATH}\\\\\\\")\\\\n    tokenizer = AutoTokenizer.from_pretrained(SCORER_PATH, trust_remote_code=True)\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n        tokenizer.pad_token_id = tokenizer.eos_token_id\\\\n    tokenizer.padding_side = \\\\\\\"left\\\\\\\"\\\\n    model = AutoModelForCausalLM.from_pretrained(\\\\n        SCORER_PATH, torch_dtype=torch.float16, device_map=\\\\\\\"auto\\\\\\\", trust_remote_code=True\\\\n    )\\\\n    model.eval()\\\\n    log.info(f\\\\\\\"Scorer loaded on {model.device}\\\\\\\")\\\\n\\\\n    all_gen_features = {}\\\\n    for gen_name, src in SOURCES.items():\\\\n        data_dir = src[\\\\\\\"data_dir\\\\\\\"]\\\\n        csv_path = src[\\\\\\\"features_csv\\\\\\\"]\\\\n        needs_rescore = src[\\\\\\\"needs_rescore\\\\\\\"]\\\\n\\\\n        log.info(f\\\\\\\"\\\\\\\\n{'='*40}\\\\\\\")\\\\n        log.info(f\\\\\\\"Processing {gen_name} (needs_rescore={needs_rescore})\\\\\\\")\\\\n\\\\n        text_feats = load_text_features(csv_path)\\\\n        log.info(f\\\\\\\"  Loaded {len(text_feats)} text-based feature rows\\\\\\\")\\\\n\\\\n        if needs_rescore:\\\\n            rows = []\\\\n            for d in range(MAX_DEPTH + 1):\\\\n                records = load_jsonl(data_dir / f\\\\\\\"depth_{d}.jsonl\\\\\\\")\\\\n                texts = [r[\\\\\\\"text\\\\\\\"] for r in records]\\\\n                doc_ids_list = [r[\\\\\\\"doc_id\\\\\\\"] for r in records]\\\\n                log.info(f\\\\\\\"  depth {d}: computing surprisal for {len(texts)} texts\\\\\\\")\\\\n                surp_feats = compute_surprisal_features(model, tokenizer, texts, batch_size=16)\\\\n                for i in range(len(texts)):\\\\n                    key = (str(doc_ids_list[i]), d)\\\\n                    tf = text_feats.get(key, {col: \\\\\\\"0.0\\\\\\\" for col in TEXT_COLS})\\\\n                    row = {\\\\\\\"doc_id\\\\\\\": doc_ids_list[i], \\\\\\\"depth\\\\\\\": d}\\\\n                    for j, col in enumerate(SURPRISAL_COLS):\\\\n                        row[col] = surp_feats[i][j]\\\\n                    for col in TEXT_COLS:\\\\n                        row[col] = float(tf[col]) if tf[col] not in (\\\\\\\"\\\\\\\", \\\\\\\"nan\\\\\\\") else 0.0\\\\n                    rows.append(row)\\\\n\\\\n            feat_path = OUT_DIR / f\\\\\\\"features_{gen_name}_qwen_scorer.csv\\\\\\\"\\\\n            with open(feat_path, \\\\\\\"w\\\\\\\", newline=\\\\\\\"\\\\\\\") as f:\\\\n                writer = csv.DictWriter(f, fieldnames=[\\\\\\\"doc_id\\\\\\\", \\\\\\\"depth\\\\\\\"] + ALL_FEAT_COLS)\\\\n                writer.writeheader()\\\\n                writer.writerows(rows)\\\\n            log.info(f\\\\\\\"  Saved {len(rows)} rows to {feat_path}\\\\\\\")\\\\n        else:\\\\n            with open(csv_path) as f:\\\\n                rows = list(csv.DictReader(f))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\narXiv Multi-Source Detection: Vocab-Only + Unified Qwen2.5-1.5B Scorer.\\nParallels C4 multi-source experiments but on arXiv domain.\\n\\\"\\\"\\\"\\nimport csv\\nimport json\\nimport time\\nimport logging\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport lightgbm as lgb\\nfrom sklearn.model_selection import GroupKFold\\nfrom sklearn.metrics import roc_auc_score\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\", datefmt=\\\"%H:%M:%S\\\")\\nlog = logging.getLogger(__name__)\\n\\nSCORER_PATH = \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\\nSOURCES = {\\n    \\\"qwen1b5\\\": {\\n        \\\"data_dir\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv\\\"),\\n        \\\"features_csv\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/features.csv\\\"),\\n        \\\"needs_rescore\\\": False,\\n    },\\n    \\\"pythia1b4\\\": {\\n        \\\"data_dir\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv\\\"),\\n        \\\"features_csv\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/features.csv\\\"),\\n        \\\"needs_rescore\\\": True,\\n    },\\n    \\\"llama8b\\\": {\\n        \\\"data_dir\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b\\\"),\\n        \\\"features_csv\\\": Path(\\\"/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_llama8b/features.csv\\\"),\\n        \\\"needs_rescore\\\": True,\\n    },\\n}\\n\\nSURPRISAL_COLS = [\\\"surp_mean\\\",\\\"surp_std\\\",\\\"surp_skew\\\",\\\"surp_kurt\\\",\\\"surp_d1_mean\\\",\\\"surp_d1_std\\\",\\\"surp_d1_skew\\\",\\\"surp_d2_mean\\\",\\\"surp_d2_std\\\"]\\nTEXT_COLS = [\\\"ttr\\\",\\\"hapax_ratio\\\",\\\"self_bleu\\\",\\\"freq_kurtosis\\\",\\\"freq_entropy\\\",\\\"low_freq_ratio\\\"]\\nALL_FEAT_COLS = SURPRISAL_COLS + TEXT_COLS\\n\\nDOCS_PER_GEN = 1000\\nMAX_DEPTH = 5\\nN_BOOT = 10000\\nTHETA = 0.60\\nSEED = 42\\nOUT_DIR = Path(\\\"/root/autodl-tmp/gen-depth-contamination/results/exp_multi_source_arxiv\\\")\\n\\n\\ndef load_features_csv(path, feat_cols):\\n    with open(path) as f:\\n        rows = list(csv.DictReader(f))\\n    doc_ids_raw = [r[\\\"doc_id\\\"] for r in rows]\\n    try:\\n        doc_ids = np.array([int(d) for d in doc_ids_raw])\\n    except (ValueError, TypeError):\\n        uid_map = {d: i for i, d in enumerate(sorted(set(doc_ids_raw)))}\\n        doc_ids = np.array([uid_map[d] for d in doc_ids_raw])\\n    depths = np.array([int(r[\\\"depth\\\"]) for r in rows])\\n    X = np.array(\\n        [[float(r[c]) if r[c] not in (\\\"\\\", \\\"nan\\\") else np.nan for c in feat_cols] for r in rows]\\n    )\\n    col_means = np.nanmean(X, axis=0)\\n    for j in range(X.shape[1]):\\n        mask = np.isnan(X[:, j])\\n        if mask.any():\\n            X[mask, j] = col_means[j]\\n    return X, depths, doc_ids\\n\\n\\ndef load_text_features(csv_path):\\n    with open(csv_path) as f:\\n        rows = list(csv.DictReader(f))\\n    result = {}\\n    for r in rows:\\n        key = (str(r[\\\"doc_id\\\"]), int(r[\\\"depth\\\"]))\\n        result[key] = {col: r[col] for col in TEXT_COLS}\\n    return result\\n\\n\\ndef load_jsonl(path):\\n    with open(path) as f:\\n        return [json.loads(line) for line in f]\\n\\n\\ndef sample_and_merge(all_data, feat_cols, rng):\\n    all_X, all_depths, all_doc_ids, all_gen_ids = [], [], [], []\\n    doc_offset = 0\\n    for gen_idx, (gen_name, data) in enumerate(all_data.items()):\\n        X, depths, doc_ids = data[\\\"X\\\"], data[\\\"depths\\\"], data[\\\"doc_ids\\\"]\\n        unique_docs = np.unique(doc_ids)\\n        n_sample = min(DOCS_PER_GEN, len(unique_docs))\\n        sampled_docs = rng.choice(unique_docs, size=n_sample, replace=False)\\n        sampled_set = set(sampled_docs.tolist())\\n        mask = np.array([d in sampled_set for d in doc_ids])\\n\\n        all_X.append(X[mask])\\n        all_depths.append(depths[mask])\\n        all_doc_ids.append(doc_ids[mask] + doc_offset)\\n        all_gen_ids.append(np.full(mask.sum(), gen_idx))\\n        doc_offset += int(unique_docs.max()) + 1\\n        print(f\\\"  {gen_name}: sampled {n_sample} docs -> {mask.sum()} rows\\\", flush=True)\\n\\n    X = np.vstack(all_X)\\n    depths = np.concatenate(all_depths)\\n    doc_ids = np.concatenate(all_doc_ids)\\n    gen_ids = np.concatenate(all_gen_ids)\\n    return X, depths, doc_ids, gen_ids\\n\\n\\ndef get_oof_predictions(\\n\\n... [截断: 输出过长，省略 4811 字符] ...\\n\\n:\\n            logits = model(**inputs).logits\\n        log_probs = torch.log_softmax(logits, dim=-1)\\n        input_ids = inputs[\\\"input_ids\\\"]\\n        for i in range(len(batch_texts)):\\n            attn_mask = inputs[\\\"attention_mask\\\"][i].bool()\\n            seq_len = attn_mask.sum().item()\\n            if seq_len < 3:\\n                all_features.append([0.0] * 9)\\n                continue\\n            offset = input_ids.shape[1] - seq_len\\n            token_ids = input_ids[i, offset:]\\n            token_log_probs = []\\n            for t in range(1, seq_len):\\n                lp = log_probs[i, offset + t - 1, token_ids[t]].item()\\n                token_log_probs.append(-lp)\\n            arr = np.array(token_log_probs)\\n            if len(arr) < 3:\\n                all_features.append([0.0] * 9)\\n                continue\\n            d1 = np.diff(arr)\\n            d2 = np.diff(d1) if len(d1) > 1 else np.array([0.0])\\n            feats = [\\n                float(np.mean(arr)), float(np.std(arr)),\\n                float(sp_stats.skew(arr)), float(sp_stats.kurtosis(arr)),\\n                float(np.mean(d1)), float(np.std(d1)),\\n                float(sp_stats.skew(d1)) if len(d1) >= 3 else 0.0,\\n                float(np.mean(d2)), float(np.std(d2)),\\n            ]\\n            all_features.append(feats)\\n        torch.cuda.empty_cache()\\n    return all_features\\n\\n\\ndef run_unified_scorer():\\n    import torch\\n\\n    print(\\\"\\\\n\\\" + \\\"=\\\" * 60, flush=True)\\n    print(\\\"  PATH B: arXiv Unified Qwen2.5-1.5B Scorer (15D OBD features)\\\", flush=True)\\n    print(\\\"=\\\" * 60, flush=True)\\n\\n    from transformers import AutoModelForCausalLM, AutoTokenizer\\n    log.info(f\\\"Loading scorer: {SCORER_PATH}\\\")\\n    tokenizer = AutoTokenizer.from_pretrained(SCORER_PATH, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n        tokenizer.pad_token_id = tokenizer.eos_token_id\\n    tokenizer.padding_side = \\\"left\\\"\\n    model = AutoModelForCausalLM.from_pretrained(\\n        SCORER_PATH, torch_dtype=torch.float16, device_map=\\\"auto\\\", trust_remote_code=True\\n    )\\n    model.eval()\\n    log.info(f\\\"Scorer loaded on {model.device}\\\")\\n\\n    all_gen_features = {}\\n    for gen_name, src in SOURCES.items():\\n        data_dir = src[\\\"data_dir\\\"]\\n        csv_path = src[\\\"features_csv\\\"]\\n        needs_rescore = src[\\\"needs_rescore\\\"]\\n\\n        log.info(f\\\"\\\\n{'='*40}\\\")\\n        log.info(f\\\"Processing {gen_name} (needs_rescore={needs_rescore})\\\")\\n\\n        text_feats = load_text_features(csv_path)\\n        log.info(f\\\"  Loaded {len(text_feats)} text-based feature rows\\\")\\n\\n        if needs_rescore:\\n            rows = []\\n            for d in range(MAX_DEPTH + 1):\\n                records = load_jsonl(data_dir / f\\\"depth_{d}.jsonl\\\")\\n                texts = [r[\\\"text\\\"] for r in records]\\n                doc_ids_list = [r[\\\"doc_id\\\"] for r in records]\\n                log.info(f\\\"  depth {d}: computing surprisal for {len(texts)} texts\\\")\\n                surp_feats = compute_surprisal_features(model, tokenizer, texts, batch_size=16)\\n                for i in range(len(texts)):\\n                    key = (str(doc_ids_list[i]), d)\\n                    tf = text_feats.get(key, {col: \\\"0.0\\\" for col in TEXT_COLS})\\n                    row = {\\\"doc_id\\\": doc_ids_list[i], \\\"depth\\\": d}\\n                    for j, col in enumerate(SURPRISAL_COLS):\\n                        row[col] = surp_feats[i][j]\\n                    for col in TEXT_COLS:\\n                        row[col] = float(tf[col]) if tf[col] not in (\\\"\\\", \\\"nan\\\") else 0.0\\n                    rows.append(row)\\n\\n            feat_path = OUT_DIR / f\\\"features_{gen_name}_qwen_scorer.csv\\\"\\n            with open(feat_path, \\\"w\\\", newline=\\\"\\\") as f:\\n                writer = csv.DictWriter(f, fieldnames=[\\\"doc_id\\\", \\\"depth\\\"] + ALL_FEAT_COLS)\\n                writer.writeheader()\\n                writer.writerows(rows)\\n            log.info(f\\\"  Saved {len(rows)} rows to {feat_path}\\\")\\n        else:\\n            with open(csv_path) as f:\\n                rows = list(csv.DictReader(f))\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 87_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a complete understanding. Let me summarize:
+
+## Current State
+
+### Data Available
+| Generator | Domain | Data Dir | Depths | Docs | Features | Cross-scored? |
+|-----------|--------|----------|--------|------|----------|---------------|
+| Qwen2.5-1.5B | arXiv | exp_024_arxiv | 0-5 | 2200 | Yes | Self (Qwen) |
+| Pythia-1.4B | arXiv | exp_025_pythia_arxiv | 0-5 | 2200 | Yes (self) | Rescored in multi_source |
+
+
+| OLMo-1B | arXiv | exp_arXiv_olmo | 0-5 | 2200 | Yes (self) | No |
+| LLaMA-8B | arXiv | exp_arXiv_llama8b | 0-5 | ? | Yes (self) | Rescored in multi_source |
+
+### Results Available
+- **exp_024_arxiv**: K*=3 (single-model, Qwen self-scored)
+- **exp_025_pythia_arxiv**: K*=3 (Pythia cross-scored with Qwen)
+- **exp_arXiv_olmo**: K*=1 (OLMo self-scored)
+- **exp_multi_source_arxiv**: K*=3 (qwen+pythia+llama8b, unified Qwen scorer)
+
+The current multi-source setup mixes size classes with LLaMA-8B alongside the smaller models, but I need to swap it out for OLMo-1B to match the 1.5B-class pairing with Pythia. I'll need to create or modify the multi-source script to include OLMo with cross-scoring enabled so it gets rescored alongside the other models. with Qwen2.5-1.5B
+   - Runs pairwise AUC + bootstrap CI
+   - Outputs to `results/exp_arxiv_multi_source/`
+
+The simplest approach is to create a variant of `run_multi_source_arxiv.py` that includes OLMo as a 4th source. Since the task specifies Pythia-1.4B + OLMo-1B, I should focus on a 1.5B-class experiment with these two generators plus the original Qwen. I'll write a script using the existing template, setting SOURCES to include qwen (no rescore), pythia (already rescored from previous runs), and olmo (needs rescore), outputting to a new directory.
+
+Actually, I realize the Pythia features were already rescored in the previous run at `results/exp_multi_source_arxiv/features_pythia1b4_qwen_scorer.csv`, so I can reuse those. The most straightforward approach is to create `scripts/run_arxiv_multi_source_1b5.py` focused on the 1.5B-class models, which will be nearly identical to the existing script but with OLMo added to the sources and a different output directory.
+
+Writing the script... added and llama8b removed (since this experiment focuses on 1.5B-class models to match C4).
+
+Actually wait, I should think about what the user really wants. The task says:
+- **Generator models**: Pythia-1.4B + OLMo-1B（与 C4 实验一致的 1.5B 级别模型）
+- **目标**: 验证 Pythia/OLMo on arXiv 也得到 K*=3
+
+So the goal is to show that EACH of Pythia and OLMo individually get K*=3 on arXiv (not just in a multi-source pooled experiment). The exp_025_pythia_arxiv already shows this for Pythia. For OLMo, we need to cross-score and check.
+
+Additionally, the multi-source pooled experiment should include these models. I need to structure this as: cross-score OLMo's arXiv data with Qwen2.5-1.5B if that hasn't been done yet, compute per-model pairwise AUC to get individual K* values for each model, run a pooled multi-source pairwise AUC across all sources, and bootstrap confidence intervals for everything. Let me also verify whether the Pythia cross-scored features are already available from the previous multi-source run.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "0da89ffc-a774-42f4-88a5-80e37efd5228",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DqVsgtaECHwfbGpHVzUQHt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3616,
+      "cache_read_input_tokens": 60725,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3616
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 88_
+
+现在我有完整的画面了。让我创建脚本。
+
+**现状总结**：
+- Pythia arXiv: 数据完整（depth 0-5, 2200 docs），已 cross-score → K*=3 ✓
+- OLMo arXiv: 数据完整（depth 0-5, 2200 docs），但只有自评（K*=1），**需要 Qwen cross-scoring**
+- 已有的 `run_multi_source_arxiv.py` 用了 qwen+pythia+llama8b，缺 OLMo
+- Pythia cross-scored features 已存在于 `results/exp_multi_source_arxiv/features_pythia1b4_qwen_scorer.csv`
+
+创建脚本，添加 OLMo cross-scoring + 1.5B-class multi-source detection。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "10243bc4-6b77-44dd-80f8-45534ddee840",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DqVsgtaECHwfbGpHVzUQHt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3616,
+      "cache_read_input_tokens": 60725,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3616
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017RieiUSUomdi3DGHtiXNiQ`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "wc -l /root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_arxiv.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "c1f17a03-2297-4db1-97fa-184c84f62649",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DqVsgtaECHwfbGpHVzUQHt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3616,
+      "cache_read_input_tokens": 60725,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3616
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-24T08:51:32.116Z_
+
+<details><summary>↩ Tool result · `toolu_017RieiUSUomdi3DGHtiXNiQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"481 /root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_arxiv.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "cf3cb2f9-7300-4a13-b403-52f253e21bd4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"481 /root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_arxiv.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"481 /root/autodl-tmp/gen-depth-contamination/scripts/run_multi_source_arxiv.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LDME5GXZL8WtaN5ro8taMd`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "wc -l /root/autodl-tmp/gen-depth-contamination/results/exp_multi_source_arxiv/features_pythia1b4_qwen_scorer.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "7e50de36-a9e5-4e3c-b8c2-4afc416ce638",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DqVsgtaECHwfbGpHVzUQHt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3616,
+      "cache_read_input_tokens": 60725,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3616
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-24T08:51:32.559Z_
+
+<details><summary>↩ Tool result · `toolu_01LDME5GXZL8WtaN5ro8taMd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"13201 /root/autodl-tmp/gen-depth-contamination/results/exp_multi_source_arxiv/features_pythia1b4_qwen_scorer.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "a0389e07-4ee2-48ef-8bad-bd54d52612c0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"13201 /root/autodl-tmp/gen-depth-contamination/results/exp_multi_source_arxiv/features_pythia1b4_qwen_scorer.csv\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"13201 /root/autodl-tmp/gen-depth-contamination/results/exp_multi_source_arxiv/features_pythia1b4_qwen_scorer.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 93_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Pythia cross-scored features exist (13201 lines = 2200 docs × 6 depths + 1 header). 
+
+Now I'll write the script. The plan is:
+
+1. **Per-model analysis**: For each of Pythia and OLMo, run pairwise AUC with bootstrap CI using Qwen cross-scored features
+2. **Multi-source pooled**: Pool all 3 models (Qwen, Pythia, OLMo) and run unified detection
+3. **Reuse**: Pythia cross-scored features from previous run, only need to cross-score OLMo
+
+
+4. **Script structure**: Building `scripts/run_arxiv_multi_source_1b5.py` that reuses existing Pythia features, cross-scores OLMo against Qwen2.5-1.5B, runs both per-model and pooled analyses, and saves results to `results/exp_arxiv_multi_source/`, adapting the existing multi-source script structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "51b71a2d-a5b2-4cb2-aff1-adadd08b17e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UyZJXPLyKn8ksbkTdAR4Cv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2060,
+      "cache_read_input_tokens": 64341,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2060
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01CtwqZjxGnaTeNoLqMeTywH`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat > /root/autodl-tmp/gen-depth-contamination/scripts/run_arxiv_multi_source_1b5.py << 'PYEOF'\n\"\"\"\narXiv Multi-Source K*=3 Verification: 1.5B-class generators.\nVerifies K*=3 holds across Qwen2.5-1.5B, Pythia-1.4B, OLMo-1B on arXiv.\nCross-scores all generators with Qwen2.5-1.5B (base) scorer.\nOutputs per-model K* and pooled multi-source K*.\n\"\"\"\nimport csv\nimport json\nimport time\nimport logging\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\nimport lightgbm as lgb\nfrom sklearn.model_selection import GroupKFold\nfrom sklearn.metrics import roc_auc_score\nfrom scipy import stats as sp_stats\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s [%(levelname)s] %(message)s\", datefmt=\"%H:%M:%S\")\nlog = logging.getLogger(__name__)\n\nSCORER_PATH = \"/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\"\nDATA_ROOT = Path(\"/root/autodl-tmp/gen-depth-contamination/data\")\nRESULTS_ROOT = Path(\"/root/autodl-tmp/gen-depth-contamination/results\")\n\nSOURCES = {\n    \"qwen1b5\": {\n        \"data_dir\": DATA_ROOT / \"exp_024_arxiv\",\n        \"features_csv\": DATA_ROOT / \"exp_024_arxiv\" / \"features.csv\",\n        \"needs_rescore\": False,\n    },\n    \"pythia1b4\": {\n        \"data_dir\": DATA_ROOT / \"exp_025_pythia_arxiv\",\n        \"features_csv\": DATA_ROOT / \"exp_025_pythia_arxiv\" / \"features.csv\",\n        \"cached_rescore\": RESULTS_ROOT / \"exp_multi_source_arxiv\" / \"features_pythia1b4_qwen_scorer.csv\",\n        \"needs_rescore\": True,\n    },\n    \"olmo1b\": {\n        \"data_dir\": DATA_ROOT / \"exp_arXiv_olmo\",\n        \"features_csv\": DATA_ROOT / \"exp_arXiv_olmo\" / \"features.csv\",\n        \"needs_rescore\": True,\n    },\n}\n\nSURPRISAL_COLS = [\"surp_mean\",\"surp_std\",\"surp_skew\",\"surp_kurt\",\"surp_d1_mean\",\"surp_d1_std\",\"surp_d1_skew\",\"surp_d2_mean\",\"surp_d2_std\"]\nTEXT_COLS = [\"ttr\",\"hapax_ratio\",\"self_bleu\",\"freq_kurtosis\",\"freq_entropy\",\"low_freq_ratio\"]\nALL_FEAT_COLS = SURPRISAL_COLS + TEXT_COLS\n\nDOCS_PER_GEN = 1000\nMAX_DEPTH = 5\nN_BOOT = 10000\nTHETA = 0.60\nSEED = 42\nOUT_DIR = RESULTS_ROOT / \"exp_arxiv_multi_source\"\nDRY_RUN = \"--dry-run\" in sys.argv\n\n\ndef load_jsonl(path):\n    with open(path) as f:\n        return [json.loads(line) for line in f]\n\n\ndef load_features_csv(path, feat_cols):\n    with open(path) as f:\n        rows = list(csv.DictReader(f))\n    doc_ids_raw = [r[\"doc_id\"] for r in rows]\n    try:\n        doc_ids = np.array([int(d) for d in doc_ids_raw])\n    except (ValueError, TypeError):\n        uid_map = {d: i for i, d in enumerate(sorted(set(doc_ids_raw)))}\n        doc_ids = np.array([uid_map[d] for d in doc_ids_raw])\n    depths = np.array([int(r[\"depth\"]) for r in rows])\n    X = np.array(\n        [[float(r[c]) if r[c] not in (\"\", \"nan\") else np.nan for c in feat_cols] for r in rows]\n    )\n    col_means = np.nanmean(X, axis=0)\n    for j in range(X.shape[1]):\n        mask = np.isnan(X[:, j])\n        if mask.any():\n            X[mask, j] = col_means[j]\n    return X, depths, doc_ids\n\n\ndef load_text_features(csv_path):\n    with open(csv_path) as f:\n        rows = list(csv.DictReader(f))\n    result = {}\n    for r in rows:\n        key = (str(r[\"doc_id\"]), int(r[\"depth\"]))\n        result[key] = {col: r[col] for col in TEXT_COLS}\n    return result\n\n\ndef compute_surprisal_features(model, tokenizer, texts, batch_size=16):\n    import torch\n    all_features = []\n    for start in range(0, len(texts), batch_size):\n        batch_texts = texts[start:start+batch_size]\n        inputs = tokenizer(batch_texts, return_tensors=\"pt\", padding=True, truncation=True, max_length=512)\n        inputs = {k: v.to(model.device) for k, v in inputs.items()}\n        with torch.no_grad():\n            logits = model(**inputs).logits\n        log_probs = torch.log_softmax(logits, dim=-1)\n        input_ids = inputs[\"input_ids\"]\n        for i in range(len(batch_texts)):\n            attn_mask = inputs[\"attention_mask\"][i].bool()\n            seq_len = attn_mask.sum().item()\n            if seq_len < 3:\n                all_features.append([0.0] * 9)\n                continue\n            offset = input_ids.shape[1] - seq_len\n            token_ids = input_ids[i, offset:]\n            token_log_probs = []\n            for t in range(1, seq_len):\n                lp = log_probs[i, offset + t - 1, token_ids[t]].item()\n                token_log_probs.append(-lp)\n            arr = np.array(token_log_probs)\n            if len(arr) < 3:\n                all_features.append([0.0] * 9)\n                continue\n            d1 = np.diff(arr)\n            d2 = np.diff(d1) if len(d1) > 1 else np.array([0.0])\n            feats = [\n                float(np.mean(arr)), float(np.std(arr)),\n                float(sp_stats.skew(arr)), float(sp_stats.kurtosis(arr)),\n                float(np.mean(d1)), float(np.std(d1)),\n                float(sp_stats.skew(d1)) if len(d1) >= 3 else 0.0,\n                float(np.mean(d2)), float(np.std(d2)),\n            ]\n            all_features.append(feats)\n        torch.cuda.empty_cache()\n    return all_features\n\n\ndef get_oof_predictions(X, y, groups):\n    gkf = GroupKFold(n_splits=5)\n    oof_proba = np.zeros(len(y))\n    fold_aucs = []\n    for train_idx, test_idx in gkf.split(X, y, groups=groups):\n        clf = lgb.LGBMClassifier(\n            n_estimators=200, max_depth=6, learning_rate=0.05,\n            num_leaves=31, verbose=-1, n_jobs=-1,\n        )\n        clf.fit(X[train_idx], y[train_idx])\n        proba = clf.predict_proba(X[test_idx])[:, 1]\n        oof_proba[test_idx] = proba\n        fold_aucs.append(roc_auc_score(y[test_idx], proba))\n    return oof_proba, fold_aucs\n\n\ndef bootstrap_ci(y, oof_proba, doc_ids, n_boot, rng):\n    unique_docs = np.unique(doc_ids)\n    n_docs = len(unique_docs)\n    doc_indices = [np.where(doc_ids == d)[0] for d in unique_docs]\n    point_auc = roc_auc_score(y, oof_proba)\n    boot_aucs = np.empty(n_boot)\n    for b in range(n_boot):\n        sampled = rng.randint(0, n_docs, size=n_docs)\n        indices = np.concatenate([doc_indices[s] for s in sampled])\n        try:\n            boot_aucs[b] = roc_auc_score(y[indices], oof_proba[indices])\n        except ValueError:\n            boot_aucs[b] = np.nan\n    boot_aucs = boot_aucs[~np.isnan(boot_aucs)]\n    ci_lower = float(np.percentile(boot_aucs, 2.5))\n    ci_upper = float(np.percentile(boot_aucs, 97.5))\n    return point_auc, ci_lower, ci_upper, boot_aucs\n\n\ndef run_pairwise(X, depths, doc_ids, label, gen_ids=None):\n    results = {}\n    for k in range(1, MAX_DEPTH + 1):\n        pair = f\"{k-1}v{k}\"\n        t0 = time.time()\n        mask = (depths == k - 1) | (depths == k)\n        X_pair = X[mask]\n        y_pair = (depths[mask] == k).astype(int)\n        doc_pair = doc_ids[mask]\n        if gen_ids is not None:\n            X_pair = np.hstack([X_pair, gen_ids[mask].reshape(-1, 1)])\n        rng = np.random.RandomState(SEED + k)\n        oof_proba, fold_aucs = get_oof_predictions(X_pair, y_pair, doc_pair)\n        point_auc, ci_lower, ci_upper, boot_aucs = bootstrap_ci(\n            y_pair, oof_proba, doc_pair, N_BOOT, rng\n        )\n        elapsed = time.time() - t0\n        print(f\"  {label} {pair}: AUC={point_auc:.4f}  CI=[{ci_lower:.4f}, {ci_upper:.4f}]  ({elapsed:.1f}s)\", flush=True)\n        results[pair] = {\n            \"auc\": round(point_auc, 4),\n            \"fold_aucs\": [round(a, 4) for a in fold_aucs],\n            \"ci_lower\": round(ci_lower, 4),\n            \"ci_upper\": round(ci_upper, 4),\n            \"boot_mean\": round(float(np.mean(boot_aucs)), 4),\n            \"boot_std\": round(float(np.std(boot_aucs)), 4),\n        }\n    return results\n\n\ndef compute_kstar(results, theta):\n    kstar = 0\n    for k in range(1, MAX_DEPTH + 1):\n        pair = f\"{k-1}v{k}\"\n        if results[pair][\"ci_lower\"] > theta:\n            kstar = k\n        else:\n            break\n    return kstar\n\n\ndef rescore_generator(gen_name, src, model, tokenizer):\n    \"\"\"Cross-score a generator's depth chain with Qwen scorer. Returns list of row dicts.\"\"\"\n    cached = src.get(\"cached_rescore\")\n    if cached and cached.exists():\n        log.info(f\"  Reusing cached cross-scored features: {cached}\")\n        with open(cached) as f:\n            return list(csv.DictReader(f))\n\n    data_dir = src[\"data_dir\"]\n    csv_path = src[\"features_csv\"]\n    text_feats = load_text_features(csv_path)\n    log.info(f\"  Loaded {len(text_feats)} text-based feature rows\")\n\n    rows = []\n    for d in range(MAX_DEPTH + 1):\n        records = load_jsonl(data_dir / f\"depth_{d}.jsonl\")\n        texts = [r[\"text\"] for r in records]\n        doc_ids_list = [r[\"doc_id\"] for r in records]\n        log.info(f\"  depth {d}: computing surprisal for {len(texts)} texts\")\n        surp_feats = compute_surprisal_features(model, tokenizer, texts, batch_size=16)\n        for i in range(len(texts)):\n            key = (str(doc_ids_list[i]), d)\n            tf = text_feats.get(key, {col: \"0.0\" for col in TEXT_COLS})\n            row = {\"doc_id\": doc_ids_list[i], \"depth\": d}\n            for j, col in enumerate(SURPRISAL_COLS):\n                row[col] = surp_feats[i][j]\n            for col in TEXT_COLS:\n                row[col] = float(tf[col]) if tf[col] not in (\"\", \"nan\") else 0.0\n            rows.append(row)\n\n    feat_path = OUT_DIR / f\"features_{gen_name}_qwen_scorer.csv\"\n    with open(feat_path, \"w\", newline=\"\") as f:\n        writer = csv.DictWriter(f, fieldnames=[\"doc_id\", \"depth\"] + ALL_FEAT_COLS)\n        writer.writeheader()\n        writer.writerows(rows)\n    log.info(f\"  Saved {len(rows)} rows to {feat_path}\")\n    return rows\n\n\ndef rows_to_arrays(feat_rows, feat_cols):\n    doc_ids_raw = [r[\"doc_id\"] for r in feat_rows]\n    try:\n        doc_ids = np.array([int(d) for d in doc_ids_raw])\n    except (ValueError, TypeError):\n        uid_map = {d: i for i, d in enumerate(sorted(set(doc_ids_raw)))}\n        doc_ids = np.array([uid_map[d] for d in doc_ids_raw])\n    depths = np.array([int(r[\"depth\"]) for r in feat_rows])\n    X = np.array([[float(r[c]) for c in feat_cols] for r in feat_rows])\n    col_means = np.nanmean(X, axis=0)\n    for j in range(X.shape[1]):\n        m = np.isnan(X[:, j])\n        if m.any():\n            X[m, j] = col_means[j]\n    return X, depths, doc_ids\n\n\ndef sample_and_merge(all_data, rng):\n    all_X, all_depths, all_doc_ids, all_gen_ids = [], [], [], []\n    doc_offset = 0\n    for gen_idx, (gen_name, data) in enumerate(all_data.items()):\n        X, depths, doc_ids = data[\"X\"], data[\"depths\"], data[\"doc_ids\"]\n        unique_docs = np.unique(doc_ids)\n        n_sample = min(DOCS_PER_GEN, len(unique_docs))\n        sampled_docs = rng.choice(unique_docs, size=n_sample, replace=False)\n        sampled_set = set(sampled_docs.tolist())\n        mask = np.array([d in sampled_set for d in doc_ids])\n        all_X.append(X[mask])\n        all_depths.append(depths[mask])\n        all_doc_ids.append(doc_ids[mask] + doc_offset)\n        all_gen_ids.append(np.full(mask.sum(), gen_idx))\n        doc_offset += int(unique_docs.max()) + 1\n        print(f\"  {gen_name}: sampled {n_sample} docs -> {mask.sum()} rows\", flush=True)\n    X = np.vstack(all_X)\n    depths = np.concatenate(all_depths)\n    doc_ids = np.concatenate(all_doc_ids)\n    gen_ids = np.concatenate(all_gen_ids)\n    return X, depths, doc_ids, gen_ids\n\n\ndef main():\n    t_start = time.time()\n    OUT_DIR.mkdir(parents=True, exist_ok=True)\n\n    if DRY_RUN:\n        print(\"=== DRY RUN ===\", flush=True)\n        for gen_name, src in SOURCES.items():\n            data_dir = src[\"data_dir\"]\n            csv_path = src[\"features_csv\"]\n            cached = src.get(\"cached_rescore\")\n            print(f\"\\n{gen_name}:\", flush=True)\n            print(f\"  data_dir exists: {data_dir.exists()}\", flush=True)\n            if data_dir.exists():\n                for d in range(MAX_DEPTH + 1):\n                    p = data_dir / f\"depth_{d}.jsonl\"\n                    if p.exists():\n                        n = sum(1 for _ in open(p))\n                        print(f\"  depth_{d}.jsonl: {n} docs\", flush=True)\n                    else:\n                        print(f\"  depth_{d}.jsonl: MISSING\", flush=True)\n            print(f\"  features_csv exists: {csv_path.exists()}\", flush=True)\n            print(f\"  needs_rescore: {src['needs_rescore']}\", flush=True)\n            if cached:\n                print(f\"  cached_rescore exists: {cached.exists()}\", flush=True)\n        print(f\"\\nScorer: {SCORER_PATH}\", flush=True)\n        print(f\"Output: {OUT_DIR}\", flush=True)\n        print(f\"Docs per gen: {DOCS_PER_GEN}, Max depth: {MAX_DEPTH}, Bootstrap: {N_BOOT}\", flush=True)\n        print(\"\\nEstimated time:\", flush=True)\n        print(\"  OLMo rescoring: ~10-15 min (2200 docs × 6 depths)\", flush=True)\n        print(\"  Per-model pairwise + bootstrap: ~5 min × 3 models\", flush=True)\n        print(\"  Pooled multi-source: ~5 min\", flush=True)\n        print(\"  Total: ~30-40 min\", flush=True)\n        return\n\n    # Phase 1: Load scorer and cross-score generators that need it\n    import torch\n    from transformers import AutoModelForCausalLM, AutoTokenizer\n\n    log.info(f\"Loading scorer: {SCORER_PATH}\")\n    tokenizer = AutoTokenizer.from_pretrained(SCORER_PATH, trust_remote_code=True)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n        tokenizer.pad_token_id = tokenizer.eos_token_id\n    tokenizer.padding_side = \"left\"\n    model = AutoModelForCausalLM.from_pretrained(\n        SCORER_PATH, torch_dtype=torch.float16, device_map=\"auto\", trust_remote_code=True\n    )\n    model.eval()\n    log.info(f\"Scorer loaded on {model.device}\")\n\n    all_gen_features = {}\n    for gen_name, src in SOURCES.items():\n        log.info(f\"\\n{'='*40}\")\n        log.info(f\"Processing {gen_name} (needs_rescore={src['needs_rescore']})\")\n\n        if src[\"needs_rescore\"]:\n            feat_rows = rescore_generator(gen_name, src, model, tokenizer)\n        else:\n            with open(src[\"features_csv\"]) as f:\n                feat_rows = list(csv.DictReader(f))\n            log.info(f\"  Reusing self-scored features ({gen_name} is scorer)\")\n\n        for r in feat_rows:\n            for col in ALL_FEAT_COLS:\n                r[col] = float(r[col]) if r[col] not in (\"\", \"nan\") else 0.0\n        all_gen_features[gen_name] = feat_rows\n\n    del model\n    torch.cuda.empty_cache()\n    import gc; gc.collect()\n    log.info(\"Scorer unloaded\")\n\n    # Phase 2: Per-model pairwise AUC\n    print(\"\\n\" + \"=\" * 60, flush=True)\n    print(\"  PER-MODEL ANALYSIS (Qwen cross-scored, 15D features)\", flush=True)\n    print(\"=\" * 60, flush=True)\n\n    per_model_results = {}\n    for gen_name, feat_rows in all_gen_features.items():\n        print(f\"\\n--- {gen_name} ---\", flush=True)\n        X, depths, doc_ids = rows_to_arrays(feat_rows, ALL_FEAT_COLS)\n        results = run_pairwise(X, depths, doc_ids, gen_name)\n        kstar = compute_kstar(results, THETA)\n        print(f\"  K*(theta={THETA}) = {kstar}\", flush=True)\n        per_model_results[gen_name] = {\"pairs\": results, \"kstar\": kstar}\n\n    # Phase 3: Pooled multi-source\n    print(\"\\n\" + \"=\" * 60, flush=True)\n    print(\"  POOLED MULTI-SOURCE (3 generators, unified Qwen scorer)\", flush=True)\n    print(\"=\" * 60, flush=True)\n\n    all_data = {}\n    for gen_name, feat_rows in all_gen_features.items():\n        X, depths, doc_ids = rows_to_arrays(feat_rows, ALL_FEAT_COLS)\n        all_data[gen_name] = {\"X\": X, \"depths\": depths, \"doc_ids\": doc_ids}\n\n    rng = np.random.RandomState(SEED)\n    print(\"\\nSampling and merging...\", flush=True)\n    X, depths, doc_ids, gen_ids = sample_and_merge(all_data, rng)\n\n    print(\"\\n=== Pooled: no gen_label ===\", flush=True)\n    pooled_no_label = run_pairwise(X, depths, doc_ids, \"pooled-no-label\")\n    kstar_no_label = compute_kstar(pooled_no_label, THETA)\n    print(f\"  K*(pooled, no label, theta={THETA}) = {kstar_no_label}\", flush=True)\n\n    print(\"\\n=== Pooled: with gen_label ===\", flush=True)\n    pooled_with_label = run_pairwise(X, depths, doc_ids, \"pooled-with-label\", gen_ids=gen_ids)\n    kstar_with_label = compute_kstar(pooled_with_label, THETA)\n    print(f\"  K*(pooled, with label, theta={THETA}) = {kstar_with_label}\", flush=True)\n\n    # Save results\n    total_time = time.time() - t_start\n    output = {\n        \"experiment\": \"exp_arxiv_multi_source_1b5\",\n        \"domain\": \"arXiv\",\n        \"scorer\": \"Qwen2.5-1.5B (base)\",\n        \"generators\": list(SOURCES.keys()),\n        \"generator_sizes\": {\"qwen1b5\": \"1.5B\", \"pythia1b4\": \"1.4B\", \"olmo1b\": \"1B\"},\n        \"docs_per_generator\": DOCS_PER_GEN,\n        \"n_bootstrap\": N_BOOT,\n        \"theta\": THETA,\n        \"seed\": SEED,\n        \"total_seconds\": round(total_time, 1),\n        \"per_model\": per_model_results,\n        \"pooled_no_label\": {\"pairs\": pooled_no_label, \"kstar\": kstar_no_label},\n        \"pooled_with_label\": {\"pairs\": pooled_with_label, \"kstar\": kstar_with_label},\n    }\n    out_path = OUT_DIR / \"results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    log.info(f\"Results saved to {out_path}\")\n\n    # Summary\n    print(\"\\n\" + \"=\" * 60, flush=True)\n    print(\"=== SUMMARY ===\", flush=True)\n    print(\"=\" * 60, flush=True)\n    for gen_name, res in per_model_results.items():\n        kstar = res[\"kstar\"]\n        pairs_str = \"  \".join(f\"{p}: {r['auc']:.4f}[{r['ci_lower']:.4f},{r['ci_upper']:.4f}]\"\n                              for p, r in res[\"pairs\"].items())\n        print(f\"  {gen_name}: K*={kstar}  {pairs_str}\", flush=True)\n    print(f\"  Pooled (no label):   K*={kstar_no_label}\", flush=True)\n    print(f\"  Pooled (with label): K*={kstar_with_label}\", flush=True)\n    print(f\"\\nTotal time: {total_time:.1f}s\", flush=True)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written successfully\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "74e7ae0a-f400-4047-87ae-6bbb520bd630",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UyZJXPLyKn8ksbkTdAR4Cv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2060,
+      "cache_read_input_tokens": 64341,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2060
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-24T08:53:10.198Z_
+
+<details><summary>↩ Tool result · `toolu_01CtwqZjxGnaTeNoLqMeTywH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "db532112-3c24-476f-b8c5-79f3183dc622",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 96_
+
+脚本已写入。先 dry-run 验证数据可用性。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "d0187ce3-ea05-40c4-a28d-daef114ef38f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019fiLxRf4o74R8imJNbgxfG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6997,
+      "cache_read_input_tokens": 66401,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6997
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Gg3gbzpVewPGcCAo5GHGzg`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_arxiv_multi_source_1b5.py --dry-run",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "86393817-a893-49ce-8349-d5c1ed0167b5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019fiLxRf4o74R8imJNbgxfG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6997,
+      "cache_read_input_tokens": 66401,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6997
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-24T08:53:16.657Z_
+
+<details><summary>↩ Tool result · `toolu_01Gg3gbzpVewPGcCAo5GHGzg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== DRY RUN ===\\n\\nqwen1b5:\\n  data_dir exists: True\\n  depth_0.jsonl: 2200 docs\\n  depth_1.jsonl: 2200 docs\\n  depth_2.jsonl: 2200 docs\\n  depth_3.jsonl: 2200 docs\\n  depth_4.jsonl: 2200 docs\\n  depth_5.jsonl: 2200 docs\\n  features_csv exists: True\\n  needs_rescore: False\\n\\npythia1b4:\\n  data_dir exists: True\\n  depth_0.jsonl: 2200 docs\\n  depth_1.jsonl: 2200 docs\\n  depth_2.jsonl: 2200 docs\\n  depth_3.jsonl: 2200 docs\\n  depth_4.jsonl: 2200 docs\\n  depth_5.jsonl: 2200 docs\\n  features_csv exists: True\\n  needs_rescore: True\\n  cached_rescore exists: True\\n\\nolmo1b:\\n  data_dir exists: True\\n  depth_0.jsonl: 2200 docs\\n  depth_1.jsonl: 2200 docs\\n  depth_2.jsonl: 2200 docs\\n  depth_3.jsonl: 2200 docs\\n  depth_4.jsonl: 2200 docs\\n  depth_5.jsonl: 2200 docs\\n  features_csv exists: True\\n  needs_rescore: True\\n\\nScorer: /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\nOutput: /root/autodl-tmp/gen-depth-contamination/results/exp_arxiv_multi_source\\nDocs per gen: 1000, Max depth: 5, Bootstrap: 10000\\n\\nEstimated time:\\n  OLMo rescoring: ~10-15 min (2200 docs × 6 depths)\\n  Per-model pairwise + bootstrap: ~5 min × 3 models\\n  Pooled multi-source: ~5 min\\n  Total: ~30-40 min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "e1af1cf1-f293-4233-b558-52c02c858e6d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== DRY RUN ===\\\\n\\\\nqwen1b5:\\\\n  data_dir exists: True\\\\n  depth_0.jsonl: 2200 docs\\\\n  depth_1.jsonl: 2200 docs\\\\n  depth_2.jsonl: 2200 docs\\\\n  depth_3.jsonl: 2200 docs\\\\n  depth_4.jsonl: 2200 docs\\\\n  depth_5.jsonl: 2200 docs\\\\n  features_csv exists: True\\\\n  needs_rescore: False\\\\n\\\\npythia1b4:\\\\n  data_dir exists: True\\\\n  depth_0.jsonl: 2200 docs\\\\n  depth_1.jsonl: 2200 docs\\\\n  depth_2.jsonl: 2200 docs\\\\n  depth_3.jsonl: 2200 docs\\\\n  depth_4.jsonl: 2200 docs\\\\n  depth_5.jsonl: 2200 docs\\\\n  features_csv exists: True\\\\n  needs_rescore: True\\\\n  cached_rescore exists: True\\\\n\\\\nolmo1b:\\\\n  data_dir exists: True\\\\n  depth_0.jsonl: 2200 docs\\\\n  depth_1.jsonl: 2200 docs\\\\n  depth_2.jsonl: 2200 docs\\\\n  depth_3.jsonl: 2200 docs\\\\n  depth_4.jsonl: 2200 docs\\\\n  depth_5.jsonl: 2200 docs\\\\n  features_csv exists: True\\\\n  needs_rescore: True\\\\n\\\\nScorer: /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\\nOutput: /root/autodl-tmp/gen-depth-contamination/results/exp_arxiv_multi_source\\\\nDocs per gen: 1000, Max depth: 5, Bootstrap: 10000\\\\n\\\\nEstimated time:\\\\n  OLMo rescoring: ~10-15 min (2200 docs × 6 depths)\\\\n  Per-model pairwise + bootstrap: ~5 min × 3 models\\\\n  Pooled multi-source: ~5 min\\\\n  Total: ~30-40 min\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.67}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== DRY RUN ===\\n\\nqwen1b5:\\n  data_dir exists: True\\n  depth_0.jsonl: 2200 docs\\n  depth_1.jsonl: 2200 docs\\n  depth_2.jsonl: 2200 docs\\n  depth_3.jsonl: 2200 docs\\n  depth_4.jsonl: 2200 docs\\n  depth_5.jsonl: 2200 docs\\n  features_csv exists: True\\n  needs_rescore: False\\n\\npythia1b4:\\n  data_dir exists: True\\n  depth_0.jsonl: 2200 docs\\n  depth_1.jsonl: 2200 docs\\n  depth_2.jsonl: 2200 docs\\n  depth_3.jsonl: 2200 docs\\n  depth_4.jsonl: 2200 docs\\n  depth_5.jsonl: 2200 docs\\n  features_csv exists: True\\n  needs_rescore: True\\n  cached_rescore exists: True\\n\\nolmo1b:\\n  data_dir exists: True\\n  depth_0.jsonl: 2200 docs\\n  depth_1.jsonl: 2200 docs\\n  depth_2.jsonl: 2200 docs\\n  depth_3.jsonl: 2200 docs\\n  depth_4.jsonl: 2200 docs\\n  depth_5.jsonl: 2200 docs\\n  features_csv exists: True\\n  needs_rescore: True\\n\\nScorer: /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\nOutput: /root/autodl-tmp/gen-depth-contamination/results/exp_arxiv_multi_source\\nDocs per gen: 1000, Max depth: 5, Bootstrap: 10000\\n\\nEstimated time:\\n  OLMo rescoring: ~10-15 min (2200 docs × 6 depths)\\n  Per-model pairwise + bootstrap: ~5 min × 3 models\\n  Pooled multi-source: ~5 min\\n  Total: ~30-40 min\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.67}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 99_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Dry-run passes. All data is available:
+- All 3 generators have depth 0-5, 2200 docs each ✓
+- Pythia has cached cross-scored features ✓  
+- OLMo needs rescoring ✓
+- Scorer model exists ✓
+
+Now let me provide the summary to the user.
+
+Summary of findings:
+
+**Existing data that can be reused:**
+1. arXiv depth chains: All 3 generators (Qwen, Pythia, OLMo) have complete depth 0-5 data (2200 docs each)
+
+
+2. Pythia's cross-scored features are already cached, and we've established K*=3 for Pythia from the earlier experiment
+
+**What still needs to happen:**
+1. OLMo cross-scoring with Qwen2.5-1.5B (~10-15 min for 13,200 texts)
+2. Per-model pairwise AUC + bootstrap CI for all 3 models
+3. Pooled multi-source detection
+
+The script `scripts/run_arxiv_multi_source_1b5.py` will handle this and output results to `results/exp_arxiv_multi_source/`.
+
+I'm looking at the resource requirements and timeline—this should take about 30-40 minutes total, and the GPU needs are manageable since the scorer only uses one card with ~3GB memory out of the 97GB available across the 4 RTX PRO 6000s. The user asked me to prepare, do a dry-run, and provide estimates, so I should present these findings now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "0ab022ee-3b47-479e-b585-42aea585dfcc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012zQ7Cn9kRu1tZkRqi1umTX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 820,
+      "cache_read_input_tokens": 73398,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 820
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 100_
+
+Dry-run 全部通过。汇总：
+
+---
+
+## 现状
+
+| Generator | arXiv 数据 | Cross-scored? | 已有 K* |
+|-----------|-----------|--------------|---------|
+| Qwen2.5-1.5B | ✅ 2200×6 depths | ✅ 自评=cross-score | K*=3 (exp-024) |
+| Pythia-1.4B | ✅ 2200×6 depths | ✅ 有缓存 | K*=3 (exp-025) |
+| OLMo-1B | ✅ 2200×6 depths | ❌ 仅自评(K*=1) | **需 cross-score** |
+
+## 脚本
+
+**路径**: `/root/autodl-tmp/gen-depth-contamination/scripts/run_arxiv_multi_source_1b5.py`
+
+功能：
+1. 加载 Qwen2.5-1.5B scorer
+2. 复用 Pythia cached cross-scored features（无需重新计算）
+3. Cross-score OLMo 2200×6=13,200 texts
+4. 每个模型单独跑 pairwise AUC + 10K bootstrap CI
+5. 三模型 pooled multi-source detection（with/without gen label）
+6. 输出到 `results/exp_arxiv_multi_source/`
+
+## GPU 需求
+
+- 4x RTX PRO 6000 (97GB each)，全空闲
+- Scorer (Qwen2.5-1.5B base) 需 ~3GB VRAM，1 卡即可
+- 无需多卡
+
+## 预估时间
+
+| 阶段 | 时间 |
+|------|------|
+| OLMo cross-scoring (13.2K texts) | ~10-15 min |
+| Per-model pairwise + bootstrap ×3 | ~15 min |
+| Pooled multi-source ×2 conditions | ~5 min |
+| **总计** | **~30-40 min** |
+
+## Seed data 确认
+
+三个 generator 共享同一批 arXiv seed data（depth_0 = exp-024 的 2200 篇 abstracts）。
+
+---
+
+需要启动运行吗？
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "uuid": "3d732db4-0f90-432f-b499-19915a60ee7d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012zQ7Cn9kRu1tZkRqi1umTX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 820,
+      "cache_read_input_tokens": 73398,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 820
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 101_
+
+Dry-run 全部通过。汇总：
+
+---
+
+## 现状
+
+| Generator | arXiv 数据 | Cross-scored? | 已有 K* |
+|-----------|-----------|--------------|---------|
+| Qwen2.5-1.5B | ✅ 2200×6 depths | ✅ 自评=cross-score | K*=3 (exp-024) |
+| Pythia-1.4B | ✅ 2200×6 depths | ✅ 有缓存 | K*=3 (exp-025) |
+| OLMo-1B | ✅ 2200×6 depths | ❌ 仅自评(K*=1) | **需 cross-score** |
+
+## 脚本
+
+**路径**: `/root/autodl-tmp/gen-depth-contamination/scripts/run_arxiv_multi_source_1b5.py`
+
+功能：
+1. 加载 Qwen2.5-1.5B scorer
+2. 复用 Pythia cached cross-scored features（无需重新计算）
+3. Cross-score OLMo 2200×6=13,200 texts
+4. 每个模型单独跑 pairwise AUC + 10K bootstrap CI
+5. 三模型 pooled multi-source detection（with/without gen label）
+6. 输出到 `results/exp_arxiv_multi_source/`
+
+## GPU 需求
+
+- 4x RTX PRO 6000 (97GB each)，全空闲
+- Scorer (Qwen2.5-1.5B base) 需 ~3GB VRAM，1 卡即可
+- 无需多卡
+
+## 预估时间
+
+| 阶段 | 时间 |
+|------|------|
+| OLMo cross-scoring (13.2K texts) | ~10-15 min |
+| Per-model pairwise + bootstrap ×3 | ~15 min |
+| Pooled multi-source ×2 conditions | ~5 min |
+| **总计** | **~30-40 min** |
+
+## Seed data 确认
+
+三个 generator 共享同一批 arXiv seed data（depth_0 = exp-024 的 2200 篇 abstracts）。
+
+---
+
+需要启动运行吗？
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 346842,
+  "duration_api_ms": 341691,
+  "num_turns": 38,
+  "stop_reason": "end_turn",
+  "session_id": "bd55d402-9ef9-44fe-9b9f-48f0a4ead49a",
+  "total_cost_usd": 1.2496182500000002,
+  "usage": {
+    "input_tokens": 19,
+    "cache_creation_input_tokens": 62377,
+    "cache_read_input_tokens": 767866,
+    "output_tokens": 18965,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 62377,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1016,
+        "cache_read_input_tokens": 73398,
+        "cache_creation_input_tokens": 820,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 820
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1494,
+      "outputTokens": 23,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0016090000000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 19,
+      "outputTokens": 18965,
+      "cacheReadInputTokens": 767866,
+      "cacheCreationInputTokens": 62377,
+      "webSearchRequests": 0,
+      "costUSD": 1.2480092500000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "5eded3d6-f4ad-4fc2-b2ea-774abc0eb088"
+}
+```
+
+</details>
+
+---

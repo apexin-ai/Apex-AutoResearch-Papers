@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "061109035cb66014d567",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper sync disc concl compile",
+  "task_key": "worker_paper_sync_disc_concl_compile_20260522T154024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_sync_disc_concl_compile_20260522T154024_result.json",
+    "occurrence": 1,
+    "bytes": 557,
+    "sha256": "7b73e8396d94642781ce132d4f0f0ef9f1efed94b31d851afabce3be4aab2d25"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| 项目 | 状态 |\n|------|------|\n| discussion.tex | 已同步（Domain dependence 段扩充 3 句 + JSD/Wikipedia/curator 校准） |\n| conclusion.tex | 已同步（Bonferroni + model-agnostic 两句已加入） |\n| Figure 3 (fig_kstar_theta) | 已修正为 `figure*` + `width=0.95\\textwidth` |\n| 编译 | 成功，0 undefined references |\n| 正文页数 | 8 页（Conclusion 延续至第 8 页，Limitations 从第 9 页开始） |\n| PDF 路径 | `/root/autodl-tmp/gen-depth-contamination/docs/paper/main.pdf` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-sync-disc-concl-compile.md"
+}

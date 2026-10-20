@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_code_qwen1b5_pythia_scorer",
+  "project": "gen-depth-contamination",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:30:03.239Z",
+    "updated_at": "2026-05-19T06:32:17.457Z",
+    "hypothesis": "Code domain scorer confound control: Qwen-1.5B Code K*=2 uses same-family Qwen scorer. D060 Wikipedia showed Qwen scorer inflates AUC by +0.005~0.027. If Pythia-1.4B scorer yields K*=2 on same Qwen Code text, confirms K*=2 is text-intrinsic (not scorer artifact). If K*=1, Qwen Code K*=2 is partially scorer-driven, weakening domain ceiling claim. Cross-family scorer validation on existing exp_code_qwen1b5 depth 0-5 data.",
+    "parent": "exp_code_qwen1b5"
+  },
+  "timestamp": "2026-05-19T06:32:17.714093+00:00",
+  "trigger": "update_registry"
+}

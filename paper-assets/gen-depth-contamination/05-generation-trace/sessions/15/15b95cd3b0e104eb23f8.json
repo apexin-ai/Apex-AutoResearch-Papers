@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15b95cd3b0e104eb23f8",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "writing related work completeness",
+  "task_key": "worker_writing_related-work-completeness_20260514T054916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_related-work-completeness_20260514T054916_result.json",
+    "occurrence": 1,
+    "bytes": 3127,
+    "sha256": "f6d7711c86ca6ea1dddbf069af6a0523b83ad6f62bbe3c0e0ac49403fc2acf85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 1. Cite-Bib 一致性\n\n**27 个 cite key，27 个 bib entry，完全匹配。**\n\n- 缺失的 bib entry：**无**\n- 孤立的 bib entry（未被引用）：**无**\n\n---\n\n## 2. 近期文献遗漏\n\n以下论文在搜索中被发现具有较高相关性，但未出现在 related_work.tex 中：\n\n| 论文 | Venue | Year | 与本工作的关系 |\n|------|-------|------|----------------|\n| **Fast-DetectGPT: Efficient Zero-Shot Detection via Conditional Probability Curvature** (Bao et al.) | ICLR | 2024 | 已引 DetectGPT 的直接后继，速度提升 340x、准确率相对提升 75%。作为 binary detection 段落的重要方法缺席 |\n| **Strong Model Collapse** (Dohmatob, Feng, Subramonian, Kempe) | ICLR | 2025 | 与已引的 dohmatob2024model 同一作者，证明即使极小比例（1/1000）合成数据也导致 collapse，且更大模型会放大 collapse。直接强化本文动机 |\n| **Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification** (Feng et al.) | ICLR | 2025 | 证明外部验证器可防止 collapse——depth estimation 本质上就是一种验证信号，与本文 curation 框架直接对接 |\n| **DetectRL: Benchmarking LLM-Generated Text Detection in Real-World Scenarios** (Wu et al.) | NeurIPS D&B | 2024 | 展示 SOTA 检测器在真实场景下性能显著下降，为本文 depth estimation 的实用价值提供背景支撑 |\n| **MGTBench: Benchmarking Machine-Generated Text Detection** (He et al.) | ACM CCS | 2024 | 首个系统性 MGT 检测基准，含 text attribution 任务（多类别归属），与 depth 分类有方法论交叉 |\n| **Intrinsic Dimension Estimation for Robust Detection of AI-Generated Texts** (Tulchinskii et al.) | NeurIPS | 2023 | 用内在维度作为 zero-shot 检测特征，AI 文本的内在维度系统性低于人类文本约 1.5，可作为 depth 特征的潜在补充 |\n\n**优先级建议**：Strong Model Collapse 和 Beyond Model Collapse 与本文动机最直接相关（model collapse + curation），建议优先补充。Fast-DetectGPT 作为 DetectGPT 的重要后继也应提及。\n\n---\n\n## 3. Bib 格式问题\n\n| 条目 | 问题 |\n|------|------|\n| `shumailov2024collapse` | Nature 文章缺少 `volume={631}` 和 `pages={755--759}`，应补全 |\n| `alain2017understanding` | 类型为 `@article`，journal 为 arXiv preprint，但该论文实际是 ICLR 2017 Workshop 论文。建议改为 `@inproceedings` 并注明 workshop，或保留 `@article` 但 year 与 arXiv ID (1610.01644, 2016年) 不完全对应 |\n| `shi2025generalization` | `note={Spotlight}` 为非标准字段，部分 citation style 会将其直接输出到正文中，建议删除或移入注释 |\n| Venue 命名 | NeurIPS 统一用 `Advances in NeurIPS`，其余用 `Proceedings of X` — 风格一致，可接受。但 `Advances in NeurIPS` 是非正式缩写（全称为 `Advances in Neural Information Processing Systems`），严格场合建议统一用全称或纯缩写 |\n| Author 格式 | 全部 `{Last, First and ...}` 格式，一致 ✓ |\n| Year 字段 | 全部完整 ✓ |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-related-work-completeness.md"
+}

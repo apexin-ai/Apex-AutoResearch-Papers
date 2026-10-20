@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f765ba5105891d4be71",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper reference audit full",
+  "task_key": "worker_paper_reference_audit_full_20260523T070604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_reference_audit_full_20260523T070604_result.json",
+    "occurrence": 1,
+    "bytes": 897,
+    "sha256": "19772d1ae53b91ed032ed418f5c0ff26b50fda2c49356bd699650e4d7c45b446"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。36 条 bib entry 全部核查，发现 **8 个条目共 10 处错误**，全部已修正。\n\n### 严重错误（作者完全编造）\n- **zhang2024minkpp**: 作者、venue (EMNLP→ICLR)、年份 (2024→2025) 全错\n- **hao2025rewrite**: 作者全错，venue 从 Findings 改为 Main\n- **alemohammad2024selfconsuming**: 8 个作者中 4 个名字是编造的，还漏了 1 个\n\n### 高严重度\n- **xie2023dsir**: 标题缺 \"for Language Models\"，venue ICML→NeurIPS\n- **tirumala2023d4**: 4 个作者中 2 个是错的 (Markosyan/Zettlemoyer → Simig/Morcos)\n- **schaeffer2025position**: venue ICML→arXiv (NeurIPS 2025 under review)，作者名 Anirudh→Alvan Caleb\n\n### 中等严重度\n- **dohmatob2024model**: \"Pin-Yu Yang\"→\"Pu Yang\"\n- **wang2024semeval**: 漏了 5 个作者\n\n报告已写入 `artifacts/reference_audit_report.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-reference-audit-full.md"
+}

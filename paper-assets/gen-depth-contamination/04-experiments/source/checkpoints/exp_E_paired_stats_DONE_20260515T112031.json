@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp_E_paired_stats",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:18:27.723Z",
+    "updated_at": "2026-05-15T11:20:31.718Z",
+    "hypothesis": "C3 filtering 策略间差异是否统计显著？Holm-Bonferroni 多重比较校正 + Cohen's d 效应量（FR-5 Warning）",
+    "spec": {
+      "command": "python scripts/exp_E_paired_stats.py",
+      "server": "westc-26893",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/artifacts/exp006_filtering/results/",
+      "data_count": 51,
+      "model_name": "N/A (CPU: paired t-test + Holm-Bonferroni)",
+      "seed": "N/A",
+      "note": "6 strategies × 5 seeds, 15 pairwise comparisons, Holm-Bonferroni correction + Cohen's d"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "mmlu_significant_pairs": "10/15",
+      "hellaswag_significant_pairs": "9/15",
+      "binary_ours_vs_all_mmlu": "all significant",
+      "max_cohen_d_mmlu": 11,
+      "max_cohen_d_hellaswag": 8.98,
+      "graduated_a09_vs_dsir_corrected_p": 0.052,
+      "key_finding": "binary-ours significantly outperforms all alternatives on MMLU. On HellaSwag, binary-ours and graduated_a0.9 tied (p=1.0). FR-5 resolved."
+    },
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/artifacts/exp_E_paired_stats.json",
+    "log_path": "/root/autodl-tmp/gen-depth-contamination/artifacts/exp_E_paired_stats.json",
+    "completed_at": "2026-05-15T11:20:31.718Z"
+  },
+  "timestamp": "2026-05-15T11:20:31.785500+00:00",
+  "trigger": "update_registry"
+}

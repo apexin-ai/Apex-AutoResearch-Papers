@@ -1,0 +1,24 @@
+paper_key: "kirchenbauer2023watermark"
+title: "A Watermark for Large Language Models"
+venue: "ICML 2023"
+full_text_available: false
+
+research:
+  baselines: [no-watermark baseline, post-hoc detection methods]
+  metrics:
+    - {name: "detection p-value", direction: "lower_better"}
+    - {name: "text quality (perplexity)", direction: "lower_better"}
+    - {name: "BLEU", direction: "higher_better"}
+  datasets:
+    - {name: "OPT model generations", size: "not specified"}
+  ablation_dimensions: [green list fraction, watermark strength, token span length]
+  training_recipe: {details: "No training required; watermark embedded during decoding by biasing toward green-list tokens selected via hash of preceding token"}
+  method_family: "watermark-based detection"
+
+positioning:
+  core_claim: "LLM output can be watermarked by biasing token selection toward a pseudorandom green list, enabling statistical detection from short spans without model API access"
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

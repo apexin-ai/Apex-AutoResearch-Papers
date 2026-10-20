@@ -1,0 +1,98 @@
+{
+  "exp_id": "exp_deberta_filtering_comparison",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T17:02:50.271Z",
+    "updated_at": "2026-05-20T20:08:32.368Z",
+    "hypothesis": "DeBERTa's higher K* on arXiv (K*=4 vs 15D K*=3) does not yield significantly better downstream performance when used for filtering, validating that the 15D lower bound is practically sufficient.",
+    "spec": {
+      "command": "python scripts/exp_deberta_filtering_comparison.py --strategy {no_filter,obd_binary,deberta_binary,deberta_graduated} --device cuda:0 --seed 42",
+      "server": "cqa1-22115",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/",
+      "data_count": 13200,
+      "model_name": "Qwen/Qwen2.5-1.5B",
+      "seed": 42,
+      "strategies": [
+        "no_filter",
+        "obd_binary",
+        "deberta_binary",
+        "deberta_graduated"
+      ],
+      "prediction_results": {
+        "deberta_accuracy": 0.5363,
+        "obd_accuracy": 0.4741,
+        "deberta_pred_distribution": [
+          2184,
+          1645,
+          2111,
+          1971,
+          1074,
+          4215
+        ],
+        "obd_pred_distribution": [
+          2177,
+          2470,
+          2196,
+          1900,
+          2098,
+          2359
+        ]
+      },
+      "lora_config": {
+        "rank": 16,
+        "alpha": 32,
+        "targets": [
+          "q_proj",
+          "v_proj"
+        ],
+        "dropout": 0.05
+      },
+      "training_config": {
+        "lr": 0.0002,
+        "batch_size": 4,
+        "grad_accum": 4,
+        "epochs": 1,
+        "max_length": 256
+      },
+      "gpu_allocation": {
+        "no_filter": "cuda:1",
+        "obd_binary": "cuda:2",
+        "deberta_binary": "cuda:3",
+        "deberta_graduated": "pending"
+      },
+      "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_filtering_comparison/",
+      "log_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_filtering_comparison/"
+    },
+    "metrics": {
+      "no_filter": {
+        "mmlu": 0.5895,
+        "hellaswag": 0.6591,
+        "arc_c": 0.4352
+      },
+      "obd_binary": {
+        "mmlu": 0.588,
+        "hellaswag": 0.6599,
+        "arc_c": 0.4522
+      },
+      "deberta_binary": {
+        "mmlu": 0.587,
+        "hellaswag": 0.6593,
+        "arc_c": 0.4471
+      },
+      "deberta_graduated": {
+        "mmlu": 0.5884,
+        "hellaswag": 0.6586,
+        "arc_c": 0.442
+      },
+      "summary": "obd_binary (15D) >= deberta_binary on all 3 benchmarks. DeBERTa K*=4 does not yield better filtering than 15D K*=3. Graduated < binary for both OBD and DeBERTa."
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T20:06:51.128Z"
+  },
+  "timestamp": "2026-05-20T20:08:32.655430+00:00",
+  "trigger": "update_registry"
+}

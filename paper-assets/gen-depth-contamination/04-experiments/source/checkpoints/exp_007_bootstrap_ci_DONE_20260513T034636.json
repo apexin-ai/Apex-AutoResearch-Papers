@@ -1,0 +1,135 @@
+{
+  "exp_id": "exp_007_bootstrap_ci",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T03:45:50.948Z",
+    "updated_at": "2026-05-13T03:46:36.617Z",
+    "hypothesis": "K* 统计严谨性验证：bootstrap 95% CI 和 permutation test 确认 K*=2 在三个模型族上统计显著",
+    "spec": {
+      "command": "python scripts/bootstrap_ci.py --data_dirs results_exp001_pythia results_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output artifacts/bootstrap_ci_results.json",
+      "script_path": "/root/autodl-tmp/gen-depth-contamination/scripts/bootstrap_ci.py",
+      "server": "autodl-4090d",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/artifacts/bootstrap_ci_results.json",
+      "data_count": 15000,
+      "model_name": "Pythia-1.4B / OLMo-1B / Qwen-1.5B",
+      "seed": 42,
+      "input_sources": [
+        "results_exp001_pythia (exp-001)",
+        "results_exp002_olmo (exp-002)",
+        "data (mvp-001)"
+      ],
+      "bootstrap_resamples": 1000,
+      "permutation_resamples": 500,
+      "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/artifacts/bootstrap_ci_results.json",
+      "log_path": "~/runs/gen-depth-contamination/exp_007_bootstrap_ci.log"
+    },
+    "metrics": {
+      "qwen_rewrite": {
+        "0v1": {
+          "auc": 0.9956,
+          "ci_lower": 0.9946,
+          "ci_upper": 0.9965,
+          "perm_p": 0.002
+        },
+        "1v2": {
+          "auc": 0.6955,
+          "ci_lower": 0.6859,
+          "ci_upper": 0.7041,
+          "perm_p": 0.002
+        },
+        "2v3": {
+          "auc": 0.5893,
+          "ci_lower": 0.5795,
+          "ci_upper": 0.5991,
+          "perm_p": 0.002
+        },
+        "3v4": {
+          "auc": 0.5435,
+          "ci_lower": 0.5333,
+          "ci_upper": 0.5551,
+          "perm_p": 0.002
+        },
+        "4v5": {
+          "auc": 0.534,
+          "ci_lower": 0.5238,
+          "ci_upper": 0.5448,
+          "perm_p": 0.002
+        }
+      },
+      "pythia_cont": {
+        "0v1": {
+          "auc": 0.9932,
+          "ci_lower": 0.9921,
+          "ci_upper": 0.9943,
+          "perm_p": 0.002
+        },
+        "1v2": {
+          "auc": 0.6539,
+          "ci_lower": 0.6454,
+          "ci_upper": 0.663,
+          "perm_p": 0.002
+        },
+        "2v3": {
+          "auc": 0.5514,
+          "ci_lower": 0.5417,
+          "ci_upper": 0.5628,
+          "perm_p": 0.002
+        },
+        "3v4": {
+          "auc": 0.5152,
+          "ci_lower": 0.5041,
+          "ci_upper": 0.526,
+          "perm_p": 0.006
+        },
+        "4v5": {
+          "auc": 0.5136,
+          "ci_lower": 0.5021,
+          "ci_upper": 0.5249,
+          "perm_p": 0.008
+        }
+      },
+      "olmo_cont": {
+        "0v1": {
+          "auc": 0.997,
+          "ci_lower": 0.9964,
+          "ci_upper": 0.9975,
+          "perm_p": 0.002
+        },
+        "1v2": {
+          "auc": 0.6145,
+          "ci_lower": 0.6045,
+          "ci_upper": 0.6247,
+          "perm_p": 0.002
+        },
+        "2v3": {
+          "auc": 0.5496,
+          "ci_lower": 0.5399,
+          "ci_upper": 0.5596,
+          "perm_p": 0.002
+        },
+        "3v4": {
+          "auc": 0.5091,
+          "ci_lower": 0.4973,
+          "ci_upper": 0.52,
+          "perm_p": 0.064
+        },
+        "4v5": {
+          "auc": 0.5045,
+          "ci_lower": 0.4932,
+          "ci_upper": 0.515,
+          "perm_p": 0.232
+        }
+      },
+      "k_star_robust": true,
+      "olmo_1v2_ci_lower_above_060": true
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-13T03:46:36.617Z"
+  },
+  "timestamp": "2026-05-13T03:46:36.658977+00:00",
+  "trigger": "update_registry"
+}

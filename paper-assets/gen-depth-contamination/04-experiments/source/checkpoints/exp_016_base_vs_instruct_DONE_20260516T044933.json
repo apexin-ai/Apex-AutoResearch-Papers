@@ -1,0 +1,88 @@
+{
+  "exp_id": "exp_016_base_vs_instruct",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-16T01:01:55.079Z",
+    "updated_at": "2026-05-16T04:49:33.391Z",
+    "hypothesis": "Base vs Instruct K* 对比：Qwen2.5-1.5B (base) continuation mode 的 K* 是否与 exp-017 (Instruct continuation, K*=2) 一致？封堵 \"K*=2 是 instruct-tuning 副产物\" 攻击面。唯一变量 = base vs instruct。",
+    "parent": "exp_017_qwen_continuation",
+    "server": "cqa1-22115",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westc-26893",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-16T01:02:43.478Z"
+    },
+    "completed_at": "2026-05-16T03:22:38.539Z",
+    "notes": "2026-05-16: Resumed on cqa1-22115 (migrated from westc-26893). Depth 0-3 complete, generating depth 4-5. PID=3442 on cuda:0.",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "2026-05-16: Resumed on cqa1-22115 (migrated from westc-26893). Depth 0-3 complete, generating depth 4-5. PID=3442 on cuda:0."
+      }
+    },
+    "spec": {
+      "command": "python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data_dir data_exp016_qwen_base --results_dir results_exp016_qwen_base --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation",
+      "server": "cqa1-22115",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data_exp016_qwen_base",
+      "data_count": 5000,
+      "model_name": "Qwen/Qwen2.5-1.5B (base, fp16)",
+      "seed": 42,
+      "generation_mode": "continuation",
+      "scorer": "Qwen2.5-1.5B (base)",
+      "gpu": [
+        "cuda:0"
+      ],
+      "tmux_session": "exp016",
+      "log_path": "/tmp/exp016.log",
+      "note": "Retry #1: Resumed on cqa1-22115 after westc-26893 restart. Depth 0-3 migrated via rsync.",
+      "checkpoint_source": "N/A (standalone generation, not eval)",
+      "eval_data": "C4 validation 5000 samples"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "k_star": 2,
+      "pairwise_auc": {
+        "0v1": 0.987,
+        "1v2": 0.6262,
+        "2v3": 0.5496,
+        "3v4": 0.5294,
+        "4v5": 0.5182
+      },
+      "pairwise_auc_std": {
+        "0v1": 0.0015,
+        "1v2": 0.0152,
+        "2v3": 0.0067,
+        "3v4": 0.0132,
+        "4v5": 0.0139
+      },
+      "pairwise_jsd": {
+        "0v1": 0.163726,
+        "1v2": 0.01081,
+        "2v3": 0.005311,
+        "3v4": 0.003942,
+        "4v5": 0.003522
+      },
+      "ordinal_mae": 1.1691,
+      "ordinal_accuracy": 0.3719,
+      "top_features": [
+        "freq_entropy",
+        "surp_std",
+        "surp_d1_skew",
+        "surp_d1_mean",
+        "surp_mean"
+      ],
+      "n_samples": 30000,
+      "key_finding": "K*=2 for base model, identical to exp-017 Instruct (K*=2). Base 0v1=0.987 slightly lower than Instruct 0v1=0.9972, but 1v2=0.6262 slightly higher than Instruct 1v2=0.6114. Confirms K*=2 is NOT an instruct-tuning artifact."
+    },
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/results_exp016_qwen_base/",
+    "log_path": "/tmp/exp016.log"
+  },
+  "timestamp": "2026-05-16T04:49:33.457326+00:00",
+  "trigger": "update_registry"
+}

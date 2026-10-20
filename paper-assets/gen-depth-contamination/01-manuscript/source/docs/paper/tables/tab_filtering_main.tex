@@ -1,0 +1,14 @@
+\begin{tabular}{lcc}
+\toprule
+\textbf{Strategy} & \textbf{MMLU} & \textbf{HellaSwag} \\
+\midrule
+Base model (no training) & 0.6018 & 0.6821 \\
+\midrule
+Binary-ours ($\Kstar{=}2$) & \textbf{0.5941}$\pm$0.0008 & \textbf{0.6701}$\pm$0.0006 \\
+Binary-Drayson & 0.5913$\pm$0.0009 & 0.6691$\pm$0.0004 \\
+Surprisal & 0.5894$\pm$0.0009 & 0.6641$\pm$0.0006 \\
+Graduated ($\alpha{=}0.9$) & 0.5892$\pm$0.0008 & 0.6701$\pm$0.0007 \\
+DSIR & 0.5869$\pm$0.0003 & 0.6631$\pm$0.0007 \\
+No filter & 0.5865$\pm$0.0010 & 0.6638$\pm$0.0008 \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,12 @@
+Model-Config,theta_0.55,theta_0.575,theta_0.6,theta_0.625,theta_0.65,theta_0.7
+Qwen-1.5B-Inst (rewrite),3,3,2,2,2,1
+Pythia-1.4B (cont.),3,2,2,2,2,1
+OLMo-1B (cont.),2,2,2,1,1,1
+Qwen-1.5B-Inst (cont.),3,2,2,1,1,1
+LLaMA-3.1-8B (cont.),2,2,2,1,1,1
+Mistral-7B (cont.)†,2,2,1,1,1,1
+Qwen-1.5B-base (cont.),2,2,2,2,1,1
+Qwen-7B (cont.),2,2,2,1,1,1
+Qwen-1.5B-Inst (rewrite),3,3,3,3,2,2
+Pythia-1.4B (cont.),4,3,3,3,3,2
+Mistral-7B (Qwen scorer)‡,2,1,1,1,1,1

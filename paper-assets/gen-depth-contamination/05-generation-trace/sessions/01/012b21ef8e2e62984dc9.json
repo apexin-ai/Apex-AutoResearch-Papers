@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "012b21ef8e2e62984dc9",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper r25 m2 m5 citation highlight",
+  "task_key": "worker_paper_r25_m2_m5_citation_highlight_20260522T074133",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r25_m2_m5_citation_highlight_20260522T074133_result.json",
+    "occurrence": 1,
+    "bytes": 1216,
+    "sha256": "c122f52c47860cd47de9638470562bd341c8907b2d7890c93d883aaa87e801c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n### 结果\n\n**M2 — Suresh 引用**\n- `references.bib`: 添加 `suresh2024rate` 条目\n- `related_work.tex` L6，插入位置上下文：\n  ```\n  ...fu2025theoretical}, diversity contraction~\\cite{...}, and predictable convergence~\\cite{...}.\n  Suresh et al.~\\cite{suresh2024rate} derive precise collapse rates for discrete distributions under recursive MLE training, complementing the theoretical conditions established by Fu et al.~\\cite{fu2025theoretical}.\n  Our prompt-chain operates in the replace regime~\\cite{kazdan2025collapse}...\n  ```\n\n**M5 — Table 2 boundary 高亮**\n- 方案：**`\\cellcolor`**（不同列 K\\* 不同，无法用 rowcolor）\n- 高亮 cells：\n  - **0v1 行**：OLMo 的 AUC + CI 两个 cell（K\\*=1 boundary）\n  - **1v2 行**：Qwen-rw / Pythia / Qwen-cont / Qwen-7B 的 AUC + CI 共 8 个 cell（K\\*=2 boundary）\n  - OLMo 1v2 (.5080) 未高亮\n- 添加表注：\"Shaded cells indicate the K\\*\\_empirical boundary (last depth pair with AUC > θ=0.60).\"\n- `\\PassOptionsToPackage{table}{xcolor}` 置于 `\\documentclass` 前（避免与 acl 包冲突）\n\n**编译**：成功，22 页，525KB PDF 已同步到本地。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-r25-m2-m5-citation-highlight.md"
+}

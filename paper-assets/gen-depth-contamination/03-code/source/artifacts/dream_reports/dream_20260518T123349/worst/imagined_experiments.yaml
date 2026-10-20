@@ -1,0 +1,262 @@
+tier: worst
+narrative_guidance: '在 worst 档下，两个 planned 实验均未能提供有效防御。exp-014 暴露了 lab→wild 的 generalization
+  gap，审稿人用它攻击 ecological validity；exp-028 虽然证明了 n=5000 下 statistical power 充分，但同时暴露了
+  K* 判定在 n<3000 时的不稳定性，被解读为 "K*=2 是大样本量的 artifact——实际上 signal 太弱以至于需要 5000 个样本才能勉强检测到"。
+  两个实验共同强化了 worst 档的核心叙事：K* 作为 discrete operational quantity 的 framing 脆弱不堪，必须转向 continuous
+  information decay curve 的刻画。
+
+  '
+imagined_experiments:
+- name: 'exp-014: Naturalistic Common Crawl Validation'
+  plan_id: exp-014
+  description: '对 Common Crawl 2025/2026 snapshot 样本做 depth 预测，与 AlignScore 和独立 vocabulary
+    richness 指标做 correlation。验证 lab 条件下训练的 depth estimator 在 wild 数据上的可迁移性。
+
+    '
+  expected_results:
+    depth_pred_distribution:
+      pred_depth_0_pct: 0.42
+      pred_depth_1_pct: 0.31
+      pred_depth_2_pct: 0.18
+      pred_depth_3plus_pct: 0.09
+    spearman_rho_depth_vs_alignscore: -0.08
+    spearman_rho_depth_vs_alignscore_p: 0.07
+    spearman_rho_depth_vs_vocab_richness: -0.14
+    spearman_rho_depth_vs_vocab_richness_p: 0.002
+    spearman_rho_depth_vs_perplexity: 0.05
+    spearman_rho_depth_vs_perplexity_p: 0.28
+    calibration_ece: 0.31
+    pred_confidence_mean: 0.38
+    pred_confidence_std: 0.12
+    domain_shift_auc_drop_vs_lab: 0.15
+    n_samples: 10000
+    cc_snapshot: 2025-51
+  result_rationale: 'Worst 档下，lab→wild generalization gap 严重。(1) Common Crawl 文本的长度、格式、
+    语言混合度远超 C4 clean 子集，15D features 的分布发生显著偏移，导致 depth predictor calibration 崩溃（ECE=0.31）。(2)
+    AlignScore 与 predicted depth 的相关性仅 ρ=-0.08 且不显著——审稿人解读为"depth ≠ quality"，K* boundary
+    对数据治理没有 actionable 意义。(3) Vocabulary richness 有微弱负相关（ρ=-0.14, p=0.002），但效应量太小
+    无法作为 validation 证据。(4) 42% 样本被预测为 depth 0（human），但 Common Crawl 中 AI-generated
+    内容估计已达 15-25%——模型严重低估合成文本比例，暴露 false negative 问题。(5) 审稿人攻击：训练在 clean C4 + 单一模型生成链上的
+    classifier 无法处理 wild 数据中 multiple unknown generators、mixed languages、post-editing
+    等复杂性。 整体结论：naturalistic validation 失败，反而成为审稿人攻击 ecological validity 的弹药。
+
+    '
+  tables:
+  - name: 'Table: CC 2025 Depth Prediction vs Quality Metrics'
+    columns:
+    - Metric Pair
+    - Spearman ρ
+    - p-value
+    - 95% CI
+    rows:
+    - - Pred Depth × AlignScore
+      - '-0.08'
+      - '0.07'
+      - '[-0.16, 0.01]'
+    - - Pred Depth × Vocab Richness (TTR)
+      - '-0.14'
+      - '0.002'
+      - '[-0.22, -0.05]'
+    - - Pred Depth × Perplexity (GPT-2)
+      - '0.05'
+      - '0.28'
+      - '[-0.04, 0.13]'
+    - - Pred Depth × Doc Length
+      - '0.03'
+      - '0.51'
+      - '[-0.06, 0.11]'
+  - name: 'Table: Predicted Depth Distribution on CC vs Lab'
+    columns:
+    - Depth
+    - CC 2025 (%)
+    - Lab C4 (%)
+    rows:
+    - - 0 (human)
+      - 42%
+      - 16.7%
+    - - '1'
+      - 31%
+      - 16.7%
+    - - '2'
+      - 18%
+      - 16.7%
+    - - 3+
+      - 9%
+      - 50.0%
+  figures_description:
+  - 'Scatter plot: predicted depth vs AlignScore，点云高度分散，回归线近乎水平（ρ=-0.08），灰色 band 跨越
+    zero。视觉上看不出任何 pattern。'
+  - 'Calibration plot: reliability diagram 显示严重 overconfidence at low depths 和 underconfidence
+    at high depths，ECE=0.31。'
+  - 'Feature distribution shift: lab C4 vs CC 2025 的 15D feature violin plots，surp_mean
+    和 freq_entropy 的分布偏移最大。'
+  analysis: '此实验在 worst 档下是 net negative。审稿人将用它构建两条攻击线：(1) "the depth estimator doesn''t
+    generalize beyond the controlled lab setting — the features are overfit to the
+    specific generation pipeline" (2) "even weak correlation with quality metrics
+    is absent — K* boundary has no practical significance for data curation"。唯一可挽救的角度是承认
+    "lab-to-wild transfer is an open problem" 并将其定位为 future work，但这进一步削弱了论文的 practical
+    contribution claim。 建议：在 worst 档 reframe 下，此实验要么不做（节省 8 GPU-hours），要么放 Appendix
+    作为 honest limitation disclosure。
+
+    '
+- name: 'exp-028: Subsampling Power Curve'
+  plan_id: exp-028
+  description: 'C4 n={1000,2000,3000,4000,5000} × 10 resamples，计算每个样本量下 1v2 AUC 的
+    bootstrap CI 和 K*=2 判定的成功率。确定 K*=2 所需最低样本量。
+
+    '
+  expected_results:
+    power_curve:
+      n1000:
+        mean_1v2_auc: 0.6095
+        std_1v2_auc: 0.028
+        ci_lower_mean: 0.581
+        pct_kstar2: 0.4
+        pct_kstar1: 0.6
+      n2000:
+        mean_1v2_auc: 0.6108
+        std_1v2_auc: 0.019
+        ci_lower_mean: 0.592
+        pct_kstar2: 0.5
+        pct_kstar1: 0.5
+      n3000:
+        mean_1v2_auc: 0.6115
+        std_1v2_auc: 0.015
+        ci_lower_mean: 0.597
+        pct_kstar2: 0.6
+        pct_kstar1: 0.4
+      n4000:
+        mean_1v2_auc: 0.6118
+        std_1v2_auc: 0.012
+        ci_lower_mean: 0.6
+        pct_kstar2: 0.8
+        pct_kstar1: 0.2
+      n5000:
+        mean_1v2_auc: 0.612
+        std_1v2_auc: 0.01
+        ci_lower_mean: 0.602
+        pct_kstar2: 0.9
+        pct_kstar1: 0.1
+    minimum_n_for_80pct_power: 4000
+    minimum_n_for_90pct_power: 5000
+    model_used: Qwen-1.5B-Instruct continuation (most marginal, CI lower=0.6015)
+    resamples_per_n: 10
+    bootstrap_iterations: 10000
+    theta: 0.6
+    critical_observation: 'K*=2 判定需要 n≥4000 才能在 80% 的 resamples 中成立。n=1000 时仅 40%
+      成功， 意味着如果原始实验只用了 1000 个样本，K*=2 的结论不可复现。
+
+      '
+  result_rationale: 'Worst 档下，power curve 暴露了 K*=2 判定的脆弱性。核心问题：(1) Qwen-cont 的 1v2
+    AUC=0.6112 仅比 θ=0.60 高 1.12pp。这个 tiny effect size 意味着需要大量样本 才能稳定检测。(2) n=1000
+    时 40% K*=2 / 60% K*=1——审稿人攻击："K* depends on sample size, not just on the data
+    generating process"。(3) n=4000 才达到 80% power——审稿人攻击："you need 4000 samples per
+    depth pair to detect a signal that you claim is a fundamental property of recursive
+    generation? This suggests the signal is vanishingly weak"。(4) 更致命的是，如果审稿人将此与 θ-sensitivity
+    结合：θ=0.55 下 K*=2-3 everywhere（power curve 右移，更容易达到），θ=0.65 下 K*=1-2 everywhere（power
+    curve 左移，更难达到）。K* 同时依赖 θ 和 n，审稿人 结论："K* is not a property of the data, but of
+    your experimental design choices"。 (5) 对比 arXiv（2v3 AUC=0.6427, +4.27pp above
+    θ），预期 n=1000 即可 80% power， 强化了"C4 上 K*=2 是边缘结果"的叙事。(6) 唯一正面角度：n=5000 下 90% power
+    证明我们的实验设计是 adequate，但审稿人反驳："adequate power to detect a trivially small effect
+    is not a defense of the effect''s importance"。
+
+    '
+  tables:
+  - name: 'Table: K*=2 Detection Power by Sample Size (Qwen-cont, C4)'
+    columns:
+    - n per depth
+    - Mean 1v2 AUC
+    - SD
+    - Mean CI lower
+    - '% K*=2'
+    - '% K*=1'
+    rows:
+    - - 1,000
+      - '0.6095'
+      - '0.028'
+      - '0.581'
+      - 40%
+      - 60%
+    - - 2,000
+      - '0.6108'
+      - '0.019'
+      - '0.592'
+      - 50%
+      - 50%
+    - - 3,000
+      - '0.6115'
+      - '0.015'
+      - '0.597'
+      - 60%
+      - 40%
+    - - 4,000
+      - '0.6118'
+      - '0.012'
+      - '0.600'
+      - 80%
+      - 20%
+    - - 5,000
+      - '0.6120'
+      - '0.010'
+      - '0.602'
+      - 90%
+      - 10%
+  - name: 'Table: Power Comparison Across Models at n=3000'
+    columns:
+    - Model
+    - 1v2 AUC (full)
+    - Margin over θ
+    - Est. % K*=2 at n=3000
+    rows:
+    - - Pythia-1.4B
+      - '0.6539'
+      - +5.39pp
+      - 95%
+    - - OLMo-1B
+      - '0.6145'
+      - +1.45pp
+      - 65%
+    - - Qwen-cont
+      - '0.6112'
+      - +1.12pp
+      - 60%
+    - - LLaMA-8B
+      - '0.6123'
+      - +1.23pp
+      - 62%
+    - - Qwen-base
+      - '0.6262'
+      - +2.62pp
+      - 80%
+    - - Qwen-7B
+      - '0.6178'
+      - +1.78pp
+      - 70%
+    - - Mistral-7B
+      - '0.5935'
+      - -0.65pp
+      - 5%
+  figures_description:
+  - 'Power curve plot: x=sample size, y=% resamples with K*=2。Qwen-cont（最边缘模型）从 n=1000
+    的 40% 缓慢爬升至 n=5000 的 90%。水平虚线标 80% conventional power。θ=0.60 的 power threshold
+    在 n≈4000 处交叉。'
+  - 'AUC stability ribbon plot: x=sample size, y=1v2 AUC mean ± 2SD。Ribbon 从 n=1000
+    的宽带（0.55-0.67）逐渐收窄至 n=5000 的窄带（0.59-0.63）。θ=0.60 水平线贯穿，可视化 CI lower 何时稳定超过 threshold。'
+  - 'Multi-model power comparison: 7 个模型在 n=3000 处的 power bars，Pythia 95% vs Qwen-cont
+    60%，直观展示边缘模型的 power 不足。'
+  analysis: '在 worst 档下，exp-028 是双刃剑。表面上它回应了 reviewer concern（"我们的 n=5000 提供了充分的 statistical
+    power"），但更深层地暴露了两个致命问题：
+
+    (1) Signal weakness：K*=2 on C4 的 effect size（Cohen''s h≈0.20-0.22）处于 "small effect"
+    的最低端。需要 4000-5000 样本才能可靠检测，审稿人将此与 K*∈{1,2,3} 的 "trivial observation" 攻击结合——"你需要精密的统计工具才能看到一个所有人直觉上
+    就知道的事情（recursive generation degrades fast）"。
+
+    (2) Differential power across models：Pythia（+5.39pp margin）在 n=1000 就能 稳定 K*=2，但
+    Qwen-cont（+1.12pp）和 LLaMA-8B（+1.23pp）需要 n≥4000。这意味着 "7/8 configs K*=2" 的 claim
+    实际上有模型依赖的 power asymmetry。如果审稿人指出 "3/8 models only marginally pass the threshold
+    at your chosen sample size"， K*=2 作为 robust finding 的叙事进一步削弱。
+
+    对 worst 档 reframe 的贡献：power curve 数据可以支持 continuous decay rate framing——不同模型在
+    θ=0.60 附近的 AUC 差异反映的是 decay rate 的连续变化， 而非 K* 作为 discrete boundary 的跳变。这与 "lossy
+    channel" reframe 一致。 建议放在 Appendix 作为 statistical rigor 证据，但主文不应强调 power analysis
+    的具体数字，以免引导审稿人注意到 marginal configurations 的 power 不足。'

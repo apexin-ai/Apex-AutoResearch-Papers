@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b69fdbf2c91bbc2923f",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "director / loop_8.md",
+  "task_key": "loop_8",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_8.md",
+    "occurrence": 1,
+    "bytes": 3769,
+    "sha256": "5ac2faaedeaa6b886f6cb044435e2246534edc9096cda67d68858a1214e805c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: max_messages\nupdated: '2026-05-17T10:44:14+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cqa1-22115 cuda:0-3（4×4090D），不得使用其他服务器/GPU\n- 论文 ≤8 页正文，EMNLP 2026 ACL review 模板，零 em-dash（grep 检查）\n- exp-026 v1 已作废（用了 retrain-chain 数据，ceiling effect），只有 v2（prompt-chain Pythia）有效\n- C3 claim 不得说 \"universally beneficial\"（30% MMLU p=0.074 不显著），维持 \"consistent advantage\" 措辞\n- Abstract/Conclusion 维持防守 framing（\"when contamination causes detectable quality loss\" / \"under sufficient contamination\"），不要主动升级\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-22115 (connect.cqa1.seetacloud.com)，root 用户\n- 工作目录：`/root/autodl-tmp/gen-depth-contamination`\n- Python：`/root/miniconda3/bin/python`（需 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 论文本地：`/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/`\n- 论文远程编译：`/root/autodl-tmp/gen-depth-contamination/docs/paper/`（latexmk -pdf main.tex）\n- Artifacts：`projects/gen-depth-contamination/artifacts/main.pdf`（最新 v4，含所有修复）\n- 活跃进程：无（全部实验完成，GPU 全部空闲）\n- Cron：无活跃 cron 任务\n\n### 3. 📊 当前状态\n本轮完成：\n- exp-009 v3 dose-response 全部收割（45/45 seeds，3 ratios × 3 strategies），registry 已更新 DONE/success\n- exp-026 v2 feature stability（prompt-chain，≥8D robust），exp-027 retrain bootstrap CI（K*≥4 confirmed）——均 DONE/success，结果已写入 appendix\n- D053 论文修改 4/4 完成：Section 5 / Discussion / Limitations / Appendix 统一为 \"binary retains advantage, graduated ≈ no_filter\"\n- Figure 1 截断修复、9 处 caption/reference 修复、Table 6 截断修复\n- Paper Agent 刚完成 exp-026/027 appendix 表格添加\n\nRegistry：0 RUNNING，0 PREPARING，35 success，7 failed（全是技术失败）\nGPU：cuda:0-3 全部空闲\n等待中：Group C 审稿报告（review_chat_id: oc_0f6dcb30efaa4f47425ef1d9874a89d7）\n\n### 4. 📋 待办\n- Group C 审稿报告回传 → Read `skills/global/review-report-action.skill.md`，按 Holistic Pass + Per-Comment Action Matrix 处理，涉及补实验的意见用 cuda:0-3 跑\n- Reviewer 覆盖度审查回复到达 → 评估是否跑 segment length ablation（Reviewer 之前 rank 3 建议，~2-3h）\n- Paper Agent exp-026/027 patch 编译完成 → 上传最新 PDF 给用户\n- exp-026 v2 feature stability 结果需正文引用（正文某处提 \"Appendix §Feature Subset\"），Paper Agent 尚未在正文加 cross-reference\n- paper_framing.md 需更新 C3 section 反映 D053（当前仍写 \"graduated ≈ binary convergence\"）\n\n### 5. 🎯 战略上下文\n- 项目核心：K*∈{1,2,3} domain-dependent bounded saturation。Web K*=2 (7/8), arXiv K*=3 (2/2 cross-validated), Mistral K*=1\n- 决策链：D050 arXiv K*=3 → D051 retrain K*≥4 text-intrinsic boundary → D052 C3 限定为 exp-006 → D053 dose-response \"converge\" 证伪改为 \"binary retains advantage\"\n- 最易判断错的事：(1) C3 的 \"converge\" vs \"retains advantage\" 区别——v3 数据明确显示 binary 在 HellaSwag 全部显著，不能说 converge；(2) exp-026 必须用 prompt-chain 数据，retrain-chain 数据无意义（M001 教训）；(3) Qwen-cont 1v2 CI lower = θ+0.15pp 极边缘，cross-scorer 下降至 K*=1，论文措辞不能过度自信\n- DDL：EMNLP 2026 ARR May 25（8 天），时间充裕但 Group C 审稿意见可能触发额外修改\n- Mistakes 记录：M001（exp-026 数据源错误），注意 ablation 实验数据源必须匹配论文主实验条件\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8.md"
+}

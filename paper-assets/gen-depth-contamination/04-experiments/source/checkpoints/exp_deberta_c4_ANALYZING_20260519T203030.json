@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp_deberta_c4",
+  "project": "gen-depth-contamination",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T19:27:44.088Z",
+    "updated_at": "2026-05-19T20:30:29.991Z",
+    "hypothesis": "DeBERTa-v3-base fine-tuned on raw text provides an upper-bound for C4 depth distinguishability compared to 15D LightGBM on handcrafted features. Pairwise AUC should exceed LightGBM at all depth pairs since the model has access to full lexical/semantic signal.",
+    "parent": "exp_deberta_upperbound",
+    "spec": {
+      "server": "westd-42896",
+      "gpu": [
+        "cuda:0"
+      ],
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HOME=/root/autodl-tmp/.hf_cache python scripts/run_deberta_c4.py",
+      "pid": "130789",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/",
+      "data_count": 55000,
+      "model_name": "DeBERTa-v3-base",
+      "seed": 42,
+      "log_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_c4/train.log",
+      "checkpoint_path": "results/exp_deberta_c4/",
+      "checkpoint_source": "microsoft/deberta-v3-base (pretrained)",
+      "eval_data": "C4 depth chains (exp_14b_c4: 30k, exp_32b_c4: 25k)"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T20:30:30.219593+00:00",
+  "trigger": "update_registry"
+}

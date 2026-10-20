@@ -1,0 +1,10 @@
+See server: /root/autodl-tmp/gen-depth-contamination/results/exp_multi_source_arxiv/results.json
+
+Summary:
+- vocab-only no_label K*=2: 0v1=0.9431, 1v2=0.6922, 2v3=0.5890
+- vocab-only with_label K*=2: 0v1=0.9436, 1v2=0.7020, 2v3=0.5883
+- unified no_label K*=3: 0v1=0.9899, 1v2=0.8117, 2v3=0.6247 [0.6119,0.6374]
+- unified with_label K*=3: 0v1=0.9911, 1v2=0.8338, 2v3=0.6276 [0.6150,0.6401]
+- C4 unified K*=2, C4 vocab-only K*=2
+
+Key finding: arXiv unified scorer achieves K*=3 (2v3 CI lower > 0.60), one depth deeper than C4 (K*=2).

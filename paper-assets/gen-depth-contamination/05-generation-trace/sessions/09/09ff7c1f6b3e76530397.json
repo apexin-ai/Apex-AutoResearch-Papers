@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09ff7c1f6b3e76530397",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "monitor exp006 progress check",
+  "task_key": "worker_monitor_exp006-progress-check_20260514T045453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp006-progress-check_20260514T045453_result.json",
+    "occurrence": 1,
+    "bytes": 1007,
+    "sha256": "2228661739755f6c2dccd779a3cd96bb6c9dbdccf74aa5ad2b7bc78cb017e718"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-006 进度报告\n\n### 进度\n- **已完成**: 10/50 runs（5 no-filter + 5 binary-ours）+ base_model baseline\n- **进行中**: `binary-drayson_s42`（训练阶段，checkpoint-938，无 final_adapter）\n- **剩余**: 当前 run 完成后还有 39 runs\n- **无失败**: failures.log 不存在\n\n### 实际 pace\n从已完成 runs 的时间戳推算（9 个间隔）：\n\n| 指标 | 数值 |\n|------|------|\n| Training | ~37.5 min |\n| Eval | ~7.7 min |\n| **总计/run** | **~45.2 min** |\n| 范围 | 44–49 min |\n\n**45.2 min/run 是正确的，99 min/run 的估计是错误的。**\n\n### 修正 ETA\n- 当前 run 剩余: ~23 min\n- 后续 39 runs × 45.2 min = 1763 min\n- **总剩余: ~29.8 小时**\n- **ETA: May 15 ~10:43 UTC（18:43 +0800）**\n\n### GPU 状态\n- RTX 4090, 83% utilization, 339W/425W\n- 显存 13.7GB / 24.5GB (56%)\n- PID 61363 (python3)\n\n### 当前 run\n- Strategy: `binary-drayson`, seed: `42`\n- 已运行 ~22 min，预计 ~13:18 +0800 完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp006-progress-check.md"
+}

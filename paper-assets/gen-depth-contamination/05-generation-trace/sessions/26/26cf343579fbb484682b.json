@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26cf343579fbb484682b",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code code domain mistral",
+  "task_key": "worker_code_code_domain_mistral_20260524T091917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_code_domain_mistral_20260524T091917_result.json",
+    "occurrence": 1,
+    "bytes": 714,
+    "sha256": "3f81c00b2686ec3d5cae8027bb7c56c38e142643d64250b8a4854535587916af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已完整完成，无需重新运行。结果摘要：\n\n**Mistral-7B Code (Python) — K\\* = 2**\n\n| Pair | AUC | 判断 |\n|------|-----|------|\n| 0 vs 1 | 0.9191 ± 0.0017 | 可区分 |\n| 1 vs 2 | 0.6152 ± 0.0120 | 可区分 |\n| 2 vs 3 | 0.5293 ± 0.0091 | ~随机 |\n| 3 vs 4 | 0.5286 ± 0.0104 | ~随机 |\n| 4 vs 5 | 0.5099 ± 0.0060 | ~随机 |\n\n- Seed data 与 Qwen-1.5B Code 实验完全一致（同 `code_py_*` doc_ids）\n- Features 用 Qwen2.5-1.5B-Instruct cross-scoring（15D features）\n- K\\* = 2 确认 Code domain ceiling = 2，与 Qwen-1.5B (K\\*=2) 和 LLaMA-8B (K\\*=2) 一致\n- 数据和结果已在 `data/exp_code_mistral7b/` 和 `results/exp_code_mistral7b/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-code-domain-mistral.md"
+}

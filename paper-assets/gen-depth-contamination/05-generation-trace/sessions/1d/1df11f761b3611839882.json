@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1df11f761b3611839882",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "research drayson b value",
+  "task_key": "worker_research_drayson-b-value_20260514T084551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_drayson-b-value_20260514T084551_result.json",
+    "occurrence": 1,
+    "bytes": 1264,
+    "sha256": "c38b741890db885612b8062a7e8964e84cbfa01ad85db48c5269ae5fbd6793c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认了原文参数。情况与预期不同：\n\n## 结果\n\n| 来源 | b 值 |\n|------|------|\n| **Drayson 原文** (Table S1, SmolLM2-1.7B) | **b=1** |\n| **我们的代码** (`exp006_filtering_strategies.py:88`) | b=1.5 |\n| **我们的论文** (`experiments_c3.tex:18`) | b=1.5 |\n\n**Drayson 原文确认**：Table S1 中 SmolLM2-1.7B 对应 b=1, k=1.5, rmax=3。小模型用 b=10，1.7B 用 b=1。\n\n**实际情况与你的描述不同**：代码中 `BinaryDrayson.__init__` 的默认值是 `b=1.5`（不是 b=1），和论文一致。代码中也没有你提到的 \"Table S1: b=1, k=1.5, rmax=3 for SmolLM-1.7B\" 注释。\n\n**结论**：代码和论文一致（都是 b=1.5），但**都与 Drayson 原文不符**（原文是 b=1）。exp-006 正在用 b=1.5 跑。\n\n这是个需要你判断的决策：\n- 如果目标是忠实复现 Drayson baseline → 应改为 b=1（代码和论文都要改）\n- 如果 b=1.5 是有意的选择（比如经过调参）→ 论文中应注明与原文参数不同\n\n请确认方向，我再改。\n\nSources:\n- [Drayson et al. 2025 - Machine-generated text detection prevents language model collapse](https://arxiv.org/abs/2502.15654)\n- [Full paper HTML](https://arxiv.org/html/2502.15654)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-drayson-b-value.md"
+}

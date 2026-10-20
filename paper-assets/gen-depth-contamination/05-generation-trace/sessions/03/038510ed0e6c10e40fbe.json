@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "038510ed0e6c10e40fbe",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "writing neural probe todo cleanup",
+  "task_key": "worker_writing_neural-probe-todo-cleanup_20260514T192736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_neural-probe-todo-cleanup_20260514T192736_result.json",
+    "occurrence": 1,
+    "bytes": 722,
+    "sha256": "13bb377d17b367eaf6760746de228bdcc5fc8102ccb1c6090a18c0a663b3f36c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 个 TODO 全部处理完毕：\n\n1. **TODO 1** (原 361 行) → 替换为 Pythia/OLMo cross-model setup 正文描述（现 361 行）\n2. **TODO 2** (原 364 行) → 插入 `tab:neural_probe_crossmodel` 占位表格（364-378 行），原 \"Preliminary results...\" 句替换为引用该表的新表述（379 行）\n3. **TODO 3** (原 405 行) → 结构化占位注释，指向表格（419 行）\n4. **TODO 4** (原 406 行) → 结构化占位注释，说明 bootstrap CI 来源（420 行）\n5. **TODO 5** (原 407 行) → 已删除（被 TODO 2 的表格替代）\n\n已有 AUC 数字未改动，label 无冲突，embedding 维度正确（Qwen 1536, Pythia/OLMo 2048），pending 语气保持。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-neural-probe-todo-cleanup.md"
+}

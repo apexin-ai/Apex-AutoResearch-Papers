@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp_deberta_arxiv_qwen1b5",
+  "project": "gen-depth-contamination",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T03:12:10.106Z",
+    "updated_at": "2026-05-20T03:27:04.115Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_arxiv.py\"",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "276481",
+      "log_path": "~/runs/gen-depth-contamination/exp_deberta_arxiv_qwen1b5.log",
+      "submitted_at": "2026-05-20T03:12:09.627Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/exp_024_arxiv/",
+      "data_count": 13200,
+      "model_name": "DeBERTa-v3-base",
+      "seed": "5-fold GroupKFold",
+      "hyperparams": {
+        "epochs": 3,
+        "batch_size": 16,
+        "grad_accum": 2,
+        "lr": "2e-5",
+        "n_boot": 10000,
+        "threshold": 0.6
+      }
+    },
+    "hypothesis": "DeBERTa supervised classifier on arXiv domain yields K*=3 (matching OBD K*=3), confirming representation-independent domain ceiling holds across all 4 domains (C4 K*=2, wiki K*=3, code K*=2, arXiv K*=3)."
+  },
+  "timestamp": "2026-05-20T03:27:04.400168+00:00",
+  "trigger": "update_registry"
+}

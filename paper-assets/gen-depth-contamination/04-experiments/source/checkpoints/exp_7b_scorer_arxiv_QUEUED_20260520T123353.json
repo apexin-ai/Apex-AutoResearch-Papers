@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_7b_scorer_arxiv",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T12:33:38.614Z",
+    "updated_at": "2026-05-20T12:33:53.240Z",
+    "hypothesis": "Qwen2.5-7B scorer yields same K*=3 as Qwen2.5-1.5B scorer on arXiv depth chains, confirming K* is robust to scorer scale across domains (C4 + arXiv).",
+    "parent": "exp_024_arxiv_domain"
+  },
+  "timestamp": "2026-05-20T12:33:53.542926+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1231 @@
+{
+  "schema_version": "1.0",
+  "id": "05af67fce31444057ce9",
+  "project": "gen-depth-contamination",
+  "kind": "conversation",
+  "title": "analysis exp003 bootstrap review",
+  "task_key": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_exp003_bootstrap_review_20260516T032051.jsonl",
+    "occurrence": 1,
+    "bytes": 63128,
+    "sha256": "f78e9cbc6d19d78dc68bcc456cd1037b843453d85528764c7954300fb8fdb607"
+  },
+  "statistics": {
+    "messages": 61,
+    "user_turns": 0,
+    "tool_calls": 30,
+    "roles": {
+      "tool_call": 30,
+      "tool_result": 30,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T03:29:30.729131+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/paper/experiments_c1.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T03:29:30.729501+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T03:29:30.729663+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/paper"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T03:29:30.729814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T03:29:30.729946+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/paper/ 2>/dev/null || echo \"DIR_NOT_FOUND\"",
+              "description": "Check paper directory existence"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T03:29:30.730067+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T03:29:30.730184+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 12\ndrwxr-xr-x  3 ubuntu ubuntu 4096 May 16 00:00 .\ndrwxr-xr-x 11 ubuntu ubuntu 4096 May 16 03:14 ..\ndrwxr-xr-x  2 ubuntu ubuntu 4096 May 16 00:04 figures"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T03:29:30.730305+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/dream_reports/dream_20260512T200328/best/paper.tex\nartifacts/dream_reports/dream_20260512T200328/median/paper.tex\nartifacts/dream_reports/dream_20260512T200328/worst/paper.tex\nartifacts/dream_reports/dream_20260513T080728/best/paper.tex\nartifacts/dream_reports/dream_20260513T080728/median/paper.tex\nartifacts/dream_reports/dream_20260513T080728/worst/paper.tex\nartifacts/_project/paper/method.tex\nartifacts/_project/paper/experiments_c1.tex\nartifacts/exp_015_neural_probe/paper/neural_probe_analysis.tex\nartifacts/drafts/neural_probe_analysis.tex\nartifacts/c3_contingency_versions.tex\nartifacts/exp-006/paper/c3_contingency_versions.tex\ndocs/paper/tables/tab_filtering_main.tex\ndocs/paper/tables/tab_alpha_sweep.tex\ndocs/paper/tables/tab_pairwise_significance.tex\ndocs/paper/tables/tab_crossscorer.tex\ndocs/paper/appendix_extended.tex\ndocs/paper/introduction.tex\ndocs/paper/conclusion.tex\ndocs/paper/related_work.tex\ndocs/paper/experiments_c3.tex\ndocs/paper/appendix.tex\ndocs/paper/method.tex\ndocs/paper/discussion.tex\ndocs/paper/experiments_c1.tex\ndocs/paper/main.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T03:29:30.730457+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T03:29:30.730674+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe evaluate generational depth estimation on five model configurations:\n5\tPythia-1.4B and OLMo-1B in continuation mode, Qwen2.5-1.5B-Instruct in both rewrite and continuation modes, and Qwen2.5-7B in continuation mode (cross-scale scoring with Qwen2.5-1.5B).\n6\tAll experiments use the OBD-LightGBM classifier with the 15-dimensional feature set (Section~\\ref{sec:method}), with 5{,}000 texts per depth level (generations 0--5).\n7\t\n8\t%% ====================================================================\n9\t\\subsection{$\\Kempirical = 2$ Across All Configurations}\n10\t\\label{sec:kstar_boundary}\n11\t\n12\t\\begin{table*}[t]\n13\t\\centering\n14\t\\small\n15\t\\caption{Pairwise $\\auc$ for adjacent depth pairs with bootstrap 95\\% CIs and permutation $p$-values for boundary rows.\n16\t$\\Kempirical = 2$ requires 1v2 $\\auc > \\theta{=}0.60$ and 2v3 $\\auc < \\theta$; CIs quantify boundary uncertainty.}\n17\t\\label{tab:kstar_ci}\n18\t\\begin{tabular}{lcccccccccc}\n19\t\\toprule\n20\t & \\multicolumn{2}{c}{Qwen-rw} & \\multicolumn{2}{c}{Pythia} & \\multicolumn{2}{c}{OLMo} & \\multicolumn{2}{c}{Qwen-cont} & \\multicolumn{2}{c}{Qwen-7B\\rlap{$^\\ddagger$}} \\\\\n21\t\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\\cmidrule(lr){6-7}\\cmidrule(lr){8-9}\\cmidrule(lr){10-11}\n22\t & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI & $\\auc$ & 95\\% CI \\\\\n23\t\\midrule\n24\t0v1 & .9956 & & .9932 & & .9970 & & .9971 & & .9638 & [.961,\\,.967] \\\\\n25\t1v2 & .6955 & [.686,\\,.704]\\rlap{$^*$} & .6539 & [.645,\\,.663]\\rlap{$^*$} & .6145 & [.605,\\,.625]\\rlap{$^*$} & .6112 & [.602,\\,.621]\\rlap{$^*$} & .6168 & [.608,\\,.626]\\rlap{$^*$} \\\\\n26\t2v3 & .5893 & [.580,\\,.599] & .5514 & [.542,\\,.563] & .5496 & [.540,\\,.560] & .5609 & [.551,\\,.571] & .5492 & [.539,\\,.559] \\\\\n27\t3v4 & .5435 & & .5152 & & .5091 & & .5409 & & .5276 & \\\\\n28\t4v5 & .5340 & & .5136 & & .5045 & & .5141 & & .5085 & \\\\\n29\t\\bottomrule\n30\t\\multicolumn{11}{l}{\\footnotesize $^*$Permutation $p < 0.001$ for all five 1v2 comp\n…[truncated 14337 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T03:29:30.730856+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T03:29:30.731180+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\appendix\n2\t\\section{Supplementary Figures}\n3\t\n4\t\\begin{figure}[t]\n5\t\\centering\n6\t\\includegraphics[width=\\columnwidth]{figures/fig_filtering_strategies.pdf}\n7\t\\caption{Downstream performance of all filtering strategies (5 seeds, $\\pm$1 std). Binary-ours (green) minimizes MMLU degradation; graduated $\\alpha$ sweep shows monotonic convergence toward binary. Dashed line: base model (no fine-tuning).}\n8\t\\label{fig:filtering_strategies}\n9\t\\end{figure}\n10\t\n11\t\\begin{figure}[t]\n12\t  \\centering\n13\t  \\includegraphics[width=\\columnwidth]{figures/fig_s1_auc_decay_ci.pdf}\n14\t  \\caption{Pairwise $\\auc$ decay curves for five model-mode configurations with bootstrap 95\\% confidence intervals. Error bars computed from 1{,}000 bootstrap resamples. The shaded region marks the $\\Kempirical=2$ boundary where $\\auc$ drops below $\\theta=0.60$. This figure complements Figure~\\ref{fig:auc_decay} in the main text by showing statistical uncertainty for each measurement point.}\n15\t  \\label{fig:s1_auc_decay_ci}\n16\t\\end{figure}\n17\t\n18\t\\section{Supplementary Tables}\n19\t\n20\t%%% Table S1: Cross-Transfer Confusion Matrix (exp-013)\n21\t\\begin{table*}[t]\n22\t  \\centering\n23\t  \\caption{Cross-model transfer accuracy matrix. Each cell reports the six-class depth classification accuracy of a detector trained on one model's outputs (row) and evaluated on another model's outputs (column). Diagonal entries (\\textbf{bold}) indicate within-model performance. Transfer retention is computed as the ratio of off-diagonal accuracy to the geometric mean of the two corresponding diagonal entries.}\n24\t  \\label{tab:s1_transfer}\n25\t  \\begin{tabular}{lcccc}\n26\t    \\toprule\n27\t    \\multirow{2}{*}{\\textbf{Train Model}} & \\multicolumn{4}{c}{\\textbf{Test Model}} \\\\\n28\t    \\cmidrule(lr){2-5}\n29\t    & Qwen-rw & Pythia & OLMo & Qwen-cont \\\\\n30\t    \\midrule\n31\t    Qwen-rw   & \\textbf{0.4229} & 0.2590 & 0.2653 & 0.3466 \\\\\n32\t    Pythia    & 0.2718 & \\textbf{0.3856} & 0.3531 & 0.3287 \\\\\n33\t    OLMo      & 0.2768 & 0.3450 & \\textb\n…[truncated 15463 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T03:29:30.731350+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T03:29:30.731514+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Extended Discussion}\n2\t\\label{sec:extended_discussion}\n3\t\n4\t\\subsection{Theoretical Implications of $\\Kempirical = 2$}\n5\t\n6\tThe DPI guarantees a finite $\\Ktheory$; our result establishes $\\Kempirical = 2$ across all 9 conditions (1B--7B), aligning with model collapse convergence~\\cite{shumailov2024collapse, dohmatob2024model, alemohammad2024selfconsuming}.\n7\tDecoding strategy modestly affects signal strength (1v2 $\\auc \\in [0.6866, 0.7039]$) but does not shift the boundary.\n8\t\n9\t\\subsection{Cross-Model Transfer Implications}\n10\t\n11\tCross-model classification retains 80--92\\% accuracy with scorer-invariant feature rankings ($\\rho > 0.90$), enabling single-classifier deployment across generators.\n12\tAbsolute discriminability at the $\\Kempirical$ boundary is scorer-sensitive: alternative scorers reduce Qwen-continuation $\\Kempirical$ from 2 to 1, while rewrite-mode $\\Kempirical = 2$ is preserved.\n13\tModel family similarity modulates transfer (Pythia$\\leftrightarrow$OLMo: 90--92\\% vs.\\ Qwen-cont$\\leftrightarrow$OLMo: 80--85\\%).\n14\t\n15\t\\begin{minipage}{\\columnwidth}\n16\t\\centering\n17\t\\captionof{table}{Cross-scorer validation on Qwen-generated text. Alternative scorers (Pythia-1.4B, OLMo-1B) preserve feature ranking ($\\rho > 0.90$) and rewrite-mode $\\Kempirical = 2$, but reduce continuation-mode $\\Kempirical$ from 2 to 1.}\n18\t\\label{tab:crossscorer}\n19\t\\resizebox{\\columnwidth}{!}{\\input{tables/tab_crossscorer}}\n20\t\\end{minipage}\n21\t\n22\t\\subsection{Feature Importance Across Decoding Strategies}\n23\t\n24\tFeature importance ordering varies across decoding strategies: greedy and $T{=}0.7$ share highly correlated rankings ($\\rho = 0.914$), while greedy vs.\\ $T{=}1.2$ yields lower correlation ($\\rho = 0.53$, nonsignificant after Bonferroni).\n25\tThe depth boundary is robust but the optimal feature subset is strategy-dependent.\n26\t\n27\t\\subsection{Scale and Neural Probe}\n28\t\\label{sec:extended_neural_probe}\n29\t\n30\tCross-scale validation confirms $\\Kempirical = 2$ at 7B (1v\n…[truncated 2909 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T03:29:30.731704+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/exp*003*/**",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T03:29:30.731854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/exp_003_decoding_ablation/report/exp003_analysis_report.md\nartifacts/exp_003_decoding_ablation/chart/exp003_figure_info.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T03:29:30.731978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "bootstrap.*decod|decod.*bootstrap|exp.003.*ci|exp.003.*bootstrap",
+              "-i": "True",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T03:29:30.732180+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 234 files\nlogs/workers/worker_analysis_exp003_bootstrap_review_20260516T032051.log\nlogs/workers/worker_paper_w6_structural_confound_20260516T032042.log\nlogs/workers/worker_paper_fix_w6_structural_confound_20260516T032107.log\nlogs/chats/cron_hook_exp_012_binary_confidence.jsonl\nlogs/chats/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6.jsonl\nlogs/chats/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer.jsonl\nlogs/chats/feishu_group_oc_5d2a0ec1de3a456564133278c1a9b203_director.jsonl\nlogs/chats/cron_hook_exp_004_7b_crossscale.jsonl\nlogs/chats/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_paper_agent.jsonl\nlogs/chats/cron_hook_exp_015_neural_probe.jsonl\ndocs/paper/main.tex\nlogs/chats/archive/cron_hook_exp_015_neural_probe_20260516T031804_387860.jsonl\nlogs/chats/archive/cron_hook_exp_012_binary_confidence_20260516T031746_743959.jsonl\ndocs/paper/experiments_c1.tex\nlogs/workers/worker_analysis_exp003_bootstrap_ci_20260516T023635.log\nartifacts/manifest.yaml\nlogs/workers/worker_analysis_depth_token_length_20260516T023706.log\nlogs/chats/feishu_group_oc_0f6dcb30efaa4f47425ef1d9874a89d7_director.jsonl\nlogs/chats/feishu_dm_oc_e7553035831f7ab1ea8297ef769e2db7_briefer.jsonl\nlogs/chats/feishu_group_oc_0f6dcb30efaa4f47425ef1d9874a89d7_reviewer_2.jsonl\nlogs/chats/feishu_group_oc_0f6dcb30efaa4f47425ef1d9874a89d7_reviewer_1.jsonl\npaper_framing.md\nlogs/workers/worker_paper_integrate_exp012_20260516T001041.log\nlogs/chats/archive/cron_hook_exp_015_neural_probe_20260516T000828_025397.jsonl\nlogs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_20260516T000815_621862.jsonl\nlogs/workers/worker_figure_update_7b_20260515T234818.log\nlogs/chats/worker_paper_integrate_exp004_20260515T231453.jsonl\nlogs/workers/worker_paper_integrate_exp004_20260515T231453.log\nlogs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260515T223246_672931.jsonl\nlogs/chats/worker_fix_exp004_feat_extract_20260515T221134.jsonl\nlogs/workers/worker_fix_exp004_feat_extrac\n…[truncated 14473 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T03:29:30.732341+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp_003_decoding_ablation/report/exp003_analysis_report.md"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T03:29:30.732485+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# exp-003 Config 1-3 Deep Analysis\n2\t\n3\t## Config 1 (Greedy) vs Config 2 (Nuc09) Pairwise AUC\n4\t\n5\t| Depth-Pair | Greedy | Nuc09 | Δ |\n6\t|:---:|:---:|:---:|:---:|\n7\t| 0v1 | 0.9797 | **0.9946** | +0.0149 |\n8\t| 1v2 | **0.6893** | 0.6866 | −0.0027 |\n9\t| 2v3 | 0.5613 | **0.5917** | +0.0304 |\n10\t| 3v4 | 0.5404 | **0.5466** | +0.0062 |\n11\t| 4v5 | **0.5139** | 0.5068 | −0.0071 |\n12\t\n13\t## Feature Ranking Spearman ρ (single-feature AUC, 1v2)\n14\t\n15\t| 对比 | ρ | p-value |\n16\t|:---|:---:|:---:|\n17\t| Greedy vs Nuc09 | 0.600 | 0.018 |\n18\t| Greedy vs T07 | 0.914 | 2e-6 |\n19\t| Nuc09 vs T07 | 0.782 | 0.00057 |\n20\t\n21\t## Top-3 Features (1v2)\n22\t\n23\t| Config | #1 | #2 | #3 |\n24\t|:---|:---|:---|:---|\n25\t| Greedy | self_bleu (0.5961) | hapax_ratio (0.5752) | ttr (0.5462) |\n26\t| Nuc09 | hapax_ratio (0.6561) | ttr (0.6043) | surp_skew (0.5997) |\n27\t| T07 | hapax_ratio (0.6365) | ttr (0.5867) | low_freq_ratio (0.5805) |\n28\t\n29\t## Cross-Experiment 1v2 AUC Ranking (all 7 configs)\n30\t\n31\t| Rank | Config | 1v2 AUC |\n32\t|:---:|:---|:---:|\n33\t| 1 | MVP-Qwen-Rewrite | 0.6957 |\n34\t| 2 | Config1-Greedy | 0.6893 |\n35\t| 3 | Config3-T07 | 0.6887 |\n36\t| 4 | Config2-Nuc09 | 0.6866 |\n37\t| 5 | Exp001-Pythia-Cont | 0.6539 |\n38\t| 6 | Exp002-OLMo-Cont | 0.6146 |\n39\t| 7 | Exp017-Qwen-Cont | 0.6114 |\n40\t\n41\t**D016 Universality (θ=0.60): CONFIRMED — all 7 configs > 0.60**\n42\t\n43\t## θ-Sensitivity Table\n44\t\n45\t| Config | θ=0.55 | θ=0.60 | θ=0.65 | θ=0.70 |\n46\t|:---|:---:|:---:|:---:|:---:|\n47\t| Greedy | K*=3 | K*=2 | K*=2 | K*=1 |\n48\t| Nuc09 | K*=3 | K*=2 | K*=2 | K*=1 |\n49\t| T07 | K*=3 | K*=2 | K*=2 | K*=1 |\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T03:29:30.732634+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_exp003_bootstrap_ci_20260516T023635.log",
+              "limit": "200"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T03:29:30.732757+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (95112 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T03:29:30.732945+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "bootstrap|CI \\[|confidence interval|0\\.680|0\\.698|0\\.677|0\\.695|0\\.697|0\\.713",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_exp003_bootstrap_ci_20260516T023635.log",
+              "output_mode": "content",
+              "head_limit": "100"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T03:29:30.733099+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4:[Omitted long matching line]\n9:[Omitted long matching line]\n11:[Omitted long matching line]\n12:[Omitted long matching line]\n17:[Omitted long matching line]\n20:[Omitted long matching line]\n22:[Omitted long matching line]\n25:[Omitted long matching line]\n26:[Omitted long matching line]\n29:[Omitted long matching line]\n30:[Omitted long matching line]\n37:[Omitted long matching line]\n39:[Omitted long matching line]\n43:[Omitted long matching line]\n48:[Omitted long matching line]\n50:[Omitted long matching line]\n54:[Omitted long matching line]\n55:[Omitted long matching line]\n56:[Omitted long matching line]\n182:[Omitted long matching line]\n195:[Omitted long matching line]\n196:[Omitted long matching line]\n245:[Omitted long matching line]\n246:[Omitted long matching line]\n247:[Omitted long matching line]\n249:[Omitted long matching line]\n250:[Omitted long matching line]\n251:[Omitted long matching line]\n265:[Omitted long matching line]\n266:[Omitted long matching line]\n339:[Omitted long matching line]\n340:[Omitted long matching line]\n341:[Omitted long matching line]\n398:[Omitted long matching line]\n399:[Omitted long matching line]\n401:[Omitted long matching line]\n402:[Omitted long matching line]\n464:[Omitted long matching line]\n465:[Omitted long matching line]\n466:[Omitted long matching line]\n467:[Omitted long matching line]\n493:[Omitted long matching line]\n494:[Omitted long matching line]\n529:[Omitted long matching line]\n530:[Omitted long matching line]\n547:[Omitted long matching line]\n548:[Omitted long matching line]\n549:[Omitted long matching line]\n550:[Omitted long matching line]\n573:[Omitted long matching line]\n574:[Omitted long matching line]\n575:[Omitted long matching line]\n576:[Omitted long matching line]\n577:[Omitted long matching line]\n578:[Omitted long matching line]\n617:[Omitted long matching line]\n618:[Omitted long matching line]\n641:[Omitted long matching line]\n642:[Omitted long matching line]\n663:[Omitted long matching line]\n664:[Omitted long matching line]\n666:[Omi\n…[truncated 420 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T03:29:30.733239+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_exp003_bootstrap_ci_20260516T023635.log",
+              "offset": "660",
+              "limit": "30"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T03:29:30.733364+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (35544 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T03:29:30.733483+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n 'greedy\\|nucleus\\|temperature\\|0\\.680.*0\\.698\\|0\\.677.*0\\.695\\|0\\.680.*0\\.697\\|0\\.695.*0\\.713\\|1v2.*CI\\|2v3.*CI\\|per-pair\\|full.*CI.*table\\|bootstrap CI.*result' /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_exp003_bootstrap_ci_20260516T023635.log | head -60",
+              "description": "Search for bootstrap CI results in worker log"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T03:29:30.733825+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (88.8KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/ab3c12de-e05f-4ecb-acac-8c2583d63a3c/tool-results/bvno7c5pr.txt\n\nPreview (first 2KB):\n10:{\"type\":\"user\",\"message\":{\"role\":\"user\",\"content\":[{\"tool_use_id\":\"toolu_01AbtMs9qtU9upG9hhxEE4DG\",\"type\":\"tool_result\",\"content\":\"{\\\"result\\\":\\\"{\\\\\\\"success\\\\\\\": true, \\\\\\\"data\\\\\\\": {\\\\\\\"stdout\\\\\\\": \\\\\\\"/root/autodl-tmp/gen-depth-contamination/data_exp003_greedy\\\\\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp003_nuc09\\\\\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp003_t07\\\\\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp003_t12\\\\\\\\n\\\\\\\", \\\\\\\"stderr\\\\\\\": \\\\\\\"\\\\\\\", \\\\\\\"return_code\\\\\\\": 0}, \\\\\\\"error\\\\\\\": null, \\\\\\\"metadata\\\\\\\": {\\\\\\\"elapsed_seconds\\\\\\\": 1.69}}\\\"}\"}]},\"parent_tool_use_id\":null,\"session_id\":\"15db931f-d2cc-4430-9620-81dfe4a5cc1e\",\"uuid\":\"57c73d4b-edb5-4526-b2e5-af032b73cba5\",\"timestamp\":\"2026-05-16T02:36:57.115Z\",\"tool_use_result\":{\"content\":\"{\\\"result\\\":\\\"{\\\\\\\"success\\\\\\\": true, \\\\\\\"data\\\\\\\": {\\\\\\\"stdout\\\\\\\": \\\\\\\"/root/autodl-tmp/gen-depth-contamination/data_exp003_greedy\\\\\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp003_nuc09\\\\\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp003_t07\\\\\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp003_t12\\\\\\\\n\\\\\\\", \\\\\\\"stderr\\\\\\\": \\\\\\\"\\\\\\\", \\\\\\\"return_code\\\\\\\": 0}, \\\\\\\"error\\\\\\\": null, \\\\\\\"metadata\\\\\\\": {\\\\\\\"elapsed_seconds\\\\\\\": 1.69}}\\\"}\",\"structuredContent\":{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data_exp003_greedy\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp003_nuc09\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp003_t07\\\\n/root/autodl-tmp/gen-depth-contamination/data_exp003_t12\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.69}}\"}}}\n...\n</persisted-output>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T03:29:30.733989+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -o '\"content\":\"[^\"]*bootstrap[^\"]*\"' /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_exp003_bootstrap_ci_20260516T023635.log 2>/dev/null | head -20; echo \"---\"; grep -o '\"content\":\"[^\"]*CI table[^\"]*\"' /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_exp003_bootstrap_ci_20260516T023635.log 2>/dev/null | head -10",
+              "description": "Extract bootstrap CI content from worker log"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T03:29:30.734123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T03:29:30.734246+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json, re\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_exp003_bootstrap_ci_20260516T023635.log') as f:\n    for i, line in enumerate(f, 1):\n        line = line.strip()\n        if not line:\n            continue\n        try:\n            data = json.loads(line)\n        except:\n            continue\n        if data.get('type') == 'assistant':\n            msg = data.get('message', {})\n            content = msg.get('content', [])\n            if isinstance(content, list):\n                for block in content:\n                    if isinstance(block, dict) and block.get('type') == 'text':\n                        text = block['text']\n                        if 'bootstrap' in text.lower() or 'CI' in text or '0.680' in text or '0.698' in text:\n                            print(f'LINE {i}: {text[:500]}')\n                            print('---')\n\" 2>/dev/null | head -200",
+              "description": "Parse worker log for bootstrap CI assistant messages"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T03:29:30.734382+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LINE 578: 正在 bootstrap/permutation 循环中（无新日志输出，print 被缓冲）。\n---\nLINE 670: 结果已生成（耗时 1605s ≈ 26.7 分钟）。验证通过：\n\n**验证结果：**\n- 4 configs × 5 pairs = 20 条目 ✓\n- AUC point estimates 与已知值一致 ✓\n- 所有 0v1, 1v2 的 perm_p = 0.0（高度显著） ✓\n\n**关键发现 — config2 和 config3 的 2v3 CI 上界：**\n- **config2_nuc09 2v3**: AUC=0.5917, CI=[0.5824, **0.6010**] — **CI 上界 > θ=0.60**\n- **config3_t07 2v3**: AUC=0.5901, CI=[0.5806, **0.5996**] — CI 上界 < θ=0.60（差 0.04pp）\n\nconfig2 的 2v3 CI 上界恰好跨过 0.60 阈值，K*=2 的判定在该 config 下存在边界模糊性。config3 则刚好在 0.60 以下。\n\n现在注册 artifact 并更新 registry。\n---\nLINE 685: W4 任务完成。总结：\n\n**脚本**: `scripts/exp003_bootstrap_ci.py` 在远程服务器运行完毕（10K bootstrap + 10K permutation, 耗时 ~27 分钟）\n\n**输出**: `artifacts/exp003_bootstrap_ci.json`，4 config × 5 pairs = 20 条目\n\n**关键结果**:\n\n| Config | 2v3 AUC | 95% CI | CI upper vs θ=0.60 |\n|--------|---------|--------|---------------------|\n| config1_greedy | 0.5612 | [0.5517, 0.5705] | 远低于 θ |\n| **config2_nuc09** | **0.5917** | **[0.5824, 0.6010]** | **跨过 θ** |\n| config3_t07 | 0.5901 | [0.5806, 0.5996] | 差 0.04pp |\n| config4_t12 | 0.5820 |\n---"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T03:29:30.734532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_exp003_bootstrap_ci_20260516T023635.log') as f:\n    for i, line in enumerate(f, 1):\n        if i < 680 or i > 690:\n            continue\n        line = line.strip()\n        if not line:\n            continue\n        try:\n            data = json.loads(line)\n        except:\n            continue\n        if data.get('type') == 'assistant':\n            msg = data.get('message', {})\n            content = msg.get('content', [])\n            if isinstance(content, list):\n                for block in content:\n                    if isinstance(block, dict) and block.get('type') == 'text':\n                        print(f'LINE {i}:')\n                        print(block['text'])\n                        print('===')\" 2>/dev/null",
+              "description": "Get full bootstrap CI results from worker log"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T03:29:30.734672+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LINE 682:\n更新 registry。\n===\nLINE 685:\nW4 任务完成。总结：\n\n**脚本**: `scripts/exp003_bootstrap_ci.py` 在远程服务器运行完毕（10K bootstrap + 10K permutation, 耗时 ~27 分钟）\n\n**输出**: `artifacts/exp003_bootstrap_ci.json`，4 config × 5 pairs = 20 条目\n\n**关键结果**:\n\n| Config | 2v3 AUC | 95% CI | CI upper vs θ=0.60 |\n|--------|---------|--------|---------------------|\n| config1_greedy | 0.5612 | [0.5517, 0.5705] | 远低于 θ |\n| **config2_nuc09** | **0.5917** | **[0.5824, 0.6010]** | **跨过 θ** |\n| config3_t07 | 0.5901 | [0.5806, 0.5996] | 差 0.04pp |\n| config4_t12 | 0.5820 | [0.5722, 0.5917] | 远低于 θ |\n\n- **config2_nuc09 的 2v3 CI 上界 0.6010 跨过 θ=0.60**，K*=2 在该 config 下存在边界模糊性\n- config3_t07 的 CI 上界 0.5996 极接近但未跨过\n- 所有 config 的 0v1 和 1v2 permutation p=0（10K 次中零次超过观测值），K*≥2 判定稳健\n- config2 的 4v5 perm_p=0.12，不显著（接近 chance）\n\nArtifact 已注册，registry 已更新。\n==="
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T03:29:30.734820+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/exp003_bootstrap_ci.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T03:29:30.734944+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T03:29:30.735057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/exp003*bootstrap*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T03:29:30.735168+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T03:29:30.735284+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_exp003_bootstrap_ci_20260516T023635.log') as f:\n    for i, line in enumerate(f, 1):\n        if i < 665 or i > 680:\n            continue\n        line = line.strip()\n        if not line:\n            continue\n        try:\n            data = json.loads(line)\n        except:\n            continue\n        if data.get('type') in ('assistant', 'user'):\n            msg = data.get('message', {})\n            content = msg.get('content', [])\n            if isinstance(content, list):\n                for block in content:\n                    if isinstance(block, dict) and block.get('type') == 'text':\n                        text = block['text']\n                        if '1v2' in text or 'greedy' in text.lower() or 'config' in text.lower() or 'AUC' in text:\n                            print(f'LINE {i} ({data[\\\"type\\\"]}):')\n                            print(text[:2000])\n                            print('===')\" 2>/dev/null",
+              "description": "Get 1v2 CI details from worker log"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T03:29:30.735415+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LINE 670 (assistant):\n结果已生成（耗时 1605s ≈ 26.7 分钟）。验证通过：\n\n**验证结果：**\n- 4 configs × 5 pairs = 20 条目 ✓\n- AUC point estimates 与已知值一致 ✓\n- 所有 0v1, 1v2 的 perm_p = 0.0（高度显著） ✓\n\n**关键发现 — config2 和 config3 的 2v3 CI 上界：**\n- **config2_nuc09 2v3**: AUC=0.5917, CI=[0.5824, **0.6010**] — **CI 上界 > θ=0.60**\n- **config3_t07 2v3**: AUC=0.5901, CI=[0.5806, **0.5996**] — CI 上界 < θ=0.60（差 0.04pp）\n\nconfig2 的 2v3 CI 上界恰好跨过 0.60 阈值，K*=2 的判定在该 config 下存在边界模糊性。config3 则刚好在 0.60 以下。\n\n现在注册 artifact 并更新 registry。\n==="
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T03:29:30.735562+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_exp003_bootstrap_ci_20260516T023635.log') as f:\n    for i, line in enumerate(f, 1):\n        if i < 550 or i > 580:\n            continue\n        line = line.strip()\n        if not line:\n            continue\n        try:\n            data = json.loads(line)\n        except:\n            continue\n        msg = data.get('message', {})\n        content = msg.get('content', [])\n        if isinstance(content, list):\n            for block in content:\n                if isinstance(block, dict) and block.get('type') == 'tool_result':\n                    text = block.get('content', '')\n                    if 'ci_lower' in str(text) or '1v2' in str(text) or 'bootstrap' in str(text).lower():\n                        print(f'LINE {i}:')\n                        print(str(text)[:3000])\n                        print('===')\n                elif isinstance(block, dict) and block.get('type') == 'text':\n                    text = block.get('text', '')\n                    if 'ci_lower' in text or ('1v2' in text and 'CI' in text):\n                        print(f'LINE {i} text:')\n                        print(text[:3000])\n                        print('===')\" 2>/dev/null",
+              "description": "Find raw CI data in worker log"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T03:29:30.735701+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LINE 550:\n{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"170 /tmp/exp003_bootstrap.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.72}}\"}\n===\nLINE 574:\n{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_bootstrap_ci.json': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}\n===\nLINE 576:\n{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"170 /tmp/exp003_bootstrap.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.06}}\"}\n==="
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T03:29:30.735846+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_exp003_bootstrap_ci_20260516T023635.log') as f:\n    for i, line in enumerate(f, 1):\n        if i < 640 or i > 672:\n            continue\n        line = line.strip()\n        if not line:\n            continue\n        try:\n            data = json.loads(line)\n        except:\n            continue\n        msg = data.get('message', {})\n        content = msg.get('content', [])\n        if isinstance(content, list):\n            for block in content:\n                if isinstance(block, dict):\n                    ct = block.get('content', block.get('text', ''))\n                    s = str(ct)\n                    if 'ci_lower' in s or 'auc' in s.lower() and ('0.68' in s or '0.70' in s):\n                        print(f'LINE {i} type={block.get(\\\"type\\\")}:')\n                        print(s[:3000])\n                        print('===')\" 2>/dev/null",
+              "description": "Find raw CI JSON data from SSH results"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T03:29:30.736019+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LINE 668 type=tool_result:\n{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"config1_greedy\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": {\\\\n      \\\\\\\"auc\\\\\\\": 0.9796,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.9772,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.982,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0048,\\\\n      \\\\\\\"perm_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"1v2\\\\\\\": {\\\\n      \\\\\\\"auc\\\\\\\": 0.6892,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.6802,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.6982,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0181,\\\\n      \\\\\\\"perm_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"2v3\\\\\\\": {\\\\n      \\\\\\\"auc\\\\\\\": 0.5612,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5517,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5705,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0188,\\\\n      \\\\\\\"perm_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"3v4\\\\\\\": {\\\\n      \\\\\\\"auc\\\\\\\": 0.5405,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5308,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5502,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0194,\\\\n      \\\\\\\"perm_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"4v5\\\\\\\": {\\\\n      \\\\\\\"auc\\\\\\\": 0.5137,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5033,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5238,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0205,\\\\n      \\\\\\\"perm_p\\\\\\\": 0.0082\\\\n    }\\\\n  },\\\\n  \\\\\\\"config2_nuc09\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": {\\\\n      \\\\\\\"auc\\\\\\\": 0.9945,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.9934,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.9956,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0023,\\\\n      \\\\\\\"perm_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"1v2\\\\\\\": {\\\\n      \\\\\\\"auc\\\\\\\": 0.6862,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.6774,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.6951,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0177,\\\\n      \\\\\\\"perm_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"2v3\\\\\\\": {\\\\n      \\\\\\\"auc\\\\\\\": 0.5917,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5824,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.601,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0185,\\\\n      \\\\\\\"perm_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"3v4\\\\\\\": {\\\\n      \\\\\\\"auc\\\\\\\": 0.5468,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5369,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5568,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0199,\\\\n      \\\\\\\"perm_p\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"4v5\\\\\\\": {\\\\n      \\\\\\\"auc\\\\\\\": 0.5066,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.4959,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5173,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.02\n…[truncated 1031 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T03:29:30.736165+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_exp003_bootstrap_ci_20260516T023635.log') as f:\n    lines = f.readlines()\n    \nline = lines[667].strip()  # 0-indexed = line 668\ndata = json.loads(line)\ncontent = data['message']['content']\nfor block in content:\n    if isinstance(block, dict) and block.get('type') == 'tool_result':\n        result = json.loads(block['content'])\n        inner = json.loads(result['result'])\n        stdout = inner['data']['stdout']\n        ci_data = json.loads(stdout)\n        print(json.dumps(ci_data, indent=2))\n\" 2>/dev/null",
+              "description": "Parse full bootstrap CI JSON data"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T03:29:30.736332+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"config1_greedy\": {\n    \"0v1\": {\n      \"auc\": 0.9796,\n      \"ci_lower\": 0.9772,\n      \"ci_upper\": 0.982,\n      \"ci_width\": 0.0048,\n      \"perm_p\": 0.0\n    },\n    \"1v2\": {\n      \"auc\": 0.6892,\n      \"ci_lower\": 0.6802,\n      \"ci_upper\": 0.6982,\n      \"ci_width\": 0.0181,\n      \"perm_p\": 0.0\n    },\n    \"2v3\": {\n      \"auc\": 0.5612,\n      \"ci_lower\": 0.5517,\n      \"ci_upper\": 0.5705,\n      \"ci_width\": 0.0188,\n      \"perm_p\": 0.0\n    },\n    \"3v4\": {\n      \"auc\": 0.5405,\n      \"ci_lower\": 0.5308,\n      \"ci_upper\": 0.5502,\n      \"ci_width\": 0.0194,\n      \"perm_p\": 0.0\n    },\n    \"4v5\": {\n      \"auc\": 0.5137,\n      \"ci_lower\": 0.5033,\n      \"ci_upper\": 0.5238,\n      \"ci_width\": 0.0205,\n      \"perm_p\": 0.0082\n    }\n  },\n  \"config2_nuc09\": {\n    \"0v1\": {\n      \"auc\": 0.9945,\n      \"ci_lower\": 0.9934,\n      \"ci_upper\": 0.9956,\n      \"ci_width\": 0.0023,\n      \"perm_p\": 0.0\n    },\n    \"1v2\": {\n      \"auc\": 0.6862,\n      \"ci_lower\": 0.6774,\n      \"ci_upper\": 0.6951,\n      \"ci_width\": 0.0177,\n      \"perm_p\": 0.0\n    },\n    \"2v3\": {\n      \"auc\": 0.5917,\n      \"ci_lower\": 0.5824,\n      \"ci_upper\": 0.601,\n      \"ci_width\": 0.0185,\n      \"perm_p\": 0.0\n    },\n    \"3v4\": {\n      \"auc\": 0.5468,\n      \"ci_lower\": 0.5369,\n      \"ci_upper\": 0.5568,\n      \"ci_width\": 0.0199,\n      \"perm_p\": 0.0\n    },\n    \"4v5\": {\n      \"auc\": 0.5066,\n      \"ci_lower\": 0.4959,\n      \"ci_upper\": 0.5173,\n      \"ci_width\": 0.0214,\n      \"perm_p\": 0.1199\n    }\n  },\n  \"config3_t07\": {\n    \"0v1\": {\n      \"auc\": 0.9877,\n      \"ci_lower\": 0.9857,\n      \"ci_upper\": 0.9896,\n      \"ci_width\": 0.0039,\n      \"perm_p\": 0.0\n    },\n    \"1v2\": {\n      \"auc\": 0.6885,\n      \"ci_lower\": 0.6797,\n      \"ci_upper\": 0.697,\n      \"ci_width\": 0.0173,\n      \"perm_p\": 0.0\n    },\n    \"2v3\": {\n      \"auc\": 0.5901,\n      \"ci_lower\": 0.5806,\n      \"ci_upper\": 0.5996,\n      \"ci_width\": 0.0191,\n      \"perm_p\": 0.0\n    },\n    \"3v4\": {\n      \"auc\": 0.539,\n      \"ci_lower\": 0.5288,\n      \"ci_upper\": 0.5493,\n      \"ci_width\": 0.0205,\n      \"\n…[truncated 1097 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T03:29:30.736650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex",
+              "old_string": "with 1v2 $\\auc$ in $[0.6866, 0.7039]$ (Table~\\ref{tab:s2_decoding}).",
+              "new_string": "with 1v2 $\\auc$ in $[0.6866, 0.7039]$ (bootstrap CI lower bounds $\\geq 0.677$, all ${>}\\theta$; Table~\\ref{tab:s2_decoding})."
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T03:29:30.736905+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T03:29:30.737095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex",
+              "old_string": "%%% Table S2: Decoding Ablation AUC (exp-003)\n\\begin{table*}[t]\n  \\centering\n  \\caption{Pairwise AUC across depth pairs for four decoding configurations (all using Qwen2.5-1.5B-Instruct in rewrite mode). The horizontal rule between depth pairs 1\\,vs.\\,2 and 2\\,vs.\\,3 marks the empirical detectability boundary $\\Kempirical=2$: pairs above this line are reliably separable ($\\auc > 0.60$), while those below approach chance. Bottom rows report cross-configuration Spearman $\\rho$ on per-feature discriminative-power rankings.}\n  \\label{tab:s2_decoding}\n  \\begin{tabular}{lcccc}\n    \\toprule\n    \\textbf{Depth Pair} & \\textbf{Greedy} & \\textbf{Nuc $p{=}0.9$, $T{=}1.0$} & \\textbf{Nuc $p{=}0.95$, $T{=}0.7$} & \\textbf{Nuc $p{=}0.95$, $T{=}1.2$} \\\\\n    \\midrule\n    0 vs.\\ 1 & 0.9797 & 0.9946 & 0.9878 & 0.9982 \\\\\n    1 vs.\\ 2 & 0.6893 & 0.6866 & 0.6887 & 0.7039 \\\\\n    \\cmidrule(lr){1-5}\n    2 vs.\\ 3 & 0.5613 & 0.5917 & 0.5902 & 0.5823 \\\\\n    3 vs.\\ 4 & 0.5404 & 0.5466 & 0.5393 & 0.5293 \\\\\n    4 vs.\\ 5 & 0.5139 & 0.5068 & 0.5349 & 0.5237 \\\\\n    \\midrule\n    \\multicolumn{5}{l}{\\textbf{Cross-config feature Spearman $\\rho$}} \\\\\n    \\midrule\n    \\multicolumn{2}{l}{Greedy vs.\\ Nuc $p{=}0.9$} & 0.600 &\n    \\multicolumn{1}{l}{Nuc $p{=}0.9$ vs.\\ $T{=}0.7$} & 0.782 \\\\\n    \\multicolumn{2}{l}{Greedy vs.\\ $T{=}0.7$} & 0.914 &\n    \\multicolumn{1}{l}{Nuc $p{=}0.9$ vs.\\ $T{=}1.2$} & 0.893 \\\\\n    \\multicolumn{2}{l}{Greedy vs.\\ $T{=}1.2$} & 0.532 &\n    \\multicolumn{1}{l}{$T{=}0.7$ vs.\\ $T{=}1.2$} & 0.668 \\\\\n    \\bottomrule\n  \\end{tabular}\n\\end{table*}",
+              "new_string": "%%% Table S2: Decoding Ablation AUC (exp-003)\n\\begin{table*}[t]\n  \\centering\n  \\caption{Pairwise AUC with bootstrap 95\\% CIs across depth pairs for four decoding configurations (all using Qwen2.5-1.5B-Instruct in rewrite mode; 10{,}000 bootstrap resamples). The horizontal rule between depth pairs 1\\,vs.\\,2 and 2\\,vs.\\,3 marks the empirical detectability boundary $\\Kempirical=2$. Bottom rows report cross-configuration Spearman $\\rho$ on per-feature discriminative-power rankings.}\n  \\label{tab:s2_decoding}\n  \\footnotesize\n  \\begin{tabular}{lcccc}\n    \\toprule\n    \\textbf{Depth Pair} & \\textbf{Greedy} & \\textbf{Nuc $p{=}0.9$, $T{=}1.0$} & \\textbf{Nuc $p{=}0.95$, $T{=}0.7$} & \\textbf{Nuc $p{=}0.95$, $T{=}1.2$} \\\\\n    \\midrule\n    0 vs.\\ 1 & $.980\\;[.977,\\,.982]$ & $.995\\;[.993,\\,.996]$ & $.988\\;[.986,\\,.990]$ & $.998\\;[.998,\\,.999]$ \\\\\n    1 vs.\\ 2 & $.689\\;[.680,\\,.698]$ & $.687\\;[.677,\\,.695]$ & $.689\\;[.680,\\,.697]$ & $.704\\;[.695,\\,.713]$ \\\\\n    \\cmidrule(lr){1-5}\n    2 vs.\\ 3 & $.561\\;[.552,\\,.571]$ & $.592\\;[.582,\\,.601]$\\rlap{$^\\dagger$} & $.590\\;[.581,\\,.600]$ & $.582\\;[.572,\\,.592]$ \\\\\n    3 vs.\\ 4 & $.540\\;[.531,\\,.550]$ & $.547\\;[.537,\\,.557]$ & $.539\\;[.529,\\,.549]$ & $.529\\;[.519,\\,.540]$ \\\\\n    4 vs.\\ 5 & $.514\\;[.503,\\,.524]$ & $.507\\;[.496,\\,.517]^{\\ddagger}$ & $.535\\;[.524,\\,.545]$ & $.524\\;[.513,\\,.535]$ \\\\\n    \\midrule\n    \\multicolumn{5}{l}{\\textbf{Cross-config feature Spearman $\\rho$}} \\\\\n    \\midrule\n    \\multicolumn{2}{l}{Greedy vs.\\ Nuc $p{=}0.9$} & 0.600 &\n    \\multicolumn{1}{l}{Nuc $p{=}0.9$ vs.\\ $T{=}0.7$} & 0.782 \\\\\n    \\multicolumn{2}{l}{Greedy vs.\\ $T{=}0.7$} & 0.914 &\n    \\multicolumn{1}{l}{Nuc $p{=}0.9$ vs.\\ $T{=}1.2$} & 0.893 \\\\\n    \\multicolumn{2}{l}{Greedy vs.\\ $T{=}1.2$} & 0.532 &\n    \\multicolumn{1}{l}{$T{=}0.7$ vs.\\ $T{=}1.2$} & 0.668 \\\\\n    \\bottomrule\n    \\multicolumn{5}{l}{${}^{\\dagger}$\\,CI upper bound (0.601) marginally exceeds $\\theta{=}0.60$ by 0.001.} \\\\\n    \\multicolumn{5}{l}{${}^{\\ddagger}$\\,Permutation $p = 0.12$ (not significant). All other pairs $p < 0.01$.}\n  \\end{tabular}\n\\end{table*}"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T03:29:30.737259+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T03:29:30.737389+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex",
+              "offset": "43",
+              "limit": "30"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T03:29:30.737572+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "43\t\n44\t%%% Table S2: Decoding Ablation AUC (exp-003)\n45\t\\begin{table*}[t]\n46\t  \\centering\n47\t  \\caption{Pairwise AUC across depth pairs for four decoding configurations (all using Qwen2.5-1.5B-Instruct in rewrite mode). The horizontal rule between depth pairs 1\\,vs.\\,2 and 2\\,vs.\\,3 marks the empirical detectability boundary $\\Kempirical=2$: pairs above this line are reliably separable ($\\auc > 0.60$), while those below approach chance. Bottom rows report cross-configuration Spearman $\\rho$ on per-feature discriminative-power rankings.}\n48\t  \\label{tab:s2_decoding}\n49\t  \\begin{tabular}{lcccc}\n50\t    \\toprule\n51\t    \\textbf{Depth Pair} & \\textbf{Greedy} & \\textbf{Nuc $p{=}0.9$, $T{=}1.0$} & \\textbf{Nuc $p{=}0.95$, $T{=}0.7$} & \\textbf{Nuc $p{=}0.95$, $T{=}1.2$} \\\\\n52\t    \\midrule\n53\t    0 vs.\\ 1 & 0.9797 & 0.9946 & 0.9878 & 0.9982 \\\\\n54\t    1 vs.\\ 2 & 0.6893 & 0.6866 & 0.6887 & 0.7039 \\\\\n55\t    \\cmidrule(lr){1-5}\n56\t    2 vs.\\ 3 & 0.5613 & 0.5917 & 0.5902 & 0.5823 \\\\\n57\t    3 vs.\\ 4 & 0.5404 & 0.5466 & 0.5393 & 0.5293 \\\\\n58\t    4 vs.\\ 5 & 0.5139 & 0.5068 & 0.5349 & 0.5237 \\\\\n59\t    \\midrule\n60\t    \\multicolumn{5}{l}{\\textbf{Cross-config feature Spearman $\\rho$}} \\\\\n61\t    \\midrule\n62\t    \\multicolumn{2}{l}{Greedy vs.\\ Nuc $p{=}0.9$} & 0.600 &\n63\t    \\multicolumn{1}{l}{Nuc $p{=}0.9$ vs.\\ $T{=}0.7$} & 0.782 \\\\\n64\t    \\multicolumn{2}{l}{Greedy vs.\\ $T{=}0.7$} & 0.914 &\n65\t    \\multicolumn{1}{l}{Nuc $p{=}0.9$ vs.\\ $T{=}1.2$} & 0.893 \\\\\n66\t    \\multicolumn{2}{l}{Greedy vs.\\ $T{=}1.2$} & 0.532 &\n67\t    \\multicolumn{1}{l}{$T{=}0.7$ vs.\\ $T{=}1.2$} & 0.668 \\\\\n68\t    \\bottomrule\n69\t  \\end{tabular}\n70\t\\end{table*}\n71\t\n72\t%%% Table S3: LLM Zero-Shot Confusion Matrices (exp-011)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T03:29:30.737815+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex",
+              "old_string": "%%% Table S2: Decoding Ablation AUC (exp-003)\n\\begin{table*}[t]\n  \\centering\n  \\caption{Pairwise AUC across depth pairs for four decoding configurations (all using Qwen2.5-1.5B-Instruct in rewrite mode). The horizontal rule between depth pairs 1\\,vs.\\,2 and 2\\,vs.\\,3 marks the empirical detectability boundary $\\Kempirical=2$: pairs above this line are reliably separable ($\\auc > 0.60$), while those below approach chance. Bottom rows report cross-configuration Spearman $\\rho$ on per-feature discriminative-power rankings.}\n  \\label{tab:s2_decoding}\n  \\begin{tabular}{lcccc}\n    \\toprule\n    \\textbf{Depth Pair} & \\textbf{Greedy} & \\textbf{Nuc $p{=}0.9$, $T{=}1.0$} & \\textbf{Nuc $p{=}0.95$, $T{=}0.7$} & \\textbf{Nuc $p{=}0.95$, $T{=}1.2$} \\\\\n    \\midrule\n    0 vs.\\ 1 & 0.9797 & 0.9946 & 0.9878 & 0.9982 \\\\\n    1 vs.\\ 2 & 0.6893 & 0.6866 & 0.6887 & 0.7039 \\\\\n    \\cmidrule(lr){1-5}\n    2 vs.\\ 3 & 0.5613 & 0.5917 & 0.5902 & 0.5823 \\\\\n    3 vs.\\ 4 & 0.5404 & 0.5466 & 0.5393 & 0.5293 \\\\\n    4 vs.\\ 5 & 0.5139 & 0.5068 & 0.5349 & 0.5237 \\\\\n    \\midrule\n    \\multicolumn{5}{l}{\\textbf{Cross-config feature Spearman $\\rho$}} \\\\\n    \\midrule\n    \\multicolumn{2}{l}{Greedy vs.\\ Nuc $p{=}0.9$} & 0.600 &\n    \\multicolumn{1}{l}{Nuc $p{=}0.9$ vs.\\ $T{=}0.7$} & 0.782 \\\\\n    \\multicolumn{2}{l}{Greedy vs.\\ $T{=}0.7$} & 0.914 &\n    \\multicolumn{1}{l}{Nuc $p{=}0.9$ vs.\\ $T{=}1.2$} & 0.893 \\\\\n    \\multicolumn{2}{l}{Greedy vs.\\ $T{=}1.2$} & 0.532 &\n    \\multicolumn{1}{l}{$T{=}0.7$ vs.\\ $T{=}1.2$} & 0.668 \\\\\n    \\bottomrule\n  \\end{tabular}\n\\end{table*}",
+              "new_string": "%%% Table S2: Decoding Ablation AUC (exp-003)\n\\begin{table*}[t]\n  \\centering\n  \\caption{Pairwise AUC with bootstrap 95\\% CIs across depth pairs for four decoding configurations (all using Qwen2.5-1.5B-Instruct in rewrite mode; 10{,}000 bootstrap resamples). The horizontal rule between depth pairs 1\\,vs.\\,2 and 2\\,vs.\\,3 marks the empirical detectability boundary $\\Kempirical=2$. Bottom rows report cross-configuration Spearman $\\rho$ on per-feature discriminative-power rankings.}\n  \\label{tab:s2_decoding}\n  \\footnotesize\n  \\begin{tabular}{lcccc}\n    \\toprule\n    \\textbf{Depth Pair} & \\textbf{Greedy} & \\textbf{Nuc $p{=}0.9$, $T{=}1.0$} & \\textbf{Nuc $p{=}0.95$, $T{=}0.7$} & \\textbf{Nuc $p{=}0.95$, $T{=}1.2$} \\\\\n    \\midrule\n    0 vs.\\ 1 & $.980\\;[.977,\\,.982]$ & $.995\\;[.993,\\,.996]$ & $.988\\;[.986,\\,.990]$ & $.998\\;[.998,\\,.999]$ \\\\\n    1 vs.\\ 2 & $.689\\;[.680,\\,.698]$ & $.687\\;[.677,\\,.695]$ & $.689\\;[.680,\\,.697]$ & $.704\\;[.695,\\,.713]$ \\\\\n    \\cmidrule(lr){1-5}\n    2 vs.\\ 3 & $.561\\;[.552,\\,.571]$ & $.592\\;[.582,\\,.601]$\\rlap{$^\\dagger$} & $.590\\;[.581,\\,.600]$ & $.582\\;[.572,\\,.592]$ \\\\\n    3 vs.\\ 4 & $.540\\;[.531,\\,.550]$ & $.547\\;[.537,\\,.557]$ & $.539\\;[.529,\\,.549]$ & $.529\\;[.519,\\,.540]$ \\\\\n    4 vs.\\ 5 & $.514\\;[.503,\\,.524]$ & $.507\\;[.496,\\,.517]^{\\ddagger}$ & $.535\\;[.524,\\,.545]$ & $.524\\;[.513,\\,.535]$ \\\\\n    \\midrule\n    \\multicolumn{5}{l}{\\textbf{Cross-config feature Spearman $\\rho$}} \\\\\n    \\midrule\n    \\multicolumn{2}{l}{Greedy vs.\\ Nuc $p{=}0.9$} & 0.600 &\n    \\multicolumn{1}{l}{Nuc $p{=}0.9$ vs.\\ $T{=}0.7$} & 0.782 \\\\\n    \\multicolumn{2}{l}{Greedy vs.\\ $T{=}0.7$} & 0.914 &\n    \\multicolumn{1}{l}{Nuc $p{=}0.9$ vs.\\ $T{=}1.2$} & 0.893 \\\\\n    \\multicolumn{2}{l}{Greedy vs.\\ $T{=}1.2$} & 0.532 &\n    \\multicolumn{1}{l}{$T{=}0.7$ vs.\\ $T{=}1.2$} & 0.668 \\\\\n    \\bottomrule\n    \\multicolumn{5}{l}{${}^{\\dagger}$\\,CI upper bound (0.601) marginally exceeds $\\theta{=}0.60$ by 0.001.} \\\\\n    \\multicolumn{5}{l}{${}^{\\ddagger}$\\,Permutation $p = 0.12$ (not significant). All other pairs $p < 0.01$.}\n  \\end{tabular}\n\\end{table*}"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T03:29:30.738178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T03:29:30.738337+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex",
+              "offset": "63",
+              "limit": "6"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T03:29:30.738765+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "63\tFigure~\\ref{fig:kstar_theta} shows $\\Kempirical$ as a function of $\\theta$ (conservative CI-lower-bound variant): unanimous $\\Kempirical = 2$ holds within $\\theta \\in [0.580, 0.600]$.\n64\tAt $\\theta = 0.55$, $\\Kempirical = 3$ for Qwen-rewrite and Qwen-continuation while Pythia, OLMo, and Qwen-7B remain at $\\Kempirical = 2$; at $\\theta = 0.65$, all continuation modes drop to $\\Kempirical = 1$ while rewrite retains $\\Kempirical = 2$; at $\\theta = 0.70$, $\\Kempirical = 1$ universally.\n65\tAll four decoding configurations (greedy, nucleus $p{=}0.9$, $T{=}0.70$, $T{=}1.2$) likewise yield $\\Kempirical = 2$ at $\\theta = 0.60$, with 1v2 $\\auc$ in $[0.6866, 0.7039]$ (bootstrap CI lower bounds $\\geq 0.677$, all ${>}\\theta$; Table~\\ref{tab:s2_decoding}).\n66\tBootstrap CIs confirm 2v3 upper bounds below $\\theta$ for 3/4 decoding variants; the nucleus $p{=}0.9$ condition (2v3 $\\auc = 0.5917$, CI $[0.582, 0.601]$) has its upper bound marginally straddling $\\theta$ by 0.001, consistent with measurement noise.\n67\t\n68\t%% ===================================================================="
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T03:29:30.738984+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix.tex",
+              "offset": "43",
+              "limit": "32"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T03:29:30.739143+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "43\t\n44\t%%% Table S2: Decoding Ablation AUC (exp-003)\n45\t\\begin{table*}[t]\n46\t  \\centering\n47\t  \\caption{Pairwise AUC with bootstrap 95\\% CIs across depth pairs for four decoding configurations (all using Qwen2.5-1.5B-Instruct in rewrite mode; 10{,}000 bootstrap resamples). The horizontal rule between depth pairs 1\\,vs.\\,2 and 2\\,vs.\\,3 marks the empirical detectability boundary $\\Kempirical=2$. Bottom rows report cross-configuration Spearman $\\rho$ on per-feature discriminative-power rankings.}\n48\t  \\label{tab:s2_decoding}\n49\t  \\footnotesize\n50\t  \\begin{tabular}{lcccc}\n51\t    \\toprule\n52\t    \\textbf{Depth Pair} & \\textbf{Greedy} & \\textbf{Nuc $p{=}0.9$, $T{=}1.0$} & \\textbf{Nuc $p{=}0.95$, $T{=}0.7$} & \\textbf{Nuc $p{=}0.95$, $T{=}1.2$} \\\\\n53\t    \\midrule\n54\t    0 vs.\\ 1 & $.980\\;[.977,\\,.982]$ & $.995\\;[.993,\\,.996]$ & $.988\\;[.986,\\,.990]$ & $.998\\;[.998,\\,.999]$ \\\\\n55\t    1 vs.\\ 2 & $.689\\;[.680,\\,.698]$ & $.687\\;[.677,\\,.695]$ & $.689\\;[.680,\\,.697]$ & $.704\\;[.695,\\,.713]$ \\\\\n56\t    \\cmidrule(lr){1-5}\n57\t    2 vs.\\ 3 & $.561\\;[.552,\\,.571]$ & $.592\\;[.582,\\,.601]$\\rlap{$^\\dagger$} & $.590\\;[.581,\\,.600]$ & $.582\\;[.572,\\,.592]$ \\\\\n58\t    3 vs.\\ 4 & $.540\\;[.531,\\,.550]$ & $.547\\;[.537,\\,.557]$ & $.539\\;[.529,\\,.549]$ & $.529\\;[.519,\\,.540]$ \\\\\n59\t    4 vs.\\ 5 & $.514\\;[.503,\\,.524]$ & $.507\\;[.496,\\,.517]^{\\ddagger}$ & $.535\\;[.524,\\,.545]$ & $.524\\;[.513,\\,.535]$ \\\\\n60\t    \\midrule\n61\t    \\multicolumn{5}{l}{\\textbf{Cross-config feature Spearman $\\rho$}} \\\\\n62\t    \\midrule\n63\t    \\multicolumn{2}{l}{Greedy vs.\\ Nuc $p{=}0.9$} & 0.600 &\n64\t    \\multicolumn{1}{l}{Nuc $p{=}0.9$ vs.\\ $T{=}0.7$} & 0.782 \\\\\n65\t    \\multicolumn{2}{l}{Greedy vs.\\ $T{=}0.7$} & 0.914 &\n66\t    \\multicolumn{1}{l}{Nuc $p{=}0.9$ vs.\\ $T{=}1.2$} & 0.893 \\\\\n67\t    \\multicolumn{2}{l}{Greedy vs.\\ $T{=}1.2$} & 0.532 &\n68\t    \\multicolumn{1}{l}{$T{=}0.7$ vs.\\ $T{=}1.2$} & 0.668 \\\\\n69\t    \\bottomrule\n70\t    \\multicolumn{5}{l}{${}^{\\dagger}$\\,CI upper bound (0.601) marginally exceeds $\\theta{=}0.60$ \n…[truncated 166 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T03:29:30.739304+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "diff /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/experiments_c1.tex 2>/dev/null | head -20 || echo \"FILES_DIFFER_OR_MISSING\"",
+              "description": "Check if artifacts copy differs from docs copy"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T03:29:30.739446+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4,6c4,12\n< We evaluate generational depth estimation on five model configurations:\n< Pythia-1.4B and OLMo-1B in continuation mode, Qwen2.5-1.5B-Instruct in both rewrite and continuation modes, and Qwen2.5-7B in continuation mode (cross-scale scoring with Qwen2.5-1.5B).\n< All experiments use the OBD-LightGBM classifier with the 15-dimensional feature set (Section~\\ref{sec:method}), with 5{,}000 texts per depth level (generations 0--5).\n---\n> We evaluate generational depth estimation on four model configurations:\n> Pythia-1.4B and OLMo-1B in continuation mode, and Qwen2.5-7B-Instruct in both rewrite and continuation modes.\n> All experiments use the OBD-LightGBM classifier with the 12-dimensional feature set described in Section~3.\n> Each configuration uses a balanced corpus of 500 texts per depth level (generations 0--5).\n> We organize results around four questions:\n> (1)~Does $\\Kempirical = 2$ hold across configurations?\n> (2)~Do depth classifiers transfer across models?\n> (3)~Is the feature degradation ordering model-independent?\n> (4)~How does generation mode affect detectability?\n9c15\n< \\subsection{$\\Kempirical = 2$ Across All Configurations}\n---\n> \\subsection{$\\Kstar = 2$ Across All Configurations}\n12c18,23\n< \\begin{table*}[t]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-16T03:29:30.739653+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The artifacts copy is an older draft version — the authoritative copy is `docs/paper/`, which is what I edited.\n\n## 结果\n\n### 已完成的修改\n\n**1. `docs/paper/experiments_c1.tex` 第65行** — 添加了 1v2 bootstrap CI 下界信息：\n- 新增 \"bootstrap CI lower bounds ≥ 0.677, all > θ\"，确认4种解码策略的 1v2 CI 下界均远超 θ=0.60\n\n**2. `docs/paper/appendix.tex` Table S2** — 完整添加了 bootstrap CIs：\n- 更新 caption 注明 bootstrap 95% CIs（10,000 resamples）\n- 所有5个 depth pair 行均添加了 CI（格式与 Table S8 一致）\n- 脚注 † 标注 nucleus p=0.9 的 2v3 CI upper=0.601 marginally exceeds θ\n- 脚注 ‡ 标注 nucleus p=0.9 的 4v5 permutation p=0.12（不显著）\n\n### 数字一致性验证\n\n| 检查项 | 论文值 | 原始数据 | 状态 |\n|--------|--------|----------|------|\n| nuc09 2v3 CI [0.582, 0.601] (主文第66行) | [0.582, 0.601] | [0.5824, 0.6010] | ✓ |\n| greedy 1v2 CI | [.680, .698] | [0.6802, 0.6982] | ✓ |\n| T=1.2 1v2 CI | [.695, .713] | [0.6945, 0.7126] | ✓ |\n| \"3/4 decoding variants below θ\" | 3/4 | greedy/T07/T12 below, nuc09 above | ✓ |\n\n### Appendix per-pair CI 表格覆盖\n- Table S8: 4 model-mode configs 完整 per-pair CI（已有）\n- Table S2: 4 decoding configs 完整 per-pair CI（刚添加）"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp003_bootstrap_review_20260516T032051"
+          },
+          "id": "event-000061"
+        }
+      ],
+      "message_count": 61
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-exp003-bootstrap-review.md"
+}

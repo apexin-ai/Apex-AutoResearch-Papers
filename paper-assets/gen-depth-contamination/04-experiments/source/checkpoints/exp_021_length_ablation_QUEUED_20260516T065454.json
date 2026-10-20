@@ -1,0 +1,32 @@
+{
+  "exp_id": "exp_021_length_ablation",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 1,
+    "created_at": "2026-05-16T04:52:13.569Z",
+    "updated_at": "2026-05-16T06:54:54.412Z",
+    "hypothesis": "文本长度消融：128/256/512 tokens 下 K* 是否稳定？验证 K*=2 不依赖于 256-token 固定长度设定。Qwen2.5-1.5B (base) continuation, C4 5K, depth 0-5。",
+    "server": "cqa1-22115",
+    "gpu": "cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "cqa1-22115",
+      "gpu": "cuda:3",
+      "started_at": "2026-05-16T04:57:47.040Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-16T06:23:09.413Z",
+    "notes": "2026-05-16: 崩溃原因确认——脚本未执行 `source /etc/network_turbo`，导致 AutoDL 网络代理未启用，HuggingFace C4 数据集下载失败 (RuntimeError: Cannot send a request, as the client has been closed / Errno 99: Cannot assign requested address)。三个长度 (128/256/512) 全部未完成，无任何产出。cuda:3 已空闲。需重跑并修复网络配置。",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "2026-05-16: 崩溃原因确认——脚本未执行 `source /etc/network_turbo`，导致 AutoDL 网络代理未启用，HuggingFace C4 数据集下载失败 (RuntimeError: Cannot send a request, as the client has been closed / Errno 99: Cannot assign requested address)。三个长度 (128/256/512) 全部未完成，无任何产出。cuda:3 已空闲。需重跑并修复网络配置。"
+      }
+    }
+  },
+  "timestamp": "2026-05-16T06:54:54.488333+00:00",
+  "trigger": "update_registry"
+}

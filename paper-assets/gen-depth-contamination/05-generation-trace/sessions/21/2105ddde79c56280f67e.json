@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2105ddde79c56280f67e",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analyze power curve discrepancy",
+  "task_key": "worker_analyze_power-curve-discrepancy_20260518T230254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_power-curve-discrepancy_20260518T230254_result.json",
+    "occurrence": 1,
+    "bytes": 1618,
+    "sha256": "e96cb4a7fd798c8bd52c7b5531b32c27e65ccd90f8adf0ce3578111101825ccb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 对比报告\n\n逐项对比两个脚本代码和结果：\n\n```\nDetection criterion 差异: 无 — 两者都是 point estimate AUC > θ=0.60（不是 CI lower bound）\n数据源差异: 无 — 路径均为 data_exp016_qwen_base/features.csv，15 个 feature 列完全相同\nLightGBM 差异: 无 — n_estimators=200, max_depth=6, lr=0.05, num_leaves=31 完全一致\nResampling 差异: 有 — 随机种子不同（新=42，旧=2024），抽样方式相同（doc-level, replace=False）\nAUC 计算差异: 无 — 均为 OOF 合并后的 roc_auc_score(y, oof_proba)\n```\n\n### 根因\n\n**唯一差异是随机种子（42 vs 2024）**，其他代码逻辑完全一致。\n\nn=1000 时 AUC 分布中心恰好在 θ=0.60 附近，处于判定边界上：\n\n| | seed=42 (新) | seed=2024 (旧) |\n|---|---|---|\n| 10 次 trial AUC | 0.568~0.619 | 0.592~0.638 |\n| mean AUC | 0.5911 | 0.6076 |\n| >0.60 的次数 | 3/10 → 30% | 9/10 → 90% |\n\nseed=2024 恰好抽到的 doc 子集整体偏好，mean AUC 高了 1.6pp，足以让大部分 trial 越过 0.60 阈值。10 次 resample 在阈值附近的 detection rate 估计本身就极不稳定。\n\n### 建议\n\n两个版本方法学完全等价，都不存在 bug。60pp 的差异是 **10 次 resample + AUC 恰好在 θ 边界** 导致的采样噪声。\n\n作为权威版本，建议用 **c4_power_curve.py（旧版）** 的框架，但做两处修改：\n1. **增加 resample 次数到 50~100**，消除 detection rate 的采样噪声\n2. **固定 seed=2024**（保持与已有结果的一致性），或者报告多个 seed 的平均值"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-power-curve-discrepancy.md"
+}

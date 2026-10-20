@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp_009_dose_50pct",
+  "project": "gen-depth-contamination",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T22:22:14.703Z",
+    "updated_at": "2026-05-16T22:36:39.104Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp009_dose_response.py --ratio 0.5 --device cuda:0 --num_seeds 5 2>&1 | tee logs/exp_009_dose_response_50.log\"",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "81595",
+      "log_path": "~/runs/gen-depth-contamination/exp_009_dose_50pct.log",
+      "submitted_at": "2026-05-16T22:23:09.679Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Dose-response 50% contamination: binary vs graduated filtering at high synthetic injection ratio. Part of exp-009 suite."
+  },
+  "timestamp": "2026-05-16T22:36:39.203009+00:00",
+  "trigger": "update_registry"
+}

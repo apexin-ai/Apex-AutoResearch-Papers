@@ -1,0 +1,426 @@
+tier: best
+narrative_guidance: 'Best 档下，所有 planned 实验均产出支持核心叙事的结果。exp-014 在 Common Crawl 2025/2026
+  中 发现 depth 预测与 vocabulary richness 的显著负相关，提供 naturalistic validation。 exp-028 的
+  subsampling power curve 表明 n≥2000 即可稳定判定 K*=2。exp_32b_c4 在 32B  模型上确认 K*=2 不随规模变化。what_if
+  exp_026 的 arXiv null result 被审稿人视为诚实科学， 提升论文可信度 0.5-1.0 分。整体论文以 domain-dependent
+  bounded saturation + honest negatives  的组合，以 characterization study 定位获得 EMNLP Main
+  接收。
+
+  '
+imagined_experiments:
+- name: exp-014 Naturalistic Validation (Common Crawl)
+  plan_id: exp-014
+  description: '对 Common Crawl 2025-21/2026-09 snapshot 各抽 10K 文档，用训练好的 15D OBD 分类器
+    做 depth 预测，与 AlignScore、vocabulary richness (type-token ratio, hapax legomena
+    ratio)、 self-BLEU 做 correlation 分析。验证 depth 预测在 wild data 上的生态效度。
+
+    '
+  expected_results:
+    n_docs_2025: 10000
+    n_docs_2026: 10000
+    predicted_depth_distribution_2025:
+      depth_0: 0.72
+      depth_1: 0.18
+      depth_2: 0.07
+      depth_3_plus: 0.03
+    predicted_depth_distribution_2026:
+      depth_0: 0.61
+      depth_1: 0.24
+      depth_2: 0.1
+      depth_3_plus: 0.05
+    depth_vs_ttr_spearman: -0.34
+    depth_vs_ttr_p: <0.001
+    depth_vs_hapax_ratio_spearman: -0.29
+    depth_vs_hapax_ratio_p: <0.001
+    depth_vs_alignscore_spearman: -0.18
+    depth_vs_alignscore_p: <0.001
+    depth_vs_self_bleu_spearman: 0.22
+    depth_vs_self_bleu_p: <0.001
+    temporal_shift_depth1_plus_pct_delta: +7.7pp
+    temporal_shift_direction: 2026 shows higher predicted synthetic proportion
+  result_rationale: 'Best 档下：(1) depth 预测与 vocabulary richness 指标（TTR, hapax ratio）呈中等负相关
+    （ρ≈-0.29 to -0.34），因为递归生成导致 vocabulary narrowing 是已知效应（Shumailov et al. 2023），
+    15D features 中的 freq_entropy 本身就捕获了这个信号，所以 depth 预测与独立 lexical diversity  指标的一致性是预期的。(2)
+    AlignScore 相关性较弱（ρ≈-0.18），因为 AlignScore 测量的是事实一致性 而非生成深度，两者仅部分重叠——深层合成文本的事实性下降但
+    AlignScore 的设计目标不同。 (3) Self-BLEU 正相关（ρ≈0.22），因为递归生成增加重复性。(4) 2025→2026 时间趋势显示
+    合成文本占比上升约 7.7pp，与 2024-2025 年间 LLM 生成内容在 web 上指数增长的趋势一致。 相关性为中等强度而非强相关，因为 wild
+    data 含有大量混淆因素（topic, length, author style）， 但方向一致性和统计显著性足以作为 naturalistic validation。
+
+    '
+  tables:
+  - name: 'Table: Naturalistic Correlation Analysis'
+    columns:
+    - Metric
+    - Spearman ρ
+    - p-value
+    - n
+    rows:
+    - - Depth vs TTR
+      - '-0.34'
+      - <0.001
+      - '20000'
+    - - Depth vs Hapax Ratio
+      - '-0.29'
+      - <0.001
+      - '20000'
+    - - Depth vs AlignScore
+      - '-0.18'
+      - <0.001
+      - '20000'
+    - - Depth vs Self-BLEU
+      - '+0.22'
+      - <0.001
+      - '20000'
+  - name: 'Table: Predicted Depth Distribution Shift'
+    columns:
+    - Snapshot
+    - Depth 0
+    - Depth 1
+    - Depth 2
+    - Depth 3+
+    rows:
+    - - CC 2025-21
+      - 72%
+      - 18%
+      - 7%
+      - 3%
+    - - CC 2026-09
+      - 61%
+      - 24%
+      - 10%
+      - 5%
+    - - Δ
+      - -11pp
+      - +6pp
+      - +3pp
+      - +2pp
+  figures_description:
+  - 'Fig: Scatter plots with regression lines for depth vs TTR and depth vs hapax
+    ratio, colored by snapshot year. Shows consistent negative trend across both time
+    points with 2026 shifted toward higher depths.'
+  - 'Fig: Stacked bar chart comparing predicted depth distributions between 2025 and
+    2026 snapshots, visually demonstrating temporal increase in synthetic content
+    proportion.'
+  analysis: 'Naturalistic validation 确认 depth 预测在 wild data 上与独立 lexical diversity
+    指标方向一致， 中等效应量（|ρ|=0.18-0.34）在 20K 样本上高度显著。这些相关性不依赖于我们的 15D feature set 的 任何特定特征，而是与外部指标的独立验证。时间趋势提供了额外的
+    face validity。论文定位为  Appendix 支持材料，不作为主线 claim 的基础，但回应了 "lab-controlled setup
+    是否泛化" 的审稿人关切。
+
+    '
+- name: exp-028 Subsampling Power Curve
+  plan_id: exp-028
+  description: '从 exp-007 的 C4 数据中，以 n={1000, 2000, 3000, 4000, 5000} 五个样本量、每个做  10
+    次随机 resampling，计算每次 resample 下的 1v2 AUC 及其 bootstrap CI，确定 K*=2  判定所需最低样本量。
+
+    '
+  expected_results:
+    sample_sizes:
+    - 1000
+    - 2000
+    - 3000
+    - 4000
+    - 5000
+    resamples_per_size: 10
+    fraction_kstar_2:
+      n1000: 0.6
+      n2000: 0.9
+      n3000: 1.0
+      n4000: 1.0
+      n5000: 1.0
+    mean_1v2_auc:
+      n1000: 0.612
+      n2000: 0.617
+      n3000: 0.62
+      n4000: 0.622
+      n5000: 0.624
+    mean_ci_width:
+      n1000: 0.038
+      n2000: 0.027
+      n3000: 0.022
+      n4000: 0.019
+      n5000: 0.017
+    min_n_for_robust_kstar2: 2000
+    mean_1v2_ci_lower:
+      n1000: 0.593
+      n2000: 0.604
+      n3000: 0.609
+      n4000: 0.613
+      n5000: 0.616
+  result_rationale: 'Best 档下：(1) n=1000 时 CI width≈0.038，1v2 AUC 点估计约 0.612 但 CI lower
+    经常 落到 0.593（< θ=0.60），导致仅 60% 的 resamples 判定 K*=2——统计功效不足。 (2) n=2000 时 CI width
+    缩至约 0.027，mean CI lower 升至 0.604，90% resamples 给出 K*=2。 这是因为 1v2 效应量本身较小（AUC≈0.62，对应
+    Cohen''s d≈0.20），需要足够样本量才能 让 CI 不跨越 θ=0.60 阈值。(3) n≥3000 后 100% resamples 均判定
+    K*=2，因为 CI width 缩至 0.022 以下，即使最不利的 resample 其 CI lower 也在 0.609 以上。 (4) 点估计随
+    n 增加轻微上升（0.612→0.624），这是小样本负偏的纠正效应。 结论：n=2000 是 robust K*=2 判定的 practical minimum，但
+    n=3000 提供 100% 稳定性。 论文的 n=5000 设计远超 minimum required，充分回应了审稿人关于样本量的关切。
+
+    '
+  tables:
+  - name: 'Table: K*=2 Determination Stability by Sample Size'
+    columns:
+    - n
+    - K*=2 fraction
+    - Mean 1v2 AUC
+    - Mean CI lower
+    - Mean CI width
+    rows:
+    - - 1,000
+      - 6/10
+      - '0.612'
+      - '0.593'
+      - '0.038'
+    - - 2,000
+      - 9/10
+      - '0.617'
+      - '0.604'
+      - '0.027'
+    - - 3,000
+      - 10/10
+      - '0.620'
+      - '0.609'
+      - '0.022'
+    - - 4,000
+      - 10/10
+      - '0.622'
+      - '0.613'
+      - '0.019'
+    - - 5,000
+      - 10/10
+      - '0.624'
+      - '0.616'
+      - '0.017'
+  figures_description:
+  - 'Fig: Line plot with error bands showing mean 1v2 AUC ± CI width across sample
+    sizes. Horizontal dashed line at θ=0.60. Shows CI lower crossing θ between n=1000
+    and n=2000. Each resample shown as semi-transparent dot.'
+  analysis: 'Power analysis 证明 n=2000 是 K*=2 判定的 practical minimum（90% 稳定）， n=3000
+    给出完全稳定性。论文的 n=5000 per condition 远超需求， 为 Reviewer m4 的样本量关切提供定量回应。放 Appendix 作为
+    robustness check。
+
+    '
+- name: exp_32b_c4 Qwen2.5-32B Cross-Scale (RUNNING)
+  plan_id: exp_32b_c4
+  description: 'Qwen2.5-32B continuation mode, C4 5K docs, depth 0-5, scorer=Qwen2.5-1.5B。
+    最大规模模型验证 K*=2 的 scale invariance。
+
+    '
+  expected_results:
+    k_star: 2
+    pairwise_auc:
+      0v1: 0.9515
+      1v2: 0.6185
+      2v3: 0.5465
+      3v4: 0.5215
+      4v5: 0.5125
+    pairwise_jsd:
+      0v1: 0.0985
+      1v2: 0.0108
+      2v3: 0.0058
+      3v4: 0.0041
+      4v5: 0.0033
+    bootstrap_ci:
+      0v1:
+        ci_lower: 0.9478
+        ci_upper: 0.9552
+      1v2:
+        ci_lower: 0.6092
+        ci_upper: 0.6278
+      2v3:
+        ci_lower: 0.5363
+        ci_upper: 0.5567
+      3v4:
+        ci_lower: 0.5112
+        ci_upper: 0.5318
+      4v5:
+        ci_lower: 0.5018
+        ci_upper: 0.5232
+    ordinal_mae: 1.235
+    ordinal_accuracy: 0.348
+    top_features:
+    - freq_entropy
+    - surp_d1_skew
+    - surp_std
+  result_rationale: 'Best 档下：(1) K*=2 在 32B 模型上得到确认，1v2 CI lower=0.6092 > θ=0.60。
+    这延续了 1.5B→7B→14B→32B 的 scale invariance 趋势。(2) 0v1 AUC 略低于小模型 （0.9515 vs Qwen-1.5B
+    0.987），因为更大模型生成的文本更接近人类分布， binary 信号稍弱但仍远超阈值。(3) 1v2 AUC (0.6185) 与 14B (0.621)
+    和 7B (0.618)  非常接近，证明 depth discrimination boundary 不随模型规模单调变化——DPI 理论预测 K* 由信息损失率决定而非模型容量。(4)
+    JSD 和特征排序与小模型一致 （freq_entropy 和 surp_d1_skew 仍为 top discriminators），进一步支持  K*
+    是文本固有属性而非模型属性的核心论点。(5) 32B 是论文中最大的模型， 虽仍属 ≤32B 范围（不覆盖 70B+），但已将 scale invariance
+    证据链从 "≤8B"  扩展至 "≤32B"，显著缓解审稿人关于模型规模局限性的关切。
+
+    '
+  tables:
+  - name: 'Table: Scale Invariance Summary (C4, continuation, θ=0.60)'
+    columns:
+    - Model
+    - Scale
+    - K*
+    - 1v2 AUC
+    - 1v2 CI lower
+    rows:
+    - - OLMo
+      - 1B
+      - '2'
+      - '0.6145'
+      - '0.6045'
+    - - Pythia
+      - 1.4B
+      - '2'
+      - '0.6539'
+      - '0.6454'
+    - - Qwen-base
+      - 1.5B
+      - '2'
+      - '0.6262'
+      - '0.6168'
+    - - Qwen-instruct
+      - 1.5B
+      - '2'
+      - '0.6112'
+      - '0.6015'
+    - - Qwen
+      - 7B
+      - '2'
+      - '0.6178'
+      - '0.6079'
+    - - LLaMA-3.1
+      - 8B
+      - '2'
+      - '0.6123'
+      - '0.6028'
+    - - Qwen
+      - 14B
+      - '2'
+      - '0.6210'
+      - '0.6119'
+    - - Qwen
+      - 32B
+      - '2'
+      - '0.6185'
+      - '0.6092'
+  figures_description:
+  - 'Fig: K* vs model scale (log scale x-axis), showing flat K*=2 line from 1B to
+    32B with individual 1v2 AUC values and CI error bars. Demonstrates scale invariance
+    visually.'
+  analysis: '32B 结果将 scale invariance 证据从 ≤8B 扩展至 ≤32B，覆盖 32x 的规模范围。 K*=2 在所有 8 个
+    C4 web text 配置（含 Mistral K*=1 例外）上保持一致。 论文 limitation 从 "≤8B" 改为 "≤32B"，并保留 "extending
+    to 70B+ is future work"  的措辞。审稿人关于规模局限性的关切从 moderate concern 降为 minor concern。
+
+    '
+- name: 'exp_026_arxiv_filtering_integrated (what_if: honest negative)'
+  plan_id: exp_026_arxiv_filtering_integrated
+  description: '将 exp-026 arXiv graduated filtering 的负向结果整合入论文：Section 5 增加 arXiv
+    null result  table，Discussion 增加 "K* characterizes signal discriminability, not
+    data utility" 洞察。 评估 honest negative 对审稿分数和论文可信度的影响。
+
+    '
+  expected_results:
+    section5_arXiv_null_table:
+      strategies:
+      - no_filter
+      - binary
+      - graduated_α0.9
+      mmlu:
+        no_filter: 0.5899±0.0008
+        binary: 0.5876±0.0004
+        graduated: 0.5900±0.0011
+      hellaswag:
+        no_filter: 0.6600±0.0002
+        binary: 0.6642±0.0004
+        graduated: 0.6599±0.0003
+      paired_ttest_graduated_vs_nofilter:
+        mmlu_p: 0.89
+        hellaswag_p: 0.71
+      verdict: graduated ≈ no_filter (all p > 0.24)
+    exp025_pythia_null_appendix:
+      delta_max: 0.0017
+      verdict: all strategies within noise
+    discussion_insight: 'K* characterizes the information-theoretic boundary of depth
+      signal  discriminability, not the boundary of training data utility. Depth 2-3  arXiv
+      text is statistically distinguishable (K*=3) but removing it does  not improve
+      downstream performance — the discriminable signal does not  correspond to quality
+      degradation at these depths.
+
+      '
+    credibility_boost_estimated: 0.75
+    reviewer_response_predicted:
+      positive_framing: '"The authors commendably report negative results on graduated
+        filtering  (exp-026) and cross-model filtering (exp-025), providing a nuanced
+        picture  that strengthens the paper''s scientific contribution."
+
+        '
+      c3_acceptance_shift: +0.10 (from 0.70 to 0.80)
+      soundness_boost: +0.25 (honest methodology)
+    impact_on_scores:
+      avg_reviewer_score_delta: '+0.15'
+      soundness_delta: '+0.25'
+      substance_delta: '+0.10'
+      venue_acceptance_prob_delta: '+0.05'
+  result_rationale: 'Best 档下，honest negatives 产生显著的可信度提升效应： (1) exp-026 arXiv null
+    result 被审稿人视为负责任的科学态度。在 ML 领域，报告负向结果 仍然稀缺，这种做法本身就是差异化信号。审稿人对 C3 的接受度从 0.70 升至
+    0.80， 因为 C3 的 claim 从 "graduated filtering is universally better" 调整为更精确的  "binary
+    K*-aware filtering is the appropriate granularity for web text (K*=2);  on domains
+    with higher K* (arXiv, K*=3), the additional depth information  does not translate
+    to downstream utility gains"——这是一个更有 nuance 也更可信的叙事。 (2) Discussion 中的 "K* ≠ data
+    utility" 洞察被审稿人视为 conceptual contribution， 因为它区分了信息论意义上的可区分性和实际训练价值——这是一个非显然但重要的观察，
+    为 K* 的理论定位提供了更精确的边界。(3) exp-025 Pythia null 放 Appendix 作为  model-scale sensitivity
+    分析，审稿人注意到但不视为主线缺陷，因为 Pythia-1.4B  在 MMLU 上的 base performance (0.2568) 本身就接近 random，filtering
+    效果被  model capacity floor 掩盖是合理的解释。(4) 综合影响：honest negatives 将论文 从 "we prove everything
+    works" 的可疑叙事转为 "we carefully characterize what works  and what doesn''t"，这在 characterization
+    study 的定位下尤其有效。预估 soundness  提升 0.25 分（从 3.5-4.0 范围的下端移向上端），整体接收概率提升约 5pp。
+
+    '
+  tables:
+  - name: 'Table (Section 5): arXiv Domain Filtering — Null Result'
+    columns:
+    - Strategy
+    - MMLU
+    - HellaSwag
+    - Δ MMLU vs no-filter
+    - Δ HellaSwag vs no-filter
+    rows:
+    - - No filter
+      - 0.5899±0.0008
+      - 0.6600±0.0002
+      - —
+      - —
+    - - Binary (K*-aware)
+      - 0.5876±0.0004
+      - 0.6642±0.0004
+      - -0.0023*
+      - +0.0042***
+    - - Graduated (α=0.9)
+      - 0.5900±0.0011
+      - 0.6599±0.0003
+      - '+0.0001'
+      - '-0.0001'
+    footnotes:
+    - '* p=0.005 (paired t-test, 5 seeds); *** p<0.00001'
+    - Graduated ≈ no-filter on both metrics (MMLU p=0.89, HellaSwag p=0.71)
+  - name: 'Table (Appendix): Pythia-1.4B Filtering — Model-Scale Sensitivity'
+    columns:
+    - Strategy
+    - MMLU
+    - HellaSwag
+    rows:
+    - - No filter
+      - 0.2568±0.0012
+      - 0.5250±0.0008
+    - - Binary
+      - 0.2585±0.0004
+      - 0.5251±0.0001
+    - - Graduated (α=0.9)
+      - 0.2561±0.0009
+      - 0.5253±0.0007
+    footnotes:
+    - All deltas within noise (max Δ=0.0017). Pythia-1.4B MMLU baseline near random
+      (0.257), suggesting model capacity floor masks filtering effects.
+  figures_description:
+  - No additional figures. The null result tables are presented as compact inline
+    tables in Section 5 and Appendix respectively, consistent with honest-reporting
+    style.
+  analysis: Honest negative integration 是 best 档的关键差异化因素。审稿人在 best 档下不仅 不惩罚负向结果，反而给予可信度加分。核心机制：(1)
+    C3 claim 的精确化——从  over-broad "K* predicts optimal curation" 到 nuanced "K* predicts
+    discriminability  boundary; curation utility depends on domain-specific quality-depth
+    coupling"； (2) 概念贡献的增加——"K* ≠ data utility" 成为 Discussion 的独立贡献点； (3) 论文完整性——读者不需要猜测
+    "graduated filtering 在其他域是否有效"， 因为论文已经系统测试并报告了答案。这种透明度在 EMNLP 审稿文化中尤其受重视。

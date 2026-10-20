@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "104635ef4b26f174699c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "fix multi source scorer confound",
+  "task_key": "worker_fix_multi_source_scorer_confound_20260520T071533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_multi_source_scorer_confound_20260520T071533_result.json",
+    "occurrence": 1,
+    "bytes": 199,
+    "sha256": "06d5ec2132a86c357be6c5576f1395c9ce15d61067e4d405ec35f78cb453cd1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment is running on GPU 2 of cqa1-22115. Pythia1b4 feature extraction is in progress (depth 3/5), then LLaMA-8B features + LightGBM analysis remain. Checking back in ~4.5 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-multi-source-scorer-confound.md"
+}

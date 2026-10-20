@@ -1,0 +1,83 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shumailov2024ai}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{shumailov2024ai}
+\citation{alemohammad2024selfconsuming}
+\citation{dohmatob2024model}
+\citation{drayson2025synthetic}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model collapse and recursive generation.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Machine-generated text detection.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data selection and curation.}{3}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Information-theoretic perspectives on generation.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Generation Protocol}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Feature Design}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Classification and $K^*$ Determination}{4}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Threshold sensitivity.}{4}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-scorer validation.}{4}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments: $K^*$ Characterization}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Web Text (C4): $K^*{=}2$ as Dominant Mode}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Decoding strategy invariance.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The Qwen-cont marginality.}{4}{section*.9}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Pairwise AUC on C4 web text (continuation mode). $K^*$ determined by CI lower $> \theta = 0.60$.}}{5}{table.caption.7}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:c4-kstar}{{1}{5}{Pairwise AUC on C4 web text (continuation mode). $K^*$ determined by CI lower $> \theta = 0.60$}{table.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Pairwise 2v3 AUC on arXiv (continuation mode). All 5 domain-competent models yield $K^*{=}3$.}}{5}{table.caption.10}\protected@file@percent }
+\newlabel{tab:arxiv-kstar}{{2}{5}{Pairwise 2v3 AUC on arXiv (continuation mode). All 5 domain-competent models yield $K^*{=}3$}{table.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Wikipedia: $K^*{=}1$ (Scorer-Controlled)}{5}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}arXiv: $K^*{=}3$ (Cross-Validated Across 5 Models)}{5}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mistral as strongest domain-dependence evidence.}{5}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Cross-Model Transfer and Scorer Invariance}{6}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Neural Probe Analysis}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:neural-probe}{{4.5}{6}{Neural Probe Analysis}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}The Domain Hierarchy and One-Wash Laundering}{6}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experiments: Data Curation and Supplementary Analyses}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}$K^*$-Aware Filtering on C4}{6}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Filtering results on arXiv. Graduated filtering ($\alpha {=}0.9$) provides no improvement over no-filter baseline. Binary filtering shows metric-specific trade-offs.}}{7}{table.caption.12}\protected@file@percent }
+\newlabel{tab:arxiv-filtering}{{3}{7}{Filtering results on arXiv. Graduated filtering ($\alpha {=}0.9$) provides no improvement over no-filter baseline. Binary filtering shows metric-specific trade-offs}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Predicted depth distribution on Common Crawl and associated quality metrics. Quality decreases monotonically with predicted depth.}}{7}{table.caption.13}\protected@file@percent }
+\newlabel{tab:cc-depth-quality}{{4}{7}{Predicted depth distribution on Common Crawl and associated quality metrics. Quality decreases monotonically with predicted depth}{table.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Domain Generalization of Filtering}{7}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:domain-filtering}{{5.2}{7}{Domain Generalization of Filtering}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Preliminary Naturalistic Validation on Common Crawl}{7}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:naturalistic}{{5.3}{7}{Preliminary Naturalistic Validation on Common Crawl}{subsection.5.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Spearman correlations between predicted depth and quality metrics on Common Crawl ($N = 100{,}000$).}}{8}{table.caption.14}\protected@file@percent }
+\newlabel{tab:cc-spearman}{{5}{8}{Spearman correlations between predicted depth and quality metrics on Common Crawl ($N = 100{,}000$)}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces $K^*{=}2$ detection power by sample size. Qwen-cont requires $n \ge 4{,}500$ for 95\% power due to its small effect size (AUC = 0.611); Pythia reaches full power at $n = 3{,}000$.}}{8}{table.caption.15}\protected@file@percent }
+\newlabel{tab:power-curve}{{6}{8}{$K^*{=}2$ detection power by sample size. Qwen-cont requires $n \ge 4{,}500$ for 95\% power due to its small effect size (AUC = 0.611); Pythia reaches full power at $n = 3{,}000$}{table.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Statistical Power Analysis}{8}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:power}{{5.4}{8}{Statistical Power Analysis}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{9}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{$K^*$ as discriminability, not utility.}{9}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The one-wash laundering effect and its implications.}{9}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Domain structural complexity as the key determinant.}{9}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Relationship to retrain-chain contamination.}{9}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Limitations}{9}{subsection.6.1}\protected@file@percent }
+\newlabel{sec:limitations}{{6.1}{9}{Limitations}{subsection.6.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Model scale.}{9}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Lab-to-wild gap.}{9}{section*.21}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{shumailov2024ai}{{1}{2024}{{Shumailov et~al.}}{{}}}
+\bibcite{alemohammad2024selfconsuming}{{2}{2024}{{Alemohammad et~al.}}{{}}}
+\bibcite{dohmatob2024model}{{3}{2024}{{Dohmatob et~al.}}{{}}}
+\bibcite{drayson2025synthetic}{{4}{2025}{{Drayson et~al.}}{{}}}
+\bibcite{mitchell2023detectgpt}{{5}{2023}{{Mitchell et~al.}}{{}}}
+\bibcite{bao2024fastdetectgpt}{{6}{2024}{{Bao et~al.}}{{}}}
+\bibcite{shi2024minkpp}{{7}{2024}{{Shi et~al.}}{{}}}
+\bibcite{xie2023dsir}{{8}{2023}{{Xie et~al.}}{{}}}
+\@writefile{toc}{\contentsline {paragraph}{Threshold sensitivity.}{10}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limited curation scope.}{10}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{10}{section.7}\protected@file@percent }
+\bibcite{xie2024doremi}{{9}{2024}{{Xie et~al.}}{{}}}
+\bibcite{biderman2023pythia}{{10}{2023}{{Biderman et~al.}}{{}}}
+\bibcite{groeneveld2024olmo}{{11}{2024}{{Groeneveld et~al.}}{{}}}
+\bibcite{touvron2023llama}{{12}{2023}{{Touvron et~al.}}{{}}}
+\bibcite{jiang2023mistral}{{13}{2023}{{Jiang et~al.}}{{}}}
+\bibcite{ke2017lightgbm}{{14}{2017}{{Ke et~al.}}{{}}}
+\bibcite{cover2006elements}{{15}{2006}{{Cover and Thomas}}{{}}}
+\gdef \@abspage@last{11}

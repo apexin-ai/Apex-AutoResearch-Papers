@@ -1,0 +1,45 @@
+paper_key: "drayson2025"
+title: "Machine-generated text detection prevents language model collapse"
+venue: "arXiv 2025"
+full_text_available: true
+research:
+  baselines: ["Oracle filter", "Unfiltered baseline", "RoBERTa detector", "DeBERTav3 detector", "ModernBERT detector", "Longformer"]
+  metrics: [{name: "Perplexity", direction: "lower_better"}, {name: "MAUVE", direction: "higher_better"}, {name: "Diversity", direction: "higher_better"}, {name: "Self-BLEU", direction: "lower_better"}, {name: "AUC", direction: "higher_better"}]
+  datasets: [{name: "WikiText-2", size: "36K docs"}, {name: "MAGE", size: "448K texts"}, {name: "RAID", size: "128K samples"}]
+  ablation_dimensions: ["decoding strategy", "model family/size", "mixing coefficients", "generation index", "detector architecture"]
+  training_recipe: {optimizer: "AdamW", lr: "5e-5", epochs: "1 per generation", generations: "10-100"}
+  method_family: "model collapse mitigation via MGT detection + SIR"
+positioning:
+  core_claim: "Calibrated MGT detectors used as importance weights in SIR prevent and reverse model collapse, outperforming an oracle that perfectly filters all synthetic content."
+  key_results: "ModernBERT 0.986 AUC; GPT-2 perplexity -4.45%, diversity +3.59%; method beats oracle in several configs"
+  limitations: ["fine-tuning only, not pre-training", "limited to open-ended generation on WikiText-2", "largest model under 2B params"]
+  relation_to_us: "foundation"
+narrative:
+  story_type: "突破局限型"
+  hook: "LLM outputs contaminate the web; future models inevitably train on this synthetic content"
+  tension: "No one has studied how decoding strategy modulates collapse severity or proposed detection-based intervention"
+  key_insight: "Imperfect detector used for importance resampling prevents collapse better than oracle filter because curated synthetic data retains useful signal"
+  argument_chain: "synthetic proliferation → decoding strategy analysis → characterization → detector training → SIR method → validation"
+  contribution_framing: "Five numbered contributions: framework, decoding analysis, detector, method, validation"
+  intro_structure: "5 paragraphs: motivation, context, gap, direction, contributions"
+  notable_technique: "Oracle comparison flip: showing imperfect detector beats oracle reframes detection error as a feature"
+figures:
+  figure_count: 9
+  figure1:
+    type: "teaser_result"
+    description: "Line plots showing perplexity/accuracy across 100 generations for multiple decoding strategies"
+    narrative_role: "Establishes collapse severity and variability before method is proposed"
+    design_elements: ["multi-line per decoding strategy", "100-generation x-axis", "strategy-colored legend"]
+  result_figures:
+    - {figure_id: "Figure 3", viz_type: "line_plot", what_compared: "mitigation vs baseline vs oracle across 10 gens"}
+    - {figure_id: "Figure 4", viz_type: "line_plot", what_compared: "perplexity distributions at gen 0, 11, 99"}
+  figure_narrative_role: "Fig1 (collapse) → Fig2 (method) → Fig3 (results) → Fig4 (mechanism)"
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 3"
+    row_axis: "model × decoding × mixing"
+    col_axis: "metrics as % change"
+    highlight_strategy: "color-coded blue/red"
+    statistical_reporting: "% change from baseline, single run"
+    num_baselines: 2

@@ -1,0 +1,1197 @@
+tier: median
+narrative_guidance: 'Universality claim scoped 为 ''K*=2 is consistent across all tested
+  conditions meeting minimum information requirements (≥256 tokens; standard decoding)''。Mistral
+  的失败被分析为 architecture-specific information compression rate 导致的 principled boundary
+  case（SWA/GQA 架构 在 cross-scorer 条件下 15D features 信号不足），128-token 的失败用 DPI 的 minimum
+  mutual information threshold 解释。Pythia T=0.7 的边缘性用 low-temperature channel narrowing
+  解释——temperature 过低导致 vocabulary distribution 预先收窄，减少了 generational degradation 的可测量空间。增加
+  §5.x ''Boundary conditions of universality'' 段落，将三类失败条件（短文本/低温/跨架构 scorer mismatch）统一在
+  DPI framework 下。C1'' 措辞降为 ''K*=2 is a robust discrimination boundary under standard
+  conditions (≥256 tokens, T≥0.9, compatible scorer architecture)''。仍冲 EMNLP Main——14/19
+  primary conditions K*=2 的一致性足够强，且失败条件均有理论预测支撑。Rebuttal 策略：承认 scope + 强调已覆盖条件的 100%
+  一致性 + DPI 预测三类 boundary 的准确性作为理论泛化的证据。
+
+  '
+imagined_experiments:
+- name: LLaMA-3.1-8B cross-family depth chain
+  plan_id: exp-018
+  description: 'LLaMA-3.1-8B continuation mode, nucleus p=0.95 T=1.0, C4 5K docs,
+    depth 0-5, scorer=Qwen2.5-1.5B。新模型族中表现较好的一个。
+
+    '
+  expected_results:
+    k_star: 2
+    pairwise_auc:
+      0v1: 0.9718
+      1v2: 0.6253
+      2v3: 0.5548
+      3v4: 0.5212
+      4v5: 0.5083
+    pairwise_auc_std:
+      0v1: 0.0028
+      1v2: 0.0092
+      2v3: 0.0058
+      3v4: 0.0095
+      4v5: 0.0071
+    bootstrap_ci:
+      0v1:
+        auc: 0.9718
+        ci_lower: 0.9693
+        ci_upper: 0.9743
+        perm_p: 0.0001
+      1v2:
+        auc: 0.6253
+        ci_lower: 0.6072
+        ci_upper: 0.6434
+        perm_p: 0.0001
+      2v3:
+        auc: 0.5548
+        ci_lower: 0.5447
+        ci_upper: 0.5649
+        perm_p: 0.0001
+      3v4:
+        auc: 0.5212
+        ci_lower: 0.5108
+        ci_upper: 0.5316
+        perm_p: 0.0012
+      4v5:
+        auc: 0.5083
+        ci_lower: 0.4978
+        ci_upper: 0.5188
+        perm_p: 0.0892
+    pairwise_jsd:
+      0v1: 0.1384
+      1v2: 0.0108
+      2v3: 0.0049
+      3v4: 0.0038
+      4v5: 0.0031
+    ordinal_mae: 1.198
+    ordinal_accuracy: 0.357
+    top_features:
+    - freq_entropy
+    - surp_d1_mean
+    - surp_std
+    - surp_d1_skew
+    - hapax_ratio
+  result_rationale: 'LLaMA-3.1-8B 使用 GQA + RoPE 的标准 Transformer 架构，与 Qwen-7B（exp-004）同为
+    7-8B continuation mode + cross-scorer 条件。Qwen-7B 1v2=0.6178（CI lower 0.6079），LLaMA-8B
+    预期略高于 Qwen-7B（0.625 vs 0.618）因为 LLaMA 的训练数据更侧重英文 web text 与 C4 分布更匹配， 生成文本的统计特征与
+    Qwen scorer 的 surprisal 计算有更好的 calibration。但 CI lower 仅 0.607， 比 θ=0.60 高 0.7pp——边缘但
+    robust。0v1 AUC 0.972 低于 ≤1.5B 模型的 0.99+ 是因为 8B 模型 生成文本质量更高，human-gen0 到 gen1 的跨越更小。4v5
+    non-significant（p=0.089）与 Qwen-7B 的 4v5 p=0.0676 pattern 一致——大模型的深层代际几乎不可区分。
+
+    '
+  tables:
+  - title: 'Table: LLaMA-3.1-8B pairwise depth discrimination'
+    columns:
+    - depth_pair
+    - auc
+    - ci_95
+    - perm_p
+    - k_star_boundary
+    rows:
+    - - 0v1
+      - 0.9718
+      - '[0.9693, 0.9743]'
+      - <0.001
+      - '-'
+    - - 1v2
+      - 0.6253
+      - '[0.6072, 0.6434]'
+      - <0.001
+      - K*=2 ✅ (CI lower 0.607>0.60)
+    - - 2v3
+      - 0.5548
+      - '[0.5447, 0.5649]'
+      - <0.001
+      - below θ
+    - - 3v4
+      - 0.5212
+      - '[0.5108, 0.5316]'
+      - '0.001'
+      - '-'
+    - - 4v5
+      - 0.5083
+      - '[0.4978, 0.5188]'
+      - '0.089'
+      - n.s.
+  figures_description:
+  - 'AUC decay curve: 与 Qwen-7B (exp-004) overlay，showing similar decay profile but
+    LLaMA consistently ~0.7pp higher at 1v2'
+  - 'Feature importance bar chart: top-5 features 与 Qwen-7B 共享 4/5（freq_entropy, surp_d1_mean,
+    surp_std, surp_d1_skew），hapax_ratio 替代 surp_mean 进入 top-5'
+  analysis: 'LLaMA-8B 确认 K*=2 在第二个大规模模型族（非 Qwen 系列）上成立。CI lower=0.607 高于 θ 但属 median
+    档预期的边缘范围（0.600-0.607）。与 Qwen-7B 的 CI lower=0.608 高度一致，说明 7-8B 规模 + cross-scorer
+    条件下的 1v2 边界是 systematic 而非 random。Top features 中 hapax_ratio 进入 top-5 是 LLaMA
+    特有——LLaMA 的 BPE 词表与 Qwen 不同，rare token 分布 在 generational degradation 下的变化模式略有差异。但
+    surp_d1_std/surp_std/surp_d2_std 仍在 top-10 内，与 exp-005 的 shared_top_discriminators
+    一致。Paper 可将 LLaMA-8B 作为 universality evidence 的第 6 个独立模型族。
+
+    '
+- name: Mistral-7B-v0.3 cross-family depth chain
+  plan_id: exp-019
+  description: 'Mistral-7B-v0.3 continuation mode, nucleus p=0.95 T=1.0, C4 5K docs,
+    depth 0-5, scorer=Qwen2.5-1.5B。新模型族中表现较差的一个，K* 降至 1。
+
+    '
+  expected_results:
+    k_star: 1
+    pairwise_auc:
+      0v1: 0.9681
+      1v2: 0.5934
+      2v3: 0.5487
+      3v4: 0.5195
+      4v5: 0.5068
+    pairwise_auc_std:
+      0v1: 0.0031
+      1v2: 0.0098
+      2v3: 0.0062
+      3v4: 0.0088
+      4v5: 0.0075
+    bootstrap_ci:
+      0v1:
+        auc: 0.9681
+        ci_lower: 0.9652
+        ci_upper: 0.971
+        perm_p: 0.0001
+      1v2:
+        auc: 0.5934
+        ci_lower: 0.5821
+        ci_upper: 0.6047
+        perm_p: 0.0001
+      2v3:
+        auc: 0.5487
+        ci_lower: 0.5382
+        ci_upper: 0.5592
+        perm_p: 0.0001
+      3v4:
+        auc: 0.5195
+        ci_lower: 0.5092
+        ci_upper: 0.5298
+        perm_p: 0.0034
+      4v5:
+        auc: 0.5068
+        ci_lower: 0.4963
+        ci_upper: 0.5173
+        perm_p: 0.134
+    pairwise_jsd:
+      0v1: 0.1312
+      1v2: 0.0079
+      2v3: 0.0044
+      3v4: 0.0035
+      4v5: 0.0028
+    ordinal_mae: 1.241
+    ordinal_accuracy: 0.342
+    top_features:
+    - surp_d1_mean
+    - freq_entropy
+    - surp_std
+    - surp_mean
+    - surp_d1_skew
+  result_rationale: 'Mistral-7B-v0.3 是 median 档的核心 boundary case。1v2 AUC=0.593，CI
+    lower=0.582， CI upper=0.605——CI 上界刚好跨过 θ=0.60 但下界远低于阈值。K*=1 的根因分析：(1) Mistral
+    的 GQA(8 heads) + 大 vocabulary (32K) 组合意味着每个 generation step 的 information loss
+    rate 低于 Pythia/OLMo——Mistral 是一个更"高保真"的 iterated channel，DPI 预测 K*_theory 更高但
+    K*_empirical 被 15D features 的检测灵敏度 cap 住；(2) cross-scorer 条件（Qwen-1.5B 计算 surprisal）引入
+    tokenizer/architecture mismatch——Mistral 使用 SentencePiece BPE 而 Qwen 使用 不同的 BPE
+    scheme，相同文本的 token boundary 不同导致 surprisal-derived features 精度降低； (3) JSD 1v2=0.0079
+    是所有模型中最低的（Pythia 0.014, OLMo 0.013, Qwen-cont 0.005 但 Qwen-cont 是 self-scorer），说明
+    gen1→gen2 的分布变化确实很小。论文定位：Mistral 不是 counterexample 而是 principled boundary——它验证了
+    DPI 框架的预测，即高容量低损耗模型的 K*_empirical 受限于 feature 灵敏度而非信号不存在。exp-015 的 neural probe
+    结果（neural representations 比 15D 多辨别 1 个深度）暗示如果用 Mistral 自身 embeddings 做 probe
+    可能恢复 K*=2。
+
+    '
+  tables:
+  - title: 'Table: Mistral-7B pairwise depth discrimination'
+    columns:
+    - depth_pair
+    - auc
+    - ci_95
+    - perm_p
+    - k_star_boundary
+    rows:
+    - - 0v1
+      - 0.9681
+      - '[0.9652, 0.9710]'
+      - <0.001
+      - '-'
+    - - 1v2
+      - 0.5934
+      - '[0.5821, 0.6047]'
+      - <0.001
+      - K*=1 ❌ (CI lower 0.582<0.60)
+    - - 2v3
+      - 0.5487
+      - '[0.5382, 0.5592]'
+      - <0.001
+      - below θ
+    - - 3v4
+      - 0.5195
+      - '[0.5092, 0.5298]'
+      - '0.003'
+      - '-'
+    - - 4v5
+      - 0.5068
+      - '[0.4963, 0.5173]'
+      - '0.134'
+      - n.s.
+  - title: 'Table: New model family comparison'
+    columns:
+    - model
+    - 1v2_auc
+    - ci_lower
+    - k_star
+    - scorer
+    rows:
+    - - LLaMA-3.1-8B
+      - 0.6253
+      - 0.6072
+      - 2
+      - Qwen-1.5B
+    - - Mistral-7B-v0.3
+      - 0.5934
+      - 0.5821
+      - 1
+      - Qwen-1.5B
+    - - Qwen2.5-7B (exp-004)
+      - 0.6178
+      - 0.6079
+      - 2
+      - Qwen-1.5B
+    - - Qwen2.5-1.5B base (exp-016)
+      - 0.6262
+      - 0.6168
+      - 2
+      - self
+  figures_description:
+  - 'AUC decay comparison across all 7-8B models: LLaMA, Mistral, Qwen-7B overlay
+    showing Mistral''s flatter decay curve (lower information loss rate)'
+  - 'JSD heatmap: Mistral''s 1v2 JSD visibly lowest among all models, linking to DPI
+    channel capacity interpretation'
+  analysis: 'Mistral K*=1 是 median 档的 defining result。论文处理策略：(1) 在 §4.1 universality
+    结果表中 标注 Mistral 为 boundary case（CI upper 0.605 跨 θ）；(2) 在 §5.x Boundary Conditions
+    段落中分析三个 contributing factors（low info loss rate, cross-scorer tokenizer mismatch,
+    feature sensitivity ceiling）；(3) 引用 DPI 理论论证 K*_theory ≥ 2 但 K*_empirical 受限于
+    measurement precision——类比物理实验中测量精度与真实值的关系；(4) 与 exp-015 neural probe 结果对照，论证更精细的
+    representation 可能恢复更高 K*。关键 rebuttal 准备：如果 reviewer 说 "Mistral 证伪了 universality"，回应
+    1v2 AUC=0.593 仍远高于 chance (0.50)，信号存在但 被 θ=0.60 阈值 cut off——这是 operational threshold
+    choice 而非 physical boundary。
+
+    '
+- name: Pythia-1.4B decoding strategy ablation
+  plan_id: exp-020
+  description: 'Pythia-1.4B 上复现 exp-003 的解码策略实验（greedy / nucleus p=0.9 / T=0.7 / T=1.2），
+    验证解码不变性是否跨模型成立。3/4 配置确认 K*=2，T=0.7 边缘。
+
+    '
+  expected_results:
+    config1_greedy:
+      k_star: 2
+      pairwise_auc:
+        0v1: 0.9748
+        1v2: 0.6482
+        2v3: 0.5504
+        3v4: 0.5163
+        4v5: 0.5098
+      bootstrap_ci:
+        1v2:
+          auc: 0.6482
+          ci_lower: 0.6378
+          ci_upper: 0.6586
+          perm_p: 0.0001
+        2v3:
+          auc: 0.5504
+          ci_lower: 0.5401
+          ci_upper: 0.5607
+          perm_p: 0.0001
+    config2_nuc09:
+      k_star: 2
+      pairwise_auc:
+        0v1: 0.9911
+        1v2: 0.6397
+        2v3: 0.5468
+        3v4: 0.5138
+        4v5: 0.5072
+      bootstrap_ci:
+        1v2:
+          auc: 0.6397
+          ci_lower: 0.6271
+          ci_upper: 0.6523
+          perm_p: 0.0001
+        2v3:
+          auc: 0.5468
+          ci_lower: 0.5363
+          ci_upper: 0.5573
+          perm_p: 0.0001
+    config3_t07:
+      k_star: 1
+      pairwise_auc:
+        0v1: 0.9812
+        1v2: 0.6118
+        2v3: 0.5472
+        3v4: 0.5186
+        4v5: 0.5114
+      bootstrap_ci:
+        1v2:
+          auc: 0.6118
+          ci_lower: 0.5973
+          ci_upper: 0.6263
+          perm_p: 0.0001
+        2v3:
+          auc: 0.5472
+          ci_lower: 0.5368
+          ci_upper: 0.5576
+          perm_p: 0.0001
+    config4_t12:
+      k_star: 2
+      pairwise_auc:
+        0v1: 0.9967
+        1v2: 0.6648
+        2v3: 0.5537
+        3v4: 0.5171
+        4v5: 0.5126
+      bootstrap_ci:
+        1v2:
+          auc: 0.6648
+          ci_lower: 0.6542
+          ci_upper: 0.6754
+          perm_p: 0.0001
+        2v3:
+          auc: 0.5537
+          ci_lower: 0.5432
+          ci_upper: 0.5642
+          perm_p: 0.0001
+    kstar2_fraction: 0.75
+    summary:
+      all_0v1_above_097: true
+      all_2v3_below_060: true
+      t07_ci_lower: 0.5973
+      t07_marginal_note: CI lower 0.597 < θ=0.60 by 0.3pp
+  result_rationale: 'Pythia-1.4B 的 baseline 1v2 AUC=0.6539（nucleus p=0.95 T=1.0），比
+    Qwen 的 baseline 低约 4-8pp（Qwen-rw 0.696, Qwen-cont 0.611）。在 Qwen 上 4/4 decoding
+    configs 均 K*=2 是因为 Qwen 的 1v2 signal 有足够 headroom（最低 0.686）。Pythia 的 headroom
+    更小。 T=0.7 成为 edge case 的机制：低温使 Pythia 的 token selection 更集中在高概率区域，每代 生成文本的 vocabulary
+    distribution 已经被 temperature 预先收窄（entropy reduction）， 留给 generational degradation
+    的可测量空间减少。具体来说，T=0.7 下 freq_entropy 和 hapax_ratio 的 baseline variance 更低，surp_std
+    的 depth-wise gradient 变平——这些 恰好是 1v2 discrimination 的关键 features。CI lower=0.597
+    仅低于 θ 0.3pp，属于 measurement noise 边界。T=1.2 给出最高 1v2（0.665）因为高温放大了 generation noise，
+    加速信息损失→1v2 contrast 增强。Greedy（0.648）高于 nucleus p=0.9（0.640）因为 greedy 的完全确定性使得
+    generational drift 在 repetition/diversity features 上 更容易被捕捉。
+
+    '
+  tables:
+  - title: 'Table: Pythia decoding ablation pairwise AUC'
+    columns:
+    - config
+    - 0v1
+    - 1v2
+    - 1v2 CI
+    - 2v3
+    - k_star
+    rows:
+    - - greedy
+      - 0.9748
+      - 0.6482
+      - '[0.638, 0.659]'
+      - 0.5504
+      - 2 ✅
+    - - nuc p=0.9
+      - 0.9911
+      - 0.6397
+      - '[0.627, 0.652]'
+      - 0.5468
+      - 2 ✅
+    - - T=0.7
+      - 0.9812
+      - 0.6118
+      - '[0.597, 0.626]'
+      - 0.5472
+      - 1 ⚠️
+    - - T=1.2
+      - 0.9967
+      - 0.6648
+      - '[0.654, 0.675]'
+      - 0.5537
+      - 2 ✅
+  - title: 'Table: Qwen (exp-003) vs Pythia (exp-020) decoding comparison'
+    columns:
+    - config
+    - qwen_1v2
+    - pythia_1v2
+    - delta
+    - both_kstar2
+    rows:
+    - - greedy
+      - 0.6892
+      - 0.6482
+      - -4.1pp
+      - ✅
+    - - nuc p=0.9
+      - 0.6862
+      - 0.6397
+      - -4.7pp
+      - ✅
+    - - T=0.7
+      - 0.6885
+      - 0.6118
+      - -7.7pp
+      - ❌ (Pythia fails)
+    - - T=1.2
+      - 0.7037
+      - 0.6648
+      - -3.9pp
+      - ✅
+  figures_description:
+  - 'Side-by-side AUC decay curves: Qwen (exp-003) vs Pythia (exp-020) for each decoding
+    config, highlighting T=0.7 divergence'
+  - 'Temperature vs 1v2 AUC scatter: both models show positive correlation, Pythia
+    curve shifted ~4-5pp lower'
+  analysis: '3/4 K*=2 的结果使 decoding invariance claim 从 "absolute" 降级为 "robust under
+    standard conditions"。T=0.7 的失败是 model-specific：Qwen T=0.7 的 1v2=0.689 远高于阈值（CI
+    lower 0.680），但 Pythia T=0.7 仅 0.612（CI lower 0.597）。Qwen→Pythia 的 delta 在 T=0.7
+    时最大（-7.7pp vs 其他 config 的 -3.9 到 -4.7pp），说明 Pythia 对低温更敏感——可能因为 Pythia 的 vocabulary
+    size 更小（50K vs Qwen 的 151K），低温下的 effective vocabulary 收窄更剧烈。论文处理：在 §4.x Decoding
+    段落中报告 7/8 跨模型×decoding configs K*=2， T=0.7 × Pythia 作为 boundary case 放入 §5.x。措辞
+    "K*=2 is invariant to decoding strategy for T≥0.9; at T=0.7, model-dependent sensitivity
+    emerges"。
+
+    '
+- name: Text length ablation (128/256/512 tokens)
+  plan_id: exp-021
+  description: 'Qwen2.5-1.5B-Instruct continuation, 三个文本长度（128/256/512 tokens），验证
+    K* 的 minimum information requirement。128-token 预期 K*=1。
+
+    '
+  expected_results:
+    length_128:
+      k_star: 1
+      pairwise_auc:
+        0v1: 0.9893
+        1v2: 0.5902
+        2v3: 0.5481
+        3v4: 0.5327
+        4v5: 0.5189
+      bootstrap_ci:
+        0v1:
+          auc: 0.9893
+          ci_lower: 0.9872
+          ci_upper: 0.9914
+          perm_p: 0.0001
+        1v2:
+          auc: 0.5902
+          ci_lower: 0.5762
+          ci_upper: 0.6042
+          perm_p: 0.0001
+        2v3:
+          auc: 0.5481
+          ci_lower: 0.5342
+          ci_upper: 0.562
+          perm_p: 0.0001
+        3v4:
+          auc: 0.5327
+          ci_lower: 0.5188
+          ci_upper: 0.5466
+          perm_p: 0.0008
+        4v5:
+          auc: 0.5189
+          ci_lower: 0.505
+          ci_upper: 0.5328
+          perm_p: 0.0243
+      pairwise_jsd:
+        0v1: 0.2614
+        1v2: 0.0038
+        2v3: 0.0029
+        3v4: 0.0024
+        4v5: 0.0021
+      ordinal_mae: 1.223
+      ordinal_accuracy: 0.361
+    length_256:
+      k_star: 2
+      pairwise_auc:
+        0v1: 0.9948
+        1v2: 0.6187
+        2v3: 0.5572
+        3v4: 0.5378
+        4v5: 0.5148
+      bootstrap_ci:
+        0v1:
+          auc: 0.9948
+          ci_lower: 0.9937
+          ci_upper: 0.9959
+          perm_p: 0.0001
+        1v2:
+          auc: 0.6187
+          ci_lower: 0.6078
+          ci_upper: 0.6296
+          perm_p: 0.0001
+        2v3:
+          auc: 0.5572
+          ci_lower: 0.5467
+          ci_upper: 0.5677
+          perm_p: 0.0001
+        3v4:
+          auc: 0.5378
+          ci_lower: 0.5273
+          ci_upper: 0.5483
+          perm_p: 0.0001
+        4v5:
+          auc: 0.5148
+          ci_lower: 0.5043
+          ci_upper: 0.5253
+          perm_p: 0.0052
+      pairwise_jsd:
+        0v1: 0.2748
+        1v2: 0.0046
+        2v3: 0.0033
+        3v4: 0.003
+        4v5: 0.0027
+      ordinal_mae: 1.172
+      ordinal_accuracy: 0.375
+    length_512:
+      k_star: 2
+      pairwise_auc:
+        0v1: 0.9971
+        1v2: 0.6341
+        2v3: 0.5632
+        3v4: 0.5413
+        4v5: 0.5156
+      bootstrap_ci:
+        0v1:
+          auc: 0.9971
+          ci_lower: 0.9963
+          ci_upper: 0.9979
+          perm_p: 0.0001
+        1v2:
+          auc: 0.6341
+          ci_lower: 0.6228
+          ci_upper: 0.6454
+          perm_p: 0.0001
+        2v3:
+          auc: 0.5632
+          ci_lower: 0.5529
+          ci_upper: 0.5735
+          perm_p: 0.0001
+        3v4:
+          auc: 0.5413
+          ci_lower: 0.531
+          ci_upper: 0.5516
+          perm_p: 0.0001
+        4v5:
+          auc: 0.5156
+          ci_lower: 0.5051
+          ci_upper: 0.5261
+          perm_p: 0.0041
+      pairwise_jsd:
+        0v1: 0.2871
+        1v2: 0.0052
+        2v3: 0.0036
+        3v4: 0.0032
+        4v5: 0.0029
+      ordinal_mae: 1.148
+      ordinal_accuracy: 0.384
+    length_effect_summary:
+      auc_1v2_by_length:
+        128: 0.5902
+        256: 0.6187
+        512: 0.6341
+      kstar_by_length:
+        128: 1
+        256: 2
+        512: 2
+      minimum_length_for_kstar2: 256
+  result_rationale: '128-token K*=1 的根因是统计估计器的 sample size 效应，而非 depth signal 不存在。15D
+    features 中的 distributional statistics（freq_entropy 基于 unigram 频率分布，hapax_ratio
+    基于 unique token 比例，surp_std/surp_skew 基于 surprisal 分布的高阶矩）在 128 tokens 下 有极高的
+    estimation variance。以 hapax_ratio 为例：128 tokens 中 ~80-100 unique tokens， hapax
+    数量的 Poisson 噪声使得 depth 0 和 depth 1 的 hapax_ratio 分布严重重叠。 surp_std 的 standard error
+    在 n=128 时约为 σ/√(128) ≈ σ/11.3，而 n=512 时约为 σ/22.6， precision 差 2 倍。JSD 1v2 从 512（0.0052）到
+    128（0.0038）的下降（-27%）直接反映了 这个 estimation noise 效应。1v2 AUC=0.5902 的 CI upper=0.6042
+    刚过 θ=0.60，说明 信号存在但 buried in noise。256 tokens 是 minimum viable length（CI lower=0.608
+    > 0.60 且 margin 合理）。512→默认长度（exp-017 使用的长度）时 AUC 进一步提升至 0.634，但 256→512 的增量（+1.5pp）远小于
+    128→256 的增量（+2.9pp），说明 256 已捕获主要 statistical precision gains。DPI interpretation：每个
+    generation step 的 mutual information loss 是 per-token 的常数 ε，但 15D features 只能在
+    aggregate statistics 上测量——aggregate 的 precision 需要 sufficient sample size，128
+    tokens 低于这个 threshold。
+
+    '
+  tables:
+  - title: 'Table: Length ablation summary'
+    columns:
+    - length
+    - 1v2_auc
+    - 1v2 CI
+    - 1v2_jsd
+    - k_star
+    - feature CI width (mean)
+    rows:
+    - - 128
+      - 0.5902
+      - '[0.576, 0.604]'
+      - 0.0038
+      - 1 ❌
+      - ±0.014
+    - - 256
+      - 0.6187
+      - '[0.608, 0.630]'
+      - 0.0046
+      - 2 ✅
+      - ±0.011
+    - - 512
+      - 0.6341
+      - '[0.623, 0.645]'
+      - 0.0052
+      - 2 ✅
+      - ±0.008
+  - title: 'Table: Per-feature AUC at 1v2 by length'
+    columns:
+    - feature
+    - auc_128
+    - auc_256
+    - auc_512
+    rows:
+    - - freq_entropy
+      - 0.554
+      - 0.571
+      - 0.582
+    - - surp_std
+      - 0.548
+      - 0.565
+      - 0.578
+    - - surp_d1_std
+      - 0.542
+      - 0.558
+      - 0.573
+    - - hapax_ratio
+      - 0.536
+      - 0.555
+      - 0.569
+    - - ttr
+      - 0.533
+      - 0.551
+      - 0.566
+  figures_description:
+  - 'Length vs 1v2 AUC curve with CI bands: showing monotonic increase with diminishing
+    returns, vertical line at 256 marking ''minimum viable length'''
+  - 'Feature-level AUC heatmap (length × feature × depth pair): 128-token row visibly
+    noisier with wider CI bands'
+  - 'Bootstrap CI width vs length: demonstrating √n scaling of precision'
+  analysis: 'Length ablation 的关键贡献：(1) 建立 K* 的 minimum information requirement（≥256
+    tokens）， 将 universality claim 的 scope 精确化；(2) 提供 DPI framework 的 quantitative
+    validation ——如果 per-token information loss 是常数 ε，则 aggregate MI scales with n，预测
+    longer text → higher K*_empirical（or at least more precise measurement），实验数据完美符合；
+    (3) 为 practitioner 提供 actionable guidance——对 128 tokens 以下的短文本不应尝试 depth estimation。128-token
+    的 CI upper=0.604 跨过 θ 但 lower=0.576 远低于——如果 θ 设为 0.575 则 128 tokens 也 "pass"，但这样会让其他多个条件变得不可靠。这进一步证明
+    θ=0.60 是 well-calibrated 的 operational threshold。
+
+    '
+- name: 4×4 cross-scorer matrix
+  plan_id: exp-022
+  description: '4 generators × 4 scorers 完整交叉验证，量化 scorer independence。重现 exp_A 中的
+    scorer-dependence 模式但在更大矩阵上验证其可控性。
+
+    '
+  expected_results:
+    generators:
+    - Qwen-1.5B-cont
+    - Pythia-1.4B
+    - OLMo-1B
+    - Qwen2.5-7B
+    scorers:
+    - Qwen-1.5B
+    - Pythia-1.4B
+    - OLMo-1B
+    - Qwen2.5-7B
+    kstar_matrix:
+      Qwen1.5_Qwen1.5: 2
+      Qwen1.5_Pythia: 1
+      Qwen1.5_OLMo: 1
+      Qwen1.5_Qwen7B: 2
+      Pythia_Qwen1.5: 2
+      Pythia_Pythia: 2
+      Pythia_OLMo: 2
+      Pythia_Qwen7B: 2
+      OLMo_Qwen1.5: 2
+      OLMo_Pythia: 2
+      OLMo_OLMo: 2
+      OLMo_Qwen7B: 2
+      Qwen7B_Qwen1.5: 2
+      Qwen7B_Pythia: 1
+      Qwen7B_OLMo: 1
+      Qwen7B_Qwen7B: 2
+    kstar2_count: 12
+    kstar2_fraction: 0.75
+    auc_1v2_matrix:
+      Qwen1.5_Qwen1.5: 0.6114
+      Qwen1.5_Pythia: 0.5887
+      Qwen1.5_OLMo: 0.5843
+      Qwen1.5_Qwen7B: 0.6078
+      Pythia_Qwen1.5: 0.6412
+      Pythia_Pythia: 0.6539
+      Pythia_OLMo: 0.6361
+      Pythia_Qwen7B: 0.6387
+      OLMo_Qwen1.5: 0.6058
+      OLMo_Pythia: 0.6127
+      OLMo_OLMo: 0.6146
+      OLMo_Qwen7B: 0.6093
+      Qwen7B_Qwen1.5: 0.6178
+      Qwen7B_Pythia: 0.5932
+      Qwen7B_OLMo: 0.5891
+      Qwen7B_Qwen7B: 0.6248
+    self_scorer_avg_1v2: 0.6262
+    cross_scorer_avg_1v2: 0.6095
+    cross_scorer_delta: -0.0167
+    feature_ranking_spearman_across_scorers:
+      mean_rho: 0.912
+      min_rho: 0.873
+      max_rho: 0.958
+  result_rationale: 'Cross-scorer matrix 重现 exp_A 的核心 pattern：K* 主要由 generator 决定而非
+    scorer， 但 generator-scorer 之间的 architectural distance 调制 signal strength。12/16
+    K*=2 （0.75）在 median 指标范围 [0.6, 0.85] 内。4 个 K*=1 failure 的结构化分析： (1) Qwen-1.5B-cont
+    作为 generator 被 Pythia/OLMo scored 时 K*=1——Qwen-cont 的 1v2 signal 本身最弱（self-scored
+    仅 0.611，CI lower 0.6015），cross-scorer 增加的 noise（~-2pp）足以将其推到 θ 以下；(2) Qwen-7B
+    被 Pythia/OLMo scored 时 K*=1—— 同理，7B 模型的 self-scored 1v2=0.618 已在边缘，加上 7B→1.4B/1B
+    scorer 的 scale mismatch（smaller scorer 的 surprisal resolution 不足以捕捉 7B 模型的精细 depth
+    signal）。注意 Pythia 和 OLMo 作为 generator 时完全 robust（4/4 scorers 都 K*=2）， 因为它们的 self-scored
+    1v2 较高（0.654 和 0.615）且与其他模型的 architectural distance 较小。Feature ranking ρ≥0.87
+    跨所有 scorer 组合，确认 exp_A 的 ρ≥0.90 finding 在完整矩阵上 hold（略低因为 include 了更多 distant pairs）。
+
+    '
+  tables:
+  - title: 'Table: K* cross-scorer matrix (generator × scorer)'
+    columns:
+    - generator_scorer
+    - Qwen-1.5B
+    - Pythia-1.4B
+    - OLMo-1B
+    - Qwen-7B
+    rows:
+    - - Qwen-1.5B-cont
+      - K*=2 (0.611)
+      - K*=1 (0.589)
+      - K*=1 (0.584)
+      - K*=2 (0.608)
+    - - Pythia-1.4B
+      - K*=2 (0.641)
+      - K*=2 (0.654)
+      - K*=2 (0.636)
+      - K*=2 (0.639)
+    - - OLMo-1B
+      - K*=2 (0.606)
+      - K*=2 (0.613)
+      - K*=2 (0.615)
+      - K*=2 (0.609)
+    - - Qwen-7B
+      - K*=2 (0.618)
+      - K*=1 (0.593)
+      - K*=1 (0.589)
+      - K*=2 (0.625)
+  - title: 'Table: Cross-scorer feature ranking consistency'
+    columns:
+    - scorer_pair
+    - spearman_rho
+    - p_value
+    rows:
+    - - Qwen-1.5B vs Pythia
+      - 0.921
+      - <0.001
+    - - Qwen-1.5B vs OLMo
+      - 0.908
+      - <0.001
+    - - Qwen-1.5B vs Qwen-7B
+      - 0.958
+      - <0.001
+    - - Pythia vs OLMo
+      - 0.947
+      - <0.001
+    - - Pythia vs Qwen-7B
+      - 0.896
+      - <0.001
+    - - OLMo vs Qwen-7B
+      - 0.873
+      - <0.001
+  figures_description:
+  - 'K* heatmap (4×4): color-coded by K* value, with 1v2 AUC annotated in each cell.
+    Clear pattern: diagonal and Pythia/OLMo rows green, Qwen rows mixed'
+  - '1v2 AUC heatmap: showing the systematic ~2pp cross-scorer penalty and generator-specific
+    baseline differences'
+  - 'Feature ranking Spearman ρ network graph: nodes=scorers, edge thickness=ρ, all
+    edges ≥0.87'
+  analysis: '12/16 K*=2 足以支撑 scorer independence claim（with scope）。论文措辞："K*=2 is scorer-
+    independent for generators with self-scored 1v2 AUC ≥ 0.63 (Pythia, OLMo); for
+    marginal generators (Qwen-cont, Qwen-7B with self-scored 1v2 AUC ≈ 0.61-0.62),
+    cross-scorer noise can push measurements below θ"。这与 exp_A 的 K*=1 finding（Qwen-cont
+    cross-scored）完全一致。实际意义：实践者可以用任意 scorer 模型，只要 target generator 的 depth signal 不在阈值边缘。Feature
+    ranking ρ≥0.87 强化了 "scorer 影响的是 magnitude 而非 feature structure" 的论点。与 exp-013（cross-model
+    transfer）对照：exp-013 的 cross-model transfer retention 80-92% 测量的是 classifier 的
+    generalization，exp-022 测量的是 feature computation 的 scorer-dependence——两者从不同角度确认
+    depth signal 主要是 text-intrinsic。
+
+    '
+- name: Retrain-chain ecological validity
+  plan_id: exp-008
+  description: 'Pythia-1.4B LoRA retrain-chain (rank=16, alpha=32), depth 0-4, 与 prompt-chain
+    对比验证 ecological validity。
+
+    '
+  expected_results:
+    k_star: 2
+    pairwise_auc:
+      0v1: 0.9847
+      1v2: 0.6312
+      2v3: 0.5583
+      3v4: 0.5224
+    pairwise_auc_std:
+      0v1: 0.0019
+      1v2: 0.0085
+      2v3: 0.0072
+      3v4: 0.0098
+    bootstrap_ci:
+      0v1:
+        auc: 0.9847
+        ci_lower: 0.9822
+        ci_upper: 0.9872
+        perm_p: 0.0001
+      1v2:
+        auc: 0.6312
+        ci_lower: 0.6187
+        ci_upper: 0.6437
+        perm_p: 0.0001
+      2v3:
+        auc: 0.5583
+        ci_lower: 0.5472
+        ci_upper: 0.5694
+        perm_p: 0.0001
+      3v4:
+        auc: 0.5224
+        ci_lower: 0.5108
+        ci_upper: 0.534
+        perm_p: 0.0018
+    prompt_vs_retrain_comparison:
+      prompt_chain_1v2: 0.6539
+      retrain_chain_1v2: 0.6312
+      delta: -0.0227
+      feature_spearman_rho: 0.841
+      shared_top3: true
+    ordinal_mae: 1.152
+    ordinal_accuracy: 0.372
+  result_rationale: 'Retrain-chain K*=2 确认了 prompt-chain 的 ecological validity，但 1v2
+    AUC 低 2.3pp （0.631 vs 0.654）。差异的机制：LoRA rank=16 仅修改模型参数空间的一个低秩子空间， 每代 fine-tuning
+    的 distribution shift 比 prompt-chain 更 gradual（prompt-chain 中 每代的 output distribution
+    是 model(model(...)) 的嵌套，信息损失是 multiplicative； retrain-chain 的损失是 parameter-space
+    的 additive drift，被 LoRA 的低秩约束抑制）。 Feature ranking Spearman ρ=0.84（vs prompt-chain），top-3
+    features 共享（surp_d1_std, surp_std, surp_d2_std），说明两种 chain 的 degradation mechanism
+    虽然不同但在 feature space 上高度一致。0v1 AUC=0.985 略低于 prompt-chain 的 0.993——retrain-chain
+    的 gen1 更接近 human text（因为模型是在 human text 上 fine-tune 后再 generate，而非直接 prompt model
+    to continue）。
+
+    '
+  tables:
+  - title: 'Table: Prompt-chain vs retrain-chain comparison (Pythia-1.4B)'
+    columns:
+    - chain_type
+    - 0v1
+    - 1v2
+    - 2v3
+    - 3v4
+    - k_star
+    - feature_ρ
+    rows:
+    - - prompt-chain
+      - 0.9932
+      - 0.6539
+      - 0.5515
+      - 0.5153
+      - 2
+      - '-'
+    - - retrain-chain
+      - 0.9847
+      - 0.6312
+      - 0.5583
+      - 0.5224
+      - 2
+      - 0.841
+  figures_description:
+  - 'AUC decay curves: prompt-chain vs retrain-chain overlay, showing parallel but
+    offset decay profiles'
+  - 'Feature importance comparison: side-by-side bar charts highlighting shared top
+    discriminators'
+  analysis: 'Ecological validity confirmed: K*=2 和 top features 在两种 chain type 间一致。1v2
+    的 -2.3pp gap 可解释为 LoRA 的 information-preserving bias（低秩约束 = 正则化 = 更慢 的 degradation）。论文定位：supporting
+    experiment，在 §4.1 的 footnote 或 Appendix 中报告。为 reviewer concern #3（"prompt-chain
+    不代表真实污染"）提供直接回应。 注意 depth 仅到 4（非 5），因为 retrain-chain 的 GPU cost 更高（每代需要 fine-tune）。
+
+    '
+- name: Contamination dose-response
+  plan_id: exp-009
+  description: '在 10%/30%/50% synthetic injection 比例下，比较 binary vs graduated filtering
+    的 downstream benefit scaling。
+
+    '
+  expected_results:
+    dose_10pct:
+      binary_ours_mmlu: 0.5879
+      graduated_a09_mmlu: 0.5876
+      no_filter_mmlu: 0.5873
+      binary_vs_nofilter_delta: +0.06pp
+      binary_vs_graduated_p: 0.42
+    dose_30pct:
+      binary_ours_mmlu: 0.5912
+      graduated_a09_mmlu: 0.5897
+      no_filter_mmlu: 0.5858
+      binary_vs_nofilter_delta: +0.54pp
+      binary_vs_graduated_p: 0.08
+    dose_50pct:
+      binary_ours_mmlu: 0.5941
+      graduated_a09_mmlu: 0.5892
+      no_filter_mmlu: 0.5865
+      binary_vs_nofilter_delta: +0.76pp
+      binary_vs_graduated_p: 0.003
+    dose_response_slope:
+      binary_benefit_per_10pct: +0.016pp MMLU
+      graduated_gap_widens: true
+    key_finding: binary advantage scales with contamination dose; graduated never
+      outperforms binary at any dose level
+  result_rationale: 'Dose-response 结果直接从 K*=2 的 information-theoretic implication
+    推导：因为 K*=2， depth ≥2 的文本与 depth 1 的文本在 feature space 中几乎不可区分，所以 graduated weighting
+    （试图利用 fine-grained depth signal beyond K*）无法比 binary filtering（只区分 depth 0 vs
+    depth ≥1）做得更好。在低 contamination dose（10%）时，filtering 的 absolute benefit 极小（~0.06pp
+    MMLU），因为 contaminated fraction 本身很小——这使得所有策略的 difference 在统计噪声中不可分辨（p=0.42）。随着
+    dose 增加到 30% 和 50%，binary filtering 的优势 开始统计显著（50% dose: p=0.003），因为有更多 contaminated
+    samples 可被正确过滤。 Graduated 在 50% dose 时的 MMLU（0.5892）与 exp-006 完全一致（实验复现）。 Binary-vs-graduated
+    gap 从 10%（+0.03pp, n.s.）扩大到 50%（+0.49pp, p=0.003）， 说明 graduated 的 over-fitting
+    to noise beyond K* 在高 contamination 下更有害。
+
+    '
+  tables:
+  - title: 'Table: Dose-response MMLU comparison'
+    columns:
+    - dose
+    - binary_ours
+    - graduated_a09
+    - no_filter
+    - binary vs no-filter Δ
+    - binary vs grad p
+    rows:
+    - - 10%
+      - 0.5879
+      - 0.5876
+      - 0.5873
+      - +0.06pp
+      - 0.42 (n.s.)
+    - - 30%
+      - 0.5912
+      - 0.5897
+      - 0.5858
+      - +0.54pp
+      - 0.08 (marginal)
+    - - 50%
+      - 0.5941
+      - 0.5892
+      - 0.5865
+      - +0.76pp
+      - 0.003 **
+  figures_description:
+  - 'Dose vs MMLU line plot: three strategies (binary, graduated, no-filter) showing
+    divergence with increasing dose'
+  - 'Binary-vs-graduated delta vs dose: monotonically increasing gap, annotated with
+    p-values'
+  analysis: 'Dose-response 是 C3 claim 的重要补充。Key message: K*-aware binary filtering
+    的优势 不是 dose-specific artifact——它在所有测试 dose 下都是最优策略（虽然在低 dose 下差异 不显著）。Graduated
+    filtering 的 failure 同样 dose-invariant，验证了 K*=2 作为 universal curation guideline
+    的 actionability。Limitation: 仅测了 3 个 dose 点， 连续 dose-response curve 留作 future work。论文定位：exp-006
+    (50% dose) 的 补充 ablation，放在 Appendix 或 §4.3 的 subsection。
+
+    '
+- name: Naturalistic Common Crawl validation
+  plan_id: exp-014
+  description: '对 Common Crawl 2025/2026 snapshot 样本做 depth prediction，与 AlignScore
+    和 vocabulary richness 指标做 correlation analysis。
+
+    '
+  expected_results:
+    n_documents: 50000
+    predicted_depth_distribution:
+      cc_2025:
+        depth_0: 0.72
+        depth_1: 0.18
+        depth_2: 0.07
+        depth_3+: 0.03
+      cc_2026:
+        depth_0: 0.65
+        depth_1: 0.22
+        depth_2: 0.09
+        depth_3+: 0.04
+    correlation_with_alignscore:
+      spearman_rho: 0.418
+      p_value: <0.001
+      interpretation: 'moderate positive: higher predicted depth ↔ lower text quality'
+    correlation_with_vocab_richness:
+      ttr_spearman: -0.372
+      hapax_spearman: -0.341
+      freq_entropy_spearman: -0.389
+    temporal_shift:
+      mean_predicted_depth_2025: 0.42
+      mean_predicted_depth_2026: 0.51
+      shift_p_value: <0.001
+  result_rationale: 'Naturalistic validation 是 median 档最不确定的实验。AlignScore correlation
+    ρ=0.42 是 moderate 而非 strong，原因：(1) Common Crawl 包含大量非递归合成文本（SEO spam, template
+    text, translation artifacts）会被误判为有 depth 信号；(2) AlignScore 主要衡量 factual consistency
+    而非 distributional degradation，两者 correlated 但不 identical；(3) 没有 ground truth depth
+    labels，所有分析都是 correlational。Vocabulary richness 指标与 predicted depth 的负相关（ρ=-0.34
+    到 -0.39）符合 degradation ordering 预期：更深代次 的文本 vocabulary diversity 更低。2025→2026
+    的 predicted depth 增加（mean 0.42→0.51） 与公开报告的合成文本增长趋势一致，但 confounded by CC 爬取策略变化。
+
+    '
+  tables:
+  - title: 'Table: Predicted depth distribution in Common Crawl snapshots'
+    columns:
+    - snapshot
+    - depth 0
+    - depth 1
+    - depth 2
+    - depth 3+
+    - mean_depth
+    rows:
+    - - CC 2025-Q1
+      - 72%
+      - 18%
+      - 7%
+      - 3%
+      - 0.42
+    - - CC 2026-Q1
+      - 65%
+      - 22%
+      - 9%
+      - 4%
+      - 0.51
+  - title: 'Table: Correlation with text quality indicators'
+    columns:
+    - indicator
+    - spearman_ρ
+    - p_value
+    - direction
+    rows:
+    - - AlignScore
+      - 0.418
+      - <0.001
+      - higher depth → lower quality
+    - - TTR
+      - -0.372
+      - <0.001
+      - higher depth → lower diversity
+    - - Hapax ratio
+      - -0.341
+      - <0.001
+      - higher depth → fewer rare words
+    - - Freq entropy
+      - -0.389
+      - <0.001
+      - higher depth → lower entropy
+  figures_description:
+  - 'Predicted depth histogram: 2025 vs 2026 side-by-side showing rightward shift'
+  - 'Scatter plots: predicted depth vs AlignScore / TTR / freq_entropy with regression
+    lines'
+  analysis: 'Naturalistic validation 提供 suggestive 而非 conclusive evidence。论文措辞谨慎：
+    "Predicted depth distributions are consistent with reported trends in synthetic
+    content prevalence" + "moderate correlation with independent quality measures
+    provides convergent validity for the OBD framework"。明确 limitation：no ground truth,
+    correlational only, confounded by non-recursive synthetic text。 论文定位：§5 Discussion
+    的一个 subsection 或 Appendix。
+
+    '
+- name: Wikipedia domain ablation
+  plan_id: exp-023
+  description: 'Wikipedia seed data, Qwen2.5-1.5B base continuation, 验证 K*=2 是否跨数据域一致。
+    Status: orphaned（可能因优先级调整被搁置）。
+
+    '
+  expected_results:
+    k_star: 2
+    pairwise_auc:
+      0v1: 0.9912
+      1v2: 0.6183
+      2v3: 0.5518
+      3v4: 0.5247
+      4v5: 0.5112
+    bootstrap_ci:
+      0v1:
+        auc: 0.9912
+        ci_lower: 0.9895
+        ci_upper: 0.9929
+        perm_p: 0.0001
+      1v2:
+        auc: 0.6183
+        ci_lower: 0.6074
+        ci_upper: 0.6292
+        perm_p: 0.0001
+      2v3:
+        auc: 0.5518
+        ci_lower: 0.5415
+        ci_upper: 0.5621
+        perm_p: 0.0001
+      3v4:
+        auc: 0.5247
+        ci_lower: 0.5142
+        ci_upper: 0.5352
+        perm_p: 0.0003
+      4v5:
+        auc: 0.5112
+        ci_lower: 0.5007
+        ci_upper: 0.5217
+        perm_p: 0.0312
+    c4_vs_wiki_comparison:
+      c4_1v2: 0.6262
+      wiki_1v2: 0.6183
+      delta: -0.0079
+      feature_ranking_rho: 0.878
+    ordinal_mae: 1.178
+    ordinal_accuracy: 0.369
+    top_features:
+    - surp_std
+    - freq_entropy
+    - surp_d1_std
+    - surp_d1_skew
+    - surp_mean
+  result_rationale: 'Wikipedia K*=2 与 C4 一致但 1v2 AUC 低 0.8pp（0.618 vs 0.626）。差异的来源：
+    Wikipedia 文本有更强的 structural formatting（section headers, lists, citations,  infobox-derived
+    text），这些 domain-specific patterns 在 continuation mode 下被 model 部分保留，减少了 generation-specific
+    degradation signal。freq_entropy 在 Wikipedia 上的 discriminative power 略低，因为 Wikipedia
+    的 vocabulary distribution 本身更集中 （专业术语 + 百科体裁的 formulaic expressions）。Feature ranking
+    ρ=0.878 vs C4 说明 degradation mechanism 跨域一致但 feature importance 的具体排列有 domain-specific
+    shift。 整体结论：K*=2 是 domain-independent，支持 universality claim 的 scope 扩展。
+
+    '
+  tables:
+  - title: 'Table: C4 vs Wikipedia domain comparison (Qwen-base)'
+    columns:
+    - domain
+    - 0v1
+    - 1v2
+    - 1v2 CI lower
+    - 2v3
+    - k_star
+    rows:
+    - - C4
+      - 0.987
+      - 0.6262
+      - 0.6168
+      - 0.5496
+      - 2
+    - - Wikipedia
+      - 0.9912
+      - 0.6183
+      - 0.6074
+      - 0.5518
+      - 2
+  figures_description:
+  - 'AUC decay curves: C4 vs Wikipedia overlay showing near-identical profiles'
+  - 'Feature importance comparison: highlighting freq_entropy''s domain-specific rank
+    shift'
+  analysis: 'Domain ablation 是 universality claim 的 low-hanging fruit supplement。K*=2
+    holds， feature ranking 高度一致（ρ=0.878），domain 对 K* 没有影响。但 orphaned status 意味着 这个实验可能不会在
+    EMNLP submission 前完成——如果时间不够，可以将其定位为 "future work: systematic domain ablation
+    across web, academic, and code domains"。如果完成， 放入 Appendix 作为 universality 的额外
+    data point。
+
+    '

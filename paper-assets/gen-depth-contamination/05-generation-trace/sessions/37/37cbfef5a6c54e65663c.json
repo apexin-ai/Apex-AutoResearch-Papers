@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37cbfef5a6c54e65663c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "experiment exp olmo retrain v3",
+  "task_key": "worker_experiment_exp_olmo_retrain_v3_20260520T104646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_exp_olmo_retrain_v3_20260520T104646_result.json",
+    "occurrence": 1,
+    "bytes": 411,
+    "sha256": "92f5ef3fcff2cf9ce3755e79d2b1d95f3de1b3b4711678048d989e2a785a8271"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**exp_olmo_retrain_v3** 已提交并运行中：\n- **PID**: 310312，物理 GPU 2 (bus 28:00.0)，显存 2738 MiB 加载中\n- **tmux session**: `olmo_retrain_v3`\n- **日志**: `/root/autodl-tmp/gen-depth-contamination/logs/olmo_retrain_v3.log`\n- **配置**: OLMo-1B-hf, LoRA r=16/α=32, C4 5K docs, depth 0→4\n- **注意**: 脚本参数是 `--device` 而非 `--gpu`，已修正"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/experiment-exp-olmo-retrain-v3.md"
+}

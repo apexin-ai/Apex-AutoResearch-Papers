@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1cdfcbc936375c1f7ba6",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp 021 length ablation",
+  "task_key": "worker_code_exp_021_length_ablation_20260516T053759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_021_length_ablation_20260516T053759_result.json",
+    "occurrence": 1,
+    "bytes": 610,
+    "sha256": "f85787f439795d721af4505e671c3c996b05653b67e55bbcf2ebf8fbf0c7e36e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-021 已成功启动：\n\n- **GPU 3**: 已占用 3467 MiB，正在运行\n- **当前进度**: length=128 阶段，模型已加载，正在下载 C4 seed data\n- **日志确认**: `Max new tokens: 128` 参数已正确传入\n- **后续**: 128 → 256 → 512 顺序执行，三轮共享 cuda:3\n\n修改摘要：\n- 给 `run_pipeline.py` 添加了 `--max_new_tokens` CLI 参数（默认 256），同时控制 seed data 截断长度和 generation 输出长度\n- 模型使用 `Qwen2.5-1.5B`（base，非 Instruct；continuation mode 下 base 模型是正确选择）\n- Registry spec 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-021-length-ablation.md"
+}

@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp-008-retrain-chain",
+  "project": "gen-depth-contamination",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T19:31:01.383Z",
+    "updated_at": "2026-05-16T21:07:12.084Z",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp008_retrain_chain.py --device cuda:0",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "71944",
+      "log_path": "~/runs/gen-depth-contamination/exp-008-retrain-chain.log",
+      "submitted_at": "2026-05-16T19:31:01.254Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/exp_008_retrain_chain/",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-1.4b + LoRA (rank=16, alpha=32)",
+      "seed": 42,
+      "checkpoint_source": "pretrained + per-generation LoRA fine-tune",
+      "eval_data": "C4 5K docs, retrain-chain depth 0-4"
+    },
+    "hypothesis": "Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "parent": "exp_001_pythia_depth",
+    "failure_reason": "Traceback → le \"/root/miniconda3/lib/python3.12/site-packages/transformers/tokenization_utils_base.py\", line 701, in as_tensor return torch.tensor(value, dtype=dtype) ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ValueError: expected sequence of length 256 at dim 1 (got 228)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-16T21:07:12.290486+00:00",
+  "trigger": "update_registry"
+}

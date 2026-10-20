@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_D_obd_n500",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:18:27.182Z",
+    "updated_at": "2026-05-15T11:18:52.398Z",
+    "hypothesis": "OBD-LightGBM 在 N=500 子集上 accuracy 是否仍高于 LLM baselines？验证样本量匹配下的公平比较（FR-12 Warning）"
+  },
+  "timestamp": "2026-05-15T11:18:52.488314+00:00",
+  "trigger": "update_registry"
+}

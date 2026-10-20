@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22232af980d1fd8da593",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis numerical audit m2 m5",
+  "task_key": "worker_analysis_numerical_audit_m2_m5_20260518T052223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_numerical_audit_m2_m5_20260518T052223_result.json",
+    "occurrence": 1,
+    "bytes": 1126,
+    "sha256": "ada0645757fd47d8660e6199acda67e1a878608431b3b11f3e0134e4dc0751cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。5 项结果汇总：\n\n| 项目 | 论文值 | 权威值 | 状态 |\n|---|---|---|---|\n| **M2 retrain 1v2** | 0.9484 | **0.9471** [0.9432, 0.9509] | 错误，差 -0.0013 |\n| **M2 retrain 2v3** | 0.8888 | 0.8888 [0.8832, 0.8943] | 正确 |\n| **M2 retrain 3v4** | 0.7982 | **0.7994** [0.7920, 0.8067] | 错误，差 +0.0012 |\n| **m1 arXiv Pythia 2v3** | 0.6544 | **0.6545** | 差 0.0001，应用 0.6545 |\n| **m2 Qwen-7B C4 1v2** | .6168/.6178/.618 | **不存在此实验** | 严重问题 — 无 Qwen-7B×C4 实验。0.6168 实际是 exp_016 (Qwen-1.5B base×C4) 的 CI 下界，该实验 mean=0.626 |\n| **m4 Wiki exp_023 0v1** | 0.985 (Tab S12) | **0.9961** | 错误，差 +0.0111。generator 确认为 Qwen2.5-1.5B base |\n| **m5 Wiki λ** | 3.1 | **2.98 / 6.28 / 3.31**（三个 Wiki 实验），mean=**4.19** | 论文 3.1 不匹配任何值。最近个体 2.98（Qwen-1.5B），均值 4.19。C4 range 2.15–3.51 与论文 \"2.2–3.5\" 基本吻合 |\n\n关键发现：m2 \"Qwen-7B C4\" 根本不存在对应实验，论文可能混淆了模型标签或误用了 CI 下界作为均值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-numerical-audit-m2-m5.md"
+}

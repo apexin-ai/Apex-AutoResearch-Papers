@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "15a82fbdd95e9ec87035",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "code check llama8b 10k done",
+  "task_key": "worker_code_check_llama8b_10k_done_20260522T191635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_llama8b_10k_done_20260522T191635.log",
+    "occurrence": 1,
+    "bytes": 1931553,
+    "sha256": "36491ebfecb4cc1a1063fb7bb9a719fc3ccdb8c226ac61b0c80638c3b486e61a"
+  },
+  "statistics": {
+    "messages": 1112,
+    "user_turns": 1,
+    "tool_calls": 489,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 126,
+      "tool_call": 489,
+      "tool_result": 489,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 408,
+      "chunks": [
+        {
+          "path": "15a82fbdd95e9ec87035-part-0001.json",
+          "message_count": 169
+        },
+        {
+          "path": "15a82fbdd95e9ec87035-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "15a82fbdd95e9ec87035-part-0003.json",
+          "message_count": 59
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 704,
+      "chunks": [
+        {
+          "path": "15a82fbdd95e9ec87035-part-0003.json",
+          "message_count": 121
+        },
+        {
+          "path": "15a82fbdd95e9ec87035-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "15a82fbdd95e9ec87035-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "15a82fbdd95e9ec87035-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "15a82fbdd95e9ec87035-part-0007.json",
+          "message_count": 43
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-check-llama8b-10k-done.md"
+}

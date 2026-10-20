@@ -1,0 +1,120 @@
+paper_key: "tirumala2024d4"
+title: "D4: Improving LLM Pretraining via Document De-Duplication and Diversification"
+venue: "NeurIPS 2023 (Datasets and Benchmarks Track)"
+full_text_available: true
+
+research:
+  baselines:
+    - "Random selection (iid sampling from MinHash-deduped data)"
+    - "SemDeDup alone (semantic deduplication via epsilon-ball removal within K-Means clusters)"
+    - "SSL Prototypes alone (prototypicality-based selection: discard points far from cluster centroids)"
+  metrics:
+    - {name: "Validation perplexity - web snapshots (C4, CommonCrawl, CC-dedup)", direction: "lower_better"}
+    - {name: "Validation perplexity - non-web (OpenWebText2, HackerNews, Wikipedia, BookCorpusFair, DM Mathematics, Gutenberg, OpenSubtitles, USPTO, Reddit)", direction: "lower_better"}
+    - {name: "Instruction+Answers perplexity (OPT-IML, 1500+ NLP tasks)", direction: "lower_better"}
+    - {name: "Average 0-shot downstream accuracy (16 NLP tasks: ARC Challenge/Easy, HellaSwag, OpenBookQA, PIQA, StoryCloze, Winograd, Winogrande, SuperGLUE tasks)", direction: "higher_better"}
+  datasets:
+    - {name: "CC-dedup (CommonCrawl, 5 dumps 2017-2020, CCNet pipeline + MinHash dedup)", size: "600M documents"}
+    - {name: "16 NLP downstream tasks", size: "varies per task"}
+    - {name: "OPT-IML instruction-tuning data (Super-NaturalInstructions + PromptSource)", size: "1500+ NLP tasks"}
+  ablation_dimensions:
+    - "Number of K-Means clusters (tested 11K)"
+    - "Re-clustering step necessity in D4 pipeline"
+    - "Embedding space choice (SentenceTransformers vs OPT embeddings)"
+    - "R_dedup parameter (SemDeDup selection ratio, default 0.75)"
+    - "Selection ratio R across {0.25, 0.5, 0.75, 1.0}"
+    - "Token repetition across model scales (125M, 1.3B, 6.7B)"
+    - "Token repetition across data selection methods"
+  training_recipe:
+    optimizer: "Adam (beta1=0.9, beta2=0.95, eps=1e-8)"
+    lr: "Polynomial schedule; warmup 0→peak over first 375M tokens, decay to 0.1*peak. Peak LR: 3e-3 (8M), 6e-4 (125M), 2e-4 (1.3B), 1.2e-4 (6.7B)"
+    hardware: "A100 GPUs, fully sharded data parallel, Megatron-LM tensor parallelism, fp16 precision"
+    batch_size: "0.5M tokens (8M/125M), 1M tokens (1.3B), 2M tokens (6.7B)"
+    model_scales: "8M, 125M, 1.3B, 6.7B (OPT architecture)"
+    token_budgets: "3B (125M), 40B (1.3B), 100B (6.7B)"
+    trainer: "MetaSeq, standard OPT hyperparameters, no dropout"
+    data_selection_cost: "~8 GPU hours for embedding 400B tokens using 125M OPT (768-dim); net savings 3,412 GPU hours at 6.7B scale"
+    k_means_clusters: 11000
+    embedding_dim: 768
+  method_family: "embedding-based data curation (deduplication + diversification)"
+
+positioning:
+  core_claim: "Semantic deduplication prior to prototypicality-based diversification removes duplicate-driven clusters that waste K-Means assignments, yielding a combined D4 pipeline that achieves 18-20% training efficiency gains at the 6.7B scale and demonstrates that intelligent data repetition outperforms training on random new data."
+  key_results: "6.7B OPT on 100B tokens: 18-20% efficiency gains on validation perplexity, 2% increase in avg 0-shot accuracy on 16 tasks. Data selection cost: 8 GPU hours for 600M documents (net savings: 3,412 GPU hours, 79% gain after overhead). Efficiency gains increase with model scale. D4 at R=0.25 with 2 epochs beats random new data at 1 epoch."
+  limitations:
+    - "Only evaluated up to 6.7B parameters on 100B tokens; larger scale (>100B params) investigation needed"
+    - "Uses one data distribution for both selection and training; modern LLMs mix multiple sources"
+    - "MinHash hyperparameters used defaults (20 hashes, 20 buckets, 1 row per bucket); more aggressive dedup could reduce SemDeDup necessity"
+    - "Did not explicitly balance clusters; cluster balancing identified as valuable future work"
+    - "OPT embeddings may be biased toward end-of-document formatting (Section A.7)"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "跨界迁移型"
+  hook: "Over recent years, increasing compute and data has been poured into LLM training via one-pass learning on randomly sampled web corpora, but the size of improvements diminishes with scale and there has been little work exploring data selection beyond simple MinHash deduplication."
+  tension: "Scaling laws hit diminishing returns with random data. Data selection works in vision (SemDeDup, SSL Prototypes), but naively applying these to LLMs fails because duplicate-driven clusters in text embedding space waste K-Means cluster assignments on templated/redundant text."
+  key_insight: "Duplicate-driven clusters are the root cause of suboptimal diversification. Sparsifying dense regions via SemDeDup before re-clustering dramatically improves K-Means cluster quality and downstream selection. Delivered in Section 3.4 with the D4 pipeline design and validated via re-clustering ablation (Figure 7)."
+  argument_chain: "scaling hits diminishing returns → data selection can help (evidence from vision) → naive application fails due to duplicate-driven clusters → SemDeDup removes duplicates first → re-clustering on cleaned data improves diversification quality → D4 = SemDeDup + re-cluster + SSL Prototypes → validation at 125M/1.3B/6.7B scales → bonus finding: intelligent repetition beats random new data, questioning single-epoch paradigm"
+  contribution_framing: "Three bullets: (1) investigate data selection strategies and propose D4 to handle duplicate-driven clusters, (2) demonstrate ~20% efficiency gains scaling with model size at 6.7B, (3) show intelligent data repetition beats random new data, questioning single-epoch training paradigm"
+  intro_structure: "4 paragraphs: P1 = context setting (shift from curated datasets to large-scale web data, diminishing returns with scale), P2 = problem identification (random sampling suboptimal, approaching data limits), P3 = solution motivation (successful precedent from vision/vision-language research), P4 = contributions (three specific claims about D4, efficiency gains, and data repetition)"
+  notable_technique: "The 'questioning the paradigm' move: framing intelligent data repetition as challenging the standard single-epoch LLM training practice elevates a secondary finding into a paradigm-level contribution, making the paper relevant beyond just efficiency gains."
+
+figures:
+  figure_count: 7
+  figure1:
+    type: "teaser_result"
+    description: "Learning curves for 6.7B OPT model on 100B tokens: D4 (pink line) vs random baseline (gray line). Shows validation perplexity over training updates with D4 consistently lower throughout training."
+    narrative_role: "Immediately demonstrates the headline result (18-20% efficiency gains) before any method explanation, creating forward momentum and reader buy-in."
+    design_elements: ["line plot with shaded error bands", "pink vs gray color coding", "single clean plot", "efficiency gain percentage annotated"]
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "Four selection methods (Baseline, SemDeDup, SSL Prototypes, D4) across selection ratios R on 1.3B OPT with 40B tokens"
+      how_gain_highlighted: "Gray horizontal reference line for baseline; D4 curve consistently below others across all R values; 2x2 grid separates metric groups"
+      design_note: "Four subplots (web ppl, non-web ppl, instruction ppl, downstream accuracy) with shaded error bands (3 seeds); x-axis = selection ratio R enables reading optimal operating point; different metric groups reveal that D4 wins on non-web and instruction metrics even when web ppl effects are mixed"
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "New tokens vs repeated tokens for random vs D4 selection at R=0.25 for 1.3B OPT"
+      how_gain_highlighted: "D4 repeated tokens line crosses below random new tokens line, directly proving the counterintuitive repetition claim"
+      design_note: "Key figure for the paradigm-challenging claim; simple 2-line comparison makes the counterintuitive finding unmistakable"
+    - figure_id: "Figure 4"
+      viz_type: "bar_chart"
+      what_compared: "Naive vs overall efficiency gain of D4 relative to total training cost across model scales (125M, 1.3B, 6.7B)"
+      how_gain_highlighted: "Paired bars showing gains increasing with scale; separates naive gain from overall gain (subtracting selection overhead cost)"
+      design_note: "x-axis = model scale shows the desirable property that gains grow with scale; the distinction between naive and overall gain demonstrates transparency about overhead costs"
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "box_plot"
+      dimensions_varied: ["Train-test similarity across validation sets (left: cosine distance boxplots)", "C4 validation analysis (right: histogram of distance + original ppl + ppl difference)"]
+      design_note: "Left: boxplots by validation set type reveal web vs non-web similarity gap. Right: three stacked metrics on histogram bins provide mechanistic understanding of what data selection affects"
+    - figure_id: "Figure 6"
+      viz_type: "scatter_plot"
+      dimensions_varied: ["Correlation between Instruct+Answers ppl, web snapshot ppl, and downstream accuracy"]
+      design_note: "Three scatter panels with trend lines; each point = one training config (method + seed); reveals surprising slight negative correlation between web ppl and stronger LM indicators"
+    - figure_id: "Figure 7"
+      viz_type: "line_plot"
+      dimensions_varied: ["Re-clustering step in D4 (with vs without re-clustering)"]
+      design_note: "Four subplots: 3 perplexity comparisons + 1 CDF of mean distance to centroid; CDF panel is critical mechanistic evidence that re-clustering removes duplicate-driven clusters (clusters with low mean distance to centroid)"
+  figure_narrative_role: "Figure 1 (headline 6.7B teaser result) → Figure 2 (systematic 1.3B comparison across methods/ratios) → Figure 3 (paradigm-challenging repetition finding) → Figure 4 (scaling behavior of gains) → Figure 5 (mechanistic: train-test similarity) → Figure 6 (mechanistic: metric correlations) → Figure 7 (ablation: re-clustering necessity with CDF evidence)"
+
+tables:
+  table_count: 1
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "T_total | T_selected | Epochs | Non-Web PPL | Instruction PPL"
+    row_organization: "by_category"
+    col_organization: "flat"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "mean +/- std across 3 seeds"
+    num_baselines: 2
+    design_note: "Deliberately compact 3-row table focused on the data repetition comparison (Random 1-epoch new data vs Random 2-epoch repeated vs D4 2-epoch repeated). The paper is figure-heavy (7 figures, 1 table); heavy lifting done by figures while the single table targets the most counterintuitive finding."
+  ablation_tables:
+    - table_id: "Table A1 (Appendix)"
+      what_varied: ["Model architecture details across scales (8M, 125M, 1.3B, 6.7B)"]
+      variation_style: "full_numbers"
+      design_note: "Standard architecture spec table; columns: Layers, Heads, Embedding Dim, Peak LR, Batch Size"
+  supplementary_tables:
+    in_appendix: true
+    content: "Tables A1-A9: architecture details (A1), instruction+answers examples (A2), cluster centroid examples showing semantic redundancy (A3-A5), nearest neighbor analyses (A8-A9)"
+    reason: "Main paper deliberately figure-heavy (7 figures, 1 table in body); all detailed numerical results, qualitative examples of duplicate-driven clusters, and architecture specs pushed to appendix to maintain visual storytelling flow"

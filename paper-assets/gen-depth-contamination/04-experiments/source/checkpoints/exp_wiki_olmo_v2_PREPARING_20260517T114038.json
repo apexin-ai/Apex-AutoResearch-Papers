@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_wiki_olmo_v2",
+  "project": "gen-depth-contamination",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:40:38.784Z",
+    "updated_at": "2026-05-17T11:40:38.784Z"
+  },
+  "timestamp": "2026-05-17T11:40:38.917410+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "seed_qwen15b_wiki_s123",
+  "project": "gen-depth-contamination",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T00:34:09.969Z",
+    "updated_at": "2026-05-22T00:34:09.969Z"
+  },
+  "timestamp": "2026-05-22T00:34:10.292041+00:00",
+  "trigger": "update_registry"
+}

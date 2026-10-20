@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2bcbbb0106da6d76180a",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp 009 partial 10 30",
+  "task_key": "worker_analysis_exp_009_partial_10_30_20260517T090630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_009_partial_10_30_20260517T090630_result.json",
+    "occurrence": 1,
+    "bytes": 3197,
+    "sha256": "f8b46a67e467315438cb5a385525eac6575b7dd9bcc3528ecbf88c16de1b939d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 文件完整性\n- **ratio_10**: 15/15 ✓\n- **ratio_30**: 15/15 ✓\n- **ratio_50**: 14/15 (进程运行中，PID 4409，快完成了)\n\n---\n\n### Table 1: Mean±Std\n\n| Ratio | Strategy | MMLU | HellaSwag |\n|-------|----------|------|-----------|\n| 10% | no_filter | 0.6058±0.0002 | 0.6689±0.0007 |\n| 10% | binary_ours | 0.6079±0.0005 | 0.6727±0.0008 |\n| 10% | graduated | 0.6066±0.0011 | 0.6700±0.0015 |\n| 30% | no_filter | 0.6069±0.0007 | 0.6664±0.0020 |\n| 30% | binary_ours | 0.6082±0.0012 | 0.6725±0.0007 |\n| 30% | graduated | 0.6072±0.0008 | 0.6665±0.0014 |\n\n---\n\n### Table 2: Paired t-tests\n\n| Ratio | Comparison | ΔMMLU | p(MMLU) | ΔHellaSwag | p(HellaSwag) |\n|-------|-----------|-------|---------|------------|--------------|\n| 10% | binary vs no_filter | +0.0021 | **0.0010** | +0.0038 | **0.0017** |\n| 10% | graduated vs binary | -0.0014 | 0.0917 | -0.0027 | *0.0399* |\n| 10% | graduated vs no_filter | +0.0008 | 0.2706 | +0.0011 | 0.0611 |\n| 30% | binary vs no_filter | +0.0013 | 0.0739 | +0.0061 | **0.0036** |\n| 30% | graduated vs binary | -0.0010 | 0.3018 | -0.0060 | **0.0009** |\n| 30% | graduated vs no_filter | +0.0003 | 0.6638 | +0.0002 | 0.6646 |\n\n---\n\n### Table 3: Raw Data (30 data points)\n\n| Ratio | Strategy | Seed | MMLU | HellaSwag |\n|-------|----------|------|------|-----------|\n| 10% | no_filter | 0 | 0.6060 | 0.6680 |\n| 10% | no_filter | 1 | 0.6059 | 0.6688 |\n| 10% | no_filter | 2 | 0.6055 | 0.6686 |\n| 10% | no_filter | 3 | 0.6056 | 0.6695 |\n| 10% | no_filter | 4 | 0.6060 | 0.6696 |\n| 10% | binary_ours | 0 | 0.6085 | 0.6733 |\n| 10% | binary_ours | 1 | 0.6073 | 0.6717 |\n| 10% | binary_ours | 2 | 0.6083 | 0.6731 |\n| 10% | binary_ours | 3 | 0.6077 | 0.6734 |\n| 10% | binary_ours | 4 | 0.6077 | 0.6721 |\n| 10% | graduated | 0 | 0.6048 | 0.6675 |\n| 10% | graduated | 1 | 0.6067 | 0.6708 |\n| 10% | graduated | 2 | 0.6078 | 0.6697 |\n| 10% | graduated | 3 | 0.6072 | 0.6713 |\n| 10% | graduated | 4 | 0.6062 | 0.6709 |\n| 30% | no_filter | 0 | 0.6058 | 0.6673 |\n| 30% | no_filter | 1 | 0.6077 | 0.6671 |\n| 30% | no_filter | 2 | 0.6070 | 0.6649 |\n| 30% | no_filter | 3 | 0.6068 | 0.6687 |\n| 30% | no_filter | 4 | 0.6072 | 0.6638 |\n| 30% | binary_ours | 0 | 0.6085 | 0.6727 |\n| 30% | binary_ours | 1 | 0.6097 | 0.6722 |\n| 30% | binary_ours | 2 | 0.6074 | 0.6717 |\n| 30% | binary_ours | 3 | 0.6065 | 0.6725 |\n| 30% | binary_ours | 4 | 0.6090 | 0.6735 |\n| 30% | graduated | 0 | 0.6079 | 0.6667 |\n| 30% | graduated | 1 | 0.6068 | 0.6673 |\n| 30% | graduated | 2 | 0.6078 | 0.6650 |\n| 30% | graduated | 3 | 0.6076 | 0.6683 |\n| 30% | graduated | 4 | 0.6059 | 0.6654 |\n\n---\n\n### 关键发现\n\n1. **binary_ours 在两个 ratio 下都是最佳策略**，尤其在 HellaSwag 上优势显著（10%: +0.38pp, p=0.0017; 30%: +0.61pp, p=0.0036）\n2. **graduated 表现不如 binary_ours**，在 30% HellaSwag 上甚至显著更差（-0.60pp, p=0.0009）\n3. graduated 与 no_filter 无显著差异，说明 graduated 策略在这两个 ratio 下基本无效\n\n结果已保存到 `/root/autodl-tmp/gen-depth-contamination/artifacts/exp009_v3_partial_10_30.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-009-partial-10-30.md"
+}

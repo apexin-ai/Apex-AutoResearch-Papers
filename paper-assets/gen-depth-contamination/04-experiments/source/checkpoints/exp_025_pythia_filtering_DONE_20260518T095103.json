@@ -1,0 +1,61 @@
+{
+  "exp_id": "exp_025_pythia_filtering",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T08:04:54.965Z",
+    "updated_at": "2026-05-18T09:51:02.931Z",
+    "hypothesis": "Filtering strategy ordering (binary > graduated > no-filter) 在 Pythia-1.4B 上与 Qwen 一致，验证 K*=2 对 curation 策略选择的跨模型预测价值。Pythia-1.4B LoRA rank=8 continued pretraining on C4 depth chain, 3 strategies × 3 seeds, eval MMLU+HellaSwag.",
+    "parent": "exp_006_graduated_filtering",
+    "spec": {
+      "command": "bash scripts/run_exp025.sh (3 strategies × 3 seeds, 9 runs in 3 batches, 4 GPUs parallel per batch)",
+      "server": "cqa1-22115",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data_exp020_pythia_nuc09/",
+      "data_count": 30000,
+      "model_name": "Pythia-1.4B",
+      "seed": "42,123,456",
+      "checkpoint_source": "EleutherAI/pythia-1.4b (HuggingFace, base model for LoRA)",
+      "eval_data": "MMLU + HellaSwag via lm-eval-harness"
+    },
+    "notes": "Data source fixed: greedy → nuc09. Old processes killed (6 procs). Resubmitted 2026-05-18T08:27 via nohup (not submit_training_job). PID 15687, cqa1 cuda:0-3, 9 runs in 3 batches (4 parallel per batch). Cron registered for monitoring.",
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_filtering/",
+    "log_path": "/root/autodl-tmp/gen-depth-contamination/logs/exp025/",
+    "metrics": {
+      "runs_completed": "9/9",
+      "strategies": [
+        "no_filter",
+        "binary_ours",
+        "graduated_a09"
+      ],
+      "seeds": [
+        42,
+        123,
+        456
+      ],
+      "mmlu": {
+        "no_filter": "0.2568±0.0012",
+        "binary_ours": "0.2585±0.0004",
+        "graduated_a09": "0.2561±0.0009"
+      },
+      "hellaswag": {
+        "no_filter": "0.5250±0.0008",
+        "binary_ours": "0.5251±0.0001",
+        "graduated_a09": "0.5253±0.0007"
+      },
+      "delta_vs_no_filter": {
+        "binary_ours_mmlu": "+0.0017",
+        "binary_ours_hellaswag": "+0.0000",
+        "graduated_a09_mmlu": "-0.0007",
+        "graduated_a09_hellaswag": "+0.0003"
+      },
+      "key_finding": "All three filtering strategies produce nearly identical results on Pythia-1.4B. Deltas are within noise (max 0.0017 MMLU). Hypothesized ordering binary>graduated>no_filter NOT confirmed."
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-18T09:51:02.931Z"
+  },
+  "timestamp": "2026-05-18T09:51:03.106630+00:00",
+  "trigger": "update_registry"
+}

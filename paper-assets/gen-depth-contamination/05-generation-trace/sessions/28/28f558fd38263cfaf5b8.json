@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28f558fd38263cfaf5b8",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper compile verify v2",
+  "task_key": "worker_paper_compile-verify-v2_20260519T114356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile-verify-v2_20260519T114356_result.json",
+    "occurrence": 1,
+    "bytes": 1829,
+    "sha256": "e4b6fcb907d1b8ad3f6d92c2b3006c1173947b99f4fdb8767716b6d65031c882"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Body content (Abstract through Conclusion) spans **9 pages**, which is **1 page over** the EMNLP 8-page limit.\n\nHere's the full summary:\n\n---\n\n## 编译状态\n**编译成功**, `main.pdf` 已生成, 共 30 页 (含 references + appendix)\n\n## 页数\n**正文 9 页, 超限 1 页** (EMNLP 2026 限制 8 页)\n\n正文内容 (Abstract → Conclusion) 结束在第 9 页。Limitations/Ethics 从第 10 页开始, References 从第 11 页开始, Appendix 从第 13 页开始。\n\n## Section 空间占用\n| File | Lines |\n|---|---|\n| experiments_c1.tex | 176 |\n| method.tex | 81 |\n| discussion.tex | 39 |\n| introduction.tex | 31 |\n| related_work.tex | 26 |\n| experiments_c3.tex | 17 |\n| conclusion.tex | 7 |\n\n`experiments_c1.tex` 是最大的 section, 包含大量表格, 是压缩页数的首选目标。\n\n## Overfull Hbox Warnings\n- **62.9pt** (严重): `appendix_extended.tex` lines 591-607, 出现在 page 26 (appendix 内)\n- 4.2pt, 1.3pt: 轻微, 可忽略\n\n## Undefined Citations (6 个)\n| Citation Key | 出现页 |\n|---|---|\n| `hale2001surprisal` | 2 |\n| `levy2008expectation` | 2 |\n| `raffel2020t5` | 2, 4 |\n| `verma2024ghostbuster` | 2 |\n| `yang2024dnagpt` | 2 |\n\n这些 key 在 `references.bib` 中缺失。\n\n## Cite 统计\n| File | `\\cite{}` 数 |\n|---|---|\n| related_work.tex | 11 |\n| introduction.tex | 5 |\n| method.tex | 2 |\n| experiments_c1.tex | 2 |\n| experiments_c3.tex | 1 |\n| discussion.tex | 0 |\n| conclusion.tex | 0 |\n| **Total** | **21** |\n\n空 cite: 无\n\n## 需要处理的问题\n1. **正文超 1 页** — 需压缩 experiments_c1 或 discussion, 或将部分表格移至 appendix\n2. **5 个 undefined citation** — 需补充到 `references.bib`\n3. **62.9pt overfull hbox** — appendix_extended.tex 中有一处表格/段落严重溢出"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compile-verify-v2.md"
+}

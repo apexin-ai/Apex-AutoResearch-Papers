@@ -1,0 +1,44 @@
+{
+  "exp_id": "exp_code_llama8b",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:36:19.645Z",
+    "updated_at": "2026-05-19T08:05:44.712Z",
+    "hypothesis": "Code domain (Python) cross-model K* validation: LLaMA-3.1-8B continuation on CodeSearchNet Python subset (Husain et al. 2019). 验证 code domain K* 跨模型一致性（与 exp_code_qwen1b5 对比）。如果 K* 一致，确认 code domain K* 是 domain-governed 而非 model-specific。5500 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "parent": "exp_code_qwen1b5",
+    "notes": "Actual PID is 96340 (not 96335, which was the launcher). Currently at depth 4, 30%. ETA ~4.5h (~08:30 UTC May 19).",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/bin/activate && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B --data_dir data/exp_code_llama8b --results_dir results/exp_code_llama8b --num_samples 5000 --max_depth 5 --batch_size 4 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\"",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "96335",
+      "log_path": "~/runs/gen-depth-contamination/exp_code_llama8b.log",
+      "submitted_at": "2026-05-18T20:43:36.548Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/code_python_seed",
+      "data_count": 5000,
+      "model_name": "LLaMA-3.1-8B",
+      "seed": 42,
+      "checkpoint_source": "exp_code_qwen1b5",
+      "eval_data": "CodeSearchNet Python 5500 docs",
+      "wall_clock_seconds": 40928.2,
+      "gpu_hours": 11.37
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T08:05:42.229Z"
+    },
+    "failure_reason": "Traceback → ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File \"/root/autodl-tmp/gen-depth-contamination/scripts/run_pipeline.py\", line 462, in run_analysis # Support both integer and string doc_ids ^^^^^^^^^^^^^^^^ ValueError: invalid literal for int() with base 10: 'code_py_0'",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T08:05:44.712Z"
+  },
+  "timestamp": "2026-05-19T08:05:44.939662+00:00",
+  "trigger": "update_registry"
+}

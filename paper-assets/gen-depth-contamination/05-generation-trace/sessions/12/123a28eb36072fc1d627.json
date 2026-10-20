@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "123a28eb36072fc1d627",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp multi source v2 llama",
+  "task_key": "worker_code_exp_multi_source_v2_llama_20260520T071416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_multi_source_v2_llama_20260520T071416_result.json",
+    "occurrence": 1,
+    "bytes": 1225,
+    "sha256": "0fe909362a41944dc6ab8149da073d1c7e9926ea3fd677dfe93cda236e0f2ecc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果汇总：\n\n## Multi-Source Detection v2 结果\n\n**配置**: Qwen-1.5B + Pythia-1.4B + LLaMA-3.1-8B（3 家族, 2 种 scale）\n\n### Pairwise AUC\n\n| Pair | No Label AUC | No Label CI | With Label AUC | With Label CI |\n|------|-------------|-------------|----------------|---------------|\n| 0v1 | **0.9680** | [0.9640, 0.9719] | **0.9785** | [0.9755, 0.9813] |\n| 1v2 | **0.7144** | [0.7019, 0.7272] | **0.7250** | [0.7126, 0.7374] |\n| 2v3 | 0.5201 | [0.5061, 0.5340] | 0.5180 | [0.5043, 0.5317] |\n| 3v4 | 0.5030 | [0.4891, 0.5170] | 0.5067 | [0.4928, 0.5205] |\n| 4v5 | 0.5137 | [0.4996, 0.5274] | 0.5161 | [0.5021, 0.5300] |\n\n### K* = 2（两种条件均确认）\n\n### vs v1 (OLMo) 对比\n- K* 一致：v1=2, v2=2\n- v2 的 0v1 AUC 降低（0.968 vs 0.993），因 LLaMA-8B 的 depth-0 特征与 Qwen/Pythia 差异更大，增加了类内方差\n- v2 的 1v2 AUC 略高（0.714 vs 0.701），混入 8B 模型对深度 1→2 区分有微弱增益\n- Generator label 特征影响极小（+0.01 AUC on 1v2），说明 OBD 特征本身已足够，生成器身份对深度判别基本无贡献\n\n### 结论\n**K\\*=2 在跨参数规模（1.4B-8B）混合源下依然稳健。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-multi-source-v2-llama.md"
+}

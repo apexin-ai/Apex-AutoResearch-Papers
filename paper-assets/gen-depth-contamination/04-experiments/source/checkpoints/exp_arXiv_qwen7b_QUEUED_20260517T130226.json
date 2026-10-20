@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_arXiv_qwen7b",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T12:56:03.934Z",
+    "updated_at": "2026-05-17T13:02:26.480Z",
+    "hypothesis": "Cross-scale arXiv K* validation: Qwen2.5-7B continuation on arXiv abstracts 的 K* 是否 = 3？验证 structured domain K*=3 在 Qwen 家族内跨规模（1.5B→7B）的稳定性，排除 small-model capacity artifact。同时检验 Qwen2.5-7B 在 arXiv 上是否保持与 C4 相同的 pattern (C4 K*=2)。2200 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "parent": "exp_024_arxiv_domain"
+  },
+  "timestamp": "2026-05-17T13:02:26.634665+00:00",
+  "trigger": "update_registry"
+}

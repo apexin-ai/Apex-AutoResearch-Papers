@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "1ad20b654840a5da1849",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "ops extract r22 raw data",
+  "task_key": "worker_ops_extract_r22_raw_data_20260520T164246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_extract_r22_raw_data_20260520T164246.log",
+    "occurrence": 1,
+    "bytes": 664842,
+    "sha256": "e030c5a5156cc1b873c26c45338f394e756c197e83b1cc3fc26b1fd9d29ef7aa"
+  },
+  "statistics": {
+    "messages": 136,
+    "user_turns": 0,
+    "tool_calls": 53,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 26,
+      "tool_call": 53,
+      "tool_result": 53,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 136,
+      "chunks": [
+        {
+          "path": "1ad20b654840a5da1849-part-0001.json",
+          "message_count": 127
+        },
+        {
+          "path": "1ad20b654840a5da1849-part-0002.json",
+          "message_count": 9
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-extract-r22-raw-data.md"
+}

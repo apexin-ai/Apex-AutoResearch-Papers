@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19b845173baa8589327e",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code prep code cross scorer",
+  "task_key": "worker_code_prep-code-cross-scorer_20260519T062648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep-code-cross-scorer_20260519T062648_result.json",
+    "occurrence": 1,
+    "bytes": 1795,
+    "sha256": "42d2a330a01adfd5c184dcc06a92069e608fc5c0ef8cb3449abcba00240faa5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 验证完毕，一切正常。\n\n---\n\n## 实验方案\n\n### 完整命令\n\n```bash\nbash /root/autodl-tmp/gen-depth-contamination/scripts/exp_code_qwen1b5_pythia_scorer.sh\n```\n\n脚本内容已写入服务器，核心逻辑：\n1. symlink `data/exp_code_qwen1b5/depth_{0..5}.jsonl` → `data/exp_code_qwen1b5_pythia_scorer/`\n2. `--skip_generation` 跳过文本生成，只用 Pythia-1.4B 做 feature extraction + analysis\n3. `--model_path` 直接指向 Pythia-1.4B（因为 skip_generation 后不需要 generator）\n\n### 预计耗时\n- Dry-run 实测：depth_0 (5500 samples, batch_size=8) 约 90 秒\n- 6 个 depth × 90s ≈ **9 分钟** feature extraction + analysis（几乎忽略不计）\n- 总计约 **10-12 分钟**，< 0.2 GPU-hours\n\n### 数据路径确认\n| 项目 | 路径 |\n|------|------|\n| 输入数据 | `data/exp_code_qwen1b5/depth_{0..5}.jsonl` (5500 × 6 = 33000 行) |\n| Scorer 模型 | `/root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79` |\n| 输出 features | `data/exp_code_qwen1b5_pythia_scorer/features.csv` |\n| 输出结果 | `results/exp_code_qwen1b5_pythia_scorer/` (pairwise_auc.json, summary.txt 等) |\n| GPU | cuda:0 (空闲, Pythia-1.4B 仅需 ~2.8 GB) |\n\n### 潜在风险\n- **无风险**：Pythia-1.4B 已在本地缓存，无需下载；TRANSFORMERS_OFFLINE=1 确保不会尝试网络请求\n- Pythia tokenizer (GPT-NeoX) 与 Qwen tokenizer 不同，token 边界会不一致。这是正确的行为（cross-family scorer 就是要用不同 tokenizer），但 surprisal 绝对值会不同于 Qwen scorer 的结果，AUC 相对排序才是关键指标\n\n可以直接 `submit_training_job` 或手动 `bash scripts/exp_code_qwen1b5_pythia_scorer.sh` 启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-code-cross-scorer.md"
+}

@@ -1,0 +1,13797 @@
+# audit lgbm 14b data mismatch — Part 1 of 2
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary** · Worker execution logs
+
+[Transcript overview](../audit-lgbm-14b-data-mismatch.md) · [Part 2 →](part-002.md) · [Structured JSON](../../../sessions/ad/add7363fc9385fa6dae7.json)
+
+## Before a recorded user message
+
+## Before a recorded user message
+
+116 recorded events
+
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "b60ba742-bd6f-4656-9bad-22864294b515",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779247200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "2e08ea2d-33aa-47e7-a187-cec4fda355c3",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me investigate this discrepancy between Table 4 in the paper and the results files on the server. I'll work through the steps systematically.
+
+Let me start by loading the necessary tool schemas and then doing parallel investigation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "6ee0b8f7-9cc8-4eab-83c3-8c8bf8ec91ea",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M1R8ZCE3E2tQbuLtqJT5PY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12629,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12629
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 5_
+
+开始调查 Table 4 LightGBM 14B 数据不匹配问题。先加载工具并并行检查本地 LaTeX 文件和远程服务器。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "f68ae0e9-7c8e-48c7-84c3-ded133ef11a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M1R8ZCE3E2tQbuLtqJT5PY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12629,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12629
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01JsAQJq14dawNvUgED9xF5q`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__ssh_execute",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "3784867d-2323-4a78-ba55-60515843b044",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M1R8ZCE3E2tQbuLtqJT5PY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12629,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12629
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 7 · 2026-05-19T23:43:28.967Z_
+
+<details><summary>↩ Tool result · `toolu_01JsAQJq14dawNvUgED9xF5q`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "b604fe33-b70d-4ce0-b140-6d3877fbe700",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01HZXZyyHK4UmSZritwSW6Un`</summary>
+
+```json
+{
+  "pattern": "**/*experiments_c1*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "daf410b1-8a5a-45d2-bb24-073801b81809",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M1R8ZCE3E2tQbuLtqJT5PY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12629,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12629
+      },
+      "output_tokens": 30,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 9 · 2026-05-19T23:43:28.999Z_
+
+<details><summary>↩ Tool result · `toolu_01HZXZyyHK4UmSZritwSW6Un`</summary>
+
+```text
+artifacts/_project/paper/experiments_c1.tex
+logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log
+logs/chats/worker_paper_writing_experiments_c1_20260513T092525.lock
+logs/chats/worker_paper_writing_experiments_c1_20260513T092525.jsonl
+logs/workers/worker_paper_writing_experiments_c1_20260513T092525_result.json
+logs/workers/worker_audit_experiments_c1_data_verify_20260514T004234.log
+logs/workers/worker_audit_experiments_c1_data_verify_20260514T004234_result.json
+docs/paper/experiments_c1.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "f8485d99-c8d0-47ec-9019-5da9af229a47",
+  "tool_use_result": {
+    "filenames": [
+      "artifacts/_project/paper/experiments_c1.tex",
+      "logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log",
+      "logs/chats/worker_paper_writing_experiments_c1_20260513T092525.lock",
+      "logs/chats/worker_paper_writing_experiments_c1_20260513T092525.jsonl",
+      "logs/workers/worker_paper_writing_experiments_c1_20260513T092525_result.json",
+      "logs/workers/worker_audit_experiments_c1_data_verify_20260514T004234.log",
+      "logs/workers/worker_audit_experiments_c1_data_verify_20260514T004234_result.json",
+      "docs/paper/experiments_c1.tex"
+    ],
+    "durationMs": 24,
+    "numFiles": 8,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I found the LaTeX file. Let me now read it and check the remote servers in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "fc58f650-5784-4252-aa02-bbf57adcd2e8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019SRJhHQyhTprQ9DUVb5Tt2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1596,
+      "cache_read_input_tokens": 24470,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1596
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 11_
+
+找到 LaTeX 文件。并行读取本地文件和远程服务器数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "94a08ca8-de87-4714-bb6d-fd9b5eca00bd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019SRJhHQyhTprQ9DUVb5Tt2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1596,
+      "cache_read_input_tokens": 24470,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1596
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01MiXRNjzg2ZnL3Xj1RvAu4o`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex",
+  "offset": 125,
+  "limit": 40
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "c79c65e4-07c4-476d-bd75-901b17974165",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019SRJhHQyhTprQ9DUVb5Tt2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1596,
+      "cache_read_input_tokens": 24470,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1596
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 13 · 2026-05-19T23:43:33.634Z_
+
+<details><summary>↩ Tool result · `toolu_01MiXRNjzg2ZnL3Xj1RvAu4o`</summary>
+
+```text
+125	\paragraph{Fine-tuned DeBERTa upper bound.}
+126	To test whether classifier strength or generator scale shifts the boundary, we train DeBERTa-v3-base ordinal classifiers on C4 generations at 1.5B, 14B, and 32B scales (Table~\ref{tab:deberta_comparison}).
+127	On identical C4 data with the same GroupKFold splits, DeBERTa raises 1v2 $\auc$ over LightGBM at all three scales (1.5B: $0.705$ vs.\ $0.626$; 14B: $0.678$ vs.\ $0.621$; 32B: $0.694$ vs.\ $0.618$), yet $\Kempirical{=}2$ is preserved throughout (all 2v3 CI lower ${<}\,\theta$); LightGBM $\auc$ shifts by ${<}\,0.5$\,pp across 1.5B--32B, confirming both scale and representation invariance on web text.
+128	On Wikipedia, however, DeBERTa extends $\Kempirical$ from ${\leq}\,2$ (OBD) to $3$ (4/5 configurations; OLMo excluded due to near-chance performance), revealing a domain-dependent classifier gap: contextualized representations retain depth signal that 15D statistics lose in structurally simpler domains.
+129	
+130	\noindent\begin{minipage}{\columnwidth}
+131	\centering
+132	\footnotesize
+133	\captionof{table}{DeBERTa-v3-base vs.\ LightGBM on C4 generations at three scales. Both classifiers yield $\Kempirical{=}2$ at 1.5B, 14B, and 32B.}
+134	\label{tab:deberta_comparison}
+135	\begin{tabular}{lccccc}
+136	\toprule
+137	& \textbf{0v1} & \textbf{1v2} & \textbf{2v3} & \textbf{3v4} & \textbf{4v5} \\
+138	\midrule
+139	LightGBM (1.5B) & ---  & .626 & .549 & ---  & --- \\
+140	DeBERTa (1.5B)  & ---  & .705 & .599 & ---  & --- \\
+141	\midrule
+142	LightGBM (14B)  & .960 & .621 & .572 & .537 & --- \\
+143	DeBERTa (14B)   & .994 & .678 & .590 & .565 & --- \\
+144	\midrule
+145	LightGBM (32B)  & .958 & .618 & .545 & ---  & --- \\
+146	DeBERTa (32B)   & .993 & .694 & .594 & .567 & .543 \\
+147	\bottomrule
+148	\end{tabular}
+149	\end{minipage}
+150	
+151	%% ====================================================================
+152	\subsection{Cross-Domain Variation}
+153	\label{sec:cross_domain}
+154	
+155	The preceding experiments use C4 (general web text).
+156	To test whether $\Kempirical$ reflects domain structure or model identity, we evaluate on arXiv abstracts ($n{=}2{,}200$ per model) and Wikipedia ($n{=}5{,}000$ per model) across six model configurations spanning four architecture families (Table~\ref{tab:domain_kstar}).
+157	
+158	\paragraph{arXiv ($\Kempirical{=}3$): five-model cross-validation.}
+159	All five domain-competent models yield $\Kempirical{=}3$ on arXiv, with boundary-pair $\auc$ (2v3) ranging from 0.6215 to 0.6545, all exceeding $\theta$.
+160	The elevated signal reflects higher per-generation distributional shift (1v2 JSD $= 0.077$ vs.\ ${\sim}0.01$ for C4): formulaic features (LaTeX formatting, citation patterns, mathematical notation) degrade slowly under autoregressive generation and supply persistent depth signal across four architecture families and 1.4B--8B parameters.
+161	Removing LaTeX markup reduces 2v3 AUC by ${\sim}$1.8\,pp but preserves $\Kempirical{=}3$ (CI lower $= 0.610 > \theta$; Table~\ref{tab:latex_ablation}); content-level properties dominate.
+162	OLMo-1B is a capacity failure (0v1 JSD $= 0.33$, near-total information loss), not a counter-example.
+163	Mistral-7B provides the strongest domain-dependence evidence: $\Kempirical{=}1$ on C4 (Section~\ref{sec:boundary_cases}) but $\Kempirical{=}3$ on arXiv: domain structure alone can shift $\Kempirical$ by two levels within the same model.
+164	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "61ecbf6c-b859-4249-9781-8ed5e8459979",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex",
+      "content": "\\paragraph{Fine-tuned DeBERTa upper bound.}\nTo test whether classifier strength or generator scale shifts the boundary, we train DeBERTa-v3-base ordinal classifiers on C4 generations at 1.5B, 14B, and 32B scales (Table~\\ref{tab:deberta_comparison}).\nOn identical C4 data with the same GroupKFold splits, DeBERTa raises 1v2 $\\auc$ over LightGBM at all three scales (1.5B: $0.705$ vs.\\ $0.626$; 14B: $0.678$ vs.\\ $0.621$; 32B: $0.694$ vs.\\ $0.618$), yet $\\Kempirical{=}2$ is preserved throughout (all 2v3 CI lower ${<}\\,\\theta$); LightGBM $\\auc$ shifts by ${<}\\,0.5$\\,pp across 1.5B--32B, confirming both scale and representation invariance on web text.\nOn Wikipedia, however, DeBERTa extends $\\Kempirical$ from ${\\leq}\\,2$ (OBD) to $3$ (4/5 configurations; OLMo excluded due to near-chance performance), revealing a domain-dependent classifier gap: contextualized representations retain depth signal that 15D statistics lose in structurally simpler domains.\n\n\\noindent\\begin{minipage}{\\columnwidth}\n\\centering\n\\footnotesize\n\\captionof{table}{DeBERTa-v3-base vs.\\ LightGBM on C4 generations at three scales. Both classifiers yield $\\Kempirical{=}2$ at 1.5B, 14B, and 32B.}\n\\label{tab:deberta_comparison}\n\\begin{tabular}{lccccc}\n\\toprule\n& \\textbf{0v1} & \\textbf{1v2} & \\textbf{2v3} & \\textbf{3v4} & \\textbf{4v5} \\\\\n\\midrule\nLightGBM (1.5B) & ---  & .626 & .549 & ---  & --- \\\\\nDeBERTa (1.5B)  & ---  & .705 & .599 & ---  & --- \\\\\n\\midrule\nLightGBM (14B)  & .960 & .621 & .572 & .537 & --- \\\\\nDeBERTa (14B)   & .994 & .678 & .590 & .565 & --- \\\\\n\\midrule\nLightGBM (32B)  & .958 & .618 & .545 & ---  & --- \\\\\nDeBERTa (32B)   & .993 & .694 & .594 & .567 & .543 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{minipage}\n\n%% ====================================================================\n\\subsection{Cross-Domain Variation}\n\\label{sec:cross_domain}\n\nThe preceding experiments use C4 (general web text).\nTo test whether $\\Kempirical$ reflects domain structure or model identity, we evaluate on arXiv abstracts ($n{=}2{,}200$ per model) and Wikipedia ($n{=}5{,}000$ per model) across six model configurations spanning four architecture families (Table~\\ref{tab:domain_kstar}).\n\n\\paragraph{arXiv ($\\Kempirical{=}3$): five-model cross-validation.}\nAll five domain-competent models yield $\\Kempirical{=}3$ on arXiv, with boundary-pair $\\auc$ (2v3) ranging from 0.6215 to 0.6545, all exceeding $\\theta$.\nThe elevated signal reflects higher per-generation distributional shift (1v2 JSD $= 0.077$ vs.\\ ${\\sim}0.01$ for C4): formulaic features (LaTeX formatting, citation patterns, mathematical notation) degrade slowly under autoregressive generation and supply persistent depth signal across four architecture families and 1.4B--8B parameters.\nRemoving LaTeX markup reduces 2v3 AUC by ${\\sim}$1.8\\,pp but preserves $\\Kempirical{=}3$ (CI lower $= 0.610 > \\theta$; Table~\\ref{tab:latex_ablation}); content-level properties dominate.\nOLMo-1B is a capacity failure (0v1 JSD $= 0.33$, near-total information loss), not a counter-example.\nMistral-7B provides the strongest domain-dependence evidence: $\\Kempirical{=}1$ on C4 (Section~\\ref{sec:boundary_cases}) but $\\Kempirical{=}3$ on arXiv: domain structure alone can shift $\\Kempirical$ by two levels within the same model.\n",
+      "numLines": 40,
+      "startLine": 125,
+      "totalLines": 207
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014sr28YNXqWbKvt3mq9BByB`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/experiments_c1.tex",
+  "offset": 125,
+  "limit": 40
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "39c52563-beed-465a-9303-78c0f382f413",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019SRJhHQyhTprQ9DUVb5Tt2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1596,
+      "cache_read_input_tokens": 24470,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1596
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 15 · 2026-05-19T23:43:34.583Z_
+
+<details><summary>↩ Tool result · `toolu_014sr28YNXqWbKvt3mq9BByB`</summary>
+
+```text
+125	rather than artifacts of a specific generator, we train classifiers
+126	on one model's outputs and evaluate on another's.
+127	Table~\ref{tab:transfer_matrix} shows the full
+128	$4 \times 4$ transfer accuracy matrix for 6-class ordinal depth
+129	classification.
+130	
+131	\begin{table}[t]
+132	\centering
+133	\small
+134	\caption{Cross-model transfer accuracy (6-class ordinal
+135	classification).  Diagonal entries (bold): within-model accuracy.
+136	Off-diagonal: cross-model transfer.  Retention is computed as
+137	off-diagonal accuracy divided by the diagonal entry of the training
+138	model.}
+139	\label{tab:transfer_matrix}
+140	\begin{tabular}{lcccc}
+141	\toprule
+142	Train $\downarrow$ / Test $\rightarrow$
+143	  & Qwen-rw & Pythia & OLMo & Qwen-cont \\
+144	\midrule
+145	Qwen-rw
+146	  & \textbf{0.4229} & 0.2590 & 0.2653 & 0.3466 \\
+147	Pythia
+148	  & 0.2718 & \textbf{0.3856} & 0.3531 & 0.3287 \\
+149	OLMo
+150	  & 0.2768 & 0.3450 & \textbf{0.3822} & 0.3244 \\
+151	Qwen-cont
+152	  & 0.3440 & 0.3284 & 0.3112 & \textbf{0.3875} \\
+153	\bottomrule
+154	\end{tabular}
+155	\end{table}
+156	
+157	\begin{figure}[t]
+158	\centering
+159	\includegraphics[width=0.85\columnwidth]{figures/fig3_transfer_heatmap.pdf}
+160	\caption{Cross-model transfer heatmap (6-class ordinal accuracy).
+161	Rows: training model; columns: test model.
+162	Pythia$\leftrightarrow$OLMo (both continuation mode) shows high
+163	mutual transfer (91--92\% accuracy retention), while Qwen-rewrite
+164	transfers poorly to continuation-mode models (61--63\%).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "455bf3e4-7f48-41e8-a11a-e5bc25828c7e",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/_project/paper/experiments_c1.tex",
+      "content": "rather than artifacts of a specific generator, we train classifiers\non one model's outputs and evaluate on another's.\nTable~\\ref{tab:transfer_matrix} shows the full\n$4 \\times 4$ transfer accuracy matrix for 6-class ordinal depth\nclassification.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-model transfer accuracy (6-class ordinal\nclassification).  Diagonal entries (bold): within-model accuracy.\nOff-diagonal: cross-model transfer.  Retention is computed as\noff-diagonal accuracy divided by the diagonal entry of the training\nmodel.}\n\\label{tab:transfer_matrix}\n\\begin{tabular}{lcccc}\n\\toprule\nTrain $\\downarrow$ / Test $\\rightarrow$\n  & Qwen-rw & Pythia & OLMo & Qwen-cont \\\\\n\\midrule\nQwen-rw\n  & \\textbf{0.4229} & 0.2590 & 0.2653 & 0.3466 \\\\\nPythia\n  & 0.2718 & \\textbf{0.3856} & 0.3531 & 0.3287 \\\\\nOLMo\n  & 0.2768 & 0.3450 & \\textbf{0.3822} & 0.3244 \\\\\nQwen-cont\n  & 0.3440 & 0.3284 & 0.3112 & \\textbf{0.3875} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.85\\columnwidth]{figures/fig3_transfer_heatmap.pdf}\n\\caption{Cross-model transfer heatmap (6-class ordinal accuracy).\nRows: training model; columns: test model.\nPythia$\\leftrightarrow$OLMo (both continuation mode) shows high\nmutual transfer (91--92\\% accuracy retention), while Qwen-rewrite\ntransfers poorly to continuation-mode models (61--63\\%).",
+      "numLines": 40,
+      "startLine": 125,
+      "totalLines": 352
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NxnGTkTJYwR5zFftGmWcwT`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/gen-depth-contamination/results/ -path '*14*' -name '*.json' 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "4d54353a-1375-4aea-ae40-6404186f9121",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019SRJhHQyhTprQ9DUVb5Tt2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1596,
+      "cache_read_input_tokens": 24470,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1596
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 17 · 2026-05-19T23:43:35.562Z_
+
+<details><summary>↩ Tool result · `toolu_01NxnGTkTJYwR5zFftGmWcwT`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "d50c5838-3e74-4beb-99fb-31f518365686",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_018dJPTX2TNDF9mUh4eGhNc1`</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "limit": 0,
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "91e250e5-51ff-4f22-81d6-e9a5cc069464",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019SRJhHQyhTprQ9DUVb5Tt2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1596,
+      "cache_read_input_tokens": 24470,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1596
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 19 · 2026-05-19T23:43:37.017Z_
+
+<details><summary>↩ Tool result · `toolu_018dJPTX2TNDF9mUh4eGhNc1`</summary>
+
+```text
+Error: result (190,445 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/mcp-agent-ml-research-read_registry-1779234216992.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/mcp-agent-ml-research-read_registry-1779234216992.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/mcp-agent-ml-research-read_registry-1779234216992.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "66aac898-6ab1-4718-8b84-c5c335032490",
+  "tool_use_result": {
+    "content": "Error: result (190,445 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/mcp-agent-ml-research-read_registry-1779234216992.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/mcp-agent-ml-research-read_registry-1779234216992.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/mcp-agent-ml-research-read_registry-1779234216992.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_deberta_c4_1b5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:23:40.169Z\", \"updated_at\": \"2026-05-19T23:42:16.799Z\", \"hypothesis\": \"C4 1.5B DeBERTa apple-to-apple comparison with Table 2 OBD results: if DeBERTa K*=2 on same 1.5B C4 data as OBD, confirms boundary is intrinsic; if K*>2, quantifies neural vs handcrafted gap at 1.5B scale.\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-contamination && python scripts/run_deberta_c4_1b5.py --config qwen_rw --gpu 0\", \"pid\": \"255066\", \"data_path\": \"/root/gen-depth-contamination/data/exp016_qwen_base/\", \"data_count\": \"TBD\", \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"metrics\": {\"config\": \"qwen_rw\", \"kstar\": 2, \"kstar_theta\": 0.6, \"pairwise_auc\": {\"0v1\": 0.9923, \"1v2\": 0.7052, \"2v3\": 0.5988, \"3v4\": 0.5698, \"4v5\": 0.5475}, \"ci_95\": {\"0v1\": [0.9907, 0.9937], \"1v2\": [0.6977, 0.7129], \"2v3\": [0.5905, 0.6063], \"3v4\": [0.5626, 0.5774], \"4v5\": [0.5404, 0.5542]}, \"obd_baseline\": {\"0v1\": 0.987, \"1v2\": 0.6262, \"2v3\": 0.5496, \"3v4\": 0.5294, \"4v5\": 0.5182}, \"delta_vs_obd\": {\"1v2\": 0.079}, \"key_finding\": \"C4 1.5B DeBERTa qwen_rw K*=2, matching OBD K*=2. DeBERTa 1v2 +7.9pp vs OBD but does not extend K*. Note: only qwen_rw config done; pythia_greedy running on westd, qwen_cont256 starting on cqa1.\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T23:12:26.218Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T23:12:26.966Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T23:12:34.928421+00:00\"}]}, \"notes\": \"Cron 误判为 failed（脚本不用 W&B），实际完成。K*=2 confirmed on C4 1.5B data = OBD K*=2。DeBERTa 1v2 AUC=0.7052 vs OBD 0.6262 (+7.9pp)，但 2v3 仍低于 θ=0.60，无法突破 K* boundary。confirms intrinsic boundary on C4.\"}, \"exp_32b_c4_6class\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:31:06.464Z\", \"updated_at\": \"2026-05-19T23:37:44.909Z\", \"hypothesis\": \"32B DeBERTa 6-class rerun (depth 0-5) to fill 4v5 pair in paper table. If K* remains 2, confirms boundary even with full depth range; 4v5 AUC provides additional evidence of signal decay pattern.\", \"spec\": {\"server\": \"westd-42896\", \"gpu\": [\"cuda:0\"], \"command\": \"python scripts/run_deberta_c4.py --config 32b --num_classes 6 --gpu 0\", \"pid\": \"139848\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_32b_c4/\", \"data_count\": 30000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42, \"note\": \"6-class rerun replacing 5-class exp_32b_c4, adds depth_5 for complete 4v5 pair\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T23:34:30.974Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T23:34:32.906Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T23:34:36.421721+00:00\"}]}, \"metrics\": {\"config\": \"exp_32b_c4\", \"kstar\": 2, \"kstar_indexing\": \"1-indexed\", \"num_classes\": 6, \"pairwise_auc\": {\"0v1\": 0.9923, \"1v2\": 0.6945, \"2v3\": 0.5978, \"3v4\": 0.5669, \"4v5\": 0.5426}, \"ci_95\": {\"0v1\": [0.991, 0.9936], \"1v2\": [0.6864, 0.7026], \"2v3\": [0.5898, 0.6058], \"3v4\": [0.559, 0.5746], \"4v5\": [0.5351, 0.5501]}, \"training_time_min\": 48.2}, \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/logs/deberta_32b_6class.log\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_c4/exp_32b_c4_results.json\", \"notes\": \"Cron 误判为 failed（脚本不用 W&B），实际 5-fold 训练全部完成。K*=2 confirmed with 6 classes (depth 0-5)。2v3 AUC=0.5978 刚好低于 θ=0.60。4v5 AUC=0.5426 提供 signal decay 额外证据。\"}, \"exp_deberta_cross_transfer_wiki\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:23:41.514Z\", \"updated_at\": \"2026-05-19T22:24:17.842Z\", \"hypothesis\": \"DeBERTa cross-model transfer on wiki domain: if off-diagonal retention is high (>90%), depth signals are model-family invariant even with neural features; if wiki retention exceeds C4 retention, domain complexity affects transfer more than feature representation.\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\", \"cuda:2\", \"cuda:3\"], \"command\": \"python scripts/run_deberta_cross_transfer.py --all_pairs\", \"pid\": \"208306,208307,208308\", \"data_path\": \"/root/gen-depth-contamination/data/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}}, \"exp_deberta_upperbound\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:29:11.448Z\", \"updated_at\": \"2026-05-19T22:05:28.928Z\", \"hypothesis\": \"DeBERTa-v3-base fine-tuned ordinal classifier as upper-bound baseline for 15D handcrafted features: if DeBERTa also yields K*=2 on C4 depth chains, the saturation boundary is near-intrinsic to generation process rather than a feature ceiling; if K*=3+, quantifies the gap between handcrafted and neural representations. Uses same 5-fold GroupKFold, pairwise AUC evaluation, θ=0.60 K* criterion.\", \"spec\": {\"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_deberta_upperbound.py\", \"pid\": \"167144\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound.log\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/\", \"data_count\": 20000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound.log\", \"metrics\": {\"wiki_pythia\": {\"kstar\": 3, \"0v1_auc\": 0.9993, \"1v2_auc\": 0.725, \"2v3_auc\": 0.6137, \"3v4_auc\": 0.5733, \"4v5_auc\": 0.5527}, \"wiki_olmo\": {\"kstar\": 1, \"0v1_auc\": 0.9999, \"1v2_auc\": 0.5183, \"2v3_auc\": 0.5048, \"3v4_auc\": 0.5021, \"4v5_auc\": 0.4989}, \"wiki_qwen7b\": {\"kstar\": 3, \"0v1_auc\": 0.9998, \"1v2_auc\": 0.7619, \"2v3_auc\": 0.6108, \"3v4_auc\": 0.5587, \"4v5_auc\": 0.5412}, \"wiki_llama8b\": {\"kstar\": 3, \"0v1_auc\": 0.9997, \"1v2_auc\": 0.7452, \"2v3_auc\": 0.5954, \"3v4_auc\": 0.5601, \"4v5_auc\": 0.5389}, \"wiki_mistral7b\": {\"kstar\": 3, \"0v1_auc\": 0.9998, \"1v2_auc\": 0.7483, \"2v3_auc\": 0.5552, \"3v4_auc\": 0.5434, \"4v5_auc\": 0.5298}, \"obd_baseline_bug_fixed\": true, \"wiki_olmo_obd_rerun\": {\"0v1\": 0.9933, \"1v2\": 0.4983, \"2v3\": 0.5041, \"3v4\": 0.4986, \"4v5\": 0.5089}, \"key_finding\": \"Wiki DeBERTa K*=3 for 4/5 configs (pythia/qwen7b/llama8b/mistral7b), exceeding OBD K*=2. DeBERTa breaks OBD boundary on wiki domain. OLMo K*=1 anomalous (near-random 1v2). OBD baseline bug for olmo fixed (was copy of pythia).\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T21:58:49.707Z\"}, \"exp_32b_c4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T14:56:48.122Z\", \"updated_at\": \"2026-05-19T21:55:27.105Z\", \"hypothesis\": \"Scale-dependent K* on C4: Qwen2.5-32B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 32B scale 是否稳定（已确认 1.5B/7B/8B/14B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"parent\": \"exp_arXiv_llama8b\", \"server\": \"westd-42896\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-42896\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-17T19:37:31.096Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-32B --data_dir data/exp_32b_c4 --results_dir results/exp_32b_c4 --num_samples 5000 --max_depth 5 --batch_size 2 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\", \"finished_at\": \"2026-05-19T21:33:12.076Z\", \"training_hours\": 49.93}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-32B --data_dir data/exp_32b_c4 --results_dir results/exp_32b_c4 --num_samples 5000 --max_depth 5 --batch_size 2 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\", \"server\": \"westd-42896\", \"gpu\": [\"cuda:1\"], \"pid\": \"44715\", \"log_path\": \"~/runs/gen-depth-contamination/exp_32b_c4.log\", \"submitted_at\": \"2026-05-18T07:04:19.556Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_32b_c4\", \"data_count\": 5000, \"model_name\": \"Qwen2.5-32B\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_32b_c4/\", \"wall_clock_seconds\": 139867.5, \"gpu_hours\": 38.85}, \"pid\": \"14637\", \"log_path\": \"~/runs/gen-depth-contamination/exp_32b_c4.log\", \"notes\": \"Resubmit #2 (2026-05-18T07:05): killed at depth 2 18% per Director, 72h timeout. depth 0-1 complete (5000 lines each), pipeline auto-skips. PID 44715 cuda:1.\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T21:33:15.741057+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"lgbm_kstar\": 2, \"deberta_kstar\": 2, \"kstar_theta\": 0.6, \"scale\": \"32B\", \"domain\": \"C4\", \"n_docs\": 5000, \"max_depth\": 5, \"key_finding\": \"Qwen2.5-32B C4 K*=2, confirming scale-invariance of K*=2 dominant mode from 1.5B to 32B. Both LightGBM and DeBERTa classifiers agree on K*=2.\"}, \"completed_at\": \"2026-05-19T21:55:27.105Z\"}, \"exp_deberta_c4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T19:27:44.088Z\", \"updated_at\": \"2026-05-19T20:30:48.238Z\", \"hypothesis\": \"DeBERTa-v3-base fine-tuned on raw text provides an upper-bound for C4 depth distinguishability compared to 15D LightGBM on handcrafted features. Pairwise AUC should exceed LightGBM at all depth pairs since the model has access to full lexical/semantic signal.\", \"parent\": \"exp_deberta_upperbound\", \"spec\": {\"server\": \"westd-42896\", \"gpu\": [\"cuda:0\"], \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HOME=/root/autodl-tmp/.hf_cache python scripts/run_deberta_c4.py\", \"pid\": \"130789\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/\", \"data_count\": 55000, \"model_name\": \"DeBERTa-v3-base\", \"seed\": 42, \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_c4/train.log\", \"checkpoint_path\": \"results/exp_deberta_c4/\", \"checkpoint_source\": \"microsoft/deberta-v3-base (pretrained)\", \"eval_data\": \"C4 depth chains (exp_14b_c4: 30k, exp_32b_c4: 25k)\"}, \"conclusion\": \"success\", \"metrics\": {\"pairwise_auc\": {\"0v1\": 0.9941, \"1v2\": 0.6781, \"2v3\": 0.5895, \"3v4\": 0.5651, \"4v5\": 0.5485}, \"ci_95\": {\"0v1\": [0.993, 0.9951], \"1v2\": [0.6696, 0.6866], \"2v3\": [0.5814, 0.5979], \"3v4\": [0.5573, 0.5732], \"4v5\": [0.5411, 0.5562]}, \"f1_at_050\": {\"0v1\": 0.9352, \"1v2\": 0.6751, \"2v3\": 0.6607, \"3v4\": 0.6204, \"4v5\": 0.2869}, \"kstar\": 2, \"kstar_theta\": 0.6, \"config\": \"exp_14b_c4\", \"n_samples\": 30000, \"n_docs\": 5000, \"bootstrap_resamples\": 10000, \"training_time_min\": 48.3}, \"notes\": \"DeBERTa K*=2 = LightGBM K*=2 on C4 14B, confirming representation-independent boundary. 86M-param fine-tuned neural classifier cannot extend K* beyond 2. Worker script reported K*=1 (off-by-one bug in K* calculation logic), corrected to K*=2 based on raw CI data: 1v2 CI lower=0.6696 > θ=0.60.\", \"completed_at\": \"2026-05-19T20:30:48.238Z\"}, \"7b-cross-transfer\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T13:51:00.658Z\", \"updated_at\": \"2026-05-19T13:51:00.658Z\", \"conclusion\": \"failed\"}, \"exp_code_qwen7b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T00:30:13.401Z\", \"updated_at\": \"2026-05-19T12:15:37.664Z\", \"hypothesis\": \"Qwen2.5-7B code domain K* measurement: Qwen family scale invariance test on CodeSearchNet Python. Pythia Code K*=1 弱化了跨模型一致性。Qwen-7B 测试两个方向：(1) Qwen 家族内 Code 的 scale invariance（1.5B K*=2, 7B K*=?），(2) 若 LLaMA/Mistral 也 K*=1，Qwen-7B K*=2 能维持 \\\"code-competent models reach K*=2\\\" 叙事。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"parent\": \"exp_code_pythia1b4\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/bin/activate && HF_ENDPOINT=https://hf-mirror.com python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --data_dir data/exp_code_qwen7b --results_dir results/exp_code_qwen7b --num_samples 5000 --max_depth 5 --batch_size 4 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"114228\", \"log_path\": \"~/runs/gen-depth-contamination/exp_code_qwen7b.log\", \"submitted_at\": \"2026-05-19T01:29:00Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_code_qwen7b\", \"data_count\": 5000, \"model_name\": \"Qwen2.5-7B\", \"seed\": 42, \"checkpoint_source\": \"exp_code_qwen1b5\", \"eval_data\": \"CodeSearchNet Python 5000 docs\", \"wall_clock_seconds\": 38608.5, \"gpu_hours\": 10.72}, \"notes\": \"Attempts 1-3 failed: huggingface.co unreachable (000), httpx client closed during datasets.load_dataset. Attempt 4 success: copied depth_0.jsonl from exp_code_qwen1b5 (MD5 match), set HF_ENDPOINT=https://hf-mirror.com. PID 114228, GPU util 96%, 15211/24564 MiB. nvidia-smi verified.\", \"reproduce\": {\"finished_at\": \"2026-05-19T12:12:26.097Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T12:12:28.503Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T12:12:31.991515+00:00\"}]}, \"metrics\": {\"pairwise_auc\": {\"0v1\": {\"mean\": 0.9051, \"ci95_half\": 0.0043, \"folds\": [0.9073, 0.9012, 0.912, 0.9049, 0.9003]}, \"1v2\": {\"mean\": 0.7276, \"ci95_half\": 0.0055, \"folds\": [0.7377, 0.7254, 0.724, 0.722, 0.7289]}, \"2v3\": {\"mean\": 0.5368, \"ci95_half\": 0.0145, \"folds\": [0.5179, 0.5332, 0.5275, 0.5462, 0.5593]}, \"3v4\": {\"mean\": 0.509, \"ci95_half\": 0.0055, \"folds\": [0.5029, 0.5054, 0.5085, 0.5092, 0.5191]}, \"4v5\": {\"mean\": 0.5139, \"ci95_half\": 0.0128, \"folds\": [0.5016, 0.5317, 0.5264, 0.509, 0.5007]}}, \"pairwise_jsd\": {\"0v1\": 0.061265, \"1v2\": 0.042256, \"2v3\": 0.00413, \"3v4\": 0.003198, \"4v5\": 0.003393}, \"k_star\": 2, \"ordinal\": {\"mae\": 1.2651, \"accuracy\": 0.3423}, \"top_features\": [{\"name\": \"freq_entropy\", \"importance\": 9730}, {\"name\": \"surp_d2_mean\", \"importance\": 9236.2}, {\"name\": \"surp_d1_mean\", \"importance\": 9126.2}, {\"name\": \"surp_d1_skew\", \"importance\": 8833.4}, {\"name\": \"surp_std\", \"importance\": 8110.2}, {\"name\": \"freq_kurtosis\", \"importance\": 7838.6}, {\"name\": \"surp_mean\", \"importance\": 7586}, {\"name\": \"surp_kurt\", \"importance\": 6769.2}, {\"name\": \"hapax_ratio\", \"importance\": 6636.4}, {\"name\": \"ttr\", \"importance\": 6332.6}]}}, \"exp_code_mistral7b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T23:03:15.326Z\", \"updated_at\": \"2026-05-19T11:18:09.305Z\", \"hypothesis\": \"Mistral-7B code domain K* measurement: Mistral-7B-v0.3 continuation on CodeSearchNet Python subset. Mistral 是唯一展现极端 domain dependence 的模型（C4 K*=1, arXiv K*=3）。若 code K*=2（与 Qwen/LLaMA 一致）→ code K* domain-governed, Mistral one-wash 仅限 C4。若 code K*=1 → one-wash 是 model-intrinsic property for non-academic text。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"parent\": \"exp_code_qwen1b5\", \"spec\": {\"command\": \"cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/bin/activate && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-v0___3 --data_dir data/exp_code_mistral7b --results_dir results/exp_code_mistral7b --num_samples 5000 --max_depth 5 --batch_size 4 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"pid\": \"107037\", \"log_path\": \"~/runs/gen-depth-contamination/exp_code_mistral7b.log\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_code_mistral7b\", \"data_count\": 5000, \"model_name\": \"Mistral-7B-v0.3\", \"seed\": 42, \"checkpoint_source\": \"exp_code_qwen1b5\", \"eval_data\": \"CodeSearchNet Python 5000 docs\"}, \"notes\": \"Log writes to /dev/pts/3 (terminal session), not a file. Progress inferred from data dir: depth_1.jsonl done (5500 lines), depth_2 in progress. No persistent log file for post-mortem analysis.\", \"reproduce\": {\"finished_at\": \"2026-05-19T11:05:15.743Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed. Diagnostic worker dispatched to check logs, partial output, OOM/disk issues.\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T11:05:15.059Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T11:05:21.025715+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_code_mistral7b/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_code_mistral7b/summary.txt\", \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9191, \"1v2\": 0.6152, \"2v3\": 0.5293, \"3v4\": 0.5286, \"4v5\": 0.5099}, \"pairwise_auc_ci\": {\"0v1\": 0.0017, \"1v2\": 0.012, \"2v3\": 0.0091, \"3v4\": 0.0104, \"4v5\": 0.006}, \"pairwise_jsd\": {\"0v1\": 0.046984, \"1v2\": 0.011845, \"2v3\": 0.003717, \"3v4\": 0.003206, \"4v5\": 0.003083}, \"ordinal_mae\": 1.3191, \"ordinal_accuracy\": 0.3243, \"top3_features\": [\"freq_entropy\", \"surp_d2_mean\", \"surp_d1_mean\"]}}, \"exp_code_llama8b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T16:36:19.645Z\", \"updated_at\": \"2026-05-19T08:15:39.198Z\", \"hypothesis\": \"Code domain (Python) cross-model K* validation: LLaMA-3.1-8B continuation on CodeSearchNet Python subset (Husain et al. 2019). 验证 code domain K* 跨模型一致性（与 exp_code_qwen1b5 对比）。如果 K* 一致，确认 code domain K* 是 domain-governed 而非 model-specific。5500 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"parent\": \"exp_code_qwen1b5\", \"notes\": \"Generation completed normally (11.37 GPU-hours). Analysis step crashed on M010 bug (int(doc_id) on string 'code_py_0'). Bug was already patched in code (try/except at line 462-466). Worker re-ran analysis only → K*=2 confirmed. Results in results/exp_code_llama8b/.\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/bin/activate && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B --data_dir data/exp_code_llama8b --results_dir results/exp_code_llama8b --num_samples 5000 --max_depth 5 --batch_size 4 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:2\"], \"pid\": \"96335\", \"log_path\": \"~/runs/gen-depth-contamination/exp_code_llama8b.log\", \"submitted_at\": \"2026-05-18T20:43:36.548Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/code_python_seed\", \"data_count\": 5000, \"model_name\": \"LLaMA-3.1-8B\", \"seed\": 42, \"checkpoint_source\": \"exp_code_qwen1b5\", \"eval_data\": \"CodeSearchNet Python 5500 docs\", \"wall_clock_seconds\": 40928.2, \"gpu_hours\": 11.37}, \"reproduce\": {\"finished_at\": \"2026-05-19T08:05:42.229Z\"}, \"failure_reason\": \"Traceback → ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File \\\"/root/autodl-tmp/gen-depth-contamination/scripts/run_pipeline.py\\\", line 462, in run_analysis # Support both integer and string doc_ids ^^^^^^^^^^^^^^^^ ValueError: invalid literal for int() with base 10: 'code_py_0'\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T08:05:44.712Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T08:05:48.414385+00:00\"}]}, \"metrics\": {\"K_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9161, \"1v2\": 0.7394, \"2v3\": 0.5112, \"3v4\": 0.52, \"4v5\": 0.4996}, \"pairwise_auc_std\": {\"0v1\": 0.004, \"1v2\": 0.0101, \"2v3\": 0.0095, \"3v4\": 0.0137, \"4v5\": 0.0069}, \"pairwise_jsd\": {\"0v1\": 0.060406, \"1v2\": 0.047034, \"2v3\": 0.003473, \"3v4\": 0.003026, \"4v5\": 0.002892}, \"ordinal_mae\": 1.2542, \"ordinal_accuracy\": 0.3485, \"top_features\": [\"freq_entropy\", \"surp_d1_mean\", \"surp_d2_mean\"]}}, \"exp_code_qwen1b5_pythia_scorer\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T06:30:03.239Z\", \"updated_at\": \"2026-05-19T06:55:26.175Z\", \"hypothesis\": \"Code domain scorer confound control: Qwen-1.5B Code K*=2 uses same-family Qwen scorer. D060 Wikipedia showed Qwen scorer inflates AUC by +0.005~0.027. If Pythia-1.4B scorer yields K*=2 on same Qwen Code text, confirms K*=2 is text-intrinsic (not scorer artifact). If K*=1, Qwen Code K*=2 is partially scorer-driven, weakening domain ceiling claim. Cross-family scorer validation on existing exp_code_qwen1b5 depth 0-5 data.\", \"parent\": \"exp_code_qwen1b5\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:0\", \"spec\": {\"checkpoint_path\": \"results/exp_code_qwen1b5_pythia_scorer/\", \"log_path\": \"~/runs/gen-depth-contamination/exp_code_qwen1b5_pythia_scorer.log\"}, \"pid\": \"131475\", \"log_path\": \"~/runs/gen-depth-contamination/exp_code_qwen1b5_pythia_scorer.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/gen-depth-contamination && bash scripts/exp_code_qwen1b5_pythia_scorer.sh\\\"\", \"code_commit\": \"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\", \"finished_at\": \"2026-05-19T06:51:51.622Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T06:51:55.524732+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"k_star\": 2, \"theta\": 0.6, \"auc_0v1\": 0.9076, \"auc_1v2\": 0.7197, \"auc_2v3\": 0.5308, \"auc_3v4\": 0.5236, \"auc_4v5\": 0.5084, \"jsd_0v1\": 0.065423, \"jsd_1v2\": 0.035809, \"jsd_2v3\": 0.004315, \"jsd_3v4\": 0.003182, \"jsd_4v5\": 0.003047, \"ordinal_mae\": 1.2578, \"ordinal_accuracy\": 0.3433, \"scorer\": \"pythia-1.4b\"}, \"notes\": \"Code domain K*=2 confirmed scorer-independent. Pythia-1.4B scorer reproduces K*=2 on Qwen-1.5B Code text (same as Qwen self-scorer). AUC deltas vs original: 0v1 Δ=-0.031, 1v2 Δ=-0.019 (minor drop, Pythia slightly weaker feature extractor), 2v3 Δ=+0.001 (identical). Boundary transition 1v2→2v3 robust: 0.7197→0.5308, clear drop below θ=0.6. JSD pattern consistent: sharp collapse at depth 2→3. Combined with arXiv cross-scorer results (LLaMA/Mistral K*=3 preserved), confirms generational depth K* is a text-intrinsic property governed by domain complexity, not scorer choice.\", \"completed_at\": \"2026-05-19T06:55:26.175Z\"}, \"exp_pythia_retrain_depth7\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T01:53:18.835Z\", \"updated_at\": \"2026-05-19T03:46:00.139Z\", \"hypothesis\": \"Pythia-1.4B retrain-chain depth extension to 7: 验证 retrain-chain K* >> prompt-chain K* 是否跨模型家族一致（Qwen retrain K*≥7）。如果 Pythia 也 K*≥5-7，confirms retrain artifacts are model-independent。C4 5K docs, LoRA rank=16 alpha=32, depth 0-7。\", \"parent\": \"exp_qwen_retrain_depth7\", \"spec\": {\"command\": \"HF_ENDPOINT=https://hf-mirror.com CUDA_VISIBLE_DEVICES=0 python scripts/exp_pythia_retrain_depth7.py --device cuda:0\", \"server\": \"cqa1-22115\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_008_retrain_chain\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b\", \"seed\": 42, \"checkpoint_source\": \"exp_008_retrain_chain depth 0-4 data (extending to depth 5-7)\", \"eval_data\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_008_retrain_chain/features.csv\", \"gpu\": [\"cuda:0\"], \"pid\": \"115855\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/logs/exp_pythia_retrain_depth7_nohup.log\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_pythia_retrain_depth7\"}, \"notes\": \"Actual log path: /root/autodl-tmp/gen-depth-contamination/logs/exp_pythia_retrain_depth7_nohup.log (not ~/runs/). Fine-tuning 1250 steps completed, currently in generation phase. GPU util 53% normal for Pythia-1.4B small model.\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T03:45:55.351Z\", \"metrics\": {\"kstar\": 7, \"pairwise_auc\": {\"0v1\": 0.9844, \"1v2\": 0.947, \"2v3\": 0.8891, \"3v4\": 0.7999, \"4v5\": 0.6907, \"5v6\": 0.6497, \"6v7\": 0.634}, \"pairwise_auc_ci\": {\"0v1\": [0.9829, 0.9858], \"1v2\": [0.9418, 0.9522], \"2v3\": [0.8822, 0.896], \"3v4\": [0.7951, 0.8047], \"4v5\": [0.688, 0.6934], \"5v6\": [0.6429, 0.6565], \"6v7\": [0.6275, 0.6406]}, \"pairwise_jsd\": {\"0v1\": 0.1775, \"1v2\": 0.1286, \"2v3\": 0.1069, \"3v4\": 0.0643, \"4v5\": 0.0331, \"5v6\": 0.0271, \"6v7\": 0.0138}}}, \"exp_qwen_retrain_depth7\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T01:08:52.105Z\", \"updated_at\": \"2026-05-19T01:10:25.114Z\", \"hypothesis\": \"Qwen2.5-1.5B retrain-chain extended to depth 7: K* measurement at higher depths. Retrain-chain with LoRA rank=16, alpha=32, 1 epoch per generation. Each depth uses independently trained LoRA merged before next generation. C4 5K docs, depth 0-7, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B (self-scoring). Extends exp_qwen_retrain_chain (depth 0-4).\", \"parent\": \"exp_qwen_retrain_chain\", \"spec\": {\"command\": \"python scripts/run_pipeline.py --model_path Qwen2.5-1.5B --max_depth 7 (retrain-chain extension)\", \"server\": \"cqa1-22115\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_qwen_retrain_chain_ext\", \"data_count\": 5000, \"model_name\": \"Qwen2.5-1.5B\", \"seed\": 42, \"checkpoint_source\": \"exp_qwen_retrain_chain\", \"eval_data\": \"C4 5000 docs depth 0-7\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_qwen_retrain_chain_ext/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_qwen_retrain_chain_ext/summary.json\", \"metrics\": {\"k_star\": 7, \"theta\": 0.6, \"max_depth\": 7, \"analysis_method\": \"5-fold GroupKFold CV\", \"pairwise_auc\": {\"0v1\": {\"mean\": 0.9837, \"std\": 0.0019, \"ci_95\": [0.9821, 0.9854], \"folds\": [0.9832, 0.9821, 0.9837, 0.9823, 0.9873]}, \"1v2\": {\"mean\": 0.8971, \"std\": 0.0025, \"ci_95\": [0.8949, 0.8993], \"folds\": [0.8923, 0.8988, 0.8986, 0.8991, 0.8967]}, \"2v3\": {\"mean\": 0.8098, \"std\": 0.0052, \"ci_95\": [0.8052, 0.8144], \"folds\": [0.8086, 0.8074, 0.818, 0.8024, 0.8128]}, \"3v4\": {\"mean\": 0.76, \"std\": 0.0082, \"ci_95\": [0.7528, 0.7672], \"folds\": [0.7534, 0.7617, 0.7753, 0.7566, 0.7531]}, \"4v5\": {\"mean\": 0.7459, \"std\": 0.0091, \"ci_95\": [0.7379, 0.7538], \"folds\": [0.7429, 0.7562, 0.7521, 0.73, 0.7482]}, \"5v6\": {\"mean\": 0.7017, \"std\": 0.0068, \"ci_95\": [0.6958, 0.7076], \"folds\": [0.7006, 0.7077, 0.7104, 0.6915, 0.6984]}, \"6v7\": {\"mean\": 0.641, \"std\": 0.0039, \"ci_95\": [0.6376, 0.6445], \"folds\": [0.6419, 0.6349, 0.6464, 0.639, 0.643]}}, \"jsd\": {\"0v1\": 0.23005, \"1v2\": 0.103924, \"2v3\": 0.075049, \"3v4\": 0.065398, \"4v5\": 0.060509, \"5v6\": 0.034998, \"6v7\": 0.017652}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T01:10:20.209Z\", \"notes\": \"Qwen2.5-1.5B retrain-chain K*=7 (all 7 depth pairs AUC > θ=0.60). 6v7 AUC=0.641 (CI [0.638, 0.645]) is the tightest pair but still clears threshold. Depth 0-4 results consistent with exp_qwen_retrain_chain (AUC diff < 0.003). JSD decays from 0.230 (0v1) to 0.018 (6v7), suggesting convergence. AUC decay is sublinear: rapid initial drop (0v1→2v3: ~0.087/step), then deceleration (2v3→4v5: ~0.032/step), with continued decline (4v5→6v7: ~0.052/step). K* ceiling estimated at 7-8 based on extrapolation.\"}, \"exp_code_pythia1b4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T21:49:01.762Z\", \"updated_at\": \"2026-05-19T00:27:22.456Z\", \"hypothesis\": \"Pythia-1.4B on Code domain (Python/CodeSearchNet) will show K*=2 consistent with Qwen code domain results, indicating generalization depth saturation is model-independent for code data.\", \"parent\": \"exp_code_qwen1b5\", \"spec\": {\"command\": \"cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/bin/activate && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_code_pythia1b4 --results_dir results/exp_code_pythia1b4 --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\", \"server\": \"cqa1-22115\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_code_pythia1b4\", \"data_count\": 5000, \"model_name\": \"Pythia-1.4B\", \"seed\": 42, \"checkpoint_source\": \"exp_code_qwen1b5\", \"eval_data\": \"CodeSearchNet Python 5000 docs\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_code_pythia1b4/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_code_pythia1b4/train.log\", \"metrics\": {\"k_star\": 1, \"theta\": 0.6, \"pairwise_auc\": {\"0v1\": {\"mean\": 0.9592, \"std\": 0.0036, \"folds\": [0.9576, 0.9576, 0.9657, 0.96, 0.9552]}, \"1v2\": {\"mean\": 0.5983, \"std\": 0.005, \"folds\": [0.601, 0.5884, 0.6, 0.5997, 0.6024]}, \"2v3\": {\"mean\": 0.5215, \"std\": 0.0128, \"folds\": [0.5236, 0.5124, 0.5311, 0.5024, 0.5381]}, \"3v4\": {\"mean\": 0.5152, \"std\": 0.012, \"folds\": [0.4981, 0.5327, 0.5092, 0.5123, 0.5238]}, \"4v5\": {\"mean\": 0.5046, \"std\": 0.0137, \"folds\": [0.4983, 0.4822, 0.5074, 0.5224, 0.5128]}}, \"jsd\": {\"0v1\": 0.070173, \"1v2\": 0.008211, \"2v3\": 0.003674, \"3v4\": 0.002902, \"4v5\": 0.002685}, \"ordinal\": {\"mae\": 1.3268, \"accuracy\": 0.3357}, \"top_features\": [\"freq_entropy\", \"surp_d1_mean\", \"surp_d2_mean\", \"surp_mean\", \"surp_d1_skew\"], \"features_csv\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_code_pythia1b4/features.csv\"}, \"completed_at\": \"2026-05-19T00:25:32.688Z\", \"notes\": \"Pythia-1.4B code domain K*=1 (1v2 AUC=0.5983, 0.17pp below θ=0.60). Hypothesis falsified: expected K*=2 consistent with Qwen. 3/5 folds above θ (0.601, 0.600, 0.602), mean borderline. Parallels Mistral C4 one-wash pattern. Suggests model capability modulates domain ceiling.\"}, \"exp_028_power_curve\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T22:53:26.909Z\", \"updated_at\": \"2026-05-18T23:01:26.449Z\", \"hypothesis\": \"Subsampling power analysis: K*=2 判定在 C4 上所需的最低样本量。在 n={500,1000,2000,3000,4000,5000} 下 10 次 random resample，每次 5-fold CV 计算 1v2 AUC。输出 power curve（K*=2 判定成功率 vs n）。验证类实验，回应 Reviewer 对 statistical power / sample size adequacy 的质疑。\", \"metrics\": {\"min_n_100pct\": 2000, \"n500_auc\": 0.5808, \"n500_rate\": 0.2, \"n1000_auc\": 0.5911, \"n1000_rate\": 0.3, \"n2000_auc\": 0.6101, \"n2000_rate\": 1, \"n3000_auc\": 0.6166, \"n3000_rate\": 1, \"n4000_auc\": 0.622, \"n4000_rate\": 1, \"n5000_auc\": 0.6288, \"n5000_rate\": 1}, \"conclusion\": \"success\", \"notes\": \"K*=2 detection on C4 requires minimum n=2000 docs for 100% success rate (10/10 resamples). Below n=2000 power drops sharply: n=1000 → 30%, n=500 → 20%. AUC variance monotonically decreases with n (0.018 at n=500 → 0.004 at n=4000). Feature data from exp016_qwen_base (C4, 5000 docs × 6 depths × 15 features). CPU-only, 86s runtime.\", \"spec\": {\"checkpoint_path\": \"N/A (analysis experiment)\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_028_power_curve/\", \"command\": \"python scripts/exp_028_power_curve.py\", \"server\": \"cqa1-22115\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp016_qwen_base/features.csv\", \"data_count\": 30000, \"model_name\": \"N/A\", \"seed\": 42}, \"completed_at\": \"2026-05-18T23:01:26.449Z\"}, \"exp_qwen_retrain_chain\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T16:57:56.785Z\", \"updated_at\": \"2026-05-18T22:30:28.719Z\", \"hypothesis\": \"Qwen2.5-1.5B retrain-chain ecological validity: LoRA rank=16, alpha=32, 1 epoch per generation. Retrain-chain K* ≤ prompt-chain K*=2, confirming prompt-chain as conservative upper bound across a second architecture family (Qwen vs Pythia). C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B (self-scoring).\", \"parent\": \"exp_008_retrain_chain_v2\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/qwen_retrain_chain/lora_adapters/\", \"log_path\": \"~/runs/gen-depth-contamination/exp_qwen_retrain_chain.log\"}, \"metrics\": {\"K_star_lower_bound\": 4, \"theta\": 0.6, \"auc_0v1\": 0.9838, \"auc_1v2\": 0.8969, \"auc_2v3\": 0.81, \"auc_3v4\": 0.7624, \"ci_0v1\": [0.982, 0.9855], \"ci_1v2\": [0.8937, 0.9001], \"ci_2v3\": [0.8052, 0.8147], \"ci_3v4\": [0.7543, 0.7706], \"ci_method\": \"5-fold CV\", \"jsd_0v1\": 0.2263, \"jsd_1v2\": 0.1046, \"jsd_2v3\": 0.0752, \"jsd_3v4\": 0.0654}, \"notes\": \"Qwen2.5-1.5B retrain-chain K*≥4 (all 4 pairs AUC >> θ=0.60). Bootstrap CI discarded due to data leakage (resampling broke GroupKFold structure, inflated AUC by +6.4pp). Using fold-based CI instead. Retrain-chain K*≥4 >> prompt-chain K*=2, contradicts conservative-upper-bound hypothesis but confirms retrain produces qualitatively different degradation pattern.\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T22:30:28.719Z\"}, \"exp_code_qwen1b5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T16:36:16.788Z\", \"updated_at\": \"2026-05-18T21:45:24.101Z\", \"hypothesis\": \"Code domain (Python) K* measurement: Qwen2.5-1.5B continuation on CodeSearchNet Python subset (Husain et al. 2019). Code 的高度结构化特性（语法约束、缩进、函数签名）应使代际退化慢于 C4 (K*≥2)，可能接近 arXiv (K*=3)。5500 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"notes\": \"Code domain (Python/CodeSearchNet) K*=2, same as C4. 1v2 AUC=0.7382 well above θ, 2v3 drops to 0.5300. Bug fix: run_pipeline.py:462 int(doc_id) patched for string IDs. Top features: freq_entropy, surp_d2_mean, surp_d1_mean. Data source: CodeSearchNet Python subset (Husain et al. 2019).\", \"spec\": {\"checkpoint_path\": \"N/A (pipeline experiment, no model checkpoint)\", \"log_path\": \"~/runs/gen-depth-contamination/exp_code_qwen1b5.log\"}, \"conclusion\": \"success\", \"metrics\": {\"K_star\": 2, \"theta\": 0.6, \"auc_0v1\": 0.9388, \"auc_1v2\": 0.7382, \"auc_2v3\": 0.53, \"auc_3v4\": 0.5022, \"auc_4v5\": 0.5219, \"ci_0v1\": [0.929, 0.949], \"ci_1v2\": [0.709, 0.767], \"ci_2v3\": [0.514, 0.546], \"jsd_0v1\": 0.0814, \"jsd_1v2\": 0.0443, \"jsd_2v3\": 0.0038, \"ordinal_accuracy\": 0.359, \"ordinal_mae\": 1.204}, \"completed_at\": \"2026-05-18T21:45:24.101Z\"}, \"exp_olmo_retrain_v2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T16:36:11.450Z\", \"updated_at\": \"2026-05-18T16:56:04.606Z\", \"hypothesis\": \"OLMo-1B retrain-chain ecological validity (v2, fix M009 model download): LoRA rank=16, alpha=32, 1 epoch per generation on C4 5K docs. Retrain-chain K* ≤ prompt-chain K*=2, confirming prompt-chain as conservative upper bound. Independent LoRA per generation, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"parent\": \"exp_olmo_retrain_chain\", \"conclusion\": \"killed\", \"notes\": \"Director 决定放弃 OLMo retrain-chain (2026-05-18)。原因：cqa1 两次下载失败（M009 模型权重中断 + 网络端口耗尽），DDL 紧张不再重试。cuda:0 重新分配给 code domain 备用或 Qwen retrain-chain。\"}, \"exp_olmo_retrain_chain\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T16:08:07.671Z\", \"updated_at\": \"2026-05-18T16:27:30.792Z\", \"hypothesis\": \"OLMo-1B retrain-chain (LoRA rank=16, 1 epoch per generation) on C4 produces K* ≤ 2, confirming prompt-chain as conservative upper bound for K*.\", \"parent\": \"exp_002\", \"spec\": {\"command\": \"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_olmo_retrain_chain.py\", \"server\": \"cqa1-22115\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/olmo_retrain_chain\", \"data_count\": 5000, \"model_name\": \"allenai/OLMo-1B-hf\", \"seed\": 42, \"checkpoint_source\": \"allenai/OLMo-1B-hf\", \"eval_data\": \"C4 validation (5000 docs)\"}, \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-18T16:27:30.792Z\"}, \"exp_028_subsampling_power\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T13:30:47.472Z\", \"updated_at\": \"2026-05-18T13:31:41.053Z\", \"hypothesis\": \"C4 K*=2 信号的 minimum sample size: 在 n={1000..5000} 范围内，GroupKFold(5) 1v2 AUC 是否稳定超过 θ=0.60？确定可靠判定 K*=2 所需的最小样本量。\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/c4_power_curve/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results/c4_power_curve/power_curve_results.json\", \"metrics\": {\"n_1000\": {\"mean_auc\": 0.608, \"std\": 0.012, \"detection_prob\": 0.9}, \"n_2500\": {\"mean_auc\": 0.618, \"std\": 0.006, \"detection_prob\": 1}, \"n_5000\": {\"mean_auc\": 0.629, \"std\": 0, \"detection_prob\": 1}, \"key_finding\": \"n>=2500 gives 100% reliable K*=2 detection. n=1000 already 90%. Signal is robust, not large-sample artifact.\"}, \"spec\": {\"command\": \"python scripts/c4_power_curve.py\", \"server\": \"cqa1-22115\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/results/ (exp-016 features)\", \"data_count\": 5000, \"model_name\": \"Qwen2.5-1.5B (scorer)\", \"seed\": \"10 random trials per n\", \"checkpoint_source\": \"exp-016 feature vectors\", \"eval_data\": \"GroupKFold(5) pairwise classification, n={1000..5000}\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T13:31:41.053Z\"}, \"exp_026_arxiv_filtering\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T10:19:57.768Z\", \"updated_at\": \"2026-05-18T11:20:35.820Z\", \"hypothesis\": \"Graduated depth weighting (α=0.9^d) on arXiv depth chains will outperform both no-filter and binary-cut baselines on downstream benchmarks (MMLU, HellaSwag), because it preserves useful signal from deeper generations while down-weighting accumulated contamination, rather than discarding data entirely.\", \"parent\": \"exp_006_graduated_filtering\", \"spec\": {\"command\": \"bash scripts/run_exp026.sh\", \"server\": \"cqa1-22115\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/\", \"data_count\": 13200, \"model_name\": \"Qwen2.5-1.5B\", \"seed\": \"42,123,456,789,1024\", \"gpu\": \"cuda:0,cuda:1,cuda:2\", \"strategies\": \"no_filter,binary,graduated_a09\", \"lora_rank\": 4, \"lora_alpha\": 8, \"pid\": 27516, \"checkpoint_source\": \"lora_merge_per_run\", \"eval_data\": \"mmlu,hellaswag (lm-eval-harness)\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_026_arxiv_filtering/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/logs/exp_026_arxiv_filtering.log\", \"metrics\": {\"runs_completed\": \"15/15\", \"strategies\": [\"no_filter\", \"binary\", \"graduated_a09\"], \"seeds\": [42, 123, 456, 789, 1024], \"mmlu\": {\"no_filter\": \"0.5899±0.0008\", \"binary\": \"0.5876±0.0004\", \"graduated_a09\": \"0.5900±0.0011\"}, \"hellaswag\": {\"no_filter\": \"0.6600±0.0002\", \"binary\": \"0.6642±0.0004\", \"graduated_a09\": \"0.6599±0.0003\"}, \"delta_vs_no_filter\": {\"binary_mmlu\": \"-0.0023\", \"binary_hellaswag\": \"+0.0042\", \"graduated_mmlu\": \"+0.0001\", \"graduated_hellaswag\": \"-0.0001\"}, \"key_finding\": \"All three strategies produce nearly identical results. Graduated ≈ no_filter; binary slightly better on HellaSwag (+0.004) but worse on MMLU (-0.002). Hypothesized ordering graduated>binary>no_filter NOT confirmed.\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-18T11:20:35.820Z\"}, \"exp_027_latex_ablation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T10:19:59.624Z\", \"updated_at\": \"2026-05-18T10:41:35.226Z\", \"hypothesis\": \"arXiv K*=3 不依赖 LaTeX 格式特征。去除 LaTeX markup 后重新提取 15D features 并跑 pairwise classification，K* 应仍=3，排除 LaTeX 语法作为 confound。\", \"parent\": \"exp_024_arxiv_depth_chain\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation/summary.txt\", \"metrics\": {\"k_star\": 3, \"k_star_preserved\": true, \"pairwise_auc_original\": {\"0v1\": 0.9948, \"1v2\": 0.8581, \"2v3\": 0.6436, \"3v4\": 0.544, \"4v5\": 0.5299}, \"pairwise_auc_stripped\": {\"0v1\": 0.9948, \"1v2\": 0.8297, \"2v3\": 0.6229, \"3v4\": 0.5468, \"4v5\": 0.5476}, \"auc_delta\": {\"0v1\": 0, \"1v2\": -0.028, \"2v3\": -0.021, \"3v4\": 0.003, \"4v5\": 0.018}, \"latex_reduction_by_depth\": {\"depth_0\": \"0.6%\", \"depth_5\": \"4.4%\"}, \"key_finding\": \"K*=3 preserved after LaTeX removal. 2v3 AUC 0.6436→0.6229 (still >θ=0.60). LaTeX format is NOT a confound.\"}, \"spec\": {\"command\": \"python scripts/exp027_latex_ablation.py\", \"server\": \"cqa1-22115\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/\", \"data_count\": 13200, \"model_name\": \"Qwen2.5-1.5B (scorer)\", \"seed\": 42, \"checkpoint_source\": \"exp_024_arxiv_depth_chain\", \"eval_data\": \"GroupKFold(5) pairwise classification\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T10:41:35.226Z\"}, \"exp_025_pythia_filtering\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T08:04:54.965Z\", \"updated_at\": \"2026-05-18T09:51:02.931Z\", \"hypothesis\": \"Filtering strategy ordering (binary > graduated > no-filter) 在 Pythia-1.4B 上与 Qwen 一致，验证 K*=2 对 curation 策略选择的跨模型预测价值。Pythia-1.4B LoRA rank=8 continued pretraining on C4 depth chain, 3 strategies × 3 seeds, eval MMLU+HellaSwag.\", \"parent\": \"exp_006_graduated_filtering\", \"spec\": {\"command\": \"bash scripts/run_exp025.sh (3 strategies × 3 seeds, 9 runs in 3 batches, 4 GPUs parallel per batch)\", \"server\": \"cqa1-22115\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp020_pythia_nuc09/\", \"data_count\": 30000, \"model_name\": \"Pythia-1.4B\", \"seed\": \"42,123,456\", \"checkpoint_source\": \"EleutherAI/pythia-1.4b (HuggingFace, base model for LoRA)\", \"eval_data\": \"MMLU + HellaSwag via lm-eval-harness\"}, \"notes\": \"Data source fixed: greedy → nuc09. Old processes killed (6 procs). Resubmitted 2026-05-18T08:27 via nohup (not submit_training_job). PID 15687, cqa1 cuda:0-3, 9 runs in 3 batches (4 parallel per batch). Cron registered for monitoring.\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_filtering/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/logs/exp025/\", \"metrics\": {\"runs_completed\": \"9/9\", \"strategies\": [\"no_filter\", \"binary_ours\", \"graduated_a09\"], \"seeds\": [42, 123, 456], \"mmlu\": {\"no_filter\": \"0.2568±0.0012\", \"binary_ours\": \"0.2585±0.0004\", \"graduated_a09\": \"0.2561±0.0009\"}, \"hellaswag\": {\"no_filter\": \"0.5250±0.0008\", \"binary_ours\": \"0.5251±0.0001\", \"graduated_a09\": \"0.5253±0.0007\"}, \"delta_vs_no_filter\": {\"binary_ours_mmlu\": \"+0.0017\", \"binary_ours_hellaswag\": \"+0.0000\", \"graduated_a09_mmlu\": \"-0.0007\", \"graduated_a09_hellaswag\": \"+0.0003\"}, \"key_finding\": \"All three filtering strategies produce nearly identical results on Pythia-1.4B. Deltas are within noise (max 0.0017 MMLU). Hypothesized ordering binary>graduated>no_filter NOT confirmed.\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-18T09:51:02.931Z\"}, \"exp_14b_c4\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-17T14:56:44.366Z\", \"updated_at\": \"2026-05-18T08:37:25.809Z\", \"hypothesis\": \"Scale-dependent K* on C4: Qwen2.5-14B fp16 continuation on C4 web text 的 K* 是否仍 = 2？验证 K*=2 dominant mode 在 14B scale 是否稳定（已确认 1.5B/7B/8B 均 K*=2），排除 scale ceiling effect。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"parent\": \"exp_arXiv_llama8b\", \"server\": \"westd-42896\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-42896\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-17T17:08:43.246Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-14B --data_dir data/exp_14b_c4 --results_dir results/exp_14b_c4 --num_samples 5000 --max_depth 5 --batch_size 4 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\", \"finished_at\": \"2026-05-18T08:21:21.247Z\", \"training_hours\": 15.21}, \"failure_reason\": \"EXIT_CODE=124 (timeout — exceeded timeout_hours)\", \"completed_at\": \"2026-05-18T05:09:04.625Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T05:09:08.254971+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T08:21:24.534646+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-14B --data_dir data/exp_14b_c4 --results_dir results/exp_14b_c4 --num_samples 5000 --max_depth 5 --batch_size 4 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\", \"server\": \"westd-42896\", \"gpu\": [\"cuda:0\"], \"pid\": \"39497\", \"log_path\": \"~/runs/gen-depth-contamination/exp_14b_c4.log\", \"submitted_at\": \"2026-05-18T05:12:11.079Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 11638.0, \"gpu_hours\": 3.23}, \"conclusion\": \"success\", \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9598, \"1v2\": 0.621, \"2v3\": 0.5494, \"3v4\": 0.5243, \"4v5\": 0.5154}, \"pairwise_jsd\": {\"0v1\": 0.1097, \"1v2\": 0.0112, \"2v3\": 0.0062, \"3v4\": 0.0044, \"4v5\": 0.0036}, \"bootstrap_ci\": {\"0v1\": [0.9564, 0.963], \"1v2\": [0.6119, 0.6304], \"2v3\": [0.5392, 0.5594], \"3v4\": [0.514, 0.5346], \"4v5\": [0.5045, 0.5265]}, \"permutation_p\": {\"0v1\": \"<0.001\", \"1v2\": \"<0.001\", \"2v3\": \"<0.001\", \"3v4\": \"<0.001\", \"4v5\": \"<0.001\"}, \"k_star_statistically_confirmed\": true, \"ordinal_mae\": 1.2266, \"ordinal_accuracy\": 0.3497, \"top_features\": [\"freq_entropy\", \"surp_d1_skew\", \"surp_std\", \"surp_d1_mean\", \"surp_d2_mean\"], \"key_finding\": \"K*=2 confirmed at 14B scale with bootstrap CI. 1v2 CI lower (0.6119) > theta=0.60; 2v3 CI upper (0.5594) < theta=0.60. All permutation p<0.001.\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/\"}, \"exp_arXiv_mistral7b_crossscorer\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T02:44:21.237Z\", \"updated_at\": \"2026-05-18T03:04:46.219Z\", \"hypothesis\": \"arXiv cross-scorer (Mistral-7B): Pythia scorer 验证 Mistral arXiv K*=3 是否 scorer-independent。\", \"parent\": \"exp_wiki_scorer_confound\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_arXiv_mistral7b_crossscorer && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_mistral7b/depth_\\\\${d}.jsonl data/exp_arXiv_mistral7b_crossscorer/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_arXiv_mistral7b_crossscorer && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_arXiv_mistral7b_crossscorer --results_dir results/exp_arXiv_mistral7b_crossscorer --num_samples 2200 --max_depth 5 --batch_size 16 --generation_mode continuation --skip_generation\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"pid\": \"196053\", \"log_path\": \"~/runs/gen-depth-contamination/exp_arXiv_mistral7b_crossscorer.log\", \"submitted_at\": \"2026-05-18T02:44:57.643Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_count\": 2200, \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_arXiv_mistral7b\", \"model_name\": \"Mistral-7B (generator) + Pythia-1.4B (scorer)\", \"seed\": 42, \"checkpoint_source\": \"exp_arXiv_mistral7b\", \"eval_data\": \"arXiv depth 0-5 generated by Mistral-7B (from exp_arXiv_mistral7b)\", \"checkpoint_path\": \"results/exp_arXiv_mistral7b_crossscorer/\", \"wall_clock_seconds\": 1117.5, \"gpu_hours\": 0.31}, \"reproduce\": {\"finished_at\": \"2026-05-18T03:00:29.276Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T03:00:37.583555+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"k_star\": 3, \"scorer\": \"pythia-1.4b\", \"auc_0v1\": 0.9798, \"auc_1v2\": 0.8141, \"auc_2v3\": 0.6075, \"auc_3v4\": 0.5489, \"auc_4v5\": 0.5391, \"jsd_0v1\": 0.135575, \"jsd_1v2\": 0.078, \"jsd_2v3\": 0.020452, \"jsd_3v4\": 0.010992, \"jsd_4v5\": 0.008831, \"ordinal_mae\": 0.9061, \"ordinal_accuracy\": 0.4412}, \"completed_at\": \"2026-05-18T03:03:35.138Z\", \"log_path\": \"~/runs/gen-depth-contamination/exp_arXiv_mistral7b_crossscorer.log\", \"notes\": \"Pythia-1.4B cross-scorer confirms K*=3 for Mistral-7B arXiv, matching Qwen-1.5B original. Max AUC delta = 0.02 (at 2v3). arXiv Mistral K*=3 is scorer-independent. Contrasts with Wikipedia where scorer choice affected K*.\"}, \"exp_arXiv_llama8b_crossscorer\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T02:44:19.881Z\", \"updated_at\": \"2026-05-18T03:04:36.609Z\", \"hypothesis\": \"Replacing Qwen-1.5B scorer with Pythia-1.4B on arXiv LLaMA-8B depth 0-5 texts should yield the same K*=3 boundary, because the saturation signal is a genuine property of LLaMA-8B generated text rather than a scorer family artifact\", \"parent\": \"exp_wiki_scorer_confound\", \"spec\": {\"command\": \"skip_generation scoring with Pythia-1.4B\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:2\"], \"pid\": \"195907\", \"log_path\": \"~/runs/gen-depth-contamination/exp_arXiv_llama8b_crossscorer.log\", \"submitted_at\": \"2026-05-18T02:44:54.483Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_llama8b_crossscorer/\", \"data_count\": 6, \"model_name\": \"pythia-1.4b\", \"seed\": 42, \"checkpoint_source\": \"exp_arXiv_llama8b\", \"eval_data\": \"arXiv LLaMA-8B depth 0-5 continuations from exp_arXiv_llama8b\", \"checkpoint_path\": \"results/exp_arXiv_llama8b_crossscorer/\", \"wall_clock_seconds\": 1119.6, \"gpu_hours\": 0.31}, \"reproduce\": {\"finished_at\": \"2026-05-18T03:00:23.861Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T03:00:27.320630+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"k_star\": 3, \"auc_0v1\": 0.9629, \"auc_1v2\": 0.8433, \"auc_2v3\": 0.6201, \"auc_3v4\": 0.523, \"auc_4v5\": 0.5245, \"jsd_0v1\": 0.1214, \"jsd_1v2\": 0.0815, \"jsd_2v3\": 0.0195, \"jsd_3v4\": 0.0083, \"jsd_4v5\": 0.0082, \"ordinal_mae\": 0.9025, \"ordinal_accuracy\": 0.4407, \"scorer\": \"pythia-1.4b\"}, \"completed_at\": \"2026-05-18T03:03:34.051Z\", \"log_path\": \"~/runs/gen-depth-contamination/exp_arXiv_llama8b_crossscorer.log\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_llama8b_crossscorer/\"}, \"exp_arXiv_qwen7b_crossscorer\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T02:13:55.051Z\", \"updated_at\": \"2026-05-18T03:04:22.586Z\", \"hypothesis\": \"arXiv cross-scorer (7B): Pythia-1.4B scorer 重评 Qwen-7B arXiv depth 0-5。D060 Wiki scorer confound 推导。关键 2v3 AUC ≥0.60 → K*=3 scorer-independent。\", \"parent\": \"exp_wiki_scorer_confound\", \"spec\": {\"command\": \"run_pipeline.py --skip_generation\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"pid\": \"195291\", \"log_path\": \"~/runs/gen-depth-contamination/exp_arXiv_qwen7b_crossscorer.log\", \"submitted_at\": \"2026-05-18T02:44:45.812Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/exp_arXiv_qwen7b_crossscorer\", \"data_count\": 2200, \"model_name\": \"Qwen/Qwen2.5-7B\", \"seed\": 42, \"checkpoint_source\": \"exp_arXiv_qwen7b\", \"eval_data\": \"arXiv Qwen-7B depth 0-5 from exp_arXiv_qwen7b\", \"wall_clock_seconds\": 1156.0, \"gpu_hours\": 0.32, \"checkpoint_path\": \"results/exp_arXiv_qwen7b_crossscorer/\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T02:59:40.126Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"negative\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T02:18:26.248465+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T02:59:43.427079+00:00\"}]}, \"notes\": \"Hypothesis rejected: cross-scorer 2v3 AUC=0.5989 < 0.60, K* drops from 3→2. Mild Qwen family bias (~0.027 AUC at 2v3) inflates original K*=3. Scorer-independent K*=2. Borderline: 3/5 folds above 0.60. Depths 0-2 robustly scorer-independent.\", \"metrics\": {\"k_star\": 2, \"auc_0v1\": 0.9575, \"auc_1v2\": 0.8171, \"auc_2v3\": 0.5989, \"auc_3v4\": 0.5417, \"auc_4v5\": 0.5192, \"jsd_0v1\": 0.137085, \"jsd_1v2\": 0.059688, \"jsd_2v3\": 0.013508, \"jsd_3v4\": 0.009125, \"jsd_4v5\": 0.006738, \"ordinal_mae\": 0.9617, \"ordinal_accuracy\": 0.4255}, \"checkpoint_path\": \"N/A (scoring-only experiment, no training checkpoint)\", \"log_path\": \"~/runs/gen-depth-contamination/exp_arXiv_qwen7b_crossscorer.log\", \"completed_at\": \"2026-05-18T03:04:01.839Z\"}, \"exp_arXiv_qwen1b5_crossscorer\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T02:13:56.083Z\", \"updated_at\": \"2026-05-18T03:02:38.562Z\", \"hypothesis\": \"arXiv cross-scorer (1.5B): Pythia-1.4B scorer 重评 Qwen-1.5B arXiv depth 0-5。验证 K*=3 scorer-independent。\", \"parent\": \"exp_wiki_scorer_confound\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_arXiv_qwen1b5_crossscorer && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_\\\\${d}.jsonl data/exp_arXiv_qwen1b5_crossscorer/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_arXiv_qwen1b5_crossscorer && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_arXiv_qwen1b5_crossscorer --results_dir results/exp_arXiv_qwen1b5_crossscorer --num_samples 2200 --max_depth 5 --batch_size 16 --generation_mode continuation --skip_generation\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"195826\", \"log_path\": \"~/runs/gen-depth-contamination/exp_arXiv_qwen1b5_crossscorer.log\", \"submitted_at\": \"2026-05-18T02:44:53.081Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"results/exp_arXiv_qwen1b5_crossscorer/\", \"wall_clock_seconds\": 1065.5, \"gpu_hours\": 0.3}, \"reproduce\": {\"finished_at\": \"2026-05-18T02:59:46.327Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"success\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T02:18:40.560606+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T02:59:52.404331+00:00\"}]}, \"notes\": \"首次提交因 symlink 问题失败 (EXIT_CODE=1)，Worker 修复后重跑成功 (EXIT_CODE=0)。Pythia-1.4B scorer 重评 Qwen-1.5B arXiv 文本 K*=3，与 Qwen scorer 一致，确认 arXiv K*=3 scorer-independent。\", \"metrics\": {\"k_star\": 3, \"auc_0v1\": 0.9748, \"auc_1v2\": 0.8105, \"auc_2v3\": 0.6317, \"auc_3v4\": 0.5437, \"auc_4v5\": 0.5294, \"jsd_0v1\": 0.154297, \"jsd_1v2\": 0.066782, \"jsd_2v3\": 0.019268, \"jsd_3v4\": 0.008867, \"jsd_4v5\": 0.006991, \"ordinal_mae\": 0.9017, \"ordinal_accuracy\": 0.4402}, \"completed_at\": \"2026-05-18T03:02:38.562Z\"}, \"exp_wiki_scorer_confound_1b5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T23:18:37.565Z\", \"updated_at\": \"2026-05-18T01:21:43.381Z\", \"hypothesis\": \"Scorer family bias replication (Qwen-1.5B): 用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分 exp_023_domain_ablation (Qwen-1.5B Wiki depth 0-5) 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded for both Qwen scales；如果 K*=1 → scorer confound confirmed，与 Qwen-7B 复验一致。\", \"parent\": \"exp_023_domain_ablation\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-17T23:20:01.037Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound_1b5 && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/depth_\\\\${d}.jsonl data/exp_wiki_scorer_confound_1b5/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound_1b5 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound_1b5 --results_dir results/exp_wiki_scorer_confound_1b5 --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"code_commit\": \"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\", \"finished_at\": \"2026-05-18T01:18:40.529Z\", \"training_hours\": 1.98}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound_1b5 && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/depth_\\\\${d}.jsonl data/exp_wiki_scorer_confound_1b5/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound_1b5 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound_1b5 --results_dir results/exp_wiki_scorer_confound_1b5 --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"180543\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_scorer_confound_1b5.log\", \"submitted_at\": \"2026-05-17T23:22:42.473Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 7140.9, \"gpu_hours\": 1.98}, \"pid\": \"180543\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_scorer_confound_1b5.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T01:18:44.039720+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"k_star\": 1, \"confound_verdict\": \"confirmed\", \"auc_0v1\": 0.9729, \"auc_1v2\": 0.5994, \"auc_2v3\": 0.533, \"auc_3v4\": 0.5214, \"auc_4v5\": 0.5068, \"jsd_0v1\": 0.0886, \"ordinal_mae\": 1.2995, \"ordinal_accuracy\": 0.3466}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_scorer_confound_1b5/\", \"completed_at\": \"2026-05-18T01:21:43.381Z\"}, \"exp_wiki_scorer_confound\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T22:35:20.326Z\", \"updated_at\": \"2026-05-17T23:20:31.517Z\", \"hypothesis\": \"Scorer family bias test: Qwen-7B Wikipedia K*=2 是 Qwen-1.5B scorer 的 family bias artifact 还是真实信号？用 Pythia-1.4B 替代 Qwen-1.5B 作为 scorer 重新评分同一批 depth 0-5 文本。如果 Pythia scorer 下 K* 仍=2 → confound excluded；如果 K*=1 → scorer confound confirmed。\", \"parent\": \"exp_wiki_qwen7b\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-17T22:55:01.348Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\\\${d}.jsonl data/exp_wiki_scorer_confound/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound --results_dir results/exp_wiki_scorer_confound --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"code_commit\": \"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\", \"finished_at\": \"2026-05-17T23:13:55.501Z\", \"training_hours\": 0.32}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_wiki_scorer_confound && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_wiki_qwen7b/depth_\\\\${d}.jsonl data/exp_wiki_scorer_confound/depth_\\\\${d}.jsonl; done && mkdir -p results/exp_wiki_scorer_confound && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_scorer_confound --results_dir results/exp_wiki_scorer_confound --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"178762\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_scorer_confound.log\", \"submitted_at\": \"2026-05-17T22:55:03.139Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_scorer_confound/\", \"wall_clock_seconds\": 1528.4, \"gpu_hours\": 0.42}, \"pid\": \"178762\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_scorer_confound.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T23:13:58.836236+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"k_star\": 1, \"confound_verdict\": \"confirmed\", \"auc_0v1\": 0.9404, \"auc_1v2\": 0.587, \"auc_2v3\": 0.5456, \"auc_3v4\": 0.525, \"auc_4v5\": 0.5172, \"critical_delta_1v2\": -0.0238}, \"completed_at\": \"2026-05-17T23:20:31.517Z\"}, \"exp_008_retrain_chain\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T19:26:02.931Z\", \"updated_at\": \"2026-05-17T22:30:32.930Z\", \"hypothesis\": \"Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"conclusion\": \"killed\"}, \"exp_wiki_qwen7b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T16:39:29.006Z\", \"updated_at\": \"2026-05-17T22:24:51.126Z\", \"hypothesis\": \"Cross-scale Wikipedia K* validation: Qwen2.5-7B continuation on Wikipedia 的 K* 是否 = 2？Qwen2.5-1.5B 在 Wikipedia K*=2（唯一维持 K*=2 的模型），Pythia/OLMo/均 K*=1。测试 7B 规模是否仍维持 Qwen 家族在 Wikipedia 上的 K*=2 pattern。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"parent\": \"exp_arXiv_qwen7b\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-17T17:02:41.963Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --data_dir data/exp_wiki_qwen7b --results_dir results/exp_wiki_qwen7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\", \"code_commit\": \"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\", \"finished_at\": \"2026-05-17T22:21:53.554Z\", \"training_hours\": 5.32}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --data_dir data/exp_wiki_qwen7b --results_dir results/exp_wiki_qwen7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"pid\": \"732600\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_qwen7b.log\", \"submitted_at\": \"2026-05-17T17:02:43.570Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 19327.6, \"gpu_hours\": 5.37}, \"pid\": \"732600\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_qwen7b.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T22:21:56.559363+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"K_star\": 2, \"auc_0v1\": 0.9673, \"auc_1v2\": 0.6108, \"auc_2v3\": 0.5562, \"auc_3v4\": 0.5297, \"auc_4v5\": 0.529, \"jsd_0v1\": 0.083514, \"jsd_1v2\": 0.010991, \"jsd_2v3\": 0.00555, \"jsd_3v4\": 0.004611, \"jsd_4v5\": 0.003894, \"ordinal_mae\": 1.2501, \"ordinal_accuracy\": 0.3532}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_qwen7b\", \"completed_at\": \"2026-05-17T22:24:51.126Z\"}, \"exp_wiki_mistral7b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T14:04:15.959Z\", \"updated_at\": \"2026-05-17T19:53:56.272Z\", \"hypothesis\": \"Mistral-7B Wikipedia K* test: Mistral-7B-v0.3 在 C4 上 K*=1 (text-intrinsic one-wash)。在 Wikipedia domain 上是否仍 K*=1？Pythia/OLMo 在 Wikipedia 均 K*=1，Qwen K*=2。如果 Mistral K*=1 → 确认 one-wash 跨域成立；如果 K*>1 → Wikipedia 有 rescue Mistral 的结构信号（与预期相反）。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"parent\": \"exp_wiki_pythia_v2\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-17T14:05:42.553Z\", \"command\": \"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python3.12 scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-v0___3 --data_dir data/exp_wiki_mistral7b --results_dir results/exp_wiki_mistral7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\", \"code_commit\": \"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\", \"finished_at\": \"2026-05-17T19:50:28.711Z\", \"training_hours\": 5.75}, \"spec\": {\"command\": \"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python3.12 scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-v0___3 --data_dir data/exp_wiki_mistral7b --results_dir results/exp_wiki_mistral7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"data_path\": \"data/exp_wiki_mistral7b\", \"data_count\": 5000, \"model_name\": \"mistralai/Mistral-7B-v0.3\", \"seed\": 42, \"checkpoint_source\": \"pretrained:mistralai/Mistral-7B-v0.3\", \"eval_data\": \"Wikipedia depth 0-5, scorer=Qwen2.5-1.5B\"}, \"pid\": \"41845\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_mistral7b.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T19:50:32.601540+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_mistral7b\", \"metrics\": {\"K_star\": 1, \"ordinal_mae\": 1.3445, \"ordinal_accuracy\": 0.3273, \"auc_0v1\": 0.9607, \"auc_1v2\": 0.5552, \"auc_2v3\": 0.5236, \"auc_3v4\": 0.5181, \"auc_4v5\": 0.5012, \"jsd_0v1\": 0.054134, \"jsd_1v2\": 0.005678, \"jsd_2v3\": 0.003698, \"jsd_3v4\": 0.003459, \"jsd_4v5\": 0.003274}, \"completed_at\": \"2026-05-17T19:53:56.272Z\"}, \"exp_wiki_llama8b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T13:27:37.043Z\", \"updated_at\": \"2026-05-17T19:33:39.300Z\", \"hypothesis\": \"Cross-scale Wikipedia K* validation: LLaMA-3.1-8B continuation on Wikipedia 的 K* 是否 = 2？Pythia-1.4B K*=1, Qwen-1.5B K*=2, OLMo-1B K*=1。测试 8B scale 是否能在 Wikipedia 均质 domain 上维持 K*=2（scale 是否是决定因素）。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"parent\": \"exp_wiki_pythia_v2\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-17T13:29:58.320Z\", \"command\": \"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python3.12 scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B --data_dir data/exp_wiki_llama8b --results_dir results/exp_wiki_llama8b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\", \"code_commit\": \"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\", \"finished_at\": \"2026-05-17T19:30:35.869Z\", \"training_hours\": 6.01}, \"spec\": {\"command\": \"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python3.12 scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B --data_dir data/exp_wiki_llama8b --results_dir results/exp_wiki_llama8b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:2\"], \"data_path\": \"data/exp_wiki_llama8b\", \"data_count\": 5000, \"model_name\": \"Meta-Llama-3.1-8B\", \"seed\": 42, \"checkpoint_source\": \"pretrained:LLM-Research/Meta-Llama-3.1-8B\", \"eval_data\": \"Wikipedia depth 0-5, scorer=Qwen2.5-1.5B\"}, \"pid\": \"38142\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_llama8b.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T19:30:39.064445+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"K_star\": 1, \"ordinal_mae\": 1.2954, \"ordinal_accuracy\": 0.3313, \"auc_0v1\": 0.9316, \"auc_1v2\": 0.5954, \"auc_2v3\": 0.5392, \"auc_3v4\": 0.5221, \"auc_4v5\": 0.5212, \"jsd_0v1\": 0.06169, \"jsd_1v2\": 0.00931}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_llama8b\", \"completed_at\": \"2026-05-17T19:33:39.300Z\"}, \"exp_arXiv_qwen7b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T12:56:03.934Z\", \"updated_at\": \"2026-05-17T16:36:58.029Z\", \"hypothesis\": \"Qwen2.5-7B on arXiv abstracts will yield K*=3, validating that structured domain K*=3 is stable within the Qwen family across scales (1.5B vs 7B)\", \"parent\": \"exp_024_arxiv_domain\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-17T14:08:40.926Z\", \"command\": \"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python3.12 scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --data_dir data/exp_arXiv_qwen7b --results_dir results/exp_arXiv_qwen7b --num_samples 2200 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\", \"code_commit\": \"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\", \"finished_at\": \"2026-05-17T16:34:23.946Z\", \"training_hours\": 2.43}, \"spec\": {\"command\": \"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python3.12 scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --data_dir data/exp_arXiv_qwen7b --results_dir results/exp_arXiv_qwen7b --num_samples 2200 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"data_path\": \"data/exp_arXiv_qwen7b\", \"data_count\": 2200, \"model_name\": \"Qwen2.5-7B\", \"seed\": 42, \"checkpoint_source\": \"pretrained:Qwen/Qwen2.5-7B\", \"eval_data\": \"arXiv abstracts depth 0-5, scorer=Qwen2.5-1.5B\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_qwen7b\", \"log_path\": \"~/runs/gen-depth-contamination/exp_arXiv_qwen7b.log\"}, \"pid\": \"42742\", \"log_path\": \"~/runs/gen-depth-contamination/exp_arXiv_qwen7b.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T16:34:26.949400+00:00\"}]}, \"metrics\": {\"k_star\": 3, \"pairwise_auc\": {\"0v1\": 0.983, \"1v2\": 0.835, \"2v3\": 0.626, \"3v4\": 0.544, \"4v5\": 0.513}, \"pairwise_jsd\": {\"0v1\": 0.1656, \"1v2\": 0.0668, \"2v3\": 0.0156, \"3v4\": 0.0089, \"4v5\": 0.0061}, \"ordinal_mae\": 0.9, \"ordinal_accuracy\": 0.446}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T16:36:58.029Z\"}, \"exp_arXiv_mistral7b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T13:32:28.299Z\", \"updated_at\": \"2026-05-17T16:28:24.294Z\", \"hypothesis\": \"Mistral-7B arXiv K* test: Mistral-7B-v0.3 在 C4 上 K*=1 (one-wash model)。在 arXiv structured domain 上是否仍 K*=1？如果 K*=1 → 确认 Mistral 的 one-wash 是 text-intrinsic (与 domain 无关)；如果 K*>1 → domain complexity 可以 rescue one-wash models，K* 同时受 model 和 domain 驱动。2200 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"parent\": \"exp_arXiv_olmo\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-17T13:53:18.456Z\", \"command\": \"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python3.12 scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-v0___3 --data_dir data/exp_arXiv_mistral7b --results_dir results/exp_arXiv_mistral7b --num_samples 2200 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\", \"code_commit\": \"0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5\", \"finished_at\": \"2026-05-17T16:25:00.229Z\", \"training_hours\": 2.53}, \"spec\": {\"command\": \"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python3.12 scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-v0___3 --data_dir data/exp_arXiv_mistral7b --results_dir results/exp_arXiv_mistral7b --num_samples 2200 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"data_path\": \"data/exp_arXiv_mistral7b\", \"data_count\": 2200, \"model_name\": \"mistralai/Mistral-7B-v0.3\", \"seed\": 42, \"checkpoint_source\": \"pretrained:mistralai/Mistral-7B-v0.3\", \"eval_data\": \"arXiv abstracts depth 0-5, scorer=Qwen2.5-1.5B\"}, \"pid\": \"40472\", \"log_path\": \"~/runs/gen-depth-contamination/exp_arXiv_mistral7b.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T16:25:03.226062+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"k_star\": 3, \"pairwise_auc\": {\"0v1\": 0.9848, \"1v2\": 0.8201, \"2v3\": 0.6275, \"3v4\": 0.5295, \"4v5\": 0.5295}, \"jsd\": {\"0v1\": 0.14249, \"1v2\": 0.076232, \"2v3\": 0.018972, \"3v4\": 0.009908, \"4v5\": 0.008877}, \"ordinal_mae\": 0.8958, \"ordinal_accuracy\": 0.4474, \"top_features\": [\"freq_entropy\", \"surp_std\", \"surp_d1_skew\", \"surp_mean\", \"surp_d2_mean\"]}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_mistral7b\", \"completed_at\": \"2026-05-17T16:28:24.294Z\"}, \"exp_arXiv_llama8b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T10:53:57.754Z\", \"updated_at\": \"2026-05-17T14:02:45.388Z\", \"hypothesis\": \"Cross-architecture arXiv K* validation: LLaMA-3.1-8B continuation on arXiv abstracts 的 K* 是否 = 3？验证 structured domain K*=3 在大模型（8B scale）上是否成立，排除小模型 capacity artifact。2200 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"parent\": \"exp_024_arxiv_domain\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-17T10:59:48.493Z\", \"finished_at\": \"2026-05-17T13:59:25.526Z\", \"training_hours\": 2.99}, \"spec\": {\"command\": \"python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B --data_dir data/exp_arXiv_llama8b --results_dir results/exp_arXiv_llama8b --num_samples 2200 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"27469\", \"log_path\": \"~/runs/gen-depth-contamination/exp_arXiv_llama8b.log\", \"submitted_at\": \"2026-05-17T11:23:08.013Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/exp_arXiv_llama8b (seed from exp_024_arxiv/depth_0.jsonl)\", \"data_count\": 2200, \"model_name\": \"Meta-Llama-3.1-8B\", \"seed\": 42, \"checkpoint_source\": \"pretrained:LLM-Research/Meta-Llama-3.1-8B\", \"eval_data\": \"arXiv abstracts depth 0-5, scorer=Qwen2.5-1.5B\", \"wall_clock_seconds\": 9577.4, \"gpu_hours\": 2.66}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T13:59:27.415949+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"K_star\": 3, \"auc_0v1\": 0.9754, \"auc_1v2\": 0.8447, \"auc_2v3\": 0.6215, \"auc_3v4\": 0.5362, \"auc_4v5\": 0.5331, \"jsd_0v1\": 0.1296, \"jsd_1v2\": 0.0785, \"jsd_2v3\": 0.0177, \"ordinal_acc\": 0.4549, \"ordinal_mae\": 0.8806}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_llama8b/\", \"completed_at\": \"2026-05-17T14:02:45.388Z\"}, \"exp_wiki_pythia_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T11:40:37.896Z\", \"updated_at\": \"2026-05-17T13:25:22.734Z\", \"hypothesis\": \"Cross-model Wikipedia K* validation (v2 fix): Pythia-1.4B continuation on Wikipedia 的 K* 是否 = 2？使用独立 data_dir 避免 v1 的 data reuse bug，让 pipeline 用 Pythia 重新生成 depth 1-5。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"parent\": \"exp_wiki_pythia\", \"spec\": {\"command\": \"python scripts/run_pipeline.py --model_path ...pythia-1.4b... --generation_mode continuation\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:2\"], \"pid\": \"30942\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_pythia_v2.log\", \"submitted_at\": \"2026-05-17T11:48:32.895Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/exp_wiki_pythia\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b\", \"seed\": 42, \"git_commit\": \"0b10b43\", \"checkpoint_source\": \"N/A (generation experiment, not eval)\", \"eval_data\": \"N/A\", \"wall_clock_seconds\": 5809.8, \"gpu_hours\": 1.61}, \"reproduce\": {\"finished_at\": \"2026-05-17T13:15:30.480Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T13:15:32.903668+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"K_star\": 1, \"auc_0v1\": 0.975, \"auc_1v2\": 0.5846, \"auc_2v3\": 0.5445, \"auc_3v4\": 0.5205, \"auc_4v5\": 0.5168, \"jsd_0v1\": 0.080065, \"jsd_1v2\": 0.007773, \"ordinal_acc\": 0.3503}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_pythia_v2/\", \"completed_at\": \"2026-05-17T13:25:22.734Z\"}, \"exp_wiki_olmo_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T11:40:38.784Z\", \"updated_at\": \"2026-05-17T13:23:57.369Z\", \"hypothesis\": \"Cross-model Wikipedia K* validation (v2 fix): OLMo-1B continuation on Wikipedia 的 K* 是否 = 2？使用独立 data_dir 避免 v1 的 data reuse bug，让 pipeline 用 OLMo 重新生成 depth 1-5。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"parent\": \"exp_wiki_olmo\", \"spec\": {\"command\": \"python scripts/run_pipeline.py --model_path .../allenai/OLMo-1B-hf --generation_mode continuation\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"pid\": \"31084\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_olmo_v2.log\", \"submitted_at\": \"2026-05-17T11:48:36.028Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/exp_wiki_olmo\", \"data_count\": 5000, \"model_name\": \"allenai/OLMo-1B-hf\", \"seed\": 42, \"git_commit\": \"0b10b43\", \"checkpoint_source\": \"N/A (generation experiment, not eval)\", \"eval_data\": \"N/A\", \"wall_clock_seconds\": 5721.3, \"gpu_hours\": 1.59}, \"reproduce\": {\"finished_at\": \"2026-05-17T13:08:49.908Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T13:08:52.662189+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"K_star\": 1, \"auc_0v1\": 0.9932, \"auc_1v2\": 0.4986, \"auc_2v3\": 0.5012, \"auc_3v4\": 0.5057, \"auc_4v5\": 0.5009, \"jsd_0v1\": 0.1688, \"ordinal_acc\": 0.3227}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo_v2/\", \"completed_at\": \"2026-05-17T13:23:57.369Z\"}, \"exp_arXiv_olmo\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T10:53:55.374Z\", \"updated_at\": \"2026-05-17T12:28:50.616Z\", \"hypothesis\": \"Cross-model arXiv K* validation: OLMo-1B continuation on arXiv abstracts 的 K* 是否 = 3（与 exp-024 Qwen 和 exp-025 Pythia 一致）？验证 structured domain K*=3 跨第三个模型架构（OLMo）的稳定性。2200 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"parent\": \"exp_024_arxiv_domain\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-17T10:59:47.281Z\", \"finished_at\": \"2026-05-17T12:11:06.144Z\", \"training_hours\": 1.19}, \"spec\": {\"command\": \"python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/allenai/OLMo-1B-hf --data_dir data/exp_arXiv_olmo --results_dir results/exp_arXiv_olmo --num_samples 2200 --max_depth 5 --batch_size 16 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"pid\": \"26733\", \"log_path\": \"~/runs/gen-depth-contamination/exp_arXiv_olmo.log\", \"submitted_at\": \"2026-05-17T11:23:00.352Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/exp_arXiv_olmo (seed from exp_024_arxiv/depth_0.jsonl)\", \"data_count\": 2200, \"model_name\": \"OLMo-1B-hf\", \"seed\": 42, \"checkpoint_source\": \"pretrained:allenai/OLMo-1B-hf\", \"eval_data\": \"arXiv abstracts depth 0-5, scorer=Qwen2.5-1.5B\", \"wall_clock_seconds\": 3950.3, \"gpu_hours\": 1.1}, \"conclusion\": \"negative\", \"metrics\": {\"K_star\": 1, \"auc_0v1\": 0.9958, \"auc_1v2\": 0.5034, \"auc_2v3\": 0.5069, \"auc_3v4\": 0.5021, \"auc_4v5\": 0.5037, \"jsd_0v1\": 0.329, \"ordinal_acc\": 0.33}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_olmo/\", \"completed_at\": \"2026-05-17T12:28:50.616Z\"}, \"exp_wiki_olmo\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T10:54:01.835Z\", \"updated_at\": \"2026-05-17T11:40:31.501Z\", \"hypothesis\": \"OLMo-1B continuation on Wikipedia domain will show K*=2 depth saturation pattern consistent with Qwen2.5-1.5B, demonstrating cross-model generality of the distinguishability decay phenomenon.\", \"parent\": \"exp_023_domain_ablation\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-17T10:59:50.182Z\"}, \"spec\": {\"command\": \"python scripts/run_pipeline.py ...\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"pid\": \"27620\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_olmo.log\", \"submitted_at\": \"2026-05-17T11:23:10.688Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/\", \"data_count\": 5000, \"model_name\": \"allenai/OLMo-1B-hf\", \"seed\": 42, \"git_commit\": \"N/A\", \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/allenai/OLMo-1B-hf\", \"eval_data\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/\", \"wall_clock_seconds\": 1040.8, \"gpu_hours\": 0.29}, \"conclusion\": \"failed\", \"notes\": \"INVALID: data reuse bug. Shared data_path /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/ with exp-023 (Qwen). Pipeline skip-if-exists logic reused Qwen-generated depth files instead of generating with OLMo. Results identical to exp-023. M002 lesson: each experiment must use independent data directory.\", \"checkpoint_path\": \"N/A (invalid run)\", \"log_path\": \"/root/runs/gen-depth-contamination/exp_wiki_olmo.log\", \"completed_at\": \"2026-05-17T11:40:31.501Z\"}, \"exp_wiki_pythia\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T10:54:00.154Z\", \"updated_at\": \"2026-05-17T11:40:30.671Z\", \"hypothesis\": \"Pythia-1.4B continuation on Wikipedia domain will show K*=2 depth saturation pattern consistent with Qwen2.5-1.5B, demonstrating cross-model generality of the distinguishability decay phenomenon.\", \"parent\": \"exp_023_domain_ablation\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-17T10:59:49.483Z\"}, \"spec\": {\"command\": \"python scripts/run_pipeline.py ...\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:2\"], \"pid\": \"26873\", \"log_path\": \"~/runs/gen-depth-contamination/exp_wiki_pythia.log\", \"submitted_at\": \"2026-05-17T11:23:03.344Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b\", \"seed\": 42, \"git_commit\": \"N/A\", \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79\", \"eval_data\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/\", \"wall_clock_seconds\": 1047.3, \"gpu_hours\": 0.29}, \"conclusion\": \"failed\", \"notes\": \"INVALID: data reuse bug. Shared data_path /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/ with exp-023 (Qwen). Pipeline skip-if-exists logic reused Qwen-generated depth files instead of generating with Pythia. Results identical to exp-023 (1v2=0.6193, K*=2). M002 lesson: each experiment must use independent data directory.\", \"checkpoint_path\": \"N/A (invalid run)\", \"log_path\": \"/root/runs/gen-depth-contamination/exp_wiki_pythia.log\", \"completed_at\": \"2026-05-17T11:40:30.671Z\"}, \"exp_009_dose_response\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T22:17:38.441Z\", \"updated_at\": \"2026-05-17T10:24:24.214Z\", \"hypothesis\": \"Contamination dose-response: 在 10%/30%/50% synthetic injection 比例下，graduated filtering 相对 binary filtering 的收益是否随 contamination 增加而扩大？验证 C3 (graduated filtering superiority) 在不同 contamination severity 下的 robustness。3 ratios × 3 strategies (no-filter/binary/graduated) × 5 seeds, continued pretraining Qwen2.5-1.5B, eval MMLU+HellaSwag.\", \"spec\": {\"command\": \"exp009_dose_response.py --ratio {0.1,0.3,0.5}\", \"server\": \"cqa1-22115\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/\", \"data_count\": 5000, \"model_name\": \"Qwen2.5-1.5B\", \"seed\": \"0-4\", \"checkpoint_source\": \"N/A (continued pretraining from base)\", \"eval_data\": \"MMLU + HellaSwag (lm-eval-harness)\"}, \"metrics\": {\"total_runs\": 45, \"seeds\": 5, \"ratios\": [0.1, 0.3, 0.5], \"strategies\": [\"no_filter\", \"binary_ours\", \"graduated\"], \"cross_ratio_finding\": \"Binary filtering consistently best across all ratios. Graduated filtering = no_filter at every ratio. Effect size of binary advantage increases with contamination ratio (HellaSwag delta: 10%=+0.38pp, 30%=+0.61pp, 50%=+0.51pp). Original C3 hypothesis (graduated > binary) rejected.\", \"gpu_hours_total\": 9.9}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp009_v3_partial_10_30.json\", \"completed_at\": \"2026-05-17T10:24:24.214Z\"}, \"exp_009_dose_50pct_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T00:13:08.251Z\", \"updated_at\": \"2026-05-17T10:23:52.356Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && python scripts/exp009_dose_response.py --ratio 0.5 --device cuda:0 --num_seeds 5\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"pid\": \"4404\", \"log_path\": \"~/runs/gen-depth-contamination/exp_009_dose_50pct_v3.log\", \"submitted_at\": \"2026-05-17T07:05:48.783Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 11883.6, \"gpu_hours\": 3.3}, \"hypothesis\": \"50% synthetic injection 下 graduated filtering 应展现最大优势 >=2pp MMLU（v3: fix OOM, auto batch + offline）。半数数据为合成时 binary 激进丢弃导致数据饥饿。\", \"parent\": \"exp_009_dose_50pct_v2\", \"metrics\": {\"seeds\": 5, \"strategies\": 3, \"total_runs\": 15, \"mean_std\": {\"no_filter\": {\"mmlu\": \"0.6063±0.0013\", \"hellaswag\": \"0.6680±0.0005\"}, \"binary_ours\": {\"mmlu\": \"0.6088±0.0011\", \"hellaswag\": \"0.6731±0.0004\"}, \"graduated\": {\"mmlu\": \"0.6062±0.0009\", \"hellaswag\": \"0.6679±0.0002\"}}, \"paired_ttest\": {\"binary_vs_nofilter\": {\"delta_mmlu\": 0.0025, \"p_mmlu\": 0.0377, \"delta_hellaswag\": 0.0051, \"p_hellaswag\": 2e-05}, \"graduated_vs_binary\": {\"delta_mmlu\": -0.0026, \"p_mmlu\": 0.0257, \"delta_hellaswag\": -0.0052, \"p_hellaswag\": 3e-05}, \"graduated_vs_nofilter\": {\"delta_mmlu\": -0.0001, \"p_mmlu\": 0.89, \"delta_hellaswag\": -0.0001, \"p_hellaswag\": 0.706}}, \"key_finding\": \"Binary significantly best (HellaSwag p<0.001). Graduated = no_filter exactly.\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50/\", \"completed_at\": \"2026-05-17T10:23:52.356Z\"}, \"exp_009_dose_30pct_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T00:13:06.603Z\", \"updated_at\": \"2026-05-17T10:23:51.631Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && python scripts/exp009_dose_response.py --ratio 0.3 --device cuda:0 --num_seeds 5\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:2\"], \"pid\": \"4327\", \"log_path\": \"~/runs/gen-depth-contamination/exp_009_dose_30pct_v3.log\", \"submitted_at\": \"2026-05-17T07:05:47.584Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 11884.0, \"gpu_hours\": 3.3}, \"hypothesis\": \"30% synthetic injection 下 graduated filtering 优势应 >=1pp MMLU（v3: fix OOM, auto batch + offline）。更高污染率下 binary 丢弃更多可用 gen-1 数据。\", \"parent\": \"exp_009_dose_30pct_v2\", \"metrics\": {\"seeds\": 5, \"strategies\": 3, \"total_runs\": 15, \"mean_std\": {\"no_filter\": {\"mmlu\": \"0.6069±0.0007\", \"hellaswag\": \"0.6664±0.0020\"}, \"binary_ours\": {\"mmlu\": \"0.6082±0.0012\", \"hellaswag\": \"0.6725±0.0007\"}, \"graduated\": {\"mmlu\": \"0.6072±0.0008\", \"hellaswag\": \"0.6665±0.0014\"}}, \"paired_ttest\": {\"binary_vs_nofilter\": {\"delta_mmlu\": 0.0013, \"p_mmlu\": 0.0739, \"delta_hellaswag\": 0.0061, \"p_hellaswag\": 0.0036}, \"graduated_vs_binary\": {\"delta_mmlu\": -0.001, \"p_mmlu\": 0.3018, \"delta_hellaswag\": -0.006, \"p_hellaswag\": 0.0009}, \"graduated_vs_nofilter\": {\"delta_mmlu\": 0.0003, \"p_mmlu\": 0.6638, \"delta_hellaswag\": 0.0002, \"p_hellaswag\": 0.6646}}, \"key_finding\": \"Binary best on HellaSwag (p=0.004). Graduated = no_filter.\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_30/\", \"completed_at\": \"2026-05-17T10:23:51.631Z\"}, \"exp_009_dose_10pct_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T00:13:04.692Z\", \"updated_at\": \"2026-05-17T10:23:50.749Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && export HF_DATASETS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && python scripts/exp009_dose_response.py --ratio 0.1 --device cuda:0 --num_seeds 5\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"4187\", \"log_path\": \"~/runs/gen-depth-contamination/exp_009_dose_10pct_v3.log\", \"submitted_at\": \"2026-05-17T07:05:45.840Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 11884.9, \"gpu_hours\": 3.3}, \"hypothesis\": \"10% synthetic injection 下 graduated filtering 应比 binary 保留 >=0.5pp MMLU（v3: fix OOM, auto batch + offline）。低污染时 gen-1 有训练价值，binary 全丢造成数据损失。\", \"parent\": \"exp_009_dose_10pct_v2\", \"metrics\": {\"seeds\": 5, \"strategies\": 3, \"total_runs\": 15, \"mean_std\": {\"no_filter\": {\"mmlu\": \"0.6058±0.0002\", \"hellaswag\": \"0.6689±0.0007\"}, \"binary_ours\": {\"mmlu\": \"0.6079±0.0005\", \"hellaswag\": \"0.6727±0.0008\"}, \"graduated\": {\"mmlu\": \"0.6066±0.0011\", \"hellaswag\": \"0.6700±0.0015\"}}, \"paired_ttest\": {\"binary_vs_nofilter\": {\"delta_mmlu\": 0.0021, \"p_mmlu\": 0.001, \"delta_hellaswag\": 0.0038, \"p_hellaswag\": 0.0017}, \"graduated_vs_binary\": {\"delta_mmlu\": -0.0014, \"p_mmlu\": 0.0917, \"delta_hellaswag\": -0.0027, \"p_hellaswag\": 0.0399}, \"graduated_vs_nofilter\": {\"delta_mmlu\": 0.0008, \"p_mmlu\": 0.2706, \"delta_hellaswag\": 0.0011, \"p_hellaswag\": 0.0611}}, \"key_finding\": \"Binary best. Graduated ≈ no_filter.\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/\", \"completed_at\": \"2026-05-17T10:23:50.749Z\"}, \"exp_027_retrain_bootstrap\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T07:43:03.273Z\", \"updated_at\": \"2026-05-17T08:18:53.724Z\", \"hypothesis\": \"Retrain-chain 的 pairwise AUC（0v1 到 3v4）在 10000-iteration bootstrap 95% CI 下均显著高于 θ=0.60，确认 K*≥4 具有统计严格性。\", \"parent\": \"exp_008_retrain_chain_v2\", \"spec\": {\"command\": \"python scripts/exp027_retrain_bootstrap.py\", \"server\": \"cqa1-22115\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/features/exp_008_retrain_chain_v2_features.csv\", \"data_count\": 5000, \"model_name\": \"LightGBM (bootstrap analysis)\", \"seed\": 42, \"checkpoint_source\": \"exp_008_retrain_chain_v2 (retrain-chain AUC data)\", \"eval_data\": \"exp_008_retrain_chain_v2 pairwise depth features (0v1, 1v2, 2v3, 3v4)\"}, \"metrics\": {\"bootstrap_iterations\": 10000, \"pairs\": {\"0v1\": {\"auc_point\": 0.9847, \"ci_lower\": 0.9828, \"ci_upper\": 0.9864, \"perm_p\": 0.0001, \"ci_lower_gt_theta\": true}, \"1v2\": {\"auc_point\": 0.9482, \"ci_lower\": 0.9443, \"ci_upper\": 0.952, \"perm_p\": 0.0001, \"ci_lower_gt_theta\": true}, \"2v3\": {\"auc_point\": 0.8885, \"ci_lower\": 0.8829, \"ci_upper\": 0.894, \"perm_p\": 0.0001, \"ci_lower_gt_theta\": true}, \"3v4\": {\"auc_point\": 0.7977, \"ci_lower\": 0.7903, \"ci_upper\": 0.8051, \"perm_p\": 0.0001, \"ci_lower_gt_theta\": true}}, \"key_finding\": \"All 4 retrain-chain pairwise AUCs have CI_lower >> theta=0.60 (min CI_lower=0.7903). K*>=4 statistically confirmed with p<0.001.\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp027_retrain_bootstrap.json\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp027_retrain_bootstrap.txt\", \"completed_at\": \"2026-05-17T08:18:53.724Z\"}, \"exp_026_feature_stability_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T08:09:57.776Z\", \"updated_at\": \"2026-05-17T08:15:28.177Z\", \"hypothesis\": \"Prompt-chain K*=2 边界对 feature 子集选择 robust：即使从 15D 中随机抽取 5/8/10 维子集，Pythia-1.4B prompt-chain 1v2 AUC（baseline ~0.654）仍 > θ=0.60，证明 K*=2 不依赖特定特征组合。\", \"parent\": \"exp_026_feature_stability\", \"metrics\": {\"data_source\": \"exp_001_pythia prompt-chain (K*=2)\", \"results\": {\"15D\": {\"num_tested\": 1, \"num_pass\": 1, \"min_1v2_auc\": 0.6262, \"mean_1v2_auc\": 0.6262}, \"10D\": {\"num_tested\": 5, \"num_pass\": 5, \"min_1v2_auc\": 0.6153, \"mean_1v2_auc\": 0.6191}, \"8D\": {\"num_tested\": 5, \"num_pass\": 5, \"min_1v2_auc\": 0.6056, \"mean_1v2_auc\": 0.6159}, \"5D\": {\"num_tested\": 5, \"num_pass\": 2, \"min_1v2_auc\": 0.5856, \"mean_1v2_auc\": 0.5998}, \"3D_top3\": {\"num_tested\": 1, \"num_pass\": 0, \"min_1v2_auc\": 0.5871, \"mean_1v2_auc\": 0.5871}}, \"key_finding\": \"8+ features sufficient for robust K*=2 (all pass θ=0.60). 5D fragile (2/5 pass). Top-3 alone fails. Feature diversity matters at the K* boundary.\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp026_feature_stability_v2.json\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp026_feature_stability_v2.json\", \"spec\": {\"command\": \"python scripts/exp026_feature_stability.py --data_source exp_001_pythia\", \"server\": \"cqa1-22115\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/features/exp_001_pythia_features.csv\", \"data_count\": 5000, \"model_name\": \"LightGBM\", \"seed\": 42, \"checkpoint_source\": \"exp_001_pythia_depth (prompt-chain features)\", \"eval_data\": \"exp_001_pythia prompt-chain 1v2 features (15D statistical features)\"}, \"completed_at\": \"2026-05-17T08:15:28.177Z\"}, \"exp_026_feature_stability\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T07:43:01.256Z\", \"updated_at\": \"2026-05-17T08:10:04.334Z\", \"hypothesis\": \"K*=2 对 feature 子集选择 robust：即使从 15D 特征中随机抽取 5/8/10 维子集，1v2 AUC 仍 > θ=0.60，证明 K* 边界不依赖特定特征组合（ad-hoc feature 防御）。\", \"parent\": \"exp_B_14d_ablation\", \"metrics\": {\"data_source\": \"exp_016_qwen_base (prompt-chain, K*=2)\", \"results\": {\"15D\": {\"num_tested\": 1, \"num_kstar_2\": 1, \"min_1v2_auc\": 0.6262, \"mean_1v2_auc\": 0.6262}, \"10D\": {\"num_tested\": 5, \"num_kstar_2\": 5, \"min_1v2_auc\": 0.6153, \"mean_1v2_auc\": 0.6191}, \"8D\": {\"num_tested\": 5, \"num_kstar_2\": 5, \"min_1v2_auc\": 0.6056, \"mean_1v2_auc\": 0.6159}, \"5D\": {\"num_tested\": 5, \"num_kstar_2\": 2, \"min_1v2_auc\": 0.5856, \"mean_1v2_auc\": 0.5998}, \"3D_top3\": {\"num_tested\": 1, \"num_kstar_2\": 0, \"min_1v2_auc\": 0.5871, \"mean_1v2_auc\": 0.5871}}, \"all_above_theta\": false, \"key_finding\": \"Feature selection MATTERS at K*=2 boundary. 15D/10D/8D all robust (min 1v2 AUC > 0.60). 5D random subsets: only 2/5 pass θ=0.60 (min=0.5856). Top-3 features alone (0.5871) fail θ. Contrast with retrain-chain (K*=4) where all subsets trivially passed (min=0.8314).\", \"previous_run_note\": \"v1 used retrain-chain data (K*=4), where all subsets trivially passed with min 1v2 AUC=0.8314. v2 uses prompt-chain data (K*=2) to test boundary robustness.\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp026_feature_stability.json\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp026_feature_stability.json\", \"spec\": {\"command\": \"python scripts/exp026_feature_stability.py\", \"server\": \"cqa1-22115\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_008_retrain_chain/\", \"data_count\": 5000, \"model_name\": \"LightGBM (feature subset ablation)\", \"seed\": 42, \"checkpoint_source\": \"exp_008_retrain_chain scored features\", \"eval_data\": \"retrain-chain 15D features depth 0-4\"}, \"completed_at\": \"2026-05-17T08:06:40.583Z\"}, \"exp_027\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T08:09:21.384Z\", \"updated_at\": \"2026-05-17T08:10:03.298Z\", \"hypothesis\": \"Document-level bootstrap CI (10000 iterations) on exp-008 v2 retrain-chain data will confirm that all 4 pairwise AUCs have CI_lower > theta=0.60, supporting K*>=4 with statistical significance.\", \"conclusion\": \"success\", \"checkpoint_path\": \"n/a\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/logs/exp027.log\", \"completed_at\": \"2026-05-17T08:09:54.196Z\", \"metrics\": {\"kstar_ci\": 4, \"0v1_auc\": 0.9847, \"0v1_ci\": [0.9828, 0.9864], \"0v1_perm_p\": 0.0001, \"1v2_auc\": 0.9482, \"1v2_ci\": [0.9443, 0.952], \"1v2_perm_p\": 0.0001, \"2v3_auc\": 0.8885, \"2v3_ci\": [0.8829, 0.894], \"2v3_perm_p\": 0.0001, \"3v4_auc\": 0.7977, \"3v4_ci\": [0.7903, 0.8051], \"3v4_perm_p\": 0.0001, \"all_ci_lower_above_theta\": true}}, \"exp_005_degradation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T02:40:12.117Z\", \"updated_at\": \"2026-05-17T02:57:38.303Z\", \"spec\": {\"command\": \"python scripts/run_exp005_degradation.py --data_dirs results_exp001_pythia results_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output_dir results_exp005_degradation\", \"server\": \"autodl-4090d\", \"script_path\": \"/root/autodl-tmp/gen-depth-contamination/scripts/run_exp005_degradation.py\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation\", \"data_count\": 15000, \"model_name\": \"Pythia-1.4B / OLMo-1B / Qwen-1.5B (3-model comparison)\", \"seed\": 42, \"input_dirs\": [\"results_exp001_pythia\", \"results_exp002_olmo\", \"data\"], \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/\", \"log_path\": \"~/runs/gen-depth-contamination/exp_005_degradation.log\"}, \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json\", \"metrics\": {\"cross_model_kendall_tau_by_first_auc\": {\"Pythia_vs_OLMo\": 0.733, \"Pythia_vs_Qwen_rewrite\": 0.467, \"Pythia_vs_Qwen_cont\": 0.695, \"OLMo_vs_Qwen_rewrite\": 0.429, \"OLMo_vs_Qwen_cont\": 0.543, \"Qwen_rewrite_vs_Qwen_cont\": 0.733}, \"cross_model_kendall_tau_by_avg_auc\": {\"Pythia_vs_OLMo\": 0.8476, \"Pythia_vs_Qwen_cont\": 0.7524, \"OLMo_vs_Qwen_cont\": 0.6762}, \"cross_model_spearman_rho_single_feature_auc\": {\"Pythia_vs_OLMo\": 0.95, \"Pythia_vs_Qwen_cont\": 0.9143, \"OLMo_vs_Qwen_cont\": 0.85, \"metric_definition\": \"Spearman ρ on per-feature AUC rankings (each feature independently classifies depth pairs)\"}, \"4model_tau_mean_continuation_by_first_auc\": 0.657, \"4model_tau_mean_all_by_first_auc\": 0.6, \"generation_mode_delta\": {\"Pythia_vs_Qwen\": \"+0.228\", \"OLMo_vs_Qwen\": \"+0.114\"}, \"top3_features_ranking_by_first_auc\": {\"Pythia\": [\"surp_d1_std\", \"surp_d2_std\", \"surp_std\"], \"OLMo\": [\"surp_std\", \"surp_d1_std\", \"surp_d2_std\"], \"Qwen_rewrite\": [\"freq_entropy\", \"surp_std\", \"surp_d1_std\"], \"Qwen_cont\": [\"surp_d1_std\", \"surp_std\", \"surp_d2_std\"]}, \"shared_top_discriminators\": \"surp_d1_std, surp_std, surp_d2_std shared across all architectures (single-feature AUC ranking)\", \"degradation_ordering_consistency\": \"Strong cross-model consistency (ρ≥0.85) on single-feature AUC ranking under controlled generation mode.\", \"residual_architecture_effect\": \"Qwen-cont vs OLMo (τ=0.54 by_first_auc) still lower than Pythia vs OLMo (τ=0.73), ~30-40% of ordering divergence from architecture\", \"limitation_1v2_weakness\": \"depth-pair level consistency weakest at 1v2 (τ~0.37), near-generational feature importance ordering varies more across models\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T02:40:50.885Z\", \"notes\": \"4-model τ matrix complete. Generation mode confirmed as primary driver of Qwen divergence (Δτ=+0.23 for Pythia pair). Residual architecture effect ~30-40%. C2 claim: degradation ordering largely consistent under same generation mode, with noted architecture residuals.\", \"hypothesis\": \"递归生成文本在统计特征空间中呈现单调退化趋势（如 perplexity 上升、词汇多样性下降），且退化速率在 K*=2 后显著减缓，这解释了为什么分类器在深代后失去区分力。\", \"parent\": \"mvp_pilot_sat_v1\"}, \"exp_024_arxiv_domain\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T14:43:59.323Z\", \"updated_at\": \"2026-05-17T02:57:37.559Z\", \"hypothesis\": \"Domain ablation: arXiv abstracts 数据下 K*=2 是否成立？验证 K* 跨数据域（C4 vs Wikipedia vs arXiv）的稳定性。Qwen2.5-1.5B base, continuation, nucleus p=0.95 T=1.0, 5K docs, depth 0-5。\", \"spec\": {\"command\": \"bash scripts/exp024_arxiv_domain.sh\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:2\", \"pid\": 46766, \"log_path\": \"~/runs/gen-depth-contamination/exp_024_arxiv_domain.log\", \"submitted_at\": \"2026-05-16T14:44:07.168Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/\", \"data_count\": 2200, \"model_name\": \"Qwen2.5-1.5B (base)\", \"seed\": 42, \"wall_clock_seconds\": 9545.8, \"gpu_hours\": 2.65}, \"notes\": \"2026-05-16 15:05 重启成功。PID 48295, cuda:2, 73% util。修复：depth_0.jsonl 已有 2200 行 arXiv 数据，prepare_seed_data 行数检查通过后跳过 C4 下载，HF_DATASETS_OFFLINE=1 不再冲突。n_docs=2200。预计 ~20 min 完成剩余 depth。\", \"metrics\": {\"K_star\": 3, \"pairwise_auc\": {\"0v1\": 0.9946, \"1v2\": 0.858, \"2v3\": 0.6427, \"3v4\": 0.5437, \"4v5\": 0.5294}, \"bootstrap_ci\": {\"0v1\": {\"auc\": 0.9946, \"ci_lower\": 0.9929, \"ci_upper\": 0.9961, \"perm_p\": 0.0001}, \"1v2\": {\"auc\": 0.858, \"ci_lower\": 0.848, \"ci_upper\": 0.8679, \"perm_p\": 0.0001}, \"2v3\": {\"auc\": 0.6427, \"ci_lower\": 0.6275, \"ci_upper\": 0.6575, \"perm_p\": 0.0001}, \"3v4\": {\"auc\": 0.5437, \"ci_lower\": 0.5276, \"ci_upper\": 0.5598, \"perm_p\": 0.0001}, \"4v5\": {\"auc\": 0.5294, \"ci_lower\": 0.5133, \"ci_upper\": 0.5455, \"perm_p\": 0.0006}}, \"bootstrap_resamples\": 10000, \"permutation_resamples\": 10000, \"key_finding\": \"arXiv domain K*=3 (CI-confirmed). 2v3 CI lower=0.6275 > θ=0.60. First condition with K*>2. 1v2 AUC=0.858 far exceeds C4/Wiki (~0.61-0.69).\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv/\", \"log_path\": \"~/runs/gen-depth-contamination/exp_024_arxiv_domain.log\", \"completed_at\": \"2026-05-16T17:23:12.939Z\", \"parent\": \"exp_023_domain_ablation\"}, \"exp_017_qwen_continuation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:41:22.423Z\", \"updated_at\": \"2026-05-17T02:57:37.021Z\", \"hypothesis\": \"Continuation mode 的 K* 应等于 rewrite mode（K*=2），因为 K* 饱和边界是递归生成的文本固有属性，与生成模式（续写 vs 改写）无关——两种模式在深代时都收敛到相同的统计吸引子。\", \"notes\": \"dry-run passed 2026-05-13: model OK (2.9G safetensors), env OK (torch=2.10.0+cu128, transformers=4.57.6), dirs auto-create. Submit command prepared. 等 exp-002 完成后立即提交。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2.5-1.5B-Instruct --data_dir /root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont --results_dir /root/autodl-tmp/gen-depth-contamination/results_exp017_qwen_cont --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"autodl-4090d\", \"gpu\": [\"cuda:0\"], \"pid\": \"23758\", \"log_path\": \"~/runs/gen-depth-contamination/exp_017_qwen_continuation.log\", \"submitted_at\": \"2026-05-13T02:35:15Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont\", \"data_count\": 5000, \"model_name\": \"Qwen/Qwen2.5-1.5B-Instruct\", \"seed\": 42, \"max_depth\": 5, \"generation_mode\": \"continuation\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont/\", \"wall_clock_seconds\": 13305.8, \"gpu_hours\": 3.7}, \"log_path\": \"/root/runs/gen-depth-contamination/exp_017_qwen_continuation.log\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results_exp017_qwen_cont/\", \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9972, \"1v2\": 0.6114, \"2v3\": 0.5609, \"3v4\": 0.5408, \"4v5\": 0.5139}, \"pairwise_jsd\": {\"0v1\": 0.28627, \"1v2\": 0.005107, \"2v3\": 0.003603, \"3v4\": 0.003395, \"4v5\": 0.003085}, \"ordinal_mae\": 1.1547, \"ordinal_accuracy\": 0.3819, \"top3_features\": [\"freq_entropy\", \"surp_mean\", \"surp_std\"]}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T06:17:00.826Z\", \"parent\": \"mvp_pilot_sat_v1\"}, \"exp_012_binary_confidence\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:32:09.468Z\", \"updated_at\": \"2026-05-17T02:57:36.098Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_ENDPOINT=https://hf-mirror.com && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp012_ppl_depth_correlation.py --device cuda:0 --n_samples 500 --output_dir artifacts/exp012_results\\\"\", \"server\": \"westc-26893\", \"gpu\": [\"cuda:0\"], \"pid\": \"128209\", \"log_path\": \"~/runs/gen-depth-contamination/exp_012_binary_confidence.log\", \"submitted_at\": \"2026-05-15T23:14:10.207Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 489.8, \"gpu_hours\": 0.14}, \"notes\": \"N=500全量运行。Binary confidence与depth的Spearman ρ弱到中等(|ρ|=0.06-0.46)，6-class accuracy全部≤random baseline。关键发现：0v1 pairwise AUC极高(0.99+)但deeper pairs塌缩到~0.5，证明binary detector只捕捉human/AI边界，无法区分generational depth。Hypothesis验证成功。可视化已生成(exp012_confidence_vs_depth.pdf)。\", \"hypothesis\": \"Binary detector confidence（DivEye log-PPL、Binoculars ratio）与 true generational depth 相关性弱（Spearman rho < 0.3），因为这些检测器将所有合成文本折叠为单一类别，无法区分 gen-1 和 gen-3+，暴露 binary 范式的信息损失。\", \"reproduce\": {\"finished_at\": \"2026-05-15T23:20:30.036Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T23:20:30.983764+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp012_results/\", \"log_path\": \"~/runs/gen-depth-contamination/exp_012_binary_confidence.log\", \"completed_at\": \"2026-05-15T23:22:19.966Z\", \"metrics\": {\"n_samples\": 500, \"generators\": [\"qwen-rewrite\", \"pythia-1.4b\", \"olmo-1b\", \"qwen-cont\"], \"6class_accuracy\": {\"qwen-rewrite\": 0.1987, \"pythia-1.4b\": 0.1303, \"olmo-1b\": 0.127, \"qwen-cont\": 0.1833, \"random_baseline\": 0.1667}, \"spearman_rho\": {\"qwen-rewrite\": {\"log_ppl_ref\": -0.1233, \"log_ppl_obs\": 0.0815, \"ppl_ratio\": 0.1185}, \"pythia-1.4b\": {\"log_ppl_ref\": -0.2972, \"log_ppl_obs\": -0.4529, \"ppl_ratio\": -0.392}, \"olmo-1b\": {\"log_ppl_ref\": -0.378, \"log_ppl_obs\": -0.4614, \"ppl_ratio\": -0.4068}, \"qwen-cont\": {\"log_ppl_ref\": -0.3887, \"log_ppl_obs\": -0.162, \"ppl_ratio\": -0.058}}, \"binary_detector_kstar\": 1, \"obd_kstar\": 2, \"auc_non_monotonic\": true, \"key_finding\": \"Binary detectors (DivEye/Binoculars) K*≈1 vs OBD K*=2. 6-class accuracy ≤0.199 (random=0.167). Spearman |ρ|=0.06-0.46 (statistically significant but practically weak). AUC non-monotonic — binary detectors cannot maintain depth ordering. Confirms binary confidence ≠ depth estimation.\"}, \"parent\": \"mvp_pilot_sat_v1\"}, \"exp_C_permutation_10k\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:18:26.152Z\", \"updated_at\": \"2026-05-17T02:57:35.128Z\", \"hypothesis\": \"10K permutation resamples 不应改变任何 K* 结论（所有 p < 0.01 的 pair 仍应 p < 0.01），确认 500 resamples 已有足够精度，K*=2 结论的统计基础稳固。\", \"spec\": {\"command\": \"python scripts/exp_C_permutation_10k.py\", \"server\": \"westc-26893\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data + data_exp001_pythia + data_exp002_olmo + data_exp017_qwen_cont\", \"data_count\": 20000, \"model_name\": \"N/A (CPU: permutation test)\", \"seed\": 42, \"note\": \"10K permutation resamples replacing 500, per depth pair per model\"}, \"conclusion\": \"success\", \"metrics\": {\"resamples\": 10000, \"all_boundary_pairs_p\": \"<0.0001\", \"key_finding\": \"10K permutation confirms all boundary p-values well below 0.01. FR-11 resolved.\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp_C_permutation_10k.json\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp_C_permutation_10k.json\", \"completed_at\": \"2026-05-15T11:20:30.088Z\", \"parent\": \"exp_007_bootstrap_ci\"}, \"exp_002_olmo_depth\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:06:24.766Z\", \"updated_at\": \"2026-05-17T02:57:34.160Z\", \"hypothesis\": \"K* 跨模型一致性验证：OLMo-1B 在相同种子数据和解码策略下的 K* 是否与 Qwen2.5-1.5B 一致（K*=2）\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/allenai/OLMo-1B-hf --data_dir /root/autodl-tmp/gen-depth-contamination/data_exp002_olmo --results_dir /root/autodl-tmp/gen-depth-contamination/results_exp002_olmo --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"autodl-4090d\", \"gpu\": [\"cuda:0\"], \"pid\": \"20225\", \"log_path\": \"~/runs/gen-depth-contamination/exp_002_olmo_depth.log\", \"submitted_at\": \"2026-05-13T00:16:07.960Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp002_olmo\", \"data_count\": 5000, \"model_name\": \"allenai/OLMo-1B-hf\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp002_olmo/\", \"wall_clock_seconds\": 8384.9, \"gpu_hours\": 2.33}, \"reproduce\": {\"finished_at\": \"2026-05-13T02:31:18.880Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T02:31:19.738113+00:00\"}]}, \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.997, \"1v2\": 0.6146, \"2v3\": 0.5497, \"3v4\": 0.509, \"4v5\": 0.5044}, \"pairwise_auc_std\": {\"0v1\": 0.0004, \"1v2\": 0.0029, \"2v3\": 0.004, \"3v4\": 0.0084, \"4v5\": 0.0136}, \"pairwise_jsd\": {\"0v1\": 0.23941, \"1v2\": 0.012972, \"2v3\": 0.00735, \"3v4\": 0.003968, \"4v5\": 0.003851}, \"ordinal_mae\": 1.1813, \"ordinal_accuracy\": 0.3685, \"top_features\": [\"surp_d1_mean\", \"surp_d1_skew\", \"freq_kurtosis\", \"surp_d2_mean\", \"surp_mean\"]}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T02:35:52.823Z\", \"parent\": \"exp_001_pythia_depth\"}, \"exp_009_dose_50pct_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T23:14:53.711Z\", \"updated_at\": \"2026-05-17T02:57:30.391Z\", \"spec\": {\"command\": \"python scripts/exp009_dose_response.py --ratio 0.5 --device cuda:0 --num_seeds 5\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"pid\": \"86342\", \"log_path\": \"~/runs/gen-depth-contamination/exp_009_dose_50pct_v2.log\", \"submitted_at\": \"2026-05-16T23:14:53.568Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_009_dose_response/ratio_50/\", \"data_count\": 10000, \"model_name\": \"Qwen2.5-1.5B (continued pretraining)\", \"seed\": 42, \"checkpoint_source\": \"pretrained Qwen2.5-1.5B\", \"eval_data\": \"MMLU + HellaSwag via lm-eval-harness\", \"wall_clock_seconds\": 4079.2, \"gpu_hours\": 1.13}, \"hypothesis\": \"50% synthetic injection 下 graduated filtering 应展现最大优势 >=2pp MMLU（v2: fix HF mirror）。机制同 v1：半数数据为合成时 binary 激进丢弃导致数据饥饿。\", \"conclusion\": \"failed\", \"failure_reason\": \"CUDA OOM during lm_eval MMLU 5-shot (batch_size=8, logits tensor exceeds 24GB)\", \"checkpoint_path\": \"N/A (crashed before checkpoint)\", \"completed_at\": \"2026-05-17T00:22:52.736Z\", \"parent\": \"exp_009_dose_50pct\"}, \"exp_009_dose_30pct_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T23:14:51.739Z\", \"updated_at\": \"2026-05-17T02:57:29.467Z\", \"spec\": {\"command\": \"python scripts/exp009_dose_response.py --ratio 0.3 --device cuda:0 --num_seeds 5\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:2\"], \"pid\": \"86196\", \"log_path\": \"~/runs/gen-depth-contamination/exp_009_dose_30pct_v2.log\", \"submitted_at\": \"2026-05-16T23:14:51.572Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_009_dose_response/ratio_30/\", \"data_count\": 7142, \"model_name\": \"Qwen2.5-1.5B (continued pretraining)\", \"seed\": 42, \"checkpoint_source\": \"pretrained Qwen2.5-1.5B\", \"eval_data\": \"MMLU + HellaSwag via lm-eval-harness\", \"wall_clock_seconds\": 4080.4, \"gpu_hours\": 1.13}, \"hypothesis\": \"30% synthetic injection 下 graduated filtering 优势应 >=1pp MMLU（v2: fix HF mirror）。机制同 v1：更高污染率下 binary 丢弃更多可用 gen-1 数据。\", \"conclusion\": \"failed\", \"failure_reason\": \"CUDA OOM during lm_eval MMLU 5-shot (batch_size=8, logits tensor exceeds 24GB)\", \"checkpoint_path\": \"N/A (crashed before checkpoint)\", \"completed_at\": \"2026-05-17T00:22:51.942Z\", \"parent\": \"exp_009_dose_30pct\"}, \"exp_009_dose_10pct_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T23:14:49.850Z\", \"updated_at\": \"2026-05-17T02:57:28.507Z\", \"spec\": {\"command\": \"python scripts/exp009_dose_response.py --ratio 0.1 --device cuda:0 --num_seeds 5\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"86049\", \"log_path\": \"~/runs/gen-depth-contamination/exp_009_dose_10pct_v2.log\", \"submitted_at\": \"2026-05-16T23:14:49.708Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_009_dose_response/ratio_10/\", \"data_count\": 5555, \"model_name\": \"Qwen2.5-1.5B (continued pretraining)\", \"seed\": 42, \"checkpoint_source\": \"pretrained Qwen2.5-1.5B\", \"eval_data\": \"MMLU + HellaSwag via lm-eval-harness\", \"wall_clock_seconds\": 4081.2, \"gpu_hours\": 1.13}, \"hypothesis\": \"10% synthetic injection 下 graduated filtering 应比 binary 保留 >=0.5pp MMLU（v2: fix HF mirror）。机制同 v1：低污染时 gen-1 有训练价值，binary 全丢造成数据损失。\", \"conclusion\": \"failed\", \"failure_reason\": \"CUDA OOM during lm_eval MMLU 5-shot (batch_size=8, logits tensor exceeds 24GB)\", \"checkpoint_path\": \"N/A (crashed before checkpoint)\", \"completed_at\": \"2026-05-17T00:22:50.958Z\", \"parent\": \"exp_009_dose_10pct\"}, \"exp_009_dose_50pct\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T22:22:14.703Z\", \"updated_at\": \"2026-05-17T02:57:28.163Z\", \"spec\": {\"command\": \"python scripts/exp009_dose_response.py --ratio 0.5 --device cuda:0 --num_seeds 5\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"pid\": \"81595\", \"log_path\": \"~/runs/gen-depth-contamination/exp_009_dose_50pct.log\", \"submitted_at\": \"2026-05-16T22:23:09.679Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_009_dose_response/ratio_50/\", \"data_count\": 5000, \"model_name\": \"Qwen2.5-1.5B (continued pretraining)\", \"seed\": 42, \"checkpoint_source\": \"pretrained Qwen2.5-1.5B\", \"eval_data\": \"MMLU + HellaSwag via lm-eval-harness\", \"wall_clock_seconds\": 7180.5, \"gpu_hours\": 1.99}, \"hypothesis\": \"50% synthetic injection 下，graduated filtering 应展现最大优势（>=2pp MMLU），因为半数数据为合成时 binary filtering 的激进丢弃导致严重数据饥饿，而 graduated 保留 gen-1 维持训练集规模。\", \"conclusion\": \"failed\", \"failure_reason\": \"HF Hub network instability (httpx client closed)\", \"checkpoint_path\": \"N/A (crashed before checkpoint)\", \"completed_at\": \"2026-05-17T00:22:50.142Z\", \"parent\": \"exp_006_graduated_filtering\"}, \"exp_009_dose_30pct\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T22:22:12.817Z\", \"updated_at\": \"2026-05-17T02:57:27.096Z\", \"spec\": {\"command\": \"python scripts/exp009_dose_response.py --ratio 0.3 --device cuda:0 --num_seeds 5\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:2\"], \"pid\": \"81453\", \"log_path\": \"~/runs/gen-depth-contamination/exp_009_dose_30pct.log\", \"submitted_at\": \"2026-05-16T22:23:07.791Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_009_dose_response/ratio_30/\", \"data_count\": 5000, \"model_name\": \"Qwen2.5-1.5B (continued pretraining)\", \"seed\": 42, \"checkpoint_source\": \"pretrained Qwen2.5-1.5B\", \"eval_data\": \"MMLU + HellaSwag via lm-eval-harness\", \"wall_clock_seconds\": 7181.6, \"gpu_hours\": 1.99}, \"hypothesis\": \"30% synthetic injection 下，graduated filtering 优势应大于 10% 场景（>=1pp MMLU），因为更高污染率意味着 binary filtering 丢弃更多可用 gen-1 数据，而 graduated 仅移除 gen-2+ 有害部分。\", \"conclusion\": \"failed\", \"failure_reason\": \"HF Hub network instability (httpx client closed)\", \"checkpoint_path\": \"N/A (crashed before checkpoint)\", \"completed_at\": \"2026-05-17T00:22:49.399Z\", \"parent\": \"exp_006_graduated_filtering\"}, \"exp_009_dose_10pct\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T22:22:10.924Z\", \"updated_at\": \"2026-05-17T02:57:26.151Z\", \"spec\": {\"command\": \"python scripts/exp009_dose_response.py --ratio 0.1 --device cuda:0 --num_seeds 5\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"81311\", \"log_path\": \"~/runs/gen-depth-contamination/exp_009_dose_10pct.log\", \"submitted_at\": \"2026-05-16T22:23:05.447Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_009_dose_response/ratio_10/\", \"data_count\": 5000, \"model_name\": \"Qwen2.5-1.5B (continued pretraining)\", \"seed\": 42, \"checkpoint_source\": \"pretrained Qwen2.5-1.5B\", \"eval_data\": \"MMLU + HellaSwag via lm-eval-harness\", \"wall_clock_seconds\": 7183.1, \"gpu_hours\": 2.0}, \"hypothesis\": \"10% synthetic injection 下，graduated filtering 应比 binary filtering 保留更多 MMLU 性能（>=0.5pp），因为低污染场景中 gen-1 文本仍有训练价值，binary 全部丢弃造成不必要的数据损失。\", \"conclusion\": \"failed\", \"failure_reason\": \"HF Hub network instability (httpx client closed)\", \"checkpoint_path\": \"N/A (crashed before checkpoint)\", \"completed_at\": \"2026-05-17T00:22:48.595Z\", \"parent\": \"exp_006_graduated_filtering\"}, \"exp_kstar_theta\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:08:01.704Z\", \"updated_at\": \"2026-05-17T02:56:51.877Z\", \"hypothesis\": \"K*(θ) 曲线在 θ∈[0.55,0.65] 存在 plateau（K* 对阈值不敏感），且 Cohen's h 在 depth=K* 到 depth=K*+1 间降至 < 0.2（小效应量），为 θ=0.60 提供非任意性理论依据。\", \"spec\": {\"command\": \"python scripts/plot_kstar_theta.py\", \"server\": \"westc-26893\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/ (bootstrap CI AUCs)\", \"data_count\": 20000, \"model_name\": \"N/A (CPU: K*(θ) visualization)\", \"seed\": \"N/A\", \"note\": \"FR-1 rebuttal: K*(θ) curve for 4 models × 5 depth pairs\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/kstar_theta_curve.pdf\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/scripts/plot_kstar_theta.py\", \"metrics\": {\"output_files\": [\"kstar_theta_curve.pdf (32KB)\", \"kstar_theta_curve.png (335KB)\"], \"models\": [\"Qwen-rewrite\", \"Pythia\", \"OLMo\", \"Qwen-cont\"], \"depth_pairs\": 5, \"key_finding\": \"All 4 models show AUC ≥0.993 at 0v1, decaying to ~0.50-0.53 at 4v5. θ=0.60 is justified as natural K*=2 boundary across all models. FR-1 Critical resolved.\"}, \"completed_at\": \"2026-05-15T15:08:25.181Z\"}, \"exp_022_cross_scorer_matrix\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T04:52:14.132Z\", \"updated_at\": \"2026-05-17T02:56:47.329Z\", \"hypothesis\": \"Self-scoring（generator=scorer）的 K* 和 pairwise AUC 应与 cross-scoring（generator≠scorer）差异 < 0.02，证明 K*=2 不是 scorer-generator familiarity artifact，而是文本本身的可区分性边界。\", \"parent\": \"exp_A_alt_scorer\", \"spec\": {\"command\": \"bash scripts/exp022_cross_scorer_matrix.sh\", \"server\": \"cqa1-22115\", \"data_path\": \"data_exp016_qwen_base + data_exp020_pythia_greedy + data/exp_021_length_256\", \"data_count\": 5000, \"model_name\": \"cross: Qwen2.5-1.5B/Pythia-1.4B/OLMo-1B/Qwen2.5-1.5B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"pretrained\", \"eval_data\": \"cross-scorer matrix on existing depth chains\"}, \"notes\": \"2026-05-16 15:05: 双 GPU 并行。cuda:1 跑 2×2 子矩阵 (PID 49787, Qwen-cont/Pythia × Qwen-base/Pythia)。cuda:3 跑 3×4=12 组合 (先跑已缓存模型 6 combo，等下载 Qwen-Instruct/OLMo 后补剩余 6)。OLMo generator 无 depth chain 数据，实际 3 generators × 4 scorers。\", \"conclusion\": \"success\", \"metrics\": {\"total_combos\": 12, \"completed\": 12, \"K_star_distribution\": {\"K2\": 11, \"K1\": 1}, \"matrix\": {\"pythia_greedy×olmo\": {\"K_star\": 2, \"1v2\": 0.8811}, \"pythia_greedy×pythia\": {\"K_star\": 2, \"1v2\": 0.8838}, \"pythia_greedy×qwen_base\": {\"K_star\": 2, \"1v2\": 0.8814}, \"pythia_greedy×qwen_instruct\": {\"K_star\": 2, \"1v2\": 0.8818}, \"qwen_base×olmo\": {\"K_star\": 2, \"1v2\": 0.6047}, \"qwen_base×pythia\": {\"K_star\": 2, \"1v2\": 0.617}, \"qwen_base×qwen_base\": {\"K_star\": 2, \"1v2\": 0.6262}, \"qwen_base×qwen_instruct\": {\"K_star\": 2, \"1v2\": 0.6273}, \"qwen_cont256×olmo\": {\"K_star\": 2, \"1v2\": 0.6028}, \"qwen_cont256×pythia\": {\"K_star\": 1, \"1v2\": 0.5979}, \"qwen_cont256×qwen_base\": {\"K_star\": 2, \"1v2\": 0.6282}, \"qwen_cont256×qwen_instruct\": {\"K_star\": 2, \"1v2\": 0.6072}}, \"key_finding\": \"Scorer independence confirmed: K*=2 in 11/12 combos. Only exception: qwen_cont256×pythia (1v2=0.5979, borderline). Pythia-greedy 1v2~0.88 due to repetition collapse. Scorer choice Δ1v2 < 0.025 within each generator.\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/logs/exp022_cross_scorer.log\", \"completed_at\": \"2026-05-16T18:56:44.226Z\"}, \"exp_008_retrain_chain_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T21:57:55.644Z\", \"updated_at\": \"2026-05-17T00:23:00.448Z\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp008_retrain_chain.py --device cuda:0\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"pid\": \"77098\", \"log_path\": \"~/runs/gen-depth-contamination/exp_008_retrain_chain_v2.log\", \"submitted_at\": \"2026-05-16T21:57:55.512Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_008_retrain_chain/\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b + LoRA (rank=16, alpha=32)\", \"seed\": 42, \"checkpoint_source\": \"pretrained + per-generation LoRA fine-tune\", \"eval_data\": \"C4 5K docs, retrain-chain depth 0-4\", \"wall_clock_seconds\": 8704.9, \"gpu_hours\": 2.42}, \"hypothesis\": \"Retrain-chain ecological validity (v2, fix: labels padding bug): Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"parent\": \"exp_001_pythia_depth\", \"metrics\": {\"k_star\": \">=4\", \"pairwise_auc\": {\"0v1\": 0.9847, \"1v2\": 0.9484, \"2v3\": 0.8888, \"3v4\": 0.7982}, \"pairwise_jsd\": {\"0v1\": 0.17, \"1v2\": 0.12, \"2v3\": 0.064, \"3v4\": 0.04}, \"key_finding\": \"Retrain-chain K*>=4, all pairs AUC>>0.60. LoRA adaptation artifacts make generations highly distinguishable. Prompt-chain K*=2 is text-intrinsic boundary.\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/outputs/exp_008_retrain_chain/\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T00:23:00.448Z\"}, \"exp-008-retrain-chain\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T19:31:01.383Z\", \"updated_at\": \"2026-05-16T22:16:29.240Z\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp008_retrain_chain.py --device cuda:0\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:0\"], \"pid\": \"71944\", \"log_path\": \"~/runs/gen-depth-contamination/exp-008-retrain-chain.log\", \"submitted_at\": \"2026-05-16T19:31:01.254Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_008_retrain_chain/\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b + LoRA (rank=16, alpha=32)\", \"seed\": 42, \"checkpoint_source\": \"pretrained + per-generation LoRA fine-tune\", \"eval_data\": \"C4 5K docs, retrain-chain depth 0-4\", \"wall_clock_seconds\": 5771.2, \"gpu_hours\": 1.6}, \"hypothesis\": \"Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\", \"parent\": \"exp_001_pythia_depth\", \"failure_reason\": \"Traceback → le \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/tokenization_utils_base.py\\\", line 701, in as_tensor return torch.tensor(value, dtype=dtype) ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ValueError: expected sequence of length 256 at dim 1 (got 228)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-16T21:07:12.427Z\", \"notes\": \"2026-05-16: 失败原因——TextDataset.__getitem__ 同时返回变长 input_ids 和 labels，DataCollatorForLanguageModeling 只 pad input_ids，导致 labels 长度不一致无法转 tensor。修复：移除 __getitem__ 中的 labels 字段，让 collator 自动处理。v2 已提交。\"}, \"exp_025_pythia_arxiv\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T17:16:13.988Z\", \"updated_at\": \"2026-05-16T19:22:57.204Z\", \"hypothesis\": \"Domain × model interaction: Pythia-1.4B on arXiv data 的 K* 是否与 exp-024 (Qwen on arXiv, K*=?) 一致？验证 arXiv domain effect 跨模型一致性，排除 Qwen-specific artifact。Pythia-1.4B continuation, nucleus p=0.95 T=1.0, 2200 docs, depth 0-5, scorer=Qwen2.5-1.5B base。\", \"parent\": \"exp_024_arxiv_domain\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && CUDA_VISIBLE_DEVICES=1 python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --generation_mode continuation --top_p 0.95 --temperature 1.0 --num_samples 2200 --max_depth 5 --batch_size 8 --feat_batch_size 16 --data_dir data/exp_025_pythia_arxiv --results_dir results/exp_025_pythia_arxiv\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"67006\", \"log_path\": \"~/runs/gen-depth-contamination/exp_025_pythia_arxiv.log\", \"submitted_at\": \"2026-05-16T17:59:52.930Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_025_pythia_arxiv/\", \"data_count\": 2200, \"model_name\": \"EleutherAI/pythia-1.4b\", \"seed\": 42, \"checkpoint_source\": \"pretrained (EleutherAI/pythia-1.4b)\", \"eval_data\": \"arXiv abstracts depth chains (shared seed data from exp-024)\", \"wall_clock_seconds\": 4984.3, \"gpu_hours\": 1.38}, \"reproduce\": {\"finished_at\": \"2026-05-16T18:57:28.981Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T18:57:30.288692+00:00\"}]}, \"metrics\": {\"k_star\": 3, \"pairwise_auc\": {\"0v1\": 0.9877, \"1v2\": 0.8047, \"2v3\": 0.6545, \"3v4\": 0.5507, \"4v5\": 0.5287}, \"pairwise_jsd\": {\"0v1\": 0.171338, \"1v2\": 0.057344, \"2v3\": 0.019524, \"3v4\": 0.009917, \"4v5\": 0.008846}, \"bootstrap_ci\": {\"0v1\": {\"auc\": 0.9876, \"ci_lower\": 0.9851, \"ci_upper\": 0.99, \"perm_p\": 0.0001}, \"1v2\": {\"auc\": 0.8047, \"ci_lower\": 0.7934, \"ci_upper\": 0.8162, \"perm_p\": 0.0001}, \"2v3\": {\"auc\": 0.6544, \"ci_lower\": 0.6401, \"ci_upper\": 0.6688, \"perm_p\": 0.0001}, \"3v4\": {\"auc\": 0.55, \"ci_lower\": 0.534, \"ci_upper\": 0.5657, \"perm_p\": 0.0001}, \"4v5\": {\"auc\": 0.5284, \"ci_lower\": 0.5122, \"ci_upper\": 0.5443, \"perm_p\": 0.001}}, \"bootstrap_resamples\": 10000, \"permutation_resamples\": 10000, \"n_samples\": 2200, \"top_features\": [\"freq_entropy\", \"surp_std\", \"surp_mean\", \"surp_d1_skew\", \"surp_d1_mean\"], \"ordinal\": {\"MAE\": 0.8518, \"Accuracy\": 0.4545}, \"key_finding\": \"Pythia-1.4B on arXiv yields K*=3, identical to exp-024 (Qwen on arXiv). 2v3 CI lower=0.6401 > θ=0.60. Domain saturation depth is model-invariant for arXiv.\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/logs/exp_025_pythia_arxiv.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T19:22:57.204Z\"}, \"exp_020_pythia_decoding\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T04:52:13.036Z\", \"updated_at\": \"2026-05-16T17:18:28.366Z\", \"hypothesis\": \"Pythia-1.4B 解码消融：4 个 decoding config (greedy/nuc p=0.9/T=0.7/T=1.2) 的 K* 是否一致？与 exp-003 (Qwen) 平行，验证 decoding 效应跨模型一致性。C4 5K, depth 0-5。\", \"parent\": \"exp_003_decoding_ablation\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-16T04:57:46.476Z\"}, \"spec\": {\"command\": \"nohup bash -c 'CUDA_VISIBLE_DEVICES=2 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache bash scripts/exp020_pythia_decoding.sh' > /tmp/exp020_pythia_decoding.log 2>&1 &\", \"server\": \"cqa1-22115\", \"data_path\": \"data_exp020_pythia_{greedy,nuc09,t07,t12}/\", \"data_count\": 20000, \"model_name\": \"EleutherAI/pythia-1.4b (fp16)\", \"seed\": 42, \"generation_mode\": \"continuation (4 decoding configs: greedy/nuc09/t07/t12)\", \"pid\": 14551, \"log_path\": \"/tmp/exp020_pythia_decoding.log\", \"note\": \"Worker 误用 nohup 而非 submit_training_job，已补注册 cron 监控 (PID 14551)。原 PID 13076 已被 kill。\"}, \"notes\": \"greedy 1v2 AUC=0.8838 调查完成：根因为 Pythia-1.4B greedy 级联重复坍塌（4-gram repeat rate: d0=0.01→d1=0.72→d2=0.81; TTR: d0=0.72→d1=0.19→d2=0.14）。hapax_ratio (d=1.06) 和 low_freq_ratio (d=1.03) 是 top 贡献特征。非 bug，参数正确，无数据泄漏。K*=2 不受影响。建议论文标注为 repetition-dominated regime。| Bootstrap CI (10000 iter): t07 2v3 AUC=0.5939 CI [0.5855, 0.6025] BORDERLINE (CI upper crosses θ); t12 1v2 AUC=0.6170 CI [0.6071, 0.6270] PASS。\", \"conclusion\": \"success\", \"metrics\": {\"greedy\": {\"K_star\": 2, \"auc\": {\"0v1\": 0.9992, \"1v2\": 0.8838, \"2v3\": 0.5342, \"3v4\": 0.5228, \"4v5\": 0.5162}}, \"nuc09\": {\"K_star\": 2, \"auc\": {\"0v1\": 0.9948, \"1v2\": 0.677, \"2v3\": 0.5549, \"3v4\": 0.5299, \"4v5\": 0.5013}}, \"t07\": {\"K_star\": 2, \"auc\": {\"0v1\": 0.9965, \"1v2\": 0.7265, \"2v3\": 0.5941, \"3v4\": 0.5698, \"4v5\": 0.5284}}, \"t12\": {\"K_star\": 2, \"auc\": {\"0v1\": 0.9933, \"1v2\": 0.6172, \"2v3\": 0.5226, \"3v4\": 0.517, \"4v5\": 0.5051}}}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results_exp020_pythia_{greedy,nuc09,t07,t12}/\", \"log_path\": \"/tmp/exp020_pythia_decoding.log\", \"completed_at\": \"2026-05-16T14:41:33.153Z\"}, \"exp_021_length_ablation\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-16T04:52:13.569Z\", \"updated_at\": \"2026-05-16T17:18:21.506Z\", \"hypothesis\": \"文本长度消融：128/256/512 tokens 下 K* 是否稳定？验证 K*=2 不依赖于 256-token 固定长度设定。Qwen2.5-1.5B (base) continuation, C4 5K, depth 0-5。\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-16T04:57:47.040Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"completed_at\": \"2026-05-16T06:23:09.413Z\", \"notes\": \"2026-05-16 retry#2: 用本地 C4 数据修复。数据源=/root/autodl-tmp/gen-depth-contamination/data_exp016_qwen_base/depth_0.jsonl (5000行)，复制到 data/exp_021_length_{128,256,512}/。设置 HF_DATASETS_OFFLINE=1 + TRANSFORMERS_OFFLINE=1 阻断 HF 网络调用，prepare_seed_data 检测到本地文件自动跳过 streaming。PID 20982, tmux session exp_021_length_ablation。\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"2026-05-16: 崩溃原因确认——脚本未执行 `source /etc/network_turbo`，导致 AutoDL 网络代理未启用，HuggingFace C4 数据集下载失败 (RuntimeError: Cannot send a request, as the client has been closed / Errno 99: Cannot assign requested address)。三个长度 (128/256/512) 全部未完成，无任何产出。cuda:3 已空闲。需重跑并修复网络配置。\"}}, \"spec\": {\"command\": \"bash -c \\\"export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && cd /root/autodl-tmp/gen-depth-contamination && bash scripts/exp021_length_ablation.sh\\\"\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:3\"], \"pid\": \"20982\", \"log_path\": \"~/runs/gen-depth-contamination/exp_021_length_ablation.log\", \"submitted_at\": \"2026-05-16T07:13:09.587Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp016_qwen_base/depth_0.jsonl (local C4, copied to data/exp_021_length_{128,256,512}/)\", \"data_count\": 5000, \"model_name\": \"Qwen2.5-1.5B (base)\", \"seed\": 42, \"generation_mode\": \"continuation\", \"max_new_tokens\": [128, 256, 512], \"max_depth\": 5, \"batch_size\": 16, \"checkpoint_path\": \"results/exp_021_length_{128,256,512}\", \"description\": \"Retry#2: local C4 data, HF_DATASETS_OFFLINE=1, 3 length configs sequential on cuda:3\", \"wall_clock_seconds\": 29523.5, \"gpu_hours\": 8.2}, \"conclusion\": \"success\", \"metrics\": {\"128tok\": {\"K_star\": 2, \"1v2_auc\": 0.6219}, \"256tok\": {\"K_star\": 2, \"1v2_auc\": 0.6282}, \"512tok\": {\"K_star\": 2, \"1v2_auc\": 0.6073}, \"all_K_star_2\": true, \"bootstrap_ci\": {\"512tok_1v2\": {\"auc\": 0.6073, \"ci_lower\": 0.5979, \"ci_upper\": 0.6166, \"perm_p\": 0.0001, \"verdict\": \"BORDERLINE\"}}}}, \"exp_018_llama8b_depth\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T04:52:11.229Z\", \"updated_at\": \"2026-05-16T16:18:02.754Z\", \"hypothesis\": \"Cross-family K* 验证：LLaMA-3.1-8B continuation mode 的 K* 是否 = 2？首次超出 Qwen 家族，验证 K* universality 跨模型架构。C4 5K, depth 0-5, scorer=Qwen2.5-1.5B base。\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-16T04:57:44.549Z\", \"finished_at\": \"2026-05-16T15:35:57.336Z\", \"training_hours\": 10.64}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --generation_mode continuation --num_samples 5000 --max_depth 5 --batch_size 4 --feat_batch_size 8 --data_dir data/exp_018_llama8b --results_dir results/exp_018_llama8b\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:0 (RTX 4090D 24GB)\", \"data_path\": \"C4 validation (HuggingFace streaming)\", \"data_count\": 5000, \"model_name\": \"LLaMA-3.1-8B (Meta-Llama-3.1-8B)\", \"scorer\": \"Qwen2.5-1.5B base\", \"seed\": 42, \"generation_mode\": \"continuation\", \"max_depth\": 5, \"batch_size\": 4, \"feat_batch_size\": 8, \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/logs/exp_018_llama8b.log\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_018_llama8b\", \"description\": \"Cross-family K* validation: LLaMA-3.1-8B generates depth chain, Qwen2.5-1.5B base scores surprisal features\"}, \"failure_reason\": \"null — cron 误报，实验实际成功\", \"conclusion\": \"success\", \"pid\": 10403, \"gpu_id\": \"cuda:0\", \"completed_at\": \"2026-05-16T15:35:57.947Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T15:35:59.527502+00:00\"}]}, \"notes\": \"2026-05-16 日志诊断：实验实际已成功完成(K*=2, AUC 1v2=0.6123)，Pipeline complete 正常退出。被 cron 误判 failed 原因：进程正常结束后 PID 10403 消失，无 sentinel/W&B 信号，监控 5× 检查后 auto-resolve 为 failed。结果文件完整存在于 results/exp_018_llama8b/。应改 conclusion=success。\", \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9225, \"1v2\": 0.6123, \"2v3\": 0.5274, \"3v4\": 0.5138, \"4v5\": 0.5097}, \"jsd\": {\"0v1\": 0.077, \"1v2\": 0.012, \"2v3\": 0.005}, \"bootstrap_ci\": {\"0v1\": {\"auc\": 0.9224, \"ci_lower\": 0.9174, \"ci_upper\": 0.9272, \"perm_p\": 0.0001}, \"1v2\": {\"auc\": 0.6123, \"ci_lower\": 0.6028, \"ci_upper\": 0.6216, \"perm_p\": 0.0001}, \"2v3\": {\"auc\": 0.5273, \"ci_lower\": 0.5169, \"ci_upper\": 0.5378, \"perm_p\": 0.0001}, \"3v4\": {\"auc\": 0.5168, \"ci_lower\": 0.5062, \"ci_upper\": 0.5275, \"perm_p\": 0.0037}, \"4v5\": {\"auc\": 0.5159, \"ci_lower\": 0.5052, \"ci_upper\": 0.5268, \"perm_p\": 0.0035}}, \"bootstrap_resamples\": 10000, \"permutation_resamples\": 10000}}, \"exp_023_domain_ablation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T11:59:57.643Z\", \"updated_at\": \"2026-05-16T15:25:22.371Z\", \"hypothesis\": \"Domain ablation: Wikipedia 数据下 K*=2 是否成立？验证 K* 跨数据域（C4 vs Wikipedia）的稳定性。Qwen2.5-1.5B base, continuation, nucleus p=0.95 T=1.0, 5K docs, depth 0-5。\", \"spec\": {\"command\": \"bash scripts/exp023_wiki_domain.sh\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"pid\": 39530, \"log_path\": \"~/runs/gen-depth-contamination/exp_023_domain_ablation.log\", \"submitted_at\": \"2026-05-16T12:00:07.999Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/\", \"data_count\": 5000, \"model_name\": \"Qwen2.5-1.5B (base)\", \"seed\": 42, \"wall_clock_seconds\": 12314.4, \"gpu_hours\": 3.42}, \"conclusion\": \"success\", \"metrics\": {\"K_star\": 2, \"1v2_auc\": 0.6193, \"2v3_auc\": 0.5498, \"all_folds_above_060\": true, \"top_feature\": \"freq_entropy\", \"ordinal_accuracy\": 0.377}, \"checkpoint_path\": \"results_exp023_wiki_domain/\", \"log_path\": \"~/runs/gen-depth-contamination/exp_023_domain_ablation.log\", \"completed_at\": \"2026-05-16T15:25:22.371Z\"}, \"exp_019b_mistral_cross_scorer\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T11:22:44.822Z\", \"updated_at\": \"2026-05-16T11:56:59.892Z\", \"spec\": {\"command\": \"python scripts/run_pipeline.py --model_path mistral-7b --scorer_path qwen2.5-1.5b\", \"server\": \"cqa1-22115\", \"gpu\": [\"cuda:1\"], \"pid\": \"36365\", \"log_path\": \"~/runs/gen-depth-contamination/exp_019b_mistral_cross_scorer.log\", \"submitted_at\": \"2026-05-16T11:23:28.609Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp019b_mistral_cross\", \"data_count\": 5000, \"model_name\": \"mistral-7b-cross-qwen1.5b-scorer\", \"seed\": 42, \"checkpoint_source\": \"exp_019_mistral7b_depth\", \"eval_data\": \"data_exp019b_mistral_cross\", \"wall_clock_seconds\": 1938.5, \"gpu_hours\": 0.54}, \"hypothesis\": \"排除 self-scorer 因素：Mistral-7B depth chain 用 Qwen2.5-1.5B-base 评分后 K* 是否=2？如果 K*=2 则 exp-019 的 K*=1 是 self-scorer artifact；如果 K*=1 则是 Mistral 生成文本的固有特性。\", \"parent\": \"exp_019_mistral7b_depth\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results_exp019b_mistral_cross_scorer\", \"log_path\": \"~/runs/gen-depth-contamination/exp_019b_mistral_cross_scorer.log\", \"completed_at\": \"2026-05-16T11:55:47.111Z\", \"metrics\": {\"k_star\": 1, \"pairwise_auc\": {\"0v1\": 0.9209, \"1v2\": 0.5695, \"2v3\": 0.5335, \"3v4\": 0.514, \"4v5\": 0.5184}, \"bootstrap_ci\": {\"0v1\": {\"mean\": 0.9209, \"ci_lower\": 0.9189, \"ci_upper\": 0.9229, \"pass_060\": true}, \"1v2\": {\"mean\": 0.5696, \"ci_lower\": 0.5645, \"ci_upper\": 0.5746, \"pass_060\": false}, \"2v3\": {\"mean\": 0.5335, \"ci_lower\": 0.5283, \"ci_upper\": 0.5382, \"pass_060\": false}, \"3v4\": {\"mean\": 0.514, \"ci_lower\": 0.5063, \"ci_upper\": 0.5213, \"pass_060\": false}, \"4v5\": {\"mean\": 0.5183, \"ci_lower\": 0.5128, \"ci_upper\": 0.5244, \"pass_060\": false}}, \"jsd\": {\"0v1\": 0.08355, \"1v2\": 0.007642, \"2v3\": 0.004752, \"3v4\": 0.004255, \"4v5\": 0.003758}, \"ordinal_mae\": 1.3737, \"ordinal_accuracy\": 0.3179, \"top3_features\": [\"freq_entropy\", \"surp_d1_skew\", \"surp_d1_mean\"], \"key_finding\": \"Cross-scorer (Qwen-1.5B scoring Mistral text) confirms K*=1. 1v2 AUC=0.5695 (self-scorer was 0.5935) — cross-scorer LOWER, not higher. Mistral K*=1 is genuine (inherent to Mistral generations), NOT a self-scorer artifact.\"}, \"notes\": \"K*=1 confirmed genuine (not self-scorer artifact). Cross-scorer (Qwen-base) 1v2 AUC=0.5695 CI [0.5645, 0.5746] — 比 self-scorer (0.5935) 更低。换 scorer 后区分度下降，排除 self-scorer inflation 假说。Top-3 features 与 self-scorer 完全一致: freq_entropy, surp_d1_skew, surp_d1_mean。\"}, \"exp_019_mistral7b_depth\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T04:52:12.077Z\", \"updated_at\": \"2026-05-16T11:28:45.586Z\", \"hypothesis\": \"Cross-family K* 验证：Mistral-7B-v0.3 continuation mode 的 K* 是否 = 2？第二个非 Qwen 家族模型。C4 5K, depth 0-5, scorer=Mistral-7B-v0.3 (self-scorer)。与 exp-001/002/017 self-scoring 方法一致，exp_A_alt_scorer 已证明 scorer 不影响 K*。\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-22115\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-16T04:57:45.553Z\"}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-v0___3 --data_dir data_exp019_mistral7b --results_dir results_exp019_mistral7b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation\", \"server\": \"cqa1-22115\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp019_mistral7b\", \"data_count\": 5000, \"model_name\": \"mistralai/Mistral-7B-v0.3 (fp16)\", \"scorer\": \"Mistral-7B-v0.3 (self-scorer, 与 exp-001/002/017 一致)\", \"seed\": 42, \"generation_mode\": \"continuation\"}, \"failure_reason\": \"\", \"conclusion\": \"success\", \"pid\": 12147, \"gpu_id\": \"cuda:1\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results_exp019_mistral7b/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/exp019.log\", \"completed_at\": \"2026-05-16T11:17:08.348Z\", \"metrics\": {\"k_star\": 1, \"pairwise_auc\": {\"0v1\": 0.9843, \"1v2\": 0.5935, \"2v3\": 0.5402, \"3v4\": 0.5232, \"4v5\": 0.5181}, \"bootstrap_ci_1v2\": {\"ci_lower\": 0.5835, \"ci_upper\": 0.6032, \"p_auc_leq_060\": 0.9017}, \"jsd\": {\"0v1\": 0.124194, \"1v2\": 0.008051, \"2v3\": 0.005047, \"3v4\": 0.004516, \"4v5\": 0.004109}, \"ordinal_mae\": 1.2275, \"ordinal_accuracy\": 0.3567, \"top3_features\": [\"freq_entropy\", \"surp_d1_skew\", \"surp_d1_mean\"]}, \"notes\": \"K*=1 (非预期的 K*=2)。1v2 AUC=0.5935±0.0054，低于 θ=0.60 阈值仅 0.0065。边界线结果，需 bootstrap CI 确认。0v1 AUC=0.9843 强可区分。Self-scorer (Mistral-7B)。cuda:1 已空闲。\"}, \"exp_016_base_vs_instruct\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-16T01:01:55.079Z\", \"updated_at\": \"2026-05-16T05:04:51.120Z\", \"hypothesis\": \"Base vs Instruct K* 对比：Qwen2.5-1.5B (base) continuation mode 的 K* 是否与 exp-017 (Instruct continuation, K*=2) 一致？封堵 \\\"K*=2 是 instruct-tuning 副产物\\\" 攻击面。唯一变量 = base vs instruct。\", \"parent\": \"exp_017_qwen_continuation\", \"server\": \"cqa1-22115\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westc-26893\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-16T01:02:43.478Z\"}, \"completed_at\": \"2026-05-16T03:22:38.539Z\", \"notes\": \"2026-05-16: Resumed on cqa1-22115 (migrated from westc-26893). Depth 0-3 complete, generating depth 4-5. PID=3442 on cuda:0.\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"2026-05-16: Resumed on cqa1-22115 (migrated from westc-26893). Depth 0-3 complete, generating depth 4-5. PID=3442 on cuda:0.\"}}, \"spec\": {\"command\": \"python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data_dir data_exp016_qwen_base --results_dir results_exp016_qwen_base --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\", \"server\": \"cqa1-22115\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp016_qwen_base\", \"data_count\": 5000, \"model_name\": \"Qwen/Qwen2.5-1.5B (base, fp16)\", \"seed\": 42, \"generation_mode\": \"continuation\", \"scorer\": \"Qwen2.5-1.5B (base)\", \"gpu\": [\"cuda:0\"], \"tmux_session\": \"exp016\", \"log_path\": \"/tmp/exp016.log\", \"note\": \"Retry #1: Resumed on cqa1-22115 after westc-26893 restart. Depth 0-3 migrated via rsync.\", \"checkpoint_source\": \"N/A (standalone generation, not eval)\", \"eval_data\": \"C4 validation 5000 samples\"}, \"conclusion\": \"success\", \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.987, \"1v2\": 0.6262, \"2v3\": 0.5496, \"3v4\": 0.5294, \"4v5\": 0.5182}, \"pairwise_auc_std\": {\"0v1\": 0.0015, \"1v2\": 0.0152, \"2v3\": 0.0067, \"3v4\": 0.0132, \"4v5\": 0.0139}, \"pairwise_jsd\": {\"0v1\": 0.163726, \"1v2\": 0.01081, \"2v3\": 0.005311, \"3v4\": 0.003942, \"4v5\": 0.003522}, \"ordinal_mae\": 1.1691, \"ordinal_accuracy\": 0.3719, \"top_features\": [\"freq_entropy\", \"surp_std\", \"surp_d1_skew\", \"surp_d1_mean\", \"surp_mean\"], \"n_samples\": 30000, \"bootstrap_ci\": {\"0v1\": {\"auc\": 0.987, \"ci_lower\": 0.9853, \"ci_upper\": 0.9885, \"perm_p\": 0.0001}, \"1v2\": {\"auc\": 0.626, \"ci_lower\": 0.6168, \"ci_upper\": 0.6353, \"perm_p\": 0.0001}, \"2v3\": {\"auc\": 0.5496, \"ci_lower\": 0.5397, \"ci_upper\": 0.56, \"perm_p\": 0.0001}, \"3v4\": {\"auc\": 0.5293, \"ci_lower\": 0.5188, \"ci_upper\": 0.5399, \"perm_p\": 0.0001}, \"4v5\": {\"auc\": 0.5181, \"ci_lower\": 0.5075, \"ci_upper\": 0.5288, \"perm_p\": 0.0016}}, \"bootstrap_resamples\": 10000, \"permutation_resamples\": 10000, \"key_finding\": \"K*=2 for base model confirmed with bootstrap CI. 1v2 AUC=0.626, 95% CI=[0.6168, 0.6353], CI lower=0.6168 > θ=0.60 (PASS). All pairs significant (p≤0.0016). Fold 0 1v2=0.5963 is an outlier but aggregate CI robustly above threshold. Base 1v2 CI [0.6168, 0.6353] overlaps with Instruct 1v2 CI [0.6015, 0.6213] — no significant base-vs-instruct difference.\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results_exp016_qwen_base/\", \"log_path\": \"/tmp/exp016.log\"}, \"exp_003_decoding_ablation\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-12T20:06:25.260Z\", \"updated_at\": \"2026-05-16T03:06:04.938Z\", \"hypothesis\": \"解码策略调控 K*：不同 top_p/temperature 设置是否改变饱和边界（greedy→更低 K*? 高温度→更高 K*?）\", \"failure_reason\": \"SSH check failed 5x — last error: Unknown server 'autodl-4090d'. Available: ['westc-26893']\", \"completed_at\": \"2026-05-13T15:35:29.038Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T15:35:30.207607+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T20:22:20.803872+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: SSH 别名变更 (autodl-4090d → westc-26893)，cron 监控 5 次连不上后标记 failed。初步诊断: 日志在 westc-26893 上可读，config 2 (nucleus_p0.9_t1.0) 已完成并输出 K*=2，config 3 (nucleus_p0.95_t0.7) 在 depth 4 进度 ~90% 时日志截止。实验可能已完成或部分完成。Worker worker_diagnose_exp_003_decoding_ablation_20260513T153757 正在深入诊断。\"}}, \"notes\": \"Server alias 变更 autodl-4090d → westc-26893 导致 cron 误标 failed。实际实验一直正常运行。Config 1 (greedy, K*=2), Config 2 (nuc p=0.9/T=1.0, K*=2), Config 3 (nuc p=0.95/T=0.7, K*=2) 已完成。Config 4 (nuc p=0.95/T=1.2) 运行中。深度分析: 1v2 AUC Δ<0.003 across configs, D016 universality confirmed (all 7 configs > θ=0.60), θ-sensitivity K* profile identical across 3 configs. 分析脚本 scripts/exp003_analyze_all_configs.py 已部署。\", \"spec\": {\"command\": \"python scripts/exp003_analyze_all_configs.py\", \"server\": \"westc-26893\", \"gpu\": [\"cuda:0\"], \"pid\": \"29459\", \"log_path\": \"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp003_*\", \"data_count\": 4, \"model_name\": \"Qwen/Qwen2.5-1.5B-Instruct\", \"seed\": 42, \"configs\": \"4 ablation configs: greedy, nucleus p=0.9/T=1.0, nucleus p=0.95/T=0.7, nucleus p=0.95/T=1.2\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp003_*\", \"log_path_note\": \"server renamed from autodl-4090d to westc-26893\"}, \"metrics\": {\"K_star\": 2, \"K_star_robust\": true, \"bootstrap_ci\": {\"config1_greedy\": {\"0v1\": {\"auc\": 0.9796, \"ci\": [0.9772, 0.982], \"perm_p\": 0}, \"1v2\": {\"auc\": 0.6892, \"ci\": [0.6802, 0.6982], \"perm_p\": 0}, \"2v3\": {\"auc\": 0.5612, \"ci\": [0.5517, 0.5705], \"perm_p\": 0}, \"3v4\": {\"auc\": 0.5405, \"ci\": [0.5308, 0.5502], \"perm_p\": 0}, \"4v5\": {\"auc\": 0.5137, \"ci\": [0.5033, 0.5238], \"perm_p\": 0.0082}}, \"config2_nuc09\": {\"0v1\": {\"auc\": 0.9945, \"ci\": [0.9934, 0.9956], \"perm_p\": 0}, \"1v2\": {\"auc\": 0.6862, \"ci\": [0.6774, 0.6951], \"perm_p\": 0}, \"2v3\": {\"auc\": 0.5917, \"ci\": [0.5824, 0.601], \"perm_p\": 0, \"note\": \"CI upper crosses theta=0.60\"}, \"3v4\": {\"auc\": 0.5468, \"ci\": [0.5369, 0.5568], \"perm_p\": 0}, \"4v5\": {\"auc\": 0.5066, \"ci\": [0.4959, 0.5173], \"perm_p\": 0.1199}}, \"config3_t07\": {\"0v1\": {\"auc\": 0.9877, \"ci\": [0.9857, 0.9896], \"perm_p\": 0}, \"1v2\": {\"auc\": 0.6885, \"ci\": [0.6797, 0.697], \"perm_p\": 0}, \"2v3\": {\"auc\": 0.5901, \"ci\": [0.5806, 0.5996], \"perm_p\": 0}, \"3v4\": {\"auc\": 0.539, \"ci\": [0.5288, 0.5493], \"perm_p\": 0}, \"4v5\": {\"auc\": 0.5348, \"ci\": [0.5243, 0.5454], \"perm_p\": 0}}, \"config4_t12\": {\"0v1\": {\"auc\": 0.9982, \"ci\": [0.9975, 0.9987], \"perm_p\": 0}, \"1v2\": {\"auc\": 0.7037, \"ci\": [0.6945, 0.7126], \"perm_p\": 0}, \"2v3\": {\"auc\": 0.582, \"ci\": [0.5722, 0.5917], \"perm_p\": 0}, \"3v4\": {\"auc\": 0.5293, \"ci\": [0.5185, 0.5399], \"perm_p\": 0}, \"4v5\": {\"auc\": 0.5237, \"ci\": [0.5132, 0.5347], \"perm_p\": 0.0001}}, \"resamples\": 10000, \"method\": \"GroupKFold(5) OOF + doc-level bootstrap + label permutation\"}}, \"reproduce\": {\"finished_at\": \"2026-05-13T20:22:19.870Z\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis.json\", \"log_path\": \"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\", \"conclusion\": \"success\"}, \"exp_004_7b_crossscale\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-15T11:08:22.198Z\", \"updated_at\": \"2026-05-15T23:37:24.772Z\", \"hypothesis\": \"K*=2 在 7B scale 下是否成立？Qwen2.5-7B continuation mode, C4 5K seeds, scorer=Qwen2.5-1.5B。Reviewer R2 Critical: 现有实验仅 ≤1.5B\", \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"reproduce\": {\"finished_at\": \"2026-05-15T23:11:49.043Z\"}, \"completed_at\": \"2026-05-15T22:26:45.097Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:26:46.220502+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T23:11:50.215210+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"进程 5 次死亡无 W&B metrics，cron 自动标记 failed。诊断中：Worker worker_diagnose_exp_004_7b_crossscale_20260515T222832 正在查日志。模型加载成功(14530MB)，C4 采样有进度，日志末尾异常出现 transformers 全量模型列表。待诊断完成后确定 root cause 和重试方案。\"}}, \"notes\": \"初始运行因进程死亡 5 次被 cron 标记 failed（原 log: exp004_run.log 无 W&B sentinel）。诊断 Worker 发现数据生成已完成，重跑 feature extraction + classification（exp004_resume_feat.sh）后成功。K*=2 在 7B scale 下确认成立。0v1 AUC=0.964 低于所有 1.5B 模型（>0.99），符合预期：更大模型生成更 human-like 文本。1v2=0.618 仍 >θ=0.60。FR-4 Warning resolved。\", \"spec\": {\"hypothesis\": \"K*=2 在 7B scale 下是否成立？Qwen2.5-7B continuation mode, C4 5K seeds, scorer=Qwen2.5-1.5B\", \"server\": \"westc-26893\", \"model_name\": \"Qwen/Qwen2.5-7B (fp16, 14.5GB) + Qwen2.5-1.5B-Instruct (scorer)\", \"data_count\": 5000, \"seed\": 42, \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && bash scripts/exp004_resume_feat.sh\\\"\", \"gpu\": [\"cuda:0\"], \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp004_qwen7b\", \"note\": \"Resume: data generation complete, rerunning feature extraction + classification with corrected scorer path. PID 127516.\"}, \"conclusion\": \"success\", \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9644, \"1v2\": 0.6178, \"2v3\": 0.546, \"3v4\": 0.5225, \"4v5\": 0.5091}, \"pairwise_auc_std\": {\"0v1\": 0.0034, \"1v2\": 0.0081, \"2v3\": 0.0028, \"3v4\": 0.0113, \"4v5\": 0.0052}, \"bootstrap_ci\": {\"0v1\": {\"auc\": 0.9638, \"ci_lower\": 0.9607, \"ci_upper\": 0.9665, \"perm_p\": 0.0001}, \"1v2\": {\"auc\": 0.6168, \"ci_lower\": 0.6079, \"ci_upper\": 0.6261, \"perm_p\": 0.0001}, \"2v3\": {\"auc\": 0.5492, \"ci_lower\": 0.5388, \"ci_upper\": 0.5594, \"perm_p\": 0.0001}, \"3v4\": {\"auc\": 0.5276, \"ci_lower\": 0.517, \"ci_upper\": 0.5375, \"perm_p\": 0.0001}, \"4v5\": {\"auc\": 0.5085, \"ci_lower\": 0.4988, \"ci_upper\": 0.5191, \"perm_p\": 0.0676}}, \"bootstrap_resamples\": 1000, \"permutation_resamples\": 10000, \"pairwise_jsd\": {\"0v1\": 0.127422, \"1v2\": 0.010114, \"2v3\": 0.004798, \"3v4\": 0.004821, \"4v5\": 0.003335}, \"ordinal_mae\": 1.2156, \"ordinal_accuracy\": 0.3523, \"top_features\": [\"freq_entropy\", \"surp_d1_skew\", \"surp_std\", \"surp_d1_mean\", \"surp_mean\"], \"key_finding\": \"K*=2 confirmed at 7B scale with bootstrap CI. 1v2 CI lower=0.6079>0.60 (robust). 2v3 CI upper=0.5594<0.60. 4v5 only non-significant pair (p=0.0676). FR-4 Warning resolved.\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp004_qwen7b/\", \"log_path\": \"/root/runs/gen-depth-contamination/exp_004_7b_crossscale.log\"}, \"exp_E_paired_stats\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:18:27.723Z\", \"updated_at\": \"2026-05-15T14:22:43.224Z\", \"hypothesis\": \"C3 filtering 策略间差异是否统计显著？Holm-Bonferroni 多重比较校正 + Cohen's d 效应量（FR-5 Warning）\", \"spec\": {\"command\": \"python scripts/exp_E_paired_stats.py\", \"server\": \"westc-26893\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp006_filtering/results/\", \"data_count\": 51, \"model_name\": \"N/A (CPU: paired t-test + Holm-Bonferroni)\", \"seed\": \"N/A\", \"note\": \"6 strategies × 5 seeds, 15 pairwise comparisons, Holm-Bonferroni correction + Cohen's d\"}, \"conclusion\": \"success\", \"metrics\": {\"mmlu_significant_pairs\": \"8/15\", \"hellaswag_significant_pairs\": \"9/15\", \"binary_ours_vs_all_mmlu\": \"all significant\", \"max_cohen_d_mmlu\": 10.8, \"max_cohen_d_hellaswag\": 8.98, \"graduated_a09_vs_dsir_corrected_p\": 0.0523, \"cohen_d_method\": \"d_av (Lakens 2013)\", \"key_finding\": \"binary-ours significantly outperforms all alternatives on MMLU. On HellaSwag, binary-ours and graduated_a0.9 tied (p=1.0). FR-5 resolved. Holm-Bonferroni cummax bug fixed: MMLU 10/15→8/15. Cohen's d changed to d_av.\", \"bugfix_note\": \"Holm-Bonferroni cummax variable was never updated, causing 2 MMLU pairs to be incorrectly marked significant (graduated_a0.9 vs no-filter, surprisal vs dsir). Cohen's d changed from d_z to d_av (Lakens 2013).\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp_E_paired_stats.json\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp_E_paired_stats.json\", \"completed_at\": \"2026-05-15T11:20:31.718Z\", \"notes\": \"Holm-Bonferroni bug fixed: cummax variable was never updated in loop, causing adjusted p-values to lose monotonicity. MMLU significant pairs corrected 10/15→8/15. Cohen's d changed from d_z to d_av (Lakens 2013). d values still large (10.8) due to n=5 tiny within-seed variance — recommend mean_diff as primary effect size in paper.\"}, \"exp_D_obd_n500\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:18:27.182Z\", \"updated_at\": \"2026-05-15T11:46:23.600Z\", \"hypothesis\": \"OBD-LightGBM 在 N=500 子集上 accuracy 是否仍高于 LLM baselines？验证样本量匹配下的公平比较（FR-12 Warning）\", \"spec\": {\"command\": \"python scripts/exp_D_obd_n500_v2.py\", \"server\": \"westc-26893\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp001_pythia + artifacts/exp011_samples.jsonl\", \"data_count\": 500, \"model_name\": \"N/A (CPU: OBD-LightGBM on N=500 subset)\", \"seed\": 42, \"note\": \"Bootstrap CI for OBD accuracy on same 500 samples as LLM baseline\"}, \"conclusion\": \"success\", \"metrics\": {\"obd_accuracy_final\": 0.38, \"obd_ci\": [0.34, 0.422], \"mcnemar_vs_gpt55_p\": 0.0809, \"mcnemar_vs_claude_p\": 0.0693, \"mcnemar_significant\": false, \"multi_seed_std\": 0, \"per_depth\": {\"d0\": 0.96, \"d1\": 0.39, \"d2\": 0.14, \"d3\": 0.19, \"d4\": 0.22}, \"prob_merge_accuracy\": 0.444, \"prob_merge_d4_bias\": 0.8, \"note\": \"v2 logic (6-class argmax, no capping/merge) + seed=42. McNemar not significant — supports discussion.tex narrative\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp_D_obd_n500_v2.json\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp_D_obd_n500_v2.json\", \"completed_at\": \"2026-05-15T11:20:31.077Z\"}, \"exp_B_14d_ablation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:18:25.666Z\", \"updated_at\": \"2026-05-15T11:20:29.596Z\", \"hypothesis\": \"移除 self_BLEU（14D vs 15D）后 K*=2 是否稳定？排除 self_BLEU information leakage（FR-3 Critical）\", \"spec\": {\"command\": \"python scripts/exp_B_14d_ablation.py\", \"server\": \"westc-26893\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data + data_exp001_pythia + data_exp002_olmo + data_exp017_qwen_cont\", \"data_count\": 20000, \"model_name\": \"N/A (CPU: LightGBM 14D vs 15D)\", \"seed\": 42, \"note\": \"Remove self_BLEU, compare 14D vs 15D pairwise AUC and K*\"}, \"conclusion\": \"success\", \"metrics\": {\"result\": \"K*=2 stable across all 4 models after removing self_BLEU (14D)\", \"key_finding\": \"self_BLEU removal does not change K* boundary. FR-3 resolved.\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp_B_14d_ablation.json\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp_B_14d_ablation.json\", \"completed_at\": \"2026-05-15T11:20:29.596Z\"}, \"exp_A_alt_scorer\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:18:24.715Z\", \"updated_at\": \"2026-05-15T11:19:40.861Z\", \"hypothesis\": \"替代 scorer (Pythia-1.4B, OLMo-1B) 计算 surprisal features 时，K*=2 是否仍成立？验证 K* 不依赖 scorer-generator 匹配（FR-2 Critical）\", \"spec\": {\"command\": \"bash scripts/run_exp_A.sh\", \"server\": \"westc-26893\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data (Qwen-RW) + data_exp017_qwen_cont (Qwen-cont)\", \"data_count\": 10000, \"model_name\": \"Pythia-1.4B + OLMo-1B (as alt scorers) × Qwen-generated data\", \"seed\": 42, \"gpu\": [\"cuda:0\"], \"note\": \"4 conditions: {Pythia,OLMo} × {Qwen-RW,Qwen-cont}. Surprisal features computed with alt scorer, LightGBM classification.\"}, \"conclusion\": \"success\", \"metrics\": {\"pythia_qwen_rw\": {\"k_star\": 2, \"auc_0v1\": 0.9923, \"auc_1v2\": 0.7012, \"auc_2v3\": 0.587, \"mae\": 1.006, \"accuracy\": 0.417, \"spearman_rho_vs_baseline\": 0.906}, \"pythia_qwen_cont\": {\"k_star\": 1, \"auc_0v1\": 0.99, \"auc_1v2\": 0.5923, \"auc_2v3\": null, \"mae\": 1.216, \"accuracy\": 0.371, \"spearman_rho_vs_baseline\": 0.942}, \"olmo_qwen_rw\": {\"k_star\": 2, \"auc_0v1\": 0.9918, \"auc_1v2\": 0.6947, \"auc_2v3\": null, \"mae\": 1.016, \"accuracy\": 0.413, \"spearman_rho_vs_baseline\": 0.92}, \"olmo_qwen_cont\": {\"k_star\": 1, \"auc_0v1\": 0.989, \"auc_1v2\": 0.5858, \"auc_2v3\": null, \"mae\": 1.229, \"accuracy\": 0.368, \"spearman_rho_vs_baseline\": 0.902}, \"key_finding\": \"K* splits by generator data, not scorer: Qwen-RW→K*=2, Qwen-cont→K*=1 (cross-scorer). Feature importance ρ≥0.90 across all 4 conditions confirms scorer independence of feature ranking.\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp_A/\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp_A/exp_A_alt_scorer.log\", \"completed_at\": \"2026-05-15T11:19:40.861Z\"}, \"exp_015_neural_probe\": {\"status\": \"DONE\", \"retry_count\": 3, \"created_at\": \"2026-05-13T18:53:34.791Z\", \"updated_at\": \"2026-05-15T10:47:04.883Z\", \"hypothesis\": \"Learned representations (frozen LLM → MLP) 的 K* 是否高于 hand-crafted 15D features？若 K*_neural > K*_15D，说明 15D projection 是 K*=2 的部分原因；若相同，加强 information-theoretic impossibility 论证\", \"notes\": \"v4 completed successfully. 3 models: Pythia K*_neural=2, OLMo K*_neural=2, Qwen-cont K*_neural=3. Neural probe improves 2v3 AUC across all models (Pythia +0.044, OLMo +0.039, Qwen +0.055) but only Qwen-cont self-scorer crosses θ=0.60. EXIT_CODE=129 (SIGHUP after completion) did not affect results.\", \"completed_at\": \"2026-05-14T02:58:02.023Z\", \"failure_reason\": \"CUDA OOM: CUDA out of memory. Tried to allocate 26.00 MiB. GPU 0 has a total capacity of 23.52 GiB of which 20.06 MiB is free. Process 55665 has 13.36 GiB memory in use. Process 56371 has 9.09 GiB memory in use. Including non-PyTorch memory, this process has 1\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"v4 run in progress (PID 108774, tmux: exp015, westc-26893). Root cause of prior failures: v2=OOM (concurrent exp-006 占 GPU), v3=SIGHUP/EXIT_CODE=129 (SSH 断连，未在 tmux 中)。v4 在 tmux 中安全运行，Pythia 86% → OLMo → Qwen-cont → MLP training。内存管理正确 (del+gc+empty_cache)，6.7GB/24GB。ETA ~25-30min from 09:28 UTC.\"}, \"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T09:21:59.744073+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T09:31:39.481148+00:00\"}]}, \"reproduce\": {\"finished_at\": \"2026-05-15T09:31:35.099Z\"}, \"conclusion\": \"success\", \"metrics\": {\"pythia\": {\"k_star_neural\": 2, \"k_star_lgbm\": 2, \"accuracy\": 0.3892, \"pairwise_auc\": {\"0v1\": 0.966, \"1v2\": 0.676, \"2v3\": 0.596, \"3v4\": 0.555, \"4v5\": 0.532}}, \"olmo\": {\"k_star_neural\": 2, \"k_star_lgbm\": 2, \"accuracy\": 0.3729, \"pairwise_auc\": {\"0v1\": 0.95, \"1v2\": 0.657, \"2v3\": 0.589, \"3v4\": 0.547, \"4v5\": 0.53}}, \"qwen_cont\": {\"k_star_neural\": 3, \"k_star_lgbm\": 2, \"accuracy\": 0.4368, \"pairwise_auc\": {\"0v1\": 0.988, \"1v2\": 0.702, \"2v3\": 0.616, \"3v4\": 0.59, \"4v5\": 0.566}}, \"key_finding\": \"Neural probe K*_neural=2 for Pythia and OLMo (same as 15D), K*_neural=3 only for Qwen-cont (self-scorer). 2v3 AUC improved in all models vs LightGBM but only Qwen-cont crosses θ=0.60. K*=2 is robust for cross-model probes.\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp015_neural_probe_results.json\", \"log_path\": \"~/runs/gen-depth-contamination/exp_015_neural_probe.log\", \"spec\": {\"command\": \"python scripts/run_exp015_neural_probe.py --device cuda:0 --embed_batch_size 8\", \"server\": \"westc-26893\", \"data_path\": \"data_exp001_pythia + data_exp002_olmo + data_exp017_qwen_cont\", \"data_count\": 90000, \"model_name\": \"Qwen/Qwen2.5-1.5B-Instruct (frozen encoder -> MLP probe)\", \"seed\": \"5-fold CV\"}}, \"exp_006_graduated_filtering\": {\"status\": \"DONE\", \"retry_count\": 3, \"created_at\": \"2026-05-13T20:25:52.364Z\", \"updated_at\": \"2026-05-15T09:18:18.667Z\", \"hypothesis\": \"K*-aware graduated filtering (exploiting human/gen-1/gen-2+ trichotomy) yields better downstream LM quality than binary filtering on MMLU and HellaSwag. 6 strategies × 5 seeds × α sweep.\", \"parent\": \"exp_003_decoding_ablation\", \"notes\": \"51/51 COMPLETE. All 6 strategies × 5 seeds + base_model finished 2026-05-15 ~09:10 UTC.\\n\\nFINAL RANKING (MMLU descending):\\n1. binary-ours: 0.5941±0.0008 / 0.6701±0.0006 (BEST)\\n2. binary-drayson: 0.5913±0.0009 / 0.6691±0.0004\\n3. surprisal: 0.5894±0.0009 / 0.6641±0.0006\\n4. graduated_a0.9: 0.5892±0.0008 / 0.6701±0.0007\\n5. graduated_a0.7: 0.5892±0.0014 / 0.6695±0.0004\\n6. graduated_a0.5: 0.5880±0.0013 / 0.6687±0.0008\\n7. graduated_a0.3: 0.5877±0.0013 / 0.6669±0.0005\\n8. graduated_a0.1: 0.5873±0.0019 / 0.6640±0.0009\\n9. dsir: 0.5869±0.0003 / 0.6631±0.0007\\n10. no-filter: 0.5865±0.0010 / 0.6638±0.0008\\nBase: 0.6018 / 0.6821\\n\\nVERSION B fully confirmed. Binary-ours is optimal. Graduated α monotonic. DSIR below all strategies except no-filter.\", \"reproduce\": {\"finished_at\": \"2026-05-14T21:31:53.630Z\"}, \"failure_reason\": \"EXIT_CODE=124 (timeout — exceeded timeout_hours)\", \"completed_at\": \"2026-05-14T21:04:20.455Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T21:04:21.389845+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T21:32:00.501871+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"RESUMED 05-14 ~21:30 UTC after EXIT_CODE=124 timeout crash. 32/50 runs complete pre-crash. 18 remaining: a0.7(s456/s789/s1024) + a0.9(5) + surprisal(5) + dsir(5). Script has built-in skip logic (checks eval_results.json). Running in tmux:exp006_resume without timeout wrapper. ETA: ~05-15 11:00-12:00 UTC.\"}}, \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp006_graduated_filtering.py\", \"server\": \"westc-26893\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/depth_corpus_30k\", \"data_count\": 30000, \"model_name\": \"Qwen2.5-1.5B-Instruct\", \"seed\": \"42,123,456,789,1024\", \"gpu\": \"cuda:0\", \"checkpoint_source\": \"Qwen/Qwen2.5-1.5B-Instruct (HuggingFace, LoRA fine-tune from base)\", \"eval_data\": \"MMLU (14042 test, 0-shot) + HellaSwag (10042 val, 0-shot) via lm-eval-harness\", \"note\": \"Resumed run. tmux: exp_006_graduated_filtering. 33/50 complete, 17 remaining. ETA ~05-15 07:30-08:30 UTC.\"}, \"conclusion\": \"success\", \"metrics\": {\"total_runs\": 51, \"binary_ours\": {\"mmlu\": \"0.5941±0.0008\", \"hellaswag\": \"0.6701±0.0006\"}, \"binary_drayson\": {\"mmlu\": \"0.5913±0.0009\", \"hellaswag\": \"0.6691±0.0004\"}, \"surprisal\": {\"mmlu\": \"0.5894±0.0009\", \"hellaswag\": \"0.6641±0.0006\"}, \"graduated_a09\": {\"mmlu\": \"0.5892±0.0008\", \"hellaswag\": \"0.6701±0.0007\"}, \"graduated_a07\": {\"mmlu\": \"0.5892±0.0014\", \"hellaswag\": \"0.6695±0.0004\"}, \"graduated_a05\": {\"mmlu\": \"0.5880±0.0013\", \"hellaswag\": \"0.6687±0.0008\"}, \"graduated_a03\": {\"mmlu\": \"0.5877±0.0013\", \"hellaswag\": \"0.6669±0.0005\"}, \"graduated_a01\": {\"mmlu\": \"0.5873±0.0019\", \"hellaswag\": \"0.6640±0.0009\"}, \"dsir\": {\"mmlu\": \"0.5869±0.0003\", \"hellaswag\": \"0.6631±0.0007\"}, \"no_filter\": {\"mmlu\": \"0.5865±0.0010\", \"hellaswag\": \"0.6638±0.0008\"}, \"base_model\": {\"mmlu\": \"0.6018\", \"hellaswag\": \"0.6821\"}, \"best_strategy\": \"binary-ours\", \"key_finding\": \"binary-ours is best filtering strategy. All strategies degrade vs base_model. Graduated α monotonically increasing confirms K*=2 boundary. DSIR below all other strategies except no-filter.\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp006_filtering/results/\", \"log_path\": \"~/runs/gen-depth-contamination/exp_006_graduated_filtering.log\"}, \"exp_007_bootstrap_ci\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T03:45:50.948Z\", \"updated_at\": \"2026-05-13T23:43:00.694Z\", \"hypothesis\": \"K* 统计严谨性验证：bootstrap 95% CI 和 permutation test 确认 K*=2 在三个模型族上统计显著\", \"spec\": {\"command\": \"python scripts/bootstrap_ci.py --data_dirs results_exp001_pythia results_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output artifacts/bootstrap_ci_results.json\", \"script_path\": \"/root/autodl-tmp/gen-depth-contamination/scripts/bootstrap_ci.py\", \"server\": \"autodl-4090d\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/bootstrap_ci_results.json\", \"data_count\": 15000, \"model_name\": \"Pythia-1.4B / OLMo-1B / Qwen-1.5B\", \"seed\": 42, \"input_sources\": [\"results_exp001_pythia (exp-001)\", \"results_exp002_olmo (exp-002)\", \"data (mvp-001)\"], \"bootstrap_resamples\": 1000, \"permutation_resamples\": 500, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/bootstrap_ci_results.json\", \"log_path\": \"~/runs/gen-depth-contamination/exp_007_bootstrap_ci.log\"}, \"metrics\": {\"qwen_rewrite\": {\"0v1\": {\"auc\": 0.9956, \"ci_lower\": 0.9946, \"ci_upper\": 0.9965, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6955, \"ci_lower\": 0.6859, \"ci_upper\": 0.7041, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5893, \"ci_lower\": 0.5795, \"ci_upper\": 0.5991, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5435, \"ci_lower\": 0.5333, \"ci_upper\": 0.5551, \"perm_p\": 0.002}, \"4v5\": {\"auc\": 0.534, \"ci_lower\": 0.5238, \"ci_upper\": 0.5448, \"perm_p\": 0.002}}, \"pythia_cont\": {\"0v1\": {\"auc\": 0.9932, \"ci_lower\": 0.9921, \"ci_upper\": 0.9943, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6539, \"ci_lower\": 0.6454, \"ci_upper\": 0.663, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5514, \"ci_lower\": 0.5417, \"ci_upper\": 0.5628, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5152, \"ci_lower\": 0.5041, \"ci_upper\": 0.526, \"perm_p\": 0.006}, \"4v5\": {\"auc\": 0.5136, \"ci_lower\": 0.5021, \"ci_upper\": 0.5249, \"perm_p\": 0.008}}, \"olmo_cont\": {\"0v1\": {\"auc\": 0.997, \"ci_lower\": 0.9964, \"ci_upper\": 0.9975, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6145, \"ci_lower\": 0.6045, \"ci_upper\": 0.6247, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5496, \"ci_lower\": 0.5399, \"ci_upper\": 0.5596, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5091, \"ci_lower\": 0.4973, \"ci_upper\": 0.52, \"perm_p\": 0.064}, \"4v5\": {\"auc\": 0.5045, \"ci_lower\": 0.4932, \"ci_upper\": 0.515, \"perm_p\": 0.232}}, \"qwen_cont\": {\"0v1\": {\"auc\": 0.9971, \"ci_lower\": 0.9963, \"ci_upper\": 0.9978, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6112, \"ci_lower\": 0.6015, \"ci_upper\": 0.6213, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5609, \"ci_lower\": 0.5511, \"ci_upper\": 0.5712, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5409, \"ci_lower\": 0.5308, \"ci_upper\": 0.5508, \"perm_p\": 0.002}, \"4v5\": {\"auc\": 0.5141, \"ci_lower\": 0.5035, \"ci_upper\": 0.5255, \"perm_p\": 0.006}}, \"k_star_robust\": true, \"all_1v2_ci_lower_above_060\": true, \"most_marginal\": \"Qwen-cont CI lower=0.6015, only 0.0015 above threshold\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T03:46:36.617Z\"}, \"exp_011_llm_zeroshot\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T08:59:07.954Z\", \"updated_at\": \"2026-05-13T11:34:44.605Z\", \"hypothesis\": \"Frontier LLMs (GPT-5.5, Claude Opus 4.6) cannot reliably estimate generational depth via zero-shot prompting, motivating the need for specialized statistical methods\", \"spec\": {\"command\": \"python3 scripts/exp011_llm_zeroshot.py --model gpt-5.5 && python3 scripts/exp011_llm_zeroshot.py --model claude-opus-4-6 && python3 scripts/exp011_analyze.py\", \"server\": \"autodl-4090d\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp001_pythia/\", \"data_count\": 500, \"model_name\": \"GPT-5.5 + Claude Opus 4.6 (zero-shot via OpenRouter)\", \"seed\": 42, \"sampling\": \"100 texts × 5 depths (0-4) from Pythia continuation\", \"scripts\": [\"scripts/exp011_sample_data.py\", \"scripts/exp011_llm_zeroshot.py\", \"scripts/exp011_analyze.py\"], \"samples_path\": \"artifacts/exp011_samples.jsonl\", \"api_base_url\": \"http://47.94.22.126/v1\", \"api_model_ids\": {\"gpt-5.5\": \"openai/gpt-5.5\", \"claude-opus-4-6\": \"claude-opus-4-6\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp011_analysis.json\", \"log_path\": \"N/A (API task)\"}, \"notes\": \"GPT-5.5: 500条, 0 parse failures. Claude Opus 4.6: 500条, 1 parse failure. 两个 frontier LLM 5-class accuracy (~33%) 均低于 OBD-LightGBM (38.6%)。Binary human/AI detection 高 (~88%) 但 fine-grained depth 判断失败。Claude proxy 需用 model ID 'claude-opus-4-6' (无 anthropic/ 前缀)。\", \"metrics\": {\"gpt55_5class_acc\": 0.332, \"gpt55_mae\": 1.102, \"gpt55_spearman\": 0.383, \"gpt55_binary_acc\": 0.878, \"claude_5class_acc\": 0.331, \"claude_mae\": 1.15, \"claude_spearman\": 0.416, \"claude_binary_acc\": 0.882, \"odb_baseline_5class_acc\": 0.386, \"odb_baseline_mae\": 1.107, \"gpt55_per_depth_acc\": {\"depth_0\": 0.77, \"depth_1\": 0.19, \"depth_2\": 0.38, \"depth_3\": 0.24, \"depth_4\": 0.08}, \"claude_per_depth_acc\": {\"depth_0\": 0.69, \"depth_1\": 0.21, \"depth_2\": 0.28, \"depth_3\": 0.101, \"depth_4\": 0.37}, \"n_samples_per_model\": 500, \"key_finding\": \"Both frontier LLMs (GPT-5.5, Claude Opus 4.6) perform WORSE than OBD-LightGBM on 5-class depth estimation (~33% vs 38.6% acc). Binary human/AI detection is high (~88%) but fine-grained depth discrimination fails.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T11:32:56.036Z\"}, \"exp_013_cross_transfer\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:50:57.813Z\", \"updated_at\": \"2026-05-13T06:54:11.689Z\", \"spec\": {\"command\": \"python scripts/run_exp013_cross_transfer.py --out_dir artifacts/\", \"server\": \"autodl-4090d\", \"data_path\": \"data/, data_exp001_pythia/, data_exp002_olmo/, data_exp017_qwen_cont/\", \"data_count\": 20000, \"model_name\": \"N/A (CPU classifiers: OBD-LightGBM)\", \"seed\": 42, \"input_sources\": [\"mvp-001 Qwen-rewrite\", \"exp-001 Pythia\", \"exp-002 OLMo\", \"exp-017 Qwen-cont\"], \"checkpoint_path\": \"artifacts/cross_transfer_matrix.json\", \"log_path\": \"N/A (CPU task)\"}, \"hypothesis\": \"Depth signal 是文本固有属性还是 model self-familiarity artifact？4×4 cross-model transfer matrix 测试分类器跨模型泛化能力\", \"metrics\": {\"accuracy_matrix\": {\"Qwen_rw→Qwen_rw\": 0.4229, \"Qwen_rw→Pythia\": 0.259, \"Qwen_rw→OLMo\": 0.2653, \"Qwen_rw→Qwen_cont\": 0.3466, \"Pythia→Qwen_rw\": 0.2718, \"Pythia→Pythia\": 0.3856, \"Pythia→OLMo\": 0.3531, \"Pythia→Qwen_cont\": 0.3287, \"OLMo→Qwen_rw\": 0.2768, \"OLMo→Pythia\": 0.345, \"OLMo→OLMo\": 0.3822, \"OLMo→Qwen_cont\": 0.3244, \"Qwen_cont→Qwen_rw\": 0.344, \"Qwen_cont→Pythia\": 0.3284, \"Qwen_cont→OLMo\": 0.3112, \"Qwen_cont→Qwen_cont\": 0.3875}, \"transfer_retention_accuracy\": {\"Pythia↔OLMo\": \"91-92%\", \"Qwen_rw→Pythia/OLMo\": \"61-63%\", \"Qwen_cont↔Pythia\": \"83-85%\", \"Qwen_cont↔OLMo\": \"80-85%\"}, \"transfer_retention_tau\": {\"Pythia↔OLMo\": \"85-86%\", \"Qwen_rw→Pythia/OLMo\": \"45-50%\", \"Qwen_cont↔others\": \"68-83%\"}, \"mean_pw_auc_matrix\": {\"within_avg\": 0.6099, \"cross_avg\": 0.5905, \"0v1_cross_all_above\": 0.96}, \"key_finding\": \"depth signal ≈ 70-85% text-intrinsic + 15-30% model self-familiarity. Binary contamination detection (0v1) highly transferable (>0.96 AUC). Fine-grained depth transfer depends on model family similarity. Qwen-rewrite overfits style features; Qwen-cont transfers much better.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T06:53:07.326Z\", \"notes\": \"depth signal ≈ 70-85% text-intrinsic + 15-30% model self-familiarity. Pythia↔OLMo 91-92% retention (architecture-agnostic). Qwen-rewrite catastrophic transfer to other models (61-63%), but Qwen-cont much better (80-85%). 0v1 universally transferable (>0.96 AUC), 1v2+ transfer depends on model family. Rewrite mode overfits style features → continuation mode is canonical condition for cross-model claims.\"}, \"exp_010_ordinal_baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T04:22:42.199Z\", \"updated_at\": \"2026-05-13T04:26:54.571Z\", \"hypothesis\": \"Ordinal structure improves depth classification: ordinal methods should outperform unordered multiclass on MAE\", \"spec\": {\"command\": \"python scripts/run_exp010_ordinal_comparison.py\", \"server\": \"autodl-4090d\", \"data_path\": \"data/features.csv, data_exp001_pythia/features.csv, data_exp002_olmo/features.csv\", \"data_count\": 90000, \"model_name\": \"N/A (CPU classifiers)\", \"seed\": \"N/A\", \"checkpoint_source\": \"N/A\", \"eval_data\": \"N/A\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/ordinal_comparison_results.json\"}, \"metrics\": {\"qwen_rewrite\": {\"obd_lgbm\": {\"accuracy\": 0.4229, \"mae\": 0.9836, \"tau_b\": 0.5518, \"mean_pw_auc\": 0.6214}, \"multiclass_lgbm\": {\"accuracy\": 0.4182, \"mae\": 1.0163, \"tau_b\": 0.5367, \"mean_pw_auc\": 0.6246}, \"ordinal_logreg\": {\"accuracy\": 0.3636, \"mae\": 0.9105, \"tau_b\": 0.563, \"mean_pw_auc\": 0.5022}}, \"pythia\": {\"obd_lgbm\": {\"accuracy\": 0.3856, \"mae\": 1.1072, \"tau_b\": 0.4745, \"mean_pw_auc\": 0.6055}, \"multiclass_lgbm\": {\"accuracy\": 0.3832, \"mae\": 1.1399, \"tau_b\": 0.4622, \"mean_pw_auc\": 0.6062}, \"ordinal_logreg\": {\"accuracy\": 0.3179, \"mae\": 1.022, \"tau_b\": 0.49, \"mean_pw_auc\": 0.4767}}, \"olmo\": {\"obd_lgbm\": {\"accuracy\": 0.3822, \"mae\": 1.1469, \"tau_b\": 0.4683, \"mean_pw_auc\": 0.6015}, \"multiclass_lgbm\": {\"accuracy\": 0.3685, \"mae\": 1.1813, \"tau_b\": 0.4497, \"mean_pw_auc\": 0.5974}, \"ordinal_logreg\": {\"accuracy\": 0.3265, \"mae\": 1.0352, \"tau_b\": 0.4656, \"mean_pw_auc\": 0.4859}}}, \"conclusion\": \"success\", \"notes\": \"Ordinal methods beat multiclass LightGBM on MAE across all 3 datasets. Best MAE consistently from mord LogisticAT, not OBD-LightGBM. However, ordinal_logreg has worst pairwise AUC — it reduces MAE by collapsing predictions toward the center, not by better discrimination.\", \"completed_at\": \"2026-05-13T04:26:54.571Z\"}, \"exp_001_pythia_depth\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:06:23.803Z\", \"updated_at\": \"2026-05-13T00:16:16.359Z\", \"hypothesis\": \"K* 跨模型一致性验证：Pythia-1.4B 在相同种子数据和解码策略下的 K* 是否与 Qwen2.5-1.5B 一致（K*=2）\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b --data_dir /root/autodl-tmp/gen-depth-contamination/data_exp001_pythia --results_dir /root/autodl-tmp/gen-depth-contamination/results_exp001_pythia --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"autodl-4090d\", \"gpu\": [\"cuda:0\"], \"pid\": \"17138\", \"log_path\": \"~/runs/gen-depth-contamination/exp_001_pythia_depth.log\", \"submitted_at\": \"2026-05-12T20:50:31.471Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp001_pythia\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp001_pythia/\", \"wall_clock_seconds\": 12344.9, \"gpu_hours\": 3.43}, \"conclusion\": \"success\", \"metrics\": {\"pairwise_auc\": {\"0v1\": 0.9932, \"1v2\": 0.6539, \"2v3\": 0.5515, \"3v4\": 0.5153, \"4v5\": 0.5135}, \"pairwise_auc_std\": {\"0v1\": 0.0007, \"1v2\": 0.0069, \"2v3\": 0.0137, \"3v4\": 0.0084, \"4v5\": 0.0078}, \"pairwise_jsd\": {\"0v1\": 0.2142, \"1v2\": 0.014, \"2v3\": 0.0051, \"3v4\": 0.0033, \"4v5\": 0.0031}, \"k_star\": 2, \"ordinal_mae\": 1.14, \"ordinal_accuracy\": 0.383}, \"completed_at\": \"2026-05-13T00:16:16.359Z\"}, \"mvp_pilot_sat_v1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T11:09:39.193Z\", \"updated_at\": \"2026-05-12T19:25:33.763Z\", \"hypothesis\": \"递归生成文本在统计特征空间上存在可分辨的代际差异，且差异随深度呈系统性趋势（K* ≥ 3）\", \"spec\": {\"command\": \"bash /root/autodl-tmp/gen-depth-contamination/run_mvp.sh\", \"server\": \"autodl-4090d\", \"gpu\": [\"cuda:0\"], \"pid\": \"10619\", \"log_path\": \"~/runs/gen-depth-contamination/mvp_pilot_sat_v1.log\", \"submitted_at\": \"2026-05-12T16:46:33.175Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data/\", \"wall_clock_seconds\": 9533.4, \"gpu_hours\": 2.65}, \"notes\": \"v2 left-padding rerun, per-fold AUC, full self-BLEU\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-12T19:25:26.538Z\", \"metrics\": {\"pairwise_auc\": {\"0v1\": 0.9956, \"1v2\": 0.6957, \"2v3\": 0.5893, \"3v4\": 0.5434, \"4v5\": 0.5343}, \"pairwise_auc_std\": {\"0v1\": 0.0005, \"1v2\": 0.0072, \"2v3\": 0.012, \"3v4\": 0.0053, \"4v5\": 0.0091}, \"pairwise_jsd\": {\"0v1\": 0.2669, \"1v2\": 0.0163, \"2v3\": 0.0069, \"3v4\": 0.0047, \"4v5\": 0.0041}, \"k_star\": 2, \"ordinal_mae\": 1.0163, \"ordinal_accuracy\": 0.4182}}}, \"count\": 88, \"total\": 88, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7702}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+OK, I found the LaTeX file. The `docs/paper/experiments_c1.tex` has Table 4 at L142:
+```
+LightGBM (14B)  & .960 & .621 & .572 & .537 & --- \\
+```
+
+So the paper values are 2v3=.572, 3v4=.537 as stated.
+
+The artifacts version is a different table (transfer matrix), not the same content.
+
+Now I need to:
+1. Fix the ssh_read_only command (remove the `2>/dev/null` redirect)
+2. Search the registry for 14B experiments
+
+
+3. Check the server for result files
+
+I'll tackle these in parallel.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "90b37642-d893-4c68-b575-da17ecec1fbe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JtwtaZQhAPSH9wgUopmFwx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3126,
+      "cache_read_input_tokens": 26066,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3126
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 21_
+
+LaTeX 确认 L142: LightGBM (14B) 2v3=.572, 3v4=.537。现在检查服务器上的结果文件和 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "b2e6aa9d-32bd-4490-8ec5-577ddfabbcc8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JtwtaZQhAPSH9wgUopmFwx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3126,
+      "cache_read_input_tokens": 26066,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3126
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GcurwE5HsMrsSncxHor8Jm`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/gen-depth-contamination/results/ -path '*14*' -name '*.json'",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "8fc51480-5161-42e4-aa95-6419e3186869",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JtwtaZQhAPSH9wgUopmFwx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3126,
+      "cache_read_input_tokens": 26066,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3126
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01337H1R9Xgzh8iqxsna5Zbv`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/gen-depth-contamination/results/ -type d -name '*14*'",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "e53b1ca5-4a26-41c5-a32c-8db03e41193c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JtwtaZQhAPSH9wgUopmFwx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3126,
+      "cache_read_input_tokens": 26066,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3126
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 24 · 2026-05-19T23:43:45.923Z_
+
+<details><summary>↩ Tool result · `toolu_01GcurwE5HsMrsSncxHor8Jm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/bootstrap_ci_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/feature_importance.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/jsd.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/ordinal_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/pairwise_auc.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.03}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "19725252-c030-4cf3-9306-b191db8800d1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/bootstrap_ci_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/feature_importance.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/jsd.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/ordinal_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/pairwise_auc.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.03}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/bootstrap_ci_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/feature_importance.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/jsd.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/ordinal_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/pairwise_auc.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.03}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 25 · 2026-05-19T23:43:46.411Z_
+
+<details><summary>↩ Tool result · `toolu_01337H1R9Xgzh8iqxsna5Zbv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "d1515cfb-785d-40d6-b124-017c27b9e3b6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01CToFLgrZe3HkMWdigsGwL9`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/mcp-agent-ml-research-read_registry-1779234216992.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\n# Find experiments related to 14b\nfor exp in result:\n    exp_id = exp.get('exp_id', '')\n    name = exp.get('name', '')\n    if '14' in str(exp_id).lower() or '14' in str(name).lower():\n        print(json.dumps(exp, indent=2))\n        print('---')\n\"",
+  "description": "Filter registry for 14B experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "b28d0c02-e4e5-43b6-8319-5d35785cd07b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JtwtaZQhAPSH9wgUopmFwx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3126,
+      "cache_read_input_tokens": 26066,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3126
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 27 · 2026-05-19T23:43:48.819Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01CToFLgrZe3HkMWdigsGwL9`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 7, in &lt;module>
+    exp_id = exp.get('exp_id', '')
+             ^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "b5b5cb5d-27ab-43e5-bc15-18b56a578cc8",
+  "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;string>\", line 7, in &lt;module>\n    exp_id = exp.get('exp_id', '')\n             ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WGGjfwF1ThkQYWHrcLjpg6`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/pairwise_auc.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "053b7ff4-923c-4dee-80d9-96b4a5cd4580",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAFTDouz5CsrEvLdWWQgp4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1339,
+      "cache_read_input_tokens": 29192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1339
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 29 · 2026-05-19T23:43:52.389Z_
+
+<details><summary>↩ Tool result · `toolu_01WGGjfwF1ThkQYWHrcLjpg6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.96,\\n    \\\"1v2\\\": 0.6211,\\n    \\\"2v3\\\": 0.5494,\\n    \\\"3v4\\\": 0.5243,\\n    \\\"4v5\\\": 0.5152\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.9616,\\n      0.9536,\\n      0.9656,\\n      0.9662,\\n      0.9532\\n    ],\\n    \\\"1v2\\\": [\\n      0.6252,\\n      0.6112,\\n      0.6153,\\n      0.6323,\\n      0.6214\\n    ],\\n    \\\"2v3\\\": [\\n      0.5362,\\n      0.5529,\\n      0.559,\\n      0.5445,\\n      0.5546\\n    ],\\n    \\\"3v4\\\": [\\n      0.5183,\\n      0.5231,\\n      0.5146,\\n      0.533,\\n      0.5324\\n    ],\\n    \\\"4v5\\\": [\\n      0.5093,\\n      0.5302,\\n      0.5063,\\n      0.527,\\n      0.5032\\n    ]\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "442af91a-e54a-44c9-9710-381a4f8e8ccc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mean\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": 0.96,\\\\n    \\\\\\\"1v2\\\\\\\": 0.6211,\\\\n    \\\\\\\"2v3\\\\\\\": 0.5494,\\\\n    \\\\\\\"3v4\\\\\\\": 0.5243,\\\\n    \\\\\\\"4v5\\\\\\\": 0.5152\\\\n  },\\\\n  \\\\\\\"per_fold\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": [\\\\n      0.9616,\\\\n      0.9536,\\\\n      0.9656,\\\\n      0.9662,\\\\n      0.9532\\\\n    ],\\\\n    \\\\\\\"1v2\\\\\\\": [\\\\n      0.6252,\\\\n      0.6112,\\\\n      0.6153,\\\\n      0.6323,\\\\n      0.6214\\\\n    ],\\\\n    \\\\\\\"2v3\\\\\\\": [\\\\n      0.5362,\\\\n      0.5529,\\\\n      0.559,\\\\n      0.5445,\\\\n      0.5546\\\\n    ],\\\\n    \\\\\\\"3v4\\\\\\\": [\\\\n      0.5183,\\\\n      0.5231,\\\\n      0.5146,\\\\n      0.533,\\\\n      0.5324\\\\n    ],\\\\n    \\\\\\\"4v5\\\\\\\": [\\\\n      0.5093,\\\\n      0.5302,\\\\n      0.5063,\\\\n      0.527,\\\\n      0.5032\\\\n    ]\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.96,\\n    \\\"1v2\\\": 0.6211,\\n    \\\"2v3\\\": 0.5494,\\n    \\\"3v4\\\": 0.5243,\\n    \\\"4v5\\\": 0.5152\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.9616,\\n      0.9536,\\n      0.9656,\\n      0.9662,\\n      0.9532\\n    ],\\n    \\\"1v2\\\": [\\n      0.6252,\\n      0.6112,\\n      0.6153,\\n      0.6323,\\n      0.6214\\n    ],\\n    \\\"2v3\\\": [\\n      0.5362,\\n      0.5529,\\n      0.559,\\n      0.5445,\\n      0.5546\\n    ],\\n    \\\"3v4\\\": [\\n      0.5183,\\n      0.5231,\\n      0.5146,\\n      0.533,\\n      0.5324\\n    ],\\n    \\\"4v5\\\": [\\n      0.5093,\\n      0.5302,\\n      0.5063,\\n      0.527,\\n      0.5032\\n    ]\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018szuxEhBHi82rZTGb74wiL`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/bootstrap_ci_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "1913d581-3f5c-4d94-95e7-16af6e599ce9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAFTDouz5CsrEvLdWWQgp4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1339,
+      "cache_read_input_tokens": 29192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1339
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 31 · 2026-05-19T23:43:53.330Z_
+
+<details><summary>↩ Tool result · `toolu_018szuxEhBHi82rZTGb74wiL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp_14b_c4\\\",\\n  \\\"config\\\": {\\n    \\\"n_bootstrap\\\": 10000,\\n    \\\"n_permutation\\\": 1000,\\n    \\\"theta\\\": 0.6,\\n    \\\"seed\\\": 42,\\n    \\\"ci_method\\\": \\\"percentile\\\",\\n    \\\"ci_level\\\": 0.95,\\n    \\\"resample_unit\\\": \\\"document\\\"\\n  },\\n  \\\"pairwise_results\\\": {\\n    \\\"0v1\\\": {\\n      \\\"point_estimate\\\": 0.9598,\\n      \\\"ci_lower\\\": 0.9564,\\n      \\\"ci_upper\\\": 0.963,\\n      \\\"ci_width\\\": 0.0066,\\n      \\\"p_value_permutation\\\": 0.0,\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"n_permutation\\\": 1000,\\n      \\\"bootstrap_mean\\\": 0.9598,\\n      \\\"bootstrap_std\\\": 0.0017\\n    },\\n    \\\"1v2\\\": {\\n      \\\"point_estimate\\\": 0.621,\\n      \\\"ci_lower\\\": 0.6119,\\n      \\\"ci_upper\\\": 0.6304,\\n      \\\"ci_width\\\": 0.0185,\\n      \\\"p_value_permutation\\\": 0.0,\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"n_permutation\\\": 1000,\\n      \\\"bootstrap_mean\\\": 0.621,\\n      \\\"bootstrap_std\\\": 0.0047\\n    },\\n    \\\"2v3\\\": {\\n      \\\"point_estimate\\\": 0.5494,\\n      \\\"ci_lower\\\": 0.5392,\\n      \\\"ci_upper\\\": 0.5594,\\n      \\\"ci_width\\\": 0.0202,\\n      \\\"p_value_permutation\\\": 0.0,\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"n_permutation\\\": 1000,\\n      \\\"bootstrap_mean\\\": 0.5493,\\n      \\\"bootstrap_std\\\": 0.0051\\n    },\\n    \\\"3v4\\\": {\\n      \\\"point_estimate\\\": 0.5243,\\n      \\\"ci_lower\\\": 0.514,\\n      \\\"ci_upper\\\": 0.5346,\\n      \\\"ci_width\\\": 0.0206,\\n      \\\"p_value_permutation\\\": 0.0,\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"n_permutation\\\": 1000,\\n      \\\"bootstrap_mean\\\": 0.5243,\\n      \\\"bootstrap_std\\\": 0.0053\\n    },\\n    \\\"4v5\\\": {\\n      \\\"point_estimate\\\": 0.5154,\\n      \\\"ci_lower\\\": 0.5045,\\n      \\\"ci_upper\\\": 0.5265,\\n      \\\"ci_width\\\": 0.022,\\n      \\\"p_value_permutation\\\": 0.0,\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"n_permutation\\\": 1000,\\n      \\\"bootstrap_mean\\\": 0.5154,\\n      \\\"bootstrap_std\\\": 0.0056\\n    }\\n  },\\n  \\\"threshold_tests\\\": {\\n    \\\"1v2_lower_gt_theta\\\": {\\n      \\\"ci_lower\\\": 0.6119,\\n      \\\"theta\\\": 0.6,\\n      \\\"significant\\\": true,\\n      \\\"interpretation\\\": \\\"K*>=2 confirmed: CI lower 0.6119 > 0.6\\\"\\n    },\\n    \\\"2v3_upper_lt_theta\\\": {\\n      \\\"ci_upper\\\": 0.5594,\\n      \\\"theta\\\": 0.6,\\n      \\\"significant\\\": true,\\n      \\\"interpretation\\\": \\\"K*<=2 confirmed: CI upper 0.5594 < 0.6\\\"\\n    }\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "338bdb73-7286-4531-8131-c295ec1bbdd8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp_14b_c4\\\\\\\",\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n    \\\\\\\"n_permutation\\\\\\\": 1000,\\\\n    \\\\\\\"theta\\\\\\\": 0.6,\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"ci_method\\\\\\\": \\\\\\\"percentile\\\\\\\",\\\\n    \\\\\\\"ci_level\\\\\\\": 0.95,\\\\n    \\\\\\\"resample_unit\\\\\\\": \\\\\\\"document\\\\\\\"\\\\n  },\\\\n  \\\\\\\"pairwise_results\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": {\\\\n      \\\\\\\"point_estimate\\\\\\\": 0.9598,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.9564,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.963,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0066,\\\\n      \\\\\\\"p_value_permutation\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 1000,\\\\n      \\\\\\\"bootstrap_mean\\\\\\\": 0.9598,\\\\n      \\\\\\\"bootstrap_std\\\\\\\": 0.0017\\\\n    },\\\\n    \\\\\\\"1v2\\\\\\\": {\\\\n      \\\\\\\"point_estimate\\\\\\\": 0.621,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.6119,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.6304,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0185,\\\\n      \\\\\\\"p_value_permutation\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 1000,\\\\n      \\\\\\\"bootstrap_mean\\\\\\\": 0.621,\\\\n      \\\\\\\"bootstrap_std\\\\\\\": 0.0047\\\\n    },\\\\n    \\\\\\\"2v3\\\\\\\": {\\\\n      \\\\\\\"point_estimate\\\\\\\": 0.5494,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5392,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5594,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0202,\\\\n      \\\\\\\"p_value_permutation\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 1000,\\\\n      \\\\\\\"bootstrap_mean\\\\\\\": 0.5493,\\\\n      \\\\\\\"bootstrap_std\\\\\\\": 0.0051\\\\n    },\\\\n    \\\\\\\"3v4\\\\\\\": {\\\\n      \\\\\\\"point_estimate\\\\\\\": 0.5243,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.514,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5346,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.0206,\\\\n      \\\\\\\"p_value_permutation\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 1000,\\\\n      \\\\\\\"bootstrap_mean\\\\\\\": 0.5243,\\\\n      \\\\\\\"bootstrap_std\\\\\\\": 0.0053\\\\n    },\\\\n    \\\\\\\"4v5\\\\\\\": {\\\\n      \\\\\\\"point_estimate\\\\\\\": 0.5154,\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.5045,\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5265,\\\\n      \\\\\\\"ci_width\\\\\\\": 0.022,\\\\n      \\\\\\\"p_value_permutation\\\\\\\": 0.0,\\\\n      \\\\\\\"n_bootstrap\\\\\\\": 10000,\\\\n      \\\\\\\"n_permutation\\\\\\\": 1000,\\\\n      \\\\\\\"bootstrap_mean\\\\\\\": 0.5154,\\\\n      \\\\\\\"bootstrap_std\\\\\\\": 0.0056\\\\n    }\\\\n  },\\\\n  \\\\\\\"threshold_tests\\\\\\\": {\\\\n    \\\\\\\"1v2_lower_gt_theta\\\\\\\": {\\\\n      \\\\\\\"ci_lower\\\\\\\": 0.6119,\\\\n      \\\\\\\"theta\\\\\\\": 0.6,\\\\n      \\\\\\\"significant\\\\\\\": true,\\\\n      \\\\\\\"interpretation\\\\\\\": \\\\\\\"K*>=2 confirmed: CI lower 0.6119 > 0.6\\\\\\\"\\\\n    },\\\\n    \\\\\\\"2v3_upper_lt_theta\\\\\\\": {\\\\n      \\\\\\\"ci_upper\\\\\\\": 0.5594,\\\\n      \\\\\\\"theta\\\\\\\": 0.6,\\\\n      \\\\\\\"significant\\\\\\\": true,\\\\n      \\\\\\\"interpretation\\\\\\\": \\\\\\\"K*<=2 confirmed: CI upper 0.5594 < 0.6\\\\\\\"\\\\n    }\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"experiment\\\": \\\"exp_14b_c4\\\",\\n  \\\"config\\\": {\\n    \\\"n_bootstrap\\\": 10000,\\n    \\\"n_permutation\\\": 1000,\\n    \\\"theta\\\": 0.6,\\n    \\\"seed\\\": 42,\\n    \\\"ci_method\\\": \\\"percentile\\\",\\n    \\\"ci_level\\\": 0.95,\\n    \\\"resample_unit\\\": \\\"document\\\"\\n  },\\n  \\\"pairwise_results\\\": {\\n    \\\"0v1\\\": {\\n      \\\"point_estimate\\\": 0.9598,\\n      \\\"ci_lower\\\": 0.9564,\\n      \\\"ci_upper\\\": 0.963,\\n      \\\"ci_width\\\": 0.0066,\\n      \\\"p_value_permutation\\\": 0.0,\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"n_permutation\\\": 1000,\\n      \\\"bootstrap_mean\\\": 0.9598,\\n      \\\"bootstrap_std\\\": 0.0017\\n    },\\n    \\\"1v2\\\": {\\n      \\\"point_estimate\\\": 0.621,\\n      \\\"ci_lower\\\": 0.6119,\\n      \\\"ci_upper\\\": 0.6304,\\n      \\\"ci_width\\\": 0.0185,\\n      \\\"p_value_permutation\\\": 0.0,\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"n_permutation\\\": 1000,\\n      \\\"bootstrap_mean\\\": 0.621,\\n      \\\"bootstrap_std\\\": 0.0047\\n    },\\n    \\\"2v3\\\": {\\n      \\\"point_estimate\\\": 0.5494,\\n      \\\"ci_lower\\\": 0.5392,\\n      \\\"ci_upper\\\": 0.5594,\\n      \\\"ci_width\\\": 0.0202,\\n      \\\"p_value_permutation\\\": 0.0,\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"n_permutation\\\": 1000,\\n      \\\"bootstrap_mean\\\": 0.5493,\\n      \\\"bootstrap_std\\\": 0.0051\\n    },\\n    \\\"3v4\\\": {\\n      \\\"point_estimate\\\": 0.5243,\\n      \\\"ci_lower\\\": 0.514,\\n      \\\"ci_upper\\\": 0.5346,\\n      \\\"ci_width\\\": 0.0206,\\n      \\\"p_value_permutation\\\": 0.0,\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"n_permutation\\\": 1000,\\n      \\\"bootstrap_mean\\\": 0.5243,\\n      \\\"bootstrap_std\\\": 0.0053\\n    },\\n    \\\"4v5\\\": {\\n      \\\"point_estimate\\\": 0.5154,\\n      \\\"ci_lower\\\": 0.5045,\\n      \\\"ci_upper\\\": 0.5265,\\n      \\\"ci_width\\\": 0.022,\\n      \\\"p_value_permutation\\\": 0.0,\\n      \\\"n_bootstrap\\\": 10000,\\n      \\\"n_permutation\\\": 1000,\\n      \\\"bootstrap_mean\\\": 0.5154,\\n      \\\"bootstrap_std\\\": 0.0056\\n    }\\n  },\\n  \\\"threshold_tests\\\": {\\n    \\\"1v2_lower_gt_theta\\\": {\\n      \\\"ci_lower\\\": 0.6119,\\n      \\\"theta\\\": 0.6,\\n      \\\"significant\\\": true,\\n      \\\"interpretation\\\": \\\"K*>=2 confirmed: CI lower 0.6119 > 0.6\\\"\\n    },\\n    \\\"2v3_upper_lt_theta\\\": {\\n      \\\"ci_upper\\\": 0.5594,\\n      \\\"theta\\\": 0.6,\\n      \\\"significant\\\": true,\\n      \\\"interpretation\\\": \\\"K*<=2 confirmed: CI upper 0.5594 < 0.6\\\"\\n    }\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SMwNSbHStxro9cQxt6t1SV`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/ordinal_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "e83eb050-70a9-4c98-8d44-c669f597735f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAFTDouz5CsrEvLdWWQgp4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1339,
+      "cache_read_input_tokens": 29192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1339
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 33 · 2026-05-19T23:43:54.266Z_
+
+<details><summary>↩ Tool result · `toolu_01SMwNSbHStxro9cQxt6t1SV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mae\\\": 1.2266,\\n  \\\"accuracy\\\": 0.3497,\\n  \\\"k_star\\\": 2\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "e4200d4a-b804-4f7d-aceb-1902a1c97c47",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mae\\\\\\\": 1.2266,\\\\n  \\\\\\\"accuracy\\\\\\\": 0.3497,\\\\n  \\\\\\\"k_star\\\\\\\": 2\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mae\\\": 1.2266,\\n  \\\"accuracy\\\": 0.3497,\\n  \\\"k_star\\\": 2\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Wr2oo58ZpAQdQY6fwoqCxL`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls -la /root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "d9a5e6c3-8cbb-4ad0-bd39-53543cb2ecf4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAFTDouz5CsrEvLdWWQgp4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1339,
+      "cache_read_input_tokens": 29192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1339
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 35 · 2026-05-19T23:43:55.205Z_
+
+<details><summary>↩ Tool result · `toolu_01Wr2oo58ZpAQdQY6fwoqCxL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 28\\ndrwxr-xr-x  2 root root  186 May 18 17:47 .\\ndrwxr-xr-x 54 root root 4096 May 20 06:00 ..\\n-rw-r--r--  1 root root 2035 May 18 17:46 bootstrap_ci_results.json\\n-rw-r--r--  1 root root  640 May 18 17:47 feature_importance.json\\n-rw-r--r--  1 root root   97 May 18 17:47 jsd.json\\n-rw-r--r--  1 root root   57 May 18 17:47 ordinal_results.json\\n-rw-r--r--  1 root root  574 May 18 17:47 pairwise_auc.json\\n-rw-r--r--  1 root root 1325 May 18 17:47 summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "f2642f85-fa6c-4c61-8dec-3a0ba3bd2f44",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 28\\\\ndrwxr-xr-x  2 root root  186 May 18 17:47 .\\\\ndrwxr-xr-x 54 root root 4096 May 20 06:00 ..\\\\n-rw-r--r--  1 root root 2035 May 18 17:46 bootstrap_ci_results.json\\\\n-rw-r--r--  1 root root  640 May 18 17:47 feature_importance.json\\\\n-rw-r--r--  1 root root   97 May 18 17:47 jsd.json\\\\n-rw-r--r--  1 root root   57 May 18 17:47 ordinal_results.json\\\\n-rw-r--r--  1 root root  574 May 18 17:47 pairwise_auc.json\\\\n-rw-r--r--  1 root root 1325 May 18 17:47 summary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 28\\ndrwxr-xr-x  2 root root  186 May 18 17:47 .\\ndrwxr-xr-x 54 root root 4096 May 20 06:00 ..\\n-rw-r--r--  1 root root 2035 May 18 17:46 bootstrap_ci_results.json\\n-rw-r--r--  1 root root  640 May 18 17:47 feature_importance.json\\n-rw-r--r--  1 root root   97 May 18 17:47 jsd.json\\n-rw-r--r--  1 root root   57 May 18 17:47 ordinal_results.json\\n-rw-r--r--  1 root root  574 May 18 17:47 pairwise_auc.json\\n-rw-r--r--  1 root root 1325 May 18 17:47 summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SXAgeBpCK7G5ysttStye43`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/feature_importance.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "2076512d-9ef0-46eb-a2b8-4e5b6df87802",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAFTDouz5CsrEvLdWWQgp4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1339,
+      "cache_read_input_tokens": 29192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1339
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 37 · 2026-05-19T23:43:55.744Z_
+
+<details><summary>↩ Tool result · `toolu_01SXAgeBpCK7G5ysttStye43`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"feature\\\": \\\"freq_entropy\\\",\\n    \\\"importance\\\": 9032.0\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_d1_skew\\\",\\n    \\\"importance\\\": 8558.6\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_std\\\",\\n    \\\"importance\\\": 8499.8\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_d1_mean\\\",\\n    \\\"importance\\\": 8228.0\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_d2_mean\\\",\\n    \\\"importance\\\": 8165.6\\n  },\\n  {\\n    \\\"feature\\\": \\\"freq_kurtosis\\\",\\n    \\\"importance\\\": 7991.2\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_mean\\\",\\n    \\\"importance\\\": 7867.8\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_kurt\\\",\\n    \\\"importance\\\": 7273.4\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_skew\\\",\\n    \\\"importance\\\": 6616.2\\n  },\\n  {\\n    \\\"feature\\\": \\\"hapax_ratio\\\",\\n    \\\"importance\\\": 6473.4\\n  }\\n]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "1945d368-94c5-4eb1-b275-e7ad660662b1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"feature\\\\\\\": \\\\\\\"freq_entropy\\\\\\\",\\\\n    \\\\\\\"importance\\\\\\\": 9032.0\\\\n  },\\\\n  {\\\\n    \\\\\\\"feature\\\\\\\": \\\\\\\"surp_d1_skew\\\\\\\",\\\\n    \\\\\\\"importance\\\\\\\": 8558.6\\\\n  },\\\\n  {\\\\n    \\\\\\\"feature\\\\\\\": \\\\\\\"surp_std\\\\\\\",\\\\n    \\\\\\\"importance\\\\\\\": 8499.8\\\\n  },\\\\n  {\\\\n    \\\\\\\"feature\\\\\\\": \\\\\\\"surp_d1_mean\\\\\\\",\\\\n    \\\\\\\"importance\\\\\\\": 8228.0\\\\n  },\\\\n  {\\\\n    \\\\\\\"feature\\\\\\\": \\\\\\\"surp_d2_mean\\\\\\\",\\\\n    \\\\\\\"importance\\\\\\\": 8165.6\\\\n  },\\\\n  {\\\\n    \\\\\\\"feature\\\\\\\": \\\\\\\"freq_kurtosis\\\\\\\",\\\\n    \\\\\\\"importance\\\\\\\": 7991.2\\\\n  },\\\\n  {\\\\n    \\\\\\\"feature\\\\\\\": \\\\\\\"surp_mean\\\\\\\",\\\\n    \\\\\\\"importance\\\\\\\": 7867.8\\\\n  },\\\\n  {\\\\n    \\\\\\\"feature\\\\\\\": \\\\\\\"surp_kurt\\\\\\\",\\\\n    \\\\\\\"importance\\\\\\\": 7273.4\\\\n  },\\\\n  {\\\\n    \\\\\\\"feature\\\\\\\": \\\\\\\"surp_skew\\\\\\\",\\\\n    \\\\\\\"importance\\\\\\\": 6616.2\\\\n  },\\\\n  {\\\\n    \\\\\\\"feature\\\\\\\": \\\\\\\"hapax_ratio\\\\\\\",\\\\n    \\\\\\\"importance\\\\\\\": 6473.4\\\\n  }\\\\n]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"feature\\\": \\\"freq_entropy\\\",\\n    \\\"importance\\\": 9032.0\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_d1_skew\\\",\\n    \\\"importance\\\": 8558.6\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_std\\\",\\n    \\\"importance\\\": 8499.8\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_d1_mean\\\",\\n    \\\"importance\\\": 8228.0\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_d2_mean\\\",\\n    \\\"importance\\\": 8165.6\\n  },\\n  {\\n    \\\"feature\\\": \\\"freq_kurtosis\\\",\\n    \\\"importance\\\": 7991.2\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_mean\\\",\\n    \\\"importance\\\": 7867.8\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_kurt\\\",\\n    \\\"importance\\\": 7273.4\\n  },\\n  {\\n    \\\"feature\\\": \\\"surp_skew\\\",\\n    \\\"importance\\\": 6616.2\\n  },\\n  {\\n    \\\"feature\\\": \\\"hapax_ratio\\\",\\n    \\\"importance\\\": 6473.4\\n  }\\n]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01B74m3KUvVkmdXoJXBwU3uf`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/mcp-agent-ml-research-read_registry-1779234216992.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult_str = data['result']\n# Check what format the result is in\nresult = json.loads(result_str)\nprint(type(result))\nif isinstance(result, list):\n    print(f'List of {len(result)} items')\n    if len(result) > 0:\n        print(f'First item type: {type(result[0])}')\n        if isinstance(result[0], dict):\n            print(f'Keys: {list(result[0].keys())}')\n        else:\n            print(f'First item: {str(result[0])[:200]}')\nelif isinstance(result, dict):\n    print(f'Dict keys: {list(result.keys())}')\n    for k, v in result.items():\n        if '14' in str(k).lower():\n            print(f'Found 14b key: {k}')\n            print(json.dumps(v, indent=2)[:500])\n\"",
+  "description": "Probe registry data structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "1895f170-2e8b-4233-a8a6-e11082d21593",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PAFTDouz5CsrEvLdWWQgp4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1339,
+      "cache_read_input_tokens": 29192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1339
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 39 · 2026-05-19T23:43:59.394Z_
+
+<details><summary>↩ Tool result · `toolu_01B74m3KUvVkmdXoJXBwU3uf`</summary>
+
+```text
+&lt;class 'dict'>
+Dict keys: ['success', 'data', 'error', 'metadata']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "ee28abec-a9ba-4484-bcaa-68628a2c733b",
+  "tool_use_result": {
+    "stdout": "&lt;class 'dict'>\nDict keys: ['success', 'data', 'error', 'metadata']",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry result has a different structure than I expected. Let me look deeper into it. Also, let me get the summary.txt from the server and check the registry for 14b experiments.
+
+Key findings so far:
+- `pairwise_auc.json` on cqa1: 2v3=0.5494, 3v4=0.5243 (matches the "westd" values reported in the task)
+- `bootstrap_ci_results.json`: point_estimate for 2v3=0.5494, 3v4=0.5243
+
+
+- Table 4 in LaTeX shows different values: 2v3=.572, 3v4=.537 (dated May 18, 17:46-17:47)
+
+There's a clear discrepancy between the JSON results and what's in the LaTeX table. I need to check the summary.txt for experiment configuration details, look through the registry for other 14B experiments, verify if there's a separate westd server with different results, and trace through the git history of experiments_c1.tex to understand when these values were entered.
+
+The task mentions a westd server with pairwise_auc.json showing 2v3=0.549 and 3v4=0.524, with an alias westd-42896, but the project context points to cqa1-22115 as the server. I should check if there are results on westd as well before diving into the summary.txt and registry search.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "535765f4-3c49-4489-9969-ef70e6329b00",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017YwETo8yGkwspx8BE6aGk1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3983,
+      "cache_read_input_tokens": 30531,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3983
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 41_
+
+服务器上 `pairwise_auc.json` 确认: 2v3=0.5494, 3v4=0.5243。和论文 .572/.537 不匹配。检查 summary.txt 和 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "81908729-51cc-4d7e-8b09-df6e732e864c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017YwETo8yGkwspx8BE6aGk1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3983,
+      "cache_read_input_tokens": 30531,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3983
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KjrycMxbMSmiLJER6jkDVk`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/summary.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "06c72c44-c7fa-4e40-886c-e35982bedc8c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017YwETo8yGkwspx8BE6aGk1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3983,
+      "cache_read_input_tokens": 30531,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3983
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 43 · 2026-05-19T23:44:13.137Z_
+
+<details><summary>↩ Tool result · `toolu_01KjrycMxbMSmiLJER6jkDVk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nMVP Pilot Saturation Study — Results Summary\\n============================================================\\n\\nPairwise AUC (adjacent depths):\\n  depth 0 vs 1: AUC = 0.96 ± 0.0056  folds=[0.9616, 0.9536, 0.9656, 0.9662, 0.9532]\\n  depth 1 vs 2: AUC = 0.6211 ± 0.0074  folds=[0.6252, 0.6112, 0.6153, 0.6323, 0.6214]\\n  depth 2 vs 3: AUC = 0.5494 ± 0.0081  folds=[0.5362, 0.5529, 0.559, 0.5445, 0.5546]\\n  depth 3 vs 4: AUC = 0.5243 ± 0.0074  folds=[0.5183, 0.5231, 0.5146, 0.533, 0.5324]\\n  depth 4 vs 5: AUC = 0.5152 ± 0.0112  folds=[0.5093, 0.5302, 0.5063, 0.527, 0.5032]\\n\\nPairwise JSD (adjacent depths):\\n  depth 0 vs 1: JSD = 0.109709\\n  depth 1 vs 2: JSD = 0.01123\\n  depth 2 vs 3: JSD = 0.006152\\n  depth 3 vs 4: JSD = 0.004436\\n  depth 4 vs 5: JSD = 0.003589\\n\\nK* (max depth with AUC > 0.60): 2\\n\\nOrdinal Classification (6-class, 5-fold CV):\\n  MAE = 1.2266\\n  Accuracy = 0.3497\\n\\nTop-10 Feature Importance:\\n  freq_entropy         9032.0\\n  surp_d1_skew         8558.6\\n  surp_std             8499.8\\n  surp_d1_mean         8228.0\\n  surp_d2_mean         8165.6\\n  freq_kurtosis        7991.2\\n  surp_mean            7867.8\\n  surp_kurt            7273.4\\n  surp_skew            6616.2\\n  hapax_ratio          6473.4\\n\\n============================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "abb54ced-eb33-45a0-aa1f-2525b8c86d07",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nMVP Pilot Saturation Study — Results Summary\\\\n============================================================\\\\n\\\\nPairwise AUC (adjacent depths):\\\\n  depth 0 vs 1: AUC = 0.96 ± 0.0056  folds=[0.9616, 0.9536, 0.9656, 0.9662, 0.9532]\\\\n  depth 1 vs 2: AUC = 0.6211 ± 0.0074  folds=[0.6252, 0.6112, 0.6153, 0.6323, 0.6214]\\\\n  depth 2 vs 3: AUC = 0.5494 ± 0.0081  folds=[0.5362, 0.5529, 0.559, 0.5445, 0.5546]\\\\n  depth 3 vs 4: AUC = 0.5243 ± 0.0074  folds=[0.5183, 0.5231, 0.5146, 0.533, 0.5324]\\\\n  depth 4 vs 5: AUC = 0.5152 ± 0.0112  folds=[0.5093, 0.5302, 0.5063, 0.527, 0.5032]\\\\n\\\\nPairwise JSD (adjacent depths):\\\\n  depth 0 vs 1: JSD = 0.109709\\\\n  depth 1 vs 2: JSD = 0.01123\\\\n  depth 2 vs 3: JSD = 0.006152\\\\n  depth 3 vs 4: JSD = 0.004436\\\\n  depth 4 vs 5: JSD = 0.003589\\\\n\\\\nK* (max depth with AUC > 0.60): 2\\\\n\\\\nOrdinal Classification (6-class, 5-fold CV):\\\\n  MAE = 1.2266\\\\n  Accuracy = 0.3497\\\\n\\\\nTop-10 Feature Importance:\\\\n  freq_entropy         9032.0\\\\n  surp_d1_skew         8558.6\\\\n  surp_std             8499.8\\\\n  surp_d1_mean         8228.0\\\\n  surp_d2_mean         8165.6\\\\n  freq_kurtosis        7991.2\\\\n  surp_mean            7867.8\\\\n  surp_kurt            7273.4\\\\n  surp_skew            6616.2\\\\n  hapax_ratio          6473.4\\\\n\\\\n============================================================\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nMVP Pilot Saturation Study — Results Summary\\n============================================================\\n\\nPairwise AUC (adjacent depths):\\n  depth 0 vs 1: AUC = 0.96 ± 0.0056  folds=[0.9616, 0.9536, 0.9656, 0.9662, 0.9532]\\n  depth 1 vs 2: AUC = 0.6211 ± 0.0074  folds=[0.6252, 0.6112, 0.6153, 0.6323, 0.6214]\\n  depth 2 vs 3: AUC = 0.5494 ± 0.0081  folds=[0.5362, 0.5529, 0.559, 0.5445, 0.5546]\\n  depth 3 vs 4: AUC = 0.5243 ± 0.0074  folds=[0.5183, 0.5231, 0.5146, 0.533, 0.5324]\\n  depth 4 vs 5: AUC = 0.5152 ± 0.0112  folds=[0.5093, 0.5302, 0.5063, 0.527, 0.5032]\\n\\nPairwise JSD (adjacent depths):\\n  depth 0 vs 1: JSD = 0.109709\\n  depth 1 vs 2: JSD = 0.01123\\n  depth 2 vs 3: JSD = 0.006152\\n  depth 3 vs 4: JSD = 0.004436\\n  depth 4 vs 5: JSD = 0.003589\\n\\nK* (max depth with AUC > 0.60): 2\\n\\nOrdinal Classification (6-class, 5-fold CV):\\n  MAE = 1.2266\\n  Accuracy = 0.3497\\n\\nTop-10 Feature Importance:\\n  freq_entropy         9032.0\\n  surp_d1_skew         8558.6\\n  surp_std             8499.8\\n  surp_d1_mean         8228.0\\n  surp_d2_mean         8165.6\\n  freq_kurtosis        7991.2\\n  surp_mean            7867.8\\n  surp_kurt            7273.4\\n  surp_skew            6616.2\\n  hapax_ratio          6473.4\\n\\n============================================================\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017j2VV9kTZ79Yk3tsnshGwP`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/jsd.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "0479fc34-a7f3-4af9-a30b-344d60f15c87",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017YwETo8yGkwspx8BE6aGk1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3983,
+      "cache_read_input_tokens": 30531,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3983
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 45 · 2026-05-19T23:44:14.078Z_
+
+<details><summary>↩ Tool result · `toolu_017j2VV9kTZ79Yk3tsnshGwP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"0v1\\\": 0.109709,\\n  \\\"1v2\\\": 0.01123,\\n  \\\"2v3\\\": 0.006152,\\n  \\\"3v4\\\": 0.004436,\\n  \\\"4v5\\\": 0.003589\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "b902742b-b2f9-4115-8593-28d71a1b0ca3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"0v1\\\\\\\": 0.109709,\\\\n  \\\\\\\"1v2\\\\\\\": 0.01123,\\\\n  \\\\\\\"2v3\\\\\\\": 0.006152,\\\\n  \\\\\\\"3v4\\\\\\\": 0.004436,\\\\n  \\\\\\\"4v5\\\\\\\": 0.003589\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"0v1\\\": 0.109709,\\n  \\\"1v2\\\": 0.01123,\\n  \\\"2v3\\\": 0.006152,\\n  \\\"3v4\\\": 0.004436,\\n  \\\"4v5\\\": 0.003589\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01E8fNNvCvNefWcXnei1BXEZ`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/mcp-agent-ml-research-read_registry-1779234216992.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\n# result is a dict with keys success, data, error, metadata\ninner = result.get('data', {})\nprint(type(inner))\nif isinstance(inner, dict):\n    print(f'Keys: {list(inner.keys())[:20]}')\n    # Search for 14b in all keys\n    for k in inner:\n        if '14' in str(k).lower():\n            print(f'Key with 14: {k}')\n            val = inner[k]\n            print(json.dumps(val, indent=2)[:1000])\n    # Also try to see all exp keys\n    all_keys = [k for k in inner.keys()]\n    print(f'Total keys: {len(all_keys)}')\n    print(f'Sample keys: {all_keys[:10]}')\nelif isinstance(inner, list):\n    print(f'List of {len(inner)} items')\n    for item in inner:\n        if isinstance(item, dict) and '14' in json.dumps(item).lower():\n            print(json.dumps(item, indent=2)[:1000])\n            print('---')\n\"",
+  "description": "Search registry data for 14B experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "4952950a-815c-4634-bf16-fbe1fefeaf59",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017YwETo8yGkwspx8BE6aGk1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3983,
+      "cache_read_input_tokens": 30531,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3983
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 47 · 2026-05-19T23:44:18.366Z_
+
+<details><summary>↩ Tool result · `toolu_01E8fNNvCvNefWcXnei1BXEZ`</summary>
+
+```text
+&lt;class 'dict'>
+Keys: ['experiments', 'count', 'total', 'baseline']
+Total keys: 4
+Sample keys: ['experiments', 'count', 'total', 'baseline']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "4ad87eb7-04c0-4af6-b5ed-c3d452125813",
+  "tool_use_result": {
+    "stdout": "&lt;class 'dict'>\nKeys: ['experiments', 'count', 'total', 'baseline']\nTotal keys: 4\nSample keys: ['experiments', 'count', 'total', 'baseline']",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01C87G8ePmUgFMAjTiKiAug2`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/mcp-agent-ml-research-read_registry-1779234216992.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexperiments = result.get('data', result).get('experiments', [])\nprint(f'Total experiments: {len(experiments)}')\nfor exp in experiments:\n    exp_id = exp.get('exp_id', '')\n    name = exp.get('name', '')\n    if '14' in str(exp_id).lower() or '14' in str(name).lower():\n        print(json.dumps(exp, indent=2)[:2000])\n        print('---')\n\"",
+  "description": "Search experiments list for 14B entries"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "e3b500bc-1e2c-4547-8267-be49cf777af7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WX3wYsBixqbb2W79h9rKKD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2270,
+      "cache_read_input_tokens": 34514,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2270
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 49 · 2026-05-19T23:44:23.555Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01C87G8ePmUgFMAjTiKiAug2`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 8, in &lt;module>
+    exp_id = exp.get('exp_id', '')
+             ^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+Total experiments: 88
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "e2463351-832e-4143-bbbf-434deb4cbfcf",
+  "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;string>\", line 8, in &lt;module>\n    exp_id = exp.get('exp_id', '')\n             ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'\nTotal experiments: 88"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017w8wPYmhFdgN1MhGiStsWw`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/mcp-agent-ml-research-read_registry-1779234216992.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexperiments = result.get('data', result).get('experiments', [])\nprint(f'Type of first item: {type(experiments[0])}')\n# Maybe it's a list of strings (exp IDs)\nif isinstance(experiments[0], str):\n    matches = [e for e in experiments if '14' in e.lower()]\n    print(f'14b matches: {matches}')\nelse:\n    print(f'First item: {str(experiments[0])[:300]}')\n\"",
+  "description": "Check experiment entry format"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "8d3a1463-17fc-4337-8d7d-3af24e212393",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RehPzhFz1GFbxd2uD4X8oh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 408,
+      "cache_read_input_tokens": 36784,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 408
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 51 · 2026-05-19T23:44:28.954Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_017w8wPYmhFdgN1MhGiStsWw`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 6, in &lt;module>
+    print(f'Type of first item: {type(experiments[0])}')
+                                      ~~~~~~~~~~~^^^
+KeyError: 0
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "7fa7d95b-5238-4b5c-8463-3f5f0dfb083a",
+  "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;string>\", line 6, in &lt;module>\n    print(f'Type of first item: {type(experiments[0])}')\n                                      ~~~~~~~~~~~^^^\nKeyError: 0"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01P1RXoQwQN6iKQ3H24JyABD`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/mcp-agent-ml-research-read_registry-1779234216992.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexperiments = result.get('data', result).get('experiments', {})\nprint(f'Type: {type(experiments)}')\nif isinstance(experiments, dict):\n    keys = list(experiments.keys())\n    print(f'Total keys: {len(keys)}')\n    matches = [k for k in keys if '14' in k.lower()]\n    print(f'14b keys: {matches}')\n    for k in matches:\n        print(f'\\n=== {k} ===')\n        print(json.dumps(experiments[k], indent=2)[:2000])\n\"",
+  "description": "Find 14B experiments in registry dict"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "82050dd1-4e0e-4541-bf70-e6a395e3c855",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KmrYY3XNA5nbMxxdzjozuT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 399,
+      "cache_read_input_tokens": 37192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 399
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 53 · 2026-05-19T23:44:33.730Z_
+
+<details><summary>↩ Tool result · `toolu_01P1RXoQwQN6iKQ3H24JyABD`</summary>
+
+```text
+Type: &lt;class 'dict'>
+Total keys: 88
+14b keys: ['exp_14b_c4', 'exp_B_14d_ablation']
+
+=== exp_14b_c4 ===
+{
+  "status": "DONE",
+  "retry_count": 1,
+  "created_at": "2026-05-17T14:56:44.366Z",
+  "updated_at": "2026-05-18T08:37:25.809Z",
+  "hypothesis": "Scale-dependent K* on C4: Qwen2.5-14B fp16 continuation on C4 web text \u7684 K* \u662f\u5426\u4ecd = 2\uff1f\u9a8c\u8bc1 K*=2 dominant mode \u5728 14B scale \u662f\u5426\u7a33\u5b9a\uff08\u5df2\u786e\u8ba4 1.5B/7B/8B \u5747 K*=2\uff09\uff0c\u6392\u9664 scale ceiling effect\u30025000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+  "parent": "exp_arXiv_llama8b",
+  "server": "westd-42896",
+  "gpu": "cuda:0",
+  "account": "root",
+  "reproduce": {
+    "server": "westd-42896",
+    "gpu": "cuda:0",
+    "started_at": "2026-05-17T17:08:43.246Z",
+    "command": "bash -c \"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-14B --data_dir data/exp_14b_c4 --results_dir results/exp_14b_c4 --num_samples 5000 --max_depth 5 --batch_size 4 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\"",
+    "finished_at": "2026-05-18T08:21:21.247Z",
+    "training_hours": 15.21
+  },
+  "failure_reason": "EXIT_CODE=124 (timeout \u2014 exceeded timeout_hours)",
+  "completed_at": "2026-05-18T05:09:04.625Z",
+  "extra": {
+    "hook_events": [
+      {
+        "event": "on_failed",
+        "action": "agent",
+        "ts": "2026-05-18T05:09:08.254971+00:00"
+      },
+      {
+        "event": "on_complete",
+        "action": "agent",
+        "ts": "2026-05-18T08:21:24.534646+00:00"
+      }
+    ],
+    "previous_failure": {
+      "conclusion": "failed"
+    }
+  },
+  "spec": {
+    "command": "bash -c \"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-14B --data_dir data/exp_14b_c4 --results_dir results/exp_14b_c4 --num_samples 5000 --max_depth 5 --batch_size 4 --generation_mode continuation --scorer_pa
+
+=== exp_B_14d_ablation ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-15T11:18:25.666Z",
+  "updated_at": "2026-05-15T11:20:29.596Z",
+  "hypothesis": "\u79fb\u9664 self_BLEU\uff0814D vs 15D\uff09\u540e K*=2 \u662f\u5426\u7a33\u5b9a\uff1f\u6392\u9664 self_BLEU information leakage\uff08FR-3 Critical\uff09",
+  "spec": {
+    "command": "python scripts/exp_B_14d_ablation.py",
+    "server": "westc-26893",
+    "data_path": "/root/autodl-tmp/gen-depth-contamination/data + data_exp001_pythia + data_exp002_olmo + data_exp017_qwen_cont",
+    "data_count": 20000,
+    "model_name": "N/A (CPU: LightGBM 14D vs 15D)",
+    "seed": 42,
+    "note": "Remove self_BLEU, compare 14D vs 15D pairwise AUC and K*"
+  },
+  "conclusion": "success",
+  "metrics": {
+    "result": "K*=2 stable across all 4 models after removing self_BLEU (14D)",
+    "key_finding": "self_BLEU removal does not change K* boundary. FR-3 resolved."
+  },
+  "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/artifacts/exp_B_14d_ablation.json",
+  "log_path": "/root/autodl-tmp/gen-depth-contamination/artifacts/exp_B_14d_ablation.json",
+  "completed_at": "2026-05-15T11:20:29.596Z"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "e6ff8594-6a7c-47f3-ae6d-d8657254aa6a",
+  "tool_use_result": {
+    "stdout": "Type: &lt;class 'dict'>\nTotal keys: 88\n14b keys: ['exp_14b_c4', 'exp_B_14d_ablation']\n\n=== exp_14b_c4 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 1,\n  \"created_at\": \"2026-05-17T14:56:44.366Z\",\n  \"updated_at\": \"2026-05-18T08:37:25.809Z\",\n  \"hypothesis\": \"Scale-dependent K* on C4: Qwen2.5-14B fp16 continuation on C4 web text \\u7684 K* \\u662f\\u5426\\u4ecd = 2\\uff1f\\u9a8c\\u8bc1 K*=2 dominant mode \\u5728 14B scale \\u662f\\u5426\\u7a33\\u5b9a\\uff08\\u5df2\\u786e\\u8ba4 1.5B/7B/8B \\u5747 K*=2\\uff09\\uff0c\\u6392\\u9664 scale ceiling effect\\u30025000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\",\n  \"parent\": \"exp_arXiv_llama8b\",\n  \"server\": \"westd-42896\",\n  \"gpu\": \"cuda:0\",\n  \"account\": \"root\",\n  \"reproduce\": {\n    \"server\": \"westd-42896\",\n    \"gpu\": \"cuda:0\",\n    \"started_at\": \"2026-05-17T17:08:43.246Z\",\n    \"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-14B --data_dir data/exp_14b_c4 --results_dir results/exp_14b_c4 --num_samples 5000 --max_depth 5 --batch_size 4 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\",\n    \"finished_at\": \"2026-05-18T08:21:21.247Z\",\n    \"training_hours\": 15.21\n  },\n  \"failure_reason\": \"EXIT_CODE=124 (timeout \\u2014 exceeded timeout_hours)\",\n  \"completed_at\": \"2026-05-18T05:09:04.625Z\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-18T05:09:08.254971+00:00\"\n      },\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-18T08:21:24.534646+00:00\"\n      }\n    ],\n    \"previous_failure\": {\n      \"conclusion\": \"failed\"\n    }\n  },\n  \"spec\": {\n    \"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-14B --data_dir data/exp_14b_c4 --results_dir results/exp_14b_c4 --num_samples 5000 --max_depth 5 --batch_size 4 --generation_mode continuation --scorer_pa\n\n=== exp_B_14d_ablation ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T11:18:25.666Z\",\n  \"updated_at\": \"2026-05-15T11:20:29.596Z\",\n  \"hypothesis\": \"\\u79fb\\u9664 self_BLEU\\uff0814D vs 15D\\uff09\\u540e K*=2 \\u662f\\u5426\\u7a33\\u5b9a\\uff1f\\u6392\\u9664 self_BLEU information leakage\\uff08FR-3 Critical\\uff09\",\n  \"spec\": {\n    \"command\": \"python scripts/exp_B_14d_ablation.py\",\n    \"server\": \"westc-26893\",\n    \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data + data_exp001_pythia + data_exp002_olmo + data_exp017_qwen_cont\",\n    \"data_count\": 20000,\n    \"model_name\": \"N/A (CPU: LightGBM 14D vs 15D)\",\n    \"seed\": 42,\n    \"note\": \"Remove self_BLEU, compare 14D vs 15D pairwise AUC and K*\"\n  },\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"result\": \"K*=2 stable across all 4 models after removing self_BLEU (14D)\",\n    \"key_finding\": \"self_BLEU removal does not change K* boundary. FR-3 resolved.\"\n  },\n  \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp_B_14d_ablation.json\",\n  \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp_B_14d_ablation.json\",\n  \"completed_at\": \"2026-05-15T11:20:29.596Z\"\n}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 54_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found important info. The registry for `exp_14b_c4`:
+- Server: `westd-42896` 
+- Status: DONE (with retry)
+- Has a `reproduce` section with `finished_at: 2026-05-18T08:21:21`
+
+But the registry entry doesn't have metrics with pairwise_auc values. Let me check if there are metrics in the registry entry and also check if there were multiple runs.
+
+The key issue: results on cqa1 show 2v3=0.5494, 3v4=0.5243, but the paper says 2v3=.572, 3v4=.537.
+
+
+Now I need to figure out where these results came from. The experiment ran on westd-42896 but the results are on cqa1-22115, so either they were transferred or cqa1 has a different run entirely. I should check if westd still has the results, look for metrics in the registry itself, see if there were earlier runs with the higher AUC values, and trace when those paper values were added to the LaTeX file. The registry also shows the experiment failed once with a timeout before succeeding on retry.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "39c29526-4403-4fc3-b8fc-279c4b494a9b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SFT2czJRShYXabcCWg2khp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1832,
+      "cache_read_input_tokens": 37591,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1832
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 55_
+
+Registry 显示 `exp_14b_c4` 在 westd-42896 上运行，且有一次失败重试。检查 westd 结果和完整 registry metrics。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "371ab158-4122-4a5d-9fd5-6e69c611163d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SFT2czJRShYXabcCWg2khp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1832,
+      "cache_read_input_tokens": 37591,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1832
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01DN88qYqQkeDkZ5LiqxwttJ`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/mcp-agent-ml-research-read_registry-1779234216992.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexperiments = result.get('data', result).get('experiments', {})\nexp = experiments['exp_14b_c4']\n# Print full entry\nprint(json.dumps(exp, indent=2))\n\"",
+  "description": "Print full exp_14b_c4 registry entry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "49c7fe81-8449-4aab-b288-0c25a5235a34",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SFT2czJRShYXabcCWg2khp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1832,
+      "cache_read_input_tokens": 37591,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1832
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 57 · 2026-05-19T23:44:48.402Z_
+
+<details><summary>↩ Tool result · `toolu_01DN88qYqQkeDkZ5LiqxwttJ`</summary>
+
+```text
+{
+  "status": "DONE",
+  "retry_count": 1,
+  "created_at": "2026-05-17T14:56:44.366Z",
+  "updated_at": "2026-05-18T08:37:25.809Z",
+  "hypothesis": "Scale-dependent K* on C4: Qwen2.5-14B fp16 continuation on C4 web text \u7684 K* \u662f\u5426\u4ecd = 2\uff1f\u9a8c\u8bc1 K*=2 dominant mode \u5728 14B scale \u662f\u5426\u7a33\u5b9a\uff08\u5df2\u786e\u8ba4 1.5B/7B/8B \u5747 K*=2\uff09\uff0c\u6392\u9664 scale ceiling effect\u30025000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+  "parent": "exp_arXiv_llama8b",
+  "server": "westd-42896",
+  "gpu": "cuda:0",
+  "account": "root",
+  "reproduce": {
+    "server": "westd-42896",
+    "gpu": "cuda:0",
+    "started_at": "2026-05-17T17:08:43.246Z",
+    "command": "bash -c \"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-14B --data_dir data/exp_14b_c4 --results_dir results/exp_14b_c4 --num_samples 5000 --max_depth 5 --batch_size 4 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\"",
+    "finished_at": "2026-05-18T08:21:21.247Z",
+    "training_hours": 15.21
+  },
+  "failure_reason": "EXIT_CODE=124 (timeout \u2014 exceeded timeout_hours)",
+  "completed_at": "2026-05-18T05:09:04.625Z",
+  "extra": {
+    "hook_events": [
+      {
+        "event": "on_failed",
+        "action": "agent",
+        "ts": "2026-05-18T05:09:08.254971+00:00"
+      },
+      {
+        "event": "on_complete",
+        "action": "agent",
+        "ts": "2026-05-18T08:21:24.534646+00:00"
+      }
+    ],
+    "previous_failure": {
+      "conclusion": "failed"
+    }
+  },
+  "spec": {
+    "command": "bash -c \"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-14B --data_dir data/exp_14b_c4 --results_dir results/exp_14b_c4 --num_samples 5000 --max_depth 5 --batch_size 4 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\"",
+    "server": "westd-42896",
+    "gpu": [
+      "cuda:0"
+    ],
+    "pid": "39497",
+    "log_path": "~/runs/gen-depth-contamination/exp_14b_c4.log",
+    "submitted_at": "2026-05-18T05:12:11.079Z",
+    "submitted_via": "submit_training_job",
+    "backend": "tmux",
+    "account": "root",
+    "wall_clock_seconds": 11638.0,
+    "gpu_hours": 3.23
+  },
+  "conclusion": "success",
+  "metrics": {
+    "k_star": 2,
+    "pairwise_auc": {
+      "0v1": 0.9598,
+      "1v2": 0.621,
+      "2v3": 0.5494,
+      "3v4": 0.5243,
+      "4v5": 0.5154
+    },
+    "pairwise_jsd": {
+      "0v1": 0.1097,
+      "1v2": 0.0112,
+      "2v3": 0.0062,
+      "3v4": 0.0044,
+      "4v5": 0.0036
+    },
+    "bootstrap_ci": {
+      "0v1": [
+        0.9564,
+        0.963
+      ],
+      "1v2": [
+        0.6119,
+        0.6304
+      ],
+      "2v3": [
+        0.5392,
+        0.5594
+      ],
+      "3v4": [
+        0.514,
+        0.5346
+      ],
+      "4v5": [
+        0.5045,
+        0.5265
+      ]
+    },
+    "permutation_p": {
+      "0v1": "<0.001",
+      "1v2": "<0.001",
+      "2v3": "<0.001",
+      "3v4": "<0.001",
+      "4v5": "<0.001"
+    },
+    "k_star_statistically_confirmed": true,
+    "ordinal_mae": 1.2266,
+    "ordinal_accuracy": 0.3497,
+    "top_features": [
+      "freq_entropy",
+      "surp_d1_skew",
+      "surp_std",
+      "surp_d1_mean",
+      "surp_d2_mean"
+    ],
+    "key_finding": "K*=2 confirmed at 14B scale with bootstrap CI. 1v2 CI lower (0.6119) > theta=0.60; 2v3 CI upper (0.5594) < theta=0.60. All permutation p<0.001."
+  },
+  "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "4b285638-5615-4c97-b5d7-c0c9f03f8781",
+  "tool_use_result": {
+    "stdout": "{\n  \"status\": \"DONE\",\n  \"retry_count\": 1,\n  \"created_at\": \"2026-05-17T14:56:44.366Z\",\n  \"updated_at\": \"2026-05-18T08:37:25.809Z\",\n  \"hypothesis\": \"Scale-dependent K* on C4: Qwen2.5-14B fp16 continuation on C4 web text \\u7684 K* \\u662f\\u5426\\u4ecd = 2\\uff1f\\u9a8c\\u8bc1 K*=2 dominant mode \\u5728 14B scale \\u662f\\u5426\\u7a33\\u5b9a\\uff08\\u5df2\\u786e\\u8ba4 1.5B/7B/8B \\u5747 K*=2\\uff09\\uff0c\\u6392\\u9664 scale ceiling effect\\u30025000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.\",\n  \"parent\": \"exp_arXiv_llama8b\",\n  \"server\": \"westd-42896\",\n  \"gpu\": \"cuda:0\",\n  \"account\": \"root\",\n  \"reproduce\": {\n    \"server\": \"westd-42896\",\n    \"gpu\": \"cuda:0\",\n    \"started_at\": \"2026-05-17T17:08:43.246Z\",\n    \"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-14B --data_dir data/exp_14b_c4 --results_dir results/exp_14b_c4 --num_samples 5000 --max_depth 5 --batch_size 4 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\",\n    \"finished_at\": \"2026-05-18T08:21:21.247Z\",\n    \"training_hours\": 15.21\n  },\n  \"failure_reason\": \"EXIT_CODE=124 (timeout \\u2014 exceeded timeout_hours)\",\n  \"completed_at\": \"2026-05-18T05:09:04.625Z\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-18T05:09:08.254971+00:00\"\n      },\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-18T08:21:24.534646+00:00\"\n      }\n    ],\n    \"previous_failure\": {\n      \"conclusion\": \"failed\"\n    }\n  },\n  \"spec\": {\n    \"command\": \"bash -c \\\"cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-14B --data_dir data/exp_14b_c4 --results_dir results/exp_14b_c4 --num_samples 5000 --max_depth 5 --batch_size 4 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\\\"\",\n    \"server\": \"westd-42896\",\n    \"gpu\": [\n      \"cuda:0\"\n    ],\n    \"pid\": \"39497\",\n    \"log_path\": \"~/runs/gen-depth-contamination/exp_14b_c4.log\",\n    \"submitted_at\": \"2026-05-18T05:12:11.079Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"wall_clock_seconds\": 11638.0,\n    \"gpu_hours\": 3.23\n  },\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"k_star\": 2,\n    \"pairwise_auc\": {\n      \"0v1\": 0.9598,\n      \"1v2\": 0.621,\n      \"2v3\": 0.5494,\n      \"3v4\": 0.5243,\n      \"4v5\": 0.5154\n    },\n    \"pairwise_jsd\": {\n      \"0v1\": 0.1097,\n      \"1v2\": 0.0112,\n      \"2v3\": 0.0062,\n      \"3v4\": 0.0044,\n      \"4v5\": 0.0036\n    },\n    \"bootstrap_ci\": {\n      \"0v1\": [\n        0.9564,\n        0.963\n      ],\n      \"1v2\": [\n        0.6119,\n        0.6304\n      ],\n      \"2v3\": [\n        0.5392,\n        0.5594\n      ],\n      \"3v4\": [\n        0.514,\n        0.5346\n      ],\n      \"4v5\": [\n        0.5045,\n        0.5265\n      ]\n    },\n    \"permutation_p\": {\n      \"0v1\": \"<0.001\",\n      \"1v2\": \"<0.001\",\n      \"2v3\": \"<0.001\",\n      \"3v4\": \"<0.001\",\n      \"4v5\": \"<0.001\"\n    },\n    \"k_star_statistically_confirmed\": true,\n    \"ordinal_mae\": 1.2266,\n    \"ordinal_accuracy\": 0.3497,\n    \"top_features\": [\n      \"freq_entropy\",\n      \"surp_d1_skew\",\n      \"surp_std\",\n      \"surp_d1_mean\",\n      \"surp_d2_mean\"\n    ],\n    \"key_finding\": \"K*=2 confirmed at 14B scale with bootstrap CI. 1v2 CI lower (0.6119) > theta=0.60; 2v3 CI upper (0.5594) < theta=0.60. All permutation p<0.001.\"\n  },\n  \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/\"\n}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Lkd7rmqx2HUZjMaNnBHGf2`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/gen-depth-contamination/results/ -name 'pairwise_auc.json'",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "75f7f3a0-e602-4c6b-9f08-ee052398dc10",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SFT2czJRShYXabcCWg2khp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1832,
+      "cache_read_input_tokens": 37591,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1832
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 59 · 2026-05-19T23:44:49.719Z_
+
+<details><summary>↩ Tool result · `toolu_01Lkd7rmqx2HUZjMaNnBHGf2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_018_llama8b/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_021_length_128/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_021_length_256/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_021_length_512/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_023_wiki/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_008_retrain_chain/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_olmo/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_pythia/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_llama8b/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_pythia_v2/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo_v2/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_llama8b/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_mistral7b/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_mistral7b/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_qwen7b/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_qwen7b/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_scorer_confound/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_scorer_confound_1b5/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_qwen7b_crossscorer/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_qwen1b5_crossscorer/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_llama8b_crossscorer/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_mistral7b_crossscorer/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen1b5/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_qwen_retrain_chain/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_llama8b/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_pythia1b4/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_qwen_retrain_chain_ext/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_mistral7b/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen7b/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_pythia_retrain_depth7/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen1b5_pythia_scorer/pairwise_auc.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "95a29b1b-175e-4d38-b353-b925faabdda5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_018_llama8b/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_021_length_128/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_021_length_256/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_021_length_512/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_023_wiki/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_008_retrain_chain/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_olmo/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_pythia/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_llama8b/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_pythia_v2/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo_v2/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_llama8b/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_mistral7b/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_mistral7b/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_qwen7b/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_qwen7b/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_scorer_confound/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_scorer_confound_1b5/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_qwen7b_crossscorer/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_qwen1b5_crossscorer/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_llama8b_crossscorer/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_mistral7b_crossscorer/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen1b5/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_qwen_retrain_chain/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_llama8b/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_pythia1b4/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_qwen_retrain_chain_ext/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_mistral7b/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen7b/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_pythia_retrain_depth7/pairwise_auc.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen1b5_pythia_scorer/pairwise_auc.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_018_llama8b/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_021_length_128/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_021_length_256/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_021_length_512/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_023_wiki/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_024_arxiv/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_025_pythia_arxiv/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_008_retrain_chain/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_olmo/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_pythia/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_llama8b/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_pythia_v2/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_olmo_v2/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_llama8b/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_mistral7b/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_mistral7b/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_qwen7b/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_qwen7b/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_scorer_confound/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_scorer_confound_1b5/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_qwen7b_crossscorer/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_qwen1b5_crossscorer/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_llama8b_crossscorer/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_mistral7b_crossscorer/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen1b5/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_qwen_retrain_chain/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_llama8b/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_pythia1b4/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_qwen_retrain_chain_ext/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_mistral7b/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen7b/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_pythia_retrain_depth7/pairwise_auc.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen1b5_pythia_scorer/pairwise_auc.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014SEMUDy9j5ZWQ6K3Xj2eKM`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/gen-depth-contamination/ -name '*.json' -path '*14b*'",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "16f43b5d-76a8-4d62-84af-3346cfacec67",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SFT2czJRShYXabcCWg2khp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1832,
+      "cache_read_input_tokens": 37591,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1832
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 61 · 2026-05-19T23:44:50.580Z_
+
+<details><summary>↩ Tool result · `toolu_014SEMUDy9j5ZWQ6K3Xj2eKM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/bootstrap_ci_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/feature_importance.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/jsd.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/ordinal_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/pairwise_auc.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "9b07bc44-d33f-420a-b7b9-0eedadcca0d7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/bootstrap_ci_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/feature_importance.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/jsd.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/ordinal_results.json\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/pairwise_auc.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/bootstrap_ci_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/feature_importance.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/jsd.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/ordinal_results.json\\n/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/pairwise_auc.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 62_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a complete picture. Let me also check if there were other experiments that could have produced the .572/.537 values. Let me check if there are DeBERTa 14B results and 32B LightGBM results to cross-reference.
+
+Wait, the task says "DeBERTa 14B 和 LightGBM 32B 数据都一致，仅 LightGBM 14B 不匹配。" So these are consistent.
+
+Let me now check:
+1. Whether the experiment ran on westd-42896 (as indicated by registry) and results might have been different there
+
+
+2. Whether the LaTeX values .572/.537 might come from a different run or a manual edit
+3. Check git history of the LaTeX file
+
+Since the project isn't a git repository, I can't check git history locally, but the server code might have it. I should look for another exp directory that might contain the .572/.537 values, cross-reference the DeBERTa 14B results, and check the audit log that was mentioned in the file list, particularly the worker audit log.
+
+Looking at the timestamps, the audit log from May 14 predates the experiment that ran May 17-18, so it was likely verifying older data. The pairwise_auc.json on cqa1 is dated May 18 at 17:47, while the registry shows the experiment finished on westd at 08:21 that same day, suggesting results were generated and then synced. The real question is whether the .572/.537 values in the paper came from a manual edit after May 18 or from a previous run that got overwritten.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "ae29856f-78c3-48e5-89e1-4bce2584923a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KEHUJf7V2CZPcF7uYA8Bh8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4335,
+      "cache_read_input_tokens": 39423,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4335
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 63_
+
+Registry 完整记录确认: `exp_14b_c4` 的 metrics 中 2v3=0.5494, 3v4=0.5243。只有一个 14B 结果目录。现在检查 DeBERTa 14B 和 32B 结果做交叉验证，以及审计日志。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "57c54ace-8251-45cb-9a5b-177010ed2883",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KEHUJf7V2CZPcF7uYA8Bh8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4335,
+      "cache_read_input_tokens": 39423,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4335
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015KdJx1aY6Mpm36yi3fEo2G`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/gen-depth-contamination/results/ -type d -name '*deberta*14*'",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "dc2ea37d-bc82-48a9-86fd-1c614f148aae",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KEHUJf7V2CZPcF7uYA8Bh8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4335,
+      "cache_read_input_tokens": 39423,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4335
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 65 · 2026-05-19T23:45:09.437Z_
+
+<details><summary>↩ Tool result · `toolu_015KdJx1aY6Mpm36yi3fEo2G`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "936c185c-8360-42ed-a092-49bba09122b3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HyYuc9NU7uB9MVcdCs3Np7`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/gen-depth-contamination/results/ -type d -name '*deberta*'",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "8346ab5b-0eb2-44cf-b951-abb0972884e1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KEHUJf7V2CZPcF7uYA8Bh8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4335,
+      "cache_read_input_tokens": 39423,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4335
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 67 · 2026-05-19T23:45:10.379Z_
+
+<details><summary>↩ Tool result · `toolu_01HyYuc9NU7uB9MVcdCs3Np7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_c4_1b5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "138c70b7-3012-4fd5-b037-f83b65cf65fa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_c4_1b5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_c4_1b5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013UH1FvkxRDX54XRoTZKz7V`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "find /root/autodl-tmp/gen-depth-contamination/results/ -type d -name '*32*'",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "6254857b-14e2-4068-8664-2c46bcf29e1d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KEHUJf7V2CZPcF7uYA8Bh8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4335,
+      "cache_read_input_tokens": 39423,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4335
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 69 · 2026-05-19T23:45:10.942Z_
+
+<details><summary>↩ Tool result · `toolu_013UH1FvkxRDX54XRoTZKz7V`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "54b0b221-b419-4669-9dd7-e061e358a47a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01MKPwBFzeVFBQhPWYcMQULN`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_experiments_c1_data_verify_20260514T004234.log",
+  "limit": 100
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "b6177af4-93bf-4b47-81fa-3d2ef84b3e06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KEHUJf7V2CZPcF7uYA8Bh8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4335,
+      "cache_read_input_tokens": 39423,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4335
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 71 · 2026-05-19T23:45:11.988Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01MKPwBFzeVFBQhPWYcMQULN`</summary>
+
+```text
+File content (98276 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "c985801b-8eff-4625-8c67-fc6c749411b4",
+  "tool_use_result": "Error: File content (98276 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 72_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01GCAV5Bfz1uRU2w3fH5FmAS`</summary>
+
+```json
+{
+  "pattern": "14[Bb]|\\.572|\\.537|LightGBM.*14",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_experiments_c1_data_verify_20260514T004234.log",
+  "output_mode": "content",
+  "head_limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "ff595b03-e24d-44f2-96fe-57b2f26778a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0131FGpStLWEK5xczMhjmKXj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1671,
+      "cache_read_input_tokens": 43758,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1671
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 73 · 2026-05-19T23:45:15.723Z_
+
+<details><summary>↩ Tool result · `toolu_01GCAV5Bfz1uRU2w3fH5FmAS`</summary>
+
+```text
+9:[Omitted long matching line]
+11:[Omitted long matching line]
+16:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "56164216-fa4a-4a31-bbfd-c8e596bb3852",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "9:[Omitted long matching line]\n11:[Omitted long matching line]\n16:[Omitted long matching line]",
+    "numLines": 3
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01XqsZbzdX2AEEGQZqHK4fMz`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/pairwise_auc.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "dc623f18-b8ef-43d5-a2d3-ccd06935d596",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0131FGpStLWEK5xczMhjmKXj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1671,
+      "cache_read_input_tokens": 43758,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1671
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 75 · 2026-05-19T23:45:17.182Z_
+
+<details><summary>↩ Tool result · `toolu_01XqsZbzdX2AEEGQZqHK4fMz`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/pairwise_auc.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "39fbbefe-4a14-4f89-84cd-8b1b5935d320",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/pairwise_auc.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/pairwise_auc.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 76_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014DEqK2jubJW7uqvY4GfRUn`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls -la /root/autodl-tmp/gen-depth-contamination/results/exp_deberta_upperbound/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "5b2bccd1-c258-4e4c-b5a4-43c65552c59d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0131FGpStLWEK5xczMhjmKXj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1671,
+      "cache_read_input_tokens": 43758,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1671
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 77 · 2026-05-19T23:45:18.000Z_
+
+<details><summary>↩ Tool result · `toolu_014DEqK2jubJW7uqvY4GfRUn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 32\\ndrwxr-xr-x  2 root root  176 May 20 05:39 .\\ndrwxr-xr-x 54 root root 4096 May 20 06:00 ..\\n-rw-r--r--  1 root root 7497 May 20 06:03 summary.json\\n-rw-r--r--  1 root root 1358 May 20 06:01 wiki_llama8b.json\\n-rw-r--r--  1 root root 1359 May 20 06:01 wiki_mistral7b.json\\n-rw-r--r--  1 root root 1351 May 20 06:03 wiki_olmo.json\\n-rw-r--r--  1 root root 1354 May 20 06:01 wiki_pythia.json\\n-rw-r--r--  1 root root 1356 May 20 06:01 wiki_qwen7b.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "4f724248-da45-41e5-882c-f6cf34a7d8c7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 32\\\\ndrwxr-xr-x  2 root root  176 May 20 05:39 .\\\\ndrwxr-xr-x 54 root root 4096 May 20 06:00 ..\\\\n-rw-r--r--  1 root root 7497 May 20 06:03 summary.json\\\\n-rw-r--r--  1 root root 1358 May 20 06:01 wiki_llama8b.json\\\\n-rw-r--r--  1 root root 1359 May 20 06:01 wiki_mistral7b.json\\\\n-rw-r--r--  1 root root 1351 May 20 06:03 wiki_olmo.json\\\\n-rw-r--r--  1 root root 1354 May 20 06:01 wiki_pythia.json\\\\n-rw-r--r--  1 root root 1356 May 20 06:01 wiki_qwen7b.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 32\\ndrwxr-xr-x  2 root root  176 May 20 05:39 .\\ndrwxr-xr-x 54 root root 4096 May 20 06:00 ..\\n-rw-r--r--  1 root root 7497 May 20 06:03 summary.json\\n-rw-r--r--  1 root root 1358 May 20 06:01 wiki_llama8b.json\\n-rw-r--r--  1 root root 1359 May 20 06:01 wiki_mistral7b.json\\n-rw-r--r--  1 root root 1351 May 20 06:03 wiki_olmo.json\\n-rw-r--r--  1 root root 1354 May 20 06:01 wiki_pythia.json\\n-rw-r--r--  1 root root 1356 May 20 06:01 wiki_qwen7b.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01XgaDFQAkBPyw2ib4n1BQKk`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/mcp-agent-ml-research-read_registry-1779234216992.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexperiments = result.get('data', result).get('experiments', {})\n# Find deberta experiments\nfor k, v in experiments.items():\n    if 'deberta' in k.lower() or '32b' in k.lower():\n        metrics = v.get('metrics', {})\n        auc = metrics.get('pairwise_auc', {})\n        print(f'{k}: status={v.get(\\\"status\\\")}, auc={auc}')\n\"",
+  "description": "Find DeBERTa and 32B experiments in registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "6c048648-acb7-4d4b-80dd-0d3117427e14",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0131FGpStLWEK5xczMhjmKXj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1671,
+      "cache_read_input_tokens": 43758,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1671
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 79 · 2026-05-19T23:45:22.099Z_
+
+<details><summary>↩ Tool result · `toolu_01XgaDFQAkBPyw2ib4n1BQKk`</summary>
+
+```text
+exp_deberta_c4_1b5: status=DONE, auc={'0v1': 0.9923, '1v2': 0.7052, '2v3': 0.5988, '3v4': 0.5698, '4v5': 0.5475}
+exp_32b_c4_6class: status=DONE, auc={'0v1': 0.9923, '1v2': 0.6945, '2v3': 0.5978, '3v4': 0.5669, '4v5': 0.5426}
+exp_deberta_cross_transfer_wiki: status=RUNNING, auc={}
+exp_deberta_upperbound: status=DONE, auc={}
+exp_32b_c4: status=DONE, auc={}
+exp_deberta_c4: status=DONE, auc={'0v1': 0.9941, '1v2': 0.6781, '2v3': 0.5895, '3v4': 0.5651, '4v5': 0.5485}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "22257c00-c2d5-4266-92c7-d1a2870d3a35",
+  "tool_use_result": {
+    "stdout": "exp_deberta_c4_1b5: status=DONE, auc={'0v1': 0.9923, '1v2': 0.7052, '2v3': 0.5988, '3v4': 0.5698, '4v5': 0.5475}\nexp_32b_c4_6class: status=DONE, auc={'0v1': 0.9923, '1v2': 0.6945, '2v3': 0.5978, '3v4': 0.5669, '4v5': 0.5426}\nexp_deberta_cross_transfer_wiki: status=RUNNING, auc={}\nexp_deberta_upperbound: status=DONE, auc={}\nexp_32b_c4: status=DONE, auc={}\nexp_deberta_c4: status=DONE, auc={'0v1': 0.9941, '1v2': 0.6781, '2v3': 0.5895, '3v4': 0.5651, '4v5': 0.5485}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 80_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I see:
+- `exp_deberta_c4_1b5`: DeBERTa 1.5B: 0v1=.9923, 1v2=.7052, 2v3=.5988, 3v4=.5698, 4v5=.5475
+- `exp_32b_c4_6class`: What is this? Let me check. 0v1=.9923, 1v2=.6945, 2v3=.5978... This looks like DeBERTa 32B
+
+
+- `exp_deberta_c4`: DeBERTa 14B based on the table reference. 0v1=.9941, 1v2=.6781, 2v3=.5895, 3v4=.5651, 4v5=.5485
+- `exp_32b_c4_6class`: DeBERTa 32B, with 0v1=.9923, 1v2=.6945 matching the table closely, though there's a slight discrepancy in the 2v3 metric where my results show .5978 but the table lists .594
+
+.
+
+9923 is very close to the .993 value for DeBERTa 32B in the table, though there's a slight rounding difference—.9923 would round to .992 rather than .993, unless the original value was something like .9928. Let me check the 14B model to see if there's a pattern: the table shows DeBERTa 14B with 0v1=.994, and I can see exp_deberta_c4 has 0v1=0.9941, which matches up when rounded.
+
+Checking the other metrics for DeBERTa 14B: 1v2=.678 matches 0.6781, 2v3=.590 matches 0.5895, and 3v4=.565 matches 0.5651—all the rounding checks out perfectly for this model.
+
+Now I'm looking at the LightGBM 14B entries from the table and cross-referencing them with the registry data to see if they align the same way. The discrepancies are substantial—2v3 jumped by 0.023 and 3v4 by 0.013—which suggests either a different experimental run, a data entry mistake, or results misattributed from another experiment entirely. I should search across all result files to see if these specific values (.572 and .537) appear elsewhere, which might reveal their true source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "70265d39-9330-4020-9939-67ddf9fcd046",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FYUGawzKzXTLSiZeRG6jLD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1584,
+      "cache_read_input_tokens": 45429,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1584
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 81_
+
+关键发现: 0v1(.960) 和 1v2(.621) 匹配，但 2v3 和 3v4 不匹配。搜索 .572/.537 是否出现在其他结果文件中。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "a87465dd-2750-423e-bdd3-ade9473929ca",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FYUGawzKzXTLSiZeRG6jLD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1584,
+      "cache_read_input_tokens": 45429,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1584
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 82_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013ozafevmc9JrcAibCkcCVp`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -r \"0.572\\|0.537\\|\\.572\\|\\.537\" /root/autodl-tmp/gen-depth-contamination/results/ --include='*.json'",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "268cf92e-926f-4292-ab8c-426d17f23110",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FYUGawzKzXTLSiZeRG6jLD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1584,
+      "cache_read_input_tokens": 45429,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1584
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 83 · 2026-05-19T23:45:50.323Z_
+
+<details><summary>↩ Tool result · `toolu_013ozafevmc9JrcAibCkcCVp`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "be39e36c-4f04-407b-87fa-8280d40ef0b9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018bWBXE5bZLwFH8CznUkHNR`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -r \"0.57\" /root/autodl-tmp/gen-depth-contamination/results/ --include='*.json'",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "f5fbe993-8a6e-4e10-a098-d9c2f332f6a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FYUGawzKzXTLSiZeRG6jLD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1584,
+      "cache_read_input_tokens": 45429,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1584
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 85 · 2026-05-19T23:45:51.617Z_
+
+<details><summary>↩ Tool result · `toolu_018bWBXE5bZLwFH8CznUkHNR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_018_llama8b/jsd.json:  \\\"4v5\\\": 0.003572\\n/root/autodl-tmp/gen-depth-contamination/results/exp_021_length_512/pairwise_auc.json:    \\\"2v3\\\": 0.5721,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_021_length_512/pairwise_auc.json:      0.5767,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_021_length_512/pairwise_auc.json:      0.5718,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_021_length_512/pairwise_auc.json:      0.5722,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_021_length_512/pairwise_auc.json:      0.574\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed0_eval.json:      \\\"acc_stderr,none\\\": 0.03213418026701576\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed0_eval.json:      \\\"acc_stderr,none\\\": 0.02574229728957518\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed0_eval.json:      \\\"acc_stderr,none\\\": 0.015745497169049005\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed0_eval.json:      \\\"acc,none\\\": 0.6676300578034682,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed0_eval.json:      \\\"acc_stderr,none\\\": 0.008579187550620752,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed0_eval.json:      \\\"acc_stderr,none\\\": 0.03213418026701576\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed0_eval.json:      \\\"acc_stderr,none\\\": 0.02574554227604548\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed0_eval.json:      \\\"acc,none\\\": 0.6763005780346821,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed0_eval.json:      \\\"acc_stderr,none\\\": 0.01576998484069047\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed0_eval.json:      \\\"acc,none\\\": 0.5787234042553191,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed0_eval.json:      \\\"acc_stderr,none\\\": 0.025749868288556587\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed0_eval.json:      \\\"acc_stderr,none\\\": 0.01576998484069047\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed0_eval.json:      \\\"acc_stderr,none\\\": 0.025773111169630415\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed1_eval.json:      \\\"acc_stderr,none\\\": 0.025749868288556587\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed1_eval.json:      \\\"acc_stderr,none\\\": 0.01572083867844512\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed1_eval.json:      \\\"acc_stderr,none\\\": 0.025738330639412107\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed1_eval.json:      \\\"acc,none\\\": 0.6816720257234726,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed1_eval.json:      \\\"acc_stderr,none\\\": 0.008579576202245873,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed1_eval.json:      \\\"acc_stderr,none\\\": 0.03213418026701576\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed1_eval.json:      \\\"acc_stderr,none\\\": 0.02574229728957518\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed1_eval.json:      \\\"acc_stderr,none\\\": 0.04572372358737434\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed1_eval.json:      \\\"acc_stderr,none\\\": 0.01576998484069047\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduate\\n\\n... [截断: 输出过长，省略 37048 字符] ...\\n\\n5742,\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:        \\\"f1_at_050\\\": 0.5746,\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:          0.578,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"delta_std\\\": 0.000357,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"p_value\\\": 0.570942,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"lofo_auc_mean\\\": 0.609573,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"lofo_auc_std\\\": 0.006577,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"delta_std\\\": 0.005714,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"delta_mean\\\": -0.005794,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"delta_std\\\": 0.005762,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"delta_std\\\": 0.005704,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"lofo_auc_std\\\": 0.015753,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.579055,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.571173,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.571581,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.57437,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.572138,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.573347,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"lofo_auc_std\\\": 0.015799,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.573042,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.572624,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"delta_std\\\": 0.005721,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.575134,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.578729,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.577454,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"delta_std\\\": 0.000157,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"lofo_auc_std\\\": 0.007577,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"lofo_auc_std\\\": 0.005743,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.520657,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"delta_std\\\": 0.00571,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"t_stat\\\": 0.5745,\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_olmo__to__wiki_llama8b.json:      \\\"ci_upper\\\": 0.577,\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_olmo__to__wiki_pythia.json:      \\\"ci_lower\\\": 0.5774,\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_pythia__to__wiki_llama8b.json:      \\\"ci_lower\\\": 0.5746,\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_pythia__to__wiki_qwen7b.json:      \\\"ci_upper\\\": 0.5763,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_c4_1b5/qwen_rw.json:      \\\"ci_upper\\\": 0.5774,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "5ecc57d3-0a2e-4a62-978c-8efcda455636",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_018_llama8b/jsd.json:  \\\\\\\"4v5\\\\\\\": 0.003572\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_021_length_512/pairwise_auc.json:    \\\\\\\"2v3\\\\\\\": 0.5721,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_021_length_512/pairwise_auc.json:      0.5767,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_021_length_512/pairwise_auc.json:      0.5718,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_021_length_512/pairwise_auc.json:      0.5722,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_021_length_512/pairwise_auc.json:      0.574\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed0_eval.json:      \\\\\\\"acc_stderr,none\\\\\\\": 0.03213418026701576\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed0_eval.json:      \\\\\\\"acc_stderr,none\\\\\\\": 0.02574229728957518\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed0_eval.json:      \\\\\\\"acc_stderr,none\\\\\\\": 0.015745497169049005\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed0_eval.json:      \\\\\\\"acc,none\\\\\\\": 0.6676300578034682,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed0_eval.json:      \\\\\\\"acc_stderr,none\\\\\\\": 0.008579187550620752,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed0_eval.json:      \\\\\\\"acc_stderr,none\\\\\\\": 0.03213418026701576\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed0_eval.json:      \\\\\\\"acc_stderr,none\\\\\\\": 0.02574554227604548\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed0_eval.json:      \\\\\\\"acc,none\\\\\\\": 0.6763005780346821,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed0_eval.json:      \\\\\\\"acc_stderr,none\\\\\\\": 0.01576998484069047\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed0_eval.json:      \\\\\\\"acc,none\\\\\\\": 0.5787234042553191,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed0_eval.json:      \\\\\\\"acc_stderr,none\\\\\\\": 0.025749868288556587\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed0_eval.json:      \\\\\\\"acc_stderr,none\\\\\\\": 0.01576998484069047\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed0_eval.json:      \\\\\\\"acc_stderr,none\\\\\\\": 0.025773111169630415\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed1_eval.json:      \\\\\\\"acc_stderr,none\\\\\\\": 0.025749868288556587\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed1_eval.json:      \\\\\\\"acc_stderr,none\\\\\\\": 0.01572083867844512\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed1_eval.json:      \\\\\\\"acc_stderr,none\\\\\\\": 0.025738330639412107\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed1_eval.json:      \\\\\\\"acc,none\\\\\\\": 0.6816720257234726,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed1_eval.json:      \\\\\\\"acc_stderr,none\\\\\\\": 0.008579576202245873,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed1_eval.json:      \\\\\\\"acc_stderr,none\\\\\\\": 0.03213418026701576\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed1_eval.json:      \\\\\\\"acc_stderr,none\\\\\\\": 0.02574229728957518\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed1_eval.json:      \\\\\\\"acc_stderr,none\\\\\\\": 0.04572372358737434\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed1_eval.json:      \\\\\\\"acc_stderr,none\\\\\\\": 0.01576998484069047\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduate\\\\n\\\\n... [截断: 输出过长，省略 37048 字符] ...\\\\n\\\\n5742,\\\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:        \\\\\\\"f1_at_050\\\\\\\": 0.5746,\\\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:          0.578,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\\\\\"delta_std\\\\\\\": 0.000357,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\\\\\"p_value\\\\\\\": 0.570942,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\\\\\"lofo_auc_mean\\\\\\\": 0.609573,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\\\\\"lofo_auc_std\\\\\\\": 0.006577,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\\\\\"delta_std\\\\\\\": 0.005714,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\\\\\"delta_mean\\\\\\\": -0.005794,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\\\\\"delta_std\\\\\\\": 0.005762,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\\\\\"delta_std\\\\\\\": 0.005704,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\\\\\"lofo_auc_std\\\\\\\": 0.015753,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.579055,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.571173,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.571581,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.57437,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.572138,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.573347,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\\\\\"lofo_auc_std\\\\\\\": 0.015799,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.573042,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.572624,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\\\\\"delta_std\\\\\\\": 0.005721,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.575134,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.578729,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.577454,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\\\\\"delta_std\\\\\\\": 0.000157,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\\\\\"lofo_auc_std\\\\\\\": 0.007577,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\\\\\"lofo_auc_std\\\\\\\": 0.005743,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.520657,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\\\\\"delta_std\\\\\\\": 0.00571,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\\\\\"t_stat\\\\\\\": 0.5745,\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_olmo__to__wiki_llama8b.json:      \\\\\\\"ci_upper\\\\\\\": 0.577,\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_olmo__to__wiki_pythia.json:      \\\\\\\"ci_lower\\\\\\\": 0.5774,\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_pythia__to__wiki_llama8b.json:      \\\\\\\"ci_lower\\\\\\\": 0.5746,\\\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_pythia__to__wiki_qwen7b.json:      \\\\\\\"ci_upper\\\\\\\": 0.5763,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_c4_1b5/qwen_rw.json:      \\\\\\\"ci_upper\\\\\\\": 0.5774,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_018_llama8b/jsd.json:  \\\"4v5\\\": 0.003572\\n/root/autodl-tmp/gen-depth-contamination/results/exp_021_length_512/pairwise_auc.json:    \\\"2v3\\\": 0.5721,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_021_length_512/pairwise_auc.json:      0.5767,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_021_length_512/pairwise_auc.json:      0.5718,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_021_length_512/pairwise_auc.json:      0.5722,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_021_length_512/pairwise_auc.json:      0.574\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed0_eval.json:      \\\"acc_stderr,none\\\": 0.03213418026701576\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed0_eval.json:      \\\"acc_stderr,none\\\": 0.02574229728957518\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed0_eval.json:      \\\"acc_stderr,none\\\": 0.015745497169049005\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed0_eval.json:      \\\"acc,none\\\": 0.6676300578034682,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed0_eval.json:      \\\"acc_stderr,none\\\": 0.008579187550620752,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed0_eval.json:      \\\"acc_stderr,none\\\": 0.03213418026701576\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed0_eval.json:      \\\"acc_stderr,none\\\": 0.02574554227604548\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed0_eval.json:      \\\"acc,none\\\": 0.6763005780346821,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed0_eval.json:      \\\"acc_stderr,none\\\": 0.01576998484069047\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed0_eval.json:      \\\"acc,none\\\": 0.5787234042553191,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed0_eval.json:      \\\"acc_stderr,none\\\": 0.025749868288556587\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed0_eval.json:      \\\"acc_stderr,none\\\": 0.01576998484069047\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed0_eval.json:      \\\"acc_stderr,none\\\": 0.025773111169630415\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed1_eval.json:      \\\"acc_stderr,none\\\": 0.025749868288556587\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed1_eval.json:      \\\"acc_stderr,none\\\": 0.01572083867844512\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed1_eval.json:      \\\"acc_stderr,none\\\": 0.025738330639412107\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed1_eval.json:      \\\"acc,none\\\": 0.6816720257234726,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed1_eval.json:      \\\"acc_stderr,none\\\": 0.008579576202245873,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed1_eval.json:      \\\"acc_stderr,none\\\": 0.03213418026701576\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed1_eval.json:      \\\"acc_stderr,none\\\": 0.02574229728957518\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed1_eval.json:      \\\"acc_stderr,none\\\": 0.04572372358737434\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduated_seed1_eval.json:      \\\"acc_stderr,none\\\": 0.01576998484069047\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/graduate\\n\\n... [截断: 输出过长，省略 37048 字符] ...\\n\\n5742,\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:        \\\"f1_at_050\\\": 0.5746,\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:          0.578,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"delta_std\\\": 0.000357,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"p_value\\\": 0.570942,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"lofo_auc_mean\\\": 0.609573,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"lofo_auc_std\\\": 0.006577,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"delta_std\\\": 0.005714,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"delta_mean\\\": -0.005794,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"delta_std\\\": 0.005762,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"delta_std\\\": 0.005704,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"lofo_auc_std\\\": 0.015753,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.579055,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.571173,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.571581,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.57437,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.572138,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.573347,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"lofo_auc_std\\\": 0.015799,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.573042,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.572624,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"delta_std\\\": 0.005721,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.575134,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.578729,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.577454,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"delta_std\\\": 0.000157,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"lofo_auc_std\\\": 0.007577,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"lofo_auc_std\\\": 0.005743,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.520657,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"delta_std\\\": 0.00571,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"t_stat\\\": 0.5745,\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_olmo__to__wiki_llama8b.json:      \\\"ci_upper\\\": 0.577,\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_olmo__to__wiki_pythia.json:      \\\"ci_lower\\\": 0.5774,\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_pythia__to__wiki_llama8b.json:      \\\"ci_lower\\\": 0.5746,\\n/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/wiki_pythia__to__wiki_qwen7b.json:      \\\"ci_upper\\\": 0.5763,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_deberta_c4_1b5/qwen_rw.json:      \\\"ci_upper\\\": 0.5774,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 86_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I found something very interesting: `exp_021_length_512/pairwise_auc.json` has `"2v3": 0.5721`. That's very close to .572 in the table. Let me check this experiment.
+
+Also, the output was truncated. Let me look at exp_021_length_512 more closely, and also search for 0.537.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "37faa370-0cd6-4d5e-a8d8-55b558b0fe37",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZHDdtLkkhxZWkzujSjmtq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5346,
+      "cache_read_input_tokens": 47013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 87_
+
+发现线索: `exp_021_length_512` 的 2v3=0.5721，接近论文中的 .572。检查该实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "c8c781c8-1f0b-4dc4-bdcd-815db6308318",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZHDdtLkkhxZWkzujSjmtq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5346,
+      "cache_read_input_tokens": 47013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 88_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CRyFDSz5o6FBU5XXbgDGG5`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_021_length_512/pairwise_auc.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "237ec954-70f5-4e84-8450-8d217be36233",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZHDdtLkkhxZWkzujSjmtq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5346,
+      "cache_read_input_tokens": 47013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 89 · 2026-05-19T23:45:57.271Z_
+
+<details><summary>↩ Tool result · `toolu_01CRyFDSz5o6FBU5XXbgDGG5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.9917,\\n    \\\"1v2\\\": 0.6073,\\n    \\\"2v3\\\": 0.5721,\\n    \\\"3v4\\\": 0.53,\\n    \\\"4v5\\\": 0.5176\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.9921,\\n      0.9909,\\n      0.9922,\\n      0.9911,\\n      0.9921\\n    ],\\n    \\\"1v2\\\": [\\n      0.6184,\\n      0.5979,\\n      0.5952,\\n      0.6118,\\n      0.6134\\n    ],\\n    \\\"2v3\\\": [\\n      0.5767,\\n      0.5658,\\n      0.5718,\\n      0.5722,\\n      0.574\\n    ],\\n    \\\"3v4\\\": [\\n      0.5219,\\n      0.5408,\\n      0.5364,\\n      0.5245,\\n      0.5263\\n    ],\\n    \\\"4v5\\\": [\\n      0.4998,\\n      0.5055,\\n      0.5212,\\n      0.5309,\\n      0.5304\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "dfa2c6a9-e5a7-460b-9ce2-67570aaa56a0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mean\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": 0.9917,\\\\n    \\\\\\\"1v2\\\\\\\": 0.6073,\\\\n    \\\\\\\"2v3\\\\\\\": 0.5721,\\\\n    \\\\\\\"3v4\\\\\\\": 0.53,\\\\n    \\\\\\\"4v5\\\\\\\": 0.5176\\\\n  },\\\\n  \\\\\\\"per_fold\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": [\\\\n      0.9921,\\\\n      0.9909,\\\\n      0.9922,\\\\n      0.9911,\\\\n      0.9921\\\\n    ],\\\\n    \\\\\\\"1v2\\\\\\\": [\\\\n      0.6184,\\\\n      0.5979,\\\\n      0.5952,\\\\n      0.6118,\\\\n      0.6134\\\\n    ],\\\\n    \\\\\\\"2v3\\\\\\\": [\\\\n      0.5767,\\\\n      0.5658,\\\\n      0.5718,\\\\n      0.5722,\\\\n      0.574\\\\n    ],\\\\n    \\\\\\\"3v4\\\\\\\": [\\\\n      0.5219,\\\\n      0.5408,\\\\n      0.5364,\\\\n      0.5245,\\\\n      0.5263\\\\n    ],\\\\n    \\\\\\\"4v5\\\\\\\": [\\\\n      0.4998,\\\\n      0.5055,\\\\n      0.5212,\\\\n      0.5309,\\\\n      0.5304\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.9917,\\n    \\\"1v2\\\": 0.6073,\\n    \\\"2v3\\\": 0.5721,\\n    \\\"3v4\\\": 0.53,\\n    \\\"4v5\\\": 0.5176\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.9921,\\n      0.9909,\\n      0.9922,\\n      0.9911,\\n      0.9921\\n    ],\\n    \\\"1v2\\\": [\\n      0.6184,\\n      0.5979,\\n      0.5952,\\n      0.6118,\\n      0.6134\\n    ],\\n    \\\"2v3\\\": [\\n      0.5767,\\n      0.5658,\\n      0.5718,\\n      0.5722,\\n      0.574\\n    ],\\n    \\\"3v4\\\": [\\n      0.5219,\\n      0.5408,\\n      0.5364,\\n      0.5245,\\n      0.5263\\n    ],\\n    \\\"4v5\\\": [\\n      0.4998,\\n      0.5055,\\n      0.5212,\\n      0.5309,\\n      0.5304\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019qA4NE3rkWQDwFZmjnHyQR`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls -la /root/autodl-tmp/gen-depth-contamination/results/exp_021_length_512/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "2bfc16f9-e04a-4b5f-9908-619ff3a253d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZHDdtLkkhxZWkzujSjmtq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5346,
+      "cache_read_input_tokens": 47013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 91 · 2026-05-19T23:45:58.073Z_
+
+<details><summary>↩ Tool result · `toolu_019qA4NE3rkWQDwFZmjnHyQR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 24\\ndrwxr-xr-x  2 root root  149 May 16 21:42 .\\ndrwxr-xr-x 54 root root 4096 May 20 06:00 ..\\n-rw-r--r--  1 root root  639 May 16 21:42 feature_importance.json\\n-rw-r--r--  1 root root   97 May 16 21:42 jsd.json\\n-rw-r--r--  1 root root   55 May 16 21:42 ordinal_results.json\\n-rw-r--r--  1 root root  575 May 16 21:42 pairwise_auc.json\\n-rw-r--r--  1 root root 1327 May 16 21:42 summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "c60f7e36-b191-4822-9c84-f681bf6d0503",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 24\\\\ndrwxr-xr-x  2 root root  149 May 16 21:42 .\\\\ndrwxr-xr-x 54 root root 4096 May 20 06:00 ..\\\\n-rw-r--r--  1 root root  639 May 16 21:42 feature_importance.json\\\\n-rw-r--r--  1 root root   97 May 16 21:42 jsd.json\\\\n-rw-r--r--  1 root root   55 May 16 21:42 ordinal_results.json\\\\n-rw-r--r--  1 root root  575 May 16 21:42 pairwise_auc.json\\\\n-rw-r--r--  1 root root 1327 May 16 21:42 summary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 24\\ndrwxr-xr-x  2 root root  149 May 16 21:42 .\\ndrwxr-xr-x 54 root root 4096 May 20 06:00 ..\\n-rw-r--r--  1 root root  639 May 16 21:42 feature_importance.json\\n-rw-r--r--  1 root root   97 May 16 21:42 jsd.json\\n-rw-r--r--  1 root root   55 May 16 21:42 ordinal_results.json\\n-rw-r--r--  1 root root  575 May 16 21:42 pairwise_auc.json\\n-rw-r--r--  1 root root 1327 May 16 21:42 summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 92_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Bw1Jk5VXYaZb4Mb2kBFKST`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "grep -r \"0.537\" /root/autodl-tmp/gen-depth-contamination/results/ --include='*.json'",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "21a0cb0c-4982-48db-9300-78bc1c1b2933",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ZHDdtLkkhxZWkzujSjmtq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5346,
+      "cache_read_input_tokens": 47013,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5346
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 93 · 2026-05-19T23:45:58.828Z_
+
+<details><summary>↩ Tool result · `toolu_01Bw1Jk5VXYaZb4Mb2kBFKST`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_023_wiki/pairwise_auc.json:      0.5378,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed1_eval.json:      \\\"acc_stderr,none\\\": 0.008005303537584059,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed1_eval.json:      \\\"acc,none\\\": 0.5370370370370371,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed2_eval.json:      \\\"acc,none\\\": 0.5370370370370371,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed4_eval.json:      \\\"acc,none\\\": 0.5370370370370371,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_30/no_filter_seed0_eval.json:      \\\"acc,none\\\": 0.5370370370370371,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_30/no_filter_seed3_eval.json:      \\\"acc,none\\\": 0.5370370370370371,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_30/binary_ours_seed3_eval.json:    \\\"mmlu\\\": 0.6065375302663438,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_30/binary_ours_seed3_eval.json:      \\\"acc,none\\\": 0.5372660957817951,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_30/binary_ours_seed3_eval.json:      \\\"acc,none\\\": 0.6065375302663438,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_30/no_filter_seed4_eval.json:      \\\"acc,none\\\": 0.5370370370370371,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50/no_filter_seed0_eval.json:      \\\"acc,none\\\": 0.5370370370370371,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50/graduated_seed0_eval.json:      \\\"acc,none\\\": 0.5370370370370371,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50/no_filter_seed1_eval.json:      \\\"acc,none\\\": 0.5370370370370371,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50/binary_ours_seed2_eval.json:      \\\"acc,none\\\": 0.5375832540437678,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_pythia/pairwise_auc.json:      0.5378,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_pythia_v2/pairwise_auc.json:      0.5375,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation/pairwise_auc.json:      0.5373,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation/pairwise_auc.json:      0.537,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation/bootstrap_ci_results.json:      0.5379,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_028_power_curve/power_results.json:          0.5372,\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:          0.5372\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:          0.5379,\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:          0.5371,\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:          0.5371,\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:          0.5376,\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:          0.5371,\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:          0.5378,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.53705,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537386\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537568,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537579\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537443,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"lofo_auc_std\\\": 0.015377,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537433\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537293,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537045,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537423,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537237,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.53797,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          0.537844,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537335,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537881,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537874,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "87639432-2481-4633-b55e-6b8afa1467fb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_023_wiki/pairwise_auc.json:      0.5378,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed1_eval.json:      \\\\\\\"acc_stderr,none\\\\\\\": 0.008005303537584059,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed1_eval.json:      \\\\\\\"acc,none\\\\\\\": 0.5370370370370371,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed2_eval.json:      \\\\\\\"acc,none\\\\\\\": 0.5370370370370371,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed4_eval.json:      \\\\\\\"acc,none\\\\\\\": 0.5370370370370371,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_30/no_filter_seed0_eval.json:      \\\\\\\"acc,none\\\\\\\": 0.5370370370370371,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_30/no_filter_seed3_eval.json:      \\\\\\\"acc,none\\\\\\\": 0.5370370370370371,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_30/binary_ours_seed3_eval.json:    \\\\\\\"mmlu\\\\\\\": 0.6065375302663438,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_30/binary_ours_seed3_eval.json:      \\\\\\\"acc,none\\\\\\\": 0.5372660957817951,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_30/binary_ours_seed3_eval.json:      \\\\\\\"acc,none\\\\\\\": 0.6065375302663438,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_30/no_filter_seed4_eval.json:      \\\\\\\"acc,none\\\\\\\": 0.5370370370370371,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50/no_filter_seed0_eval.json:      \\\\\\\"acc,none\\\\\\\": 0.5370370370370371,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50/graduated_seed0_eval.json:      \\\\\\\"acc,none\\\\\\\": 0.5370370370370371,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50/no_filter_seed1_eval.json:      \\\\\\\"acc,none\\\\\\\": 0.5370370370370371,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50/binary_ours_seed2_eval.json:      \\\\\\\"acc,none\\\\\\\": 0.5375832540437678,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_pythia/pairwise_auc.json:      0.5378,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_pythia_v2/pairwise_auc.json:      0.5375,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation/pairwise_auc.json:      0.5373,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation/pairwise_auc.json:      0.537,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation/bootstrap_ci_results.json:      0.5379,\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_028_power_curve/power_results.json:          0.5372,\\\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:          0.5372\\\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:          0.5379,\\\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:          0.5371,\\\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:          0.5371,\\\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:          0.5376,\\\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:          0.5371,\\\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:          0.5378,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.53705,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537386\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537568,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537579\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537443,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\\\\\"lofo_auc_std\\\\\\\": 0.015377,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537433\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537293,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537045,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537423,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537237,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.53797,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          0.537844,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537335,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537881,\\\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537874,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_023_wiki/pairwise_auc.json:      0.5378,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/no_filter_seed1_eval.json:      \\\"acc_stderr,none\\\": 0.008005303537584059,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed1_eval.json:      \\\"acc,none\\\": 0.5370370370370371,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed2_eval.json:      \\\"acc,none\\\": 0.5370370370370371,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_10/binary_ours_seed4_eval.json:      \\\"acc,none\\\": 0.5370370370370371,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_30/no_filter_seed0_eval.json:      \\\"acc,none\\\": 0.5370370370370371,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_30/no_filter_seed3_eval.json:      \\\"acc,none\\\": 0.5370370370370371,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_30/binary_ours_seed3_eval.json:    \\\"mmlu\\\": 0.6065375302663438,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_30/binary_ours_seed3_eval.json:      \\\"acc,none\\\": 0.5372660957817951,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_30/binary_ours_seed3_eval.json:      \\\"acc,none\\\": 0.6065375302663438,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_30/no_filter_seed4_eval.json:      \\\"acc,none\\\": 0.5370370370370371,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50/no_filter_seed0_eval.json:      \\\"acc,none\\\": 0.5370370370370371,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50/graduated_seed0_eval.json:      \\\"acc,none\\\": 0.5370370370370371,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50/no_filter_seed1_eval.json:      \\\"acc,none\\\": 0.5370370370370371,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_50/binary_ours_seed2_eval.json:      \\\"acc,none\\\": 0.5375832540437678,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_pythia/pairwise_auc.json:      0.5378,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_pythia_v2/pairwise_auc.json:      0.5375,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation/pairwise_auc.json:      0.5373,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation/pairwise_auc.json:      0.537,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation/bootstrap_ci_results.json:      0.5379,\\n/root/autodl-tmp/gen-depth-contamination/results/exp_028_power_curve/power_results.json:          0.5372,\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:          0.5372\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:          0.5379,\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:          0.5371,\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:          0.5371,\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:          0.5376,\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:          0.5371,\\n/root/autodl-tmp/gen-depth-contamination/results/cross_scorer_f1/cross_scorer_f1_results.json:          0.5378,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.53705,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537386\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537568,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537579\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537443,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          \\\"lofo_auc_std\\\": 0.015377,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537433\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537293,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537045,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537423,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537237,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.53797,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:          0.537844,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537335,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537881,\\n/root/autodl-tmp/gen-depth-contamination/results/lofo_importance/lofo_results.json:            0.537874,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 94_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting findings:
+
+1. `exp_021_length_512/pairwise_auc.json` has:
+   - 2v3 = 0.5721 → rounds to .572 ✓
+   - 3v4 = 0.53 → rounds to .530, NOT .537
+
+2. No exact match of 0.537 as a mean pairwise_auc in any experiment's results.
+
+Let me check `exp_021_length_512` more carefully - what this experiment is about, and also check the `lofo_importance` results which have many .537x values.
+
+
+I need to understand what exp_021_length_512 actually represents since the name suggests a length ablation but the results show "LightGBM (14B)" which seems inconsistent. I'm also noticing the lofo_importance results contain many values around .537, which could be related to feature removal effects on AUC rather than direct pairwise comparisons. Let me search for an experiment that has both the 2v3≈.572 value and the 3v4 value to see if they're connected.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "269607b5-71d7-44e7-a630-cc09b8c5e109",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W1udLhbrBj4FdyZG366ED9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3607,
+      "cache_read_input_tokens": 52359,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3607
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 95_
+
+`exp_021_length_512` 的 2v3=0.5721 精确匹配 .572，但 3v4=0.530 不匹配 .537。检查该实验的详情。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "4a8d43b8-18d4-41e6-af42-3b8fbac37056",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W1udLhbrBj4FdyZG366ED9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3607,
+      "cache_read_input_tokens": 52359,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3607
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 96_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011MuWigHgx2SWP6FHKRuMPE`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_021_length_512/summary.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "8b62119e-3135-402f-8fea-eb2b35797df4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W1udLhbrBj4FdyZG366ED9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3607,
+      "cache_read_input_tokens": 52359,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3607
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 97 · 2026-05-19T23:46:12.388Z_
+
+<details><summary>↩ Tool result · `toolu_011MuWigHgx2SWP6FHKRuMPE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nMVP Pilot Saturation Study — Results Summary\\n============================================================\\n\\nPairwise AUC (adjacent depths):\\n  depth 0 vs 1: AUC = 0.9917 ± 0.0006  folds=[0.9921, 0.9909, 0.9922, 0.9911, 0.9921]\\n  depth 1 vs 2: AUC = 0.6073 ± 0.0091  folds=[0.6184, 0.5979, 0.5952, 0.6118, 0.6134]\\n  depth 2 vs 3: AUC = 0.5721 ± 0.0036  folds=[0.5767, 0.5658, 0.5718, 0.5722, 0.574]\\n  depth 3 vs 4: AUC = 0.53 ± 0.0073  folds=[0.5219, 0.5408, 0.5364, 0.5245, 0.5263]\\n  depth 4 vs 5: AUC = 0.5176 ± 0.0128  folds=[0.4998, 0.5055, 0.5212, 0.5309, 0.5304]\\n\\nPairwise JSD (adjacent depths):\\n  depth 0 vs 1: JSD = 0.266601\\n  depth 1 vs 2: JSD = 0.010271\\n  depth 2 vs 3: JSD = 0.007116\\n  depth 3 vs 4: JSD = 0.004695\\n  depth 4 vs 5: JSD = 0.004319\\n\\nK* (max depth with AUC > 0.60): 2\\n\\nOrdinal Classification (6-class, 5-fold CV):\\n  MAE = 1.1668\\n  Accuracy = 0.3750\\n\\nTop-10 Feature Importance:\\n  freq_entropy         9254.8\\n  surp_std             8336.0\\n  surp_d1_mean         8332.2\\n  surp_d1_skew         8265.4\\n  surp_d2_mean         8147.2\\n  surp_mean            7721.0\\n  freq_kurtosis        7642.4\\n  surp_kurt            7140.8\\n  surp_d1_std          6507.6\\n  surp_skew            6232.6\\n\\n============================================================\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "57aa723b-6a6f-47e3-afa6-54c37267ed8a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"============================================================\\\\nMVP Pilot Saturation Study — Results Summary\\\\n============================================================\\\\n\\\\nPairwise AUC (adjacent depths):\\\\n  depth 0 vs 1: AUC = 0.9917 ± 0.0006  folds=[0.9921, 0.9909, 0.9922, 0.9911, 0.9921]\\\\n  depth 1 vs 2: AUC = 0.6073 ± 0.0091  folds=[0.6184, 0.5979, 0.5952, 0.6118, 0.6134]\\\\n  depth 2 vs 3: AUC = 0.5721 ± 0.0036  folds=[0.5767, 0.5658, 0.5718, 0.5722, 0.574]\\\\n  depth 3 vs 4: AUC = 0.53 ± 0.0073  folds=[0.5219, 0.5408, 0.5364, 0.5245, 0.5263]\\\\n  depth 4 vs 5: AUC = 0.5176 ± 0.0128  folds=[0.4998, 0.5055, 0.5212, 0.5309, 0.5304]\\\\n\\\\nPairwise JSD (adjacent depths):\\\\n  depth 0 vs 1: JSD = 0.266601\\\\n  depth 1 vs 2: JSD = 0.010271\\\\n  depth 2 vs 3: JSD = 0.007116\\\\n  depth 3 vs 4: JSD = 0.004695\\\\n  depth 4 vs 5: JSD = 0.004319\\\\n\\\\nK* (max depth with AUC > 0.60): 2\\\\n\\\\nOrdinal Classification (6-class, 5-fold CV):\\\\n  MAE = 1.1668\\\\n  Accuracy = 0.3750\\\\n\\\\nTop-10 Feature Importance:\\\\n  freq_entropy         9254.8\\\\n  surp_std             8336.0\\\\n  surp_d1_mean         8332.2\\\\n  surp_d1_skew         8265.4\\\\n  surp_d2_mean         8147.2\\\\n  surp_mean            7721.0\\\\n  freq_kurtosis        7642.4\\\\n  surp_kurt            7140.8\\\\n  surp_d1_std          6507.6\\\\n  surp_skew            6232.6\\\\n\\\\n============================================================\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"============================================================\\nMVP Pilot Saturation Study — Results Summary\\n============================================================\\n\\nPairwise AUC (adjacent depths):\\n  depth 0 vs 1: AUC = 0.9917 ± 0.0006  folds=[0.9921, 0.9909, 0.9922, 0.9911, 0.9921]\\n  depth 1 vs 2: AUC = 0.6073 ± 0.0091  folds=[0.6184, 0.5979, 0.5952, 0.6118, 0.6134]\\n  depth 2 vs 3: AUC = 0.5721 ± 0.0036  folds=[0.5767, 0.5658, 0.5718, 0.5722, 0.574]\\n  depth 3 vs 4: AUC = 0.53 ± 0.0073  folds=[0.5219, 0.5408, 0.5364, 0.5245, 0.5263]\\n  depth 4 vs 5: AUC = 0.5176 ± 0.0128  folds=[0.4998, 0.5055, 0.5212, 0.5309, 0.5304]\\n\\nPairwise JSD (adjacent depths):\\n  depth 0 vs 1: JSD = 0.266601\\n  depth 1 vs 2: JSD = 0.010271\\n  depth 2 vs 3: JSD = 0.007116\\n  depth 3 vs 4: JSD = 0.004695\\n  depth 4 vs 5: JSD = 0.004319\\n\\nK* (max depth with AUC > 0.60): 2\\n\\nOrdinal Classification (6-class, 5-fold CV):\\n  MAE = 1.1668\\n  Accuracy = 0.3750\\n\\nTop-10 Feature Importance:\\n  freq_entropy         9254.8\\n  surp_std             8336.0\\n  surp_d1_mean         8332.2\\n  surp_d1_skew         8265.4\\n  surp_d2_mean         8147.2\\n  surp_mean            7721.0\\n  freq_kurtosis        7642.4\\n  surp_kurt            7140.8\\n  surp_d1_std          6507.6\\n  surp_skew            6232.6\\n\\n============================================================\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 98_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Gd83K7XM4qXoiaGFRSkpAz`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_021_length_256/pairwise_auc.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "f3096cdd-5bc8-4e5d-bb55-98a375f6b75f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W1udLhbrBj4FdyZG366ED9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3607,
+      "cache_read_input_tokens": 52359,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3607
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 99 · 2026-05-19T23:46:13.329Z_
+
+<details><summary>↩ Tool result · `toolu_01Gd83K7XM4qXoiaGFRSkpAz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.9914,\\n    \\\"1v2\\\": 0.6282,\\n    \\\"2v3\\\": 0.5556,\\n    \\\"3v4\\\": 0.5298,\\n    \\\"4v5\\\": 0.5137\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.9914,\\n      0.9907,\\n      0.9916,\\n      0.9893,\\n      0.9939\\n    ],\\n    \\\"1v2\\\": [\\n      0.6335,\\n      0.6173,\\n      0.6231,\\n      0.6244,\\n      0.6425\\n    ],\\n    \\\"2v3\\\": [\\n      0.5535,\\n      0.5557,\\n      0.5551,\\n      0.5593,\\n      0.5545\\n    ],\\n    \\\"3v4\\\": [\\n      0.5397,\\n      0.5184,\\n      0.5327,\\n      0.549,\\n      0.509\\n    ],\\n    \\\"4v5\\\": [\\n      0.5099,\\n      0.5159,\\n      0.5238,\\n      0.521,\\n      0.4976\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "5242dd40-4e19-4269-b21d-42b8f864e2b9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mean\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": 0.9914,\\\\n    \\\\\\\"1v2\\\\\\\": 0.6282,\\\\n    \\\\\\\"2v3\\\\\\\": 0.5556,\\\\n    \\\\\\\"3v4\\\\\\\": 0.5298,\\\\n    \\\\\\\"4v5\\\\\\\": 0.5137\\\\n  },\\\\n  \\\\\\\"per_fold\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": [\\\\n      0.9914,\\\\n      0.9907,\\\\n      0.9916,\\\\n      0.9893,\\\\n      0.9939\\\\n    ],\\\\n    \\\\\\\"1v2\\\\\\\": [\\\\n      0.6335,\\\\n      0.6173,\\\\n      0.6231,\\\\n      0.6244,\\\\n      0.6425\\\\n    ],\\\\n    \\\\\\\"2v3\\\\\\\": [\\\\n      0.5535,\\\\n      0.5557,\\\\n      0.5551,\\\\n      0.5593,\\\\n      0.5545\\\\n    ],\\\\n    \\\\\\\"3v4\\\\\\\": [\\\\n      0.5397,\\\\n      0.5184,\\\\n      0.5327,\\\\n      0.549,\\\\n      0.509\\\\n    ],\\\\n    \\\\\\\"4v5\\\\\\\": [\\\\n      0.5099,\\\\n      0.5159,\\\\n      0.5238,\\\\n      0.521,\\\\n      0.4976\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.9914,\\n    \\\"1v2\\\": 0.6282,\\n    \\\"2v3\\\": 0.5556,\\n    \\\"3v4\\\": 0.5298,\\n    \\\"4v5\\\": 0.5137\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.9914,\\n      0.9907,\\n      0.9916,\\n      0.9893,\\n      0.9939\\n    ],\\n    \\\"1v2\\\": [\\n      0.6335,\\n      0.6173,\\n      0.6231,\\n      0.6244,\\n      0.6425\\n    ],\\n    \\\"2v3\\\": [\\n      0.5535,\\n      0.5557,\\n      0.5551,\\n      0.5593,\\n      0.5545\\n    ],\\n    \\\"3v4\\\": [\\n      0.5397,\\n      0.5184,\\n      0.5327,\\n      0.549,\\n      0.509\\n    ],\\n    \\\"4v5\\\": [\\n      0.5099,\\n      0.5159,\\n      0.5238,\\n      0.521,\\n      0.4976\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 100_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CN13bMdhgMvTeDjnEebe3v`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_021_length_128/pairwise_auc.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "30c2ddc2-4be9-48d6-97b9-c45ab8fce6d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W1udLhbrBj4FdyZG366ED9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3607,
+      "cache_read_input_tokens": 52359,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3607
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 101 · 2026-05-19T23:46:13.961Z_
+
+<details><summary>↩ Tool result · `toolu_01CN13bMdhgMvTeDjnEebe3v`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.9791,\\n    \\\"1v2\\\": 0.6219,\\n    \\\"2v3\\\": 0.5291,\\n    \\\"3v4\\\": 0.5349,\\n    \\\"4v5\\\": 0.5012\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.9782,\\n      0.9772,\\n      0.9788,\\n      0.9809,\\n      0.9803\\n    ],\\n    \\\"1v2\\\": [\\n      0.6405,\\n      0.6269,\\n      0.6191,\\n      0.6117,\\n      0.6112\\n    ],\\n    \\\"2v3\\\": [\\n      0.513,\\n      0.5411,\\n      0.5422,\\n      0.5091,\\n      0.5401\\n    ],\\n    \\\"3v4\\\": [\\n      0.5347,\\n      0.5419,\\n      0.534,\\n      0.5326,\\n      0.5311\\n    ],\\n    \\\"4v5\\\": [\\n      0.4917,\\n      0.4963,\\n      0.5057,\\n      0.5107,\\n      0.5013\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "3e5f3ab7-b8c0-433b-9aae-c573c206d9f2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mean\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": 0.9791,\\\\n    \\\\\\\"1v2\\\\\\\": 0.6219,\\\\n    \\\\\\\"2v3\\\\\\\": 0.5291,\\\\n    \\\\\\\"3v4\\\\\\\": 0.5349,\\\\n    \\\\\\\"4v5\\\\\\\": 0.5012\\\\n  },\\\\n  \\\\\\\"per_fold\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": [\\\\n      0.9782,\\\\n      0.9772,\\\\n      0.9788,\\\\n      0.9809,\\\\n      0.9803\\\\n    ],\\\\n    \\\\\\\"1v2\\\\\\\": [\\\\n      0.6405,\\\\n      0.6269,\\\\n      0.6191,\\\\n      0.6117,\\\\n      0.6112\\\\n    ],\\\\n    \\\\\\\"2v3\\\\\\\": [\\\\n      0.513,\\\\n      0.5411,\\\\n      0.5422,\\\\n      0.5091,\\\\n      0.5401\\\\n    ],\\\\n    \\\\\\\"3v4\\\\\\\": [\\\\n      0.5347,\\\\n      0.5419,\\\\n      0.534,\\\\n      0.5326,\\\\n      0.5311\\\\n    ],\\\\n    \\\\\\\"4v5\\\\\\\": [\\\\n      0.4917,\\\\n      0.4963,\\\\n      0.5057,\\\\n      0.5107,\\\\n      0.5013\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.9791,\\n    \\\"1v2\\\": 0.6219,\\n    \\\"2v3\\\": 0.5291,\\n    \\\"3v4\\\": 0.5349,\\n    \\\"4v5\\\": 0.5012\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.9782,\\n      0.9772,\\n      0.9788,\\n      0.9809,\\n      0.9803\\n    ],\\n    \\\"1v2\\\": [\\n      0.6405,\\n      0.6269,\\n      0.6191,\\n      0.6117,\\n      0.6112\\n    ],\\n    \\\"2v3\\\": [\\n      0.513,\\n      0.5411,\\n      0.5422,\\n      0.5091,\\n      0.5401\\n    ],\\n    \\\"3v4\\\": [\\n      0.5347,\\n      0.5419,\\n      0.534,\\n      0.5326,\\n      0.5311\\n    ],\\n    \\\"4v5\\\": [\\n      0.4917,\\n      0.4963,\\n      0.5057,\\n      0.5107,\\n      0.5013\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 102_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01DabU7qqo9JVmrtymkuPdnJ`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/mcp-agent-ml-research-read_registry-1779234216992.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexperiments = result.get('data', result).get('experiments', {})\nexp = experiments.get('exp_021_length_512', {})\nprint(json.dumps(exp, indent=2)[:3000])\n\"",
+  "description": "Get exp_021_length_512 registry entry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "cbfc8d34-f8d9-4e85-b1f7-383aee8baea0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W1udLhbrBj4FdyZG366ED9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3607,
+      "cache_read_input_tokens": 52359,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3607
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 103 · 2026-05-19T23:46:18.236Z_
+
+<details><summary>↩ Tool result · `toolu_01DabU7qqo9JVmrtymkuPdnJ`</summary>
+
+```text
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "cecde744-4197-40a8-81f9-587baf1da668",
+  "tool_use_result": {
+    "stdout": "{}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 104_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK so:
+- `exp_021_length_512`: 2v3=0.5721, 3v4=0.530 - not an exact match for both
+- `exp_021_length_256`: 2v3=0.5556, 3v4=0.5298
+- `exp_021_length_128`: 2v3=0.5291, 3v4=0.5349
+
+The exp_021_length_512 is not in the registry (empty dict returned). This experiment was from May 16.
+
+None of these experiments exactly match both .572 and .537. Let me think about this differently.
+
+
+Maybe those values were miscalculated or mixed up between different models. But wait—I'm noticing that exp_14b_c4 shows a timeout failure with a retry, so the first run might have generated different intermediate results before it failed. I should check if there are logs from that initial attempt or worker records that might explain where these numbers came from.
+
+Actually, this is significant: the paper writing worker ran on May 13, but exp_14b_c4 wasn't even created until May 17 and didn't finish until May 18. The table was written before the experiment even ran, which means those .572/.537 values were likely placeholders or pulled from an earlier source that never got updated. I need to trace back through the paper writing logs to see where those numbers actually came from.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "6dfb8065-46e8-4c24-a548-2518184d6834",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X3sdYTGNejLBhzW9n3DgJF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2935,
+      "cache_read_input_tokens": 55966,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2935
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 105_
+
+关键时间线发现: 论文写作 worker 在 5月13日运行，但 `exp_14b_c4` 实验在 5月17-18日才完成。Table 4 可能用了早期数据。查 paper writing log 确认数据来源。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "6fb486b2-1092-42ba-9ef1-eb6a4f371928",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X3sdYTGNejLBhzW9n3DgJF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2935,
+      "cache_read_input_tokens": 55966,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2935
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 106_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01FpkFJYxc2pKcJMBjV9MGcV`</summary>
+
+```json
+{
+  "pattern": "\\.572|\\.537|14[Bb]|LightGBM.*14|Table 4|tab:deberta",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log",
+  "output_mode": "content",
+  "head_limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "10ee15aa-f306-4bb0-aece-86801d4de5dc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X3sdYTGNejLBhzW9n3DgJF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2935,
+      "cache_read_input_tokens": 55966,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2935
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 107 · 2026-05-19T23:46:35.090Z_
+
+<details><summary>↩ Tool result · `toolu_01FpkFJYxc2pKcJMBjV9MGcV`</summary>
+
+```text
+14:[Omitted long matching line]
+18:[Omitted long matching line]
+19:[Omitted long matching line]
+27:[Omitted long matching line]
+28:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "6743630d-3633-4266-ac7d-d4221e5c6897",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "14:[Omitted long matching line]\n18:[Omitted long matching line]\n19:[Omitted long matching line]\n27:[Omitted long matching line]\n28:[Omitted long matching line]",
+    "numLines": 5
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 108_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0132daEXZ9cYDJDnPx74zaKt`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log",
+  "offset": 10,
+  "limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "c689f8e9-4c8f-45a9-8744-dd3d65d33849",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014WpMvc4BYBoP19cqPY49fX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 798,
+      "cache_read_input_tokens": 58901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 798
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 109 · 2026-05-19T23:46:38.396Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_0132daEXZ9cYDJDnPx74zaKt`</summary>
+
+```text
+File content (108861 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "5973b034-fd48-40e2-a691-6a3aa5bc182b",
+  "tool_use_result": "Error: File content (108861 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 110_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01Tkkq5zwt6igjs59NevJE9q`</summary>
+
+```json
+{
+  "pattern": "572|537",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log",
+  "output_mode": "content",
+  "head_limit": 30,
+  "-C": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "f5a12ac5-52e9-4f27-8cff-13ec2887ade5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VLmXrfAY5mkxUBD6e9nbAY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 199,
+      "cache_read_input_tokens": 59699,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 199
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 111 · 2026-05-19T23:46:41.803Z_
+
+<details><summary>↩ Tool result · `toolu_01Tkkq5zwt6igjs59NevJE9q`</summary>
+
+```text
+11-[Omitted long context line]
+12-[Omitted long context line]
+13-[Omitted long context line]
+14:[Omitted long matching line]
+15-[Omitted long context line]
+16-[Omitted long context line]
+17-[Omitted long context line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "f4433d35-3803-4be3-b1c2-fa84204e3587",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "11-[Omitted long context line]\n12-[Omitted long context line]\n13-[Omitted long context line]\n14:[Omitted long matching line]\n15-[Omitted long context line]\n16-[Omitted long context line]\n17-[Omitted long context line]",
+    "numLines": 7
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 112_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The lines are too long and being omitted. Let me try reading specific lines from the log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "ebaf22cc-8c6a-4ea8-8109-ae119cb7c7db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018TVS5i158fypA5jH8Bh4fH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 265,
+      "cache_read_input_tokens": 59898,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 265
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 113_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014zX89DcvLFTZTDiLMCReWF`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log",
+  "offset": 12,
+  "limit": 8
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "08b2d0b8-4b8e-4fc3-a01a-b7b84bf56887",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018TVS5i158fypA5jH8Bh4fH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 265,
+      "cache_read_input_tokens": 59898,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 265
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 114 · 2026-05-19T23:46:45.532Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_014zX89DcvLFTZTDiLMCReWF`</summary>
+
+```text
+File content (103784 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "c266bd1a-324b-4e7e-98dc-72574f379ddf",
+  "tool_use_result": "Error: File content (103784 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 115_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01TLTQ7V8sDtb2GN3bnRawNx`</summary>
+
+```json
+{
+  "description": "Search paper writing log for .572/.537 data source",
+  "prompt": "Search the file `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log` for any mentions of .572, .537, \"14B\", \"14b\", or \"LightGBM (14B)\". The file is very large (100K+ tokens).\n\nI need to understand where the values .572 and .537 came from when this paper-writing worker created Table 4 on May 13, 2026. The actual experiment (exp_14b_c4) only ran May 17-18, so these values must have come from somewhere else.\n\nUse Grep and Read to find relevant sections. Report:\n1. What data source the worker used for the LightGBM 14B row\n2. Any registry reads, SSH commands, or file reads that produced .572 or .537\n3. The exact context around these values (a few lines before/after)\n\nKeep the report concise - just the facts.",
+  "subagent_type": "Explore"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "f6a005a9-5bc1-4ccd-8430-5595e04b9800",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013GCToDzXkVCR6HM5JxfVb2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 338,
+      "cache_read_input_tokens": 60163,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 338
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 116_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Search paper writing log for .572/.537 data source",
+  "task_type": "local_agent",
+  "prompt": "Search the file `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log` for any mentions of .572, .537, \"14B\", \"14b\", or \"LightGBM (14B)\". The file is very large (100K+ tokens).\n\nI need to understand where the values .572 and .537 came from when this paper-writing worker created Table 4 on May 13, 2026. The actual experiment (exp_14b_c4) only ran May 17-18, so these values must have come from somewhere else.\n\nUse Grep and Read to find relevant sections. Report:\n1. What data source the worker used for the LightGBM 14B row\n2. Any registry reads, SSH commands, or file reads that produced .572 or .537\n3. The exact context around these values (a few lines before/after)\n\nKeep the report concise - just the facts.",
+  "uuid": "44a6d323-d77c-452e-b3e6-9995365e664f",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+## Round 1
+
+## Round 1
+
+86 recorded events
+
+
+### User
+
+_source line 117 · 2026-05-19T23:46:53.577Z_
+
+Search the file `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log` for any mentions of .572, .537, "14B", "14b", or "LightGBM (14B)". The file is very large (100K+ tokens).
+
+I need to understand where the values .572 and .537 came from when this paper-writing worker created Table 4 on May 13, 2026. The actual experiment (exp_14b_c4) only ran May 17-18, so these values must have come from somewhere else.
+
+Use Grep and Read to find relevant sections. Report:
+1. What data source the worker used for the LightGBM 14B row
+2. Any registry reads, SSH commands, or file reads that produced .572 or .537
+3. The exact context around these values (a few lines before/after)
+
+Keep the report concise - just the facts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "dfc54133-3d0b-4bfd-996c-54c68d347cde"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 118_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Searching for \\.572|\\.537|14B|14b|LightGBM \\(14B\\)",
+  "usage": {
+    "total_tokens": 17221,
+    "tool_uses": 1,
+    "duration_ms": 1859
+  },
+  "last_tool_name": "Grep",
+  "uuid": "0bcaa2cd-4a16-49c0-9eb0-017078e8739e",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 119_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_013DDMfcSTv66648MLgi4xwa`</summary>
+
+```json
+{
+  "pattern": "\\.572|\\.537|14B|14b|LightGBM \\(14B\\)",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log",
+  "output_mode": "content",
+  "context": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "54909a71-fa79-4e95-b6fb-b729bff3557f",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_017o1p4hQ6fLkP6c8iAVDMED",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 17210,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 17210,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 120 · 2026-05-19T23:46:55.457Z_
+
+<details><summary>↩ Tool result · `toolu_013DDMfcSTv66648MLgi4xwa`</summary>
+
+```text
+9-[Omitted long context line]
+10-[Omitted long context line]
+11-[Omitted long context line]
+12-[Omitted long context line]
+13-[Omitted long context line]
+14:[Omitted long matching line]
+15-[Omitted long context line]
+16-[Omitted long context line]
+17-[Omitted long context line]
+18-[Omitted long context line]
+19-[Omitted long context line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "100dca5c-332e-43ed-94ae-c5fed58b1729"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 121_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Reading logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log",
+  "usage": {
+    "total_tokens": 18389,
+    "tool_uses": 2,
+    "duration_ms": 4436
+  },
+  "last_tool_name": "Read",
+  "uuid": "ab7d43a8-738d-4b48-a890-37115d141c38",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 122_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01NiKM6QhDFmt6631Qpfu4Fb`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log",
+  "limit": 500
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "cb0675ce-61af-466e-8375-731087aae646",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01751D1Nz2pskkwE6cRSSfFq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 1164,
+      "cache_read_input_tokens": 17210,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1164,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 123 · 2026-05-19T23:46:58.286Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01NiKM6QhDFmt6631Qpfu4Fb`</summary>
+
+```text
+File content (123042 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "58c7ad9f-58ba-4221-b78e-e9472a482037",
+  "tool_use_result": "Error: File content (123042 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 124_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Running grep -n \"\\.572\\|\\.537\\|14B\\|14b\\|LightGBM (14B)\" …",
+  "usage": {
+    "total_tokens": 18596,
+    "tool_uses": 3,
+    "duration_ms": 6773
+  },
+  "last_tool_name": "Bash",
+  "uuid": "a66cb4a0-1b45-4cad-8103-2c45c5ad9a07",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 125_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Ea6Xs9c3Bwv2VxQCAp3628`</summary>
+
+```json
+{
+  "command": "grep -n \"\\.572\\|\\.537\\|14B\\|14b\\|LightGBM (14B)\" /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log | head -50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "66825345-18ac-4891-9889-ca93dd4e8a75",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_014k4oZ443joHiewJQeWG46c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 204,
+      "cache_read_input_tokens": 18374,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 204,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 126 · 2026-05-19T23:47:00.433Z_
+
+<details><summary>↩ Tool result · `toolu_01Ea6Xs9c3Bwv2VxQCAp3628`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (125.9KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/b02r3zdzo.txt
+
+Preview (first 2KB):
+14:{"type":"assistant","message":{"model":"claude-opus-4-6","id":"msg_0146cXVZ5ybqxpNNGYPVzy3N","type":"message","role":"assistant","content":[{"type":"thinking","thinking":"The method.tex just says \"already written by worker at docs/paper/method.tex\" - that's the placeholder. Let me check if there's a real method section somewhere else, or if I need to just work with the task description's information about what's in the method section.\n\nActually, looking at the task description, it tells me what the method section defines:\n- $\\Kempirical$, $\\Ktheory$, $\\auc$, $\\theta=0.60$, OBD-LightGBM\n- Table 1 (features), Table 2 (setup)\n\n\n- §3.4 θ sensitivity analysis\n- §3.6 Generation mode control\n- Custom commands: `\\Kstar`, `\\Kempirical`, `\\Ktheory`, `\\auc`, `\\jsd`\n\nThe custom commands are already defined in main.tex, and I can see the tables in this section should be numbered 3, 4, and 5. Now I'm ready to write the experiments_c1.tex file, being careful to pull the right data from the registry. I'll start with §4.1 covering K*=2 across all configurations, using the bootstrap confidence intervals from the tab_kstar_ci table with the four models.\n\nFor §4.2, I'm looking at the cross-model transfer patterns with the 4×4 accuracy matrix, noting the strong transfer between Pythia and OLMo but the catastrophic failure with Qwen-rewrite, while the 0v1 comparison shows universal transferability. §4.3 will examine feature degradation ordering through the top-3 features and Spearman correlations, highlighting shared features across models though I'm limited to depth-pair level analysis. Finally, §4.4 compares rewrite versus continuation modes to show how generation approach affects transfer asymmetry and which features matter in each mode.\n\nNow I'm pulling the specific bootstrap confidence intervals and p-values to ground these sections—Qwen-rewrite shows the steepest AUC decay from 0v1 to 2v3, while Pythia and OLMo follow similar degradation patterns, all w
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "48ff1bce-c9fc-4048-823d-fe07ed5ed41b"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 127_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Running grep -n \"\\.572\\|\\.537\" /home/ubuntu/.agent-ml-res…",
+  "usage": {
+    "total_tokens": 19461,
+    "tool_uses": 4,
+    "duration_ms": 8567
+  },
+  "last_tool_name": "Bash",
+  "uuid": "03858ce9-cc3e-4afc-ab7e-51d6c9531521",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 128_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0145MJ8y8zbRdvRdzuydYxpW`</summary>
+
+```json
+{
+  "command": "grep -n \"\\.572\\|\\.537\" /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "4aa5034c-9792-407a-b21a-869e5885ee12",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01DDaSE4CsoEzYyfNuCijAXv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 865,
+      "cache_read_input_tokens": 18578,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 865,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 129 · 2026-05-19T23:47:02.210Z_
+
+<details><summary>↩ Tool result · `toolu_0145MJ8y8zbRdvRdzuydYxpW`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "72232599-6bcb-4683-9642-144499462284"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 130_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Running grep -n \"14B\\|14b\\|LightGBM\" /home/ubuntu/.agent-…",
+  "usage": {
+    "total_tokens": 19609,
+    "tool_uses": 5,
+    "duration_ms": 10469
+  },
+  "last_tool_name": "Bash",
+  "uuid": "efbcfeea-0825-40fe-acaa-c8ee2b4bba38",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 131_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01DUSicke61nGfmMoG41cBLe`</summary>
+
+```json
+{
+  "command": "grep -n \"14B\\|14b\\|LightGBM\" /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "dde1ca1f-320e-46b0-8b78-bcab069713d6",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01Mj9UmffGJwTzDXATJfdZvm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 147,
+      "cache_read_input_tokens": 19443,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 147,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 132 · 2026-05-19T23:47:04.122Z_
+
+<details><summary>↩ Tool result · `toolu_01DUSicke61nGfmMoG41cBLe`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (156.1KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/b85wkijhi.txt
+
+Preview (first 2KB):
+14:{"type":"assistant","message":{"model":"claude-opus-4-6","id":"msg_0146cXVZ5ybqxpNNGYPVzy3N","type":"message","role":"assistant","content":[{"type":"thinking","thinking":"The method.tex just says \"already written by worker at docs/paper/method.tex\" - that's the placeholder. Let me check if there's a real method section somewhere else, or if I need to just work with the task description's information about what's in the method section.\n\nActually, looking at the task description, it tells me what the method section defines:\n- $\\Kempirical$, $\\Ktheory$, $\\auc$, $\\theta=0.60$, OBD-LightGBM\n- Table 1 (features), Table 2 (setup)\n\n\n- §3.4 θ sensitivity analysis\n- §3.6 Generation mode control\n- Custom commands: `\\Kstar`, `\\Kempirical`, `\\Ktheory`, `\\auc`, `\\jsd`\n\nThe custom commands are already defined in main.tex, and I can see the tables in this section should be numbered 3, 4, and 5. Now I'm ready to write the experiments_c1.tex file, being careful to pull the right data from the registry. I'll start with §4.1 covering K*=2 across all configurations, using the bootstrap confidence intervals from the tab_kstar_ci table with the four models.\n\nFor §4.2, I'm looking at the cross-model transfer patterns with the 4×4 accuracy matrix, noting the strong transfer between Pythia and OLMo but the catastrophic failure with Qwen-rewrite, while the 0v1 comparison shows universal transferability. §4.3 will examine feature degradation ordering through the top-3 features and Spearman correlations, highlighting shared features across models though I'm limited to depth-pair level analysis. Finally, §4.4 compares rewrite versus continuation modes to show how generation approach affects transfer asymmetry and which features matter in each mode.\n\nNow I'm pulling the specific bootstrap confidence intervals and p-values to ground these sections—Qwen-rewrite shows the steepest AUC decay from 0v1 to 2v3, while Pythia and OLMo follow similar degradation patterns, all w
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "3a2fe242-d06e-46d5-aa5f-29999592bd9b"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 133_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Running grep -n \"Table 4\" /home/ubuntu/.agent-ml-research…",
+  "usage": {
+    "total_tokens": 20459,
+    "tool_uses": 6,
+    "duration_ms": 12069
+  },
+  "last_tool_name": "Bash",
+  "uuid": "528551df-85ed-43a6-9c23-3b274bd5af75",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 134_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_012ZVLvLQJEbQM6boBmpB3hv`</summary>
+
+```json
+{
+  "command": "grep -n \"Table 4\" /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "23c46302-5cb0-4ea4-a2f0-84cc52127563",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01NpjM3obbFZ6GscYgXcTe8P",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 849,
+      "cache_read_input_tokens": 19590,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 849,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 135 · 2026-05-19T23:47:05.724Z_
+
+<details><summary>↩ Tool result · `toolu_012ZVLvLQJEbQM6boBmpB3hv`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (129.6KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/bnbra3jwx.txt
+
+Preview (first 2KB):
+14:{"type":"assistant","message":{"model":"claude-opus-4-6","id":"msg_0146cXVZ5ybqxpNNGYPVzy3N","type":"message","role":"assistant","content":[{"type":"thinking","thinking":"The method.tex just says \"already written by worker at docs/paper/method.tex\" - that's the placeholder. Let me check if there's a real method section somewhere else, or if I need to just work with the task description's information about what's in the method section.\n\nActually, looking at the task description, it tells me what the method section defines:\n- $\\Kempirical$, $\\Ktheory$, $\\auc$, $\\theta=0.60$, OBD-LightGBM\n- Table 1 (features), Table 2 (setup)\n\n\n- §3.4 θ sensitivity analysis\n- §3.6 Generation mode control\n- Custom commands: `\\Kstar`, `\\Kempirical`, `\\Ktheory`, `\\auc`, `\\jsd`\n\nThe custom commands are already defined in main.tex, and I can see the tables in this section should be numbered 3, 4, and 5. Now I'm ready to write the experiments_c1.tex file, being careful to pull the right data from the registry. I'll start with §4.1 covering K*=2 across all configurations, using the bootstrap confidence intervals from the tab_kstar_ci table with the four models.\n\nFor §4.2, I'm looking at the cross-model transfer patterns with the 4×4 accuracy matrix, noting the strong transfer between Pythia and OLMo but the catastrophic failure with Qwen-rewrite, while the 0v1 comparison shows universal transferability. §4.3 will examine feature degradation ordering through the top-3 features and Spearman correlations, highlighting shared features across models though I'm limited to depth-pair level analysis. Finally, §4.4 compares rewrite versus continuation modes to show how generation approach affects transfer asymmetry and which features matter in each mode.\n\nNow I'm pulling the specific bootstrap confidence intervals and p-values to ground these sections—Qwen-rewrite shows the steepest AUC decay from 0v1 to 2v3, while Pythia and OLMo follow similar degradation patterns, all w
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "df7dc5f1-1f1d-4723-9549-50fb9872af8a"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 136_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Running grep -n \"read_registry\\|exp_14b\\|572\\|537\" /home/…",
+  "usage": {
+    "total_tokens": 21298,
+    "tool_uses": 7,
+    "duration_ms": 14226
+  },
+  "last_tool_name": "Bash",
+  "uuid": "da727354-0d41-459a-adfa-ee79bc14a3c4",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 137_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014ch1NG7tHfFEfUqvj4bhDM`</summary>
+
+```json
+{
+  "command": "grep -n \"read_registry\\|exp_14b\\|572\\|537\" /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log | head -30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "b3c22dcf-43be-4dcc-8369-f84885c3f99a",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01FSwcBQg3SmEVBFPBQmbn7k",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 838,
+      "cache_read_input_tokens": 20439,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 838,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 138 · 2026-05-19T23:47:07.966Z_
+
+<details><summary>↩ Tool result · `toolu_014ch1NG7tHfFEfUqvj4bhDM`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (128.7KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/bcwixb5c0.txt
+
+Preview (first 2KB):
+2:{"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination","session_id":"a611eac0-6969-413b-ac0c-486a3048af71","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","ListMcpResourcesTool","Monitor","NotebookEdit","PushNotification","Read","ReadMcpResourceTool","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write","mcp__agent-ml-research__auto_build_provenance","mcp__agent-ml-research__bootstrap_provenance","mcp__agent-ml-research__check_paper_consistency","mcp__agent-ml-research__check_provenance_completeness","mcp__agent-ml-research__cleanup_pdf_images","mcp__agent-ml-research__compute_coverage_matrix","mcp__agent-ml-research__edit_paper_section","mcp__agent-ml-research__get_image_info","mcp__agent-ml-research__get_worker_status","mcp__agent-ml-research__list_artifacts","mcp__agent-ml-research__list_workers","mcp__agent-ml-research__load_project_config","mcp__agent-ml-research__overleaf_init","mcp__agent-ml-research__overleaf_pull","mcp__agent-ml-research__overleaf_push","mcp__agent-ml-research__overleaf_status","mcp__agent-ml-research__overleaf_sync","mcp__agent-ml-research__paper_agent_post_to_director","mcp__agent-ml-research__paper_agent_request_review","mcp__agent-ml-research__paper_compile_and_check","mcp__agent-ml-research__pdf_to_images","mcp__agent-ml-research__read_experiment_plan_with_status","mcp__agent-ml-research__read_project_file","mcp__agent-ml-research__read_registry","mcp__agent-ml-research__read_roadmap","mcp__agent-ml-research__register_artifact","mcp__agent-ml-research__save_project_file","mcp__agent-ml-research__send_progress","mcp__agent-ml-research__spawn_worker","mcp__agent-ml-research__verify_references","mcp__agent-ml-research__write_paper_section"],"mcp_servers":[{"name":"agent-ml-research","status":"
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "01c0a200-439e-4f5d-aede-ef8b77ea390b"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 139_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Running grep -oE \"\\\"(57[0-9]|53[0-9]|\\.572|\\.537)\\\"\" /hom…",
+  "usage": {
+    "total_tokens": 22263,
+    "tool_uses": 8,
+    "duration_ms": 16077
+  },
+  "last_tool_name": "Bash",
+  "uuid": "bad332b4-50f4-405f-a7bb-ebc697654a32",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 140_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01A5DB1RKNhBwvHThJKoRiJ3`</summary>
+
+```json
+{
+  "command": "grep -oE \"\\\"(57[0-9]|53[0-9]|\\.572|\\.537)\\\"\" /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log | sort | uniq"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "73fff541-5170-4d72-906d-e49840bccfe1",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_018pHJ4Gez4Q6feKS7ewQJWg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 0,
+      "cache_creation_input_tokens": 960,
+      "cache_read_input_tokens": 21277,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 960,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 141 · 2026-05-19T23:47:09.753Z_
+
+<details><summary>↩ Tool result · `toolu_01A5DB1RKNhBwvHThJKoRiJ3`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "83614d3f-927a-419f-8e27-33a7aad8c2b3"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 142_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Running wc -l /home/ubuntu/.agent-ml-research-idea_gen_05…",
+  "usage": {
+    "total_tokens": 22440,
+    "tool_uses": 9,
+    "duration_ms": 17424
+  },
+  "last_tool_name": "Bash",
+  "uuid": "415d2284-2d13-43d9-b09d-e726f991a4a2",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 143_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_013UUDGqB1TkYphPjxCLysrd`</summary>
+
+```json
+{
+  "command": "wc -l /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "413c4200-5d75-4d3d-947d-7c87bb126641",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01SGcQZXGiWsJDSQfMRCmbcg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 0,
+      "cache_creation_input_tokens": 175,
+      "cache_read_input_tokens": 22237,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 175,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 144 · 2026-05-19T23:47:11.076Z_
+
+<details><summary>↩ Tool result · `toolu_013UUDGqB1TkYphPjxCLysrd`</summary>
+
+```text
+28 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "98ce1586-f27f-44e3-b2bb-eded2440b705"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 145_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Reading logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log",
+  "usage": {
+    "total_tokens": 22629,
+    "tool_uses": 10,
+    "duration_ms": 18770
+  },
+  "last_tool_name": "Read",
+  "uuid": "43a0cf23-28f9-453e-89d6-03ab453437e1",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 146_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01LZY1xfpygucrTFtpkQ8toG`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "fbbb2262-6841-4d5d-be9e-7c18236c4755",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_015BmYFAmkYABgoJ7X1ohrd7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 0,
+      "cache_creation_input_tokens": 187,
+      "cache_read_input_tokens": 22412,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 187,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 147 · 2026-05-19T23:47:12.699Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01LZY1xfpygucrTFtpkQ8toG`</summary>
+
+```text
+File content (123042 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "fc52da20-4267-436d-ba42-e32f7c8e3de8",
+  "tool_use_result": "Error: File content (123042 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 148_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Running cat /home/ubuntu/.agent-ml-research-idea_gen_0509…",
+  "usage": {
+    "total_tokens": 22813,
+    "tool_uses": 11,
+    "duration_ms": 21895
+  },
+  "last_tool_name": "Bash",
+  "uuid": "0dbf51dc-6acc-43a1-91b7-036b68920ccd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 149_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017gsKyWNqbAKLjxKYTMSJkM`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log | python3 -c \"\nimport sys, json\ndata = sys.stdin.read()\nlines = data.strip().split('\\n')\nfor i, line in enumerate(lines):\n    try:\n        obj = json.loads(line)\n        if 'message' in obj:\n            content = obj.get('message', {}).get('content', [])\n            for block in content:\n                if 'text' in block:\n                    if '572' in block['text'] or '537' in block['text'] or '14B' in block['text'] or '14b' in block['text']:\n                        print(f'Line {i}: Found match')\n                        print(block['text'][:1000])\n                        print('---')\n    except:\n        pass\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "c367c838-7cb4-4a99-8f25-f46a43be98e8",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01Ct3woV9xXwz2KKsyBZhSVd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 181,
+      "cache_read_input_tokens": 22599,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 181,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 150 · 2026-05-19T23:47:15.581Z_
+
+<details><summary>↩ Tool result · `toolu_017gsKyWNqbAKLjxKYTMSJkM`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "29437ad8-7aa0-46b5-a6a6-b3e231fbd6ee"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 151_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Running python3 << 'EOF'\nimport json\nimport sys\n\nwith open('/…",
+  "usage": {
+    "total_tokens": 23156,
+    "tool_uses": 12,
+    "duration_ms": 24367
+  },
+  "last_tool_name": "Bash",
+  "uuid": "a4707991-d743-4d3a-afc6-5c17b641b371",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 152_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01X8S3U5ui1fKb1TqmZsrvWN`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport sys\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log', 'r') as f:\n    for line_num, line in enumerate(f, 1):\n        try:\n            obj = json.loads(line)\n            if 'message' in obj and isinstance(obj['message'], dict):\n                content = obj['message'].get('content', [])\n                if isinstance(content, list):\n                    for block in content:\n                        if isinstance(block, dict) and 'text' in block:\n                            text = block['text']\n                            if any(x in text for x in ['.572', '.537', '14B', '14b', 'LightGBM']):\n                                print(f\"\\n=== Line {line_num} ===\")\n                                print(text[:2000])\n        except json.JSONDecodeError:\n            pass\nEOF\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "3fdf5498-7f35-47b1-b229-63d6db839f34",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_011AmyMQq1H8xZY58NHaRBhK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 0,
+      "cache_creation_input_tokens": 342,
+      "cache_read_input_tokens": 22780,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 342,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 153 · 2026-05-19T23:47:18.066Z_
+
+<details><summary>↩ Tool result · `toolu_01X8S3U5ui1fKb1TqmZsrvWN`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "a236b165-d24e-4d39-9fec-f724e7eae732"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 154_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Running python3 << 'EOF'\nimport json\n\nwith open('/home/ubunt…",
+  "usage": {
+    "total_tokens": 23505,
+    "tool_uses": 13,
+    "duration_ms": 27284
+  },
+  "last_tool_name": "Bash",
+  "uuid": "f2797fc8-d509-44d0-931f-26276755506b",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 155_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01BLEUYEcUKMeM7UreJLfEvm`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log', 'r') as f:\n    for line_num, line in enumerate(f, 1):\n        try:\n            obj = json.loads(line)\n            # Check for thinking blocks\n            if 'message' in obj and isinstance(obj['message'], dict):\n                content = obj['message'].get('content', [])\n                if isinstance(content, list):\n                    for block in content:\n                        if isinstance(block, dict):\n                            if 'thinking' in block:\n                                thinking = block['thinking']\n                                if any(x in thinking for x in ['.572', '.537', '14B', '14b', 'LightGBM']):\n                                    print(f\"\\n=== Line {line_num} (thinking) ===\")\n                                    print(thinking[:3000])\n                            if 'text' in block:\n                                text = block['text']\n                                if any(x in text for x in ['.572', '.537', '14B', '14b', 'LightGBM']):\n                                    print(f\"\\n=== Line {line_num} (text) ===\")\n                                    print(text[:3000])\n        except json.JSONDecodeError as e:\n            print(f\"Error on line {line_num}: {e}\")\nEOF\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "fb02f235-643d-4058-825f-7de3eb086c31",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_016FUY3KEcw5Dw5CAGgdttDS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 0,
+      "cache_creation_input_tokens": 347,
+      "cache_read_input_tokens": 23122,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 347,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 156 · 2026-05-19T23:47:20.966Z_
+
+<details><summary>↩ Tool result · `toolu_01BLEUYEcUKMeM7UreJLfEvm`</summary>
+
+```text
+Error on line 1: Expecting value: line 1 column 1 (char 0)
+
+=== Line 14 (thinking) ===
+The method.tex just says "already written by worker at docs/paper/method.tex" - that's the placeholder. Let me check if there's a real method section somewhere else, or if I need to just work with the task description's information about what's in the method section.
+
+Actually, looking at the task description, it tells me what the method section defines:
+- $\Kempirical$, $\Ktheory$, $\auc$, $\theta=0.60$, OBD-LightGBM
+- Table 1 (features), Table 2 (setup)
+
+
+- §3.4 θ sensitivity analysis
+- §3.6 Generation mode control
+- Custom commands: `\Kstar`, `\Kempirical`, `\Ktheory`, `\auc`, `\jsd`
+
+The custom commands are already defined in main.tex, and I can see the tables in this section should be numbered 3, 4, and 5. Now I'm ready to write the experiments_c1.tex file, being careful to pull the right data from the registry. I'll start with §4.1 covering K*=2 across all configurations, using the bootstrap confidence intervals from the tab_kstar_ci table with the four models.
+
+For §4.2, I'm looking at the cross-model transfer patterns with the 4×4 accuracy matrix, noting the strong transfer between Pythia and OLMo but the catastrophic failure with Qwen-rewrite, while the 0v1 comparison shows universal transferability. §4.3 will examine feature degradation ordering through the top-3 features and Spearman correlations, highlighting shared features across models though I'm limited to depth-pair level analysis. Finally, §4.4 compares rewrite versus continuation modes to show how generation approach affects transfer asymmetry and which features matter in each mode.
+
+Now I'm pulling the specific bootstrap confidence intervals and p-values to ground these sections—Qwen-rewrite shows the steepest AUC decay from 0v1 to 2v3, while Pythia and OLMo follow similar degradation patterns, all with highly significant permutation tests.
+
+Looking at the transfer matrix results, I can see how model performance shifts when predictions are evaluated against different model's training distributions. The diagonal accuracies reveal self-consistency (Qwen-rewrite at 0.4229, Pythia at 0.3856), while off-diagonal values show substantial cross-model variation, suggesting that each model's decision boundaries are quite distinct from one another. Looking at the transfer retention rates, Qwen_cont shows strong bidirectional transfer with both Pythia and OLMo in the 80-85% range. For feature degradation, the Spearman correlations are quite high across model pairs, with Pythia and OLMo being nearly identical at 0.95, while Qwen_cont shows slightly lower correlation at 0.85. The top features are remarkably consistent across models, dominated by surprise-based metrics like surp_d1_std and surp_std, though Qwen_rewrite uniquely prioritizes frequency entropy.
+
+I'm noting that the Kendall τ correlation plateaus around 0.37 at the 1v2 boundary, which is a meaningful limitation. Now I need to structure the LaTeX tables precisely—Table 3 will display all pairwise AUCs with confidence intervals an
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "50fd094b-30c6-48b4-9c9e-bddff3484532"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 157_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Running python3 << 'EOF'\nimport json\nimport re\n\nwith open('/h…",
+  "usage": {
+    "total_tokens": 24782,
+    "tool_uses": 14,
+    "duration_ms": 31672
+  },
+  "last_tool_name": "Bash",
+  "uuid": "8c641848-4c1e-4d4e-9373-46973aab9b68",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 158_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01JZsR2CUMLj2yDH1RS9uCmX`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\nimport re\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log', 'r') as f:\n    for line_num, line in enumerate(f, 1):\n        try:\n            obj = json.loads(line)\n            if 'message' in obj and isinstance(obj['message'], dict):\n                content = obj['message'].get('content', [])\n                if isinstance(content, list):\n                    for block in content:\n                        if isinstance(block, dict):\n                            text_to_search = block.get('thinking', '') + block.get('text', '')\n                            if any(x in text_to_search for x in ['.572', '.537', 'LightGBM (14B)', 'LightGBM (14b)']):\n                                print(f\"\\n=== Line {line_num} ===\")\n                                # Extract context around the matches\n                                for match in re.finditer(r'.{0,200}(\\.572|\\.537|LightGBM \\(14[Bb]\\)).{0,200}', text_to_search):\n                                    print(f\"Match: ...{match.group()}...\")\n        except json.JSONDecodeError:\n            pass\nEOF\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "255b777f-ff8e-404c-a9c5-3fe7133dc233",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01KGbpWMrwt5Vhw3GJ2R5ajz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 0,
+      "cache_creation_input_tokens": 1275,
+      "cache_read_input_tokens": 23469,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1275,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 159 · 2026-05-19T23:47:25.372Z_
+
+<details><summary>↩ Tool result · `toolu_01JZsR2CUMLj2yDH1RS9uCmX`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "32224579-d252-4d6f-b36a-9fe986285a60"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 160_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Running python3 << 'EOF'\nimport json\n\nwith open('/home/ubunt…",
+  "usage": {
+    "total_tokens": 25223,
+    "tool_uses": 15,
+    "duration_ms": 34906
+  },
+  "last_tool_name": "Bash",
+  "uuid": "b9547e52-11c4-44b7-994f-de6a0d6b91f4",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 161_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0189nRJfrcWkykEBmyY6i5C9`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log', 'r') as f:\n    for line_num, line in enumerate(f, 1):\n        try:\n            obj = json.loads(line)\n            if 'message' in obj and isinstance(obj['message'], dict):\n                content = obj['message'].get('content', [])\n                if isinstance(content, list):\n                    for block in content:\n                        if isinstance(block, dict):\n                            # Check thinking\n                            thinking = block.get('thinking', '')\n                            if '572' in thinking or '537' in thinking:\n                                print(f\"=== Line {line_num}: thinking block ===\")\n                                # Find lines with the numbers\n                                for i, tline in enumerate(thinking.split('\\n')):\n                                    if '572' in tline or '537' in tline:\n                                        print(f\"  {i}: {tline}\")\n                            \n                            # Check text\n                            text = block.get('text', '')\n                            if '572' in text or '537' in text:\n                                print(f\"=== Line {line_num}: text block ===\")\n                                for i, tline in enumerate(text.split('\\n')):\n                                    if '572' in tline or '537' in tline:\n                                        print(f\"  {i}: {tline}\")\n        except json.JSONDecodeError:\n            pass\nEOF\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "fe744432-908f-41a9-b6c2-3fef1673065c",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_016FhgFShLYN8oh1bzYXz33s",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 0,
+      "cache_creation_input_tokens": 439,
+      "cache_read_input_tokens": 24744,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 439,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 162 · 2026-05-19T23:47:28.611Z_
+
+<details><summary>↩ Tool result · `toolu_0189nRJfrcWkykEBmyY6i5C9`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "f0232a9c-5ea3-4482-a0bf-b92b3cd46dcd"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 163_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Running head -1 /home/ubuntu/.agent-ml-research-idea_gen_…",
+  "usage": {
+    "total_tokens": 25715,
+    "tool_uses": 16,
+    "duration_ms": 36254
+  },
+  "last_tool_name": "Bash",
+  "uuid": "08b743a6-a4b4-4d6c-ab16-eeb1cf09cbda",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 164_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01XLFL8gts9iFuSSuiBTHN4Y`</summary>
+
+```json
+{
+  "command": "head -1 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log | wc -c"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "314f52f1-a43e-462b-99ee-c0d2e9508c0a",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01KsMGDhdgUxLJHQmuUSBGwh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 0,
+      "cache_creation_input_tokens": 486,
+      "cache_read_input_tokens": 25183,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 486,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 165 · 2026-05-19T23:47:29.904Z_
+
+<details><summary>↩ Tool result · `toolu_01XLFL8gts9iFuSSuiBTHN4Y`</summary>
+
+```text
+157
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "d4b784ee-a27c-4d28-afdc-df45d6d015f9"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 166_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Running python3 << 'EOF'\nimport json\n\nwith open('/home/ubunt…",
+  "usage": {
+    "total_tokens": 25854,
+    "tool_uses": 17,
+    "duration_ms": 39430
+  },
+  "last_tool_name": "Bash",
+  "uuid": "db7149b0-0f6a-46fe-9e61-ec5cc17866ec",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 167_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01PvVBV5pvZ5Lvr4P4xdPfQg`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log', 'r') as f:\n    lines = f.readlines()\n    print(f\"Total lines: {len(lines)}\")\n    \n    for line_num, line in enumerate(lines[12:16], 13):  # Check lines around 14\n        try:\n            obj = json.loads(line)\n            print(f\"\\nLine {line_num}: type={obj.get('type')}\")\n            if 'message' in obj:\n                msg = obj['message']\n                if isinstance(msg, dict):\n                    content = msg.get('content', [])\n                    if isinstance(content, list):\n                        for i, block in enumerate(content):\n                            if isinstance(block, dict):\n                                print(f\"  Block {i}: {list(block.keys())}\")\n                                if 'thinking' in block:\n                                    print(f\"    thinking length: {len(block['thinking'])}\")\n                                    # Look for our values\n                                    if 'LightGBM' in block['thinking']:\n                                        print(f\"    Found LightGBM in thinking!\")\n                                        # Find context\n                                        idx = block['thinking'].find('LightGBM')\n                                        print(f\"    Context: {block['thinking'][max(0,idx-200):idx+300]}\")\n        except Exception as e:\n            print(f\"Error on line {line_num}: {e}\")\nEOF\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "c1167ca7-48c6-4d63-82df-e66861739343",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01VDwADjbiB9ePhYNqdTvTBm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 0,
+      "cache_creation_input_tokens": 137,
+      "cache_read_input_tokens": 25669,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 137,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 168 · 2026-05-19T23:47:33.141Z_
+
+<details><summary>↩ Tool result · `toolu_01PvVBV5pvZ5Lvr4P4xdPfQg`</summary>
+
+```text
+Total lines: 28
+
+Line 13: type=user
+  Block 0: ['tool_use_id', 'type', 'content']
+
+Line 14: type=assistant
+  Block 0: ['type', 'thinking', 'signature']
+    thinking length: 33496
+    Found LightGBM in thinking!
+    Context: tion's information about what's in the method section.
+
+Actually, looking at the task description, it tells me what the method section defines:
+- $\Kempirical$, $\Ktheory$, $\auc$, $\theta=0.60$, OBD-LightGBM
+- Table 1 (features), Table 2 (setup)
+
+
+- §3.4 θ sensitivity analysis
+- §3.6 Generation mode control
+- Custom commands: `\Kstar`, `\Kempirical`, `\Ktheory`, `\auc`, `\jsd`
+
+The custom commands are already defined in main.tex, and I can see the tables in this section should be numbered 3, 4,
+
+Line 15: type=assistant
+  Block 0: ['type', 'text']
+
+Line 16: type=assistant
+  Block 0: ['type', 'id', 'name', 'input', 'caller']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "b93c95cc-e902-4110-a507-7796b5985d3f"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 169_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Running python3 << 'EOF'\nimport json\n\nwith open('/home/ubunt…",
+  "usage": {
+    "total_tokens": 26651,
+    "tool_uses": 18,
+    "duration_ms": 43040
+  },
+  "last_tool_name": "Bash",
+  "uuid": "a7b64fd3-620b-4d3e-b456-3e043aaabd32",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 170_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01XDZszMt1wRrYE1ZA5bmZaG`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log', 'r') as f:\n    lines = f.readlines()\n    \n    for line_num in [14]:  # Line 14 is index 13 (0-based)\n        line = lines[line_num - 1]\n        try:\n            obj = json.loads(line)\n            if 'message' in obj:\n                msg = obj['message']\n                if isinstance(msg, dict):\n                    content = msg.get('content', [])\n                    for block in content:\n                        if 'thinking' in block:\n                            thinking = block['thinking']\n                            # Search for patterns\n                            text_lines = thinking.split('\\n')\n                            for i, tline in enumerate(text_lines):\n                                if any(x in tline for x in ['572', '537', 'LightGBM (14', '14B bootstrap', 'exp_14b']):\n                                    # Print context\n                                    start = max(0, i-3)\n                                    end = min(len(text_lines), i+4)\n                                    print(f\"Lines {start}-{end}:\")\n                                    for j in range(start, end):\n                                        marker = \">>>\" if j == i else \"   \"\n                                        print(f\"{marker} {text_lines[j]}\")\n                                    print()\n        except Exception as e:\n            print(f\"Error: {e}\")\nEOF\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "61af30f8-11d1-4a26-8201-d15cd5f4d3d4",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01MxdhbEphxExYQqedhyRAJr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 0,
+      "cache_creation_input_tokens": 795,
+      "cache_read_input_tokens": 25806,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 795,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 171 · 2026-05-19T23:47:36.732Z_
+
+<details><summary>↩ Tool result · `toolu_01XDZszMt1wRrYE1ZA5bmZaG`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "0ab5156c-1b77-4e4b-a3c3-812b93abe9c1"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 172_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Running python3 << 'EOF'\nimport json\n\nwith open('/home/ubunt…",
+  "usage": {
+    "total_tokens": 27168,
+    "tool_uses": 19,
+    "duration_ms": 46302
+  },
+  "last_tool_name": "Bash",
+  "uuid": "e2acf58d-48a0-417c-9b2c-4bba9e846333",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 173_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01QCRXsPg9UXjy9PNAbikhy6`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log', 'r') as f:\n    lines = f.readlines()\n    \n    for line_num in range(len(lines)):\n        line = lines[line_num]\n        try:\n            obj = json.loads(line)\n            if 'message' in obj:\n                msg = obj['message']\n                if isinstance(msg, dict):\n                    content = msg.get('content', [])\n                    for block in content:\n                        text_to_check = block.get('thinking', '') + block.get('text', '')\n                        if 'Table 4' in text_to_check or 'tab_' in text_to_check:\n                            print(f\"\\n=== Line {line_num + 1} ===\")\n                            # Find context around Table 4 or tab_\n                            text_lines = text_to_check.split('\\n')\n                            for i, tline in enumerate(text_lines):\n                                if 'Table 4' in tline or ('tab_' in tline and 'accuracy' in tline):\n                                    start = max(0, i-5)\n                                    end = min(len(text_lines), i+10)\n                                    for j in range(start, end):\n                                        marker = \">>>\" if j == i else \"   \"\n                                        print(f\"{marker} {text_lines[j][:150]}\")\n                                    print(\"---\")\n        except Exception as e:\n            pass\nEOF\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "613b7a5c-d7fb-443d-b7f9-df033fac85ba",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_019pNyMZzkXGcNNZnqZbB8Sj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 0,
+      "cache_creation_input_tokens": 515,
+      "cache_read_input_tokens": 26601,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 515,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 174 · 2026-05-19T23:47:39.994Z_
+
+<details><summary>↩ Tool result · `toolu_01QCRXsPg9UXjy9PNAbikhy6`</summary>
+
+```text
+=== Line 14 ===
+    
+    Now I'm pulling the specific bootstrap confidence intervals and p-values to ground these sections—Qwen-rewrite shows the steepest AUC decay from 0v1 t
+    
+    Looking at the transfer matrix results, I can see how model performance shifts when predictions are evaluated against different model's training distr
+    
+>>> I'm noting that the Kendall τ correlation plateaus around 0.37 at the 1v2 boundary, which is a meaningful limitation. Now I need to structure the LaTe
+    
+    I'm keeping the style consistent with the methods section: using proper notation like \Kstar and \auc, avoiding unsupported claims like "significantly
+    
+    Drafting the full section now...
+    
+    For section 4.1, I'm verifying that K*=2 holds across all model configurations by checking the confidence intervals against the θ = 0.60 threshold. Th
+    
+    The tightest margin appears with qwen_cont's 1v2 interval, where the lower bound sits just barely above the threshold. Now I'm moving into the transfe
+    
+---
+    
+    For the generation mode effect, I'm comparing how rewrite mode amplifies detectability but reduces generalizability by looking at AUC, transfer rates,
+    
+    Now I'm setting up the section structure with labels for the four main subsections: the K* boundary results, cross-model transfer, feature degradation
+    
+>>> For the figures and tables, I'm planning to place them at the top of pages—Table 3 and Figure 2 together in the first subsection, Table 4 and Figure 3
+    
+    My calculations give me 92% and 90% for those cross-model transfers, but the registry shows 91-92%. Since the task explicitly references exp_013 as th
+    
+    Now looking at the AUC comparison for rewrite versus continuation: I'm seeing 0.6957 versus 0.6114, which gives a difference of about 8.4 percentage p
+    
+    I also need to incorporate the cross-validation transfer results above 0.96 and the mean pairwise AUC figures into section 4.2. Before I start writing
+    
+    Looking at how main.tex structures this—experiments_c1 contains the section header and subsections 4.1 through 4.4, while experiments_c3 would add add
+    
+---
+
+=== Line 27 ===
+    `experiments_c1.tex` 已写入并注册（`art_20260513_5beff5`）。
+    
+    内容概要：
+    - **§4.1** K\*=2 boundary — Table 3（4-model bootstrap CI）+ Figure 2（AUC decay），含 Qwen-cont marginal case（CI_low=0.6015）和 OLMo 深层 p 值非显著报告
+>>> - **§4.2** Cross-model transfer — Table 4（4×4 accuracy matrix）+ Figure 3（heatmap），Pythia↔OLMo 91–92% retention vs Qwen-rw 61–63% catastrophic failure
+    - **§4.3** Feature degradation ordering — Table 5（top-3 features），Spearman ρ≥0.85（continuation mode），含 limitation: depth-pair τ≈0.37 at 1v2
+    - **§4.4** Generation mode effect — rewrite vs continuation Δ=+8.4pp，transfer asymmetry 89% vs 82%，detectability–generalizability tradeoff
+    
+    所有数字严格对齐 registry，负向结果已报告，未使用 "significantly" 或 "consistently outperforms"。
+---
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "2c1ff8aa-d1f9-4bc1-9bf7-692c070233f8"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 175_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Running python3 << 'EOF'\nimport json\n\nwith open('/home/ubunt…",
+  "usage": {
+    "total_tokens": 28584,
+    "tool_uses": 20,
+    "duration_ms": 51911
+  },
+  "last_tool_name": "Bash",
+  "uuid": "959378a1-82bb-41ff-998b-18e02f348c2a",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 176_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01SSF3PKk4AHu5c8AnCksKTg`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log', 'r') as f:\n    lines = f.readlines()\n    \n    for line_num in range(len(lines)):\n        line = lines[line_num]\n        try:\n            obj = json.loads(line)\n            if 'message' in obj:\n                msg = obj['message']\n                if isinstance(msg, dict):\n                    content = msg.get('content', [])\n                    for block in content:\n                        # Check all text content\n                        for key in ['thinking', 'text']:\n                            if key in block:\n                                text = block[key]\n                                if 'accuracy matrix' in text or '0.572' in text or '0.537' in text or 'registry' in text:\n                                    print(f\"\\n=== Line {line_num + 1} ({key}) ===\")\n                                    text_lines = text.split('\\n')\n                                    for i, tline in enumerate(text_lines):\n                                        if any(x in tline for x in ['572', '537', 'accuracy matrix', 'registry', 'exp_013', 'LightGBM']):\n                                            start = max(0, i-3)\n                                            end = min(len(text_lines), i+4)\n                                            for j in range(start, end):\n                                                marker = \">>>\" if j == i else \"   \"\n                                                print(f\"{marker} {text_lines[j][:180]}\")\n                                            print(\"---\")\n        except Exception as e:\n            pass\nEOF\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "beccf9a5-dd16-47df-9bb4-74ad8617e621",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01NqA8qaZokHhpuKRVXw345n",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 0,
+      "cache_creation_input_tokens": 1406,
+      "cache_read_input_tokens": 27116,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1406,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 177 · 2026-05-19T23:47:45.652Z_
+
+<details><summary>↩ Tool result · `toolu_01SSF3PKk4AHu5c8AnCksKTg`</summary>
+
+```text
+=== Line 14 (thinking) ===
+    The method.tex just says "already written by worker at docs/paper/method.tex" - that's the placeholder. Let me check if there's a real method section somewhere else, or if I need t
+    
+    Actually, looking at the task description, it tells me what the method section defines:
+>>> - $\Kempirical$, $\Ktheory$, $\auc$, $\theta=0.60$, OBD-LightGBM
+    - Table 1 (features), Table 2 (setup)
+    
+    
+---
+    - §3.6 Generation mode control
+    - Custom commands: `\Kstar`, `\Kempirical`, `\Ktheory`, `\auc`, `\jsd`
+    
+>>> The custom commands are already defined in main.tex, and I can see the tables in this section should be numbered 3, 4, and 5. Now I'm ready to write the experiments_c1.tex file, be
+    
+    For §4.2, I'm looking at the cross-model transfer patterns with the 4×4 accuracy matrix, noting the strong transfer between Pythia and OLMo but the catastrophic failure with Qwen-r
+    
+---
+    
+    The custom commands are already defined in main.tex, and I can see the tables in this section should be numbered 3, 4, and 5. Now I'm ready to write the experiments_c1.tex file, be
+    
+>>> For §4.2, I'm looking at the cross-model transfer patterns with the 4×4 accuracy matrix, noting the strong transfer between Pythia and OLMo but the catastrophic failure with Qwen-r
+    
+    Now I'm pulling the specific bootstrap confidence intervals and p-values to ground these sections—Qwen-rewrite shows the steepest AUC decay from 0v1 to 2v3, while Pythia and OLMo f
+    
+---
+    
+    Looking at the transfer matrix results, I can see how model performance shifts when predictions are evaluated against different model's training distributions. The diagonal accurac
+    
+>>> I'm noting that the Kendall τ correlation plateaus around 0.37 at the 1v2 boundary, which is a meaningful limitation. Now I need to structure the LaTeX tables precisely—Table 3 wil
+    
+    I'm keeping the style consistent with the methods section: using proper notation like \Kstar and \auc, avoiding unsupported claims like "significantly" without tests, and matching 
+    
+---
+    
+    I'm noting that the Kendall τ correlation plateaus around 0.37 at the 1v2 boundary, which is a meaningful limitation. Now I need to structure the LaTeX tables precisely—Table 3 wil
+    
+>>> I'm keeping the style consistent with the methods section: using proper notation like \Kstar and \auc, avoiding unsupported claims like "significantly" without tests, and matching 
+    
+    Drafting the full section now...
+    
+---
+    
+    The tightest margin appears with qwen_cont's 1v2 interval, where the lower bound sits just barely above the threshold. Now I'm moving into the transfer matrix analysis to compute r
+    
+>>> I should pull the retention percentages directly from the registry data rather than recalculating them. For the writeup, I need to structure this as sections 4.1 through 4.4 under 
+    
+    Writing the complete experiments section... Looking at the mean pairwise AUC values—within-model averaging to 0.6099 and cross-model to 0.5905—I can see the pattern of how transfer
+    
+---
+    
+    I should pull the retention percentages directly from the registry data rather than recalculating them. For the writeup, I need to structure this as sections 4.1 through 4.4 under 
+    
+>>> Writing the complete experiments section... Looking at the mean pairwise AUC values—within-model averaging to 0.6099 and cross-model to 0.5905—I can see the pattern of how transfer
+    
+    I'm also planning the feature importance table with rankings 1-3 as rows and each model as a column, then I'll include the Spearman correlation coefficients below. With the table l
+    
+---
+    
+    For the figures and tables, I'm planning to place them at the top of pages—Table 3 and Figure 2 together in the first subsection, Table 4 and Figure 3 in the transfer section, and 
+    
+>>> My calculations give me 92% and 90% for those cross-model transfers, but the registry shows 91-92%. Since the task explicitly references exp_013 as the source for these retention p
+    
+    Now looking at the AUC comparison for rewrite versus continuation: I'm seeing 0.6957 versus 0.6114, which gives a difference of about 8.4 percentage points favoring the rewrite app
+    
+---
+    
+    My calculations give me 92% and 90% for those cross-model transfers, but the registry shows 91-92%. Since the task explicitly references exp_013 as the source for these retention p
+    
+>>> Now looking at the AUC comparison for rewrite versus continuation: I'm seeing 0.6957 versus 0.6114, which gives a difference of about 8.4 percentage points favoring the rewrite app
+    
+    I also need to incorporate the cross-validation transfer results above 0.96 and the mean pairwise AUC figures into section 4.2. Before I start writing the LaTeX, I should clarify w
+    
+---
+    
+    Looking at how main.tex structures this—experiments_c1 contains the section header and subsections 4.1 through 4.4, while experiments_c3 would add additional subsections under the 
+    
+>>> I'm framing the intro to establish what we're testing: four model configurations using the OBD-LightGBM classifier on a balanced 500-text corpus with 6 depth levels, and laying out
+    
+    I'm realizing the document is currently single-column, so I don't need to worry about fitting everything into a narrow space. Let me just write out the full section now with the cl
+    
+---
+    
+    In the intro, I'll reference Section 3 for the experimental protocol without duplicating the method details, keeping it focused on what's specific to these results. Now I'm checkin
+    
+>>> Let me check if averaging the bidirectional transfers gives a better fit—taking (91.6 + 90.3)/2 yields 91.0%, which aligns with the stated range. I'll go with the registry values a
+    
+    Now I'm drafting the experiments section, starting with an overview of the four model configurations being evaluated and the classifier being used.
+    
+---
+    
+    Now I'm drafting the experiments section, starting with an overview of the four model configurations being evaluated and the classifier being used.
+    
+>>> Generating LaTeX table... Generating markdown table... The pattern holds consistently: 0v1 achieves near-perfect discrimination, then drops sharply at 1v2 (ranging from 0.61 to 0.7
+    
+    The overall transfer loss is modest—mean AUC drops from 0.6099 within-model to 0.5905 cross-model—but this gap is almost entirely driven by Qwen-rewrite; continuation-mode pairs sh
+    
+---
+
+=== Line 27 (text) ===
+    
+    内容概要：
+    - **§4.1** K\*=2 boundary — Table 3（4-model bootstrap CI）+ Figure 2（AUC decay），含 Qwen-cont marginal case（CI_low=0.6015）和 OLMo 深层 p 值非显著报告
+>>> - **§4.2** Cross-model transfer — Table 4（4×4 accuracy matrix）+ Figure 3（heatmap），Pythia↔OLMo 91–92% retention vs Qwen-rw 61–63% catastrophic failure
+    - **§4.3** Feature degradation ordering — Table 5（top-3 features），Spearman ρ≥0.85（continuation mode），含 limitation: depth-pair τ≈0.37 at 1v2
+    - **§4.4** Generation mode effect — rewrite vs continuation Δ=+8.4pp，transfer asymmetry 89% vs 82%，detectability–generalizability tradeoff
+    
+---
+    - **§4.3** Feature degradation ordering — Table 5（top-3 features），Spearman ρ≥0.85（continuation mode），含 limitation: depth-pair τ≈0.37 at 1v2
+    - **§4.4** Generation mode effect — rewrite vs continuation Δ=+8.4pp，transfer asymmetry 89% vs 82%，detectability–generalizability tradeoff
+    
+>>> 所有数字严格对齐 registry，负向结果已报告，未使用 "significantly" 或 "consistently outperforms"。
+---
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "1b29fa48-ca91-4143-9b61-b5afcd4f1d2d"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 178_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Running python3 << 'EOF'\nimport json\n\nwith open('/home/ubunt…",
+  "usage": {
+    "total_tokens": 31309,
+    "tool_uses": 21,
+    "duration_ms": 57069
+  },
+  "last_tool_name": "Bash",
+  "uuid": "a7307419-8693-40e6-af92-151d93543314",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 179_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017FWpPrRrsYSj1DG5S1sQKJ`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log', 'r') as f:\n    lines = f.readlines()\n    \n    for line_num in range(len(lines)):\n        line = lines[line_num]\n        try:\n            obj = json.loads(line)\n            if 'message' in obj:\n                msg = obj['message']\n                if isinstance(msg, dict):\n                    content = msg.get('content', [])\n                    for block in content:\n                        for key in ['thinking', 'text']:\n                            if key in block:\n                                text = block[key]\n                                if 'exp_013' in text or 'read_registry' in text or 'ssh' in text:\n                                    print(f\"\\n=== Line {line_num + 1} ({key}) ===\")\n                                    text_lines = text.split('\\n')\n                                    for i, tline in enumerate(text_lines):\n                                        if any(x in tline for x in ['exp_013', 'read_registry', 'ssh_', '572', '537']):\n                                            start = max(0, i-4)\n                                            end = min(len(text_lines), i+5)\n                                            for j in range(start, end):\n                                                marker = \">>>\" if j == i else \"   \"\n                                                print(f\"{marker} {text_lines[j][:200]}\")\n                                            print(\"---\")\n        except Exception as e:\n            pass\nEOF\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "99d45199-b8da-428a-ad1b-06f379d4238f",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01PCMAN1SqP5NzbeetU9PFWb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 0,
+      "cache_creation_input_tokens": 2721,
+      "cache_read_input_tokens": 28522,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2721,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 180 · 2026-05-19T23:47:50.752Z_
+
+<details><summary>↩ Tool result · `toolu_017FWpPrRrsYSj1DG5S1sQKJ`</summary>
+
+```text
+=== Line 14 (thinking) ===
+    Now I'm setting up the section structure with labels for the four main subsections: the K* boundary results, cross-model transfer, feature degradation ordering, and generation mode effects. I'll refer
+    
+    For the figures and tables, I'm planning to place them at the top of pages—Table 3 and Figure 2 together in the first subsection, Table 4 and Figure 3 in the transfer section, and Table 5 in the featu
+    
+>>> My calculations give me 92% and 90% for those cross-model transfers, but the registry shows 91-92%. Since the task explicitly references exp_013 as the source for these retention percentages—along wit
+    
+    Now looking at the AUC comparison for rewrite versus continuation: I'm seeing 0.6957 versus 0.6114, which gives a difference of about 8.4 percentage points favoring the rewrite approach on Qwen. There
+    
+    I also need to incorporate the cross-validation transfer results above 0.96 and the mean pairwise AUC figures into section 4.2. Before I start writing the LaTeX, I should clarify whether I'm opening a
+---
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "eed4432e-a1a4-4f32-a420-dfe7cb0c953e"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 181_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Running python3 << 'EOF'\nimport json\n\nwith open('/home/ubunt…",
+  "usage": {
+    "total_tokens": 32097,
+    "tool_uses": 22,
+    "duration_ms": 59821
+  },
+  "last_tool_name": "Bash",
+  "uuid": "2b8b1697-7712-4408-b34c-ed4eb64b8545",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 182_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_013NrMme61M6EFzNDUHwKQwT`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log', 'r') as f:\n    lines = f.readlines()\n    \n    # Line 14 has the exp_013 reference\n    line = lines[13]\n    obj = json.loads(line)\n    if 'message' in obj:\n        msg = obj['message']\n        content = msg.get('content', [])\n        for block in content:\n            if 'thinking' in block:\n                text = block['thinking']\n                text_lines = text.split('\\n')\n                # Find the exp_013 line and extract context\n                for i, tline in enumerate(text_lines):\n                    if 'exp_013' in tline:\n                        print(\"Found exp_013 context:\")\n                        start = max(0, i-10)\n                        end = min(len(text_lines), i+15)\n                        for j in range(start, end):\n                            marker = \">>>\" if j == i else \"   \"\n                            print(f\"{marker} {text_lines[j]}\")\n                        break\nEOF\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "178dba8c-b98c-475e-8b74-292ba63fd15d",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01BKTy8p3PDPPJww27D7yyw9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 0,
+      "cache_creation_input_tokens": 786,
+      "cache_read_input_tokens": 31243,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 786,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 183 · 2026-05-19T23:47:53.530Z_
+
+<details><summary>↩ Tool result · `toolu_013NrMme61M6EFzNDUHwKQwT`</summary>
+
+```text
+Found exp_013 context:
+    Let me structure the section carefully, starting with the main finding that K*=2 is universal across all models.
+    
+    For the cross-model transfer analysis, I need to highlight that the bootstrap confidence intervals show a sharp drop from comparing 0 vs 1 layers to 1 vs 2 to 2 vs 3, with Qwen-cont being the most marginal case. The transfer matrix will show that depth signals transfer well between Pythia and OLMo (91-92% retention) but mode matters more than model choice—Qwen-rw transfers poorly regardless of source model. For feature degradation, the key insight is that the same features degrade in the same order across models with Spearman correlations ≥0.85 in continuation mode, though I'll need to note the limitation around τ~0.37.
+    
+    For the generation mode effect, I'm comparing how rewrite mode amplifies detectability but reduces generalizability by looking at AUC, transfer rates, and feature rankings between Qwen-rw and Qwen-cont. I'm aiming for roughly 400-500 words per subsection to reach about 1800 words total. For citations, I'll use placeholders where needed since I don't have the .bib file, though the experiments section likely doesn't require many external references beyond what's already in the methods.
+    
+    Now I'm setting up the section structure with labels for the four main subsections: the K* boundary results, cross-model transfer, feature degradation ordering, and generation mode effects. I'll reference the method section for technical details rather than re-citing foundational work.
+    
+    For the figures and tables, I'm planning to place them at the top of pages—Table 3 and Figure 2 together in the first subsection, Table 4 and Figure 3 in the transfer section, and Table 5 in the feature degradation section. Before writing the full file, I need to verify some of the transfer numbers, particularly the retention rates between Pythia and OLMo models to make sure they align with what the task specifies.
+    
+>>> My calculations give me 92% and 90% for those cross-model transfers, but the registry shows 91-92%. Since the task explicitly references exp_013 as the source for these retention percentages—along with the other cross-model ranges like 61-63% for Qwen_rw transfers and 83-85% for Qwen_cont to Pythia—I should use those official values rather than my derived numbers. The raw accuracy figures are what they are, but the retention percentages are the authoritative computed values I need to report.
+    
+    Now looking at the AUC comparison for rewrite versus continuation: I'm seeing 0.6957 versus 0.6114, which gives a difference of about 8.4 percentage points favoring the rewrite approach on Qwen. There's a minor discrepancy between sources—the registry shows 0.6955 while another source shows 0.6957—but the task specifies which values to use. I need to be consistent with which numbers I use where—the bootstrap estimate of 0.6955 from exp_007 goes in Table 3, while the original experiment results (0.6957 from mvp_pilot and 0.6114 from exp_017) belong in the §4.4 discussion. Since all these values fall within the confidence interval, the slight differences are just rounding, so I'll cite the bootstrap value in the table and the individual experiment values in the text. I'll stick with the exp_007 bootstrap-validated numbers throughout for consistency: 0.6955 for the rewrite condition and 0.6112 for continuation, giving me that 8.4 percentage point difference. Now let me write out the file and verify the transfer asymmetry calculations—checking that the 89% retention from continuation to rewrite and 82% in the reverse direction match up with the actual values.
+    
+    I also need to incorporate the cross-validation transfer results above 0.96 and the mean pairwise AUC figures into section 4.2. Before I start writing the LaTeX, I should clarify whether I'm opening a new Experiments section or if the section header is already in the main file since this is just the C1 portion.
+    
+    Looking at how main.tex structures this—experiments_c1 contains the section header and subsections 4.1 through 4.4, while experiments_c3 would add additional subsections under the same section. So I'll start with the section header and draft the introduction paragraph for the Experiments section.
+    
+    I'm framing the intro to establish what we're testing: four model configurations using the OBD-LightGBM classifier on a balanced 500-text corpus with 6 depth levels, and laying out the four research questions we're addressing about saturation points, transfer across models, feature ordering, and generation mode effects. Then each subsection will answer one of these questions. Generating the results table... I'm looking at the rest of the table with the comparison metrics across different depths, and I'm noticing the formatting with the confidence intervals and p-values nested under each row is making it harder to read. The structure feels a bit dense with all those nested rows. Formatting the table with confidence intervals... Generating the table... Generating the table...
+    
+    I'm realizing the document is currently single-column, so I don't need to worry about fitting everything into a narrow space. Let me just write out the full section now with the clean two-panel table approach. I'm estimating around 1800 words total across the subsections, so I should have plenty of room to work with.
+    
+    Now I'm checking the experimental results more carefully. The qwen_cont model in exp_007 shows an AUC of 0.9972 for the 0v1 comparison but doesn't include a confidence interval or p-value like the other models do. I'll need to handle this inconsistency in the table—I'll just display the AUC values and note in the text that the p-value is 0.002 across the board.
+    
+    Looking at the deeper comparisons, I notice something important: the olmo_cont model shows non-significant results for 3v4 (p=0.064) and 4v5 (p=0.232). These negative findings are worth highlighting in the text since they suggest the model's performance plateaus at deeper depths. I'll restructure the table to include all p-values, organizing it with AUC values across all depth pairs and models in one panel, then confidence intervals for the 1v2 and 2v3 comparisons in another.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "67c7a2c6-5286-4f1d-be45-5ff162b5f322"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 184_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Running python3 << 'EOF'\nimport json\n\nwith open('/home/ubunt…",
+  "usage": {
+    "total_tokens": 34026,
+    "tool_uses": 23,
+    "duration_ms": 66818
+  },
+  "last_tool_name": "Bash",
+  "uuid": "0a842180-c482-4b39-b52b-ec2c267bff8c",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 185_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01RJ2x77bpsnMUUWnmYu3gxh`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log', 'r') as f:\n    lines = f.readlines()\n    \n    # Check all lines for any mentions of specific values that might relate to .572 or .537\n    for line_num in range(len(lines)):\n        line = lines[line_num]\n        try:\n            obj = json.loads(line)\n            if 'message' in obj:\n                msg = obj['message']\n                if isinstance(msg, dict):\n                    content = msg.get('content', [])\n                    for block in content:\n                        for key in ['thinking', 'text']:\n                            if key in block:\n                                text = block[key]\n                                # Search for any numerical patterns that could be the values\n                                if any(x in text for x in ['0.6', '0.5', 'accuracy', 'retention', '0.572', '0.537', 'LightGBM (14B)', 'LightGBM (14b)']):\n                                    # Check if this mentions the specific values we're looking for\n                                    if '0.6' in text or '0.5' in text:\n                                        # Print a sample of numbers mentioned\n                                        import re\n                                        numbers = re.findall(r'0\\.\\d+', text)\n                                        if '0.572' in numbers or '0.537' in numbers:\n                                            print(f\"Line {line_num + 1}: Found target numbers!\")\n                                            print(text[:1000])\n        except Exception as e:\n            pass\n\n# Also do a raw string search\nprint(\"\\n=== Raw search for .572 and .537 ===\")\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log', 'r') as f:\n    content = f.read()\n    if '572' in content:\n        print(\"Found '572' in log\")\n        idx = content.find('572')\n        print(f\"Context: ...{content[max(0,idx-200):idx+200]}...\")\n    if '537' in content:\n        print(\"Found '537' in log\")\n        idx = content.find('537')\n        print(f\"Context: ...{content[max(0,idx-200):idx+200]}...\")\n    if 'LightGBM' in content:\n        print(\"Found 'LightGBM' in log\")\n        # Count occurrences\n        count = content.count('LightGBM')\n        print(f\"  Occurrences: {count}\")\nEOF\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "6a99868f-91e7-43cd-a0f9-f4acea23c051",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01MuZuiAHALWsKVATd6HEjQp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 0,
+      "cache_creation_input_tokens": 1927,
+      "cache_read_input_tokens": 32029,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1927,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 186 · 2026-05-19T23:48:00.525Z_
+
+<details><summary>↩ Tool result · `toolu_01RJ2x77bpsnMUUWnmYu3gxh`</summary>
+
+```text
+=== Raw search for .572 and .537 ===
+Found '572' in log
+Context: ...Nuj0uDIJmZp2taYfZELBr9LsGkNLutNwNZczmZO1KES/sRDYiPLVPEIbgaFYfNTrxAdT8SBENlDMRCfYbwFTQY/2d91swi+tsW+XOhyyG4tNEnubYsAKCGBbwcQlvXIT7f7GXQM8Kb8qmd5vZ6y4nSy+38DJi5l49S4pmxL82NoMTjfhjHRqAnTH9/YWsXRSkmwJWuBq572ZDeW0YB1Nh3MHtvv17lwcngVrBL4q2olOx/FsUmFlm47JdRF2cpuQzs4JwkNvgvPD7A08tvw+vslVu2QfSXe04YyOwu2ylkUelDj5sZtetfdc7QyPN8VdhygOKT6G1/sIER4igkZxLa7r+4qUM8IYiaCPGML4MqT2xOmWThbf5vN5A6yUk+29BJWE+d5XcS7AkZAN...
+Found 'LightGBM' in log
+  Occurrences: 4
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "d5c6db91-e246-42a8-934e-cfcdc60ad62f"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 187_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Running python3 << 'EOF'\nimport json\n\nwith open('/home/ubunt…",
+  "usage": {
+    "total_tokens": 35232,
+    "tool_uses": 24,
+    "duration_ms": 71085
+  },
+  "last_tool_name": "Bash",
+  "uuid": "874e4d87-f4a6-4e43-a043-4a6f20a0366d",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 188_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01PguYWgUucmZ174L5FZdJQg`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log', 'r') as f:\n    lines = f.readlines()\n    \n    for line_num in range(len(lines)):\n        line = lines[line_num]\n        try:\n            obj = json.loads(line)\n            if 'message' in obj:\n                msg = obj['message']\n                if isinstance(msg, dict):\n                    content = msg.get('content', [])\n                    for block in content:\n                        for key in ['thinking', 'text']:\n                            if key in block:\n                                text = block[key]\n                                # Look for patterns about where data comes from\n                                if 'task description' in text.lower() or 'Table 4' in text or 'four models' in text:\n                                    print(f\"\\n=== Line {line_num + 1} ({key}) ===\")\n                                    text_lines = text.split('\\n')\n                                    for i, tline in enumerate(text_lines):\n                                        if any(x in tline.lower() for x in ['table 4', 'lightgbm', '14b', '4×4', 'accuracy matrix', 'task description', 'four models']):\n                                            start = max(0, i-3)\n                                            end = min(len(text_lines), i+4)\n                                            for j in range(start, end):\n                                                marker = \">>>\" if j == i else \"   \"\n                                                print(f\"{marker} {text_lines[j][:150]}\")\n                                            print(\"---\")\n        except Exception as e:\n            pass\nEOF\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "a3405fa1-e364-4a14-a9ee-e1d2c3abd556",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01NhMR3GoVbxkdapMYgAGsP8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 0,
+      "cache_creation_input_tokens": 1204,
+      "cache_read_input_tokens": 33956,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1204,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 189 · 2026-05-19T23:48:04.767Z_
+
+<details><summary>↩ Tool result · `toolu_01PguYWgUucmZ174L5FZdJQg`</summary>
+
+```text
+=== Line 14 (thinking) ===
+>>> The method.tex just says "already written by worker at docs/paper/method.tex" - that's the placeholder. Let me check if there's a real method section 
+    
+    Actually, looking at the task description, it tells me what the method section defines:
+    - $\Kempirical$, $\Ktheory$, $\auc$, $\theta=0.60$, OBD-LightGBM
+---
+    The method.tex just says "already written by worker at docs/paper/method.tex" - that's the placeholder. Let me check if there's a real method section 
+    
+>>> Actually, looking at the task description, it tells me what the method section defines:
+    - $\Kempirical$, $\Ktheory$, $\auc$, $\theta=0.60$, OBD-LightGBM
+    - Table 1 (features), Table 2 (setup)
+    
+---
+    The method.tex just says "already written by worker at docs/paper/method.tex" - that's the placeholder. Let me check if there's a real method section 
+    
+    Actually, looking at the task description, it tells me what the method section defines:
+>>> - $\Kempirical$, $\Ktheory$, $\auc$, $\theta=0.60$, OBD-LightGBM
+    - Table 1 (features), Table 2 (setup)
+    
+    
+---
+    - §3.6 Generation mode control
+    - Custom commands: `\Kstar`, `\Kempirical`, `\Ktheory`, `\auc`, `\jsd`
+    
+>>> The custom commands are already defined in main.tex, and I can see the tables in this section should be numbered 3, 4, and 5. Now I'm ready to write t
+    
+    For §4.2, I'm looking at the cross-model transfer patterns with the 4×4 accuracy matrix, noting the strong transfer between Pythia and OLMo but the ca
+    
+---
+    
+    The custom commands are already defined in main.tex, and I can see the tables in this section should be numbered 3, 4, and 5. Now I'm ready to write t
+    
+>>> For §4.2, I'm looking at the cross-model transfer patterns with the 4×4 accuracy matrix, noting the strong transfer between Pythia and OLMo but the ca
+    
+    Now I'm pulling the specific bootstrap confidence intervals and p-values to ground these sections—Qwen-rewrite shows the steepest AUC decay from 0v1 t
+    
+---
+    
+    Looking at the transfer matrix results, I can see how model performance shifts when predictions are evaluated against different model's training distr
+    
+>>> I'm noting that the Kendall τ correlation plateaus around 0.37 at the 1v2 boundary, which is a meaningful limitation. Now I need to structure the LaTe
+    
+    I'm keeping the style consistent with the methods section: using proper notation like \Kstar and \auc, avoiding unsupported claims like "significantly
+    
+---
+    
+    I should pull the retention percentages directly from the registry data rather than recalculating them. For the writeup, I need to structure this as s
+    
+>>> Writing the complete experiments section... Looking at the mean pairwise AUC values—within-model averaging to 0.6099 and cross-model to 0.5905—I can s
+    
+    I'm also planning the feature importance table with rankings 1-3 as rows and each model as a column, then I'll include the Spearman correlation coeffi
+    
+---
+    
+    Now I'm setting up the section structure with labels for the four main subsections: the K* boundary results, cross-model transfer, feature degradation
+    
+>>> For the figures and tables, I'm planning to place them at the top of pages—Table 3 and Figure 2 together in the first subsection, Table 4 and Figure 3
+    
+    My calculations give me 92% and 90% for those cross-model transfers, but the registry shows 91-92%. Since the task explicitly references exp_013 as th
+    
+---
+    
+    Looking at how main.tex structures this—experiments_c1 contains the section header and subsections 4.1 through 4.4, while experiments_c3 would add add
+    
+>>> I'm framing the intro to establish what we're testing: four model configurations using the OBD-LightGBM classifier on a balanced 500-text corpus with 
+    
+    I'm realizing the document is currently single-column, so I don't need to worry about fitting everything into a narrow space. Let me just write out th
+    
+---
+    
+    The experiments span four model configurations with balanced datasets of 500 texts per depth level, and I'm organizing the results around four key res
+    
+>>> The discrimination drops sharply at the 1v2 boundary, then falls below the decision threshold at 2v3, with all subsequent pairs approaching chance per
+    
+    Qwen-cont represents the most marginal case, with its 1v2 CI lower bound sitting just barely above the threshold, suggesting that while $K^* = 2$ hold
+    
+---
+    
+    Now I'm drafting the experiments section, starting with an overview of the four model configurations being evaluated and the classifier being used.
+    
+>>> Generating LaTeX table... Generating markdown table... The pattern holds consistently: 0v1 achieves near-perfect discrimination, then drops sharply at
+    
+    The overall transfer loss is modest—mean AUC drops from 0.6099 within-model to 0.5905 cross-model—but this gap is almost entirely driven by Qwen-rewri
+    
+---
+
+=== Line 27 (text) ===
+    
+    内容概要：
+    - **§4.1** K\*=2 boundary — Table 3（4-model bootstrap CI）+ Figure 2（AUC decay），含 Qwen-cont marginal case（CI_low=0.6015）和 OLMo 深层 p 值非显著报告
+>>> - **§4.2** Cross-model transfer — Table 4（4×4 accuracy matrix）+ Figure 3（heatmap），Pythia↔OLMo 91–92% retention vs Qwen-rw 61–63% catastrophic failure
+    - **§4.3** Feature degradation ordering — Table 5（top-3 features），Spearman ρ≥0.85（continuation mode），含 limitation: depth-pair τ≈0.37 at 1v2
+    - **§4.4** Generation mode effect — rewrite vs continuation Δ=+8.4pp，transfer asymmetry 89% vs 82%，detectability–generalizability tradeoff
+    
+---
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "bb5c3a9d-5667-402f-a4bf-5601458c6f3f"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 190_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "description": "Running python3 << 'EOF'\nimport json\n\nwith open('/home/ubunt…",
+  "usage": {
+    "total_tokens": 37450,
+    "tool_uses": 25,
+    "duration_ms": 76685
+  },
+  "last_tool_name": "Bash",
+  "uuid": "d2a97ee5-8c4c-44e4-9e76-3301fa993e7d",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 191_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01YJ3euFgsgMaULxZVZKYZtG`</summary>
+
+```json
+{
+  "command": "python3 << 'EOF'\nimport json\n\nwith open('/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log', 'r') as f:\n    lines = f.readlines()\n    \n    for line_num in range(len(lines)):\n        line = lines[line_num]\n        try:\n            obj = json.loads(line)\n            if 'message' in obj:\n                msg = obj['message']\n                if isinstance(msg, dict):\n                    content = msg.get('content', [])\n                    for block in content:\n                        full_text = block.get('thinking', '') + block.get('text', '')\n                        \n                        # Look for any references to LLM sizes or specific numbers\n                        if 'B' in full_text and ('model' in full_text.lower() or 'llm' in full_text.lower()):\n                            print(f\"\\n=== Line {line_num + 1} ===\")\n                            text_lines = full_text.split('\\n')\n                            for i, tline in enumerate(text_lines):\n                                if (' B' in tline or 'billion' in tline.lower()) and any(x in tline.lower() for x in ['model', 'llm', 'param']):\n                                    start = max(0, i-2)\n                                    end = min(len(text_lines), i+3)\n                                    for j in range(start, end):\n                                        marker = \">>>\" if j == i else \"   \"\n                                        print(f\"{marker} {text_lines[j]}\")\n                                    print(\"---\")\n        except Exception as e:\n            pass\nEOF\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "09b1d3a9-2b64-4ab7-9399-b97655edfa6c",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01QHC3H8JWsXUFzjVVHwNVy1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 0,
+      "cache_creation_input_tokens": 2212,
+      "cache_read_input_tokens": 35160,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2212,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 192 · 2026-05-19T23:48:10.386Z_
+
+<details><summary>↩ Tool result · `toolu_01YJ3euFgsgMaULxZVZKYZtG`</summary>
+
+```text
+=== Line 14 ===
+    Now I'm setting up the section structure with labels for the four main subsections: the K* boundary results, cross-model transfer, feature degradation ordering, and generation mode effects. I'll reference the method section for technical details rather than re-citing foundational work.
+    
+>>> For the figures and tables, I'm planning to place them at the top of pages—Table 3 and Figure 2 together in the first subsection, Table 4 and Figure 3 in the transfer section, and Table 5 in the feature degradation section. Before writing the full file, I need to verify some of the transfer numbers, particularly the retention rates between Pythia and OLMo models to make sure they align with what the task specifies.
+    
+    My calculations give me 92% and 90% for those cross-model transfers, but the registry shows 91-92%. Since the task explicitly references exp_013 as the source for these retention percentages—along with the other cross-model ranges like 61-63% for Qwen_rw transfers and 83-85% for Qwen_cont to Pythia—I should use those official values rather than my derived numbers. The raw accuracy figures are what they are, but the retention percentages are the authoritative computed values I need to report.
+---
+    For deeper generational pairs, the picture becomes murkier. OLMo loses statistical significance beyond generation 2, while Pythia shows marginal effects at those depths, and Qwen-cont maintains some weak discrimination ability. This suggests that depth discrimination degrades differently across models as we move further from the initial generation.
+    
+>>> Now I'm testing whether these depth signals are actually properties of the text itself or artifacts of how each model generates. I'm training classifiers on one model's data and seeing how well they transfer to another model's outputs. Looking at the transfer matrix, a striking pattern emerges: when I move classifiers between the two continuation-mode models, they retain around 90% of their original accuracy, which means roughly 70-85% of the depth signal appears to be text-intrinsic rather than model-dependent. But the transfer involving Qwen-re shows a different story.
+    
+    Qwen-rewrite data transfers catastrophically poorly—classifiers drop to only 61-63% accuracy when moving to Pythia or OLMo, while the reverse direction is similarly bad. This is a sharp contrast to Qwen-cont, which maintains 80-85% accuracy across transfers, confirming that the generation mode itself, not the model identity, is what's driving these differences. At the earliest boundary between human text and first-generation synthetic text, transfer is nearly perfect across all model pairs with AUC above 0.96, but the degradation becomes more pronounced at deeper boundaries. The overall cross-model AUC drops only modestly from 0.6099 within-model to 0.5905 across models—a 3.2% relative decline.
+---
+    Now I'm drafting the experiments section, starting with an overview of the four model configurations being evaluated and the classifier being used.
+    
+>>> Generating LaTeX table... Generating markdown table... The pattern holds consistently: 0v1 achieves near-perfect discrimination, then drops sharply at 1v2 (ranging from 0.61 to 0.70), with 2v3 and beyond falling below the threshold of 0.60 and approaching chance performance. I'm visualizing this decay curve across the depth pairs to show how discriminability collapses. For determining K*, all four configurations show their 1v2 bootstrap confidence intervals exceeding the threshold. that $K^* = 2$ holds up across models, though Qwen-cont sits right at the edge—continuation generation produces weaker depth signals than rewriting, bringing the boundary estimate dangerously close to the detection threshold. Beyond this point, the ability to discriminate depths collapses quickly. OLMo loses statistical power entirely at deeper comparisons, while Pythia maintains marginal significance through generation 4, and Qwen variants show detectable but weakening effects. Now I'm moving into cross-model transfer patterns. Now I'm looking at the cross-model transfer accuracy matrix, where models trained on one generator's outputs are tested on another's. The retention rates show that depth signals transfer reasonably well across different models—off-diagonal accuracies stay in the 0.25-0.35 range compared to diagonal accuracies around 0.38-0.42, suggesting these aren't just artifacts of a particular generator. I'm also examining a visualization of this transfer pattern as a heatmap. Looking at the transfer results, I'm seeing a stark contrast: continuation-mode models show strong mutual transfer with 80-92% accuracy retention, suggesting most of the depth signal is text-intrinsic rather than model-specific. But Qwen-rewrite fails catastrophically, dropping to 61-63% accuracy when transferred to other models, indicating that rewrite-mode classifiers depend heavily on generation artifacts that don't generalize. At the 0v1 boundary, cross-model discrimination remains robust above 0.96 AUC across all pairs.
+    
+    The overall transfer loss is modest—mean AUC drops from 0.6099 within-model to 0.5905 cross-model—but this gap is almost entirely driven by Qwen-rewrite; continuation-mode pairs show much tighter alignment. Now I'm investigating whether depth signals truly rely on the same features across models by ranking individual features by their discriminative power within each generator and comparing those rankings via correlation.
+---
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "ae9c9353-ef92-460d-bd4b-17340d1b3910"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 193_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "a5181355eb57b55e6",
+  "tool_use_id": "toolu_01TLTQ7V8sDtb2GN3bnRawNx",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Search paper writing log for .572/.537 data source",
+  "usage": {
+    "total_tokens": 39302,
+    "tool_uses": 25,
+    "duration_ms": 83159
+  },
+  "uuid": "c24b77d9-26ca-487d-ac01-85a11d162bb4",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 194 · 2026-05-19T23:48:16.740Z_
+
+<details><summary>↩ Tool result · `toolu_01TLTQ7V8sDtb2GN3bnRawNx`</summary>
+
+```text
+Based on my thorough search of the log file, let me compile the findings:
+
+## FINDINGS REPORT
+
+**Data Source for Table 4 (Cross-Model Transfer Matrix):**
+
+The log file contains NO mentions of ".572" or ".537" as specific values, and NO reference to "LightGBM (14B)" as a model in Table 4 on May 13, 2026.
+
+What actually appears in the worker's thinking on May 13:
+
+1. **Table 4 Actual Content**: A 4×4 cross-model transfer accuracy matrix with:
+   - Diagonal (within-model): accuracies around 0.38-0.42
+   - Off-diagonal (transfer): accuracies in 0.25-0.35 range
+   - Pythia ↔ OLMo retention: 91-92%
+   - Qwen-rewrite transfers: 61-63% (catastrophic failure)
+   - Qwen-continuation transfers: 83-85% to Pythia
+
+2. **Source Referenced**: The worker explicitly mentions "the task explicitly references exp_013 as the source for these retention percentages" along with the specific ranges cited above.
+
+3. **No LightGBM 14B Row**: The log describes four model configurations tested:
+   - Qwen-rewrite
+   - Qwen-continuation
+   - Pythia
+   - OLMo
+   
+   There is NO separate "LightGBM (14B)" model listed in Table 4.
+
+4. **Registry Data**: The worker pulled bootstrap confidence intervals, cross-validation transfer results above 0.96 AUC at the 0v1 boundary, and mean pairwise AUC figures (within-model: 0.6099, cross-model: 0.5905) from the registry.
+
+**Conclusion**: The values .572 and .537 do not appear in this May 13 log file. Table 4 contains transfer accuracy percentages (91-92%, 61-63%, 83-85%, 80-92%) and AUC values (0.96+, 0.6099, 0.5905), but not the decimal values you're searching for. If these values appear elsewhere, they may come from a different log file, a different date, or a different worker session.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "ee75b7f5-1eff-4afe-9b3c-7fba8075b2b4",
+  "tool_use_result": {
+    "status": "completed",
+    "prompt": "Search the file `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_writing_experiments_c1_20260513T092525.log` for any mentions of .572, .537, \"14B\", \"14b\", or \"LightGBM (14B)\". The file is very large (100K+ tokens).\n\nI need to understand where the values .572 and .537 came from when this paper-writing worker created Table 4 on May 13, 2026. The actual experiment (exp_14b_c4) only ran May 17-18, so these values must have come from somewhere else.\n\nUse Grep and Read to find relevant sections. Report:\n1. What data source the worker used for the LightGBM 14B row\n2. Any registry reads, SSH commands, or file reads that produced .572 or .537\n3. The exact context around these values (a few lines before/after)\n\nKeep the report concise - just the facts.",
+    "agentId": "a5181355eb57b55e6",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Based on my thorough search of the log file, let me compile the findings:\n\n## FINDINGS REPORT\n\n**Data Source for Table 4 (Cross-Model Transfer Matrix):**\n\nThe log file contains NO mentions of \".572\" or \".537\" as specific values, and NO reference to \"LightGBM (14B)\" as a model in Table 4 on May 13, 2026.\n\nWhat actually appears in the worker's thinking on May 13:\n\n1. **Table 4 Actual Content**: A 4×4 cross-model transfer accuracy matrix with:\n   - Diagonal (within-model): accuracies around 0.38-0.42\n   - Off-diagonal (transfer): accuracies in 0.25-0.35 range\n   - Pythia ↔ OLMo retention: 91-92%\n   - Qwen-rewrite transfers: 61-63% (catastrophic failure)\n   - Qwen-continuation transfers: 83-85% to Pythia\n\n2. **Source Referenced**: The worker explicitly mentions \"the task explicitly references exp_013 as the source for these retention percentages\" along with the specific ranges cited above.\n\n3. **No LightGBM 14B Row**: The log describes four model configurations tested:\n   - Qwen-rewrite\n   - Qwen-continuation\n   - Pythia\n   - OLMo\n   \n   There is NO separate \"LightGBM (14B)\" model listed in Table 4.\n\n4. **Registry Data**: The worker pulled bootstrap confidence intervals, cross-validation transfer results above 0.96 AUC at the 0v1 boundary, and mean pairwise AUC figures (within-model: 0.6099, cross-model: 0.5905) from the registry.\n\n**Conclusion**: The values .572 and .537 do not appear in this May 13 log file. Table 4 contains transfer accuracy percentages (91-92%, 61-63%, 83-85%, 80-92%) and AUC values (0.96+, 0.6099, 0.5905), but not the decimal values you're searching for. If these values appear elsewhere, they may come from a different log file, a different date, or a different worker session."
+      }
+    ],
+    "totalDurationMs": 83162,
+    "totalTokens": 39761,
+    "totalToolUseCount": 25,
+    "usage": {
+      "input_tokens": 0,
+      "cache_creation_input_tokens": 1851,
+      "cache_read_input_tokens": 37372,
+      "output_tokens": 538,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1851
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 0,
+          "output_tokens": 538,
+          "cache_read_input_tokens": 37372,
+          "cache_creation_input_tokens": 1851,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1851,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 2,
+      "searchCount": 1,
+      "bashCount": 22,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 195_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting - the May 13 paper writing worker created a different Table 4 (cross-model transfer matrix), not the DeBERTa comparison table. The current Table 4 (DeBERTa vs LightGBM comparison) was added later.
+
+Let me check when the current experiments_c1.tex was last modified and look for other worker logs that might have added the DeBERTa comparison table. Let me also check if there's a git history or other modification logs.
+
+The table I'm looking at is `tab:deberta_comparison` (Table reference), and it's at L133-149 in the `docs/paper/experiments_c1.tex` file. 
+
+Now I'm searching through the other worker logs to find who actually wrote this DeBERTa comparison content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "bf45cd8e-0267-4f7f-a124-31ceaf221696",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TfDJpyPQdwXnjz1DMB6B2A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 891,
+      "cache_read_input_tokens": 60501,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 891
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 196_
+
+May 13 的 log 写的是另一个 Table 4（transfer matrix），不是当前的 DeBERTa 对比表。需要找写入 `tab:deberta_comparison` 的 worker。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "907d9c03-d035-43d8-941a-449578d9cf62",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TfDJpyPQdwXnjz1DMB6B2A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 891,
+      "cache_read_input_tokens": 60501,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 891
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 197_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01LevboZCpXTMLqZGyoVS9KM`</summary>
+
+```json
+{
+  "pattern": "deberta_comparison|DeBERTa.*LightGBM|\\.572|\\.537",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs",
+  "output_mode": "files_with_matches"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "3ccea9be-0771-4a81-872f-f004d3eeddff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TfDJpyPQdwXnjz1DMB6B2A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 891,
+      "cache_read_input_tokens": 60501,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 891
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 198 · 2026-05-19T23:48:25.061Z_
+
+<details><summary>↩ Tool result · `toolu_01LevboZCpXTMLqZGyoVS9KM`</summary>
+
+```text
+Found 204 files
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log
+logs/chats/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_paper_agent.jsonl
+logs/chats/feishu_group_oc_5d2a0ec1de3a456564133278c1a9b203_director.jsonl
+logs/chats/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6.jsonl
+logs/chats/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer.jsonl
+logs/workers/worker_diagnose_exp_deberta_c4_1b5_20260519T231400.log
+logs/workers/worker_exp_westd-c4-1b5-rsync-launch_20260519T230138.log
+logs/workers/worker_exp_cqa1-c4-1b5-pythia-greedy_20260519T230250.log
+logs/workers/worker_analysis_c4-1b5-qwen-rw-check_20260519T230027.log
+logs/chats/worker_bugfix_cqa1-kstar-script-fix_20260519T220505.jsonl
+logs/workers/worker_bugfix_cqa1-kstar-script-fix_20260519T220505.log
+logs/workers/worker_bugfix_wiki-kstar-obd-baseline_20260519T215703.log
+logs/workers/worker_infra_cqa1-recovery-status_20260519T215644.log
+logs/workers/worker_infra_deberta-wiki-cron-resolve_20260519T215745_result.json
+logs/chats/worker_infra_deberta-wiki-cron-resolve_20260519T215745.jsonl
+logs/workers/worker_infra_deberta-wiki-cron-resolve_20260519T215745.log
+logs/chats/worker_bugfix_kstar-off-by-one_20260519T203108.jsonl
+logs/workers/worker_bugfix_kstar-off-by-one_20260519T203108.log
+logs/workers/worker_code_deberta-c4-1b5-prep_20260519T202226.log
+logs/workers/worker_exp_deberta-cross-transfer-run_20260519T201151.log
+logs/workers/worker_exp_deberta-c4-westd_20260519T192827.log
+logs/workers/worker_infra_deberta-check-now_20260519T192110.log
+logs/workers/worker_infra_deberta-monitor-e_20260519T185703.log
+logs/chats/feishu_group_oc_0f6dcb30efaa4f47425ef1d9874a89d7_director.jsonl
+logs/workers/worker_compute_cross-scorer-f1_20260519T174641.log
+logs/workers/worker_code_deberta-postprocess_20260519T174628_result.json
+logs/workers/worker_code_deberta-postprocess_20260519T174628.log
+logs/workers/worker_code_deberta-cross-transfer-prep_20260519T174654.log
+logs/workers/worker_paper_merge-fig2-fig7_20260519T170206.log
+logs/workers/worker_compute_f1-optimal-threshold_20260519T170145_result.json
+logs/workers/worker_compute_f1-optimal-threshold_20260519T170145.log
+logs/workers/worker_exp_deberta-upperbound_20260519T163003.log
+logs/workers/worker_paper_fix-fig4-colorbar_20260519T160942.log
+logs/chats/feishu_group_oc_0f6dcb30efaa4f47425ef1d9874a89d7_reviewer_1.jsonl
+logs/chats/feishu_group_oc_0f6dcb30efaa4f47425ef1d9874a89d7_reviewer_2.jsonl
+logs/workers/worker_diagnose_exp_code_qwen7b_20260519T121403_result.json
+logs/workers/worker_diagnose_exp_code_qwen7b_20260519T121403.log
+logs/workers/worker_paper_mistral-consistency-check_20260519T114424.log
+logs/workers/worker_paper_citation-expansion_20260519T111739.log
+logs/workers/worker_ops_check-mistral7b-completion_20260519T111634.log
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260519T091528_913590.jsonl
+logs/chats/archive/feishu_group_oc_5d2a0ec1de3a456564133278c1a9b203_director_20260519T091525_427920.jsonl
+logs/workers/worker_analysis_exp_code_qwen1b5_pythia_scorer_20260519T065306.log
+logs/workers/worker_paper_fix-eq1-ci-definition_20260519T062703.log
+logs/workers/worker_knowledge_update-review-issues_20260519T054922.log
+logs/workers/worker_paper_fix-overfull-hbox_20260519T054912.log
+logs/workers/worker_knowledge_fix-paper-framing-gaps_20260519T050814.log
+logs/workers/worker_paper_dream-simulation-prep_20260519T044614.log
+logs/workers/worker_paper_fix-ing-phrases-and-cite_20260519T035804.log
+logs/workers/worker_paper_fix-ing-appendix_20260519T035811.log
+logs/workers/worker_paper_dash-check_20260519T035417.log
+logs/workers/worker_paper_retrain-appendix-table-update_20260519T035307.log
+logs/workers/worker_paper_check-code-table-consistency_20260519T034403.log
+logs/workers/worker_analysis_retrain-chain-paper-prep_20260519T025458.log
+logs/workers/worker_ops_registry-cleanup-dream-check_20260519T022919.log
+logs/workers/worker_exp_pythia-retrain-depth7-cuda0_20260519T014932.log
+logs/workers/worker_paper_fix-bootstrap-references_20260519T000124.log
+logs/workers/worker_paper_bootstrap-ci-audit_20260518T235735.log
+logs/workers/worker_analyze_power-curve-discrepancy_20260518T230254.log
+logs/workers/worker_code_exp-028-power-curve_20260518T225402.log
+logs/chats/worker_analyze_borderline-feature-analysis_20260518T161647.jsonl
+logs/workers/worker_analyze_borderline-feature-analysis_20260518T161647.log
+logs/workers/worker_analyze_mf1-theta-lofo-crossval_20260518T153609_result.json
+logs/chats/worker_analyze_mf1-theta-lofo-crossval_20260518T153609.jsonl
+logs/workers/worker_analyze_mf1-theta-lofo-crossval_20260518T153609.log
+logs/workers/worker_analyze_w5-mcnemar-pvalues_20260518T151645.log
+logs/workers/worker_code_theta-sensitivity-figure_20260518T133210.log
+logs/chats/worker_analyze_exp027-bootstrap-ci_20260518T112149.jsonl
+logs/workers/worker_analyze_exp027-bootstrap-ci_20260518T112149.log
+logs/chats/worker_code_exp_027_latex_ablation_20260518T102052.jsonl
+logs/workers/worker_code_exp_027_latex_ablation_20260518T102052.log
+logs/workers/worker_research_exp004-source-verify_20260518T060557_result.json
+logs/workers/worker_research_exp004-source-verify_20260518T060557.log
+logs/workers/worker_analysis_numerical_audit_m2_m5_20260518T052223.log
+logs/workers/worker_research_paper-audit-values_20260518T052213.log
+logs/workers/worker_audit_paper_vs_data_consistency_20260518T050440.log
+logs/workers/worker_research_exp014_feasibility_20260518T045543.log
+logs/workers/worker_analysis_arXiv_crossscorer_bootstrap_20260518T034111.log
+logs/chats/cron_hook_exp_arXiv_qwen1b5_crossscorer.jsonl
+logs/workers/worker_analysis_arXiv_crossscorer_full_results_20260518T030420.log
+logs/chats/worker_analysis_exp_arXiv_qwen1b5_crossscorer_20260518T030331.jsonl
+logs/workers/worker_analysis_exp_arXiv_qwen1b5_crossscorer_20260518T030331.log
+logs/workers/worker_analysis_exp_arXiv_qwen7b_crossscorer_20260518T030219.log
+logs/workers/worker_diagnose_arXiv_crossscorer_fix_20260518T022319.log
+logs/workers/worker_analysis_anova_crossscorer_20260518T022405.log
+logs/workers/worker_review_figure_audit_v2_20260518T021002.log
+logs/workers/worker_review_figure_table_audit_20260518T020337_result.json
+logs/workers/worker_review_figure_table_audit_20260518T020337.log
+logs/chats/cron_hook_exp_arXiv_qwen7b.jsonl
+logs/chats/cron_hook_exp_arXiv_mistral7b.jsonl
+logs/chats/cron_hook_exp_wiki_olmo_v2.jsonl
+logs/workers/worker_analysis_paper_patch_audit_20260518T000144.log
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260517T234523_978762.jsonl
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_20260517T233453_838041.jsonl
+logs/workers/worker_analysis_theta_sensitivity_20260517T195743.log
+logs/workers/worker_analysis_exp_wiki_llama8b_20260517T193221.log
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260517T193324_119402.jsonl
+logs/workers/worker_analysis_semantic_ablation_multi_model_20260517T162437.log
+logs/workers/worker_code_download_qwen7b_20260517T132253.log
+logs/workers/worker_analysis_exp_wiki_pythia_v2_20260517T131711_result.json
+logs/chats/worker_analysis_exp_wiki_pythia_v2_20260517T131711.jsonl
+logs/workers/worker_analysis_exp_wiki_pythia_v2_20260517T131711.log
+logs/workers/worker_analysis_14d_ablation_bootstrap_v2_20260517T125200.log
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_20260517T120411_215579.jsonl
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260517T104455_120908.jsonl
+logs/chats/archive/feishu_group_oc_5d2a0ec1de3a456564133278c1a9b203_director_20260517T104414_161956.jsonl
+logs/workers/worker_paper_compile_and_copy_20260517T082253.log
+logs/workers/worker_code_exp_026_feature_stability_v2_20260517T080737.log
+logs/workers/worker_paper_final_cleanup_audit_20260517T074016.log
+logs/workers/worker_diagnose_exp_009_crash_v3_20260517T000217.log
+logs/workers/worker_check_exp_022_results_locate_20260516T183626_result.json
+logs/chats/worker_check_exp_022_results_locate_20260516T183626.jsonl
+logs/workers/worker_check_exp_022_results_locate_20260516T183626.log
+logs/chats/worker_code_exp_022_accelerate_20260516T163539.jsonl
+logs/workers/worker_analysis_exp_018_bootstrap_ci_20260516T161206_result.json
+logs/workers/worker_analysis_exp_018_bootstrap_ci_20260516T161206.log
+logs/workers/worker_diagnose_exp_018_llama8b_depth_20260516T161001.log
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_20260516T152846_195330.jsonl
+logs/workers/worker_submit_exp_023_wiki_restart_20260516T150421.log
+logs/workers/worker_submit_exp_024_arxiv_restart_20260516T150351.log
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260516T144449_000132.jsonl
+logs/workers/worker_check_exp019b_result_20260516T115406.log
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260516T115243_060322.jsonl
+logs/chats/archive/feishu_group_oc_5d2a0ec1de3a456564133278c1a9b203_director_20260516T115239_714008.jsonl
+logs/chats/worker_code_refactor_plot_scripts_20260516T082238.jsonl
+logs/workers/worker_code_refactor_plot_scripts_20260516T082238.log
+logs/workers/worker_research_paper_integration_prep_20260516T080012.log
+logs/workers/worker_fix_exp_021_restart_20260516T065313.log
+logs/workers/worker_check_exp_021_cuda3_status_20260516T061214.log
+logs/workers/worker_analysis_exp016_bootstrap_ci_20260516T045403.log
+logs/workers/worker_check_exp016_urgent_20260516T044820.log
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260516T041207_613081.jsonl
+logs/chats/cron_hook_exp_004_7b_crossscale.jsonl
+logs/chats/worker_analysis_exp003_bootstrap_review_20260516T032051.jsonl
+logs/workers/worker_analysis_exp003_bootstrap_review_20260516T032051.log
+logs/workers/worker_check_exp016_result_20260516T032029.log
+logs/chats/cron_hook_exp_012_binary_confidence.jsonl
+logs/workers/worker_analysis_exp003_bootstrap_ci_20260516T023635_result.json
+logs/workers/worker_analysis_exp003_bootstrap_ci_20260516T023635.log
+logs/workers/worker_analysis_depth_token_length_20260516T023706.log
+logs/workers/worker_code_exp_016_base_vs_instruct_20260516T010452.log
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_20260516T000815_621862.jsonl
+logs/workers/worker_figure_update_7b_20260515T234818.log
+logs/workers/worker_analyze_exp_012_binary_confidence_20260515T232123.log
+logs/workers/worker_code_exp004_bootstrap_ci_20260515T231700_result.json
+logs/chats/worker_code_exp004_bootstrap_ci_20260515T231700.jsonl
+logs/workers/worker_code_exp004_bootstrap_ci_20260515T231700.log
+logs/workers/worker_investigate_exp012_artifacts_20260515T225057.log
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260515T223246_672931.jsonl
+logs/workers/worker_code_exp_012_script_verify_20260515T151147.log
+logs/chats/archive/feishu_group_oc_5d2a0ec1de3a456564133278c1a9b203_director_20260515T150840_853352.jsonl
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260515T150755_156490.jsonl
+logs/chats/worker_code_exp_012_prep_v2_20260515T124303.jsonl
+logs/workers/worker_code_exp_012_prep_v2_20260515T124303.log
+logs/chats/archive/cron_hook_exp_015_neural_probe_20260515T123340_587648.jsonl
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_20260515T123328_324656.jsonl
+logs/workers/worker_data_pull_rebuttal_artifacts_20260515T112159.log
+logs/chats/worker_diagnose_exp_A_final_check_20260515T111450.jsonl
+logs/workers/worker_diagnose_exp_A_final_check_20260515T111450.log
+logs/workers/worker_code_exp_A_alt_scorer_20260515T102246.log
+logs/workers/worker_diagnose_exp015_check_results_20260515T104439.log
+logs/workers/worker_code_exp_E_paired_stats_20260515T104232.log
+logs/chats/archive/feishu_group_oc_5d2a0ec1de3a456564133278c1a9b203_director_20260515T104043_677168.jsonl
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260515T104040_750848.jsonl
+logs/workers/worker_diagnose_exp_015_neural_probe_v3_20260515T092510.log
+logs/workers/worker_code_exp015-oom-fix_20260515T043946.log
+logs/workers/worker_research_binary-ours-consistency_20260515T044006.log
+logs/workers/worker_prep_exp-015-readiness_20260515T043726.log
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_20260515T021721_106411.jsonl
+logs/workers/worker_infra_exp015-readiness-check_20260515T013155.log
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260515T012926_337105.jsonl
+logs/chats/archive/cron_hook_exp_006_graduated_filtering_20260515T012917_420978.jsonl
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260514T124942_532076.jsonl
+logs/workers/worker_review_paper-consistency-audit_20260514T105529.log
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_20260514T105331_121462.jsonl
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260514T084740_127153.jsonl
+logs/workers/worker_writing_llm-confidence-analysis_20260514T084313.log
+logs/workers/worker_research_literature-scan_20260514T061524.log
+logs/workers/worker_writing_provenance-update-precision-fix_20260514T060337.log
+logs/workers/worker_writing_related-work-3papers-bib-fix_20260514T060150.log
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_20260514T045211_528385.jsonl
+logs/workers/worker_writing_neural-probe-section_20260514T040621.log
+logs/workers/worker_analysis_exp015-per-dataset_20260514T030259.log
+logs/workers/worker_infra_download-qwen7b_20260514T025606.log
+logs/workers/worker_diagnose_exp_015_failure_20260514T025629.log
+logs/workers/worker_ssh_check_gpu_conflict_20260514T025148.log
+logs/workers/worker_check_exp006_progress_20260514T013847.log
+logs/chats/archive/feishu_group_oc_5d2a0ec1de3a456564133278c1a9b203_director_20260514T013724_620503.jsonl
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260514T013715_927254.jsonl
+logs/workers/worker_review_exp015_code_preaudit_20260513T232844.log
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_20260513T223401_032333.jsonl
+logs/chats/worker_review_paper_sections_audit_20260513T215258.jsonl
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260513T210549_714668.jsonl
+logs/chats/archive/feishu_group_oc_5d2a0ec1de3a456564133278c1a9b203_director_20260513T210344_929750.jsonl
+logs/workers/worker_code_exp_015_neural_probe_20260513T184400.log
+logs/workers/worker_analysis_exp003_config12_deep_analysis_20260513T172521.log
+logs/workers/worker_infra_exp006_final_dryrun_20260513T163156.log
+logs/workers/worker_run_exp_011_claude_and_analyze_20260513T105413.log
+logs/workers/worker_analysis_exp013_cross_transfer_run_20260513T064820.log
+logs/workers/worker_ssh_check_exp017_status_20260513T061553.log
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_20260513T020910_580977.jsonl
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260513T020743_321100.jsonl
+logs/chats/archive/feishu_group_oc_5d2a0ec1de3a456564133278c1a9b203_director_20260513T020742_513209.jsonl
+logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260512T150035_583886.jsonl
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "62ecd5ec-ade3-4763-b6c1-e2a61c3a0d59",
+  "tool_use_result": {
+    "mode": "files_with_matches",
+    "filenames": [
+      "logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log",
+      "logs/chats/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_paper_agent.jsonl",
+      "logs/chats/feishu_group_oc_5d2a0ec1de3a456564133278c1a9b203_director.jsonl",
+      "logs/chats/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6.jsonl",
+      "logs/chats/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer.jsonl",
+      "logs/workers/worker_diagnose_exp_deberta_c4_1b5_20260519T231400.log",
+      "logs/workers/worker_exp_westd-c4-1b5-rsync-launch_20260519T230138.log",
+      "logs/workers/worker_exp_cqa1-c4-1b5-pythia-greedy_20260519T230250.log",
+      "logs/workers/worker_analysis_c4-1b5-qwen-rw-check_20260519T230027.log",
+      "logs/chats/worker_bugfix_cqa1-kstar-script-fix_20260519T220505.jsonl",
+      "logs/workers/worker_bugfix_cqa1-kstar-script-fix_20260519T220505.log",
+      "logs/workers/worker_bugfix_wiki-kstar-obd-baseline_20260519T215703.log",
+      "logs/workers/worker_infra_cqa1-recovery-status_20260519T215644.log",
+      "logs/workers/worker_infra_deberta-wiki-cron-resolve_20260519T215745_result.json",
+      "logs/chats/worker_infra_deberta-wiki-cron-resolve_20260519T215745.jsonl",
+      "logs/workers/worker_infra_deberta-wiki-cron-resolve_20260519T215745.log",
+      "logs/chats/worker_bugfix_kstar-off-by-one_20260519T203108.jsonl",
+      "logs/workers/worker_bugfix_kstar-off-by-one_20260519T203108.log",
+      "logs/workers/worker_code_deberta-c4-1b5-prep_20260519T202226.log",
+      "logs/workers/worker_exp_deberta-cross-transfer-run_20260519T201151.log",
+      "logs/workers/worker_exp_deberta-c4-westd_20260519T192827.log",
+      "logs/workers/worker_infra_deberta-check-now_20260519T192110.log",
+      "logs/workers/worker_infra_deberta-monitor-e_20260519T185703.log",
+      "logs/chats/feishu_group_oc_0f6dcb30efaa4f47425ef1d9874a89d7_director.jsonl",
+      "logs/workers/worker_compute_cross-scorer-f1_20260519T174641.log",
+      "logs/workers/worker_code_deberta-postprocess_20260519T174628_result.json",
+      "logs/workers/worker_code_deberta-postprocess_20260519T174628.log",
+      "logs/workers/worker_code_deberta-cross-transfer-prep_20260519T174654.log",
+      "logs/workers/worker_paper_merge-fig2-fig7_20260519T170206.log",
+      "logs/workers/worker_compute_f1-optimal-threshold_20260519T170145_result.json",
+      "logs/workers/worker_compute_f1-optimal-threshold_20260519T170145.log",
+      "logs/workers/worker_exp_deberta-upperbound_20260519T163003.log",
+      "logs/workers/worker_paper_fix-fig4-colorbar_20260519T160942.log",
+      "logs/chats/feishu_group_oc_0f6dcb30efaa4f47425ef1d9874a89d7_reviewer_1.jsonl",
+      "logs/chats/feishu_group_oc_0f6dcb30efaa4f47425ef1d9874a89d7_reviewer_2.jsonl",
+      "logs/workers/worker_diagnose_exp_code_qwen7b_20260519T121403_result.json",
+      "logs/workers/worker_diagnose_exp_code_qwen7b_20260519T121403.log",
+      "logs/workers/worker_paper_mistral-consistency-check_20260519T114424.log",
+      "logs/workers/worker_paper_citation-expansion_20260519T111739.log",
+      "logs/workers/worker_ops_check-mistral7b-completion_20260519T111634.log",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260519T091528_913590.jsonl",
+      "logs/chats/archive/feishu_group_oc_5d2a0ec1de3a456564133278c1a9b203_director_20260519T091525_427920.jsonl",
+      "logs/workers/worker_analysis_exp_code_qwen1b5_pythia_scorer_20260519T065306.log",
+      "logs/workers/worker_paper_fix-eq1-ci-definition_20260519T062703.log",
+      "logs/workers/worker_knowledge_update-review-issues_20260519T054922.log",
+      "logs/workers/worker_paper_fix-overfull-hbox_20260519T054912.log",
+      "logs/workers/worker_knowledge_fix-paper-framing-gaps_20260519T050814.log",
+      "logs/workers/worker_paper_dream-simulation-prep_20260519T044614.log",
+      "logs/workers/worker_paper_fix-ing-phrases-and-cite_20260519T035804.log",
+      "logs/workers/worker_paper_fix-ing-appendix_20260519T035811.log",
+      "logs/workers/worker_paper_dash-check_20260519T035417.log",
+      "logs/workers/worker_paper_retrain-appendix-table-update_20260519T035307.log",
+      "logs/workers/worker_paper_check-code-table-consistency_20260519T034403.log",
+      "logs/workers/worker_analysis_retrain-chain-paper-prep_20260519T025458.log",
+      "logs/workers/worker_ops_registry-cleanup-dream-check_20260519T022919.log",
+      "logs/workers/worker_exp_pythia-retrain-depth7-cuda0_20260519T014932.log",
+      "logs/workers/worker_paper_fix-bootstrap-references_20260519T000124.log",
+      "logs/workers/worker_paper_bootstrap-ci-audit_20260518T235735.log",
+      "logs/workers/worker_analyze_power-curve-discrepancy_20260518T230254.log",
+      "logs/workers/worker_code_exp-028-power-curve_20260518T225402.log",
+      "logs/chats/worker_analyze_borderline-feature-analysis_20260518T161647.jsonl",
+      "logs/workers/worker_analyze_borderline-feature-analysis_20260518T161647.log",
+      "logs/workers/worker_analyze_mf1-theta-lofo-crossval_20260518T153609_result.json",
+      "logs/chats/worker_analyze_mf1-theta-lofo-crossval_20260518T153609.jsonl",
+      "logs/workers/worker_analyze_mf1-theta-lofo-crossval_20260518T153609.log",
+      "logs/workers/worker_analyze_w5-mcnemar-pvalues_20260518T151645.log",
+      "logs/workers/worker_code_theta-sensitivity-figure_20260518T133210.log",
+      "logs/chats/worker_analyze_exp027-bootstrap-ci_20260518T112149.jsonl",
+      "logs/workers/worker_analyze_exp027-bootstrap-ci_20260518T112149.log",
+      "logs/chats/worker_code_exp_027_latex_ablation_20260518T102052.jsonl",
+      "logs/workers/worker_code_exp_027_latex_ablation_20260518T102052.log",
+      "logs/workers/worker_research_exp004-source-verify_20260518T060557_result.json",
+      "logs/workers/worker_research_exp004-source-verify_20260518T060557.log",
+      "logs/workers/worker_analysis_numerical_audit_m2_m5_20260518T052223.log",
+      "logs/workers/worker_research_paper-audit-values_20260518T052213.log",
+      "logs/workers/worker_audit_paper_vs_data_consistency_20260518T050440.log",
+      "logs/workers/worker_research_exp014_feasibility_20260518T045543.log",
+      "logs/workers/worker_analysis_arXiv_crossscorer_bootstrap_20260518T034111.log",
+      "logs/chats/cron_hook_exp_arXiv_qwen1b5_crossscorer.jsonl",
+      "logs/workers/worker_analysis_arXiv_crossscorer_full_results_20260518T030420.log",
+      "logs/chats/worker_analysis_exp_arXiv_qwen1b5_crossscorer_20260518T030331.jsonl",
+      "logs/workers/worker_analysis_exp_arXiv_qwen1b5_crossscorer_20260518T030331.log",
+      "logs/workers/worker_analysis_exp_arXiv_qwen7b_crossscorer_20260518T030219.log",
+      "logs/workers/worker_diagnose_arXiv_crossscorer_fix_20260518T022319.log",
+      "logs/workers/worker_analysis_anova_crossscorer_20260518T022405.log",
+      "logs/workers/worker_review_figure_audit_v2_20260518T021002.log",
+      "logs/workers/worker_review_figure_table_audit_20260518T020337_result.json",
+      "logs/workers/worker_review_figure_table_audit_20260518T020337.log",
+      "logs/chats/cron_hook_exp_arXiv_qwen7b.jsonl",
+      "logs/chats/cron_hook_exp_arXiv_mistral7b.jsonl",
+      "logs/chats/cron_hook_exp_wiki_olmo_v2.jsonl",
+      "logs/workers/worker_analysis_paper_patch_audit_20260518T000144.log",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260517T234523_978762.jsonl",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_20260517T233453_838041.jsonl",
+      "logs/workers/worker_analysis_theta_sensitivity_20260517T195743.log",
+      "logs/workers/worker_analysis_exp_wiki_llama8b_20260517T193221.log",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260517T193324_119402.jsonl",
+      "logs/workers/worker_analysis_semantic_ablation_multi_model_20260517T162437.log",
+      "logs/workers/worker_code_download_qwen7b_20260517T132253.log",
+      "logs/workers/worker_analysis_exp_wiki_pythia_v2_20260517T131711_result.json",
+      "logs/chats/worker_analysis_exp_wiki_pythia_v2_20260517T131711.jsonl",
+      "logs/workers/worker_analysis_exp_wiki_pythia_v2_20260517T131711.log",
+      "logs/workers/worker_analysis_14d_ablation_bootstrap_v2_20260517T125200.log",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_20260517T120411_215579.jsonl",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260517T104455_120908.jsonl",
+      "logs/chats/archive/feishu_group_oc_5d2a0ec1de3a456564133278c1a9b203_director_20260517T104414_161956.jsonl",
+      "logs/workers/worker_paper_compile_and_copy_20260517T082253.log",
+      "logs/workers/worker_code_exp_026_feature_stability_v2_20260517T080737.log",
+      "logs/workers/worker_paper_final_cleanup_audit_20260517T074016.log",
+      "logs/workers/worker_diagnose_exp_009_crash_v3_20260517T000217.log",
+      "logs/workers/worker_check_exp_022_results_locate_20260516T183626_result.json",
+      "logs/chats/worker_check_exp_022_results_locate_20260516T183626.jsonl",
+      "logs/workers/worker_check_exp_022_results_locate_20260516T183626.log",
+      "logs/chats/worker_code_exp_022_accelerate_20260516T163539.jsonl",
+      "logs/workers/worker_analysis_exp_018_bootstrap_ci_20260516T161206_result.json",
+      "logs/workers/worker_analysis_exp_018_bootstrap_ci_20260516T161206.log",
+      "logs/workers/worker_diagnose_exp_018_llama8b_depth_20260516T161001.log",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_20260516T152846_195330.jsonl",
+      "logs/workers/worker_submit_exp_023_wiki_restart_20260516T150421.log",
+      "logs/workers/worker_submit_exp_024_arxiv_restart_20260516T150351.log",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260516T144449_000132.jsonl",
+      "logs/workers/worker_check_exp019b_result_20260516T115406.log",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260516T115243_060322.jsonl",
+      "logs/chats/archive/feishu_group_oc_5d2a0ec1de3a456564133278c1a9b203_director_20260516T115239_714008.jsonl",
+      "logs/chats/worker_code_refactor_plot_scripts_20260516T082238.jsonl",
+      "logs/workers/worker_code_refactor_plot_scripts_20260516T082238.log",
+      "logs/workers/worker_research_paper_integration_prep_20260516T080012.log",
+      "logs/workers/worker_fix_exp_021_restart_20260516T065313.log",
+      "logs/workers/worker_check_exp_021_cuda3_status_20260516T061214.log",
+      "logs/workers/worker_analysis_exp016_bootstrap_ci_20260516T045403.log",
+      "logs/workers/worker_check_exp016_urgent_20260516T044820.log",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260516T041207_613081.jsonl",
+      "logs/chats/cron_hook_exp_004_7b_crossscale.jsonl",
+      "logs/chats/worker_analysis_exp003_bootstrap_review_20260516T032051.jsonl",
+      "logs/workers/worker_analysis_exp003_bootstrap_review_20260516T032051.log",
+      "logs/workers/worker_check_exp016_result_20260516T032029.log",
+      "logs/chats/cron_hook_exp_012_binary_confidence.jsonl",
+      "logs/workers/worker_analysis_exp003_bootstrap_ci_20260516T023635_result.json",
+      "logs/workers/worker_analysis_exp003_bootstrap_ci_20260516T023635.log",
+      "logs/workers/worker_analysis_depth_token_length_20260516T023706.log",
+      "logs/workers/worker_code_exp_016_base_vs_instruct_20260516T010452.log",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_20260516T000815_621862.jsonl",
+      "logs/workers/worker_figure_update_7b_20260515T234818.log",
+      "logs/workers/worker_analyze_exp_012_binary_confidence_20260515T232123.log",
+      "logs/workers/worker_code_exp004_bootstrap_ci_20260515T231700_result.json",
+      "logs/chats/worker_code_exp004_bootstrap_ci_20260515T231700.jsonl",
+      "logs/workers/worker_code_exp004_bootstrap_ci_20260515T231700.log",
+      "logs/workers/worker_investigate_exp012_artifacts_20260515T225057.log",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260515T223246_672931.jsonl",
+      "logs/workers/worker_code_exp_012_script_verify_20260515T151147.log",
+      "logs/chats/archive/feishu_group_oc_5d2a0ec1de3a456564133278c1a9b203_director_20260515T150840_853352.jsonl",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260515T150755_156490.jsonl",
+      "logs/chats/worker_code_exp_012_prep_v2_20260515T124303.jsonl",
+      "logs/workers/worker_code_exp_012_prep_v2_20260515T124303.log",
+      "logs/chats/archive/cron_hook_exp_015_neural_probe_20260515T123340_587648.jsonl",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_20260515T123328_324656.jsonl",
+      "logs/workers/worker_data_pull_rebuttal_artifacts_20260515T112159.log",
+      "logs/chats/worker_diagnose_exp_A_final_check_20260515T111450.jsonl",
+      "logs/workers/worker_diagnose_exp_A_final_check_20260515T111450.log",
+      "logs/workers/worker_code_exp_A_alt_scorer_20260515T102246.log",
+      "logs/workers/worker_diagnose_exp015_check_results_20260515T104439.log",
+      "logs/workers/worker_code_exp_E_paired_stats_20260515T104232.log",
+      "logs/chats/archive/feishu_group_oc_5d2a0ec1de3a456564133278c1a9b203_director_20260515T104043_677168.jsonl",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260515T104040_750848.jsonl",
+      "logs/workers/worker_diagnose_exp_015_neural_probe_v3_20260515T092510.log",
+      "logs/workers/worker_code_exp015-oom-fix_20260515T043946.log",
+      "logs/workers/worker_research_binary-ours-consistency_20260515T044006.log",
+      "logs/workers/worker_prep_exp-015-readiness_20260515T043726.log",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_20260515T021721_106411.jsonl",
+      "logs/workers/worker_infra_exp015-readiness-check_20260515T013155.log",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260515T012926_337105.jsonl",
+      "logs/chats/archive/cron_hook_exp_006_graduated_filtering_20260515T012917_420978.jsonl",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260514T124942_532076.jsonl",
+      "logs/workers/worker_review_paper-consistency-audit_20260514T105529.log",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_20260514T105331_121462.jsonl",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260514T084740_127153.jsonl",
+      "logs/workers/worker_writing_llm-confidence-analysis_20260514T084313.log",
+      "logs/workers/worker_research_literature-scan_20260514T061524.log",
+      "logs/workers/worker_writing_provenance-update-precision-fix_20260514T060337.log",
+      "logs/workers/worker_writing_related-work-3papers-bib-fix_20260514T060150.log",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_20260514T045211_528385.jsonl",
+      "logs/workers/worker_writing_neural-probe-section_20260514T040621.log",
+      "logs/workers/worker_analysis_exp015-per-dataset_20260514T030259.log",
+      "logs/workers/worker_infra_download-qwen7b_20260514T025606.log",
+      "logs/workers/worker_diagnose_exp_015_failure_20260514T025629.log",
+      "logs/workers/worker_ssh_check_gpu_conflict_20260514T025148.log",
+      "logs/workers/worker_check_exp006_progress_20260514T013847.log",
+      "logs/chats/archive/feishu_group_oc_5d2a0ec1de3a456564133278c1a9b203_director_20260514T013724_620503.jsonl",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260514T013715_927254.jsonl",
+      "logs/workers/worker_review_exp015_code_preaudit_20260513T232844.log",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_20260513T223401_032333.jsonl",
+      "logs/chats/worker_review_paper_sections_audit_20260513T215258.jsonl",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260513T210549_714668.jsonl",
+      "logs/chats/archive/feishu_group_oc_5d2a0ec1de3a456564133278c1a9b203_director_20260513T210344_929750.jsonl",
+      "logs/workers/worker_code_exp_015_neural_probe_20260513T184400.log",
+      "logs/workers/worker_analysis_exp003_config12_deep_analysis_20260513T172521.log",
+      "logs/workers/worker_infra_exp006_final_dryrun_20260513T163156.log",
+      "logs/workers/worker_run_exp_011_claude_and_analyze_20260513T105413.log",
+      "logs/workers/worker_analysis_exp013_cross_transfer_run_20260513T064820.log",
+      "logs/workers/worker_ssh_check_exp017_status_20260513T061553.log",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_20260513T020910_580977.jsonl",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260513T020743_321100.jsonl",
+      "logs/chats/archive/feishu_group_oc_5d2a0ec1de3a456564133278c1a9b203_director_20260513T020742_513209.jsonl",
+      "logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260512T150035_583886.jsonl"
+    ],
+    "numFiles": 204
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 199_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I see `worker_audit_lgbm-14b-data-mismatch_20260519T234313.log` - this is literally an audit for this exact issue! And there's `worker_audit_paper_vs_data_consistency_20260518T050440.log` which is a paper vs data consistency audit. Let me check these.
+
+But more importantly, I need to find the worker that wrote the current `tab:deberta_comparison`. Let me search for when that table was created.
+
+Also, the most recent audit log is from today (May 19) about this exact issue - let me check that first, it might already have the answer.
+
+
+I should search the paper-related worker logs specifically for "deberta_comparison" to track down which worker originally created that table.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "339099d9-c0fc-420a-a59d-b68244922755",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012dkeQgQJoqnHwnadPYwfWg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6744,
+      "cache_read_input_tokens": 61392,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6744
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 200_
+
+发现 `worker_audit_lgbm-14b-data-mismatch_20260519T234313.log` - 这是今天针对此问题的审计。检查它和相关 paper audit 日志。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "22d92333-e7a0-4cf5-916c-1e3a9884d7e7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012dkeQgQJoqnHwnadPYwfWg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6744,
+      "cache_read_input_tokens": 61392,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6744
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 201_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_018wJbCefXxh9EwJkqB3aARd`</summary>
+
+```json
+{
+  "description": "Search audit logs for .572/.537 source",
+  "prompt": "I need to find where the values .572 and .537 came from in Table 4 (tab:deberta_comparison) of a LaTeX paper. These are LightGBM 14B 2v3 and 3v4 AUC values that don't match the actual experiment results (which show 0.5494 and 0.5243).\n\nSearch these log files for clues:\n\n1. `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log` - This is literally an audit of this issue\n2. `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_paper_vs_data_consistency_20260518T050440.log` - Paper vs data consistency audit  \n3. `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_experiments_c1_data_verify_20260514T004234.log` - Earlier data verify audit\n\nFor each file, search for: .572, .537, \"14B\", \"14b\", \"deberta_comparison\", \"LightGBM\", \"mismatch\", \"source\", and read surrounding context.\n\nReport:\n1. What was found in the mismatch audit log (file 1)\n2. Whether any of these logs identify the source of .572/.537\n3. Any conclusions about which values are correct\nKeep report under 500 words, just the key findings.",
+  "subagent_type": "Explore"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "26576b8c-d8a9-4bba-9caf-702b71c27a54",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012dkeQgQJoqnHwnadPYwfWg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6744,
+      "cache_read_input_tokens": 61392,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6744
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 202_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "aaf9360ccb6d4820a",
+  "tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "description": "Search audit logs for .572/.537 source",
+  "task_type": "local_agent",
+  "prompt": "I need to find where the values .572 and .537 came from in Table 4 (tab:deberta_comparison) of a LaTeX paper. These are LightGBM 14B 2v3 and 3v4 AUC values that don't match the actual experiment results (which show 0.5494 and 0.5243).\n\nSearch these log files for clues:\n\n1. `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log` - This is literally an audit of this issue\n2. `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_paper_vs_data_consistency_20260518T050440.log` - Paper vs data consistency audit  \n3. `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_experiments_c1_data_verify_20260514T004234.log` - Earlier data verify audit\n\nFor each file, search for: .572, .537, \"14B\", \"14b\", \"deberta_comparison\", \"LightGBM\", \"mismatch\", \"source\", and read surrounding context.\n\nReport:\n1. What was found in the mismatch audit log (file 1)\n2. Whether any of these logs identify the source of .572/.537\n3. Any conclusions about which values are correct\nKeep report under 500 words, just the key findings.",
+  "uuid": "f07e5a4a-50e3-45f3-ab0b-5846c69fd664",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+## Round 2
+
+## Round 2
+
+12 recorded events
+
+
+### User
+
+_source line 203 · 2026-05-19T23:48:44.793Z_
+
+I need to find where the values .572 and .537 came from in Table 4 (tab:deberta_comparison) of a LaTeX paper. These are LightGBM 14B 2v3 and 3v4 AUC values that don't match the actual experiment results (which show 0.5494 and 0.5243).
+
+Search these log files for clues:
+
+1. `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log` - This is literally an audit of this issue
+2. `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_paper_vs_data_consistency_20260518T050440.log` - Paper vs data consistency audit  
+3. `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_experiments_c1_data_verify_20260514T004234.log` - Earlier data verify audit
+
+For each file, search for: .572, .537, "14B", "14b", "deberta_comparison", "LightGBM", "mismatch", "source", and read surrounding context.
+
+Report:
+1. What was found in the mismatch audit log (file 1)
+2. Whether any of these logs identify the source of .572/.537
+3. Any conclusions about which values are correct
+Keep report under 500 words, just the key findings.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "0f1a96d7-d990-4d95-bf24-20bc68bbf990"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 204_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "aaf9360ccb6d4820a",
+  "tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "description": "Reading logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log",
+  "usage": {
+    "total_tokens": 17375,
+    "tool_uses": 1,
+    "duration_ms": 1721
+  },
+  "last_tool_name": "Read",
+  "uuid": "4a1f032d-6728-46fb-a320-e965fbaa28d9",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### System
+
+_source line 205_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "aaf9360ccb6d4820a",
+  "tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "description": "Reading logs/workers/worker_audit_paper_vs_data_consistency_20260518T050440.log",
+  "usage": {
+    "total_tokens": 17379,
+    "tool_uses": 2,
+    "duration_ms": 1873
+  },
+  "last_tool_name": "Read",
+  "uuid": "aac27762-e9e5-4a7e-b770-55bbd560606b",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### System
+
+_source line 206_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "aaf9360ccb6d4820a",
+  "tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "description": "Reading logs/workers/worker_audit_experiments_c1_data_verify_20260514T004234.log",
+  "usage": {
+    "total_tokens": 17383,
+    "tool_uses": 3,
+    "duration_ms": 2116
+  },
+  "last_tool_name": "Read",
+  "uuid": "2e569065-a7e7-494c-9b86-bb77756fc7fb",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 207_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01J8F3zDGEBEoEtxRcmQynVM`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "11414ac2-7f22-44c1-81ab-d3e724403d0e",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01LbYY5jRLcX9qxPfYYdV71h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 827,
+      "cache_read_input_tokens": 16537,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 827,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 208 · 2026-05-19T23:48:46.519Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01J8F3zDGEBEoEtxRcmQynVM`</summary>
+
+```text
+File content (593.5KB) exceeds maximum allowed size (256KB). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "d8795ca4-36d8-4241-9925-977d103e2dbe",
+  "tool_use_result": "Error: File content (593.5KB) exceeds maximum allowed size (256KB). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 209_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01ANzhcgYGdxvfsxoTE22C76`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_paper_vs_data_consistency_20260518T050440.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "b0723fad-0dfa-4c08-abea-1827786d8c36",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01LbYY5jRLcX9qxPfYYdV71h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 827,
+      "cache_read_input_tokens": 16537,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 827,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 210 · 2026-05-19T23:48:46.670Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01ANzhcgYGdxvfsxoTE22C76`</summary>
+
+```text
+File content (691.5KB) exceeds maximum allowed size (256KB). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "4ef0fa5d-ef14-487c-86e0-de2fbd05cb81",
+  "tool_use_result": "Error: File content (691.5KB) exceeds maximum allowed size (256KB). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 211_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01LJrsr2AbyR7aH3nshRLrNP`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_experiments_c1_data_verify_20260514T004234.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "2ac94a97-8b59-43a7-87bf-eb1a3b69c85b",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01LbYY5jRLcX9qxPfYYdV71h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 827,
+      "cache_read_input_tokens": 16537,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 827,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 212 · 2026-05-19T23:48:47.176Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01LJrsr2AbyR7aH3nshRLrNP`</summary>
+
+```text
+File content (98276 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "9a4a97eb-a62d-47b6-8c5a-455238999b57",
+  "tool_use_result": "Error: File content (98276 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 213_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01Lyy4pKThhxNjNs4rUevi7m`</summary>
+
+```json
+{
+  "description": "Find worker that wrote deberta_comparison table",
+  "prompt": "Search worker log files in `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/` to find which worker created the `tab:deberta_comparison` table in the LaTeX paper. \n\nThe table contains DeBERTa vs LightGBM comparison at 1.5B, 14B, 32B scales. It was NOT in the May 13 paper writing log (which wrote a different Table 4).\n\nKey search terms: \"deberta_comparison\", \"DeBERTa.*vs.*LightGBM\", \"1.5B.*14B.*32B\", \"scale.*comparison\"\n\nFocus on paper-writing worker logs from May 17-19 since the 14B experiment ran May 17-18. Check these files specifically:\n- worker_paper_* logs from May 18-19\n- worker_analysis_numerical_audit_m2_m5_20260518T052223.log\n- worker_research_paper-audit-values_20260518T052213.log\n\nReport which worker created the table and what data source it used. Under 300 words.",
+  "subagent_type": "Explore"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "4bafd8c2-01ab-468d-99d7-d6003b88daf5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012dkeQgQJoqnHwnadPYwfWg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6744,
+      "cache_read_input_tokens": 61392,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6744
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 214_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "ad5f9e34333ab2c52",
+  "tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "description": "Find worker that wrote deberta_comparison table",
+  "task_type": "local_agent",
+  "prompt": "Search worker log files in `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/` to find which worker created the `tab:deberta_comparison` table in the LaTeX paper. \n\nThe table contains DeBERTa vs LightGBM comparison at 1.5B, 14B, 32B scales. It was NOT in the May 13 paper writing log (which wrote a different Table 4).\n\nKey search terms: \"deberta_comparison\", \"DeBERTa.*vs.*LightGBM\", \"1.5B.*14B.*32B\", \"scale.*comparison\"\n\nFocus on paper-writing worker logs from May 17-19 since the 14B experiment ran May 17-18. Check these files specifically:\n- worker_paper_* logs from May 18-19\n- worker_analysis_numerical_audit_m2_m5_20260518T052223.log\n- worker_research_paper-audit-values_20260518T052213.log\n\nReport which worker created the table and what data source it used. Under 300 words.",
+  "uuid": "1bacfa19-13e8-4c6b-a92a-854a2f9225eb",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+## Round 3
+
+## Round 3
+
+269 recorded events
+
+
+### User
+
+_source line 215 · 2026-05-19T23:48:48.803Z_
+
+Search worker log files in `/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/` to find which worker created the `tab:deberta_comparison` table in the LaTeX paper. 
+
+The table contains DeBERTa vs LightGBM comparison at 1.5B, 14B, 32B scales. It was NOT in the May 13 paper writing log (which wrote a different Table 4).
+
+Key search terms: "deberta_comparison", "DeBERTa.*vs.*LightGBM", "1.5B.*14B.*32B", "scale.*comparison"
+
+Focus on paper-writing worker logs from May 17-19 since the 14B experiment ran May 17-18. Check these files specifically:
+- worker_paper_* logs from May 18-19
+- worker_analysis_numerical_audit_m2_m5_20260518T052223.log
+- worker_research_paper-audit-values_20260518T052213.log
+
+Report which worker created the table and what data source it used. Under 300 words.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "237db551-d9ed-4485-956b-c297c5103c81"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 216_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "aaf9360ccb6d4820a",
+  "tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "description": "Searching for \\.572|\\.537",
+  "usage": {
+    "total_tokens": 18737,
+    "tool_uses": 4,
+    "duration_ms": 4684
+  },
+  "last_tool_name": "Grep",
+  "uuid": "aa9731f7-0fd9-4e75-b23b-0d513e686dc9",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 217_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01AHCkfna3iezZjtwcNRuqSU`</summary>
+
+```json
+{
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers",
+  "pattern": "\\.572|\\.537",
+  "output_mode": "content",
+  "context": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "f268d9b1-296b-41e9-8309-6c1ba52d393e",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_016WCPQLSqZFc7PCeXSyHP9f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 1348,
+      "cache_read_input_tokens": 17364,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1348,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 218 · 2026-05-19T23:48:49.853Z_
+
+<details><summary>↩ Tool result · `toolu_01AHCkfna3iezZjtwcNRuqSU`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (36.9KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/toolu_01AHCkfna3iezZjtwcNRuqSU.txt
+
+Preview (first 2KB):
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_fix-fig4-colorbar_20260519T160942.log-58-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_fix-fig4-colorbar_20260519T160942.log-59-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_fix-fig4-colorbar_20260519T160942.log-60-[Omitted long context line]
+logs/workers/worker_paper_fix-fig4-colorbar_20260519T160942.log:61:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_fix-fig4-colorbar_20260519T160942.log-62-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_fix-fig4-colorbar_20260519T160942.log-63-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_fix-fig4-colorbar_20260519T160942.log-64-[Omitted long context line]
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_infra_exp015-readiness-check_20260515T013155.log-41-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_infra_exp015-readiness-check_20260515T013155.log-42-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_infra_exp015-readiness-check_20260515T013155.log-43-[Omitted long context line]
+logs/workers/worker_infra_exp015-readiness-check_20260515T013155.log:44:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_infra_exp015-readiness-check_20260515T013155.log-45-[Omitted long context line]
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "3a675725-4046-4477-aad7-16354b7a1cf8"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 219_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "aaf9360ccb6d4820a",
+  "tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "description": "Searching for deberta_comparison|14B|mismatch.*source|source.*m…",
+  "usage": {
+    "total_tokens": 18738,
+    "tool_uses": 5,
+    "duration_ms": 5346
+  },
+  "last_tool_name": "Grep",
+  "uuid": "f4f68cee-7716-4462-ae78-26b78e0fe599",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 220_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01Fd8QJFmUc6BB8KmqVxmhZA`</summary>
+
+```json
+{
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers",
+  "pattern": "deberta_comparison|14B|mismatch.*source|source.*mismatch",
+  "output_mode": "content",
+  "context": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "2b33903a-182e-4338-9039-ae5cca51b898",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_016WCPQLSqZFc7PCeXSyHP9f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 1348,
+      "cache_read_input_tokens": 17364,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1348,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 221 · 2026-05-19T23:48:50.607Z_
+
+<details><summary>↩ Tool result · `toolu_01Fd8QJFmUc6BB8KmqVxmhZA`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (40.3KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/toolu_01Fd8QJFmUc6BB8KmqVxmhZA.txt
+
+Preview (first 2KB):
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_ops_cloud_gpu_setup_westd42896_20260517T151720.log-111-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_ops_cloud_gpu_setup_westd42896_20260517T151720.log-112-[Omitted long context line]
+logs/workers/worker_ops_cloud_gpu_setup_westd42896_20260517T151720.log-113-{"type":"user","message":{"role":"user","content":[{"type":"tool_result","tool_use_id":"toolu_017ka4hVayLHE3QWpRnwqXqb","content":[{"type":"tool_reference","tool_name":"TodoWrite"}]}]},"parent_tool_use_id":null,"session_id":"5592f6b5-b068-4261-91e0-ec861ecfddf8","uuid":"3ee7e698-cd79-4e9c-b9f2-b58b50b18f2b","timestamp":"2026-05-17T15:20:09.153Z","tool_use_result":{"matches":["TodoWrite"],"query":"select:TodoWrite","total_deferred_tools":23}}
+logs/workers/worker_ops_cloud_gpu_setup_westd42896_20260517T151720.log:114:[Omitted long matching line]
+logs/workers/worker_ops_cloud_gpu_setup_westd42896_20260517T151720.log:115:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_ops_cloud_gpu_setup_westd42896_20260517T151720.log-116-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_ops_cloud_gpu_setup_westd42896_20260517T151720.log-117-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_ops_cloud_gpu_setup_westd42896_20260517T151720.log-118-[Omitted long context line]
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_ops_cloud_gpu_setup_westd42896_20260517T151720.log-121-[Omitted long context line]
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "4c42d529-7cd8-4ad1-8a7e-569e7d1f243f"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 222_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "aaf9360ccb6d4820a",
+  "tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "description": "Searching for LightGBM.*14.*2v3|2v3.*LightGBM|3v4.*LightGBM",
+  "usage": {
+    "total_tokens": 18739,
+    "tool_uses": 6,
+    "duration_ms": 6082
+  },
+  "last_tool_name": "Grep",
+  "uuid": "9d3c2456-643c-4e84-a326-a7f379388cb2",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 223_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01VogeGTg9MEBgdMKX5GpwAE`</summary>
+
+```json
+{
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers",
+  "pattern": "LightGBM.*14.*2v3|2v3.*LightGBM|3v4.*LightGBM",
+  "output_mode": "content",
+  "context": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "9d4fee1c-b283-48f9-ad50-da67e9124161",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_016WCPQLSqZFc7PCeXSyHP9f",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 1348,
+      "cache_read_input_tokens": 17364,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1348,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 224 · 2026-05-19T23:48:51.245Z_
+
+<details><summary>↩ Tool result · `toolu_01VogeGTg9MEBgdMKX5GpwAE`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (40.6KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/toolu_01VogeGTg9MEBgdMKX5GpwAE.txt
+
+Preview (first 2KB):
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_wiki-narrative-d060_20260517T234003.log-7-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_wiki-narrative-d060_20260517T234003.log-8-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_wiki-narrative-d060_20260517T234003.log-9-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_wiki-narrative-d060_20260517T234003.log-10-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_wiki-narrative-d060_20260517T234003.log-11-[Omitted long context line]
+logs/workers/worker_paper_wiki-narrative-d060_20260517T234003.log:12:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_wiki-narrative-d060_20260517T234003.log-13-[Omitted long context line]
+logs/workers/worker_paper_wiki-narrative-d060_20260517T234003.log:14:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_wiki-narrative-d060_20260517T234003.log-15-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_wiki-narrative-d060_20260517T234003.log-16-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_wiki-narrative-d060_20260517T234003.log-17-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_wiki-narrative-d060_20260517T234003.log-18-[Omitted long context line]
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "43806487-0678-4046-ad07-915581aed7e0"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 225_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad5f9e34333ab2c52",
+  "tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "description": "Running ls -lah /home/ubuntu/.agent-ml-research-idea_gen_…",
+  "usage": {
+    "total_tokens": 17247,
+    "tool_uses": 1,
+    "duration_ms": 4446
+  },
+  "last_tool_name": "Bash",
+  "uuid": "bd1a5cb2-3ac5-42a1-a90e-bd1ad8c04cea",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 226_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01GfRmBrK7RqBTK747DpjTYy`</summary>
+
+```json
+{
+  "command": "ls -lah /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/ | head -30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "ae2a69fc-f307-4bb5-a59d-76dc7d8fd715",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01LWafjbKLz1qFULZ3Cok5N1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 695,
+      "cache_read_input_tokens": 16537,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 695,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 227 · 2026-05-19T23:48:53.340Z_
+
+<details><summary>↩ Tool result · `toolu_01GfRmBrK7RqBTK747DpjTYy`</summary>
+
+```text
+total 275M
+drwxr-xr-x 2 ubuntu ubuntu 104K May 19 23:43 .
+drwxr-xr-x 4 ubuntu ubuntu 4.0K May 12 11:10 ..
+-rw-r--r-- 1 ubuntu ubuntu 398K May 17 12:09 worker_analysis_14d_ablation_bootstrap_20260517T120133.log
+-rw-r--r-- 1 ubuntu ubuntu  48K May 17 12:52 worker_analysis_14d_ablation_bootstrap_v2_20260517T125200.log
+-rw-r--r-- 1 ubuntu ubuntu 1.3K May 17 12:53 worker_analysis_14d_ablation_bootstrap_v2_20260517T125200_result.json
+-rw-r--r-- 1 ubuntu ubuntu  99K May 18 02:27 worker_analysis_anova_crossscorer_20260518T022405.log
+-rw-r--r-- 1 ubuntu ubuntu 1.1K May 18 02:27 worker_analysis_anova_crossscorer_20260518T022405_result.json
+-rw-r--r-- 1 ubuntu ubuntu 494K May 18 03:55 worker_analysis_arXiv_crossscorer_bootstrap_20260518T034111.log
+-rw-r--r-- 1 ubuntu ubuntu  800 May 18 03:55 worker_analysis_arXiv_crossscorer_bootstrap_20260518T034111_result.json
+-rw-r--r-- 1 ubuntu ubuntu 129K May 18 03:06 worker_analysis_arXiv_crossscorer_full_results_20260518T030420.log
+-rw-r--r-- 1 ubuntu ubuntu  605 May 18 03:07 worker_analysis_arXiv_crossscorer_full_results_20260518T030420_result.json
+-rw-r--r-- 1 ubuntu ubuntu 209K May 16 17:00 worker_analysis_borderline_bootstrap_ci_20260516T165531.log
+-rw-r--r-- 1 ubuntu ubuntu 1.3K May 16 17:00 worker_analysis_borderline_bootstrap_ci_20260516T165531_result.json
+-rw-r--r-- 1 ubuntu ubuntu  84K May 19 23:01 worker_analysis_c4-1b5-qwen-rw-check_20260519T230027.log
+-rw-r--r-- 1 ubuntu ubuntu 1.3K May 19 23:01 worker_analysis_c4-1b5-qwen-rw-check_20260519T230027_result.json
+-rw-r--r-- 1 ubuntu ubuntu 354K May 16 02:46 worker_analysis_depth_token_length_20260516T023706.log
+-rw-r--r-- 1 ubuntu ubuntu 2.5K May 16 02:46 worker_analysis_depth_token_length_20260516T023706_result.json
+-rw-r--r-- 1 ubuntu ubuntu 726K May 16 03:06 worker_analysis_exp003_bootstrap_ci_20260516T023635.log
+-rw-r--r-- 1 ubuntu ubuntu 1.1K May 16 03:06 worker_analysis_exp003_bootstrap_ci_20260516T023635_result.json
+-rw-r--r-- 1 ubuntu ubuntu 400K May 16 03:29 worker_analysis_exp003_bootstrap_review_20260516T032051.log
+-rw-r--r-- 1 ubuntu ubuntu 1.4K May 16 03:29 worker_analysis_exp003_bootstrap_review_20260516T032051_result.json
+-rw-r--r-- 1 ubuntu ubuntu 161K May 13 17:28 worker_analysis_exp003_config12_deep_analysis_20260513T172521.log
+-rw-r--r-- 1 ubuntu ubuntu 2.8K May 13 17:28 worker_analysis_exp003_config12_deep_analysis_20260513T172521_result.json
+-rw-r--r-- 1 ubuntu ubuntu  36K May 13 21:00 worker_analysis_exp003_config3_metrics_fix_20260513T205942.log
+-rw-r--r-- 1 ubuntu ubuntu  287 May 13 21:00 worker_analysis_exp003_config3_metrics_fix_20260513T205942_result.json
+-rw-r--r-- 1 ubuntu ubuntu 122K May 13 06:19 worker_analysis_exp005_4model_degradation_20260513T061801.log
+-rw-r--r-- 1 ubuntu ubuntu 1.3K May 13 06:19 worker_analysis_exp005_4model_degradation_20260513T061801_result.json
+-rw-r--r-- 1 ubuntu ubuntu 338K May 13 03:42 worker_analysis_exp007_bootstrap_ci_20260513T033359.log
+-rw-r--r-- 1 ubuntu ubuntu 1.5K May 13 03:43 worker_analysis_exp007_bootstrap_ci_20260513T033359_result.json
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "c3689520-fa8c-4136-8cd9-7c3620fb9260"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 228_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "aaf9360ccb6d4820a",
+  "tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "description": "Searching for \\.572|\\.537",
+  "usage": {
+    "total_tokens": 21816,
+    "tool_uses": 7,
+    "duration_ms": 8749
+  },
+  "last_tool_name": "Grep",
+  "uuid": "b1d54700-84e6-4262-aefe-2e5f3559237b",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 229_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_014sjWkWsMUPaxaTRMgL1PYt`</summary>
+
+```json
+{
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log",
+  "pattern": "\\.572|\\.537",
+  "output_mode": "content",
+  "context": 5,
+  "head_limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "5c711951-aab8-46a1-886e-b23ce3d52eaa",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01UyCWb63hd9v1iAiqMGP1Zb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 3075,
+      "cache_read_input_tokens": 18712,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3075,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 230 · 2026-05-19T23:48:53.556Z_
+
+<details><summary>↩ Tool result · `toolu_014sjWkWsMUPaxaTRMgL1PYt`</summary>
+
+```text
+8-[Omitted long context line]
+9-[Omitted long context line]
+10-[Omitted long context line]
+11-[Omitted long context line]
+12-[Omitted long context line]
+13:[Omitted long matching line]
+14-[Omitted long context line]
+15-[Omitted long context line]
+16-[Omitted long context line]
+17-[Omitted long context line]
+18-[Omitted long context line]
+19:[Omitted long matching line]
+20:[Omitted long matching line]
+21:[Omitted long matching line]
+22-[Omitted long context line]
+23-[Omitted long context line]
+24-[Omitted long context line]
+25-[Omitted long context line]
+26-[Omitted long context line]
+--
+35-[Omitted long context line]
+36-[Omitted long context line]
+37-[Omitted long context line]
+38-[Omitted long context line]
+39-[Omitted long context line]
+40:[Omitted long matching line]
+41:[Omitted long matching line]
+42-[Omitted long context line]
+43-[Omitted long context line]
+44-[Omitted long context line]
+45-[Omitted long context line]
+46-[Omitted long context line]
+--
+49-[Omitted long context line]
+50-[Omitted long context line]
+51-[Omitted long context line]
+52-[Omitted long context line]
+53-[Omitted long context line]
+54:[Omitted long matching line]
+55-[Omitted long context line]
+56-[Omitted long context line]
+57-[Omitted long context line]
+58-[Omitted long context line]
+59-[Omitted long context line]
+60-[Omitted long context line]
+61-[Omitted long context line]
+62:[Omitted long matching line]
+63-[Omitted long context line]
+64-[Omitted long context line]
+65-[Omitted long context line]
+
+[Showing results with pagination = limit: 50]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "b553ae93-7571-439b-a540-c9319dcc4731"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 231_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "aaf9360ccb6d4820a",
+  "tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "description": "Searching for source|origin|found|where|from|discrepancy|mismat…",
+  "usage": {
+    "total_tokens": 21817,
+    "tool_uses": 8,
+    "duration_ms": 9484
+  },
+  "last_tool_name": "Grep",
+  "uuid": "585867fa-6bfd-46c3-b780-f83abedbf24c",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 232_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01DNkD1SEFKnt7J3qYzCgTfS`</summary>
+
+```json
+{
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log",
+  "pattern": "source|origin|found|where|from|discrepancy|mismatch|incorrect",
+  "output_mode": "content",
+  "context": 3,
+  "head_limit": 100
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "345ec957-a037-48c5-891d-f173ed9bfeba",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01UyCWb63hd9v1iAiqMGP1Zb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 3075,
+      "cache_read_input_tokens": 18712,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3075,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 233 · 2026-05-19T23:48:54.293Z_
+
+<details><summary>↩ Tool result · `toolu_01DNkD1SEFKnt7J3qYzCgTfS`</summary>
+
+```text
+1:Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+2:[Omitted long matching line]
+3-{"type":"rate_limit_event","rate_limit_info":{"status":"allowed","resetsAt":1779247200,"rateLimitType":"five_hour","overageStatus":"rejected","overageDisabledReason":"org_level_disabled","isUsingOverage":false},"uuid":"2e08ea2d-33aa-47e7-a187-cec4fda355c3","session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8"}
+4:[Omitted long matching line]
+5-[Omitted long context line]
+6-[Omitted long context line]
+7-[Omitted long context line]
+8-[Omitted long context line]
+9-[Omitted long context line]
+10:[Omitted long matching line]
+11-[Omitted long context line]
+12-[Omitted long context line]
+13:[Omitted long matching line]
+14-[Omitted long context line]
+15-[Omitted long context line]
+16-[Omitted long context line]
+17-[Omitted long context line]
+18-[Omitted long context line]
+19:[Omitted long matching line]
+20:[Omitted long matching line]
+21-[Omitted long context line]
+22-[Omitted long context line]
+23-[Omitted long context line]
+--
+37-[Omitted long context line]
+38-[Omitted long context line]
+39-[Omitted long context line]
+40:[Omitted long matching line]
+41-[Omitted long context line]
+42-[Omitted long context line]
+43-[Omitted long context line]
+--
+51-[Omitted long context line]
+52-[Omitted long context line]
+53-[Omitted long context line]
+54:[Omitted long matching line]
+55-[Omitted long context line]
+56-[Omitted long context line]
+57-[Omitted long context line]
+58-[Omitted long context line]
+59:[Omitted long matching line]
+60-[Omitted long context line]
+61-[Omitted long context line]
+62:[Omitted long matching line]
+63-[Omitted long context line]
+64-[Omitted long context line]
+65-[Omitted long context line]
+--
+77-[Omitted long context line]
+78-[Omitted long context line]
+79-[Omitted long context line]
+80:[Omitted long matching line]
+81-[Omitted long context line]
+82-[Omitted long context line]
+83-[Omitted long context line]
+84-[Omitted long context line]
+85-[Omitted long context line]
+86:[Omitted long matching line]
+87-[Omitted long context line]
+88-[Omitted long context line]
+89-[Omitted long context line]
+--
+101-[Omitted long context line]
+102-[Omitted long context line]
+103-{"type":"user","message":{"role":"user","content":[{"tool_use_id":"toolu_01DabU7qqo9JVmrtymkuPdnJ","type":"tool_result","content":"{}","is_error":false}]},"parent_tool_use_id":null,"session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8","uuid":"cecde744-4197-40a8-81f9-587baf1da668","timestamp":"2026-05-19T23:46:18.236Z","tool_use_result":{"stdout":"{}","stderr":"","interrupted":false,"isImage":false,"noOutputExpected":false}}
+104:[Omitted long matching line]
+105-[Omitted long context line]
+106-[Omitted long context line]
+107-[Omitted long context line]
+--
+109-[Omitted long context line]
+110-[Omitted long context line]
+111-[Omitted long context line]
+112:[Omitted long matching line]
+113-[Omitted long context line]
+114-[Omitted long context line]
+115:[Omitted long matching line]
+116:[Omitted long matching line]
+117:[Omitted long matching line]
+118-{"type":"system","subtype":"task_progress","task_id":"a5181355eb57b55e6","tool_use_id":"toolu_01TLTQ7V8sDtb2GN3bnRawNx","description":"Searching for \\.572|\\.537|14B|14b|LightGBM \\(14B\\)","usage":{"total_tokens":17221,"tool_uses":1,"duration_ms":1859},"last_tool_name":"Grep","uuid":"0bcaa2cd-4a16-49c0-9eb0-017078e8739e","session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8"}
+119-[Omitted long context line]
+120-[Omitted long context line]
+--
+123-[Omitted long context line]
+124-{"type":"system","subtype":"task_progress","task_id":"a5181355eb57b55e6","tool_use_id":"toolu_01TLTQ7V8sDtb2GN3bnRawNx","description":"Running grep -n \"\\.572\\|\\.537\\|14B\\|14b\\|LightGBM (14B)\" …","usage":{"total_tokens":18596,"tool_uses":3,"duration_ms":6773},"last_tool_name":"Bash","uuid":"a66cb4a0-1b45-4cad-8103-2c45c5ad9a07","session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8"}
+125-[Omitted long context line]
+126:[Omitted long matching line]
+127-{"type":"system","subtype":"task_progress","task_id":"a5181355eb57b55e6","tool_use_id":"toolu_01TLTQ7V8sDtb2GN3bnRawNx","description":"Running grep -n \"\\.572\\|\\.537\" /home/ubuntu/.agent-ml-res…","usage":{"total_tokens":19461,"tool_uses":4,"duration_ms":8567},"last_tool_name":"Bash","uuid":"03858ce9-cc3e-4afc-ab7e-51d6c9531521","session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8"}
+128-[Omitted long context line]
+129-{"type":"user","message":{"role":"user","content":[{"tool_use_id":"toolu_0145MJ8y8zbRdvRdzuydYxpW","type":"tool_result","content":"(Bash completed with no output)","is_error":false}]},"parent_tool_use_id":"toolu_01TLTQ7V8sDtb2GN3bnRawNx","session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8","uuid":"72232599-6bcb-4683-9642-144499462284","timestamp":"2026-05-19T23:47:02.210Z"}
+130-{"type":"system","subtype":"task_progress","task_id":"a5181355eb57b55e6","tool_use_id":"toolu_01TLTQ7V8sDtb2GN3bnRawNx","description":"Running grep -n \"14B\\|14b\\|LightGBM\" /home/ubuntu/.agent-…","usage":{"total_tokens":19609,"tool_uses":5,"duration_ms":10469},"last_tool_name":"Bash","uuid":"efbcfeea-0825-40fe-acaa-c8ee2b4bba38","session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8"}
+131-[Omitted long context line]
+132:[Omitted long matching line]
+133-{"type":"system","subtype":"task_progress","task_id":"a5181355eb57b55e6","tool_use_id":"toolu_01TLTQ7V8sDtb2GN3bnRawNx","description":"Running grep -n \"Table 4\" /home/ubuntu/.agent-ml-research…","usage":{"total_tokens":20459,"tool_uses":6,"duration_ms":12069},"last_tool_name":"Bash","uuid":"528551df-85ed-43a6-9c23-3b274bd5af75","session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8"}
+134-[Omitted long context line]
+135:[Omitted long matching line]
+136-{"type":"system","subtype":"task_progress","task_id":"a5181355eb57b55e6","tool_use_id":"toolu_01TLTQ7V8sDtb2GN3bnRawNx","description":"Running grep -n \"read_registry\\|exp_14b\\|572\\|537\" /home/…","usage":{"total_tokens":21298,"tool_uses":7,"duration_ms":14226},"last_tool_name":"Bash","uuid":"da727354-0d41-459a-adfa-ee79bc14a3c4","session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8"}
+137-[Omitted long context line]
+138:[Omitted long matching line]
+139-{"type":"system","subtype":"task_progress","task_id":"a5181355eb57b55e6","tool_use_id":"toolu_01TLTQ7V8sDtb2GN3bnRawNx","description":"Running grep -oE \"\\\"(57[0-9]|53[0-9]|\\.572|\\.537)\\\"\" /hom…","usage":{"total_tokens":22263,"tool_uses":8,"duration_ms":16077},"last_tool_name":"Bash","uuid":"bad332b4-50f4-405f-a7bb-ebc697654a32","session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8"}
+
+[Showing results with pagination = limit: 100]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "b250313d-c0ec-4fbc-b748-90d80c26539e"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 234_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad5f9e34333ab2c52",
+  "tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "description": "Running ls -lah /home/ubuntu/.agent-ml-research-idea_gen_…",
+  "usage": {
+    "total_tokens": 19576,
+    "tool_uses": 2,
+    "duration_ms": 6842
+  },
+  "last_tool_name": "Bash",
+  "uuid": "55c8036f-5dda-402a-ab61-8bf3d56b9359",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 235_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0133FZ23xfAN9fWX56XHwCCY`</summary>
+
+```json
+{
+  "command": "ls -lah /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/ | grep -E \"(worker_paper_|worker_analysis_numerical_audit|worker_research_paper-audit|May 18|May 19)\" | tail -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "e91a30f2-3278-4fd3-ab86-e960e16dfe29",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01DJoArj8QgAsD4c6eZUV4xi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 2315,
+      "cache_read_input_tokens": 17232,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 2315,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 6,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 236 · 2026-05-19T23:48:55.746Z_
+
+<details><summary>↩ Tool result · `toolu_0133FZ23xfAN9fWX56XHwCCY`</summary>
+
+```text
+-rw-r--r-- 1 ubuntu ubuntu 1.8K May 18 04:57 worker_research_exp014_feasibility_20260518T045543_result.json
+-rw-r--r-- 1 ubuntu ubuntu  97K May 18 07:44 worker_research_missing-citations-bibtex_20260518T074239.log
+-rw-r--r-- 1 ubuntu ubuntu 3.0K May 18 07:44 worker_research_missing-citations-bibtex_20260518T074239_result.json
+-rw-r--r-- 1 ubuntu ubuntu 159K May 19 03:20 worker_research_model-collapse-literature_20260519T031633.log
+-rw-r--r-- 1 ubuntu ubuntu  892 May 19 03:20 worker_research_model-collapse-literature_20260519T031633_result.json
+-rw-r--r-- 1 ubuntu ubuntu 382K May 18 05:26 worker_research_paper-audit-values_20260518T052213.log
+-rw-r--r-- 1 ubuntu ubuntu 3.3K May 18 05:26 worker_research_paper-audit-values_20260518T052213_result.json
+-rw-r--r-- 1 ubuntu ubuntu 217K May 18 02:11 worker_review_figure_audit_v2_20260518T021002.log
+-rw-r--r-- 1 ubuntu ubuntu 2.6M May 18 02:09 worker_review_figure_table_audit_20260518T020337.log
+-rw-r--r-- 1 ubuntu ubuntu 2.1M May 18 02:09 worker_review_figure_table_audit_20260518T020337_result.json
+-rw-r--r-- 1 ubuntu ubuntu  52K May 18 02:14 worker_submit_arXiv_cross_scorer_pair_20260518T021326.log
+-rw-r--r-- 1 ubuntu ubuntu  395 May 18 02:14 worker_submit_arXiv_cross_scorer_pair_20260518T021326_result.json
+-rw-r--r-- 1 ubuntu ubuntu 301K May 19 03:50 worker_viz_pythia-retrain-decay-curve_20260519T034832.log
+-rw-r--r-- 1 ubuntu ubuntu  149 May 19 03:50 worker_viz_pythia-retrain-decay-curve_20260519T034832_result.json
+-rw-r--r-- 1 ubuntu ubuntu 244K May 19 02:31 worker_viz_retrain-decay-curve-v2_20260519T022942.log
+-rw-r--r-- 1 ubuntu ubuntu  210 May 19 02:31 worker_viz_retrain-decay-curve-v2_20260519T022942_result.json
+-rw-r--r-- 1 ubuntu ubuntu 539K May 19 01:15 worker_viz_retrain-decay-curve_20260519T010907.log
+-rw-r--r-- 1 ubuntu ubuntu  497 May 19 01:15 worker_viz_retrain-decay-curve_20260519T010907_result.json
+-rw-r--r-- 1 ubuntu ubuntu 218K May 19 03:50 worker_viz_retrain-decay-v3-threeline_20260519T034938.log
+-rw-r--r-- 1 ubuntu ubuntu  235 May 19 03:51 worker_viz_retrain-decay-v3-threeline_20260519T034938_result.json
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "b5d2a491-e05b-4897-8c44-dc728fea4d0c"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 237_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "aaf9360ccb6d4820a",
+  "tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "description": "Reading logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log",
+  "usage": {
+    "total_tokens": 25529,
+    "tool_uses": 9,
+    "duration_ms": 12014
+  },
+  "last_tool_name": "Read",
+  "uuid": "221d9869-859f-4364-96d3-b2ff7748b8d8",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 238_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01C2u1AKLpceeJCokVzB1ZAL`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log",
+  "limit": 500,
+  "offset": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "7fe8eb9d-e0b3-4fd7-b5da-009aff37cec2",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01SHGZhFPFf87ri3HTHMfnXu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 3710,
+      "cache_read_input_tokens": 21787,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3710,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 239 · 2026-05-19T23:48:57.128Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01C2u1AKLpceeJCokVzB1ZAL`</summary>
+
+```text
+File content (275917 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "2c89db8e-46ce-4895-b5f9-0fab5044d4a7",
+  "tool_use_result": "Error: File content (275917 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 240_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad5f9e34333ab2c52",
+  "tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "description": "Searching for deberta_comparison|DeBERTa.*LightGBM|1.5B.*14B.*3…",
+  "usage": {
+    "total_tokens": 20668,
+    "tool_uses": 3,
+    "duration_ms": 9414
+  },
+  "last_tool_name": "Grep",
+  "uuid": "750f4aaa-15b8-4ef7-aa87-40d307665f39",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 241_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_011Z1MbT46JzioqRGbGKRkpZ`</summary>
+
+```json
+{
+  "pattern": "deberta_comparison|DeBERTa.*LightGBM|1.5B.*14B.*32B",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers",
+  "output_mode": "files_with_matches"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "f6d4e28d-a5ba-4489-8000-7b20c94ef6c9",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_018SZ8hzJWYZ9DTAGRwr6mi3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 1090,
+      "cache_read_input_tokens": 19547,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1090,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 242 · 2026-05-19T23:48:58.548Z_
+
+<details><summary>↩ Tool result · `toolu_011Z1MbT46JzioqRGbGKRkpZ`</summary>
+
+```text
+Found 42 files
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log
+logs/workers/worker_diagnose_exp_deberta_c4_1b5_20260519T231400.log
+logs/workers/worker_exp_westd-c4-1b5-rsync-launch_20260519T230138.log
+logs/workers/worker_analysis_c4-1b5-qwen-rw-check_20260519T230027.log
+logs/workers/worker_bugfix_wiki-kstar-obd-baseline_20260519T215703.log
+logs/workers/worker_infra_cqa1-recovery-status_20260519T215644.log
+logs/workers/worker_infra_deberta-wiki-cron-resolve_20260519T215745_result.json
+logs/workers/worker_infra_deberta-wiki-cron-resolve_20260519T215745.log
+logs/workers/worker_analysis_exp_32b_c4_20260519T213424_result.json
+logs/workers/worker_analysis_exp_32b_c4_20260519T213424.log
+logs/workers/worker_bugfix_kstar-off-by-one_20260519T203108.log
+logs/workers/worker_code_deberta-c4-1b5-prep_20260519T202226.log
+logs/workers/worker_infra_c4-1b5-data-search_20260519T201428_result.json
+logs/workers/worker_infra_c4-1b5-data-search_20260519T201428.log
+logs/workers/worker_exp_deberta-c4-westd_20260519T192827.log
+logs/workers/worker_infra_deberta-check-now_20260519T192110.log
+logs/workers/worker_infra_deberta-monitor-e_20260519T185703.log
+logs/workers/worker_code_deberta-postprocess_20260519T174628_result.json
+logs/workers/worker_code_deberta-postprocess_20260519T174628.log
+logs/workers/worker_code_deberta-cross-transfer-prep_20260519T174654.log
+logs/workers/worker_exp_deberta-upperbound_20260519T163003.log
+logs/workers/worker_paper_visual-preview_20260519T125408_result.json
+logs/workers/worker_paper_visual-preview_20260519T125408.log
+logs/workers/worker_paper_pre-submission-check_20260519T095454_result.json
+logs/workers/worker_paper_pre-submission-check_20260519T095454.log
+logs/workers/worker_analysis_exp_code_qwen1b5_pythia_scorer_20260519T065306.log
+logs/workers/worker_ops_registry-cleanup-dream-check_20260519T022919.log
+logs/workers/worker_ops_registry-audit-dream-prep_20260519T010327.log
+logs/workers/worker_analyze_mf1-theta-lofo-crossval_20260518T153609.log
+logs/workers/worker_code_update-jsd-figure-14b_20260518T084358.log
+logs/workers/worker_review_figure_table_audit_20260518T020337_result.json
+logs/workers/worker_prep_14b_scorer_contingency_20260518T002139.log
+logs/workers/worker_analysis_paper_patch_audit_20260518T000144.log
+logs/workers/worker_infra_exp_32b_c4_launch_20260517T193636.log
+logs/workers/worker_ops_cloud_model_download_retry_20260517T170126.log
+logs/workers/worker_ops_cloud_14b_readiness_20260517T164114_result.json
+logs/workers/worker_ops_cloud_14b_readiness_20260517T164114.log
+logs/workers/worker_ops_cloud_download_status_20260517T163408.log
+logs/workers/worker_ops_cloud_gpu_setup_westd42896_20260517T151720.log
+logs/workers/worker_analysis_exp_arXiv_mistral7b_20260517T162643.log
+logs/workers/worker_fix_appendix-layout_20260515T123817_result.json
+logs/workers/worker_research_full_study_design_20260512T124814.log
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "316335e9-2320-46b9-b8cf-4a8de74682f6"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 243_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "aaf9360ccb6d4820a",
+  "tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "description": "Running grep -i \"conclusion\\|finding\\|source\\|origin\\|rou…",
+  "usage": {
+    "total_tokens": 25768,
+    "tool_uses": 10,
+    "duration_ms": 14179
+  },
+  "last_tool_name": "Bash",
+  "uuid": "5460664d-d65b-4351-8173-f001034aa964",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 244_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01MDdCDw5mii1LNwHnZ6J7tm`</summary>
+
+```json
+{
+  "command": "grep -i \"conclusion\\|finding\\|source\\|origin\\|rounding\\|0.5494\\|0.5243\\|deberta\" /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log | head -50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "fd3d8ea6-450e-4ec8-80bc-8a2e926c2134",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01Cb1e6STKGwyNMfh7UcyoWX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 237,
+      "cache_read_input_tokens": 25497,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 237,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 245 · 2026-05-19T23:48:59.037Z_
+
+<details><summary>↩ Tool result · `toolu_01MDdCDw5mii1LNwHnZ6J7tm`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (385.2KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/bfrqzlnqq.txt
+
+Preview (first 2KB):
+{"type":"system","subtype":"init","cwd":"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination","session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8","tools":["Task","AskUserQuestion","Bash","CronCreate","CronDelete","CronList","Edit","EnterPlanMode","EnterWorktree","ExitPlanMode","ExitWorktree","Glob","Grep","ListMcpResourcesTool","Monitor","NotebookEdit","PushNotification","Read","ReadMcpResourceTool","RemoteTrigger","ScheduleWakeup","Skill","TaskOutput","TaskStop","TodoWrite","ToolSearch","WebFetch","WebSearch","Write","mcp__agent-ml-research__detect_image","mcp__agent-ml-research__kill_job","mcp__agent-ml-research__read_registry","mcp__agent-ml-research__register_artifact","mcp__agent-ml-research__ssh_execute","mcp__agent-ml-research__ssh_read_only","mcp__agent-ml-research__update_registry"],"mcp_servers":[{"name":"agent-ml-research","status":"connected"}],"model":"claude-opus-4-6","permissionMode":"bypassPermissions","slash_commands":["update-config","debug","simplify","batch","fewer-permission-prompts","loop","schedule","claude-api","clear","compact","context","heapdump","init","review","security-review","extra-usage","usage","insights","team-onboarding"],"apiKeySource":"none","claude_code_version":"2.1.126","output_style":"default","agents":["claude","Explore","general-purpose","Plan","statusline-setup"],"skills":["update-config","debug","simplify","batch","fewer-permission-prompts","loop","schedule","claude-api"],"plugins":[],"analytics_disabled":false,"uuid":"b60ba742-bd6f-4656-9bad-22864294b515","memory_paths":{"auto":"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"},"fast_mode_state":"off"}
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "d324babd-3ca4-4185-9f52-f6b3f9492b1d"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 246_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "aaf9360ccb6d4820a",
+  "tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "description": "Running grep -i \"audit\\|issue\\|cause\\|rounding\\|truncatio…",
+  "usage": {
+    "total_tokens": 25769,
+    "tool_uses": 11,
+    "duration_ms": 14812
+  },
+  "last_tool_name": "Bash",
+  "uuid": "1a272b9c-6ddc-4574-be18-6c3c181f8289",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 247_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_012t8jH5isYF1hiptr9AYRZP`</summary>
+
+```json
+{
+  "command": "grep -i \"audit\\|issue\\|cause\\|rounding\\|truncation\" /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_paper_vs_data_consistency_20260518T050440.log | head -50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "6bc384be-c8db-4daa-ab6a-27982189e9d7",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01Cb1e6STKGwyNMfh7UcyoWX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 237,
+      "cache_read_input_tokens": 25497,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 237,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 248 · 2026-05-19T23:48:59.677Z_
+
+<details><summary>↩ Tool result · `toolu_012t8jH5isYF1hiptr9AYRZP`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (248.3KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/boj1r12zk.txt
+
+Preview (first 2KB):
+{"type":"assistant","message":{"model":"claude-opus-4-6","id":"msg_0123g8ZquVZMRFFaDtwAzDiS","type":"message","role":"assistant","content":[{"type":"thinking","thinking":"This is a complex audit task that requires reading multiple tex files and SSH-ing to a remote server to compare numerical values. Let me break this down into parallel work streams:\n\n1. Read all the tex files locally\n2. SSH to the server to get experimental results\n3. Read local artifacts\n\nLet me start by reading the tex files and exploring the server results in parallel.","signature":"ErEEClkIDRgCKkBRSvvDWktFWQEDCIYpGhJNIWtVKD2l/fd/Wf2HQ598sphBuWqcH2ZrpzXO8HxxWq7LHltrYi7E2A9WsqmYvLvgMg9jbGF1ZGUtb3B1cy00LTY4ABIM9hnuoKtpL5/0LOkRGgwVgB6fjATaUTW01DAiMOLMRlFgXPpnWorb2wClXfF5fv4opgqM72Cjkv3NlM2B7eGuNr8XUXgClJvmEweJVyqFA0tSG3i6geZ4zbo/j2j1lOAsE/KG4KjHz+Rl25kvCCrKiGCrfuTV54RS2cXbLlVLER6EPECfspAFq0/H5RT4sj9bZ7B2il+AZ44ekglaWt5EK5T1c/3UkBUxQ9ucNh1HEjcUexLkbok5+B8brrLAeVzPYePU4nNawixbr3yDW6Ge5nlLLvHcK6C8Qy+JKOw4GXhln+12wZDGTnRxZ1tI3VK1PNanJNcleYY3ek9aFcdGEywPu188xsIrXxGqMzFRgRsuJkI0a1UWBG2dMH84gTyYGjeMsnwJtrXvWcCIeg6MR7JU6350kZrSsOVqjMu644affQABCRsnXD83jMOzYa3T9pnUsE1d0Mry0BiyQvubKG7PxrfcLQg74KTFEzGn0hOrARTApAMO5JfX4agLeff1/MQrlHM4HOKlkEJTfRSrZuWGdUQHug54I4ackD+robxRX1U0hHpVexJGATr78TrYJUWCepkqaRiW/HdwfCp2gwaUKMS5cUCRi4yG8nO5rMsy8JdVGAE="}],"stop_reason":null,"stop_sequence":null,"stop_details":null,"usage":{"input_tokens":3,"cache_creation_input_tokens":13371,"cache_read_input_tokens":11841,"cache_creation":{"ephemeral_5m_input_tokens":0,"ephemeral_1h_input_tokens":13371},"output_tokens":33,"service_tier":"standard","inference_geo":"not_available"},"diagnostics":null,"context_management":null},"parent_tool_use_id":null,"session_id":"cf587149-807e-4b6b-883d-9e4758ec089e","uuid":"87dadaa7-0373-4531-a060-4a0f83a0411f"}
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "45ed4896-4c45-499d-9340-6c321a8111f3"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 249_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "aaf9360ccb6d4820a",
+  "tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "description": "Running grep -i \"572\\|537\\|14b\\|deberta\\|lightgbm\" /home/…",
+  "usage": {
+    "total_tokens": 25770,
+    "tool_uses": 12,
+    "duration_ms": 15236
+  },
+  "last_tool_name": "Bash",
+  "uuid": "8829b190-dafc-4827-88e3-8c20227c0e74",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 250_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01MHr9KXtpopMPzGFNrXTmZV`</summary>
+
+```json
+{
+  "command": "grep -i \"572\\|537\\|14b\\|deberta\\|lightgbm\" /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_experiments_c1_data_verify_20260514T004234.log | head -50"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "e474d48d-72e0-4d73-995b-315fed0ee305",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01Cb1e6STKGwyNMfh7UcyoWX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 237,
+      "cache_read_input_tokens": 25497,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 237,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 251 · 2026-05-19T23:49:00.098Z_
+
+<details><summary>↩ Tool result · `toolu_01MHr9KXtpopMPzGFNrXTmZV`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (168.8KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/b2q361tbd.txt
+
+Preview (first 2KB):
+{"type":"user","message":{"role":"user","content":[{"tool_use_id":"toolu_01DYwP9oyv7Xq2irskY5ach3","type":"tool_result","content":"{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_007_bootstrap_ci\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T03:45:50.948Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:43:00.694Z\\\", \\\"hypothesis\\\": \\\"K* 统计严谨性验证：bootstrap 95% CI 和 permutation test 确认 K*=2 在三个模型族上统计显著\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/bootstrap_ci.py --data_dirs results_exp001_pythia results_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output artifacts/bootstrap_ci_results.json\\\", \\\"script_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/scripts/bootstrap_ci.py\\\", \\\"server\\\": \\\"autodl-4090d\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/artifacts/bootstrap_ci_results.json\\\", \\\"data_count\\\": 15000, \\\"model_name\\\": \\\"Pythia-1.4B / OLMo-1B / Qwen-1.5B\\\", \\\"seed\\\": 42, \\\"input_sources\\\": [\\\"results_exp001_pythia (exp-001)\\\", \\\"results_exp002_olmo (exp-002)\\\", \\\"data (mvp-001)\\\"], \\\"bootstrap_resamples\\\": 1000, \\\"permutation_resamples\\\": 500, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/artifacts/bootstrap_ci_results.json\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_007_bootstrap_ci.log\\\"}, \\\"metrics\\\": {\\\"qwen_rewrite\\\": {\\\"0v1\\\": {\\\"auc\\\": 0.9956, \\\"ci_lower\\\": 0.9946, \\\"ci_upper\\\": 0.9965, \\\"perm_p\\\": 0.002}, \\\"1v2\\\": {\\\"auc\\\": 0.6955, \\\"ci_lower\\\": 0.6859, \\\"ci_upper\\\": 0.7041, \\\"perm_p\\\": 0.002}, \\\"2v3\\\": {\\\"auc\\\": 0.5893, \\\"ci_lower\\\": 0.5795, \\\"ci_upper\\\": 0.5991, \\\"perm_p\\\": 0.002}, \\\"3v4\\\": {\\\"auc\\\": 0.5435, \\\"ci_lower\\\": 0.5333, \\\"ci_upper\\\": 0.5551, \\\"perm_p\\\": 0.002}, \\\"4v5\\\": {\\\"auc\\\": 0.534, \\\"ci_lower\\\": 0.5238, \\\"
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "2a17f556-3906-4f4a-a497-4a111d81e967"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 252_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad5f9e34333ab2c52",
+  "tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "description": "Searching for tab:deberta_comparison|deberta_comparison",
+  "usage": {
+    "total_tokens": 21968,
+    "tool_uses": 4,
+    "duration_ms": 11969
+  },
+  "last_tool_name": "Grep",
+  "uuid": "8abb0713-3c1e-4c2f-87e0-03da49db30d1",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 253_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_012ENBAEjZfNQ5VjbL55VCe2`</summary>
+
+```json
+{
+  "pattern": "tab:deberta_comparison|deberta_comparison",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers",
+  "output_mode": "content",
+  "context": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "07682382-31bf-4fc5-b2ee-621371c242ad",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01JqMFvAfS9XYxyDW41DFUyf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 1298,
+      "cache_read_input_tokens": 20637,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1298,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 254 · 2026-05-19T23:49:01.100Z_
+
+<details><summary>↩ Tool result · `toolu_012ENBAEjZfNQ5VjbL55VCe2`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-8-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-9-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-10-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-11-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-12-[Omitted long context line]
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log:13:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-14-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-15-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-16-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-17-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-18-[Omitted long context line]
+--
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-190-{"type":"system","subtype":"task_progress","task_id":"a5181355eb57b55e6","tool_use_id":"toolu_01TLTQ7V8sDtb2GN3bnRawNx","description":"Running python3 << 'EOF'\nimport json\n\nwith open('/home/ubunt…","usage":{"total_tokens":37450,"tool_uses":25,"duration_ms":76685},"last_tool_name":"Bash","uuid":"d2a97ee5-8c4c-44e4-9e76-3301fa993e7d","session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8"}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-191-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-192-[Omitted long context line]
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-193-{"type":"system","subtype":"task_notification","task_id":"a5181355eb57b55e6","tool_use_id":"toolu_01TLTQ7V8sDtb2GN3bnRawNx","status":"completed","output_file":"","summary":"Search paper writing log for .572/.537 data source","usage":{"total_tokens":39302,"tool_uses":25,"duration_ms":83159},"uuid":"c24b77d9-26ca-487d-ac01-85a11d162bb4","session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8"}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-194-[Omitted long context line]
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log:195:[Omitted long matching line]
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log:196:[Omitted long matching line]
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log:197:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-198-[Omitted long context line]
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log:199:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-200-[Omitted long context line]
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log:201:[Omitted long matching line]
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log:202:[Omitted long matching line]
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log:203:[Omitted long matching line]
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-204-{"type":"system","subtype":"task_progress","task_id":"aaf9360ccb6d4820a","tool_use_id":"toolu_018wJbCefXxh9EwJkqB3aARd","description":"Reading logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log","usage":{"total_tokens":17375,"tool_uses":1,"duration_ms":1721},"last_tool_name":"Read","uuid":"4a1f032d-6728-46fb-a320-e965fbaa28d9","session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8"}
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-205-{"type":"system","subtype":"task_progress","task_id":"aaf9360ccb6d4820a","tool_use_id":"toolu_018wJbCefXxh9EwJkqB3aARd","description":"Reading logs/workers/worker_audit_paper_vs_data_consistency_20260518T050440.log","usage":{"total_tokens":17379,"tool_uses":2,"duration_ms":1873},"last_tool_name":"Read","uuid":"aac27762-e9e5-4a7e-b770-55bbd560606b","session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8"}
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-206-{"type":"system","subtype":"task_progress","task_id":"aaf9360ccb6d4820a","tool_use_id":"toolu_018wJbCefXxh9EwJkqB3aARd","description":"Reading logs/workers/worker_audit_experiments_c1_data_verify_20260514T004234.log","usage":{"total_tokens":17383,"tool_uses":3,"duration_ms":2116},"last_tool_name":"Read","uuid":"2e569065-a7e7-494c-9b86-bb77756fc7fb","session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8"}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-207-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-208-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-209-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-210-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-211-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-212-[Omitted long context line]
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log:213:[Omitted long matching line]
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log:214:[Omitted long matching line]
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log:215:[Omitted long matching line]
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-216-{"type":"system","subtype":"task_progress","task_id":"aaf9360ccb6d4820a","tool_use_id":"toolu_018wJbCefXxh9EwJkqB3aARd","description":"Searching for \\.572|\\.537","usage":{"total_tokens":18737,"tool_uses":4,"duration_ms":4684},"last_tool_name":"Grep","uuid":"aa9731f7-0fd9-4e75-b23b-0d513e686dc9","session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8"}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-217-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-218-[Omitted long context line]
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log:219:{"type":"system","subtype":"task_progress","task_id":"aaf9360ccb6d4820a","tool_use_id":"toolu_018wJbCefXxh9EwJkqB3aARd","description":"Searching for deberta_comparison|14B|mismatch.*source|source.*m…","usage":{"total_tokens":18738,"tool_uses":5,"duration_ms":5346},"last_tool_name":"Grep","uuid":"f4f68cee-7716-4462-ae78-26b78e0fe599","session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8"}
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log:220:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-221-[Omitted long context line]
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-222-{"type":"system","subtype":"task_progress","task_id":"aaf9360ccb6d4820a","tool_use_id":"toolu_018wJbCefXxh9EwJkqB3aARd","description":"Searching for LightGBM.*14.*2v3|2v3.*LightGBM|3v4.*LightGBM","usage":{"total_tokens":18739,"tool_uses":6,"duration_ms":6082},"last_tool_name":"Grep","uuid":"9d3c2456-643c-4e84-a326-a7f379388cb2","session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8"}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-223-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-224-[Omitted long context line]
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-225-{"type":"system","subtype":"task_progress","task_id":"ad5f9e34333ab2c52","tool_use_id":"toolu_01Lyy4pKThhxNjNs4rUevi7m","description":"Running ls -lah /home/ubuntu/.agent-ml-research-idea_gen_…","usage":{"total_tokens":17247,"tool_uses":1,"duration_ms":4446},"last_tool_name":"Bash","uuid":"bd1a5cb2-3ac5-42a1-a90e-bd1ad8c04cea","session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8"}
+--
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-235-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-236-[Omitted long context line]
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-237-{"type":"system","subtype":"task_progress","task_id":"aaf9360ccb6d4820a","tool_use_id":"toolu_018wJbCefXxh9EwJkqB3aARd","description":"Reading logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log","usage":{"total_tokens":25529,"tool_uses":9,"duration_ms":12014},"last_tool_name":"Read","uuid":"221d9869-859f-4364-96d3-b2ff7748b8d8","session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8"}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-238-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-239-[Omitted long context line]
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log:240:{"type":"system","subtype":"task_progress","task_id":"ad5f9e34333ab2c52","tool_use_id":"toolu_01Lyy4pKThhxNjNs4rUevi7m","description":"Searching for deberta_comparison|DeBERTa.*LightGBM|1.5B.*14B.*3…","usage":{"total_tokens":20668,"tool_uses":3,"duration_ms":9414},"last_tool_name":"Grep","uuid":"750f4aaa-15b8-4ef7-aa87-40d307665f39","session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8"}
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log:241:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-242-[Omitted long context line]
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-243-{"type":"system","subtype":"task_progress","task_id":"aaf9360ccb6d4820a","tool_use_id":"toolu_018wJbCefXxh9EwJkqB3aARd","description":"Running grep -i \"conclusion\\|finding\\|source\\|origin\\|rou…","usage":{"total_tokens":25768,"tool_uses":10,"duration_ms":14179},"last_tool_name":"Bash","uuid":"5460664d-d65b-4351-8173-f001034aa964","session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8"}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-244-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-245-[Omitted long context line]
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-246-{"type":"system","subtype":"task_progress","task_id":"aaf9360ccb6d4820a","tool_use_id":"toolu_018wJbCefXxh9EwJkqB3aARd","description":"Running grep -i \"audit\\|issue\\|cause\\|rounding\\|truncatio…","usage":{"total_tokens":25769,"tool_uses":11,"duration_ms":14812},"last_tool_name":"Bash","uuid":"1a272b9c-6ddc-4574-be18-6c3c181f8289","session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8"}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-247-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-248-[Omitted long context line]
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-249-{"type":"system","subtype":"task_progress","task_id":"aaf9360ccb6d4820a","tool_use_id":"toolu_018wJbCefXxh9EwJkqB3aARd","description":"Running grep -i \"572\\|537\\|14b\\|deberta\\|lightgbm\" /home/…","usage":{"total_tokens":25770,"tool_uses":12,"duration_ms":15236},"last_tool_name":"Bash","uuid":"8829b190-dafc-4827-88e3-8c20227c0e74","session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8"}
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-250-[Omitted long context line]
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log-251-[Omitted long context line]
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log:252:{"type":"system","subtype":"task_progress","task_id":"ad5f9e34333ab2c52","tool_use_id":"toolu_01Lyy4pKThhxNjNs4rUevi7m","description":"Searching for tab:deberta_comparison|deberta_comparison","usage":{"total_tokens":21968,"tool_uses":4,"duration_ms":11969},"last_tool_name":"Grep","uuid":"8abb0713-3c1e-4c2f-87e0-03da49db30d1","session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8"}
+logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log:253:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "0a2d6c73-5008-45b0-b5bc-5e18e71c569b"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 255_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad5f9e34333ab2c52",
+  "tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "description": "Reading logs/workers/worker_analysis_numerical_audit_m2_m5_20260518T052223.log",
+  "usage": {
+    "total_tokens": 28439,
+    "tool_uses": 5,
+    "duration_ms": 14040
+  },
+  "last_tool_name": "Read",
+  "uuid": "a607fb67-7bc8-4db1-a0a8-7b253362bd15",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 256_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01P4QH3iCzLQghKsQrTF5wpP`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_numerical_audit_m2_m5_20260518T052223.log",
+  "limit": 200
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "1a431ee3-f58e-468b-a357-2bcd07798c99",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01RA4tEU8AaREAd77HZpPe1q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 6465,
+      "cache_read_input_tokens": 21935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 6465,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 257 · 2026-05-19T23:49:03.121Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01P4QH3iCzLQghKsQrTF5wpP`</summary>
+
+```text
+File content (78759 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "a3d665c1-cb23-452c-a00f-c7580c35a36a",
+  "tool_use_result": "Error: File content (78759 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 258_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "aaf9360ccb6d4820a",
+  "tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "description": "Running tail -c 100000 /home/ubuntu/.agent-ml-research-id…",
+  "usage": {
+    "total_tokens": 29114,
+    "tool_uses": 13,
+    "duration_ms": 18336
+  },
+  "last_tool_name": "Bash",
+  "uuid": "7e786078-7f93-4fba-8c6d-728003571235",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 259_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_018fZ5NyNch5bKhBoyknwtSM`</summary>
+
+```json
+{
+  "command": "tail -c 100000 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log | grep -i \"table 4\\|deberta\\|572\\|537\\|lightgbm.*14\\|rounding\" -A 5 -B 5 2>/dev/null | head -100"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "7d905e9c-68f0-4317-98fb-f33589fd4ff0",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01T3rbHvLu4UZLtN829G2rDh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 3342,
+      "cache_read_input_tokens": 25734,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3342,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 260 · 2026-05-19T23:49:03.215Z_
+
+<details><summary>↩ Tool result · `toolu_018fZ5NyNch5bKhBoyknwtSM`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (97.7KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/bdvw2bfey.txt
+
+Preview (first 2KB):
+f2e3e6_20260517T120411_215579.jsonl","logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260517T104455_120908.jsonl","logs/chats/archive/feishu_group_oc_5d2a0ec1de3a456564133278c1a9b203_director_20260517T104414_161956.jsonl","logs/workers/worker_paper_compile_and_copy_20260517T082253.log","logs/workers/worker_code_exp_026_feature_stability_v2_20260517T080737.log","logs/workers/worker_paper_final_cleanup_audit_20260517T074016.log","logs/workers/worker_diagnose_exp_009_crash_v3_20260517T000217.log","logs/workers/worker_check_exp_022_results_locate_20260516T183626_result.json","logs/chats/worker_check_exp_022_results_locate_20260516T183626.jsonl","logs/workers/worker_check_exp_022_results_locate_20260516T183626.log","logs/chats/worker_code_exp_022_accelerate_20260516T163539.jsonl","logs/workers/worker_analysis_exp_018_bootstrap_ci_20260516T161206_result.json","logs/workers/worker_analysis_exp_018_bootstrap_ci_20260516T161206.log","logs/workers/worker_diagnose_exp_018_llama8b_depth_20260516T161001.log","logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_20260516T152846_195330.jsonl","logs/workers/worker_submit_exp_023_wiki_restart_20260516T150421.log","logs/workers/worker_submit_exp_024_arxiv_restart_20260516T150351.log","logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260516T144449_000132.jsonl","logs/workers/worker_check_exp019b_result_20260516T115406.log","logs/chats/archive/feishu_group_oc_e168ce0e8c2b1176be821fdab5f2e3e6_reviewer_20260516T115243_060322.jsonl","logs/chats/archive/feishu_group_oc_5d2a0ec1de3a456564133278c1a9b203_director_20260516T115239_714008.jsonl","logs/chats/worker_code_refactor_plot_scripts_20260516T082238.jsonl","logs/workers/worker_code_refactor_plot_scripts_20260516T082238.log","logs/workers/worker_research_paper_integration_prep_20260516T080012.log","logs/workers/worker_fix_exp_021_restart_20260516T065313.log","logs/workers/worker_check_exp_021_cuda3_status_20260516T
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "6c623903-413c-411f-a319-23ebb5015274"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 261_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad5f9e34333ab2c52",
+  "tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "description": "Running grep -n \"deberta_comparison\\|DeBERTa.*LightGBM\\|t…",
+  "usage": {
+    "total_tokens": 28640,
+    "tool_uses": 6,
+    "duration_ms": 15946
+  },
+  "last_tool_name": "Bash",
+  "uuid": "39a7237d-ec24-483b-bb11-d741a06456fa",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 262_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01AhxgHGPJbkAc5YkfM1ntjp`</summary>
+
+```json
+{
+  "command": "grep -n \"deberta_comparison\\|DeBERTa.*LightGBM\\|tab:deberta\" /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_numerical_audit_m2_m5_20260518T052223.log | head -30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "0b94d238-602d-4374-b23d-791d278fbaa6",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_017Tt8e941naC9MdyJ2qsZNT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6,
+      "cache_creation_input_tokens": 198,
+      "cache_read_input_tokens": 28400,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 198,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 263 · 2026-05-19T23:49:04.807Z_
+
+<details><summary>↩ Tool result · `toolu_01AhxgHGPJbkAc5YkfM1ntjp`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "a5ae9f2a-4b57-4eaf-b32c-190464855051"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 264_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "aaf9360ccb6d4820a",
+  "tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "description": "Running grep -ao \"conclusion.*\\|finding.*\\|FINDINGS.*\\|CO…",
+  "usage": {
+    "total_tokens": 30255,
+    "tool_uses": 14,
+    "duration_ms": 20661
+  },
+  "last_tool_name": "Bash",
+  "uuid": "f29a4235-34c3-4ec1-936d-5d07a57644c3",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 265_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01AYq9JBTweiGx4saJ1wS4UU`</summary>
+
+```json
+{
+  "command": "grep -ao \"conclusion.*\\|finding.*\\|FINDINGS.*\\|CONCLUSION.*\\|SUMMARY.*\" /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log 2>/dev/null | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "74fc7547-83d5-426d-91f6-adc79f48f3c9",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01JbdLtWszniG8NdiiiagzxP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 1141,
+      "cache_read_input_tokens": 29076,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1141,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 266 · 2026-05-19T23:49:05.540Z_
+
+<details><summary>↩ Tool result · `toolu_01AYq9JBTweiGx4saJ1wS4UU`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (229.7KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/bcm3z2xm6.txt
+
+Preview (first 2KB):
+findings verbatim.\" A vague \"summarize this\" may lose detail.\n"}]},"parent_tool_use_id":null,"session_id":"2b0d8342-eefb-4b51-80e8-bab83286beb8","uuid":"66aac898-6ab1-4718-8b84-c5c335032490","timestamp":"2026-05-19T23:43:37.017Z","tool_use_result":{"content":"Error: result (190,445 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/mcp-agent-ml-research-read_registry-1779234216992.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/mcp-agent-ml-research-read_registry-1779234216992.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/2b0d8342-eefb-4b51-80e8-bab83286beb8/tool-results/mcp-agent-ml-research-read_registry-1779234216992.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n","structuredContent":{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_deberta_c4_1b5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "2b629a62-43df-41c4-a0b6-466e573f38a0"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 267_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad5f9e34333ab2c52",
+  "tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "description": "Running grep -n \"deberta_comparison\\|DeBERTa.*LightGBM\\|t…",
+  "usage": {
+    "total_tokens": 28816,
+    "tool_uses": 7,
+    "duration_ms": 17691
+  },
+  "last_tool_name": "Bash",
+  "uuid": "64277c47-50b5-405b-9671-41fb58f9bd66",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 268_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01PqUe7MEpC1DAQERQThNHHQ`</summary>
+
+```json
+{
+  "command": "grep -n \"deberta_comparison\\|DeBERTa.*LightGBM\\|tab:deberta\" /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_research_paper-audit-values_20260518T052213.log | head -30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "3bd8a2a3-01f8-421f-a5d4-349d470ba1e5",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01MeSuH7V7Z1ARKommeYqGju",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 172,
+      "cache_read_input_tokens": 28598,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 172,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 269 · 2026-05-19T23:49:06.587Z_
+
+<details><summary>↩ Tool result · `toolu_01PqUe7MEpC1DAQERQThNHHQ`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "94cf6e1e-711e-4e26-8a75-a5ae083274a5"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 270_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "aaf9360ccb6d4820a",
+  "tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "description": "Running find /home/ubuntu/.agent-ml-research-idea_gen_050…",
+  "usage": {
+    "total_tokens": 31223,
+    "tool_uses": 15,
+    "duration_ms": 22348
+  },
+  "last_tool_name": "Bash",
+  "uuid": "749f5367-dc98-4e04-aa9e-062e78e99b49",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 271_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01YCxoBFjX8RiFAeeqDZ4Peh`</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination -name \"*audit*\" -type f 2>/dev/null | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "02f985bd-9f4d-440b-826c-7070c66ada2d",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_014qKNb6EdXdMmXw4KaNb4u5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 967,
+      "cache_read_input_tokens": 30217,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 967,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 272 · 2026-05-19T23:49:07.244Z_
+
+<details><summary>↩ Tool result · `toolu_01YCxoBFjX8RiFAeeqDZ4Peh`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_review_paper-consistency-audit_20260514T105529.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_bib_verification_20260514T022152.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_pre-dream-reference-audit_20260519T050926_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_narrative_coherence_20260514T012924_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_numerical_audit_m2_m5_20260518T052223.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_review_paper_sections_audit_20260513T215258_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_paper_figure_table_consistency_20260513T232830.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_analysis_paper_patch_audit_20260518T000144_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_review_exp015_code_preaudit_20260513T232844.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_bib_verification_20260514T022152_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_writing_notation-figures-audit_20260514T054927_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_writing_consistency-audit_20260514T045042_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_writing_notation-figures-audit_20260514T054927.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_experiments_c1_data_verify_20260514T004234.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_research_obd_direction_audit_20260513T193011_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_final_cleanup_audit_20260517T074016.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_infra_deberta-data-audit_20260519T192508.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_fix_paper_audit_corrections_20260513T223912_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_research_feature_audit_20260513T094245.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_related_work_completeness_20260514T021616.log
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "babe5561-b2c9-4936-9b10-8727e6d17f89"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 273_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad5f9e34333ab2c52",
+  "tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "description": "Running ls -1 /home/ubuntu/.agent-ml-research-idea_gen_05…",
+  "usage": {
+    "total_tokens": 28982,
+    "tool_uses": 8,
+    "duration_ms": 19466
+  },
+  "last_tool_name": "Bash",
+  "uuid": "8a4c608e-84f8-46b0-8a18-41a847d2e318",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 274_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01VmmrHo8y45W16xaYaMpYdR`</summary>
+
+```json
+{
+  "command": "ls -1 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_* | grep -E \"May 18|May 19|20260518|20260519\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "87abb363-0bef-4014-b18c-838fcc14463d",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01NGJjNqhFeUvRe8ydiKmh1h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 165,
+      "cache_read_input_tokens": 28770,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 165,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 275 · 2026-05-19T23:49:08.355Z_
+
+<details><summary>↩ Tool result · `toolu_01VmmrHo8y45W16xaYaMpYdR`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_add-bertrand-bib_20260519T032111.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_add-bertrand-bib_20260519T032111_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_bootstrap-ci-audit_20260518T235735.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_bootstrap-ci-audit_20260518T235735_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_check-code-table-consistency_20260519T034403.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_check-code-table-consistency_20260519T034403_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_citation-expansion_20260519T111739.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_citation-expansion_20260519T111739_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_code-crossmodel-table_20260519T000706.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_code-crossmodel-table_20260519T000706_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_compile-and-check-latest_20260519T050630.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_compile-and-check-latest_20260519T050630_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_compile-check_20260519T025440.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_compile-check_20260519T025440_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_compile-final-check_20260519T115143.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_compile-final-check_20260519T115143_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_compile-page-check_20260519T105616.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_compile-page-check_20260519T105616_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_compile-qwen7b-verify_20260519T121824.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_compile-qwen7b-verify_20260519T121824_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_compile-round11-final_20260519T124247.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_compile-verify-v2_20260519T114356.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_compile-verify-v2_20260519T114356_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_compile-verify-v3_20260519T035255.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_compile-verify-v3_20260519T035255_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_d060-wiki-narrative-update_20260518T003048.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_d060-wiki-narrative-update_20260518T003048_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_dash-check_20260519T035417.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_dash-check_20260519T035417_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_dream-simulation-prep_20260519T044614.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_dream-simulation-prep_20260519T044614_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_fix-bootstrap-references_20260519T000124.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_fix-eq1-ci-definition_20260519T062703.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_fix-eq1-ci-definition_20260519T062703_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_fix-fig4-colorbar_20260519T160942.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_fix-fig4-colorbar_20260519T160942_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_fix-ing-appendix_20260519T035811.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_fix-ing-appendix_20260519T035811_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_fix-ing-phrases-and-cite_20260519T035804.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_fix-ing-phrases-and-cite_20260519T035804_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_fix-overfull-hbox_20260519T054912.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_fix-overfull-hbox_20260519T054912_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_merge-fig2-fig7_20260519T170206.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_merge-fig2-fig7_20260519T170206_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_mistral-consistency-check_20260519T114424.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_mistral-consistency-check_20260519T114424_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_p0-fixes-counts-intro_20260518T002124.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_p0-fixes-counts-intro_20260518T002124_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_pre-dream-reference-audit_20260519T050926.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_pre-dream-reference-audit_20260519T050926_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_pre-submission-check_20260519T095454.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_pre-submission-check_20260519T095454_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_retrain-appendix-table-update_20260519T035307.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_retrain-appendix-table-update_20260519T035307_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_round11-prep-checklist_20260519T054933.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_round11-prep-checklist_20260519T054933_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_update-code-table-pythia_20260519T031644.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_update-code-table-pythia_20260519T031644_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_verify-bertrand-bib_20260519T032342.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_verify-bertrand-bib_20260519T032342_result.json
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_visual-preview_20260519T125408.log
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_visual-preview_20260519T125408_result.json
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "2732737b-e594-4919-a385-95e1241138d1"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 276_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "aaf9360ccb6d4820a",
+  "tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "description": "Reading logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log",
+  "usage": {
+    "total_tokens": 32426,
+    "tool_uses": 16,
+    "duration_ms": 24237
+  },
+  "last_tool_name": "Read",
+  "uuid": "0bd80446-27c9-4836-89d4-77acfb5029c4",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 277_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01LDwFbVA5VevT1sPqR4yesp`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log",
+  "limit": 100,
+  "offset": 500
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "3d4a3969-26d2-474b-9427-789725b94c25",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01TUUHA3DkQuZH4NWYQd8Jak",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 1201,
+      "cache_read_input_tokens": 31184,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1201,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 278 · 2026-05-19T23:49:09.039Z_
+
+<details><summary>↩ Tool result · `toolu_01LDwFbVA5VevT1sPqR4yesp`</summary>
+
+```text
+&lt;system-reminder>Warning: the file exists but is shorter than the provided offset (500). The file has 278 lines.&lt;/system-reminder>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "584912c5-b741-431c-921f-1e6dfb4dc711"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 279_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "aaf9360ccb6d4820a",
+  "tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "description": "Reading logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log",
+  "usage": {
+    "total_tokens": 32631,
+    "tool_uses": 17,
+    "duration_ms": 25725
+  },
+  "last_tool_name": "Read",
+  "uuid": "eb6a4613-7b89-4f6f-a527-d1dfaa2b1145",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 280_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01HCta5t6Hz3pK9kwKcW9God`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "ead38cdb-7c2e-4458-901a-9d34862a4183",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01VchzPknHHGmbRMt9fQ85JX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 204,
+      "cache_read_input_tokens": 32385,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 204,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 281 · 2026-05-19T23:49:10.524Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01HCta5t6Hz3pK9kwKcW9God`</summary>
+
+```text
+File content (702.4KB) exceeds maximum allowed size (256KB). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "6ee7931c-dc6b-4fce-8296-db86fdeaf7d0",
+  "tool_use_result": "Error: File content (702.4KB) exceeds maximum allowed size (256KB). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 282_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad5f9e34333ab2c52",
+  "tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "description": "Running for f in /home/ubuntu/.agent-ml-research-idea_gen…",
+  "usage": {
+    "total_tokens": 32510,
+    "tool_uses": 9,
+    "duration_ms": 22032
+  },
+  "last_tool_name": "Bash",
+  "uuid": "96900cf9-0b52-40aa-af2b-3adc37e0eaeb",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 283_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01EL3UwBaumdXiPpiF42qPHb`</summary>
+
+```json
+{
+  "command": "for f in /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_*20260519*.log /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_*20260518*.log; do if grep -q \"deberta_comparison\\|tab:deberta\\|DeBERTa\" \"$f\" 2>/dev/null; then echo \"=== $(basename $f) ===\"; grep -i \"deberta_comparison\\|tab:deberta\\|DeBERTa\" \"$f\" | head -5; fi; done"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "32e660cc-6937-4526-802c-e065cd0ed2c6",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01VNR2TyQYqVBMcKEPoBiMVH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3520,
+      "cache_read_input_tokens": 28935,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3520,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 284 · 2026-05-19T23:49:11.009Z_
+
+<details><summary>↩ Tool result · `toolu_01EL3UwBaumdXiPpiF42qPHb`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "67a7f00b-b36c-4ac1-b0e8-8e7db72d5ac3"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 285_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "aaf9360ccb6d4820a",
+  "tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "description": "Reading logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log",
+  "usage": {
+    "total_tokens": 32828,
+    "tool_uses": 18,
+    "duration_ms": 27393
+  },
+  "last_tool_name": "Read",
+  "uuid": "1980ddf4-942d-4004-9e89-15ab14af869c",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 286_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01V4smb5nNDzBUWRSioWGN3E`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log",
+  "limit": 140,
+  "offset": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "6c308bcf-7883-485d-a1fc-da43fe43f918",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01EwkUVpgs6cWvhKyFDPySrK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 192,
+      "cache_read_input_tokens": 32589,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 192,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 287 · 2026-05-19T23:49:12.464Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01V4smb5nNDzBUWRSioWGN3E`</summary>
+
+```text
+File content (209308 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "4b66f147-52bf-457f-bf90-93c198188d27",
+  "tool_use_result": "Error: File content (209308 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 288_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad5f9e34333ab2c52",
+  "tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "description": "Running for f in /home/ubuntu/.agent-ml-research-idea_gen…",
+  "usage": {
+    "total_tokens": 32770,
+    "tool_uses": 10,
+    "duration_ms": 23865
+  },
+  "last_tool_name": "Bash",
+  "uuid": "fe874174-34cd-4333-98b3-065db7019efa",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 289_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014QScY4sZwjVh3HRMEAA85k`</summary>
+
+```json
+{
+  "command": "for f in /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_*20260519*.log /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_*20260518*.log; do if grep -q \"Table 4\\|tab:deberta\\|deberta.*comparison\" \"$f\" 2>/dev/null; then echo \"=== $(basename $f) ===\"; fi; done"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "dec29a6f-0d4c-4e5c-9bbb-decd7492d713",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01Xcf1bwX8fXrMuAfzCFcvdw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 259,
+      "cache_read_input_tokens": 32455,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 259,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 290 · 2026-05-19T23:49:12.865Z_
+
+<details><summary>↩ Tool result · `toolu_014QScY4sZwjVh3HRMEAA85k`</summary>
+
+```text
+=== worker_paper_compile-final-check_20260519T115143.log ===
+=== worker_paper_compile-round11-final_20260519T124247.log ===
+=== worker_paper_compile-verify-v2_20260519T114356.log ===
+=== worker_paper_visual-preview_20260519T125408.log ===
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "998ece46-4a0d-4224-b0ba-04995c2c67fa"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 291_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad5f9e34333ab2c52",
+  "tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "description": "Running grep -n \"deberta\\|Table 4\" /home/ubuntu/.agent-ml…",
+  "usage": {
+    "total_tokens": 33084,
+    "tool_uses": 11,
+    "duration_ms": 25552
+  },
+  "last_tool_name": "Bash",
+  "uuid": "9dd8db38-fd9c-41c6-a6c2-f7d62f2837b9",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 292_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01FzWCxYbqjsRe6o3be6hYvy`</summary>
+
+```json
+{
+  "command": "grep -n \"deberta\\|Table 4\" /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_compile-final-check_20260519T115143.log | head -20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "550d6b0a-108a-4184-852e-4883b97cf428",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01AZiQimKSquqg6C54Rt9mMN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 308,
+      "cache_read_input_tokens": 32714,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 308,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 293 · 2026-05-19T23:49:14.426Z_
+
+<details><summary>↩ Tool result · `toolu_01FzWCxYbqjsRe6o3be6hYvy`</summary>
+
+```text
+30:{"type":"user","message":{"role":"user","content":[{"tool_use_id":"toolu_01Qt7ECyxXJCZxKP8Ttruqa5","type":"tool_result","content":"0: '∗'\n1: 'tion (Mistral-7B, Kempirical             ∗'\n2: '=1) yields Kempirical =2    549'\n3: 'C4, K * =2 (8 models, min-max)'\n4: 'Mistral-7B, K * =1                                    ∗'\n5: 'K * =2                    arXiv Pythia, K * =3'\n6: 'on code and Kempirical =3 on arXiv; a LaTeX abla-        550'\n7: 'Retrain-chain, K * 4                  tion confirms content rather than formatting drives      551'\n8: '10 1                                                                            the arXiv difference'\n11: 'JSD (log scale)'\n12: 'Surprisal attenuation and boundary variation.            553'\n13: '∗'\n14: 'The Mistral-7B exception (Kempirical  =1) arises         554'\n15: '10 2                                                                            from compressed surp'\n16: 'ble 42); larger 0→1 surprisal drops correlate with       556'\n17: '∗'\n18: 'higher 1v2 AUC (Table 41), predicting Kempirical         557'\n19: '0 vs 1       1 vs 2     2 vs 3            3 vs 4            4 vs 5       may decrease beyond 14B.   '\n20: 'Depth Pair'\n21: '7   Conclusion                                           559'\n22: 'Figure 5: Token-level JSD between adjacent depth pairs'\n23: 'on log scale. Blue band: min-max range across 8                                                     '\n24: 'We measure Kempirical   =2 for web text (8/9 configu-    560'\n25: '∗                                                                             ∗                     '\n26: 'C4 models (1B–14B) with Kempirical     =2; dashed pur-                                            ra'\n27: '∗'\n28: 'ple: Mistral-7B (Kempirical =1, cross-scorer validated);                                          fo'\n29: '∗'\n30: 'green: arXiv Pythia (Kempirical =3); dotted red: retrain-'\n31: '∗                                                                                       determinant '\n32: 'chain (Kempirical =7). C4 models exhibit a sharp cliff'\n33: '(λ ≈ 2.2–3.5), while arXiv decays gradually (λ ≈ 1.0)'\n34: 'domains, a single generation pass renders synthetic      564'\n36: 'and retrain-chain shows no cliff (λ = 0.285).                                                     te'\n37: 'put, limiting the practical ceiling of depth-based       566'\n38: 'detection to one or two generations. These domain-       567'\n39: '520   chain (λ = 0.285, no cliff) reflects cumulative                                               '\n40: '521                                          ∗'\n41: 'model-adaptation artifacts, extending Kempirical to                                               ti'\n42: '522   7 (Appendix C.8).                                                                             '","is_error":false}]},"parent_tool_use_id":null,"session_id":"79aba881-b517-4b3a-95ad-14d0de222ce2","uuid":"436479b7-8cd5-4781-9257-157db5799f94","timestamp":"2026-05-19T11:52:58.192Z","tool_use_result":{"stdout":"0: '∗'\n1: 'tion (Mistral-7B, Kempirical             ∗'\n2: '=1) yields Kempirical =2    549'\n3: 'C4, K * =2 (8 models, min-max)'\n4: 'Mistral-7B, K * =1                                    ∗'\n5: 'K * =2                    arXiv Pythia, K * =3'\n6: 'on code and Kempirical =3 on arXiv; a LaTeX abla-        550'\n7: 'Retrain-chain, K * 4                  tion confirms content rather than formatting drives      551'\n8: '10 1                                                                            the arXiv difference'\n11: 'JSD (log scale)'\n12: 'Surprisal attenuation and boundary variation.            553'\n13: '∗'\n14: 'The Mistral-7B exception (Kempirical  =1) arises         554'\n15: '10 2                                                                            from compressed surp'\n16: 'ble 42); larger 0→1 surprisal drops correlate with       556'\n17: '∗'\n18: 'higher 1v2 AUC (Table 41), predicting Kempirical         557'\n19: '0 vs 1       1 vs 2     2 vs 3            3 vs 4            4 vs 5       may decrease beyond 14B.   '\n20: 'Depth Pair'\n21: '7   Conclusion                                           559'\n22: 'Figure 5: Token-level JSD between adjacent depth pairs'\n23: 'on log scale. Blue band: min-max range across 8                                                     '\n24: 'We measure Kempirical   =2 for web text (8/9 configu-    560'\n25: '∗                                                                             ∗                     '\n26: 'C4 models (1B–14B) with Kempirical     =2; dashed pur-                                            ra'\n27: '∗'\n28: 'ple: Mistral-7B (Kempirical =1, cross-scorer validated);                                          fo'\n29: '∗'\n30: 'green: arXiv Pythia (Kempirical =3); dotted red: retrain-'\n31: '∗                                                                                       determinant '\n32: 'chain (Kempirical =7). C4 models exhibit a sharp cliff'\n33: '(λ ≈ 2.2–3.5), while arXiv decays gradually (λ ≈ 1.0)'\n34: 'domains, a single generation pass renders synthetic      564'\n36: 'and retrain-chain shows no cliff (λ = 0.285).                                                     te'\n37: 'put, limiting the practical ceiling of depth-based       566'\n38: 'detection to one or two generations. These domain-       567'\n39: '520   chain (λ = 0.285, no cliff) reflects cumulative                                               '\n40: '521                                          ∗'\n41: 'model-adaptation artifacts, extending Kempirical to                                               ti'\n42: '522   7 (Appendix C.8).                                                                             '","stderr":"","interrupted":false,"isImage":false,"noOutputExpected":false}}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "328e87b4-d1d8-4d24-866b-d1fdcafe8cd9"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 294_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "aaf9360ccb6d4820a",
+  "tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "description": "Running jq -r '.message.content[]? | select(.type==\"text\"…",
+  "usage": {
+    "total_tokens": 33059,
+    "tool_uses": 19,
+    "duration_ms": 29666
+  },
+  "last_tool_name": "Bash",
+  "uuid": "8cd27701-831d-4bb1-8854-b7582bcc3710",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 295_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_016jNzKEWo1nPUWhRCAFm8H1`</summary>
+
+```json
+{
+  "command": "jq -r '.message.content[]? | select(.type==\"text\") | .text' /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log 2>/dev/null | head -200"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "db50c20f-bf19-472c-882a-0e0d8f18a3bb",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01LznNAwX8Ua2QZApENySooY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4,
+      "cache_creation_input_tokens": 229,
+      "cache_read_input_tokens": 32781,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 229,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 296 · 2026-05-19T23:49:14.522Z_
+
+<details><summary>↩ Tool result · `toolu_016jNzKEWo1nPUWhRCAFm8H1`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "a50f6c10-9200-4698-910c-8a72cc4e3412"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 297_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "aaf9360ccb6d4820a",
+  "tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "description": "Running file /home/ubuntu/.agent-ml-research-idea_gen_050…",
+  "usage": {
+    "total_tokens": 33245,
+    "tool_uses": 20,
+    "duration_ms": 31283
+  },
+  "last_tool_name": "Bash",
+  "uuid": "db5a85b8-e253-40ff-af57-a60e4b5f9ee1",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 298_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01C6VdX6bCiFP3kQsJWnsLKP`</summary>
+
+```json
+{
+  "command": "file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log && head -1 /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log | cut -c1-200"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "5b2d765e-fba8-4308-a789-13227c975722",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01EyBhuJZxRrZEMmSc3Ho4uh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 182,
+      "cache_read_input_tokens": 33010,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 182,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 299 · 2026-05-19T23:49:16.159Z_
+
+<details><summary>↩ Tool result · `toolu_01C6VdX6bCiFP3kQsJWnsLKP`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313.log: Unicode text, UTF-8 text, with very long lines (38768)
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": "toolu_018wJbCefXxh9EwJkqB3aARd",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "58735d28-ab57-4960-bf6e-da437205b47e"
+}
+```
+
+</details>
+
+---
+
+
+### System
+
+_source line 300_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_progress",
+  "task_id": "ad5f9e34333ab2c52",
+  "tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "description": "Running grep -i \"deberta\\|lightgbm\\|table.*4\\|tab:.*compa…",
+  "usage": {
+    "total_tokens": 35079,
+    "tool_uses": 12,
+    "duration_ms": 28154
+  },
+  "last_tool_name": "Bash",
+  "uuid": "de1c86bb-47ab-4b95-a695-5a3e77423365",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8"
+}
+```
+
+---
+
+
+### Tool call
+
+_source line 301_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Ni3WB4idVi6QBQAuCV5jUt`</summary>
+
+```json
+{
+  "command": "grep -i \"deberta\\|lightgbm\\|table.*4\\|tab:.*comparison\" /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_paper_code-crossmodel-table_20260519T000706.log | head -30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": "toolu_01Lyy4pKThhxNjNs4rUevi7m",
+  "session_id": "2b0d8342-eefb-4b51-80e8-bab83286beb8",
+  "uuid": "4d97f2b6-5845-41c5-9581-966414fc2b11",
+  "message": {
+    "model": "claude-haiku-4-5-20251001",
+    "id": "msg_01DnCGCu6UyLbPqtqwZbqTom",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 1993,
+      "cache_read_input_tokens": 33022,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1993,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,154 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{mitchell2023detectgpt,hans2024binoculars}
+\citation{shumailov2024model,alemohammad2024selfconsuming,dohmatob2024model}
+\citation{xie2023dsir,engstrom2024dsdm}
+\citation{drayson2025}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{mitchell2023detectgpt}
+\citation{bao2024fast}
+\citation{hans2024binoculars}
+\citation{yang2023dnagpt}
+\citation{shumailov2024model}
+\citation{alemohammad2024selfconsuming}
+\citation{dohmatob2024model}
+\citation{xie2023dsir}
+\citation{tirumala2023d4}
+\citation{xie2024doremi}
+\citation{drayson2025}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Machine-Generated Text Detection.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model Collapse and Iterative Training.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data Selection and Curation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Formulation}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Generation Pipeline}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Prompt-chain (canonical).}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Retrain-chain (ecological validity).}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Canonical condition rationale.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Feature Extraction}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Pairwise AUC on C4 web text (continuation mode). All models use $\theta = 0.60$. Bold: $K^*$ boundary pair. $^\dagger $CI lower $= 0.6015$, borderline.}}{4}{table.caption.11}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:c4_main}{{1}{4}{Pairwise AUC on C4 web text (continuation mode). All models use $\theta = 0.60$. Bold: $K^*$ boundary pair. $^\dagger $CI lower $= 0.6015$, borderline}{table.caption.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Classification and Evaluation}{4}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Source domains.}{4}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Generator models.}{4}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Decoding strategies.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scorer models.}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}$K^*\!=\!2$ as the Dominant Mode for Web Text}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:c4}{{5.1}{4}{$K^*\!=\!2$ as the Dominant Mode for Web Text}{subsection.5.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Decoding strategy ablation. $K^*\!=\!2$ for all 8 conditions.}}{5}{table.caption.14}\protected@file@percent }
+\newlabel{tab:decoding}{{2}{5}{Decoding strategy ablation. $K^*\!=\!2$ for all 8 conditions}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Wikipedia $K^*\!=\!1$ under cross-family scorer control (6 models).}}{5}{table.caption.16}\protected@file@percent }
+\newlabel{tab:wiki}{{3}{5}{Wikipedia $K^*\!=\!1$ under cross-family scorer control (6 models)}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {paragraph}{Scale invariance.}{5}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Decoding invariance.}{5}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Domain Dependence: A Four-Domain Hierarchy}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:domain}{{5.2}{5}{Domain Dependence: A Four-Domain Hierarchy}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Wikipedia: $K^*\!=\!1$ (unanimous).}{5}{section*.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{arXiv: $K^*\!=\!3$ (5/5 domain-competent models, 4 architecture families).}{5}{section*.17}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces arXiv $K^*\!=\!3$ cross-validation with cross-scorer bootstrap CI. $^*$Qwen-7B cross-scorer drops to $K^*\!=\!2$ (CI straddles $\theta $).}}{6}{table.caption.18}\protected@file@percent }
+\newlabel{tab:arxiv}{{4}{6}{arXiv $K^*\!=\!3$ cross-validation with cross-scorer bootstrap CI. $^*$Qwen-7B cross-scorer drops to $K^*\!=\!2$ (CI straddles $\theta $)}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Code/Python domain results. Models with sufficient code pretraining reach $K^*\!=\!2$; those without remain at $K^*\!=\!1$.}}{6}{table.caption.21}\protected@file@percent }
+\newlabel{tab:code}{{5}{6}{Code/Python domain results. Models with sufficient code pretraining reach $K^*\!=\!2$; those without remain at $K^*\!=\!1$}{table.caption.21}{}}
+\newlabel{sec:mistral}{{5.2}{6}{Mistral C4 $\to $ arXiv: domain-specific one-wash}{section*.19}{}}
+\@writefile{toc}{\contentsline {paragraph}{Mistral C4 $\to $ arXiv: domain-specific one-wash.}{6}{section*.19}\protected@file@percent }
+\newlabel{sec:code}{{5.2}{6}{Code/Python: $K^*\!=\!2$ ceiling with competence modulation}{section*.20}{}}
+\@writefile{toc}{\contentsline {paragraph}{Code/Python: $K^*\!=\!2$ ceiling with competence modulation.}{6}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Domain hierarchy summary.}{6}{section*.22}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Domain hierarchy summary. ``Ceiling'' is the $K^*$ reached by domain-competent models. ``Fit'' is the fraction of model-domain pairs matching the ceiling prediction ($\theta =0.60$).}}{7}{table.caption.23}\protected@file@percent }
+\newlabel{tab:domain_summary}{{6}{7}{Domain hierarchy summary. ``Ceiling'' is the $K^*$ reached by domain-competent models. ``Fit'' is the fraction of model-domain pairs matching the ceiling prediction ($\theta =0.60$)}{table.caption.23}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces $K^*$ distribution across $\theta $ values and domains. Values show the count of models at each $K^*$ level.}}{7}{table.caption.24}\protected@file@percent }
+\newlabel{tab:theta}{{7}{7}{$K^*$ distribution across $\theta $ values and domains. Values show the count of models at each $K^*$ level}{table.caption.24}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}$\theta $-Sensitivity Analysis}{7}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:theta}{{5.3}{7}{$\theta $-Sensitivity Analysis}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Cross-Model Transfer and Scorer Independence}{7}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:transfer}{{5.4}{7}{Cross-Model Transfer and Scorer Independence}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Transfer retention.}{7}{section*.25}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scorer independence.}{7}{section*.27}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Feature ordering consistency.}{7}{section*.29}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Cross-model transfer accuracy retention (continuation mode).}}{8}{table.caption.26}\protected@file@percent }
+\newlabel{tab:transfer}{{8}{8}{Cross-model transfer accuracy retention (continuation mode)}{table.caption.26}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Cross-scorer matrix (selected entries, C4 domain).}}{8}{table.caption.28}\protected@file@percent }
+\newlabel{tab:crossscorer}{{9}{8}{Cross-scorer matrix (selected entries, C4 domain)}{table.caption.28}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Retrain-Chain: Ecological Validity}{8}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:retrain}{{5.5}{8}{Retrain-Chain: Ecological Validity}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}$K^*$-Aware Data Curation}{8}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:curation}{{5.6}{8}{$K^*$-Aware Data Curation}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Dose-response analysis.}{8}{section*.32}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Prompt-chain vs.\ retrain-chain AUC (depth 7, two model families).}}{9}{table.caption.30}\protected@file@percent }
+\newlabel{tab:retrain}{{10}{9}{Prompt-chain vs.\ retrain-chain AUC (depth 7, two model families)}{table.caption.30}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Filtering strategy comparison (Qwen-1.5B, C4, 30\% contamination, 5 seeds). $^*p < 0.05$ vs.\ no-filter (paired $t$-test).}}{9}{table.caption.31}\protected@file@percent }
+\newlabel{tab:filtering}{{11}{9}{Filtering strategy comparison (Qwen-1.5B, C4, 30\% contamination, 5 seeds). $^*p < 0.05$ vs.\ no-filter (paired $t$-test)}{table.caption.31}{}}
+\@writefile{toc}{\contentsline {paragraph}{Negative results: arXiv and Pythia.}{9}{section*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Supporting Analyses}{9}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:llm_baseline}{{5.7}{9}{LLM zero-shot baseline}{section*.35}{}}
+\@writefile{toc}{\contentsline {paragraph}{LLM zero-shot baseline.}{9}{section*.35}\protected@file@percent }
+\newlabel{sec:binary_det}{{5.7}{9}{Binary detector depth estimation}{section*.37}{}}
+\@writefile{toc}{\contentsline {paragraph}{Binary detector depth estimation.}{9}{section*.37}\protected@file@percent }
+\newlabel{sec:neural_probe}{{5.7}{9}{Neural probe comparison}{section*.38}{}}
+\@writefile{toc}{\contentsline {paragraph}{Neural probe comparison.}{9}{section*.38}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Dose-response: binary vs.\ no-filter across contamination ratios (HellaSwag).}}{10}{table.caption.33}\protected@file@percent }
+\newlabel{tab:dose}{{12}{10}{Dose-response: binary vs.\ no-filter across contamination ratios (HellaSwag)}{table.caption.33}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces LLM zero-shot vs.\ OBD baseline for depth estimation.}}{10}{table.caption.36}\protected@file@percent }
+\newlabel{tab:llm_baseline}{{13}{10}{LLM zero-shot vs.\ OBD baseline for depth estimation}{table.caption.36}{}}
+\@writefile{toc}{\contentsline {paragraph}{Subsampling power curve.}{10}{section*.39}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{10}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Why is $K^*$ so low?}{10}{section*.40}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Domain ceiling as empirical tendency.}{10}{section*.41}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Generation mode as confound.}{10}{section*.42}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Gap between characterization and curation.}{10}{section*.43}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Limitations}{11}{section.7}\protected@file@percent }
+\newlabel{sec:limitations}{{7}{11}{Limitations}{section.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Scale coverage.}{11}{section*.44}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Domain coverage.}{11}{section*.45}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Curation scope.}{11}{section*.46}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Threshold sensitivity.}{11}{section*.47}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scorer confound.}{11}{section*.48}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Prompt-chain vs.\ real-world contamination.}{11}{section*.49}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Code domain ceiling.}{11}{section*.50}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{11}{section.8}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{alemohammad2024selfconsuming}{{1}{2024}{{Alemohammad et~al.}}{{}}}
+\bibcite{bao2024fast}{{2}{2024}{{Bao et~al.}}{{}}}
+\bibcite{dohmatob2024model}{{3}{2024}{{Dohmatob et~al.}}{{}}}
+\bibcite{drayson2025}{{4}{2025}{{Drayson et~al.}}{{}}}
+\bibcite{engstrom2024dsdm}{{5}{2024}{{Engstrom et~al.}}{{}}}
+\bibcite{hans2024binoculars}{{6}{2024}{{Hans et~al.}}{{}}}
+\bibcite{mitchell2023detectgpt}{{7}{2023}{{Mitchell et~al.}}{{}}}
+\bibcite{shumailov2024model}{{8}{2024}{{Shumailov et~al.}}{{}}}
+\bibcite{tirumala2023d4}{{9}{2023}{{Tirumala et~al.}}{{}}}
+\bibcite{xie2023dsir}{{10}{2023}{{Xie et~al.}}{{}}}
+\bibcite{xie2024doremi}{{11}{2024}{{Xie et~al.}}{{}}}
+\bibcite{yang2023dnagpt}{{12}{2023}{{Yang et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Additional Experimental Results}{12}{appendix.A}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Classifier Comparison}{12}{subsection.A.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Classifier comparison (C4, Qwen-1.5B).}}{12}{table.caption.52}\protected@file@percent }
+\newlabel{tab:classifier}{{14}{12}{Classifier comparison (C4, Qwen-1.5B)}{table.caption.52}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Qwen-1.5B base vs.\ instruct (C4, continuation).}}{13}{table.caption.53}\protected@file@percent }
+\newlabel{tab:base_instruct}{{15}{13}{Qwen-1.5B base vs.\ instruct (C4, continuation)}{table.caption.53}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Base vs.\ Instruct Comparison}{13}{subsection.A.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.3}Text Length Ablation}{13}{subsection.A.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Length ablation (Qwen-1.5B, C4, continuation).}}{13}{table.caption.54}\protected@file@percent }
+\newlabel{tab:length}{{16}{13}{Length ablation (Qwen-1.5B, C4, continuation)}{table.caption.54}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.4}LaTeX Markup Ablation (arXiv)}{13}{subsection.A.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces arXiv with and without LaTeX markup (Qwen-1.5B).}}{13}{table.caption.55}\protected@file@percent }
+\newlabel{tab:latex}{{17}{13}{arXiv with and without LaTeX markup (Qwen-1.5B)}{table.caption.55}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.5}Subsampling Power Curve}{13}{subsection.A.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.6}Binary Detector Depth Estimation}{13}{subsection.A.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.7}Pythia Filtering (Null Result)}{13}{subsection.A.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.8}Neural Probe vs.\ 15D Features}{13}{subsection.A.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces $K^*\!=\!2$ detection rate by sample size ($n$, C4).}}{14}{table.caption.56}\protected@file@percent }
+\newlabel{tab:power}{{18}{14}{$K^*\!=\!2$ detection rate by sample size ($n$, C4)}{table.caption.56}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Binary detectors used as depth proxies (6-class).}}{14}{table.caption.57}\protected@file@percent }
+\newlabel{tab:binary_baseline}{{19}{14}{Binary detectors used as depth proxies (6-class)}{table.caption.57}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces Pythia-1.4B filtering results (null). Base model capacity too low.}}{14}{table.caption.58}\protected@file@percent }
+\newlabel{tab:pythia_filter}{{20}{14}{Pythia-1.4B filtering results (null). Base model capacity too low}{table.caption.58}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces Neural probe (frozen embeddings + MLP) vs.\ model-free 15D features.}}{14}{table.caption.59}\protected@file@percent }
+\newlabel{tab:neural}{{21}{14}{Neural probe (frozen embeddings + MLP) vs.\ model-free 15D features}{table.caption.59}{}}
+\gdef \@abspage@last{14}

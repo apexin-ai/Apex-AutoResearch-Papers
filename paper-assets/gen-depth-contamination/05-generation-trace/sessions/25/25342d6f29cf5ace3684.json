@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "25342d6f29cf5ace3684",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "experiment exp bootstrap 10k",
+  "task_key": "worker_experiment_exp_bootstrap_10k_20260520T114145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_experiment_exp_bootstrap_10k_20260520T114145.log",
+    "occurrence": 1,
+    "bytes": 992721,
+    "sha256": "1bcacd82d22e948e4c47dcc9111d900b6d322227a1929eb12374080db4c234a1"
+  },
+  "statistics": {
+    "messages": 366,
+    "user_turns": 0,
+    "tool_calls": 141,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 1,
+      "assistant": 76,
+      "tool_call": 141,
+      "tool_result": 141,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 366,
+      "chunks": [
+        {
+          "path": "25342d6f29cf5ace3684-part-0001.json",
+          "message_count": 142
+        },
+        {
+          "path": "25342d6f29cf5ace3684-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "25342d6f29cf5ace3684-part-0003.json",
+          "message_count": 44
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/experiment-exp-bootstrap-10k.md"
+}

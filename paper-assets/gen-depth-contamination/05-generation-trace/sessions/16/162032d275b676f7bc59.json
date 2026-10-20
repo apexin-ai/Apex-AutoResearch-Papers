@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "162032d275b676f7bc59",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops check pythia code result",
+  "task_key": "worker_ops_check-pythia-code-result_20260519T002403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-pythia-code-result_20260519T002403_result.json",
+    "occurrence": 1,
+    "bytes": 1108,
+    "sha256": "7a22786b792a4280b4cf68241aff157a234c99cf1ba8f5ab20a05af656bfa0a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有活跃的 cron job，无需删除。\n\n---\n\n**exp_code_pythia1b4 实验完成，registry 已更新。结果摘要：**\n\n| Depth Pair | AUC (mean ± std) | 5-Fold AUCs |\n|---|---|---|\n| 0 vs 1 | **0.9592 ± 0.0036** | 0.958, 0.958, 0.966, 0.960, 0.955 |\n| 1 vs 2 | 0.5983 ± 0.0050 | 0.601, 0.588, 0.600, 0.600, 0.602 |\n| 2 vs 3 | 0.5215 ± 0.0128 | 0.524, 0.512, 0.531, 0.502, 0.538 |\n| 3 vs 4 | 0.5152 ± 0.0120 | 0.498, 0.533, 0.509, 0.512, 0.524 |\n| 4 vs 5 | 0.5046 ± 0.0137 | 0.498, 0.482, 0.507, 0.522, 0.513 |\n\n**K\\* = 1**（θ=0.60），与预期的 K\\*=2 不一致。1v2 AUC = 0.5983 极其接近阈值但未达到。Pythia-1.4B 在 Code domain 的深度饱和比 Qwen 更早（depth 1 即饱和），这暗示 K\\* 可能与模型架构/预训练数据有关，而非纯粹的 domain 属性。\n\n关键文件路径：\n- 结果目录：`/root/autodl-tmp/gen-depth-contamination/results/exp_code_pythia1b4/`\n- Features CSV：`/root/autodl-tmp/gen-depth-contamination/data/exp_code_pythia1b4/features.csv`\n- 训练日志：`results/exp_code_pythia1b4/train.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-pythia-code-result.md"
+}

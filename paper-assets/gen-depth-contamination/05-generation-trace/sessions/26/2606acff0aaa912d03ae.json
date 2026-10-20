@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2606acff0aaa912d03ae",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis cross transfer v2 check",
+  "task_key": "worker_analysis_cross-transfer-v2-check_20260520T030352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross-transfer-v2-check_20260520T030352_result.json",
+    "occurrence": 1,
+    "bytes": 3105,
+    "sha256": "e10115c9caaf7c0b391452a2bc60776c9106c0d0f5fd7eb88c28eb5e25587d9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 13 JSON 已读取，日志也确认 v2 实验正在跑。汇总如下：\n\n---\n\n## 1. v2 实验状态：**运行中**\n\nPID 275361 存活，已运行 3h06m。当前进度：**Fold 0, Epoch 1, step 1000/1500**（共 5 folds × 3 epochs）。预计还需约 2.5-3 小时。\n\n---\n\n## 2. 完整 14 对矩阵（1-indexed K*, θ=0.6）\n\n| # | Train → Test | K* | 0v1 AUC | 1v2 AUC | 2v3 AUC | 3v4 AUC | 4v5 AUC |\n|---|---|---|---|---|---|---|---|\n| 1 | llama8b → olmo | **1** | 0.9999 [.9997,.9999] | 0.4984 [.4872,.5097] | 0.4886 | 0.4999 | 0.4971 |\n| 2 | llama8b → pythia | **2** | 0.9998 [.9996,.9999] | 0.6800 [.6712,.6886] | 0.5958 [.5873,.6038] | 0.5538 | 0.5502 |\n| 3 | mistral7b → pythia | **2** | 0.9999 [.9998,.9999] | 0.6602 [.6515,.6687] | 0.5746 [.5659,.5833] | 0.5434 | 0.5393 |\n| 4 | olmo → llama8b | **2** | 0.9770 [.9746,.9792] | 0.6439 [.6355,.6530] | 0.5683 [.5581,.5770] | 0.5424 | 0.5226 |\n| 5 | olmo → pythia | **1** | 0.9324 [.9282,.9369] | 0.5864 [.5774,.5961] | 0.5247 | 0.5066 | 0.5164 |\n| 6 | olmo → qwen7b | **2** | 0.9822 [.9801,.9840] | 0.6331 [.6246,.6423] | 0.5457 [.5364,.5547] | 0.5310 | 0.5119 |\n| 7 | pythia → llama8b | **2** | 0.9999 [.9999,1.0] | 0.6994 [.6915,.7076] | 0.6073 [.5992,.6154] | 0.5819 | 0.5473 |\n| 8 | pythia → mistral7b | **2** | 0.9999 [.9999,1.0] | 0.6931 [.6850,.7018] | 0.6013 [.5936,.6085] | 0.5607 | 0.5496 |\n| 9 | pythia → olmo | **1** | 0.9998 [.9996,.9999] | 0.4871 [.4761,.4982] | 0.4907 | 0.4970 | 0.4980 |\n| 10 | pythia → qwen7b | **3** | 0.9999 [.9996,1.0] | 0.7010 [.6931,.7090] | 0.6095 [.6017,.6167] | 0.5684 [.5613,.5763] | 0.5466 |\n| 11 | qwen7b → llama8b | **3** | 0.9998 [.9995,1.0] | 0.7384 [.7308,.7464] | 0.6278 [.6196,.6357] | 0.5870 [.5795,.5941] | 0.5519 |\n| 12 | qwen7b → olmo | **1** | 0.9997 [.9992,.9999] | 0.4920 [.4810,.5029] | 0.4889 | 0.5014 | 0.4973 |\n| 13 | qwen7b → pythia | **2** | 0.9997 [.9994,.9999] | 0.6651 [.6560,.6738] | 0.5774 [.5684,.5854] | 0.5468 | 0.5409 |\n| 14 | **llama8b → qwen7b** | — | **运行中** (Fold 0, Ep1) | | | | |\n\n> CI 仅标注了 K* 边界附近的关键层级；所有 0v1 AUC 的 CI_lower 均 > θ=0.6。\n\n---\n\n## 3. K* 分布总结\n\n| K* | 数量 | Pairs |\n|---|---|---|\n| 1 | 4 | llama8b→olmo, olmo→pythia, pythia→olmo, qwen7b→olmo |\n| 2 | 7 | llama8b→pythia, mistral7b→pythia, olmo→llama8b, olmo→qwen7b, pythia→llama8b, pythia→mistral7b, qwen7b→pythia |\n| 3 | 2 | pythia→qwen7b, qwen7b→llama8b |\n\n**规律**：所有涉及 olmo 作为 test 的 pair，K* 均为 1（1v2 AUC ≈ 0.49，分类器完全失效）。qwen7b 作为 train 时迁移能力最强（K*=3 出现 1 次）。\n\n---\n\n## 4. 缺失 Pairs\n\n14 对设计中仅缺 `llama8b→qwen7b`（正在运行）。如果对照完整 5×4=20 有向对，以下 6 对不在本轮实验范围内：\n\n- llama8b → mistral7b\n- mistral7b → llama8b\n- mistral7b → olmo\n- mistral7b → qwen7b\n- olmo → mistral7b\n- qwen7b → mistral7b\n\n（均涉及 mistral7b 作为 train/test 端的非 pythia 配对）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cross-transfer-v2-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1977391a1442df5fdd92",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp007 bootstrap ci",
+  "task_key": "worker_analysis_exp007_bootstrap_ci_20260513T033359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp007_bootstrap_ci_20260513T033359_result.json",
+    "occurrence": 1,
+    "bytes": 1527,
+    "sha256": "1ccd005f7ccb76a88ed346ff300806a52f815fe46da9f8bff96277b81d50b8d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n### Bootstrap 95% CI + Permutation Test\n\n| Experiment | Pair | AUC | 95% CI | p-value |\n|---|---|---|---|---|\n| **Qwen rewrite** | 0v1 | 0.9956 | [0.9946, 0.9965] | <0.002 |\n| | 1v2 | 0.6955 | [0.6859, 0.7041] | <0.002 |\n| | 2v3 | 0.5893 | [0.5795, 0.5991] | <0.002 |\n| | 3v4 | 0.5435 | [0.5333, 0.5551] | <0.002 |\n| | 4v5 | 0.5340 | [0.5238, 0.5448] | <0.002 |\n| **Pythia** | 0v1 | 0.9932 | [0.9921, 0.9943] | <0.002 |\n| | 1v2 | 0.6539 | [0.6454, 0.6630] | <0.002 |\n| | 2v3 | 0.5514 | [0.5417, 0.5628] | <0.002 |\n| | 3v4 | 0.5152 | [0.5041, 0.5260] | 0.006 |\n| | 4v5 | 0.5136 | [0.5021, 0.5249] | 0.008 |\n| **OLMo** | 0v1 | 0.9970 | [0.9964, 0.9975] | <0.002 |\n| | 1v2 | 0.6145 | [0.6045, 0.6247] | <0.002 |\n| | 2v3 | 0.5496 | [0.5399, 0.5596] | <0.002 |\n| | 3v4 | 0.5091 | [0.4973, 0.5200] | 0.064 |\n| | 4v5 | 0.5045 | [0.4932, 0.5150] | 0.232 |\n\n### 关键检查\n\n**OLMo 1v2 CI lower = 0.6045 > 0.60 — K\\* claim ROBUST。** CI 完全在 0.60 阈值之上。\n\n方法：复用原始 pipeline 的 GroupKFold(5) + LGBMClassifier 计算 OOF predictions，然后对 OOF predictions 做 doc_id 级 bootstrap resampling（1000x）和 label permutation test（500x）。所有 AUC 值与 registry metrics 吻合。\n\n额外发现：\n- OLMo 3v4 (p=0.064) 和 4v5 (p=0.232) 不显著，CI 跨 0.5 — 确认 depth 3+ 已饱和\n- Pythia 3v4/4v5 虽然 p<0.01，但 CI 非常窄地高于 0.5，实际效应可忽略\n- 所有 CI 宽度约 0.02，统计精度足够"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp007-bootstrap-ci.md"
+}

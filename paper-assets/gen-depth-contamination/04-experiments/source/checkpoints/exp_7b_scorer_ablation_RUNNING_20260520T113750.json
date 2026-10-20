@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp_7b_scorer_ablation",
+  "project": "gen-depth-contamination",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:37:17.489Z",
+    "updated_at": "2026-05-20T11:37:50.364Z",
+    "hypothesis": "Qwen2.5-7B scorer yields same K* as Qwen2.5-1.5B scorer on C4 Pythia-1.4B and OLMo-1B depth chains, confirming K* is robust to scorer scale (4.7x parameter increase).",
+    "parent": "exp_022_cross_scorer",
+    "spec": {
+      "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0 python /root/autodl-tmp/gen-depth-contamination/scripts/run_7b_scorer_ablation.py'",
+      "server": "cqa1-22115",
+      "data_path": "data_exp020_pythia_greedy + data/olmo_c4_cont",
+      "data_count": 60000,
+      "model_name": "Qwen2.5-7B + Qwen2.5-1.5B-Instruct (scorers)",
+      "seed": 42,
+      "checkpoint_source": "exp_022_cross_scorer (Pythia C4 + OLMo C4 depth chain data)",
+      "eval_data": "C4 depth 0-5 from Pythia-1.4B and OLMo-1B generators"
+    }
+  },
+  "timestamp": "2026-05-20T11:37:50.831557+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,143 @@
+paper_key: "xie2024doremi"
+title: "DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining"
+venue: "NeurIPS 2023 (Spotlight)"
+full_text_available: true
+
+research:
+  baselines:
+    - "Default domain weights (The Pile heuristic proportions)"
+    - "Uniform domain weights"
+    - "Downstream-tuned oracle weights (GLaM dataset only)"
+  metrics:
+    - {name: "Per-domain log-perplexity (22 Pile domains)", direction: "lower_better"}
+    - {name: "Worst-case perplexity across domains", direction: "lower_better"}
+    - {name: "Average unweighted per-domain perplexity", direction: "lower_better"}
+    - {name: "Average one-shot exact-match accuracy (5 generative tasks: TriviaQA, NaturalQuestions, WebQuestions, SQuADv2, LAMBADA)", direction: "higher_better"}
+  datasets:
+    - {name: "The Pile", size: "800GB, 22 domains (24% web, 9% Wikipedia, 4% GitHub, etc.)"}
+    - {name: "GLaM dataset", size: "8 domains (Wikipedia, Filtered webpages, Conversations, Forums, Books, News, etc.)"}
+    - {name: "TriviaQA", size: "standard"}
+    - {name: "NaturalQuestions", size: "standard"}
+    - {name: "WebQuestions", size: "standard"}
+    - {name: "SQuADv2", size: "standard"}
+    - {name: "LAMBADA", size: "standard"}
+  ablation_dimensions:
+    - "Proxy model scale (70M, 150M, 280M, 1B) with fixed 8B main model"
+    - "Same-size training (280M, 510M, 760M, 1B DoReMi→same scale)"
+    - "Loss component decomposition (excess loss vs hardest-domains-only vs easiest-domains-only)"
+    - "Iterated DoReMi (multiple DRO rounds on GLaM: Round 1, 2, 3)"
+    - "Domain weight trajectory analysis over training steps"
+  training_recipe:
+    optimizer: "Adafactor"
+    lr: "1e-3 initial, exponential decay to 1e-4"
+    weight_decay: "1e-2"
+    gradient_clipping: "norm 1"
+    warmup: "6% of total steps"
+    hardware: "TPUv3 (models <=1B), TPUv4 (models >1B)"
+    batch_size: "512 sequences"
+    max_token_length: 1024
+    training_steps: "200k (The Pile), 300k (GLaM)"
+    model_architecture: "Vanilla Transformer decoder-only, 256k vocabulary"
+    model_scales: "70M, 150M, 280M, 510M, 760M, 1B, 8B"
+    dro_hyperparams: "step size eta=1, smoothing c=1e-3, per-token excess loss clipped at 0, uniform domain sampling during proxy training"
+    proxy_overhead: "8% of main model FLOPs"
+  method_family: "distributionally robust optimization / domain reweighting"
+
+positioning:
+  core_claim: "A small proxy model trained with Group DRO over domains can discover domain mixture weights that transfer to 30x larger models, simultaneously improving perplexity on all domains without any downstream task knowledge, at only 8% additional compute cost."
+  key_results: "The Pile 8B: +6.5% avg one-shot downstream accuracy (26.56% vs 20.03% baseline), 2.6x fewer steps to reach baseline accuracy (75k vs 200k). All 22 domains improve in perplexity simultaneously. GLaM 8B: iterated DoReMi (Round 2) matches oracle downstream-tuned weights. DRO overhead: 8% of main model FLOPs. Notable domain weight shifts: Pile-CC upweighted 0.11→0.61 (+0.49); ArXiv/PubMed heavily downweighted."
+  limitations:
+    - "Proxy model training runs for same duration as main model; early stopping could save compute (domain weights stabilize after ~50k steps per Figure 8)"
+    - "Domain weights depend on reference model choice; iterated DoReMi mitigates but adds computational rounds"
+    - "Domain definition by data provenance is coarse; finer-grained clustering could improve but risks DRO pessimism"
+    - "Group DRO optimizer degrades at larger proxy scales (1B proxy underperforms 280M proxy for 8B main)"
+    - "Mismatch between loss reweighting (proxy stage) and resampling (main training stage) may explain performance gap"
+    - "No empirical fairness measurements despite theoretical DRO connection to minority subgroup improvement"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Domain mixture proportions greatly affect LM performance (The Pile: 24% web, 9% Wikipedia, 4% GitHub), yet determining optimal proportions is either ad-hoc or requires thousands of expensive training runs tuned to specific downstream tasks."
+  tension: "Two failure modes of existing approaches: (1) heuristic weights are potentially suboptimal, (2) downstream-tuned weights require massive compute and risk overfitting to particular evaluation sets. How to systematically optimize domain proportions without downstream knowledge?"
+  key_insight: "Group DRO's minimax formulation on per-token excess loss (model loss minus reference loss) identifies domains with the most headroom for improvement. The excess loss decomposition is critical: using only hardest-domain loss or only easiest-domain loss both fail; only the combined excess loss works. Delivered in Section 3 and validated in Section 5.4 ablation."
+  argument_chain: "domain mixtures critically affect LM quality → existing approaches are ad-hoc or prohibitively expensive → apply Group DRO with small proxy model to find domain weights → excess loss captures improvement headroom per domain → small proxy weights transfer to 30x larger models → validation: 6.5% improvement on Pile + matches oracle on GLaM → bonus: all 22 domains improve simultaneously (no-tradeoff phenomenon)"
+  contribution_framing: "Six contributions: (1) novel DRO-based domain reweighting algorithm, (2) 30x scale transfer demonstration (280M→8B), (3) 2.6x training speedup on The Pile, (4) no-tradeoff discovery (all domains improve), (5) computational efficiency (8% overhead), (6) public code and optimized weights release"
+  intro_structure: "4 paragraphs: P1 = problem setup (domain mixtures matter, concrete examples of existing compositions), P2 = motivation (DRO as principled alternative to heuristics and downstream tuning), P3 = method overview (three-step proxy→DRO→main pipeline, 8% overhead claim), P4 = results and contribution claims (6.5%, 2.6x, matches oracle)"
+  notable_technique: "Two standout moves: (1) The 'no-tradeoff' discovery that all 22 domains improve simultaneously even when some are downweighted, which is counterintuitive and strengthens the paper beyond raw numbers. (2) The 280M→8B scale transfer (30x) as practical value demonstration, showing the method has real-world applicability."
+
+figures:
+  figure_count: 8
+  figure1:
+    type: "method_overview"
+    description: "Three-panel horizontal flow diagram: (1) reference model training on initial weights, (2) DRO proxy training with domain weight dynamics visualization, (3) large model training with resampled data. Steps labeled 1-2-3 with connecting arrows."
+    narrative_role: "Makes the three-step pipeline immediately comprehensible before technical details; establishes the computational flow and shows the proxy-to-main scale transfer visually."
+    design_elements: ["horizontal flow with numbered steps", "boxes and arrows", "schematic style", "domain weight dynamics in middle panel"]
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "Baseline vs DoReMi average one-shot downstream accuracy over training steps (8B models, The Pile)"
+      how_gain_highlighted: "'2.6x faster' annotation with arrow pointing to step where DoReMi reaches baseline's final accuracy; '6.5% points' gap highlighted at convergence"
+      design_note: "Single clean plot with annotated speedup and accuracy gap; the '2.6x' annotation is the money shot, immediately communicating practical value"
+    - figure_id: "Figure 3a"
+      viz_type: "line_plot"
+      what_compared: "Baseline vs DoReMi (280M→8B) accuracy curves on The Pile"
+      how_gain_highlighted: "Clear persistent gap between curves throughout training"
+      design_note: "Paired with Figure 3b for cross-dataset consistency narrative"
+    - figure_id: "Figure 3b"
+      viz_type: "line_plot"
+      what_compared: "Baseline vs DoReMi Round 1 vs DoReMi Round 2 vs oracle downstream-tuned weights on GLaM"
+      how_gain_highlighted: "Round 2 DoReMi line overlapping with oracle line, showing convergence without downstream knowledge"
+      design_note: "Four conditions on one plot; the visual convergence of DoReMi to oracle is the key message for the GLaM experiment"
+    - figure_id: "Figure 4"
+      viz_type: "bar_chart"
+      what_compared: "Per-domain log-perplexity for all 22 Pile domains: baseline vs DoReMi"
+      how_gain_highlighted: "All 22 DoReMi bars shorter than baseline bars (no-tradeoff phenomenon)"
+      design_note: "Visually striking: 22 paired bars where DoReMi wins every single one; directly supports the no-tradeoff claim that is one of the paper's strongest selling points"
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      dimensions_varied: ["Model scale (280M, 510M, 760M, 1B same-size training)"]
+      design_note: "Four panels showing DoReMi consistently provides ~2-3% improvement and ~4x average speedup across all tested scales; demonstrates scale-invariant benefit"
+    - figure_id: "Figure 6 (Left)"
+      viz_type: "line_plot"
+      dimensions_varied: ["Proxy model size (70M, 280M, 1B) for fixed 8B main model"]
+      design_note: "Shows performance plateau at 280M; 1B proxy slightly degrades, suggesting optimal proxy scale exists"
+    - figure_id: "Figure 6 (Right)"
+      viz_type: "bar_chart"
+      dimensions_varied: ["Loss component ablation: DoReMi (excess loss) vs hardest-domains-only vs easiest-domains-only"]
+      design_note: "Clean 3-bar comparison showing only excess loss (combined) works; hardest-only and easiest-only both fail, delivering the necessity argument for the full formulation"
+    - figure_id: "Figures 7-8 (Appendix)"
+      viz_type: "line_plot"
+      dimensions_varied: ["GLaM cross-scale results (Fig 7)", "Domain weight trajectories via EMA over training steps (Fig 8)"]
+      design_note: "Weight trajectory plots show rapid changes in first ~50k steps then stabilization, providing evidence for early-stopping optimization as future work direction"
+  figure_narrative_role: "Figure 1 (method pipeline) → Figure 2 (headline speedup result with 2.6x annotation) → Figure 3 (Pile + GLaM main results, oracle matching) → Figure 4 (all-domain improvement, no-tradeoff) → Figure 5 (scale invariance) → Figure 6 (proxy size + loss component ablations) → Figures 7-8 (appendix: GLaM details + weight dynamics)"
+
+tables:
+  table_count: 9
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "domains"
+    col_axis: "Baseline weight | DoReMi (280M) weight | Difference"
+    row_organization: "flat"
+    col_organization: "flat"
+    highlight_strategy: "no explicit bold; focus on weight difference magnitudes showing domain redistribution pattern"
+    statistical_reporting: "single run domain weights (deterministic from DRO optimization)"
+    num_baselines: 1
+    design_note: "22 rows for all Pile domains; the table IS the result showing domain weight redistribution. Notable shifts: Pile-CC upweighted 0.11→0.61 (+0.49), ArXiv downweighted by -0.10. Not a traditional performance comparison table but a weight allocation table, which is novel for this paper type."
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["Iterated DoReMi rounds on GLaM (Round 1, 2, 3) vs downstream-tuned oracle weights"]
+      variation_style: "full_numbers"
+      design_note: "8 GLaM domains showing weight convergence across rounds; Round 2 approximately equals Round 3 approximately equals oracle, proving iterative convergence"
+    - table_id: "Table 3"
+      what_varied: ["Proxy scale impact on worst-case and average perplexity for 8B main model"]
+      variation_style: "full_numbers"
+      design_note: "Two sub-tables: (a) perplexity vs proxy size showing 280M is optimal, (b) proxy vs main model quality comparison showing proxy systematically underperforms main at same size"
+    - table_id: "Table 7"
+      what_varied: ["Loss component ablation: baseline vs DoReMi vs hardest-only vs easiest-only"]
+      variation_style: "full_numbers"
+      design_note: "Demonstrates excess loss necessity; only full DoReMi achieves strong worst-case and average perplexity simultaneously"
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 4: per-domain perplexities across all proxy sizes for 8B main (22 domains x 5 configs). Table 5: per-task exact-match accuracies (5 tasks x 5 configs, DoReMi 280M→8B achieves 26.56% avg vs 20.03% baseline). Table 6: scale-invariant analysis. Table 8: domain weights comparison by proxy size (280M vs 1B show different local minima). Table 9: architecture details for all 7 model scales."
+    reason: "Main paper keeps only domain weight tables (1-2) and summary statistics (3) in body; full per-domain breakdowns, per-task accuracies, and architecture specs in appendix to maintain narrative focus on the algorithm and key high-level findings"

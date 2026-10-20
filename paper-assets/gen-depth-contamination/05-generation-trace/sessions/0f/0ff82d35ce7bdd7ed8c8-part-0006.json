@@ -1,0 +1,553 @@
+{
+  "schema_version": "1.0",
+  "session_id": "0ff82d35ce7bdd7ed8c8",
+  "rounds": [
+    {
+      "number": 2,
+      "messages": [
+        {
+          "source_line": 831,
+          "timestamp": "2026-05-21T08:57:01.501Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011AorqBkt9Vbt1QgDdnSNbi",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"16:22:48 [INFO] Model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B\\\\n16:22:48 [INFO] Data dir: data/olmo_c4_qwen_scorer\\\\n16:22:48 [INFO] Samples: 5000, Max depth: 5\\\\n16:22:48 [INFO] Decoding: do_sample=True, top_p=0.95, temperature=1.0\\\\n16:22:48 [INFO] Generation mode: continuation\\\\n16:22:48 [INFO] Max new tokens: 256\\\\n16:22:48 [INFO] Scorer: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B\\\\n16:22:50 [INFO] Loading tokenizer ...\\\\n16:22:51 [INFO] Loading model ...\\\\n16:22:53 [INFO] Model loaded on cuda:0\\\\n16:22:53 [INFO] --skip_generation: skipping Steps 2-3 (data assumed to exist via symlinks)\\\\n16:22:53 [INFO] ======================================== Step 4: Feature Extraction ========================================\\\\n16:22:53 [INFO] Extracting features for all depths ...\\\\n16:22:53 [INFO]   depth 0: 5000 texts\\\\n16:26:14 [INFO]   depth 1: 5000 texts\\\\n\\\\rVocabDiv d=1:   0%|          | 0/5000 [00:00<?, ?it/s]\\\\rVocabDiv d=1:   0%|          | 3/5000 [00:00<04:03, 20.55it/s]\\\\rVocabDiv d=1:   0%|          | 6/5000 [00:00<04:12, 19.80it/s]\\\\rVocabDiv d=1:   0%|          | 9/5000 [00:00<03:57, 21.04it/s]\\\\rVocabDiv d=1:   0%|          | 12/5000 [00:00<04:04, 20.37it/s]\\\\rVocabDiv d=1:   0%|          | 15/5000 [00:00<04:06, 20.22it/s]\\\\rVocabDiv d=1:   0%|          | 18/5000 [00:00<04:08, 20.08it/s]\\\\rVocabDiv d=1:   0%|          | 21/5000 [00:01<04:05, 20.29it/s]\\\\rVocabDiv d=1:   0%|          | 24/5000 [00:01<04:06, 20.20it/s]\\\\rVocabDiv d=1:   1%|          | 27/5000 [00:01<04:08, 20.03it/s]\\\\rVocabDiv d=1:   1%|          | 30/5000 [00:01<04:09, 19.93it/s]\\\\rVocabDiv d=1:   1%|          | 32/5000 [00:01<04:09, 19.90it/s]\\\\rVocabDiv d=1:   1%|          | 35/5000 [00:01<04:06, 20.10it/s]\\\\rVocabDiv d=1:   1%|          | 38/5000 [00:01<04:07, 20.03it/s]\\\\rVocabDiv d=1:   1%|          | 41/5000 [00:01<03:47, 21.79it/s]\\\\rVocabDiv d=1:   1%|          | 44/5000 [00:02<03:29, 23.63it/s]\\\\rVocabDiv d=1:   1%|          | 48/5000 [00:02<03:09, 26.10it/s]\\\\rVocabDiv d=1:   1%|          | 52/5000 [00:02<02:59, 27.61it/s]\\\\rVocabDiv d=1:   1%|          | 56/5000 [00:02<02:44, 30.06it/s]\\\\rVocabDiv d=1:   1%|          | 60/5000 [00:02<02:44, 29.94it/s]\\\\rVocabDiv d=1:   1%|▏         | 64/5000 [00:02<02:43, 30.23it/s]\\\\rVocabDiv d=1:   1%|▏         | 68/5000 [00:02<02:37, 31.23it/s]\\\\rVocabDiv d=1:   1%|▏         | 72/5000 [00:02<02:39, 30.94it/s]\\\\rVocabDiv d=1:   2%|▏         | 76/5000 [00:03<02:39, 30.91it/s]\\\\rVocabDiv d=1:   2%|▏         | 80/5000 [00:03<02:38, 30.97it/s]\\\\rVocabDiv d=1:   2%|▏         | 84/5000 [00:03<02:34, 31.73it/s]\\\\rVocabDiv d=1:   2%|▏         | 88/5000 [00:03<02:33, 31.98it/s]\\\\rVocabDiv d=1:   2%|▏         | 92/5000 [00:03<02:35, 31.61it/s]\\\\rVocabDiv d=1:   2%|▏         | 96/5000 [00:03<02:34, 31.84it/s]\\\\rVocabDiv d=1:   2%|▏         | 100/5000 [00:03<02:35, 31.47it/s]\\\\rVocabDiv d=1:   2%|▏         | 104/5000 [00:03<02:34, 31.77it/s]\\\\rVocabDiv d=1:   2%|▏         | 108/5000 [00:04<02:34, 31.71it/s]\\\\rVocabDiv d=1:   2%|▏         | 112/5000 [00:04<02:34, 31.60it/s]\\\\rVocabDiv d=1:   2%|▏         | 116/5000 [00:04<02:32, 32.00it/s]\\\\rVocabDiv d=1:   2%|▏         | 120/5000 [00:04<02:33, 31.71it/s]\\\\rVocabDiv d=1:   2%|▏         | 124/5000 [00:04<02:33, 31.67it/s]\\\\rVocabDiv d=1:   3%|▎         | 128/5000 [00:04<02:37, 31.01it/s]\\\\rVocabDiv d=1:   3%|▎         | 132/5000 [00:04<02:38, 30.63it/s]\\\\rVocabDiv d=1:   3%|▎         | 136/5000 [00:05<02:40, 30.29it/s]\\\\rVocabDiv d=1:   3%|▎         | 140/5000 [00:05<02:34, 31.39it/s]\\\\rVocabDiv d=1:   3%|▎         | 144/5000 [00:05<02:33, 31.55it/s]\\\\rVocabDiv d=1:   3%|▎         | 148/5000 [00:05<02:39, 30.44it/s]\\\\rVocabDiv d=1:   3%|▎         | 152/5000 [00:05<02:40, 30.17it/s]\\\\rVocabDiv d=1:   3%|▎         | 156/5000 [00:05<02:36, 30.93it/s]\\\\rVocabDiv d=1:   3%|▎         | 160/5000 [00:05<02:35, 31.12it/s]\\\\rVocabDiv d=1:   3%|▎         | 164/5000 [00:05<02:36, 30.95it/s]\\\\rVocabDiv d=1:   3%|▎         | 168/5000 [00:06<02:32, 31.75it/s]\\\\rVocabDiv d=1:   3%|▎         | 172/5000 [00:06<02:30, 32.09it/s]\\\\rVocabDiv d=1:   4%|▎         | 176/5000 [00:06<02:27, 32.78it/s]\\\\rVocabDiv d=1:\\\\n\\\\n... [截断: 输出过长，省略 412394 字符] ...\\\\n\\\\n/s]\\\\rVocabDiv d=5:  97%|█████████▋| 4845/5000 [02:42<00:05, 30.46it/s]\\\\rVocabDiv d=5:  97%|█��███████▋| 4849/5000 [02:42<00:04, 30.36it/s]\\\\rVocabDiv d=5:  97%|█████████▋| 4853/5000 [02:42<00:04, 30.45it/s]\\\\rVocabDiv d=5:  97%|█████████▋| 4857/5000 [02:42<00:04, 30.24it/s]\\\\rVocabDiv d=5:  97%|█████████▋| 4861/5000 [02:43<00:04, 30.35it/s]\\\\rVocabDiv d=5:  97%|█████████▋| 4865/5000 [02:43<00:04, 30.23it/s]\\\\rVocabDiv d=5:  97%|█████████▋| 4869/5000 [02:43<00:04, 30.35it/s]\\\\rVocabDiv d=5:  97%|█████████▋| 4873/5000 [02:43<00:04, 30.53it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4877/5000 [02:43<00:04, 30.66it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4881/5000 [02:43<00:03, 30.64it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4885/5000 [02:43<00:03, 30.27it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4889/5000 [02:43<00:03, 30.52it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4893/5000 [02:44<00:03, 30.76it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4897/5000 [02:44<00:03, 30.72it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4901/5000 [02:44<00:03, 30.60it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4905/5000 [02:44<00:03, 30.79it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4909/5000 [02:44<00:02, 31.40it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4913/5000 [02:44<00:02, 31.07it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4917/5000 [02:44<00:02, 30.62it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4921/5000 [02:44<00:02, 30.73it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4925/5000 [02:45<00:02, 30.29it/s]\\\\rVocabDiv d=5:  99%|█████████▊| 4929/5000 [02:45<00:02, 30.31it/s]\\\\rVocabDiv d=5:  99%|█████████▊| 4933/5000 [02:45<00:02, 31.01it/s]\\\\rVocabDiv d=5:  99%|█████████▊| 4937/5000 [02:45<00:02, 31.01it/s]\\\\rVocabDiv d=5:  99%|█████████▉| 4941/5000 [02:45<00:01, 30.71it/s]\\\\rVocabDiv d=5:  99%|█████████▉| 4945/5000 [02:45<00:01, 30.68it/s]\\\\rVocabDiv d=5:  99%|█████████▉| 4949/5000 [02:45<00:01, 30.32it/s]\\\\rVocabDiv d=5:  99%|█████████▉| 4953/5000 [02:46<00:01, 30.66it/s]\\\\rVocabDiv d=5:  99%|█████████▉| 4957/5000 [02:46<00:01, 30.31it/s]\\\\rVocabDiv d=5:  99%|█████████▉| 4961/5000 [02:46<00:01, 29.96it/s]\\\\rVocabDiv d=5:  99%|█████████▉| 4964/5000 [02:46<00:01, 29.81it/s]\\\\rVocabDiv d=5:  99%|█████████▉| 4967/5000 [02:46<00:01, 29.75it/s]\\\\rVocabDiv d=5:  99%|█████████▉| 4970/5000 [02:46<00:01, 29.61it/s]\\\\rVocabDiv d=5:  99%|█████████▉| 4973/5000 [02:46<00:01, 26.93it/s]\\\\rVocabDiv d=5: 100%|█████████▉| 4976/5000 [02:46<00:00, 25.80it/s]\\\\rVocabDiv d=5: 100%|█████████▉| 4979/5000 [02:46<00:00, 26.80it/s]\\\\rVocabDiv d=5: 100%|█████████▉| 4983/5000 [02:47<00:00, 28.25it/s]\\\\rVocabDiv d=5: 100%|█████████▉| 4987/5000 [02:47<00:00, 29.03it/s]\\\\rVocabDiv d=5: 100%|█████████▉| 4991/5000 [02:47<00:00, 29.48it/s]\\\\rVocabDiv d=5: 100%|█████████▉| 4995/5000 [02:47<00:00, 29.95it/s]\\\\rVocabDiv d=5: 100%|█████████▉| 4999/5000 [02:47<00:00, 30.14it/s]\\\\r                                                                 \\\\r16:46:43 [INFO] Saved 30000 feature rows to data/olmo_c4_qwen_scorer/features.csv\\\\n16:46:43 [INFO] ======================================== Step 5: Analysis ========================================\\\\n16:46:43 [INFO] Loading features from data/olmo_c4_qwen_scorer/features.csv ...\\\\n16:46:44 [INFO] Computing pairwise AUC ...\\\\n16:46:45 [INFO]   AUC(0 vs 1) = 0.9861 ± 0.0016  folds=[0.988, 0.9859, 0.9853, 0.9835, 0.9875]\\\\n16:46:46 [INFO]   AUC(1 vs 2) = 0.5001 ± 0.0168  folds=[0.5263, 0.4991, 0.4932, 0.475, 0.5068]\\\\n16:46:48 [INFO]   AUC(2 vs 3) = 0.4972 ± 0.0129  folds=[0.5128, 0.4742, 0.5035, 0.4949, 0.5007]\\\\n16:46:49 [INFO]   AUC(3 vs 4) = 0.5034 ± 0.0072  folds=[0.5159, 0.4978, 0.507, 0.4969, 0.4993]\\\\n16:46:50 [INFO]   AUC(4 vs 5) = 0.4971 ± 0.0047  folds=[0.4943, 0.4999, 0.4999, 0.5023, 0.4892]\\\\n16:46:50 [INFO] Computing pairwise JSD ...\\\\n16:46:50 [INFO]   JSD(0 vs 1) = 0.230742\\\\n16:46:50 [INFO]   JSD(1 vs 2) = 0.002981\\\\n16:46:50 [INFO]   JSD(2 vs 3) = 0.002900\\\\n16:46:50 [INFO]   JSD(3 vs 4) = 0.003424\\\\n16:46:50 [INFO]   JSD(4 vs 5) = 0.002939\\\\n16:46:50 [INFO] Running ordinal LightGBM classification ...\\\\n16:47:19 [INFO]   Ordinal MAE = 1.4161, Accuracy = 0.3146, K* = 1\\\\n16:47:19 [INFO] \\\\n16:47:19 [INFO] Pipeline complete.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dbdc6b55-9720-42a3-a4ba-0df9f34b6426",
+            "uuid": "bcbe3e4a-6879-4d29-99b4-c120cfbe50f9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"16:22:48 [INFO] Model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B\\\\n16:22:48 [INFO] Data dir: data/olmo_c4_qwen_scorer\\\\n16:22:48 [INFO] Samples: 5000, Max depth: 5\\\\n16:22:48 [INFO] Decoding: do_sample=True, top_p=0.95, temperature=1.0\\\\n16:22:48 [INFO] Generation mode: continuation\\\\n16:22:48 [INFO] Max new tokens: 256\\\\n16:22:48 [INFO] Scorer: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B\\\\n16:22:50 [INFO] Loading tokenizer ...\\\\n16:22:51 [INFO] Loading model ...\\\\n16:22:53 [INFO] Model loaded on cuda:0\\\\n16:22:53 [INFO] --skip_generation: skipping Steps 2-3 (data assumed to exist via symlinks)\\\\n16:22:53 [INFO] ======================================== Step 4: Feature Extraction ========================================\\\\n16:22:53 [INFO] Extracting features for all depths ...\\\\n16:22:53 [INFO]   depth 0: 5000 texts\\\\n16:26:14 [INFO]   depth 1: 5000 texts\\\\n\\\\rVocabDiv d=1:   0%|          | 0/5000 [00:00<?, ?it/s]\\\\rVocabDiv d=1:   0%|          | 3/5000 [00:00<04:03, 20.55it/s]\\\\rVocabDiv d=1:   0%|          | 6/5000 [00:00<04:12, 19.80it/s]\\\\rVocabDiv d=1:   0%|          | 9/5000 [00:00<03:57, 21.04it/s]\\\\rVocabDiv d=1:   0%|          | 12/5000 [00:00<04:04, 20.37it/s]\\\\rVocabDiv d=1:   0%|          | 15/5000 [00:00<04:06, 20.22it/s]\\\\rVocabDiv d=1:   0%|          | 18/5000 [00:00<04:08, 20.08it/s]\\\\rVocabDiv d=1:   0%|          | 21/5000 [00:01<04:05, 20.29it/s]\\\\rVocabDiv d=1:   0%|          | 24/5000 [00:01<04:06, 20.20it/s]\\\\rVocabDiv d=1:   1%|          | 27/5000 [00:01<04:08, 20.03it/s]\\\\rVocabDiv d=1:   1%|          | 30/5000 [00:01<04:09, 19.93it/s]\\\\rVocabDiv d=1:   1%|          | 32/5000 [00:01<04:09, 19.90it/s]\\\\rVocabDiv d=1:   1%|          | 35/5000 [00:01<04:06, 20.10it/s]\\\\rVocabDiv d=1:   1%|          | 38/5000 [00:01<04:07, 20.03it/s]\\\\rVocabDiv d=1:   1%|          | 41/5000 [00:01<03:47, 21.79it/s]\\\\rVocabDiv d=1:   1%|          | 44/5000 [00:02<03:29, 23.63it/s]\\\\rVocabDiv d=1:   1%|          | 48/5000 [00:02<03:09, 26.10it/s]\\\\rVocabDiv d=1:   1%|          | 52/5000 [00:02<02:59, 27.61it/s]\\\\rVocabDiv d=1:   1%|          | 56/5000 [00:02<02:44, 30.06it/s]\\\\rVocabDiv d=1:   1%|          | 60/5000 [00:02<02:44, 29.94it/s]\\\\rVocabDiv d=1:   1%|▏         | 64/5000 [00:02<02:43, 30.23it/s]\\\\rVocabDiv d=1:   1%|▏         | 68/5000 [00:02<02:37, 31.23it/s]\\\\rVocabDiv d=1:   1%|▏         | 72/5000 [00:02<02:39, 30.94it/s]\\\\rVocabDiv d=1:   2%|▏         | 76/5000 [00:03<02:39, 30.91it/s]\\\\rVocabDiv d=1:   2%|▏         | 80/5000 [00:03<02:38, 30.97it/s]\\\\rVocabDiv d=1:   2%|▏         | 84/5000 [00:03<02:34, 31.73it/s]\\\\rVocabDiv d=1:   2%|▏         | 88/5000 [00:03<02:33, 31.98it/s]\\\\rVocabDiv d=1:   2%|▏         | 92/5000 [00:03<02:35, 31.61it/s]\\\\rVocabDiv d=1:   2%|▏         | 96/5000 [00:03<02:34, 31.84it/s]\\\\rVocabDiv d=1:   2%|▏         | 100/5000 [00:03<02:35, 31.47it/s]\\\\rVocabDiv d=1:   2%|▏         | 104/5000 [00:03<02:34, 31.77it/s]\\\\rVocabDiv d=1:   2%|▏         | 108/5000 [00:04<02:34, 31.71it/s]\\\\rVocabDiv d=1:   2%|▏         | 112/5000 [00:04<02:34, 31.60it/s]\\\\rVocabDiv d=1:   2%|▏         | 116/5000 [00:04<02:32, 32.00it/s]\\\\rVocabDiv d=1:   2%|▏         | 120/5000 [00:04<02:33, 31.71it/s]\\\\rVocabDiv d=1:   2%|▏         | 124/5000 [00:04<02:33, 31.67it/s]\\\\rVocabDiv d=1:   3%|▎         | 128/5000 [00:04<02:37, 31.01it/s]\\\\rVocabDiv d=1:   3%|▎         | 132/5000 [00:04<02:38, 30.63it/s]\\\\rVocabDiv d=1:   3%|▎         | 136/5000 [00:05<02:40, 30.29it/s]\\\\rVocabDiv d=1:   3%|▎         | 140/5000 [00:05<02:34, 31.39it/s]\\\\rVocabDiv d=1:   3%|▎         | 144/5000 [00:05<02:33, 31.55it/s]\\\\rVocabDiv d=1:   3%|▎         | 148/5000 [00:05<02:39, 30.44it/s]\\\\rVocabDiv d=1:   3%|▎         | 152/5000 [00:05<02:40, 30.17it/s]\\\\rVocabDiv d=1:   3%|▎         | 156/5000 [00:05<02:36, 30.93it/s]\\\\rVocabDiv d=1:   3%|▎         | 160/5000 [00:05<02:35, 31.12it/s]\\\\rVocabDiv d=1:   3%|▎         | 164/5000 [00:05<02:36, 30.95it/s]\\\\rVocabDiv d=1:   3%|▎         | 168/5000 [00:06<02:32, 31.75it/s]\\\\rVocabDiv d=1:   3%|▎         | 172/5000 [00:06<02:30, 32.09it/s]\\\\rVocabDiv d=1:   4%|▎         | 176/5000 [00:06<02:27, 32.78it/s]\\\\rVocabDiv d=1:\\\\n\\\\n... [截断: 输出过长，省略 412394 字符] ...\\\\n\\\\n/s]\\\\rVocabDiv d=5:  97%|█████████▋| 4845/5000 [02:42<00:05, 30.46it/s]\\\\rVocabDiv d=5:  97%|█��███████▋| 4849/5000 [02:42<00:04, 30.36it/s]\\\\rVocabDiv d=5:  97%|█████████▋| 4853/5000 [02:42<00:04, 30.45it/s]\\\\rVocabDiv d=5:  97%|█████████▋| 4857/5000 [02:42<00:04, 30.24it/s]\\\\rVocabDiv d=5:  97%|█████████▋| 4861/5000 [02:43<00:04, 30.35it/s]\\\\rVocabDiv d=5:  97%|█████████▋| 4865/5000 [02:43<00:04, 30.23it/s]\\\\rVocabDiv d=5:  97%|█████████▋| 4869/5000 [02:43<00:04, 30.35it/s]\\\\rVocabDiv d=5:  97%|█████████▋| 4873/5000 [02:43<00:04, 30.53it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4877/5000 [02:43<00:04, 30.66it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4881/5000 [02:43<00:03, 30.64it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4885/5000 [02:43<00:03, 30.27it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4889/5000 [02:43<00:03, 30.52it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4893/5000 [02:44<00:03, 30.76it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4897/5000 [02:44<00:03, 30.72it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4901/5000 [02:44<00:03, 30.60it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4905/5000 [02:44<00:03, 30.79it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4909/5000 [02:44<00:02, 31.40it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4913/5000 [02:44<00:02, 31.07it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4917/5000 [02:44<00:02, 30.62it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4921/5000 [02:44<00:02, 30.73it/s]\\\\rVocabDiv d=5:  98%|█████████▊| 4925/5000 [02:45<00:02, 30.29it/s]\\\\rVocabDiv d=5:  99%|█████████▊| 4929/5000 [02:45<00:02, 30.31it/s]\\\\rVocabDiv d=5:  99%|█████████▊| 4933/5000 [02:45<00:02, 31.01it/s]\\\\rVocabDiv d=5:  99%|█████████▊| 4937/5000 [02:45<00:02, 31.01it/s]\\\\rVocabDiv d=5:  99%|█████████▉| 4941/5000 [02:45<00:01, 30.71it/s]\\\\rVocabDiv d=5:  99%|█████████▉| 4945/5000 [02:45<00:01, 30.68it/s]\\\\rVocabDiv d=5:  99%|█████████▉| 4949/5000 [02:45<00:01, 30.32it/s]\\\\rVocabDiv d=5:  99%|█████████▉| 4953/5000 [02:46<00:01, 30.66it/s]\\\\rVocabDiv d=5:  99%|█████████▉| 4957/5000 [02:46<00:01, 30.31it/s]\\\\rVocabDiv d=5:  99%|█████████▉| 4961/5000 [02:46<00:01, 29.96it/s]\\\\rVocabDiv d=5:  99%|█████████▉| 4964/5000 [02:46<00:01, 29.81it/s]\\\\rVocabDiv d=5:  99%|█████████▉| 4967/5000 [02:46<00:01, 29.75it/s]\\\\rVocabDiv d=5:  99%|█████████▉| 4970/5000 [02:46<00:01, 29.61it/s]\\\\rVocabDiv d=5:  99%|█████████▉| 4973/5000 [02:46<00:01, 26.93it/s]\\\\rVocabDiv d=5: 100%|█████████▉| 4976/5000 [02:46<00:00, 25.80it/s]\\\\rVocabDiv d=5: 100%|█████████▉| 4979/5000 [02:46<00:00, 26.80it/s]\\\\rVocabDiv d=5: 100%|█████████▉| 4983/5000 [02:47<00:00, 28.25it/s]\\\\rVocabDiv d=5: 100%|█████████▉| 4987/5000 [02:47<00:00, 29.03it/s]\\\\rVocabDiv d=5: 100%|█████████▉| 4991/5000 [02:47<00:00, 29.48it/s]\\\\rVocabDiv d=5: 100%|█████████▉| 4995/5000 [02:47<00:00, 29.95it/s]\\\\rVocabDiv d=5: 100%|█████████▉| 4999/5000 [02:47<00:00, 30.14it/s]\\\\r                                                                 \\\\r16:46:43 [INFO] Saved 30000 feature rows to data/olmo_c4_qwen_scorer/features.csv\\\\n16:46:43 [INFO] ======================================== Step 5: Analysis ========================================\\\\n16:46:43 [INFO] Loading features from data/olmo_c4_qwen_scorer/features.csv ...\\\\n16:46:44 [INFO] Computing pairwise AUC ...\\\\n16:46:45 [INFO]   AUC(0 vs 1) = 0.9861 ± 0.0016  folds=[0.988, 0.9859, 0.9853, 0.9835, 0.9875]\\\\n16:46:46 [INFO]   AUC(1 vs 2) = 0.5001 ± 0.0168  folds=[0.5263, 0.4991, 0.4932, 0.475, 0.5068]\\\\n16:46:48 [INFO]   AUC(2 vs 3) = 0.4972 ± 0.0129  folds=[0.5128, 0.4742, 0.5035, 0.4949, 0.5007]\\\\n16:46:49 [INFO]   AUC(3 vs 4) = 0.5034 ± 0.0072  folds=[0.5159, 0.4978, 0.507, 0.4969, 0.4993]\\\\n16:46:50 [INFO]   AUC(4 vs 5) = 0.4971 ± 0.0047  folds=[0.4943, 0.4999, 0.4999, 0.5023, 0.4892]\\\\n16:46:50 [INFO] Computing pairwise JSD ...\\\\n16:46:50 [INFO]   JSD(0 vs 1) = 0.230742\\\\n16:46:50 [INFO]   JSD(1 vs 2) = 0.002981\\\\n16:46:50 [INFO]   JSD(2 vs 3) = 0.002900\\\\n16:46:50 [INFO]   JSD(3 vs 4) = 0.003424\\\\n16:46:50 [INFO]   JSD(4 vs 5) = 0.002939\\\\n16:46:50 [INFO] Running ordinal LightGBM classification ...\\\\n16:47:19 [INFO]   Ordinal MAE = 1.4161, Accuracy = 0.3146, K* = 1\\\\n16:47:19 [INFO] \\\\n16:47:19 [INFO] Pipeline complete.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"16:22:48 [INFO] Model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B\\n16:22:48 [INFO] Data dir: data/olmo_c4_qwen_scorer\\n16:22:48 [INFO] Samples: 5000, Max depth: 5\\n16:22:48 [INFO] Decoding: do_sample=True, top_p=0.95, temperature=1.0\\n16:22:48 [INFO] Generation mode: continuation\\n16:22:48 [INFO] Max new tokens: 256\\n16:22:48 [INFO] Scorer: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B\\n16:22:50 [INFO] Loading tokenizer ...\\n16:22:51 [INFO] Loading model ...\\n16:22:53 [INFO] Model loaded on cuda:0\\n16:22:53 [INFO] --skip_generation: skipping Steps 2-3 (data assumed to exist via symlinks)\\n16:22:53 [INFO] ======================================== Step 4: Feature Extraction ========================================\\n16:22:53 [INFO] Extracting features for all depths ...\\n16:22:53 [INFO]   depth 0: 5000 texts\\n16:26:14 [INFO]   depth 1: 5000 texts\\n\\rVocabDiv d=1:   0%|          | 0/5000 [00:00<?, ?it/s]\\rVocabDiv d=1:   0%|          | 3/5000 [00:00<04:03, 20.55it/s]\\rVocabDiv d=1:   0%|          | 6/5000 [00:00<04:12, 19.80it/s]\\rVocabDiv d=1:   0%|          | 9/5000 [00:00<03:57, 21.04it/s]\\rVocabDiv d=1:   0%|          | 12/5000 [00:00<04:04, 20.37it/s]\\rVocabDiv d=1:   0%|          | 15/5000 [00:00<04:06, 20.22it/s]\\rVocabDiv d=1:   0%|          | 18/5000 [00:00<04:08, 20.08it/s]\\rVocabDiv d=1:   0%|          | 21/5000 [00:01<04:05, 20.29it/s]\\rVocabDiv d=1:   0%|          | 24/5000 [00:01<04:06, 20.20it/s]\\rVocabDiv d=1:   1%|          | 27/5000 [00:01<04:08, 20.03it/s]\\rVocabDiv d=1:   1%|          | 30/5000 [00:01<04:09, 19.93it/s]\\rVocabDiv d=1:   1%|          | 32/5000 [00:01<04:09, 19.90it/s]\\rVocabDiv d=1:   1%|          | 35/5000 [00:01<04:06, 20.10it/s]\\rVocabDiv d=1:   1%|          | 38/5000 [00:01<04:07, 20.03it/s]\\rVocabDiv d=1:   1%|          | 41/5000 [00:01<03:47, 21.79it/s]\\rVocabDiv d=1:   1%|          | 44/5000 [00:02<03:29, 23.63it/s]\\rVocabDiv d=1:   1%|          | 48/5000 [00:02<03:09, 26.10it/s]\\rVocabDiv d=1:   1%|          | 52/5000 [00:02<02:59, 27.61it/s]\\rVocabDiv d=1:   1%|          | 56/5000 [00:02<02:44, 30.06it/s]\\rVocabDiv d=1:   1%|          | 60/5000 [00:02<02:44, 29.94it/s]\\rVocabDiv d=1:   1%|▏         | 64/5000 [00:02<02:43, 30.23it/s]\\rVocabDiv d=1:   1%|▏         | 68/5000 [00:02<02:37, 31.23it/s]\\rVocabDiv d=1:   1%|▏         | 72/5000 [00:02<02:39, 30.94it/s]\\rVocabDiv d=1:   2%|▏         | 76/5000 [00:03<02:39, 30.91it/s]\\rVocabDiv d=1:   2%|▏         | 80/5000 [00:03<02:38, 30.97it/s]\\rVocabDiv d=1:   2%|▏         | 84/5000 [00:03<02:34, 31.73it/s]\\rVocabDiv d=1:   2%|▏         | 88/5000 [00:03<02:33, 31.98it/s]\\rVocabDiv d=1:   2%|▏         | 92/5000 [00:03<02:35, 31.61it/s]\\rVocabDiv d=1:   2%|▏         | 96/5000 [00:03<02:34, 31.84it/s]\\rVocabDiv d=1:   2%|▏         | 100/5000 [00:03<02:35, 31.47it/s]\\rVocabDiv d=1:   2%|▏         | 104/5000 [00:03<02:34, 31.77it/s]\\rVocabDiv d=1:   2%|▏         | 108/5000 [00:04<02:34, 31.71it/s]\\rVocabDiv d=1:   2%|▏         | 112/5000 [00:04<02:34, 31.60it/s]\\rVocabDiv d=1:   2%|▏         | 116/5000 [00:04<02:32, 32.00it/s]\\rVocabDiv d=1:   2%|▏         | 120/5000 [00:04<02:33, 31.71it/s]\\rVocabDiv d=1:   2%|▏         | 124/5000 [00:04<02:33, 31.67it/s]\\rVocabDiv d=1:   3%|▎         | 128/5000 [00:04<02:37, 31.01it/s]\\rVocabDiv d=1:   3%|▎         | 132/5000 [00:04<02:38, 30.63it/s]\\rVocabDiv d=1:   3%|▎         | 136/5000 [00:05<02:40, 30.29it/s]\\rVocabDiv d=1:   3%|▎         | 140/5000 [00:05<02:34, 31.39it/s]\\rVocabDiv d=1:   3%|▎         | 144/5000 [00:05<02:33, 31.55it/s]\\rVocabDiv d=1:   3%|▎         | 148/5000 [00:05<02:39, 30.44it/s]\\rVocabDiv d=1:   3%|▎         | 152/5000 [00:05<02:40, 30.17it/s]\\rVocabDiv d=1:   3%|▎         | 156/5000 [00:05<02:36, 30.93it/s]\\rVocabDiv d=1:   3%|▎         | 160/5000 [00:05<02:35, 31.12it/s]\\rVocabDiv d=1:   3%|▎         | 164/5000 [00:05<02:36, 30.95it/s]\\rVocabDiv d=1:   3%|▎         | 168/5000 [00:06<02:32, 31.75it/s]\\rVocabDiv d=1:   3%|▎         | 172/5000 [00:06<02:30, 32.09it/s]\\rVocabDiv d=1:   4%|▎         | 176/5000 [00:06<02:27, 32.78it/s]\\rVocabDiv d=1:\\n\\n... [截断: 输出过长，省略 412394 字符] ...\\n\\n/s]\\rVocabDiv d=5:  97%|█████████▋| 4845/5000 [02:42<00:05, 30.46it/s]\\rVocabDiv d=5:  97%|█��███████▋| 4849/5000 [02:42<00:04, 30.36it/s]\\rVocabDiv d=5:  97%|█████████▋| 4853/5000 [02:42<00:04, 30.45it/s]\\rVocabDiv d=5:  97%|█████████▋| 4857/5000 [02:42<00:04, 30.24it/s]\\rVocabDiv d=5:  97%|█████████▋| 4861/5000 [02:43<00:04, 30.35it/s]\\rVocabDiv d=5:  97%|█████████▋| 4865/5000 [02:43<00:04, 30.23it/s]\\rVocabDiv d=5:  97%|█████████▋| 4869/5000 [02:43<00:04, 30.35it/s]\\rVocabDiv d=5:  97%|█████████▋| 4873/5000 [02:43<00:04, 30.53it/s]\\rVocabDiv d=5:  98%|█████████▊| 4877/5000 [02:43<00:04, 30.66it/s]\\rVocabDiv d=5:  98%|█████████▊| 4881/5000 [02:43<00:03, 30.64it/s]\\rVocabDiv d=5:  98%|█████████▊| 4885/5000 [02:43<00:03, 30.27it/s]\\rVocabDiv d=5:  98%|█████████▊| 4889/5000 [02:43<00:03, 30.52it/s]\\rVocabDiv d=5:  98%|█████████▊| 4893/5000 [02:44<00:03, 30.76it/s]\\rVocabDiv d=5:  98%|█████████▊| 4897/5000 [02:44<00:03, 30.72it/s]\\rVocabDiv d=5:  98%|█████████▊| 4901/5000 [02:44<00:03, 30.60it/s]\\rVocabDiv d=5:  98%|█████████▊| 4905/5000 [02:44<00:03, 30.79it/s]\\rVocabDiv d=5:  98%|█████████▊| 4909/5000 [02:44<00:02, 31.40it/s]\\rVocabDiv d=5:  98%|█████████▊| 4913/5000 [02:44<00:02, 31.07it/s]\\rVocabDiv d=5:  98%|█████████▊| 4917/5000 [02:44<00:02, 30.62it/s]\\rVocabDiv d=5:  98%|█████████▊| 4921/5000 [02:44<00:02, 30.73it/s]\\rVocabDiv d=5:  98%|█████████▊| 4925/5000 [02:45<00:02, 30.29it/s]\\rVocabDiv d=5:  99%|█████████▊| 4929/5000 [02:45<00:02, 30.31it/s]\\rVocabDiv d=5:  99%|█████████▊| 4933/5000 [02:45<00:02, 31.01it/s]\\rVocabDiv d=5:  99%|█████████▊| 4937/5000 [02:45<00:02, 31.01it/s]\\rVocabDiv d=5:  99%|█████████▉| 4941/5000 [02:45<00:01, 30.71it/s]\\rVocabDiv d=5:  99%|█████████▉| 4945/5000 [02:45<00:01, 30.68it/s]\\rVocabDiv d=5:  99%|█████████▉| 4949/5000 [02:45<00:01, 30.32it/s]\\rVocabDiv d=5:  99%|█████████▉| 4953/5000 [02:46<00:01, 30.66it/s]\\rVocabDiv d=5:  99%|█████████▉| 4957/5000 [02:46<00:01, 30.31it/s]\\rVocabDiv d=5:  99%|█████████▉| 4961/5000 [02:46<00:01, 29.96it/s]\\rVocabDiv d=5:  99%|█████████▉| 4964/5000 [02:46<00:01, 29.81it/s]\\rVocabDiv d=5:  99%|█████████▉| 4967/5000 [02:46<00:01, 29.75it/s]\\rVocabDiv d=5:  99%|█████████▉| 4970/5000 [02:46<00:01, 29.61it/s]\\rVocabDiv d=5:  99%|█████████▉| 4973/5000 [02:46<00:01, 26.93it/s]\\rVocabDiv d=5: 100%|█████████▉| 4976/5000 [02:46<00:00, 25.80it/s]\\rVocabDiv d=5: 100%|█████████▉| 4979/5000 [02:46<00:00, 26.80it/s]\\rVocabDiv d=5: 100%|█████████▉| 4983/5000 [02:47<00:00, 28.25it/s]\\rVocabDiv d=5: 100%|█████████▉| 4987/5000 [02:47<00:00, 29.03it/s]\\rVocabDiv d=5: 100%|█████████▉| 4991/5000 [02:47<00:00, 29.48it/s]\\rVocabDiv d=5: 100%|█████████▉| 4995/5000 [02:47<00:00, 29.95it/s]\\rVocabDiv d=5: 100%|█████████▉| 4999/5000 [02:47<00:00, 30.14it/s]\\r                                                                 \\r16:46:43 [INFO] Saved 30000 feature rows to data/olmo_c4_qwen_scorer/features.csv\\n16:46:43 [INFO] ======================================== Step 5: Analysis ========================================\\n16:46:43 [INFO] Loading features from data/olmo_c4_qwen_scorer/features.csv ...\\n16:46:44 [INFO] Computing pairwise AUC ...\\n16:46:45 [INFO]   AUC(0 vs 1) = 0.9861 ± 0.0016  folds=[0.988, 0.9859, 0.9853, 0.9835, 0.9875]\\n16:46:46 [INFO]   AUC(1 vs 2) = 0.5001 ± 0.0168  folds=[0.5263, 0.4991, 0.4932, 0.475, 0.5068]\\n16:46:48 [INFO]   AUC(2 vs 3) = 0.4972 ± 0.0129  folds=[0.5128, 0.4742, 0.5035, 0.4949, 0.5007]\\n16:46:49 [INFO]   AUC(3 vs 4) = 0.5034 ± 0.0072  folds=[0.5159, 0.4978, 0.507, 0.4969, 0.4993]\\n16:46:50 [INFO]   AUC(4 vs 5) = 0.4971 ± 0.0047  folds=[0.4943, 0.4999, 0.4999, 0.5023, 0.4892]\\n16:46:50 [INFO] Computing pairwise JSD ...\\n16:46:50 [INFO]   JSD(0 vs 1) = 0.230742\\n16:46:50 [INFO]   JSD(1 vs 2) = 0.002981\\n16:46:50 [INFO]   JSD(2 vs 3) = 0.002900\\n16:46:50 [INFO]   JSD(3 vs 4) = 0.003424\\n16:46:50 [INFO]   JSD(4 vs 5) = 0.002939\\n16:46:50 [INFO] Running ordinal LightGBM classification ...\\n16:47:19 [INFO]   Ordinal MAE = 1.4161, Accuracy = 0.3146, K* = 1\\n16:47:19 [INFO] \\n16:47:19 [INFO] Pipeline complete.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"
+              }
+            }
+          },
+          "id": "event-000831"
+        },
+        {
+          "source_line": 832,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The OLMo pipeline completed and confirms:\n- 0v1 AUC: 0.9861\n- 1v2 AUC: 0.5001 (random, matches our manual verification)\n- K* = 1 (only 0v1 is significant)\n\nThis definitively confirms the OLMo data issue. The pipeline's own K*=1 calculation matches D088's finding.\n\nNow I need to wait for Pythia. The monitor will notify me. \n\nLet me prepare the audit report while waiting. The user specified a 6-step format, so let me compile my findings.\n\n\nActually, I should hold off on the full report until Pythia finishes—it might change how I structure things. Looking at the progress, Pythia's at depth 3 with about 31% done, so I'm looking at roughly an hour total before everything's complete. I'll just wait for the notification.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dbdc6b55-9720-42a3-a4ba-0df9f34b6426",
+            "uuid": "08b338ca-3217-4118-abd9-3235502afc03",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Td3bypgALgaMsn3TxH3W5D",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5435,
+                "cache_read_input_tokens": 159643,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5435
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000832"
+        },
+        {
+          "source_line": 833,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "OLMo pipeline confirms K\\*=1, 1v2=0.5001 (random). Pythia is at depth 3, ~31%. Estimated ~60 min to completion.\n\nWhile waiting for Pythia, let me also check the right-padding warning situation — is Pythia's tokenizer correctly configured?"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dbdc6b55-9720-42a3-a4ba-0df9f34b6426",
+            "uuid": "69a21582-f8a5-4c9c-bcd0-fccd734bf8e3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Td3bypgALgaMsn3TxH3W5D",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5435,
+                "cache_read_input_tokens": 159643,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5435
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000833"
+        },
+        {
+          "source_line": 834,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N6T4TGB4HrqVewrfQqtM8Z",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-22115",
+                "command": "python3 -c \"from transformers import AutoTokenizer; t = AutoTokenizer.from_pretrained('EleutherAI/pythia-1.4b'); print(f'pad_token={t.pad_token!r}, eos_token={t.eos_token!r}, padding_side={t.padding_side!r}')\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dbdc6b55-9720-42a3-a4ba-0df9f34b6426",
+            "uuid": "a97d2ce5-b17e-47ae-b678-2dedbfa5324b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Td3bypgALgaMsn3TxH3W5D",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5435,
+                "cache_read_input_tokens": 159643,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5435
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000834"
+        },
+        {
+          "source_line": 835,
+          "timestamp": "2026-05-21T08:57:19.736Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N6T4TGB4HrqVewrfQqtM8Z",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dbdc6b55-9720-42a3-a4ba-0df9f34b6426",
+            "uuid": "b4819212-e03d-4b68-bcba-f9b2afaee714",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000835"
+        },
+        {
+          "source_line": 836,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I can't run that with ssh_read_only. Let me not worry about this — the warning is cosmetic for Pythia since padding_side is explicitly set to \"left\" in run_pipeline.py. The generation should be correct.\n\nLet me now wait for the Pythia monitor to trigger. Meanwhile I should think about the report structure.\n\nKey findings so far:\n\n## Step 1: Data Source Audit\n| Model | Claimed Data Source | Actual AUC | Target AUC | Match? |\n|-------|-------------------|------------|------------|--------|\n| Qwen-base (rewrite) | data_exp016_qwen_base/features.csv | 0.6288 | 0.6262 | ✓ (Δ=0.0026) |\n\n\n| Qwen-cont | data_exp022_cross_scorer/qwen_cont256__qwen_base/features.csv | 0.6169 | 0.6112 | ✓ (Δ=0.0057) |\n| OLMo-1B | exp_002 NOT ON DISK; regenerated data gives 0.5001 | 0.5001 | 0.6145 | ✗ CRITICAL |\n| Pythia-1.4B | exp_001 NOT ON DISK; fresh pipeline running | TBD |\n\nThe OLMo model is showing a critical mismatch — the regenerated data only achieves 0.5001 AUC versus the target of 0.6145, suggesting the original experiment data is either lost or the pipeline can't reproduce it. Pythia is still running fresh, so I'll need to wait for those results.\n\nLooking at the feature importance rankings across the two verified models, surprise-related metrics are dominating — both Qwen-base and Qwen-cont have surprise standard deviation as their top predictor, with Qwen-cont showing a slightly stronger signal at 0.0653 versus 0.0598.\n\nThe pattern shifts dramatically for the 0v1 comparison though, where surprise first-derivative standard deviation becomes overwhelmingly important, suggesting that the linguistic changes between depth 0 and 1 are fundamentally different from what distinguishes depth 1 from 2. I'm waiting on Pythia's results to see if this pattern holds across model families.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dbdc6b55-9720-42a3-a4ba-0df9f34b6426",
+            "uuid": "47e82884-1b2a-43a5-bae4-f683c868fdce",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ev6WD79tncbUrSU7ymmnQW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 622,
+                "cache_read_input_tokens": 165078,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 622
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000836"
+        },
+        {
+          "source_line": 837,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The right-padding warning is cosmetic — run_pipeline.py explicitly sets `padding_side=\"left\"` (line 686) before any generation. Pythia will be fine.\n\nI'll continue monitoring. The Pythia pipeline should complete in roughly 60 minutes. The monitor is still active and will notify me.\n\nCurrent audit status:\n\n| Model | Data Source | 1v2 AUC | Target | Status |\n|-------|-----------|---------|--------|--------|\n| Qwen-base | `data_exp016_qwen_base` | 0.6288 | 0.6262 | **PASS** ✓ Feature importance done |\n| Qwen-cont | `data_exp022_cross_scorer/qwen_cont256__qwen_base` | 0.6169 | 0.6112 | **PASS** ✓ Feature importance done |\n| OLMo-1B | exp_002 **lost**; regen gives 0.5001 | 0.5001 | 0.6145 | **FAIL** ✗ K\\*=1 confirmed |\n| Pythia-1.4B | exp_001 **lost**; fresh pipeline running | TBD | 0.6539 | Generating depth 3/5... |\n\n**OLMo critical finding:** The main table AUC 0.6145 is from exp_002 which no longer exists on disk. D088 (May 20) already confirmed OLMo is K\\*=1. D092 reverted the paper correction. Current data + Qwen-base scoring gives 1v2=0.5001 (random). Feature importance analysis is not meaningful at chance-level AUC."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dbdc6b55-9720-42a3-a4ba-0df9f34b6426",
+            "uuid": "5d9fd535-867c-464b-8e38-19d7b04006d4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ev6WD79tncbUrSU7ymmnQW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 622,
+                "cache_read_input_tokens": 165078,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 622
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000837"
+        },
+        {
+          "source_line": 838,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The right-padding warning is cosmetic — run_pipeline.py explicitly sets `padding_side=\"left\"` (line 686) before any generation. Pythia will be fine.\n\nI'll continue monitoring. The Pythia pipeline should complete in roughly 60 minutes. The monitor is still active and will notify me.\n\nCurrent audit status:\n\n| Model | Data Source | 1v2 AUC | Target | Status |\n|-------|-----------|---------|--------|--------|\n| Qwen-base | `data_exp016_qwen_base` | 0.6288 | 0.6262 | **PASS** ✓ Feature importance done |\n| Qwen-cont | `data_exp022_cross_scorer/qwen_cont256__qwen_base` | 0.6169 | 0.6112 | **PASS** ✓ Feature importance done |\n| OLMo-1B | exp_002 **lost**; regen gives 0.5001 | 0.5001 | 0.6145 | **FAIL** ✗ K\\*=1 confirmed |\n| Pythia-1.4B | exp_001 **lost**; fresh pipeline running | TBD | 0.6539 | Generating depth 3/5... |\n\n**OLMo critical finding:** The main table AUC 0.6145 is from exp_002 which no longer exists on disk. D088 (May 20) already confirmed OLMo is K\\*=1. D092 reverted the paper correction. Current data + Qwen-base scoring gives 1v2=0.5001 (random). Feature importance analysis is not meaningful at chance-level AUC."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 641125,
+            "duration_api_ms": 2549220,
+            "num_turns": 72,
+            "stop_reason": "end_turn",
+            "session_id": "dbdc6b55-9720-42a3-a4ba-0df9f34b6426",
+            "total_cost_usd": 15.013205749999988,
+            "usage": {
+              "input_tokens": 60,
+              "cache_creation_input_tokens": 104078,
+              "cache_read_input_tokens": 6305872,
+              "output_tokens": 28012,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 104078,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 1208,
+                  "cache_read_input_tokens": 165078,
+                  "cache_creation_input_tokens": 622,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 622
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2140,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002225,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 5824,
+                "outputTokens": 132506,
+                "cacheReadInputTokens": 17552234,
+                "cacheCreationInputTokens": 462895,
+                "webSearchRequests": 0,
+                "costUSD": 15.01098074999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "origin": {
+              "kind": "task-notification"
+            },
+            "uuid": "b64cfac0-4b4e-4e6e-9fe5-9c3cba5c8acb"
+          },
+          "id": "event-000838"
+        },
+        {
+          "source_line": 839,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "bbk3d4xrw",
+                "tool_use_id": "toolu_01DzXSU62UCefAZoGwy2mae9",
+                "status": "stopped",
+                "output_file": "",
+                "summary": "Pythia pipeline completion",
+                "uuid": "6232a4a2-42f7-4e99-9bf7-5247dab6fb00",
+                "session_id": "dbdc6b55-9720-42a3-a4ba-0df9f34b6426"
+              }
+            }
+          ],
+          "id": "event-000839"
+        },
+        {
+          "source_line": 840,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_updated",
+                "task_id": "bbk3d4xrw",
+                "patch": {
+                  "status": "killed",
+                  "end_time": 1779355681339
+                },
+                "uuid": "ad543d50-5628-4a30-a293-1764d3f7d2bd",
+                "session_id": "dbdc6b55-9720-42a3-a4ba-0df9f34b6426"
+              }
+            }
+          ],
+          "id": "event-000840"
+        },
+        {
+          "source_line": 841,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "bbk3d4xrw",
+                "tool_use_id": "toolu_01DzXSU62UCefAZoGwy2mae9",
+                "status": "stopped",
+                "output_file": "/tmp/claude-1000/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/dbdc6b55-9720-42a3-a4ba-0df9f34b6426/tasks/bbk3d4xrw.output",
+                "summary": "Monitor \"Pythia pipeline completion\" stopped",
+                "session_id": "dbdc6b55-9720-42a3-a4ba-0df9f34b6426",
+                "uuid": "909e5c5d-a218-46e6-9fc3-e4178fe31e78"
+              }
+            }
+          ],
+          "id": "event-000841"
+        },
+        {
+          "source_line": 842,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "session_id": "dbdc6b55-9720-42a3-a4ba-0df9f34b6426",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "4f7fa9ab-699f-49b9-b1e4-0f5f3bbeaf3d",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000842"
+        },
+        {
+          "source_line": 843,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "status",
+                "status": "compacting",
+                "session_id": "dbdc6b55-9720-42a3-a4ba-0df9f34b6426",
+                "uuid": "2cba1b85-dfc3-4357-8945-223e88e80f7e"
+              }
+            }
+          ],
+          "id": "event-000843"
+        }
+      ]
+    }
+  ]
+}

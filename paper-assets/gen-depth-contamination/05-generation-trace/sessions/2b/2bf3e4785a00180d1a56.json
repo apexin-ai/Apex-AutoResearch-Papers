@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2bf3e4785a00180d1a56",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops exp025 exit diagnosis",
+  "task_key": "worker_ops_exp025-exit-diagnosis_20260518T094830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp025-exit-diagnosis_20260518T094830_result.json",
+    "occurrence": 1,
+    "bytes": 1057,
+    "sha256": "ef73526f47ec879a0c496666b2f9ece7d91be7ebd9aab359372d7b063ee42d7d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论: **SUCCESS**\n\n### 1. 进程状态\nPID 15687 已退出，GPU 完全空闲（0MiB / 0% util），无残留进程。\n\n### 2. 完成状态: 9/9 runs 全部完成\n\n| Strategy | Seed 42 | Seed 123 | Seed 456 |\n|---|---|---|---|\n| no_filter | ✅ | ✅ | ✅ |\n| binary_ours | ✅ | ✅ | ✅ |\n| graduated_a09 | ✅ | ✅ | ✅ |\n\n运行时间: 16:26 → 17:46，总计约 80 分钟，分 3 个 batch 执行。\n\n### 3. Eval 结果 (MMLU / HellaSwag)\n\n| Strategy | MMLU (mean±std) | HellaSwag (mean±std) |\n|---|---|---|\n| no_filter | 0.2568±0.0012 | 0.5250±0.0008 |\n| binary_ours | **0.2585±0.0004** | 0.5251±0.0001 |\n| graduated_a09 | 0.2561±0.0009 | 0.5253±0.0007 |\n\n**Deltas vs no_filter:**\n- binary_ours: MMLU +0.0017, HellaSwag +0.0000\n- graduated_a09: MMLU -0.0007, HellaSwag +0.0003\n\n### 4. 结论\n**success** — 9/9 runs 正常完成，最后一个 run (graduated_a09 seed456) 于 17:46:22 正常退出并输出 eval 分数，无 traceback。所有 9 个 eval_results.json 均已生成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp025-exit-diagnosis.md"
+}

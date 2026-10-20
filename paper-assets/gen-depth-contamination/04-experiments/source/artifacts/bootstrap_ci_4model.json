@@ -1,0 +1,230 @@
+{
+  "mvp_001_qwen_rewrite": {
+    "0v1": {
+      "mean_auc": 0.9956,
+      "boot_mean": 0.9956,
+      "boot_std": 0.0005,
+      "ci_lower": 0.9946,
+      "ci_upper": 0.9965,
+      "ci_width": 0.0019,
+      "perm_pvalue": 0.0,
+      "n_bootstrap": 1000,
+      "n_permutation": 500
+    },
+    "1v2": {
+      "mean_auc": 0.6955,
+      "boot_mean": 0.6953,
+      "boot_std": 0.0045,
+      "ci_lower": 0.6859,
+      "ci_upper": 0.7041,
+      "ci_width": 0.0182,
+      "perm_pvalue": 0.0,
+      "n_bootstrap": 1000,
+      "n_permutation": 500
+    },
+    "2v3": {
+      "mean_auc": 0.5893,
+      "boot_mean": 0.5893,
+      "boot_std": 0.0049,
+      "ci_lower": 0.5795,
+      "ci_upper": 0.5991,
+      "ci_width": 0.0195,
+      "perm_pvalue": 0.0,
+      "n_bootstrap": 1000,
+      "n_permutation": 500
+    },
+    "3v4": {
+      "mean_auc": 0.5435,
+      "boot_mean": 0.5437,
+      "boot_std": 0.0054,
+      "ci_lower": 0.5333,
+      "ci_upper": 0.5551,
+      "ci_width": 0.0218,
+      "perm_pvalue": 0.0,
+      "n_bootstrap": 1000,
+      "n_permutation": 500
+    },
+    "4v5": {
+      "mean_auc": 0.534,
+      "boot_mean": 0.5339,
+      "boot_std": 0.0053,
+      "ci_lower": 0.5238,
+      "ci_upper": 0.5448,
+      "ci_width": 0.021,
+      "perm_pvalue": 0.0,
+      "n_bootstrap": 1000,
+      "n_permutation": 500
+    }
+  },
+  "exp_001_pythia": {
+    "0v1": {
+      "mean_auc": 0.9932,
+      "boot_mean": 0.9932,
+      "boot_std": 0.0006,
+      "ci_lower": 0.9921,
+      "ci_upper": 0.9943,
+      "ci_width": 0.0023,
+      "perm_pvalue": 0.0,
+      "n_bootstrap": 1000,
+      "n_permutation": 500
+    },
+    "1v2": {
+      "mean_auc": 0.6539,
+      "boot_mean": 0.654,
+      "boot_std": 0.0045,
+      "ci_lower": 0.6454,
+      "ci_upper": 0.663,
+      "ci_width": 0.0176,
+      "perm_pvalue": 0.0,
+      "n_bootstrap": 1000,
+      "n_permutation": 500
+    },
+    "2v3": {
+      "mean_auc": 0.5514,
+      "boot_mean": 0.5514,
+      "boot_std": 0.0053,
+      "ci_lower": 0.5417,
+      "ci_upper": 0.5628,
+      "ci_width": 0.0211,
+      "perm_pvalue": 0.0,
+      "n_bootstrap": 1000,
+      "n_permutation": 500
+    },
+    "3v4": {
+      "mean_auc": 0.5152,
+      "boot_mean": 0.515,
+      "boot_std": 0.0056,
+      "ci_lower": 0.5041,
+      "ci_upper": 0.526,
+      "ci_width": 0.022,
+      "perm_pvalue": 0.006,
+      "n_bootstrap": 1000,
+      "n_permutation": 500
+    },
+    "4v5": {
+      "mean_auc": 0.5136,
+      "boot_mean": 0.5134,
+      "boot_std": 0.0056,
+      "ci_lower": 0.5021,
+      "ci_upper": 0.5249,
+      "ci_width": 0.0227,
+      "perm_pvalue": 0.008,
+      "n_bootstrap": 1000,
+      "n_permutation": 500
+    }
+  },
+  "exp_002_olmo": {
+    "0v1": {
+      "mean_auc": 0.986,
+      "boot_mean": 0.986,
+      "boot_std": 0.0009,
+      "ci_lower": 0.9843,
+      "ci_upper": 0.9877,
+      "ci_width": 0.0034,
+      "perm_pvalue": 0.0001,
+      "n_bootstrap": 10000,
+      "n_permutation": 10000
+    },
+    "1v2": {
+      "mean_auc": 0.507,
+      "boot_mean": 0.507,
+      "boot_std": 0.0058,
+      "ci_lower": 0.4962,
+      "ci_upper": 0.5188,
+      "ci_width": 0.0226,
+      "perm_pvalue": 0.0955,
+      "n_bootstrap": 10000,
+      "n_permutation": 10000
+    },
+    "2v3": {
+      "mean_auc": 0.497,
+      "boot_mean": 0.497,
+      "boot_std": 0.0059,
+      "ci_lower": 0.4855,
+      "ci_upper": 0.5085,
+      "ci_width": 0.023,
+      "perm_pvalue": 0.6894,
+      "n_bootstrap": 10000,
+      "n_permutation": 10000
+    },
+    "3v4": {
+      "mean_auc": 0.502,
+      "boot_mean": 0.502,
+      "boot_std": 0.0058,
+      "ci_lower": 0.4905,
+      "ci_upper": 0.5134,
+      "ci_width": 0.0229,
+      "perm_pvalue": 0.3631,
+      "n_bootstrap": 10000,
+      "n_permutation": 10000
+    },
+    "4v5": {
+      "mean_auc": 0.494,
+      "boot_mean": 0.494,
+      "boot_std": 0.0059,
+      "ci_lower": 0.4827,
+      "ci_upper": 0.5057,
+      "ci_width": 0.023,
+      "perm_pvalue": 0.8357,
+      "n_bootstrap": 10000,
+      "n_permutation": 10000
+    }
+  },
+  "exp_017_qwen_cont": {
+    "0v1": {
+      "mean_auc": 0.9971,
+      "boot_mean": 0.9971,
+      "boot_std": 0.0004,
+      "ci_lower": 0.9963,
+      "ci_upper": 0.9978,
+      "ci_width": 0.0015,
+      "perm_pvalue": 0.0,
+      "n_bootstrap": 1000,
+      "n_permutation": 500
+    },
+    "1v2": {
+      "mean_auc": 0.6112,
+      "boot_mean": 0.6113,
+      "boot_std": 0.0051,
+      "ci_lower": 0.6015,
+      "ci_upper": 0.6213,
+      "ci_width": 0.0198,
+      "perm_pvalue": 0.0,
+      "n_bootstrap": 1000,
+      "n_permutation": 500
+    },
+    "2v3": {
+      "mean_auc": 0.5609,
+      "boot_mean": 0.561,
+      "boot_std": 0.0053,
+      "ci_lower": 0.5511,
+      "ci_upper": 0.5712,
+      "ci_width": 0.0201,
+      "perm_pvalue": 0.0,
+      "n_bootstrap": 1000,
+      "n_permutation": 500
+    },
+    "3v4": {
+      "mean_auc": 0.5409,
+      "boot_mean": 0.541,
+      "boot_std": 0.0052,
+      "ci_lower": 0.5308,
+      "ci_upper": 0.5508,
+      "ci_width": 0.02,
+      "perm_pvalue": 0.0,
+      "n_bootstrap": 1000,
+      "n_permutation": 500
+    },
+    "4v5": {
+      "mean_auc": 0.5141,
+      "boot_mean": 0.5141,
+      "boot_std": 0.0056,
+      "ci_lower": 0.5035,
+      "ci_upper": 0.5255,
+      "ci_width": 0.022,
+      "perm_pvalue": 0.006,
+      "n_bootstrap": 1000,
+      "n_permutation": 500
+    }
+  }
+}

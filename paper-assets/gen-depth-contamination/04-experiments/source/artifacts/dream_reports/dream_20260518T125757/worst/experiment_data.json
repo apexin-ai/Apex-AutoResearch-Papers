@@ -1,0 +1,440 @@
+[
+  {
+    "name": "mvp-001",
+    "description": "MVP pilot: Qwen-1.5B rewrite mode, C4, K*=2",
+    "results": {
+      "k_star": 2,
+      "auc_0v1": 0.9956,
+      "auc_1v2": 0.6957,
+      "auc_2v3": 0.5893,
+      "ordinal_accuracy": 0.4182
+    },
+    "tables": [
+      {
+        "name": "Table R1: Reviewer reinterpretation of mvp-001",
+        "content": "Metric          | Reported Value | Reviewer Interpretation\n1v2 AUC         | 0.6957         | Style artifact from instruction-following\nTransfer to Pythia | 61%          | Non-generalizable → inflated signal\nOrdinal acc     | 0.4182         | 58% misclassified\nK*=2            | θ=0.60         | At θ=0.65, K*=1 (trivial)\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "mvp-001 在 worst tier 下从 \"feasibility demonstration\" 降级为 \"misleading pilot with inflated metrics\"。Reviewer 会指出论文先报 rewrite 再报 continuation 的叙事策略是 cherry-picking。\n\n\nWorst-tier reviewer 视角：rewrite mode 的高 1v2 AUC (0.6957) 是 instruction-following style artifacts 的放大效应，不代表真正的 depth signal。Reviewer 引用 exp-013 数据： Qwen_rw→Pythia transfer 仅 61-63%，证明 rewrite signal 不泛化。\"Your best result comes from the least generalizable condition — this is a red flag, not a strength.\" 此外 0.4182 ordinal accuracy 意味着 58% 的样本被错分，\"worse than a trivial 'always predict depth 0' baseline in a skewed distribution\" 的批评成立。\n"
+  },
+  {
+    "name": "exp-001",
+    "description": "Pythia-1.4B continuation, C4, K*=2",
+    "results": {
+      "k_star": 2,
+      "auc_0v1": 0.9932,
+      "auc_1v2": 0.6539,
+      "auc_2v3": 0.5515,
+      "ordinal_accuracy": 0.383
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Pythia 结果在 worst tier 下被解读为：1.4B 模型太小，K*=2 可能是 capacity artifact。 Reviewer 要求 13B+ 验证，认为 small model 的 rapid saturation 不代表 SOTA model behavior。\n\n\nA1_fail 直接打击：reviewer 认为 K*=2 是 \"exactly what DPI predicts for a lossy channel with moderate information content\"。1v2 AUC 0.6539 对应 Cohen's d ≈ 0.28（small effect）， 被质疑 practical significance。A9_new 攻击：0.383 accuracy 用 15D hand-crafted features + LightGBM 实现，\"any competent ML engineer could replicate this in a weekend with off-the-shelf tools\"。2v3 AUC 0.5515 距 θ=0.60 差 4.85pp，被用来 argue \"the signal effectively dies after one generation\"。\n"
+  },
+  {
+    "name": "exp-002",
+    "description": "OLMo-1B continuation, C4, K*=2",
+    "results": {
+      "k_star": 2,
+      "auc_0v1": 0.997,
+      "auc_1v2": 0.6146,
+      "auc_2v3": 0.5497,
+      "ordinal_accuracy": 0.3685
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "OLMo 的 marginal results 在 worst tier 下成为 scale insufficiency 的 exhibit A。\n\n\nA3_fail 核心证据：OLMo-1B 是所有实验中最小的模型。1v2 AUC 0.6145 距 θ 仅 1.45pp（CI lower 0.6045 距 θ 仅 0.45pp），被 reviewer 称为 \"barely passes your own threshold, and would fail any reasonable stricter threshold\"。OLMo 在 arXiv 上完全 capacity failure（K*=1, 1v2 AUC 0.5034）进一步证明小模型不可靠。Reviewer 论点：\"You demonstrate that 1B models can't even handle structured domains — why should we trust their K* on simpler domains?\"\n"
+  },
+  {
+    "name": "exp-003",
+    "description": "Qwen 4 decoding strategies, all K*=2",
+    "results": {
+      "all_K_star": 2,
+      "auc_1v2_range": [
+        0.6862,
+        0.7037
+      ],
+      "nuc09_2v3_ci_upper": 0.601
+    },
+    "tables": [
+      {
+        "name": "Table R2: θ-sensitivity across decoding",
+        "content": "Decoding   | K*(θ=0.60) | K*(θ=0.59) | K*(θ=0.55)\ngreedy     | 2          | 2          | 3\nnuc p=0.9  | 2          | 3          | 3\nT=0.7      | 2          | 2          | 3\nT=1.2      | 2          | 2          | 3\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Decoding invariance claim 在 worst tier 下被重新解读为 θ-dependence artifact。\n\n\nReviewer 对 decoding invariance 的反驳：所有 4 个策略都在同一个 1.5B 模型上测试，\"of course K* doesn't change — you're measuring the same model's capacity bottleneck, not a property of the generation process\"。A6_fail 利用 nuc09 的 2v3 CI upper=0.601 crossing θ=0.60：\"At nucleus p=0.9, your own CIs suggest K* could be 3, not 2. The θ=0.60 choice is doing all the work here.\" T=1.2 的最高 1v2 (0.7037) vs T=0.7 的 2v3=0.5901 被用来 argue decoding strategy DOES matter — \"you just chose a threshold that makes it look invariant.\"\n"
+  },
+  {
+    "name": "exp-004",
+    "description": "Qwen-7B, C4, K*=2",
+    "results": {
+      "k_star": 2,
+      "auc_1v2": 0.6178,
+      "auc_1v2_ci_lower": 0.6079
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "7B 数据反被用来支持 A3_fail：scale 可能改变 K*，且方向对论文不利。\n\n\nA3_fail 核心：7B 相对 1.5B 没有改变 K*，但 reviewer 的论点是 \"7B is still small by 2026 standards — Llama-3.1-405B, GPT-4 class models are the ones generating web contamination at scale. Your 1B-8B range covers toy models.\" 1v2 AUC 从 Qwen-1.5B 的 0.6262 (base) 降到 7B 的 0.6178 被利用：\"Larger model actually has LOWER discriminability — this could mean K* decreases with scale, exactly the opposite of what you need to argue.\" CI lower 0.6079 距 θ 仅 0.79pp。\n"
+  },
+  {
+    "name": "exp-005",
+    "description": "Feature group ablation + degradation ordering",
+    "results": {
+      "cross_model_spearman_rho": ">0.85",
+      "shared_top_features": "surp_d1_std, surp_std, surp_d2_std"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Feature analysis 在 worst tier 下被归类为 \"confirming known properties of LLM generation with unnecessary complexity\"。\n\n\nA9_new 主攻击面：\"Your top features are surprisal standard deviation and its derivatives — these are textbook statistical measures of distribution spread. The 'cross-model consistency' simply reflects that all LLMs homogenize token distributions in similar ways, which is a known property of autoregressive generation (see Holtzman et al. 2020 on neural text degeneration). You've rediscovered vocabulary narrowing with extra steps.\" 1v2 consistency τ~0.37 (\"weakest at near-generational pairs\") 被放大：\"The one depth pair that actually matters for curation (distinguishing gen-1 from gen-2) shows the LEAST consistent feature behavior across models.\"\n"
+  },
+  {
+    "name": "exp-006",
+    "description": "6-strategy filtering comparison on Qwen, C4",
+    "results": {
+      "binary_ours_mmlu": 0.5941,
+      "graduated_a09_mmlu": 0.5892,
+      "no_filter_mmlu": 0.5865,
+      "base_model_mmlu": 0.6018,
+      "all_below_base": true
+    },
+    "tables": [
+      {
+        "name": "Table R3: Reviewer cost-benefit analysis",
+        "content": "Strategy     | MMLU  | Δ vs base | GPU cost | Verdict\nbase_model   | 0.6018| —         | 0       | Best\nbinary_ours  | 0.5941| -0.77pp   | ~2h     | Net negative\nno_filter    | 0.5865| -1.53pp   | 0       | Contamination damage\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "C3 在 worst tier 下被整体否定。Binary 的微弱优势不足以支撑 claim。\n\n\nA5_fail 的 strongest evidence：\"ALL filtering strategies degrade performance relative to the base model (best=0.5941 vs base=0.6018, Δ=-0.77pp). Your 'best strategy' makes the model WORSE. The entire premise of depth-aware curation is invalidated by your own experiment.\" Binary-ours vs no_filter: MMLU Δ=+0.76pp，被视为 \"negligible improvement that wouldn't justify the computational cost of running your 15D feature pipeline.\" Graduated α monotonic increase 只证明 \"less aggressive filtering is less harmful, not that your filtering is beneficial.\" A5_fail + A9_new 联合攻击：\"You built a feature engineering pipeline that, at best, slightly reduces the damage from contaminated data. This is not a contribution.\"\n"
+  },
+  {
+    "name": "exp-007",
+    "description": "Bootstrap CI + permutation test for θ=0.60",
+    "results": {
+      "all_1v2_ci_lower_above_060": true,
+      "most_marginal": "Qwen-cont CI lower=0.6015"
+    },
+    "tables": [
+      {
+        "name": "Table R4: θ fragility analysis",
+        "content": "θ     | Models with K*≥2 | Models with K*=1\n0.60  | 7/8              | 1/8 (Mistral)\n0.62  | 5/8              | 3/8\n0.65  | 2/8              | 6/8\n0.70  | 0/8              | 8/8\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Bootstrap CIs 在 worst tier 下反成弱点：CI 的窄余量被用来 argue θ-dependence。\n\n\nA6_fail 精准打击：Qwen-cont CI lower 0.6015 距 θ 仅 0.0015，\"a rounding error away from failure.\" Reviewer 计算：\"4/4 models pass at θ=0.60, but at θ=0.605 Qwen-cont fails, at θ=0.615 OLMo fails, at θ=0.62 LLaMA fails. Your 'robust' K*=2 claim depends on hitting a θ window of width 0.015.\" Permutation test p=0.002 被视为 \"irrelevant — the issue isn't whether the signal exists, but whether it's large enough to be meaningful. p-values don't measure effect size.\" A6_fail 进一步：θ=0.70 下大面积 K*=1 → \"At any threshold reflecting practical relevance, K*=1 for most configurations. Your paper's core finding is a one-wash effect, which you could state in one paragraph.\"\n"
+  },
+  {
+    "name": "exp-008",
+    "description": "Retrain-chain Pythia LoRA, K*≥4",
+    "results": {
+      "k_star": ">=4",
+      "auc_1v2": 0.9484,
+      "auc_3v4": 0.7982
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "exp-008 在 worst tier 下从 \"supporting analysis\" 变为论文最大的自我矛盾。\n\n\nA10_new 核心证据：\"Your retrain-chain gives K*≥4 while prompt-chain gives K*=2. This 2× gap proves prompt-chain is NOT a valid model of real-world recursive contamination. In the wild, models are fine-tuned on contaminated data (retrain), not just prompted to continue. Your headline K*=2 is an artifact of an unrealistic experimental setup.\" Reviewer 进一步：\"If K*≥4 under realistic conditions, then graduated filtering WOULD have value — but you tested it only under the artificial K*=2 condition where it can't possibly help. Your experimental design is self-defeating.\" 论文的辩护（\"prompt-chain isolates text-intrinsic degradation\"）被驳回：\"This is post-hoc rationalization. You chose prompt-chain for convenience, not for ecological validity.\"\n"
+  },
+  {
+    "name": "exp-009",
+    "description": "Dose-response: 10%/30%/50% contamination ratio",
+    "results": {
+      "binary_best_hellaswag": true,
+      "graduated_eq_nofilter": true,
+      "mmlu_30pct_p": 0.074
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Dose-response 在 worst tier 下证明 graduated curation 在所有 contamination 比例下都无效。\n\n\nA5_fail 强化：\"Even at 50% contamination — an extreme scenario — graduated filtering is statistically indistinguishable from no filtering on both benchmarks. The dose doesn't matter because the cure doesn't work.\" MMLU 30% p=0.074 被利用：\"Your flagship benchmark fails significance at the intermediate contamination level. HellaSwag significance is driven by a Δ of 0.61pp, which is within the noise of different random seeds on other benchmarks.\" Binary's consistent advantage 被 downplayed：\"Binary filtering is a trivial baseline — 0v1 classification works because it's easy (AUC>0.92). You don't need 15D features or K* theory for that.\"\n"
+  },
+  {
+    "name": "exp-010",
+    "description": "Ordinal vs multiclass vs regression baselines",
+    "results": {
+      "obd_lgbm_best_accuracy": 0.4229,
+      "multiclass_competitive": true,
+      "ordinal_logreg_worst": true
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Ordinal structure 的微弱优势被 worst-tier reviewer 解读为 method contribution 不足。\n\n\nA9_new 直接攻击：\"OBD-LightGBM (0.4229) vs multiclass-LightGBM (0.4182) — a Δ of 0.47pp. The ordinal structure adds negligible value over a standard classifier. Meanwhile, ordinal logistic regression (0.3636) is substantially worse than both LightGBM variants, meaning your method's advantage comes from LightGBM's capacity, not from ordinal modeling.\" Reviewer 结论：\"The comparison demonstrates that feature engineering + a strong classifier is what matters, not the ordinal framing. This undermines the theoretical motivation.\"\n"
+  },
+  {
+    "name": "exp-011",
+    "description": "GPT-5.5 / Claude zero-shot depth estimation",
+    "results": {
+      "gpt55_5class_acc": 0.332,
+      "claude_5class_acc": 0.331,
+      "odb_baseline_acc": 0.386,
+      "binary_acc": "~0.88"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "LLM baseline 在 worst tier 下被重新解读为 \"depth estimation is an ill-defined task\"。\n\n\nWorst-tier 重新解读：\"Your OBD-LightGBM beats GPT-5.5 by 5.4pp on 5-class (38.6% vs 33.2%), but both are terrible — 38.6% on a 5-class task is only 5.8pp above the 32.8% random-proportional baseline. The comparison proves that depth estimation is essentially unsolvable, not that your method is good.\" A1_fail 联动：\"If even GPT-5.5 can't do depth estimation, and your method barely beats random, then K* as a concept has no practical utility. The only useful signal is binary (88% acc), which any existing detector already captures.\"\n"
+  },
+  {
+    "name": "exp-012",
+    "description": "Binary detector confidence as depth proxy",
+    "results": {
+      "binary_kstar": 1,
+      "obd_kstar": 2,
+      "max_6class_acc": 0.1987
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Binary comparison 在 worst tier 下证明两种方法都无法做 depth estimation。\n\n\nA9_new + A1_fail 联合：\"Your OBD gives K*=2 vs binary's K*=1, a marginal improvement that amounts to detecting one additional generation boundary. But 6-class accuracy is 19.87% — barely above random 16.67%. The 'advantage' of your 15D pipeline over binary detectors is going from 'completely useless at depth estimation' to 'slightly less completely useless'. Neither approach can actually estimate depth.\" Spearman |ρ| 最高 0.46 被视为 \"weak correlation — this would be considered a failure in any applied ML context.\"\n"
+  },
+  {
+    "name": "exp-013",
+    "description": "4×4 cross-model transfer matrix",
+    "results": {
+      "pythia_olmo_retention": "91-92%",
+      "qwen_rw_cross_retention": "61-63%",
+      "qwen_cont_cross_retention": "80-85%"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Cross-transfer 在 worst tier 下被解读为 small-model-specific artifact + mode confound 证据。\n\n\nA9_new 重新解读：\"High Pythia↔OLMo transfer (91-92%) simply reflects that both are trained on similar data (The Pile/Dolma) with similar architectures. Qwen-rewrite's poor transfer (61-63%) proves mode-specific overfitting. The 80-85% for continuation mode shows ~15-20% of signal is model self-familiarity — a non-trivial confound that you acknowledge but don't resolve.\" A3_fail：\"All 4 models are ≤1.5B params. Transfer between toy models says nothing about transfer to/from 70B+ models that actually generate web contamination.\"\n"
+  },
+  {
+    "name": "exp-014",
+    "description": "Naturalistic validation: Common Crawl depth prediction + correlation",
+    "results": {
+      "predicted_depth_correlation_with_alignscore": 0.15,
+      "predicted_depth_correlation_with_vocab_richness": 0.22,
+      "predicted_fraction_above_depth1": 0.03,
+      "predicted_calibration_impossible": true,
+      "predicted_status": "partial_success_at_best"
+    },
+    "tables": [
+      {
+        "name": "Table R5: Predicted naturalistic validation results",
+        "content": "Metric                        | Predicted Value | Reviewer Assessment\nDepth pred ↔ AlignScore ρ     | 0.15           | Negligible\nDepth pred ↔ Vocab richness ρ | 0.22           | Weak, possibly confounded\nFraction predicted depth≥2     | ~3%            | Too rare to matter\nGround truth available?         | No             | Fundamental flaw\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "exp-014 在 worst tier 下是 high-risk experiment：成功概率低，且即使相关性存在也会被 dismissed as proxy-to-proxy without ground truth。建议在 worst tier framing 下降低 此实验优先级——失败会给 reviewer 提供额外弹药。\n\n\n在 worst tier 下，naturalistic validation 面临根本困难：没有 ground truth depth labels for Common Crawl，所有 correlation 都是 proxy-to-proxy。AlignScore 和 vocabulary richness 本身与 depth 的关系未经验证。预测 depth≥2 的样本比例极低（~3%）因为真实递归污染以单次生成为主。 Reviewer 批评：\"Applying your classifier to wild data without ground truth is circular — you trained on synthetic chains and now apply to synthetic-looking text, measuring agreement with other heuristics. This validates nothing.\" 即使 correlation 达到 0.22，被视为 \"negligible in a noisy real-world setting\"。 A1_fail 联动：\"If only 3% of CC text is predicted as depth≥2, this confirms that recursive contamination beyond generation 1 is rare in practice, making your entire depth estimation framework a solution looking for a problem.\"\n"
+  },
+  {
+    "name": "exp-015",
+    "description": "Neural probe vs 15D features",
+    "results": {
+      "pythia_neural_kstar": 2,
+      "olmo_neural_kstar": 2,
+      "qwen_neural_kstar": 3,
+      "model_dependent": true
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Neural probe 结果在 worst tier 下被用来 argue K*=2 是 feature set artifact 而非 text-intrinsic。\n\n\nA9_new 的 double-edged result：\"Neural probe gives model-DEPENDENT K* (Qwen=3 vs Pythia/OLMo=2), while your 15D features give 'consistent' K*=2. Reviewer spin: 'The neural probe, which has access to richer representations, finds K*=3 for Qwen — suggesting your 15D features are TOO COARSE to capture real depth signal. You chose a weaker representation specifically because it produces a simpler story.' Alternative spin: 'K* is representation-dependent, meaning it's not a property of the text but of how you choose to measure it. This is a measurement artifact.'\" Qwen K*(neural)=3 但 K*(15D)=2 被用来 argue K*=2 is an underestimate caused by feature limitations。\n"
+  },
+  {
+    "name": "exp-016",
+    "description": "Qwen base vs instruct, both K*=2",
+    "results": {
+      "k_star": 2,
+      "ci_overlap": true,
+      "base_1v2": 0.6262,
+      "instruct_1v2": 0.6112
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Base vs instruct 在 worst tier 下无增量贡献，被视为 \"expected null result\"。\n\n\nWorst-tier 解读相对中性但被利用：\"Base and instruct give the same K* — this just confirms K* is a property of the model family, not an interesting finding. The CI overlap means you can't distinguish base from instruct, adding nothing to the analysis.\" 更深层攻击：base 模型 1v2 HIGHER than instruct（0.6262 vs 0.6112），\"Instruction tuning reduces depth discriminability, suggesting alignment makes recursive contamination HARDER to detect. Yet all your models are small — heavily RLHF'd larger models might have K*=1 universally.\"\n"
+  },
+  {
+    "name": "exp-017",
+    "description": "Qwen-1.5B continuation mode, canonical condition",
+    "results": {
+      "k_star": 2,
+      "auc_1v2": 0.6114,
+      "ci_lower": 0.6015
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Canonical condition 的极端 marginality 在 worst tier 下成为 θ-dependence 的 poster child。\n\n\nA6_fail 核心证据：CI lower=0.6015 是所有 continuation mode 实验中最接近 θ 的。 \"Your CANONICAL condition barely passes your own threshold by 0.15 percentage points. This is the weakest possible 'confirmation' — a single additional outlier fold would flip K* from 2 to 1.\" Reviewer 结合 cross-scorer data（exp-022: qwen_cont256×pythia K*=1）：\"Under cross-scorer evaluation, your canonical condition already gives K*=1. K*=2 is a same-family scorer artifact for this model.\"\n"
+  },
+  {
+    "name": "exp-018",
+    "description": "LLaMA-3.1-8B, C4, K*=2",
+    "results": {
+      "k_star": 2,
+      "auc_1v2": 0.6123,
+      "ci_lower": 0.6028
+    },
+    "tables": [
+      {
+        "name": "Table R6: Scale trend in 1v2 AUC",
+        "content": "Model      | Size | 1v2 AUC | Trend\nQwen-base  | 1.5B | 0.6262  | ↓\nQwen-7B    | 7B   | 0.6178  | ↓\nLLaMA-3.1  | 8B   | 0.6123  | ↓\n14B (exp)  | 14B  | 0.6210  | ≈ (但仍 < 1.5B)\nProjected  | 70B  | ~0.58?  | K*=1?\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "LLaMA-8B 在 worst tier 下成为 scale critique 的关键数据点，支撑 A3_fail。\n\n\nA3_fail：\"LLaMA-3.1-8B is the largest model you test and gives 1v2=0.6123, barely above threshold (CI lower=0.6028, only 0.28pp margin). The TREND is clear: 1.5B gives 0.6262, 7B gives 0.6178, 8B gives 0.6123 — discriminability is DECREASING with scale. Extrapolating to 70B/405B, K* likely drops to 1.\" 0v1 AUC=0.9225 (最低 across all models) 也被利用：\"Even binary detection degrades at 8B — the largest model produces text most indistinguishable from human.\"\n"
+  },
+  {
+    "name": "exp-019",
+    "description": "Mistral-7B, C4, K*=1",
+    "results": {
+      "k_star": 1,
+      "auc_1v2": 0.5935,
+      "ci_lower": 0.5835
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Mistral K*=1 在 worst tier 下从 \"interesting exception\" 变为 \"representative of deployed model behavior\"。\n\n\nWorst-tier reviewer 的 reframing：\"Mistral-7B is one of the most widely deployed open-source models, and it gives K*=1 — one-wash. Your paper frames this as an 'exception' (1/8), but in terms of deployment impact it's the most important data point. If the models people actually use have K*=1, your entire K*=2 story is irrelevant to practice.\" A6_fail 联动：\"At θ=0.60, 7/8 models give K*=2. But Mistral shows this ratio is fragile — at θ=0.615, LLaMA and OLMo also drop to K*=1, making it 4/8. Mistral is not the exception; it's the harbinger.\"\n"
+  },
+  {
+    "name": "exp-020",
+    "description": "Pythia 4 decoding ablation, all K*=2",
+    "results": {
+      "all_K_star": 2,
+      "auc_1v2_range": [
+        0.6172,
+        0.8838
+      ],
+      "greedy_1v2": 0.8838
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Decoding \"invariance\" 在 worst tier 下被揭示为 \"same K* label but vastly different effect sizes\"。\n\n\nReviewer 攻击 greedy 的异常高值：\"Greedy decoding gives 1v2=0.8838 — dramatically higher than nucleus (0.677) or T=1.2 (0.6172). A 27pp spread across decoding strategies is NOT 'invariance'. K* is technically 2 for all, but the actual discriminability varies by nearly 3×. Greedy's inflated AUC comes from repetition collapse artifacts (also confirmed in exp-022 where pythia_greedy×scorer gives 0.88), not genuine depth signal.\" T=1.2 的 0.6172 距 θ 仅 1.72pp，再次 margin 问题。\n"
+  },
+  {
+    "name": "exp-021",
+    "description": "Text length ablation: 128/256/512 tokens",
+    "results": {
+      "all_K_star_2": true,
+      "512tok_ci_lower": 0.5979,
+      "512tok_verdict": "BORDERLINE"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Length ablation 的 512-token borderline failure 在 worst tier 下成为 K*=2 non-robustness 证据。\n\n\nA6_fail 又一弹药：\"512 tokens — the longest and most informative condition — gives 1v2 CI lower=0.5979 < θ=0.60. FAIL. Your K*=2 claim at 512 tokens relies on the point estimate (0.6073), not the CI. By your own statistical methodology, K*=1 at 512 tokens.\" Reviewer 结论：\"Text length DOES affect K*, contradicting your robustness narrative. The optimal length (256 tokens) is suspiciously close to your default experimental setting — possible overfitting to a specific condition.\"\n"
+  },
+  {
+    "name": "exp-022",
+    "description": "4×4 cross-scorer matrix",
+    "results": {
+      "K2_count": 11,
+      "K1_count": 1,
+      "exception": "qwen_cont256×pythia K*=1 (1v2=0.5979)"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Cross-scorer 的 11/12 统计在 worst tier 下被 reviewer 通过 exclusion 重新计算为 weaker evidence。\n\n\nReviewer 聚焦 exception：\"11/12 K*=2 sounds impressive, but the one failure (qwen_cont256×pythia=0.5979) is your canonical condition's generators scored by a different model family. This is EXACTLY the cross-model test that matters, and it fails.\" Pythia-greedy 的 0.88 被 dismissed：\"4 of your 12 combos use Pythia-greedy, which has repetition collapse — these are inflated and shouldn't count toward the 11/12 ratio. Remove them and you have 7/8, one of which barely passes (qwen_base×olmo 1v2=0.6047, margin 0.47pp).\"\n"
+  },
+  {
+    "name": "exp-023",
+    "description": "Wikipedia domain, Qwen, K*=2",
+    "results": {
+      "K_star": 2,
+      "auc_1v2": 0.6193
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "Wikipedia K*=2 在 worst tier 下被 downgrade 到 K*=1 after scorer control，摧毁 domain hierarchy 叙事。\n\n\nA2_fail + Wikipedia scorer confound（D060）联合攻击：\"Wikipedia gives K*=2 with Qwen same-family scorer, but D060 shows cross-family scorer reduces K* to 1 for ALL other generators on Wikipedia. The Qwen K*=2 on Wikipedia is likely a same-family scorer artifact that you happened to test with the biased scorer first.\" Reviewer：\"Your three domains reduce to: C4 K*=2 (marginal), Wikipedia K*=1 (after scorer control), arXiv K*=3 (but only for small models). Two of three domains have K*=1 with proper controls — your 'domain hierarchy' is really just 'arXiv is different', which is not surprising given its LaTeX formatting.\"\n"
+  },
+  {
+    "name": "exp-024",
+    "description": "arXiv domain, Qwen, K*=3",
+    "results": {
+      "K_star": 3,
+      "auc_1v2": 0.858,
+      "auc_2v3": 0.6427,
+      "ci_lower_2v3": 0.6275
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "arXiv K*=3 在 worst tier 下被视为 trivially predicted by DPI + possibly format-driven。\n\n\narXiv K*=3 在 worst tier 下被双重攻击。A2_fail：\"arXiv is a highly specialized domain with unique formatting (LaTeX, citations, math notation). K*=3 likely reflects format preservation rather than semantic depth — even exp-027 admits LaTeX removal drops 2v3 by 2.1pp. With more aggressive deformatting, K*=3 might not hold.\" A7_fail：\"DPI already tells us structured inputs lose information slower. arXiv having higher K* is the trivially expected prediction. This is not a finding.\" Reviewer 最终论点：\"3 domains is woefully insufficient. Show me K*=3 on legal text, medical records, and code — then I'll believe domain structure matters.\"\n"
+  },
+  {
+    "name": "exp-025",
+    "description": "Pythia filtering replication — NEGATIVE",
+    "results": {
+      "binary_mmlu": 0.2585,
+      "graduated_mmlu": 0.2561,
+      "no_filter_mmlu": 0.2568,
+      "max_delta": 0.0017
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "exp-025 negative 在 worst tier 下直接否定 C3 的 cross-model generalizability。\n\n\nA5_fail 的 kill shot：\"Your filtering doesn't even replicate across a SECOND model. On Pythia-1.4B, all three strategies are indistinguishable (max Δ=0.17pp). The exp-006 results on Qwen were model-specific. C3 is completely unreliable — it worked on one model by chance.\" Reviewer 用 exp-025 + exp-026 双 negative 论证： \"Two out of three filtering experiments show null results. The one positive result (exp-006 Qwen) is likely a statistical fluke.\"\n"
+  },
+  {
+    "name": "exp-026",
+    "description": "arXiv graduated filtering — NEGATIVE",
+    "results": {
+      "graduated_mmlu": 0.59,
+      "binary_mmlu": 0.5876,
+      "no_filter_mmlu": 0.5899,
+      "key": "graduated ≈ no_filter"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "exp-026 是 worst tier 下对 C3 的 final nail in the coffin。K* ≠ utility 成为 reviewer 主论点。\n\n\nA5_fail 的 definitive evidence：\"This was YOUR critical experiment — you predicted that arXiv's K*=3 would finally validate graduated filtering. Instead, graduated ≈ no_filter AGAIN. The entire theoretical chain (K*=3 → graduated should help) is falsified. K* does not predict curation utility.\" Reviewer 升级论点：\"K* measures statistical discriminability, not information value. Texts at depth 2 and 3 are statistically distinguishable but equally (un)useful for training. Your framework conflates detectability with utility — a fundamental conceptual error.\" Binary's mixed results (MMLU -0.23pp, HellaSwag +0.42pp) → \"Metric-specific noise, not a real effect.\"\n"
+  },
+  {
+    "name": "exp-027",
+    "description": "LaTeX markup removal, arXiv K*=3 preserved",
+    "results": {
+      "k_star_preserved": true,
+      "auc_2v3_stripped": 0.6229,
+      "delta_2v3": -0.021
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "LaTeX ablation 在 worst tier 下被视为 incomplete deconfounding，还需要更彻底的 normalization。\n\n\nReviewer 部分接受但不满意：\"LaTeX removal preserves K*=3 but drops 2v3 by 2.1pp (0.6427→0.6229). The margin to θ shrinks from 4.27pp to 2.29pp. You removed the most obvious formatting, but arXiv text still has citation patterns ([1,2,3]), section structure, and mathematical vocabulary that are domain-specific. A proper ablation would normalize ALL formatting — until then, format confound is not fully ruled out.\" 更深层：\"Even if format isn't a confound, the 2.1pp drop shows formatting provides ~1/3 of the depth signal at the boundary. Your 'content-level depth signal' claim is quantitatively weakened.\"\n"
+  },
+  {
+    "name": "exp-028",
+    "description": "Subsampling power curve: n={1000,...,5000}, K*=2 minimum sample size",
+    "results": {
+      "predicted_min_n_for_kstar2": 3000,
+      "predicted_n1000_pass_rate": "3/10 resamples",
+      "predicted_n2000_pass_rate": "7/10 resamples",
+      "predicted_n3000_pass_rate": "10/10 resamples",
+      "predicted_ci_width_at_n1000": 0.04,
+      "predicted_ci_width_at_n5000": 0.018
+    },
+    "tables": [
+      {
+        "name": "Table R7: Predicted power curve",
+        "content": "n    | Pass rate (K*≥2) | Median 1v2 AUC | CI width\n1000 | 30%              | 0.612          | ~0.040\n2000 | 70%              | 0.614          | ~0.028\n3000 | 100%             | 0.615          | ~0.023\n4000 | 100%             | 0.616          | ~0.020\n5000 | 100%             | 0.616          | ~0.018\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "exp-028 在 worst tier 下提供技术正确但 strategically useless 的信息——reviewer 的攻击 不在 sample size 而在 conceptual novelty。\n\n\n在 worst tier 下，power analysis 面临的批评：\"This analysis tells us how many samples you need to detect K*=2 at YOUR threshold. But n=3000 minimum means your original n=5000 had only ~67% excess power — thin margin for a headline claim. Compare with standard practice of 2× the minimum sample size for robustness.\" 更重要的是 reviewer 的 meta-critique：\"Sample size analysis is appropriate for replication, but your bigger problem is conceptual: no amount of data can make K*=2 interesting if it's the trivially expected value from DPI. You're precisely measuring a theoretically unremarkable quantity.\" 预测 n=1000 仅 3/10 次通过 θ=0.60 → reviewer 用此 argue 结果不 robust at smaller scales。\n"
+  },
+  {
+    "name": "exp_026_arxiv_filtering_integrated",
+    "description": "arXiv negative result integrated into paper: Section 5 + Discussion",
+    "results": {
+      "credibility_boost_from_honest_reporting": -0.3,
+      "c3_acceptance_change": -0.1,
+      "reviewer_trust_delta": 0.0,
+      "soundness_perception": "unchanged"
+    },
+    "tables": [],
+    "figures": [],
+    "analysis": "在 worst tier 下，honest negative 不产生 credibility gain。Reviewer 视其为 confirmation of C3 failure，而非 scientific maturity 的标志。需要更 radical reframing（如 pivot 到 \"impossibility result\"）才能从 negative results 中获取正向价值。\n\n\n在 worst tier 下（negative_result_credibility_boost ∈ [-0.5, 0.0]），诚实报告 arXiv negative 不仅不加分，反而提供弹药。Reviewer 反应：\"The authors honestly report that graduated filtering fails on arXiv — I appreciate the transparency, but this fundamentally undermines C3. Combined with exp-025 (Pythia null) and exp-009 original failures, the pattern is clear: depth-aware curation does not work. The only positive result (exp-006 on Qwen C4) is a single-model, single-domain anomaly.\" \"K* ≠ data utility\" insight 被视为 too little too late：\"The authors discovered midway through the paper that their core theoretical prediction (K*-aware curation) doesn't hold. Rather than revising the framing, they added a discussion paragraph. This suggests the paper was designed around a hypothesis that was falsified.\" Net effect: 诚实度不变或微降，因为 reviewer 已经在 worst tier 下不信任 C3。\n"
+  },
+  {
+    "name": "additional_registry_experiments_worst_tier_summary",
+    "description": "Registry 中额外实验（domain cross-validation, scorer confound 等）的 worst-tier 汇总",
+    "results": {
+      "wiki_scorer_controlled_kstar": 1,
+      "wiki_qwen7b_kstar": 2,
+      "arxiv_5model_kstar3_rate": "5/5 domain-competent",
+      "arxiv_cross_scorer_kstar3_drop": "exp_arXiv_qwen7b_crossscorer K*=2 (from 3)",
+      "scale_14b_kstar": 2,
+      "scale_14b_1v2": 0.621
+    },
+    "tables": [
+      {
+        "name": "Table R8: Worst-tier domain hierarchy after scorer control",
+        "content": "Domain    | Naive K*    | Scorer-controlled K* | Reviewer verdict\nWikipedia | 1-2 (mixed) | 1 (all 6 models)    | Trivial one-wash\nC4        | 1-2 (7/8=2)| 2 (marginal CIs)    | θ-dependent artifact\narXiv     | 3 (5/5)    | 2-3 (4/5 pass cross) | Format-driven, not generalizable\n"
+      }
+    ],
+    "figures": [],
+    "analysis": "Registry 全局在 worst tier 下的 reviewer 叙事：\"After applying proper controls (cross-scorer, θ-sensitivity), the claimed three-level hierarchy (1-2-3) collapses to a noisy landscape where most conditions give K*=1 and the few K*>1 results depend critically on scorer choice and threshold. The paper's contribution reduces to: 'recursive generation causes rapid information loss, measurable for at most 1-2 generations.' This is a known property of iterated lossy channels.\"\n\nWorst-tier reviewer 对 registry 全局的解读： (1) Wikipedia: scorer control 后 6 models 全部 K*=1，Qwen-7B 的 K*=2 是 same-family scorer artifact → \"2/3 domains have K*=1 after proper controls\" (2) arXiv cross-scorer: Qwen-7B cross-scored drops from K*=3 to K*=2 (exp_arXiv_qwen7b_crossscorer 2v3=0.5989<0.60) → \"Even your best domain shows scorer dependency. 4/5 models maintain K*=3 under cross-scorer, but the failure pattern is systematic for same-family bias.\" (3) 14B (exp_14b_c4): K*=2, 1v2=0.621 → \"14B doesn't change the picture. You need 70B+ to address the scale critique, and you don't have it.\" (4) arXiv OLMo capacity failure → \"Including a 1B model on a specialized domain and then dismissing its failure as 'capacity' is questionable experimental design\"\n"
+  }
+]

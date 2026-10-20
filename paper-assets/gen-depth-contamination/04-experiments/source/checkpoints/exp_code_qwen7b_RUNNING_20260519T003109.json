@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp_code_qwen7b",
+  "project": "gen-depth-contamination",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T00:30:13.401Z",
+    "updated_at": "2026-05-19T00:31:09.617Z",
+    "hypothesis": "Qwen2.5-7B code domain K* measurement: Qwen family scale invariance test on CodeSearchNet Python. Pythia Code K*=1 弱化了跨模型一致性。Qwen-7B 测试两个方向：(1) Qwen 家族内 Code 的 scale invariance（1.5B K*=2, 7B K*=?），(2) 若 LLaMA/Mistral 也 K*=1，Qwen-7B K*=2 能维持 \"code-competent models reach K*=2\" 叙事。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "parent": "exp_code_pythia1b4",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/bin/activate && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-7B --data_dir data/exp_code_qwen7b --results_dir results/exp_code_qwen7b --num_samples 5000 --max_depth 5 --batch_size 4 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\"",
+      "server": "cqa1-22115",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/exp_code_qwen7b",
+      "data_count": 5000,
+      "model_name": "Qwen2.5-7B",
+      "seed": 42,
+      "checkpoint_source": "exp_code_qwen1b5",
+      "eval_data": "CodeSearchNet Python 5000 docs",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "110240",
+      "log_path": "~/runs/gen-depth-contamination/exp_code_qwen7b.log",
+      "submitted_at": "2026-05-19T00:30:45Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-19T00:31:09.842340+00:00",
+  "trigger": "update_registry"
+}

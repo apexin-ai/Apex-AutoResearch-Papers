@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_wiki_pythia_v2",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:40:37.896Z",
+    "updated_at": "2026-05-17T11:49:02.808Z",
+    "hypothesis": "Cross-model Wikipedia K* validation (v2 fix): Pythia-1.4B continuation on Wikipedia 的 K* 是否 = 2？使用独立 data_dir 避免 v1 的 data reuse bug，让 pipeline 用 Pythia 重新生成 depth 1-5。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "parent": "exp_wiki_pythia",
+    "spec": {
+      "command": "bash -c 'export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_wiki_pythia --results_dir results/exp_wiki_pythia_v2 --num_samples 5000 --max_depth 5 --batch_size 16 --max_new_tokens 256 --top_p 0.95 --temperature 1.0 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B'",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "30942",
+      "log_path": "~/runs/gen-depth-contamination/exp_wiki_pythia_v2.log",
+      "submitted_at": "2026-05-17T11:48:32.895Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-17T11:49:02.964532+00:00",
+  "trigger": "update_registry"
+}

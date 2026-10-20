@@ -1,0 +1,24 @@
+{\small
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Scorer} & \textbf{Gen.\ Data} & $\boldsymbol{K^*}$ & \textbf{AUC(0v1)} & \textbf{AUC(1v2)} & \textbf{Spearman}~$\boldsymbol{\rho}$ \\
+\midrule
+% --- Qwen-RW block ---
+Qwen-1.5B (self) & Qwen-RW & 2 & --- & 0.6955 & --- \\
+Pythia-1.4B       & Qwen-RW & 2 & 0.9923 & 0.7012 & 0.906 \\
+OLMo-1B           & Qwen-RW & 2 & 0.9918 & 0.6947 & 0.920 \\
+\midrule
+% --- Qwen-cont block ---
+Qwen-1.5B (self) & Qwen-cont & 2 & --- & 0.6112 & --- \\
+Pythia-1.4B       & Qwen-cont & \textcolor{red}{1\textsuperscript{$\dagger$}} & 0.9900 & \underline{0.5923} & 0.942 \\
+OLMo-1B           & Qwen-cont & \textcolor{red}{1\textsuperscript{$\dagger$}} & 0.9890 & \underline{0.5858} & 0.902 \\
+\midrule
+% --- Qwen-7B cross-scale block ---
+Qwen-1.5B        & Qwen-7B-cont & 2 & 0.9644 & 0.6178 & --- \\
+\midrule
+% --- OLMo cross-scorer block (all domains) ---
+Cross-scorer      & OLMo-arXiv   & 1 & 0.999  & 0.500\textsuperscript{n.s.} & --- \\
+Cross-scorer      & OLMo-Code    & 1 & 0.9996 & 0.557\textsuperscript{n.s.} & --- \\
+\bottomrule
+\end{tabular}
+}

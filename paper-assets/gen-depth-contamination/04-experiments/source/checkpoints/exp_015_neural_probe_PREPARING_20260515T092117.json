@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp_015_neural_probe",
+  "project": "gen-depth-contamination",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-13T18:53:34.791Z",
+    "updated_at": "2026-05-15T09:21:17.758Z",
+    "hypothesis": "Learned representations (frozen LLM → MLP) 的 K* 是否高于 hand-crafted 15D features？若 K*_neural > K*_15D，说明 15D projection 是 K*=2 的部分原因；若相同，加强 information-theoretic impossibility 论证",
+    "notes": "v3 rerun launched 2026-05-15 09:15 UTC. OOM-fixed script: sequential model loading, batch_size=8, auto-halving on OOM. Extracting Pythia-1.4B embeddings (model 1/3), ~150 it/s. tmux: exp015. GPU: 83% util, 4251/24564 MiB.",
+    "completed_at": "2026-05-14T02:58:02.023Z",
+    "failure_reason": "GPU OOM: exp-006 (15.5GB) + exp-015 (~9GB) 超出 4090D 24GB 显存。Qwen-cont embedding 完成但 Pythia/OLMo 数据丢失。保存的结果仅基于 Qwen-cont 单数据集，不可用于论文。需 exp-006 完成后独占 GPU 重跑全 3 数据集 + bootstrap CI + permutation test。",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "metrics": {
+          "k_star_neural": 3,
+          "k_star_lgbm": 2,
+          "accuracy": 0.4335,
+          "pairwise_auc": {
+            "0v1": 0.987,
+            "1v2": 0.698,
+            "2v3": 0.62,
+            "3v4": 0.593,
+            "4v5": 0.575
+          },
+          "key_finding": "Neural probe (frozen LLM hidden states → MLP) achieves K*=3 vs hand-crafted 15D features K*=2. 2v3 AUC=0.620 > θ=0.60, confirming richer representations can push K* higher. This validates K*_empirical=2 as an operational lower bound of the 15D feature set, not an information-theoretic limit.",
+          "datasets": [
+            "Pythia-1.4B",
+            "OLMo-1B",
+            "Qwen-cont"
+          ],
+          "results_path": "artifacts/exp015_neural_probe_results.json"
+        },
+        "notes": "v3 rerun launched 2026-05-15 09:15 UTC. OOM-fixed script: sequential model loading, batch_size=8, auto-halving on OOM. Extracting Pythia-1.4B embeddings (model 1/3), ~150 it/s. tmux: exp015. GPU: 83% util, 4251/24564 MiB."
+      }
+    }
+  },
+  "timestamp": "2026-05-15T09:21:17.803741+00:00",
+  "trigger": "update_registry"
+}

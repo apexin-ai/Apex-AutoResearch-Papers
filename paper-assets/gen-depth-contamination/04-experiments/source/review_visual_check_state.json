@@ -1,0 +1,92 @@
+{
+  "status": "done",
+  "started_at": "2026-05-25T21:16:20.203677+00:00",
+  "completed_at": "2026-05-25T21:19:26.505288+00:00",
+  "findings": [
+    {
+      "severity": "warning",
+      "dimension": "page 1-2",
+      "message": "连续 2 页纯文本，无任何 display item（figure/table/equation）。第一个视觉锚点（Figure 1 pipeline 图）直到 page 3 才出现。对于实证为主的论文，审稿人在前 2 页缺乏视觉锚定点，建议考虑将 Figure 1 提前或在 Introduction 中加入一个 teaser figure"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "Title / Author / Abstract 排版整洁，符合 ACL 匿名模板规范。Abstract 长度适中"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 3",
+      "message": "Figure 1（pipeline 图）作为首个 display item，清晰传达核心方法流程（Seed Corpus → Recursive Generation → Feature Extraction → OBD Classifier → K* Estimation），caption 自包含，与 Title-Abstract 一致性好"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "布局节奏良好：Table 1（实验配置）+ Figure 2（AUC 衰减曲线）同页出现，text-table-figure 交替"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 5",
+      "message": "Table 2 为全宽大表，占页面约 40%，其余为密集结果讨论文字。整页视觉节奏偏单调，但表格内容信息密度高，可接受"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 6",
+      "message": "三个 display items（Figure 3 + Figure 4 + Table 3）挤在单页。Figure 3（sensitivity curve）和 Figure 4（cross-model transfer heatmap）均为单栏宽度，尺寸偏小。Figure 4 的 heatmap 标签文字在 150 dpi 下勉强可读，打印后可能偏小。建议 Figure 4 改用 figure*（全宽）或与 Figure 3 合并为 subfigure"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Figure 5（ISD 曲线）+ Table 4 布局合理，figure 尺寸适中，标签清晰"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "末页布局紧凑但完整：Table 5 + Figure 6 + Discussion + Conclusion，内容填满 >95% 页面，空间利用充分"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Figure 6（bar chart）清晰可读，error bars 可见，颜色区分度好"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 9",
+      "message": "Limitations 章节简短（约 3 个点），位于正文后、References 前，符合 EMNLP 2026 格式要求。全文仅有一个 Limitations section"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 9-10",
+      "message": "References 格式统一，未发现 [?] 未解析引用或跳号。作者缩写、年份格式一致"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 10-18",
+      "message": "附录包含 20+ 张补充表格，均使用 booktabs 风格，格式规范。主结果表格最优值加粗标注"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "全文颜色方案基本一致：线图使用不同颜色+marker 区分模型系列，色盲友好性可接受（非纯红绿对比）"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1-8",
+      "message": "未发现 margin 溢出、公式渲染错误、section heading 孤悬等排版问题"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 18",
+      "message": "末尾有 \"Use of AI Assistance\" 披露声明"
+    },
+    {
+      "severity": "info",
+      "dimension": "overall",
+      "message": "正文 8 页内共 6 figures + 5 tables = 11 个 display items，密度 1.375/页，对实证论文而言密度充足"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 3,
+    "info": 13
+  }
+}

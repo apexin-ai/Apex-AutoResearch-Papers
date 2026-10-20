@@ -1,0 +1,110 @@
+GPU Utilization & Batch Size Optimization Report
+=================================================
+Date: 2026-05-12
+Target: mvp_pilot_sat_v1 on autodl-4090d (RTX 4090D, 24GB)
+Model: Qwen2.5-1.5B-Instruct (fp16, ~3GB static weight)
+
+1. 当前 GPU 利用率和显存占用
+--------------------------
+- GPU Compute Utilization: 45%
+- VRAM Used: 3865 MiB / 24564 MiB (15.7%)
+- Power: 156W / 425W (37%)
+- Temperature: 49°C
+- 进程 PID: 5933 (python), 占用 3856 MiB
+
+结论：GPU 严重 underutilized，显存空闲 ~20GB，算力利用不到一半。
+
+2. 当前 Batch Size 配置
+-----------------------
+- Step 3 (生成): --batch_size=16 (默认值，未覆盖)
+- Step 4 (特征提取): --feat_batch_size=8 (默认值)
+- 每 depth 313 batches (5000/16), ~6.2s/batch, ~32min/depth
+- 共 5 个 depth → Step 3 总计 ~162 min
+
+3. 显存估算与推荐 Batch Size
+-----------------------------
+
+### Step 3: 生成阶段 (model.generate)
+
+当前显存分解:
+  - 模型权重 (fp16): ~3000 MiB
+  - KV cache + 激活 (bs=16): ~865 MiB
+  - 合计: ~3865 MiB
+
+Qwen2.5-1.5B GQA (num_kv_heads=2, head_dim=128, 28 layers):
+  - KV cache/token/layer: 2×2×128×2B = 1KB
+  - Per sequence (768 tokens max): 768×28KB ≈ 21.5 MB
+  - 线性外推 (留 2GB safety margin, 可用 ~22.5GB):
+    bs=64  → ~3000 + 865×4 = ~6460 MiB  ✓ 安全
+    bs=128 → ~3000 + 865×8 = ~9920 MiB  ✓ 安全
+    bs=256 → ~3000 + 865×16 = ~16840 MiB ✓ 安全但偏紧
+
+  ★ 推荐: batch_size=64 (保守) 或 batch_size=128 (激进)
+  - bs=64:  79 batches/depth, 预计 GPU utilization 70-80%
+  - bs=128: 40 batches/depth, 预计 GPU utilization 80-90%
+
+### Step 4: 特征提取 (forward pass + logits)
+
+特征提取的瓶颈是 logits 张量:
+  - logits: bs × 512 × 151936 (vocab) × 2B (fp16)
+  - bs=8:  ~1.2 GB logits
+  - bs=16: ~2.4 GB logits
+  - bs=32: ~4.7 GB logits
+
+  ★ 推荐: feat_batch_size=24 (保守) 或 feat_batch_size=32 (激进)
+  - bs=24: ~3.6 GB logits + 3GB model = ~8-9 GB, 安全
+  - bs=32: ~4.7 GB logits + 3GB model = ~10-11 GB, 安全
+
+4. 其他优化建议
+--------------
+
+(a) ⚠️ padding_side='left' — 关键修复
+    当前 log 每个 batch 都报 right-padding 警告。
+    decoder-only 模型应使用 left padding 做 batched generation。
+    right padding 会导致:
+    - 生成质量下降 (attention mask 处理不一致)
+    - 可能浪费算力在 padding tokens 的生成上
+    修复: tokenizer.padding_side = "left" (在 run_pipeline.py 加载 tokenizer 后)
+
+(b) Flash Attention 2
+    未检测到 flash-attn 是否安装。如果未装:
+    pip install flash-attn --no-build-isolation
+    加载模型时加 attn_implementation="flash_attention_2"
+    预计节省 10-20% 生成时间 + 显著减少显存占用
+
+(c) torch.compile (PyTorch 2.x)
+    model = torch.compile(model, mode="reduce-overhead")
+    对 autoregressive generation 效果有限，但 forward pass (Step 4) 可加速 10-15%
+
+(d) torch.cuda.empty_cache() 开销
+    当前每个 batch 后都调用 empty_cache()，在显存充裕时这是不必要的开销。
+    可以移除或改为每 N 个 batch 调用一次。
+
+5. 预估优化后运行时间节省
+-------------------------
+
+假设采用: bs=64, feat_bs=24, left padding, 保留 flash-attn 待查
+
+                       当前         优化后        节省
+Step 3 (生成):        ~162 min     ~105 min     ~57 min (35%)
+  - 5 depths × 313 batches × 6.2s → 5 × 79 batches × ~16s
+  - bs 增大 4x, 吞吐预计提升 ~55% (非线性, generation 是 memory-bandwidth bound)
+
+Step 4 (特征提取):    ~31 min      ~14 min      ~17 min (55%)
+  - 6 depths × 625 batches × 0.5s → 6 × 209 batches × ~0.7s
+  - forward pass 对 batch size 扩展更线性
+
+总 pipeline 预计节省: ~74 min (约 38%)
+
+如加上 flash-attn + padding_side 修复，可能再多节省 10-15%。
+
+6. Full Study 建议参数
+----------------------
+
+python scripts/run_pipeline.py \
+  --model_path ... \
+  --batch_size 64 \
+  --feat_batch_size 24
+
+同时在代码中修复:
+  tokenizer.padding_side = "left"

@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_qwen_retrain_depth7",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T01:08:52.105Z",
+    "updated_at": "2026-05-19T01:09:24.105Z",
+    "hypothesis": "Qwen2.5-1.5B retrain-chain extended to depth 7: K* measurement at higher depths. Retrain-chain with LoRA rank=16, alpha=32, 1 epoch per generation. Each depth uses independently trained LoRA merged before next generation. C4 5K docs, depth 0-7, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B (self-scoring). Extends exp_qwen_retrain_chain (depth 0-4).",
+    "parent": "exp_qwen_retrain_chain"
+  },
+  "timestamp": "2026-05-19T01:09:24.416945+00:00",
+  "trigger": "update_registry"
+}

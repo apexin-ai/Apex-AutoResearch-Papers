@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12ee2a5d057587e750ab",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis borderline bootstrap ci",
+  "task_key": "worker_analysis_borderline_bootstrap_ci_20260516T165531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_borderline_bootstrap_ci_20260516T165531_result.json",
+    "occurrence": 1,
+    "bytes": 1230,
+    "sha256": "e49dea395c069df8549b5747c981429172d9da5be5f91ff7fc305aa4986ebbef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n| Case | Depth Pair | AUC (OOF) | 95% CI | Perm p-value | Verdict |\n|------|-----------|-----------|--------|-------------|---------|\n| **exp-021 512tok** | 1v2 | 0.6073 | [0.5979, 0.6166] | 0.0001 | **BORDERLINE** |\n| **exp-020 t07** | 2v3 | 0.5939 | [0.5855, 0.6025] | 0.0001 | **BORDERLINE** |\n| **exp-020 t12** | 1v2 | 0.6170 | [0.6071, 0.6270] | 0.0001 | **PASS** |\n\n### 判定分析\n\n1. **exp-021 512tok 1v2**: CI lower = 0.5979 < 0.60，mean > 0.60 → **BORDERLINE**。需要在论文中注明 CI 跨越 θ=0.60 阈值。\n\n2. **exp-020 t07 2v3**: CI upper = 0.6025 > 0.60，mean < 0.60 → **BORDERLINE**。虽然 point estimate 低于阈值，但 CI 上界越过 0.60，需在论文中注明不能完全排除 depth 2→3 可区分。\n\n3. **exp-020 t12 1v2**: CI lower = 0.6071 > 0.60 → **PASS**。尽管有 1 个 fold (0.5961) 低于阈值，整体 CI 仍稳固地在 0.60 以上，无需 borderline 注释。\n\n所有 3 个 case 的 permutation p-value = 0.0001（即 10000 次置换中从未超过观测值），分类器显著优于随机。\n\n**论文建议**：Case 1 和 Case 2 需加 borderline 注释（footnote 或括号标注 CI 跨阈值），Case 3 无需。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-borderline-bootstrap-ci.md"
+}

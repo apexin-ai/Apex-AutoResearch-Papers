@@ -1,0 +1,8 @@
+See remote server: /root/autodl-tmp/gen-depth-contamination/artifacts/exp026_feature_stability_v2.json
+
+Summary:
+subset_size=15: 1/1 pass, min_1v2=0.6262
+subset_size=10: 5/5 pass, min_1v2=0.6153
+subset_size=8:  5/5 pass, min_1v2=0.6056
+subset_size=5:  2/5 pass, min_1v2=0.5856
+subset_size=3:  0/1 pass, min_1v2=0.5871

@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp_code_qwen1b5",
+  "project": "gen-depth-contamination",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:36:16.788Z",
+    "updated_at": "2026-05-18T21:24:23.750Z",
+    "hypothesis": "Code domain (Python) K* measurement: Qwen2.5-1.5B continuation on CodeSearchNet Python subset (Husain et al. 2019). Code 的高度结构化特性（语法约束、缩进、函数签名）应使代际退化慢于 C4 (K*≥2)，可能接近 arXiv (K*=3)。5500 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "notes": "Data source: CodeSearchNet Python subset (Husain et al. 2019), NOT The Stack v2 (gated, no HF token on cqa1). 5500 docs, avg 711 chars, filtered 200-2000 chars ASCII. Seed at data/code_python_seed/depth_0.jsonl. 论文入稿须引用 CodeSearchNet。",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/bin/activate && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --data_dir data/exp_code_qwen1b5 --results_dir results/exp_code_qwen1b5 --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\"",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "84256",
+      "log_path": "~/runs/gen-depth-contamination/exp_code_qwen1b5.log",
+      "submitted_at": "2026-05-18T16:56:33.434Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T21:24:23.951674+00:00",
+  "trigger": "update_registry"
+}

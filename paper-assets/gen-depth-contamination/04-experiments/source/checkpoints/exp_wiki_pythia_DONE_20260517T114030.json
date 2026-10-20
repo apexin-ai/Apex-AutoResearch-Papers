@@ -1,0 +1,51 @@
+{
+  "exp_id": "exp_wiki_pythia",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T10:54:00.154Z",
+    "updated_at": "2026-05-17T11:40:30.671Z",
+    "hypothesis": "Pythia-1.4B continuation on Wikipedia domain will show K*=2 depth saturation pattern consistent with Qwen2.5-1.5B, demonstrating cross-model generality of the distinguishability decay phenomenon.",
+    "parent": "exp_023_domain_ablation",
+    "server": "cqa1-22115",
+    "gpu": "cuda:2",
+    "account": "root",
+    "reproduce": {
+      "server": "cqa1-22115",
+      "gpu": "cuda:2",
+      "started_at": "2026-05-17T10:59:49.483Z"
+    },
+    "spec": {
+      "command": "python scripts/run_pipeline.py ...",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "26873",
+      "log_path": "~/runs/gen-depth-contamination/exp_wiki_pythia.log",
+      "submitted_at": "2026-05-17T11:23:03.344Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-1.4b",
+      "seed": 42,
+      "git_commit": "N/A",
+      "checkpoint_source": "/root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79",
+      "eval_data": "/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/",
+      "wall_clock_seconds": 1047.3,
+      "gpu_hours": 0.29
+    },
+    "conclusion": "failed",
+    "notes": "INVALID: data reuse bug. Shared data_path /root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/ with exp-023 (Qwen). Pipeline skip-if-exists logic reused Qwen-generated depth files instead of generating with Pythia. Results identical to exp-023 (1v2=0.6193, K*=2). M002 lesson: each experiment must use independent data directory.",
+    "checkpoint_path": "N/A (invalid run)",
+    "log_path": "/root/runs/gen-depth-contamination/exp_wiki_pythia.log",
+    "completed_at": "2026-05-17T11:40:30.671Z"
+  },
+  "timestamp": "2026-05-17T11:40:30.802121+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1419 @@
+# cron hook exp 003 decoding ablation 20260513T184053 428612
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 44
+- **Recorded user turns:** 2
+- **Tool calls:** 20
+- **Original source:** `logs/chats/archive/cron_hook_exp_003_decoding_ablation_20260513T184053_428612.jsonl`
+- **Structured JSON:** [`04735528bd5a66523e6c.json`](../../sessions/04/04735528bd5a66523e6c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+42 recorded events
+
+### User
+
+_source line 1 · 2026-05-13T15:35:30.386011+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: exp_003_decoding_ablation
+- project: gen-depth-contamination
+- server: autodl-4090d
+- log_path: ~/runs/gen-depth-contamination/exp_003_decoding_ablation.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-13T15:35:43.398821+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status",
+  "max_results": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status",
+    "max_results": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-13T15:35:43.449521+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-13T15:35:48.318048+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "gen-depth-contamination",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-13T15:35:48.318490+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-13T15:35:48.871602+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_003_decoding_ablation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:06:25.260Z\", \"updated_at\": \"2026-05-13T15:35:29.038Z\", \"hypothesis\": \"解码策略调控 K*：不同 top_p/temperature 设置是否改变饱和边界（greedy→更低 K*? 高温度→更高 K*?）\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/gen-depth-contamination && bash scripts/run_exp003_ablation.sh 1 && bash scripts/run_exp003_ablation.sh 2 && bash scripts/run_exp003_ablation.sh 3 && bash scripts/run_exp003_ablation.sh 4\\\"\", \"server\": \"autodl-4090d\", \"gpu\": [\"cuda:0\"], \"pid\": \"29459\", \"log_path\": \"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\", \"submitted_at\": \"2026-05-13T06:43:59.756Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp003_*\", \"data_count\": 5000, \"model_name\": \"Qwen/Qwen2.5-1.5B-Instruct\", \"seed\": 42, \"configs\": \"4 ablation configs: greedy, nucleus p=0.9/T=1.0, nucleus p=0.95/T=0.7, nucleus p=0.95/T=1.2\", \"estimated_runtime_hours\": 10, \"wall_clock_seconds\": 31889.3, \"gpu_hours\": 8.86}, \"failure_reason\": \"SSH check failed 5x — last error: Unknown server 'autodl-4090d'. Available: ['westc-26893']\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T15:35:29.038Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T15:35:30.207607+00:00\"}]}}, \"exp_011_llm_zeroshot\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T08:59:
+…[truncated 21789 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 553
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-13T15:35:48.872018+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 553
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-13T15:35:49.374098+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "gen-depth-contamination",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-13T15:35:49.424750+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-13T15:35:29Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 10 个实验 — DONE 10\\n**DONE 分布**: failed 1, success 9\\n\\n### GPU 占用\\n- **分配**: 1 张 — westc-26893:cuda:0\\n- **空闲（分配了没跑）**: westc-26893:cuda:0\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `exp_003_decoding_ablation` [failed] — 2026-05-13T15:35:29 — SSH check failed 5x — last error: Unknown server 'autodl-4090d'. Available: ['we\\n- `exp_011_llm_zeroshot` [success] — 2026-05-13T11:34:44\\n- `exp_013_cross_transfer` [success] — 2026-05-13T06:54:11\\n- `exp_005_degradation` [success] — 2026-05-13T06:51:26\\n- `exp_007_bootstrap_ci` [success] — 2026-05-13T06:50:06\\n\\n### 🔴 最近失败原因 (top 3)\\n- `exp_003_decoding_ablation`: SSH check failed 5x — last error: Unknown server 'autodl-4090d'. Available: ['westc-26893']\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-13\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **exp_003_decoding_ablation** (failed): 解码策略调控 K*：不同 top_p/temperature 设置是否改变饱和边界（greedy→更低 K*? 高温度→更高 K*?）\\n- **exp_011_llm_zeroshot** (success): Frontier LLMs (GPT-5.5, Claude Opus 4.6) cannot reliably estimate generational depth via zero-shot prompting, motivating the need for specialized statistical methods\\n- **exp_013_cross_transfer** (success): Depth signal 是文本固有属性还是 model self-familiarity artifact？4×4 cross-model transfer matrix 测试分类器跨模型泛化能力\\n\\n## 趋势\\n成功 9 / 负向 0 / 失败 1 / 共 10\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestc-26893: 无 GPU 信息\\n\\n## 告警\\n- exp_003_decoding_ablation: 训练失败 — unknown\\n\", \"total_chars\": 1580, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-13T15:35:49.425226+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "gen-depth-contamination"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "gen-depth-contamination"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-13T15:35:51.181572+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/ROADMAP.md\", \"content\": \"# gen-depth-contamination — Research Dashboard\\n\\n> 最后更新: 2026-05-13 08:59 UTC | 更新原因: D014: exp-015 升 P0, exp-011 启动, Paper Agent 激活, Reviewer 战略评估整合\\n\\n## 核心方向\\n递归合成文本的代际深度估计：测量 K*（饱和边界）+ graduated filtering 应用。2+1 claim 结构（D012）：C1'(K* characterization) + C3(graduated filtering) + supporting analysis。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research（P0 实验收尾）+ 审稿通道已开 + 论文写作启动（Paper Agent 活跃）\\n- **实验**: 8 DONE / 1 RUNNING / 9 planned (18 total)\\n- **C1'**: 4 子组件全部有数据支撑。Evidence gap: 模型规模≤1.5B (→exp-004)、无 neural probe (→exp-015)\\n- **C3**: exp-006 就绪等 GPU。D013 fallback 预案已建立\\n- **投稿评估**: C1'+C3 positive 7.5/10, C1'+C3 neutral 7/10, C1'-only 6/10\\n- **关键路径**: exp-003 (~7h) → exp-006 (~21h) → exp-015 (3h) → writing → 05-25 ARR\\n\\n## 近期任务\\n- [ ] exp-003 decoding ablation（RUNNING，~7h 剩余，cron 监控中）\\n- [ ] exp-011 LLM zero-shot baseline（Agent 准备中，0 GPU，API 调用）\\n- [ ] exp-006 启动（exp-003 后零间隔，~21h）\\n- [ ] exp-015 neural probe（exp-006 后，3h GPU，D014 升 P0）\\n- [ ] Paper Agent: method + related work + C1' results partial draft（进行中）\\n- [ ] θ sensitivity table 纳入论文 robustness analysis\\n- [ ] exp-004 cross-scale Qwen-7B（optional，~3h，时间允许时）\\n- [x] exp-006 脚本 + dry-run + 代码审查修复 ✅\\n- [x] D012 paper_framing.md 2+1 重构 ✅\\n- [x] D013 C3 fallback 预案 ✅\\n- [x] D014 exp-015 升 P0 + exp-011 立即启动 ✅\\n\\n## GPU 预算\\n- 分配：1×RTX 4090D (cuda:0) on autodl-4090d\\n- 已消耗（实际）：~20h\\n- 剩余关键：exp-006 ~21h + exp-015 ~3h + exp-004 ~3h (optional) = 24-27h\\n- DDL: 05-25 ARR（12 天）\\n\\n## Deadline 倒排（D014 修订）\\n| 日期 | 里程碑 |\\n|------|--------|\\n| 05-13 | exp-011 LLM zero-shot（API，并行）+ Paper Agent partial draft |\\n| ~05-14 | exp-003 完成 → exp-006 立即启动 |\\n| ~05-15 | exp-006 完成 → exp-015 neural probe (3h) |\\n| ~05-16 | 全部实验分析 + exp-004 (optional) |\\n| ~05-17 | 论文完整初稿 |\\n| ~05-22 | 审稿迭代完成 |\\n| 05-25 | ARR 提交 |\\n\\n## 关
+…[truncated 1105 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 1756
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-13T15:35:51.332625+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-13T15:35:51.333373+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_21f01c55.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-13T15:36:00.267584+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-13T15:36:00.422080+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_21f01c55.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "Read",
+  "elapsed_ms": 154
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-13T15:36:00.522824+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-13T15:36:00.573575+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/.claude/sessions/agent_21f01c55.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-13T15:36:06.696616+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/*on-experiment-failed*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/*on-experiment-failed*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-13T15:36:06.848163+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "Glob",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-13T15:36:06.848601+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/*resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/*resource-saturation*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-13T15:36:06.899180+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-13T15:36:13.475964+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "skills/**/*experiment-failed*",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "skills/**/*experiment-failed*",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-13T15:36:13.576936+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "Glob",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-13T15:36:15.886426+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/*experiment-failed*",
+  "path": "/home/ubuntu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/*experiment-failed*",
+    "path": "/home/ubuntu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-13T15:36:16.087311+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "Glob",
+  "elapsed_ms": 200
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-13T15:36:18.296423+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-13T15:36:18.347435+00:00_
+
+1	---
+2	name: on-experiment-failed
+3	description: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。
+4	scope: global
+5	tags:
+6	- workflow
+7	- diagnosis
+8	- cron-hook
+9	tools:
+10	- read_registry
+11	- tail_training_logs
+12	- update_registry
+13	- append_idea
+14	- feishu_send_result_card
+15	- spawn_worker
+16	- check_job_status
+17	version: 4
+18	heavy: true
+19	roles:
+20	- agent
+21	---
+22	
+23	# 实验失败诊断工作流
+24	
+25	## 触发方式
+26	由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。
+27	
+28	## 步骤
+29	
+30	### Step 0: 读取项目上下文（诊断前必须执行）
+31	先读文档，再看日志——否则诊断方向可能完全错误：
+32	
+33	- `read_project_file("memory.md")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案
+34	- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构
+35	
+36	读完后检查：
+37	- memory.md 里有没有"此类实验曾失败，原因是 X"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程
+38	- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）
+39	
+40	### Step 1: 了解失败背景
+41	- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path
+42	
+43	### Step 2: 浅层日志诊断
+44	有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)
+45	- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback
+46	- 没找到 → 增加行数再查
+47	
+48	### Step 2.5: 深查（满足以下任一条件时 spawn_worker）
+49	- 运行时长 < 5 分钟（初始化阶段崩溃）
+50	- tail 日志中未见明确 Traceback 或错误行
+51	- 同类实验连续失败 ≥ 2 次
+52	
+53	```python
+54	spawn_worker(
+55	    task_type="diagnose:{exp_id}",
+56	    task_prompt="""SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。
+57	
+58	项目路径：{project_path}（绝对路径）
+59	日志路径：{log_path}（可能为空）
+60	
+61	执行步骤（按顺序，有结论就停）：
+62	
+63	1. 如果有日志路径：
+64	   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）
+65	   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）
+66	   - 日志文件不存在：说明任务启动即失败，跳到步骤 2
+67	
+68	2. 日志无错误或无日志时，检查基础设施：
+69	   - 入口文件是否存在
+70	   - 激活环境并验证 import
+71	   - 检查 configs/ 目录
+72	
+73	3. 检查磁盘/内存（OOM 类）
+74	
+75	最后输出一行 JSON：
+76	{"root_cause":"<引用具体报错行>","error_type":"infrastructure|hyperparameter|resource|data","fix_steps":["步骤1","步骤2"],"can_auto_fix":true}""",
+77	    tool_groups=["ssh"],
+78	)
+79	```
+80	
+81	Worker 返回后，以其结论作为 Step 3 的诊断依据。
+82	
+83	### 
+…[truncated 1766 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-13T15:36:47.377508+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "gen-depth-contamination",
+    "file": "memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-13T15:36:48.582209+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/memory.md\", \"content\": \"# Memory — gen-depth-contamination\\n\\n## 已知问题\\n\\n### right-padding (2026-05-12)\\nMVP pipeline 使用 right-padding（transformers 默认）。Director 确认对 MVP 判定无影响（所有 depth 一致受影响），不中断当前实验。**full study 阶段必须修复为 `tokenizer.padding_side = \\\"left\\\"`**，否则 batch 生成时 padding tokens 会影响生成质量的绝对水平。\\n\\n## GPU 优化建议 (2026-05-12)\\n\\n### batch size 调优\\n4090D 24GB 跑 1.5B fp16 模型仅用 3.9GB 显存 (16%)，GPU 利用率 45%。\\n- Step 3 生成：batch_size 16→**64**（保守）或 128\\n- Step 4 特征提取：feat_batch_size 8→**24**（保守）或 32\\n- 预估节省 ~74 min (38%)，加 flash-attn 可再省 10-15%\\n- full study 时一并修复\\n\\n## AutoDL 环境经验\\n\\n### C4 数据集加载 (2026-05-12)\\nAutoDL 代理下 `load_dataset(\\\"allenai/c4\\\", \\\"en\\\", streaming=True)` 会触发全量文件树解析（数千个 shard 的分页 API 请求），ProxyError 无限重试。修复：用单 shard URL 直接加载 + `HF_ENDPOINT=https://hf-mirror.com` 中转。\\n\\n### 环境变量必须固化到启动脚本 (2026-05-12)\\nAutoDL 上 `source /etc/network_turbo`、SSL 证书、HF 配置等环境变量不能只在 shell session 里 export，必须写入 `run_mvp.sh` 等包装脚本，否则 tmux session 里不生效。\\n\\n### submit_training_job pid=\\\"unknown\\\" 问题 (2026-05-13)\\nsubmit_training_job 有时返回 pid=\\\"unknown\\\"，导致 registry 状态停在 PREPARING、cron 未创建。exp-017 和 exp-003 都遇到此问题。**解决方式**：提交后必须派 Worker SSH 检查实际进程状态（tmux ls + ps aux），手动修正 registry 并注册 cron。\\n\\n### OpenRouter 代理 model ID 规则 (2026-05-13)\\n代理 `http://47.94.22.126/v1` 的 Claude model ID 不接受 `anthropic/` 前缀（返回 503 model_not_found），必须用裸 ID 如 `claude-opus-4-6`。GPT 模型用 `openai/gpt-5.5` 前缀正常。遇到新模型先用 python 单条测试多个 ID 变体再批量跑。\\n\\n## 实验设计决策\\n\\n### Generation mode 影响 depth signal 强度 (2026-05-13)\\nRewrite mode（instruction prompting）比 continuation mode 多产生 ~8.4pp AUC 差距（Qwen: 0.6957 vs 0.6114）。原因推测：instruction-following 引入更大的分布偏移，放大 depth-discriminative 信号。论文中 K* 应同时报告两种 mode 的结果；C1 robustness 依赖 continuation mode（更保守的 lower bound）。\\n\\n### Degradation ordering mode-dependent (2026-05-13)\\n4-model τ 矩阵表明 gener
+…[truncated 732 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 1204
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-13T15:36:48.582585+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__feishu_send_result_card",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__feishu_send_result_card",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-13T15:36:48.733386+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "ToolSearch",
+  "elapsed_ms": 150
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-13T15:37:08.056967+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "westc-26893",
+  "log_path": "~/runs/gen-depth-contamination/exp_003_decoding_ablation.log",
+  "n": "80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "westc-26893",
+    "log_path": "~/runs/gen-depth-contamination/exp_003_decoding_ablation.log",
+    "n": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-13T15:37:08.509016+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "gen-depth-contamination",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "gen-depth-contamination",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-13T15:37:11.269815+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"21:27:58 [INFO] Running ordinal LightGBM classification ...\", \"/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\", \"  warnings.warn(\", \"/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\", \"  warnings.warn(\", \"/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\", \"  warnings.warn(\", \"/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\", \"  warnings.warn(\", \"/root/miniconda3/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but LGBMClassifier was fitted with feature names\", \"  warnings.warn(\", \"21:28:20 [INFO]   Ordinal MAE = 1.0134, Accuracy = 0.4144, K* = 2\", \"21:28:20 [INFO] \", \"============================================================\", \"MVP Pilot Saturation Study — Results Summary\", \"============================================================\", \"\", \"Pairwise AUC (adjacent depths):\", \"  depth 0 vs 1: AUC = 0.9946 ± 0.0011  folds=[0.9946, 0.9964, 0.9929, 0.9944, 0.9947]\", \"  depth 1 vs 2: AUC = 0.6866 ± 0.0093  folds=[0.6836, 0.6964, 0.6769, 0.6772, 0.6987]\", \"  depth 2 vs 3: AUC = 0.5917 ± 0.0030  folds=[0.5871, 0.592, 0.5938, 0.5899, 0.5957]\", \"  depth 3 vs 4: AUC = 0.5466 ± 0.0037  folds=[0.5445, 0.5455, 0.543, 0.5466, 0.5536]\", \"  depth 4 vs 5: AUC = 0.5068 ± 0.0148  folds=[0.5083, 0.4964, 0.5344, 0.4927, 0.502]\", \"\", \"Pairwise JSD (adjacent depths):\", \"  depth 0 vs 1: JSD = 0.264702\", \"
+…[truncated 6777 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 3212
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-13T15:37:11.270434+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"gen-depth-contamination\", \"section\": \"execution\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_constraint\": [\"autodl-4090d:cuda:0\"], \"gpu_ids\": [\"cuda:0\"], \"project_path\": \"/root/autodl-tmp/gen-depth-contamination\", \"servers\": [\"westc-26893\"]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 2761
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-13T15:37:56.758047+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "diagnose:exp_003_decoding_ablation",
+  "project": "gen-depth-contamination",
+  "task_prompt": "SSH 到服务器 `westc-26893`，诊断实验 exp_003_decoding_ablation 的实际完成状态。\n\n## 背景\n这个实验跑 4 个 decoding ablation config（greedy, nucleus_p0.9_t1.0, nucleus_p0.95_t0.7, nucleus_p0.95_t1.2），通过 4 个 sequential bash 脚本：\n```\nbash scripts/run_exp003_ablation.sh 1  # greedy\nbash scripts/run_exp003_ablation.sh 2  # nucleus_p0.9_t1.0  \nbash scripts/run_exp003_ablation.sh 3  # nucleus_p0.95_t0.7\nbash scripts/run_exp003_ablation.sh 4  # nucleus_p0.95_t1.2\n```\n\nCron 监控因为服务器 SSH 别名从 `autodl-4090d` 变为 `westc-26893` 而连续失败 5 次，自动标记实验 failed。但实验进程可能仍在运行或已完成。\n\n项目路径：/root/autodl-tmp/gen-depth-contamination\n\n## 诊断步骤\n\n1. **检查进程状态**（用 ssh_read_only）：\n   - `tmux ls` 看是否有 exp_003 相关的 tmux session\n   - `ps aux | grep run_exp003` 看进程是否还在运行\n   - `ps aux | grep run_pipeline` 看 pipeline 是否在跑\n\n2. **检查每个 config 的产出**（用 ssh_read_only）：\n   - 4 个数据目录：`data_exp003_greedy/`, `data_exp003_p09/`, `data_exp003_t07/`, `data_exp003_t12/`\n   - 检查每个目录是否存在，里面有没有 `features.csv`（pipeline 最终产出）\n   - `ls -la /root/autodl-tmp/gen-depth-contamination/data_exp003_*/features.csv`\n   - `wc -l /root/autodl-tmp/gen-depth-contamination/data_exp003_*/features.csv` 确认行数\n\n3. **检查 results 目录**（用 ssh_read_only）：\n   - `ls -la /root/autodl-tmp/gen-depth-contamination/results_exp003_*/`\n   - 是否有分类结果 JSON 文件\n\n4. **看日志结尾**（用 ssh_read_only）：\n   - `tail -100 ~/runs/gen-depth-contamination/exp_003_decoding_ablation.log`\n   - 看最后一条是不是 \"Pipeline complete\" 或者有错误\n\n5. **如果全部 4 个 config 都有完整的 features.csv**，收集关键 metrics：\n   - 每个 config 的 K*、pairwise AUC（0v1, 1v2, 2v3, 3v4, 4v5）\n   - 这些信息应该在日志中（搜索 \"Results Summary\" 块）或 results JSON 中\n   - `grep -A 30 \"Results Summary\" ~/runs/gen-depth-contamination/exp_003_decoding_ablation.log`\n\n## 输出格式\n最后输出一个 JSON 摘要：\n```json\n{\n  \"process_alive\": true/false,\n  \"configs_completed\": [\"greedy\", \"nucleus_p0.9_t1.0\", ...],\n  \"configs_incomplete\": [\"...\"],\n  \"root_cause\": \"SSH alias change from autodl-4090d to westc-26893; process was [still running / already finished / killed]\",\n  \"error_type\": \"infrastructure\",\n  \"metrics_per_config\": {\n    \"greedy\": {\"k_star\": N, \"pairwise_auc\": {...}},\n    ...\n  },\n  \"can_recover\": true/false,\n  \"recovery_steps\": [\"...\"]\n}\n```",
+  "tool_groups": "['ssh']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "diagnose:exp_003_decoding_ablation",
+    "project": "gen-depth-contamination",
+    "task_prompt": "SSH 到服务器 `westc-26893`，诊断实验 exp_003_decoding_ablation 的实际完成状态。\n\n## 背景\n这个实验跑 4 个 decoding ablation config（greedy, nucleus_p0.9_t1.0, nucleus_p0.95_t0.7, nucleus_p0.95_t1.2），通过 4 个 sequential bash 脚本：\n```\nbash scripts/run_exp003_ablation.sh 1  # greedy\nbash scripts/run_exp003_ablation.sh 2  # nucleus_p0.9_t1.0  \nbash scripts/run_exp003_ablation.sh 3  # nucleus_p0.95_t0.7\nbash scripts/run_exp003_ablation.sh 4  # nucleus_p0.95_t1.2\n```\n\nCron 监控因为服务器 SSH 别名从 `autodl-4090d` 变为 `westc-26893` 而连续失败 5 次，自动标记实验 failed。但实验进程可能仍在运行或已完成。\n\n项目路径：/root/autodl-tmp/gen-depth-contamination\n\n## 诊断步骤\n\n1. **检查进程状态**（用 ssh_read_only）：\n   - `tmux ls` 看是否有 exp_003 相关的 tmux session\n   - `ps aux | grep run_exp003` 看进程是否还在运行\n   - `ps aux | grep run_pipeline` 看 pipeline 是否在跑\n\n2. **检查每个 config 的产出**（用 ssh_read_only）：\n   - 4 个数据目录：`data_exp003_greedy/`, `data_exp003_p09/`, `data_exp003_t07/`, `data_exp003_t12/`\n   - 检查每个目录是否存在，里面有没有 `features.csv`（pipeline 最终产出）\n   - `ls -la /root/autodl-tmp/gen-depth-contamination/data_exp003_*/features.csv`\n   - `wc -l /root/autodl-tmp/gen-depth-contamination/data_exp003_*/features.csv` 确认行数\n\n3. **检查 results 目录**（用 ssh_read_only）：\n   - `ls -la /root/autodl-tmp/gen-depth-contamination/results_exp003_*/`\n   - 是否有分类结果 JSON 文件\n\n4. **看日志结尾**（用 ssh_read_only）：\n   - `tail -100 ~/runs/gen-depth-contamination/exp_003_decoding_ablation.log`\n   - 看最后一条是不是 \"Pipeline complete\" 或者有错误\n\n5. **如果全部 4 个 config 都有完整的 features.csv**，收集关键 metrics：\n   - 每个 config 的 K*、pairwise AUC（0v1, 1v2, 2v3, 3v4, 4v5）\n   - 这些信息应该在日志中（搜索 \"Results Summary\" 块）或 results JSON 中\n   - `grep -A 30 \"Results Summary\" ~/runs/gen-depth-contamination/exp_003_decoding_ablation.log`\n\n## 输出格式\n最后输出一个 JSON 摘要：\n```json\n{\n  \"process_alive\": true/false,\n  \"configs_completed\": [\"greedy\", \"nucleus_p0.9_t1.0\", ...],\n  \"configs_incomplete\": [\"...\"],\n  \"root_cause\": \"SSH alias change from autodl-4090d to westc-26893; process was [still running / already finished / killed]\",\n  \"error_type\": \"infrastructure\",\n  \"metrics_per_config\": {\n    \"greedy\": {\"k_star\": N, \"pairwise_auc\": {...}},\n    ...\n  },\n  \"can_recover\": true/false,\n  \"recovery_steps\": [\"...\"]\n}\n```",
+    "tool_groups": "['ssh']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-13T15:37:59.320664+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnose_exp_003_decoding_ablation_20260513T153757\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/logs/workers/worker_diagnose_exp_003_decoding_ablation_20260513T153757.log\", \"setup_data\": {}, \"message\": \"Worker worker_diagnose_exp_003_decoding_ablation_20260513T153757 started. Use get_worker_status('worker_diagnose_exp_003_decoding_ablation_20260513T153757') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2562
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-13T15:38:23.176201+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_003_decoding_ablation",
+  "field": "notes",
+  "value": "失败原因: SSH 别名变更 (autodl-4090d → westc-26893)，cron 监控 5 次连不上后标记 failed。初步诊断: 日志在 westc-26893 上可读，config 2 (nucleus_p0.9_t1.0) 已完成并输出 K*=2，config 3 (nucleus_p0.95_t0.7) 在 depth 4 进度 ~90% 时日志截止。实验可能已完成或部分完成。Worker worker_diagnose_exp_003_decoding_ablation_20260513T153757 正在深入诊断。",
+  "project": "gen-depth-contamination"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_003_decoding_ablation",
+    "field": "notes",
+    "value": "失败原因: SSH 别名变更 (autodl-4090d → westc-26893)，cron 监控 5 次连不上后标记 failed。初步诊断: 日志在 westc-26893 上可读，config 2 (nucleus_p0.9_t1.0) 已完成并输出 K*=2，config 3 (nucleus_p0.95_t0.7) 在 depth 4 进度 ~90% 时日志截止。实验可能已完成或部分完成。Worker worker_diagnose_exp_003_decoding_ablation_20260513T153757 正在深入诊断。",
+    "project": "gen-depth-contamination"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-13T15:38:32.459983+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_003_decoding_ablation\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:06:25.260Z\", \"updated_at\": \"2026-05-13T15:38:23.191Z\", \"hypothesis\": \"解码策略调控 K*：不同 top_p/temperature 设置是否改变饱和边界（greedy→更低 K*? 高温度→更高 K*?）\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/gen-depth-contamination && bash scripts/run_exp003_ablation.sh 1 && bash scripts/run_exp003_ablation.sh 2 && bash scripts/run_exp003_ablation.sh 3 && bash scripts/run_exp003_ablation.sh 4\\\"\", \"server\": \"autodl-4090d\", \"gpu\": [\"cuda:0\"], \"pid\": \"29459\", \"log_path\": \"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\", \"submitted_at\": \"2026-05-13T06:43:59.756Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp003_*\", \"data_count\": 5000, \"model_name\": \"Qwen/Qwen2.5-1.5B-Instruct\", \"seed\": 42, \"configs\": \"4 ablation configs: greedy, nucleus p=0.9/T=1.0, nucleus p=0.95/T=0.7, nucleus p=0.95/T=1.2\", \"estimated_runtime_hours\": 10, \"wall_clock_seconds\": 31889.3, \"gpu_hours\": 8.86}, \"failure_reason\": \"SSH check failed 5x — last error: Unknown server 'autodl-4090d'. Available: ['westc-26893']\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T15:35:29.038Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T15:35:30.207607+00:00\"}]}, \"notes\": \"失败原因: SSH 别名变更 (autodl-4090d → westc-26893)，cron 监控 5 次连不上后标记 failed。初步诊断: 日志在 wes
+…[truncated 262 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 9283
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-13T15:38:32.962122+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 1 / 实际跑 0 | Worker 池 1 (GPU 0 / CPU 1)\n\n**exp_003_decoding_ablation 失败诊断进行中**\n\n失败原因已定位：AutoDL 实例 SSH 别名从 `autodl-4090d` 变更为 `westc-26893`（同一物理机），cron 监控连续 5 次 SSH 失败后自动标记 failed。非实验本身错误。\n\n初步日志检查发现：\n- 日志在 `westc-26893` 上可正常读取（确认同一台机器）\n- Config 2 (`nucleus_p0.9_t1.0`) 已完成，产出 K*=2\n- Config 3 (`nucleus_p0.95_t0.7`) 在 depth 4 进度 ~90% 时日志截止\n- 实验已运行 ~8.9h（估计 10h），可能已全部或部分完成\n\n已派 Worker SSH 到 westc-26893 检查：进程是否还在跑、4 个 config 各自的产出状态、可恢复性。Worker 回调后汇报完整结果。\n\n注意：项目 config 中 gpu_constraint 仍指向 `autodl-4090d:cuda:0`，但 servers 已更新为 `westc-26893`。后续提交实验需确认 GPU constraint 一致。",
+  "project": "gen-depth-contamination"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 1 / 实际跑 0 | Worker 池 1 (GPU 0 / CPU 1)\n\n**exp_003_decoding_ablation 失败诊断进行中**\n\n失败原因已定位：AutoDL 实例 SSH 别名从 `autodl-4090d` 变更为 `westc-26893`（同一物理机），cron 监控连续 5 次 SSH 失败后自动标记 failed。非实验本身错误。\n\n初步日志检查发现：\n- 日志在 `westc-26893` 上可正常读取（确认同一台机器）\n- Config 2 (`nucleus_p0.9_t1.0`) 已完成，产出 K*=2\n- Config 3 (`nucleus_p0.95_t0.7`) 在 depth 4 进度 ~90% 时日志截止\n- 实验已运行 ~8.9h（估计 10h），可能已全部或部分完成\n\n已派 Worker SSH 到 westc-26893 检查：进程是否还在跑、4 个 config 各自的产出状态、可恢复性。Worker 回调后汇报完整结果。\n\n注意：项目 config 中 gpu_constraint 仍指向 `autodl-4090d:cuda:0`，但 servers 已更新为 `westc-26893`。后续提交实验需确认 GPU constraint 一致。",
+    "project": "gen-depth-contamination"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-13T15:38:36.881508+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5d2a0ec1de3a456564133278c1a9b203:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3919
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-13T15:38:54.657756+00:00_
+
+已完成：
+- Registry notes 已更新，记录 SSH 别名变更为根因
+- 已向 Director 汇报诊断进展（含资源行）
+- Worker 正在 SSH 到 `westc-26893` 检查 4 个 config 的实际完成状态和可恢复性
+
+等待 Worker 回调后处理完整结果——可能是数据恢复（如果全部完成则直接收集 metrics 翻转为 success），或仅需重跑未完成的 config。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp_003_decoding_ablation"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 43 · 2026-05-13T18:40:08.056100+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp_003_decoding_ablation",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-13T18:40:53.426980+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 只能用 `westc-26893:cuda:0`（项目 config 中 gpu_constraint 仍写着 `autodl-4090d:cuda:0`，但实际服务器别名已变为 `westc-26893`，提交实验时 server 参数必须用 `westc-26893`）
+- exp_003 的 cron 用旧服务器名 `autodl-4090d` 注册，已全部失效。新实验的 cron 必须用 `westc-26893` 注册
+- 论文 DDL 05-25 ARR，关键路径：exp-003 → exp-006 (~21h) → exp-015 (3h)，不能拖
+- exp_003 结果如果可恢复，不要重新跑——直接用已有产出，节省 ~10h GPU 时间
+
+### 2. 🖥️ 基础设施快照
+- 服务器：`westc-26893`（原 `autodl-4090d`，同一物理机，AutoDL 重启后 SSH 端口/别名变更）
+- 工作目录：`/root/autodl-tmp/gen-depth-contamination`
+- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）
+- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- 模型缓存：`/root/autodl-tmp/.hf_cache/`（Qwen2.5-1.5B-Instruct、Pythia-1.4b、OLMo-1B-hf）
+- HF 镜像：`HF_ENDPOINT=https://hf-mirror.com`，必须 `source /etc/network_turbo` + SSL 证书环境变量
+- 活跃进程：无确认的 RUNNING 实验。exp_003 的 tmux session 可能仍存在（Worker 正在诊断）
+- Cron：reconcile 返回 0 条活跃 cron
+
+### 3. 📊 当前状态
+**刚做的事**：收到 exp_003_decoding_ablation 的 cron 失败回调（进程退出 + 无 W&B metrics）。诊断发现是 SSH 别名变更导致 cron 监控断连，不是实验本身错误。日志显示 config 1 (greedy) 和 config 2 (nucleus_p0.9_t1.0) 已完成，config 3 (nucleus_p0.95_t0.7) 在 depth 4 ~90% 时日志截止。
+
+**正在做**：Worker `worker_diagnose_exp_003_decoding_ablation_20260513T153757` 已 SSH 到 westc-26893 检查进程存活状态和 4 个 config 的产出完整性。**等这个 Worker 回调**。
+
+**Registry 状态**：10 个实验全部 DONE（9 success + 1 failed=exp_003）。无 RUNNING/PREPARING。
+
+**已通知 Director**：发了初步诊断报告，等 Worker 结果后再发完整汇报。
+
+### 4. 📋 待办
+- Worker diagnose 回调 → 根据产出完整性分两种：
+  - 4 个 config 全完成 → 更新 registry metrics + conclusion=success + 通知 Director 数据已恢复 → 立即启动 exp-006
+  - 部分完成 → 只重跑缺失的 config（不要全部重跑），更新 spec 用 `westc-26893` 提交
+- exp-003 完成后 → 零间隔启动 exp-006 graduated filtering（~21h GPU，关键路径实验）
+- exp-006 完成后 → exp-015 neural probe（3h GPU，D014 升 P0，论文生死实验）
+- GPU 空闲时 → 向 Director 申请并行跑 exp-004 cross-scale Qwen-7B（optional，~3h）
+
+### 5. 🎯 战略上下文
+- **核心结论**：K*=2 跨 4 个模型族一致（Qwen-rewrite/Qwen-cont/Pythia/OLMo），bootstrap CI 全部显著。论文 2+1 claim 结构：C1'(K* characterization) + C3(graduated filtering) + supporting analysis
+- **关键决策链**：D012(2+1 重构) → D013(C3 fallback) → D014(exp-015 升 P0) → D015(跨档一致问题) → D016(场景 A+C 叙事)
+- **C2 限定**：degradation ordering 只能说 "mode-conditioned consistency with architecture residuals"，不能说 "universal"（D008/D010/D011）
+- **易错点**：
+  - 服务器名已变——所有新 submit_training_job / cron 必须用 `westc-26893`，不能用 `autodl-4090d`
+  - exp_003 的 greedy config 数据目录名可能不叫 `data_exp003_greedy`——需要看 `run_exp003_ablation.sh` 脚本里的实际目录名
+  - Qwen-rewrite (mvp-001) 的 transfer 很差（61-63%），论文 cross-model claims 必须基于 continuation mode
+  - exp-015 neural probe 是 Reviewer 最可能攻击的点（"你们只有统计特征没有 learned representation"），必须跑
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp_003_decoding_ablation"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,11 @@
+exp025 bootstrap CI results (10000 boot + 10000 perm, doc-level, seed=42, theta=0.60)
+
+0v1: AUC=0.9876  95% CI=[0.9851, 0.9900]  perm_p=0.0001  PASS
+1v2: AUC=0.8047  95% CI=[0.7934, 0.8162]  perm_p=0.0001  PASS
+2v3: AUC=0.6544  95% CI=[0.6401, 0.6688]  perm_p=0.0001  PASS
+3v4: AUC=0.5500  95% CI=[0.5340, 0.5657]  perm_p=0.0001  FAIL
+4v5: AUC=0.5284  95% CI=[0.5122, 0.5443]  perm_p=0.0010  FAIL
+
+K*_CI = 3 (CI lower > 0.60 for pairs 0v1, 1v2, 2v3)
+Total time: 146.8s
+Server artifact: /root/autodl-tmp/gen-depth-contamination/artifacts/exp025_bootstrap_ci.json

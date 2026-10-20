@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22b8f5970de137b1fe53",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "diagnose arXiv crossscorer fix",
+  "task_key": "worker_diagnose_arXiv_crossscorer_fix_20260518T022319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_arXiv_crossscorer_fix_20260518T022319_result.json",
+    "occurrence": 1,
+    "bytes": 661,
+    "sha256": "093f59f3186111e29aca4fd3a35b75ddb5d2d8bb1aefd2fe71b6eb4da8fb550b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都已成功跳过 Steps 2-3，进入 Step 4 Feature Extraction，正在用 Pythia-1.4B 做 surprisal 评分。\n\n**诊断结果**：\n- `--skip_generation` 在代码中已实现但上次提交时未使用\n- 不加该 flag → `prepare_seed_data` 比较 depth_0 行数 (2200) vs `num_samples` 默认值 (5000)，判断数据不够 → 尝试下载 C4 → AutoDL 网络不稳定导致失败\n\n**修复**：重新提交时加了 `--skip_generation` + `HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1`，两个实验现在分别运行在 cuda:0 和 cuda:1，正在用 Pythia-1.4B 对已有 arXiv depth 0-5 数据做 feature extraction。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-arxiv-crossscorer-fix.md"
+}

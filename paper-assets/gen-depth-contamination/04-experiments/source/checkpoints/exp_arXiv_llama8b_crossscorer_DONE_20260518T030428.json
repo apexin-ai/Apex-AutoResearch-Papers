@@ -1,0 +1,56 @@
+{
+  "exp_id": "exp_arXiv_llama8b_crossscorer",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T02:44:19.881Z",
+    "updated_at": "2026-05-18T03:04:28.515Z",
+    "hypothesis": "Replacing Qwen-1.5B scorer with Pythia-1.4B on arXiv LLaMA-8B depth 0-5 texts should yield the same K*=3 boundary, because the saturation signal is a genuine property of LLaMA-8B generated text rather than a scorer family artifact",
+    "parent": "exp_wiki_scorer_confound",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/gen-depth-contamination && ... run_pipeline.py --skip_generation\"",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "195907",
+      "log_path": "~/runs/gen-depth-contamination/exp_arXiv_llama8b_crossscorer.log",
+      "submitted_at": "2026-05-18T02:44:54.483Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/exp_arXiv_llama8b_crossscorer (symlinked from data/exp_arXiv_llama8b)",
+      "data_count": 2200,
+      "model_name": "Qwen2.5-1.5B (generator) + Pythia-1.4B (cross-scorer)",
+      "seed": 42,
+      "checkpoint_source": "exp_arXiv_llama8b",
+      "eval_data": "arXiv LLaMA-8B depth 0-5 continuations from exp_arXiv_llama8b",
+      "checkpoint_path": "results/exp_arXiv_llama8b_crossscorer/",
+      "wall_clock_seconds": 1119.6,
+      "gpu_hours": 0.31
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T03:00:23.861Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T03:00:27.320630+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "k_star": 3,
+      "auc_2v3": 0.6201
+    },
+    "completed_at": "2026-05-18T03:03:34.051Z"
+  },
+  "timestamp": "2026-05-18T03:04:28.940662+00:00",
+  "trigger": "update_registry"
+}

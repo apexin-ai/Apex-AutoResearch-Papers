@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0103cda32b08d7df891d",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "agent / loop_16_1779060893.md",
+  "task_key": "loop_16_1779060893",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1779060893.md",
+    "occurrence": 1,
+    "bytes": 3385,
+    "sha256": "4d81dfae14a333f914125229654d794c00561fa6ed6afc1a9cd5eba16064384e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-17T19:53:27+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cqa1-22115 的 cuda:0/1/2/3（gpu_ids 白名单）\n- exp_wiki_olmo_v2 刚完成，有 Worker 正在分析（worker_analysis_exp_wiki_olmo_v2_20260517T131106），等回调再更新 registry，不要重复派分析 Worker\n- DDL: EMNLP 2026 ARR May 25（剩 8 天），论文已 v4，当前是审稿 Round 2 + patch 收尾阶段\n- exp_arXiv_olmo 是 negative 结果（已汇报 Director），不要在没有 Director 决策的情况下基于它改 paper\n\n### 2. 🖥️ 基础设施快照\n- 服务器：cqa1-22115，4×4090D\n- 工作目录：项目代码在服务器 /root/ 下（具体路径需 SSH 确认，git_commit=0b10b43）\n- 数据路径：data/exp_wiki_olmo（OLMo Wikipedia 实验）\n- log 目录：~/runs/gen-depth-contamination/\n- W&B 项目：gen-depth-contamination\n- 活跃进程：\n  - exp_arXiv_llama8b: PID 27469, cuda:1\n  - exp_wiki_pythia_v2: PID 30942, cuda:2\n  - exp_wiki_olmo_v2: 已完成（PID 31084 已退出），Worker 分析中\n- cron 活跃：exp_arXiv_llama8b, exp_wiki_pythia_v2\n\n### 3. 📊 当前状态\n刚收到 exp_wiki_olmo_v2 完成回调（进程正常退出）。已派 Worker（worker_analysis_exp_wiki_olmo_v2_20260517T131106）SSH 读 log + W&B 分析 K* 值。\n\n**RUNNING/ANALYZING**:\n- exp_wiki_olmo_v2 (ANALYZING): OLMo-1B Wikipedia K*=2 验证，Worker 分析中\n- exp_arXiv_llama8b (RUNNING): LLaMA-3.1-8B arXiv K*=3 验证（大模型 scale）\n- exp_wiki_pythia_v2 (RUNNING): Pythia-1.4B Wikipedia K*=2 验证\n\n**等待中**:\n- Worker 回调：worker_analysis_exp_wiki_olmo_v2_20260517T131106 → 收到后更新 registry + 汇报 Director\n- Cron 回调：exp_arXiv_llama8b、exp_wiki_pythia_v2 完成时\n- exp_arXiv_qwen7b (QUEUED): 等 GPU 空出\n- exp_008_retrain_chain (PREPARING): retrain-chain 实验\n\n### 4. 📋 待办\n- Worker 分析回调到达 → 根据 K* 判断 conclusion（K*=2=success, 否则 negative）→ update_registry → 刷新 report.md → 汇报 Director\n- exp_arXiv_llama8b cron 回调 → 同样派 Worker 分析 K*（期望=3）\n- exp_wiki_pythia_v2 cron 回调 → 派 Worker 分析 K*（期望=2）\n- 两个 Wikipedia 实验都出结果后 → 如果都 K*=2，确认 cross-model Wikipedia generality；向 Director 汇报是否需要更新论文\n- cuda:0 和 cuda:3 空闲 → exp_wiki_olmo_v2 完成后 cuda:3 释放，可提交 exp_arXiv_qwen7b\n- Group C 审稿 Round 2 收敛 + Reviewer 覆盖度评估回来 → 可能需要补实验（self_BLEU / segment length / theta sensitivity）\n\n### 5. 🎯 战略上下文\n- 核心发现：K*∈{1,2,3} domain-dependent。Web(C4/Wikipedia) K*=2, arXiv K*=3, Mistral K*=1\n- 当前 cross-model 验证进度：Wikipedia 需要 Pythia + OLMo 确认 K*=2；arXiv 需要 LLaMA-8B + Qwen-7B 确认 K*=3\n- exp_arXiv_olmo 是 negative（OLMo 在 arXiv 上 K* ≠ 3），已汇报 Director 但无决策回复。不要因此改 paper claim——当前 framing 已经写为\"2/2 models\"（Qwen+Pythia），OLMo negative 不影响\n- 易踩坑：v1 系列（exp_wiki_olmo, exp_wiki_pythia）因 data reuse bug 失败，v2 用独立 data_dir 修复。不要混淆 v1/v2 的结果\n- 论文已 v4 发用户，审稿 Round 2 三个 critical：overclaiming、theta sensitivity、self_BLEU ablation。Reviewer 覆盖度评估 Worker 已派出但未回\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779060893.md"
+}

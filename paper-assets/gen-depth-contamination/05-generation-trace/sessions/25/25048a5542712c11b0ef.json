@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25048a5542712c11b0ef",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp004 7b prep",
+  "task_key": "worker_code_exp004_7b_prep_20260514T022738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp004_7b_prep_20260514T022738_result.json",
+    "occurrence": 1,
+    "bytes": 1681,
+    "sha256": "2de6106ef4d85f1e1050a5789abecce0607fd4b26a499006e7fc850ac247cbe6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 产出汇总\n\n### 1. VRAM 评估\n\n| 方案 | 模型 VRAM | Peak VRAM | 可行性 |\n|------|-----------|-----------|--------|\n| A: fp16 | ~14GB | ~16.2GB | 需独占 GPU，batch=1 可跑 |\n| B: 4-bit | ~4GB | ~6GB | 量化噪声可能掩盖 depth 信号，仅 preliminary |\n\n**推荐方案 A**，等 exp-006 完成后独占 GPU 运行。\n\n### 2. 脚本部署\n`scripts/run_exp004_qwen7b_depth.py` (689 行) 已部署到服务器，语法验证通过。\n\n相比 run_pipeline.py 的改动：\n- 模型默认 Qwen2.5-7B-Instruct，batch_size 默认 1\n- OOM 保护：`try/except torch.cuda.OutOfMemoryError`，自动降 batch_size 重试\n- `--quantize 4bit` 可选参数（bitsandbytes NF4）\n- 每个 depth level 之间 `torch.cuda.empty_cache()`\n- `--n_docs` 参数替代 `--num_samples`\n\n### 3. 模型下载状态\n**7B 模型未下载**。缓存中只有 Qwen2.5-1.5B-Instruct (2.9GB)。下载命令（不要在 GPU 繁忙时执行）：\n```bash\nsource /etc/network_turbo\nexport HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_DISABLE_XET=1\npython -c \"from modelscope import snapshot_download; snapshot_download('Qwen/Qwen2.5-7B-Instruct', cache_dir='/root/autodl-tmp/.hf_cache')\"\n```\n预计下载 ~14GB，建议 exp-006 完成后执行。\n\n### 4. Dry-run 命令（ready to execute）\n```bash\ncd /root/autodl-tmp/gen-depth-contamination\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\npython scripts/run_exp004_qwen7b_depth.py --n_docs 10 --max_depth 3 --device cuda:0\n```\n4-bit 预检版：\n```bash\npython scripts/run_exp004_qwen7b_depth.py --n_docs 10 --max_depth 3 --quantize 4bit --device cuda:0\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp004-7b-prep.md"
+}

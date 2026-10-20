@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_bootstrap_10k",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:51:15.538Z",
+    "updated_at": "2026-05-20T11:51:21.706Z",
+    "hypothesis": "10K bootstrap resamples yield tighter CI but no K* verdict flips for borderline Table 2 configurations (LLaMA-8B, Gemma-2-2B, Mistral-7B, 512-tok), confirming robustness of K* assignments at 1K resamples."
+  },
+  "timestamp": "2026-05-20T11:51:21.976520+00:00",
+  "trigger": "update_registry"
+}

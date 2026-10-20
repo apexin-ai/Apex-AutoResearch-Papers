@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c21dfb9d396e9cb36a2",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops pythia v3 and disk check",
+  "task_key": "worker_ops_pythia_v3_and_disk_check_20260521T075601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pythia_v3_and_disk_check_20260521T075601_result.json",
+    "occurrence": 1,
+    "bytes": 324,
+    "sha256": "0b0639bfe8302aeb7bc870f6aed6aa48c2ad317fa6f052640715d1a8836980c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nPYTHIA_V3: running\nCURRENT_DEPTH: 3 (699/1250, ~46min remaining at ~5.1s/it)\nCOMPLETED: depth_0 (5000), depth_1 (5000), depth_2 (5000)\nGPU: #0 98% util, 14505/24564 MiB; #1-#3 idle\n\nDISK_ROOT: 62% used (12 GB free)\nDISK_DATA: 59% used (103 GB free)\nPROJECT_SIZE: 2.0 GB\nHF_CACHE_SIZE: 146 GB\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-pythia-v3-and-disk-check.md"
+}

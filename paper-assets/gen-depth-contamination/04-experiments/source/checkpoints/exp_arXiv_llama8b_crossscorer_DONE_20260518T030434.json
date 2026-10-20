@@ -1,0 +1,68 @@
+{
+  "exp_id": "exp_arXiv_llama8b_crossscorer",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T02:44:19.881Z",
+    "updated_at": "2026-05-18T03:04:34.285Z",
+    "hypothesis": "Replacing Qwen-1.5B scorer with Pythia-1.4B on arXiv LLaMA-8B depth 0-5 texts should yield the same K*=3 boundary, because the saturation signal is a genuine property of LLaMA-8B generated text rather than a scorer family artifact",
+    "parent": "exp_wiki_scorer_confound",
+    "spec": {
+      "command": "skip_generation scoring with Pythia-1.4B",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "195907",
+      "log_path": "~/runs/gen-depth-contamination/exp_arXiv_llama8b_crossscorer.log",
+      "submitted_at": "2026-05-18T02:44:54.483Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_arXiv_llama8b_crossscorer/",
+      "data_count": 6,
+      "model_name": "pythia-1.4b",
+      "seed": 42,
+      "checkpoint_source": "exp_arXiv_llama8b",
+      "eval_data": "arXiv LLaMA-8B depth 0-5 continuations from exp_arXiv_llama8b",
+      "checkpoint_path": "results/exp_arXiv_llama8b_crossscorer/",
+      "wall_clock_seconds": 1119.6,
+      "gpu_hours": 0.31
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T03:00:23.861Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T03:00:27.320630+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "k_star": 3,
+      "auc_0v1": 0.9629,
+      "auc_1v2": 0.8433,
+      "auc_2v3": 0.6201,
+      "auc_3v4": 0.523,
+      "auc_4v5": 0.5245,
+      "jsd_0v1": 0.1214,
+      "jsd_1v2": 0.0815,
+      "jsd_2v3": 0.0195,
+      "jsd_3v4": 0.0083,
+      "jsd_4v5": 0.0082,
+      "ordinal_mae": 0.9025,
+      "ordinal_accuracy": 0.4407,
+      "scorer": "pythia-1.4b"
+    },
+    "completed_at": "2026-05-18T03:03:34.051Z"
+  },
+  "timestamp": "2026-05-18T03:04:34.462596+00:00",
+  "trigger": "update_registry"
+}

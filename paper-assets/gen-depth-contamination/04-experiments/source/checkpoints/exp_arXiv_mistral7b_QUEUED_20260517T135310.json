@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_arXiv_mistral7b",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:32:28.299Z",
+    "updated_at": "2026-05-17T13:53:10.483Z",
+    "hypothesis": "Mistral-7B arXiv K* test: Mistral-7B-v0.3 在 C4 上 K*=1 (one-wash model)。在 arXiv structured domain 上是否仍 K*=1？如果 K*=1 → 确认 Mistral 的 one-wash 是 text-intrinsic (与 domain 无关)；如果 K*>1 → domain complexity 可以 rescue one-wash models，K* 同时受 model 和 domain 驱动。2200 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "parent": "exp_arXiv_olmo"
+  },
+  "timestamp": "2026-05-17T13:53:10.643610+00:00",
+  "trigger": "update_registry"
+}

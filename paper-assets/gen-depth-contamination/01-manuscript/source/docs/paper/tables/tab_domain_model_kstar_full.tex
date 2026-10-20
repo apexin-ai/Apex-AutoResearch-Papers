@@ -1,0 +1,30 @@
+\begin{table*}[t]
+\centering
+\caption{Full generative depth results with AUC at the $K^*$ boundary (scorer: Qwen2.5-1.5B, $\theta{=}0.60$). AUC($k$v$k{+}1$) denotes the area under the ROC curve distinguishing generation $k$ from generation $k{+}1$. Bold indicates the dominant $K^*$ mode per domain. For Wikipedia ($K^*{=}1$), boundary AUC reports 0v1. All AUC values computed on held-out test splits ($n{=}500$ per class).}
+\label{tab:domain_model_kstar_full}
+{\small
+\begin{tabular}{llcccccc}
+\toprule
+& & \multicolumn{2}{c}{\textbf{C4}} & \multicolumn{2}{c}{\textbf{arXiv}} & \multicolumn{2}{c}{\textbf{Wikipedia}} \\
+\cmidrule(lr){3-4} \cmidrule(lr){5-6} \cmidrule(lr){7-8}
+\textbf{Model} & \textbf{Size} & $K^*$ & AUC(boundary) & $K^*$ & AUC(boundary) & $K^*$ & AUC(boundary) \\
+\midrule
+Qwen2.5       & 1.5B & \textbf{2} & 0.6262~(1v2) & \textbf{3} & 0.6427~(2v3) & \textbf{1}\textsuperscript{$\dagger$} & ---\textsuperscript{$\S$} \\
+Qwen2.5       & 7B   & \textbf{2} & 0.6178~(1v2) & \textbf{3}\textsuperscript{$\|$} & 0.6255~(2v3) & \textbf{1}\textsuperscript{$\dagger$} & 0.967~(0v1) \\
+Pythia        & 1.4B & \textbf{2} & 0.6074~(1v2) & \textbf{3} & 0.6545~(2v3) & \textbf{1} & 0.975~(0v1) \\
+LLaMA-3.1    & 8B   & \textbf{2} & 0.6123~(1v2) & \textbf{3}\textsuperscript{$\|$} & 0.6215~(2v3) & \textbf{1} & 0.932~(0v1) \\
+Mistral       & 7B   & 1\textsuperscript{$\ddagger$} & 0.570~(1v2) & \textbf{3}\textsuperscript{$\|$} & 0.6275~(2v3) & \textbf{1} & 0.961~(0v1) \\
+OLMo          & 1B   & 1 & 0.500~(1v2) & 1\textsuperscript{$*$} & --- & \textbf{1} & 0.993~(0v1) \\
+\bottomrule
+\end{tabular}
+}
+\vspace{2pt}
+
+{\footnotesize
+\textsuperscript{$\dagger$}Scorer artifact: Qwen-1.5B scorer yields $K^*{=}2$; cross-family scorer (Pythia-1.4B) yields $K^*{=}1$ ($\Delta = -2.4$\,pp). Controlled value shown (Appendix~\ref{app:crossscorer}).\\
+\textsuperscript{$\ddagger$}AUC(1v2)${=}0.570{<}\theta{=}0.60$: Mistral exhibits domain-specific one-wash on C4 web text. Cross-scorer validated (Qwen2.5-1.5B scorer).\\
+\textsuperscript{$*$}Capacity failure: OLMo-1B produces out-of-domain text when prompted with arXiv content.\\
+\textsuperscript{$\S$}Wikipedia 0v1 AUC not available for Qwen-1.5B in base continuation mode.\\
+\textsuperscript{$\|$}arXiv AUC values for LLaMA-3.1-8B, Mistral-7B, and Qwen2.5-7B are scorer-matched (generation model = scorer); cross-scorer bootstrap CI (Pythia-1.4B scorer) confirms $K^*{=}3$ for LLaMA-3.1-8B (CI: [0.605, 0.635]) but not for Mistral-7B (CI lower $0.594{<}\theta$) or Qwen2.5-7B (CI lower $0.583{<}\theta$).
+}
+\end{table*}

@@ -1,0 +1,56 @@
+{
+  "exp_id": "exp_code_qwen1b5",
+  "project": "gen-depth-contamination",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:36:16.788Z",
+    "updated_at": "2026-05-18T21:30:06.439Z",
+    "hypothesis": "Code domain (Python) K* measurement: Qwen2.5-1.5B continuation on CodeSearchNet Python subset (Husain et al. 2019). Code 的高度结构化特性（语法约束、缩进、函数签名）应使代际退化慢于 C4 (K*≥2)，可能接近 arXiv (K*=3)。5500 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "notes": "Code domain (Python/CodeSearchNet) K*=2, same as C4. 1v2 AUC=0.7382 well above θ, 2v3 drops to 0.5300. Bug fix: run_pipeline.py:462 int(doc_id) patched for string IDs. Top features: freq_entropy, surp_d2_mean, surp_d1_mean. Data source: CodeSearchNet Python subset (Husain et al. 2019).",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/bin/activate && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --data_dir data/exp_code_qwen1b5 --results_dir results/exp_code_qwen1b5 --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B\"",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "84256",
+      "log_path": "~/runs/gen-depth-contamination/exp_code_qwen1b5.log",
+      "submitted_at": "2026-05-18T16:56:33.434Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "K_star": 2,
+      "theta": 0.6,
+      "auc_0v1": 0.9388,
+      "auc_1v2": 0.7382,
+      "auc_2v3": 0.53,
+      "auc_3v4": 0.5022,
+      "auc_4v5": 0.5219,
+      "ci_0v1": [
+        0.929,
+        0.949
+      ],
+      "ci_1v2": [
+        0.709,
+        0.767
+      ],
+      "ci_2v3": [
+        0.514,
+        0.546
+      ],
+      "jsd_0v1": 0.0814,
+      "jsd_1v2": 0.0443,
+      "jsd_2v3": 0.0038,
+      "ordinal_accuracy": 0.359,
+      "ordinal_mae": 1.204
+    }
+  },
+  "timestamp": "2026-05-18T21:30:06.628274+00:00",
+  "trigger": "update_registry"
+}

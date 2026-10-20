@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp_olmo1b_c4_rerun",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T11:10:33.358Z",
+    "updated_at": "2026-05-21T11:11:13.525Z",
+    "hypothesis": "OLMo-1B C4 depth chain 可复现性验证：标准化 pipeline（Qwen-1.5B scorer）下 K* 值与主表一致。",
+    "conclusion": "negative",
+    "metrics": {
+      "0v1_auc": 0.986,
+      "1v2_auc": 0.508,
+      "2v3_auc": 0.4973,
+      "3v4_auc": 0.5024,
+      "4v5_auc": 0.4942,
+      "kstar_at_060": 1,
+      "main_table_1v2": 0.6145,
+      "delta": -0.1065
+    },
+    "spec": {
+      "command": "python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/models--allenai--OLMo-1B-hf/... --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --no_sample",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:1"
+      ],
+      "data_path": "data/exp_olmo1b_c4_rerun",
+      "data_count": 5000,
+      "model_name": "allenai/OLMo-1B-hf",
+      "seed": "default",
+      "checkpoint_path": "results/exp_olmo1b_c4_rerun/",
+      "log_path": "results/exp_olmo1b_c4_rerun/experiment_config.json",
+      "checkpoint_source": "N/A",
+      "eval_data": "N/A"
+    },
+    "completed_at": "2026-05-21T11:11:13.525Z"
+  },
+  "timestamp": "2026-05-21T11:11:13.838091+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "373097029037bd8ef33e",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "research winogrande negative analysis",
+  "task_key": "worker_research_winogrande_negative_analysis_20260521T035728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_winogrande_negative_analysis_20260521T035728_result.json",
+    "occurrence": 1,
+    "bytes": 749,
+    "sha256": "5571b5e39f6cc609927e68943af2cd1874e3882529c0dd058f64943365d6cdbc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：-0.79pp 是 noise，不是 systematic pattern。**\n\n关键证据：\n\n| 检验 | 结果 |\n|---|---|\n| Paired t-test | t=−2.63, df=2, **p=0.12**（不显著） |\n| Gap vs eval stderr | 0.79pp < 1.35pp（不到一个标准误） |\n| 逐 seed 稳定性 | 幅度变化 4× (0.31pp ~ 1.34pp) |\n| 相对 base model | 所有策略 WinoGrande ±0.5pp 以内，fine-tuning 本身对这个 benchmark 几乎无影响 |\n| 跨 benchmark | binary 在 GSM8K (+1.90pp)、TruthfulQA (+1.52pp) 上有一致优势，排除系统性退化 |\n\n报告已保存至 `artifacts/exp_expanded_downstream_eval/report/winogrande_negative_analysis.md`。论文中如实报告即可，不需要为一个不显著的结果构造解释机制。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-winogrande-negative-analysis.md"
+}

@@ -1,0 +1,31 @@
+% Pairwise paired t-tests (5 seeds), Holm-Bonferroni corrected.
+% 6 main strategies → C(6,2) = 15 pairs.
+\begin{tabular}{llrrcrrc}
+\toprule
+& & \multicolumn{3}{c}{MMLU} & \multicolumn{3}{c}{HellaSwag} \\
+\cmidrule(lr){3-5}\cmidrule(lr){6-8}
+Row & Column & $\Delta$ & $p_{\text{corr}}$ & Sig. & $\Delta$ & $p_{\text{corr}}$ & Sig. \\
+\midrule
+binary-ours & no-filter      & $+$0.77 & .002  & $^*$ & $+$0.64 & .004 & $^*$ \\
+binary-ours & DSIR           & $+$0.72 & $<$.001 & $^*$ & $+$0.71 & $<$.001 & $^*$ \\
+binary-ours & surprisal      & $+$0.47 & .021  & $^*$ & $+$0.61 & .002 & $^*$ \\
+binary-ours & graduated$_{.9}$ & $+$0.50 & .011  & $^*$ & $\phantom{+}$0.00 & 1.00 & \\
+binary-ours & binary-Drayson & $+$0.28 & $<$.001 & $^*$ & $+$0.11 & .131 & \\
+\midrule
+binary-Drayson & no-filter      & $+$0.49 & .019 & $^*$ & $+$0.53 & .004 & $^*$ \\
+binary-Drayson & DSIR           & $+$0.44 & .003 & $^*$ & $+$0.60 & .003 & $^*$ \\
+binary-Drayson & surprisal      & $+$0.19 & .202 &      & $+$0.50 & .004 & $^*$ \\
+binary-Drayson & graduated$_{.9}$ & $+$0.22 & .161 &    & $-$0.11 & .237 & \\
+\midrule
+graduated$_{.9}$ & no-filter   & $+$0.27 & .052  &      & $+$0.64 & .004 & $^*$ \\
+graduated$_{.9}$ & DSIR        & $+$0.23 & .052  &      & $+$0.71 & $<$.001 & $^*$ \\
+graduated$_{.9}$ & surprisal   & $-$0.02 & .694  &      & $+$0.61 & .002 & $^*$ \\
+\midrule
+surprisal   & no-filter      & $+$0.29 & .025  & $^*$ & $+$0.03 & .694 & \\
+surprisal   & DSIR           & $+$0.25 & .052  &      & $+$0.10 & .190 & \\
+\midrule
+DSIR        & no-filter      & $+$0.04 & .952  &      & $-$0.07 & .947 & \\
+\bottomrule
+\multicolumn{8}{l}{\footnotesize $\Delta$: mean difference in pp (row $-$ column, 5 seeds). $^*$: $p_{\text{corr}} < 0.05$.} \\
+\multicolumn{8}{l}{\footnotesize MMLU: 8/15 pairs significant. HellaSwag: 9/15 pairs significant.}
+\end{tabular}

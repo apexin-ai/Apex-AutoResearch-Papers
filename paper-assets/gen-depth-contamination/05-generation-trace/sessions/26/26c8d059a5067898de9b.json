@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "26c8d059a5067898de9b",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "ops pythia69b nucleus rerun",
+  "task_key": "worker_ops_pythia69b_nucleus_rerun_20260521T133758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pythia69b_nucleus_rerun_20260521T133758.log",
+    "occurrence": 1,
+    "bytes": 662080,
+    "sha256": "bd6f32a4c1b98d3eed307c53864d5d7dbc435c8a906fe75e1f67d0445119e41d"
+  },
+  "statistics": {
+    "messages": 229,
+    "user_turns": 0,
+    "tool_calls": 77,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 71,
+      "tool_call": 77,
+      "tool_result": 77,
+      "record": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 229,
+      "chunks": [
+        {
+          "path": "26c8d059a5067898de9b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "26c8d059a5067898de9b-part-0002.json",
+          "message_count": 49
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-pythia69b-nucleus-rerun.md"
+}

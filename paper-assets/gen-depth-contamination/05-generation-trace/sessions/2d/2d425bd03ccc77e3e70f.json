@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d425bd03ccc77e3e70f",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "research model collapse literature",
+  "task_key": "worker_research_model-collapse-literature_20260519T031633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_model-collapse-literature_20260519T031633_result.json",
+    "occurrence": 1,
+    "bytes": 892,
+    "sha256": "3a297211b2ad44e921c0cfcfb1dc8be0e545915c846e1041eb47f157db4cce84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。结果写入 `artifacts/model_collapse_literature_notes.md`。\n\n**核心发现**：\n\nreferences.bib 已包含 12 篇 model collapse 相关文献，覆盖非常充分。**唯一需要添加的是 Bertrand et al. (ICLR 2024 Spotlight)**，提供迭代再训练的稳定性理论框架，直接解释 retrain-chain 行为。\n\n**Positioning 核心论点**（已附可直接用于 Discussion 的段落）：\n\nModel collapse 文献关注质量退化（分布尾部消失、多样性下降），我们的发现揭示同一现象的另一面：每代分布漂移同时产生可检测的代际签名。Retrain-chain 因每代修改模型权重（LoRA），分布漂移远大于 prompt-chain（权重冻结），解释了 K*≥7 vs. K*=2 的差异。纯合成循环的理论不稳定性（Bertrand et al., Gerstgrasser et al.）正是代际可区分性的来源。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-model-collapse-literature.md"
+}

@@ -1,0 +1,90 @@
+{
+  "exp_id": "exp_010_ordinal_baseline",
+  "project": "gen-depth-contamination",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T04:22:42.199Z",
+    "updated_at": "2026-05-13T04:26:48.424Z",
+    "hypothesis": "Ordinal structure improves depth classification: ordinal methods should outperform unordered multiclass on MAE",
+    "spec": {
+      "command": "python scripts/run_exp010_ordinal_comparison.py",
+      "server": "autodl-4090d",
+      "data_path": "data/features.csv, data_exp001_pythia/features.csv, data_exp002_olmo/features.csv",
+      "data_count": 90000,
+      "model_name": "N/A (CPU classifiers)",
+      "seed": "N/A",
+      "checkpoint_source": "N/A",
+      "eval_data": "N/A",
+      "checkpoint_path": "N/A",
+      "log_path": "/root/autodl-tmp/gen-depth-contamination/artifacts/ordinal_comparison_results.json"
+    },
+    "metrics": {
+      "qwen_rewrite": {
+        "obd_lgbm": {
+          "accuracy": 0.4229,
+          "mae": 0.9836,
+          "tau_b": 0.5518,
+          "mean_pw_auc": 0.6214
+        },
+        "multiclass_lgbm": {
+          "accuracy": 0.4182,
+          "mae": 1.0163,
+          "tau_b": 0.5367,
+          "mean_pw_auc": 0.6246
+        },
+        "ordinal_logreg": {
+          "accuracy": 0.3636,
+          "mae": 0.9105,
+          "tau_b": 0.563,
+          "mean_pw_auc": 0.5022
+        }
+      },
+      "pythia": {
+        "obd_lgbm": {
+          "accuracy": 0.3856,
+          "mae": 1.1072,
+          "tau_b": 0.4745,
+          "mean_pw_auc": 0.6055
+        },
+        "multiclass_lgbm": {
+          "accuracy": 0.3832,
+          "mae": 1.1399,
+          "tau_b": 0.4622,
+          "mean_pw_auc": 0.6062
+        },
+        "ordinal_logreg": {
+          "accuracy": 0.3179,
+          "mae": 1.022,
+          "tau_b": 0.49,
+          "mean_pw_auc": 0.4767
+        }
+      },
+      "olmo": {
+        "obd_lgbm": {
+          "accuracy": 0.3822,
+          "mae": 1.1469,
+          "tau_b": 0.4683,
+          "mean_pw_auc": 0.6015
+        },
+        "multiclass_lgbm": {
+          "accuracy": 0.3685,
+          "mae": 1.1813,
+          "tau_b": 0.4497,
+          "mean_pw_auc": 0.5974
+        },
+        "ordinal_logreg": {
+          "accuracy": 0.3265,
+          "mae": 1.0352,
+          "tau_b": 0.4656,
+          "mean_pw_auc": 0.4859
+        }
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-13T04:26:48.449215+00:00",
+  "trigger": "update_registry"
+}

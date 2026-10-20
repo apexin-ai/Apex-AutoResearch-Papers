@@ -1,0 +1,4 @@
+Remote path: /root/autodl-tmp/gen-depth-contamination/scripts/exp024_arxiv_domain.sh
+Config: Qwen2.5-1.5B base, continuation mode, nucleus p=0.95 T=1.0, 5K docs, depth 0-5, max_new_tokens=256
+GPU: cuda:3 (CUDA_VISIBLE_DEVICES=3)
+Offline mode: HF_DATASETS_OFFLINE=1, TRANSFORMERS_OFFLINE=1

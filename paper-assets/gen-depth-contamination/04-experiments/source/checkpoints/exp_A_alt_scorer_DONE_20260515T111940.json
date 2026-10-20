@@ -1,0 +1,70 @@
+{
+  "exp_id": "exp_A_alt_scorer",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:18:24.715Z",
+    "updated_at": "2026-05-15T11:19:40.861Z",
+    "hypothesis": "替代 scorer (Pythia-1.4B, OLMo-1B) 计算 surprisal features 时，K*=2 是否仍成立？验证 K* 不依赖 scorer-generator 匹配（FR-2 Critical）",
+    "spec": {
+      "command": "bash scripts/run_exp_A.sh",
+      "server": "westc-26893",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data (Qwen-RW) + data_exp017_qwen_cont (Qwen-cont)",
+      "data_count": 10000,
+      "model_name": "Pythia-1.4B + OLMo-1B (as alt scorers) × Qwen-generated data",
+      "seed": 42,
+      "gpu": [
+        "cuda:0"
+      ],
+      "note": "4 conditions: {Pythia,OLMo} × {Qwen-RW,Qwen-cont}. Surprisal features computed with alt scorer, LightGBM classification."
+    },
+    "conclusion": "success",
+    "metrics": {
+      "pythia_qwen_rw": {
+        "k_star": 2,
+        "auc_0v1": 0.9923,
+        "auc_1v2": 0.7012,
+        "auc_2v3": 0.587,
+        "mae": 1.006,
+        "accuracy": 0.417,
+        "spearman_rho_vs_baseline": 0.906
+      },
+      "pythia_qwen_cont": {
+        "k_star": 1,
+        "auc_0v1": 0.99,
+        "auc_1v2": 0.5923,
+        "auc_2v3": null,
+        "mae": 1.216,
+        "accuracy": 0.371,
+        "spearman_rho_vs_baseline": 0.942
+      },
+      "olmo_qwen_rw": {
+        "k_star": 2,
+        "auc_0v1": 0.9918,
+        "auc_1v2": 0.6947,
+        "auc_2v3": null,
+        "mae": 1.016,
+        "accuracy": 0.413,
+        "spearman_rho_vs_baseline": 0.92
+      },
+      "olmo_qwen_cont": {
+        "k_star": 1,
+        "auc_0v1": 0.989,
+        "auc_1v2": 0.5858,
+        "auc_2v3": null,
+        "mae": 1.229,
+        "accuracy": 0.368,
+        "spearman_rho_vs_baseline": 0.902
+      },
+      "key_finding": "K* splits by generator data, not scorer: Qwen-RW→K*=2, Qwen-cont→K*=1 (cross-scorer). Feature importance ρ≥0.90 across all 4 conditions confirms scorer independence of feature ranking."
+    },
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/artifacts/exp_A/",
+    "log_path": "/root/autodl-tmp/gen-depth-contamination/artifacts/exp_A/exp_A_alt_scorer.log",
+    "completed_at": "2026-05-15T11:19:40.861Z"
+  },
+  "timestamp": "2026-05-15T11:19:40.945094+00:00",
+  "trigger": "update_registry"
+}

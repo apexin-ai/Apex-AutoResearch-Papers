@@ -1,0 +1,42 @@
+\section{Discussion}
+\label{sec:discussion}
+\label{sec:why_kstar}
+\label{sec:one_wash}
+\label{sec:negative_graduated}
+\label{sec:repr_dependence}
+\label{sec:boundary_cases}
+\label{sec:length_confound}
+
+\paragraph{One-wash laundering (web text).}
+For general web text, $\Kempirical{=}2$ reflects concentrated information loss: 0v1 is near-trivially separable ($\auc \geq 0.92$), 1v2 drops by ${\sim}$30\,pp, and 2v3 falls below $\theta$.
+A single generation pass renders text indistinguishable from multiply recycled content, limiting depth-aware curation to a binary boundary.
+Converging evidence supports a data-intrinsic interpretation: OBD achieves 96\% depth-0 recall but only 14--22\% for depths 2--4; frontier LLMs show 8--38\% (McNemar $p > 0.05$ vs.\ OBD; Table~\ref{tab:s3_llm_zeroshot}).
+
+\paragraph{Graduated filtering failure.}
+For web text, 2v3 $\auc < \theta$ across all model configurations, so depth assignments for $d \geq 2$ approximate random labels; graduated weighting injects noise, explaining convergence toward binary at high $\alpha$ (Appendix~\ref{sec:extended_limitations}).
+DSIR fails differently: bigram hashing captures domain shift but not depth-correlated signatures.
+
+\paragraph{Representation dependence.}
+$\Kempirical$ is representation-dependent: frozen Qwen embeddings yield $\Kempirical^{\text{neural}} = 3$, while Pythia yields $\Kempirical^{\text{neural}} = 2$ and OLMo yields $\Kempirical^{\text{neural}} = 1$, consistent with its 15D boundary (Table~\ref{tab:neural_probe_crossmodel}).
+The 15D features trade one depth level of sensitivity for cross-model consistency (6/10 configurations $\Kempirical{=}2$), making them the preferred operational choice.
+Feature rankings are scorer-independent ($\rho > 0.90$); $\Kempirical$ agreement is scorer-independent for strong-signal configurations (e.g., Qwen-rewrite retains $\Kempirical{=}2$ under all scorers) but scorer-sensitive at marginal boundaries (Qwen-continuation drops to $\Kempirical{=}1$; length confound ruled out in Appendix~\ref{sec:extended_limitations}).
+ANOVA confirms this layered pattern: Scorer explains modest variance ($\eta^2_p{=}.166$) with a significant Generator$\times$Scorer interaction ($\eta^2_p{=}.146$; Table~\ref{tab:anova_crossscorer}).
+
+\paragraph{Domain dependence of $\Kempirical$.}
+Web text (C4, Wikipedia) consistently yields $\Kempirical{=}2$, while structured academic text (arXiv) yields $\Kempirical{=}3$ across two independent model families (Qwen-1.5B, Pythia-1.4B; Section~\ref{sec:cross_domain}).
+Domain-specific stylistic constraints amplify per-generation distributional shift, making contamination in structured corpora trackable to greater depth.
+
+\paragraph{Prompt-chain vs.\ retrain-chain $\Kempirical$.}
+Retrain-chain experiments (Pythia-1.4B LoRA) yield $\Kempirical{\geq}4$ (1v2 $\auc = 0.9484$, 2v3 $= 0.8888$, 3v4 $= 0.7982$), far exceeding the prompt-chain boundary of $\Kempirical{=}2$.
+The elevated retrain-chain signal arises from cumulative model-adaptation artifacts (vocabulary narrowing, repetition bias) rather than text-intrinsic degradation.
+Prompt-chain $\Kempirical{=}2$ therefore captures the text-level discrimination boundary relevant to data curation; the separation between the two protocols validates our experimental design choice.
+
+\paragraph{Boundary cases and scale effect.}
+Of 10 configurations on C4, 6 yield $\Kempirical{=}2$ (2/6 families unanimously: Qwen contributes 4 observations, LLaMA-8B one; Pythia-1.4B adds cross-family evidence but Pythia-6.9B yields $\Kempirical{=}1$); OLMo-1B ($\Kempirical{=}1$; 1v2 $\auc = 0.508$, CI $[0.496, 0.519]$), Mistral-7B ($\Kempirical{=}1$; 1v2 $\auc = 0.594$, CI $[0.584, 0.603]$), Pythia-6.9B ($\Kempirical{=}1$; 1v2 $\auc = 0.596$), and Gemma-2-2B ($\Kempirical{=}1$; 1v2 $\auc = 0.598$, CI $[0.588, 0.608]$) fall below $\theta{=}0.60$, validating $\theta$ as an effective discriminator (gap: $0.508$--$0.594$ vs.\ $0.611$--$0.696$).
+Larger models produce more human-like text, reducing 0v1 JSD: 0.15--0.27 at $\leq$1.5B, 0.077 at 8B (LLaMA-3.1-8B).
+This trend suggests that models at 13B+ may increasingly yield $\Kempirical{=}1$; this speculative prediction warrants future verification.
+
+\paragraph{Decoding strategy as confound.}
+Pythia-6.9B under greedy decoding yields $\Kempirical{=}2$ (1v2 $\auc = 0.854$), but switching to nucleus sampling ($p{=}0.95$) reduces the boundary to $\Kempirical{=}1$ (1v2 $\auc = 0.596$), providing direct evidence that greedy repetition artifacts inflate depth separability.
+The borderline 1v2 score (2 of 5 folds exceed $\theta{=}0.60$) illustrates that the $\Kempirical$ boundary is continuous rather than a binary cliff.
+Pythia exhibits scale-dependent behavior: Pythia-1.4B yields $\Kempirical{=}2$ (1v2 $\auc = 0.654$) while Pythia-6.9B yields $\Kempirical{=}1$ (1v2 $\auc = 0.596$), confirming that increased model scale does not monotonically raise $\Kempirical$.

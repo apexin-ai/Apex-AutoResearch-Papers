@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "269371681049214f64a0",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code check olmo1b 10k done",
+  "task_key": "worker_code_check_olmo1b_10k_done_20260522T223326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_olmo1b_10k_done_20260522T223326_result.json",
+    "occurrence": 1,
+    "bytes": 697,
+    "sha256": "09f7d2065b3bec1275be938af26e7ec7c9f839da2bd84fff111f507606d3ab60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已无活跃任务，无需清除。\n\n---\n\n**exp_olmo1b_10k 实验报告**\n\n**状态：成功完成**\n\n**关键 Metrics：**\n\n| Pairwise AUC | 值 |\n|---|---|\n| 0v1 | **0.9871** |\n| 1v2 | 0.4984 |\n| 2v3 | 0.5059 |\n| 3v4 | 0.5061 |\n| 4v5 | 0.5074 |\n\n- **K\\* = 1**（仅 depth-0 vs depth-1 可区分，AUC 接近 1.0；更深层全部退化至随机水平 ~0.50）\n- JSD 同样印证：0v1 = 0.230，其余均 < 0.002\n- Ordinal 分类：MAE = 1.41, Accuracy = 31.5%\n- Top 特征：freq_entropy, surp_d1_mean, freq_kurtosis\n\n**已完成操作：**\n- Registry 已更新为 DONE/success，metrics 已记录\n- Cron 本 session 无活跃任务，无需删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-olmo1b-10k-done.md"
+}

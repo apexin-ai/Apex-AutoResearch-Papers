@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04f17a000e47a3687505",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code fix exp E holm bonferroni",
+  "task_key": "worker_code_fix_exp_E_holm_bonferroni_20260515T141733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_exp_E_holm_bonferroni_20260515T141733_result.json",
+    "occurrence": 1,
+    "bytes": 1475,
+    "sha256": "05e5cdbc9a2e83e561f1c987bcc87b9d50ab718d77c4f0c2c2270bfdf6c8a4e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。汇报：\n\n---\n\n## 修复结果\n\n### Bug 1: Holm-Bonferroni `cummax` 未更新（已修复）\n\n`holm_bonferroni()` 中 `cummax = 0.0` 初始化后循环内从未赋值，导致 adjusted p-values 失去单调性约束。具体表现：raw_p 更大的 pair 反而得到更小的 corrected_p，跨过 0.05 阈值被错误判定为 significant。\n\n**修复**：在 `adjusted = min(adjusted, 1.0)` 后加 `cummax = adjusted`。\n\n**影响**：\n| 指标 | 修复前 | 修复后 |\n|------|--------|--------|\n| MMLU significant pairs | 10/15 | **8/15** |\n| HellaSwag significant pairs | 9/15 | **9/15**（未变） |\n\nMMLU 中 2 对被错误标记为 significant 的 pair 现已修正：\n- graduated_a0.9 vs no-filter: 0.0496 → **0.0523** (not sig)\n- surprisal vs dsir: 0.0473 → **0.0523** (not sig)\n\ngraduated_a0.9 vs DSIR 的 corrected_p=0.0523 本身计算无误，边界未过。\n\n### Bug 2: Cohen's d 分母选择（已调整）\n\n原实现用 d_z（paired differences 的 SD），n=5 且 seed 间方差极小时 d_z 膨胀到 11。改为 d_av（两组 SD 均值做分母，Lakens 2013），更适合与 small/medium/large 基准对照。\n\n**影响**：最大 d 值从 11.0 降至 10.8（MMLU），仍然很大——这是 n=5 固有的，5 个 seed 的 within-strategy SD≈0.0007 vs between-strategy diff≈0.003-0.008，任何标准化效应量都会很大。建议论文中以 mean_diff 为主要效应量指标。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-exp-e-holm-bonferroni.md"
+}

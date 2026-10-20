@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_multi_source_detection",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T06:20:10.182Z",
+    "updated_at": "2026-05-20T07:00:47.821Z",
+    "hypothesis": "OBD K* is preserved when training on a mixed pool of outputs from 3 different generators (Qwen-1.5B, Pythia-1.4B, OLMo-1B), and adding generator identity as an extra feature does not improve depth discrimination."
+  },
+  "timestamp": "2026-05-20T07:00:48.172336+00:00",
+  "trigger": "update_registry"
+}

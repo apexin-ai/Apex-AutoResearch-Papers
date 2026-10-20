@@ -1,0 +1,80 @@
+% exp_026: arXiv Filtering Strategy Comparison
+% Usage: \input{tables/exp_026_arxiv_filtering.tex}
+% Requires: booktabs, multirow
+
+% ============================================================
+% Table 1: Summary (mean ± std over 5 seeds)
+% ============================================================
+\begin{table}[t]
+\centering
+\small
+\caption{
+  Effect of arXiv filtering strategies on downstream benchmark performance.
+  Models are Qwen-1.5B fine-tuned with LoRA (rank=4) on arXiv-sourced
+  generational depth chains under three contamination filtering strategies.
+  Results report mean $\pm$ std over 5 random seeds (42, 123, 456, 789, 1024).
+  Best result per metric is \textbf{bolded}.
+  Paired $t$-tests are computed against \textsc{No Filter} as the reference.
+  Significance: {$^{*}$}\,$p<0.05$,
+  {$^{**}$}\,$p<0.01$,
+  {$^{***}$}\,$p<0.001$.
+}
+\label{tab:exp026-arxiv-filtering}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Strategy} & \textbf{MMLU} & \textbf{HellaSwag} \\
+\midrule
+\textsc{No Filter}
+  & 0.5899\;{\scriptsize$\pm$\,0.0008}
+  & 0.6600\;{\scriptsize$\pm$\,0.0002} \\
+\textsc{Binary}
+  & 0.5876\;{\scriptsize$\pm$\,0.0004}
+  & \textbf{0.6642}\;{\scriptsize$\pm$\,0.0004} \\
+\textsc{Graduated} ($\alpha\!=\!0.9$)
+  & \textbf{0.5900}\;{\scriptsize$\pm$\,0.0011}
+  & 0.6599\;{\scriptsize$\pm$\,0.0003} \\
+\midrule
+\multicolumn{3}{l}{\textit{Paired $t$-test vs.\ \textsc{No Filter}}} \\
+\quad \textsc{Binary}
+  & $p=0.005^{**}$
+  & $p<0.001^{***}$ \\
+\quad \textsc{Graduated}
+  & $p=0.692$
+  & $p=0.245$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ============================================================
+% Table 2: Per-seed breakdown
+% ============================================================
+\begin{table}[t]
+\centering
+\small
+\caption{
+  Per-seed results for the arXiv filtering experiment (exp\_026).
+  Each cell reports accuracy on the corresponding benchmark.
+  Setup identical to Table~\ref{tab:exp026-arxiv-filtering}.
+}
+\label{tab:exp026-per-seed}
+\begin{tabular}{ll ccccc c}
+\toprule
+\textbf{Strategy} & \textbf{Metric}
+  & \textbf{S\,42} & \textbf{S\,123} & \textbf{S\,456}
+  & \textbf{S\,789} & \textbf{S\,1024}
+  & \textbf{Mean} \\
+\midrule
+\multirow{2}{*}{\textsc{No Filter}}
+  & MMLU      & 0.5887 & 0.5893 & 0.5900 & 0.5911 & 0.5904 & 0.5899 \\
+  & HellaSwag & 0.6602 & 0.6597 & 0.6603 & 0.6599 & 0.6598 & 0.6600 \\
+\midrule
+\multirow{2}{*}{\textsc{Binary}}
+  & MMLU      & 0.5871 & 0.5881 & 0.5872 & 0.5876 & 0.5880 & 0.5876 \\
+  & HellaSwag & 0.6641 & 0.6637 & 0.6649 & 0.6639 & 0.6641 & 0.6642 \\
+\midrule
+\multirow{2}{*}{\textsc{Graduated}}
+  & MMLU      & 0.5889 & 0.5887 & 0.5901 & 0.5917 & 0.5907 & 0.5900 \\
+  & HellaSwag & 0.6604 & 0.6596 & 0.6599 & 0.6598 & 0.6595 & 0.6599 \\
+\bottomrule
+\end{tabular}
+\end{table}

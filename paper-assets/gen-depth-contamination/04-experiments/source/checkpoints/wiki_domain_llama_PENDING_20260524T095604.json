@@ -1,0 +1,44 @@
+{
+  "exp_id": "wiki_domain_llama",
+  "project": "gen-depth-contamination",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T09:46:34.758Z",
+    "updated_at": "2026-05-24T09:56:04.223Z",
+    "hypothesis": "LLaMA-3.1-8B on Wikipedia will yield K*=1 (scorer-controlled), consistent with all other models on Wiki. Combined with C4 K*=2 and arXiv K*=3, this completes a 3-domain profile showing the same monotonic domain ceiling pattern as Mistral.",
+    "metrics": {
+      "k_star": 1,
+      "pairwise_auc": {
+        "0v1": 0.932,
+        "1v2": 0.595,
+        "2v3": 0.539,
+        "3v4": 0.522,
+        "4v5": 0.521
+      },
+      "pairwise_auc_std": {
+        "0v1": 0.006,
+        "1v2": 0.008,
+        "2v3": 0.011,
+        "3v4": 0.012,
+        "4v5": 0.013
+      },
+      "pairwise_jsd": {
+        "0v1": 0.0617,
+        "1v2": 0.0093,
+        "2v3": 0.0054,
+        "3v4": 0.0039,
+        "4v5": 0.0038
+      },
+      "ordinal_mae": 1.3,
+      "ordinal_accuracy": 0.331,
+      "scorer": "Qwen2.5-1.5B-Instruct",
+      "key_finding": "LLaMA-8B Wiki K*=1 confirmed. 3-domain profile complete: Wiki=1, C4=2, arXiv=3. 1v2 AUC=0.595 (<0.60), consistent with all other models on Wiki."
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-24T09:56:04.612168+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_028_power_curve",
+  "project": "gen-depth-contamination",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:53:26.909Z",
+    "updated_at": "2026-05-18T22:53:26.909Z"
+  },
+  "timestamp": "2026-05-18T22:53:27.126871+00:00",
+  "trigger": "update_registry"
+}

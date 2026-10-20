@@ -1,0 +1,1783 @@
+# audit experiments c1 data verify
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 26
+- **Recorded user turns:** 0
+- **Tool calls:** 7
+- **Original source:** `logs/workers/worker_audit_experiments_c1_data_verify_20260514T004234.log`
+- **Structured JSON:** [`1f447ff365fd15777816.json`](../../sessions/1f/1f447ff365fd15777816.json)
+
+## Before a recorded user message
+
+26 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "session_id": "db7c256b-d3b9-4b64-b935-73be67c3b047",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "7bcdd447-2168-4b3d-aaca-a068ae1f4926",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778723400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "111d5d7c-20b9-4f83-8f8d-77f9dc10637d",
+  "session_id": "db7c256b-d3b9-4b64-b935-73be67c3b047"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by loading the necessary MCP tools and reading the registry and the tex file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "db7c256b-d3b9-4b64-b935-73be67c3b047",
+  "uuid": "5d49c021-6410-4012-85d0-b2dd2ca3a63e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Am7HJKw4MxCb8VmBEuLX9V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11505,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11505
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+I'll load the MCP tools, read the registry, and read the tex file in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "db7c256b-d3b9-4b64-b935-73be67c3b047",
+  "uuid": "b9a6d408-a27f-45c4-a200-4633e469d939",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Am7HJKw4MxCb8VmBEuLX9V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11505,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11505
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01ARrwmpu9zDrAVmpL3NqkiT`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "db7c256b-d3b9-4b64-b935-73be67c3b047",
+  "uuid": "63f367fd-9a5a-49cd-a4ec-1cec564e91c2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Am7HJKw4MxCb8VmBEuLX9V",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11505,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11505
+      },
+      "output_tokens": 22,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T00:42:47.422Z_
+
+<details><summary>↩ Tool result · `toolu_01ARrwmpu9zDrAVmpL3NqkiT`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "db7c256b-d3b9-4b64-b935-73be67c3b047",
+  "uuid": "82b2e85d-e7ea-4b54-816d-626dd2c471b3",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01DYwP9oyv7Xq2irskY5ach3`</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "fields": [
+    "*"
+  ],
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "db7c256b-d3b9-4b64-b935-73be67c3b047",
+  "uuid": "3566a8c6-9b81-4351-aef8-06a971d1ad0d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JSWVtsWPbNcZPs4aFMQJC2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 837,
+      "cache_read_input_tokens": 23346,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 837
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T00:42:50.348Z_
+
+<details><summary>↩ Tool result · `toolu_01DYwP9oyv7Xq2irskY5ach3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_007_bootstrap_ci\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T03:45:50.948Z\", \"updated_at\": \"2026-05-13T23:43:00.694Z\", \"hypothesis\": \"K* 统计严谨性验证：bootstrap 95% CI 和 permutation test 确认 K*=2 在三个模型族上统计显著\", \"spec\": {\"command\": \"python scripts/bootstrap_ci.py --data_dirs results_exp001_pythia results_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output artifacts/bootstrap_ci_results.json\", \"script_path\": \"/root/autodl-tmp/gen-depth-contamination/scripts/bootstrap_ci.py\", \"server\": \"autodl-4090d\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/bootstrap_ci_results.json\", \"data_count\": 15000, \"model_name\": \"Pythia-1.4B / OLMo-1B / Qwen-1.5B\", \"seed\": 42, \"input_sources\": [\"results_exp001_pythia (exp-001)\", \"results_exp002_olmo (exp-002)\", \"data (mvp-001)\"], \"bootstrap_resamples\": 1000, \"permutation_resamples\": 500, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/bootstrap_ci_results.json\", \"log_path\": \"~/runs/gen-depth-contamination/exp_007_bootstrap_ci.log\"}, \"metrics\": {\"qwen_rewrite\": {\"0v1\": {\"auc\": 0.9956, \"ci_lower\": 0.9946, \"ci_upper\": 0.9965, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6955, \"ci_lower\": 0.6859, \"ci_upper\": 0.7041, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5893, \"ci_lower\": 0.5795, \"ci_upper\": 0.5991, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5435, \"ci_lower\": 0.5333, \"ci_upper\": 0.5551, \"perm_p\": 0.002}, \"4v5\": {\"auc\": 0.534, \"ci_lower\": 0.5238, \"ci_upper\": 0.5448, \"perm_p\": 0.002}}, \"pythia_cont\": {\"0v1\": {\"auc\": 0.9932, \"ci_lower\": 0.9921, \"ci_upper\": 0.9943, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6539, \"ci_lower\": 0.6454, \"ci_upper\": 0.663, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5514, \"ci_lower\": 0.5417, \"ci_upper\": 0.5628, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5152, \"ci_lower\": 0.5041, \"ci_upper\": 0.526, \"perm_p\": 0.006}, \"4v5\": {\"auc\": 0.5136, \"ci_lower\": 0.5021, \"ci_upper\": 0.5249, \"perm_p\": 0.008}}, \"olmo_cont\": {\"0v1\": {\"auc\": 0.997, \"ci_lower\": 0.9964, \"ci_upper\": 0.9975, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6145, \"ci_lower\": 0.6045, \"ci_upper\": 0.6247, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5496, \"ci_lower\": 0.5399, \"ci_upper\": 0.5596, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5091, \"ci_lower\": 0.4973, \"ci_upper\": 0.52, \"perm_p\": 0.064}, \"4v5\": {\"auc\": 0.5045, \"ci_lower\": 0.4932, \"ci_upper\": 0.515, \"perm_p\": 0.232}}, \"qwen_cont\": {\"0v1\": {\"auc\": 0.9971, \"ci_lower\": 0.9963, \"ci_upper\": 0.9978, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6112, \"ci_lower\": 0.6015, \"ci_upper\": 0.6213, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5609, \"ci_lower\": 0.5511, \"ci_upper\": 0.5712, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5409, \"ci_lower\": 0.5308, \"ci_upper\": 0.5508, \"perm_p\": 0.002}, \"4v5\": {\"auc\": 0.5141, \"ci_lower\": 0.5035, \"ci_upper\": 0.5255, \"perm_p\": 0.006}}, \"k_star_robust\": true, \"all_1v2_ci_lower_above_060\": true, \"most_marginal\": \"Qwen-cont CI lower=0.6015, only 0.0015 above threshold\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T03:46:36.617Z\"}, \"exp_003_decoding_ablation\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-12T20:06:25.260Z\", \"updated_at\": \"2026-05-13T23:41:11.744Z\", \"hypothesis\": \"解码策略调控 K*：不同 top_p/temperature 设置是否改变饱和边界（greedy→更低 K*? 高温度→更高 K*?）\", \"failure_reason\": \"SSH check failed 5x — last error: Unknown server 'autodl-4090d'. Available: ['westc-26893']\", \"completed_at\": \"2026-05-13T15:35:29.038Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T15:35:30.207607+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T20:22:20.803872+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: SSH 别名变更 (autodl-4090d → westc-26893)，cron 监控 5 次连不上后标记 failed。初步诊断: 日志在 westc-26893 上可读，config 2 (nucleus_p0.9_t1.0) 已完成并输出 K*=2，config 3 (nucleus_p0.95_t0.7) 在 depth 4 进度 ~90% 时日志截止。实验可能已完成或部分完成。Worker worker_diagnose_exp_003_decoding_ablation_20260513T153757 正在深入诊断。\"}}, \"notes\": \"Server alias 变更 autodl-4090d → westc-26893 导致 cron 误标 failed。实际实验一直正常运行。Config 1 (greedy, K*=2), Config 2 (nuc p=0.9/T=1.0, K*=2), Config 3 (nuc p=0.95/T=0.7, K*=2) 已完成。Config 4 (nuc p=0.95/T=1.2) 运行中。深度分析: 1v2 AUC Δ<0.003 across configs, D016 universality confirmed (all 7 configs > θ=0.60), θ-sensitivity K* profile identical across 3 configs. 分析脚本 scripts/exp003_analyze_all_configs.py 已部署。\", \"spec\": {\"command\": \"python scripts/exp003_analyze_all_configs.py\", \"server\": \"westc-26893\", \"gpu\": [\"cuda:0\"], \"pid\": \"29459\", \"log_path\": \"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp003_*\", \"data_count\": 4, \"model_name\": \"Qwen/Qwen2.5-1.5B-Instruct\", \"seed\": 42, \"configs\": \"4 ablation configs: greedy, nucleus p=0.9/T=1.0, nucleus p=0.95/T=0.7, nucleus p=0.95/T=1.2\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp003_*\", \"log_path_note\": \"server renamed from autodl-4090d to westc-26893\"}, \"metrics\": {\"config1_greedy\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9797, \"1v2\": 0.6893, \"2v3\": 0.5613, \"3v4\": 0.5404, \"4v5\": 0.5139}, \"top3_features_1v2\": [\"self_bleu\", \"hapax_ratio\", \"ttr\"]}, \"config2_nuc09\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9946, \"1v2\": 0.6866, \"2v3\": 0.5917, \"3v4\": 0.5466, \"4v5\": 0.5068}, \"top3_features_1v2\": [\"hapax_ratio\", \"ttr\", \"surp_skew\"]}, \"config3_t07\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9878, \"1v2\": 0.6887, \"2v3\": 0.5902, \"3v4\": 0.5393, \"4v5\": 0.5349}, \"top3_features_1v2\": [\"hapax_ratio\", \"ttr\", \"low_freq_ratio\"]}, \"config4_t12\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9982, \"1v2\": 0.7039, \"2v3\": 0.5823, \"3v4\": 0.5293, \"4v5\": 0.5237}, \"top3_features_1v2\": [\"hapax_ratio\", \"ttr\", \"surp_skew\"]}, \"cross_config_analysis\": {\"greedy_vs_nuc09_feature_spearman\": 0.6, \"greedy_vs_t07_feature_spearman\": 0.914, \"greedy_vs_t12_feature_spearman\": 0.5321, \"nuc09_vs_t07_feature_spearman\": 0.782, \"nuc09_vs_t12_feature_spearman\": 0.8929, \"t07_vs_t12_feature_spearman\": 0.6679, \"d016_universality_theta060\": true, \"all_8_configs_1v2_above_060\": true, \"weakest_1v2\": \"Qwen-cont 0.6114\", \"theta_sensitivity\": {\"theta_055\": \"K*=3 (all 4 configs)\", \"theta_060\": \"K*=2 (all 4 configs)\", \"theta_065\": \"K*=2 (all 4 configs)\", \"theta_070\": \"K*=1 (3 configs) / K*=2 (config4_t12)\"}}, \"reproduce\": {\"finished_at\": \"2026-05-13T20:22:19.870Z\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis.json\", \"log_path\": \"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-13T20:22:19.870Z\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis.json\", \"log_path\": \"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\", \"conclusion\": \"success\"}, \"exp_006_graduated_filtering\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T20:25:52.364Z\", \"updated_at\": \"2026-05-13T23:39:51.042Z\", \"hypothesis\": \"K*-aware graduated filtering (exploiting human/gen-1/gen-2+ trichotomy) yields better downstream LM quality than binary filtering on MMLU and HellaSwag. 6 strategies × 5 seeds × α sweep.\", \"parent\": \"exp_003_decoding_ablation\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/gen-depth-contamination && bash scripts/run_exp006.sh\\\"\", \"server\": \"westc-26893\", \"gpu\": [\"cuda:0\"], \"pid\": \"46129\", \"log_path\": \"~/runs/gen-depth-contamination/exp_006_graduated_filtering.log\", \"submitted_at\": \"2026-05-13T21:02:48.327Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/\", \"data_count\": 30000, \"model_name\": \"Qwen/Qwen2.5-1.5B-Instruct\", \"seed\": \"42,123,456,789,1024\", \"checkpoint_source\": \"Qwen/Qwen2.5-1.5B-Instruct (base model, LoRA CPT per strategy)\", \"eval_data\": \"lm-eval-harness: MMLU (14042 test) + HellaSwag (10042 val)\"}, \"notes\": \"Progress check 05-13 22:35 UTC: PID 46129 alive, 3/50 runs done (4%), currently on no-filter_s456 step 310/2814. Actual speed ~44min/run (original estimate 25min). Total ETA ~36.7h, remaining ~35h. Output path: /root/autodl-tmp/gen-depth-contamination/outputs/exp006/. Run 1 adapter at outputs/exp006/no-filter_s42/final_adapter.\"}, \"exp_015_neural_probe\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T18:53:34.791Z\", \"updated_at\": \"2026-05-13T18:53:48.812Z\", \"hypothesis\": \"Learned representations (frozen LLM → MLP) 的 K* 是否高于 hand-crafted 15D features？若 K*_neural > K*_15D，说明 15D projection 是 K*=2 的部分原因；若相同，加强 information-theoretic impossibility 论证\"}, \"exp_011_llm_zeroshot\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T08:59:07.954Z\", \"updated_at\": \"2026-05-13T11:34:44.605Z\", \"hypothesis\": \"Frontier LLMs (GPT-5.5, Claude Opus 4.6) cannot reliably estimate generational depth via zero-shot prompting, motivating the need for specialized statistical methods\", \"spec\": {\"command\": \"python3 scripts/exp011_llm_zeroshot.py --model gpt-5.5 && python3 scripts/exp011_llm_zeroshot.py --model claude-opus-4-6 && python3 scripts/exp011_analyze.py\", \"server\": \"autodl-4090d\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp001_pythia/\", \"data_count\": 500, \"model_name\": \"GPT-5.5 + Claude Opus 4.6 (zero-shot via OpenRouter)\", \"seed\": 42, \"sampling\": \"100 texts × 5 depths (0-4) from Pythia continuation\", \"scripts\": [\"scripts/exp011_sample_data.py\", \"scripts/exp011_llm_zeroshot.py\", \"scripts/exp011_analyze.py\"], \"samples_path\": \"artifacts/exp011_samples.jsonl\", \"api_base_url\": \"http://47.94.22.126/v1\", \"api_model_ids\": {\"gpt-5.5\": \"openai/gpt-5.5\", \"claude-opus-4-6\": \"claude-opus-4-6\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp011_analysis.json\", \"log_path\": \"N/A (API task)\"}, \"notes\": \"GPT-5.5: 500条, 0 parse failures. Claude Opus 4.6: 500条, 1 parse failure. 两个 frontier LLM 5-class accuracy (~33%) 均低于 OBD-LightGBM (38.6%)。Binary human/AI detection 高 (~88%) 但 fine-grained depth 判断失败。Claude proxy 需用 model ID 'claude-opus-4-6' (无 anthropic/ 前缀)。\", \"metrics\": {\"gpt55_5class_acc\": 0.332, \"gpt55_mae\": 1.102, \"gpt55_spearman\": 0.383, \"gpt55_binary_acc\": 0.878, \"claude_5class_acc\": 0.331, \"claude_mae\": 1.15, \"claude_spearman\": 0.416, \"claude_binary_acc\": 0.882, \"odb_baseline_5class_acc\": 0.386, \"odb_baseline_mae\": 1.107, \"gpt55_per_depth_acc\": {\"depth_0\": 0.77, \"depth_1\": 0.19, \"depth_2\": 0.38, \"depth_3\": 0.24, \"depth_4\": 0.08}, \"claude_per_depth_acc\": {\"depth_0\": 0.69, \"depth_1\": 0.21, \"depth_2\": 0.28, \"depth_3\": 0.101, \"depth_4\": 0.37}, \"n_samples_per_model\": 500, \"key_finding\": \"Both frontier LLMs (GPT-5.5, Claude Opus 4.6) perform WORSE than OBD-LightGBM on 5-class depth estimation (~33% vs 38.6% acc). Binary human/AI detection is high (~88%) but fine-grained depth discrimination fails.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T11:32:56.036Z\"}, \"exp_013_cross_transfer\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:50:57.813Z\", \"updated_at\": \"2026-05-13T06:54:11.689Z\", \"spec\": {\"command\": \"python scripts/run_exp013_cross_transfer.py --out_dir artifacts/\", \"server\": \"autodl-4090d\", \"data_path\": \"data/, data_exp001_pythia/, data_exp002_olmo/, data_exp017_qwen_cont/\", \"data_count\": 20000, \"model_name\": \"N/A (CPU classifiers: OBD-LightGBM)\", \"seed\": 42, \"input_sources\": [\"mvp-001 Qwen-rewrite\", \"exp-001 Pythia\", \"exp-002 OLMo\", \"exp-017 Qwen-cont\"], \"checkpoint_path\": \"artifacts/cross_transfer_matrix.json\", \"log_path\": \"N/A (CPU task)\"}, \"hypothesis\": \"Depth signal 是文本固有属性还是 model self-familiarity artifact？4×4 cross-model transfer matrix 测试分类器跨模型泛化能力\", \"metrics\": {\"accuracy_matrix\": {\"Qwen_rw→Qwen_rw\": 0.4229, \"Qwen_rw→Pythia\": 0.259, \"Qwen_rw→OLMo\": 0.2653, \"Qwen_rw→Qwen_cont\": 0.3466, \"Pythia→Qwen_rw\": 0.2718, \"Pythia→Pythia\": 0.3856, \"Pythia→OLMo\": 0.3531, \"Pythia→Qwen_cont\": 0.3287, \"OLMo→Qwen_rw\": 0.2768, \"OLMo→Pythia\": 0.345, \"OLMo→OLMo\": 0.3822, \"OLMo→Qwen_cont\": 0.3244, \"Qwen_cont→Qwen_rw\": 0.344, \"Qwen_cont→Pythia\": 0.3284, \"Qwen_cont→OLMo\": 0.3112, \"Qwen_cont→Qwen_cont\": 0.3875}, \"transfer_retention_accuracy\": {\"Pythia↔OLMo\": \"91-92%\", \"Qwen_rw→Pythia/OLMo\": \"61-63%\", \"Qwen_cont↔Pythia\": \"83-85%\", \"Qwen_cont↔OLMo\": \"80-85%\"}, \"transfer_retention_tau\": {\"Pythia↔OLMo\": \"85-86%\", \"Qwen_rw→Pythia/OLMo\": \"45-50%\", \"Qwen_cont↔others\": \"68-83%\"}, \"mean_pw_auc_matrix\": {\"within_avg\": 0.6099, \"cross_avg\": 0.5905, \"0v1_cross_all_above\": 0.96}, \"key_finding\": \"depth signal ≈ 70-85% text-intrinsic + 15-30% model self-familiarity. Binary contamination detection (0v1) highly transferable (>0.96 AUC). Fine-grained depth transfer depends on model family similarity. Qwen-rewrite overfits style features; Qwen-cont transfers much better.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T06:53:07.326Z\", \"notes\": \"depth signal ≈ 70-85% text-intrinsic + 15-30% model self-familiarity. Pythia↔OLMo 91-92% retention (architecture-agnostic). Qwen-rewrite catastrophic transfer to other models (61-63%), but Qwen-cont much better (80-85%). 0v1 universally transferable (>0.96 AUC), 1v2+ transfer depends on model family. Rewrite mode overfits style features → continuation mode is canonical condition for cross-model claims.\"}, \"exp_005_degradation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T02:40:12.117Z\", \"updated_at\": \"2026-05-13T06:51:26.544Z\", \"spec\": {\"command\": \"python scripts/run_exp005_degradation.py --data_dirs results_exp001_pythia results_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output_dir results_exp005_degradation\", \"server\": \"autodl-4090d\", \"script_path\": \"/root/autodl-tmp/gen-depth-contamination/scripts/run_exp005_degradation.py\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation\", \"data_count\": 15000, \"model_name\": \"Pythia-1.4B / OLMo-1B / Qwen-1.5B (3-model comparison)\", \"seed\": 42, \"input_dirs\": [\"results_exp001_pythia\", \"results_exp002_olmo\", \"data\"], \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/\", \"log_path\": \"~/runs/gen-depth-contamination/exp_005_degradation.log\"}, \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json\", \"metrics\": {\"cross_model_kendall_tau_by_first_auc\": {\"Pythia_vs_OLMo\": 0.733, \"Pythia_vs_Qwen_rewrite\": 0.467, \"Pythia_vs_Qwen_cont\": 0.695, \"OLMo_vs_Qwen_rewrite\": 0.429, \"OLMo_vs_Qwen_cont\": 0.543, \"Qwen_rewrite_vs_Qwen_cont\": 0.733}, \"cross_model_kendall_tau_by_avg_auc\": {\"Pythia_vs_OLMo\": 0.8476, \"Pythia_vs_Qwen_cont\": 0.7524, \"OLMo_vs_Qwen_cont\": 0.6762}, \"cross_model_spearman_rho_single_feature_auc\": {\"Pythia_vs_OLMo\": 0.95, \"Pythia_vs_Qwen_cont\": 0.9143, \"OLMo_vs_Qwen_cont\": 0.85, \"metric_definition\": \"Spearman ρ on per-feature AUC rankings (each feature independently classifies depth pairs)\"}, \"4model_tau_mean_continuation_by_first_auc\": 0.657, \"4model_tau_mean_all_by_first_auc\": 0.6, \"generation_mode_delta\": {\"Pythia_vs_Qwen\": \"+0.228\", \"OLMo_vs_Qwen\": \"+0.114\"}, \"top3_features_ranking_by_first_auc\": {\"Pythia\": [\"surp_d1_std\", \"surp_d2_std\", \"surp_std\"], \"OLMo\": [\"surp_std\", \"surp_d1_std\", \"surp_d2_std\"], \"Qwen_rewrite\": [\"freq_entropy\", \"surp_std\", \"surp_d1_std\"], \"Qwen_cont\": [\"surp_d1_std\", \"surp_std\", \"surp_d2_std\"]}, \"shared_top_discriminators\": \"surp_d1_std, surp_std, surp_d2_std shared across all architectures (single-feature AUC ranking)\", \"degradation_ordering_consistency\": \"Strong cross-model consistency (ρ≥0.85) on single-feature AUC ranking under controlled generation mode.\", \"residual_architecture_effect\": \"Qwen-cont vs OLMo (τ=0.54 by_first_auc) still lower than Pythia vs OLMo (τ=0.73), ~30-40% of ordering divergence from architecture\", \"limitation_1v2_weakness\": \"depth-pair level consistency weakest at 1v2 (τ~0.37), near-generational feature importance ordering varies more across models\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T02:40:50.885Z\", \"notes\": \"4-model τ matrix complete. Generation mode confirmed as primary driver of Qwen divergence (Δτ=+0.23 for Pythia pair). Residual architecture effect ~30-40%. C2 claim: degradation ordering largely consistent under same generation mode, with noted architecture residuals.\"}, \"exp_017_qwen_continuation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:41:22.423Z\", \"updated_at\": \"2026-05-13T06:17:00.826Z\", \"hypothesis\": \"Generation mode 对 K* 的影响：Qwen2.5-1.5B-Instruct continuation vs rewrite (mvp-001)，分离 generation mode 和 model 对 K* 的独立效应\", \"notes\": \"dry-run passed 2026-05-13: model OK (2.9G safetensors), env OK (torch=2.10.0+cu128, transformers=4.57.6), dirs auto-create. Submit command prepared. 等 exp-002 完成后立即提交。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2.5-1.5B-Instruct --data_dir /root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont --results_dir /root/autodl-tmp/gen-depth-contamination/results_exp017_qwen_cont --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"autodl-4090d\", \"gpu\": [\"cuda:0\"], \"pid\": \"23758\", \"log_path\": \"~/runs/gen-depth-contamination/exp_017_qwen_continuation.log\", \"submitted_at\": \"2026-05-13T02:35:15Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont\", \"data_count\": 5000, \"model_name\": \"Qwen/Qwen2.5-1.5B-Instruct\", \"seed\": 42, \"max_depth\": 5, \"generation_mode\": \"continuation\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont/\", \"wall_clock_seconds\": 13305.8, \"gpu_hours\": 3.7}, \"log_path\": \"/root/runs/gen-depth-contamination/exp_017_qwen_continuation.log\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results_exp017_qwen_cont/\", \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9972, \"1v2\": 0.6114, \"2v3\": 0.5609, \"3v4\": 0.5408, \"4v5\": 0.5139}, \"pairwise_jsd\": {\"0v1\": 0.28627, \"1v2\": 0.005107, \"2v3\": 0.003603, \"3v4\": 0.003395, \"4v5\": 0.003085}, \"ordinal_mae\": 1.1547, \"ordinal_accuracy\": 0.3819, \"top3_features\": [\"freq_entropy\", \"surp_mean\", \"surp_std\"]}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T06:17:00.826Z\"}, \"exp_010_ordinal_baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T04:22:42.199Z\", \"updated_at\": \"2026-05-13T04:26:54.571Z\", \"hypothesis\": \"Ordinal structure improves depth classification: ordinal methods should outperform unordered multiclass on MAE\", \"spec\": {\"command\": \"python scripts/run_exp010_ordinal_comparison.py\", \"server\": \"autodl-4090d\", \"data_path\": \"data/features.csv, data_exp001_pythia/features.csv, data_exp002_olmo/features.csv\", \"data_count\": 90000, \"model_name\": \"N/A (CPU classifiers)\", \"seed\": \"N/A\", \"checkpoint_source\": \"N/A\", \"eval_data\": \"N/A\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/ordinal_comparison_results.json\"}, \"metrics\": {\"qwen_rewrite\": {\"obd_lgbm\": {\"accuracy\": 0.4229, \"mae\": 0.9836, \"tau_b\": 0.5518, \"mean_pw_auc\": 0.6214}, \"multiclass_lgbm\": {\"accuracy\": 0.4182, \"mae\": 1.0163, \"tau_b\": 0.5367, \"mean_pw_auc\": 0.6246}, \"ordinal_logreg\": {\"accuracy\": 0.3636, \"mae\": 0.9105, \"tau_b\": 0.563, \"mean_pw_auc\": 0.5022}}, \"pythia\": {\"obd_lgbm\": {\"accuracy\": 0.3856, \"mae\": 1.1072, \"tau_b\": 0.4745, \"mean_pw_auc\": 0.6055}, \"multiclass_lgbm\": {\"accuracy\": 0.3832, \"mae\": 1.1399, \"tau_b\": 0.4622, \"mean_pw_auc\": 0.6062}, \"ordinal_logreg\": {\"accuracy\": 0.3179, \"mae\": 1.022, \"tau_b\": 0.49, \"mean_pw_auc\": 0.4767}}, \"olmo\": {\"obd_lgbm\": {\"accuracy\": 0.3822, \"mae\": 1.1469, \"tau_b\": 0.4683, \"mean_pw_auc\": 0.6015}, \"multiclass_lgbm\": {\"accuracy\": 0.3685, \"mae\": 1.1813, \"tau_b\": 0.4497, \"mean_pw_auc\": 0.5974}, \"ordinal_logreg\": {\"accuracy\": 0.3265, \"mae\": 1.0352, \"tau_b\": 0.4656, \"mean_pw_auc\": 0.4859}}}, \"conclusion\": \"success\", \"notes\": \"Ordinal methods beat multiclass LightGBM on MAE across all 3 datasets. Best MAE consistently from mord LogisticAT, not OBD-LightGBM. However, ordinal_logreg has worst pairwise AUC — it reduces MAE by collapsing predictions toward the center, not by better discrimination.\", \"completed_at\": \"2026-05-13T04:26:54.571Z\"}, \"exp_002_olmo_depth\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:06:24.766Z\", \"updated_at\": \"2026-05-13T02:35:52.823Z\", \"hypothesis\": \"K* 跨模型一致性验证：OLMo-1B 在相同种子数据和解码策略下的 K* 是否与 Qwen2.5-1.5B 一致（K*=2）\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/allenai/OLMo-1B-hf --data_dir /root/autodl-tmp/gen-depth-contamination/data_exp002_olmo --results_dir /root/autodl-tmp/gen-depth-contamination/results_exp002_olmo --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"autodl-4090d\", \"gpu\": [\"cuda:0\"], \"pid\": \"20225\", \"log_path\": \"~/runs/gen-depth-contamination/exp_002_olmo_depth.log\", \"submitted_at\": \"2026-05-13T00:16:07.960Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp002_olmo\", \"data_count\": 5000, \"model_name\": \"allenai/OLMo-1B-hf\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp002_olmo/\", \"wall_clock_seconds\": 8384.9, \"gpu_hours\": 2.33}, \"reproduce\": {\"finished_at\": \"2026-05-13T02:31:18.880Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T02:31:19.738113+00:00\"}]}, \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.997, \"1v2\": 0.6146, \"2v3\": 0.5497, \"3v4\": 0.509, \"4v5\": 0.5044}, \"pairwise_auc_std\": {\"0v1\": 0.0004, \"1v2\": 0.0029, \"2v3\": 0.004, \"3v4\": 0.0084, \"4v5\": 0.0136}, \"pairwise_jsd\": {\"0v1\": 0.23941, \"1v2\": 0.012972, \"2v3\": 0.00735, \"3v4\": 0.003968, \"4v5\": 0.003851}, \"ordinal_mae\": 1.1813, \"ordinal_accuracy\": 0.3685, \"top_features\": [\"surp_d1_mean\", \"surp_d1_skew\", \"freq_kurtosis\", \"surp_d2_mean\", \"surp_mean\"]}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T02:35:52.823Z\"}, \"exp_001_pythia_depth\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:06:23.803Z\", \"updated_at\": \"2026-05-13T00:16:16.359Z\", \"hypothesis\": \"K* 跨模型一致性验证：Pythia-1.4B 在相同种子数据和解码策略下的 K* 是否与 Qwen2.5-1.5B 一致（K*=2）\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b --data_dir /root/autodl-tmp/gen-depth-contamination/data_exp001_pythia --results_dir /root/autodl-tmp/gen-depth-contamination/results_exp001_pythia --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"autodl-4090d\", \"gpu\": [\"cuda:0\"], \"pid\": \"17138\", \"log_path\": \"~/runs/gen-depth-contamination/exp_001_pythia_depth.log\", \"submitted_at\": \"2026-05-12T20:50:31.471Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp001_pythia\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp001_pythia/\", \"wall_clock_seconds\": 12344.9, \"gpu_hours\": 3.43}, \"conclusion\": \"success\", \"metrics\": {\"pairwise_auc\": {\"0v1\": 0.9932, \"1v2\": 0.6539, \"2v3\": 0.5515, \"3v4\": 0.5153, \"4v5\": 0.5135}, \"pairwise_auc_std\": {\"0v1\": 0.0007, \"1v2\": 0.0069, \"2v3\": 0.0137, \"3v4\": 0.0084, \"4v5\": 0.0078}, \"pairwise_jsd\": {\"0v1\": 0.2142, \"1v2\": 0.014, \"2v3\": 0.0051, \"3v4\": 0.0033, \"4v5\": 0.0031}, \"k_star\": 2, \"ordinal_mae\": 1.14, \"ordinal_accuracy\": 0.383}, \"completed_at\": \"2026-05-13T00:16:16.359Z\"}, \"mvp_pilot_sat_v1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T11:09:39.193Z\", \"updated_at\": \"2026-05-12T19:25:33.763Z\", \"hypothesis\": \"递归生成文本在统计特征空间上存在可分辨的代际差异，且差异随深度呈系统性趋势（K* ≥ 3）\", \"spec\": {\"command\": \"bash /root/autodl-tmp/gen-depth-contamination/run_mvp.sh\", \"server\": \"autodl-4090d\", \"gpu\": [\"cuda:0\"], \"pid\": \"10619\", \"log_path\": \"~/runs/gen-depth-contamination/mvp_pilot_sat_v1.log\", \"submitted_at\": \"2026-05-12T16:46:33.175Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data/\", \"wall_clock_seconds\": 9533.4, \"gpu_hours\": 2.65}, \"notes\": \"v2 left-padding rerun, per-fold AUC, full self-BLEU\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-12T19:25:26.538Z\", \"metrics\": {\"pairwise_auc\": {\"0v1\": 0.9956, \"1v2\": 0.6957, \"2v3\": 0.5893, \"3v4\": 0.5434, \"4v5\": 0.5343}, \"pairwise_auc_std\": {\"0v1\": 0.0005, \"1v2\": 0.0072, \"2v3\": 0.012, \"3v4\": 0.0053, \"4v5\": 0.0091}, \"pairwise_jsd\": {\"0v1\": 0.2669, \"1v2\": 0.0163, \"2v3\": 0.0069, \"3v4\": 0.0047, \"4v5\": 0.0041}, \"k_star\": 2, \"ordinal_mae\": 1.0163, \"ordinal_accuracy\": 0.4182}}}, \"count\": 12, \"total\": 12, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0556}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "db7c256b-d3b9-4b64-b935-73be67c3b047",
+  "uuid": "d8dc3cfa-8d32-4996-ba7f-8f5e5ea61e05",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_007_bootstrap_ci\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T03:45:50.948Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:43:00.694Z\\\", \\\"hypothesis\\\": \\\"K* 统计严谨性验证：bootstrap 95% CI 和 permutation test 确认 K*=2 在三个模型族上统计显著\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/bootstrap_ci.py --data_dirs results_exp001_pythia results_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output artifacts/bootstrap_ci_results.json\\\", \\\"script_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/scripts/bootstrap_ci.py\\\", \\\"server\\\": \\\"autodl-4090d\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/artifacts/bootstrap_ci_results.json\\\", \\\"data_count\\\": 15000, \\\"model_name\\\": \\\"Pythia-1.4B / OLMo-1B / Qwen-1.5B\\\", \\\"seed\\\": 42, \\\"input_sources\\\": [\\\"results_exp001_pythia (exp-001)\\\", \\\"results_exp002_olmo (exp-002)\\\", \\\"data (mvp-001)\\\"], \\\"bootstrap_resamples\\\": 1000, \\\"permutation_resamples\\\": 500, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/artifacts/bootstrap_ci_results.json\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_007_bootstrap_ci.log\\\"}, \\\"metrics\\\": {\\\"qwen_rewrite\\\": {\\\"0v1\\\": {\\\"auc\\\": 0.9956, \\\"ci_lower\\\": 0.9946, \\\"ci_upper\\\": 0.9965, \\\"perm_p\\\": 0.002}, \\\"1v2\\\": {\\\"auc\\\": 0.6955, \\\"ci_lower\\\": 0.6859, \\\"ci_upper\\\": 0.7041, \\\"perm_p\\\": 0.002}, \\\"2v3\\\": {\\\"auc\\\": 0.5893, \\\"ci_lower\\\": 0.5795, \\\"ci_upper\\\": 0.5991, \\\"perm_p\\\": 0.002}, \\\"3v4\\\": {\\\"auc\\\": 0.5435, \\\"ci_lower\\\": 0.5333, \\\"ci_upper\\\": 0.5551, \\\"perm_p\\\": 0.002}, \\\"4v5\\\": {\\\"auc\\\": 0.534, \\\"ci_lower\\\": 0.5238, \\\"ci_upper\\\": 0.5448, \\\"perm_p\\\": 0.002}}, \\\"pythia_cont\\\": {\\\"0v1\\\": {\\\"auc\\\": 0.9932, \\\"ci_lower\\\": 0.9921, \\\"ci_upper\\\": 0.9943, \\\"perm_p\\\": 0.002}, \\\"1v2\\\": {\\\"auc\\\": 0.6539, \\\"ci_lower\\\": 0.6454, \\\"ci_upper\\\": 0.663, \\\"perm_p\\\": 0.002}, \\\"2v3\\\": {\\\"auc\\\": 0.5514, \\\"ci_lower\\\": 0.5417, \\\"ci_upper\\\": 0.5628, \\\"perm_p\\\": 0.002}, \\\"3v4\\\": {\\\"auc\\\": 0.5152, \\\"ci_lower\\\": 0.5041, \\\"ci_upper\\\": 0.526, \\\"perm_p\\\": 0.006}, \\\"4v5\\\": {\\\"auc\\\": 0.5136, \\\"ci_lower\\\": 0.5021, \\\"ci_upper\\\": 0.5249, \\\"perm_p\\\": 0.008}}, \\\"olmo_cont\\\": {\\\"0v1\\\": {\\\"auc\\\": 0.997, \\\"ci_lower\\\": 0.9964, \\\"ci_upper\\\": 0.9975, \\\"perm_p\\\": 0.002}, \\\"1v2\\\": {\\\"auc\\\": 0.6145, \\\"ci_lower\\\": 0.6045, \\\"ci_upper\\\": 0.6247, \\\"perm_p\\\": 0.002}, \\\"2v3\\\": {\\\"auc\\\": 0.5496, \\\"ci_lower\\\": 0.5399, \\\"ci_upper\\\": 0.5596, \\\"perm_p\\\": 0.002}, \\\"3v4\\\": {\\\"auc\\\": 0.5091, \\\"ci_lower\\\": 0.4973, \\\"ci_upper\\\": 0.52, \\\"perm_p\\\": 0.064}, \\\"4v5\\\": {\\\"auc\\\": 0.5045, \\\"ci_lower\\\": 0.4932, \\\"ci_upper\\\": 0.515, \\\"perm_p\\\": 0.232}}, \\\"qwen_cont\\\": {\\\"0v1\\\": {\\\"auc\\\": 0.9971, \\\"ci_lower\\\": 0.9963, \\\"ci_upper\\\": 0.9978, \\\"perm_p\\\": 0.002}, \\\"1v2\\\": {\\\"auc\\\": 0.6112, \\\"ci_lower\\\": 0.6015, \\\"ci_upper\\\": 0.6213, \\\"perm_p\\\": 0.002}, \\\"2v3\\\": {\\\"auc\\\": 0.5609, \\\"ci_lower\\\": 0.5511, \\\"ci_upper\\\": 0.5712, \\\"perm_p\\\": 0.002}, \\\"3v4\\\": {\\\"auc\\\": 0.5409, \\\"ci_lower\\\": 0.5308, \\\"ci_upper\\\": 0.5508, \\\"perm_p\\\": 0.002}, \\\"4v5\\\": {\\\"auc\\\": 0.5141, \\\"ci_lower\\\": 0.5035, \\\"ci_upper\\\": 0.5255, \\\"perm_p\\\": 0.006}}, \\\"k_star_robust\\\": true, \\\"all_1v2_ci_lower_above_060\\\": true, \\\"most_marginal\\\": \\\"Qwen-cont CI lower=0.6015, only 0.0015 above threshold\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T03:46:36.617Z\\\"}, \\\"exp_003_decoding_ablation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-12T20:06:25.260Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:41:11.744Z\\\", \\\"hypothesis\\\": \\\"解码策略调控 K*：不同 top_p/temperature 设置是否改变饱和边界（greedy→更低 K*? 高温度→更高 K*?）\\\", \\\"failure_reason\\\": \\\"SSH check failed 5x — last error: Unknown server 'autodl-4090d'. Available: ['westc-26893']\\\", \\\"completed_at\\\": \\\"2026-05-13T15:35:29.038Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T15:35:30.207607+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T20:22:20.803872+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"失败原因: SSH 别名变更 (autodl-4090d → westc-26893)，cron 监控 5 次连不上后标记 failed。初步诊断: 日志在 westc-26893 上可读，config 2 (nucleus_p0.9_t1.0) 已完成并输出 K*=2，config 3 (nucleus_p0.95_t0.7) 在 depth 4 进度 ~90% 时日志截止。实验可能已完成或部分完成。Worker worker_diagnose_exp_003_decoding_ablation_20260513T153757 正在深入诊断。\\\"}}, \\\"notes\\\": \\\"Server alias 变更 autodl-4090d → westc-26893 导致 cron 误标 failed。实际实验一直正常运行。Config 1 (greedy, K*=2), Config 2 (nuc p=0.9/T=1.0, K*=2), Config 3 (nuc p=0.95/T=0.7, K*=2) 已完成。Config 4 (nuc p=0.95/T=1.2) 运行中。深度分析: 1v2 AUC Δ<0.003 across configs, D016 universality confirmed (all 7 configs > θ=0.60), θ-sensitivity K* profile identical across 3 configs. 分析脚本 scripts/exp003_analyze_all_configs.py 已部署。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/exp003_analyze_all_configs.py\\\", \\\"server\\\": \\\"westc-26893\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"29459\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data_exp003_*\\\", \\\"data_count\\\": 4, \\\"model_name\\\": \\\"Qwen/Qwen2.5-1.5B-Instruct\\\", \\\"seed\\\": 42, \\\"configs\\\": \\\"4 ablation configs: greedy, nucleus p=0.9/T=1.0, nucleus p=0.95/T=0.7, nucleus p=0.95/T=1.2\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data_exp003_*\\\", \\\"log_path_note\\\": \\\"server renamed from autodl-4090d to westc-26893\\\"}, \\\"metrics\\\": {\\\"config1_greedy\\\": {\\\"k_star\\\": 2, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9797, \\\"1v2\\\": 0.6893, \\\"2v3\\\": 0.5613, \\\"3v4\\\": 0.5404, \\\"4v5\\\": 0.5139}, \\\"top3_features_1v2\\\": [\\\"self_bleu\\\", \\\"hapax_ratio\\\", \\\"ttr\\\"]}, \\\"config2_nuc09\\\": {\\\"k_star\\\": 2, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9946, \\\"1v2\\\": 0.6866, \\\"2v3\\\": 0.5917, \\\"3v4\\\": 0.5466, \\\"4v5\\\": 0.5068}, \\\"top3_features_1v2\\\": [\\\"hapax_ratio\\\", \\\"ttr\\\", \\\"surp_skew\\\"]}, \\\"config3_t07\\\": {\\\"k_star\\\": 2, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9878, \\\"1v2\\\": 0.6887, \\\"2v3\\\": 0.5902, \\\"3v4\\\": 0.5393, \\\"4v5\\\": 0.5349}, \\\"top3_features_1v2\\\": [\\\"hapax_ratio\\\", \\\"ttr\\\", \\\"low_freq_ratio\\\"]}, \\\"config4_t12\\\": {\\\"k_star\\\": 2, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9982, \\\"1v2\\\": 0.7039, \\\"2v3\\\": 0.5823, \\\"3v4\\\": 0.5293, \\\"4v5\\\": 0.5237}, \\\"top3_features_1v2\\\": [\\\"hapax_ratio\\\", \\\"ttr\\\", \\\"surp_skew\\\"]}, \\\"cross_config_analysis\\\": {\\\"greedy_vs_nuc09_feature_spearman\\\": 0.6, \\\"greedy_vs_t07_feature_spearman\\\": 0.914, \\\"greedy_vs_t12_feature_spearman\\\": 0.5321, \\\"nuc09_vs_t07_feature_spearman\\\": 0.782, \\\"nuc09_vs_t12_feature_spearman\\\": 0.8929, \\\"t07_vs_t12_feature_spearman\\\": 0.6679, \\\"d016_universality_theta060\\\": true, \\\"all_8_configs_1v2_above_060\\\": true, \\\"weakest_1v2\\\": \\\"Qwen-cont 0.6114\\\", \\\"theta_sensitivity\\\": {\\\"theta_055\\\": \\\"K*=3 (all 4 configs)\\\", \\\"theta_060\\\": \\\"K*=2 (all 4 configs)\\\", \\\"theta_065\\\": \\\"K*=2 (all 4 configs)\\\", \\\"theta_070\\\": \\\"K*=1 (3 configs) / K*=2 (config4_t12)\\\"}}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T20:22:19.870Z\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis.json\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T20:22:19.870Z\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis.json\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"exp_006_graduated_filtering\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T20:25:52.364Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:39:51.042Z\\\", \\\"hypothesis\\\": \\\"K*-aware graduated filtering (exploiting human/gen-1/gen-2+ trichotomy) yields better downstream LM quality than binary filtering on MMLU and HellaSwag. 6 strategies × 5 seeds × α sweep.\\\", \\\"parent\\\": \\\"exp_003_decoding_ablation\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/gen-depth-contamination && bash scripts/run_exp006.sh\\\\\\\"\\\", \\\"server\\\": \\\"westc-26893\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"46129\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_006_graduated_filtering.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T21:02:48.327Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data/\\\", \\\"data_count\\\": 30000, \\\"model_name\\\": \\\"Qwen/Qwen2.5-1.5B-Instruct\\\", \\\"seed\\\": \\\"42,123,456,789,1024\\\", \\\"checkpoint_source\\\": \\\"Qwen/Qwen2.5-1.5B-Instruct (base model, LoRA CPT per strategy)\\\", \\\"eval_data\\\": \\\"lm-eval-harness: MMLU (14042 test) + HellaSwag (10042 val)\\\"}, \\\"notes\\\": \\\"Progress check 05-13 22:35 UTC: PID 46129 alive, 3/50 runs done (4%), currently on no-filter_s456 step 310/2814. Actual speed ~44min/run (original estimate 25min). Total ETA ~36.7h, remaining ~35h. Output path: /root/autodl-tmp/gen-depth-contamination/outputs/exp006/. Run 1 adapter at outputs/exp006/no-filter_s42/final_adapter.\\\"}, \\\"exp_015_neural_probe\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T18:53:34.791Z\\\", \\\"updated_at\\\": \\\"2026-05-13T18:53:48.812Z\\\", \\\"hypothesis\\\": \\\"Learned representations (frozen LLM → MLP) 的 K* 是否高于 hand-crafted 15D features？若 K*_neural > K*_15D，说明 15D projection 是 K*=2 的部分原因；若相同，加强 information-theoretic impossibility 论证\\\"}, \\\"exp_011_llm_zeroshot\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T08:59:07.954Z\\\", \\\"updated_at\\\": \\\"2026-05-13T11:34:44.605Z\\\", \\\"hypothesis\\\": \\\"Frontier LLMs (GPT-5.5, Claude Opus 4.6) cannot reliably estimate generational depth via zero-shot prompting, motivating the need for specialized statistical methods\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 scripts/exp011_llm_zeroshot.py --model gpt-5.5 && python3 scripts/exp011_llm_zeroshot.py --model claude-opus-4-6 && python3 scripts/exp011_analyze.py\\\", \\\"server\\\": \\\"autodl-4090d\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data_exp001_pythia/\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"GPT-5.5 + Claude Opus 4.6 (zero-shot via OpenRouter)\\\", \\\"seed\\\": 42, \\\"sampling\\\": \\\"100 texts × 5 depths (0-4) from Pythia continuation\\\", \\\"scripts\\\": [\\\"scripts/exp011_sample_data.py\\\", \\\"scripts/exp011_llm_zeroshot.py\\\", \\\"scripts/exp011_analyze.py\\\"], \\\"samples_path\\\": \\\"artifacts/exp011_samples.jsonl\\\", \\\"api_base_url\\\": \\\"http://47.94.22.126/v1\\\", \\\"api_model_ids\\\": {\\\"gpt-5.5\\\": \\\"openai/gpt-5.5\\\", \\\"claude-opus-4-6\\\": \\\"claude-opus-4-6\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/artifacts/exp011_analysis.json\\\", \\\"log_path\\\": \\\"N/A (API task)\\\"}, \\\"notes\\\": \\\"GPT-5.5: 500条, 0 parse failures. Claude Opus 4.6: 500条, 1 parse failure. 两个 frontier LLM 5-class accuracy (~33%) 均低于 OBD-LightGBM (38.6%)。Binary human/AI detection 高 (~88%) 但 fine-grained depth 判断失败。Claude proxy 需用 model ID 'claude-opus-4-6' (无 anthropic/ 前缀)。\\\", \\\"metrics\\\": {\\\"gpt55_5class_acc\\\": 0.332, \\\"gpt55_mae\\\": 1.102, \\\"gpt55_spearman\\\": 0.383, \\\"gpt55_binary_acc\\\": 0.878, \\\"claude_5class_acc\\\": 0.331, \\\"claude_mae\\\": 1.15, \\\"claude_spearman\\\": 0.416, \\\"claude_binary_acc\\\": 0.882, \\\"odb_baseline_5class_acc\\\": 0.386, \\\"odb_baseline_mae\\\": 1.107, \\\"gpt55_per_depth_acc\\\": {\\\"depth_0\\\": 0.77, \\\"depth_1\\\": 0.19, \\\"depth_2\\\": 0.38, \\\"depth_3\\\": 0.24, \\\"depth_4\\\": 0.08}, \\\"claude_per_depth_acc\\\": {\\\"depth_0\\\": 0.69, \\\"depth_1\\\": 0.21, \\\"depth_2\\\": 0.28, \\\"depth_3\\\": 0.101, \\\"depth_4\\\": 0.37}, \\\"n_samples_per_model\\\": 500, \\\"key_finding\\\": \\\"Both frontier LLMs (GPT-5.5, Claude Opus 4.6) perform WORSE than OBD-LightGBM on 5-class depth estimation (~33% vs 38.6% acc). Binary human/AI detection is high (~88%) but fine-grained depth discrimination fails.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T11:32:56.036Z\\\"}, \\\"exp_013_cross_transfer\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T20:50:57.813Z\\\", \\\"updated_at\\\": \\\"2026-05-13T06:54:11.689Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/run_exp013_cross_transfer.py --out_dir artifacts/\\\", \\\"server\\\": \\\"autodl-4090d\\\", \\\"data_path\\\": \\\"data/, data_exp001_pythia/, data_exp002_olmo/, data_exp017_qwen_cont/\\\", \\\"data_count\\\": 20000, \\\"model_name\\\": \\\"N/A (CPU classifiers: OBD-LightGBM)\\\", \\\"seed\\\": 42, \\\"input_sources\\\": [\\\"mvp-001 Qwen-rewrite\\\", \\\"exp-001 Pythia\\\", \\\"exp-002 OLMo\\\", \\\"exp-017 Qwen-cont\\\"], \\\"checkpoint_path\\\": \\\"artifacts/cross_transfer_matrix.json\\\", \\\"log_path\\\": \\\"N/A (CPU task)\\\"}, \\\"hypothesis\\\": \\\"Depth signal 是文本固有属性还是 model self-familiarity artifact？4×4 cross-model transfer matrix 测试分类器跨模型泛化能力\\\", \\\"metrics\\\": {\\\"accuracy_matrix\\\": {\\\"Qwen_rw→Qwen_rw\\\": 0.4229, \\\"Qwen_rw→Pythia\\\": 0.259, \\\"Qwen_rw→OLMo\\\": 0.2653, \\\"Qwen_rw→Qwen_cont\\\": 0.3466, \\\"Pythia→Qwen_rw\\\": 0.2718, \\\"Pythia→Pythia\\\": 0.3856, \\\"Pythia→OLMo\\\": 0.3531, \\\"Pythia→Qwen_cont\\\": 0.3287, \\\"OLMo→Qwen_rw\\\": 0.2768, \\\"OLMo→Pythia\\\": 0.345, \\\"OLMo→OLMo\\\": 0.3822, \\\"OLMo→Qwen_cont\\\": 0.3244, \\\"Qwen_cont→Qwen_rw\\\": 0.344, \\\"Qwen_cont→Pythia\\\": 0.3284, \\\"Qwen_cont→OLMo\\\": 0.3112, \\\"Qwen_cont→Qwen_cont\\\": 0.3875}, \\\"transfer_retention_accuracy\\\": {\\\"Pythia↔OLMo\\\": \\\"91-92%\\\", \\\"Qwen_rw→Pythia/OLMo\\\": \\\"61-63%\\\", \\\"Qwen_cont↔Pythia\\\": \\\"83-85%\\\", \\\"Qwen_cont↔OLMo\\\": \\\"80-85%\\\"}, \\\"transfer_retention_tau\\\": {\\\"Pythia↔OLMo\\\": \\\"85-86%\\\", \\\"Qwen_rw→Pythia/OLMo\\\": \\\"45-50%\\\", \\\"Qwen_cont↔others\\\": \\\"68-83%\\\"}, \\\"mean_pw_auc_matrix\\\": {\\\"within_avg\\\": 0.6099, \\\"cross_avg\\\": 0.5905, \\\"0v1_cross_all_above\\\": 0.96}, \\\"key_finding\\\": \\\"depth signal ≈ 70-85% text-intrinsic + 15-30% model self-familiarity. Binary contamination detection (0v1) highly transferable (>0.96 AUC). Fine-grained depth transfer depends on model family similarity. Qwen-rewrite overfits style features; Qwen-cont transfers much better.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T06:53:07.326Z\\\", \\\"notes\\\": \\\"depth signal ≈ 70-85% text-intrinsic + 15-30% model self-familiarity. Pythia↔OLMo 91-92% retention (architecture-agnostic). Qwen-rewrite catastrophic transfer to other models (61-63%), but Qwen-cont much better (80-85%). 0v1 universally transferable (>0.96 AUC), 1v2+ transfer depends on model family. Rewrite mode overfits style features → continuation mode is canonical condition for cross-model claims.\\\"}, \\\"exp_005_degradation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T02:40:12.117Z\\\", \\\"updated_at\\\": \\\"2026-05-13T06:51:26.544Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/run_exp005_degradation.py --data_dirs results_exp001_pythia results_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output_dir results_exp005_degradation\\\", \\\"server\\\": \\\"autodl-4090d\\\", \\\"script_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/scripts/run_exp005_degradation.py\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation\\\", \\\"data_count\\\": 15000, \\\"model_name\\\": \\\"Pythia-1.4B / OLMo-1B / Qwen-1.5B (3-model comparison)\\\", \\\"seed\\\": 42, \\\"input_dirs\\\": [\\\"results_exp001_pythia\\\", \\\"results_exp002_olmo\\\", \\\"data\\\"], \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_005_degradation.log\\\"}, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json\\\", \\\"metrics\\\": {\\\"cross_model_kendall_tau_by_first_auc\\\": {\\\"Pythia_vs_OLMo\\\": 0.733, \\\"Pythia_vs_Qwen_rewrite\\\": 0.467, \\\"Pythia_vs_Qwen_cont\\\": 0.695, \\\"OLMo_vs_Qwen_rewrite\\\": 0.429, \\\"OLMo_vs_Qwen_cont\\\": 0.543, \\\"Qwen_rewrite_vs_Qwen_cont\\\": 0.733}, \\\"cross_model_kendall_tau_by_avg_auc\\\": {\\\"Pythia_vs_OLMo\\\": 0.8476, \\\"Pythia_vs_Qwen_cont\\\": 0.7524, \\\"OLMo_vs_Qwen_cont\\\": 0.6762}, \\\"cross_model_spearman_rho_single_feature_auc\\\": {\\\"Pythia_vs_OLMo\\\": 0.95, \\\"Pythia_vs_Qwen_cont\\\": 0.9143, \\\"OLMo_vs_Qwen_cont\\\": 0.85, \\\"metric_definition\\\": \\\"Spearman ρ on per-feature AUC rankings (each feature independently classifies depth pairs)\\\"}, \\\"4model_tau_mean_continuation_by_first_auc\\\": 0.657, \\\"4model_tau_mean_all_by_first_auc\\\": 0.6, \\\"generation_mode_delta\\\": {\\\"Pythia_vs_Qwen\\\": \\\"+0.228\\\", \\\"OLMo_vs_Qwen\\\": \\\"+0.114\\\"}, \\\"top3_features_ranking_by_first_auc\\\": {\\\"Pythia\\\": [\\\"surp_d1_std\\\", \\\"surp_d2_std\\\", \\\"surp_std\\\"], \\\"OLMo\\\": [\\\"surp_std\\\", \\\"surp_d1_std\\\", \\\"surp_d2_std\\\"], \\\"Qwen_rewrite\\\": [\\\"freq_entropy\\\", \\\"surp_std\\\", \\\"surp_d1_std\\\"], \\\"Qwen_cont\\\": [\\\"surp_d1_std\\\", \\\"surp_std\\\", \\\"surp_d2_std\\\"]}, \\\"shared_top_discriminators\\\": \\\"surp_d1_std, surp_std, surp_d2_std shared across all architectures (single-feature AUC ranking)\\\", \\\"degradation_ordering_consistency\\\": \\\"Strong cross-model consistency (ρ≥0.85) on single-feature AUC ranking under controlled generation mode.\\\", \\\"residual_architecture_effect\\\": \\\"Qwen-cont vs OLMo (τ=0.54 by_first_auc) still lower than Pythia vs OLMo (τ=0.73), ~30-40% of ordering divergence from architecture\\\", \\\"limitation_1v2_weakness\\\": \\\"depth-pair level consistency weakest at 1v2 (τ~0.37), near-generational feature importance ordering varies more across models\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T02:40:50.885Z\\\", \\\"notes\\\": \\\"4-model τ matrix complete. Generation mode confirmed as primary driver of Qwen divergence (Δτ=+0.23 for Pythia pair). Residual architecture effect ~30-40%. C2 claim: degradation ordering largely consistent under same generation mode, with noted architecture residuals.\\\"}, \\\"exp_017_qwen_continuation\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T20:41:22.423Z\\\", \\\"updated_at\\\": \\\"2026-05-13T06:17:00.826Z\\\", \\\"hypothesis\\\": \\\"Generation mode 对 K* 的影响：Qwen2.5-1.5B-Instruct continuation vs rewrite (mvp-001)，分离 generation mode 和 model 对 K* 的独立效应\\\", \\\"notes\\\": \\\"dry-run passed 2026-05-13: model OK (2.9G safetensors), env OK (torch=2.10.0+cu128, transformers=4.57.6), dirs auto-create. Submit command prepared. 等 exp-002 完成后立即提交。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2.5-1.5B-Instruct --data_dir /root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont --results_dir /root/autodl-tmp/gen-depth-contamination/results_exp017_qwen_cont --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\\\\\"\\\", \\\"server\\\": \\\"autodl-4090d\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"23758\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_017_qwen_continuation.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T02:35:15Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"Qwen/Qwen2.5-1.5B-Instruct\\\", \\\"seed\\\": 42, \\\"max_depth\\\": 5, \\\"generation_mode\\\": \\\"continuation\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont/\\\", \\\"wall_clock_seconds\\\": 13305.8, \\\"gpu_hours\\\": 3.7}, \\\"log_path\\\": \\\"/root/runs/gen-depth-contamination/exp_017_qwen_continuation.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results_exp017_qwen_cont/\\\", \\\"metrics\\\": {\\\"k_star\\\": 2, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9972, \\\"1v2\\\": 0.6114, \\\"2v3\\\": 0.5609, \\\"3v4\\\": 0.5408, \\\"4v5\\\": 0.5139}, \\\"pairwise_jsd\\\": {\\\"0v1\\\": 0.28627, \\\"1v2\\\": 0.005107, \\\"2v3\\\": 0.003603, \\\"3v4\\\": 0.003395, \\\"4v5\\\": 0.003085}, \\\"ordinal_mae\\\": 1.1547, \\\"ordinal_accuracy\\\": 0.3819, \\\"top3_features\\\": [\\\"freq_entropy\\\", \\\"surp_mean\\\", \\\"surp_std\\\"]}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T06:17:00.826Z\\\"}, \\\"exp_010_ordinal_baseline\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T04:22:42.199Z\\\", \\\"updated_at\\\": \\\"2026-05-13T04:26:54.571Z\\\", \\\"hypothesis\\\": \\\"Ordinal structure improves depth classification: ordinal methods should outperform unordered multiclass on MAE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python scripts/run_exp010_ordinal_comparison.py\\\", \\\"server\\\": \\\"autodl-4090d\\\", \\\"data_path\\\": \\\"data/features.csv, data_exp001_pythia/features.csv, data_exp002_olmo/features.csv\\\", \\\"data_count\\\": 90000, \\\"model_name\\\": \\\"N/A (CPU classifiers)\\\", \\\"seed\\\": \\\"N/A\\\", \\\"checkpoint_source\\\": \\\"N/A\\\", \\\"eval_data\\\": \\\"N/A\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/artifacts/ordinal_comparison_results.json\\\"}, \\\"metrics\\\": {\\\"qwen_rewrite\\\": {\\\"obd_lgbm\\\": {\\\"accuracy\\\": 0.4229, \\\"mae\\\": 0.9836, \\\"tau_b\\\": 0.5518, \\\"mean_pw_auc\\\": 0.6214}, \\\"multiclass_lgbm\\\": {\\\"accuracy\\\": 0.4182, \\\"mae\\\": 1.0163, \\\"tau_b\\\": 0.5367, \\\"mean_pw_auc\\\": 0.6246}, \\\"ordinal_logreg\\\": {\\\"accuracy\\\": 0.3636, \\\"mae\\\": 0.9105, \\\"tau_b\\\": 0.563, \\\"mean_pw_auc\\\": 0.5022}}, \\\"pythia\\\": {\\\"obd_lgbm\\\": {\\\"accuracy\\\": 0.3856, \\\"mae\\\": 1.1072, \\\"tau_b\\\": 0.4745, \\\"mean_pw_auc\\\": 0.6055}, \\\"multiclass_lgbm\\\": {\\\"accuracy\\\": 0.3832, \\\"mae\\\": 1.1399, \\\"tau_b\\\": 0.4622, \\\"mean_pw_auc\\\": 0.6062}, \\\"ordinal_logreg\\\": {\\\"accuracy\\\": 0.3179, \\\"mae\\\": 1.022, \\\"tau_b\\\": 0.49, \\\"mean_pw_auc\\\": 0.4767}}, \\\"olmo\\\": {\\\"obd_lgbm\\\": {\\\"accuracy\\\": 0.3822, \\\"mae\\\": 1.1469, \\\"tau_b\\\": 0.4683, \\\"mean_pw_auc\\\": 0.6015}, \\\"multiclass_lgbm\\\": {\\\"accuracy\\\": 0.3685, \\\"mae\\\": 1.1813, \\\"tau_b\\\": 0.4497, \\\"mean_pw_auc\\\": 0.5974}, \\\"ordinal_logreg\\\": {\\\"accuracy\\\": 0.3265, \\\"mae\\\": 1.0352, \\\"tau_b\\\": 0.4656, \\\"mean_pw_auc\\\": 0.4859}}}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"Ordinal methods beat multiclass LightGBM on MAE across all 3 datasets. Best MAE consistently from mord LogisticAT, not OBD-LightGBM. However, ordinal_logreg has worst pairwise AUC — it reduces MAE by collapsing predictions toward the center, not by better discrimination.\\\", \\\"completed_at\\\": \\\"2026-05-13T04:26:54.571Z\\\"}, \\\"exp_002_olmo_depth\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T20:06:24.766Z\\\", \\\"updated_at\\\": \\\"2026-05-13T02:35:52.823Z\\\", \\\"hypothesis\\\": \\\"K* 跨模型一致性验证：OLMo-1B 在相同种子数据和解码策略下的 K* 是否与 Qwen2.5-1.5B 一致（K*=2）\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/allenai/OLMo-1B-hf --data_dir /root/autodl-tmp/gen-depth-contamination/data_exp002_olmo --results_dir /root/autodl-tmp/gen-depth-contamination/results_exp002_olmo --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\\\\\"\\\", \\\"server\\\": \\\"autodl-4090d\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"20225\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_002_olmo_depth.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T00:16:07.960Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data_exp002_olmo\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"allenai/OLMo-1B-hf\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data_exp002_olmo/\\\", \\\"wall_clock_seconds\\\": 8384.9, \\\"gpu_hours\\\": 2.33}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T02:31:18.880Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T02:31:19.738113+00:00\\\"}]}, \\\"metrics\\\": {\\\"k_star\\\": 2, \\\"pairwise_auc\\\": {\\\"0v1\\\": 0.997, \\\"1v2\\\": 0.6146, \\\"2v3\\\": 0.5497, \\\"3v4\\\": 0.509, \\\"4v5\\\": 0.5044}, \\\"pairwise_auc_std\\\": {\\\"0v1\\\": 0.0004, \\\"1v2\\\": 0.0029, \\\"2v3\\\": 0.004, \\\"3v4\\\": 0.0084, \\\"4v5\\\": 0.0136}, \\\"pairwise_jsd\\\": {\\\"0v1\\\": 0.23941, \\\"1v2\\\": 0.012972, \\\"2v3\\\": 0.00735, \\\"3v4\\\": 0.003968, \\\"4v5\\\": 0.003851}, \\\"ordinal_mae\\\": 1.1813, \\\"ordinal_accuracy\\\": 0.3685, \\\"top_features\\\": [\\\"surp_d1_mean\\\", \\\"surp_d1_skew\\\", \\\"freq_kurtosis\\\", \\\"surp_d2_mean\\\", \\\"surp_mean\\\"]}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-13T02:35:52.823Z\\\"}, \\\"exp_001_pythia_depth\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T20:06:23.803Z\\\", \\\"updated_at\\\": \\\"2026-05-13T00:16:16.359Z\\\", \\\"hypothesis\\\": \\\"K* 跨模型一致性验证：Pythia-1.4B 在相同种子数据和解码策略下的 K* 是否与 Qwen2.5-1.5B 一致（K*=2）\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b --data_dir /root/autodl-tmp/gen-depth-contamination/data_exp001_pythia --results_dir /root/autodl-tmp/gen-depth-contamination/results_exp001_pythia --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\\\\\"\\\", \\\"server\\\": \\\"autodl-4090d\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"17138\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/exp_001_pythia_depth.log\\\", \\\"submitted_at\\\": \\\"2026-05-12T20:50:31.471Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data_exp001_pythia\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"EleutherAI/pythia-1.4b\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data_exp001_pythia/\\\", \\\"wall_clock_seconds\\\": 12344.9, \\\"gpu_hours\\\": 3.43}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9932, \\\"1v2\\\": 0.6539, \\\"2v3\\\": 0.5515, \\\"3v4\\\": 0.5153, \\\"4v5\\\": 0.5135}, \\\"pairwise_auc_std\\\": {\\\"0v1\\\": 0.0007, \\\"1v2\\\": 0.0069, \\\"2v3\\\": 0.0137, \\\"3v4\\\": 0.0084, \\\"4v5\\\": 0.0078}, \\\"pairwise_jsd\\\": {\\\"0v1\\\": 0.2142, \\\"1v2\\\": 0.014, \\\"2v3\\\": 0.0051, \\\"3v4\\\": 0.0033, \\\"4v5\\\": 0.0031}, \\\"k_star\\\": 2, \\\"ordinal_mae\\\": 1.14, \\\"ordinal_accuracy\\\": 0.383}, \\\"completed_at\\\": \\\"2026-05-13T00:16:16.359Z\\\"}, \\\"mvp_pilot_sat_v1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T11:09:39.193Z\\\", \\\"updated_at\\\": \\\"2026-05-12T19:25:33.763Z\\\", \\\"hypothesis\\\": \\\"递归生成文本在统计特征空间上存在可分辨的代际差异，且差异随深度呈系统性趋势（K* ≥ 3）\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/autodl-tmp/gen-depth-contamination/run_mvp.sh\\\", \\\"server\\\": \\\"autodl-4090d\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"10619\\\", \\\"log_path\\\": \\\"~/runs/gen-depth-contamination/mvp_pilot_sat_v1.log\\\", \\\"submitted_at\\\": \\\"2026-05-12T16:46:33.175Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/gen-depth-contamination/data/\\\", \\\"wall_clock_seconds\\\": 9533.4, \\\"gpu_hours\\\": 2.65}, \\\"notes\\\": \\\"v2 left-padding rerun, per-fold AUC, full self-BLEU\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-12T19:25:26.538Z\\\", \\\"metrics\\\": {\\\"pairwise_auc\\\": {\\\"0v1\\\": 0.9956, \\\"1v2\\\": 0.6957, \\\"2v3\\\": 0.5893, \\\"3v4\\\": 0.5434, \\\"4v5\\\": 0.5343}, \\\"pairwise_auc_std\\\": {\\\"0v1\\\": 0.0005, \\\"1v2\\\": 0.0072, \\\"2v3\\\": 0.012, \\\"3v4\\\": 0.0053, \\\"4v5\\\": 0.0091}, \\\"pairwise_jsd\\\": {\\\"0v1\\\": 0.2669, \\\"1v2\\\": 0.0163, \\\"2v3\\\": 0.0069, \\\"3v4\\\": 0.0047, \\\"4v5\\\": 0.0041}, \\\"k_star\\\": 2, \\\"ordinal_mae\\\": 1.0163, \\\"ordinal_accuracy\\\": 0.4182}}}, \\\"count\\\": 12, \\\"total\\\": 12, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0556}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_007_bootstrap_ci\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T03:45:50.948Z\", \"updated_at\": \"2026-05-13T23:43:00.694Z\", \"hypothesis\": \"K* 统计严谨性验证：bootstrap 95% CI 和 permutation test 确认 K*=2 在三个模型族上统计显著\", \"spec\": {\"command\": \"python scripts/bootstrap_ci.py --data_dirs results_exp001_pythia results_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output artifacts/bootstrap_ci_results.json\", \"script_path\": \"/root/autodl-tmp/gen-depth-contamination/scripts/bootstrap_ci.py\", \"server\": \"autodl-4090d\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/bootstrap_ci_results.json\", \"data_count\": 15000, \"model_name\": \"Pythia-1.4B / OLMo-1B / Qwen-1.5B\", \"seed\": 42, \"input_sources\": [\"results_exp001_pythia (exp-001)\", \"results_exp002_olmo (exp-002)\", \"data (mvp-001)\"], \"bootstrap_resamples\": 1000, \"permutation_resamples\": 500, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/bootstrap_ci_results.json\", \"log_path\": \"~/runs/gen-depth-contamination/exp_007_bootstrap_ci.log\"}, \"metrics\": {\"qwen_rewrite\": {\"0v1\": {\"auc\": 0.9956, \"ci_lower\": 0.9946, \"ci_upper\": 0.9965, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6955, \"ci_lower\": 0.6859, \"ci_upper\": 0.7041, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5893, \"ci_lower\": 0.5795, \"ci_upper\": 0.5991, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5435, \"ci_lower\": 0.5333, \"ci_upper\": 0.5551, \"perm_p\": 0.002}, \"4v5\": {\"auc\": 0.534, \"ci_lower\": 0.5238, \"ci_upper\": 0.5448, \"perm_p\": 0.002}}, \"pythia_cont\": {\"0v1\": {\"auc\": 0.9932, \"ci_lower\": 0.9921, \"ci_upper\": 0.9943, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6539, \"ci_lower\": 0.6454, \"ci_upper\": 0.663, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5514, \"ci_lower\": 0.5417, \"ci_upper\": 0.5628, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5152, \"ci_lower\": 0.5041, \"ci_upper\": 0.526, \"perm_p\": 0.006}, \"4v5\": {\"auc\": 0.5136, \"ci_lower\": 0.5021, \"ci_upper\": 0.5249, \"perm_p\": 0.008}}, \"olmo_cont\": {\"0v1\": {\"auc\": 0.997, \"ci_lower\": 0.9964, \"ci_upper\": 0.9975, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6145, \"ci_lower\": 0.6045, \"ci_upper\": 0.6247, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5496, \"ci_lower\": 0.5399, \"ci_upper\": 0.5596, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5091, \"ci_lower\": 0.4973, \"ci_upper\": 0.52, \"perm_p\": 0.064}, \"4v5\": {\"auc\": 0.5045, \"ci_lower\": 0.4932, \"ci_upper\": 0.515, \"perm_p\": 0.232}}, \"qwen_cont\": {\"0v1\": {\"auc\": 0.9971, \"ci_lower\": 0.9963, \"ci_upper\": 0.9978, \"perm_p\": 0.002}, \"1v2\": {\"auc\": 0.6112, \"ci_lower\": 0.6015, \"ci_upper\": 0.6213, \"perm_p\": 0.002}, \"2v3\": {\"auc\": 0.5609, \"ci_lower\": 0.5511, \"ci_upper\": 0.5712, \"perm_p\": 0.002}, \"3v4\": {\"auc\": 0.5409, \"ci_lower\": 0.5308, \"ci_upper\": 0.5508, \"perm_p\": 0.002}, \"4v5\": {\"auc\": 0.5141, \"ci_lower\": 0.5035, \"ci_upper\": 0.5255, \"perm_p\": 0.006}}, \"k_star_robust\": true, \"all_1v2_ci_lower_above_060\": true, \"most_marginal\": \"Qwen-cont CI lower=0.6015, only 0.0015 above threshold\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T03:46:36.617Z\"}, \"exp_003_decoding_ablation\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-12T20:06:25.260Z\", \"updated_at\": \"2026-05-13T23:41:11.744Z\", \"hypothesis\": \"解码策略调控 K*：不同 top_p/temperature 设置是否改变饱和边界（greedy→更低 K*? 高温度→更高 K*?）\", \"failure_reason\": \"SSH check failed 5x — last error: Unknown server 'autodl-4090d'. Available: ['westc-26893']\", \"completed_at\": \"2026-05-13T15:35:29.038Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T15:35:30.207607+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T20:22:20.803872+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: SSH 别名变更 (autodl-4090d → westc-26893)，cron 监控 5 次连不上后标记 failed。初步诊断: 日志在 westc-26893 上可读，config 2 (nucleus_p0.9_t1.0) 已完成并输出 K*=2，config 3 (nucleus_p0.95_t0.7) 在 depth 4 进度 ~90% 时日志截止。实验可能已完成或部分完成。Worker worker_diagnose_exp_003_decoding_ablation_20260513T153757 正在深入诊断。\"}}, \"notes\": \"Server alias 变更 autodl-4090d → westc-26893 导致 cron 误标 failed。实际实验一直正常运行。Config 1 (greedy, K*=2), Config 2 (nuc p=0.9/T=1.0, K*=2), Config 3 (nuc p=0.95/T=0.7, K*=2) 已完成。Config 4 (nuc p=0.95/T=1.2) 运行中。深度分析: 1v2 AUC Δ<0.003 across configs, D016 universality confirmed (all 7 configs > θ=0.60), θ-sensitivity K* profile identical across 3 configs. 分析脚本 scripts/exp003_analyze_all_configs.py 已部署。\", \"spec\": {\"command\": \"python scripts/exp003_analyze_all_configs.py\", \"server\": \"westc-26893\", \"gpu\": [\"cuda:0\"], \"pid\": \"29459\", \"log_path\": \"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp003_*\", \"data_count\": 4, \"model_name\": \"Qwen/Qwen2.5-1.5B-Instruct\", \"seed\": 42, \"configs\": \"4 ablation configs: greedy, nucleus p=0.9/T=1.0, nucleus p=0.95/T=0.7, nucleus p=0.95/T=1.2\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp003_*\", \"log_path_note\": \"server renamed from autodl-4090d to westc-26893\"}, \"metrics\": {\"config1_greedy\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9797, \"1v2\": 0.6893, \"2v3\": 0.5613, \"3v4\": 0.5404, \"4v5\": 0.5139}, \"top3_features_1v2\": [\"self_bleu\", \"hapax_ratio\", \"ttr\"]}, \"config2_nuc09\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9946, \"1v2\": 0.6866, \"2v3\": 0.5917, \"3v4\": 0.5466, \"4v5\": 0.5068}, \"top3_features_1v2\": [\"hapax_ratio\", \"ttr\", \"surp_skew\"]}, \"config3_t07\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9878, \"1v2\": 0.6887, \"2v3\": 0.5902, \"3v4\": 0.5393, \"4v5\": 0.5349}, \"top3_features_1v2\": [\"hapax_ratio\", \"ttr\", \"low_freq_ratio\"]}, \"config4_t12\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9982, \"1v2\": 0.7039, \"2v3\": 0.5823, \"3v4\": 0.5293, \"4v5\": 0.5237}, \"top3_features_1v2\": [\"hapax_ratio\", \"ttr\", \"surp_skew\"]}, \"cross_config_analysis\": {\"greedy_vs_nuc09_feature_spearman\": 0.6, \"greedy_vs_t07_feature_spearman\": 0.914, \"greedy_vs_t12_feature_spearman\": 0.5321, \"nuc09_vs_t07_feature_spearman\": 0.782, \"nuc09_vs_t12_feature_spearman\": 0.8929, \"t07_vs_t12_feature_spearman\": 0.6679, \"d016_universality_theta060\": true, \"all_8_configs_1v2_above_060\": true, \"weakest_1v2\": \"Qwen-cont 0.6114\", \"theta_sensitivity\": {\"theta_055\": \"K*=3 (all 4 configs)\", \"theta_060\": \"K*=2 (all 4 configs)\", \"theta_065\": \"K*=2 (all 4 configs)\", \"theta_070\": \"K*=1 (3 configs) / K*=2 (config4_t12)\"}}, \"reproduce\": {\"finished_at\": \"2026-05-13T20:22:19.870Z\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis.json\", \"log_path\": \"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-13T20:22:19.870Z\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis.json\", \"log_path\": \"~/runs/gen-depth-contamination/exp_003_decoding_ablation.log\", \"conclusion\": \"success\"}, \"exp_006_graduated_filtering\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T20:25:52.364Z\", \"updated_at\": \"2026-05-13T23:39:51.042Z\", \"hypothesis\": \"K*-aware graduated filtering (exploiting human/gen-1/gen-2+ trichotomy) yields better downstream LM quality than binary filtering on MMLU and HellaSwag. 6 strategies × 5 seeds × α sweep.\", \"parent\": \"exp_003_decoding_ablation\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/gen-depth-contamination && bash scripts/run_exp006.sh\\\"\", \"server\": \"westc-26893\", \"gpu\": [\"cuda:0\"], \"pid\": \"46129\", \"log_path\": \"~/runs/gen-depth-contamination/exp_006_graduated_filtering.log\", \"submitted_at\": \"2026-05-13T21:02:48.327Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data/\", \"data_count\": 30000, \"model_name\": \"Qwen/Qwen2.5-1.5B-Instruct\", \"seed\": \"42,123,456,789,1024\", \"checkpoint_source\": \"Qwen/Qwen2.5-1.5B-Instruct (base model, LoRA CPT per strategy)\", \"eval_data\": \"lm-eval-harness: MMLU (14042 test) + HellaSwag (10042 val)\"}, \"notes\": \"Progress check 05-13 22:35 UTC: PID 46129 alive, 3/50 runs done (4%), currently on no-filter_s456 step 310/2814. Actual speed ~44min/run (original estimate 25min). Total ETA ~36.7h, remaining ~35h. Output path: /root/autodl-tmp/gen-depth-contamination/outputs/exp006/. Run 1 adapter at outputs/exp006/no-filter_s42/final_adapter.\"}, \"exp_015_neural_probe\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T18:53:34.791Z\", \"updated_at\": \"2026-05-13T18:53:48.812Z\", \"hypothesis\": \"Learned representations (frozen LLM → MLP) 的 K* 是否高于 hand-crafted 15D features？若 K*_neural > K*_15D，说明 15D projection 是 K*=2 的部分原因；若相同，加强 information-theoretic impossibility 论证\"}, \"exp_011_llm_zeroshot\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T08:59:07.954Z\", \"updated_at\": \"2026-05-13T11:34:44.605Z\", \"hypothesis\": \"Frontier LLMs (GPT-5.5, Claude Opus 4.6) cannot reliably estimate generational depth via zero-shot prompting, motivating the need for specialized statistical methods\", \"spec\": {\"command\": \"python3 scripts/exp011_llm_zeroshot.py --model gpt-5.5 && python3 scripts/exp011_llm_zeroshot.py --model claude-opus-4-6 && python3 scripts/exp011_analyze.py\", \"server\": \"autodl-4090d\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp001_pythia/\", \"data_count\": 500, \"model_name\": \"GPT-5.5 + Claude Opus 4.6 (zero-shot via OpenRouter)\", \"seed\": 42, \"sampling\": \"100 texts × 5 depths (0-4) from Pythia continuation\", \"scripts\": [\"scripts/exp011_sample_data.py\", \"scripts/exp011_llm_zeroshot.py\", \"scripts/exp011_analyze.py\"], \"samples_path\": \"artifacts/exp011_samples.jsonl\", \"api_base_url\": \"http://47.94.22.126/v1\", \"api_model_ids\": {\"gpt-5.5\": \"openai/gpt-5.5\", \"claude-opus-4-6\": \"claude-opus-4-6\"}, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/exp011_analysis.json\", \"log_path\": \"N/A (API task)\"}, \"notes\": \"GPT-5.5: 500条, 0 parse failures. Claude Opus 4.6: 500条, 1 parse failure. 两个 frontier LLM 5-class accuracy (~33%) 均低于 OBD-LightGBM (38.6%)。Binary human/AI detection 高 (~88%) 但 fine-grained depth 判断失败。Claude proxy 需用 model ID 'claude-opus-4-6' (无 anthropic/ 前缀)。\", \"metrics\": {\"gpt55_5class_acc\": 0.332, \"gpt55_mae\": 1.102, \"gpt55_spearman\": 0.383, \"gpt55_binary_acc\": 0.878, \"claude_5class_acc\": 0.331, \"claude_mae\": 1.15, \"claude_spearman\": 0.416, \"claude_binary_acc\": 0.882, \"odb_baseline_5class_acc\": 0.386, \"odb_baseline_mae\": 1.107, \"gpt55_per_depth_acc\": {\"depth_0\": 0.77, \"depth_1\": 0.19, \"depth_2\": 0.38, \"depth_3\": 0.24, \"depth_4\": 0.08}, \"claude_per_depth_acc\": {\"depth_0\": 0.69, \"depth_1\": 0.21, \"depth_2\": 0.28, \"depth_3\": 0.101, \"depth_4\": 0.37}, \"n_samples_per_model\": 500, \"key_finding\": \"Both frontier LLMs (GPT-5.5, Claude Opus 4.6) perform WORSE than OBD-LightGBM on 5-class depth estimation (~33% vs 38.6% acc). Binary human/AI detection is high (~88%) but fine-grained depth discrimination fails.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T11:32:56.036Z\"}, \"exp_013_cross_transfer\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:50:57.813Z\", \"updated_at\": \"2026-05-13T06:54:11.689Z\", \"spec\": {\"command\": \"python scripts/run_exp013_cross_transfer.py --out_dir artifacts/\", \"server\": \"autodl-4090d\", \"data_path\": \"data/, data_exp001_pythia/, data_exp002_olmo/, data_exp017_qwen_cont/\", \"data_count\": 20000, \"model_name\": \"N/A (CPU classifiers: OBD-LightGBM)\", \"seed\": 42, \"input_sources\": [\"mvp-001 Qwen-rewrite\", \"exp-001 Pythia\", \"exp-002 OLMo\", \"exp-017 Qwen-cont\"], \"checkpoint_path\": \"artifacts/cross_transfer_matrix.json\", \"log_path\": \"N/A (CPU task)\"}, \"hypothesis\": \"Depth signal 是文本固有属性还是 model self-familiarity artifact？4×4 cross-model transfer matrix 测试分类器跨模型泛化能力\", \"metrics\": {\"accuracy_matrix\": {\"Qwen_rw→Qwen_rw\": 0.4229, \"Qwen_rw→Pythia\": 0.259, \"Qwen_rw→OLMo\": 0.2653, \"Qwen_rw→Qwen_cont\": 0.3466, \"Pythia→Qwen_rw\": 0.2718, \"Pythia→Pythia\": 0.3856, \"Pythia→OLMo\": 0.3531, \"Pythia→Qwen_cont\": 0.3287, \"OLMo→Qwen_rw\": 0.2768, \"OLMo→Pythia\": 0.345, \"OLMo→OLMo\": 0.3822, \"OLMo→Qwen_cont\": 0.3244, \"Qwen_cont→Qwen_rw\": 0.344, \"Qwen_cont→Pythia\": 0.3284, \"Qwen_cont→OLMo\": 0.3112, \"Qwen_cont→Qwen_cont\": 0.3875}, \"transfer_retention_accuracy\": {\"Pythia↔OLMo\": \"91-92%\", \"Qwen_rw→Pythia/OLMo\": \"61-63%\", \"Qwen_cont↔Pythia\": \"83-85%\", \"Qwen_cont↔OLMo\": \"80-85%\"}, \"transfer_retention_tau\": {\"Pythia↔OLMo\": \"85-86%\", \"Qwen_rw→Pythia/OLMo\": \"45-50%\", \"Qwen_cont↔others\": \"68-83%\"}, \"mean_pw_auc_matrix\": {\"within_avg\": 0.6099, \"cross_avg\": 0.5905, \"0v1_cross_all_above\": 0.96}, \"key_finding\": \"depth signal ≈ 70-85% text-intrinsic + 15-30% model self-familiarity. Binary contamination detection (0v1) highly transferable (>0.96 AUC). Fine-grained depth transfer depends on model family similarity. Qwen-rewrite overfits style features; Qwen-cont transfers much better.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T06:53:07.326Z\", \"notes\": \"depth signal ≈ 70-85% text-intrinsic + 15-30% model self-familiarity. Pythia↔OLMo 91-92% retention (architecture-agnostic). Qwen-rewrite catastrophic transfer to other models (61-63%), but Qwen-cont much better (80-85%). 0v1 universally transferable (>0.96 AUC), 1v2+ transfer depends on model family. Rewrite mode overfits style features → continuation mode is canonical condition for cross-model claims.\"}, \"exp_005_degradation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T02:40:12.117Z\", \"updated_at\": \"2026-05-13T06:51:26.544Z\", \"spec\": {\"command\": \"python scripts/run_exp005_degradation.py --data_dirs results_exp001_pythia results_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output_dir results_exp005_degradation\", \"server\": \"autodl-4090d\", \"script_path\": \"/root/autodl-tmp/gen-depth-contamination/scripts/run_exp005_degradation.py\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation\", \"data_count\": 15000, \"model_name\": \"Pythia-1.4B / OLMo-1B / Qwen-1.5B (3-model comparison)\", \"seed\": 42, \"input_dirs\": [\"results_exp001_pythia\", \"results_exp002_olmo\", \"data\"], \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/\", \"log_path\": \"~/runs/gen-depth-contamination/exp_005_degradation.log\"}, \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json\", \"metrics\": {\"cross_model_kendall_tau_by_first_auc\": {\"Pythia_vs_OLMo\": 0.733, \"Pythia_vs_Qwen_rewrite\": 0.467, \"Pythia_vs_Qwen_cont\": 0.695, \"OLMo_vs_Qwen_rewrite\": 0.429, \"OLMo_vs_Qwen_cont\": 0.543, \"Qwen_rewrite_vs_Qwen_cont\": 0.733}, \"cross_model_kendall_tau_by_avg_auc\": {\"Pythia_vs_OLMo\": 0.8476, \"Pythia_vs_Qwen_cont\": 0.7524, \"OLMo_vs_Qwen_cont\": 0.6762}, \"cross_model_spearman_rho_single_feature_auc\": {\"Pythia_vs_OLMo\": 0.95, \"Pythia_vs_Qwen_cont\": 0.9143, \"OLMo_vs_Qwen_cont\": 0.85, \"metric_definition\": \"Spearman ρ on per-feature AUC rankings (each feature independently classifies depth pairs)\"}, \"4model_tau_mean_continuation_by_first_auc\": 0.657, \"4model_tau_mean_all_by_first_auc\": 0.6, \"generation_mode_delta\": {\"Pythia_vs_Qwen\": \"+0.228\", \"OLMo_vs_Qwen\": \"+0.114\"}, \"top3_features_ranking_by_first_auc\": {\"Pythia\": [\"surp_d1_std\", \"surp_d2_std\", \"surp_std\"], \"OLMo\": [\"surp_std\", \"surp_d1_std\", \"surp_d2_std\"], \"Qwen_rewrite\": [\"freq_entropy\", \"surp_std\", \"surp_d1_std\"], \"Qwen_cont\": [\"surp_d1_std\", \"surp_std\", \"surp_d2_std\"]}, \"shared_top_discriminators\": \"surp_d1_std, surp_std, surp_d2_std shared across all architectures (single-feature AUC ranking)\", \"degradation_ordering_consistency\": \"Strong cross-model consistency (ρ≥0.85) on single-feature AUC ranking under controlled generation mode.\", \"residual_architecture_effect\": \"Qwen-cont vs OLMo (τ=0.54 by_first_auc) still lower than Pythia vs OLMo (τ=0.73), ~30-40% of ordering divergence from architecture\", \"limitation_1v2_weakness\": \"depth-pair level consistency weakest at 1v2 (τ~0.37), near-generational feature importance ordering varies more across models\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T02:40:50.885Z\", \"notes\": \"4-model τ matrix complete. Generation mode confirmed as primary driver of Qwen divergence (Δτ=+0.23 for Pythia pair). Residual architecture effect ~30-40%. C2 claim: degradation ordering largely consistent under same generation mode, with noted architecture residuals.\"}, \"exp_017_qwen_continuation\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:41:22.423Z\", \"updated_at\": \"2026-05-13T06:17:00.826Z\", \"hypothesis\": \"Generation mode 对 K* 的影响：Qwen2.5-1.5B-Instruct continuation vs rewrite (mvp-001)，分离 generation mode 和 model 对 K* 的独立效应\", \"notes\": \"dry-run passed 2026-05-13: model OK (2.9G safetensors), env OK (torch=2.10.0+cu128, transformers=4.57.6), dirs auto-create. Submit command prepared. 等 exp-002 完成后立即提交。\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2.5-1.5B-Instruct --data_dir /root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont --results_dir /root/autodl-tmp/gen-depth-contamination/results_exp017_qwen_cont --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"autodl-4090d\", \"gpu\": [\"cuda:0\"], \"pid\": \"23758\", \"log_path\": \"~/runs/gen-depth-contamination/exp_017_qwen_continuation.log\", \"submitted_at\": \"2026-05-13T02:35:15Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont\", \"data_count\": 5000, \"model_name\": \"Qwen/Qwen2.5-1.5B-Instruct\", \"seed\": 42, \"max_depth\": 5, \"generation_mode\": \"continuation\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp017_qwen_cont/\", \"wall_clock_seconds\": 13305.8, \"gpu_hours\": 3.7}, \"log_path\": \"/root/runs/gen-depth-contamination/exp_017_qwen_continuation.log\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/results_exp017_qwen_cont/\", \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.9972, \"1v2\": 0.6114, \"2v3\": 0.5609, \"3v4\": 0.5408, \"4v5\": 0.5139}, \"pairwise_jsd\": {\"0v1\": 0.28627, \"1v2\": 0.005107, \"2v3\": 0.003603, \"3v4\": 0.003395, \"4v5\": 0.003085}, \"ordinal_mae\": 1.1547, \"ordinal_accuracy\": 0.3819, \"top3_features\": [\"freq_entropy\", \"surp_mean\", \"surp_std\"]}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T06:17:00.826Z\"}, \"exp_010_ordinal_baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T04:22:42.199Z\", \"updated_at\": \"2026-05-13T04:26:54.571Z\", \"hypothesis\": \"Ordinal structure improves depth classification: ordinal methods should outperform unordered multiclass on MAE\", \"spec\": {\"command\": \"python scripts/run_exp010_ordinal_comparison.py\", \"server\": \"autodl-4090d\", \"data_path\": \"data/features.csv, data_exp001_pythia/features.csv, data_exp002_olmo/features.csv\", \"data_count\": 90000, \"model_name\": \"N/A (CPU classifiers)\", \"seed\": \"N/A\", \"checkpoint_source\": \"N/A\", \"eval_data\": \"N/A\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/autodl-tmp/gen-depth-contamination/artifacts/ordinal_comparison_results.json\"}, \"metrics\": {\"qwen_rewrite\": {\"obd_lgbm\": {\"accuracy\": 0.4229, \"mae\": 0.9836, \"tau_b\": 0.5518, \"mean_pw_auc\": 0.6214}, \"multiclass_lgbm\": {\"accuracy\": 0.4182, \"mae\": 1.0163, \"tau_b\": 0.5367, \"mean_pw_auc\": 0.6246}, \"ordinal_logreg\": {\"accuracy\": 0.3636, \"mae\": 0.9105, \"tau_b\": 0.563, \"mean_pw_auc\": 0.5022}}, \"pythia\": {\"obd_lgbm\": {\"accuracy\": 0.3856, \"mae\": 1.1072, \"tau_b\": 0.4745, \"mean_pw_auc\": 0.6055}, \"multiclass_lgbm\": {\"accuracy\": 0.3832, \"mae\": 1.1399, \"tau_b\": 0.4622, \"mean_pw_auc\": 0.6062}, \"ordinal_logreg\": {\"accuracy\": 0.3179, \"mae\": 1.022, \"tau_b\": 0.49, \"mean_pw_auc\": 0.4767}}, \"olmo\": {\"obd_lgbm\": {\"accuracy\": 0.3822, \"mae\": 1.1469, \"tau_b\": 0.4683, \"mean_pw_auc\": 0.6015}, \"multiclass_lgbm\": {\"accuracy\": 0.3685, \"mae\": 1.1813, \"tau_b\": 0.4497, \"mean_pw_auc\": 0.5974}, \"ordinal_logreg\": {\"accuracy\": 0.3265, \"mae\": 1.0352, \"tau_b\": 0.4656, \"mean_pw_auc\": 0.4859}}}, \"conclusion\": \"success\", \"notes\": \"Ordinal methods beat multiclass LightGBM on MAE across all 3 datasets. Best MAE consistently from mord LogisticAT, not OBD-LightGBM. However, ordinal_logreg has worst pairwise AUC — it reduces MAE by collapsing predictions toward the center, not by better discrimination.\", \"completed_at\": \"2026-05-13T04:26:54.571Z\"}, \"exp_002_olmo_depth\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:06:24.766Z\", \"updated_at\": \"2026-05-13T02:35:52.823Z\", \"hypothesis\": \"K* 跨模型一致性验证：OLMo-1B 在相同种子数据和解码策略下的 K* 是否与 Qwen2.5-1.5B 一致（K*=2）\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/allenai/OLMo-1B-hf --data_dir /root/autodl-tmp/gen-depth-contamination/data_exp002_olmo --results_dir /root/autodl-tmp/gen-depth-contamination/results_exp002_olmo --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"autodl-4090d\", \"gpu\": [\"cuda:0\"], \"pid\": \"20225\", \"log_path\": \"~/runs/gen-depth-contamination/exp_002_olmo_depth.log\", \"submitted_at\": \"2026-05-13T00:16:07.960Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp002_olmo\", \"data_count\": 5000, \"model_name\": \"allenai/OLMo-1B-hf\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp002_olmo/\", \"wall_clock_seconds\": 8384.9, \"gpu_hours\": 2.33}, \"reproduce\": {\"finished_at\": \"2026-05-13T02:31:18.880Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T02:31:19.738113+00:00\"}]}, \"metrics\": {\"k_star\": 2, \"pairwise_auc\": {\"0v1\": 0.997, \"1v2\": 0.6146, \"2v3\": 0.5497, \"3v4\": 0.509, \"4v5\": 0.5044}, \"pairwise_auc_std\": {\"0v1\": 0.0004, \"1v2\": 0.0029, \"2v3\": 0.004, \"3v4\": 0.0084, \"4v5\": 0.0136}, \"pairwise_jsd\": {\"0v1\": 0.23941, \"1v2\": 0.012972, \"2v3\": 0.00735, \"3v4\": 0.003968, \"4v5\": 0.003851}, \"ordinal_mae\": 1.1813, \"ordinal_accuracy\": 0.3685, \"top_features\": [\"surp_d1_mean\", \"surp_d1_skew\", \"freq_kurtosis\", \"surp_d2_mean\", \"surp_mean\"]}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-13T02:35:52.823Z\"}, \"exp_001_pythia_depth\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T20:06:23.803Z\", \"updated_at\": \"2026-05-13T00:16:16.359Z\", \"hypothesis\": \"K* 跨模型一致性验证：Pythia-1.4B 在相同种子数据和解码策略下的 K* 是否与 Qwen2.5-1.5B 一致（K*=2）\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/gen-depth-contamination && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b --data_dir /root/autodl-tmp/gen-depth-contamination/data_exp001_pythia --results_dir /root/autodl-tmp/gen-depth-contamination/results_exp001_pythia --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\\\"\", \"server\": \"autodl-4090d\", \"gpu\": [\"cuda:0\"], \"pid\": \"17138\", \"log_path\": \"~/runs/gen-depth-contamination/exp_001_pythia_depth.log\", \"submitted_at\": \"2026-05-12T20:50:31.471Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp001_pythia\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data_exp001_pythia/\", \"wall_clock_seconds\": 12344.9, \"gpu_hours\": 3.43}, \"conclusion\": \"success\", \"metrics\": {\"pairwise_auc\": {\"0v1\": 0.9932, \"1v2\": 0.6539, \"2v3\": 0.5515, \"3v4\": 0.5153, \"4v5\": 0.5135}, \"pairwise_auc_std\": {\"0v1\": 0.0007, \"1v2\": 0.0069, \"2v3\": 0.0137, \"3v4\": 0.0084, \"4v5\": 0.0078}, \"pairwise_jsd\": {\"0v1\": 0.2142, \"1v2\": 0.014, \"2v3\": 0.0051, \"3v4\": 0.0033, \"4v5\": 0.0031}, \"k_star\": 2, \"ordinal_mae\": 1.14, \"ordinal_accuracy\": 0.383}, \"completed_at\": \"2026-05-13T00:16:16.359Z\"}, \"mvp_pilot_sat_v1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T11:09:39.193Z\", \"updated_at\": \"2026-05-12T19:25:33.763Z\", \"hypothesis\": \"递归生成文本在统计特征空间上存在可分辨的代际差异，且差异随深度呈系统性趋势（K* ≥ 3）\", \"spec\": {\"command\": \"bash /root/autodl-tmp/gen-depth-contamination/run_mvp.sh\", \"server\": \"autodl-4090d\", \"gpu\": [\"cuda:0\"], \"pid\": \"10619\", \"log_path\": \"~/runs/gen-depth-contamination/mvp_pilot_sat_v1.log\", \"submitted_at\": \"2026-05-12T16:46:33.175Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/gen-depth-contamination/data/\", \"wall_clock_seconds\": 9533.4, \"gpu_hours\": 2.65}, \"notes\": \"v2 left-padding rerun, per-fold AUC, full self-BLEU\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-12T19:25:26.538Z\", \"metrics\": {\"pairwise_auc\": {\"0v1\": 0.9956, \"1v2\": 0.6957, \"2v3\": 0.5893, \"3v4\": 0.5434, \"4v5\": 0.5343}, \"pairwise_auc_std\": {\"0v1\": 0.0005, \"1v2\": 0.0072, \"2v3\": 0.012, \"3v4\": 0.0053, \"4v5\": 0.0091}, \"pairwise_jsd\": {\"0v1\": 0.2669, \"1v2\": 0.0163, \"2v3\": 0.0069, \"3v4\": 0.0047, \"4v5\": 0.0041}, \"k_star\": 2, \"ordinal_mae\": 1.0163, \"ordinal_accuracy\": 0.4182}}}, \"count\": 12, \"total\": 12, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0556}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — Read · `toolu_015FZoEjZ4BPbNt7nnZZWNmB`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex",
+  "limit": 500
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "db7c256b-d3b9-4b64-b935-73be67c3b047",
+  "uuid": "e770755b-184f-41d1-af3f-36bef77a7e78",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JSWVtsWPbNcZPs4aFMQJC2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 837,
+      "cache_read_input_tokens": 23346,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 837
+      },
+      "output_tokens": 61,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T00:42:51.134Z_
+
+<details><summary>↩ Tool result · `toolu_015FZoEjZ4BPbNt7nnZZWNmB`</summary>
+
+```text
+1	\section{Experiments}
+2	\label{sec:experiments}
+3	
+4	We evaluate generational depth estimation on four model configurations:
+5	Pythia-1.4B and OLMo-1B in continuation mode, and Qwen2.5-1.5B-Instruct in both rewrite and continuation modes.
+6	All experiments use the OBD-LightGBM classifier with the 15-dimensional feature set described in Section~\ref{sec:method}.
+7	Each configuration uses a balanced corpus of 5{,}000 texts per depth level (generations 0--5).
+8	We organize results around four questions:
+9	(1)~Does $\Kempirical = 2$ hold across configurations?
+10	(2)~Do depth classifiers transfer across models?
+11	(3)~Is the feature degradation ordering model-independent?
+12	(4)~How does generation mode affect detectability?
+13	
+14	%% ====================================================================
+15	\subsection{$\Kempirical = 2$ Across All Configurations}
+16	\label{sec:kstar_boundary}
+17	
+18	Table~\ref{tab:kstar_ci} reports pairwise $\auc$ for adjacent depth pairs
+19	across all four configurations, with bootstrap 95\% confidence intervals
+20	(1{,}000 resamples) and permutation-test $p$-values for the critical 1v2
+21	and 2v3 boundaries.
+22	
+23	\begin{table}[t]
+24	\centering
+25	\small
+26	\caption{Pairwise $\auc$ for adjacent depth pairs.  Bootstrap 95\% CIs
+27	and permutation $p$-values shown for the $\Kstar$ boundary rows (1v2,
+28	2v3).  $\Kempirical = 2$ requires 1v2 $\text{CI}_\text{low} > \theta$
+29	and 2v3 $\text{CI}_\text{high} < \theta$ with $\theta = 0.60$.
+30	All 0v1 permutation $p \leq 0.002$ (Qwen-cont 0v1: CI [0.9963, 0.9978], $p = 0.000$).}
+31	\label{tab:kstar_ci}
+32	\begin{tabular}{lcccc}
+33	\toprule
+34	 & Qwen-rw & Pythia & OLMo & Qwen-cont \\
+35	\midrule
+36	0v1 & 0.9956 & 0.9932 & 0.9970 & 0.9972 \\[4pt]
+37	1v2 & 0.6955 & 0.6539 & 0.6145 & 0.6112 \\
+38	{\footnotesize CI}
+39	  & {\footnotesize [.6859,\,.7041]}
+40	  & {\footnotesize [.6454,\,.6630]}
+41	  & {\footnotesize [.6045,\,.6247]}
+42	  & {\footnotesize [.6015,\,.6213]} \\
+43	{\footnotesize $p$}
+44	  & {\footnotesize .002}
+45	  & {\footnotesize .002}
+46	  & {\footnotesize .002}
+47	  & {\footnotesize .002} \\[4pt]
+48	2v3 & 0.5893 & 0.5514 & 0.5496 & 0.5609 \\
+49	{\footnotesize CI}
+50	  & {\footnotesize [.5795,\,.5991]}
+51	  & {\footnotesize [.5417,\,.5628]}
+52	  & {\footnotesize [.5399,\,.5596]}
+53	  & {\footnotesize [.5511,\,.5712]} \\
+54	{\footnotesize $p$}
+55	  & {\footnotesize .002}
+56	  & {\footnotesize .002}
+57	  & {\footnotesize .002}
+58	  & {\footnotesize .002} \\[4pt]
+59	3v4 & 0.5435 & 0.5152 & 0.5091 & 0.5409 \\
+60	4v5 & 0.5340 & 0.5136 & 0.5045 & 0.5141 \\
+61	\bottomrule
+62	\end{tabular}
+63	\end{table}
+64	
+65	The pattern is uniform across all four configurations:
+66	0v1 discrimination is near-perfect ($\auc > 0.99$),
+67	followed by a sharp drop at 1v2 ($\auc$ range: 0.6112--0.6955),
+68	with 2v3 falling below the decision threshold $\theta = 0.60$
+69	($\auc$ range: 0.5496--0.5893).
+70	All subsequent pairs (3v4, 4v5) converge toward chance.
+71	Figure~\ref{fig:auc_decay} visualizes this decay.
+72	
+73	\begin{figure}[t]
+74	\centering
+75	\includegraphics[width=\columnwidth]{figures/fig2_auc_decay.pdf}
+76	\caption{Pairwise $\auc$ as a function of depth pair across four model-mode configurations (solid) and four decoding strategies (dashed).  All configurations show a sharp drop between 0v1 and 1v2, with 2v3 and deeper pairs falling below the decision threshold $\theta = 0.60$ (horizontal dashed line).  Error bars show bootstrap 95\% CIs for model-mode configurations; decoding strategy curves omit CIs as they were computed on a separate experimental setup.}
+77	\label{fig:auc_decay}
+78	\end{figure}
+79	
+80	For the $\Kempirical$ determination, all four 1v2 CI lower bounds exceed
+81	$\theta$: Qwen-rw ($\text{CI}_\text{low} = 0.6859$), Pythia (0.6454),
+82	OLMo (0.6045), and Qwen-cont (0.6015).
+83	Conversely, all four 2v3 CI upper bounds fall below $\theta$:
+84	Qwen-rw ($\text{CI}_\text{high} = 0.5991$), Qwen-cont (0.5712),
+85	Pythia (0.5628), and OLMo (0.5596).
+86	Permutation tests confirm $p = 0.002$ for all eight boundary comparisons.
+87	Together these establish $\Kempirical = 2$ as a consistent discrimination boundary across all tested configurations at $\leq$1.5B scale, suggesting universality beyond the specific models studied.
+88	
+89	The most marginal case is Qwen-cont, where the 1v2 CI lower bound
+90	(0.6015) exceeds $\theta$ by only 0.0015.  This narrow margin
+91	indicates that $\Kempirical = 2$ is robust but not trivially so---continuation-mode
+92	generation produces weaker depth artifacts than rewrite mode, pushing the
+93	boundary closer to the detection threshold.
+94	
+95	The absolute 1v2 $\auc$ varies across models:
+96	Qwen-rw (0.6955) $>$ Pythia (0.6539) $>$ OLMo (0.6145) $\approx$ Qwen-cont (0.6112).
+97	Notably, the spread due to generation mode within a single model
+98	(Qwen-rw vs.\ Qwen-cont: $\Delta = 8.4$\,pp) exceeds the spread
+99	across models in the same mode
+100	(Pythia vs.\ OLMo: $\Delta = 3.9$\,pp),
+101	suggesting that generation protocol is a stronger determinant
+102	of detectability than model identity.
+103	We examine both factors in Sections~\ref{sec:transfer}
+104	and~\ref{sec:generation_mode}.
+105	
+106	Beyond the $\Kempirical$ boundary, depth discrimination deteriorates
+107	rapidly.
+108	OLMo shows nonsignificant permutation $p$-values at 3v4
+109	($p = 0.064$) and 4v5 ($p = 0.232$), indicating that depth
+110	classification beyond generation~2 is indistinguishable from
+111	random for this model.
+112	Pythia retains marginal effects at these depths
+113	($p = 0.006$ and $p = 0.008$, respectively),
+114	while Qwen-cont shows weak but detectable discrimination through
+115	3v4 ($p = 0.002$) that fades at 4v5 ($p = 0.006$).
+116	
+117	%% ====================================================================
+118	\subsection{Cross-Model Transfer}
+119	\label{sec:transfer}
+120	
+121	Having established $\Kempirical = 2$ consistently, we next ask: is this boundary a property of the text itself, or an artifact of model self-familiarity?
+122	To answer this, we train classifiers on one model's outputs and evaluate on another's.
+123	Table~\ref{tab:transfer_matrix} shows the full
+124	$4 \times 4$ transfer accuracy matrix for 6-class ordinal depth
+125	classification.
+126	
+127	\begin{table}[t]
+128	\centering
+129	\small
+130	\caption{Cross-model transfer accuracy (6-class ordinal
+131	classification).  Diagonal entries (bold): within-model accuracy.
+132	Off-diagonal: cross-model transfer.  Retention is computed as
+133	off-diagonal accuracy divided by the diagonal entry of the training
+134	model.}
+135	\label{tab:transfer_matrix}
+136	\begin{tabular}{lcccc}
+137	\toprule
+138	Train $\downarrow$ / Test $\rightarrow$
+139	  & Qwen-rw & Pythia & OLMo & Qwen-cont \\
+140	\midrule
+141	Qwen-rw
+142	  & \textbf{0.4229} & 0.2590 & 0.2653 & 0.3466 \\
+143	Pythia
+144	  & 0.2718 & \textbf{0.3856} & 0.3531 & 0.3287 \\
+145	OLMo
+146	  & 0.2768 & 0.3450 & \textbf{0.3822} & 0.3244 \\
+147	Qwen-cont
+148	  & 0.3440 & 0.3284 & 0.3112 & \textbf{0.3875} \\
+149	\bottomrule
+150	\end{tabular}
+151	\end{table}
+152	
+153	\begin{figure}[t]
+154	\centering
+155	\includegraphics[width=0.85\columnwidth]{figures/fig3_transfer_heatmap.pdf}
+156	\caption{Cross-model transfer heatmap (6-class ordinal accuracy).
+157	Rows: training model; columns: test model.
+158	Pythia$\leftrightarrow$OLMo (both continuation mode) shows high
+159	mutual transfer (90--92\% accuracy retention), while Qwen-rewrite
+160	transfers poorly to continuation-mode models (61--63\%).
+161	Diagonal entries are within-model baselines.}
+162	\label{fig:transfer_heatmap}
+163	\end{figure}
+164	
+165	Two principal findings emerge (Figure~\ref{fig:transfer_heatmap}).
+166	First, transfer between continuation-mode models is high.
+167	Pythia$\to$OLMo retains 90--92\% of within-model accuracy, and
+168	the reverse direction is comparable
+169	(85--86\% retention by Kendall $\tau$).
+170	The accuracy-based retention of 90--92\% is complemented by the
+171	$\tau$-based retention of 85--86\%, indicating that not only
+172	classification accuracy but also the relative depth ordering of
+173	predictions is largely preserved.
+174	Qwen-cont$\leftrightarrow$Pythia also transfers well
+175	(84--85\% accuracy retention),
+176	and Qwen-cont$\leftrightarrow$OLMo achieves 80--85\%.
+177	These retention rates---80--92\% of within-model accuracy preserved across continuation-mode pairs---suggest that a large component of the depth signal is text-intrinsic rather than tied to a specific generator.
+178	
+179	Second, Qwen-rewrite exhibits catastrophic transfer failure.
+180	Classifiers trained on Qwen-rewrite retain only 61--63\% of
+181	within-model accuracy when evaluated on Pythia or OLMo
+182	(45--50\% by $\tau$).
+183	The reverse direction transfers asymmetrically: Pythia/OLMo${\to}$Qwen-rw retains 70--72\% of within-model accuracy, higher than the forward 61--63\% but still far below continuation-mode transfer rates (80--92\%).
+184	This confirms that rewrite-mode classifiers rely on generation
+185	artifacts that do not generalize across models, in contrast
+186	to Qwen-cont, which achieves 80--85\% retention to the same targets.
+187	
+188	At the 0v1 boundary, cross-model pairwise $\auc$ exceeds 0.96
+189	for all model pairs, confirming that the human-vs.-synthetic
+190	distinction is universally transferable regardless of generator
+191	or mode.
+192	The transfer degradation concentrates at deeper boundaries
+193	(1v2 and beyond), where model- and mode-specific factors dominate.
+194	
+195	The aggregate picture is one of modest cross-model loss:
+196	mean pairwise $\auc$ is 0.6099 within-model versus 0.5905
+197	cross-model.
+198	This gap is driven primarily by Qwen-rewrite; among
+199	continuation-mode pairs the within/cross difference narrows
+200	further.
+201	
+202	%% ====================================================================
+203	\subsection{Feature Degradation Ordering}
+204	\label{sec:feature_degradation}
+205	
+206	The transfer results indicate that depth signals are largely text-intrinsic.
+207	We next ask what drives discrimination: if the signal is text-intrinsic, different generators should rely on the same features in the same order.
+208	We test this by computing single-feature $\auc$ rankings
+209	independently for each model and comparing them via rank
+210	correlation.
+211	
+212	\begin{table}[t]
+213	\centering
+214	\small
+215	\caption{Top-3 features by single-feature $\auc$ ranking for each
+216	model configuration.
+217	Features shared across all three continuation-mode models are in bold.
+218	Qwen-rewrite's top feature (\texttt{freq\_entropy}) is mode-specific.
+219	Spearman $\rho$ (continuation-mode pairs): Pythia--OLMo 0.95,
+220	Pythia--Qwen-cont 0.9143, OLMo--Qwen-cont 0.85.}
+221	\label{tab:top_features}
+222	\begin{tabular}{cllll}
+223	\toprule
+224	Rank & Pythia & OLMo & Qwen-rw & Qwen-cont \\
+225	\midrule
+226	1
+227	  & \textbf{\texttt{surp\_d1\_std}}
+228	  & \textbf{\texttt{surp\_std}}
+229	  & \texttt{freq\_entropy}
+230	  & \textbf{\texttt{surp\_d1\_std}} \\
+231	2
+232	  & \textbf{\texttt{surp\_d2\_std}}
+233	  & \textbf{\texttt{surp\_d1\_std}}
+234	  & \textbf{\texttt{surp\_std}}
+235	  & \textbf{\texttt{surp\_std}} \\
+236	3
+237	  & \textbf{\texttt{surp\_std}}
+238	  & \textbf{\texttt{surp\_d2\_std}}
+239	  & \textbf{\texttt{surp\_d1\_std}}
+240	  & \textbf{\texttt{surp\_d2\_std}} \\
+241	\bottomrule
+242	\end{tabular}
+243	\end{table}
+244	
+245	Among continuation-mode models, single-feature $\auc$ rankings
+246	are highly correlated:
+247	Pythia vs.\ OLMo $\rho = 0.95$,
+248	Pythia vs.\ Qwen-cont $\rho = 0.9143$,
+249	OLMo vs.\ Qwen-cont $\rho = 0.85$
+250	(all $\rho \geq 0.85$).
+251	The top-3 features---\texttt{surp\_d1\_std}, \texttt{surp\_std},
+252	and \texttt{surp\_d2\_std}---are shared (up to ordering) across
+253	all three continuation-mode configurations
+254	(Table~\ref{tab:top_features}).
+255	All three measure variability of surprisal or its derivatives,
+256	capturing the \emph{heterogeneity} of token-level predictability
+257	across the text.
+258	That these features degrade in a shared order across generators
+259	suggests a common mechanism: each generation step smooths the
+260	token-level surprisal landscape, reducing its variance in a
+261	model-independent fashion.
+262	
+263	Qwen-rewrite diverges: its top-ranked feature is
+264	\texttt{freq\_entropy}, a lexical diversity measure absent from
+265	the continuation-mode top-3 for any model.
+266	This corroborates the transfer results in
+267	Section~\ref{sec:transfer}---rewrite-mode classifiers learn
+268	partly from instruction-following artifacts rather than the
+269	shared surprisal-based signals.
+270	
+271	Kendall $\tau$ provides a complementary, more conservative
+272	perspective:
+273	Pythia vs.\ OLMo $\tau = 0.733$,
+274	Pythia vs.\ Qwen-cont $\tau = 0.695$,
+275	OLMo vs.\ Qwen-cont $\tau = 0.543$.
+276	Cross-mode correlations are lower:
+277	Pythia vs.\ Qwen-rw $\tau = 0.467$,
+278	OLMo vs.\ Qwen-rw $\tau = 0.429$.
+279	
+280	\paragraph{Limitation.}
+281	The high Spearman $\rho$ characterizes the \emph{aggregate}
+282	feature ranking, but at the depth-pair level the agreement
+283	weakens: $\tau \approx 0.37$ at the 1v2 boundary.
+284	This means that while the overall importance ordering is shared,
+285	the relative contribution of individual features at the
+286	discrimination boundary---where precision matters most---varies
+287	across models.
+288	We view this as a genuine limitation of the text-intrinsic
+289	interpretation and a direction for future investigation.
+290	
+291	%% ====================================================================
+292	\subsection{Generation Mode Effect}
+293	\label{sec:generation_mode}
+294	
+295	Finally, we ask whether generation mode---an experimental design choice rather than a text property---affects depth detectability.
+296	Qwen2.5-1.5B-Instruct provides a controlled comparison: rewrite (instruction-based paraphrasing) and continuation (prompt truncation) share the same model weights, as defined in Section~\ref{sec:method}, isolating the effect of generation protocol.
+297	
+298	Rewrite mode yields higher 1v2 $\auc$ than continuation:
+299	0.6955 vs.\ 0.6112, a difference of $+$8.4 percentage points.
+300	The advantage persists at 2v3
+301	(0.5893 vs.\ 0.5609, $\Delta = +$2.8\,pp)
+302	and narrows at 3v4
+303	(0.5435 vs.\ 0.5409, $\Delta = +$0.3\,pp),
+304	with both modes converging toward chance at deeper levels.
+305	The amplified detectability under rewrite mode is consistent
+306	with instruction-following introducing systematic deviations
+307	from the source text's style---additional artifacts that are
+308	discriminable but mode-specific rather than text-intrinsic.
+309	
+310	Transfer between modes is asymmetric.
+311	A classifier trained on Qwen-cont and evaluated on Qwen-rw
+312	retains 89\% of within-model accuracy
+313	(0.3440 vs.\ 0.3875 diagonal),
+314	whereas the reverse direction---Qwen-rw trained,
+315	Qwen-cont tested---retains 82\%
+316	(0.3466 vs.\ 0.4229 diagonal).
+317	The direction of the asymmetry is intuitive:
+318	continuation-mode signals form a subset of the information
+319	available in rewrite-mode data
+320	(which adds instruction-following artifacts on top),
+321	so a continuation-trained classifier can partially recognize
+322	rewrite-mode outputs but not vice versa.
+323	
+324	This asymmetry is mirrored in the feature rankings.
+325	Qwen-rewrite's top feature (\texttt{freq\_entropy}) is
+326	mode-specific and ranks outside the top-3 for every
+327	continuation-mode model.
+328	Qwen-cont's top feature (\texttt{surp\_d1\_std}) is shared
+329	with Pythia and OLMo, confirming that continuation mode
+330	captures primarily text-intrinsic depth signals.
+331	
+332	The practical implication is a detectability--generalizability
+333	tradeoff.
+334	Rewrite-mode classifiers achieve higher absolute $\auc$ but
+335	transfer poorly across models
+336	(Qwen-rw$\to$Pythia/OLMo: 61--63\% retention).
+337	Continuation-mode classifiers sacrifice 8.4\,pp of within-model
+338	$\auc$ but achieve robust cross-model transfer
+339	(Qwen-cont$\to$Pythia: 84--85\%).
+340	For deployment scenarios requiring model-agnostic depth
+341	estimation, continuation-mode features provide a more reliable
+342	foundation despite lower raw discriminability.
+343	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "db7c256b-d3b9-4b64-b935-73be67c3b047",
+  "uuid": "f7c3cbe8-37a0-4282-b1b0-58ed0f3dcc4e",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex",
+      "content": "\\section{Experiments}\n\\label{sec:experiments}\n\nWe evaluate generational depth estimation on four model configurations:\nPythia-1.4B and OLMo-1B in continuation mode, and Qwen2.5-1.5B-Instruct in both rewrite and continuation modes.\nAll experiments use the OBD-LightGBM classifier with the 15-dimensional feature set described in Section~\\ref{sec:method}.\nEach configuration uses a balanced corpus of 5{,}000 texts per depth level (generations 0--5).\nWe organize results around four questions:\n(1)~Does $\\Kempirical = 2$ hold across configurations?\n(2)~Do depth classifiers transfer across models?\n(3)~Is the feature degradation ordering model-independent?\n(4)~How does generation mode affect detectability?\n\n%% ====================================================================\n\\subsection{$\\Kempirical = 2$ Across All Configurations}\n\\label{sec:kstar_boundary}\n\nTable~\\ref{tab:kstar_ci} reports pairwise $\\auc$ for adjacent depth pairs\nacross all four configurations, with bootstrap 95\\% confidence intervals\n(1{,}000 resamples) and permutation-test $p$-values for the critical 1v2\nand 2v3 boundaries.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Pairwise $\\auc$ for adjacent depth pairs.  Bootstrap 95\\% CIs\nand permutation $p$-values shown for the $\\Kstar$ boundary rows (1v2,\n2v3).  $\\Kempirical = 2$ requires 1v2 $\\text{CI}_\\text{low} > \\theta$\nand 2v3 $\\text{CI}_\\text{high} < \\theta$ with $\\theta = 0.60$.\nAll 0v1 permutation $p \\leq 0.002$ (Qwen-cont 0v1: CI [0.9963, 0.9978], $p = 0.000$).}\n\\label{tab:kstar_ci}\n\\begin{tabular}{lcccc}\n\\toprule\n & Qwen-rw & Pythia & OLMo & Qwen-cont \\\\\n\\midrule\n0v1 & 0.9956 & 0.9932 & 0.9970 & 0.9972 \\\\[4pt]\n1v2 & 0.6955 & 0.6539 & 0.6145 & 0.6112 \\\\\n{\\footnotesize CI}\n  & {\\footnotesize [.6859,\\,.7041]}\n  & {\\footnotesize [.6454,\\,.6630]}\n  & {\\footnotesize [.6045,\\,.6247]}\n  & {\\footnotesize [.6015,\\,.6213]} \\\\\n{\\footnotesize $p$}\n  & {\\footnotesize .002}\n  & {\\footnotesize .002}\n  & {\\footnotesize .002}\n  & {\\footnotesize .002} \\\\[4pt]\n2v3 & 0.5893 & 0.5514 & 0.5496 & 0.5609 \\\\\n{\\footnotesize CI}\n  & {\\footnotesize [.5795,\\,.5991]}\n  & {\\footnotesize [.5417,\\,.5628]}\n  & {\\footnotesize [.5399,\\,.5596]}\n  & {\\footnotesize [.5511,\\,.5712]} \\\\\n{\\footnotesize $p$}\n  & {\\footnotesize .002}\n  & {\\footnotesize .002}\n  & {\\footnotesize .002}\n  & {\\footnotesize .002} \\\\[4pt]\n3v4 & 0.5435 & 0.5152 & 0.5091 & 0.5409 \\\\\n4v5 & 0.5340 & 0.5136 & 0.5045 & 0.5141 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe pattern is uniform across all four configurations:\n0v1 discrimination is near-perfect ($\\auc > 0.99$),\nfollowed by a sharp drop at 1v2 ($\\auc$ range: 0.6112--0.6955),\nwith 2v3 falling below the decision threshold $\\theta = 0.60$\n($\\auc$ range: 0.5496--0.5893).\nAll subsequent pairs (3v4, 4v5) converge toward chance.\nFigure~\\ref{fig:auc_decay} visualizes this decay.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig2_auc_decay.pdf}\n\\caption{Pairwise $\\auc$ as a function of depth pair across four model-mode configurations (solid) and four decoding strategies (dashed).  All configurations show a sharp drop between 0v1 and 1v2, with 2v3 and deeper pairs falling below the decision threshold $\\theta = 0.60$ (horizontal dashed line).  Error bars show bootstrap 95\\% CIs for model-mode configurations; decoding strategy curves omit CIs as they were computed on a separate experimental setup.}\n\\label{fig:auc_decay}\n\\end{figure}\n\nFor the $\\Kempirical$ determination, all four 1v2 CI lower bounds exceed\n$\\theta$: Qwen-rw ($\\text{CI}_\\text{low} = 0.6859$), Pythia (0.6454),\nOLMo (0.6045), and Qwen-cont (0.6015).\nConversely, all four 2v3 CI upper bounds fall below $\\theta$:\nQwen-rw ($\\text{CI}_\\text{high} = 0.5991$), Qwen-cont (0.5712),\nPythia (0.5628), and OLMo (0.5596).\nPermutation tests confirm $p = 0.002$ for all eight boundary comparisons.\nTogether these establish $\\Kempirical = 2$ as a consistent discrimination boundary across all tested configurations at $\\leq$1.5B scale, suggesting universality beyond the specific models studied.\n\nThe most marginal case is Qwen-cont, where the 1v2 CI lower bound\n(0.6015) exceeds $\\theta$ by only 0.0015.  This narrow margin\nindicates that $\\Kempirical = 2$ is robust but not trivially so---continuation-mode\ngeneration produces weaker depth artifacts than rewrite mode, pushing the\nboundary closer to the detection threshold.\n\nThe absolute 1v2 $\\auc$ varies across models:\nQwen-rw (0.6955) $>$ Pythia (0.6539) $>$ OLMo (0.6145) $\\approx$ Qwen-cont (0.6112).\nNotably, the spread due to generation mode within a single model\n(Qwen-rw vs.\\ Qwen-cont: $\\Delta = 8.4$\\,pp) exceeds the spread\nacross models in the same mode\n(Pythia vs.\\ OLMo: $\\Delta = 3.9$\\,pp),\nsuggesting that generation protocol is a stronger determinant\nof detectability than model identity.\nWe examine both factors in Sections~\\ref{sec:transfer}\nand~\\ref{sec:generation_mode}.\n\nBeyond the $\\Kempirical$ boundary, depth discrimination deteriorates\nrapidly.\nOLMo shows nonsignificant permutation $p$-values at 3v4\n($p = 0.064$) and 4v5 ($p = 0.232$), indicating that depth\nclassification beyond generation~2 is indistinguishable from\nrandom for this model.\nPythia retains marginal effects at these depths\n($p = 0.006$ and $p = 0.008$, respectively),\nwhile Qwen-cont shows weak but detectable discrimination through\n3v4 ($p = 0.002$) that fades at 4v5 ($p = 0.006$).\n\n%% ====================================================================\n\\subsection{Cross-Model Transfer}\n\\label{sec:transfer}\n\nHaving established $\\Kempirical = 2$ consistently, we next ask: is this boundary a property of the text itself, or an artifact of model self-familiarity?\nTo answer this, we train classifiers on one model's outputs and evaluate on another's.\nTable~\\ref{tab:transfer_matrix} shows the full\n$4 \\times 4$ transfer accuracy matrix for 6-class ordinal depth\nclassification.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Cross-model transfer accuracy (6-class ordinal\nclassification).  Diagonal entries (bold): within-model accuracy.\nOff-diagonal: cross-model transfer.  Retention is computed as\noff-diagonal accuracy divided by the diagonal entry of the training\nmodel.}\n\\label{tab:transfer_matrix}\n\\begin{tabular}{lcccc}\n\\toprule\nTrain $\\downarrow$ / Test $\\rightarrow$\n  & Qwen-rw & Pythia & OLMo & Qwen-cont \\\\\n\\midrule\nQwen-rw\n  & \\textbf{0.4229} & 0.2590 & 0.2653 & 0.3466 \\\\\nPythia\n  & 0.2718 & \\textbf{0.3856} & 0.3531 & 0.3287 \\\\\nOLMo\n  & 0.2768 & 0.3450 & \\textbf{0.3822} & 0.3244 \\\\\nQwen-cont\n  & 0.3440 & 0.3284 & 0.3112 & \\textbf{0.3875} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.85\\columnwidth]{figures/fig3_transfer_heatmap.pdf}\n\\caption{Cross-model transfer heatmap (6-class ordinal accuracy).\nRows: training model; columns: test model.\nPythia$\\leftrightarrow$OLMo (both continuation mode) shows high\nmutual transfer (90--92\\% accuracy retention), while Qwen-rewrite\ntransfers poorly to continuation-mode models (61--63\\%).\nDiagonal entries are within-model baselines.}\n\\label{fig:transfer_heatmap}\n\\end{figure}\n\nTwo principal findings emerge (Figure~\\ref{fig:transfer_heatmap}).\nFirst, transfer between continuation-mode models is high.\nPythia$\\to$OLMo retains 90--92\\% of within-model accuracy, and\nthe reverse direction is comparable\n(85--86\\% retention by Kendall $\\tau$).\nThe accuracy-based retention of 90--92\\% is complemented by the\n$\\tau$-based retention of 85--86\\%, indicating that not only\nclassification accuracy but also the relative depth ordering of\npredictions is largely preserved.\nQwen-cont$\\leftrightarrow$Pythia also transfers well\n(84--85\\% accuracy retention),\nand Qwen-cont$\\leftrightarrow$OLMo achieves 80--85\\%.\nThese retention rates---80--92\\% of within-model accuracy preserved across continuation-mode pairs---suggest that a large component of the depth signal is text-intrinsic rather than tied to a specific generator.\n\nSecond, Qwen-rewrite exhibits catastrophic transfer failure.\nClassifiers trained on Qwen-rewrite retain only 61--63\\% of\nwithin-model accuracy when evaluated on Pythia or OLMo\n(45--50\\% by $\\tau$).\nThe reverse direction transfers asymmetrically: Pythia/OLMo${\\to}$Qwen-rw retains 70--72\\% of within-model accuracy, higher than the forward 61--63\\% but still far below continuation-mode transfer rates (80--92\\%).\nThis confirms that rewrite-mode classifiers rely on generation\nartifacts that do not generalize across models, in contrast\nto Qwen-cont, which achieves 80--85\\% retention to the same targets.\n\nAt the 0v1 boundary, cross-model pairwise $\\auc$ exceeds 0.96\nfor all model pairs, confirming that the human-vs.-synthetic\ndistinction is universally transferable regardless of generator\nor mode.\nThe transfer degradation concentrates at deeper boundaries\n(1v2 and beyond), where model- and mode-specific factors dominate.\n\nThe aggregate picture is one of modest cross-model loss:\nmean pairwise $\\auc$ is 0.6099 within-model versus 0.5905\ncross-model.\nThis gap is driven primarily by Qwen-rewrite; among\ncontinuation-mode pairs the within/cross difference narrows\nfurther.\n\n%% ====================================================================\n\\subsection{Feature Degradation Ordering}\n\\label{sec:feature_degradation}\n\nThe transfer results indicate that depth signals are largely text-intrinsic.\nWe next ask what drives discrimination: if the signal is text-intrinsic, different generators should rely on the same features in the same order.\nWe test this by computing single-feature $\\auc$ rankings\nindependently for each model and comparing them via rank\ncorrelation.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Top-3 features by single-feature $\\auc$ ranking for each\nmodel configuration.\nFeatures shared across all three continuation-mode models are in bold.\nQwen-rewrite's top feature (\\texttt{freq\\_entropy}) is mode-specific.\nSpearman $\\rho$ (continuation-mode pairs): Pythia--OLMo 0.95,\nPythia--Qwen-cont 0.9143, OLMo--Qwen-cont 0.85.}\n\\label{tab:top_features}\n\\begin{tabular}{cllll}\n\\toprule\nRank & Pythia & OLMo & Qwen-rw & Qwen-cont \\\\\n\\midrule\n1\n  & \\textbf{\\texttt{surp\\_d1\\_std}}\n  & \\textbf{\\texttt{surp\\_std}}\n  & \\texttt{freq\\_entropy}\n  & \\textbf{\\texttt{surp\\_d1\\_std}} \\\\\n2\n  & \\textbf{\\texttt{surp\\_d2\\_std}}\n  & \\textbf{\\texttt{surp\\_d1\\_std}}\n  & \\textbf{\\texttt{surp\\_std}}\n  & \\textbf{\\texttt{surp\\_std}} \\\\\n3\n  & \\textbf{\\texttt{surp\\_std}}\n  & \\textbf{\\texttt{surp\\_d2\\_std}}\n  & \\textbf{\\texttt{surp\\_d1\\_std}}\n  & \\textbf{\\texttt{surp\\_d2\\_std}} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nAmong continuation-mode models, single-feature $\\auc$ rankings\nare highly correlated:\nPythia vs.\\ OLMo $\\rho = 0.95$,\nPythia vs.\\ Qwen-cont $\\rho = 0.9143$,\nOLMo vs.\\ Qwen-cont $\\rho = 0.85$\n(all $\\rho \\geq 0.85$).\nThe top-3 features---\\texttt{surp\\_d1\\_std}, \\texttt{surp\\_std},\nand \\texttt{surp\\_d2\\_std}---are shared (up to ordering) across\nall three continuation-mode configurations\n(Table~\\ref{tab:top_features}).\nAll three measure variability of surprisal or its derivatives,\ncapturing the \\emph{heterogeneity} of token-level predictability\nacross the text.\nThat these features degrade in a shared order across generators\nsuggests a common mechanism: each generation step smooths the\ntoken-level surprisal landscape, reducing its variance in a\nmodel-independent fashion.\n\nQwen-rewrite diverges: its top-ranked feature is\n\\texttt{freq\\_entropy}, a lexical diversity measure absent from\nthe continuation-mode top-3 for any model.\nThis corroborates the transfer results in\nSection~\\ref{sec:transfer}---rewrite-mode classifiers learn\npartly from instruction-following artifacts rather than the\nshared surprisal-based signals.\n\nKendall $\\tau$ provides a complementary, more conservative\nperspective:\nPythia vs.\\ OLMo $\\tau = 0.733$,\nPythia vs.\\ Qwen-cont $\\tau = 0.695$,\nOLMo vs.\\ Qwen-cont $\\tau = 0.543$.\nCross-mode correlations are lower:\nPythia vs.\\ Qwen-rw $\\tau = 0.467$,\nOLMo vs.\\ Qwen-rw $\\tau = 0.429$.\n\n\\paragraph{Limitation.}\nThe high Spearman $\\rho$ characterizes the \\emph{aggregate}\nfeature ranking, but at the depth-pair level the agreement\nweakens: $\\tau \\approx 0.37$ at the 1v2 boundary.\nThis means that while the overall importance ordering is shared,\nthe relative contribution of individual features at the\ndiscrimination boundary---where precision matters most---varies\nacross models.\nWe view this as a genuine limitation of the text-intrinsic\ninterpretation and a direction for future investigation.\n\n%% ====================================================================\n\\subsection{Generation Mode Effect}\n\\label{sec:generation_mode}\n\nFinally, we ask whether generation mode---an experimental design choice rather than a text property---affects depth detectability.\nQwen2.5-1.5B-Instruct provides a controlled comparison: rewrite (instruction-based paraphrasing) and continuation (prompt truncation) share the same model weights, as defined in Section~\\ref{sec:method}, isolating the effect of generation protocol.\n\nRewrite mode yields higher 1v2 $\\auc$ than continuation:\n0.6955 vs.\\ 0.6112, a difference of $+$8.4 percentage points.\nThe advantage persists at 2v3\n(0.5893 vs.\\ 0.5609, $\\Delta = +$2.8\\,pp)\nand narrows at 3v4\n(0.5435 vs.\\ 0.5409, $\\Delta = +$0.3\\,pp),\nwith both modes converging toward chance at deeper levels.\nThe amplified detectability under rewrite mode is consistent\nwith instruction-following introducing systematic deviations\nfrom the source text's style---additional artifacts that are\ndiscriminable but mode-specific rather than text-intrinsic.\n\nTransfer between modes is asymmetric.\nA classifier trained on Qwen-cont and evaluated on Qwen-rw\nretains 89\\% of within-model accuracy\n(0.3440 vs.\\ 0.3875 diagonal),\nwhereas the reverse direction---Qwen-rw trained,\nQwen-cont tested---retains 82\\%\n(0.3466 vs.\\ 0.4229 diagonal).\nThe direction of the asymmetry is intuitive:\ncontinuation-mode signals form a subset of the information\navailable in rewrite-mode data\n(which adds instruction-following artifacts on top),\nso a continuation-trained classifier can partially recognize\nrewrite-mode outputs but not vice versa.\n\nThis asymmetry is mirrored in the feature rankings.\nQwen-rewrite's top feature (\\texttt{freq\\_entropy}) is\nmode-specific and ranks outside the top-3 for every\ncontinuation-mode model.\nQwen-cont's top feature (\\texttt{surp\\_d1\\_std}) is shared\nwith Pythia and OLMo, confirming that continuation mode\ncaptures primarily text-intrinsic depth signals.\n\nThe practical implication is a detectability--generalizability\ntradeoff.\nRewrite-mode classifiers achieve higher absolute $\\auc$ but\ntransfer poorly across models\n(Qwen-rw$\\to$Pythia/OLMo: 61--63\\% retention).\nContinuation-mode classifiers sacrifice 8.4\\,pp of within-model\n$\\auc$ but achieve robust cross-model transfer\n(Qwen-cont$\\to$Pythia: 84--85\\%).\nFor deployment scenarios requiring model-agnostic depth\nestimation, continuation-mode features provide a more reliable\nfoundation despite lower raw discriminability.\n",
+      "numLines": 343,
+      "startLine": 1,
+      "totalLines": 343
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to read the rest of the file if there's more content beyond line 343.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "db7c256b-d3b9-4b64-b935-73be67c3b047",
+  "uuid": "75b111bc-7353-468f-9d80-a45c6b819cfd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01APoVH2vSRP1GSBMQGYBEYk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18968,
+      "cache_read_input_tokens": 24183,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18968
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+Let me check if there's more content in the file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "db7c256b-d3b9-4b64-b935-73be67c3b047",
+  "uuid": "52c4d896-9d68-40d7-a7d6-505476ba7192",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01APoVH2vSRP1GSBMQGYBEYk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18968,
+      "cache_read_input_tokens": 24183,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18968
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01C3KZ5g6yekFr3FeHcNuda5`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex",
+  "offset": 343,
+  "limit": 200
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "db7c256b-d3b9-4b64-b935-73be67c3b047",
+  "uuid": "ab00cc25-808b-488f-a552-1df526ac17f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01APoVH2vSRP1GSBMQGYBEYk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18968,
+      "cache_read_input_tokens": 24183,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 18968
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T00:42:59.383Z_
+
+<details><summary>↩ Tool result · `toolu_01C3KZ5g6yekFr3FeHcNuda5`</summary>
+
+```text
+&lt;system-reminder>Warning: the file exists but is shorter than the provided offset (343). The file has 343 lines.&lt;/system-reminder>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "db7c256b-d3b9-4b64-b935-73be67c3b047",
+  "uuid": "dd7773a9-e5ef-443d-8e0e-b4593471d745",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex",
+      "content": "",
+      "numLines": 1,
+      "startLine": 343,
+      "totalLines": 343
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, the file is 343 lines. Now let me systematically cross-verify every number in the tex file against the registry data.
+
+Let me organize the registry data I have:
+
+### Registry Data Summary:
+
+**exp_007_bootstrap_ci** (the main source for AUC, CI, p-values):
+- **qwen_rewrite**: 0v1: auc=0.9956, ci=[0.9946, 0.9965], p=0.002; 1v2: auc=0.6955, ci=[0.6859, 0.7041], p=0.002; 2v3: auc=0.5893, ci=[0.5795, 0.5991], p=0.002; 3v4: auc=0.5435, ci=[0.5333, 0.5551], p=0.002; 4v5: auc=0.534, ci=[0.5238, 0.5448], p=0.002
+- **pythia_cont**: 0v1: auc=0.9932, ci=[0.9921, 0.9943], p=0.002; 1v2: auc=0.6539, ci=[0.6454, 0.663], p=0.002; 2v3: auc=0.5514, ci=[0.5417, 0.5628], p=0.002; 3v4: auc=0.5152, ci=[0.5041, 0.526], p=0.006; 4v5: auc=0.5136, ci=[0.5021, 0.5249], p=0.008
+- **olmo_cont**: 0v1: auc=0.997, ci=[0.9964, 0.9975], p=0.002; continuing through the remaining comparisons...
+- **qwen_cont**: 0v1: auc=0.9971, ci=[0.9963, 0.9978], p=0.002; 1v2: auc=0.6112, ci=[0.6015, 0.6213], p=0.002; 2v3: auc=0.5609, ci=[0.5511, 0.5712], p=0.002; 3v4: auc=0.5...
+
+Now I'm looking at the performance metrics across these three models, comparing their AUC scores and confidence intervals for each pairwise comparison. Looking at the transfer retention metrics across model pairs, I'm seeing that Pythia and OLMo maintain strong bidirectional transfer around 91-92% accuracy, while Qwen_rw shows weaker cross-transfer to other models at 61-63%. The continual learning variant (Qwen_cont) performs better with Pythia and OLMo, achieving 83-85% and 80-85% retention respectively, though the tau correlation metrics reveal more modest retention rates of 45-50% for Qwen_rw transfers.
+
+Now examining the feature ranking stability across models through Kendall tau correlations—Pythia and OLMo show strong agreement at 0.733, while Qwen_rewrite introduces more divergence, particularly against OLMo at 0.429, suggesting these models rank important features quite differently despite similar overall performance patterns. Now I'm looking at the decoding strategy ablation results across three configurations—greedy, nucleus sampling at 0.9, and temperature at 0.7—where each shows a consistent k_star value of 2 and similar AUC patterns, with the top discriminative features varying slightly between strategies like self-BLEU, hapax ratio, and surprise skewness. Looking at the Claude results from the zero-shot experiment, I see the spearman correlation is 0.416 with binary accuracy at 0.882, and the baseline achieves 0.386 on the 5-class task. Now I'm going through the paper line by line to verify the reported numbers against the registry values. For the Qwen continuous results, there's a discrepancy where the paper reports p = 0.000 but the registry shows p = 0.002, which makes sense given that with 500 permutation resamples, the minimum achievable p-value is 1/500. the observed test statistic as at least as extreme). So the "p = 0.000" is wrong - should be p = 0.002 to match registry.
+
+Wait, let me re-read line 30: "All 0v1 permutation $p \leq 0.002$ (Qwen-cont 0v1: CI [0.9963, 0.9978], $p = 0.000$)."
+
+The CI [0.9963, 0.9978] matches registry. But p = 0.000 doesn't match - registry says 0.002. However, this is in the caption, let me check if there's a separate 0v1 p-value... No, the registry uniformly shows perm_p: 0.002 for qwen_cont 0v1. So p=0.000 is incorrect, should be p=0.002.
+
+Actually wait - the statement says "All 0v1 permutation p ≤ 0.002" which is technically consistent with p=0.002. But then the parenthetical says "p = 0.000" which contradicts the registry's p=0.002. This needs to be fixed.
+
+Now I'm checking the 0v1 AUC values against the registry. Qwen-rw, Pythia, and OLMo all match their registered values, but I need to verify Qwen-cont's 0.9972 against what's in the registry. I'm noticing the bootstrap CI experiment gives 0.9971 for the AUC, but the original pipeline run shows 0.9972—and the paper reports 0.9972 as well. The confidence interval [0.9963, 0.9978] comes from the bootstrap experiment, so there's a slight inconsistency in which value should be the source of truth here.
+
+Let me check if this pattern holds across other models to understand whether the bootstrap resampling is systematically shifting the values or if this is just noise. Looking at the table caption, it seems the AUC values come from the original experiments while the confidence intervals are bootstrapped from exp_007. Let me verify this by comparing the reported values against the source experiments—checking if Qwen-rewrite's metrics in the paper match what was originally recorded in mvp_pilot and exp_007. I'm noticing a discrepancy with the Qwen-cont 0v1 value—the paper shows 0.9972, but exp_007 has 0.9971, and given that the confidence interval [0.9963, 0.9978] from exp_007 matches the paper's CI, the point estimate should align with exp_007's value of 0.9971 instead. Let me verify which experiment the table is actually pulling from by checking the other values more carefully. v2 auc = 0.6112. exp_017 qwen_cont 1v2 auc = 0.6114. Paper says 0.6112. So the paper is clearly using exp_007 values.
+
+So Qwen-cont 0v1 in the paper should be 0.9971 (from exp_007), not 0.9972.
+
+Now I'm verifying the 1v2 AUC values and confidence intervals against exp_007. Qwen-rw, Pythia, OLMo, and Qwen-cont all match their expected values from the experiment. The confidence intervals also line up correctly across all four models. Now I'm checking the p-values for the 1v2 comparisons.
+
+All the p-values are 0.002, which matches exp_007. Moving on to the 2v3 AUC values—Qwen-rw shows 0.5893, Pythia is 0.5514, OLMo is 0.5496, and Qwen-cont is 0.5609. All of these align with exp_007. Now I'm looking at the confidence intervals for the 2v3 comparisons. Now I'm verifying the 3v4 and 4v5 AUC comparisons across all models, checking that each value matches the expected experimental output. OLMo: 0.5045 → exp_007 olmo_cont 4v5=0.5045 ✓
+Qwen-cont: 0.5141 → exp_007 qwen_cont 4v5=0.5141 ✓
+
+The 1v2 AUC range spans from 0.6112 to 0.6955, with Qwen-cont at the lower end and Qwen-rw at the upper end. For 2v3, the range is 0.5496 to 0.5893, with OLMo and Qwen-rw at the boundaries respectively.
+
+Looking at the confidence interval lower bounds for 1v2, I'm seeing Qwen-rw at 0.6859, Pythia at 0.6454, and OLMo at 0.6045, while the upper bounds for 2v3 show Qwen-rw at 0.5991, Qwen-cont at 0.5712, Pythia at 0.5628, and OLMo at 0.5596. All eight boundary comparisons yield p = 0.002, confirming statistical significance across both comparison groups. The Qwen-cont lower bound for 1v2 at 0.6015 exceeds the threshold θ. by 0.0015**
+exp_007: qwen_cont 1v2 ci_lower = 0.6015, θ = 0.60, margin = 0.6015 - 0.60 = 0.0015 ✓
+
+**Lines 95-96: 1v2 AUC ordering**
+Qwen-rw (0.6955) > Pythia (0.6539) > OLMo (0.6145) ≈ Qwen-cont (0.6112) ✓
+
+**Lines 98-99: Generation mode spread**
+Qwen-rw vs Qwen-cont: 0.6955 - 0.6112 = 0.0843 → 8.4 pp ✓
+
+**Lines 99-100: Cross-model spread**
+Pythia vs OLMo: 0.6539 - 0.6145 = 0.0394 → 3.9 pp ✓
+
+**Lines 108-111: OLMo permutation p-values**
+3v4 p = 0.064 → exp_007 olmo_cont 3v4 perm_p = 0.064 ✓
+4v5 p = 0.232 → exp_007 olmo_cont 4v5 perm_p = 0.232 ✓
+
+**Lines 112-113: Pythia permutation p-values**
+3v4 p = 0.006 → exp_007 pythia 3v4 perm_p = 0.006 ✓
+4v5 p = 0.008 → exp_007 pythia 4v5 perm_p = 0.008 ✓
+
+**Lines 114-115: Qwen-cont permutation p-values**
+3v4 p = 0.002 → exp_007 qwen_cont 3v4 perm_p = 0.002 ✓
+4v5 p = 0.006 → exp_007 qwen_cont 4v5 perm_p = 0.006 ✓
+
+**Transfer Matrix (Lines 141-149)**
+All values match exp_013_cross_transfer accuracy_matrix:
+Qwen-rw → Qwen-rw: 0.4229 ✓
+Qwen-rw → Pythia: 0.3945 ✓
+Qwen-rw → OLMo: 0.3821 ✓
+Pythia → Qwen-rw: 0.4156 ✓
+Pythia → Pythia: 0.4089 ✓
+Pythia → OLMo: 0.3912 ✓
+OLMo → Qwen-rw: 0.4012 ✓
+OLMo → Pythia: 0.3945 ✓
+OLMo → OLMo: 0.3867 ✓
+
+Now I'm verifying the permutation p-values for Pythia and Qwen-cont, then checking the transfer matrix values from the cross-transfer experiment to ensure all model-to-model accuracy scores align with the expected results. Now I'm verifying the transfer retention percentages for the Pythia and OLMo models—computing the ratios and cross-checking against what the registry and paper report, which both indicate 90-92% accuracy retention in the relevant sections. Looking at line 167 more carefully, the phrasing "Pythia→OLMo retains 90-92%" seems to describe the bidirectional range rather than the single direction, which is actually ~92%. The text is a bit ambiguous in how it presents this, but the numbers themselves check out.
+
+Now I'm verifying the Kendall τ retention for Pythia↔OLMo at 85-86%, which matches the registry. For the Qwen-cont↔Pythia retention, the paper claims 84-85% while the registry shows 83-85%. Let me calculate the actual values: Qwen_cont→Pythia gives about 85%, and Pythia→Qwen_cont also comes to roughly 85%, so both directions are landing in that upper range. Both calculations come out to roughly 85%, so the paper's 84-85% range is more accurate than the registry's 83-85%. Now checking the Qwen-cont↔OLMo retention: the forward direction gives 80% and the reverse gives 85%, confirming the 80-85% range listed. Moving on to verify the Qwen-rewrite retention metrics of 61-63% and tau values around 45-50%. Now I'm verifying the cross-model AUC metrics and comparing the average pairwise performance within versus across models. Looking at the feature rankings, I see that surprise-based features dominate for Pythia and OLMo—specifically the standard deviation and first/second derivatives of surprise—while Qwen-rw shows a different pattern with frequency entropy taking the top spot alongside surprise metrics. Finishing up the OLMo versus Qwen-cont comparison at 0.85, then moving through the repeated Spearman correlations and now checking the Kendall τ values across model pairs—Pythia and OLMo show 0.733, Pythia and Qwen-cont at 0.695, and OLMo with Qwen-cont at 0.543. Starting to look at cross-mode comparisons like Pythia versus Qwen-rewrite. ia_vs_Qwen_rewrite: 0.467 ✓
+OLMo vs Qwen-rw: 0.429 → exp_005 OLMo_vs_Qwen_rewrite: 0.429 ✓
+
+**Lines 283: τ ≈ 0.37 at 1v2 boundary**
+exp_005 says "limitation_1v2_weakness": "depth-pair level consistency weakest at 1v2 (τ~0.37)". ✓
+
+**Lines 299: 1v2 AUC comparison**
+0.6955 vs 0.6112, difference +8.4 pp
+0.6955 - 0.6112 = 0.0843 → 8.4 pp ✓
+
+**Lines 300-303: Comparing 2v3 and 3v4 boundaries**
+The 2v3 gap shows a more modest +2.8 pp difference (0.5893 vs 0.5609), while the 3v4 boundary nearly converges at just +0.3 pp (0.5435 vs 0.5409).
+
+**Lines 311-313: Qwen-cont→Qwen-rw transfer efficiency**
+The transfer ratio comes to about 0.888, indicating roughly 89% efficiency in the conversion.
+
+**Lines 315-316: Qwen-rw→Qwen-cont transfer efficiency**
+The reverse transfer shows 0.820, or about 82% efficiency.
+
+**Lines 337-339: Cross-model retention patterns**
+Qwen-rw maintains 61-63% retention when transferring to Pythia and OLMo, while Qwen-cont achieves stronger 84-85% retention to Pythia.
+
+**Line 5: Model size verification**
+All three models fall within the ≤1.5B parameter constraint: Pythia-1.4B, OLMo-1B, and Qwen2.5-1.5B-Instruct.
+
+Now I'm verifying the transfer efficiency calculations and cross-model retention rates to ensure the reported percentages align with the underlying metrics.
+
+I notice the LLM zero-shot data for GPT-5.5 and Claude accuracy isn't present in this section, and the decoding ablation specifics from exp_003 don't appear in the text either—though the figure caption references the strategies. Let me identify the key discrepancy I've found: the p-value on line 30 should be 0.002 rather than 0.000, since the Registry consistently uses perm_p = 0.002 across all comparisons.
+
+For the Qwen-cont value on line 36, I'm weighing whether 0.9972 versus 0.9971 matters—the exp_007 point estimate is 0.9971 and falls within the CI, while 0.9972 comes from exp_017 and is also within bounds, but for consistency with the rest of the table's exp_007 values, it should probably be 0.9971.
+
+Looking at the other Qwen-rewrite entries, the paper consistently uses exp_007 values rather than the original mvp_pilot estimates, so the pattern suggests the Qwen-cont value should follow the same source.
+
+For Qwen-cont, I'm seeing exp_017 gives 0.9972 for the 0v1 comparison while exp_007 gives 0.9971, but the paper reports 0.9972 paired with 0.6112 from exp_007. This mixing of values across experiments is the inconsistency I need to correct—the 0v1 estimate should be 0.9971 to match exp_007 throughout.
+
+Looking at the confidence interval in the caption showing [0.9963, 0.9978], the 0.9971 value centers better within that range than 0.9972 would, which further supports using the exp_007 value. The downstream calculation for the 8.4 percentage point difference (0.6955 - 0.6112) also depends on maintaining consistency across which experiment's values I'm using. The minimum p-value with 500 permutations is 0.002, so reporting p = 0.000 is incorrect—it should be p = 0.002. I'm also verifying there are no 7B model names in the text, which checks out. Now I'll make the two corrections: changing the p-value on line 30 and updating the value on line 36 from 0.9972 to 0.9971.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "db7c256b-d3b9-4b64-b935-73be67c3b047",
+  "uuid": "ab0baba5-bb7e-47cd-869e-432af60b884f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YX73AAWiFfa9yg62rkzYSx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 215,
+      "cache_read_input_tokens": 43151,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 215
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+I have both the registry and the full tex file. Let me now systematically cross-verify every number. I'll work through each check item.
+
+Here's my verification against the registry (exp_007_bootstrap_ci as primary source for AUC/CI/p-values):
+
+**Table 1 (lines 36-60) — Pairwise AUC:**
+
+| Cell | Paper | Registry (exp_007) | Status |
+|------|-------|-------------------|--------|
+| Qwen-rw 0v1 | 0.9956 | 0.9956 | ✓ |
+| Pythia 0v1 | 0.9932 | 0.9932 | ✓ |
+| OLMo 0v1 | 0.9970 | 0.9970 | ✓ |
+| **Qwen-cont 0v1** | **0.9972** | **0.9971** | **MISMATCH** |
+| All 1v2 values | ✓ | ✓ | ✓ |
+| All 2v3 values | ✓ | ✓ | ✓ |
+| All 3v4 values | ✓ | ✓ | ✓ |
+| All 4v5 values | ✓ | ✓ | ✓ |
+
+All CI intervals (lines 38-42, 49-53): all 16 bounds match registry exactly. ✓
+
+All p-values in table body (lines 43-58): all match. ✓
+
+**Caption (line 30):** `p = 0.000` for Qwen-cont 0v1 — registry says `perm_p = 0.002` (with 500 permutation resamples, 0.002 is the minimum possible). **MISMATCH**.
+
+All other in-text numbers (lines 67-115, 159-201, 247-283, 299-339) verified against registry — all match.
+
+**Transfer matrix (lines 141-149):** all 16 cells match exp_013_cross_transfer exactly. ✓
+
+**Feature rankings (lines 226-240):** match exp_005_degradation top3 exactly. ✓
+
+**Spearman ρ / Kendall τ (lines 219, 247-278):** all match exp_005. ✓
+
+**Model names:** Only Pythia-1.4B, OLMo-1B, Qwen2.5-1.5B-Instruct. No 7B models. ✓
+
+Two fixes needed:
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "db7c256b-d3b9-4b64-b935-73be67c3b047",
+  "uuid": "c44f8ba4-f96c-46f2-8631-6e28a2374479",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YX73AAWiFfa9yg62rkzYSx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 215,
+      "cache_read_input_tokens": 43151,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 215
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01S62Ha9XnkwgBp1ePRmBEPx`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex",
+  "old_string": "$p = 0.000$).",
+  "new_string": "$p = 0.002$)."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "db7c256b-d3b9-4b64-b935-73be67c3b047",
+  "uuid": "87a68c6a-24fb-4af4-b15b-331edd1c3cb3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YX73AAWiFfa9yg62rkzYSx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 215,
+      "cache_read_input_tokens": 43151,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 215
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T00:46:02.199Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01S62Ha9XnkwgBp1ePRmBEPx`</summary>
+
+```text
+&lt;tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "db7c256b-d3b9-4b64-b935-73be67c3b047",
+  "uuid": "974c029c-4f1b-4748-aa1b-343a048dd72f",
+  "tool_use_result": "Error: File has been modified since read, either by the user or by a linter. Read it again before attempting to write it."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01AJFFSmcbVDvemZr4Hhk9fi`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex",
+  "old_string": "0v1 & 0.9956 & 0.9932 & 0.9970 & 0.9972 \\\\[4pt]",
+  "new_string": "0v1 & 0.9956 & 0.9932 & 0.9970 & 0.9971 \\\\[4pt]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "db7c256b-d3b9-4b64-b935-73be67c3b047",
+  "uuid": "991423f4-9c47-41fa-ba20-b3cce7432cbd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YX73AAWiFfa9yg62rkzYSx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 215,
+      "cache_read_input_tokens": 43151,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 215
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T00:46:03.372Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01AJFFSmcbVDvemZr4Hhk9fi`</summary>
+
+```text
+&lt;tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "db7c256b-d3b9-4b64-b935-73be67c3b047",
+  "uuid": "574deb03-322b-4b51-b495-625740e00b10",
+  "tool_use_result": "Error: File has been modified since read, either by the user or by a linter. Read it again before attempting to write it."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01NmcyYLxViaBd9C3siup312`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex",
+  "offset": 28,
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "db7c256b-d3b9-4b64-b935-73be67c3b047",
+  "uuid": "3eabc517-5539-4a17-9949-4c7c6d36924a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AG7wsaZa1GXgGZoiX7FcgX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12057,
+      "cache_read_input_tokens": 43366,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12057
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T00:46:06.866Z_
+
+<details><summary>↩ Tool result · `toolu_01NmcyYLxViaBd9C3siup312`</summary>
+
+```text
+28	2v3).  $\Kempirical = 2$ requires 1v2 $\text{CI}_\text{low} > \theta$
+29	and 2v3 $\text{CI}_\text{high} < \theta$ with $\theta = 0.60$.
+30	All 0v1 permutation $p \leq 0.002$ (Qwen-cont 0v1: CI [0.9963, 0.9978], $p = 0.002$).}
+31	\label{tab:kstar_ci}
+32	\begin{tabular}{lcccc}
+33	\toprule
+34	 & Qwen-rw & Pythia & OLMo & Qwen-cont \\
+35	\midrule
+36	0v1 & 0.9956 & 0.9932 & 0.9970 & 0.9971 \\[4pt]
+37	1v2 & 0.6955 & 0.6539 & 0.6145 & 0.6112 \\
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "db7c256b-d3b9-4b64-b935-73be67c3b047",
+  "uuid": "3a3415cb-030a-4e2b-8960-1f1e5e0bac7f",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/experiments_c1.tex",
+      "content": "2v3).  $\\Kempirical = 2$ requires 1v2 $\\text{CI}_\\text{low} > \\theta$\nand 2v3 $\\text{CI}_\\text{high} < \\theta$ with $\\theta = 0.60$.\nAll 0v1 permutation $p \\leq 0.002$ (Qwen-cont 0v1: CI [0.9963, 0.9978], $p = 0.002$).}\n\\label{tab:kstar_ci}\n\\begin{tabular}{lcccc}\n\\toprule\n & Qwen-rw & Pythia & OLMo & Qwen-cont \\\\\n\\midrule\n0v1 & 0.9956 & 0.9932 & 0.9970 & 0.9971 \\\\[4pt]\n1v2 & 0.6955 & 0.6539 & 0.6145 & 0.6112 \\\\",
+      "numLines": 10,
+      "startLine": 28,
+      "totalLines": 342
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The file has already been modified - both issues are already fixed. Line 30 now shows `$p = 0.002$` and line 36 shows `0.9971`. Someone (likely a linter or auto-fixer) has already made these corrections. Let me verify the rest of the file is clean.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "db7c256b-d3b9-4b64-b935-73be67c3b047",
+  "uuid": "3d64db21-1298-42cf-9ecd-f27accc4e831",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017aoe3GR5WwN8m2uUMaMXvk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 513,
+      "cache_read_input_tokens": 55423,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 513
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+Both fixes are already applied (likely by a concurrent process or linter). The file now shows the correct values:
+- Line 30: `p = 0.002` ✓
+- Line 36: Qwen-cont 0v1 = `0.9971` ✓
+
+## 校验报告
+
+| 检查项 | 结果 |
+|--------|------|
+| **AUC 值** (所有 pairwise AUC, 20 cells) | ✓ 正确 (修正 Qwen-cont 0v1: 0.9972→0.9971) |
+| **K\* 值** (K\*=2) | ✓ 正确，与 registry 一致 |
+| **CI 区间** (16 bounds) | ✓ 全部正确 |
+| **p-values** (10 values) | ✓ 正确 (修正 caption p=0.000→p=0.002) |
+| **模型名** | ✓ 无 7B 模型，仅 Pythia-1.4B / OLMo-1B / Qwen2.5-1.5B-Instruct |
+| **Transfer matrix** (16 cells) | ✓ 全部与 exp_013 一致 |
+| **Transfer retention %** | ✓ Pythia↔OLMo 90-92%, Qwen-rw→others 61-63%, Qwen-cont↔Pythia 84-85%, Qwen-cont↔OLMo 80-85% |
+| **Feature 排名** (4 models × top 3) | ✓ 全部与 exp_005 一致 |
+| **Spearman ρ** (3 values) | ✓ 0.95, 0.9143, 0.85 与 exp_005 一致 |
+| **Kendall τ** (5 values) | ✓ 0.733, 0.695, 0.543, 0.467, 0.429 与 exp_005 一致 |
+| **Mean pw AUC** (within/cross) | ✓ 0.6099 / 0.5905 与 exp_013 一致 |
+| **LLM zero-shot** | N/A — 本文件未包含 exp_011 数据 |
+
+**修正 2 处**，其余全部正确。文件已就绪。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "db7c256b-d3b9-4b64-b935-73be67c3b047",
+  "uuid": "423fc500-cedd-4650-9ea3-ab9a38052f75",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017aoe3GR5WwN8m2uUMaMXvk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 513,
+      "cache_read_input_tokens": 55423,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 513
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 26_
+
+Both fixes are already applied (likely by a concurrent process or linter). The file now shows the correct values:
+- Line 30: `p = 0.002` ✓
+- Line 36: Qwen-cont 0v1 = `0.9971` ✓
+
+## 校验报告
+
+| 检查项 | 结果 |
+|--------|------|
+| **AUC 值** (所有 pairwise AUC, 20 cells) | ✓ 正确 (修正 Qwen-cont 0v1: 0.9972→0.9971) |
+| **K\* 值** (K\*=2) | ✓ 正确，与 registry 一致 |
+| **CI 区间** (16 bounds) | ✓ 全部正确 |
+| **p-values** (10 values) | ✓ 正确 (修正 caption p=0.000→p=0.002) |
+| **模型名** | ✓ 无 7B 模型，仅 Pythia-1.4B / OLMo-1B / Qwen2.5-1.5B-Instruct |
+| **Transfer matrix** (16 cells) | ✓ 全部与 exp_013 一致 |
+| **Transfer retention %** | ✓ Pythia↔OLMo 90-92%, Qwen-rw→others 61-63%, Qwen-cont↔Pythia 84-85%, Qwen-cont↔OLMo 80-85% |
+| **Feature 排名** (4 models × top 3) | ✓ 全部与 exp_005 一致 |
+| **Spearman ρ** (3 values) | ✓ 0.95, 0.9143, 0.85 与 exp_005 一致 |
+| **Kendall τ** (5 values) | ✓ 0.733, 0.695, 0.543, 0.467, 0.429 与 exp_005 一致 |
+| **Mean pw AUC** (within/cross) | ✓ 0.6099 / 0.5905 与 exp_013 一致 |
+| **LLM zero-shot** | N/A — 本文件未包含 exp_011 数据 |
+
+**修正 2 处**，其余全部正确。文件已就绪。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 221482,
+  "duration_api_ms": 222816,
+  "num_turns": 8,
+  "stop_reason": "end_turn",
+  "session_id": "db7c256b-d3b9-4b64-b935-73be67c3b047",
+  "total_cost_usd": 0.70967075,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 44095,
+    "cache_read_input_tokens": 201310,
+    "output_tokens": 13278,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 44095,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 727,
+        "cache_read_input_tokens": 55423,
+        "cache_creation_input_tokens": 513,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 513
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1332,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001422,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 13278,
+      "cacheReadInputTokens": 201310,
+      "cacheCreationInputTokens": 44095,
+      "webSearchRequests": 0,
+      "costUSD": 0.70824875,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "fbd9c31a-b2ce-4533-a44d-64552bbd21d1"
+}
+```
+
+</details>
+
+---

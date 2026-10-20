@@ -1,0 +1,44 @@
+paper_key: "schaeffer2025position"
+title: "Position: Model Collapse Does Not Mean What You Think"
+venue: "arXiv 2025"
+full_text_available: true
+research:
+  baselines: ["28 prior publications annotated for definitional usage"]
+  metrics: [{name: "population risk", direction: "lower_better"}, {name: "entropy over iterations", direction: "higher_better"}]
+  datasets: [{name: "28 model-collapse papers (meta-analysis)", size: "28 publications"}]
+  ablation_dimensions: ["replace vs accumulate paradigm", "which of 8 definitions applied"]
+  training_recipe: {details: "N/A - position paper"}
+  method_family: "position paper / model collapse taxonomy"
+positioning:
+  core_claim: "Model collapse is 8 distinct definitions; under realistic accumulate paradigm, population risk does not diverge."
+  key_results: "28 papers annotated; trillions of training runs possible before collapse onset under realistic conditions"
+  limitations: ["realistic conditions may be contested", "fine-tuning/RLHF not addressed", "tail data loss magnitude unclear"]
+  relation_to_us: "foundation"
+narrative:
+  story_type: "突破局限型"
+  hook: "Cites Nature's alarming coverage then positions it as oversimplification"
+  tension: "Literature can't agree on what collapse means; 8 conflicting definitions"
+  key_insight: "Propagation paradigm (replace vs accumulate) is the crux; under accumulate, catastrophic divergence is mathematically avoided"
+  argument_chain: "alarm → 8 definitions → definitional shifting in papers → realistic conditions → no divergence → redirect to diversity loss"
+  contribution_framing: "Two corrective contributions: taxonomy + evaluative reanalysis"
+  intro_structure: "5-6 paragraphs: hook, problem, taxonomy contribution, evaluation contribution, conclusions, roadmap"
+  notable_technique: "Annotated meta-analysis as evidence: hand-annotating 28 papers turns literature confusion into experimental finding"
+figures:
+  figure_count: 4
+  figure1:
+    type: "problem_illustration"
+    description: "Taxonomy of 8 definitions in 3 families with schematic curves"
+    narrative_role: "Visual anchor for the central taxonomy claim"
+    design_elements: ["3 family groupings", "8 named definitions", "schematic curves not data"]
+  result_figures:
+    - {figure_id: "Figure 2", viz_type: "annotation_matrix", what_compared: "28 papers × definition usage"}
+    - {figure_id: "Figure 3", viz_type: "conceptual_comparison", what_compared: "replace vs accumulate paradigms"}
+  figure_narrative_role: "Fig1 (taxonomy) → Fig2 (meta-analysis evidence) → Fig3 (paradigm contrast) → Fig4 (timescale)"
+tables:
+  table_count: 1
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "collapse definitions"
+    col_axis: "outcome (Y/N)"
+    highlight_strategy: "binary yes/no"
+    num_baselines: 0

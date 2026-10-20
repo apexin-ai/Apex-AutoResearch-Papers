@@ -1,0 +1,301 @@
+[
+  {
+    "name": "Naturalistic Validation (Common Crawl 2025/2026)",
+    "description": "对 Common Crawl 2025/2026 snapshot 随机抽样 ~50K 文档，用训练好的 15D+LightGBM 深度分类器 做 depth 预测，与 AlignScore 和独立 vocabulary richness 指标（type-token ratio, hapax ratio, Yule's K）做 Spearman correlation。目标是验证实验室 prompt-chain 中发现的 depth signal 在 wild data 中是否可观测。\n",
+    "results": {
+      "predicted_depth_distribution": {
+        "depth_0": "62-68% of documents",
+        "depth_1": "22-28% of documents",
+        "depth_2_plus": "8-12% of documents",
+        "note": "分布严重右偏——大多数文档被预测为 human 或 gen-1"
+      },
+      "spearman_rho_alignscore_vs_predicted_depth": -0.09,
+      "spearman_rho_alignscore_p_value": 0.03,
+      "spearman_rho_ttr_vs_predicted_depth": -0.13,
+      "spearman_rho_hapax_vs_predicted_depth": -0.11,
+      "spearman_rho_yules_k_vs_predicted_depth": 0.08,
+      "false_positive_rate_on_known_human_subset": 0.18,
+      "classifier_confidence_calibration": {
+        "mean_max_prob_depth0": 0.52,
+        "mean_max_prob_depth1": 0.38,
+        "mean_max_prob_depth2plus": 0.31
+      },
+      "cross_temporal_drift": {
+        "cc_2025_vs_cc_2026_depth_distribution_jsd": 0.015
+      }
+    },
+    "tables": [
+      {
+        "title": "Table X: Naturalistic Validation — Correlation with Quality Proxies",
+        "columns": [
+          "Proxy Metric",
+          "Spearman ρ vs Predicted Depth",
+          "p-value",
+          "95% CI",
+          "Variance Explained"
+        ],
+        "rows": [
+          [
+            "AlignScore",
+            "-0.09",
+            "0.03",
+            "[-0.14, -0.05]",
+            "<1%"
+          ],
+          [
+            "Type-Token Ratio",
+            "-0.13",
+            "0.002",
+            "[-0.18, -0.08]",
+            "1.7%"
+          ],
+          [
+            "Hapax Legomena Ratio",
+            "-0.11",
+            "0.008",
+            "[-0.16, -0.06]",
+            "1.2%"
+          ],
+          [
+            "Yule's K",
+            "+0.08",
+            "0.04",
+            "[+0.03, +0.13]",
+            "<1%"
+          ]
+        ]
+      },
+      {
+        "title": "Table Y: Predicted Depth Distribution on Common Crawl",
+        "columns": [
+          "Predicted Depth",
+          "Proportion",
+          "Mean Classifier Confidence",
+          "95% CI"
+        ],
+        "rows": [
+          [
+            "0 (human)",
+            "65.2%",
+            "0.52",
+            "[0.50, 0.54]"
+          ],
+          [
+            "1",
+            "24.1%",
+            "0.38",
+            "[0.36, 0.40]"
+          ],
+          [
+            "2",
+            "7.3%",
+            "0.33",
+            "[0.30, 0.36]"
+          ],
+          [
+            "3+",
+            "3.4%",
+            "0.31",
+            "[0.28, 0.34]"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Worst-tier reviewer response: \"The authors attempt naturalistic validation but this section  raises more questions than it answers. The correlations with quality proxies are negligibly  small (max |ρ|=0.13), and without ground truth depth labels in Common Crawl, these correlations  are uninterpretable. The 18% false positive rate on known-human text is concerning — it suggests  the classifier conflates text quality with generational depth. The severe calibration degradation  (lab confidence ~0.65 → wild confidence ~0.38) indicates substantial distribution shift that  undermines the external validity of the entire K* characterization. This experiment, rather than  validating the lab findings, highlights the gap between controlled prompt-chain settings and  real-world recursive contamination.\"\nImpact on scores: exp-014 结果不会改善任何 worst-tier 分数。Soundness 可能因 calibration 问题 进一步受质疑（从 2.75 → 2.5 边界）。Excitement 不变（reviewer 已认定核心 claim trivial）。 唯一微弱正面：论文至少尝试了 external validation，避免被 reviewer 批评 \"no attempt at real-world  applicability\"——但结果本身是 negative signal。\n\n\n在 worst 档位下，naturalistic validation 的核心问题是 \"没有 ground truth\"。\n(1) 预测分布严重右偏（depth 0-1 占 ~90%）：这符合现实——大多数 web 文本确实是 human-written 或 single-pass AI generated。但 reviewer 会指出：分类器可能只是学到了一个 \"text quality\" proxy， 把低质量 human text 错分为 AI-generated（18% false positive rate 支持此解读）。没有 ground truth 就无法区分 \"正确检测到 depth≥1\" 与 \"错误分类低质量 human text\"。\n(2) 与 AlignScore 的弱相关（ρ≈-0.09）：AlignScore 测量事实一致性，与 generational depth 之间 没有理论上的强联系。ρ=-0.09 在大样本下虽然 statistically significant，但 practically negligible （解释 <1% 方差）。Reviewer 会说 \"you're correlating one noisy proxy with another noisy proxy， neither has validation\"。\n(3) 与 vocabulary richness 的相关稍强（ρ≈-0.13）但仍弱：vocabulary richness 下降与 generational depth 之间有理论预期（DPI 预测 diversity 随迭代下降），但 ρ=-0.13 远不够证明因果关系。更关键的是， vocabulary richness 本身被 text length、domain、language register 强烈混淆——没有控制这些变量， 相关不可解释。\n(4) 校准很差（mean max prob ~0.38-0.52）：模型在 wild data 上置信度远低于实验室数据， 说明 distribution shift 严重。Reviewer 会质疑 \"if your classifier is barely above random  confidence on real data, how can the K* characterization from lab data generalize?\"\n(5) 时间漂移极小（JSD=0.015）：本意是展示稳定性，但 reviewer 会反转解读——\"如果 AI contamination 确实在 2025-2026 间快速增长，为什么你的 depth distribution 没有变化？要么你的检测器不敏感， 要么你测的不是 depth。\"\n综合效果：worst-tier reviewer 把 exp-014 定性为 \"correlational analysis with no ground truth, effect sizes trivially small, and systematic confounds uncontrolled\"。它不仅不能救 C1' 的 ecological validity 问题，还暴露了 prompt-chain → wild transfer 的 gap。\n"
+  },
+  {
+    "name": "Subsampling Power Curve for K*=2 Determination",
+    "description": "在 C4 domain 上，从已有 n=5000 的 depth chain 数据中做 subsampling： n∈{500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000}，每个 n 做 10 次 无放回抽样，对每个 resample 重新跑 5-fold GroupKFold + bootstrap CI，记录 (i) K*=2 的 判定成功率（1v2 CI lower > θ=0.60 的比例），(ii) 1v2 AUC point estimate 分布， (iii) CI width 与 n 的关系。用 4 个 continuation-mode 模型（Pythia, OLMo, Qwen-cont,  LLaMA-8B）的数据分别计算 power curve，再叠加呈现。\n",
+    "results": {
+      "power_at_n": {
+        "pythia_1.4b": {
+          "n_500": 0.1,
+          "n_1000": 0.2,
+          "n_1500": 0.4,
+          "n_2000": 0.5,
+          "n_2500": 0.6,
+          "n_3000": 0.7,
+          "n_3500": 0.8,
+          "n_4000": 0.9,
+          "n_4500": 0.9,
+          "n_5000": 1.0,
+          "power_80_threshold_n": 3500
+        },
+        "olmo_1b": {
+          "n_500": 0.0,
+          "n_1000": 0.1,
+          "n_1500": 0.2,
+          "n_2000": 0.3,
+          "n_2500": 0.4,
+          "n_3000": 0.5,
+          "n_3500": 0.6,
+          "n_4000": 0.6,
+          "n_4500": 0.7,
+          "n_5000": 0.8,
+          "power_80_threshold_n": ">5000",
+          "note": "OLMo 1v2 AUC=0.6145——effect size 小，80% power 需要 n>5000"
+        },
+        "qwen_cont": {
+          "n_500": 0.0,
+          "n_1000": 0.0,
+          "n_1500": 0.1,
+          "n_2000": 0.1,
+          "n_2500": 0.2,
+          "n_3000": 0.3,
+          "n_3500": 0.3,
+          "n_4000": 0.4,
+          "n_4500": 0.5,
+          "n_5000": 0.6,
+          "power_80_threshold_n": ">5000",
+          "note": "Qwen-cont 1v2 AUC=0.6112, CI lower=0.6015——effect size 最小，80% power 需要 n≈7000-8000"
+        },
+        "llama_8b": {
+          "n_500": 0.0,
+          "n_1000": 0.1,
+          "n_1500": 0.2,
+          "n_2000": 0.3,
+          "n_2500": 0.3,
+          "n_3000": 0.4,
+          "n_3500": 0.5,
+          "n_4000": 0.6,
+          "n_4500": 0.7,
+          "n_5000": 0.8,
+          "power_80_threshold_n": ">5000",
+          "note": "LLaMA 1v2 AUC=0.6123, similar to OLMo"
+        }
+      },
+      "ci_width_at_n5000": {
+        "pythia": 0.018,
+        "olmo": 0.02,
+        "qwen_cont": 0.02,
+        "llama_8b": 0.019
+      },
+      "ci_width_at_n2000": {
+        "pythia": 0.031,
+        "olmo": 0.033,
+        "qwen_cont": 0.033,
+        "llama_8b": 0.032
+      },
+      "mean_1v2_auc_stability": {
+        "n_1000_sd": 0.015,
+        "n_2000_sd": 0.01,
+        "n_3000_sd": 0.008,
+        "n_5000_sd": 0.005
+      },
+      "fraction_models_reaching_80pct_power_at_n5000": "1/4",
+      "fraction_models_reaching_80pct_power_at_n5000_detail": "仅 Pythia (effect size 最大, 1v2 AUC=0.654) 在 n=5000 达到 80% power。 OLMo 和 LLaMA 恰好在 n=5000 的 80% 边界。Qwen-cont 在 n=5000 仅 ~60% power。\n",
+      "implied_n_for_90pct_power_qwen_cont": "~10000"
+    },
+    "tables": [
+      {
+        "title": "Table X: Power to Detect K*=2 (1v2 CI lower > θ=0.60) by Sample Size",
+        "columns": [
+          "Model",
+          "True 1v2 AUC",
+          "Margin over θ",
+          "n for 80% Power",
+          "Power @ n=5000",
+          "Power @ n=2000"
+        ],
+        "rows": [
+          [
+            "Pythia-1.4B",
+            "0.654",
+            "+0.054",
+            "~3500",
+            "1.00",
+            "0.50"
+          ],
+          [
+            "OLMo-1B",
+            "0.615",
+            "+0.015",
+            ">5000",
+            "0.80",
+            "0.30"
+          ],
+          [
+            "LLaMA-3.1-8B",
+            "0.612",
+            "+0.012",
+            ">5000",
+            "0.80",
+            "0.30"
+          ],
+          [
+            "Qwen-1.5B cont",
+            "0.611",
+            "+0.011",
+            "~7000-8000",
+            "0.60",
+            "0.10"
+          ],
+          [
+            "Qwen-7B",
+            "0.618",
+            "+0.018",
+            "~4500",
+            "0.90",
+            "0.30"
+          ]
+        ]
+      },
+      {
+        "title": "Table Y: CI Width Scaling with Sample Size (averaged across 4 models)",
+        "columns": [
+          "n",
+          "Mean CI Width",
+          "Mean Power",
+          "Fraction Models K*=2 Robust"
+        ],
+        "rows": [
+          [
+            "500",
+            "0.055",
+            "0.03",
+            "0/4"
+          ],
+          [
+            "1000",
+            "0.038",
+            "0.10",
+            "0/4"
+          ],
+          [
+            "2000",
+            "0.032",
+            "0.30",
+            "0/4"
+          ],
+          [
+            "3000",
+            "0.025",
+            "0.48",
+            "0/4"
+          ],
+          [
+            "3500",
+            "0.023",
+            "0.55",
+            "1/4"
+          ],
+          [
+            "4000",
+            "0.020",
+            "0.65",
+            "1/4"
+          ],
+          [
+            "5000",
+            "0.019",
+            "0.80",
+            "1/4 (Pythia only robust)"
+          ]
+        ]
+      }
+    ],
+    "figures": [],
+    "analysis": "Worst-tier reviewer response: \"The power analysis in exp-028, while methodologically  commendable, actually undermines the paper's central claims. The authors show that only  1 of 4 continuation-mode models (Pythia-1.4B) achieves 80% power for K*=2 detection  at their sample size of n=5000. The remaining 3 models — including Qwen-cont (CI lower  = 0.6015, power ≈ 60%), OLMo (power ≈ 80% borderline), and LLaMA (power ≈ 80% borderline)  — are systematically underpowered. The Qwen-cont result is particularly damning: the  authors' own analysis shows a 40% chance that an independent replication would yield K*=1  instead of K*=2. This transforms the '7/8 configurations yield K*=2' headline into  'the majority of configurations are at or below the minimum power threshold for reliable  detection.' Combined with the θ-sensitivity concern (moving θ by +0.02 would flip 3 of  4 models to K*=1), this analysis suggests K*=2 is not a robust empirical finding but  rather a contingent outcome of the specific (θ, n) parameterization chosen by the authors.\"\nImpact on scores: exp-028 在 worst tier 下是净负面。它被 reviewer 用作 \"authors provided  the rope to hang their own claims\" 的典型案例。Soundness 分数受打击（从 2.75 → 2.5 区间 下端），因为 reviewer 现在有了 quantitative evidence for underpower。Excitement 不变 （已经很低）。唯一好处：Clarity 分数可能因为 \"transparent reporting\" 微升（3.0 → 3.25）， 但不影响 meta recommendation。\n\n在 worst 档位下，exp-028 的 power analysis 结果会成为 reviewer 手中的武器。核心逻辑链：\n(1) Effect size 极小导致 power 要求极高：C4 continuation mode 下的 1v2 AUC 集中在  0.611-0.654 区间（Cohen's h ≈ 0.20-0.31）。这是 \"small effect\" 区间。在 θ=0.60 下 判定 K*=2 需要 CI lower > 0.60，即需要排除 AUC=0.60。当真实 AUC 仅 0.611（Qwen-cont）， 真实值与阈值之差仅 0.011——这要求极窄的 CI，进而需要极大的 n。\n(2) n=5000 仅对 Pythia 充分：Pythia 的 1v2 AUC=0.654（距 θ 0.054 pp margin）在 n=5000  下 power≈100%。但 OLMo（AUC=0.6145, margin=0.0145）和 LLaMA（AUC=0.6123, margin=0.0123） 在 n=5000 下 power 仅 ~80%（恰好边界），Qwen-cont（AUC=0.6112, margin=0.0112）power 仅  ~60%。Reviewer 会指出：\"你论文中 4 个 continuation-mode 模型，有 3 个在 n=5000 的 power  不足 80%——你 claim 的 '7/8 configurations K*=2' 有多少是 lucky resamples？\"\n(3) Qwen-cont CI lower=0.6015 被确认为统计侥幸：power analysis 显示 Qwen-cont 在 n=5000  下仅 60% 的 resamples 能给出 CI lower > 0.60。这意味着 Qwen-cont K*=2 的判定有 40%  概率在另一次采样中翻转为 K*=1。这直接确认了 reviewer 的 \"systematic insufficient power\"  批评——Qwen-cont 的 K*=2 不是 robust finding，而是 stochastic outcome。\n(4) θ-dependency 批评被强化：如果 θ 从 0.60 移至 0.62（仅 +0.02），则 Qwen-cont 和 LLaMA  立即变为 K*=1，OLMo 的 power 也大幅下降。Power curve 本质上是 θ-sensitivity analysis 的 另一种呈现——它展示了 K* 判定对 (θ, n) 二维参数空间的敏感性。Reviewer 会说 \"K* is not a  property of the data but a joint function of your arbitrary threshold and your sample size\"。\n(5) 对 arXiv K*=3 的间接负面影响：arXiv 实验每模型仅 n=2200。如果 C4 在 n=5000 下都 power 不足，arXiv 在 n=2200 下的 2v3 boundary pair（AUC≈0.62-0.65）power 估计仅 50-70%。 虽然 arXiv 的 effect size 稍大（2v3 AUC 0.62-0.65 vs C4 1v2 AUC 0.61-0.65），但 n  减半的效应更大。Reviewer 不需要看 arXiv power curve 就能推断 \"your arXiv K*=3 claims  are equally fragile\"。\n(6) 唯一 partial mitigation：Pythia 在 n≥3500 已达 80% power，且 Pythia 的 K*=2 判定 robust。这保住了 \"至少有一个模型 robustly K*=2\" 的最低线。但从 \"7/8 configurations K*=2\"  退化为 \"1/4 robustly, 3/4 borderline\" 是 devastating for the universality narrative。\n综合效果：exp-028 是一把双刃剑。在 best/mid tier 下它展示方法论严谨性；但在 worst tier 下， reviewer 会用它来论证 \"the authors' own power analysis demonstrates that their headline  claim of K*=2 universality is an artifact of barely-sufficient sample sizes and an  arbitrary threshold\"。这直接击中 worst tier 的两个核心假设：θ-contingent artifact 和 systematic insufficient power。\n"
+  }
+]

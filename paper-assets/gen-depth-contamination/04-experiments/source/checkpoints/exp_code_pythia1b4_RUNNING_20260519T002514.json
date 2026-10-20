@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_code_pythia1b4",
+  "project": "gen-depth-contamination",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:49:01.762Z",
+    "updated_at": "2026-05-19T00:25:14.156Z",
+    "hypothesis": "Pythia-1.4B on Code domain (Python/CodeSearchNet) will show K*=2 consistent with Qwen code domain results, indicating generalization depth saturation is model-independent for code data.",
+    "parent": "exp_code_qwen1b5",
+    "spec": {
+      "command": "cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/bin/activate && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_code_pythia1b4 --results_dir results/exp_code_pythia1b4 --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B",
+      "server": "cqa1-22115",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/exp_code_pythia1b4",
+      "data_count": 5000,
+      "model_name": "Pythia-1.4B",
+      "seed": 42,
+      "checkpoint_source": "exp_code_qwen1b5",
+      "eval_data": "CodeSearchNet Python 5000 docs"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T00:25:14.454993+00:00",
+  "trigger": "update_registry"
+}

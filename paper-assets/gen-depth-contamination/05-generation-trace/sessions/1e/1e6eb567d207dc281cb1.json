@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e6eb567d207dc281cb1",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "audit lgbm 14b data mismatch",
+  "task_key": "worker_audit_lgbm-14b-data-mismatch_20260519T234313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_lgbm-14b-data-mismatch_20260519T234313_result.json",
+    "occurrence": 1,
+    "bytes": 2457,
+    "sha256": "bc9a3e4149c5886357cbb44cabeba27959f0a52d72214b65e387af29d3e38ce7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。以下是完整报告。\n\n---\n\n## 调查报告: Table 4 LightGBM 14B 数据不匹配\n\n### 1. Table 4 中 .572/.537 的来源\n\n**文件**: `docs/paper/experiments_c1.tex` L142\n```\nLightGBM (14B)  & .960 & .621 & .572 & .537 & --- \\\\\n```\n\n无法找到任何单一实验同时产出 2v3=.572 和 3v4=.537。唯一接近的匹配:\n- `exp_021_length_512`（长度消融实验，非14B实验）的 2v3=0.5721 → 恰好匹配 .572\n- 但其 3v4=0.530，不匹配 .537\n\n**结论**: .572/.537 不对应任何已知实验结果，最可能是 paper-writing agent 的转录错误或幻觉。\n\n### 2. 实际结果文件\n\n**文件路径**: `/root/autodl-tmp/gen-depth-contamination/results/exp_14b_c4/pairwise_auc.json`（cqa1, May 18 17:47）\n\n```json\n{\n  \"mean\": {\n    \"0v1\": 0.96,     // Table: .960 ✓\n    \"1v2\": 0.6211,   // Table: .621 ✓\n    \"2v3\": 0.5494,   // Table: .572 ✗ (差 +2.3pp)\n    \"3v4\": 0.5243,   // Table: .537 ✗ (差 +1.3pp)\n    \"4v5\": 0.5152    // Table: --- (未报告)\n  }\n}\n```\n\n`bootstrap_ci_results.json` 确认: 2v3 point_estimate=0.5494 (CI: 0.5392–0.5594), 3v4=0.5243 (CI: 0.514–0.5346)\n\n### 3. Registry 确认\n\nRegistry `exp_14b_c4` metrics 完全吻合服务器文件:\n- `pairwise_auc.2v3`: 0.5494\n- `pairwise_auc.3v4`: 0.5243\n- `k_star`: 2\n- 服务器: westd-42896, completed May 18\n\n只存在一份 14B 结果，无多版本。\n\n### 4. 交叉验证\n\n| 数据源 | 0v1 | 1v2 | 2v3 | 3v4 |\n|--------|-----|-----|-----|-----|\n| Table 4 (LaTeX) | .960 | .621 | **.572** | **.537** |\n| pairwise_auc.json | 0.96 | 0.6211 | **0.5494** | **0.5243** |\n| Registry metrics | 0.9598 | 0.621 | **0.5494** | **0.5243** |\n| bootstrap CI point est. | 0.9598 | 0.621 | **0.5494** | **0.5243** |\n\nDeBERTa 14B (`exp_deberta_c4`) 和 LightGBM 1.5B 数据均与 Table 一致，仅 LightGBM 14B 的 2v3/3v4 两列不匹配。\n\n### 5. 判断\n\n**正确值是 0.549 / 0.524**（来自 `exp_14b_c4`）。\n\n依据:\n- 三个独立数据源（文件、registry、bootstrap CI）一致\n- 0v1 和 1v2 从同一实验读取且匹配，排除实验本身有问题\n- .572/.537 无法追溯到任何实验产出\n- Table 4 的 DeBERTa 行和 LightGBM 32B 行均正确，仅 LightGBM 14B 的 2v3/3v4 错误\n\n**建议修正**: 将 L142 从 `.572` / `.537` 改为 `.549` / `.524`。注意这不改变 K*=2 的结论（2v3 CI upper 0.5594 < θ=0.6）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-lgbm-14b-data-mismatch.md"
+}

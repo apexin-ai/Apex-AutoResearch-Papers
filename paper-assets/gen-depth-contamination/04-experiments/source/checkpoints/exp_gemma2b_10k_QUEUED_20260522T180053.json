@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_gemma2b_10k",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:00:38.686Z",
+    "updated_at": "2026-05-22T18:00:53.059Z",
+    "hypothesis": "Gemma-2-2B 10K sample-size robustness: 5K borderline K*=1 (1v2 AUC=0.5981, just below θ=0.60) should remain K*=1 at 10K, confirming between-sample stability for borderline verdicts. Adds a K*=1 datapoint to the 10K robustness table (currently only K*=2 configs)."
+  },
+  "timestamp": "2026-05-22T18:00:53.398169+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15e31ca5175ae10e4522",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "fix surprisal index rerun",
+  "task_key": "worker_fix_surprisal_index_rerun_20260512T153109",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_surprisal_index_rerun_20260512T153109_result.json",
+    "occurrence": 1,
+    "bytes": 150,
+    "sha256": "50c32ec825372172e61bd81eca186c927fff85a602d24cbb13a9dc451bd2b5ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "60 秒等待已完成，日志已在上面确认过——pipeline 正常运行中，Step 3 正在生成 depth_1。无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-surprisal-index-rerun.md"
+}

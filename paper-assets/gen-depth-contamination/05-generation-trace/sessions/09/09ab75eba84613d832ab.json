@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09ab75eba84613d832ab",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp003 bootstrap ci",
+  "task_key": "worker_analysis_exp003_bootstrap_ci_20260516T023635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp003_bootstrap_ci_20260516T023635_result.json",
+    "occurrence": 1,
+    "bytes": 1031,
+    "sha256": "bc3da988dc37710ea0db1a4ead5b3bfe58fb7cd44bc084be57564203130669b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "W4 任务完成。总结：\n\n**脚本**: `scripts/exp003_bootstrap_ci.py` 在远程服务器运行完毕（10K bootstrap + 10K permutation, 耗时 ~27 分钟）\n\n**输出**: `artifacts/exp003_bootstrap_ci.json`，4 config × 5 pairs = 20 条目\n\n**关键结果**:\n\n| Config | 2v3 AUC | 95% CI | CI upper vs θ=0.60 |\n|--------|---------|--------|---------------------|\n| config1_greedy | 0.5612 | [0.5517, 0.5705] | 远低于 θ |\n| **config2_nuc09** | **0.5917** | **[0.5824, 0.6010]** | **跨过 θ** |\n| config3_t07 | 0.5901 | [0.5806, 0.5996] | 差 0.04pp |\n| config4_t12 | 0.5820 | [0.5722, 0.5917] | 远低于 θ |\n\n- **config2_nuc09 的 2v3 CI 上界 0.6010 跨过 θ=0.60**，K*=2 在该 config 下存在边界模糊性\n- config3_t07 的 CI 上界 0.5996 极接近但未跨过\n- 所有 config 的 0v1 和 1v2 permutation p=0（10K 次中零次超过观测值），K*≥2 判定稳健\n- config2 的 4v5 perm_p=0.12，不显著（接近 chance）\n\nArtifact 已注册，registry 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp003-bootstrap-ci.md"
+}

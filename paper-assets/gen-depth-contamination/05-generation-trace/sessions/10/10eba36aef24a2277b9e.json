@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10eba36aef24a2277b9e",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code fix kstar theta ci lower final",
+  "task_key": "worker_code_fix_kstar_theta_ci_lower_final_20260515T131754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_kstar_theta_ci_lower_final_20260515T131754_result.json",
+    "occurrence": 1,
+    "bytes": 663,
+    "sha256": "0667d8c0e9153ae63b9cfa9ed8cae7bb2ac8ec486ec0d05ad9cca2e5dc152b67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "θ=0.60 时 4/4 模型 K\\*=2，验证通过。\n\n### 改动 diff\n\n`compute_kstar()` 签名从 `(auc_values, ci_values, theta)` 改为 `(ci_lower_vals, theta)`，判断条件从 `auc - ci >= theta` 改为 `ci_lower[i] >= theta`（直接用硬编码的 CI 下界）。新增 `ci_lower` 字典，原 `ci_half` 保留供 Panel A 误差棒使用。\n\n### 最终 K\\*(θ) 表格\n\n| θ | Qwen-rewrite | Pythia | OLMo | Qwen-cont |\n|---|---|---|---|---|\n| 0.60 | 2 | 2 | 2 | 2 |\n\n- Unanimous K\\*=2 区间：θ ∈ [0.580, 0.600]\n- K\\* ∈ {2,3} 区间：θ ∈ [0.535, 0.600]\n\n输出已覆盖 `artifacts/kstar_theta_curve.pdf` 和 `.png`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-kstar-theta-ci-lower-final.md"
+}

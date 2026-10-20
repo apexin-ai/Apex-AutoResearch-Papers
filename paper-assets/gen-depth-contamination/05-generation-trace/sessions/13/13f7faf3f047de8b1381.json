@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "13f7faf3f047de8b1381",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code retrain depth extension",
+  "task_key": "worker_code_retrain-depth-extension_20260518T223123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_retrain-depth-extension_20260518T223123_result.json",
+    "occurrence": 1,
+    "bytes": 62,
+    "sha256": "8d5bf47e29a0e335c48f786702a9c04fbe6e486b3073c496743c0da035e85a74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已完成，无需重新设置 monitor。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-retrain-depth-extension.md"
+}

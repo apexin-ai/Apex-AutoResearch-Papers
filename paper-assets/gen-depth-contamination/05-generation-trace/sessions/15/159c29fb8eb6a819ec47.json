@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "159c29fb8eb6a819ec47",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops pythia14b rerun status check",
+  "task_key": "worker_ops_pythia14b_rerun_status_check_20260521T140727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pythia14b_rerun_status_check_20260521T140727_result.json",
+    "occurrence": 1,
+    "bytes": 1692,
+    "sha256": "dff3ba043866280f5096f8860be7fe9c9b10873fdd62af25893de6daafa6fd70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### PID 状态\n- **PID 422244**：已死\n- **PID 421716**：存活，正在运行同一 Pythia-1.4B C4 rerun pipeline（已运行 219 分钟 CPU time）。但从结果文件时间戳看，pipeline 的分析阶段（feature extraction + classification）已于 22:05 完成，当前进程可能停留在某个收尾步骤\n\n### 数据完整性 — 全部完成\n| 文件 | 行数 |\n|------|------|\n| depth_0.jsonl | 5000 |\n| depth_1.jsonl | 5000 |\n| depth_2.jsonl | 5000 |\n| depth_3.jsonl | 5000 |\n| depth_4.jsonl | 5000 |\n| depth_5.jsonl | 5000 |\n| features.csv | 已生成 (7.9MB) |\n\n### AUC 结果 — 全部完成\n| 对比 | AUC | 标准差 |\n|------|-----|--------|\n| 0 vs 1 | **0.9979** | ±0.0006 |\n| 1 vs 2 | **0.8786** | ±0.0041 |\n| 2 vs 3 | 0.5399 | ±0.0122 |\n| 3 vs 4 | 0.5062 | ±0.0104 |\n| 4 vs 5 | 0.5025 | ±0.0081 |\n\n**K\\* = 2**（最大 AUC > 0.60 的 depth）\n\n### JSD\n| 对比 | JSD |\n|------|-----|\n| 0 vs 1 | 0.5844 |\n| 1 vs 2 | 0.0718 |\n| 2 vs 3 | 0.0041 |\n| 3 vs 4 | 0.0027 |\n| 4 vs 5 | 0.0024 |\n\n### Ordinal Classification\n- MAE = 0.9901, Accuracy = 0.4407\n\n### GPU 状态\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 9021 MiB | 37% ← Pythia-6.9B nuc 实验 (PID 438362) |\n| 1 | 0 MiB | 0% |\n| 2 | 4035 MiB | 0% ← Pythia-1.4B rerun (PID 421716) |\n| 3 | 0 MiB | 0% |\n\n### 结论\nPythia-1.4B C4 rerun **pipeline 已完成**，所有 6 个 depth 文件 + features + 全部结果文件均已生成。PID 421716 仍驻留但 GPU 利用率 0%，可能处于空转状态。另外 GPU0 正在跑 Pythia-6.9B nucleus sampling 实验 (PID 438362)。无需恢复任何任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-pythia14b-rerun-status-check.md"
+}

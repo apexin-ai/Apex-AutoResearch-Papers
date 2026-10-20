@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp_020_pythia_decoding",
+  "project": "gen-depth-contamination",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T04:52:13.036Z",
+    "updated_at": "2026-05-16T14:41:18.612Z",
+    "hypothesis": "Pythia-1.4B 解码消融：4 个 decoding config (greedy/nuc p=0.9/T=0.7/T=1.2) 的 K* 是否一致？与 exp-003 (Qwen) 平行，验证 decoding 效应跨模型一致性。C4 5K, depth 0-5。",
+    "parent": "exp_003_decoding_ablation",
+    "server": "cqa1-22115",
+    "gpu": "cuda:2",
+    "account": "root",
+    "reproduce": {
+      "server": "cqa1-22115",
+      "gpu": "cuda:2",
+      "started_at": "2026-05-16T04:57:46.476Z"
+    },
+    "spec": {
+      "command": "nohup bash -c 'CUDA_VISIBLE_DEVICES=2 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache bash scripts/exp020_pythia_decoding.sh' > /tmp/exp020_pythia_decoding.log 2>&1 &",
+      "server": "cqa1-22115",
+      "data_path": "data_exp020_pythia_{greedy,nuc09,t07,t12}/",
+      "data_count": 20000,
+      "model_name": "EleutherAI/pythia-1.4b (fp16)",
+      "seed": 42,
+      "generation_mode": "continuation (4 decoding configs: greedy/nuc09/t07/t12)",
+      "pid": 14551,
+      "log_path": "/tmp/exp020_pythia_decoding.log",
+      "note": "Worker 误用 nohup 而非 submit_training_job，已补注册 cron 监控 (PID 14551)。原 PID 13076 已被 kill。"
+    },
+    "notes": "greedy 1v2 AUC=0.8838 调查完成：根因为 Pythia-1.4B greedy 级联重复坍塌（4-gram repeat rate: d0=0.01→d1=0.72→d2=0.81; TTR: d0=0.72→d1=0.19→d2=0.14）。hapax_ratio (d=1.06) 和 low_freq_ratio (d=1.03) 是 top 贡献特征。非 bug，参数正确，无数据泄漏。K*=2 不受影响。建议论文标注为 repetition-dominated regime。",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T14:41:18.753684+00:00",
+  "trigger": "update_registry"
+}

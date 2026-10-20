@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_008_retrain_chain",
+  "project": "gen-depth-contamination",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T19:26:02.931Z",
+    "updated_at": "2026-05-22T00:53:20.061Z",
+    "hypothesis": "Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32) retrain-chain K* ≤ prompt-chain K*=2. 每代独立 LoRA fine-tune 1 epoch on 前代输出，再用 fine-tuned model 生成下一代。验证 prompt-chain 是 conservative upper bound。C4 5K docs, depth 0-4, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-22T00:53:20.435717+00:00",
+  "trigger": "update_registry"
+}

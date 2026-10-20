@@ -1,0 +1,76 @@
+{
+  "exp_id": "exp_arXiv_qwen7b_crossscorer",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T02:13:55.051Z",
+    "updated_at": "2026-05-18T03:04:18.775Z",
+    "hypothesis": "arXiv cross-scorer (7B): Pythia-1.4B scorer 重评 Qwen-7B arXiv depth 0-5。D060 Wiki scorer confound 推导。关键 2v3 AUC ≥0.60 → K*=3 scorer-independent。",
+    "parent": "exp_wiki_scorer_confound",
+    "spec": {
+      "command": "run_pipeline.py --skip_generation",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "195291",
+      "log_path": "~/runs/gen-depth-contamination/exp_arXiv_qwen7b_crossscorer.log",
+      "submitted_at": "2026-05-18T02:44:45.812Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/exp_arXiv_qwen7b_crossscorer",
+      "data_count": 2200,
+      "model_name": "Qwen/Qwen2.5-7B",
+      "seed": 42,
+      "checkpoint_source": "exp_arXiv_qwen7b",
+      "eval_data": "arXiv Qwen-7B depth 0-5 from exp_arXiv_qwen7b",
+      "wall_clock_seconds": 1156.0,
+      "gpu_hours": 0.32,
+      "checkpoint_path": "results/exp_arXiv_qwen7b_crossscorer/"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T02:59:40.126Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "negative",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-18T02:18:26.248465+00:00"
+        },
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T02:59:43.427079+00:00"
+        }
+      ]
+    },
+    "notes": "失败原因: HF streaming 网络中断 (RuntimeError: Cannot send a request, as the client has been closed.) — 已知 AutoDL 问题。额外问题: pipeline 加载 C4 而非 arXiv 种子数据，arXiv cross-scorer 应复用已有 depth 文件仅重新评分。 | 已有成果: 无 | 建议: 用 Pythia scorer 对已有 arXiv depth files 重新评分，不走全 pipeline",
+    "metrics": {
+      "k_star": 2,
+      "auc_0v1": 0.9575,
+      "auc_1v2": 0.8171,
+      "auc_2v3": 0.5989,
+      "auc_3v4": 0.5417,
+      "auc_4v5": 0.5192,
+      "jsd_0v1": 0.137085,
+      "jsd_1v2": 0.059688,
+      "jsd_2v3": 0.013508,
+      "jsd_3v4": 0.009125,
+      "jsd_4v5": 0.006738,
+      "ordinal_mae": 0.9617,
+      "ordinal_accuracy": 0.4255
+    },
+    "checkpoint_path": "N/A (scoring-only experiment, no training checkpoint)",
+    "log_path": "~/runs/gen-depth-contamination/exp_arXiv_qwen7b_crossscorer.log",
+    "completed_at": "2026-05-18T03:04:01.839Z"
+  },
+  "timestamp": "2026-05-18T03:04:18.959938+00:00",
+  "trigger": "update_registry"
+}

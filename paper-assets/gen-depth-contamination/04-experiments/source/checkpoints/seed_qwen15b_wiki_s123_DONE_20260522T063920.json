@@ -1,0 +1,45 @@
+{
+  "exp_id": "seed_qwen15b_wiki_s123",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T00:34:09.969Z",
+    "updated_at": "2026-05-22T06:39:19.860Z",
+    "hypothesis": "Qwen-1.5B WikiText 的 K*=2 结论在 seed=123 下仍成立（原始 seed=42），验证 OBD 的 depth boundary 不依赖随机种子",
+    "spec": {
+      "command": "run_pipeline.py --generation_mode rewrite --top_p 0.95 --seed 123",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "3005",
+      "log_path": "/root/autodl-tmp/gen-depth-contamination/results/seed_qwen15b_wiki_s123/",
+      "submitted_at": "2026-05-22T03:58:25.151Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/seed_robustness/seed_qwen15b_wiki_s123",
+      "data_count": 5000,
+      "model_name": "Qwen2.5-1.5B-Instruct",
+      "seed": 123,
+      "metrics": {
+        "K_star": 3,
+        "auc_0v1": 0.9945,
+        "auc_1v2": 0.7059,
+        "auc_2v3": 0.6067,
+        "auc_3v4": 0.5531,
+        "auc_4v5": 0.5292
+      },
+      "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/results/seed_qwen15b_wiki_s123/",
+      "wall_clock_seconds": 9654.7,
+      "gpu_hours": 2.68
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-22T06:39:19.860Z"
+  },
+  "timestamp": "2026-05-22T06:39:20.179673+00:00",
+  "trigger": "update_registry"
+}

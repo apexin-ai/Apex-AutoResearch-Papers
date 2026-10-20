@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_pythia14b_c4_10k",
+  "project": "gen-depth-contamination",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:57:18.681Z",
+    "updated_at": "2026-05-22T11:57:39.914Z",
+    "hypothesis": "Pythia-1.4B C4 10K 样本实验验证更大样本量下 K* 稳定性，增加 robustness 覆盖（与原 5K 实验对比）"
+  },
+  "timestamp": "2026-05-22T11:57:40.224264+00:00",
+  "trigger": "update_registry"
+}

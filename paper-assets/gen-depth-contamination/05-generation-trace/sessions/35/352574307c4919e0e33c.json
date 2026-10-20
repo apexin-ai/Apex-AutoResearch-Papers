@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "352574307c4919e0e33c",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "check feature importance tex and pythia progress",
+  "task_key": "worker_check_feature_importance_tex_and_pythia_progress_20260521T200327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_feature_importance_tex_and_pythia_progress_20260521T200327_result.json",
+    "occurrence": 1,
+    "bytes": 982,
+    "sha256": "71220451e722ec3f217c1076a37760b97b16c786008973883d81ade12c793910"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### Part A: Feature Importance 数值审查\n\n**无需更新。** 论文中不包含任何具体 ΔAUC 数值。Feature importance 全部以排名形式表述（top-3 features、Spearman ρ ≥ 0.85），排序未变，无需修改。\n\n审查清单已写入 `artifacts/feature_importance_tex_audit.md`。\n\n### Part B: Pythia-6.9B Nucleus 进度\n\n| 指标 | 状态 |\n|------|------|\n| 进程 PID 443243 | 存活，已运行 5h24m |\n| depth_0 | ✅ 完成 (4.5MB) |\n| depth_1 | ✅ 完成 (4.8MB) |\n| depth_2 | ✅ 完成 (4.8MB) |\n| depth_3 | 🔄 1211/1250 batches (97%), ETA ~3-4 min |\n| depth_4 | ⏳ 未开始 (~1h50m) |\n| features.csv | 尚未生成（全部 depth 完成后提取） |\n| GPU 0 | 96% 利用率, 14111 MiB |\n\n**预计总剩余时间：~2小时**（depth 3 即将完成，depth 4 约需 1h50m）。\n\n注：日志中有 `padding_side='left'` 警告，不影响生成结果（continuation mode 下是标准行为）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-feature-importance-tex-and-pythia-progress.md"
+}

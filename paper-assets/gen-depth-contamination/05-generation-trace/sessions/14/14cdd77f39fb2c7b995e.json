@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "14cdd77f39fb2c7b995e",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "monitor unified scorer completion",
+  "task_key": "worker_monitor_unified_scorer_completion_20260520T073834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_unified_scorer_completion_20260520T073834_result.json",
+    "occurrence": 1,
+    "bytes": 1666,
+    "sha256": "f80e90c5d007aeb4136af6a459da3f0a398844a08697513a864ac96e4e37f00a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiment complete. Here are the results:\n\n```\n=== Unified Scorer Multi-Source Results ===\nGenerators: Qwen2.5-1.5B + Pythia-1.4B + LLaMA-8B\nUnified scorer: Qwen2.5-1.5B\nTotal time: 2082.6s (~35 min)\n\n--- Single-source K* (unified Qwen scorer) ---\n  qwen1b5:   K*=2   (0v1: 0.9873, 1v2: 0.6306, 2v3: 0.5579)\n  pythia1b4: K*=2   (0v1: 0.9979, 1v2: 0.8806, 2v3: 0.5379)\n  llama8b:   K*=1   (0v1: 0.9231, 1v2: 0.6077, 2v3: 0.5312)\n\n--- Multi-source mixed (no generator label) ---\n  0v1 AUC: 0.9663 [0.9621, 0.9703]\n  1v2 AUC: 0.7105 [0.6979, 0.7235]\n  2v3 AUC: 0.5190 [0.5050, 0.5328]\n  3v4 AUC: 0.5043 [0.4902, 0.5189]\n  4v5 AUC: 0.5201 [0.5062, 0.5342]\n  K*(θ=0.60): 2\n\n--- Multi-source mixed (with generator label) ---\n  0v1 AUC: 0.9769 [0.9738, 0.9800]\n  1v2 AUC: 0.7183 [0.7061, 0.7306]\n  2v3 AUC: 0.5165 [0.5025, 0.5304]\n  3v4 AUC: 0.5090 [0.4948, 0.5235]\n  4v5 AUC: 0.5238 [0.5097, 0.5380]\n  K*(θ=0.60): 2\n\n--- vs confounded results (v1) ---\n  confounded K* (v1, mixed): 2\n  unified K* (no label):     2\n  unified K* (with label):   2\n  v1 mixed 1v2 AUC: 0.7007 → unified 1v2 AUC: 0.7105\n  Conclusion: scorer confound did NOT affect K*\n```\n\n**Key findings:**\n- K\\* = 2 in all multi-source conditions, identical to the confounded v1 result\n- The unified scorer actually produces slightly *higher* 1v2 AUC (0.7105 vs 0.7007), indicating the confound was not inflating scores\n- LLaMA-8B has K\\*=1 when scored by Qwen (cross-family), vs K\\*=2 for in-family models, suggesting cross-family scoring is slightly harder\n- Adding generator labels barely changes results (K\\*=2 either way, AUCs shift <0.01)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-unified-scorer-completion.md"
+}

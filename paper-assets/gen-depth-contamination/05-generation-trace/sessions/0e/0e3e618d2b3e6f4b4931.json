@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e3e618d2b3e6f4b4931",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "research paper audit values",
+  "task_key": "worker_research_paper-audit-values_20260518T052213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper-audit-values_20260518T052213_result.json",
+    "occurrence": 1,
+    "bytes": 3342,
+    "sha256": "09a5b2d5b58bff033323e39a67e2b400b6a115fd64b03ff0924592fd830fb736"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集完毕。\n\n---\n\n## 1. Qwen-7B C4 1v2 AUC\n\n**文件不存在。** `results/exp_004_7b_crossscale/` 目录在服务器上不存在。\n\nexp-004 仅完成了 VRAM 评估（见本地 `artifacts/exp-004/report/vram_assessment.md`），当时 7B 模型尚未下载，实验被 VRAM 占用阻塞，从未执行。\n\n服务器上已有的 Qwen-7B 实验均非 C4 域：\n- `exp_arXiv_qwen7b`: 1v2 = **0.8347** (fold mean)\n- `exp_wiki_qwen7b`: 1v2 = **0.6108** (fold mean)\n- `exp_arXiv_qwen7b_crossscorer`: 1v2 = **0.8163** (bootstrap OOF)\n\n**结论：Qwen-7B × C4 实验从未完成，无数据。**\n\n---\n\n## 2. Pythia decoding 0v1\n\n文件目录：`/root/autodl-tmp/gen-depth-contamination/results_exp020_pythia_*/pairwise_auc.json`\n\n| 策略 | fold mean 0v1 |\n|------|--------------|\n| greedy | 0.9992 |\n| nucleus p=0.9 | 0.9948 |\n| temperature=0.7 | 0.9965 |\n| temperature=1.2 | 0.9933 |\n\nbootstrap OOF 0v1：**无。** exp020 目录下不存在 bootstrap_ci 文件，仅有 `pairwise_auc.json`、`jsd.json`、`ordinal_results.json`、`feature_importance.json`、`summary.txt`。\n\n**结论：Tab S10 中 0v1 用的是 fold mean。**\n\n---\n\n## 3. Wiki 0v1\n\n文件：`/root/autodl-tmp/gen-depth-contamination/results/exp_023_wiki/pairwise_auc.json`\n值：**0.9961** (fold mean)\n\n所有 wiki 实验 0v1 汇总：\n\n| 实验 | 0v1 |\n|------|-----|\n| exp_023_wiki (Qwen-1.5B gen) | 0.9961 |\n| exp_wiki_pythia | 0.9961 |\n| exp_wiki_olmo | 0.9961 |\n| exp_wiki_olmo_v2 | 0.9932 |\n| exp_wiki_pythia_v2 | 0.9750 |\n| exp_wiki_scorer_confound_1b5 | 0.9729 |\n| exp_wiki_qwen7b | 0.9673 |\n| exp_wiki_mistral7b | 0.9607 |\n| exp_wiki_scorer_confound | 0.9404 |\n| exp_wiki_llama8b | 0.9316 |\n\n**.985 来源：无法从现有文件中找到。** 没有任何 wiki 实验的 0v1 等于 0.985。最接近的是 exp_arXiv_qwen7b 的 0.983（但那是 arXiv 域）和 results_exp016_qwen_base 的 0.987（但那是 C4 域）。.985 可能是旧版实验结果、手动四舍五入、或论文中的笔误。\n\n---\n\n## 4. Wikipedia JSD λ\n\n文件：`/root/autodl-tmp/gen-depth-contamination/artifacts/jsd_decay_analysis.json`\n\n| 模型 × 域 | λ | a | c (floor) |\n|-----------|---|---|-----------|\n| Qwen-1.5B × Wiki | **2.9782** | 0.143721 | 0.004475 |\n| OLMo × Wiki | **6.2836** | 0.165744 | 0.003035 |\n| Pythia-1.4B × Wiki | **3.3062** | 0.074962 | 0.005102 |\n\nWikipedia 域平均 λ = **4.1893**\n\n另有 `results/exp_023_wiki/jsd.json` 的原始 JSD 值（Qwen-1.5B × Wiki）：\n- 0v1: 0.148199, 1v2: 0.011665, 2v3: 0.006087, 3v4: 0.004085, 4v5: 0.003764\n\n---\n\n## 5. Retrain-chain bootstrap_ci_v2\n\n文件（远程）：`/root/autodl-tmp/gen-depth-contamination/results/exp_008_retrain_chain/bootstrap_ci_v2.json`\n文件（本地）：`artifacts/exp_008_retrain_chain_v2/bootstrap_ci_results.md`\n\n两处数据一致：\n\n| Pair | OOF AUC | 95% CI | boot_std |\n|------|---------|--------|----------|\n| 0v1 | 0.9842 | [0.9823, 0.9860] | 0.0009 |\n| 1v2 | 0.9471 | [0.9432, 0.9509] | 0.0020 |\n| 2v3 | 0.8888 | [0.8832, 0.8943] | 0.0028 |\n| 3v4 | 0.7994 | [0.7920, 0.8067] | 0.0037 |\n\n备注：bootstrap OOF AUC（10,000 resamples, doc-level），Scorer = Qwen2.5-1.5B, K*=4（所有 CI lower > θ=0.60）。Permutation p < 0.001 for all pairs。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-audit-values.md"
+}

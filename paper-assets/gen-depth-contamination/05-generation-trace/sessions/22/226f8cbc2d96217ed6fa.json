@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "226f8cbc2d96217ed6fa",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis gemma27b bootstrap",
+  "task_key": "worker_analysis_gemma27b_bootstrap_20260524T084712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gemma27b_bootstrap_20260524T084712_result.json",
+    "occurrence": 1,
+    "bytes": 92,
+    "sha256": "b06a628fc2b788b7cbce44e18e45e4feefb7885e81805b472a3b0cfd7d166615"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor 已自然超时，无需处理——结果已在上面完整汇报。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gemma27b-bootstrap.md"
+}

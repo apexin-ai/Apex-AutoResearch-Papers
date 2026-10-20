@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "id": "0ff82d35ce7bdd7ed8c8",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "ops feat importance data audit and rerun",
+  "task_key": "worker_ops_feat_importance_data_audit_and_rerun_20260521T075702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_feat_importance_data_audit_and_rerun_20260521T075702.log",
+    "occurrence": 1,
+    "bytes": 2850008,
+    "sha256": "20332212a38686b1384e02d5e46145176c36bab17dccd8e132daabb4d7e8fca1"
+  },
+  "statistics": {
+    "messages": 843,
+    "user_turns": 2,
+    "tool_calls": 306,
+    "roles": {
+      "log": 1,
+      "system": 16,
+      "record": 1,
+      "assistant": 209,
+      "tool_call": 306,
+      "tool_result": 306,
+      "user": 2,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 265,
+      "chunks": [
+        {
+          "path": "0ff82d35ce7bdd7ed8c8-part-0001.json",
+          "message_count": 153
+        },
+        {
+          "path": "0ff82d35ce7bdd7ed8c8-part-0002.json",
+          "message_count": 112
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 305,
+      "chunks": [
+        {
+          "path": "0ff82d35ce7bdd7ed8c8-part-0002.json",
+          "message_count": 68
+        },
+        {
+          "path": "0ff82d35ce7bdd7ed8c8-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "0ff82d35ce7bdd7ed8c8-part-0004.json",
+          "message_count": 57
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 273,
+      "chunks": [
+        {
+          "path": "0ff82d35ce7bdd7ed8c8-part-0004.json",
+          "message_count": 102
+        },
+        {
+          "path": "0ff82d35ce7bdd7ed8c8-part-0005.json",
+          "message_count": 158
+        },
+        {
+          "path": "0ff82d35ce7bdd7ed8c8-part-0006.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-feat-importance-data-audit-and-rerun.md"
+}

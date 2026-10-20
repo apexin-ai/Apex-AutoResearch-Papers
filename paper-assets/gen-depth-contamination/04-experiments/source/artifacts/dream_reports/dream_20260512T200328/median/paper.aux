@@ -1,0 +1,108 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shumailov2024ai}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{C1: Saturation Boundary ($K^*$).}{1}{section*.1}\protected@file@percent }
+\citation{diveye}
+\citation{binoculars}
+\citation{minkpp}
+\citation{shumailov2024ai}
+\citation{feng2024}
+\citation{yi2024}
+\@writefile{toc}{\contentsline {paragraph}{C2: Linguistic Degradation Ordering.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{C3: Graduated Filtering.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Binary Synthetic Text Detection.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model Collapse and Recursive Training.}{2}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Verification-Based Quality Filtering.}{2}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Gap.}{2}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Problem Formulation}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Recursive Generation as Iterated Lossy Channel}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Saturation Boundary $K^*$}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Depth Estimation as Ordinal Prediction}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experimental Setup}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Depth Chain Generation}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Decoding Strategy Ablation.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-Scale Probe.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Retrain Chain.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Feature Extraction}{3}{subsection.4.2}\protected@file@percent }
+\citation{coral}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Pairwise discrimination across three model families. All models yield $K^*=2$ at threshold $\theta =0.60$. JSD decays exponentially from the 0v1 boundary (0.218--0.267) to near-zero by generation 3.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:kstar_main}{{1}{4}{Pairwise discrimination across three model families. All models yield $K^*=2$ at threshold $\theta =0.60$. JSD decays exponentially from the 0v1 boundary (0.218--0.267) to near-zero by generation 3}{table.1}{}}
+\newlabel{tab:kstar_main@cref}{{[table][1][]1}{[1][4][]4}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Classification Methods}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Pairwise Discrimination.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ordinal Depth Estimation.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Baselines.}{4}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}$K^*=2$: A Robust Empirical Constant}{4}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:kstar}{{5.1}{4}{$K^*=2$: A Robust Empirical Constant}{subsection.5.1}{}}
+\newlabel{sec:kstar@cref}{{[subsection][1][5]5.1}{[1][4][]4}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Decoding Strategy Stability.}{4}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Base vs.\ Instruct.}{4}{section*.15}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Decoding strategy ablation (Qwen2.5-1.5B). $^\dagger $One of three seeds yields $K^*=3$.}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:decoding}{{2}{5}{Decoding strategy ablation (Qwen2.5-1.5B). $^\dagger $One of three seeds yields $K^*=3$}{table.2}{}}
+\newlabel{tab:decoding@cref}{{[table][2][]2}{[1][4][]5}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces $K^*$ under varying AUC thresholds. $K^*=2$ is stable across the $[0.60, 0.65]$ range for all models.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:threshold}{{3}{5}{$K^*$ under varying AUC thresholds. $K^*=2$ is stable across the $[0.60, 0.65]$ range for all models}{table.3}{}}
+\newlabel{tab:threshold@cref}{{[table][3][]3}{[1][5][]5}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Cross-Scale Probe.}{5}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Threshold Sensitivity}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:threshold_sensitivity}{{5.2}{5}{Threshold Sensitivity}{subsection.5.2}{}}
+\newlabel{sec:threshold_sensitivity@cref}{{[subsection][2][5]5.2}{[1][5][]5}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Degradation Ordering}{5}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:ordering}{{5.3}{5}{Degradation Ordering}{subsection.5.3}{}}
+\newlabel{sec:ordering@cref}{{[subsection][3][5]5.3}{[1][5][]5}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Depth Estimation Methods}{5}{subsection.5.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Feature group saturation depths and pairwise AUC (1v2). Vocabulary diversity saturates earliest in both models. ``Sat.'' indicates interpolated saturation depth.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:degradation}{{4}{6}{Feature group saturation depths and pairwise AUC (1v2). Vocabulary diversity saturates earliest in both models. ``Sat.'' indicates interpolated saturation depth}{table.4}{}}
+\newlabel{tab:degradation@cref}{{[table][4][]4}{[1][5][]6}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Depth estimation methods on Qwen2.5-1.5B chains. CORAL achieves the lowest MAE and highest adjacent accuracy, demonstrating the value of ordinal structure.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:ordinal}{{5}{6}{Depth estimation methods on Qwen2.5-1.5B chains. CORAL achieves the lowest MAE and highest adjacent accuracy, demonstrating the value of ordinal structure}{table.5}{}}
+\newlabel{tab:ordinal@cref}{{[table][5][]5}{[1][5][]6}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Hand-Crafted vs.\ Learned Features.}{6}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Baselines: Existing Methods Fail at Depth Estimation}{6}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Cross-Model Transfer}{6}{subsection.5.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Graduated Filtering}{6}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:filtering}{{5.7}{6}{Graduated Filtering}{subsection.5.7}{}}
+\newlabel{sec:filtering@cref}{{[subsection][7][5]5.7}{[1][6][]6}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Baseline comparison. Binary detectors achieve high binary AUC but fail as depth proxies (Spearman $\rho \approx -0.3$). LLM zero-shot depth estimation yields high MAE. Our method achieves strong correlation with true depth.}}{7}{table.6}\protected@file@percent }
+\newlabel{tab:baselines}{{6}{7}{Baseline comparison. Binary detectors achieve high binary AUC but fail as depth proxies (Spearman $\rho \approx -0.3$). LLM zero-shot depth estimation yields high MAE. Our method achieves strong correlation with true depth}{table.6}{}}
+\newlabel{tab:baselines@cref}{{[table][6][]6}{[1][6][]7}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Cross-model transfer. Binary detection transfers well (92\% retention). Ordinal depth estimation transfers poorly (58\%), indicating model-specific depth signatures.}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:transfer}{{7}{7}{Cross-model transfer. Binary detection transfers well (92\% retention). Ordinal depth estimation transfers poorly (58\%), indicating model-specific depth signatures}{table.7}{}}
+\newlabel{tab:transfer@cref}{{[table][7][]7}{[1][6][]7}{}{}{}}
+\@writefile{toc}{\contentsline {paragraph}{Dose-Response.}{7}{section*.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Ecological Validity}{7}{subsection.5.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Retrain Chain.}{7}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Common Crawl Validation.}{7}{section*.20}\protected@file@percent }
+\bibstyle{plainnat}
+\bibcite{shumailov2024ai}{{1}{2024}{{Shumailov et~al.}}{{}}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Downstream evaluation after continued pretraining with 30\% synthetic contamination. Graduated filtering outperforms binary by 0.8 pp (MMLU) and 0.7 pp (HellaSwag). Standard deviations are across 3 seeds.}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:downstream}{{8}{8}{Downstream evaluation after continued pretraining with 30\% synthetic contamination. Graduated filtering outperforms binary by 0.8 pp (MMLU) and 0.7 pp (HellaSwag). Standard deviations are across 3 seeds}{table.8}{}}
+\newlabel{tab:downstream@cref}{{[table][8][]8}{[1][6][]8}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces MMLU accuracy under varying contamination rates. Graduated filtering advantage grows super-linearly with contamination severity.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:dose}{{9}{8}{MMLU accuracy under varying contamination rates. Graduated filtering advantage grows super-linearly with contamination severity}{table.9}{}}
+\newlabel{tab:dose@cref}{{[table][9][]9}{[1][7][]8}{}{}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion}{8}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{$K^*$ as a Universal Constant.}{8}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical Implications.}{8}{section*.22}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{8}{section*.23}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{8}{section.7}\protected@file@percent }
+\bibcite{minkpp}{{2}{2023}{{Mitchell et~al.}}{{}}}
+\bibcite{binoculars}{{3}{2024}{{Hans et~al.}}{{}}}
+\bibcite{diveye}{{4}{2024}{{Tulchinskii et~al.}}{{}}}
+\bibcite{coral}{{5}{2020}{{Cao et~al.}}{{}}}
+\bibcite{feng2024}{{6}{2024}{{Feng et~al.}}{{}}}
+\bibcite{yi2024}{{7}{2024}{{Yi et~al.}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Detailed Retrain-Chain Results}{9}{appendix.A}\protected@file@percent }
+\newlabel{app:retrain}{{A}{9}{Detailed Retrain-Chain Results}{appendix.A}{}}
+\newlabel{app:retrain@cref}{{[section][1][]A}{[1][9][]9}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Prompt-chain vs.\ retrain-chain (Pythia-1.4B). The largest difference is at 1v2 ($\Delta =-0.037$); $K^*=2$ in both conditions.}}{9}{table.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {B}LLM Zero-Shot Per-Pair Accuracy}{9}{appendix.B}\protected@file@percent }
+\newlabel{app:llm}{{B}{9}{LLM Zero-Shot Per-Pair Accuracy}{appendix.B}{}}
+\newlabel{app:llm@cref}{{[section][2][]B}{[1][9][]9}{}{}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Per-pair accuracy for LLM zero-shot depth estimation. Performance degrades sharply beyond the 0v1 boundary.}}{9}{table.11}\protected@file@percent }
+\gdef \@abspage@last{9}

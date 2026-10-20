@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_code_multi_source",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:30:38.921Z",
+    "updated_at": "2026-05-20T10:30:50.808Z",
+    "hypothesis": "Code domain multi-source OBD K* preserves single-source ceiling K*=2 when mixing 3 generators (Qwen-7B, LLaMA-8B, Mistral-7B) with unified Qwen2.5-1.5B scorer."
+  },
+  "timestamp": "2026-05-20T10:30:51.094539+00:00",
+  "trigger": "update_registry"
+}

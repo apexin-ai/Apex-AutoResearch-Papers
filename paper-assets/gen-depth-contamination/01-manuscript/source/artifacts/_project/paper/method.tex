@@ -1,0 +1,183 @@
+\section{Method}
+\label{sec:method}
+
+% === Pipeline figure placeholder ===
+% \begin{figure}[t]
+% \centering
+% \includegraphics[width=\columnwidth]{figures/pipeline.pdf}
+% \caption{Overview of the generational depth estimation pipeline. Seed documents from C4 are recursively passed through a generation operator $G_\delta$ to produce a depth chain $X \to Y_1 \to \cdots \to Y_K$. Statistical features extracted by an external scorer model are fed to the OBD-LightGBM classifier for depth prediction.}
+% \label{fig:pipeline}
+% \end{figure}
+
+\subsection{Problem Formulation}
+\label{sec:formulation}
+
+We model recursive text generation as an iterated lossy channel.
+Let $X$ denote an original human-written document drawn from a source distribution $\mathcal{D}$.
+A generation operator $G_\delta = \text{LLM} + \delta$, parameterized by a decoding strategy $\delta$ (e.g., nucleus sampling with top-$p$ and temperature $T$), produces successive generations:
+\begin{equation}
+  X \to Y_1 \to Y_2 \to \cdots \to Y_K, \quad Y_k = G_\delta(Y_{k-1}),
+  \label{eq:markov}
+\end{equation}
+where $Y_0 \triangleq X$.
+The sequence $\{Y_k\}_{k=0}^K$ forms a Markov chain, since each generation depends only on its immediate predecessor.
+
+By the Data Processing Inequality (DPI), mutual information between the original document and successive generations is monotonically non-increasing:
+\begin{equation}
+  I(X; Y_1) \geq I(X; Y_2) \geq \cdots \geq 0.
+  \label{eq:dpi}
+\end{equation}
+Since mutual information is bounded below by zero, this monotone sequence converges, implying that $I(Y_k; Y_{k+1}) \to 0$ as $k$ grows.
+There exists a finite $\Ktheory$ beyond which the channel retains negligible information about generational identity---the \emph{information-theoretic discrimination boundary}.
+
+$\Ktheory$ is an upper bound on discriminability in principle.
+In practice, we measure an \emph{operational} lower bound $\Kempirical$ via a classifier's ability to distinguish adjacent generations:
+\begin{equation}
+  \Kempirical = \max\{k : \text{CI}_{\text{lower}}^{95\%}(\auc_{k,k+1}) > \theta\},
+  \label{eq:kstar}
+\end{equation}
+where $\auc_{k,k+1}$ is the pairwise area under the ROC curve for distinguishing depth $k$ from $k{+}1$, $\text{CI}_{\text{lower}}^{95\%}$ denotes the lower bound of a bootstrap 95\% confidence interval (1{,}000 resamples), and $\theta$ is an operational threshold justified in \S\ref{sec:kstar_operational}.
+Since any specific classifier can only recover a subset of the information-theoretically available signal, $\Kempirical \leq \Ktheory$ by construction.
+
+\subsection{Feature Extraction}
+\label{sec:features}
+
+We characterize each document with a 15-dimensional statistical feature vector, organized into five groups (Table~\ref{tab:features}).
+All features are computed from token-level surprisal values and frequency statistics obtained via an external scorer model on the tokenized text.
+
+\begin{table}[t]
+\centering
+\small
+\caption{The 15-dimensional feature set for generational depth estimation.}
+\label{tab:features}
+\begin{tabular}{lll}
+\toprule
+\textbf{Group} & \textbf{Feature} & \textbf{Description} \\
+\midrule
+\multirow{4}{*}{\parbox{2.2cm}{Surprisal\\moments}}
+  & \texttt{surp\_mean}      & Mean token surprisal \\
+  & \texttt{surp\_std}       & Std.\ dev.\ of token surprisal \\
+  & \texttt{surp\_skew}      & Skewness of surprisal dist. \\
+  & \texttt{surp\_kurtosis}  & Kurtosis of surprisal dist. \\
+\midrule
+\multirow{4}{*}{\parbox{2.2cm}{Surprisal\\derivatives}}
+  & \texttt{surp\_d1\_mean}  & Mean 1st-order surprisal diff. \\
+  & \texttt{surp\_d1\_std}   & Std.\ dev.\ of 1st-order diff. \\
+  & \texttt{surp\_d2\_mean}  & Mean 2nd-order surprisal diff. \\
+  & \texttt{surp\_d2\_std}   & Std.\ dev.\ of 2nd-order diff. \\
+\midrule
+\multirow{3}{*}{\parbox{2.2cm}{Frequency\\diversity}}
+  & \texttt{freq\_entropy}   & Token frequency entropy \\
+  & \texttt{freq\_kurtosis}  & Kurtosis of token frequencies \\
+  & \texttt{hapax\_ratio}    & Fraction of hapax legomena \\
+\midrule
+\multirow{2}{*}{\parbox{2.2cm}{Tail-\\thinning}}
+  & \texttt{tail\_ratio}     & Token mass below 10th pctl. \\
+  & \texttt{top10\_mass}     & Prob.\ mass of top-10 tokens \\
+\midrule
+\multirow{2}{*}{\parbox{2.2cm}{Self-\\similarity}}
+  & \texttt{self\_bleu}       & Intra-document $n$-gram overlap \\
+  & \texttt{repetition\_rate} & Fraction of repeated $n$-grams \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The first two groups capture the distribution and dynamics of token-level surprisal: moments summarize the shape of the surprisal distribution, while derivatives measure its local variability across token positions.
+Frequency diversity features quantify lexical richness.
+Tail-thinning features capture the well-documented phenomenon whereby recursive generation concentrates probability mass on high-frequency tokens, thinning the distribution tail \cite{shumailov2024collapse, dohmatob2024model}.
+Self-similarity features detect the increased repetitiveness characteristic of deeper generations.
+
+We use hand-crafted statistical features rather than learned representations for three reasons: (1) they are directly interpretable, enabling degradation ordering analysis across model families; (2) they transfer across generators without retraining the feature extractor; and (3) they permit attribution of discriminative power to specific text properties, which is essential for understanding \emph{how} the depth signal degrades.
+
+\subsection{Ordinal Binary Decomposition Classifier}
+\label{sec:classifier}
+
+Generational depth is inherently ordinal: depth~1 is closer to depth~0 than depth~3 is.
+We exploit this structure via \emph{Ordinal Binary Decomposition} (OBD), which decomposes a $(K{+}1)$-class ordinal classification problem into $K$ cumulative binary sub-classifiers.
+The $k$-th sub-classifier estimates:
+\begin{equation}
+  P(\text{depth} \leq k \mid \mathbf{x}), \quad k = 0, 1, \ldots, K{-}1,
+\end{equation}
+where $\mathbf{x} \in \mathbb{R}^{15}$ is the feature vector.
+Each sub-classifier is an independent LightGBM model.
+The predicted depth is the smallest $k$ for which the cumulative probability exceeds 0.5:
+\begin{equation}
+  \hat{d}(\mathbf{x}) = \min\{k : P(\text{depth} \leq k \mid \mathbf{x}) > 0.5\}.
+\end{equation}
+
+We compared OBD-LightGBM against ordinal logistic regression (LogisticAT).
+OBD-LightGBM achieves superior pairwise discrimination: mean pairwise $\auc$ of 0.6095 versus 0.4883 for ordinal logistic regression, averaged across the three families.
+The low MAE of ordinal logistic regression stems from collapsing predictions toward central depths rather than improved discrimination---a pathology that renders it unsuitable when pairwise depth discriminability is the primary objective.
+
+\subsection{Operationalizing $\Kstar$}
+\label{sec:kstar_operational}
+
+We set the operational threshold at $\theta = 0.60$.
+This choice is grounded in the permutation test null distribution: across all model configurations, the 95th percentile of the null $\auc$ (obtained from 500 random label permutations) falls below 0.55.
+A threshold of $\theta = 0.60$ therefore requires classification performance that is statistically significantly above chance at the $\alpha = 0.05$ level.
+
+Uncertainty is quantified via bootstrap resampling (1{,}000 resamples) of $\auc_{k,k+1}$ for each adjacent depth pair.
+$\Kempirical$ is defined as the maximum depth $k$ for which $\text{CI}_{\text{lower}}^{95\%}(\auc_{k,k+1}) > \theta$ (Eq.~\ref{eq:kstar}).
+
+We examine threshold sensitivity at $\theta \in \{0.55, 0.60, 0.65, 0.70\}$.
+At $\theta = 0.60$, $\Kempirical = 2$ holds across all four model configurations, with all permutation $p$-values for depth pair $1$ vs.\ $2$ at $p = 0.002$.
+At the more lenient $\theta = 0.55$, $\Kempirical$ ranges from 2 to 3 depending on the configuration.
+At the stricter $\theta = 0.65$, only the rewrite configuration retains $\Kempirical = 2$; continuation-mode configurations yield $\Kempirical = 1$.
+At $\theta = 0.70$, $\Kempirical = 1$ universally.
+This sensitivity profile confirms that $\Kempirical = 2$ is robust at our chosen threshold while remaining appropriately responsive to more stringent criteria.
+
+\subsection{Experimental Setup}
+\label{sec:experimental_setup}
+
+We evaluate four model configurations spanning three model families and two generation modes (Table~\ref{tab:setup}).
+
+\begin{table}[t]
+\centering
+\small
+\caption{Experimental configurations. All use the same seed corpus and evaluation protocol (5-fold stratified cross-validation, $\auc$ as primary metric).}
+\label{tab:setup}
+\begin{tabular}{llcccc}
+\toprule
+\textbf{Config} & \textbf{Model} & \textbf{Mode} & \textbf{Decoding} & $N$ & \textbf{Depth} \\
+\midrule
+Qwen-rw   & Qwen2.5-1.5B-Instruct & Rewrite      & $p{=}0.95$, $T{=}1.0$ & 5{,}000 & 0--5 \\
+Qwen-cont & Qwen2.5-1.5B-Instruct & Continuation & $p{=}0.95$, $T{=}1.0$ & 5{,}000 & 0--5 \\
+Pythia    & Pythia-1.4B            & Continuation & $p{=}0.95$, $T{=}1.0$ & 5{,}000 & 0--5 \\
+OLMo      & OLMo-1B               & Continuation & $p{=}0.95$, $T{=}1.0$ & 5{,}000 & 0--5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Seed corpus.}
+We sample 5{,}000 documents from the C4 validation split, each truncated to 256 tokens, providing a controlled and reproducible starting point.
+
+\paragraph{Depth chain.}
+Each seed document is recursively passed through the generation operator for $K = 5$ iterations, producing depths 0 (original) through 5.
+This yields 30{,}000 documents per configuration (5{,}000 seeds $\times$ 6 depth levels).
+
+\paragraph{Decoding.}
+All configurations use nucleus sampling with $p = 0.95$ and temperature $T = 1.0$, which we treat as the standard decoding condition.
+The effect of alternative decoding strategies (greedy, lower temperature, different $p$) on $\Kempirical$ is examined in a separate ablation (\S\ref{sec:experiments}).
+
+\paragraph{Evaluation.}
+We report pairwise $\auc$ for each adjacent depth pair $(k, k{+}1)$ under 5-fold stratified cross-validation, with bootstrap 95\% confidence intervals.
+Ordinal MAE and Kendall's $\tau_b$ are reported as secondary metrics.
+
+\subsection{Generation Mode Control}
+\label{sec:generation_mode}
+
+We investigate two generation modes that capture distinct recursive contamination scenarios:
+
+\paragraph{Continuation.}
+The seed document is truncated to its first 128 tokens, and the LLM generates a continuation to 256 tokens.
+This simulates scenarios where partial human text is extended by a model, a common pattern in collaborative writing and web content generation.
+
+\paragraph{Rewrite.}
+The LLM receives the instruction ``Rewrite the following text while preserving its meaning'' and generates a full paraphrase.
+This simulates content rewriting pipelines where existing text is rephrased at scale.
+
+We designate continuation as the \emph{canonical condition} for cross-model comparisons, based on three empirical findings from the cross-model transfer analysis.
+First, classifiers trained on continuation-mode data retain 80--92\% accuracy when transferred across model families, versus only 61--63\% for rewrite-mode classifiers.
+Second, the higher pairwise $\auc$ observed in rewrite mode ($\auc_{1,2} = 0.6957$ vs.\ $0.6114$ for continuation on Qwen) reflects instruction-following style artifacts rather than a stronger intrinsic depth signal, as evidenced by the poor cross-model transfer.
+Third, the asymmetric transfer---continuation${\to}$rewrite retains 89\% performance versus rewrite${\to}$continuation at 82\%---indicates that continuation-mode features form a generalizable subset of what rewrite-mode classifiers exploit.
+We therefore report continuation-mode results as primary and treat rewrite-mode results as an upper-bound ablation that quantifies the effect of mode-specific signal amplification.

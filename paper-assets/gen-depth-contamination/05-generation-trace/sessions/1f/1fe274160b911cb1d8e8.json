@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1fe274160b911cb1d8e8",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "review full pass round1",
+  "task_key": "worker_review_full-pass-round1_20260514T064658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_full-pass-round1_20260514T064658_result.json",
+    "occurrence": 1,
+    "bytes": 915,
+    "sha256": "0672378064dadc464d39f0da6dd18ddb32f9b70ccb7353acf2a8639172954e52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审查完成。**0 Critical / 5 Warning / 7 Info**。\n\n关键发现：\n\n**Warning（需处理）：**\n- **W1** `main.tex:34` — Abstract \"80-92% across generators\" 缺少 continuation-mode 限定，Qwen-rewrite→others 仅 61-63%\n- **W2** `main.tex:34` — `$\\Kstar=2$` 应为 `$\\Kempirical=2$`，notation 改动未完全应用\n- **W3** `discussion.tex:135-136` — Graduated filtering 段落是可见 placeholder\n- **W4** `discussion.tex:29-35` — 神经探针数据来自 registry 标记为 FAILED 的 exp_015（单数据集，registry 注明\"不可用于论文\"）\n- **W5** `discussion.tex:110-113` — θ-sensitivity 段落在 decoding 和 model-mode 之间无过渡切换\n\n所有定量数字与 registry 一致，28 个 cite key 全部匹配，无 `??` 交叉引用，无裸 AUC，K\\* notation 除 W2 外一致。完整报告在 `artifacts/drafts/reviewer_pass_round1.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-full-pass-round1.md"
+}

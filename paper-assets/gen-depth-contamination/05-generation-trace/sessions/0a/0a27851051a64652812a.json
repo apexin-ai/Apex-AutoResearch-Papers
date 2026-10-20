@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a27851051a64652812a",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops extract r22 raw data",
+  "task_key": "worker_ops_extract_r22_raw_data_20260520T164246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_extract_r22_raw_data_20260520T164246_result.json",
+    "occurrence": 1,
+    "bytes": 1260,
+    "sha256": "76c145459b4955990b1809116232b6b7120c790c935521e41fdc308c1c19e4af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整数据已提取并写入 `artifacts/round22_raw_data_extraction.md`。\n\n---\n\n## 摘要\n\n### T4: Permutation test p-values\n- **所有 boundary pair 的 perm_p 均为 0.0001** (= 0/10000 permutations 超过观测值), 包括 exp016, exp018, exp019, exp024, exp025, exp027, exp_gemma2b, 和全部 crossscorer configs\n- 例外: retrain-chain 的 permutation_test.json 用不同编码, 其中 exp_008 3v4 p=0.304, exp_olmo 2v3 p=0.998 (这些是 K* 之后的第一个下降对, 不是 boundary pair)\n- **exp_gemma2b** 的 3v4 (p=0.2919) 和 4v5 (p=0.3418) 不显著, 符合预期 (K*=1)\n\n### T3: PELT changepoint\n- 37 configs 完整列表已提取。18/37 (48.6%) K*_OBD = K*_PELT; 19/37 不一致\n- PELT 系统性偏保守 (K*_PELT ≤ K*_OBD), 差值主要为 1\n\n### T2: Fold-level AUC\n- 所有 configs 的 1v2 和 2v3 五折 AUC 均已提取 (从 pairwise_auc.json 和 bootstrap_ci.json)\n- 数据可直接用于 Youden's J optimal θ 计算\n\n### T6: Generator identity AUC\n- **不存在独立的 generator identity classification AUC 指标**\n- multi_source 实验仅测量加入 generator label 后 depth classifier 的 AUC 增量\n- 增量极小: 平均 Δ(1v2) ≈ +0.01; K* 在所有 domain/config 中未因此改变"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-extract-r22-raw-data.md"
+}

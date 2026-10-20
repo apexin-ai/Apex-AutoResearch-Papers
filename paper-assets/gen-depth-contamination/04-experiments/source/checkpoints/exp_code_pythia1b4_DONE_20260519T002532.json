@@ -1,0 +1,110 @@
+{
+  "exp_id": "exp_code_pythia1b4",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:49:01.762Z",
+    "updated_at": "2026-05-19T00:25:32.688Z",
+    "hypothesis": "Pythia-1.4B on Code domain (Python/CodeSearchNet) will show K*=2 consistent with Qwen code domain results, indicating generalization depth saturation is model-independent for code data.",
+    "parent": "exp_code_qwen1b5",
+    "spec": {
+      "command": "cd /root/autodl-tmp/gen-depth-contamination && source /root/miniconda3/bin/activate && python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_code_pythia1b4 --results_dir results/exp_code_pythia1b4 --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B",
+      "server": "cqa1-22115",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/exp_code_pythia1b4",
+      "data_count": 5000,
+      "model_name": "Pythia-1.4B",
+      "seed": 42,
+      "checkpoint_source": "exp_code_qwen1b5",
+      "eval_data": "CodeSearchNet Python 5000 docs"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_code_pythia1b4/",
+    "log_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_code_pythia1b4/train.log",
+    "metrics": {
+      "k_star": 1,
+      "theta": 0.6,
+      "pairwise_auc": {
+        "0v1": {
+          "mean": 0.9592,
+          "std": 0.0036,
+          "folds": [
+            0.9576,
+            0.9576,
+            0.9657,
+            0.96,
+            0.9552
+          ]
+        },
+        "1v2": {
+          "mean": 0.5983,
+          "std": 0.005,
+          "folds": [
+            0.601,
+            0.5884,
+            0.6,
+            0.5997,
+            0.6024
+          ]
+        },
+        "2v3": {
+          "mean": 0.5215,
+          "std": 0.0128,
+          "folds": [
+            0.5236,
+            0.5124,
+            0.5311,
+            0.5024,
+            0.5381
+          ]
+        },
+        "3v4": {
+          "mean": 0.5152,
+          "std": 0.012,
+          "folds": [
+            0.4981,
+            0.5327,
+            0.5092,
+            0.5123,
+            0.5238
+          ]
+        },
+        "4v5": {
+          "mean": 0.5046,
+          "std": 0.0137,
+          "folds": [
+            0.4983,
+            0.4822,
+            0.5074,
+            0.5224,
+            0.5128
+          ]
+        }
+      },
+      "jsd": {
+        "0v1": 0.070173,
+        "1v2": 0.008211,
+        "2v3": 0.003674,
+        "3v4": 0.002902,
+        "4v5": 0.002685
+      },
+      "ordinal": {
+        "mae": 1.3268,
+        "accuracy": 0.3357
+      },
+      "top_features": [
+        "freq_entropy",
+        "surp_d1_mean",
+        "surp_d2_mean",
+        "surp_mean",
+        "surp_d1_skew"
+      ],
+      "features_csv": "/root/autodl-tmp/gen-depth-contamination/data/exp_code_pythia1b4/features.csv"
+    },
+    "completed_at": "2026-05-19T00:25:32.688Z"
+  },
+  "timestamp": "2026-05-19T00:25:32.910924+00:00",
+  "trigger": "update_registry"
+}

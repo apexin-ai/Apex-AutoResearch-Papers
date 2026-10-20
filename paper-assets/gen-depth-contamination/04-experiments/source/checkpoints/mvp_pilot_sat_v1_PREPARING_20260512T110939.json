@@ -1,0 +1,14 @@
+{
+  "exp_id": "mvp_pilot_sat_v1",
+  "project": "gen-depth-contamination",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T11:09:39.193Z",
+    "updated_at": "2026-05-12T11:09:39.193Z"
+  },
+  "timestamp": "2026-05-12T11:09:39.202758+00:00",
+  "trigger": "update_registry"
+}

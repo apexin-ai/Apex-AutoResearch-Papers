@@ -1,0 +1,9 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We introduced $\Kempirical$, the empirical discrimination boundary for recursive synthetic text, and measured it across 10 prompt-chain configurations spanning six architecture families (1B--8B).
+$\Kempirical \leq 2$ holds universally for web text: a single LLM pass erases enough statistical signal that second-generation text becomes indistinguishable from all subsequent depths.
+arXiv reaches $\Kempirical{=}3$ across four families, indicating domain structure rather than model architecture determines the boundary.
+Binary filtering halves the MMLU gap under extreme contamination (${\sim}$83\% synthetic), while graduated depth weighting offers no benefit beyond what $\Kempirical$ predicts.
+The 15-dimensional feature set transfers at 80--92\% retention ($\rho > 0.90$) without access to the generating model.
+Neural probes extend $\Kempirical$ by one level; extending to larger and RLHF-aligned models remains open.

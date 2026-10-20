@@ -1,0 +1,75 @@
+\section{Method}
+\label{sec:method}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/pipeline.pdf}
+\caption{Generational depth estimation pipeline. Seed documents are recursively passed through a generation operator $G_\delta$ to produce a depth chain. Statistical features are fed to the OBD-LightGBM classifier for depth prediction.}
+\label{fig:pipeline}
+\end{figure*}
+
+\subsection{Problem Formulation}
+\label{sec:formulation}
+
+A generation operator $G_\delta$ (LLM + decoding strategy $\delta$) produces successive generations $X \to Y_1 \to \cdots \to Y_K$, where $Y_k = G_\delta(Y_{k-1})$ and $Y_0 \triangleq X$ (Figure~\ref{fig:pipeline}).
+This sequence forms a Markov chain.
+By the Data Processing Inequality, $I(X; Y_1) \geq I(X; Y_2) \geq \cdots \geq 0$: mutual information with the seed text degrades monotonically.
+Together with Markov chain convergence, this provides heuristic motivation for expecting $\auc_{k-1,k}$ to decrease with $k$, though AUC and mutual information are not formally equivalent; the actual saturation depth must therefore be measured empirically.
+
+We define the operational lower bound:
+\begin{equation}
+  \Kempirical = \max\!\bigl\{k \!\geq\! 1 : \auc_{j-1,j} > \theta,\;\forall\, j \!\leq\! k\bigr\},
+  \label{eq:kstar}
+\end{equation}
+which requires all pairs up to depth $k$ to exceed the threshold (the $\forall j$ constraint is naturally satisfied because $\auc_{k-1,k}$ decreases monotonically above $\theta$ across all tested configurations; Table~\ref{tab:kstar_ci}).
+The theoretical upper bound $\Ktheory$ (the true maximum discriminable depth given optimal features) is not directly estimated in this work; $\Kempirical$ provides a feature-set-specific lower bound on $\Ktheory$.
+Here $\auc_{k-1,k}$ is the point-estimate pairwise AUC and $\theta = 0.60$ is a small-effect-size threshold (Cohen's $h \approx 0.20$\footnote{$h = 2\arcsin\!\sqrt{0.60} - 2\arcsin\!\sqrt{0.50} \approx 0.2014$, a ``small'' effect size by Cohen's (1988) convention.}; justified below).
+Bootstrap 95\% CIs (1{,}000 resamples) provide uncertainty quantification: we verify that boundary-pair CI lower bounds exceed $\theta$ and non-boundary-pair CI upper bounds fall below $\theta$ (Section~\ref{sec:kstar_boundary}).
+
+\paragraph{Threshold justification.}
+$\theta{=}0.60$ is supported by three independent lines of evidence.
+First, it corresponds to Cohen's $h \approx 0.20$, a conventional small-effect-size boundary.
+Second, a 10{,}000-iteration permutation test yields a 95th-percentile null of ${<}\,0.55$ and $p < 0.002$ for all boundary comparisons, placing $\theta{=}0.60$ well above the empirical null.
+Third, as post-hoc confirmatory evidence, the conclusion $\Kempirical{=}2$ is insensitive to the exact threshold: 1v2 AUC values cluster at $0.61$--$0.70$ while 2v3 values cluster at $0.55$--$0.59$, creating a ${\sim}$5--11\,pp discontinuity that any $\theta \in [0.55, 0.65]$ would separate (Figure~\ref{fig:kstar_theta}; Appendix~\ref{sec:extended_limitations}).
+Only at extremes does $\Kempirical$ shift: $\theta{=}0.55$ yields $\Kempirical{=}3$ for two Qwen configurations; $\theta{=}0.70$ yields $\Kempirical{=}1$ across all configurations.
+The downstream filtering evaluation (Section~\ref{sec:filtering}) uses the OBD classifier without re-optimizing $\theta$, avoiding circularity.
+
+\subsection{Features and Classifier}
+\label{sec:features}
+
+Each document is characterized by a 15-dimensional feature vector spanning four groups: \emph{surprisal moments} (mean, std, skewness, kurtosis; 4~dims), \emph{surprisal derivatives} (mean and std of first- and second-order differences, plus first-order skewness; 5~dims), \emph{vocabulary diversity} (type-token ratio, hapax legomena ratio, self-BLEU; 3~dims), and \emph{frequency tail statistics} (frequency kurtosis, entropy, rare token fraction; 3~dims).
+All features are computed from token-level surprisal values via an external scorer model (full definitions in Table~\ref{tab:s5_features}, Appendix).
+Self-BLEU is computed within each CV fold using only same-fold, same-depth reference samples to prevent leakage; it ranks \#1 in 1/8 conditions (greedy decoding) but is absent from the top-3 in all 7 others.
+Removing self-BLEU reduces mean $\auc_{1v2}$ by $< 1$\,pp across all models (14D $\Kempirical = 2$ for all 4 configurations); in deployment where depth labels are unavailable, self-BLEU can be replaced with corpus-level self-similarity or omitted with minimal performance loss.
+Hand-crafted features enable cross-generator transfer without retraining and permit attribution of discriminative power to specific text properties.
+
+We use \emph{Ordinal Binary Decomposition} (OBD), decomposing the $(K{+}1)$-class problem into $K$ cumulative binary sub-classifiers, each estimating $P(\text{depth} > k \mid \mathbf{x})$ via LightGBM (hyperparameters in Table~\ref{tab:s6_lgbm_params}).
+OBD achieves lower MAE than multiclass LightGBM (e.g., 0.984 vs.\ 1.016 on Qwen-rewrite) while maintaining superior pairwise $\auc$ (mean 0.6095 vs.\ 0.4883 for ordinal logistic regression).
+
+\subsection{Experimental Setup}
+\label{sec:experimental_setup}
+
+We evaluate six configurations spanning three model families (Table~\ref{tab:setup}): Qwen2.5-1.5B-Instruct (rewrite and continuation modes), Qwen2.5-1.5B (base, continuation), Qwen2.5-7B (continuation), Pythia-1.4B and OLMo-1B (continuation).
+Each uses 5{,}000 C4 seeds truncated to 256 tokens, recursively generated for $K{=}5$ iterations (30{,}000 documents per configuration).
+Default decoding: nucleus $p{=}0.95$, $T{=}1.0$; decoding ablation covers greedy, $T{=}0.7$, and $T{=}1.2$.
+Continuation mode truncates seeds to 128 tokens and extends to 256; rewrite mode paraphrases the full text.
+Evaluation: 5-fold GroupKFold cross-validation grouped by seed document; pairwise $\auc$ as primary metric.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Experimental configurations for depth-chain generation. \textbf{Config}: shorthand identifier; \textbf{Model}: architecture and parameter count; \textbf{Mode}: generation strategy (continuation or rewrite); $N$: number of seed documents per depth level.}
+\label{tab:setup}
+\begin{tabular}{llcc}
+\toprule
+\textbf{Config} & \textbf{Model} & \textbf{Mode} & $N$ \\
+\midrule
+Qwen-rw   & Qwen2.5-1.5B-Instruct & Rewrite & 5{,}000 \\
+Qwen-cont & Qwen2.5-1.5B-Instruct & Continuation & 5{,}000 \\
+Qwen-base & Qwen2.5-1.5B          & Continuation & 5{,}000 \\
+Pythia    & Pythia-1.4B            & Continuation & 5{,}000 \\
+OLMo      & OLMo-1B               & Continuation & 5{,}000 \\
+Qwen-7B   & Qwen2.5-7B            & Continuation & 5{,}000 \\
+\bottomrule
+\end{tabular}
+\end{table}

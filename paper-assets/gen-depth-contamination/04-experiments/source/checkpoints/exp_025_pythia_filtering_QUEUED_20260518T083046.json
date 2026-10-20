@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_025_pythia_filtering",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T08:04:54.965Z",
+    "updated_at": "2026-05-18T08:30:45.962Z",
+    "hypothesis": "Filtering strategy ordering (binary > graduated > no-filter) 在 Pythia-1.4B 上与 Qwen 一致，验证 K*=2 对 curation 策略选择的跨模型预测价值。Pythia-1.4B LoRA rank=8 continued pretraining on C4 depth chain, 3 strategies × 3 seeds, eval MMLU+HellaSwag.",
+    "parent": "exp_006_graduated_filtering"
+  },
+  "timestamp": "2026-05-18T08:30:46.173676+00:00",
+  "trigger": "update_registry"
+}

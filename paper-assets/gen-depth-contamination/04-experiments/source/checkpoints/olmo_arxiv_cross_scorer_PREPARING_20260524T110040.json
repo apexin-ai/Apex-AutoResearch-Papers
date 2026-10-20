@@ -1,0 +1,16 @@
+{
+  "exp_id": "olmo_arxiv_cross_scorer",
+  "project": "gen-depth-contamination",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T11:00:35.750Z",
+    "updated_at": "2026-05-24T11:00:40.111Z",
+    "hypothesis": "OLMo-1B on arXiv with cross-scorer (Qwen-1.5B) will confirm K*=1, consistent with self-scoring. While other models (Qwen, LLaMA, Mistral, Pythia) achieve K*=3 on arXiv, OLMo is competence-limited and cannot sustain distinguishable depth structure beyond generation 1.",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-24T11:00:40.476472+00:00",
+  "trigger": "update_registry"
+}

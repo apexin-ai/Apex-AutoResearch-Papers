@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_olmo_retrain_v3",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:47:22.000Z",
+    "updated_at": "2026-05-20T10:48:41.768Z",
+    "hypothesis": "OLMo-1B retrain-chain K*>=4 (matching Pythia/Qwen retrain-chain), confirming retrain-chain K* is protocol-determined not architecture-determined. LoRA rank=16, alpha=32, 1 epoch per generation, C4 5K docs, depth 0-4."
+  },
+  "timestamp": "2026-05-20T10:48:42.055516+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_contamination_rate_sweep",
+  "project": "gen-depth-contamination",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T17:02:48.807Z",
+    "updated_at": "2026-05-20T17:24:51.519Z",
+    "hypothesis": "Binary filtering (remove depth>=1) consistently outperforms graduated filtering across contamination rates (10/30/50/100%), validating that K*=2 provides actionable curation guidance across realistic contamination scenarios, not just at full contamination."
+  },
+  "timestamp": "2026-05-20T17:24:51.802240+00:00",
+  "trigger": "update_registry"
+}

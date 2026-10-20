@@ -1,0 +1,44 @@
+{
+  "exp_id": "exp_deberta_cross_transfer_gpu3",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T00:45:58.698Z",
+    "updated_at": "2026-05-20T00:52:16.950Z",
+    "hypothesis": "Sub-experiment of exp_deberta_cross_transfer_wiki: GPU3 ran olmo↔llama8b, pythia↔mistral7b pairs (mistral7b pairs were bonus, qwen7b↔llama8b missing).",
+    "conclusion": "success",
+    "spec": {
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:3"
+      ],
+      "command": "python scripts/run_deberta_cross_transfer.py",
+      "pid": "208308",
+      "data_path": "/root/gen-depth-contamination/data/",
+      "data_count": 20000,
+      "model_name": "DeBERTa-v3-base",
+      "seed": 42
+    },
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/",
+    "log_path": "/root/autodl-tmp/gen-depth-contamination/results/deberta_cross_transfer/gpu3.log",
+    "reproduce": {
+      "finished_at": "2026-05-20T00:50:30.198Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-20T00:50:32.377Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T00:50:36.649085+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-20T00:52:17.178006+00:00",
+  "trigger": "update_registry"
+}

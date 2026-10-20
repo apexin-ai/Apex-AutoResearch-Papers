@@ -1,0 +1,1794 @@
+{
+  "schema_version": "1.0",
+  "id": "22a2b2a630c64f421b10",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "code exp003 figure table",
+  "task_key": "worker_code_exp003_figure_table_20260513T210000",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp003_figure_table_20260513T210000.log",
+    "occurrence": 1,
+    "bytes": 111066,
+    "sha256": "5269b1819b1715e034aec646b8a19d3c37947d8a589c0b1fda292aed92676ed2"
+  },
+  "statistics": {
+    "messages": 43,
+    "user_turns": 0,
+    "tool_calls": 15,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 15,
+      "tool_result": 15,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "5148d7d4-8530-41a0-95c1-11724920f6e3",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778723400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "761b9849-f5bc-4f50-8981-db1addd26dd9",
+                "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to create a matplotlib plotting script on a remote server, then run it. Let me break this down:\n\n1. SSH to the server westc-26893\n2. Write the script `scripts/plot_exp003_decoding_ablation.py`\n3. Run it and verify outputs\n\nLet me start by reading the draw-paper-figure skill and detecting the image on the server.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "590a6b72-d174-4ad6-94bc-17dfddcf0e32",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YDXcrArvMsHBMFNg9bdXLD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11754,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11754
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Hvz2b4t8jZs72YRz2ua6we",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__detect_image,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "6a080c37-f4f8-4389-b7db-7b95fd8a1bc8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YDXcrArvMsHBMFNg9bdXLD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11754,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11754
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T21:00:14.670Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Hvz2b4t8jZs72YRz2ua6we",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__detect_image"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "6975af83-2c19-4da0-925f-adf816b80533",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__detect_image",
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__detect_image,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019WfSXS8VhohsDRmepxYZGQ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "7ef45a11-062e-4777-9cdc-7272b9e0712d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YDXcrArvMsHBMFNg9bdXLD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11754,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11754
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T21:00:14.865Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019WfSXS8VhohsDRmepxYZGQ",
+              "type": "tool_result",
+              "content": "1\t---\n2\tdescription: 生成学术论文级 matplotlib 图表——reliability diagrams、ECE heatmap、T* scatter plot、模型对比图，直接在 A6000 服务器上执行，输出 PDF/PNG\n3\tname: draw-paper-figure\n4\tscope: global\n5\ttags:\n6\t  - research\n7\t  - visualization\n8\t  - paper\n9\t  - matplotlib\n10\tversion: 1\n11\ttools:\n12\t  - ssh_execute\n13\t---\n14\t\n15\t# Draw Paper Figure — 学术图表生成\n16\t\n17\t为 ML 论文生成发表级图表。通过 SSH 在 A6000 上运行 matplotlib 脚本，直接输出到实验目录。\n18\t\n19\t## 触发条件\n20\t\n21\t- 用户说\"画个图\"、\"生成 reliability diagram\"、\"做个 heatmap\"\n22\t- 论文写作阶段需要插图\n23\t- 实验结果需要可视化汇总\n24\t\n25\t## 通用样式标准（所有图表必须遵守）\n26\t\n27\t```python\n28\timport matplotlib\n29\tmatplotlib.use('Agg')\n30\timport matplotlib.pyplot as plt\n31\timport matplotlib.patches as mpatches\n32\timport numpy as np\n33\t\n34\t# 字体和全局样式\n35\tplt.rcParams.update({\n36\t    'font.family': 'DejaVu Sans',\n37\t    'font.size': 11,\n38\t    'axes.titlesize': 13,\n39\t    'axes.labelsize': 12,\n40\t    'xtick.labelsize': 10,\n41\t    'ytick.labelsize': 10,\n42\t    'legend.fontsize': 10,\n43\t    'figure.dpi': 300,\n44\t    'savefig.dpi': 300,\n45\t    'savefig.bbox': 'tight',\n46\t    'savefig.pad_inches': 0.05,\n47\t    'axes.spines.top': False,\n48\t    'axes.spines.right': False,\n49\t    'lines.linewidth': 1.8,\n50\t})\n51\t\n52\t# 色盲友好配色（Okabe-Ito）\n53\tCOLORS = {\n54\t    'fp16':   '#E69F00',  # 橙黄\n55\t    'nf4':    '#56B4E9',  # 天蓝\n56\t    'int8':   '#009E73',  # 绿\n57\t    'gptq':   '#F0E442',  # 黄\n58\t    'awq':    '#CC79A7',  # 粉紫\n59\t    'llama':  '#0072B2',  # 深蓝\n60\t    'qwen3':  '#D55E00',  # 橙红\n61\t    'gemma':  '#009E73',  # 绿\n62\t    'mistral':'#CC79A7',  # 粉紫\n63\t    'phi3':   '#F0E442',  # 黄\n64\t}\n65\t\n66\t# 方法标签\n67\tMETHOD_LABELS = {\n68\t    'fp16': 'FP16', 'nf4': 'BNB-NF4',\n69\t    'int8': 'BNB-INT8', 'gptq': 'GPTQ-4bit', 'awq': 'AWQ-4bit'\n70\t}\n71\t```\n72\t\n73\t---\n74\t\n75\t## 1. Reliability Diagram（校准图）\n76\t\n77\t**用途**：显示模型 confidence bin vs accuracy，对角线 = 完美校准。\n78\t\n79\t```python\n80\tdef plot_reliability_diagram(confidences, accuracies, n_bins=10,\n81\t                              label='', color='#0072B2',\n82\t                              title='Reliability Diagram',\n83\t                              outpath='reliability.pdf'):\n84\t    \"\"\"\n85\t    confidences, accuracies: 各样本的 confidence 和 binary correct (0/1)\n86\t    \"\"\"\n87\t    bin_edges = np.linspace(0, 1, n_bins + 1)\n88\t    bin_accs, bin_confs, bin_counts = [], [], []\n89\t\n90\t    for i in range(n_bins):\n91\t        lo, hi = bin_edges[i], bin_edges[i+1]\n92\t        mask = (confidences >= lo) & (confidences < hi)\n93\t        if mask.sum() > 0:\n94\t            bin_accs.append(accuracies[mask].mean())\n95\t            bin_confs.append(confidences[mask].mean())\n96\t            bin_counts.append(mask.sum())\n97\t        else:\n98\t            bin_accs.append(float('nan'))\n99\t            bin_confs.append((lo + hi) / 2)\n100\t            bin_counts.append(0)\n101\t\n102\t    bin_accs = np.array(bin_accs)\n103\t    bin_confs = np.array(bin_confs)\n104\t\n105\t    fig, (ax_main, ax_hist) = plt.subplots(\n106\t        2, 1, figsize=(4, 4.5), gridspec_kw={'height_ratios': [3, 1]},\n107\t        sharex=True\n108\t    )\n109\t\n110\t    # 主图：gaps\n111\t    ax_main.bar(bin_edges[:-1], bin_accs, width=1/n_bins, align='edge',\n112\t                color=color, alpha=0.7, label='Accuracy', zorder=2)\n113\t    ax_main.bar(bin_edges[:-1], bin_confs - bin_accs, width=1/n_bins, align='edge',\n114\t                bottom=bin_accs, color='red', alpha=0.3, label='Gap', zorder=2)\n115\t    ax_main.plot([0, 1], [0, 1], 'k--', linewidth=1, zorder=3, label='Perfect')\n116\t    ax_main.set_xlim(0, 1); ax_main.set_ylim(0, 1)\n117\t    ax_main.set_ylabel('Accuracy')\n118\t    ax_main.set_title(title)\n119\t    ax_main.legend(loc='upper left', fontsize=9)\n120\t    ax_main.grid(True, alpha=0.3, zorder=1)\n121\t\n122\t    # ECE annotation\n123\t    ece = np.nansum(np.array(bin_counts) / sum(bin_counts) *\n124\t                    np.abs(bin_accs - bin_confs))\n125\t    ax_main.text(0.98, 0.02, f'ECE={ece:.3f}', transform=ax_main.transAxes,\n126\t                 ha='right', va='bottom', fontsize=9,\n127\t                 bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.8))\n128\t\n129\t    # 直方图（样本密度）\n130\t    ax_hist.bar(bin_edges[:-1], bin_counts, width=1/n_bins, align='edge',\n131\t                color=color, alpha=0.5)\n132\t    ax_hist.set_ylabel('Count', fontsize=9)\n133\t    ax_hist.set_xlabel('Confidence')\n134\t\n135\t    plt.tight_layout()\n136\t    plt.savefig(outpath)\n137\t    plt.close()\n138\t    print(f'Saved: {outpath}')\n139\t```\n140\t\n141\t### 批量生成 6 张对比图（EMNLP 论文用）\n142\t\n143\t选图策略：每 Regime 选最大 ΔECE 的量化方法 vs FP16，LLaMA + Qwen3 各一。\n144\t\n145\t```python\n146\t# 在 A6000 服务器上执行\n147\tFIGURE_PLAN = [\n148\t    # (dataset, model, quant, regime, title)\n149\t    ('hellaswag',   'llama',  'nf4',  'A', 'HellaSwag (Regime A) — LLaMA'),\n150\t    ('hellaswag',   'qwen3',  'nf4',  'A', 'HellaSwag (Regime A) — Qwen3'),\n151\t    ('arc_c',       'llama',  'gptq', 'B', 'ARC-C (Regime B) — LLaMA'),\n152\t    ('arc_c',       'qwen3',  'gptq', 'B', 'ARC-C (Regime B) — Qwen3'),\n153\t    ('truthfulqa',  'llama',  'awq',  'C', 'TruthfulQA (Regime C) — LLaMA'),\n154\t    ('truthfulqa',  'qwen3',  'awq',  'C', 'TruthfulQA (Regime C) — Qwen3'),\n155\t]\n156\t```\n157\t\n158\t---\n159\t\n160\t## 2. ECE Heatmap（方法 × 数据集 ΔECE）\n161\t\n162\t**用途**：Main Results Table 的可视化版本，颜色 = ΔECE（红=恶化，蓝=改善）。\n163\t\n164\t```python\n165\tdef plot_ece_heatmap(delta_ece_matrix, methods, datasets,\n166\t                     title='ΔECE Heatmap (vs FP16)',\n167\t                     outpath='ece_heatmap.pdf'):\n168\t    \"\"\"\n169\t    delta_ece_matrix: shape (n_methods, n_datasets), 正=ECE 恶化, 负=改善\n170\t    \"\"\"\n171\t    import matplotlib.colors as mcolors\n172\t\n173\t    fig, ax = plt.subplots(figsize=(len(datasets) * 1.2, len(methods) * 0.8 + 1))\n174\t\n175\t    # 发散色图（中心=0, 红=恶化, 蓝=改善）\n176\t    vmax = np.nanmax(np.abs(delta_ece_matrix))\n177\t    norm = mcolors.TwoSlopeNorm(vmin=-vmax, vcenter=0, vmax=vmax)\n178\t    cmap = plt.cm.RdBu_r\n179\t\n180\t    im = ax.imshow(delta_ece_matrix, cmap=cmap, norm=norm, aspect='auto')\n181\t\n182\t    # 数值标注\n183\t    for i in range(len(methods)):\n184\t        for j in range(len(datasets)):\n185\t            val = delta_ece_matrix[i, j]\n186\t            if not np.isnan(val):\n187\t                color = 'white' if abs(val) > vmax * 0.6 else 'black'\n188\t                sign = '+' if val > 0 else ''\n189\t                ax.text(j, i, f'{sign}{val:.1%}', ha='center', va='center',\n190\t                        fontsize=9, color=color, fontweight='bold')\n191\t\n192\t    ax.set_xticks(range(len(datasets)))\n193\t    ax.set_yticks(range(len(methods)))\n194\t    ax.set_xticklabels(datasets, rotation=30, ha='right')\n195\t    ax.set_yticklabels(methods)\n196\t    ax.set_title(title)\n197\t\n198\t    cbar = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)\n199\t    cbar.set_label('ΔECE (quantized − FP16)')\n200\t    cbar.ax.axhline(0, color='k', linewidth=0.8)\n201\t\n202\t    plt.tight_layout()\n203\t    plt.savefig(outpath)\n204\t    plt.close()\n205\t    print(f'Saved: {outpath}')\n206\t```\n207\t\n208\t---\n209\t\n210\t## 3. T* Scatter Plot（任务 Regime 可视化）\n211\t\n212\t**用途**：展示 5 个模型的 FP16 T* 分布，证明 Regime 跨模型一致性。\n213\t\n214\t```python\n215\tdef plot_tstar_scatter(tstar_data, outpath='tstar_scatter.pdf'):\n216\t    \"\"\"\n217\t    tstar_data: dict of {model_name: {dataset: T*_value}}\n218\t    \"\"\"\n219\t    DATASETS = ['HellaSwag', 'ARC-C', 'MMLU', 'BoolQ', 'TruthfulQA', 'NQ-Open']\n220\t    MODELS = ['LLaMA-3.1-8B', 'Qwen3-4B', 'Gemma-3-12B', 'Mistral-7B', 'Phi-3-mini']\n221\t    REGIME_BANDS = [\n222\t        (0, 1,    '#EBF5FB', 'Regime A\\n(T*<1)'),\n223\t        (1, 5,    '#EAFAF1', 'Regime B\\n(1≤T*<5)'),\n224\t        (5, 10.5, '#FDF2F8', 'Regime C\\n(T*≥5)'),\n225\t    ]\n226\t\n227\t    fig, ax = plt.subplots(figsize=(8, 4))\n228\t\n229\t    # 背景色区\n230\t    for lo, hi, color, label in REGIME_BANDS:\n231\t        ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n232\t        ax.text(5.8, (lo + hi) / 2, label, va='center', fontsize=9,\n233\t                color='gray', zorder=1)\n234\t\n235\t    model_colors = [COLORS.get(m.split('-')[0].lower(), '#333333') for m in MODELS]\n236\t\n237\t    x = np.arange(len(DATASETS))\n238\t    for mi, (model, color) in enumerate(zip(MODELS, model_colors)):\n239\t        y = [tstar_data.get(model, {}).get(ds, np.nan) for ds in DATASETS]\n240\t        ax.plot(x, y, 'o-', color=color, label=model,\n241\t                markersize=7, alpha=0.85, zorder=2)\n242\t\n243\t    ax.set_xticks(x)\n244\t    ax.set_xticklabels(DATASETS, rotation=15, ha='right')\n245\t    ax.set_ylabel('T* (FP16)')\n246\t    ax.set_ylim(0, 10.5)\n247\t    ax.set_title('Calibration Regime by Task — 5 Models (FP16)')\n248\t    ax.axhline(1, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n249\t    ax.axhline(5, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n250\t    ax.legend(loc='upper left', fontsize=9, ncol=2)\n251\t    ax.grid(True, alpha=0.2, axis='y', zorder=1)\n252\t\n253\t    plt.tight_layout()\n254\t    plt.savefig(outpath)\n255\t    plt.close()\n256\t    print(f'Saved: {outpath}')\n257\t```\n258\t\n259\t---\n260\t\n261\t## 4. 生成流程（SSH 执行）\n262\t\n263\t```python\n264\t# Step 1: 写脚本到服务器\n265\tssh_execute(\"\"\"cat > /tmp/gen_figures.py << 'PYEOF'\n266\t# ... 粘贴上方代码 + 调用逻辑 ...\n267\tPYEOF\"\"\")\n268\t\n269\t# Step 2: 安装依赖（如有）\n270\tssh_execute(\"pip install matplotlib numpy -q\")\n271\t\n272\t# Step 3: 执行\n273\tssh_execute(\"cd ~/quant-calibration-gap && python /tmp/gen_figures.py\")\n274\t\n275\t# Step 4: PNG → PDF（LaTeX 用 PDF 更清晰）\n276\tssh_execute(\"\"\"\n277\tfor f in ~/quant-calibration-gap/figures/paper/*.png; do\n278\t    convert \"$f\" \"${f%.png}.pdf\" 2>/dev/null || \\\n279\t    python3 -c \"\n280\timport matplotlib.pyplot as plt\n281\timport matplotlib.image as mpimg\n282\timg = mpimg.imread('$f')\n283\tfig = plt.figure(figsize=(img.shape[1]/300, img.shape[0]/300))\n284\tax = fig.add_axes([0,0,1,1])\n285\tax.imshow(img); ax.axis('off')\n286\tplt.savefig('${f%.png}.pdf', dpi=300, bbox_inches='tight', pad_inches=0)\n287\tplt.close()\"\n288\tdone\n289\t\"\"\")\n290\t\n291\t# Step 5: 验证\n292\tssh_execute(\"ls ~/quant-calibration-gap/figures/paper/\")\n293\t```\n294\t\n295\t---\n296\t\n297\t## 5. 图表 Checklist（提交前）\n298\t\n299\t- [ ] 300 DPI（`savefig.dpi=300`）\n300\t- [ ] 色盲友好配色（Okabe-Ito）\n301\t- [ ] 所有轴有标签（xlabel/ylabel）\n302\t- [ ] Legend 不遮挡数据\n303\t- [ ] 字号 ≥ 10pt（缩小到 column width 后仍可读）\n304\t- [ ] PDF 格式（矢量，LaTeX 直接用）\n305\t- [ ] Caption 完整（`\\caption{...}`）\n306\t- [ ] Error bar 或置信区间标注（如适用）\n307\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "bab66279-f774-4dec-b394-ed4032edf005",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md",
+                "content": "---\ndescription: 生成学术论文级 matplotlib 图表——reliability diagrams、ECE heatmap、T* scatter plot、模型对比图，直接在 A6000 服务器上执行，输出 PDF/PNG\nname: draw-paper-figure\nscope: global\ntags:\n  - research\n  - visualization\n  - paper\n  - matplotlib\nversion: 1\ntools:\n  - ssh_execute\n---\n\n# Draw Paper Figure — 学术图表生成\n\n为 ML 论文生成发表级图表。通过 SSH 在 A6000 上运行 matplotlib 脚本，直接输出到实验目录。\n\n## 触发条件\n\n- 用户说\"画个图\"、\"生成 reliability diagram\"、\"做个 heatmap\"\n- 论文写作阶段需要插图\n- 实验结果需要可视化汇总\n\n## 通用样式标准（所有图表必须遵守）\n\n```python\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\nimport numpy as np\n\n# 字体和全局样式\nplt.rcParams.update({\n    'font.family': 'DejaVu Sans',\n    'font.size': 11,\n    'axes.titlesize': 13,\n    'axes.labelsize': 12,\n    'xtick.labelsize': 10,\n    'ytick.labelsize': 10,\n    'legend.fontsize': 10,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n    'axes.spines.top': False,\n    'axes.spines.right': False,\n    'lines.linewidth': 1.8,\n})\n\n# 色盲友好配色（Okabe-Ito）\nCOLORS = {\n    'fp16':   '#E69F00',  # 橙黄\n    'nf4':    '#56B4E9',  # 天蓝\n    'int8':   '#009E73',  # 绿\n    'gptq':   '#F0E442',  # 黄\n    'awq':    '#CC79A7',  # 粉紫\n    'llama':  '#0072B2',  # 深蓝\n    'qwen3':  '#D55E00',  # 橙红\n    'gemma':  '#009E73',  # 绿\n    'mistral':'#CC79A7',  # 粉紫\n    'phi3':   '#F0E442',  # 黄\n}\n\n# 方法标签\nMETHOD_LABELS = {\n    'fp16': 'FP16', 'nf4': 'BNB-NF4',\n    'int8': 'BNB-INT8', 'gptq': 'GPTQ-4bit', 'awq': 'AWQ-4bit'\n}\n```\n\n---\n\n## 1. Reliability Diagram（校准图）\n\n**用途**：显示模型 confidence bin vs accuracy，对角线 = 完美校准。\n\n```python\ndef plot_reliability_diagram(confidences, accuracies, n_bins=10,\n                              label='', color='#0072B2',\n                              title='Reliability Diagram',\n                              outpath='reliability.pdf'):\n    \"\"\"\n    confidences, accuracies: 各样本的 confidence 和 binary correct (0/1)\n    \"\"\"\n    bin_edges = np.linspace(0, 1, n_bins + 1)\n    bin_accs, bin_confs, bin_counts = [], [], []\n\n    for i in range(n_bins):\n        lo, hi = bin_edges[i], bin_edges[i+1]\n        mask = (confidences >= lo) & (confidences < hi)\n        if mask.sum() > 0:\n            bin_accs.append(accuracies[mask].mean())\n            bin_confs.append(confidences[mask].mean())\n            bin_counts.append(mask.sum())\n        else:\n            bin_accs.append(float('nan'))\n            bin_confs.append((lo + hi) / 2)\n            bin_counts.append(0)\n\n    bin_accs = np.array(bin_accs)\n    bin_confs = np.array(bin_confs)\n\n    fig, (ax_main, ax_hist) = plt.subplots(\n        2, 1, figsize=(4, 4.5), gridspec_kw={'height_ratios': [3, 1]},\n        sharex=True\n    )\n\n    # 主图：gaps\n    ax_main.bar(bin_edges[:-1], bin_accs, width=1/n_bins, align='edge',\n                color=color, alpha=0.7, label='Accuracy', zorder=2)\n    ax_main.bar(bin_edges[:-1], bin_confs - bin_accs, width=1/n_bins, align='edge',\n                bottom=bin_accs, color='red', alpha=0.3, label='Gap', zorder=2)\n    ax_main.plot([0, 1], [0, 1], 'k--', linewidth=1, zorder=3, label='Perfect')\n    ax_main.set_xlim(0, 1); ax_main.set_ylim(0, 1)\n    ax_main.set_ylabel('Accuracy')\n    ax_main.set_title(title)\n    ax_main.legend(loc='upper left', fontsize=9)\n    ax_main.grid(True, alpha=0.3, zorder=1)\n\n    # ECE annotation\n    ece = np.nansum(np.array(bin_counts) / sum(bin_counts) *\n                    np.abs(bin_accs - bin_confs))\n    ax_main.text(0.98, 0.02, f'ECE={ece:.3f}', transform=ax_main.transAxes,\n                 ha='right', va='bottom', fontsize=9,\n                 bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.8))\n\n    # 直方图（样本密度）\n    ax_hist.bar(bin_edges[:-1], bin_counts, width=1/n_bins, align='edge',\n                color=color, alpha=0.5)\n    ax_hist.set_ylabel('Count', fontsize=9)\n    ax_hist.set_xlabel('Confidence')\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n```\n\n### 批量生成 6 张对比图（EMNLP 论文用）\n\n选图策略：每 Regime 选最大 ΔECE 的量化方法 vs FP16，LLaMA + Qwen3 各一。\n\n```python\n# 在 A6000 服务器上执行\nFIGURE_PLAN = [\n    # (dataset, model, quant, regime, title)\n    ('hellaswag',   'llama',  'nf4',  'A', 'HellaSwag (Regime A) — LLaMA'),\n    ('hellaswag',   'qwen3',  'nf4',  'A', 'HellaSwag (Regime A) — Qwen3'),\n    ('arc_c',       'llama',  'gptq', 'B', 'ARC-C (Regime B) — LLaMA'),\n    ('arc_c',       'qwen3',  'gptq', 'B', 'ARC-C (Regime B) — Qwen3'),\n    ('truthfulqa',  'llama',  'awq',  'C', 'TruthfulQA (Regime C) — LLaMA'),\n    ('truthfulqa',  'qwen3',  'awq',  'C', 'TruthfulQA (Regime C) — Qwen3'),\n]\n```\n\n---\n\n## 2. ECE Heatmap（方法 × 数据集 ΔECE）\n\n**用途**：Main Results Table 的可视化版本，颜色 = ΔECE（红=恶化，蓝=改善）。\n\n```python\ndef plot_ece_heatmap(delta_ece_matrix, methods, datasets,\n                     title='ΔECE Heatmap (vs FP16)',\n                     outpath='ece_heatmap.pdf'):\n    \"\"\"\n    delta_ece_matrix: shape (n_methods, n_datasets), 正=ECE 恶化, 负=改善\n    \"\"\"\n    import matplotlib.colors as mcolors\n\n    fig, ax = plt.subplots(figsize=(len(datasets) * 1.2, len(methods) * 0.8 + 1))\n\n    # 发散色图（中心=0, 红=恶化, 蓝=改善）\n    vmax = np.nanmax(np.abs(delta_ece_matrix))\n    norm = mcolors.TwoSlopeNorm(vmin=-vmax, vcenter=0, vmax=vmax)\n    cmap = plt.cm.RdBu_r\n\n    im = ax.imshow(delta_ece_matrix, cmap=cmap, norm=norm, aspect='auto')\n\n    # 数值标注\n    for i in range(len(methods)):\n        for j in range(len(datasets)):\n            val = delta_ece_matrix[i, j]\n            if not np.isnan(val):\n                color = 'white' if abs(val) > vmax * 0.6 else 'black'\n                sign = '+' if val > 0 else ''\n                ax.text(j, i, f'{sign}{val:.1%}', ha='center', va='center',\n                        fontsize=9, color=color, fontweight='bold')\n\n    ax.set_xticks(range(len(datasets)))\n    ax.set_yticks(range(len(methods)))\n    ax.set_xticklabels(datasets, rotation=30, ha='right')\n    ax.set_yticklabels(methods)\n    ax.set_title(title)\n\n    cbar = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)\n    cbar.set_label('ΔECE (quantized − FP16)')\n    cbar.ax.axhline(0, color='k', linewidth=0.8)\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n```\n\n---\n\n## 3. T* Scatter Plot（任务 Regime 可视化）\n\n**用途**：展示 5 个模型的 FP16 T* 分布，证明 Regime 跨模型一致性。\n\n```python\ndef plot_tstar_scatter(tstar_data, outpath='tstar_scatter.pdf'):\n    \"\"\"\n    tstar_data: dict of {model_name: {dataset: T*_value}}\n    \"\"\"\n    DATASETS = ['HellaSwag', 'ARC-C', 'MMLU', 'BoolQ', 'TruthfulQA', 'NQ-Open']\n    MODELS = ['LLaMA-3.1-8B', 'Qwen3-4B', 'Gemma-3-12B', 'Mistral-7B', 'Phi-3-mini']\n    REGIME_BANDS = [\n        (0, 1,    '#EBF5FB', 'Regime A\\n(T*<1)'),\n        (1, 5,    '#EAFAF1', 'Regime B\\n(1≤T*<5)'),\n        (5, 10.5, '#FDF2F8', 'Regime C\\n(T*≥5)'),\n    ]\n\n    fig, ax = plt.subplots(figsize=(8, 4))\n\n    # 背景色区\n    for lo, hi, color, label in REGIME_BANDS:\n        ax.axhspan(lo, hi, alpha=0.25, color=color, zorder=0)\n        ax.text(5.8, (lo + hi) / 2, label, va='center', fontsize=9,\n                color='gray', zorder=1)\n\n    model_colors = [COLORS.get(m.split('-')[0].lower(), '#333333') for m in MODELS]\n\n    x = np.arange(len(DATASETS))\n    for mi, (model, color) in enumerate(zip(MODELS, model_colors)):\n        y = [tstar_data.get(model, {}).get(ds, np.nan) for ds in DATASETS]\n        ax.plot(x, y, 'o-', color=color, label=model,\n                markersize=7, alpha=0.85, zorder=2)\n\n    ax.set_xticks(x)\n    ax.set_xticklabels(DATASETS, rotation=15, ha='right')\n    ax.set_ylabel('T* (FP16)')\n    ax.set_ylim(0, 10.5)\n    ax.set_title('Calibration Regime by Task — 5 Models (FP16)')\n    ax.axhline(1, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n    ax.axhline(5, color='gray', linestyle='--', linewidth=0.8, alpha=0.5)\n    ax.legend(loc='upper left', fontsize=9, ncol=2)\n    ax.grid(True, alpha=0.2, axis='y', zorder=1)\n\n    plt.tight_layout()\n    plt.savefig(outpath)\n    plt.close()\n    print(f'Saved: {outpath}')\n```\n\n---\n\n## 4. 生成流程（SSH 执行）\n\n```python\n# Step 1: 写脚本到服务器\nssh_execute(\"\"\"cat > /tmp/gen_figures.py << 'PYEOF'\n# ... 粘贴上方代码 + 调用逻辑 ...\nPYEOF\"\"\")\n\n# Step 2: 安装依赖（如有）\nssh_execute(\"pip install matplotlib numpy -q\")\n\n# Step 3: 执行\nssh_execute(\"cd ~/quant-calibration-gap && python /tmp/gen_figures.py\")\n\n# Step 4: PNG → PDF（LaTeX 用 PDF 更清晰）\nssh_execute(\"\"\"\nfor f in ~/quant-calibration-gap/figures/paper/*.png; do\n    convert \"$f\" \"${f%.png}.pdf\" 2>/dev/null || \\\n    python3 -c \"\nimport matplotlib.pyplot as plt\nimport matplotlib.image as mpimg\nimg = mpimg.imread('$f')\nfig = plt.figure(figsize=(img.shape[1]/300, img.shape[0]/300))\nax = fig.add_axes([0,0,1,1])\nax.imshow(img); ax.axis('off')\nplt.savefig('${f%.png}.pdf', dpi=300, bbox_inches='tight', pad_inches=0)\nplt.close()\"\ndone\n\"\"\")\n\n# Step 5: 验证\nssh_execute(\"ls ~/quant-calibration-gap/figures/paper/\")\n```\n\n---\n\n## 5. 图表 Checklist（提交前）\n\n- [ ] 300 DPI（`savefig.dpi=300`）\n- [ ] 色盲友好配色（Okabe-Ito）\n- [ ] 所有轴有标签（xlabel/ylabel）\n- [ ] Legend 不遮挡数据\n- [ ] 字号 ≥ 10pt（缩小到 column width 后仍可读）\n- [ ] PDF 格式（矢量，LaTeX 直接用）\n- [ ] Caption 完整（`\\caption{...}`）\n- [ ] Error bar 或置信区间标注（如适用）\n",
+                "numLines": 307,
+                "startLine": 1,
+                "totalLines": 307
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by detecting the image on the server and checking the current state of the project directory.",
+              "signature": "EqUCClkIDRgCKkB8aXe2ZmkZtHeBFv5unlqDtABXtQqOzACs40pIJMUdFCqhgXxwmHhpTlBFB4ggdP/LOkV8rn6igSHnjye7gPBuMg9jbGF1ZGUtb3B1cy00LTY4ABIMGRUfYHFs3irLUezfGgx/Psd8At1B/K8UGokiMCESfgreASBVgPvfMIZhMrZlkN1eGRxBsi1b8dCvLyCMjzbjgZkDgFGN6kmffG6bHyp6PflxV3BBuvmb3IICFQHXd2zJcLbaZTTX43T3DGYyEMFh2VBMcFPUo9+C605vfpuIsl611yGgN6bPly0PJUy5XQGnl2pvaEyKU0GW6s86YtkPpQt2NRu3ctJnL+hbYnfgPxUiMWj9Gs++cYD6cj1vax4pCi789rYaPr0YAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "cc983df7-4532-4ce6-8ab3-ff81ab787a66",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013vsYUnjoBs218aTCVZKay4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 5881,
+                "cache_read_input_tokens": 23595,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5881
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先检测服务器环境和项目目录状态。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "ab1fbd89-9538-4588-96ba-138c26b77577",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013vsYUnjoBs218aTCVZKay4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 5881,
+                "cache_read_input_tokens": 23595,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5881
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012MSNiCmb6D6xf1qPkFxi2w",
+              "name": "mcp__agent-ml-research__detect_image",
+              "input": {
+                "server": "westc-26893",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "59777e00-44cf-480c-b853-2d56e3b60380",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013vsYUnjoBs218aTCVZKay4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 5881,
+                "cache_read_input_tokens": 23595,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5881
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Hhrvz5QNEpqk5QdK2a3W5Z",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westc-26893",
+                "command": "ls /root/autodl-tmp/gen-depth-contamination/scripts/ /root/autodl-tmp/gen-depth-contamination/artifacts/ 2>/dev/null",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "c82ad1e2-b89f-4e3b-b0e6-5c54a2213a69",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013vsYUnjoBs218aTCVZKay4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 5881,
+                "cache_read_input_tokens": 23595,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5881
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T21:00:33.107Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012MSNiCmb6D6xf1qPkFxi2w",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\n  \\\"detected\\\": false,\\n  \\\"status\\\": \\\"unknown\\\",\\n  \\\"skip_base_setup\\\": false,\\n  \\\"message\\\": \\\"No image marker file found. Use traditional env-setup flow.\\\"\\n}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "84f7ec5e-2e95-4cde-a1f5-f615057a2073",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\n  \\\"detected\\\": false,\\n  \\\"status\\\": \\\"unknown\\\",\\n  \\\"skip_base_setup\\\": false,\\n  \\\"message\\\": \\\"No image marker file found. Use traditional env-setup flow.\\\"\\n}\"}",
+              "structuredContent": {
+                "result": "{\n  \"detected\": false,\n  \"status\": \"unknown\",\n  \"skip_base_setup\": false,\n  \"message\": \"No image marker file found. Use traditional env-setup flow.\"\n}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T21:00:33.123Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Hhrvz5QNEpqk5QdK2a3W5Z",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "83aecbb4-a774-46f4-8607-d54a8e70e014",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SGNckKrEJtRdCxU7m1jfjQ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westc-26893",
+                "command": "ls /root/autodl-tmp/gen-depth-contamination/scripts/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "750f83a9-3f56-4249-8d29-412c1a72873d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019uckyAJMchDPdF5xMyYGwj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 485,
+                "cache_read_input_tokens": 29476,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 485
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018rFd46CUCdKp9H6ev1wFga",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westc-26893",
+                "command": "ls /root/autodl-tmp/gen-depth-contamination/artifacts/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "74116c6d-f6ca-403d-970b-d19287ed7aab",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019uckyAJMchDPdF5xMyYGwj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 485,
+                "cache_read_input_tokens": 29476,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 485
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-13T21:00:38.075Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SGNckKrEJtRdCxU7m1jfjQ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\nbootstrap_ci.py\\\\nbootstrap_ci_exp017.py\\\\nexp003_analyze_all_configs.py\\\\nexp006_analyze.py\\\\nexp006_continued_pretraining.py\\\\nexp006_evaluate.py\\\\nexp006_filtering_strategies.py\\\\nexp011_analyze.py\\\\nexp011_llm_zeroshot.py\\\\nexp011_sample_data.py\\\\nplot_three_model_comparison.py\\\\nrun_exp003_ablation.sh\\\\nrun_exp005_degradation.py\\\\nrun_exp006.sh\\\\nrun_exp010_ordinal_comparison.py\\\\nrun_exp013_cross_transfer.py\\\\nrun_exp015_neural_probe.py\\\\nrun_pipeline.py\\\\nrun_pipeline.py.bak\\\\nrun_pipeline.py.bak2\\\\nrun_pipeline.py.bak3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "f5d82d9e-9ebd-4f4c-8353-0d39159d2c5f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\nbootstrap_ci.py\\\\nbootstrap_ci_exp017.py\\\\nexp003_analyze_all_configs.py\\\\nexp006_analyze.py\\\\nexp006_continued_pretraining.py\\\\nexp006_evaluate.py\\\\nexp006_filtering_strategies.py\\\\nexp011_analyze.py\\\\nexp011_llm_zeroshot.py\\\\nexp011_sample_data.py\\\\nplot_three_model_comparison.py\\\\nrun_exp003_ablation.sh\\\\nrun_exp005_degradation.py\\\\nrun_exp006.sh\\\\nrun_exp010_ordinal_comparison.py\\\\nrun_exp013_cross_transfer.py\\\\nrun_exp015_neural_probe.py\\\\nrun_pipeline.py\\\\nrun_pipeline.py.bak\\\\nrun_pipeline.py.bak2\\\\nrun_pipeline.py.bak3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"__pycache__\\nbootstrap_ci.py\\nbootstrap_ci_exp017.py\\nexp003_analyze_all_configs.py\\nexp006_analyze.py\\nexp006_continued_pretraining.py\\nexp006_evaluate.py\\nexp006_filtering_strategies.py\\nexp011_analyze.py\\nexp011_llm_zeroshot.py\\nexp011_sample_data.py\\nplot_three_model_comparison.py\\nrun_exp003_ablation.sh\\nrun_exp005_degradation.py\\nrun_exp006.sh\\nrun_exp010_ordinal_comparison.py\\nrun_exp013_cross_transfer.py\\nrun_exp015_neural_probe.py\\nrun_pipeline.py\\nrun_pipeline.py.bak\\nrun_pipeline.py.bak2\\nrun_pipeline.py.bak3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013jbxccmH7QKRcgUfYWc8V5",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westc-26893",
+                "command": "python3 -c \"import matplotlib; print(matplotlib.__version__)\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "cc6d1af8-bc5b-46fb-8e16-6465dd05d40b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019uckyAJMchDPdF5xMyYGwj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 485,
+                "cache_read_input_tokens": 29476,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 485
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-13T21:00:38.986Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018rFd46CUCdKp9H6ev1wFga",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bootstrap_ci_4model.json\\\\nbootstrap_ci_results.json\\\\ncross_transfer_matrix.csv\\\\ncross_transfer_matrix.json\\\\nexp003_analysis.json\\\\nexp011_analysis.json\\\\nexp011_results_claude_opus_4_6.jsonl\\\\nexp011_results_gpt_5_5.jsonl\\\\nexp011_samples.jsonl\\\\nexp015_dryrun.json\\\\nfigures\\\\nordinal_comparison_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "e25ebac8-c95d-44d8-9503-4b69791f5a5e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bootstrap_ci_4model.json\\\\nbootstrap_ci_results.json\\\\ncross_transfer_matrix.csv\\\\ncross_transfer_matrix.json\\\\nexp003_analysis.json\\\\nexp011_analysis.json\\\\nexp011_results_claude_opus_4_6.jsonl\\\\nexp011_results_gpt_5_5.jsonl\\\\nexp011_samples.jsonl\\\\nexp015_dryrun.json\\\\nfigures\\\\nordinal_comparison_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"bootstrap_ci_4model.json\\nbootstrap_ci_results.json\\ncross_transfer_matrix.csv\\ncross_transfer_matrix.json\\nexp003_analysis.json\\nexp011_analysis.json\\nexp011_results_claude_opus_4_6.jsonl\\nexp011_results_gpt_5_5.jsonl\\nexp011_samples.jsonl\\nexp015_dryrun.json\\nfigures\\nordinal_comparison_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-13T21:00:38.995Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013jbxccmH7QKRcgUfYWc8V5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "74e2100b-c707-4343-98d9-ab2e82cce66f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018MV4Lw8buxYH7nVqdTd1Ky",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westc-26893",
+                "command": "cat /root/autodl-tmp/gen-depth-contamination/artifacts/exp003_analysis.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "0e4c4a7b-8dca-40dd-9dd4-4bf56f13345a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016U61Na3GMqze2pQvSWJduJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 989,
+                "cache_read_input_tokens": 29961,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 989
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R1boPm6Ycy3Yb3aeeANAAT",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westc-26893",
+                "command": "/root/miniconda3/bin/python -c \"import matplotlib; print(matplotlib.__version__)\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "dc7ec329-1052-4380-9283-53cca2d5ea66",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016U61Na3GMqze2pQvSWJduJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 989,
+                "cache_read_input_tokens": 29961,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 989
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-13T21:00:43.135Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018MV4Lw8buxYH7nVqdTd1Ky",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"configs_discovered\\\\\\\": [\\\\n    \\\\\\\"greedy\\\\\\\",\\\\n    \\\\\\\"nuc09\\\\\\\",\\\\n    \\\\\\\"t07\\\\\\\",\\\\n    \\\\\\\"t12\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"pairwise_auc_table\\\\\\\": {\\\\n    \\\\\\\"Config1-Greedy\\\\\\\": {\\\\n      \\\\\\\"0v1\\\\\\\": 0.9797,\\\\n      \\\\\\\"1v2\\\\\\\": 0.6893,\\\\n      \\\\\\\"2v3\\\\\\\": 0.5613,\\\\n      \\\\\\\"3v4\\\\\\\": 0.5404,\\\\n      \\\\\\\"4v5\\\\\\\": 0.5139\\\\n    },\\\\n    \\\\\\\"Config2-Nuc09\\\\\\\": {\\\\n      \\\\\\\"0v1\\\\\\\": 0.9946,\\\\n      \\\\\\\"1v2\\\\\\\": 0.6866,\\\\n      \\\\\\\"2v3\\\\\\\": 0.5917,\\\\n      \\\\\\\"3v4\\\\\\\": 0.5466,\\\\n      \\\\\\\"4v5\\\\\\\": 0.5068\\\\n    },\\\\n    \\\\\\\"Config3-T07\\\\\\\": {\\\\n      \\\\\\\"0v1\\\\\\\": 0.9878,\\\\n      \\\\\\\"1v2\\\\\\\": 0.6887,\\\\n      \\\\\\\"2v3\\\\\\\": 0.5902,\\\\n      \\\\\\\"3v4\\\\\\\": 0.5393,\\\\n      \\\\\\\"4v5\\\\\\\": 0.5349\\\\n    },\\\\n    \\\\\\\"Config4-T12\\\\\\\": {\\\\n      \\\\\\\"0v1\\\\\\\": 0.9982,\\\\n      \\\\\\\"1v2\\\\\\\": 0.7039,\\\\n      \\\\\\\"2v3\\\\\\\": 0.5823,\\\\n      \\\\\\\"3v4\\\\\\\": 0.5293,\\\\n      \\\\\\\"4v5\\\\\\\": 0.5237\\\\n    }\\\\n  },\\\\n  \\\\\\\"single_feature_auc_1v2\\\\\\\": {\\\\n    \\\\\\\"Config1-Greedy\\\\\\\": {\\\\n      \\\\\\\"surp_mean\\\\\\\": 0.5184,\\\\n      \\\\\\\"surp_std\\\\\\\": 0.5282,\\\\n      \\\\\\\"surp_skew\\\\\\\": 0.5322,\\\\n      \\\\\\\"surp_kurt\\\\\\\": 0.5251,\\\\n      \\\\\\\"surp_d1_mean\\\\\\\": 0.5015,\\\\n      \\\\\\\"surp_d1_std\\\\\\\": 0.5038,\\\\n      \\\\\\\"surp_d1_skew\\\\\\\": 0.5026,\\\\n      \\\\\\\"surp_d2_mean\\\\\\\": 0.5128,\\\\n      \\\\\\\"surp_d2_std\\\\\\\": 0.5013,\\\\n      \\\\\\\"ttr\\\\\\\": 0.5462,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 0.5752,\\\\n      \\\\\\\"self_bleu\\\\\\\": 0.5961,\\\\n      \\\\\\\"freq_kurtosis\\\\\\\": 0.5167,\\\\n      \\\\\\\"freq_entropy\\\\\\\": 0.5139,\\\\n      \\\\\\\"low_freq_ratio\\\\\\\": 0.5444\\\\n    },\\\\n    \\\\\\\"Config2-Nuc09\\\\\\\": {\\\\n      \\\\\\\"surp_mean\\\\\\\": 0.5114,\\\\n      \\\\\\\"surp_std\\\\\\\": 0.5053,\\\\n      \\\\\\\"surp_skew\\\\\\\": 0.5997,\\\\n      \\\\\\\"surp_kurt\\\\\\\": 0.598,\\\\n      \\\\\\\"surp_d1_mean\\\\\\\": 0.507,\\\\n      \\\\\\\"surp_d1_std\\\\\\\": 0.5346,\\\\n      \\\\\\\"surp_d1_skew\\\\\\\": 0.5066,\\\\n      \\\\\\\"surp_d2_mean\\\\\\\": 0.5066,\\\\n      \\\\\\\"surp_d2_std\\\\\\\": 0.54,\\\\n      \\\\\\\"ttr\\\\\\\": 0.6043,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 0.6561,\\\\n      \\\\\\\"self_bleu\\\\\\\": 0.5429,\\\\n      \\\\\\\"freq_kurtosis\\\\\\\": 0.5527,\\\\n      \\\\\\\"freq_entropy\\\\\\\": 0.5528,\\\\n      \\\\\\\"low_freq_ratio\\\\\\\": 0.5813\\\\n    },\\\\n    \\\\\\\"Config3-T07\\\\\\\": {\\\\n      \\\\\\\"surp_mean\\\\\\\": 0.5228,\\\\n      \\\\\\\"surp_std\\\\\\\": 0.5336,\\\\n      \\\\\\\"surp_skew\\\\\\\": 0.5603,\\\\n      \\\\\\\"surp_kurt\\\\\\\": 0.557,\\\\n      \\\\\\\"surp_d1_mean\\\\\\\": 0.5043,\\\\n      \\\\\\\"surp_d1_std\\\\\\\": 0.5027,\\\\n      \\\\\\\"surp_d1_skew\\\\\\\": 0.5102,\\\\n      \\\\\\\"surp_d2_mean\\\\\\\": 0.5151,\\\\n      \\\\\\\"surp_d2_std\\\\\\\": 0.5083,\\\\n      \\\\\\\"ttr\\\\\\\": 0.5867,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 0.6365,\\\\n      \\\\\\\"self_bleu\\\\\\\": 0.5756,\\\\n      \\\\\\\"freq_kurtosis\\\\\\\": 0.5478,\\\\n      \\\\\\\"freq_entropy\\\\\\\": 0.5394,\\\\n      \\\\\\\"low_freq_ratio\\\\\\\": 0.5805\\\\n    },\\\\n    \\\\\\\"Config4-T12\\\\\\\": {\\\\n      \\\\\\\"surp_mean\\\\\\\": 0.5735,\\\\n      \\\\\\\"surp_std\\\\\\\": 0.5436,\\\\n      \\\\\\\"surp_skew\\\\\\\": 0.6123,\\\\n      \\\\\\\"surp_kurt\\\\\\\": 0.6017,\\\\n      \\\\\\\"surp_d1_mean\\\\\\\": 0.5087,\\\\n      \\\\\\\"surp_d1_std\\\\\\\": 0.5855,\\\\n      \\\\\\\"surp_d1_skew\\\\\\\": 0.5073,\\\\n      \\\\\\\"surp_d2_mean\\\\\\\": 0.5125,\\\\n      \\\\\\\"surp_d2_std\\\\\\\": 0.5883,\\\\n      \\\\\\\"ttr\\\\\\\": 0.6415,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 0.6775,\\\\n      \\\\\\\"self_bleu\\\\\\\": 0.54,\\\\n      \\\\\\\"freq_kurtosis\\\\\\\": 0.5602,\\\\n      \\\\\\\"freq_entropy\\\\\\\": 0.5905,\\\\n      \\\\\\\"low_freq_ratio\\\\\\\": 0.6041\\\\n    }\\\\n  },\\\\n  \\\\\\\"spearman_rho_matrix\\\\\\\": {\\\\n    \\\\\\\"Config1-Greedy vs Config2-Nuc09\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.6,\\\\n      \\\\\\\"p_value\\\\\\\": 0.01805,\\\\n      \\\\\\\"n_features\\\\\\\": 15\\\\n    },\\\\n    \\\\\\\"Config1-Greedy vs Config3-T07\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.9143,\\\\n      \\\\\\\"p_value\\\\\\\": 2e-06,\\\\n      \\\\\\\"n_features\\\\\\\": 15\\\\n    },\\\\n    \\\\\\\"Config1-Greedy vs Config4-T12\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.5321,\\\\n      \\\\\\\"p_value\\\\\\\": 0.041159,\\\\n      \\\\\\\"n_features\\\\\\\": 15\\\\n    },\\\\n    \\\\\\\"Config2-Nuc09 vs Config3-T07\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.7821,\\\\n      \\\\\\\"p_value\\\\\\\": 0.00057,\\\\n      \\\\\\\"n_features\\\\\\\": 15\\\\n    },\\\\n    \\\\\\\"Config2-Nuc09 vs Config4-T12\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.8929,\\\\n      \\\\\\\"p_value\\\\\\\": 7e-06,\\\\n      \\\\\\\"n_features\\\\\\\": 15\\\\n    },\\\\n    \\\\\\\"Config3-T07 vs Config4-T12\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.6679,\\\\n      \\\\\\\"p_value\\\\\\\": 0.00651,\\\\n      \\\\\\\"n_features\\\\\\\": 15\\\\n    }\\\\n  },\\\\n  \\\\\\\"top3_features\\\\\\\": {\\\\n    \\\\\\\"Config1-Greedy\\\\\\\": [\\\\n      \\\\\\\"self_bleu\\\\\\\",\\\\n      \\\\\\\"hapax_ratio\\\\\\\",\\\\n      \\\\\\\"ttr\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"Config2-Nuc09\\\\\\\": [\\\\n      \\\\\\\"hapax_ratio\\\\\\\",\\\\n      \\\\\\\"ttr\\\\\\\",\\\\n      \\\\\\\"surp_skew\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"Config3-T07\\\\\\\": [\\\\n      \\\\\\\"hapax_ratio\\\\\\\",\\\\n      \\\\\\\"ttr\\\\\\\",\\\\n      \\\\\\\"low_freq_ratio\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"Config4-T12\\\\\\\": [\\\\n      \\\\\\\"hapax_ratio\\\\\\\",\\\\n      \\\\\\\"ttr\\\\\\\",\\\\n      \\\\\\\"surp_skew\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"theta_sensitivity\\\\\\\": {\\\\n    \\\\\\\"Config1-Greedy\\\\\\\": {\\\\n      \\\\\\\"0.55\\\\\\\": 3,\\\\n      \\\\\\\"0.6\\\\\\\": 2,\\\\n      \\\\\\\"0.65\\\\\\\": 2,\\\\n      \\\\\\\"0.7\\\\\\\": 1\\\\n    },\\\\n    \\\\\\\"Config2-Nuc09\\\\\\\": {\\\\n      \\\\\\\"0.55\\\\\\\": 3,\\\\n      \\\\\\\"0.6\\\\\\\": 2,\\\\n      \\\\\\\"0.65\\\\\\\": 2,\\\\n      \\\\\\\"0.7\\\\\\\": 1\\\\n    },\\\\n    \\\\\\\"Config3-T07\\\\\\\": {\\\\n      \\\\\\\"0.55\\\\\\\": 3,\\\\n      \\\\\\\"0.6\\\\\\\": 2,\\\\n      \\\\\\\"0.65\\\\\\\": 2,\\\\n      \\\\\\\"0.7\\\\\\\": 1\\\\n    },\\\\n    \\\\\\\"Config4-T12\\\\\\\": {\\\\n      \\\\\\\"0.55\\\\\\\": 3,\\\\n      \\\\\\\"0.6\\\\\\\": 2,\\\\n      \\\\\\\"0.65\\\\\\\": 2,\\\\n      \\\\\\\"0.7\\\\\\\": 2\\\\n    }\\\\n  },\\\\n  \\\\\\\"cross_experiment_1v2\\\\\\\": {\\\\n    \\\\\\\"MVP-Qwen-Rewrite\\\\\\\": 0.6957,\\\\n    \\\\\\\"Exp001-Pythia-Cont\\\\\\\": 0.6539,\\\\n    \\\\\\\"Exp002-OLMo-Cont\\\\\\\": 0.6146,\\\\n    \\\\\\\"Exp017-Qwen-Cont\\\\\\\": 0.6114,\\\\n    \\\\\\\"Config1-Greedy\\\\\\\": 0.6893,\\\\n    \\\\\\\"Config2-Nuc09\\\\\\\": 0.6866,\\\\n    \\\\\\\"Config3-T07\\\\\\\": 0.6887,\\\\n    \\\\\\\"Config4-T12\\\\\\\": 0.7039\\\\n  },\\\\n  \\\\\\\"d016_universality\\\\\\\": {\\\\n    \\\\\\\"theta\\\\\\\": 0.6,\\\\n    \\\\\\\"all_above_theta\\\\\\\": true,\\\\n    \\\\\\\"values\\\\\\\": {\\\\n      \\\\\\\"MVP-Qwen-Rewrite\\\\\\\": 0.6957,\\\\n      \\\\\\\"Exp001-Pythia-Cont\\\\\\\": 0.6539,\\\\n      \\\\\\\"Exp002-OLMo-Cont\\\\\\\": 0.6146,\\\\n      \\\\\\\"Exp017-Qwen-Cont\\\\\\\": 0.6114,\\\\n      \\\\\\\"Config1-Greedy\\\\\\\": 0.6893,\\\\n      \\\\\\\"Config2-Nuc09\\\\\\\": 0.6866,\\\\n      \\\\\\\"Config3-T07\\\\\\\": 0.6887,\\\\n      \\\\\\\"Config4-T12\\\\\\\": 0.7039\\\\n    },\\\\n    \\\\\\\"min_value\\\\\\\": 0.6114,\\\\n    \\\\\\\"min_config\\\\\\\": \\\\\\\"Exp017-Qwen-Cont\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "e99a9d6c-2d8f-41d1-8507-637204bae73e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"configs_discovered\\\\\\\": [\\\\n    \\\\\\\"greedy\\\\\\\",\\\\n    \\\\\\\"nuc09\\\\\\\",\\\\n    \\\\\\\"t07\\\\\\\",\\\\n    \\\\\\\"t12\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"pairwise_auc_table\\\\\\\": {\\\\n    \\\\\\\"Config1-Greedy\\\\\\\": {\\\\n      \\\\\\\"0v1\\\\\\\": 0.9797,\\\\n      \\\\\\\"1v2\\\\\\\": 0.6893,\\\\n      \\\\\\\"2v3\\\\\\\": 0.5613,\\\\n      \\\\\\\"3v4\\\\\\\": 0.5404,\\\\n      \\\\\\\"4v5\\\\\\\": 0.5139\\\\n    },\\\\n    \\\\\\\"Config2-Nuc09\\\\\\\": {\\\\n      \\\\\\\"0v1\\\\\\\": 0.9946,\\\\n      \\\\\\\"1v2\\\\\\\": 0.6866,\\\\n      \\\\\\\"2v3\\\\\\\": 0.5917,\\\\n      \\\\\\\"3v4\\\\\\\": 0.5466,\\\\n      \\\\\\\"4v5\\\\\\\": 0.5068\\\\n    },\\\\n    \\\\\\\"Config3-T07\\\\\\\": {\\\\n      \\\\\\\"0v1\\\\\\\": 0.9878,\\\\n      \\\\\\\"1v2\\\\\\\": 0.6887,\\\\n      \\\\\\\"2v3\\\\\\\": 0.5902,\\\\n      \\\\\\\"3v4\\\\\\\": 0.5393,\\\\n      \\\\\\\"4v5\\\\\\\": 0.5349\\\\n    },\\\\n    \\\\\\\"Config4-T12\\\\\\\": {\\\\n      \\\\\\\"0v1\\\\\\\": 0.9982,\\\\n      \\\\\\\"1v2\\\\\\\": 0.7039,\\\\n      \\\\\\\"2v3\\\\\\\": 0.5823,\\\\n      \\\\\\\"3v4\\\\\\\": 0.5293,\\\\n      \\\\\\\"4v5\\\\\\\": 0.5237\\\\n    }\\\\n  },\\\\n  \\\\\\\"single_feature_auc_1v2\\\\\\\": {\\\\n    \\\\\\\"Config1-Greedy\\\\\\\": {\\\\n      \\\\\\\"surp_mean\\\\\\\": 0.5184,\\\\n      \\\\\\\"surp_std\\\\\\\": 0.5282,\\\\n      \\\\\\\"surp_skew\\\\\\\": 0.5322,\\\\n      \\\\\\\"surp_kurt\\\\\\\": 0.5251,\\\\n      \\\\\\\"surp_d1_mean\\\\\\\": 0.5015,\\\\n      \\\\\\\"surp_d1_std\\\\\\\": 0.5038,\\\\n      \\\\\\\"surp_d1_skew\\\\\\\": 0.5026,\\\\n      \\\\\\\"surp_d2_mean\\\\\\\": 0.5128,\\\\n      \\\\\\\"surp_d2_std\\\\\\\": 0.5013,\\\\n      \\\\\\\"ttr\\\\\\\": 0.5462,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 0.5752,\\\\n      \\\\\\\"self_bleu\\\\\\\": 0.5961,\\\\n      \\\\\\\"freq_kurtosis\\\\\\\": 0.5167,\\\\n      \\\\\\\"freq_entropy\\\\\\\": 0.5139,\\\\n      \\\\\\\"low_freq_ratio\\\\\\\": 0.5444\\\\n    },\\\\n    \\\\\\\"Config2-Nuc09\\\\\\\": {\\\\n      \\\\\\\"surp_mean\\\\\\\": 0.5114,\\\\n      \\\\\\\"surp_std\\\\\\\": 0.5053,\\\\n      \\\\\\\"surp_skew\\\\\\\": 0.5997,\\\\n      \\\\\\\"surp_kurt\\\\\\\": 0.598,\\\\n      \\\\\\\"surp_d1_mean\\\\\\\": 0.507,\\\\n      \\\\\\\"surp_d1_std\\\\\\\": 0.5346,\\\\n      \\\\\\\"surp_d1_skew\\\\\\\": 0.5066,\\\\n      \\\\\\\"surp_d2_mean\\\\\\\": 0.5066,\\\\n      \\\\\\\"surp_d2_std\\\\\\\": 0.54,\\\\n      \\\\\\\"ttr\\\\\\\": 0.6043,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 0.6561,\\\\n      \\\\\\\"self_bleu\\\\\\\": 0.5429,\\\\n      \\\\\\\"freq_kurtosis\\\\\\\": 0.5527,\\\\n      \\\\\\\"freq_entropy\\\\\\\": 0.5528,\\\\n      \\\\\\\"low_freq_ratio\\\\\\\": 0.5813\\\\n    },\\\\n    \\\\\\\"Config3-T07\\\\\\\": {\\\\n      \\\\\\\"surp_mean\\\\\\\": 0.5228,\\\\n      \\\\\\\"surp_std\\\\\\\": 0.5336,\\\\n      \\\\\\\"surp_skew\\\\\\\": 0.5603,\\\\n      \\\\\\\"surp_kurt\\\\\\\": 0.557,\\\\n      \\\\\\\"surp_d1_mean\\\\\\\": 0.5043,\\\\n      \\\\\\\"surp_d1_std\\\\\\\": 0.5027,\\\\n      \\\\\\\"surp_d1_skew\\\\\\\": 0.5102,\\\\n      \\\\\\\"surp_d2_mean\\\\\\\": 0.5151,\\\\n      \\\\\\\"surp_d2_std\\\\\\\": 0.5083,\\\\n      \\\\\\\"ttr\\\\\\\": 0.5867,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 0.6365,\\\\n      \\\\\\\"self_bleu\\\\\\\": 0.5756,\\\\n      \\\\\\\"freq_kurtosis\\\\\\\": 0.5478,\\\\n      \\\\\\\"freq_entropy\\\\\\\": 0.5394,\\\\n      \\\\\\\"low_freq_ratio\\\\\\\": 0.5805\\\\n    },\\\\n    \\\\\\\"Config4-T12\\\\\\\": {\\\\n      \\\\\\\"surp_mean\\\\\\\": 0.5735,\\\\n      \\\\\\\"surp_std\\\\\\\": 0.5436,\\\\n      \\\\\\\"surp_skew\\\\\\\": 0.6123,\\\\n      \\\\\\\"surp_kurt\\\\\\\": 0.6017,\\\\n      \\\\\\\"surp_d1_mean\\\\\\\": 0.5087,\\\\n      \\\\\\\"surp_d1_std\\\\\\\": 0.5855,\\\\n      \\\\\\\"surp_d1_skew\\\\\\\": 0.5073,\\\\n      \\\\\\\"surp_d2_mean\\\\\\\": 0.5125,\\\\n      \\\\\\\"surp_d2_std\\\\\\\": 0.5883,\\\\n      \\\\\\\"ttr\\\\\\\": 0.6415,\\\\n      \\\\\\\"hapax_ratio\\\\\\\": 0.6775,\\\\n      \\\\\\\"self_bleu\\\\\\\": 0.54,\\\\n      \\\\\\\"freq_kurtosis\\\\\\\": 0.5602,\\\\n      \\\\\\\"freq_entropy\\\\\\\": 0.5905,\\\\n      \\\\\\\"low_freq_ratio\\\\\\\": 0.6041\\\\n    }\\\\n  },\\\\n  \\\\\\\"spearman_rho_matrix\\\\\\\": {\\\\n    \\\\\\\"Config1-Greedy vs Config2-Nuc09\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.6,\\\\n      \\\\\\\"p_value\\\\\\\": 0.01805,\\\\n      \\\\\\\"n_features\\\\\\\": 15\\\\n    },\\\\n    \\\\\\\"Config1-Greedy vs Config3-T07\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.9143,\\\\n      \\\\\\\"p_value\\\\\\\": 2e-06,\\\\n      \\\\\\\"n_features\\\\\\\": 15\\\\n    },\\\\n    \\\\\\\"Config1-Greedy vs Config4-T12\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.5321,\\\\n      \\\\\\\"p_value\\\\\\\": 0.041159,\\\\n      \\\\\\\"n_features\\\\\\\": 15\\\\n    },\\\\n    \\\\\\\"Config2-Nuc09 vs Config3-T07\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.7821,\\\\n      \\\\\\\"p_value\\\\\\\": 0.00057,\\\\n      \\\\\\\"n_features\\\\\\\": 15\\\\n    },\\\\n    \\\\\\\"Config2-Nuc09 vs Config4-T12\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.8929,\\\\n      \\\\\\\"p_value\\\\\\\": 7e-06,\\\\n      \\\\\\\"n_features\\\\\\\": 15\\\\n    },\\\\n    \\\\\\\"Config3-T07 vs Config4-T12\\\\\\\": {\\\\n      \\\\\\\"rho\\\\\\\": 0.6679,\\\\n      \\\\\\\"p_value\\\\\\\": 0.00651,\\\\n      \\\\\\\"n_features\\\\\\\": 15\\\\n    }\\\\n  },\\\\n  \\\\\\\"top3_features\\\\\\\": {\\\\n    \\\\\\\"Config1-Greedy\\\\\\\": [\\\\n      \\\\\\\"self_bleu\\\\\\\",\\\\n      \\\\\\\"hapax_ratio\\\\\\\",\\\\n      \\\\\\\"ttr\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"Config2-Nuc09\\\\\\\": [\\\\n      \\\\\\\"hapax_ratio\\\\\\\",\\\\n      \\\\\\\"ttr\\\\\\\",\\\\n      \\\\\\\"surp_skew\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"Config3-T07\\\\\\\": [\\\\n      \\\\\\\"hapax_ratio\\\\\\\",\\\\n      \\\\\\\"ttr\\\\\\\",\\\\n      \\\\\\\"low_freq_ratio\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"Config4-T12\\\\\\\": [\\\\n      \\\\\\\"hapax_ratio\\\\\\\",\\\\n      \\\\\\\"ttr\\\\\\\",\\\\n      \\\\\\\"surp_skew\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"theta_sensitivity\\\\\\\": {\\\\n    \\\\\\\"Config1-Greedy\\\\\\\": {\\\\n      \\\\\\\"0.55\\\\\\\": 3,\\\\n      \\\\\\\"0.6\\\\\\\": 2,\\\\n      \\\\\\\"0.65\\\\\\\": 2,\\\\n      \\\\\\\"0.7\\\\\\\": 1\\\\n    },\\\\n    \\\\\\\"Config2-Nuc09\\\\\\\": {\\\\n      \\\\\\\"0.55\\\\\\\": 3,\\\\n      \\\\\\\"0.6\\\\\\\": 2,\\\\n      \\\\\\\"0.65\\\\\\\": 2,\\\\n      \\\\\\\"0.7\\\\\\\": 1\\\\n    },\\\\n    \\\\\\\"Config3-T07\\\\\\\": {\\\\n      \\\\\\\"0.55\\\\\\\": 3,\\\\n      \\\\\\\"0.6\\\\\\\": 2,\\\\n      \\\\\\\"0.65\\\\\\\": 2,\\\\n      \\\\\\\"0.7\\\\\\\": 1\\\\n    },\\\\n    \\\\\\\"Config4-T12\\\\\\\": {\\\\n      \\\\\\\"0.55\\\\\\\": 3,\\\\n      \\\\\\\"0.6\\\\\\\": 2,\\\\n      \\\\\\\"0.65\\\\\\\": 2,\\\\n      \\\\\\\"0.7\\\\\\\": 2\\\\n    }\\\\n  },\\\\n  \\\\\\\"cross_experiment_1v2\\\\\\\": {\\\\n    \\\\\\\"MVP-Qwen-Rewrite\\\\\\\": 0.6957,\\\\n    \\\\\\\"Exp001-Pythia-Cont\\\\\\\": 0.6539,\\\\n    \\\\\\\"Exp002-OLMo-Cont\\\\\\\": 0.6146,\\\\n    \\\\\\\"Exp017-Qwen-Cont\\\\\\\": 0.6114,\\\\n    \\\\\\\"Config1-Greedy\\\\\\\": 0.6893,\\\\n    \\\\\\\"Config2-Nuc09\\\\\\\": 0.6866,\\\\n    \\\\\\\"Config3-T07\\\\\\\": 0.6887,\\\\n    \\\\\\\"Config4-T12\\\\\\\": 0.7039\\\\n  },\\\\n  \\\\\\\"d016_universality\\\\\\\": {\\\\n    \\\\\\\"theta\\\\\\\": 0.6,\\\\n    \\\\\\\"all_above_theta\\\\\\\": true,\\\\n    \\\\\\\"values\\\\\\\": {\\\\n      \\\\\\\"MVP-Qwen-Rewrite\\\\\\\": 0.6957,\\\\n      \\\\\\\"Exp001-Pythia-Cont\\\\\\\": 0.6539,\\\\n      \\\\\\\"Exp002-OLMo-Cont\\\\\\\": 0.6146,\\\\n      \\\\\\\"Exp017-Qwen-Cont\\\\\\\": 0.6114,\\\\n      \\\\\\\"Config1-Greedy\\\\\\\": 0.6893,\\\\n      \\\\\\\"Config2-Nuc09\\\\\\\": 0.6866,\\\\n      \\\\\\\"Config3-T07\\\\\\\": 0.6887,\\\\n      \\\\\\\"Config4-T12\\\\\\\": 0.7039\\\\n    },\\\\n    \\\\\\\"min_value\\\\\\\": 0.6114,\\\\n    \\\\\\\"min_config\\\\\\\": \\\\\\\"Exp017-Qwen-Cont\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"configs_discovered\\\": [\\n    \\\"greedy\\\",\\n    \\\"nuc09\\\",\\n    \\\"t07\\\",\\n    \\\"t12\\\"\\n  ],\\n  \\\"pairwise_auc_table\\\": {\\n    \\\"Config1-Greedy\\\": {\\n      \\\"0v1\\\": 0.9797,\\n      \\\"1v2\\\": 0.6893,\\n      \\\"2v3\\\": 0.5613,\\n      \\\"3v4\\\": 0.5404,\\n      \\\"4v5\\\": 0.5139\\n    },\\n    \\\"Config2-Nuc09\\\": {\\n      \\\"0v1\\\": 0.9946,\\n      \\\"1v2\\\": 0.6866,\\n      \\\"2v3\\\": 0.5917,\\n      \\\"3v4\\\": 0.5466,\\n      \\\"4v5\\\": 0.5068\\n    },\\n    \\\"Config3-T07\\\": {\\n      \\\"0v1\\\": 0.9878,\\n      \\\"1v2\\\": 0.6887,\\n      \\\"2v3\\\": 0.5902,\\n      \\\"3v4\\\": 0.5393,\\n      \\\"4v5\\\": 0.5349\\n    },\\n    \\\"Config4-T12\\\": {\\n      \\\"0v1\\\": 0.9982,\\n      \\\"1v2\\\": 0.7039,\\n      \\\"2v3\\\": 0.5823,\\n      \\\"3v4\\\": 0.5293,\\n      \\\"4v5\\\": 0.5237\\n    }\\n  },\\n  \\\"single_feature_auc_1v2\\\": {\\n    \\\"Config1-Greedy\\\": {\\n      \\\"surp_mean\\\": 0.5184,\\n      \\\"surp_std\\\": 0.5282,\\n      \\\"surp_skew\\\": 0.5322,\\n      \\\"surp_kurt\\\": 0.5251,\\n      \\\"surp_d1_mean\\\": 0.5015,\\n      \\\"surp_d1_std\\\": 0.5038,\\n      \\\"surp_d1_skew\\\": 0.5026,\\n      \\\"surp_d2_mean\\\": 0.5128,\\n      \\\"surp_d2_std\\\": 0.5013,\\n      \\\"ttr\\\": 0.5462,\\n      \\\"hapax_ratio\\\": 0.5752,\\n      \\\"self_bleu\\\": 0.5961,\\n      \\\"freq_kurtosis\\\": 0.5167,\\n      \\\"freq_entropy\\\": 0.5139,\\n      \\\"low_freq_ratio\\\": 0.5444\\n    },\\n    \\\"Config2-Nuc09\\\": {\\n      \\\"surp_mean\\\": 0.5114,\\n      \\\"surp_std\\\": 0.5053,\\n      \\\"surp_skew\\\": 0.5997,\\n      \\\"surp_kurt\\\": 0.598,\\n      \\\"surp_d1_mean\\\": 0.507,\\n      \\\"surp_d1_std\\\": 0.5346,\\n      \\\"surp_d1_skew\\\": 0.5066,\\n      \\\"surp_d2_mean\\\": 0.5066,\\n      \\\"surp_d2_std\\\": 0.54,\\n      \\\"ttr\\\": 0.6043,\\n      \\\"hapax_ratio\\\": 0.6561,\\n      \\\"self_bleu\\\": 0.5429,\\n      \\\"freq_kurtosis\\\": 0.5527,\\n      \\\"freq_entropy\\\": 0.5528,\\n      \\\"low_freq_ratio\\\": 0.5813\\n    },\\n    \\\"Config3-T07\\\": {\\n      \\\"surp_mean\\\": 0.5228,\\n      \\\"surp_std\\\": 0.5336,\\n      \\\"surp_skew\\\": 0.5603,\\n      \\\"surp_kurt\\\": 0.557,\\n      \\\"surp_d1_mean\\\": 0.5043,\\n      \\\"surp_d1_std\\\": 0.5027,\\n      \\\"surp_d1_skew\\\": 0.5102,\\n      \\\"surp_d2_mean\\\": 0.5151,\\n      \\\"surp_d2_std\\\": 0.5083,\\n      \\\"ttr\\\": 0.5867,\\n      \\\"hapax_ratio\\\": 0.6365,\\n      \\\"self_bleu\\\": 0.5756,\\n      \\\"freq_kurtosis\\\": 0.5478,\\n      \\\"freq_entropy\\\": 0.5394,\\n      \\\"low_freq_ratio\\\": 0.5805\\n    },\\n    \\\"Config4-T12\\\": {\\n      \\\"surp_mean\\\": 0.5735,\\n      \\\"surp_std\\\": 0.5436,\\n      \\\"surp_skew\\\": 0.6123,\\n      \\\"surp_kurt\\\": 0.6017,\\n      \\\"surp_d1_mean\\\": 0.5087,\\n      \\\"surp_d1_std\\\": 0.5855,\\n      \\\"surp_d1_skew\\\": 0.5073,\\n      \\\"surp_d2_mean\\\": 0.5125,\\n      \\\"surp_d2_std\\\": 0.5883,\\n      \\\"ttr\\\": 0.6415,\\n      \\\"hapax_ratio\\\": 0.6775,\\n      \\\"self_bleu\\\": 0.54,\\n      \\\"freq_kurtosis\\\": 0.5602,\\n      \\\"freq_entropy\\\": 0.5905,\\n      \\\"low_freq_ratio\\\": 0.6041\\n    }\\n  },\\n  \\\"spearman_rho_matrix\\\": {\\n    \\\"Config1-Greedy vs Config2-Nuc09\\\": {\\n      \\\"rho\\\": 0.6,\\n      \\\"p_value\\\": 0.01805,\\n      \\\"n_features\\\": 15\\n    },\\n    \\\"Config1-Greedy vs Config3-T07\\\": {\\n      \\\"rho\\\": 0.9143,\\n      \\\"p_value\\\": 2e-06,\\n      \\\"n_features\\\": 15\\n    },\\n    \\\"Config1-Greedy vs Config4-T12\\\": {\\n      \\\"rho\\\": 0.5321,\\n      \\\"p_value\\\": 0.041159,\\n      \\\"n_features\\\": 15\\n    },\\n    \\\"Config2-Nuc09 vs Config3-T07\\\": {\\n      \\\"rho\\\": 0.7821,\\n      \\\"p_value\\\": 0.00057,\\n      \\\"n_features\\\": 15\\n    },\\n    \\\"Config2-Nuc09 vs Config4-T12\\\": {\\n      \\\"rho\\\": 0.8929,\\n      \\\"p_value\\\": 7e-06,\\n      \\\"n_features\\\": 15\\n    },\\n    \\\"Config3-T07 vs Config4-T12\\\": {\\n      \\\"rho\\\": 0.6679,\\n      \\\"p_value\\\": 0.00651,\\n      \\\"n_features\\\": 15\\n    }\\n  },\\n  \\\"top3_features\\\": {\\n    \\\"Config1-Greedy\\\": [\\n      \\\"self_bleu\\\",\\n      \\\"hapax_ratio\\\",\\n      \\\"ttr\\\"\\n    ],\\n    \\\"Config2-Nuc09\\\": [\\n      \\\"hapax_ratio\\\",\\n      \\\"ttr\\\",\\n      \\\"surp_skew\\\"\\n    ],\\n    \\\"Config3-T07\\\": [\\n      \\\"hapax_ratio\\\",\\n      \\\"ttr\\\",\\n      \\\"low_freq_ratio\\\"\\n    ],\\n    \\\"Config4-T12\\\": [\\n      \\\"hapax_ratio\\\",\\n      \\\"ttr\\\",\\n      \\\"surp_skew\\\"\\n    ]\\n  },\\n  \\\"theta_sensitivity\\\": {\\n    \\\"Config1-Greedy\\\": {\\n      \\\"0.55\\\": 3,\\n      \\\"0.6\\\": 2,\\n      \\\"0.65\\\": 2,\\n      \\\"0.7\\\": 1\\n    },\\n    \\\"Config2-Nuc09\\\": {\\n      \\\"0.55\\\": 3,\\n      \\\"0.6\\\": 2,\\n      \\\"0.65\\\": 2,\\n      \\\"0.7\\\": 1\\n    },\\n    \\\"Config3-T07\\\": {\\n      \\\"0.55\\\": 3,\\n      \\\"0.6\\\": 2,\\n      \\\"0.65\\\": 2,\\n      \\\"0.7\\\": 1\\n    },\\n    \\\"Config4-T12\\\": {\\n      \\\"0.55\\\": 3,\\n      \\\"0.6\\\": 2,\\n      \\\"0.65\\\": 2,\\n      \\\"0.7\\\": 2\\n    }\\n  },\\n  \\\"cross_experiment_1v2\\\": {\\n    \\\"MVP-Qwen-Rewrite\\\": 0.6957,\\n    \\\"Exp001-Pythia-Cont\\\": 0.6539,\\n    \\\"Exp002-OLMo-Cont\\\": 0.6146,\\n    \\\"Exp017-Qwen-Cont\\\": 0.6114,\\n    \\\"Config1-Greedy\\\": 0.6893,\\n    \\\"Config2-Nuc09\\\": 0.6866,\\n    \\\"Config3-T07\\\": 0.6887,\\n    \\\"Config4-T12\\\": 0.7039\\n  },\\n  \\\"d016_universality\\\": {\\n    \\\"theta\\\": 0.6,\\n    \\\"all_above_theta\\\": true,\\n    \\\"values\\\": {\\n      \\\"MVP-Qwen-Rewrite\\\": 0.6957,\\n      \\\"Exp001-Pythia-Cont\\\": 0.6539,\\n      \\\"Exp002-OLMo-Cont\\\": 0.6146,\\n      \\\"Exp017-Qwen-Cont\\\": 0.6114,\\n      \\\"Config1-Greedy\\\": 0.6893,\\n      \\\"Config2-Nuc09\\\": 0.6866,\\n      \\\"Config3-T07\\\": 0.6887,\\n      \\\"Config4-T12\\\": 0.7039\\n    },\\n    \\\"min_value\\\": 0.6114,\\n    \\\"min_config\\\": \\\"Exp017-Qwen-Cont\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-13T21:00:43.155Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R1boPm6Ycy3Yb3aeeANAAT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "bf4b2b58-8c88-4575-85d1-c89ce42b5351",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I have the full JSON data. Now let me check if matplotlib is available on the conda environment.",
+              "signature": "EpsCClkIDRgCKkDaqfHcLiw9AlnAQ19lwm4AnOKjXH2BbUAbQyZBDyeD2uh8bVCfhQ/HUA2YrrZrogfdI9BBxxklIWEjmRqe8QucMg9jbGF1ZGUtb3B1cy00LTY4ABIMExZU18R7qfgDz8dVGgySkuRNpr9I4/JGgQwiMKpX/QZQ6iJXtIe3T8h92qyxH+PE4XNwjfEnBeZZfwumAIZpX6fhgnY7zRav9CECQSpwkOBWthd6RjbdOxy74ZnnvP7okbNa4Mfa+GanRKbE/3wVjmUBfX3InklTIVeIWMM4yuQVR9dMbh5qCMmdH3Ue/nDcYDkf0GOZelAHjifjiW/lT7eKfRgy2v7RTuCCRSAvfLgFhD3nEyCRnzx75fS3NRgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "6988964a-0447-493e-ab38-a0a860f27ae9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KCGfGDE65MX26NgbrFXu8T",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3931,
+                "cache_read_input_tokens": 30950,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3931
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 数据拿到了，所有 4 个 config 都有完整的 5 个 depth pair 数据。现在编写脚本并部署到服务器。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "b424862a-b9aa-4175-810e-b1d9dade663b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KCGfGDE65MX26NgbrFXu8T",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3931,
+                "cache_read_input_tokens": 30950,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3931
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Le1Whvoq4SgCZQPo18n1Z6",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westc-26893",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"import matplotlib; print(matplotlib.__version__)\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "f1d822ac-3861-4a67-b7db-efcf64d6239a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KCGfGDE65MX26NgbrFXu8T",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3931,
+                "cache_read_input_tokens": 30950,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3931
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-13T21:00:49.977Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Le1Whvoq4SgCZQPo18n1Z6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3.10.5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "8bacdb95-3a90-49ef-ba5e-d56e72a9582c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3.10.5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"3.10.5\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.15}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "matplotlib 3.10.5 已就绪。现在写脚本到服务器。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "7f8f5d25-4598-4030-9e92-0f23069a9c5a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VbNBg38og6CYfPpihvM89M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 301,
+                "cache_read_input_tokens": 34881,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 301
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015E1MJUcGJHrRDgKHUMsSoz",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westc-26893",
+                "command": "cat > /root/autodl-tmp/gen-depth-contamination/scripts/plot_exp003_decoding_ablation.py << 'PYEOF'\n#!/usr/bin/env python3\n\"\"\"exp-003 decoding ablation: 4-config pairwise AUC grouped bar chart + summary table.\nInput:  artifacts/exp003_analysis.json (or built-in data)\nOutput: artifacts/exp003_decoding_ablation.pdf, .png, .tex\n\"\"\"\n\nimport json\nimport os\nimport sys\nfrom pathlib import Path\n\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nROOT = Path(__file__).resolve().parent.parent\nARTIFACT_DIR = ROOT / \"artifacts\"\nJSON_PATH = ARTIFACT_DIR / \"exp003_analysis.json\"\n\n# ---------------------------------------------------------------------------\n# Data\n# ---------------------------------------------------------------------------\nFALLBACK_AUC = {\n    \"Config1-Greedy\":  {\"0v1\": 0.9797, \"1v2\": 0.6893, \"2v3\": 0.5613, \"3v4\": 0.5404, \"4v5\": 0.5139},\n    \"Config2-Nuc09\":   {\"0v1\": 0.9946, \"1v2\": 0.6866, \"2v3\": 0.5917, \"3v4\": 0.5466, \"4v5\": 0.5068},\n    \"Config3-T07\":     {\"0v1\": 0.9878, \"1v2\": 0.6887, \"2v3\": 0.5902, \"3v4\": 0.5393, \"4v5\": 0.5349},\n    \"Config4-T12\":     {\"0v1\": 0.9982, \"1v2\": 0.7039, \"2v3\": 0.5823, \"3v4\": 0.5293, \"4v5\": 0.5237},\n}\n\nCONFIG_LABELS = {\n    \"Config1-Greedy\": \"Greedy\",\n    \"Config2-Nuc09\":  \"Nuc p=.9, T=1.0\",\n    \"Config3-T07\":    \"Nuc p=.95, T=0.7\",\n    \"Config4-T12\":    \"Nuc p=.95, T=1.2\",\n}\n\nDEPTH_PAIRS = [\"0v1\", \"1v2\", \"2v3\", \"3v4\", \"4v5\"]\nDEPTH_LABELS = [\"0 vs 1\", \"1 vs 2\", \"2 vs 3\", \"3 vs 4\", \"4 vs 5\"]\n\nCOLORS_FILL = [\"#4E79A7\", \"#F28E2B\", \"#59A14F\", \"#E15759\"]\nCOLORS_EDGE = [\"#2B5A83\", \"#C06A10\", \"#3B7A32\", \"#B8393B\"]\n\ndef load_data():\n    if JSON_PATH.exists():\n        with open(JSON_PATH) as f:\n            blob = json.load(f)\n        return blob.get(\"pairwise_auc_table\", FALLBACK_AUC), blob\n    return FALLBACK_AUC, {}\n\n# ---------------------------------------------------------------------------\n# Figure\n# ---------------------------------------------------------------------------\ndef plot_grouped_bar(auc_table):\n    plt.rcParams.update({\n        \"font.family\": \"serif\",\n        \"font.serif\": [\"DejaVu Serif\", \"Times New Roman\", \"Computer Modern Roman\"],\n        \"mathtext.fontset\": \"cm\",\n        \"font.size\": 8,\n        \"axes.titlesize\": 9,\n        \"axes.labelsize\": 8,\n        \"xtick.labelsize\": 7,\n        \"ytick.labelsize\": 7,\n        \"legend.fontsize\": 6.5,\n        \"figure.dpi\": 300,\n        \"savefig.dpi\": 300,\n        \"savefig.bbox\": \"tight\",\n        \"savefig.pad_inches\": 0.02,\n        \"axes.spines.top\": False,\n        \"axes.spines.right\": False,\n    })\n\n    configs = list(auc_table.keys())\n    n_configs = len(configs)\n    n_pairs = len(DEPTH_PAIRS)\n\n    fig, ax = plt.subplots(figsize=(3.5, 2.5))\n\n    bar_width = 0.18\n    x = np.arange(n_pairs)\n\n    for ci, cfg in enumerate(configs):\n        vals = [auc_table[cfg].get(dp, float(\"nan\")) for dp in DEPTH_PAIRS]\n        offset = (ci - (n_configs - 1) / 2) * bar_width\n        bars = ax.bar(\n            x + offset, vals, bar_width,\n            color=COLORS_FILL[ci], edgecolor=COLORS_EDGE[ci],\n            linewidth=0.6, alpha=0.85,\n            label=CONFIG_LABELS.get(cfg, cfg), zorder=3,\n        )\n\n    ax.axhline(0.60, color=\"#888888\", linestyle=\"--\", linewidth=0.7, zorder=2)\n    ax.text(n_pairs - 0.5, 0.605, r\"$\\theta=0.60$\", fontsize=6, color=\"#666666\",\n            ha=\"right\", va=\"bottom\")\n\n    ax.axhline(0.50, color=\"#AAAAAA\", linestyle=\":\", linewidth=0.6, zorder=2)\n    ax.text(n_pairs - 0.5, 0.505, \"chance\", fontsize=5.5, color=\"#999999\",\n            ha=\"right\", va=\"bottom\")\n\n    ax.set_xticks(x)\n    ax.set_xticklabels(DEPTH_LABELS)\n    ax.set_xlabel(\"Depth pair\")\n    ax.set_ylabel(\"Pairwise AUC\")\n    ax.set_ylim(0.47, 1.03)\n\n    ax.legend(loc=\"upper right\", frameon=True, framealpha=0.9,\n              edgecolor=\"#CCCCCC\", fancybox=False, handlelength=1.2,\n              handletextpad=0.4, borderpad=0.3, labelspacing=0.25)\n\n    ax.set_axisbelow(True)\n\n    pdf_path = ARTIFACT_DIR / \"exp003_decoding_ablation.pdf\"\n    png_path = ARTIFACT_DIR / \"exp003_decoding_ablation.png\"\n    fig.savefig(pdf_path)\n    fig.savefig(png_path, dpi=300)\n    plt.close(fig)\n    print(f\"Saved: {pdf_path}\")\n    print(f\"Saved: {png_path}\")\n\n# ---------------------------------------------------------------------------\n# Table\n# ---------------------------------------------------------------------------\ndef print_and_save_table(auc_table, blob):\n    top3 = blob.get(\"top3_features\", {})\n    theta_sens = blob.get(\"theta_sensitivity\", {})\n\n    header = f\"{'Config':<22} {'Decoding':<22} {'1v2 AUC':>8} {'K*(θ=.60)':>10} {'Top-3 Features'}\"\n    sep = \"-\" * len(header)\n    lines = [header, sep]\n\n    decoding_map = {\n        \"Config1-Greedy\": \"greedy\",\n        \"Config2-Nuc09\":  \"nucleus p=0.9, T=1.0\",\n        \"Config3-T07\":    \"nucleus p=0.95, T=0.7\",\n        \"Config4-T12\":    \"nucleus p=0.95, T=1.2\",\n    }\n\n    tex_rows = []\n    for cfg in auc_table:\n        auc_1v2 = auc_table[cfg].get(\"1v2\", float(\"nan\"))\n        kstar = theta_sens.get(cfg, {}).get(\"0.6\", \"—\")\n        feats = \", \".join(top3.get(cfg, []))\n        dec = decoding_map.get(cfg, cfg)\n        line = f\"{cfg:<22} {dec:<22} {auc_1v2:>8.4f} {str(kstar):>10} {feats}\"\n        lines.append(line)\n        tex_rows.append(\n            f\"  {cfg} & {dec} & {auc_1v2:.4f} & {kstar} & {feats} \\\\\\\\\"\n        )\n\n    table_str = \"\\n\".join(lines)\n    print(\"\\n\" + table_str + \"\\n\")\n\n    tex = (\n        \"\\\\begin{table}[t]\\n\"\n        \"\\\\centering\\n\"\n        \"\\\\caption{Decoding ablation summary (exp-003). $K^*$ = max depth with AUC $>\\\\theta$.}\\n\"\n        \"\\\\label{tab:exp003-decoding}\\n\"\n        \"\\\\small\\n\"\n        \"\\\\begin{tabular}{llccc}\\n\"\n        \"\\\\toprule\\n\"\n        \"Config & Decoding & 1v2 AUC & $K^*(\\\\theta{=}0.60)$ & Top-3 Features \\\\\\\\\\n\"\n        \"\\\\midrule\\n\"\n        + \"\\n\".join(tex_rows) + \"\\n\"\n        \"\\\\bottomrule\\n\"\n        \"\\\\end{tabular}\\n\"\n        \"\\\\end{table}\\n\"\n    )\n\n    tex_path = ARTIFACT_DIR / \"exp003_decoding_ablation.tex\"\n    tex_path.write_text(tex)\n    print(f\"Saved: {tex_path}\")\n\n# ---------------------------------------------------------------------------\n# Main\n# ---------------------------------------------------------------------------\nif __name__ == \"__main__\":\n    auc_table, blob = load_data()\n    plot_grouped_bar(auc_table)\n    print_and_save_table(auc_table, blob)\nPYEOF",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "99367c0b-156e-47ca-ad91-37cdbca098d0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VbNBg38og6CYfPpihvM89M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 301,
+                "cache_read_input_tokens": 34881,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 301
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-13T21:01:30.295Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015E1MJUcGJHrRDgKHUMsSoz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "3c22146f-e593-4db1-a7ab-7f81a324ab69",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写入，运行验证。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "228a6022-b603-40f5-bb49-755687e6d642",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017GvXbqUVzEgDZ6a2hBz1mr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2688,
+                "cache_read_input_tokens": 35182,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2688
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014i48VtkQYm9ZNCqf3qWV1m",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westc-26893",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && python scripts/plot_exp003_decoding_ablation.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "f7a8d6ba-1aea-460f-a18c-46c13b634c95",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017GvXbqUVzEgDZ6a2hBz1mr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2688,
+                "cache_read_input_tokens": 35182,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2688
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-13T21:01:37.775Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014i48VtkQYm9ZNCqf3qWV1m",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Saved: /root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.pdf\\\\nSaved: /root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.png\\\\n\\\\nConfig                 Decoding                1v2 AUC  K*(θ=.60) Top-3 Features\\\\n--------------------------------------------------------------------------------\\\\nConfig1-Greedy         greedy                   0.6893          2 self_bleu, hapax_ratio, ttr\\\\nConfig2-Nuc09          nucleus p=0.9, T=1.0     0.6866          2 hapax_ratio, ttr, surp_skew\\\\nConfig3-T07            nucleus p=0.95, T=0.7    0.6887          2 hapax_ratio, ttr, low_freq_ratio\\\\nConfig4-T12            nucleus p=0.95, T=1.2    0.7039          2 hapax_ratio, ttr, surp_skew\\\\n\\\\nSaved: /root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.tex\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.24}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "5a20ddda-2243-4622-9061-75aaabe014a9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Saved: /root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.pdf\\\\nSaved: /root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.png\\\\n\\\\nConfig                 Decoding                1v2 AUC  K*(θ=.60) Top-3 Features\\\\n--------------------------------------------------------------------------------\\\\nConfig1-Greedy         greedy                   0.6893          2 self_bleu, hapax_ratio, ttr\\\\nConfig2-Nuc09          nucleus p=0.9, T=1.0     0.6866          2 hapax_ratio, ttr, surp_skew\\\\nConfig3-T07            nucleus p=0.95, T=0.7    0.6887          2 hapax_ratio, ttr, low_freq_ratio\\\\nConfig4-T12            nucleus p=0.95, T=1.2    0.7039          2 hapax_ratio, ttr, surp_skew\\\\n\\\\nSaved: /root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.tex\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.24}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Saved: /root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.pdf\\nSaved: /root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.png\\n\\nConfig                 Decoding                1v2 AUC  K*(θ=.60) Top-3 Features\\n--------------------------------------------------------------------------------\\nConfig1-Greedy         greedy                   0.6893          2 self_bleu, hapax_ratio, ttr\\nConfig2-Nuc09          nucleus p=0.9, T=1.0     0.6866          2 hapax_ratio, ttr, surp_skew\\nConfig3-T07            nucleus p=0.95, T=0.7    0.6887          2 hapax_ratio, ttr, low_freq_ratio\\nConfig4-T12            nucleus p=0.95, T=1.2    0.7039          2 hapax_ratio, ttr, surp_skew\\n\\nSaved: /root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.24}}"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MVBnQTy9yt3SemBX13JrCx",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westc-26893",
+                "command": "ls -lh /root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.*",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "eddf090a-fe3a-422b-9180-2bddaf458175",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Priuw5iVhKjnzN3bXPk3r1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 530,
+                "cache_read_input_tokens": 37870,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 530
+                },
+                "output_tokens": 54,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-13T21:01:42.726Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MVBnQTy9yt3SemBX13JrCx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 22K May 14 05:01 /root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.pdf\\\\n-rw-r--r-- 1 root root 53K May 14 05:01 /root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.png\\\\n-rw-r--r-- 1 root root 628 May 14 05:01 /root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.tex\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "d9cedd50-ecfa-4daf-a3fc-9ae245fcb3cf",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 22K May 14 05:01 /root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.pdf\\\\n-rw-r--r-- 1 root root 53K May 14 05:01 /root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.png\\\\n-rw-r--r-- 1 root root 628 May 14 05:01 /root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.tex\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 22K May 14 05:01 /root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.pdf\\n-rw-r--r-- 1 root root 53K May 14 05:01 /root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.png\\n-rw-r--r-- 1 root root 628 May 14 05:01 /root/autodl-tmp/gen-depth-contamination/artifacts/exp003_decoding_ablation.tex\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2}}"
+              }
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "同时在本地保存一份脚本副本。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "82b9115d-3315-4ce7-95e4-7a5b43bf3c31",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EGRA2n3rmyvAzGgFjyEcJc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 363,
+                "cache_read_input_tokens": 38400,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 363
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BGzoV5Gp98qxWVHg1S2eBx",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/ 2>/dev/null",
+                "description": "Check local scripts directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "b3f2bc39-6f72-4f5c-9d0b-5545d0ff2c86",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EGRA2n3rmyvAzGgFjyEcJc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 363,
+                "cache_read_input_tokens": 38400,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 363
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-13T21:01:47.210Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BGzoV5Gp98qxWVHg1S2eBx",
+              "type": "tool_result",
+              "content": "run_cross_transfer.py\nrun_exp003_ablation.sh\nrun_exp013_cross_transfer.py\nrun_exp015_neural_probe.py\nrun_pipeline.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "f3b00f13-76f1-4477-ba83-5b228f028097",
+            "tool_use_result": {
+              "stdout": "run_cross_transfer.py\nrun_exp003_ablation.sh\nrun_exp013_cross_transfer.py\nrun_exp015_neural_probe.py\nrun_pipeline.py",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014RTLUq7ZzNs5Dv86ZjpxZa",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/plot_exp003_decoding_ablation.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"exp-003 decoding ablation: 4-config pairwise AUC grouped bar chart + summary table.\nInput:  artifacts/exp003_analysis.json (or built-in data)\nOutput: artifacts/exp003_decoding_ablation.pdf, .png, .tex\n\"\"\"\n\nimport json\nimport os\nimport sys\nfrom pathlib import Path\n\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nROOT = Path(__file__).resolve().parent.parent\nARTIFACT_DIR = ROOT / \"artifacts\"\nJSON_PATH = ARTIFACT_DIR / \"exp003_analysis.json\"\n\n# ---------------------------------------------------------------------------\n# Data\n# ---------------------------------------------------------------------------\nFALLBACK_AUC = {\n    \"Config1-Greedy\":  {\"0v1\": 0.9797, \"1v2\": 0.6893, \"2v3\": 0.5613, \"3v4\": 0.5404, \"4v5\": 0.5139},\n    \"Config2-Nuc09\":   {\"0v1\": 0.9946, \"1v2\": 0.6866, \"2v3\": 0.5917, \"3v4\": 0.5466, \"4v5\": 0.5068},\n    \"Config3-T07\":     {\"0v1\": 0.9878, \"1v2\": 0.6887, \"2v3\": 0.5902, \"3v4\": 0.5393, \"4v5\": 0.5349},\n    \"Config4-T12\":     {\"0v1\": 0.9982, \"1v2\": 0.7039, \"2v3\": 0.5823, \"3v4\": 0.5293, \"4v5\": 0.5237},\n}\n\nCONFIG_LABELS = {\n    \"Config1-Greedy\": \"Greedy\",\n    \"Config2-Nuc09\":  \"Nuc p=.9, T=1.0\",\n    \"Config3-T07\":    \"Nuc p=.95, T=0.7\",\n    \"Config4-T12\":    \"Nuc p=.95, T=1.2\",\n}\n\nDEPTH_PAIRS = [\"0v1\", \"1v2\", \"2v3\", \"3v4\", \"4v5\"]\nDEPTH_LABELS = [\"0 vs 1\", \"1 vs 2\", \"2 vs 3\", \"3 vs 4\", \"4 vs 5\"]\n\nCOLORS_FILL = [\"#4E79A7\", \"#F28E2B\", \"#59A14F\", \"#E15759\"]\nCOLORS_EDGE = [\"#2B5A83\", \"#C06A10\", \"#3B7A32\", \"#B8393B\"]\n\ndef load_data():\n    if JSON_PATH.exists():\n        with open(JSON_PATH) as f:\n            blob = json.load(f)\n        return blob.get(\"pairwise_auc_table\", FALLBACK_AUC), blob\n    return FALLBACK_AUC, {}\n\n# ---------------------------------------------------------------------------\n# Figure\n# ---------------------------------------------------------------------------\ndef plot_grouped_bar(auc_table):\n    plt.rcParams.update({\n        \"font.family\": \"serif\",\n        \"font.serif\": [\"DejaVu Serif\", \"Times New Roman\", \"Computer Modern Roman\"],\n        \"mathtext.fontset\": \"cm\",\n        \"font.size\": 8,\n        \"axes.titlesize\": 9,\n        \"axes.labelsize\": 8,\n        \"xtick.labelsize\": 7,\n        \"ytick.labelsize\": 7,\n        \"legend.fontsize\": 6.5,\n        \"figure.dpi\": 300,\n        \"savefig.dpi\": 300,\n        \"savefig.bbox\": \"tight\",\n        \"savefig.pad_inches\": 0.02,\n        \"axes.spines.top\": False,\n        \"axes.spines.right\": False,\n    })\n\n    configs = list(auc_table.keys())\n    n_configs = len(configs)\n    n_pairs = len(DEPTH_PAIRS)\n\n    fig, ax = plt.subplots(figsize=(3.5, 2.5))\n\n    bar_width = 0.18\n    x = np.arange(n_pairs)\n\n    for ci, cfg in enumerate(configs):\n        vals = [auc_table[cfg].get(dp, float(\"nan\")) for dp in DEPTH_PAIRS]\n        offset = (ci - (n_configs - 1) / 2) * bar_width\n        bars = ax.bar(\n            x + offset, vals, bar_width,\n            color=COLORS_FILL[ci], edgecolor=COLORS_EDGE[ci],\n            linewidth=0.6, alpha=0.85,\n            label=CONFIG_LABELS.get(cfg, cfg), zorder=3,\n        )\n\n    ax.axhline(0.60, color=\"#888888\", linestyle=\"--\", linewidth=0.7, zorder=2)\n    ax.text(n_pairs - 0.5, 0.605, r\"$\\theta=0.60$\", fontsize=6, color=\"#666666\",\n            ha=\"right\", va=\"bottom\")\n\n    ax.axhline(0.50, color=\"#AAAAAA\", linestyle=\":\", linewidth=0.6, zorder=2)\n    ax.text(n_pairs - 0.5, 0.505, \"chance\", fontsize=5.5, color=\"#999999\",\n            ha=\"right\", va=\"bottom\")\n\n    ax.set_xticks(x)\n    ax.set_xticklabels(DEPTH_LABELS)\n    ax.set_xlabel(\"Depth pair\")\n    ax.set_ylabel(\"Pairwise AUC\")\n    ax.set_ylim(0.47, 1.03)\n\n    ax.legend(loc=\"upper right\", frameon=True, framealpha=0.9,\n              edgecolor=\"#CCCCCC\", fancybox=False, handlelength=1.2,\n              handletextpad=0.4, borderpad=0.3, labelspacing=0.25)\n\n    ax.set_axisbelow(True)\n\n    pdf_path = ARTIFACT_DIR / \"exp003_decoding_ablation.pdf\"\n    png_path = ARTIFACT_DIR / \"exp003_decoding_ablation.png\"\n    fig.savefig(pdf_path)\n    fig.savefig(png_path, dpi=300)\n    plt.close(fig)\n    print(f\"Saved: {pdf_path}\")\n    print(f\"Saved: {png_path}\")\n\n# ---------------------------------------------------------------------------\n# Table\n# ---------------------------------------------------------------------------\ndef print_and_save_table(auc_table, blob):\n    top3 = blob.get(\"top3_features\", {})\n    theta_sens = blob.get(\"theta_sensitivity\", {})\n\n    header = f\"{'Config':<22} {'Decoding':<22} {'1v2 AUC':>8} {'K*(θ=.60)':>10} {'Top-3 Features'}\"\n    sep = \"-\" * len(header)\n    lines = [header, sep]\n\n    decoding_map = {\n        \"Config1-Greedy\": \"greedy\",\n        \"Config2-Nuc09\":  \"nucleus p=0.9, T=1.0\",\n        \"Config3-T07\":    \"nucleus p=0.95, T=0.7\",\n        \"Config4-T12\":    \"nucleus p=0.95, T=1.2\",\n    }\n\n    tex_rows = []\n    for cfg in auc_table:\n        auc_1v2 = auc_table[cfg].get(\"1v2\", float(\"nan\"))\n        kstar = theta_sens.get(cfg, {}).get(\"0.6\", \"—\")\n        feats = \", \".join(top3.get(cfg, []))\n        dec = decoding_map.get(cfg, cfg)\n        line = f\"{cfg:<22} {dec:<22} {auc_1v2:>8.4f} {str(kstar):>10} {feats}\"\n        lines.append(line)\n        tex_rows.append(\n            f\"  {cfg} & {dec} & {auc_1v2:.4f} & {kstar} & {feats} \\\\\\\\\"\n        )\n\n    table_str = \"\\n\".join(lines)\n    print(\"\\n\" + table_str + \"\\n\")\n\n    tex = (\n        \"\\\\begin{table}[t]\\n\"\n        \"\\\\centering\\n\"\n        \"\\\\caption{Decoding ablation summary (exp-003). $K^*$ = max depth with AUC $>\\\\theta$.}\\n\"\n        \"\\\\label{tab:exp003-decoding}\\n\"\n        \"\\\\small\\n\"\n        \"\\\\begin{tabular}{llccc}\\n\"\n        \"\\\\toprule\\n\"\n        \"Config & Decoding & 1v2 AUC & $K^*(\\\\theta{=}0.60)$ & Top-3 Features \\\\\\\\\\n\"\n        \"\\\\midrule\\n\"\n        + \"\\n\".join(tex_rows) + \"\\n\"\n        \"\\\\bottomrule\\n\"\n        \"\\\\end{tabular}\\n\"\n        \"\\\\end{table}\\n\"\n    )\n\n    tex_path = ARTIFACT_DIR / \"exp003_decoding_ablation.tex\"\n    tex_path.write_text(tex)\n    print(f\"Saved: {tex_path}\")\n\n# ---------------------------------------------------------------------------\n# Main\n# ---------------------------------------------------------------------------\nif __name__ == \"__main__\":\n    auc_table, blob = load_data()\n    plot_grouped_bar(auc_table)\n    print_and_save_table(auc_table, blob)\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "c338001b-fb23-4d66-ab47-40fe3bfaaa66",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FrEMF4bCSqs6XwWbeWjZXQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 182,
+                "cache_read_input_tokens": 38763,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 182
+                },
+                "output_tokens": 53,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-13T21:02:24.131Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014RTLUq7ZzNs5Dv86ZjpxZa",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/plot_exp003_decoding_ablation.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "64f45528-b6e7-40a1-a6cd-2b5463890cef",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/scripts/plot_exp003_decoding_ablation.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"exp-003 decoding ablation: 4-config pairwise AUC grouped bar chart + summary table.\nInput:  artifacts/exp003_analysis.json (or built-in data)\nOutput: artifacts/exp003_decoding_ablation.pdf, .png, .tex\n\"\"\"\n\nimport json\nimport os\nimport sys\nfrom pathlib import Path\n\nimport matplotlib\nmatplotlib.use(\"Agg\")\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nROOT = Path(__file__).resolve().parent.parent\nARTIFACT_DIR = ROOT / \"artifacts\"\nJSON_PATH = ARTIFACT_DIR / \"exp003_analysis.json\"\n\n# ---------------------------------------------------------------------------\n# Data\n# ---------------------------------------------------------------------------\nFALLBACK_AUC = {\n    \"Config1-Greedy\":  {\"0v1\": 0.9797, \"1v2\": 0.6893, \"2v3\": 0.5613, \"3v4\": 0.5404, \"4v5\": 0.5139},\n    \"Config2-Nuc09\":   {\"0v1\": 0.9946, \"1v2\": 0.6866, \"2v3\": 0.5917, \"3v4\": 0.5466, \"4v5\": 0.5068},\n    \"Config3-T07\":     {\"0v1\": 0.9878, \"1v2\": 0.6887, \"2v3\": 0.5902, \"3v4\": 0.5393, \"4v5\": 0.5349},\n    \"Config4-T12\":     {\"0v1\": 0.9982, \"1v2\": 0.7039, \"2v3\": 0.5823, \"3v4\": 0.5293, \"4v5\": 0.5237},\n}\n\nCONFIG_LABELS = {\n    \"Config1-Greedy\": \"Greedy\",\n    \"Config2-Nuc09\":  \"Nuc p=.9, T=1.0\",\n    \"Config3-T07\":    \"Nuc p=.95, T=0.7\",\n    \"Config4-T12\":    \"Nuc p=.95, T=1.2\",\n}\n\nDEPTH_PAIRS = [\"0v1\", \"1v2\", \"2v3\", \"3v4\", \"4v5\"]\nDEPTH_LABELS = [\"0 vs 1\", \"1 vs 2\", \"2 vs 3\", \"3 vs 4\", \"4 vs 5\"]\n\nCOLORS_FILL = [\"#4E79A7\", \"#F28E2B\", \"#59A14F\", \"#E15759\"]\nCOLORS_EDGE = [\"#2B5A83\", \"#C06A10\", \"#3B7A32\", \"#B8393B\"]\n\ndef load_data():\n    if JSON_PATH.exists():\n        with open(JSON_PATH) as f:\n            blob = json.load(f)\n        return blob.get(\"pairwise_auc_table\", FALLBACK_AUC), blob\n    return FALLBACK_AUC, {}\n\n# ---------------------------------------------------------------------------\n# Figure\n# ---------------------------------------------------------------------------\ndef plot_grouped_bar(auc_table):\n    plt.rcParams.update({\n        \"font.family\": \"serif\",\n        \"font.serif\": [\"DejaVu Serif\", \"Times New Roman\", \"Computer Modern Roman\"],\n        \"mathtext.fontset\": \"cm\",\n        \"font.size\": 8,\n        \"axes.titlesize\": 9,\n        \"axes.labelsize\": 8,\n        \"xtick.labelsize\": 7,\n        \"ytick.labelsize\": 7,\n        \"legend.fontsize\": 6.5,\n        \"figure.dpi\": 300,\n        \"savefig.dpi\": 300,\n        \"savefig.bbox\": \"tight\",\n        \"savefig.pad_inches\": 0.02,\n        \"axes.spines.top\": False,\n        \"axes.spines.right\": False,\n    })\n\n    configs = list(auc_table.keys())\n    n_configs = len(configs)\n    n_pairs = len(DEPTH_PAIRS)\n\n    fig, ax = plt.subplots(figsize=(3.5, 2.5))\n\n    bar_width = 0.18\n    x = np.arange(n_pairs)\n\n    for ci, cfg in enumerate(configs):\n        vals = [auc_table[cfg].get(dp, float(\"nan\")) for dp in DEPTH_PAIRS]\n        offset = (ci - (n_configs - 1) / 2) * bar_width\n        bars = ax.bar(\n            x + offset, vals, bar_width,\n            color=COLORS_FILL[ci], edgecolor=COLORS_EDGE[ci],\n            linewidth=0.6, alpha=0.85,\n            label=CONFIG_LABELS.get(cfg, cfg), zorder=3,\n        )\n\n    ax.axhline(0.60, color=\"#888888\", linestyle=\"--\", linewidth=0.7, zorder=2)\n    ax.text(n_pairs - 0.5, 0.605, r\"$\\theta=0.60$\", fontsize=6, color=\"#666666\",\n            ha=\"right\", va=\"bottom\")\n\n    ax.axhline(0.50, color=\"#AAAAAA\", linestyle=\":\", linewidth=0.6, zorder=2)\n    ax.text(n_pairs - 0.5, 0.505, \"chance\", fontsize=5.5, color=\"#999999\",\n            ha=\"right\", va=\"bottom\")\n\n    ax.set_xticks(x)\n    ax.set_xticklabels(DEPTH_LABELS)\n    ax.set_xlabel(\"Depth pair\")\n    ax.set_ylabel(\"Pairwise AUC\")\n    ax.set_ylim(0.47, 1.03)\n\n    ax.legend(loc=\"upper right\", frameon=True, framealpha=0.9,\n              edgecolor=\"#CCCCCC\", fancybox=False, handlelength=1.2,\n              handletextpad=0.4, borderpad=0.3, labelspacing=0.25)\n\n    ax.set_axisbelow(True)\n\n    pdf_path = ARTIFACT_DIR / \"exp003_decoding_ablation.pdf\"\n    png_path = ARTIFACT_DIR / \"exp003_decoding_ablation.png\"\n    fig.savefig(pdf_path)\n    fig.savefig(png_path, dpi=300)\n    plt.close(fig)\n    print(f\"Saved: {pdf_path}\")\n    print(f\"Saved: {png_path}\")\n\n# ---------------------------------------------------------------------------\n# Table\n# ---------------------------------------------------------------------------\ndef print_and_save_table(auc_table, blob):\n    top3 = blob.get(\"top3_features\", {})\n    theta_sens = blob.get(\"theta_sensitivity\", {})\n\n    header = f\"{'Config':<22} {'Decoding':<22} {'1v2 AUC':>8} {'K*(θ=.60)':>10} {'Top-3 Features'}\"\n    sep = \"-\" * len(header)\n    lines = [header, sep]\n\n    decoding_map = {\n        \"Config1-Greedy\": \"greedy\",\n        \"Config2-Nuc09\":  \"nucleus p=0.9, T=1.0\",\n        \"Config3-T07\":    \"nucleus p=0.95, T=0.7\",\n        \"Config4-T12\":    \"nucleus p=0.95, T=1.2\",\n    }\n\n    tex_rows = []\n    for cfg in auc_table:\n        auc_1v2 = auc_table[cfg].get(\"1v2\", float(\"nan\"))\n        kstar = theta_sens.get(cfg, {}).get(\"0.6\", \"—\")\n        feats = \", \".join(top3.get(cfg, []))\n        dec = decoding_map.get(cfg, cfg)\n        line = f\"{cfg:<22} {dec:<22} {auc_1v2:>8.4f} {str(kstar):>10} {feats}\"\n        lines.append(line)\n        tex_rows.append(\n            f\"  {cfg} & {dec} & {auc_1v2:.4f} & {kstar} & {feats} \\\\\\\\\"\n        )\n\n    table_str = \"\\n\".join(lines)\n    print(\"\\n\" + table_str + \"\\n\")\n\n    tex = (\n        \"\\\\begin{table}[t]\\n\"\n        \"\\\\centering\\n\"\n        \"\\\\caption{Decoding ablation summary (exp-003). $K^*$ = max depth with AUC $>\\\\theta$.}\\n\"\n        \"\\\\label{tab:exp003-decoding}\\n\"\n        \"\\\\small\\n\"\n        \"\\\\begin{tabular}{llccc}\\n\"\n        \"\\\\toprule\\n\"\n        \"Config & Decoding & 1v2 AUC & $K^*(\\\\theta{=}0.60)$ & Top-3 Features \\\\\\\\\\n\"\n        \"\\\\midrule\\n\"\n        + \"\\n\".join(tex_rows) + \"\\n\"\n        \"\\\\bottomrule\\n\"\n        \"\\\\end{tabular}\\n\"\n        \"\\\\end{table}\\n\"\n    )\n\n    tex_path = ARTIFACT_DIR / \"exp003_decoding_ablation.tex\"\n    tex_path.write_text(tex)\n    print(f\"Saved: {tex_path}\")\n\n# ---------------------------------------------------------------------------\n# Main\n# ---------------------------------------------------------------------------\nif __name__ == \"__main__\":\n    auc_table, blob = load_data()\n    plot_grouped_bar(auc_table)\n    print_and_save_table(auc_table, blob)\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。三个产物已生成：\n\n| 文件 | 大小 |\n|------|------|\n| `artifacts/exp003_decoding_ablation.pdf` | 22K |\n| `artifacts/exp003_decoding_ablation.png` | 53K |\n| `artifacts/exp003_decoding_ablation.tex` | 628B |\n\nSummary table 输出：\n\n```\nConfig                 Decoding                1v2 AUC  K*(θ=.60) Top-3 Features\n--------------------------------------------------------------------------------\nConfig1-Greedy         greedy                   0.6893          2 self_bleu, hapax_ratio, ttr\nConfig2-Nuc09          nucleus p=0.9, T=1.0     0.6866          2 hapax_ratio, ttr, surp_skew\nConfig3-T07            nucleus p=0.95, T=0.7    0.6887          2 hapax_ratio, ttr, low_freq_ratio\nConfig4-T12            nucleus p=0.95, T=1.2    0.7039          2 hapax_ratio, ttr, surp_skew\n```\n\n脚本从 `artifacts/exp003_analysis.json` 读取完整数据，也有硬编码 fallback。样式：serif 字体、无网格线、colorblind-safe 4 色 Tableau palette、深色边框浅色填充、θ=0.60 和 chance 虚线标注、单栏宽 3.5×2.5 inch。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "uuid": "7e1ef942-2ecb-4fd7-80e8-43b16776756f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019j6s9kjPXczQBnzcgDo9ZV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 41668,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 41668
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。三个产物已生成：\n\n| 文件 | 大小 |\n|------|------|\n| `artifacts/exp003_decoding_ablation.pdf` | 22K |\n| `artifacts/exp003_decoding_ablation.png` | 53K |\n| `artifacts/exp003_decoding_ablation.tex` | 628B |\n\nSummary table 输出：\n\n```\nConfig                 Decoding                1v2 AUC  K*(θ=.60) Top-3 Features\n--------------------------------------------------------------------------------\nConfig1-Greedy         greedy                   0.6893          2 self_bleu, hapax_ratio, ttr\nConfig2-Nuc09          nucleus p=0.9, T=1.0     0.6866          2 hapax_ratio, ttr, surp_skew\nConfig3-T07            nucleus p=0.95, T=0.7    0.6887          2 hapax_ratio, ttr, low_freq_ratio\nConfig4-T12            nucleus p=0.95, T=1.2    0.7039          2 hapax_ratio, ttr, surp_skew\n```\n\n脚本从 `artifacts/exp003_analysis.json` 读取完整数据，也有硬编码 fallback。样式：serif 字体、无网格线、colorblind-safe 4 色 Tableau palette、深色边框浅色填充、θ=0.60 和 chance 虚线标注、单栏宽 3.5×2.5 inch。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 148699,
+            "duration_api_ms": 143828,
+            "num_turns": 16,
+            "stop_reason": "end_turn",
+            "session_id": "498b1f8e-72ab-4f67-b0d1-8735cf09f4a6",
+            "total_cost_usd": 0.7696784999999999,
+            "usage": {
+              "input_tokens": 15,
+              "cache_creation_input_tokens": 68772,
+              "cache_read_input_tokens": 310919,
+              "output_tokens": 7304,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 68772,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 395,
+                  "cache_read_input_tokens": 0,
+                  "cache_creation_input_tokens": 41668,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 41668
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1609,
+                "outputTokens": 22,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001719,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 15,
+                "outputTokens": 7304,
+                "cacheReadInputTokens": 310919,
+                "cacheCreationInputTokens": 68772,
+                "webSearchRequests": 0,
+                "costUSD": 0.7679594999999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "9f50ca5b-c60a-4b34-8cd9-6eae6b94d4b8"
+          },
+          "id": "event-000043"
+        }
+      ],
+      "message_count": 43
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp003-figure-table.md"
+}

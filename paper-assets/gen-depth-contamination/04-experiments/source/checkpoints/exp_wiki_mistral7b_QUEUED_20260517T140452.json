@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_wiki_mistral7b",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T14:04:15.959Z",
+    "updated_at": "2026-05-17T14:04:52.052Z",
+    "hypothesis": "Mistral-7B Wikipedia K* test: Mistral-7B-v0.3 在 C4 上 K*=1 (text-intrinsic one-wash)。在 Wikipedia domain 上是否仍 K*=1？Pythia/OLMo 在 Wikipedia 均 K*=1，Qwen K*=2。如果 Mistral K*=1 → 确认 one-wash 跨域成立；如果 K*>1 → Wikipedia 有 rescue Mistral 的结构信号（与预期相反）。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "parent": "exp_wiki_pythia_v2"
+  },
+  "timestamp": "2026-05-17T14:04:52.193510+00:00",
+  "trigger": "update_registry"
+}

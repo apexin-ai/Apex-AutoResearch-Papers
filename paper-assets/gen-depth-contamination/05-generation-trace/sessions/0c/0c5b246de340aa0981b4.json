@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "0c5b246de340aa0981b4",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "code exp 012 script verify",
+  "task_key": "worker_code_exp_012_script_verify_20260515T151147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_012_script_verify_20260515T151147.log",
+    "occurrence": 1,
+    "bytes": 947559,
+    "sha256": "c51be076161a5bcafdc5e7dc055e5c292ceb95dac2d5479ba5e90796e5c85439"
+  },
+  "statistics": {
+    "messages": 630,
+    "user_turns": 0,
+    "tool_calls": 261,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 104,
+      "tool_call": 261,
+      "tool_result": 261,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 630,
+      "chunks": [
+        {
+          "path": "0c5b246de340aa0981b4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0c5b246de340aa0981b4-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0c5b246de340aa0981b4-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "0c5b246de340aa0981b4-part-0004.json",
+          "message_count": 90
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-012-script-verify.md"
+}

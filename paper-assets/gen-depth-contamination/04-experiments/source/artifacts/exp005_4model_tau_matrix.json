@@ -1,0 +1,44 @@
+{
+  "experiment": "exp-005 4-model degradation ordering",
+  "date": "2026-05-13",
+  "models": ["Pythia-1.4B", "OLMo-1B", "Qwen-1.5B-rewrite", "Qwen-1.5B-cont"],
+  "tau_matrix_first_auc": {
+    "Pythia_vs_OLMo":          {"tau": 0.7333, "p": 0.0000},
+    "Pythia_vs_Qwen_rewrite":  {"tau": 0.4667, "p": 0.0155},
+    "Pythia_vs_Qwen_cont":     {"tau": 0.6952, "p": 0.0001},
+    "OLMo_vs_Qwen_rewrite":    {"tau": 0.4286, "p": 0.0275},
+    "OLMo_vs_Qwen_cont":       {"tau": 0.5429, "p": 0.0041},
+    "Qwen_rewrite_vs_Qwen_cont": {"tau": 0.7333, "p": 0.0000}
+  },
+  "tau_matrix_avg_auc": {
+    "Pythia_vs_OLMo":          {"tau": 0.8476, "p": 0.0000},
+    "Pythia_vs_Qwen_rewrite":  {"tau": 0.5238, "p": 0.0059},
+    "Pythia_vs_Qwen_cont":     {"tau": 0.7524, "p": 0.0000},
+    "OLMo_vs_Qwen_rewrite":    {"tau": 0.4857, "p": 0.0114},
+    "OLMo_vs_Qwen_cont":       {"tau": 0.6762, "p": 0.0002},
+    "Qwen_rewrite_vs_Qwen_cont": {"tau": 0.6952, "p": 0.0001}
+  },
+  "spearman_rho_first_auc": {
+    "Pythia_vs_OLMo":          {"rho": 0.8750, "p": 0.0000},
+    "Pythia_vs_Qwen_rewrite":  {"rho": 0.6607, "p": 0.0073},
+    "Pythia_vs_Qwen_cont":     {"rho": 0.8714, "p": 0.0000},
+    "OLMo_vs_Qwen_rewrite":    {"rho": 0.4893, "p": 0.0642},
+    "OLMo_vs_Qwen_cont":       {"rho": 0.6893, "p": 0.0045},
+    "Qwen_rewrite_vs_Qwen_cont": {"rho": 0.9107, "p": 0.0000}
+  },
+  "analysis": {
+    "mode_effect": {
+      "description": "Generation mode is the dominant driver of ordering divergence",
+      "evidence": {
+        "Pythia_tau_delta": "Qwen-cont (0.6952) vs Qwen-rewrite (0.4667) → Δ=+0.2285",
+        "OLMo_tau_delta": "Qwen-cont (0.5429) vs Qwen-rewrite (0.4286) → Δ=+0.1143",
+        "within_arch_tau": "Qwen-rewrite vs Qwen-cont τ=0.7333 (high but not 1.0 → mode does change ordering)"
+      }
+    },
+    "residual_architecture_effect": {
+      "description": "Architecture still contributes — Qwen-cont vs OLMo (0.54) remains below Pythia vs OLMo (0.73)",
+      "gap": "Qwen-cont doesn't fully converge to Pythia-OLMo level, especially for OLMo pair"
+    },
+    "conclusion": "Generation mode is the primary driver (~60-70% of divergence), architecture is secondary (~30-40%). C2 claim can state ordering is largely universal with mode as the main confound, but needs caveat about residual architecture differences."
+  }
+}

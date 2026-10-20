@@ -1,0 +1,64 @@
+{
+  "exp_id": "exp_wiki_pythia_v2",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T11:40:37.896Z",
+    "updated_at": "2026-05-17T13:25:22.734Z",
+    "hypothesis": "Cross-model Wikipedia K* validation (v2 fix): Pythia-1.4B continuation on Wikipedia 的 K* 是否 = 2？使用独立 data_dir 避免 v1 的 data reuse bug，让 pipeline 用 Pythia 重新生成 depth 1-5。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "parent": "exp_wiki_pythia",
+    "spec": {
+      "command": "python scripts/run_pipeline.py --model_path ...pythia-1.4b... --generation_mode continuation",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "30942",
+      "log_path": "~/runs/gen-depth-contamination/exp_wiki_pythia_v2.log",
+      "submitted_at": "2026-05-17T11:48:32.895Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/exp_wiki_pythia",
+      "data_count": 5000,
+      "model_name": "EleutherAI/pythia-1.4b",
+      "seed": 42,
+      "git_commit": "0b10b43",
+      "checkpoint_source": "N/A (generation experiment, not eval)",
+      "eval_data": "N/A",
+      "wall_clock_seconds": 5809.8,
+      "gpu_hours": 1.61
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T13:15:30.480Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T13:15:32.903668+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "K_star": 1,
+      "auc_0v1": 0.975,
+      "auc_1v2": 0.5846,
+      "auc_2v3": 0.5445,
+      "auc_3v4": 0.5205,
+      "auc_4v5": 0.5168,
+      "jsd_0v1": 0.080065,
+      "jsd_1v2": 0.007773,
+      "ordinal_acc": 0.3503
+    },
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_pythia_v2/",
+    "completed_at": "2026-05-17T13:25:22.734Z"
+  },
+  "timestamp": "2026-05-17T13:25:22.871853+00:00",
+  "trigger": "update_registry"
+}

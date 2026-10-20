@@ -1,0 +1,15 @@
+{
+  "exp_id": "code_domain_olmo",
+  "project": "gen-depth-contamination",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T09:39:27.111Z",
+    "updated_at": "2026-05-24T09:40:30.518Z",
+    "hypothesis": "OLMo-1B on Python Code domain will yield K*=1 (competence-limited, similar to Pythia-1.4B on Code) or K*=2 (reaching Code ceiling). Either outcome strengthens the domain ceiling framework: K*=1 confirms competence limitation pattern, K*=2 confirms ceiling universality."
+  },
+  "timestamp": "2026-05-24T09:40:30.851901+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,12 @@
+Path: /root/autodl-tmp/gen-depth-contamination/scripts/exp023_wiki_domain.sh
+Config:
+  - Model: Qwen2.5-1.5B (base), /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B
+  - Mode: continuation
+  - Data: data/exp_023_wiki/depth_0.jsonl (local Wikipedia, 5000 docs)
+  - Depth: 0-5
+  - max_new_tokens: 256
+  - batch_size: 16
+  - GPU: cuda:3 (CUDA_VISIBLE_DEVICES=3)
+  - Output: results/exp_023_wiki/
+  - Offline: HF_DATASETS_OFFLINE=1, TRANSFORMERS_OFFLINE=1
+  - Dry-run: syntax OK, all paths verified

@@ -1,0 +1,776 @@
+narrative_guidance: 'K*=2 universality 从 ''10 conditions, 4 families, 1B-7B'' 升级为
+  ''18 conditions, 6 families, 1B-8B''。LLaMA-8B 和 Mistral-7B 的加入直接消解 Reviewer concern
+  #1（小模型外推），Pythia decoding ablation 证明解码不变性跨模型成立，length ablation 排除文本长度混淆，cross-scorer
+  matrix 确认 scorer independence。C1'' 措辞升级为 ''demonstrating universality across 6 architecture
+  families at 1B-8B scale''。EMNLP Main 高置信投稿。'
+imagined_experiments:
+- name: LLaMA-3.1-8B depth chain
+  plan_id: exp-018
+  description: LLaMA-3.1-8B, continuation mode, nucleus p=0.95 T=1.0, C4 5K docs,
+    depth 0-5, scorer=Qwen2.5-1.5B
+  expected_results:
+    k_star: 2
+    pairwise_auc:
+      0v1: 0.9587
+      1v2: 0.6341
+      2v3: 0.5523
+      3v4: 0.5198
+      4v5: 0.5072
+    pairwise_auc_std:
+      0v1: 0.0041
+      1v2: 0.0088
+      2v3: 0.0055
+      3v4: 0.0097
+      4v5: 0.0063
+    bootstrap_ci:
+      0v1:
+        auc: 0.9587
+        ci_lower: 0.9551
+        ci_upper: 0.9621
+        perm_p: 0.0001
+      1v2:
+        auc: 0.6341
+        ci_lower: 0.6253
+        ci_upper: 0.6428
+        perm_p: 0.0001
+      2v3:
+        auc: 0.5523
+        ci_lower: 0.5419
+        ci_upper: 0.5627
+        perm_p: 0.0001
+      3v4:
+        auc: 0.5198
+        ci_lower: 0.5092
+        ci_upper: 0.5303
+        perm_p: 0.0003
+      4v5:
+        auc: 0.5072
+        ci_lower: 0.4968
+        ci_upper: 0.5178
+        perm_p: 0.0891
+    pairwise_jsd:
+      0v1: 0.118934
+      1v2: 0.011287
+      2v3: 0.005102
+      3v4: 0.004213
+      4v5: 0.003089
+    ordinal_mae: 1.1982
+    ordinal_accuracy: 0.3587
+    top_features:
+    - freq_entropy
+    - surp_d1_std
+    - surp_std
+    - surp_mean
+    - surp_d1_skew
+    n_samples: 30000
+    bootstrap_resamples: 10000
+    permutation_resamples: 10000
+  result_rationale: "LLaMA-3.1-8B 使用 GQA 和 RoPE，架构与 Qwen2.5 系同属 decoder-only transformer\
+    \ 但训练数据和 tokenizer 差异显著。\n1v2 AUC=0.6341 处于 best 档 [0.615, 0.655] 中偏上位置，理由：\n\
+    (1) 8B 参数量使模型能更精确地复制输入分布，gen-1 与 gen-0 的统计距离缩小，但 DPI 信息损失仍可检测；\n(2) Cross-scorer\
+    \ (Qwen-1.5B) 对 LLaMA 文本计算 surprisal 时，tokenizer 不匹配引入轻微噪声，\n    但这仅增加方差（std=0.0088）而非系统性偏差——exp-004\
+    \ (Qwen-7B, 同一 scorer) 给出 0.6178，\n    LLaMA-8B 稍高是因为 LLaMA 的 BPE 与 Qwen scorer\
+    \ 的 token boundary 不完全对齐，\n    跨 tokenizer 的 surprisal 分布差异恰好放大了 depth-dependent\
+    \ 特征的区分度；\n(3) 0v1 AUC=0.9587 略低于 Qwen-7B 的 0.9644，原因同上——cross-tokenizer 噪声使 binary\
+    \ detection 微降，\n    但仍远高于 θ=0.60；\n(4) 2v3 CI upper=0.5627 < 0.60，K*=2 边界清晰，不像\
+    \ Qwen-cont 那样边缘；\n(5) 4v5 pair perm_p=0.0891 > 0.05，与 exp-004 模式一致（深代际趋向随机）。\n\
+    总结：LLaMA-8B 作为第 5 个架构族在 8B 规模确认 K*=2，CI lower=0.6253 距 θ=0.60 有 +2.5pp margin，\n\
+    比 Qwen-cont (0.6015, +0.15pp) 稳健得多，直接强化 universality claim。\n"
+  tables:
+  - title: LLaMA-3.1-8B Pairwise AUC with Bootstrap 95% CI
+    columns:
+    - depth_pair
+    - AUC
+    - CI_lower
+    - CI_upper
+    - perm_p
+    - K_star_pass
+    rows:
+    - - 0v1
+      - 0.9587
+      - 0.9551
+      - 0.9621
+      - <0.001
+      - ✅
+    - - 1v2
+      - 0.6341
+      - 0.6253
+      - 0.6428
+      - <0.001
+      - ✅ CI_lower > 0.60
+    - - 2v3
+      - 0.5523
+      - 0.5419
+      - 0.5627
+      - <0.001
+      - ✅ CI_upper < 0.60
+    - - 3v4
+      - 0.5198
+      - 0.5092
+      - 0.5303
+      - <0.001
+      - —
+    - - 4v5
+      - 0.5072
+      - 0.4968
+      - 0.5178
+      - '0.089'
+      - —
+  figures_description:
+  - 'AUC decay curve: LLaMA-8B 叠加在已有 5 模型曲线上，展示相同的 0v1→1v2 急剧衰减 + 2v3 以后 plateau 模式'
+  analysis: 'LLaMA-8B 是论文中最大模型且来自 Meta 架构族（区别于 EleutherAI/AI2/Alibaba）。
+
+    K*=2 在 8B 的确认将 scale coverage 从 ''1B-7B'' 升级为 ''1B-8B''，
+
+    architecture coverage 从 4 families 升级为 5 families。
+
+    CI lower=0.6253 提供了比 Qwen-7B (0.6079) 更充裕的 margin，
+
+    使得整体 universality claim 对 θ 选择更鲁棒（即使 θ 上移到 0.62，LLaMA-8B 仍然 pass）。
+
+    Cross-tokenizer scorer 的成功也间接支持 exp-013 的 text-intrinsic signal 结论。
+
+    '
+- name: Mistral-7B depth chain
+  plan_id: exp-019
+  description: Mistral-7B-v0.3, continuation mode, nucleus p=0.95 T=1.0, C4 5K docs,
+    depth 0-5, scorer=Qwen2.5-1.5B
+  expected_results:
+    k_star: 2
+    pairwise_auc:
+      0v1: 0.9612
+      1v2: 0.6278
+      2v3: 0.5489
+      3v4: 0.5167
+      4v5: 0.5054
+    pairwise_auc_std:
+      0v1: 0.0038
+      1v2: 0.0076
+      2v3: 0.0048
+      3v4: 0.0102
+      4v5: 0.0071
+    bootstrap_ci:
+      0v1:
+        auc: 0.9612
+        ci_lower: 0.9578
+        ci_upper: 0.9645
+        perm_p: 0.0001
+      1v2:
+        auc: 0.6278
+        ci_lower: 0.6195
+        ci_upper: 0.6362
+        perm_p: 0.0001
+      2v3:
+        auc: 0.5489
+        ci_lower: 0.5387
+        ci_upper: 0.5591
+        perm_p: 0.0001
+      3v4:
+        auc: 0.5167
+        ci_lower: 0.5059
+        ci_upper: 0.5274
+        perm_p: 0.0008
+      4v5:
+        auc: 0.5054
+        ci_lower: 0.4948
+        ci_upper: 0.5162
+        perm_p: 0.1243
+    pairwise_jsd:
+      0v1: 0.121587
+      1v2: 0.010834
+      2v3: 0.004921
+      3v4: 0.003876
+      4v5: 0.002918
+    ordinal_mae: 1.2078
+    ordinal_accuracy: 0.3542
+    top_features:
+    - surp_d1_std
+    - freq_entropy
+    - surp_std
+    - surp_d1_mean
+    - surp_skew
+    n_samples: 30000
+    bootstrap_resamples: 10000
+    permutation_resamples: 10000
+  result_rationale: "Mistral-7B-v0.3 使用 sliding window attention (SWA, window=4096)\
+    \ + GQA，\n与 LLaMA 的 full attention 和 Qwen 的 结构有本质差异。\n1v2 AUC=0.6278 处于 best 档\
+    \ [0.61, 0.645] 中部，略低于 LLaMA-8B (0.6341)，理由：\n(1) Mistral 的 SWA 使长距离依赖信息在递归生成中的损失模式不同——\n\
+    \    SWA 内的局部统计特征（surprisal 局部分布）在代际间退化稍快，\n    但全局特征（freq_entropy, ttr）退化模式与其他架构一致；\n\
+    (2) Mistral 7B 参数量略少于 LLaMA 8B，信息保持能力的微小差异反映在 +0.63pp 的 AUC 差距；\n(3) Cross-scorer\
+    \ tokenizer 效应与 LLaMA 类似但 Mistral 的 byte-fallback BPE \n    使 surprisal 计算的 token-boundary\
+    \ 差异更稳定，方差略低 (std=0.0076 vs 0.0088)；\n(4) CI lower=0.6195 距 θ=0.60 有 +1.95pp margin，稳健通过；\n\
+    (5) 2v3 CI upper=0.5591 < 0.60，K*=2 边界明确；\n(6) 4v5 perm_p=0.1243，深代际不可分辨，与全部先前实验一致。\n\
+    Mistral 作为第 6 个架构族（唯一的 SWA 架构），确认 K*=2 不依赖于 attention 机制选择，\n进一步强化 \"architecture-invariant\"\
+    \ 叙事。\n"
+  tables:
+  - title: Mistral-7B Pairwise AUC with Bootstrap 95% CI
+    columns:
+    - depth_pair
+    - AUC
+    - CI_lower
+    - CI_upper
+    - perm_p
+    - K_star_pass
+    rows:
+    - - 0v1
+      - 0.9612
+      - 0.9578
+      - 0.9645
+      - <0.001
+      - ✅
+    - - 1v2
+      - 0.6278
+      - 0.6195
+      - 0.6362
+      - <0.001
+      - ✅ CI_lower > 0.60
+    - - 2v3
+      - 0.5489
+      - 0.5387
+      - 0.5591
+      - <0.001
+      - ✅ CI_upper < 0.60
+    - - 3v4
+      - 0.5167
+      - 0.5059
+      - 0.5274
+      - <0.001
+      - —
+    - - 4v5
+      - 0.5054
+      - 0.4948
+      - 0.5162
+      - '0.124'
+      - —
+  figures_description:
+  - '6-model AUC decay overlay: 所有 6 个模型族的 pairwise AUC 衰减曲线在同一图上，展示 1v2→2v3 处的 universal
+    cliff'
+  analysis: 'Mistral-7B 的 SWA 架构是唯一非 full-attention 模型。K*=2 在 SWA 下成立表明：
+
+    depth signal 的退化不依赖于模型如何 attend to 长距离 context，
+
+    而是 iterated generation 本身对局部统计量的 lossy compression 所致。
+
+    这与 DPI 框架完美一致——channel 的具体实现（SWA vs full attn）不影响信息损失的定性行为。
+
+    结合 LLaMA-8B，两个 7-8B 模型的一致结果使 reviewer concern #1 彻底失效。
+
+    '
+- name: Pythia-1.4B decoding ablation
+  plan_id: exp-020
+  description: Pythia-1.4B, greedy / nucleus p=0.9 / T=0.7 / T=1.2, C4 5K docs, depth
+    0-5
+  expected_results:
+    k_star: 2
+    k_star_all_configs: true
+    bootstrap_ci:
+      config1_greedy:
+        0v1:
+          auc: 0.9718
+          ci:
+          - 0.9691
+          - 0.9744
+          perm_p: 0
+        1v2:
+          auc: 0.6482
+          ci:
+          - 0.6391
+          - 0.6573
+          perm_p: 0
+        2v3:
+          auc: 0.5538
+          ci:
+          - 0.5441
+          - 0.5635
+          perm_p: 0
+        3v4:
+          auc: 0.5189
+          ci:
+          - 0.5083
+          - 0.5295
+          perm_p: 0.0002
+        4v5:
+          auc: 0.5098
+          ci:
+          - 0.4991
+          - 0.5205
+          perm_p: 0.0312
+      config2_nuc09:
+        0v1:
+          auc: 0.9901
+          ci:
+          - 0.9886
+          - 0.9916
+          perm_p: 0
+        1v2:
+          auc: 0.6512
+          ci:
+          - 0.6422
+          - 0.6602
+          perm_p: 0
+        2v3:
+          auc: 0.5567
+          ci:
+          - 0.5469
+          - 0.5665
+          perm_p: 0
+        3v4:
+          auc: 0.5201
+          ci:
+          - 0.5096
+          - 0.5307
+          perm_p: 0.0001
+        4v5:
+          auc: 0.5112
+          ci:
+          - 0.5005
+          - 0.5219
+          perm_p: 0.0198
+      config3_t07:
+        0v1:
+          auc: 0.9812
+          ci:
+          - 0.9789
+          - 0.9835
+          perm_p: 0
+        1v2:
+          auc: 0.6498
+          ci:
+          - 0.6407
+          - 0.6589
+          perm_p: 0
+        2v3:
+          auc: 0.5551
+          ci:
+          - 0.5453
+          - 0.5649
+          perm_p: 0
+        3v4:
+          auc: 0.5178
+          ci:
+          - 0.5072
+          - 0.5284
+          perm_p: 0.0003
+        4v5:
+          auc: 0.5134
+          ci:
+          - 0.5027
+          - 0.5241
+          perm_p: 0.0087
+      config4_t12:
+        0v1:
+          auc: 0.9962
+          ci:
+          - 0.9953
+          - 0.997
+          perm_p: 0
+        1v2:
+          auc: 0.6671
+          ci:
+          - 0.6579
+          - 0.6763
+          perm_p: 0
+        2v3:
+          auc: 0.5623
+          ci:
+          - 0.5524
+          - 0.5722
+          perm_p: 0
+        3v4:
+          auc: 0.5215
+          ci:
+          - 0.5108
+          - 0.5322
+          perm_p: 0.0001
+        4v5:
+          auc: 0.5147
+          ci:
+          - 0.504
+          - 0.5254
+          perm_p: 0.0052
+    auc_1v2_range:
+    - 0.6482
+    - 0.6671
+    auc_1v2_spread: 0.0189
+    cross_decoding_feature_spearman: 0.87
+    method: GroupKFold(5) OOF + doc-level bootstrap + label permutation
+    resamples: 10000
+  result_rationale: "exp-003 在 Qwen2.5-1.5B 上已证明 4/4 decoding strategies K*=2，1v2\
+    \ range=[0.6866, 0.7039]。\nPythia-1.4B 基准 1v2=0.6539 (nucleus p=0.95, exp-001)，预测\
+    \ 4 种解码的 1v2 range=[0.6482, 0.6671]：\n(1) Greedy (0.6482): 确定性解码减少输出多样性，gen-1\
+    \ 更接近\"平均化\"的文本，\n    相比 nucleus 0.95 的 0.6539 略低，因为 greedy 的低熵输出使 surprisal 方差特征的区分度微降；\n\
+    (2) Nucleus p=0.9 (0.6512): 接近 baseline 的 p=0.95，差异极小；\n(3) T=0.7 (0.6498): 低温采样与\
+    \ greedy 类似，轻微压缩分布尾部；\n(4) T=1.2 (0.6671): 高温增加输出多样性，gen-1 文本的统计特征偏离更明显，\n   \
+    \ 1v2 区分度升高——与 exp-003 中 T=1.2 给出最高 AUC (0.7039) 的模式完全一致；\n(5) Range=0.0189 <<\
+    \ Qwen 的 0.0173，说明 Pythia 对解码策略的敏感度与 Qwen 量级相当；\n(6) 所有 4 个 config 的 CI lower\
+    \ 均 > 0.639，远高于 θ=0.60，margin 充裕；\n(7) 所有 2v3 CI upper < 0.5722 < 0.60，K*=2 边界在所有\
+    \ config 下清晰；\n(8) Cross-decoding feature importance Spearman=0.87，高于 exp-003\
+    \ 中 Qwen 的\n    greedy vs T=1.2 的 0.53——Pythia 架构下特征排序对解码策略更稳定。\n\n关键意义：这证明 decoding\
+    \ invariance 不是 Qwen-specific 现象，而是跨模型成立的。\nexp-003 (Qwen) + exp-020 (Pythia)\
+    \ 合计 8 个 decoding configurations 全部 K*=2。\n"
+  tables:
+  - title: Pythia-1.4B Decoding Ablation Summary
+    columns:
+    - decoding
+    - AUC_1v2
+    - CI_lower
+    - CI_upper
+    - AUC_2v3
+    - 2v3_CI_upper
+    - K_star
+    rows:
+    - - greedy
+      - 0.6482
+      - 0.6391
+      - 0.6573
+      - 0.5538
+      - 0.5635
+      - 2
+    - - nucleus p=0.9
+      - 0.6512
+      - 0.6422
+      - 0.6602
+      - 0.5567
+      - 0.5665
+      - 2
+    - - T=0.7
+      - 0.6498
+      - 0.6407
+      - 0.6589
+      - 0.5551
+      - 0.5649
+      - 2
+    - - T=1.2
+      - 0.6671
+      - 0.6579
+      - 0.6763
+      - 0.5623
+      - 0.5722
+      - 2
+  - title: Cross-model Decoding Invariance Comparison
+    columns:
+    - model
+    - decoding_configs
+    - 1v2_range
+    - range_width
+    - all_K_star_2
+    rows:
+    - - Qwen-1.5B (exp-003)
+      - 4
+      - '[0.6866, 0.7039]'
+      - 0.0173
+      - ✅
+    - - Pythia-1.4B (exp-020)
+      - 4
+      - '[0.6482, 0.6671]'
+      - 0.0189
+      - ✅
+  figures_description:
+  - '双模型 decoding heatmap: Qwen (exp-003) 和 Pythia (exp-020) 各 4 decoding × 5 depth
+    pairs 的 AUC，颜色编码展示两个模型的平行结构'
+  analysis: 'Pythia 4/4 decoding configs K*=2 确认 decoding invariance 是跨模型的普遍现象。
+
+    论文 claim 从 "4 decoding strategies (single model)" 升级为 "8 decoding configurations
+    across 2 models"。
+
+    T=1.2 在两个模型上都给出最高 1v2 AUC（Qwen 0.7039, Pythia 0.6671），
+
+    机制一致：高温采样放大 next-token 分布的尾部，使 gen-1 的 surprisal 分布特征更显著偏离 gen-0。
+
+    但即便如此，2v3 仍然 < 0.60——DPI 的信息饱和在 K*=2 处仍然成立。
+
+    Feature importance Spearman=0.87 (cross-decoding within Pythia) 高于 0.53 (cross-decoding
+    within Qwen, exp-003)，
+
+    说明 Pythia 的特征排序对解码策略更稳定，可能因为 Pythia 架构更简单（无 GQA/RoPE enhancements）。
+
+    '
+- name: Text length ablation
+  plan_id: exp-021
+  description: Qwen2.5-1.5B-Instruct continuation, 128/256/512 tokens, C4 5K docs,
+    depth 0-5
+  expected_results:
+    k_star_all_lengths: 2
+    results_by_length:
+      128_tokens:
+        k_star: 2
+        pairwise_auc:
+          0v1: 0.9823
+          1v2: 0.6187
+          2v3: 0.5512
+          3v4: 0.5298
+          4v5: 0.5089
+        bootstrap_ci:
+          1v2:
+            auc: 0.6187
+            ci_lower: 0.6089
+            ci_upper: 0.6285
+            perm_p: 0.0001
+          2v3:
+            auc: 0.5512
+            ci_lower: 0.5411
+            ci_upper: 0.5613
+            perm_p: 0.0001
+        ordinal_mae: 1.2134
+        ordinal_accuracy: 0.3612
+      256_tokens:
+        k_star: 2
+        pairwise_auc:
+          0v1: 0.9948
+          1v2: 0.6347
+          2v3: 0.5578
+          3v4: 0.5342
+          4v5: 0.5118
+        bootstrap_ci:
+          1v2:
+            auc: 0.6347
+            ci_lower: 0.6251
+            ci_upper: 0.6443
+            perm_p: 0.0001
+          2v3:
+            auc: 0.5578
+            ci_lower: 0.5478
+            ci_upper: 0.5678
+            perm_p: 0.0001
+        ordinal_mae: 1.1723
+        ordinal_accuracy: 0.3756
+      512_tokens:
+        k_star: 2
+        pairwise_auc:
+          0v1: 0.9981
+          1v2: 0.6523
+          2v3: 0.5641
+          3v4: 0.5378
+          4v5: 0.5145
+        bootstrap_ci:
+          1v2:
+            auc: 0.6523
+            ci_lower: 0.6428
+            ci_upper: 0.6618
+            perm_p: 0.0001
+          2v3:
+            auc: 0.5641
+            ci_lower: 0.5542
+            ci_upper: 0.574
+            perm_p: 0.0001
+        ordinal_mae: 1.1389
+        ordinal_accuracy: 0.3891
+    auc_1v2_vs_length_spearman: 1.0
+    length_effect_per_doubling: +0.016 AUC per 2x tokens
+  result_rationale: "文本长度影响特征估计的精度（样本量效应），但不影响 K* 的质性判断。预测逻辑：\n\n128 tokens (1v2=0.6187):\n\
+    - 128 tokens 约 80-100 个 word-level tokens，surprisal/diversity 特征的统计估计方差增大；\n-\
+    \ Qwen-cont baseline (无长度限制, 实际约 200-300 tokens) 1v2=0.6114，\n  128 tokens 版本略高（0.6187）看似反直觉，但原因是：截短文本的前\
+    \ 128 tokens \n  包含更多 prompt-influenced content，depth signal 在开头更集中；\n- CI lower=0.6089\
+    \ 距 θ=0.60 仅 +0.89pp，是三个长度中最边缘的但仍然 pass；\n- 这是整个 best tier 中最紧张的单一数据点（位于 best\
+    \ 档 [0.605, 0.635] 范围内）。\n\n256 tokens (1v2=0.6347):\n- 统计估计更稳定，AUC 提升 ~1.6pp\
+    \ vs 128；\n- CI lower=0.6251，margin 充裕（+2.5pp above θ）；\n- 接近 Qwen-cont baseline\
+    \ 加上 length standardization 的增益。\n\n512 tokens (1v2=0.6523):\n- 最长文本，特征估计最精确；\n\
+    - AUC 接近 Pythia-1.4B baseline (0.6539)——同一 scorer (Qwen-1.5B) 在更长文本上\n  能更充分表征\
+    \ depth-dependent 统计偏移；\n- CI lower=0.6428，距 θ 有 +4.3pp margin，最稳健。\n\n单调递增模式（128\
+    \ < 256 < 512）的机理：更长文本提供更多 token-level 观测值，\n使 15D 特征的点估计更精确、fold-level 方差更小，但所有三个长度都保持\
+    \ K*=2 \n因为 depth signal 的存在性不依赖于样本量——只是检测功效 (power) 随样本量增加。\n关键：即使在 128 tokens\
+    \ 这一极短条件下，K*=2 仍然成立，\n说明 depth signal 不是长距离相关结构的产物，而是局部统计量的根本偏移。\n"
+  tables:
+  - title: 'Length Ablation: K* Stability Across Text Lengths'
+    columns:
+    - length
+    - AUC_0v1
+    - AUC_1v2
+    - 1v2_CI_lower
+    - AUC_2v3
+    - 2v3_CI_upper
+    - K_star
+    rows:
+    - - 128 tokens
+      - 0.9823
+      - 0.6187
+      - 0.6089
+      - 0.5512
+      - 0.5613
+      - 2
+    - - 256 tokens
+      - 0.9948
+      - 0.6347
+      - 0.6251
+      - 0.5578
+      - 0.5678
+      - 2
+    - - 512 tokens
+      - 0.9981
+      - 0.6523
+      - 0.6428
+      - 0.5641
+      - 0.574
+      - 2
+  - title: Length Effect Decomposition
+    columns:
+    - comparison
+    - delta_AUC_1v2
+    - interpretation
+    rows:
+    - - 128→256 (+2x)
+      - '+0.0160'
+      - estimation precision gain
+    - - 256→512 (+2x)
+      - '+0.0176'
+      - consistent ~0.017/doubling
+  figures_description:
+  - 三面板 AUC decay curves (128/256/512)，展示 K*=2 boundary 在所有长度下的一致性，辅以 CI band
+  - AUC 1v2 vs log(length) 线性拟合图，展示 per-doubling 增益的恒定性
+  analysis: "3/3 lengths K*=2 排除了 \"K*=2 是长文本特有现象\" 的替代解释。\n128 tokens 是实际应用中常见的短文本长度（tweets,\
+    \ comments, abstracts），\nK*=2 在此条件下成立使 practical deployment 更可信。\nAUC 的单调递增是纯统计效应（更多观测→更精确估计），\n\
+    而非 depth signal 的质性变化——这一区分在 Discussion 中很重要，\n因为它意味着 K* 是文本的内在属性而非测量工具的 artifact。\n\
+    论文可写：\"K*=2 is invariant to text length (128–512 tokens), \nthough detection power\
+    \ increases monotonically with length (~0.017 AUC per doubling).\"\n"
+- name: 4×4 cross-scorer matrix
+  plan_id: exp-022
+  description: 4 generators (Qwen-cont, Pythia, OLMo, Qwen-base) × 4 scorers (Qwen-1.5B,
+    Pythia-1.4B, OLMo-1B, LLaMA-8B), 验证 scorer independence
+  expected_results:
+    matrix_size: 4×4 = 16 cells
+    k_star_2_count: 15
+    k_star_2_fraction: 0.9375
+    k_star_1_cells:
+    - OLMo_gen × OLMo_scorer
+    auc_1v2_matrix:
+      Qwen_cont_gen:
+        Qwen_scorer: 0.6112
+        Pythia_scorer: 0.6078
+        OLMo_scorer: 0.6034
+        LLaMA_scorer: 0.6156
+      Pythia_gen:
+        Qwen_scorer: 0.6539
+        Pythia_scorer: 0.6587
+        OLMo_scorer: 0.6312
+        LLaMA_scorer: 0.6423
+      OLMo_gen:
+        Qwen_scorer: 0.6146
+        Pythia_scorer: 0.6089
+        OLMo_scorer: 0.5978
+        LLaMA_scorer: 0.6067
+      Qwen_base_gen:
+        Qwen_scorer: 0.626
+        Pythia_scorer: 0.6198
+        OLMo_scorer: 0.6045
+        LLaMA_scorer: 0.6217
+    ci_lower_matrix:
+      Qwen_cont_gen:
+        Qwen_scorer: 0.6015
+        Pythia_scorer: 0.5981
+        OLMo_scorer: 0.5937
+        LLaMA_scorer: 0.6059
+      Pythia_gen:
+        Qwen_scorer: 0.6454
+        Pythia_scorer: 0.6492
+        OLMo_scorer: 0.6215
+        LLaMA_scorer: 0.6328
+      OLMo_gen:
+        Qwen_scorer: 0.6045
+        Pythia_scorer: 0.5992
+        OLMo_scorer: 0.5881
+        LLaMA_scorer: 0.5968
+      Qwen_base_gen:
+        Qwen_scorer: 0.6168
+        Pythia_scorer: 0.6101
+        OLMo_scorer: 0.5948
+        LLaMA_scorer: 0.612
+    cells_below_theta:
+      count: 1
+      details: 'OLMo_gen × OLMo_scorer: CI lower=0.5881 < 0.60 → K*=1'
+    scorer_effect_anova_p: 0.23
+    generator_effect_anova_p: 0.001
+    interaction_effect_p: 0.41
+    feature_importance_cross_scorer_spearman_mean: 0.91
+  result_rationale: "Cross-scorer matrix 的核心问题：当 scorer model ≠ generator model 时，\n\
+    15D 特征中 surprisal-based features 的计算基础改变。预测逻辑：\n\n整体模式——generator 效应 >> scorer\
+    \ 效应：\n- ANOVA 显示 generator identity (p=0.001) 是 AUC 的主驱动因素，\n  scorer identity\
+    \ (p=0.23) 不显著，交互效应 (p=0.41) 不显著；\n- 这与 exp-013 的 \"depth signal ≈ 70-85% text-intrinsic\"\
+    \ 结论一致；\n- 15D 特征中 7 个非 surprisal 特征（ttr, hapax, freq_*）完全 scorer-independent，\n\
+    \  8 个 surprisal 特征虽依赖 scorer，但跨 scorer 的相对排序高度稳定 (ρ=0.91)。\n\n15/16 cells K*=2\
+    \ 的理由：\n- 大多数 scorer 在计算 surprisal 时提供的是\"另一个模型对文本难度的估计\"，\n  这一估计虽然绝对值不同，但对 depth-dependent\
+    \ 变化的相对敏感度相似；\n- Pythia 生成的文本在所有 4 个 scorer 下都给出最高 1v2 AUC (0.631-0.659)，\n  因为\
+    \ Pythia 的 depth signal 最强（text-intrinsic component 最大）。\n\n唯一 K*=1 cell (OLMo_gen\
+    \ × OLMo_scorer, CI lower=0.5881) 的解释：\n- OLMo 生成的文本本身 depth signal 最弱（exp-002\
+    \ baseline 1v2=0.6146，所有模型中最低）；\n- OLMo 作为 scorer 时，对自己生成的文本计算 surprisal 会产生 self-familiarity\
+    \ 效应，\n  但方向相反——OLMo 对自己文本的 surprisal 更低且更均匀，\n  反而*抹平*了 depth-dependent 的 surprisal\
+    \ 变化；\n- 这与 exp_A_alt_scorer 中观察到的 cross-scorer K* 降级模式一致\n  （olmo_qwen_cont:\
+    \ K*=1, AUC=0.5858），但原因不同：\n  exp_A 中是 Qwen-cont 数据的 signal 本身弱 + cross-scorer\
+    \ 噪声；\n  这里是 OLMo 数据的 signal 弱 + self-scorer 的 surprisal 均匀化效应。\n\nbest 档下 15/16=93.75%\
+    \ K*=2 的合理性：\n- 处于 [0.85, 1.0] 范围内的上半段；\n- 唯一失败的 cell 有清晰的机制解释，不影响 universality\
+    \ claim；\n- 论文可以 frame 为 \"scorer independence holds except in the degenerate\
+    \ case \n  where the weakest-signal generator is scored by itself.\"\n"
+  tables:
+  - title: 4×4 Cross-Scorer AUC 1v2 Matrix
+    columns:
+    - generator↓ / scorer→
+    - Qwen-1.5B
+    - Pythia-1.4B
+    - OLMo-1B
+    - LLaMA-8B
+    rows:
+    - - Qwen-cont
+      - 0.6112
+      - 0.6078
+      - 0.6034
+      - 0.6156
+    - - Pythia-1.4B
+      - 0.6539
+      - 0.6587
+      - 0.6312
+      - 0.6423
+    - - OLMo-1B
+      - 0.6146
+      - 0.6089
+      - '**0.5978**'
+      - 0.6067
+    - - Qwen-base
+      - 0.626
+      - 0.6198
+      - 0.6045
+      - 0.6217
+  - title: 'ANOVA: Sources of Variation in 1v2 AUC'
+    columns:
+    - source
+    - F_stat
+    - p_value
+    - eta_squared
+    - interpretation
+    rows:
+    - - generator
+      - 12.7
+      - 0.001
+      - 0.68
+      - dominant factor
+    - - scorer
+      - 1.89
+      - 0.23
+      - 0.11
+      - not significant
+    - - interaction
+      - 0.73
+      - 0.41
+      - 0.04
+      - not significant
+    - - residual
+      - —
+      - —
+      - 0.17
+      - —
+  figures_description:
+  - '4×4 heatmap: AUC 1v2 值，颜色从蓝 (0.59) 到红 (0.66)，唯一冷色 cell 标注为 K*=1'
+  - 'Scorer 效应 box plot: 每个 scorer 对应 4 个 generator 的 AUC 分布，展示 scorer 间差异远小于 generator
+    间差异'
+  analysis: "15/16 (93.75%) cells K*=2 确认 scorer independence：K* 主要由 generator 决定，\n\
+    scorer 选择仅引入 ~1-2pp AUC 波动。\n唯一例外 (OLMo×OLMo, K*=1) 是 weakest-signal generator\
+    \ + self-scorer 的 degenerate case。\nANOVA 定量确认 generator 贡献 68% 方差 vs scorer 11%。\n\
+    \n对论文的影响：\n(1) Universality claim 加强——K*=2 不仅跨 generator model 稳定，也跨 scorer model\
+    \ 稳定；\n(2) Practical implication：部署时可使用任意可用 LLM 作为 scorer，无需匹配 generator；\n(3)\
+    \ LLaMA-8B 作为 scorer 给出的 AUC 普遍略高于小模型 scorers（列均值 +1.3pp），\n    提示更大的 scorer 能更精确估计\
+    \ surprisal，但差异不影响 K* 判断；\n(4) Limitation 措辞：\"In the degenerate case where generator\
+    \ and scorer coincide \n    and the text-intrinsic signal is weakest (OLMo-1B),\
+    \ K* may drop to 1 due to \n    surprisal homogenization. We recommend using a\
+    \ scorer ≠ generator in deployment.\"\n\n条件总数更新：\n原 10 conditions + exp-018 (1)\
+    \ + exp-019 (1) + exp-020 (4) + exp-021 (3) + exp-022 中新增 conditions\n= 10 + 2\
+    \ + 4 + 3 + 考虑去重后 = 18 unique conditions (其中 17 K*=2, 1 K*=1)。\n论文 headline: \"\
+    17/18 conditions K*=2 (94%), with the single exception attributable \nto a degenerate\
+    \ self-scorer configuration.\""

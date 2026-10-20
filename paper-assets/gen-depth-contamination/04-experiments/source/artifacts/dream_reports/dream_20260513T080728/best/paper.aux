@@ -1,0 +1,81 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shumailov2024model}
+\citation{mitchell2023detectgpt}
+\citation{hans2024binoculars}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{mitchell2023detectgpt}
+\citation{hans2024binoculars}
+\citation{xie2023dsir}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Model Collapse and Recursive Generation.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Binary Synthetic Text Detection.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data Selection and Curation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Information-Theoretic Framework}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Empirical Discrimination Boundary $K^*$}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Feature Design}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Graduated Filtering}{3}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Setup}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Models.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data.}{3}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Generation.}{3}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Decoding.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics.}{3}{section*.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Decoding strategy ablation on Qwen2.5-1.5B-Instruct. $K^*$ forms a controllable gradient from greedy ($K^*=1$) through standard ($K^*=2$) to high-temperature ($K^*=3$).}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:decoding}{{1}{4}{Decoding strategy ablation on Qwen2.5-1.5B-Instruct. $K^*$ forms a controllable gradient from greedy ($K^*=1$) through standard ($K^*=2$) to high-temperature ($K^*=3$)}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Feature degradation ordering consistency (Spearman $\rho $ vs.\ baseline configuration).}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:feature_ordering}{{2}{4}{Feature degradation ordering consistency (Spearman $\rho $ vs.\ baseline configuration)}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}$K^*$ Characterization}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:kstar}{{4.2}{4}{$K^*$ Characterization}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Decoding Strategy Ablation.}{4}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-Scale Probing (7B).}{4}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Base vs.\ Instruction-Tuned Models.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Ecological Validity: Retrain-Chain}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:retrain}{{4.3}{4}{Ecological Validity: Retrain-Chain}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Qwen2.5-7B vs.\ 1.5B pairwise discrimination. 7B achieves $K^* \geq 3$.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:7b}{{3}{5}{Qwen2.5-7B vs.\ 1.5B pairwise discrimination. 7B achieves $K^* \geq 3$}{table.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces 7B bootstrap 95\% confidence intervals (10K resamples).}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:7b_ci}{{4}{5}{7B bootstrap 95\% confidence intervals (10K resamples)}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Downstream Graduated Filtering}{5}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:filtering}{{4.4}{5}{Downstream Graduated Filtering}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {paragraph}{Main Comparison.}{5}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mixing Weight Sensitivity.}{5}{section*.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dose-Response.}{5}{section*.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Analysis}{5}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Frontier LLMs Cannot Estimate Depth.}{5}{section*.15}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Base vs.\ Instruct comparison (Qwen2.5-1.5B, continuation mode). Both yield $K^*=2$; base signals are stronger by 2.68 pp at the 1v2 boundary.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:base_instruct}{{5}{6}{Base vs.\ Instruct comparison (Qwen2.5-1.5B, continuation mode). Both yield $K^*=2$; base signals are stronger by 2.68 pp at the 1v2 boundary}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Retrain-chain vs.\ prompt-chain (Pythia-1.4B). $K^*$ and AUC are consistent across generation methods.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:retrain}{{6}{6}{Retrain-chain vs.\ prompt-chain (Pythia-1.4B). $K^*$ and AUC are consistent across generation methods}{table.6}{}}
+\@writefile{toc}{\contentsline {paragraph}{Binary Detectors as Depth Proxies.}{6}{section*.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Learned vs.\ Hand-Crafted Features.}{6}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Common Crawl Validation.}{6}{section*.18}\protected@file@percent }
+\bibdata{custom}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Feature distribution divergence between retrain and prompt chains (JSD by depth).}}{7}{table.7}\protected@file@percent }
+\newlabel{tab:retrain_jsd}{{7}{7}{Feature distribution divergence between retrain and prompt chains (JSD by depth)}{table.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Downstream evaluation: 6 filtering strategies (5-seed mean $\pm $ std). Graduated filtering significantly outperforms all baselines.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:downstream}{{8}{7}{Downstream evaluation: 6 filtering strategies (5-seed mean $\pm $ std). Graduated filtering significantly outperforms all baselines}{table.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{$K^*$ is Not a Ceiling.}{7}{section*.19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Practical Implications.}{7}{section*.20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.21}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{7}{section.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Statistical significance of graduated filtering advantages (paired $t$-test, 5 seeds).}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:significance}{{9}{8}{Statistical significance of graduated filtering advantages (paired $t$-test, 5 seeds)}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Graduated filtering sensitivity to $\alpha $ (gen-1 weight).}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:alpha}{{10}{8}{Graduated filtering sensitivity to $\alpha $ (gen-1 weight)}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Dose-response: graduated vs.\ binary filtering advantage by contamination rate. Gains are monotonically increasing.}}{8}{table.11}\protected@file@percent }
+\newlabel{tab:dose}{{11}{8}{Dose-response: graduated vs.\ binary filtering advantage by contamination rate. Gains are monotonically increasing}{table.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Zero-shot depth estimation: frontier LLMs vs.\ our ordinal classifier.}}{8}{table.12}\protected@file@percent }
+\newlabel{tab:llm_baseline}{{12}{8}{Zero-shot depth estimation: frontier LLMs vs.\ our ordinal classifier}{table.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Binary detector scores as depth proxies. Existing detectors plateau at depth $\geq 1$.}}{8}{table.13}\protected@file@percent }
+\newlabel{tab:binary_proxy}{{13}{8}{Binary detector scores as depth proxies. Existing detectors plateau at depth $\geq 1$}{table.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Learned vs.\ hand-crafted features. 15D features match or exceed frozen embeddings with 102$\times $ fewer dimensions and 85\% cross-model transfer.}}{8}{table.14}\protected@file@percent }
+\newlabel{tab:learned}{{14}{8}{Learned vs.\ hand-crafted features. 15D features match or exceed frozen embeddings with 102$\times $ fewer dimensions and 85\% cross-model transfer}{table.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Common Crawl proof-of-concept validation ($n=10$K).}}{9}{table.15}\protected@file@percent }
+\newlabel{tab:commoncrawl}{{15}{9}{Common Crawl proof-of-concept validation ($n=10$K)}{table.15}{}}
+\gdef \@abspage@last{9}

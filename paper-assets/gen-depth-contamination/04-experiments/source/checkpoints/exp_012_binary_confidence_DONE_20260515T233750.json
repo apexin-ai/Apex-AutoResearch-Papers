@@ -1,0 +1,97 @@
+{
+  "exp_id": "exp_012_binary_confidence",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:32:09.468Z",
+    "updated_at": "2026-05-15T23:37:50.892Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_ENDPOINT=https://hf-mirror.com && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp012_ppl_depth_correlation.py --device cuda:0 --n_samples 500 --output_dir artifacts/exp012_results\"",
+      "server": "westc-26893",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "128209",
+      "log_path": "~/runs/gen-depth-contamination/exp_012_binary_confidence.log",
+      "submitted_at": "2026-05-15T23:14:10.207Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 489.8,
+      "gpu_hours": 0.14
+    },
+    "notes": "N=500全量运行。Binary confidence与depth的Spearman ρ弱到中等(|ρ|=0.06-0.46)，6-class accuracy全部≤random baseline。关键发现：0v1 pairwise AUC极高(0.99+)但deeper pairs塌缩到~0.5，证明binary detector只捕捉human/AI边界，无法区分generational depth。Hypothesis验证成功。可视化已生成(exp012_confidence_vs_depth.pdf)。",
+    "hypothesis": "Binary detector confidence (DivEye log-PPL + Binoculars ratio) 与 true depth 的 Spearman correlation，验证 binary confidence ≠ depth。Binoculars: observer=Pythia-1.4b, performer=OLMo-1B-0724-hf。",
+    "reproduce": {
+      "finished_at": "2026-05-15T23:20:30.036Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T23:20:30.983764+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/artifacts/exp012_results/",
+    "log_path": "~/runs/gen-depth-contamination/exp_012_binary_confidence.log",
+    "completed_at": "2026-05-15T23:22:19.966Z",
+    "metrics": {
+      "n_samples": 500,
+      "generators": [
+        "qwen-rewrite",
+        "pythia-1.4b",
+        "olmo-1b",
+        "qwen-cont"
+      ],
+      "spearman_rho": {
+        "qwen-rewrite": {
+          "log_ppl_ref": -0.1233,
+          "log_ppl_obs": 0.0815,
+          "ppl_ratio": 0.1185
+        },
+        "pythia-1.4b": {
+          "log_ppl_ref": -0.2972,
+          "log_ppl_obs": -0.4529,
+          "ppl_ratio": -0.392
+        },
+        "olmo-1b": {
+          "log_ppl_ref": -0.378,
+          "log_ppl_obs": -0.4614,
+          "ppl_ratio": -0.4068
+        },
+        "qwen-cont": {
+          "log_ppl_ref": -0.3887,
+          "log_ppl_obs": -0.162,
+          "ppl_ratio": -0.058
+        }
+      },
+      "6class_accuracy": {
+        "qwen-rewrite": 0.1987,
+        "pythia-1.4b": 0.1303,
+        "olmo-1b": 0.127,
+        "qwen-cont": 0.1833,
+        "random_baseline": 0.1667
+      },
+      "pairwise_auc_0v1_obd15d": {
+        "qwen-rewrite": 0.9956,
+        "pythia-1.4b": 0.9932,
+        "olmo-1b": 0.997,
+        "qwen-cont": 0.9972
+      },
+      "pairwise_auc_4v5_obd15d": {
+        "qwen-rewrite": 0.5343,
+        "pythia-1.4b": 0.5135,
+        "olmo-1b": 0.5044,
+        "qwen-cont": 0.5139
+      }
+    }
+  },
+  "timestamp": "2026-05-15T23:37:50.999966+00:00",
+  "trigger": "update_registry"
+}

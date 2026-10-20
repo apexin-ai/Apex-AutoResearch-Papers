@@ -1,0 +1,61 @@
+{
+  "exp_id": "exp_005_degradation",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T02:40:12.117Z",
+    "updated_at": "2026-05-13T02:40:50.885Z",
+    "spec": {
+      "command": "python scripts/run_exp005_degradation.py --data_dirs data_exp001_pythia data_exp002_olmo data --labels Pythia-1.4B OLMo-1B Qwen-1.5B --output_dir results_exp005_degradation",
+      "server": "autodl-4090d",
+      "data_path": "data_exp001_pythia, data_exp002_olmo, data",
+      "data_count": 3,
+      "model_name": "Pythia-1.4B, OLMo-1B, Qwen-1.5B",
+      "seed": 42,
+      "checkpoint_source": "N/A",
+      "eval_data": "N/A"
+    },
+    "checkpoint_path": "N/A",
+    "log_path": "/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json",
+    "metrics": {
+      "cross_model_kendall_tau_avg_auc": {
+        "Pythia_vs_OLMo": 0.8476,
+        "Pythia_vs_Qwen": 0.5238,
+        "OLMo_vs_Qwen": 0.4857,
+        "mean": 0.619
+      },
+      "cross_model_spearman_rho_avg_auc": {
+        "Pythia_vs_OLMo": 0.95,
+        "Pythia_vs_Qwen": 0.7214,
+        "OLMo_vs_Qwen": 0.6571,
+        "mean": 0.776
+      },
+      "top3_features_by_first_auc": {
+        "Pythia": [
+          "surp_d1_std",
+          "surp_d2_std",
+          "surp_std"
+        ],
+        "OLMo": [
+          "surp_std",
+          "surp_d1_std",
+          "surp_d2_std"
+        ],
+        "Qwen": [
+          "freq_entropy",
+          "surp_std",
+          "surp_d1_std"
+        ]
+      },
+      "degradation_ordering_consistency": "partial — Pythia/OLMo share surp_*_std as top discriminators; Qwen diverges with freq_entropy #1",
+      "depth_pair_tau_decay": "consistency strong at 0v1 (mean τ~0.54), drops sharply at deeper pairs (4v5 mean τ~0.10)"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-13T02:40:50.885Z"
+  },
+  "timestamp": "2026-05-13T02:40:50.902802+00:00",
+  "trigger": "update_registry"
+}

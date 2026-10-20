@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_olmo1b_10k",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T20:05:20.014Z",
+    "updated_at": "2026-05-22T20:07:18.301Z",
+    "hypothesis": "OLMo-1B 10K sample-size robustness: 5K borderline K*=2 (1v2 AUC=0.6145, CI lower=0.6045, barely above θ=0.60) should remain K*=2 at 10K with narrower CI, confirming between-sample stability for borderline verdicts."
+  },
+  "timestamp": "2026-05-22T20:07:18.638240+00:00",
+  "trigger": "update_registry"
+}

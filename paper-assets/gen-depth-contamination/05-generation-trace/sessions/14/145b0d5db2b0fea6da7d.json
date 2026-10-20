@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "145b0d5db2b0fea6da7d",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code code domain qwen7b",
+  "task_key": "worker_code_code_domain_qwen7b_20260524T094847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_code_domain_qwen7b_20260524T094847_result.json",
+    "occurrence": 1,
+    "bytes": 1255,
+    "sha256": "ff920d2304c537e6534f51567143dfedd920ec2be53c0d0559d236756dc0f4c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已完成，数据和结果完整。汇报如下：\n\n## Qwen2.5-7B Code (Python) 实验结果\n\n**数据**: 5500 docs × 6 depths (depth 0-5)，共 33K 条，已生成完毕。\n\n**K\\* = 2**（与预期一致，同家族 Qwen-1.5B Code 也是 K\\*=2）\n\n### Pairwise AUC (adjacent depths, 5-fold CV)\n\n| Pair | AUC | 判定 |\n|------|-----|------|\n| 0 vs 1 | 0.9051 ± 0.0043 | 可区分 |\n| 1 vs 2 | 0.7276 ± 0.0055 | 可区分 |\n| 2 vs 3 | 0.5368 ± 0.0145 | ~随机 |\n| 3 vs 4 | 0.5090 ± 0.0055 | 随机 |\n| 4 vs 5 | 0.5139 ± 0.0128 | 随机 |\n\n### Pairwise JSD\n\n| Pair | JSD |\n|------|-----|\n| 0v1 | 0.0613 |\n| 1v2 | 0.0423 |\n| 2v3 | 0.0041 |\n| 3v4 | 0.0032 |\n| 4v5 | 0.0034 |\n\nJSD 在 depth 2→3 出现数量级下降（0.042 → 0.004），与 AUC 判定一致。\n\n### Ordinal Classification (6-class)\n- MAE = 1.2651\n- Accuracy = 34.2%\n\n### Top Features\nfreq_entropy, surp_d2_mean, surp_d1_mean 排前三，与其他 Code 实验一致。\n\n**结论**: Qwen2.5-7B Code 的 K\\*=2，符合 Code domain 的整体模式（Qwen-1.5B=2, LLaMA-8B=2, Mistral-7B=2）。7B 规模并未比 1.5B 显示更深的可区分性，支持 \"saturation depth 由 domain 决定而非 model size\" 的论点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-code-domain-qwen7b.md"
+}

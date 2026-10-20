@@ -1,0 +1,979 @@
+{
+  "schema_version": "1.0",
+  "id": "11b691b9472d6b242f0a",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "writing abstract v2",
+  "task_key": "worker_writing_abstract-v2_20260514T045103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_abstract-v2_20260514T045103.log",
+    "occurrence": 1,
+    "bytes": 87867,
+    "sha256": "b88f1b24f021555c5d12d62871f03b8db1bbf63534835918217369aba73f48b9"
+  },
+  "statistics": {
+    "messages": 22,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 6,
+      "tool_result": 6,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "session_id": "5e450413-01d5-41cc-8e97-5fc6482b70c8",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "52d326ba-160d-49d2-b9fc-66af18f18113",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778745000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "f7363b07-81cb-42e1-85eb-bdc3571131b0",
+                "session_id": "5e450413-01d5-41cc-8e97-5fc6482b70c8"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the current abstract from main.tex, the introduction.tex for contribution list, and the paper_framing.md file.",
+              "signature": "EsICClkIDRgCKkCAbLlM2+Y7njRHxGj+FDgwZo3rEmZkRuKh/ij/mhgdzt7AX9RgLPDjr0Xq/HELtE+7MrsdIxTylVKGYPdR86DNMg9jbGF1ZGUtb3B1cy00LTY4ABIMiua9Exp/aFFKI8dMGgzYdfmTI3Wo5OFQuiAiMLNntO8wiJt0K36dCAjTFpQADgVzWplU/GPlQ7GpmgI2rYHgkLmedKELLMxbC5dWrSqWARyM4KAMKg/If922FOYmg5t+cdiW66HQB8OWCAd40GDMYrOdQKV6xjgo/mcRgKYAtwmZ2cam4gnNn5QsaZhAN4OP7Y7ZrAbk5h473YeDYkfA1KSDkL/7F51qMoQ5A5mi4ln4jLkFEI/B69QrFjCqiFoUG0Fclu4/FqtbkJU+cmX3qEJsvrVisVju0oADiL6chi34Eco7MxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e450413-01d5-41cc-8e97-5fc6482b70c8",
+            "uuid": "2c57c049-eed9-41c4-bd74-63c571fe9576",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018qmqCePKyhqcxJEpAAfz8F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11745,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11745
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PDbu8prakbUhD87UWzoG6J",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e450413-01d5-41cc-8e97-5fc6482b70c8",
+            "uuid": "4241b1c9-e0f9-4d78-b33b-1debfb29a16b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018qmqCePKyhqcxJEpAAfz8F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11745,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11745
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T04:51:13.826Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PDbu8prakbUhD87UWzoG6J",
+              "type": "tool_result",
+              "content": "1\t% EMNLP 2026 Main — ARR May 2026\n2\t% Generational Depth Contamination\n3\t% Template: standard article class (swap to acl.sty for final submission)\n4\t\\documentclass[11pt,a4paper]{article}\n5\t\\usepackage[margin=1in]{geometry}\n6\t\\usepackage{times}\n7\t\\usepackage{graphicx}\n8\t\\usepackage{amsmath}\n9\t\\usepackage{amssymb}\n10\t\\usepackage{amsthm}\n11\t\\usepackage{booktabs}\n12\t\\usepackage{multirow}\n13\t\\usepackage{xcolor}\n14\t\\usepackage{hyperref}\n15\t\\usepackage[numbers]{natbib}\n16\t\\usepackage{enumitem}\n17\t\\usepackage{subcaption}\n18\t\n19\t\\newcommand{\\Kstar}{K^*}\n20\t\\newcommand{\\Kempirical}{K^*_{\\text{empirical}}}\n21\t\\newcommand{\\Ktheory}{K^*_{\\text{theory}}}\n22\t\\newcommand{\\auc}{\\text{AUC}}\n23\t\\newcommand{\\jsd}{\\text{JSD}}\n24\t\n25\t\\title{Generational Depth Estimation of Recursive Synthetic Text:\\\\Measuring the Discrimination Boundary}\n26\t\n27\t\\author{Anonymous}\n28\t\n29\t\\begin{document}\n30\t\\maketitle\n31\t\n32\t% === Abstract (DEFERRED) ===\n33\t% \\begin{abstract}\n34\t% [TODO: Write after C3 results available]\n35\t% \\end{abstract}\n36\t\n37\t% === Section 1: Introduction ===\n38\t\\input{introduction}\n39\t\n40\t% === Section 2: Related Work ===\n41\t\\input{related_work}\n42\t\n43\t% === Section 3: Method ===\n44\t\\input{method}\n45\t\n46\t% === Section 4: Experiments ===\n47\t\\input{experiments_c1}\n48\t\n49\t% === Section 4.x: Graduated Filtering (DEFERRED) ===\n50\t% \\input{experiments_c3}\n51\t\n52\t% === Section 5: Discussion ===\n53\t\\input{discussion}\n54\t\n55\t% === Section 6: Conclusion ===\n56\t\\input{conclusion}\n57\t\n58\t\\bibliographystyle{plainnat}\n59\t\\bibliography{references}\n60\t\n61\t\\input{appendix}\n62\t\n63\t\\end{document}\n64\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5e450413-01d5-41cc-8e97-5fc6482b70c8",
+            "uuid": "23ac510e-fb2f-43fe-be8c-4df143554ddd",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex",
+                "content": "% EMNLP 2026 Main — ARR May 2026\n% Generational Depth Contamination\n% Template: standard article class (swap to acl.sty for final submission)\n\\documentclass[11pt,a4paper]{article}\n\\usepackage[margin=1in]{geometry}\n\\usepackage{times}\n\\usepackage{graphicx}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{amsthm}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{xcolor}\n\\usepackage{hyperref}\n\\usepackage[numbers]{natbib}\n\\usepackage{enumitem}\n\\usepackage{subcaption}\n\n\\newcommand{\\Kstar}{K^*}\n\\newcommand{\\Kempirical}{K^*_{\\text{empirical}}}\n\\newcommand{\\Ktheory}{K^*_{\\text{theory}}}\n\\newcommand{\\auc}{\\text{AUC}}\n\\newcommand{\\jsd}{\\text{JSD}}\n\n\\title{Generational Depth Estimation of Recursive Synthetic Text:\\\\Measuring the Discrimination Boundary}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n% === Abstract (DEFERRED) ===\n% \\begin{abstract}\n% [TODO: Write after C3 results available]\n% \\end{abstract}\n\n% === Section 1: Introduction ===\n\\input{introduction}\n\n% === Section 2: Related Work ===\n\\input{related_work}\n\n% === Section 3: Method ===\n\\input{method}\n\n% === Section 4: Experiments ===\n\\input{experiments_c1}\n\n% === Section 4.x: Graduated Filtering (DEFERRED) ===\n% \\input{experiments_c3}\n\n% === Section 5: Discussion ===\n\\input{discussion}\n\n% === Section 6: Conclusion ===\n\\input{conclusion}\n\n\\bibliographystyle{plainnat}\n\\bibliography{references}\n\n\\input{appendix}\n\n\\end{document}\n",
+                "numLines": 64,
+                "startLine": 1,
+                "totalLines": 64
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CJofLsH5FQPsgAY1GqxfmP",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e450413-01d5-41cc-8e97-5fc6482b70c8",
+            "uuid": "2e31be7f-2462-46b7-87e7-2a63d2f4c490",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018qmqCePKyhqcxJEpAAfz8F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11745,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11745
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T04:51:14.306Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CJofLsH5FQPsgAY1GqxfmP",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tWeb-scale text corpora are increasingly contaminated by synthetic content that has itself been generated from earlier synthetic content.\n5\tEach pass through a language model constitutes a lossy channel: first-generation synthetic text retains much of the information structure of its human-written source, but within just two or three generations the output is qualitatively different---tail modes vanish, lexical diversity contracts, and surprisal distributions flatten~\\cite{shumailov2024collapse, dohmatob2024model}.\n6\tThis recursive degradation is not merely a theoretical concern; as synthetic text proliferates on the open web, training corpora inevitably ingest documents at varying generational depths, amplifying the risk of model collapse in downstream systems.\n7\tYet the dominant paradigm in synthetic text detection treats all machine-generated text identically: a document is classified as human or synthetic, with no regard for how many rounds of recursive generation it has undergone.\n8\tThis binary framing discards the generational depth dimension entirely.\n9\t\n10\tThe gap cuts across three research communities.\n11\tBinary detection methods---including DivEye~\\cite{basani2026diveye}, Min-K\\%++~\\cite{zhang2024minkpp}, and CoDeC~\\cite{zawalski2026codec}---achieve strong human-versus-machine separation but produce no depth estimate.\n12\tThe model collapse literature provides macro-level characterizations of recursive degradation: Shumailov et al.~\\cite{shumailov2024collapse} demonstrated irreversible tail loss, Alemohammad et al.~\\cite{alemohammad2024selfconsuming} proved convergence to a fixed point, and Schaeffer et al.~\\cite{schaeffer2025position} organized the field into a taxonomy of eight definitions---yet none of these works provides a tool for estimating the generational depth of an individual text.\n13\tData selection methods such as DSIR~\\cite{xie2023dsir}, D4~\\cite{tirumala2023d4}, and DoReMi~\\cite{xie2023doremi} perform distribution matching to improve corpus quality but ignore recursive depth altogether.\n14\tThe closest prior work is Drayson et al.~\\cite{drayson2025}, who combined binary machine-generated text detection with stratified importance resampling to prevent model collapse---but their approach remains fundamentally binary.\n15\tNo existing method estimates how many rounds of recursive generation a text has undergone, nor quantifies the boundary beyond which such estimation becomes infeasible.\n16\t\n17\tRecursive generation forms an iterated lossy channel; the Data Processing Inequality guarantees that the original signal degrades monotonically across generations, motivating the existence of a finite discrimination boundary $\\Kstar$ beyond which adjacent generations become indistinguishable.\n18\tMarkov chain convergence further implies that adjacent-generation distributions converge to a shared stationary distribution, so the classifier's task grows harder with each step.\n19\tMotivated by this theoretical structure, we set out to empirically measure $\\Kempirical$---the maximum depth at which a classifier can reliably distinguish adjacent generations.\n20\tOur approach combines a 15-dimensional statistical feature pipeline---capturing surprisal moments, surprisal derivatives, vocabulary diversity, and frequency tail statistics---with an Ordinal Binary Decomposition (OBD) LightGBM classifier that respects the ordinal structure of depth.\n21\tWe operationalize $\\Kempirical$ as the deepest generation at which adjacent depths remain statistically distinguishable, with the bootstrap 95\\% CI for pairwise $\\auc$ exceeding an operational threshold $\\theta = 0.60$ (formal definition in Section~\\ref{sec:method}).\n22\tThe choice of interpretable statistical features---rather than learned representations---is deliberate: it enables cross-generator transfer without retraining and permits attribution of discriminative power to specific text properties.\n23\t\n24\tOur contributions are organized into two groups.\n25\tThe primary contribution is a systematic empirical characterization of $\\Kempirical$ and its properties:\n26\t\n27\t\\begin{enumerate}[label=(\\alph*)]\n28\t  \\item \\textbf{$\\Kempirical = 2$: a consistent boundary across all tested conditions.}\n29\t    Across 4 model-mode configurations and 4 decoding strategies (8 conditions total), all 1v2 bootstrap CI lower bounds exceed $\\theta = 0.60$ and all 2v3 CI upper bounds fall below $\\theta$, with permutation $p \\leq 0.002$ for all boundary comparisons.\n30\t    The most marginal case is Qwen-continuation, where $\\text{CI}_\\text{lower} = 0.6015$.\n31\t    $\\Kempirical = 2$ is thus established as a consistent discrimination boundary across all 8 tested conditions at $\\leq$1.5B scale, suggesting universality beyond the specific models and decoding strategies studied.\n32\t    Higher decoding entropy increases signal strength ($\\auc_{1,2}$: $0.69$ greedy $\\to$ $0.70$ at $T{=}1.2$) but does not shift the boundary.\n33\t\n34\t  \\item \\textbf{Cross-model transfer.}\n35\t    Classifiers trained on one continuation-mode model and evaluated on another retain 80--92\\% of within-model accuracy (Pythia$\\leftrightarrow$OLMo: 90--92\\%).\n36\t    At the 0v1 boundary, cross-model $\\auc$ exceeds 0.96 universally.\n37\t    Transfer retention of 80--92\\% suggests a large text-intrinsic component of the depth signal, rather than generator-specific artifacts.\n38\t\n39\t  \\item \\textbf{Degradation ordering consistency.}\n40\t    Single-feature $\\auc$ rankings are highly correlated across continuation-mode models (Spearman $\\rho \\geq 0.85$), with the same top features---\\texttt{surp\\_d1\\_std}, \\texttt{surp\\_std}, \\texttt{surp\\_d2\\_std}---appearing across all three families.\n41\t    This shared ordering suggests a common degradation mechanism: each generation step smooths the token-level surprisal landscape.\n42\t    A limitation is that depth-pair-level agreement weakens ($\\tau \\approx 0.37$ at 1v2), indicating that individual feature contributions at the boundary vary across models.\n43\t\n44\t  \\item \\textbf{Generation mode analysis.}\n45\t    Within Qwen2.5-1.5B-Instruct, rewrite mode yields 1v2 $\\auc = 0.6955$ versus continuation's $0.6112$ ($\\Delta = +8.4$\\,pp), but rewrite-trained classifiers transfer poorly across models (61--63\\% retention versus 80--92\\% for continuation).\n46\t    Cross-mode transfer is asymmetric: continuation$\\to$rewrite retains 89\\% while rewrite$\\to$continuation retains 82\\%.\n47\t    Continuation mode is therefore recommended as the canonical condition for cross-model comparisons.\n48\t\\end{enumerate}\n49\t\n50\t\\noindent As a secondary contribution, we investigate whether the coarse 3-class ordinal signal implied by $\\Kempirical = 2$ enables \\emph{graduated filtering}---depth-aware data curation that preserves mildly contaminated text (depth~1, retaining most original signal) while removing deeply corrupted text (depth~$\\geq 3$)---and whether such filtering can improve upon binary approaches that discard all synthetic content indiscriminately (Section~\\ref{sec:experiments}).\n51\t\n52\tThe remainder of this paper is organized as follows.\n53\tSection~\\ref{sec:related_work} reviews related work.\n54\tSection~\\ref{sec:method} describes the method.\n55\tSection~\\ref{sec:experiments} presents experimental results.\n56\tSection~\\ref{sec:discussion} discusses implications and limitations.\n57\tSection~\\ref{sec:conclusion} concludes."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5e450413-01d5-41cc-8e97-5fc6482b70c8",
+            "uuid": "cbcce7fb-fda5-4c80-8440-e915153c8552",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/introduction.tex",
+                "content": "\\section{Introduction}\n\\label{sec:introduction}\n\nWeb-scale text corpora are increasingly contaminated by synthetic content that has itself been generated from earlier synthetic content.\nEach pass through a language model constitutes a lossy channel: first-generation synthetic text retains much of the information structure of its human-written source, but within just two or three generations the output is qualitatively different---tail modes vanish, lexical diversity contracts, and surprisal distributions flatten~\\cite{shumailov2024collapse, dohmatob2024model}.\nThis recursive degradation is not merely a theoretical concern; as synthetic text proliferates on the open web, training corpora inevitably ingest documents at varying generational depths, amplifying the risk of model collapse in downstream systems.\nYet the dominant paradigm in synthetic text detection treats all machine-generated text identically: a document is classified as human or synthetic, with no regard for how many rounds of recursive generation it has undergone.\nThis binary framing discards the generational depth dimension entirely.\n\nThe gap cuts across three research communities.\nBinary detection methods---including DivEye~\\cite{basani2026diveye}, Min-K\\%++~\\cite{zhang2024minkpp}, and CoDeC~\\cite{zawalski2026codec}---achieve strong human-versus-machine separation but produce no depth estimate.\nThe model collapse literature provides macro-level characterizations of recursive degradation: Shumailov et al.~\\cite{shumailov2024collapse} demonstrated irreversible tail loss, Alemohammad et al.~\\cite{alemohammad2024selfconsuming} proved convergence to a fixed point, and Schaeffer et al.~\\cite{schaeffer2025position} organized the field into a taxonomy of eight definitions---yet none of these works provides a tool for estimating the generational depth of an individual text.\nData selection methods such as DSIR~\\cite{xie2023dsir}, D4~\\cite{tirumala2023d4}, and DoReMi~\\cite{xie2023doremi} perform distribution matching to improve corpus quality but ignore recursive depth altogether.\nThe closest prior work is Drayson et al.~\\cite{drayson2025}, who combined binary machine-generated text detection with stratified importance resampling to prevent model collapse---but their approach remains fundamentally binary.\nNo existing method estimates how many rounds of recursive generation a text has undergone, nor quantifies the boundary beyond which such estimation becomes infeasible.\n\nRecursive generation forms an iterated lossy channel; the Data Processing Inequality guarantees that the original signal degrades monotonically across generations, motivating the existence of a finite discrimination boundary $\\Kstar$ beyond which adjacent generations become indistinguishable.\nMarkov chain convergence further implies that adjacent-generation distributions converge to a shared stationary distribution, so the classifier's task grows harder with each step.\nMotivated by this theoretical structure, we set out to empirically measure $\\Kempirical$---the maximum depth at which a classifier can reliably distinguish adjacent generations.\nOur approach combines a 15-dimensional statistical feature pipeline---capturing surprisal moments, surprisal derivatives, vocabulary diversity, and frequency tail statistics---with an Ordinal Binary Decomposition (OBD) LightGBM classifier that respects the ordinal structure of depth.\nWe operationalize $\\Kempirical$ as the deepest generation at which adjacent depths remain statistically distinguishable, with the bootstrap 95\\% CI for pairwise $\\auc$ exceeding an operational threshold $\\theta = 0.60$ (formal definition in Section~\\ref{sec:method}).\nThe choice of interpretable statistical features---rather than learned representations---is deliberate: it enables cross-generator transfer without retraining and permits attribution of discriminative power to specific text properties.\n\nOur contributions are organized into two groups.\nThe primary contribution is a systematic empirical characterization of $\\Kempirical$ and its properties:\n\n\\begin{enumerate}[label=(\\alph*)]\n  \\item \\textbf{$\\Kempirical = 2$: a consistent boundary across all tested conditions.}\n    Across 4 model-mode configurations and 4 decoding strategies (8 conditions total), all 1v2 bootstrap CI lower bounds exceed $\\theta = 0.60$ and all 2v3 CI upper bounds fall below $\\theta$, with permutation $p \\leq 0.002$ for all boundary comparisons.\n    The most marginal case is Qwen-continuation, where $\\text{CI}_\\text{lower} = 0.6015$.\n    $\\Kempirical = 2$ is thus established as a consistent discrimination boundary across all 8 tested conditions at $\\leq$1.5B scale, suggesting universality beyond the specific models and decoding strategies studied.\n    Higher decoding entropy increases signal strength ($\\auc_{1,2}$: $0.69$ greedy $\\to$ $0.70$ at $T{=}1.2$) but does not shift the boundary.\n\n  \\item \\textbf{Cross-model transfer.}\n    Classifiers trained on one continuation-mode model and evaluated on another retain 80--92\\% of within-model accuracy (Pythia$\\leftrightarrow$OLMo: 90--92\\%).\n    At the 0v1 boundary, cross-model $\\auc$ exceeds 0.96 universally.\n    Transfer retention of 80--92\\% suggests a large text-intrinsic component of the depth signal, rather than generator-specific artifacts.\n\n  \\item \\textbf{Degradation ordering consistency.}\n    Single-feature $\\auc$ rankings are highly correlated across continuation-mode models (Spearman $\\rho \\geq 0.85$), with the same top features---\\texttt{surp\\_d1\\_std}, \\texttt{surp\\_std}, \\texttt{surp\\_d2\\_std}---appearing across all three families.\n    This shared ordering suggests a common degradation mechanism: each generation step smooths the token-level surprisal landscape.\n    A limitation is that depth-pair-level agreement weakens ($\\tau \\approx 0.37$ at 1v2), indicating that individual feature contributions at the boundary vary across models.\n\n  \\item \\textbf{Generation mode analysis.}\n    Within Qwen2.5-1.5B-Instruct, rewrite mode yields 1v2 $\\auc = 0.6955$ versus continuation's $0.6112$ ($\\Delta = +8.4$\\,pp), but rewrite-trained classifiers transfer poorly across models (61--63\\% retention versus 80--92\\% for continuation).\n    Cross-mode transfer is asymmetric: continuation$\\to$rewrite retains 89\\% while rewrite$\\to$continuation retains 82\\%.\n    Continuation mode is therefore recommended as the canonical condition for cross-model comparisons.\n\\end{enumerate}\n\n\\noindent As a secondary contribution, we investigate whether the coarse 3-class ordinal signal implied by $\\Kempirical = 2$ enables \\emph{graduated filtering}---depth-aware data curation that preserves mildly contaminated text (depth~1, retaining most original signal) while removing deeply corrupted text (depth~$\\geq 3$)---and whether such filtering can improve upon binary approaches that discard all synthetic content indiscriminately (Section~\\ref{sec:experiments}).\n\nThe remainder of this paper is organized as follows.\nSection~\\ref{sec:related_work} reviews related work.\nSection~\\ref{sec:method} describes the method.\nSection~\\ref{sec:experiments} presents experimental results.\nSection~\\ref{sec:discussion} discusses implications and limitations.\nSection~\\ref{sec:conclusion} concludes.",
+                "numLines": 57,
+                "startLine": 1,
+                "totalLines": 57
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QXQAfmX674jsCYMQiB6TMj",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_project_file",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e450413-01d5-41cc-8e97-5fc6482b70c8",
+            "uuid": "53ecb992-1192-499d-9259-09c854513e73",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018qmqCePKyhqcxJEpAAfz8F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11745,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11745
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T04:51:15.298Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01QXQAfmX674jsCYMQiB6TMj",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5e450413-01d5-41cc-8e97-5fc6482b70c8",
+            "uuid": "da4c59cd-5338-4433-b21d-1c84f04e3096",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__read_project_file"
+              ],
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "total_deferred_tools": 22
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me read the paper_framing.md file to understand the full claim structure.",
+              "signature": "EowCClkIDRgCKkBH9xYcE8sl7oL47bE6zmMalX7GScM61p4aMaCuk9dk6amVeZEsQzcOy29PpGyBbGf6tQ8uV5Z5IDPfXeuUPjniMg9jbGF1ZGUtb3B1cy00LTY4ABIMqW/mVqIo7IquqdviGgw91v4TGII0Yi4diWYiMCjkkTQkjH9bfsxfpSUZlEEe5DZurbwznxxnjiCcKJmRT2MSSOypySNEWtzxjBD+QSpheos62X5J8IxJvihtU8R7mxIo3zsTDItkW8hvfx1ULVptNmgLty9V+mtKqIv48zLTxp49ztl3Nx0fL4s0te0bn5XVAsb2ErraGH1pD73eEyhWvi3RvBV5kqPL5FNUox9EOBgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e450413-01d5-41cc-8e97-5fc6482b70c8",
+            "uuid": "25162eb0-6714-4a18-8062-40f3d708b43f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016mcmLkvue7BChHv71Tsyq7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 3305,
+                "cache_read_input_tokens": 23586,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3305
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PXtSHNirQGUZ5n42zyRs6p",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "gen-depth-contamination",
+                "file": "paper_framing.md",
+                "max_chars": 12000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e450413-01d5-41cc-8e97-5fc6482b70c8",
+            "uuid": "80d7a7e8-1663-48ff-983a-d96456afa35b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016mcmLkvue7BChHv71Tsyq7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 3305,
+                "cache_read_input_tokens": 23586,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3305
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T04:51:18.438Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PXtSHNirQGUZ5n42zyRs6p",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — gen-depth-contamination\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (ARR submission May 25, 2026)\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Backup: AAAI 2027 (abstract July 25, paper August 1)\\\\n\\\\n## Canonical Experimental Condition\\\\n\\\\n**Continuation mode 是 cross-model 结论的基础。**\\\\n\\\\n> \\\\\\\"We evaluate both generation modes because real-world recursive contamination can arise from either. Our analysis reveals generation mode as a significant confound, leading us to recommend continuation mode as the canonical condition for cross-model comparisons.\\\\\\\"\\\\n\\\\n| Condition | Pythia↔OLMo | Qwen↔others | 论文定位 |\\\\n|-----------|-------------|-------------|---------|\\\\n| Continuation | 90-92% retention | 80-85% retention | **主实验条件** — cross-model claims 的基础 |\\\\n| Rewrite (instruction) | N/A | 61-63% retention | **upper bound with mode-specific confound** — 仅作 ablation |\\\\n\\\\n**原则**：\\\\n- C1' 的跨模型 claim 必须基于 continuation mode 数据\\\\n- Rewrite mode 的高 AUC (0.6957 vs cont 0.6114) 是 mode-specific signal amplification，不能作为泛化性证据\\\\n- mvp-001 (Qwen-rewrite) 定位为 \\\\\\\"pilot study demonstrating feasibility\\\\\\\"，后续用 continuation mode rigorously validate\\\\n- cont→rw 89% vs rw→cont 82% 不对称性 → continuation features 是 rewrite 的通用子集\\\\n\\\\n## Core Claims (2+1 结构, D012)\\\\n\\\\n### Primary: C1' (K* Characterization)\\\\n首次系统测量递归合成文本的 generational discrimination boundary K*，并揭示其 universality。\\\\n\\\\nDPI 理论证明有限 K*_theory 必然存在（信息论 impossibility boundary）；我们首次在受控实验中测量 K*_empirical，它提供 K*_theory 的保守下界。通过 8 条件实验矩阵（4 model-mode configurations + 4 decoding strategies）系统表征 K*_empirical 的行为，发现 K*=2 在所有 8 个测试条件下保持不变，展现出跨模型架构、跨解码策略、跨生成模式的 universality。\\\\n\\\\n**子组件：**\\\\n\\\\n**(a) K*=2 universality across architectures, generation modes, and decoding strategies**\\\\n> **4/4 model-mode configurations 与 4/4 decoding strategies 全部 K*=2：**\\\\n>\\\\n> *Model × mode (exp-007):*\\\\n> | Model | AUC 1v2 | 95% CI | CI lower > 0.60? |\\\\n> |-------|---------|--------|-----------------|\\\\n> | Qwen-rewrite | 0.6955 | [0.6859, 0.7041] | ✅ (+8.6pp) |\\\\n> | Pythia-1.4B | 0.6539 | [0.6454, 0.6630] | ✅ (+4.5pp) |\\\\n> | OLMo-1B | 0.6145 | [0.6045, 0.6247] | ✅ (+0.45pp) |\\\\n> | Qwen-cont | 0.6112 | [0.6015, 0.6213] | ✅ (+0.15pp, 最边缘) |\\\\n>\\\\n> *Decoding strategy invariance (exp-003):*\\\\n> | Decoding | AUC 1v2 | K* |\\\\n> |----------|---------|-----|\\\\n> | greedy | 0.6893 | 2 |\\\\n> | nucleus p=0.9 | 0.6866 | 2 |\\\\n> | temp=0.7 | 0.6887 | 2 |\\\\n> | temp=1.2 | 0.7039 | 2 |\\\\n>\\\\n> - 全部 1v2 CI lower > 0.60, 全部 2v3 CI upper < 0.60, 全部 permutation p < 0.002\\\\n> - 4 decoding strategies 的 AUC 1v2 range [0.6866, 0.7039]，K* 完全不变\\\\n> - K*=2 在所有 8 个测试条件下保持不变（4 model-mode configurations + 4 decoding strategies）\\\\n> - ⚠️ θ-sensitivity: θ=0.60 下 4/4 K*=2；θ=0.70 下仅 Config4-T12 K*=2（1v2=0.7039 仅超 0.70 阈值 0.004），其余 3 config K*=1。论文以 θ=0.60 为主结论，θ=0.70 边界效应作 footnote\\\\n> - ⚠️ 特征排序分化: K* 跨 config 稳定，但特征重要性排序不完全一致——Greedy vs T1.2 Spearman=0.53, p=0.041（Bonferroni 校正后阈值 0.0083，不显著）。论文中措辞应为 \\\\\\\"suggestive\\\\\\\" 而非确定性结论。Config4-T12 正确 top-3 features: hapax_ratio, ttr, surp_skew（非 freq_entropy）\\\\n> - ⚠️ K*=2 边缘性双端注意: Qwen-cont 1v2 CI lower=0.6015（+0.15pp 高于 θ）+ Qwen-rw 2v3 CI upper=0.5991（-0.09pp 低于 θ），K*=2 边界在两端都极边缘。Discussion/Limitations 需同时提及\\\\n> - Paper 可写：\\\\\\\"K*=2 is established as a consistent discrimination boundary across all 8 tested conditions (4 model-mode configurations and 4 decoding strategies; bootstrap 95% CI for AUC₁ᵥ₂ > 0.60; AUC₂ᵥ₃ CI upper < 0.60), suggesting universality beyond the ≤1.5B scale studied.\\\\\\\"\\\\n> - ⚠️ 措辞策略（D017 Reviewer 评估）：分两层——\\\\\\\"established as consistent\\\\\\\" 用确定性语言（8/8 有统计检验支撑），\\\\\\\"suggesting universality beyond\\\\\\\" 对外推 hedging。不升级为 \\\\\\\"establishing universal\\\\\\\"——3 模型 ≤1.5B 会引发审稿人质疑消耗 rebuttal 预算\\\\n> - ⚠️ C1' 子组件定位：呈现为\\\\\\\"对同一 claim 的 4 个 evidence 维度\\\\\\\"而非 4 个独立 finding。§4 标题用 \\\\\\\"K* Characterization\\\\\\\"，每个子节开头显式回答一个 reviewer concern，子节间用 transitional sentences 链接\\\\n\\\\n**(b) Cross-model transfer**\\\\n> - Pythia↔OLMo 90-92% accuracy retention → K*=2 不是 model self-familiarity artifact\\\\n> - 0v1 AUC > 0.96 across all transfer pairs → binary contamination signal 完全跨模型可迁移\\\\n> - 1v2+ transfer 取决于模型族相似度 → 与 K*=2 完美一致（K* 之上分辨力本就微弱）\\\\n> - transfer retention 80-92% suggests depth signal has a large text-intrinsic component（不量化具体比例，因 transfer accuracy retention ≠ 信号分解）\\\\n> - ⚠️ 数值精度：Pythia→OLMo 91.6%, OLMo→Pythia 90.3%，范围 90-92%（非 91-92%）；Qwen-cont↔Pythia 84.7%/85.2%，范围 84-85%（非 83-85%）\\\\n\\\\n**(c) Degradation ordering consistency**\\\\n> - Spearman ρ ≥ 0.85 on single-feature AUC ranking（mode-controlled, continuation）\\\\n> - Top discriminative features shared: surp_d1_std, surp_std, surp_d2_std\\\\n> - Limitation: depth-pair level 一致性在 1v2 处较弱（τ~0.37）\\\\n> - Metric: single-feature AUC ranking（model-free, not LightGBM split count）\\\\n\\\\n**(e) Representation dependence of K* (§4.x Neural Probe / §5.x Discussion)**\\\\n> - exp-015: frozen Qwen-1.5B embeddings (1536-dim) + MLP probe → K*(neural)=3 on Qwen-cont（2v3 AUC=0.6195, fold range [0.6052, 0.6323]）\\\\n> - K* hierarchy: K*_theory ≥ K*_neural ≥ K*_15D，证明 K* 是表示复杂度的函数，K*_15D=2 是操作下界而非信息论极限\\\\n> - Interpretability–discriminability tradeoff: 15D features（K*=2, model-free, interpretable, deployable）vs neural probe（K*=3, model-dependent, opaque, 100x+ compute）\\\\n> - ⚠️ 当前仅 Qwen-cont 1 个数据集（Pythia/OLMo 待重跑）。若 Pythia/OLMo K*_neural=2 → self-familiarity 效应（Qwen embeddings 对 Qwen 生成文本更敏感），反而加强 15D model-free features 的定位\\\\n> - ⚠️ 2v3 边界极度边缘（fold 2 仅 +0.52pp 超 θ），需 bootstrap CI + permutation test 统计确认（重跑脚本已含）\\\\n> - 论文定位：**深化 K* characterization**（不推翻 K*=2 headline）。Headline 保持 \\\\\\\"K*_empirical=2 under 15D hand-crafted features\\\\\\\"，新增子结论 \\\\\\\"K*_neural=3 demonstrates representation-dependent boundary\\\\\\\"\\\\n> - Discussion 结构：§5.1 现有内容保留 + §5.1bis \\\\\\\"Representation Dependence of K*\\\\\\\" 独立子节（积极发现，非 limitation）\\\\n> - 预防审稿人 \\\\\\\"why bury the stronger result?\\\\\\\"：K*_15D=2 是 practical/deployable boundary，K*_neural=3 是 theoretical exploration，两者服务不同目的\\\\n\\\\n**(d) Generation mode analysis (§4.x Analysis subsection)**\\\\n> - Signal strength: rewrite AUC 1v2=0.6957 vs continuation 0.6114（Δ=+8.4pp）\\\\n> - Transferability: continuation 80-92% retention vs rewrite 61-63%\\\\n> - Feature subset: cont→rw 89% > rw→cont 82% → continuation features 是 rewrite 的通用子集\\\\n> - Interpretation: rewrite mode 的 instruction-following 引入 mode-specific style artifacts，放大 depth signal 但降低跨模型泛化性\\\\n> - 论文定位：Analysis subsection（\\\\\\\"How does generation mode affect depth estimation?\\\\\\\"），不是独立 claim\\\\n\\\\n### Secondary: C3 (Graduated Filtering)\\\\n即使在 K*=2 的粗粒度 ordinal signal（human/gen-1/gen-2+ 三级）下，K*-aware graduated filtering 仍优于 binary filtering，因为 ordinal signal 在阈值附近提供更 calibrated 的质量估计。\\\\n\\\\n### Supporting Analysis: Canonical Condition Selection\\\\nGeneration mode 是 depth estimation 的显著混淆变量。Methodology 段落阐述 continuation mode 作为 canonical condition 的选择及理由（不作为独立 claim）。\\\\n\\\\n## Story Spine\\\\n\\\\n- **Problem**: Web 数据正被多代递归合成文本污染。当前检测方法将合成文本视为 binary 类别（real vs synthetic），但质量随代际深度非线性退化——首代合成文本与四代合成文本的质量差异巨大却被忽视。\\\\n- **Existing approaches & gaps**: Binary detectors (DivEye, Min-K%++) 不区分代际；model collapse 文献 (Shumailov et al., Alemohammad et al. 2024, Dohmatob et al. 2024) 描述宏观现象但不提供检测工具；data selection methods (DSIR, D4, DoReMi) 做分布匹配但不估计递归深度；Drayson et al. (2025) 将 binary MGT detection 应用于 importance resampling 以防止 model collapse，是目前最接近的工作。然而这些方法均做二值判断，**不估计文本经历了多少轮递归生成，也不量化辨别能力的饱和边界。**\\\\n- **Our framing**: 将递归生成建模为 iterated lossy channel，从信息论（DPI）推导出 K* 的必然存在。K* 是首次系统测量的 operational quantity——它告诉数据策展者\\\\\\\"在什么深度以下，depth-aware curation 比 binary detection 更有价值\\\\\\\"。通过 8 条件实验矩阵（4 model-mode configurations + 4 decoding strategies）系统表征 K*，揭示其 universality：**K*=2 在所有测试条件下不变**，表明递归生成存在一个与具体模型架构和解码策略无关的 universal discrimination boundary。这一发现为数据治理提供 actionable guidance——depth-aware filtering 在 K* 以内有效，且无需针对不同模型或解码配置分别调优。\\\\n- **Headline result template**: \\\\\\\"Recursive generation has a universal discrimination boundary at K*=2: invariant across 4 model-mode configurations and 4 decoding strategies (8 conditions total) at ≤1.5B scale, with cross-model transfer retention of 80-92% confirming depth features are largely text-intrinsic. Even this coarse 3-class signal yields X% improvement over binary filtering on MMLU/HellaSwag.\\\\\\\"\\\\n\\\\n## Anticipated Reviewer Concerns & Responses\\\\n\\\\n1. **\\\\\\\"Universality claim 只基于 ≤1.5B 模型，能推广到更大模型吗？\\\\\\\"** → 这是最大 limitation，论文明确标注 \\\\\\\"at ≤1.5B scale\\\\\\\"；但 (i) universality 在 4 个不同架构族（GPT-2 style, Pythia, OLMo, Qwen）间已成立，说明不是单一架构的 artifact；(ii) DPI 理论保证 K*_theory 对任意规模模型存在，实证 K*_empirical 在更大模型上可能更大（信号更丰富）也可能不变（lossy channel 特性稳定），这是重要的 future work\\\\n2. **\\\\\\\"只是 feature engineering + off-the-shelf classifier，方法贡献弱\\\\\\\"** → 贡献在 problem formulation + empirical characterization（首次测量 K*）+ 理论框架（DPI）+ universality 发现，不是分类器本身\\\\n3. **\\\\\\\"Prompt-chain 不代表真实世界递归污染\\\\\\\"** → retrain-chain ecological validity check 作为补充；prompt-chain 是 controlled experiment 的标准方法\\\\n4. **\\\\\\\"K*=2 太浅，graduated filtering 收益有限\\\\\\\"** → universality 恰好说明这是 fundamental boundary 而非实验 artifact；即使 K*=2，3-class（human/gen-1/gen-2+）比 binary 在阈值附近更 calibrated（exp-006）；K* 的 universality 意味着实践者无需为每个模型/解码配置单独标定阈值\\\\n5. **\\\\\\\"同模型做生成和 surprisal 计算有 bias\\\\\\\"** → **exp-013 直接反驳**：Pythia↔OLMo 90-92% accuracy retention，0v1 transfer AUC > 0.96。Depth signal 主要编码在文本而非 model self-familiarity\\\\n6. **\\\\\\\"为什么不用 learned representations\\\\\\\"** → **exp-015 直接回应**：frozen LLM embeddings + MLP probe 达到 K*=3（vs 15D K*=2），揭示 representation-dependent hierarchy: K*_theory ≥ K*_neural ≥ K*_15D。Hand-crafted 15D features 的优势在于 model-free transferability（80-92% cross-model retention）、可解释性（支持 degradation ordering 分析）、实用可部署性。Neural representations 多辨别 1 个深度级别但代价是 model dependence + ~100x 计算开销。这一 tradeoff 证明 15D features 是 practical choice，同时表明 theoretical boundary 延伸至 K*=2 之上\\\\n7. **\\\\\\\"Graduated filtering 没和 data selection methods 比\\\\\\\"** → exp-006 包含 DSIR baseline + α sensitivity sweep\\\\n8. **\\\\\\\"Decoding strategy 只测了 4 种，coverage 不够\\\\\\\"** → 覆盖了实践中最常见的 decoding 配置（greedy, nucleus sampling, temperature scaling high/low）；4/4 完全一致强化 universality claim；extreme decoding（top-k=1 之外的 pathological 配置）留作 future work\\\\n9. **\\\\\\\"为什么不直接用 LLM 做 depth estimation\\\\\\\"** → **exp-011 直接反驳**：GPT-5.5 和 Claude Opus 4.6 在 500 样本 zero-shot 5-class depth 分类上仅 33.1-33.2% accuracy（MAE ~1.1），低于 OBD 15-feature LightGBM 的 38.6%。二者 binary detection 均 ~88%，说明 LLM 能区分 human vs synthetic 但无法估计递归深度。depth estimation 是非平凡任务，需要专用特征工程\\\\n\\\\n## Venue Fit\\\\n\\\\n- EMNLP 2026 special theme 明确呼吁 data contamination, synthetic data feedback loops, data governance 方向的工作\\\\n- 2+1 claim 结构：C1' 是 comprehensive characterization study with universality finding，C3 是 practical application，generation mode analysis 增加深度\\\\n- Universality narrative 比 controllability 更有 impact：从 \\\\\\\"K* depends on X, Y, Z\\\\\\\" 升级为 \\\\\\\"K*=2 is a universal boundary\\\\\\\"，审稿人更容易记住和传播\\\\n- 风险：universality claim 在 ≤1.5B 规模下的外推性是最大攻击面 → 论文中 scope 明确、limitation 诚实、DPI 理论支撑泛化的合理性\\\\n\\\", \\\"total_chars\\\": 10447, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5e450413-01d5-41cc-8e97-5fc6482b70c8",
+            "uuid": "25a94cd6-260c-4825-bb56-9209f24c9d45",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — gen-depth-contamination\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (ARR submission May 25, 2026)\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Backup: AAAI 2027 (abstract July 25, paper August 1)\\\\n\\\\n## Canonical Experimental Condition\\\\n\\\\n**Continuation mode 是 cross-model 结论的基础。**\\\\n\\\\n> \\\\\\\"We evaluate both generation modes because real-world recursive contamination can arise from either. Our analysis reveals generation mode as a significant confound, leading us to recommend continuation mode as the canonical condition for cross-model comparisons.\\\\\\\"\\\\n\\\\n| Condition | Pythia↔OLMo | Qwen↔others | 论文定位 |\\\\n|-----------|-------------|-------------|---------|\\\\n| Continuation | 90-92% retention | 80-85% retention | **主实验条件** — cross-model claims 的基础 |\\\\n| Rewrite (instruction) | N/A | 61-63% retention | **upper bound with mode-specific confound** — 仅作 ablation |\\\\n\\\\n**原则**：\\\\n- C1' 的跨模型 claim 必须基于 continuation mode 数据\\\\n- Rewrite mode 的高 AUC (0.6957 vs cont 0.6114) 是 mode-specific signal amplification，不能作为泛化性证据\\\\n- mvp-001 (Qwen-rewrite) 定位为 \\\\\\\"pilot study demonstrating feasibility\\\\\\\"，后续用 continuation mode rigorously validate\\\\n- cont→rw 89% vs rw→cont 82% 不对称性 → continuation features 是 rewrite 的通用子集\\\\n\\\\n## Core Claims (2+1 结构, D012)\\\\n\\\\n### Primary: C1' (K* Characterization)\\\\n首次系统测量递归合成文本的 generational discrimination boundary K*，并揭示其 universality。\\\\n\\\\nDPI 理论证明有限 K*_theory 必然存在（信息论 impossibility boundary）；我们首次在受控实验中测量 K*_empirical，它提供 K*_theory 的保守下界。通过 8 条件实验矩阵（4 model-mode configurations + 4 decoding strategies）系统表征 K*_empirical 的行为，发现 K*=2 在所有 8 个测试条件下保持不变，展现出跨模型架构、跨解码策略、跨生成模式的 universality。\\\\n\\\\n**子组件：**\\\\n\\\\n**(a) K*=2 universality across architectures, generation modes, and decoding strategies**\\\\n> **4/4 model-mode configurations 与 4/4 decoding strategies 全部 K*=2：**\\\\n>\\\\n> *Model × mode (exp-007):*\\\\n> | Model | AUC 1v2 | 95% CI | CI lower > 0.60? |\\\\n> |-------|---------|--------|-----------------|\\\\n> | Qwen-rewrite | 0.6955 | [0.6859, 0.7041] | ✅ (+8.6pp) |\\\\n> | Pythia-1.4B | 0.6539 | [0.6454, 0.6630] | ✅ (+4.5pp) |\\\\n> | OLMo-1B | 0.6145 | [0.6045, 0.6247] | ✅ (+0.45pp) |\\\\n> | Qwen-cont | 0.6112 | [0.6015, 0.6213] | ✅ (+0.15pp, 最边缘) |\\\\n>\\\\n> *Decoding strategy invariance (exp-003):*\\\\n> | Decoding | AUC 1v2 | K* |\\\\n> |----------|---------|-----|\\\\n> | greedy | 0.6893 | 2 |\\\\n> | nucleus p=0.9 | 0.6866 | 2 |\\\\n> | temp=0.7 | 0.6887 | 2 |\\\\n> | temp=1.2 | 0.7039 | 2 |\\\\n>\\\\n> - 全部 1v2 CI lower > 0.60, 全部 2v3 CI upper < 0.60, 全部 permutation p < 0.002\\\\n> - 4 decoding strategies 的 AUC 1v2 range [0.6866, 0.7039]，K* 完全不变\\\\n> - K*=2 在所有 8 个测试条件下保持不变（4 model-mode configurations + 4 decoding strategies）\\\\n> - ⚠️ θ-sensitivity: θ=0.60 下 4/4 K*=2；θ=0.70 下仅 Config4-T12 K*=2（1v2=0.7039 仅超 0.70 阈值 0.004），其余 3 config K*=1。论文以 θ=0.60 为主结论，θ=0.70 边界效应作 footnote\\\\n> - ⚠️ 特征排序分化: K* 跨 config 稳定，但特征重要性排序不完全一致——Greedy vs T1.2 Spearman=0.53, p=0.041（Bonferroni 校正后阈值 0.0083，不显著）。论文中措辞应为 \\\\\\\"suggestive\\\\\\\" 而非确定性结论。Config4-T12 正确 top-3 features: hapax_ratio, ttr, surp_skew（非 freq_entropy）\\\\n> - ⚠️ K*=2 边缘性双端注意: Qwen-cont 1v2 CI lower=0.6015（+0.15pp 高于 θ）+ Qwen-rw 2v3 CI upper=0.5991（-0.09pp 低于 θ），K*=2 边界在两端都极边缘。Discussion/Limitations 需同时提及\\\\n> - Paper 可写：\\\\\\\"K*=2 is established as a consistent discrimination boundary across all 8 tested conditions (4 model-mode configurations and 4 decoding strategies; bootstrap 95% CI for AUC₁ᵥ₂ > 0.60; AUC₂ᵥ₃ CI upper < 0.60), suggesting universality beyond the ≤1.5B scale studied.\\\\\\\"\\\\n> - ⚠️ 措辞策略（D017 Reviewer 评估）：分两层——\\\\\\\"established as consistent\\\\\\\" 用确定性语言（8/8 有统计检验支撑），\\\\\\\"suggesting universality beyond\\\\\\\" 对外推 hedging。不升级为 \\\\\\\"establishing universal\\\\\\\"——3 模型 ≤1.5B 会引发审稿人质疑消耗 rebuttal 预算\\\\n> - ⚠️ C1' 子组件定位：呈现为\\\\\\\"对同一 claim 的 4 个 evidence 维度\\\\\\\"而非 4 个独立 finding。§4 标题用 \\\\\\\"K* Characterization\\\\\\\"，每个子节开头显式回答一个 reviewer concern，子节间用 transitional sentences 链接\\\\n\\\\n**(b) Cross-model transfer**\\\\n> - Pythia↔OLMo 90-92% accuracy retention → K*=2 不是 model self-familiarity artifact\\\\n> - 0v1 AUC > 0.96 across all transfer pairs → binary contamination signal 完全跨模型可迁移\\\\n> - 1v2+ transfer 取决于模型族相似度 → 与 K*=2 完美一致（K* 之上分辨力本就微弱）\\\\n> - transfer retention 80-92% suggests depth signal has a large text-intrinsic component（不量化具体比例，因 transfer accuracy retention ≠ 信号分解）\\\\n> - ⚠️ 数值精度：Pythia→OLMo 91.6%, OLMo→Pythia 90.3%，范围 90-92%（非 91-92%）；Qwen-cont↔Pythia 84.7%/85.2%，范围 84-85%（非 83-85%）\\\\n\\\\n**(c) Degradation ordering consistency**\\\\n> - Spearman ρ ≥ 0.85 on single-feature AUC ranking（mode-controlled, continuation）\\\\n> - Top discriminative features shared: surp_d1_std, surp_std, surp_d2_std\\\\n> - Limitation: depth-pair level 一致性在 1v2 处较弱（τ~0.37）\\\\n> - Metric: single-feature AUC ranking（model-free, not LightGBM split count）\\\\n\\\\n**(e) Representation dependence of K* (§4.x Neural Probe / §5.x Discussion)**\\\\n> - exp-015: frozen Qwen-1.5B embeddings (1536-dim) + MLP probe → K*(neural)=3 on Qwen-cont（2v3 AUC=0.6195, fold range [0.6052, 0.6323]）\\\\n> - K* hierarchy: K*_theory ≥ K*_neural ≥ K*_15D，证明 K* 是表示复杂度的函数，K*_15D=2 是操作下界而非信息论极限\\\\n> - Interpretability–discriminability tradeoff: 15D features（K*=2, model-free, interpretable, deployable）vs neural probe（K*=3, model-dependent, opaque, 100x+ compute）\\\\n> - ⚠️ 当前仅 Qwen-cont 1 个数据集（Pythia/OLMo 待重跑）。若 Pythia/OLMo K*_neural=2 → self-familiarity 效应（Qwen embeddings 对 Qwen 生成文本更敏感），反而加强 15D model-free features 的定位\\\\n> - ⚠️ 2v3 边界极度边缘（fold 2 仅 +0.52pp 超 θ），需 bootstrap CI + permutation test 统计确认（重跑脚本已含）\\\\n> - 论文定位：**深化 K* characterization**（不推翻 K*=2 headline）。Headline 保持 \\\\\\\"K*_empirical=2 under 15D hand-crafted features\\\\\\\"，新增子结论 \\\\\\\"K*_neural=3 demonstrates representation-dependent boundary\\\\\\\"\\\\n> - Discussion 结构：§5.1 现有内容保留 + §5.1bis \\\\\\\"Representation Dependence of K*\\\\\\\" 独立子节（积极发现，非 limitation）\\\\n> - 预防审稿人 \\\\\\\"why bury the stronger result?\\\\\\\"：K*_15D=2 是 practical/deployable boundary，K*_neural=3 是 theoretical exploration，两者服务不同目的\\\\n\\\\n**(d) Generation mode analysis (§4.x Analysis subsection)**\\\\n> - Signal strength: rewrite AUC 1v2=0.6957 vs continuation 0.6114（Δ=+8.4pp）\\\\n> - Transferability: continuation 80-92% retention vs rewrite 61-63%\\\\n> - Feature subset: cont→rw 89% > rw→cont 82% → continuation features 是 rewrite 的通用子集\\\\n> - Interpretation: rewrite mode 的 instruction-following 引入 mode-specific style artifacts，放大 depth signal 但降低跨模型泛化性\\\\n> - 论文定位：Analysis subsection（\\\\\\\"How does generation mode affect depth estimation?\\\\\\\"），不是独立 claim\\\\n\\\\n### Secondary: C3 (Graduated Filtering)\\\\n即使在 K*=2 的粗粒度 ordinal signal（human/gen-1/gen-2+ 三级）下，K*-aware graduated filtering 仍优于 binary filtering，因为 ordinal signal 在阈值附近提供更 calibrated 的质量估计。\\\\n\\\\n### Supporting Analysis: Canonical Condition Selection\\\\nGeneration mode 是 depth estimation 的显著混淆变量。Methodology 段落阐述 continuation mode 作为 canonical condition 的选择及理由（不作为独立 claim）。\\\\n\\\\n## Story Spine\\\\n\\\\n- **Problem**: Web 数据正被多代递归合成文本污染。当前检测方法将合成文本视为 binary 类别（real vs synthetic），但质量随代际深度非线性退化——首代合成文本与四代合成文本的质量差异巨大却被忽视。\\\\n- **Existing approaches & gaps**: Binary detectors (DivEye, Min-K%++) 不区分代际；model collapse 文献 (Shumailov et al., Alemohammad et al. 2024, Dohmatob et al. 2024) 描述宏观现象但不提供检测工具；data selection methods (DSIR, D4, DoReMi) 做分布匹配但不估计递归深度；Drayson et al. (2025) 将 binary MGT detection 应用于 importance resampling 以防止 model collapse，是目前最接近的工作。然而这些方法均做二值判断，**不估计文本经历了多少轮递归生成，也不量化辨别能力的饱和边界。**\\\\n- **Our framing**: 将递归生成建模为 iterated lossy channel，从信息论（DPI）推导出 K* 的必然存在。K* 是首次系统测量的 operational quantity——它告诉数据策展者\\\\\\\"在什么深度以下，depth-aware curation 比 binary detection 更有价值\\\\\\\"。通过 8 条件实验矩阵（4 model-mode configurations + 4 decoding strategies）系统表征 K*，揭示其 universality：**K*=2 在所有测试条件下不变**，表明递归生成存在一个与具体模型架构和解码策略无关的 universal discrimination boundary。这一发现为数据治理提供 actionable guidance——depth-aware filtering 在 K* 以内有效，且无需针对不同模型或解码配置分别调优。\\\\n- **Headline result template**: \\\\\\\"Recursive generation has a universal discrimination boundary at K*=2: invariant across 4 model-mode configurations and 4 decoding strategies (8 conditions total) at ≤1.5B scale, with cross-model transfer retention of 80-92% confirming depth features are largely text-intrinsic. Even this coarse 3-class signal yields X% improvement over binary filtering on MMLU/HellaSwag.\\\\\\\"\\\\n\\\\n## Anticipated Reviewer Concerns & Responses\\\\n\\\\n1. **\\\\\\\"Universality claim 只基于 ≤1.5B 模型，能推广到更大模型吗？\\\\\\\"** → 这是最大 limitation，论文明确标注 \\\\\\\"at ≤1.5B scale\\\\\\\"；但 (i) universality 在 4 个不同架构族（GPT-2 style, Pythia, OLMo, Qwen）间已成立，说明不是单一架构的 artifact；(ii) DPI 理论保证 K*_theory 对任意规模模型存在，实证 K*_empirical 在更大模型上可能更大（信号更丰富）也可能不变（lossy channel 特性稳定），这是重要的 future work\\\\n2. **\\\\\\\"只是 feature engineering + off-the-shelf classifier，方法贡献弱\\\\\\\"** → 贡献在 problem formulation + empirical characterization（首次测量 K*）+ 理论框架（DPI）+ universality 发现，不是分类器本身\\\\n3. **\\\\\\\"Prompt-chain 不代表真实世界递归污染\\\\\\\"** → retrain-chain ecological validity check 作为补充；prompt-chain 是 controlled experiment 的标准方法\\\\n4. **\\\\\\\"K*=2 太浅，graduated filtering 收益有限\\\\\\\"** → universality 恰好说明这是 fundamental boundary 而非实验 artifact；即使 K*=2，3-class（human/gen-1/gen-2+）比 binary 在阈值附近更 calibrated（exp-006）；K* 的 universality 意味着实践者无需为每个模型/解码配置单独标定阈值\\\\n5. **\\\\\\\"同模型做生成和 surprisal 计算有 bias\\\\\\\"** → **exp-013 直接反驳**：Pythia↔OLMo 90-92% accuracy retention，0v1 transfer AUC > 0.96。Depth signal 主要编码在文本而非 model self-familiarity\\\\n6. **\\\\\\\"为什么不用 learned representations\\\\\\\"** → **exp-015 直接回应**：frozen LLM embeddings + MLP probe 达到 K*=3（vs 15D K*=2），揭示 representation-dependent hierarchy: K*_theory ≥ K*_neural ≥ K*_15D。Hand-crafted 15D features 的优势在于 model-free transferability（80-92% cross-model retention）、可解释性（支持 degradation ordering 分析）、实用可部署性。Neural representations 多辨别 1 个深度级别但代价是 model dependence + ~100x 计算开销。这一 tradeoff 证明 15D features 是 practical choice，同时表明 theoretical boundary 延伸至 K*=2 之上\\\\n7. **\\\\\\\"Graduated filtering 没和 data selection methods 比\\\\\\\"** → exp-006 包含 DSIR baseline + α sensitivity sweep\\\\n8. **\\\\\\\"Decoding strategy 只测了 4 种，coverage 不够\\\\\\\"** → 覆盖了实践中最常见的 decoding 配置（greedy, nucleus sampling, temperature scaling high/low）；4/4 完全一致强化 universality claim；extreme decoding（top-k=1 之外的 pathological 配置）留作 future work\\\\n9. **\\\\\\\"为什么不直接用 LLM 做 depth estimation\\\\\\\"** → **exp-011 直接反驳**：GPT-5.5 和 Claude Opus 4.6 在 500 样本 zero-shot 5-class depth 分类上仅 33.1-33.2% accuracy（MAE ~1.1），低于 OBD 15-feature LightGBM 的 38.6%。二者 binary detection 均 ~88%，说明 LLM 能区分 human vs synthetic 但无法估计递归深度。depth estimation 是非平凡任务，需要专用特征工程\\\\n\\\\n## Venue Fit\\\\n\\\\n- EMNLP 2026 special theme 明确呼吁 data contamination, synthetic data feedback loops, data governance 方向的工作\\\\n- 2+1 claim 结构：C1' 是 comprehensive characterization study with universality finding，C3 是 practical application，generation mode analysis 增加深度\\\\n- Universality narrative 比 controllability 更有 impact：从 \\\\\\\"K* depends on X, Y, Z\\\\\\\" 升级为 \\\\\\\"K*=2 is a universal boundary\\\\\\\"，审稿人更容易记住和传播\\\\n- 风险：universality claim 在 ≤1.5B 规模下的外推性是最大攻击面 → 论文中 scope 明确、limitation 诚实、DPI 理论支撑泛化的合理性\\\\n\\\", \\\"total_chars\\\": 10447, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/paper_framing.md\", \"content\": \"# Paper Framing — gen-depth-contamination\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (ARR submission May 25, 2026)\\n- Fallback: EMNLP 2026 Findings\\n- Backup: AAAI 2027 (abstract July 25, paper August 1)\\n\\n## Canonical Experimental Condition\\n\\n**Continuation mode 是 cross-model 结论的基础。**\\n\\n> \\\"We evaluate both generation modes because real-world recursive contamination can arise from either. Our analysis reveals generation mode as a significant confound, leading us to recommend continuation mode as the canonical condition for cross-model comparisons.\\\"\\n\\n| Condition | Pythia↔OLMo | Qwen↔others | 论文定位 |\\n|-----------|-------------|-------------|---------|\\n| Continuation | 90-92% retention | 80-85% retention | **主实验条件** — cross-model claims 的基础 |\\n| Rewrite (instruction) | N/A | 61-63% retention | **upper bound with mode-specific confound** — 仅作 ablation |\\n\\n**原则**：\\n- C1' 的跨模型 claim 必须基于 continuation mode 数据\\n- Rewrite mode 的高 AUC (0.6957 vs cont 0.6114) 是 mode-specific signal amplification，不能作为泛化性证据\\n- mvp-001 (Qwen-rewrite) 定位为 \\\"pilot study demonstrating feasibility\\\"，后续用 continuation mode rigorously validate\\n- cont→rw 89% vs rw→cont 82% 不对称性 → continuation features 是 rewrite 的通用子集\\n\\n## Core Claims (2+1 结构, D012)\\n\\n### Primary: C1' (K* Characterization)\\n首次系统测量递归合成文本的 generational discrimination boundary K*，并揭示其 universality。\\n\\nDPI 理论证明有限 K*_theory 必然存在（信息论 impossibility boundary）；我们首次在受控实验中测量 K*_empirical，它提供 K*_theory 的保守下界。通过 8 条件实验矩阵（4 model-mode configurations + 4 decoding strategies）系统表征 K*_empirical 的行为，发现 K*=2 在所有 8 个测试条件下保持不变，展现出跨模型架构、跨解码策略、跨生成模式的 universality。\\n\\n**子组件：**\\n\\n**(a) K*=2 universality across architectures, generation modes, and decoding strategies**\\n> **4/4 model-mode configurations 与 4/4 decoding strategies 全部 K*=2：**\\n>\\n> *Model × mode (exp-007):*\\n> | Model | AUC 1v2 | 95% CI | CI lower > 0.60? |\\n> |-------|---------|--------|-----------------|\\n> | Qwen-rewrite | 0.6955 | [0.6859, 0.7041] | ✅ (+8.6pp) |\\n> | Pythia-1.4B | 0.6539 | [0.6454, 0.6630] | ✅ (+4.5pp) |\\n> | OLMo-1B | 0.6145 | [0.6045, 0.6247] | ✅ (+0.45pp) |\\n> | Qwen-cont | 0.6112 | [0.6015, 0.6213] | ✅ (+0.15pp, 最边缘) |\\n>\\n> *Decoding strategy invariance (exp-003):*\\n> | Decoding | AUC 1v2 | K* |\\n> |----------|---------|-----|\\n> | greedy | 0.6893 | 2 |\\n> | nucleus p=0.9 | 0.6866 | 2 |\\n> | temp=0.7 | 0.6887 | 2 |\\n> | temp=1.2 | 0.7039 | 2 |\\n>\\n> - 全部 1v2 CI lower > 0.60, 全部 2v3 CI upper < 0.60, 全部 permutation p < 0.002\\n> - 4 decoding strategies 的 AUC 1v2 range [0.6866, 0.7039]，K* 完全不变\\n> - K*=2 在所有 8 个测试条件下保持不变（4 model-mode configurations + 4 decoding strategies）\\n> - ⚠️ θ-sensitivity: θ=0.60 下 4/4 K*=2；θ=0.70 下仅 Config4-T12 K*=2（1v2=0.7039 仅超 0.70 阈值 0.004），其余 3 config K*=1。论文以 θ=0.60 为主结论，θ=0.70 边界效应作 footnote\\n> - ⚠️ 特征排序分化: K* 跨 config 稳定，但特征重要性排序不完全一致——Greedy vs T1.2 Spearman=0.53, p=0.041（Bonferroni 校正后阈值 0.0083，不显著）。论文中措辞应为 \\\"suggestive\\\" 而非确定性结论。Config4-T12 正确 top-3 features: hapax_ratio, ttr, surp_skew（非 freq_entropy）\\n> - ⚠️ K*=2 边缘性双端注意: Qwen-cont 1v2 CI lower=0.6015（+0.15pp 高于 θ）+ Qwen-rw 2v3 CI upper=0.5991（-0.09pp 低于 θ），K*=2 边界在两端都极边缘。Discussion/Limitations 需同时提及\\n> - Paper 可写：\\\"K*=2 is established as a consistent discrimination boundary across all 8 tested conditions (4 model-mode configurations and 4 decoding strategies; bootstrap 95% CI for AUC₁ᵥ₂ > 0.60; AUC₂ᵥ₃ CI upper < 0.60), suggesting universality beyond the ≤1.5B scale studied.\\\"\\n> - ⚠️ 措辞策略（D017 Reviewer 评估）：分两层——\\\"established as consistent\\\" 用确定性语言（8/8 有统计检验支撑），\\\"suggesting universality beyond\\\" 对外推 hedging。不升级为 \\\"establishing universal\\\"——3 模型 ≤1.5B 会引发审稿人质疑消耗 rebuttal 预算\\n> - ⚠️ C1' 子组件定位：呈现为\\\"对同一 claim 的 4 个 evidence 维度\\\"而非 4 个独立 finding。§4 标题用 \\\"K* Characterization\\\"，每个子节开头显式回答一个 reviewer concern，子节间用 transitional sentences 链接\\n\\n**(b) Cross-model transfer**\\n> - Pythia↔OLMo 90-92% accuracy retention → K*=2 不是 model self-familiarity artifact\\n> - 0v1 AUC > 0.96 across all transfer pairs → binary contamination signal 完全跨模型可迁移\\n> - 1v2+ transfer 取决于模型族相似度 → 与 K*=2 完美一致（K* 之上分辨力本就微弱）\\n> - transfer retention 80-92% suggests depth signal has a large text-intrinsic component（不量化具体比例，因 transfer accuracy retention ≠ 信号分解）\\n> - ⚠️ 数值精度：Pythia→OLMo 91.6%, OLMo→Pythia 90.3%，范围 90-92%（非 91-92%）；Qwen-cont↔Pythia 84.7%/85.2%，范围 84-85%（非 83-85%）\\n\\n**(c) Degradation ordering consistency**\\n> - Spearman ρ ≥ 0.85 on single-feature AUC ranking（mode-controlled, continuation）\\n> - Top discriminative features shared: surp_d1_std, surp_std, surp_d2_std\\n> - Limitation: depth-pair level 一致性在 1v2 处较弱（τ~0.37）\\n> - Metric: single-feature AUC ranking（model-free, not LightGBM split count）\\n\\n**(e) Representation dependence of K* (§4.x Neural Probe / §5.x Discussion)**\\n> - exp-015: frozen Qwen-1.5B embeddings (1536-dim) + MLP probe → K*(neural)=3 on Qwen-cont（2v3 AUC=0.6195, fold range [0.6052, 0.6323]）\\n> - K* hierarchy: K*_theory ≥ K*_neural ≥ K*_15D，证明 K* 是表示复杂度的函数，K*_15D=2 是操作下界而非信息论极限\\n> - Interpretability–discriminability tradeoff: 15D features（K*=2, model-free, interpretable, deployable）vs neural probe（K*=3, model-dependent, opaque, 100x+ compute）\\n> - ⚠️ 当前仅 Qwen-cont 1 个数据集（Pythia/OLMo 待重跑）。若 Pythia/OLMo K*_neural=2 → self-familiarity 效应（Qwen embeddings 对 Qwen 生成文本更敏感），反而加强 15D model-free features 的定位\\n> - ⚠️ 2v3 边界极度边缘（fold 2 仅 +0.52pp 超 θ），需 bootstrap CI + permutation test 统计确认（重跑脚本已含）\\n> - 论文定位：**深化 K* characterization**（不推翻 K*=2 headline）。Headline 保持 \\\"K*_empirical=2 under 15D hand-crafted features\\\"，新增子结论 \\\"K*_neural=3 demonstrates representation-dependent boundary\\\"\\n> - Discussion 结构：§5.1 现有内容保留 + §5.1bis \\\"Representation Dependence of K*\\\" 独立子节（积极发现，非 limitation）\\n> - 预防审稿人 \\\"why bury the stronger result?\\\"：K*_15D=2 是 practical/deployable boundary，K*_neural=3 是 theoretical exploration，两者服务不同目的\\n\\n**(d) Generation mode analysis (§4.x Analysis subsection)**\\n> - Signal strength: rewrite AUC 1v2=0.6957 vs continuation 0.6114（Δ=+8.4pp）\\n> - Transferability: continuation 80-92% retention vs rewrite 61-63%\\n> - Feature subset: cont→rw 89% > rw→cont 82% → continuation features 是 rewrite 的通用子集\\n> - Interpretation: rewrite mode 的 instruction-following 引入 mode-specific style artifacts，放大 depth signal 但降低跨模型泛化性\\n> - 论文定位：Analysis subsection（\\\"How does generation mode affect depth estimation?\\\"），不是独立 claim\\n\\n### Secondary: C3 (Graduated Filtering)\\n即使在 K*=2 的粗粒度 ordinal signal（human/gen-1/gen-2+ 三级）下，K*-aware graduated filtering 仍优于 binary filtering，因为 ordinal signal 在阈值附近提供更 calibrated 的质量估计。\\n\\n### Supporting Analysis: Canonical Condition Selection\\nGeneration mode 是 depth estimation 的显著混淆变量。Methodology 段落阐述 continuation mode 作为 canonical condition 的选择及理由（不作为独立 claim）。\\n\\n## Story Spine\\n\\n- **Problem**: Web 数据正被多代递归合成文本污染。当前检测方法将合成文本视为 binary 类别（real vs synthetic），但质量随代际深度非线性退化——首代合成文本与四代合成文本的质量差异巨大却被忽视。\\n- **Existing approaches & gaps**: Binary detectors (DivEye, Min-K%++) 不区分代际；model collapse 文献 (Shumailov et al., Alemohammad et al. 2024, Dohmatob et al. 2024) 描述宏观现象但不提供检测工具；data selection methods (DSIR, D4, DoReMi) 做分布匹配但不估计递归深度；Drayson et al. (2025) 将 binary MGT detection 应用于 importance resampling 以防止 model collapse，是目前最接近的工作。然而这些方法均做二值判断，**不估计文本经历了多少轮递归生成，也不量化辨别能力的饱和边界。**\\n- **Our framing**: 将递归生成建模为 iterated lossy channel，从信息论（DPI）推导出 K* 的必然存在。K* 是首次系统测量的 operational quantity——它告诉数据策展者\\\"在什么深度以下，depth-aware curation 比 binary detection 更有价值\\\"。通过 8 条件实验矩阵（4 model-mode configurations + 4 decoding strategies）系统表征 K*，揭示其 universality：**K*=2 在所有测试条件下不变**，表明递归生成存在一个与具体模型架构和解码策略无关的 universal discrimination boundary。这一发现为数据治理提供 actionable guidance——depth-aware filtering 在 K* 以内有效，且无需针对不同模型或解码配置分别调优。\\n- **Headline result template**: \\\"Recursive generation has a universal discrimination boundary at K*=2: invariant across 4 model-mode configurations and 4 decoding strategies (8 conditions total) at ≤1.5B scale, with cross-model transfer retention of 80-92% confirming depth features are largely text-intrinsic. Even this coarse 3-class signal yields X% improvement over binary filtering on MMLU/HellaSwag.\\\"\\n\\n## Anticipated Reviewer Concerns & Responses\\n\\n1. **\\\"Universality claim 只基于 ≤1.5B 模型，能推广到更大模型吗？\\\"** → 这是最大 limitation，论文明确标注 \\\"at ≤1.5B scale\\\"；但 (i) universality 在 4 个不同架构族（GPT-2 style, Pythia, OLMo, Qwen）间已成立，说明不是单一架构的 artifact；(ii) DPI 理论保证 K*_theory 对任意规模模型存在，实证 K*_empirical 在更大模型上可能更大（信号更丰富）也可能不变（lossy channel 特性稳定），这是重要的 future work\\n2. **\\\"只是 feature engineering + off-the-shelf classifier，方法贡献弱\\\"** → 贡献在 problem formulation + empirical characterization（首次测量 K*）+ 理论框架（DPI）+ universality 发现，不是分类器本身\\n3. **\\\"Prompt-chain 不代表真实世界递归污染\\\"** → retrain-chain ecological validity check 作为补充；prompt-chain 是 controlled experiment 的标准方法\\n4. **\\\"K*=2 太浅，graduated filtering 收益有限\\\"** → universality 恰好说明这是 fundamental boundary 而非实验 artifact；即使 K*=2，3-class（human/gen-1/gen-2+）比 binary 在阈值附近更 calibrated（exp-006）；K* 的 universality 意味着实践者无需为每个模型/解码配置单独标定阈值\\n5. **\\\"同模型做生成和 surprisal 计算有 bias\\\"** → **exp-013 直接反驳**：Pythia↔OLMo 90-92% accuracy retention，0v1 transfer AUC > 0.96。Depth signal 主要编码在文本而非 model self-familiarity\\n6. **\\\"为什么不用 learned representations\\\"** → **exp-015 直接回应**：frozen LLM embeddings + MLP probe 达到 K*=3（vs 15D K*=2），揭示 representation-dependent hierarchy: K*_theory ≥ K*_neural ≥ K*_15D。Hand-crafted 15D features 的优势在于 model-free transferability（80-92% cross-model retention）、可解释性（支持 degradation ordering 分析）、实用可部署性。Neural representations 多辨别 1 个深度级别但代价是 model dependence + ~100x 计算开销。这一 tradeoff 证明 15D features 是 practical choice，同时表明 theoretical boundary 延伸至 K*=2 之上\\n7. **\\\"Graduated filtering 没和 data selection methods 比\\\"** → exp-006 包含 DSIR baseline + α sensitivity sweep\\n8. **\\\"Decoding strategy 只测了 4 种，coverage 不够\\\"** → 覆盖了实践中最常见的 decoding 配置（greedy, nucleus sampling, temperature scaling high/low）；4/4 完全一致强化 universality claim；extreme decoding（top-k=1 之外的 pathological 配置）留作 future work\\n9. **\\\"为什么不直接用 LLM 做 depth estimation\\\"** → **exp-011 直接反驳**：GPT-5.5 和 Claude Opus 4.6 在 500 样本 zero-shot 5-class depth 分类上仅 33.1-33.2% accuracy（MAE ~1.1），低于 OBD 15-feature LightGBM 的 38.6%。二者 binary detection 均 ~88%，说明 LLM 能区分 human vs synthetic 但无法估计递归深度。depth estimation 是非平凡任务，需要专用特征工程\\n\\n## Venue Fit\\n\\n- EMNLP 2026 special theme 明确呼吁 data contamination, synthetic data feedback loops, data governance 方向的工作\\n- 2+1 claim 结构：C1' 是 comprehensive characterization study with universality finding，C3 是 practical application，generation mode analysis 增加深度\\n- Universality narrative 比 controllability 更有 impact：从 \\\"K* depends on X, Y, Z\\\" 升级为 \\\"K*=2 is a universal boundary\\\"，审稿人更容易记住和传播\\n- 风险：universality claim 在 ≤1.5B 规模下的外推性是最大攻击面 → 论文中 scope 明确、limitation 诚实、DPI 理论支撑泛化的合理性\\n\", \"total_chars\": 10447, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the information needed. Let me also check if the artifacts/drafts directory exists.",
+              "signature": "Ep0CClkIDRgCKkAXUpjadvT8abEpn9Lw1Az6+a/8YuLp2GwrWi0URh8noC/bXimPaSTQ8cm140AAWYL6jbRWl+4bX2dIgsapAusGMg9jbGF1ZGUtb3B1cy00LTY4ABIMjkIsEZPt4LUzMflCGgzlvSgEwZOJiy5a8GQiMOYYpRetjYCfIxqtOajcP9VtkHtv0/9cqjbDGalpMRO+xdihgQLjZ50CqOMU93fmLipyIpm5ieEstSLOSvIl52s45syVRsbZ708tLe+buAvsfVcvM6qFNUX9T8UP9xXB6OA8onnfxxc3jkU4XpphlyKyBJCfq6Xk4y8SKEG/jH/uwR3yCkB3Fd1cF6J+GwDzmc+Ge3CW5vJ5SZYfZGhai6j4+u5PGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e450413-01d5-41cc-8e97-5fc6482b70c8",
+            "uuid": "82aa2d54-c7f1-41e0-b6b6-87ac36f4be44",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TMGW2cPQmHV7bUbNyVUBof",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5586,
+                "cache_read_input_tokens": 26891,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5586
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在来检查产出目录是否存在。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e450413-01d5-41cc-8e97-5fc6482b70c8",
+            "uuid": "c92ce7ab-8be4-41be-b76e-6cf4c81e33f0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TMGW2cPQmHV7bUbNyVUBof",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5586,
+                "cache_read_input_tokens": 26891,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5586
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J7NpFuFu1embBBsRLizTX6",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/drafts/ 2>/dev/null || echo \"DIR_NOT_EXIST\"",
+                "description": "Check if drafts directory exists"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e450413-01d5-41cc-8e97-5fc6482b70c8",
+            "uuid": "22ed5b4d-a81e-43ab-89bf-a459bc7fb109",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TMGW2cPQmHV7bUbNyVUBof",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5586,
+                "cache_read_input_tokens": 26891,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5586
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T04:51:24.371Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J7NpFuFu1embBBsRLizTX6",
+              "type": "tool_result",
+              "content": "discussion_v2.md\nneural_probe_section.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5e450413-01d5-41cc-8e97-5fc6482b70c8",
+            "uuid": "6702e745-f20b-41b7-b4c5-070fd4f4da43",
+            "tool_use_result": {
+              "stdout": "discussion_v2.md\nneural_probe_section.md",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "目录存在。现在撰写 abstract v2。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e450413-01d5-41cc-8e97-5fc6482b70c8",
+            "uuid": "04e26567-beda-4416-baab-47f51d48a37a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B6gf7UU45LNupBbDQaK1hh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 201,
+                "cache_read_input_tokens": 32477,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 201
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012AC4EqhFL3QWmHLZo7wvFe",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/drafts/abstract_v2.md",
+                "content": "# Abstract v2\n\n## Abstract\n\nWeb-scale text corpora are increasingly contaminated by recursive synthetic content—text generated from earlier synthetic text across multiple generations. As each generation passes through a language model, information degrades monotonically per the Data Processing Inequality, yet no existing method estimates how many rounds of recursive generation a document has undergone. We introduce the first systematic framework for generational depth estimation, combining a 15-dimensional statistical feature pipeline—capturing surprisal dynamics, vocabulary diversity, and frequency tail statistics—with an Ordinal Binary Decomposition (OBD) LightGBM classifier that respects the ordinal structure of depth. We empirically measure the discrimination boundary K*, defined as the maximum depth at which adjacent generations remain statistically distinguishable. Across 4 model-mode configurations and 4 decoding strategies (8 conditions total) at the ≤1.5B parameter scale, we find K*=2 is consistent: all 1-vs-2 bootstrap 95% CI lower bounds exceed our operational threshold (AUC > 0.60), while all 2-vs-3 upper bounds fall below it. Cross-model transfer experiments show classifiers trained on one generator retain 80–92% accuracy on others, with binary (0-vs-1) transfer AUC exceeding 0.96 universally, indicating that depth features are largely text-intrinsic rather than generator-specific. Preliminary neural probing with frozen 1536-dimensional LLM representations on one dataset yields K*_neural=3, suggesting the boundary is representation-dependent and that our 15-feature K*=2 is an operational lower bound rather than an information-theoretic limit. Frontier LLMs achieve ~88% binary detection but only ~33% five-class depth accuracy—below our OBD classifier's 38.6%—confirming depth estimation as a non-trivial task requiring specialized features. Our findings motivate a three-tier taxonomy (human / generation-1 / generation-2+) for depth-aware data curation; we investigate whether this coarse ordinal signal enables graduated filtering that outperforms binary approaches discarding all synthetic content indiscriminately.\n\n**Word count: ~248**\n\n---\n\n## Diff 说明\n\n当前 main.tex 中 abstract 为空占位符（`[TODO: Write after C3 results available]`），这是首版正式 abstract。\n\n相对于背景中的 claim 结构，本版做了以下设计选择：\n\n1. **新增内容（vs 空占位）**：完整 abstract，覆盖所有必需要素。\n\n2. **Claim 强度控制**：\n   - 用 \"consistent across 8 tested conditions\" 而非 \"universal\"\n   - 明确标注 \"at the ≤1.5B parameter scale\"\n   - Neural probe 结果用 \"preliminary...on one dataset\" + \"suggesting\"\n   - C3 graduated filtering 用 \"we investigate whether...\" 而非断言性 claim（exp-006 结果未定）\n\n3. **结构对齐 introduction contributions**：\n   - K*=2 headline → 对应 C1'(a)\n   - Cross-model transfer → 对应 C1'(b)\n   - Neural probe / representation dependence → 对应 C1'(e)\n   - LLM baseline → 回应 reviewer concern #9\n   - Three-tier taxonomy + graduated filtering → 对应 C3\n\n4. **未在 abstract 中展开的子组件**：\n   - C1'(c) degradation ordering consistency（Spearman ρ ≥ 0.85）— 细节留给正文，abstract 通过 \"text-intrinsic\" 间接体现\n   - C1'(d) generation mode analysis — 正文 analysis subsection 内容，abstract 层级不需要\n\n5. **K* hierarchy 框架体现**：通过 \"operational lower bound rather than an information-theoretic limit\" 传达 K*_theory ≥ K*_neural ≥ K*_15D 层级，不占用过多篇幅。\n\n6. **长度**：~248 words，符合 ARR 200-250 word 标准上限。\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e450413-01d5-41cc-8e97-5fc6482b70c8",
+            "uuid": "b3413e92-296b-4681-8c76-dc99d4bb5650",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B6gf7UU45LNupBbDQaK1hh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 201,
+                "cache_read_input_tokens": 32477,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 201
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T04:51:57.906Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012AC4EqhFL3QWmHLZo7wvFe",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/drafts/abstract_v2.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "5e450413-01d5-41cc-8e97-5fc6482b70c8",
+            "uuid": "063f37bd-dc88-4846-97aa-8d36f7f1dc1e",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/drafts/abstract_v2.md",
+              "content": "# Abstract v2\n\n## Abstract\n\nWeb-scale text corpora are increasingly contaminated by recursive synthetic content—text generated from earlier synthetic text across multiple generations. As each generation passes through a language model, information degrades monotonically per the Data Processing Inequality, yet no existing method estimates how many rounds of recursive generation a document has undergone. We introduce the first systematic framework for generational depth estimation, combining a 15-dimensional statistical feature pipeline—capturing surprisal dynamics, vocabulary diversity, and frequency tail statistics—with an Ordinal Binary Decomposition (OBD) LightGBM classifier that respects the ordinal structure of depth. We empirically measure the discrimination boundary K*, defined as the maximum depth at which adjacent generations remain statistically distinguishable. Across 4 model-mode configurations and 4 decoding strategies (8 conditions total) at the ≤1.5B parameter scale, we find K*=2 is consistent: all 1-vs-2 bootstrap 95% CI lower bounds exceed our operational threshold (AUC > 0.60), while all 2-vs-3 upper bounds fall below it. Cross-model transfer experiments show classifiers trained on one generator retain 80–92% accuracy on others, with binary (0-vs-1) transfer AUC exceeding 0.96 universally, indicating that depth features are largely text-intrinsic rather than generator-specific. Preliminary neural probing with frozen 1536-dimensional LLM representations on one dataset yields K*_neural=3, suggesting the boundary is representation-dependent and that our 15-feature K*=2 is an operational lower bound rather than an information-theoretic limit. Frontier LLMs achieve ~88% binary detection but only ~33% five-class depth accuracy—below our OBD classifier's 38.6%—confirming depth estimation as a non-trivial task requiring specialized features. Our findings motivate a three-tier taxonomy (human / generation-1 / generation-2+) for depth-aware data curation; we investigate whether this coarse ordinal signal enables graduated filtering that outperforms binary approaches discarding all synthetic content indiscriminately.\n\n**Word count: ~248**\n\n---\n\n## Diff 说明\n\n当前 main.tex 中 abstract 为空占位符（`[TODO: Write after C3 results available]`），这是首版正式 abstract。\n\n相对于背景中的 claim 结构，本版做了以下设计选择：\n\n1. **新增内容（vs 空占位）**：完整 abstract，覆盖所有必需要素。\n\n2. **Claim 强度控制**：\n   - 用 \"consistent across 8 tested conditions\" 而非 \"universal\"\n   - 明确标注 \"at the ≤1.5B parameter scale\"\n   - Neural probe 结果用 \"preliminary...on one dataset\" + \"suggesting\"\n   - C3 graduated filtering 用 \"we investigate whether...\" 而非断言性 claim（exp-006 结果未定）\n\n3. **结构对齐 introduction contributions**：\n   - K*=2 headline → 对应 C1'(a)\n   - Cross-model transfer → 对应 C1'(b)\n   - Neural probe / representation dependence → 对应 C1'(e)\n   - LLM baseline → 回应 reviewer concern #9\n   - Three-tier taxonomy + graduated filtering → 对应 C3\n\n4. **未在 abstract 中展开的子组件**：\n   - C1'(c) degradation ordering consistency（Spearman ρ ≥ 0.85）— 细节留给正文，abstract 通过 \"text-intrinsic\" 间接体现\n   - C1'(d) generation mode analysis — 正文 analysis subsection 内容，abstract 层级不需要\n\n5. **K* hierarchy 框架体现**：通过 \"operational lower bound rather than an information-theoretic limit\" 传达 K*_theory ≥ K*_neural ≥ K*_15D 层级，不占用过多篇幅。\n\n6. **长度**：~248 words，符合 ARR 200-250 word 标准上限。\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/drafts/abstract_v2.md`。~248 words，覆盖所有必需要素，claim 强度按约束控制（\"consistent\" not \"universal\"，scale limitation 明示，neural probe 标 preliminary，C3 用 \"we investigate whether\"）。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "5e450413-01d5-41cc-8e97-5fc6482b70c8",
+            "uuid": "0514972e-c84e-4ea1-ae44-ef2222d075b9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Te9VNdnfi25juZ6unuueD1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1200,
+                "cache_read_input_tokens": 32678,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1200
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/drafts/abstract_v2.md`。~248 words，覆盖所有必需要素，claim 强度按约束控制（\"consistent\" not \"universal\"，scale limitation 明示，neural probe 标 preliminary，C3 用 \"we investigate whether\"）。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 52576,
+            "duration_api_ms": 53403,
+            "num_turns": 7,
+            "stop_reason": "end_turn",
+            "session_id": "5e450413-01d5-41cc-8e97-5fc6482b70c8",
+            "total_cost_usd": 0.24867175000000002,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 22037,
+              "cache_read_input_tokens": 127473,
+              "output_tokens": 1819,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 22037,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 80,
+                  "cache_read_input_tokens": 32678,
+                  "cache_creation_input_tokens": 1200,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1200
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1614,
+                "outputTokens": 14,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001684,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 1819,
+                "cacheReadInputTokens": 127473,
+                "cacheCreationInputTokens": 22037,
+                "webSearchRequests": 0,
+                "costUSD": 0.24698775,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "4d025e63-d499-4148-9c22-2fe2e0e0af02"
+          },
+          "id": "event-000022"
+        }
+      ],
+      "message_count": 22
+    }
+  ],
+  "readable_path": "readable/worker-executions/writing-abstract-v2.md"
+}

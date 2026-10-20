@@ -1,0 +1,3635 @@
+- id: art_20260512_f414eb
+  name: GPU 优化报告
+  type: report
+  description: 4090D 跑 Qwen2.5-1.5B MVP pipeline 的 GPU 利用率分析和 batch size 优化建议
+  path: projects/gen-depth-contamination/artifacts/_project/report/gpu_optimization_report.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T12:51:04.055169+00:00'
+  tags:
+  - gpu
+  - optimization
+  - batch_size
+- id: art_20260512_00854c
+  name: Related Work 结构笔记
+  type: report
+  description: 四线交汇 related work 结构：binary detection / model collapse / verification
+    curation / data mixing，含核心论文和差异化定位
+  path: projects/gen-depth-contamination/artifacts/_project/report/related_work_structure.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T12:53:22.849842+00:00'
+  tags:
+  - literature
+  - related_work
+  - paper
+- id: art_20260512_31e5e2
+  name: 双路线 Claim 框架
+  type: report
+  description: 路线 A (K*≥3) 和路线 B (K*=2) 的 core/supporting claims + story arc + 评审攻击面预演
+  path: projects/gen-depth-contamination/artifacts/_project/report/claim_routes.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T12:53:24.737924+00:00'
+  tags:
+  - framing
+  - claims
+  - paper
+- id: art_20260512_f372d6
+  name: 信道级联理论框架
+  type: report
+  description: DPI + iterated channel Markov chain 理论框架，3 个 proposition 骨架 + JSD proxy
+    分析
+  path: projects/gen-depth-contamination/artifacts/_project/report/theory_framework.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T12:53:26.817109+00:00'
+  tags:
+  - theory
+  - DPI
+  - channel_cascade
+  - paper
+- id: art_20260512_2ddfe4
+  name: Full Study 实验矩阵预案
+  type: report
+  description: MVP 后 full study 实验矩阵：4 模型 × 5 解码策略 × 2 生成方式 + 下游评估，含优先级排序、资源规划、retrain-chain
+    配置
+  path: projects/gen-depth-contamination/artifacts/_project/report/full_study_plan.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T12:54:53.605191+00:00'
+  tags:
+  - experiment_design
+  - full_study
+  - resource_planning
+- id: art_20260512_547d6d
+  name: Methodology Section 初稿
+  type: report
+  description: 论文 Section 3 初稿：corpus construction + 15D feature extraction + ordinal
+    classifier + K* 定义，含精确公式
+  path: projects/gen-depth-contamination/artifacts/_project/report/methodology_draft.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T16:48:03.943058+00:00'
+  tags:
+  - paper
+  - methodology
+  - writing
+- id: art_20260512_3cd73f
+  name: Figure 设计方案
+  type: report
+  description: 论文核心图表方案：6 P0 图表 + 4 P2 可选，含全局配色规范、ACL 模板尺寸、制作时间线
+  path: projects/gen-depth-contamination/artifacts/_project/report/figure_plan.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-12T16:51:11.141569+00:00'
+  tags:
+  - paper
+  - figures
+  - visualization
+- id: art_20260513_lit01
+  name: 文献增量扫描 2025-2026
+  type: report
+  description: Model Collapse + Synthetic Text Detection 最新进展扫描，覆盖 4 个 thread、14 篇新论文，含
+    novelty 威胁评估和 framing 建议
+  path: projects/gen-depth-contamination/artifacts/literature_scan_2025_2026.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T00:00:00.000000+00:00'
+  tags:
+  - literature
+  - related_work
+  - novelty_assessment
+- id: art_20260513_65fa1b
+  name: literature_scan_2025_2026
+  type: report
+  description: 2025-2026 文献增量扫描：Model Collapse + Synthetic Text Detection。发现 4 篇 must-cite、4
+    篇 should-cite。核心 novelty 安全（无人做过 ordinal depth estimation）。修正 Drayson et al. 误判为幻觉。
+  path: projects/gen-depth-contamination/artifacts/_project/report/literature_scan_2025_2026.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: literature-scan
+  created_at: '2026-05-13T01:27:40.429051+00:00'
+  tags:
+  - literature
+  - related-work
+  - novelty-check
+- id: art_20260513_195262
+  name: literature_positioning_notes
+  type: report
+  description: 4篇关键论文(Drayson/Schaeffer/Kazdan/He)的深度分析、positioning、Related Work段落草稿
+  path: projects/gen-depth-contamination/artifacts/_project/report/literature_positioning_notes.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T02:20:20.627352+00:00'
+  tags:
+  - literature
+  - positioning
+  - related-work
+  - paper-writing
+- id: art_20260513_d23bf4
+  name: literature_positioning_notes
+  type: report
+  description: 4篇关键论文(Drayson/Schaeffer/Kazdan/He)的positioning分析+Related Work段落草稿
+  path: projects/gen-depth-contamination/artifacts/_project/report/literature_positioning_notes_d23bf4.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T02:20:57.777097+00:00'
+  tags:
+  - literature
+  - positioning
+  - related-work
+- id: art_20260513_6220fa
+  name: exp005_degradation_analysis
+  type: data
+  description: 'Degradation ordering analysis across 3 models. Remote: autodl-4090d:/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json'
+  path: null
+  url: autodl-4090d:/root/autodl-tmp/gen-depth-contamination/results_exp005_degradation/degradation_analysis.json
+  project: gen-depth-contamination
+  exp_id: exp_005_degradation
+  skill: ''
+  created_at: '2026-05-13T02:41:17.785733+00:00'
+  tags:
+  - exp005
+  - degradation
+  - cross-model
+  - feature-ranking
+- id: art_20260513_98dfe7
+  name: AUC Heatmap (3-model comparison)
+  type: chart
+  description: 'Pairwise AUC heatmap: 3 models × 5 depth pairs, with K*=2 threshold
+    indicator and ±std annotations'
+  path: projects/gen-depth-contamination/artifacts/_project/chart/auc_heatmap.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T03:36:24.240745+00:00'
+  tags:
+  - figure
+  - auc
+  - heatmap
+  - paper
+- id: art_20260513_53a754
+  name: JSD Decay Curves (3-model comparison)
+  type: chart
+  description: JSD decay curves on log scale for 3 models across depth pairs, with
+    K*=2 shaded region
+  path: projects/gen-depth-contamination/artifacts/_project/chart/jsd_decay.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T03:36:25.640647+00:00'
+  tags:
+  - figure
+  - jsd
+  - decay
+  - paper
+- id: art_20260513_dbb099
+  name: Feature Importance Comparison (3-model)
+  type: chart
+  description: Grouped bar chart of top-10 permutation importance features across
+    Qwen/Pythia/OLMo
+  path: projects/gen-depth-contamination/artifacts/_project/chart/feature_importance.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T03:36:26.998068+00:00'
+  tags:
+  - figure
+  - feature-importance
+  - paper
+- id: art_20260513_5eae00
+  name: bootstrap_ci_results
+  type: data
+  description: Bootstrap 95% CI (1000 resamples) and permutation test (500 permutations)
+    for pairwise AUC across mvp-001, exp-001, exp-002. OLMo 1v2 CI lower=0.6045 >
+    0.60, K* claim robust.
+  path: null
+  url: autodl-4090d:/root/autodl-tmp/gen-depth-contamination/artifacts/bootstrap_ci_results.json
+  project: gen-depth-contamination
+  exp_id: exp-007
+  skill: ''
+  created_at: '2026-05-13T03:42:18.500836+00:00'
+  tags:
+  - bootstrap
+  - confidence-interval
+  - statistical-rigor
+  - pairwise-auc
+- id: art_20260513_a0ec29
+  name: ordinal_comparison_results
+  type: data
+  description: 'exp-010: 3-method ordinal classification comparison across 3 model
+    datasets (Qwen/Pythia/OLMo). Conclusion: ordinal methods beat multiclass on MAE
+    across all 3.'
+  path: null
+  url: file:///root/autodl-tmp/gen-depth-contamination/artifacts/ordinal_comparison_results.json
+  project: gen-depth-contamination
+  exp_id: exp_010_ordinal_baseline
+  skill: ''
+  created_at: '2026-05-13T04:27:14.476352+00:00'
+  tags:
+  - ordinal
+  - classification
+  - comparison
+- id: art_20260513_f28dd5
+  name: exp005_4model_tau_matrix
+  type: data
+  description: '4-model Kendall τ matrix for degradation ordering: Pythia, OLMo, Qwen-rewrite,
+    Qwen-cont. Shows generation mode is primary driver of ordering divergence (~60-70%),
+    architecture secondary (~30-40%).'
+  path: projects/gen-depth-contamination/artifacts/exp-005/data/exp005_4model_tau_matrix.json
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp-005
+  skill: ''
+  created_at: '2026-05-13T06:19:34.260108+00:00'
+  tags:
+  - tau-matrix
+  - degradation-ordering
+  - 4-model
+  - mode-vs-architecture
+- id: art_20260513_7af69b
+  name: cross_transfer_matrix_csv
+  type: data
+  description: 'Exp-013: 4x4 cross-model transfer matrix CSV format'
+  path: projects/gen-depth-contamination/artifacts/exp-013/data/cross_transfer_matrix.csv
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp-013
+  skill: ''
+  created_at: '2026-05-13T06:51:13.046428+00:00'
+  tags:
+  - cross-model
+  - transfer
+  - lightgbm
+- id: art_20260513_b0dee5
+  name: cross_transfer_matrix_json
+  type: data
+  description: 'Exp-013: 4x4 cross-model transfer matrix JSON — OBD-LightGBM depth
+    classifiers across Qwen-rewrite, Pythia, OLMo, Qwen-cont'
+  path: projects/gen-depth-contamination/artifacts/exp-013/data/cross_transfer_matrix.json
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp-013
+  skill: ''
+  created_at: '2026-05-13T06:51:28.509596+00:00'
+  tags:
+  - cross-model
+  - transfer
+  - lightgbm
+  - depth-classification
+- id: art_20260513_a36617
+  name: fig2_auc_decay
+  type: chart
+  description: 'Pairwise AUC decay curves across depth pairs (0v1–4v5) for 4 model
+    configurations with bootstrap 95% CI. Shows K*=2 boundary at θ=0.60. Data: exp_007_bootstrap_ci
+    (Qwen-rw, Pythia, OLMo, Qwen-cont).'
+  path: projects/gen-depth-contamination/artifacts/_project/chart/fig2_auc_decay.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-13T09:04:15.701809+00:00'
+  tags:
+  - paper
+  - experiments_c1
+  - statistical
+- id: art_20260513_faa9be
+  name: fig3_transfer_heatmap
+  type: chart
+  description: '4×4 cross-model transfer accuracy matrix + retention heatmap. Shows
+    Pythia↔OLMo 90-92% retention, Qwen-rw 61-63% transfer, Qwen-cont 80-89%. Data:
+    exp_013_cross_transfer.'
+  path: projects/gen-depth-contamination/artifacts/_project/chart/fig3_transfer_heatmap.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-13T09:04:18.345713+00:00'
+  tags:
+  - paper
+  - experiments_c1
+  - statistical
+- id: art_20260513_8b4d86
+  name: method_section_v1
+  type: paper
+  description: 'Method section (§3) for EMNLP 2026 paper: Problem Formulation, Feature
+    Extraction, OBD Classifier, K* Operationalization, Experimental Setup, Generation
+    Mode Control. ~1500 words, 2 tables (features + setup).'
+  path: projects/gen-depth-contamination/artifacts/_project/paper/method.tex
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T09:11:11.976160+00:00'
+  tags:
+  - paper
+  - method
+  - latex
+  - v1
+- id: art_20260513_5beff5
+  name: experiments_c1_v1
+  type: paper
+  description: 'Experiments section C1: K*=2 characterization, cross-model transfer,
+    feature degradation ordering, generation mode effect. ~1800 words, 3 tables, 2
+    figures.'
+  path: projects/gen-depth-contamination/artifacts/_project/paper/experiments_c1.tex
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T09:34:09.477543+00:00'
+  tags:
+  - paper
+  - experiments
+  - c1
+  - latex
+  - v1
+- id: art_20260513_e8a8c0
+  name: exp003_config12_analysis
+  type: report
+  description: exp-003 config 1-3 深度对比分析：pairwise AUC profile, feature ranking Spearman
+    ρ, θ-sensitivity table, D016 universality 验证
+  path: projects/gen-depth-contamination/artifacts/exp_003_decoding_ablation/report/exp003_analysis_report.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_003_decoding_ablation
+  skill: ''
+  created_at: '2026-05-13T17:29:12.055000+00:00'
+  tags:
+  - exp-003
+  - decoding-ablation
+  - D016
+  - universality
+- id: art_20260513_58b004
+  name: discussion_conclusion_outline
+  type: paper
+  description: Discussion (7 subsections) + Conclusion (3 subsections) 大纲，含 6 处 [PENDING]
+    标记 (exp-006/exp-015)，写作约束清单，措辞校准指南
+  path: projects/gen-depth-contamination/artifacts/_project/paper/discussion_outline.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T18:49:05.322686+00:00'
+  tags:
+  - paper
+  - discussion
+  - conclusion
+  - outline
+- id: art_20260513_097c5e
+  name: exp015_neural_probe_script
+  type: intermediate
+  description: exp-015 neural probe 脚本 (run_exp015_neural_probe.py)：frozen Qwen2.5-1.5B
+    → 1536D → MLP, 5-fold GroupKFold, dry-run 通过
+  path: projects/gen-depth-contamination/artifacts/exp_015_neural_probe/intermediate/exp015_script_info.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_015_neural_probe
+  skill: ''
+  created_at: '2026-05-13T18:53:40.158175+00:00'
+  tags:
+  - exp-015
+  - neural-probe
+  - code
+- id: art_20260513_e9c427
+  name: exp003_decoding_ablation_figure
+  type: chart
+  description: exp-003 4-config decoding ablation grouped bar chart (PDF+PNG) + LaTeX
+    summary table. 学术风格：serif font, no grid, colorblind-safe, θ=0.60 标注线
+  path: projects/gen-depth-contamination/artifacts/exp_003_decoding_ablation/chart/exp003_figure_info.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_003_decoding_ablation
+  skill: ''
+  created_at: '2026-05-13T21:03:24.277905+00:00'
+  tags:
+  - exp-003
+  - figure
+  - decoding-ablation
+  - paper
+- id: art_20260513_c5d20a
+  name: discussion_section_v1
+  type: paper
+  description: Discussion §5 初稿 (~1200 words, 6 subsections)：K* 理论含义、cross-model transfer、feature
+    importance 分化、LLM zero-shot、limitations (6条)、graduated filtering TODO 占位
+  path: projects/gen-depth-contamination/artifacts/_project/paper/discussion_section_info.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T22:12:53.107491+00:00'
+  tags:
+  - paper
+  - discussion
+  - draft-v1
+- id: art_20260513_780ad5
+  name: conclusion_section_v1
+  type: paper
+  description: Conclusion §6 初稿 (~400 words)：贡献总结 + C3 TODO + limitations recap +
+    future work (retrain-chain, scale, multilingual, temporal, learned representations)
+  path: projects/gen-depth-contamination/artifacts/_project/paper/conclusion_section_info.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T22:12:55.334335+00:00'
+  tags:
+  - paper
+  - conclusion
+  - draft-v1
+- id: art_20260513_6878d6
+  name: summary_auc_decay_figure
+  type: chart
+  description: 'Summary overview figure: pairwise AUC decay curves for all 4 model-mode
+    configs and 4 decoding strategies. Shows K*=2 universal boundary where AUC drops
+    to near chance.'
+  path: projects/gen-depth-contamination/artifacts/_project/chart/fig_summary_auc_decay.png
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T22:18:11.715308+00:00'
+  tags:
+  - figure
+  - auc-decay
+  - summary
+  - paper
+- id: art_20260513_dc8c16
+  name: fig2_auc_decay
+  type: chart
+  description: 'Pairwise AUC Decay Curves (C1'' Fig.2): 4 model-mode configs across
+    depth pairs 0v1–4v5, showing K*=2 boundary where all curves cross θ=0.60. Bootstrap
+    95% CI error bars. ACL single-column format (3.25in).'
+  path: projects/gen-depth-contamination/artifacts/_project/chart/fig2_auc_decay.png
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-13T23:51:50.892572+00:00'
+  tags:
+  - paper
+  - C1
+  - auc-decay
+  - exp_007
+- id: art_20260513_f170fd
+  name: fig3_transfer_heatmap
+  type: chart
+  description: 'Cross-Model Transfer Matrix (C1'' Fig.3): 4×4 heatmap, Source(train)
+    vs Target(test) accuracy. Diagonal = within-model baseline (bold box). Pythia↔OLMo
+    high-transfer cells highlighted (dashed blue border). YlOrRd colormap, ACL single-column
+    format (3.25in).'
+  path: projects/gen-depth-contamination/artifacts/_project/chart/fig3_transfer_heatmap.png
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: draw-paper-figure
+  created_at: '2026-05-13T23:51:53.916240+00:00'
+  tags:
+  - paper
+  - C1
+  - transfer-heatmap
+  - exp_013
+- id: art_20260514_986a2a
+  name: exp004_qwen7b_depth_script
+  type: intermediate
+  description: exp-004 cross-scale validation script (Qwen2.5-7B depth chain pipeline
+    with OOM protection and 4-bit quantization support)
+  path: projects/gen-depth-contamination/artifacts/exp-004/intermediate/run_exp004_qwen7b_depth.py
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp-004
+  skill: ''
+  created_at: '2026-05-14T02:51:15.207085+00:00'
+  tags:
+  - script
+  - qwen7b
+  - cross-scale
+  - depth-chain
+- id: art_20260514_0fdfa1
+  name: exp004_vram_assessment
+  type: report
+  description: 'VRAM feasibility assessment for Qwen2.5-7B on RTX 4090D 24GB: fp16
+    ~16.2GB (recommended), 4-bit ~6GB (preliminary only)'
+  path: projects/gen-depth-contamination/artifacts/exp-004/report/vram_assessment.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp-004
+  skill: ''
+  created_at: '2026-05-14T02:51:34.151067+00:00'
+  tags:
+  - vram
+  - assessment
+  - qwen7b
+- id: art_20260514_cd675d
+  name: discussion_v2_neural_probe
+  type: paper
+  description: 'Discussion + Conclusion v2 draft integrating neural probe (exp-015)
+    results: 6 changes covering §5.1 new paragraph, §5.5 limitation updates, Conclusion
+    neural probe summary and future work'
+  path: projects/gen-depth-contamination/artifacts/_project/paper/discussion_v2.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T04:10:40.668513+00:00'
+  tags:
+  - paper
+  - discussion
+  - conclusion
+  - neural-probe
+  - exp-015
+- id: art_20260514_b8087a
+  name: abstract_v2
+  type: paper
+  description: Abstract v2 (~248 words), 覆盖全部 claim 结构 (C1' K* characterization +
+    C3 graduated filtering + supporting analyses)，claim 强度按 D017 约束控制
+  path: projects/gen-depth-contamination/artifacts/_project/paper/abstract_v2.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T04:53:25.854884+00:00'
+  tags:
+  - paper
+  - abstract
+  - writing
+- id: art_20260514_b5d03a
+  name: neural_probe_analysis_draft
+  type: paper
+  description: Neural probe analysis LaTeX draft (~300 words) with K* hierarchy, two
+    conditional text branches (exp-006 success/fail), Pythia/OLMo placeholders
+  path: projects/gen-depth-contamination/artifacts/exp_015_neural_probe/paper/neural_probe_analysis.tex
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_015_neural_probe
+  skill: ''
+  created_at: '2026-05-14T05:54:25.238639+00:00'
+  tags:
+  - paper-draft
+  - neural-probe
+  - exp-015
+- id: art_20260514_218032
+  name: reviewer_pass_round1
+  type: report
+  description: 'Full reviewer pass audit of the gen-depth-contamination paper: number
+    consistency, claim strength, citations, LaTeX format, logic coherence. 0 Critical,
+    5 Warning, 7 Info.'
+  path: projects/gen-depth-contamination/artifacts/_project/report/reviewer_pass_round1.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T06:55:10.687993+00:00'
+  tags:
+  - paper
+  - review
+  - audit
+- id: art_20260514_32cfc1
+  name: C3 Graduated Filtering Contingency Versions
+  type: paper
+  description: 'Two pre-written versions of C3 conclusion/discussion text for exp-006
+    results: Version A (graduated > binary, significant) and Version B (graduated
+    ≈ binary, not significant). XX.X placeholders ready for number fill.'
+  path: projects/gen-depth-contamination/artifacts/exp-006/paper/c3_contingency_versions.tex
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp-006
+  skill: ''
+  created_at: '2026-05-14T07:59:59.520362+00:00'
+  tags:
+  - paper
+  - c3
+  - contingency
+  - graduated-filtering
+- id: art_20260514_5ed29e
+  name: pipeline_figure
+  type: chart
+  description: 'Method pipeline overview figure (Fig 1): Seed Text → Recursive Generation
+    → 15D Feature Extraction → OBD-LightGBM → Depth Estimate. PDF for paper, PNG for
+    preview.'
+  path: projects/gen-depth-contamination/artifacts/_project/chart/pipeline.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T08:00:37.734142+00:00'
+  tags:
+  - paper
+  - method
+  - figure
+- id: art_20260514_e91598
+  name: gen_pipeline_figure_script
+  type: intermediate
+  description: Python script to generate the method pipeline overview figure (pipeline.pdf/png).
+  path: projects/gen-depth-contamination/artifacts/_project/intermediate/gen_pipeline_figure.py
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T08:00:39.865257+00:00'
+  tags:
+  - paper
+  - script
+- id: art_20260514_57b998
+  name: pipeline_figure
+  type: chart
+  description: 'Method pipeline figure: Seed Text → Recursive Generation → 15D Feature
+    Extraction → OBD-LightGBM → d̂/K*. Five-module horizontal flowchart for method.tex
+    Fig 1.'
+  path: projects/gen-depth-contamination/artifacts/_project/chart/pipeline_57b998.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T08:01:24.897347+00:00'
+  tags:
+  - paper
+  - method
+  - figure
+- id: art_20260514_652358
+  name: pipeline_figure
+  type: chart
+  description: 五模块水平流程图：Seed Text → Recursive Generation → 15D Feature Extraction
+    → OBD-LightGBM → d̂ / K*。PDF+PNG 格式，method.tex 已引用。
+  path: projects/gen-depth-contamination/artifacts/_project/chart/pipeline_652358.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T08:01:30.868482+00:00'
+  tags:
+  - paper
+  - method
+  - figure
+- id: art_20260514_61c89b
+  name: paper_consistency_audit
+  type: report
+  description: Full-text consistency audit of the paper after multi-worker editing
+    session. 2 warnings, 4 minor issues, no critical issues.
+  path: projects/gen-depth-contamination/artifacts/_project/report/paper_consistency_audit.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T11:01:32.458813+00:00'
+  tags:
+  - paper
+  - audit
+  - consistency
+- id: art_20260514_8cc4ae
+  name: c3_fallback_outline
+  type: intermediate
+  description: C3 章节两版结构大纲：Version A (graduated wins) + Version B (informative negative,
+    binary at K* is optimal). 含 section headings, topic sentences, table/figure checklist,
+    contingency triggers, 及对其他章节的连锁影响。
+  path: projects/gen-depth-contamination/artifacts/exp_006_graduated_filtering/intermediate/c3_fallback_outline.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_006_graduated_filtering
+  skill: ''
+  created_at: '2026-05-14T13:08:06.193942+00:00'
+  tags:
+  - paper
+  - c3
+  - fallback
+  - D023
+- id: art_20260515_f96a3c
+  name: fig_kstar_theta
+  type: chart
+  description: 'K*(θ) curve: 4 models × θ∈[0.55,0.70], showing how discrimination
+    boundary varies with threshold. For FR-1 rebuttal.'
+  path: projects/gen-depth-contamination/artifacts/_project/chart/fig_kstar_theta.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T11:20:53.588437+00:00'
+  tags:
+  - rebuttal
+  - FR-1
+  - theta-sensitivity
+- id: art_20260515_89fa5f
+  name: exp_D_mcnemar_fixed
+  type: data
+  description: 'EXP-D McNemar fixed results: prob merge P(4)+P(5)->P(>=4) replaces
+    min(pred,4) capping, random_state=42. OBD accuracy 44.4%, significantly beats
+    GPT-5.5 (p=0.0001) and Claude (p=1.4e-5).'
+  path: projects/gen-depth-contamination/artifacts/_project/data/exp_D_mcnemar_fixed.json
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T11:37:17.328127+00:00'
+  tags:
+  - rebuttal
+  - exp-D
+  - mcnemar
+  - fixed
+- id: art_20260515_084660
+  name: exp_D_mcnemar_comprehensive
+  type: data
+  description: 'OBD可复现性修复+多种子稳定性+McNemar综合结果: accuracy=44.4%, 5种子完全一致(std=0), vs GPT-5.5
+    p=0.0001, vs Claude p=1.4e-5'
+  path: projects/gen-depth-contamination/artifacts/exp-D/data/exp_D_mcnemar_comprehensive.json
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp-D
+  skill: ''
+  created_at: '2026-05-15T11:40:19.401570+00:00'
+  tags:
+  - obd
+  - mcnemar
+  - reproducibility
+  - rebuttal
+- id: art_20260515_2399d6
+  name: exp_D_mcnemar_final
+  type: data
+  description: 'EXP-D final: OBD 6-class argmax (v2 logic) + random_state=42, McNemar
+    vs GPT-5.5/Claude, multi-seed stability, bootstrap CI'
+  path: projects/gen-depth-contamination/artifacts/exp-D/data/exp_D_mcnemar_final.json
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp-D
+  skill: ''
+  created_at: '2026-05-15T11:45:44.909137+00:00'
+  tags:
+  - rebuttal
+  - mcnemar
+  - obd
+  - v2-logic
+- id: art_20260515_310d64
+  name: kstar_theta_curve
+  type: chart
+  description: K*(θ) 阶梯曲线图：4 模型 × θ 0.50-0.70，验证 θ=0.60 时所有模型 K*=2。用于论文 FR-1 rebuttal。
+  path: projects/gen-depth-contamination/artifacts/exp_007_bootstrap_ci/chart/kstar_theta_curve_info.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_007_bootstrap_ci
+  skill: ''
+  created_at: '2026-05-15T12:59:45.348683+00:00'
+  tags:
+  - paper-figure
+  - rebuttal
+  - FR-1
+- id: art_20260515_41a940
+  name: kstar_theta_curve_v2_ci_lower
+  type: chart
+  description: K*(θ) 曲线图 v2：修复为 CI lower bound 判断。θ=0.60 时 Qwen-RW/Pythia K*=2, OLMo/Qwen-cont
+    K*=1。但 CI 值与 exp-007 registry 有差异待核实。
+  path: projects/gen-depth-contamination/artifacts/exp_007_bootstrap_ci/chart/kstar_theta_curve_v2_info.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_007_bootstrap_ci
+  skill: ''
+  created_at: '2026-05-15T13:07:34.577211+00:00'
+  tags:
+  - paper-figure
+  - rebuttal
+  - FR-1
+  - critical-fix
+- id: art_20260515_6cc0dc
+  name: kstar_theta_curve_v3_exp007_ci
+  type: chart
+  description: K*(θ) 曲线图 v3：用 exp-007 bootstrap CI 精确数据替换。θ=0.60 时 4/4 unanimous K*=2。旧
+    ci_half 偏大 1.1-3.6×。
+  path: projects/gen-depth-contamination/artifacts/exp_007_bootstrap_ci/chart/kstar_theta_curve_v3_info.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_007_bootstrap_ci
+  skill: ''
+  created_at: '2026-05-15T13:17:48.981761+00:00'
+  tags:
+  - paper-figure
+  - rebuttal
+  - FR-1
+  - critical-fix-v3
+- id: art_20260515_3e9307
+  name: kstar_theta_curve_v3_final
+  type: chart
+  description: K*(θ) 曲线图 v3 最终版：compute_kstar() 使用 exp-007 精确 ci_lower 硬编码 + Panel
+    A 误差棒修正。θ=0.60 时 4/4 unanimous K*=2。
+  path: projects/gen-depth-contamination/artifacts/exp_007_bootstrap_ci/chart/kstar_theta_curve_v3_info_3e9307.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_007_bootstrap_ci
+  skill: ''
+  created_at: '2026-05-15T13:19:19.927192+00:00'
+  tags:
+  - paper-figure
+  - rebuttal
+  - FR-1
+  - final
+- id: art_20260516_503088
+  name: depth_token_length_stats
+  type: data
+  description: 'Token length distribution per (model, depth) for 10 datasets. Key
+    finding: depth_0 mean ~191 tokens; depth 1+ varies from ~195 (Qwen7B/base, heavy
+    EOS) to ~254 (Qwen-1.5B rewrite, minimal EOS).'
+  path: projects/gen-depth-contamination/artifacts/_project/data/depth_token_length_stats.json
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:45:41.732269+00:00'
+  tags:
+  - W6
+  - token-length
+  - confound-analysis
+- id: art_20260516_9f2feb
+  name: depth_token_length_stats
+  type: data
+  description: 'W6: 各模型各 depth 的文本 token 长度分布统计（mean/std/min/max/EOS截断率）。关键发现：depth
+    0 (~191 tokens) 反而短于 depth 1+ (~252-256)，不支持长度 confound 假说。'
+  path: null
+  url: westc-26893:/root/autodl-tmp/gen-depth-contamination/artifacts/depth_token_length_stats.json
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T02:46:44.756215+00:00'
+  tags:
+  - W6
+  - token-length
+  - confound
+  - rebuttal
+- id: art_20260516_c0e645
+  name: exp003_bootstrap_ci
+  type: data
+  description: 'exp-003 decoding ablation: bootstrap 95% CI + permutation p-value
+    for all 4 configs x 5 pairwise AUC (10K resamples each). Key finding: config2_nuc09
+    2v3 CI upper=0.6010 crosses theta=0.60 threshold.'
+  path: null
+  url: westc-26893:/root/autodl-tmp/gen-depth-contamination/artifacts/exp003_bootstrap_ci.json
+  project: gen-depth-contamination
+  exp_id: exp_003_decoding_ablation
+  skill: ''
+  created_at: '2026-05-16T03:05:51.487679+00:00'
+  tags:
+  - bootstrap
+  - ci
+  - permutation
+  - auc
+  - decoding
+- id: art_20260516_e71572
+  name: exp016_bootstrap_ci
+  type: data
+  description: 'Bootstrap CI (10K resamples) + permutation test (10K) for exp-016
+    Qwen2.5-1.5B base continuation. Key: 1v2 CI lower=0.6168 > theta=0.60.'
+  path: projects/gen-depth-contamination/artifacts/exp_016_base_vs_instruct/data/exp016_bootstrap_ci.json
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_016_base_vs_instruct
+  skill: ''
+  created_at: '2026-05-16T05:05:44.156535+00:00'
+  tags:
+  - bootstrap
+  - ci
+  - exp-016
+  - base-model
+- id: art_20260516_49fdd8
+  name: exp-023 Wikipedia seed data
+  type: data
+  description: 'Wikipedia domain ablation seed data: 5000 docs from wikimedia/wikipedia
+    20231101.en, tokenizer-truncated to 256 tokens, format matches C4 seed data'
+  path: projects/gen-depth-contamination/artifacts/exp_023_wiki_domain/data/exp023_wiki_seed_data_info.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_023_wiki_domain
+  skill: ''
+  created_at: '2026-05-16T08:04:34.167961+00:00'
+  tags: []
+- id: art_20260516_311af5
+  name: exp-023 run script
+  type: intermediate
+  description: 'Bash script for exp-023 Wikipedia domain ablation: Qwen2.5-1.5B base,
+    continuation, 5K Wikipedia docs, depth 0-5, cuda:3'
+  path: projects/gen-depth-contamination/artifacts/exp_023_wiki_domain/intermediate/exp023_run_script_info.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_023_wiki_domain
+  skill: ''
+  created_at: '2026-05-16T08:04:40.030590+00:00'
+  tags: []
+- id: art_20260516_f38b59
+  name: paper_integration_prep_report
+  type: report
+  description: 论文整合准备报告：Table/Figure 清单、conditions 统计（10→~19）、绘图脚本兼容性、风险点
+  path: projects/gen-depth-contamination/artifacts/_project/report/paper_integration_prep_report.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T08:21:09.434512+00:00'
+  tags:
+  - paper
+  - integration
+  - scope-expansion
+- id: art_20260516_b8bbb8
+  name: exp-024 arXiv seed data
+  type: data
+  description: 'arXiv abstracts seed data for exp-024 domain ablation: 5000 abstracts
+    from arXiv API (cs.CL/cs.LG/cs.AI/cs.CV/stat.ML), format {"text", "doc_id"}, on
+    server at data/exp_024_arxiv/depth_0.jsonl'
+  path: projects/gen-depth-contamination/artifacts/exp-024/data/exp024_seed_data_info.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp-024
+  skill: ''
+  created_at: '2026-05-16T08:31:07.824524+00:00'
+  tags:
+  - seed-data
+  - arxiv
+  - domain-ablation
+- id: art_20260516_2ff9af
+  name: exp-024 run script
+  type: intermediate
+  description: 'Bash script for exp-024 arXiv domain ablation: Qwen2.5-1.5B continuation,
+    5K docs, depth 0-5, max_new_tokens=256'
+  path: projects/gen-depth-contamination/artifacts/exp-024/intermediate/exp024_script_info.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp-024
+  skill: ''
+  created_at: '2026-05-16T08:31:11.132681+00:00'
+  tags:
+  - script
+  - domain-ablation
+- id: art_20260516_bc3581
+  name: exp020_greedy_anomaly_diagnosis
+  type: report
+  description: exp-020 Pythia greedy 1v2 AUC=0.8838 异常调查：根因为级联重复坍塌，非 bug，K*=2 不受影响
+  path: projects/gen-depth-contamination/artifacts/exp_020_pythia_decoding/report/exp020_greedy_anomaly_diagnosis.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_020_pythia_decoding
+  skill: ''
+  created_at: '2026-05-16T08:59:50.155117+00:00'
+  tags:
+  - analysis
+  - anomaly
+  - greedy
+  - repetition
+- id: art_20260516_d097d5
+  name: exp022_stats_design_check
+  type: report
+  description: exp-022 cross-scorer 统计设计检查：per-fold AUC 提供 400 观测值，K* ANOVA 不可行但有替代方案
+  path: projects/gen-depth-contamination/artifacts/exp_022_cross_scorer_matrix/report/exp022_stats_design_check.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_022_cross_scorer_matrix
+  skill: ''
+  created_at: '2026-05-16T09:28:50.175070+00:00'
+  tags:
+  - statistics
+  - design
+  - anova
+  - cross-scorer
+- id: art_20260516_ee2f28
+  name: exp019_bootstrap_ci
+  type: data
+  description: exp-019 Mistral-7B bootstrap 95% CI and permutation test results. K*=1
+    (CI-based). 1v2 CI [0.5835, 0.6032] straddles theta=0.60.
+  path: projects/gen-depth-contamination/artifacts/exp-019/data/exp019_bootstrap_ci_summary.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp-019
+  skill: ''
+  created_at: '2026-05-16T11:27:16.648329+00:00'
+  tags:
+  - bootstrap
+  - ci
+  - mistral-7b
+  - kstar
+- id: art_20260516_352db2
+  name: exp019_bootstrap_ci
+  type: report
+  description: 'exp-019 Mistral-7B bootstrap CI: 1v2 AUC CI [0.5835, 0.6032], K*=1
+    confirmed'
+  path: projects/gen-depth-contamination/artifacts/exp_019_mistral7b_depth/report/exp019_bootstrap_ci.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_019_mistral7b_depth
+  skill: ''
+  created_at: '2026-05-16T11:29:10.038057+00:00'
+  tags:
+  - bootstrap
+  - ci
+  - statistics
+- id: art_20260516_7257ab
+  name: exp019b_cross_scorer_result
+  type: report
+  description: 'exp-019b Mistral cross-scorer: K*=1 confirmed genuine (not self-scorer
+    artifact). 1v2 AUC=0.5695 CI [0.5645, 0.5746]'
+  path: projects/gen-depth-contamination/artifacts/exp_019b_mistral_cross_scorer/report/exp019b_cross_scorer_result.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_019b_mistral_cross_scorer
+  skill: ''
+  created_at: '2026-05-16T11:56:57.836221+00:00'
+  tags:
+  - cross-scorer
+  - mistral
+  - k-star
+  - negative
+- id: art_20260516_b481cb
+  name: borderline_bootstrap_ci
+  type: data
+  description: 10000-iteration doc-level bootstrap CI + permutation test for 3 borderline
+    cases (exp-021 512tok 1v2, exp-020 t07 2v3, exp-020 t12 1v2)
+  path: projects/gen-depth-contamination/artifacts/_project/data/borderline_bootstrap_ci.json
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T17:00:19.539401+00:00'
+  tags:
+  - bootstrap
+  - ci
+  - borderline
+  - exp-020
+  - exp-021
+- id: art_20260516_ca0ec2
+  name: exp024_bootstrap_ci
+  type: data
+  description: 10000-iteration doc-level bootstrap CI + permutation test for exp_024
+    arXiv domain. K*=3 confirmed.
+  path: projects/gen-depth-contamination/artifacts/exp_024_arxiv_domain/data/exp024_bootstrap_ci_pointer.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_024_arxiv_domain
+  skill: ''
+  created_at: '2026-05-16T17:21:58.779475+00:00'
+  tags:
+  - bootstrap
+  - ci
+  - arxiv
+  - exp024
+- id: art_20260516_9a7c43
+  name: exp025_bootstrap_ci
+  type: data
+  description: Bootstrap CI and permutation test results for exp_025_pythia_arxiv
+    (Pythia-1.4B on arXiv, K*=3 confirmed)
+  path: projects/gen-depth-contamination/artifacts/exp_025_pythia_arxiv/data/exp025_bootstrap_ci.json
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_025_pythia_arxiv
+  skill: ''
+  created_at: '2026-05-16T19:04:56.942295+00:00'
+  tags:
+  - bootstrap
+  - pairwise-auc
+  - permutation-test
+  - domain-model-interaction
+- id: art_20260516_3c28ff
+  name: exp025_bootstrap_ci
+  type: data
+  description: 10000-iteration doc-level bootstrap CI + permutation test for exp_025_pythia_arxiv.
+    K*_CI=3, 2v3 CI lower=0.6401 > theta=0.60 confirmed.
+  path: projects/gen-depth-contamination/artifacts/exp_025_pythia_arxiv/data/exp025_bootstrap_ci.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_025_pythia_arxiv
+  skill: ''
+  created_at: '2026-05-16T19:07:29.711199+00:00'
+  tags:
+  - bootstrap
+  - ci
+  - permutation-test
+  - pythia
+  - arxiv
+- id: art_20260517_7f8650
+  name: exp026_feature_stability
+  type: data
+  description: 'Feature Subset Stability Ablation: all 17 feature subsets (size 3-15)
+    have 1v2 AUC well above theta=0.60. Min=0.8314 (top-3 only), full 15D=0.9472.
+    K*=4 across all configs.'
+  path: projects/gen-depth-contamination/artifacts/exp_026/data/exp026_feature_stability.json
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_026
+  skill: ''
+  created_at: '2026-05-17T07:50:50.223928+00:00'
+  tags:
+  - ablation
+  - feature-stability
+  - lightgbm
+  - kstar
+- id: art_20260517_3eb783
+  name: exp027_retrain_bootstrap
+  type: data
+  description: Bootstrap CI and permutation test for exp-008 v2 retrain-chain. 10000
+    iters, all CI_lower > 0.60, K*=4.
+  path: projects/gen-depth-contamination/artifacts/exp_027/data/exp027_retrain_bootstrap.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_027
+  skill: ''
+  created_at: '2026-05-17T08:10:25.164534+00:00'
+  tags:
+  - bootstrap
+  - ci
+  - permutation
+  - retrain-chain
+- id: art_20260517_84d008
+  name: exp026_feature_stability_v2
+  type: data
+  description: Feature stability ablation on prompt-chain data (Qwen-base, K*=2).
+    5D random subsets drop below theta=0.60 in 3/5 trials.
+  path: projects/gen-depth-contamination/artifacts/exp_026_feature_stability/data/exp026_feature_stability_v2.json
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_026_feature_stability
+  skill: ''
+  created_at: '2026-05-17T08:10:44.830376+00:00'
+  tags:
+  - feature-stability
+  - prompt-chain
+  - K*=2
+  - v2
+- id: art_20260517_855aa1
+  name: theta_sensitivity_table_csv
+  type: data
+  description: 'Theta sensitivity scan: K* values for 11 model-configs across θ=[0.55,
+    0.575, 0.60, 0.625, 0.65, 0.70]. CSV format.'
+  path: projects/gen-depth-contamination/artifacts/_project/data/theta_sensitivity_table.csv
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T11:05:24.284477+00:00'
+  tags:
+  - theta-sensitivity
+  - rebuttal
+  - group-c
+- id: art_20260517_9e8773
+  name: theta_sensitivity_table_tex
+  type: paper
+  description: 'LaTeX booktabs table: K* sensitivity to θ threshold for 11 configs
+    (web/arXiv/cross-scorer). Addresses Group C Critical #2.'
+  path: projects/gen-depth-contamination/artifacts/_project/paper/theta_sensitivity_table.tex
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T11:05:26.722160+00:00'
+  tags:
+  - theta-sensitivity
+  - rebuttal
+  - group-c
+  - latex
+- id: art_20260517_93c755
+  name: 14D_ablation_bootstrap_results
+  type: data
+  description: '14D vs 15D feature ablation (self_bleu removal) bootstrap CI results
+    for 4 models. Addresses Group C Critical #3. K* unchanged for all models, max
+    |Delta AUC| = 0.0031.'
+  path: projects/gen-depth-contamination/artifacts/_project/data/14d_ablation_bootstrap_summary.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T12:54:44.580916+00:00'
+  tags:
+  - ablation
+  - self_bleu
+  - critical_3
+  - group_c_review
+- id: art_20260517_ed57a3
+  name: JSD Decay Curves Analysis
+  type: report
+  description: 'Cross-model x cross-domain JSD decay analysis: identifies two decay
+    patterns (sharp cliff vs gradual), quantifies decay rate lambda per domain, explains
+    mechanistic basis for K* variation. 11 model-domain combinations + retrain-chain.'
+  path: projects/gen-depth-contamination/artifacts/_project/report/jsd_decay_analysis_summary.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T15:36:52.568856+00:00'
+  tags:
+  - jsd
+  - decay
+  - mechanism
+  - paper-figure
+- id: art_20260517_3954ff
+  name: Semantic Feature Ablation Report
+  type: report
+  description: 17D ablation (15D + sentence cosine sim + entity diversity) on C4 depth
+    chains. K* unchanged at 2. Semantic features rank 11/17 and 17/17. Surface stats
+    dominate discrimination.
+  path: projects/gen-depth-contamination/artifacts/_project/report/semantic_ablation_report.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T15:39:57.786200+00:00'
+  tags:
+  - ablation
+  - features
+  - semantic
+  - reviewer-response
+- id: art_20260517_6f7f2b
+  name: Semantic Ablation LaTeX Table
+  type: paper
+  description: 'LaTeX appendix tables: 15D vs 17D AUC comparison + full 17-feature
+    importance ranking. Ready for paper appendix.'
+  path: projects/gen-depth-contamination/artifacts/_project/paper/semantic_ablation_table_info.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T16:23:58.100112+00:00'
+  tags:
+  - latex
+  - appendix
+  - ablation
+  - table
+- id: art_20260517_10038e
+  name: exp_arXiv_qwen7b_analysis
+  type: report
+  description: 'Qwen2.5-7B arXiv K* analysis: K*=3 confirmed, consistent with all
+    other arXiv experiments across 5 models'
+  path: projects/gen-depth-contamination/artifacts/exp_arXiv_qwen7b/report/exp_arXiv_qwen7b_analysis.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_arXiv_qwen7b
+  skill: ''
+  created_at: '2026-05-17T16:36:41.620547+00:00'
+  tags:
+  - qwen
+  - arxiv
+  - kstar
+  - cross-model
+- id: art_20260517_d9a70d
+  name: Semantic Ablation Multi-Model Report
+  type: report
+  description: 17D semantic ablation across 3 models (Qwen-1.5B, Pythia-1.4B, Qwen-cont).
+    K* unchanged in all. semantic_cosine_sim rank 11-15/17, entity_diversity rank
+    16-17/17. Surface statistics suffice claim validated cross-model.
+  path: projects/gen-depth-contamination/artifacts/_project/report/semantic_ablation_multi_model_summary.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T17:05:48.843812+00:00'
+  tags:
+  - ablation
+  - semantic
+  - cross-model
+  - reviewer-response
+- id: art_20260517_09b165
+  name: exp_wiki_llama8b_analysis
+  type: report
+  description: Analysis report for LLaMA-3.1-8B Wikipedia K* experiment. K*=1 (one-wash),
+    hypothesis K*=2 not supported.
+  path: projects/gen-depth-contamination/artifacts/exp_wiki_llama8b/report/exp_wiki_llama8b_analysis_09b165.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_wiki_llama8b
+  skill: ''
+  created_at: '2026-05-17T19:33:43.019735+00:00'
+  tags:
+  - wikipedia
+  - llama-8b
+  - k-star
+  - discrimination-boundary
+- id: art_20260517_fb1be7
+  name: exp_wiki_mistral7b_analysis
+  type: report
+  description: 'Mistral-7B Wikipedia K* analysis: K*=1 (one-wash), consistent with
+    C4, contrasts with arXiv K*=3. Supports domain-dependent K* hypothesis.'
+  path: projects/gen-depth-contamination/artifacts/exp_wiki_mistral7b/report/exp_wiki_mistral7b_analysis_fb1be7.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_wiki_mistral7b
+  skill: ''
+  created_at: '2026-05-17T19:54:04.559188+00:00'
+  tags:
+  - K_star
+  - wikipedia
+  - mistral
+  - one-wash
+  - domain-dependent
+- id: art_20260517_d4ffdf
+  name: Theta Sensitivity Analysis
+  type: report
+  description: K* sensitivity to theta threshold across 21 successful experiments.
+    Covers C4/arXiv/Wikipedia/retrain-chain domains at theta in {0.55, 0.575, 0.60,
+    0.625, 0.65, 0.70}.
+  path: projects/gen-depth-contamination/artifacts/_project/report/theta_sensitivity_analysis.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T20:03:31.256882+00:00'
+  tags:
+  - theta
+  - sensitivity
+  - reviewer-response
+  - K-star
+- id: art_20260517_787c1b
+  name: exp_wiki_qwen7b_analysis
+  type: report
+  description: Qwen2.5-7B Wikipedia K* analysis - confirms K*=2, validating Qwen family
+    scale-consistent pattern
+  path: projects/gen-depth-contamination/artifacts/exp_wiki_qwen7b/report/exp_wiki_qwen7b_analysis_787c1b.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_wiki_qwen7b
+  skill: ''
+  created_at: '2026-05-17T22:24:40.898045+00:00'
+  tags:
+  - analysis
+  - wikipedia
+  - qwen7b
+  - k-star
+- id: art_20260517_1826a9
+  name: exp_wiki_scorer_confound_analysis
+  type: report
+  description: 'Scorer confound ablation analysis: Pythia-1.4B vs Qwen-1.5B scorer
+    on Qwen-7B Wikipedia generations. K* drops from 2 to 1, confirming scorer family
+    bias.'
+  path: projects/gen-depth-contamination/artifacts/exp_wiki_scorer_confound/report/exp_wiki_scorer_confound_analysis_1826a9.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_wiki_scorer_confound
+  skill: ''
+  created_at: '2026-05-17T23:20:51.593877+00:00'
+  tags:
+  - ablation
+  - scorer-confound
+  - wikipedia
+  - qwen7b
+- id: art_20260517_848d0c
+  name: tab_domain_model_kstar
+  type: paper
+  description: 'Main table: Domain×Model K* matrix (6 models × 3 domains), compact
+    single-column version for paper body'
+  path: projects/gen-depth-contamination/artifacts/_project/paper/tab_domain_model_kstar.tex
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T23:41:22.718973+00:00'
+  tags:
+  - table
+  - main-result
+  - kstar
+  - domain-dependent
+- id: art_20260517_c5d44d
+  name: tab_domain_model_kstar_full
+  type: paper
+  description: 'Appendix table: Full Domain×Model K* matrix with AUC values at boundary,
+    double-column format'
+  path: projects/gen-depth-contamination/artifacts/_project/paper/tab_domain_model_kstar_full.tex
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T23:41:24.701334+00:00'
+  tags:
+  - table
+  - appendix
+  - kstar
+  - auc
+  - full-results
+- id: art_20260518_ad3e64
+  name: paper_patch_audit
+  type: report
+  description: Paper comprehensive patch audit - 逐章节修改清单 (6 P0 / 8 P1 / 5 P2 items)
+  path: projects/gen-depth-contamination/artifacts/_project/report/paper_patch_audit.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T00:04:20.926634+00:00'
+  tags:
+  - paper
+  - audit
+  - patch
+- id: art_20260518_4f91f8
+  name: exp_wiki_scorer_confound_1b5 analysis report
+  type: report
+  description: Scorer confound analysis for Qwen-1.5B Wikipedia depth experiment.
+    Pythia cross-model scorer confirms K*=1, proving original K*=2 was scorer artifact.
+  path: projects/gen-depth-contamination/artifacts/exp_wiki_scorer_confound_1b5/report/exp_wiki_scorer_confound_1b5_analysis_a3f1c7_4f91f8.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_wiki_scorer_confound_1b5
+  skill: ''
+  created_at: '2026-05-18T01:21:24.709710+00:00'
+  tags:
+  - confound
+  - scorer
+  - wikipedia
+  - qwen-1.5b
+  - pythia
+- id: art_20260518_dcd0d1
+  name: exp_arXiv_qwen7b_crossscorer_analysis
+  type: report
+  description: Cross-scorer (Pythia-1.4B) validation analysis for arXiv Qwen-7B. K*
+    drops from 3 to 2; 2v3 AUC=0.5989 misses 0.60 threshold by 0.0011. Mild family
+    bias confirmed (~0.027 AUC).
+  path: projects/gen-depth-contamination/artifacts/exp_arXiv_qwen7b_crossscorer/report/exp_arXiv_qwen7b_crossscorer_analysis_4xqh3b_dcd0d1.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_arXiv_qwen7b_crossscorer
+  skill: ''
+  created_at: '2026-05-18T03:03:51.973508+00:00'
+  tags:
+  - cross-scorer
+  - arXiv
+  - qwen7b
+  - pythia
+  - K-star
+- id: art_20260518_ba4fa8
+  name: exp_arXiv_mistral7b_crossscorer analysis report
+  type: report
+  description: 'Cross-scorer validation: Pythia-1.4B vs Qwen-1.5B scoring Mistral-7B
+    arXiv generations. K*=3 confirmed scorer-independent.'
+  path: projects/gen-depth-contamination/artifacts/exp_arXiv_mistral7b_crossscorer/report/analysis_report.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_arXiv_mistral7b_crossscorer
+  skill: ''
+  created_at: '2026-05-18T03:04:29.110198+00:00'
+  tags:
+  - cross-scorer
+  - arXiv
+  - Mistral-7B
+  - Pythia-1.4B
+  - K-star
+- id: art_20260518_fd7ed6
+  name: exp_arXiv_llama8b_crossscorer analysis report
+  type: report
+  description: 'Cross-scorer validation report: Pythia-1.4B reproduces K*=3 for arXiv
+    LLaMA-8B, confirming scorer-independence of the saturation boundary. All AUC deltas
+    within 1.5% of Qwen original.'
+  path: projects/gen-depth-contamination/artifacts/exp_arXiv_llama8b_crossscorer/report/analysis_fd7ed6.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_arXiv_llama8b_crossscorer
+  skill: ''
+  created_at: '2026-05-18T03:04:49.189742+00:00'
+  tags:
+  - cross-scorer
+  - arXiv
+  - K*=3
+  - validation
+  - pythia
+- id: art_20260518_f5197e
+  name: exp_arXiv_qwen1b5_crossscorer analysis report
+  type: report
+  description: 'Cross-scorer validation report: Pythia-1.4B scorer on Qwen-1.5B arXiv
+    generations confirms K*=3 is scorer-independent (genuine signal), contrasting
+    with Wikipedia where K* dropped from 2 to 1 (scorer artifact).'
+  path: projects/gen-depth-contamination/artifacts/exp_arXiv_qwen1b5_crossscorer/report/analysis_report_f5197e.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_arXiv_qwen1b5_crossscorer
+  skill: ''
+  created_at: '2026-05-18T03:05:49.150658+00:00'
+  tags:
+  - cross-scorer
+  - arXiv
+  - K-star
+  - scorer-independence
+  - Pythia-1.4B
+- id: art_20260518_586d6e
+  name: numerical_audit_m2_m5
+  type: data
+  description: Numerical audit of 5 disputed values (M2 retrain-chain, m1 arXiv Pythia,
+    m2 Qwen-7B C4, m4 Wiki exp_023, m5 Wiki lambda) against authoritative server JSONs
+  path: projects/gen-depth-contamination/artifacts/_project/data/numerical_audit_m2_m5.json
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T05:26:30.348250+00:00'
+  tags:
+  - audit
+  - numerical
+  - paper
+- id: art_20260518_41ddf3
+  name: exp_14b_c4_bootstrap_ci
+  type: report
+  description: '14B C4 scale validation bootstrap CI: 10K resamples, doc-level bootstrap
+    + permutation test. K*=2 statistically confirmed (1v2 CI [0.6119, 0.6304] > θ=0.60).'
+  path: projects/gen-depth-contamination/artifacts/exp_14b_c4/report/results_summary.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_14b_c4
+  skill: ''
+  created_at: '2026-05-18T08:37:59.506934+00:00'
+  tags:
+  - bootstrap-ci
+  - scale-validation
+  - 14B
+- id: art_20260518_6031ad
+  name: fig_jsd_decay_with_14b
+  type: chart
+  description: JSD decay figure updated with Qwen-14B data point. Now shows 8 C4 models
+    (1B-14B). 14B JSD falls within existing C4 band, consistent with scale invariance
+    of K*=2.
+  path: projects/gen-depth-contamination/artifacts/exp_14b_c4/chart/fig_jsd_decay.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_14b_c4
+  skill: ''
+  created_at: '2026-05-18T08:53:48.498096+00:00'
+  tags:
+  - jsd-decay
+  - scale-validation
+  - 14B
+  - figure
+- id: art_20260518_3de274
+  name: exp027_latex_ablation_results
+  type: report
+  description: 'exp-027 LaTeX markup removal ablation: pairwise AUC, K* comparison
+    with original exp-024'
+  path: projects/gen-depth-contamination/artifacts/exp_027_latex_ablation/report/exp027_comparison.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_027_latex_ablation
+  skill: ''
+  created_at: '2026-05-18T10:36:05.474045+00:00'
+  tags: []
+- id: art_20260518_8d8978
+  name: citations_round2
+  type: data
+  description: 'BibTeX for 3 new citations: Kirchenbauer 2023 (watermark, ICML), Penedo
+    2024 (FineWeb, NeurIPS D&B), Gehrmann 2019 (GLTR, ACL).'
+  path: projects/gen-depth-contamination/artifacts/_project/data/new_bibtex.bib
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T10:39:50.449344+00:00'
+  tags:
+  - citations
+  - bibtex
+- id: art_20260518_fdee4d
+  name: c4_power_curve
+  type: chart
+  description: 'C4 subsampling power curve: n=1000 gives 90% K*=2 detection, n≥2500
+    gives 100%. Shows K*=2 signal is robust and not a large-sample artifact.'
+  path: projects/gen-depth-contamination/artifacts/_project/chart/fig_power_curve.png
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T10:40:10.470495+00:00'
+  tags:
+  - power-curve
+  - subsampling
+  - C4
+  - figure
+- id: art_20260518_a82715
+  name: exp_027_bootstrap_ci
+  type: report
+  description: 'exp_027 LaTeX ablation bootstrap CI: 2v3 CI [0.6098, 0.6402] > θ=0.60,
+    K*=3 confirmed post-LaTeX-removal. Margin tight (0.0098) but statistically significant
+    (p<0.001).'
+  path: projects/gen-depth-contamination/artifacts/exp_027_latex_ablation/report/results_summary.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_027_latex_ablation
+  skill: ''
+  created_at: '2026-05-18T11:42:03.890091+00:00'
+  tags:
+  - bootstrap-ci
+  - latex-ablation
+  - statistical-significance
+- id: art_20260518_3c4547
+  name: exp_026_ttest
+  type: report
+  description: 'exp_026 paired t-test: graduated vs no_filter NOT significant (p=0.69/0.25).
+    Binary vs no_filter shows significant trade-off: MMLU -0.23pp (p=0.005) but HellaSwag
+    +0.41pp (p<0.00001).'
+  path: projects/gen-depth-contamination/artifacts/exp_026_arxiv_filtering/report/results_summary.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_026_arxiv_filtering
+  skill: ''
+  created_at: '2026-05-18T12:02:08.766121+00:00'
+  tags:
+  - paired-ttest
+  - null-result
+  - filtering
+- id: art_20260518_87590f
+  name: fig_theta_sensitivity
+  type: chart
+  description: 'θ sensitivity curve: K* as a function of θ for 3 domains (C4/arXiv/Wiki)
+    across 7 model families. Shows domain ordering Wiki≤1 < C4≈2 < arXiv≈3 is stable
+    across θ∈[0.55,0.70].'
+  path: projects/gen-depth-contamination/artifacts/_project/chart/fig_theta_sensitivity.png
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T13:43:08.079013+00:00'
+  tags:
+  - figure
+  - theta-sensitivity
+  - reviewer-request
+- id: art_20260518_8eebc6
+  name: fig_theta_sensitivity
+  type: chart
+  description: 'θ sensitivity curve: K* as function of θ∈[0.55,0.70] for 3 domains
+    (C4/arXiv/Wiki). Domain ordering stable across full θ range. 15 model×domain configs.'
+  path: projects/gen-depth-contamination/artifacts/_project/chart/fig_theta_sensitivity.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T13:52:00.636732+00:00'
+  tags:
+  - theta-sensitivity
+  - figure
+  - reviewer-response
+- id: art_20260518_dcdf0f
+  name: exp_026_latex_table
+  type: paper
+  description: 'exp_026 arXiv filtering LaTeX table: 3 strategies × 5 seeds × 2 metrics,
+    with paired t-test significance rows. Appendix-ready format.'
+  path: projects/gen-depth-contamination/artifacts/exp_026_arxiv_filtering/paper/latex_table.tex
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_026_arxiv_filtering
+  skill: ''
+  created_at: '2026-05-18T13:54:42.802543+00:00'
+  tags:
+  - latex-table
+  - filtering
+  - appendix
+- id: art_20260518_8e4969
+  name: feature_group_ablation
+  type: report
+  description: 'Feature group ablation across C4/arXiv/Wiki: surprisal(base) is strongest
+    single group (arXiv 0.809 AUC), full 15D achieves 0.609/0.860/0.619. Includes
+    heatmap + LaTeX table.'
+  path: projects/gen-depth-contamination/artifacts/_project/report/ablation_results.csv
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T13:56:52.719128+00:00'
+  tags:
+  - feature-ablation
+  - surprisal
+  - cross-domain
+- id: art_20260518_790184
+  name: exp_026_latex_table
+  type: paper
+  description: 'exp_026 arXiv filtering results formatted as LaTeX appendix table:
+    3 strategies × 5 seeds × 2 metrics, summary + per-seed breakdown + paired t-test
+    p-values.'
+  path: projects/gen-depth-contamination/artifacts/exp_026_arxiv_filtering/paper/latex_table_790184.tex
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_026_arxiv_filtering
+  skill: ''
+  created_at: '2026-05-18T13:59:16.552517+00:00'
+  tags:
+  - latex-table
+  - filtering
+  - appendix
+- id: art_20260518_38fb23
+  name: fig_feature_ablation
+  type: chart
+  description: Feature group ablation heatmap (single-group and leave-one-out 1v2
+    AUC across C4/arXiv/Wiki). Data from artifacts/feature_ablation/ablation_results.json.
+  path: projects/gen-depth-contamination/artifacts/_project/chart/fig_feature_ablation.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T14:08:42.674710+00:00'
+  tags:
+  - paper
+  - appendix
+  - feature_ablation
+- id: art_20260518_1f3aca
+  name: fig_theta_sensitivity
+  type: chart
+  description: 'θ sensitivity curve: K* vs θ∈[0.55,0.70] for 15 model×domain configs
+    across 3 panels (C4/arXiv/Wiki). Domain ordering stable across full θ range.'
+  path: projects/gen-depth-contamination/artifacts/_project/chart/fig_theta_sensitivity_1f3aca.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T14:23:49.566600+00:00'
+  tags:
+  - theta-sensitivity
+  - figure
+  - reviewer-request
+- id: art_20260518_db01ab
+  name: exp_026_latex_table
+  type: paper
+  description: exp_026 arXiv filtering results as LaTeX table (summary + per-seed
+    breakdown, 3 strategies × 5 seeds × 2 metrics, paired t-test). For appendix.
+  path: projects/gen-depth-contamination/artifacts/exp_026_arxiv_filtering/paper/latex_table_db01ab.tex
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_026_arxiv_filtering
+  skill: ''
+  created_at: '2026-05-18T14:23:52.356758+00:00'
+  tags:
+  - latex-table
+  - filtering
+  - appendix
+- id: art_20260518_643255
+  name: fig_feature_ablation
+  type: chart
+  description: 'Feature group ablation heatmap: single-group AUC and LOO drop for
+    4 feature groups × 3 domains. Surprisal (base) is strongest single group.'
+  path: projects/gen-depth-contamination/artifacts/_project/chart/fig_feature_ablation_643255.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T14:23:54.555231+00:00'
+  tags:
+  - feature-ablation
+  - figure
+  - heatmap
+- id: art_20260518_e70a18
+  name: domain_lexical_stats
+  type: report
+  description: 'W3: 3-domain TTR + freq_entropy by depth. TTR at depth 0 matches K*
+    ordering (Wiki<C4<arXiv, d=1.52). TTR reverses at depth≥3 (arXiv collapses fastest).
+    Entropy partially matches.'
+  path: projects/gen-depth-contamination/artifacts/_project/report/summary.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T15:16:34.546287+00:00'
+  tags:
+  - lexical-stats
+  - TTR
+  - entropy
+  - domain-comparison
+- id: art_20260518_49247b
+  name: mcnemar_pvalues
+  type: report
+  description: 'W5: McNemar OBD vs baselines. CRITICAL: "all p<0.01" claim FALSE.
+    Only 4/36 significant. 31/36 no difference. Classifier choice doesn''t matter,
+    features carry the signal.'
+  path: projects/gen-depth-contamination/artifacts/_project/report/summary_49247b.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T15:28:56.307579+00:00'
+  tags:
+  - mcnemar
+  - statistical-test
+  - claim-verification
+  - CRITICAL
+- id: art_20260518_30784b
+  name: theta_lofo_table
+  type: paper
+  description: LaTeX tables for θ LOFO cross-validation (C4-only for main text, combined
+    3-domain for appendix)
+  path: projects/gen-depth-contamination/artifacts/_project/paper/theta_lofo_table.tex
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T15:45:50.010038+00:00'
+  tags:
+  - theta
+  - cross-validation
+  - LOFO
+  - table
+- id: art_20260518_f46eca
+  name: theta_lofo_summary
+  type: report
+  description: Detailed summary of θ LOFO cross-validation results across C4/arXiv/Wiki
+    domains
+  path: projects/gen-depth-contamination/artifacts/_project/report/summary_f46eca.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T15:45:51.600730+00:00'
+  tags:
+  - theta
+  - cross-validation
+  - LOFO
+  - analysis
+- id: art_20260518_5c9ffa
+  name: exp_olmo_retrain_chain script
+  type: intermediate
+  description: 'OLMo-1B retrain-chain experiment script: LoRA fine-tune per generation,
+    merge, generate next depth, extract features with Qwen2.5-1.5B scorer, run LightGBM
+    AUC analysis'
+  path: projects/gen-depth-contamination/artifacts/exp_olmo_retrain_chain/intermediate/exp_olmo_retrain_chain.py
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_olmo_retrain_chain
+  skill: ''
+  created_at: '2026-05-18T16:09:34.183849+00:00'
+  tags: []
+- id: art_20260518_d5617d
+  name: C4 Borderline Feature-Level Error Analysis
+  type: report
+  description: 'Feature-level analysis of C4 borderline models (1v2 pair): LightGBM
+    importance, Cohen''s d, surprisal attenuation profiles for 6 models spanning strong/borderline/below-theta'
+  path: projects/gen-depth-contamination/artifacts/_project/report/summary_d5617d.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T16:25:36.355591+00:00'
+  tags:
+  - borderline
+  - feature-analysis
+  - c4
+  - cohen-d
+  - lightgbm
+- id: art_20260518_d1cc1c
+  name: Borderline Features LaTeX Table
+  type: paper
+  description: 'LaTeX table: C4 1v2 feature importance and Cohen''s d summary across
+    strong/borderline/below-theta models'
+  path: projects/gen-depth-contamination/artifacts/_project/paper/borderline_features.tex
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T16:25:38.694735+00:00'
+  tags:
+  - latex
+  - borderline
+  - feature-analysis
+- id: art_20260518_6d7b99
+  name: Cohen's d Full Matrix LaTeX
+  type: paper
+  description: 'LaTeX table: Full 15-feature Cohen''s d matrix (depth-1 vs depth-2)
+    across 6 C4 models'
+  path: projects/gen-depth-contamination/artifacts/_project/paper/cohens_d_full.tex
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T16:25:40.481314+00:00'
+  tags:
+  - latex
+  - cohen-d
+  - feature-analysis
+- id: art_20260518_1d7599
+  name: borderline_analysis_summary
+  type: report
+  description: 'Borderline model feature analysis: mechanistic explanation for why
+    Mistral K*=1 and Pythia-t12/LLaMA are borderline. Cohen''s d effect sizes, surprisal
+    decay analysis.'
+  path: projects/gen-depth-contamination/artifacts/_project/report/summary_1d7599.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T16:28:21.685038+00:00'
+  tags:
+  - paper
+  - analysis
+  - borderline
+  - round10
+- id: art_20260518_126826
+  name: borderline_features_tex
+  type: paper
+  description: LaTeX table of borderline model feature analysis for paper inclusion
+  path: projects/gen-depth-contamination/artifacts/_project/paper/borderline_features_126826.tex
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T16:28:23.583336+00:00'
+  tags:
+  - paper
+  - latex
+  - table
+  - borderline
+- id: art_20260518_50bdcb
+  name: cohens_d_full_tex
+  type: paper
+  description: Full Cohen's d effect size table across all models and features
+  path: projects/gen-depth-contamination/artifacts/_project/paper/cohens_d_full_50bdcb.tex
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T16:28:25.357312+00:00'
+  tags:
+  - paper
+  - latex
+  - table
+  - cohens_d
+- id: art_20260518_e06cb2
+  name: new_bibtex_entries
+  type: paper
+  description: 5 BibTeX entries for Paper Agent placeholder citations. 3/5 exact match
+    (tang2024science, oren2024proving, cao2020coral), 2 need confirmation (guo2023
+    survey identity, krishna2024 duplicate of krishna2023).
+  path: projects/gen-depth-contamination/artifacts/_project/paper/new_bibtex_entries.bib
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T16:45:05.391345+00:00'
+  tags:
+  - paper
+  - bibtex
+  - citations
+  - round10
+- id: art_20260518_39225f
+  name: code_domain_qwen_results_tex
+  type: paper
+  description: Code domain (Python/CodeSearchNet) Qwen2.5-1.5B pairwise AUC LaTeX
+    table. K*=2 (θ=0.60). 4th domain result for EMNLP submission.
+  path: projects/gen-depth-contamination/artifacts/exp_code_qwen1b5/paper/code_domain_results_39225f.tex
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_code_qwen1b5
+  skill: ''
+  created_at: '2026-05-18T21:24:32.496076+00:00'
+  tags:
+  - paper
+  - latex
+  - table
+  - code-domain
+  - round10
+- id: art_20260518_81faea
+  name: qwen_retrain_chain_results_tex
+  type: paper
+  description: Qwen2.5-1.5B retrain-chain pairwise AUC LaTeX table. K*≥4 (all pairs
+    > θ=0.60). Bootstrap CI still running.
+  path: projects/gen-depth-contamination/artifacts/exp_qwen_retrain_chain/paper/qwen_retrain_results_81faea.tex
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_qwen_retrain_chain
+  skill: ''
+  created_at: '2026-05-18T21:24:34.515404+00:00'
+  tags:
+  - paper
+  - latex
+  - table
+  - retrain-chain
+  - round10
+- id: art_20260518_fec032
+  name: qwen_retrain_results_foldci
+  type: paper
+  description: Qwen retrain-chain LaTeX table with fold-based CI (bootstrap discarded
+    due to data leakage). K*≥4, all AUC >> θ=0.60.
+  path: projects/gen-depth-contamination/artifacts/exp_qwen_retrain_chain/paper/qwen_retrain_results_fec032.tex
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_qwen_retrain_chain
+  skill: ''
+  created_at: '2026-05-18T22:30:55.003592+00:00'
+  tags:
+  - latex
+  - retrain-chain
+  - fold-ci
+- id: art_20260518_57322d
+  name: exp_qwen_retrain_chain_ext
+  type: intermediate
+  description: Qwen retrain-chain depth extension script (depth 5-7), 5-fold GroupKFold
+    CV analysis, no bootstrap
+  path: projects/gen-depth-contamination/artifacts/exp_qwen_retrain_ext/intermediate/exp_qwen_retrain_chain_ext.py
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_qwen_retrain_ext
+  skill: ''
+  created_at: '2026-05-18T22:36:39.740025+00:00'
+  tags:
+  - qwen
+  - retrain-chain
+  - depth-extension
+  - 5-fold-cv
+- id: art_20260518_fc09a1
+  name: exp_028_power_curve_results
+  type: data
+  description: Subsampling power curve results for K*=2 detection on C4. Shows minimum
+    sample size (n=2000) for 100% detection rate at theta=0.60.
+  path: projects/gen-depth-contamination/artifacts/exp_028_power_curve/data/power_results.json
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_028_power_curve
+  skill: ''
+  created_at: '2026-05-18T22:59:40.328104+00:00'
+  tags: []
+- id: art_20260518_8b87ec
+  name: exp_028_power_curve_figure
+  type: chart
+  description: 'Power curve plot: K*=2 detection rate and 1v2 AUC vs sample size on
+    C4. Dual y-axis, single-column width, annotated minimum n for 100% success.'
+  path: projects/gen-depth-contamination/artifacts/exp_028_power_curve/chart/power_curve.png
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_028_power_curve
+  skill: ''
+  created_at: '2026-05-18T22:59:43.074769+00:00'
+  tags: []
+- id: art_20260518_2225d9
+  name: power_curve_plot
+  type: chart
+  description: 'Subsampling power curve: K*=2 detection rate vs sample size n on C4.
+    n=2000 is threshold for 100% detection.'
+  path: projects/gen-depth-contamination/artifacts/exp_028_power_curve/chart/power_curve_2225d9.png
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_028_power_curve
+  skill: ''
+  created_at: '2026-05-18T23:01:34.899684+00:00'
+  tags:
+  - power-analysis
+  - sample-size
+  - figure
+- id: art_20260519_789178
+  name: code_crossmodel_table
+  type: paper
+  description: Code domain cross-model K* comparison LaTeX table (4 model families).
+    Qwen data filled, Pythia/LLaMA/Mistral TBD placeholders.
+  path: projects/gen-depth-contamination/artifacts/_project/paper/code_crossmodel_table.tex
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T00:08:56.062181+00:00'
+  tags:
+  - code-domain
+  - cross-model
+  - table
+  - template
+- id: art_20260519_998885
+  name: Registry Audit & Dream Simulation Readiness
+  type: report
+  description: Registry RUNNING 实验状态审计 + Dream simulation 4域版本前置条件检查 (2026-05-19)
+  path: projects/gen-depth-contamination/artifacts/_project/report/registry_audit_dream_prep.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T01:05:14.232795+00:00'
+  tags:
+  - audit
+  - dream-simulation
+  - registry
+- id: art_20260519_ee7224
+  name: gpu_diagnosis_20260519
+  type: report
+  description: GPU状态诊断 + retrain-depth-ext (depth 5-7) 完整结果收集，含pairwise AUC/JSD per-fold数据
+  path: projects/gen-depth-contamination/artifacts/_project/report/gpu_diagnosis_20260519.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T01:05:15.833540+00:00'
+  tags:
+  - gpu-diagnosis
+  - retrain-depth-ext
+  - pairwise-auc
+- id: art_20260519_8afe98
+  name: retrain_depth7_results_table
+  type: data
+  description: LaTeX table for Qwen2.5-1.5B retrain-chain depth 0-7 pairwise AUC with
+    5-fold CI and JSD
+  path: projects/gen-depth-contamination/artifacts/exp_qwen_retrain_depth7/data/retrain_depth7_results.tex
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_qwen_retrain_depth7
+  skill: ''
+  created_at: '2026-05-19T01:11:21.219718+00:00'
+  tags:
+  - latex
+  - table
+  - retrain-chain
+  - depth7
+- id: art_20260519_23aa8f
+  name: retrain_depth7_analysis
+  type: report
+  description: 'Analysis report for retrain-chain depth 0-7: AUC decay trend, JSD
+    convergence, K* ceiling prediction, consistency verification'
+  path: projects/gen-depth-contamination/artifacts/exp_qwen_retrain_depth7/report/analysis_report.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_qwen_retrain_depth7
+  skill: ''
+  created_at: '2026-05-19T01:11:23.499834+00:00'
+  tags:
+  - analysis
+  - retrain-chain
+  - depth7
+  - trend
+- id: art_20260519_490934
+  name: retrain_decay_curve
+  type: chart
+  description: Retrain-chain vs Prompt-chain K* decay curve. Shows pairwise AUC across
+    depth pairs (0v1 to 6v7) for Qwen2.5-1.5B LoRA retrain-chain and prompt-chain
+    on C4, with theta=0.60 threshold line.
+  path: projects/gen-depth-contamination/artifacts/_project/chart/retrain_decay_curve.png
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T01:14:57.852805+00:00'
+  tags:
+  - figure
+  - retrain-chain
+  - prompt-chain
+  - K-star
+  - AUC
+  - decay-curve
+- id: art_20260519_931ca2
+  name: retrain_decay_curve_v2
+  type: chart
+  description: Retrain-chain vs Prompt-chain pairwise AUC decay curve with fold-based
+    CI error bars (Qwen2.5-1.5B). Shows retrain K*>=7 and prompt K*=2 with theta=0.60
+    threshold.
+  path: projects/gen-depth-contamination/artifacts/_project/chart/retrain_decay_curve_v2.png
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T02:30:59.560170+00:00'
+  tags:
+  - figure
+  - retrain-chain
+  - prompt-chain
+  - AUC-decay
+  - CI
+- id: art_20260519_f73c4c
+  name: dream_simulation_readiness
+  type: report
+  description: 'Dream simulation 前置检查报告: registry 状态、数据可用性、缺失项汇总'
+  path: projects/gen-depth-contamination/artifacts/_project/report/dream_simulation_readiness.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T02:44:08.443183+00:00'
+  tags:
+  - dream-simulation
+  - registry-audit
+  - readiness-check
+- id: art_20260519_a12fef
+  name: retrain_chain_paper_notes
+  type: report
+  description: Retrain-chain K*=7 论文素材整理：完整数据、prompt vs retrain 对比、narrative points、gap
+    分析、段落结构建议
+  path: projects/gen-depth-contamination/artifacts/_project/report/retrain_chain_paper_notes.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T02:57:29.200524+00:00'
+  tags:
+  - paper-writing
+  - retrain-chain
+  - K-star
+- id: art_20260519_fd1e59
+  name: model_collapse_literature_notes
+  type: report
+  description: Model collapse 文献调研笔记：6 篇核心论文分析、positioning 文字、缺失 BibTeX 条目（Bertrand
+    et al. 2024）
+  path: projects/gen-depth-contamination/artifacts/_project/report/model_collapse_literature_notes.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T03:19:51.233057+00:00'
+  tags:
+  - literature
+  - model-collapse
+  - retrain-chain
+  - discussion
+- id: art_20260519_e522dd
+  name: retrain_crossmodel_decay
+  type: chart
+  description: Pythia-1.4B vs Qwen2.5-1.5B retrain-chain AUC decay comparison (K*=7),
+    with 95% CI error bars and θ=0.60 threshold
+  path: projects/gen-depth-contamination/artifacts/_project/chart/retrain_crossmodel_decay.png
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T03:49:55.919444+00:00'
+  tags:
+  - retrain-chain
+  - cross-model
+  - auc-decay
+  - pythia
+  - qwen
+  - figure
+- id: art_20260519_aa63ee
+  name: retrain_decay_curve_v3
+  type: chart
+  description: 'Retrain decay curve v3: three-line plot showing Qwen retrain, Pythia
+    retrain, and Prompt-chain AUC decay with CI error bars, threshold θ=0.60, and
+    K* annotations.'
+  path: projects/gen-depth-contamination/artifacts/_project/chart/retrain_decay_curve_v3.png
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T03:50:46.654419+00:00'
+  tags:
+  - figure
+  - retrain-chain
+  - decay-curve
+  - paper
+- id: art_20260519_239fc9
+  name: code_scenario_prep
+  type: report
+  description: Code domain scenario analysis for Mistral-7B and Qwen-7B pending results,
+    covering all K* outcome combinations and corresponding narrative adjustments
+  path: projects/gen-depth-contamination/artifacts/_project/report/code_scenario_prep.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T10:15:49.850489+00:00'
+  tags:
+  - code-domain
+  - scenario-analysis
+  - round-11
+- id: art_20260519_858e15
+  name: diag_exp_code_qwen7b
+  type: report
+  description: exp_code_qwen7b 实验诊断报告：实验实际成功完成(EXIT_CODE=0)，K*=2，EXIT_CODE=1 为 job
+    runner 误报
+  path: projects/gen-depth-contamination/artifacts/exp_code_qwen7b/report/diag_exp_code_qwen7b.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_code_qwen7b
+  skill: ''
+  created_at: '2026-05-19T12:15:06.324308+00:00'
+  tags:
+  - diagnosis
+  - false-alarm
+- id: art_20260519_7b278e
+  name: exp_32b_c4 Analysis Report
+  type: report
+  description: Qwen2.5-32B on C4 saturation study results. K*=2 confirmed, scale invariance
+    holds up to 32B.
+  path: projects/gen-depth-contamination/artifacts/exp_32b_c4/report/analysis_report.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_32b_c4
+  skill: ''
+  created_at: '2026-05-19T21:35:32.931320+00:00'
+  tags:
+  - scale-invariance
+  - K-star
+  - C4
+  - 32B
+- id: art_20260520_a5f325
+  name: multi_source_detection_results
+  type: data
+  description: 'Multi-source contamination detection: 3 generators (Qwen-1.5B, Pythia-1.4B,
+    OLMo-1B) mixed pool, OBD 15D+LightGBM, 5-fold CV, bootstrap 10000. K*=2 for both
+    no-label and with-label conditions.'
+  path: projects/gen-depth-contamination/artifacts/exp_multi_source_detection/data/multi_source_results.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_multi_source_detection
+  skill: ''
+  created_at: '2026-05-20T07:01:45.327390+00:00'
+  tags:
+  - multi-source
+  - kstar
+  - bootstrap
+  - cross-generator
+- id: art_20260520_04145d
+  name: changepoint_kstar_results
+  type: data
+  description: Changepoint-based K* analysis on 37 experiments. Within-1 agreement
+    with theta=0.60 is 94.6%. CP always conservative.
+  path: projects/gen-depth-contamination/artifacts/exp_changepoint_kstar/data/changepoint_kstar_summary.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_changepoint_kstar
+  skill: ''
+  created_at: '2026-05-20T07:20:16.624563+00:00'
+  tags: []
+- id: art_20260520_03496f
+  name: multi_source_detection_v2_results
+  type: data
+  description: 'Multi-source detection v2 results: Qwen-1.5B + Pythia-1.4B + LLaMA-3.1-8B,
+    K*=2 confirmed. Full JSON at server: /root/autodl-tmp/gen-depth-contamination/results/exp_multi_source_detection_v2/multi_source_results.json'
+  path: null
+  url: file:///root/autodl-tmp/gen-depth-contamination/results/exp_multi_source_detection_v2/multi_source_results.json
+  project: gen-depth-contamination
+  exp_id: exp_multi_source_detection
+  skill: ''
+  created_at: '2026-05-20T07:22:16.881265+00:00'
+  tags:
+  - multi-source
+  - v2
+  - llama8b
+  - kstar
+- id: art_20260520_db7b73
+  name: arXiv Multi-Source Detection Results
+  type: data
+  description: 'arXiv multi-source pairwise AUC results: vocab-only (6 features) and
+    unified Qwen scorer (15D). 3 generators x depths 0-5, LightGBM + bootstrap CI.
+    Key: arXiv K*=3 (unified) vs C4 K*=2.'
+  path: projects/gen-depth-contamination/artifacts/exp_multi_source_arxiv/data/results.json
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_multi_source_arxiv
+  skill: ''
+  created_at: '2026-05-20T08:42:51.404852+00:00'
+  tags:
+  - multi-source
+  - arxiv
+  - vocab-only
+  - unified-scorer
+  - kstar
+  - pairwise-auc
+- id: art_20260520_72e146
+  name: exp_gemma2b_depth results
+  type: data
+  description: 'Gemma-2-2B C4 depth chain results: K*=1 (borderline negative), pairwise
+    AUC, JSD, ordinal classification, feature importance'
+  path: projects/gen-depth-contamination/artifacts/exp_gemma2b_depth/data/exp_gemma2b_depth_results.json
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_gemma2b_depth
+  skill: ''
+  created_at: '2026-05-20T09:41:07.108241+00:00'
+  tags:
+  - gemma-2-2b
+  - c4
+  - depth-chain
+  - k-star
+  - pairwise-auc
+- id: art_20260520_1376e1
+  name: exp-014 naturalistic validation script
+  type: intermediate
+  description: 'Experiment script for exp-014: validates OBD depth classifier on real
+    Common Crawl data using Qwen2.5-1.5B scorer, LightGBM classifiers, and Spearman
+    correlation analysis'
+  path: projects/gen-depth-contamination/artifacts/exp-014/intermediate/run_naturalistic_validation.py
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp-014
+  skill: ''
+  created_at: '2026-05-20T11:30:00.006011+00:00'
+  tags:
+  - experiment
+  - naturalistic-validation
+  - common-crawl
+  - lightgbm
+- id: art_20260520_c851b9
+  name: exp-014 results JSON
+  type: data
+  description: 'Full results for exp-014 naturalistic validation: binary AUC=0.9919,
+    89% CC predicted human, Spearman correlations (AI_prob vs freq_entropy rho=-0.78),
+    depth-stratified metric means'
+  path: projects/gen-depth-contamination/artifacts/exp-014/data/exp014_results_summary.json
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp-014
+  skill: ''
+  created_at: '2026-05-20T11:30:44.230908+00:00'
+  tags:
+  - results
+  - naturalistic-validation
+  - correlations
+- id: art_20260520_df9c49
+  name: bootstrap_10k_comparison
+  type: data
+  description: Table 2 borderline configs 1K vs 10K bootstrap CI comparison. Addresses
+    R14-W1.
+  path: projects/gen-depth-contamination/artifacts/exp_bootstrap_10k/data/bootstrap_10k_comparison.json
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_bootstrap_10k
+  skill: ''
+  created_at: '2026-05-20T11:56:13.852415+00:00'
+  tags:
+  - bootstrap
+  - table2
+  - rebuttal
+  - R14-W1
+- id: art_20260520_e196ed
+  name: round22_raw_data_extraction
+  type: data
+  description: 'Round 22 审稿修复原始数据: permutation p-values (T4), PELT 37-config pairs
+    (T3), fold-level AUC (T2), generator identity Δ (T6). Extracted from cqa1-22115.'
+  path: projects/gen-depth-contamination/artifacts/_project/data/round22_raw_data_extraction.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T17:01:53.165198+00:00'
+  tags:
+  - review-fix
+  - round22
+  - data-extraction
+- id: art_20260520_43bfa4
+  name: fig_kstar_theta_v2
+  type: chart
+  description: 'Figure 3 (fig_kstar_theta.pdf) regenerated with Qwen-7B added to both
+    panels. Panel (a): Pairwise AUC profile for 5 C4 configs. Panel (b): K*(θ) sensitivity
+    for 5 models.'
+  path: projects/gen-depth-contamination/artifacts/_project/chart/fig_kstar_theta_43bfa4.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T17:32:19.976692+00:00'
+  tags:
+  - figure
+  - kstar
+  - qwen-7b
+  - paper
+- id: art_20260520_97acff
+  name: fig_contamination_sweep
+  type: chart
+  description: 'Contamination rate sweep figure (2-panel: HellaSwag + ARC-C vs rate,
+    3 strategies). Shows binary filter maintains performance across 10-50% contamination
+    while no_filter/graduated degrade monotonically.'
+  path: projects/gen-depth-contamination/artifacts/exp_contamination_rate_sweep/chart/fig_contamination_sweep.png
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_contamination_rate_sweep
+  skill: ''
+  created_at: '2026-05-20T18:07:14.472472+00:00'
+  tags:
+  - figure
+  - contamination-sweep
+  - hellaswag
+  - arc-c
+  - binary-filter
+- id: art_20260520_4010c0
+  name: contamination-rate-sweep-literature-analysis
+  type: report
+  description: Literature analysis comparing our contamination rate sweep results
+    (binary vs graduated filtering across 10-50% contamination) with existing dose-response
+    and filtering strategy papers
+  path: projects/gen-depth-contamination/artifacts/exp_contamination_rate_sweep/report/contamination_rate_sweep_literature_analysis.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_contamination_rate_sweep
+  skill: ''
+  created_at: '2026-05-20T18:27:55.485411+00:00'
+  tags:
+  - literature
+  - contamination-rate
+  - filtering
+  - dose-response
+- id: art_20260520_eb9283
+  name: data_consistency_snapshot_20260520
+  type: data
+  description: Frozen snapshot of all eval.json metrics for exp_expanded_downstream_eval,
+    with acc/acc_norm breakdown and metric convention annotations
+  path: projects/gen-depth-contamination/artifacts/_project/data/data_consistency_snapshot_20260520.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T22:00:58.670463+00:00'
+  tags:
+  - eval
+  - snapshot
+  - downstream
+- id: art_20260521_38bfd5
+  name: expanded_downstream_eval_final_table
+  type: data
+  description: Final 3 seeds × 5 benchmarks × 3 strategies + base model table with
+    corrected metrics (PIQA=acc_norm, ARC-C=acc_norm, WinoGrande=acc, TruthfulQA=mc2,
+    GSM8K=exact_match). All 50 values present, no nulls.
+  path: projects/gen-depth-contamination/artifacts/exp_expanded_downstream_eval/data/expanded_downstream_eval_final_table.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_expanded_downstream_eval
+  skill: ''
+  created_at: '2026-05-21T00:24:52.530769+00:00'
+  tags:
+  - d093
+  - downstream_eval
+  - final
+- id: art_20260521_262331
+  name: lofo_theta_validation_with_gemma
+  type: data
+  description: LOFO θ validation updated with Gemma-2-2B. Gemma is binding constraint
+    (1v2 ci_lower=0.5882 less than θ=0.60). LOFO θ̂ range [0.5696, 0.5905], mean=0.5826.
+  path: projects/gen-depth-contamination/artifacts/_project/data/lofo_theta_validation_summary.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T01:52:46.575992+00:00'
+  tags:
+  - lofo
+  - theta_validation
+  - gemma
+  - round23
+- id: art_20260521_f5314e
+  name: lofo_nonqwen_reframing
+  type: data
+  description: 'LOFO reframing: non-Qwen families (Gemma/OLMo/Pythia/LLaMA/Mistral)
+    derive θ̂ range (0.5417, 0.5835], Qwen validates K*=2 at θ=0.58. All-8 consensus
+    (0.5795, 0.5835]. Director chose Option A: keep θ=0.60 as conservative.'
+  path: projects/gen-depth-contamination/artifacts/_project/data/lofo_nonqwen_reframing_summary.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T02:17:19.734322+00:00'
+  tags:
+  - lofo
+  - theta_validation
+  - round23
+  - nonqwen_reframing
+- id: art_20260521_fe66c0
+  name: case_study_qualitative
+  type: paper
+  description: 'Qualitative case study LaTeX for appendix: 3 representative depth-chain
+    documents (C4 web, C4 encyclopedic, arXiv) showing text excerpts and feature values
+    across depths 0-3'
+  path: projects/gen-depth-contamination/artifacts/_project/paper/case_study_qualitative.tex
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T02:55:48.315573+00:00'
+  tags:
+  - appendix
+  - case-study
+  - qualitative
+  - latex
+- id: art_20260521_8e5fab
+  name: winogrande_negative_analysis
+  type: report
+  description: 'Analysis of binary filtering''s -0.79pp WinoGrande gap: noise vs systematic
+    pattern'
+  path: projects/gen-depth-contamination/artifacts/exp_expanded_downstream_eval/report/winogrande_negative_analysis.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_expanded_downstream_eval
+  skill: ''
+  created_at: '2026-05-21T04:00:16.511523+00:00'
+  tags:
+  - winogrande
+  - analysis
+  - negative-result
+  - statistics
+- id: art_20260521_0c89e8
+  name: winogrande_negative_analysis
+  type: report
+  description: WinoGrande -0.79pp 负面结果分析：paired t-test p=0.12 不显著，结论为 noise 非 systematic。含
+    3 seed × 3 strategy 分数表、方差分析、跨 benchmark 对照。
+  path: projects/gen-depth-contamination/artifacts/exp_expanded_downstream_eval/report/winogrande_negative_analysis_0c89e8.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_expanded_downstream_eval
+  skill: ''
+  created_at: '2026-05-21T04:17:03.583570+00:00'
+  tags:
+  - winogrande
+  - negative_result
+  - statistical_test
+- id: art_20260521_903013
+  name: pythia_integration_template
+  type: report
+  description: Pythia-6.9B实验结果整合方案：分场景patch论文方案、自动化脚本说明、需更新的claim清单
+  path: projects/gen-depth-contamination/artifacts/_project/report/pythia_integration_template.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T04:56:45.546971+00:00'
+  tags: []
+- id: art_20260521_dc9656
+  name: feature_importance_barplot
+  type: chart
+  description: Horizontal bar chart comparing permutation importance of 15D features
+    for 0v1 vs 1v2 OBD classification (C4, Qwen-1.5B). Located at artifacts/feature_importance_barplot.pdf
+    on cqa1-22115.
+  path: projects/gen-depth-contamination/artifacts/_project/chart/feature_importance_barplot_ref.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T05:14:04.614288+00:00'
+  tags:
+  - feature_importance
+  - chart
+  - K_star
+- id: art_20260521_b832d2
+  name: feature_importance_table
+  type: paper
+  description: LaTeX table of permutation importance for 15 OBD features, 0v1 and
+    1v2 classifiers on C4.
+  path: projects/gen-depth-contamination/artifacts/_project/paper/feature_importance_table.tex
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T05:14:18.106643+00:00'
+  tags:
+  - feature_importance
+  - latex
+  - appendix
+- id: art_20260521_9cf483
+  name: feature_importance_results
+  type: data
+  description: 'Permutation importance JSON for 0v1, 1v2, 2v3 pairwise classifiers
+    on C4 15D features. Key: surp_std dominates 1v2 boundary, surp_d1_std dominates
+    0v1.'
+  path: projects/gen-depth-contamination/artifacts/_project/data/importance_results_summary.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T05:14:28.605335+00:00'
+  tags:
+  - feature_importance
+  - permutation
+  - K_star
+  - C4
+- id: art_20260521_c6ddc2
+  name: feature_importance_analysis
+  type: report
+  description: 15D OBD 特征 permutation importance 分析（C4 Qwen-1.5B）：0v1 由 Δ¹ Surprisal
+    Std 主导(41.7%)，1v2 boundary 由 Surprisal Std 主导(ΔAUC=0.058)，2v3 所有特征近随机。
+  path: projects/gen-depth-contamination/artifacts/_project/report/feature_importance_analysis.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T05:30:50.079434+00:00'
+  tags:
+  - feature_importance
+  - permutation_importance
+  - 15D_OBD
+  - appendix
+- id: art_20260521_0673bb
+  name: Bootstrap CI Stability Results
+  type: data
+  description: 'Bootstrap CI convergence analysis: B=1K/5K/10K across 4 models, 14
+    depth pairs. CI width changes within 3%, verdicts stable for 13/14 pairs. Only
+    Mistral 1v2 flips NOT_DETECT->BORDERLINE_LOW at B=10K.'
+  path: projects/gen-depth-contamination/artifacts/_project/data/bootstrap_stability_results_pointer.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T05:45:56.568494+00:00'
+  tags:
+  - bootstrap
+  - CI
+  - stability
+- id: art_20260521_a601ac
+  name: Bootstrap Stability LaTeX Table
+  type: paper
+  description: 'LaTeX table: B=1K vs 5K vs 10K bootstrap CI comparison across 4 models'
+  path: projects/gen-depth-contamination/artifacts/_project/paper/bootstrap_stability_table.tex
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T05:46:06.679022+00:00'
+  tags:
+  - bootstrap
+  - latex
+  - table
+- id: art_20260521_d837fc
+  name: bootstrap_stability_check
+  type: report
+  description: Bootstrap CI 收敛验证（4 模型 × 14 pairs, B=1K/5K/10K）：CI lower bound 移动仅
+    0.0001-0.0007，13/14 verdicts 完全稳定，B=1000 足够。唯一不稳定：Mistral-7B 1v2 极端 borderline。
+  path: projects/gen-depth-contamination/artifacts/_project/report/bootstrap_stability_check.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T05:47:08.853450+00:00'
+  tags:
+  - bootstrap
+  - CI_convergence
+  - stability
+  - appendix
+- id: art_20260521_a8747e
+  name: theta_lofo_table_v2
+  type: paper
+  description: 'LOFO table v2: K*≥2 training / K*=1 validation split. C4 agreement
+    6/7 (86%) + 2/2 (100%). OLMo AUC updated to 0.508.'
+  path: projects/gen-depth-contamination/artifacts/_project/paper/theta_lofo_table_a8747e.tex
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T15:35:46.980301+00:00'
+  tags:
+  - lofo
+  - theta
+  - olmo
+  - table
+- id: art_20260521_731808
+  name: olmo_feature_importance_analysis
+  type: report
+  description: 'OLMo-1B C4 rerun feature importance analysis: confirms K*=1, Gemma
+    reclassification as borderline K*=2, cross-model comparison'
+  path: projects/gen-depth-contamination/artifacts/exp_olmo1b_c4_rerun/report/olmo_feature_importance_analysis.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_olmo1b_c4_rerun
+  skill: ''
+  created_at: '2026-05-21T15:36:57.383901+00:00'
+  tags:
+  - feature_importance
+  - olmo
+  - gemma
+  - k_star
+- id: art_20260521_f897b2
+  name: olmo_selfbleu_ablation
+  type: report
+  description: 'OLMo-1B C4 selfbleu ablation: K*_15D=1, K*_14D=1, ΔK*=0. Removing
+    self_bleu does not change K*.'
+  path: projects/gen-depth-contamination/artifacts/exp_olmo1b_c4_rerun/report/olmo_selfbleu_ablation.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_olmo1b_c4_rerun
+  skill: ''
+  created_at: '2026-05-21T15:38:49.071136+00:00'
+  tags:
+  - selfbleu
+  - ablation
+  - olmo
+- id: art_20260521_02d893
+  name: olmo_figure_regen_report
+  type: report
+  description: 'OLMo figure regeneration: 4 figures updated (Fig2 AUC decay, Fig3
+    K*(θ), Fig4 JSD, Supp AUC CI), transfer heatmap needs P0-2 results'
+  path: projects/gen-depth-contamination/artifacts/_project/report/olmo_figure_regen_report.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T16:00:37.707044+00:00'
+  tags:
+  - figures
+  - olmo
+  - regeneration
+- id: art_20260521_c8d921
+  name: exp007_olmo_bootstrap_ci_rerun
+  type: report
+  description: 'OLMo-1B bootstrap CI rerun: K*=1, 1v2 AUC=0.507 CI [0.496, 0.519].
+    Confirms K*=1 with CI containing 0.50.'
+  path: projects/gen-depth-contamination/artifacts/exp_olmo1b_c4_rerun/report/exp007_olmo_bootstrap_ci_rerun.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_olmo1b_c4_rerun
+  skill: ''
+  created_at: '2026-05-21T16:07:11.578048+00:00'
+  tags:
+  - bootstrap_ci
+  - olmo
+  - p0
+  - rerun
+- id: art_20260521_fa3e9e
+  name: exp013_cross_transfer_olmo_rerun
+  type: report
+  description: 'Cross-transfer rerun with OLMo K*=1: aggregate accuracy 6/9=66.7%.
+    X→OLMo all correct. WARNING: Pythia data may be greedy (exp_pythia14b_c4_rerun)
+    instead of original nucleus.'
+  path: projects/gen-depth-contamination/artifacts/exp_olmo1b_c4_rerun/report/exp013_cross_transfer_olmo_rerun.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_olmo1b_c4_rerun
+  skill: ''
+  created_at: '2026-05-21T16:09:18.139687+00:00'
+  tags:
+  - cross_transfer
+  - olmo
+  - p0
+  - rerun
+- id: art_20260521_a87570
+  name: exp013_cross_transfer_correct_pythia
+  type: report
+  description: exp013 cross-model transfer results with corrected Pythia nucleus sampling
+    data (v2). Accuracy 7/9=77.8%, up from 66.7% with greedy data.
+  path: projects/gen-depth-contamination/artifacts/exp013/report/exp013_cross_transfer_correct_pythia.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp013
+  skill: ''
+  created_at: '2026-05-21T16:25:02.383471+00:00'
+  tags:
+  - cross-transfer
+  - nucleus-sampling
+  - pythia-corrected
+- id: art_20260521_cd2b54
+  name: exp015_neural_probe_olmo_rerun
+  type: report
+  description: 'P1 exp-015 neural probe OLMo rerun: K*(neural probe)=1, confirms K*=1
+    is model-intrinsic (2048-dim hidden states also fail to distinguish depth≥1)'
+  path: projects/gen-depth-contamination/artifacts/_project/report/exp015_neural_probe_olmo_rerun.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T16:31:44.720895+00:00'
+  tags:
+  - olmo-rerun
+  - neural-probe
+  - K*=1
+  - P1
+- id: art_20260521_01ac97
+  name: table8_ordinal_accuracy_v2
+  type: report
+  description: 'Table 8 ordinal accuracy recalculation with v2 data: off-diagonal
+    80-100%, aggregate 93.3% (was 90.0% with greedy Pythia). Paper text "80-92%" →
+    "80-100% (93.3%)"'
+  path: projects/gen-depth-contamination/artifacts/_project/report/table8_ordinal_accuracy_v2.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T16:36:13.683852+00:00'
+  tags:
+  - cross-transfer
+  - ordinal-accuracy
+  - table8
+  - v2
+- id: art_20260521_1a9a9e
+  name: olmo_k1_cascade_changes
+  type: report
+  description: 'OLMo K*=1 全文 cascade 修改清单: ~30 changes across 8 tex files, compilation
+    success, 20 pages. Has known bug: OLMo neural probe K*=2 references not updated
+    to K*=1 (fix in progress).'
+  path: projects/gen-depth-contamination/artifacts/_project/report/olmo_k1_cascade_changes.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T17:01:20.020651+00:00'
+  tags:
+  - olmo-rerun
+  - cascade
+  - tex
+  - P0
+- id: art_20260521_d107f7
+  name: Feature Importance (Corrected Data Sources)
+  type: report
+  description: Permutation importance for OLMo/Pythia/Qwen-cont using correct data
+    sources. Confirms Surprisal σ and Freq Entropy as top-2 features for K*≥2 models,
+    OLMo K*=1 with no significant 1v2 features.
+  path: projects/gen-depth-contamination/artifacts/_project/report/feature_importance_correct_data.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T20:01:20.235299+00:00'
+  tags:
+  - feature-importance
+  - permutation
+  - corrected-data
+  - lofo
+- id: art_20260521_d96768
+  name: feature_importance_correct_data
+  type: report
+  description: 'Feature importance with corrected data sources (OLMo rerun, Pythia
+    nucleus, Qwen-cont). Core findings preserved: Surprisal σ + Freq Entropy top-2
+    for K*≥2; OLMo K*=1 no significant features.'
+  path: projects/gen-depth-contamination/artifacts/_project/report/feature_importance_correct_data_d96768.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T20:02:23.507993+00:00'
+  tags:
+  - feature-importance
+  - correct-data
+  - P1
+- id: art_20260521_4b694a
+  name: pythia69b_nuc_final_report
+  type: report
+  description: 'Pythia-6.9B nucleus sampling experiment final report: K*=1 (negative),
+    pairwise AUC, paper impact assessment, GPU status'
+  path: projects/gen-depth-contamination/artifacts/exp_pythia69b_c4_nuc/report/pythia69b_nuc_final_report.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_pythia69b_c4_nuc
+  skill: ''
+  created_at: '2026-05-21T23:01:13.886611+00:00'
+  tags:
+  - pythia-6.9b
+  - nucleus-sampling
+  - K-star
+  - negative
+- id: art_20260521_433d83
+  name: pythia69b_nuc_final_report
+  type: report
+  description: Pythia-6.9B nucleus K*=1 (1v2 AUC=0.5955, borderline Δ=0.0045 below
+    θ=0.60). Greedy→nucleus drops K* from 2→1, confirming decoding confound. Paper
+    "6/8" unchanged.
+  path: projects/gen-depth-contamination/artifacts/exp_pythia69b_c4_nuc/report/pythia69b_nuc_final_report_433d83.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_pythia69b_c4_nuc
+  skill: ''
+  created_at: '2026-05-21T23:02:38.795285+00:00'
+  tags:
+  - pythia-6.9b
+  - nucleus
+  - K*=1
+  - negative
+  - greedy-confound
+- id: art_20260521_4d201a
+  name: pythia69b_discussion_changes
+  type: report
+  description: 'Pythia-6.9B K*=1 论文修改: Discussion 新增 3 句 "Decoding strategy as confound"
+    段落 + 附录表格加 Pythia-6.9B nucleus 列。编译通过，7 页主正文。'
+  path: projects/gen-depth-contamination/artifacts/_project/report/pythia69b_discussion_changes.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T23:14:19.505404+00:00'
+  tags:
+  - pythia-6.9b
+  - discussion
+  - appendix
+  - paper
+- id: art_20260522_0cbb4c
+  name: Figure 1 Pipeline Diagram
+  type: chart
+  description: 5-stage pipeline concept figure (Seed Corpus → Recursive Generation
+    → Feature Extraction → OBD Classifier → K* Estimation). Matplotlib-generated,
+    300 DPI, 7.2x2.5 inches.
+  path: projects/gen-depth-contamination/artifacts/_project/chart/pipeline.png
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T03:11:02.736055+00:00'
+  tags:
+  - figure1
+  - pipeline
+  - concept-diagram
+  - paper
+- id: art_20260522_884816
+  name: figure1_pipeline_v2
+  type: chart
+  description: Figure 1 pipeline 概念图 v2（matplotlib 手写）：5 阶段水平流程 Seed Corpus → Recursive
+    Generation → Feature Extraction → OBD Classifier → K* Estimation。替换用户反馈"太粗糙"的旧版。
+  path: projects/gen-depth-contamination/artifacts/_project/chart/pipeline_884816.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: paper-banana
+  created_at: '2026-05-22T03:12:17.719742+00:00'
+  tags:
+  - figure1
+  - pipeline
+  - conceptual
+  - paper
+- id: art_20260522_bd25ce
+  name: MF-1 arXiv CI + SF-3 Bonferroni table
+  type: paper
+  description: Added arXiv 2v3 bootstrap CI to Table S12 and main text Section 4.6;
+    added Bonferroni-corrected 99.5% CI table to appendix_extended.tex
+  path: projects/gen-depth-contamination/artifacts/_project/paper/mf1_sf3_bonferroni_summary.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T08:36:40.773552+00:00'
+  tags:
+  - paper
+  - statistics
+  - bonferroni
+  - arXiv-CI
+- id: art_20260522_518778
+  name: main_20260522_figure3_fix
+  type: paper
+  description: '编译 PDF: Figure 3 跨栏 + Figure 4 单栏 + 8 页正文。appendix robustness 表 resizebox
+    修复待更新。'
+  path: projects/gen-depth-contamination/artifacts/_project/paper/main_20260522_figure3_fix.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T14:57:55.690945+00:00'
+  tags:
+  - pdf
+  - figure3-fix
+  - arr-submission
+- id: art_20260522_2bc348
+  name: main_20260522_latest
+  type: paper
+  description: '最新编译 PDF: Figure 3 跨栏 + Figure 4 单栏 + robustness_10k 表 resizebox 修复
+    + 8 页正文 + 23 页总计'
+  path: projects/gen-depth-contamination/artifacts/_project/paper/main_20260522_latest.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T14:58:48.382262+00:00'
+  tags:
+  - pdf
+  - latest
+  - arr-submission
+- id: art_20260522_096fe8
+  name: main_20260522_fig3_095
+  type: paper
+  description: 'PDF: Figure 3 宽度 0.95\textwidth + 跨栏 + Figure 4 单栏 + 8 页正文 + 24 页总计'
+  path: projects/gen-depth-contamination/artifacts/_project/paper/main_20260522_fig3_095.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T15:10:24.461345+00:00'
+  tags:
+  - pdf
+  - latest
+  - arr-submission
+- id: art_20260522_47eada
+  name: main_20260522_limitations
+  type: paper
+  description: 'PDF: Limitations 精简 7→3 点 + 所有之前改动。8 页正文，21 页总计。'
+  path: projects/gen-depth-contamination/artifacts/_project/paper/main_20260522_limitations.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T15:18:22.755358+00:00'
+  tags:
+  - pdf
+  - latest
+  - arr-submission
+- id: art_20260522_9d0bcf
+  name: main_20260522_text_expand
+  type: paper
+  description: 'PDF: Paper Agent 正文扩充 + Figure 3 0.95\textwidth 跨栏 + Limitations 精简。8
+    页正文，21 页总计。'
+  path: projects/gen-depth-contamination/artifacts/_project/paper/main_20260522_text_expand.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T15:38:31.744704+00:00'
+  tags:
+  - pdf
+  - latest
+  - arr-submission
+- id: art_20260522_ba1627
+  name: main_20260522_disc_concl
+  type: paper
+  description: 'PDF: Discussion 扩充 + Conclusion 加 Bonferroni/model-agnostic。8 页正文填满，Limitations
+    第 9 页。'
+  path: projects/gen-depth-contamination/artifacts/_project/paper/main_20260522_disc_concl.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T15:50:27.651360+00:00'
+  tags:
+  - pdf
+  - latest
+  - arr-submission
+- id: art_20260522_6245bb
+  name: main_20260522_no_clearpage
+  type: paper
+  description: 'PDF: 删除 \clearpage，Limitations/Ethics 自然跟 Conclusion。正文 p1-7，bibliography
+    p7-8，appendix p8/9-21。21 页总计。'
+  path: projects/gen-depth-contamination/artifacts/_project/paper/main_20260522_no_clearpage.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T15:56:37.321126+00:00'
+  tags:
+  - pdf
+  - latest
+  - arr-submission
+- id: art_20260522_0b9aea
+  name: main_20260522_lim3pt
+  type: paper
+  description: 'PDF: Limitations 3 点短版本确认同步 + 所有之前改动。21 页总计。'
+  path: projects/gen-depth-contamination/artifacts/_project/paper/main_20260522_lim3pt.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T15:59:34.489228+00:00'
+  tags:
+  - pdf
+  - latest
+  - arr-submission
+- id: art_20260522_c99ab1
+  name: main_20260522_fig4_single
+  type: paper
+  description: 'PDF: fig_kstar_theta 改回 figure 单栏。正文 8 页，21 页总计。'
+  path: projects/gen-depth-contamination/artifacts/_project/paper/main_20260522_fig4_single.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T16:04:34.978132+00:00'
+  tags:
+  - pdf
+  - latest
+  - arr-submission
+- id: art_20260522_ae6af8
+  name: ARR May 2026 Submission Checklist
+  type: report
+  description: ARR May 2026 投稿材料清单：论文 PDF 就绪(8页)、图表完整、附录完整。3个 blocking 事项：OpenReview
+    form 填写、最终通读、上传提交。
+  path: projects/gen-depth-contamination/artifacts/_project/report/arr_submission_checklist.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T19:37:22.611202+00:00'
+  tags:
+  - arr
+  - submission
+  - checklist
+- id: art_20260522_0df0b8
+  name: bootstrap_ci_llama8b_10k
+  type: data
+  description: 'Bootstrap CI results for exp_llama8b_10k depth 1v2: OOF AUC=0.5880,
+    95% CI [0.5809, 0.5950], Bonferroni 99.5% CI [0.5776, 0.5978], permutation p=0.0001'
+  path: projects/gen-depth-contamination/artifacts/exp_llama8b_10k/data/bootstrap_ci_llama8b_10k.json
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp_llama8b_10k
+  skill: ''
+  created_at: '2026-05-22T19:58:08.612557+00:00'
+  tags:
+  - bootstrap
+  - CI
+  - llama8b
+  - 10k
+- id: art_20260522_c1f4a3
+  name: ARR Responsible NLP Checklist Draft
+  type: report
+  description: ARR Responsible NLP Checklist 回答草稿。大部分可直接 Yes/N/A。缺项：计算资源(GPU型号/hours)、超参搜索策略、数据集license。含
+    OpenReview form 填写模板。
+  path: projects/gen-depth-contamination/artifacts/_project/report/arr_responsible_nlp_checklist_draft.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T21:20:52.836014+00:00'
+  tags:
+  - arr
+  - checklist
+  - submission
+- id: art_20260522_635585
+  name: proofread_report
+  type: report
+  description: 'Paper proofread pre-check report: undefined refs, table-registry consistency,
+    spelling/grammar (2026-05-22)'
+  path: projects/gen-depth-contamination/artifacts/_project/report/proofread_report.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T21:30:05.143182+00:00'
+  tags:
+  - paper
+  - proofread
+  - quality-check
+- id: art_20260522_d5866c
+  name: Proofread Report 2026-05-22
+  type: report
+  description: '论文 proofread 预检查：Undefined refs PASS, Table robustness_10k PASS, Transfer
+    matrix PASS, Spelling PASS。唯一 critical: OLMo registry (K*=2) 与论文 (K*=1) 不一致，registry
+    需更新。'
+  path: projects/gen-depth-contamination/artifacts/_project/report/proofread_report_d5866c.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T21:30:58.748641+00:00'
+  tags:
+  - proofread
+  - submission
+- id: art_20260523_9a5e04
+  name: compile_consistency_fixes_report
+  type: report
+  description: Paper compilation and 5-fix consistency verification report. All 6
+    checks PASS, 0 LaTeX errors, 8-page main text.
+  path: projects/gen-depth-contamination/artifacts/_project/report/compile_consistency_fixes_report.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T04:53:37.378971+00:00'
+  tags:
+  - paper
+  - compilation
+  - consistency
+- id: art_20260523_b761db
+  name: compile_final_narrative_report
+  type: report
+  description: 'Compilation and narrative verification report: 0 errors, 8-page main
+    text, both discussion additions confirmed, tab:deberta_vs_obd resolves to Table
+    29.'
+  path: projects/gen-depth-contamination/artifacts/_project/report/compile_final_narrative_report.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T05:32:24.988634+00:00'
+  tags:
+  - compile
+  - verification
+  - paper
+- id: art_20260523_bcd7e4
+  name: compile_final_3tasks_report
+  type: report
+  description: 论文编译与三项修改验证报告：0 errors, 正文8页, bakshi引用正确解析, 无破折号问题
+  path: projects/gen-depth-contamination/artifacts/_project/report/compile_final_3tasks_report.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T06:21:48.504690+00:00'
+  tags: []
+- id: art_20260523_8a432d
+  name: page_count_emergency
+  type: report
+  description: EMNLP 2026 page count emergency check — main text fits within 8 pages
+  path: projects/gen-depth-contamination/artifacts/_project/report/page_count_emergency.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T06:27:50.086718+00:00'
+  tags: []
+- id: art_20260523_d475df
+  name: anonymous_repo_report
+  type: report
+  description: Anonymous GitHub repository setup report for EMNLP 2026 ARR submission
+  path: projects/gen-depth-contamination/artifacts/_project/report/anonymous_repo_report.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T12:56:23.638216+00:00'
+  tags: []
+- id: art_20260523_e81e77
+  name: anonymous_repo_report
+  type: report
+  description: Anonymous GitHub repository setup report — 171 files, commit 9c9ed23,
+    anonymization verified clean
+  path: projects/gen-depth-contamination/artifacts/_project/report/anonymous_repo_report_e81e77.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T12:57:40.636661+00:00'
+  tags:
+  - submission
+  - anonymization
+  - github
+- id: art_20260523_35bc96
+  name: runtime_benchmark_results
+  type: report
+  description: 'Per-document runtime benchmark of OBD pipeline: scorer log-prob (GPU),
+    CPU feature extraction, LightGBM inference. 1000 docs on RTX PRO 6000.'
+  path: projects/gen-depth-contamination/artifacts/_project/report/runtime_benchmark_results.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T13:12:42.751051+00:00'
+  tags:
+  - benchmark
+  - runtime
+  - reviewer-response
+- id: art_20260523_f88182
+  name: Bootstrap K* Uncertainty Analysis
+  type: report
+  description: Bootstrap K* stability analysis across 10 generator x domain configs.
+    1000 iterations, doc-level resampling. K* is stable in 8/10 configs (100% identical),
+    with minor variability in 2 borderline cases (AUC within 0.005 of theta).
+  path: projects/gen-depth-contamination/artifacts/_project/report/bootstrap_kstar_results.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T13:29:41.653228+00:00'
+  tags:
+  - bootstrap
+  - kstar
+  - uncertainty
+  - rebuttal
+- id: art_20260523_743ea0
+  name: paper_compile_verify_20260523
+  type: paper
+  description: Compiled paper PDF for page 7-8 fill verification (19 pages total)
+  path: projects/gen-depth-contamination/artifacts/_project/paper/paper_compile_verify_20260523.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T16:01:54.606725+00:00'
+  tags: []
+- id: art_20260523_e9bb1c
+  name: paper_compile_verify_v3_20260523
+  type: paper
+  description: Compiled PDF after conclusion.tex last-line fix, verifying no orphan
+    word on page 8
+  path: projects/gen-depth-contamination/artifacts/_project/paper/paper_compile_verify_v3_20260523.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T16:26:26.088498+00:00'
+  tags:
+  - compile
+  - page-check
+  - v3
+- id: art_20260523_735d22
+  name: figure4_data_audit
+  type: report
+  description: 'Figure 4 (cross-model transfer heatmap) data source audit: identifies
+    figure-caption-table inconsistency caused by v1→v2 script switch without updating
+    caption/text'
+  path: projects/gen-depth-contamination/artifacts/_project/report/figure4_data_audit.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T17:47:04.501024+00:00'
+  tags:
+  - figure4
+  - audit
+  - inconsistency
+  - transfer-heatmap
+- id: art_20260524_5ab5b9
+  name: final_data_audit_20260524
+  type: report
+  description: EMNLP 2026 投稿前全文数字核查报告：165条registry实验、服务器artifacts、论文全部.tex文件逐项交叉验证。发现并修复4处不一致。
+  path: projects/gen-depth-contamination/artifacts/_project/report/final_data_audit_20260524.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T04:46:34.680685+00:00'
+  tags:
+  - audit
+  - emnlp2026
+  - submission
+- id: art_20260524_bc94ae
+  name: paper_final_audit_20260524
+  type: paper
+  description: Final compiled PDF after fixing 4 data inconsistencies found in audit
+  path: projects/gen-depth-contamination/artifacts/_project/paper/paper_final_audit_20260524.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T04:49:36.095663+00:00'
+  tags:
+  - final-audit
+  - paper
+- id: art_20260524_ae442a
+  name: paper_xref_20260524
+  type: paper
+  description: Compiled PDF with 7 appendix cross-references added to main text
+  path: projects/gen-depth-contamination/artifacts/_project/paper/paper_xref_20260524.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T05:08:58.700635+00:00'
+  tags:
+  - paper
+  - cross-reference
+  - appendix
+- id: art_20260524_9873a4
+  name: paper_xref_v2_20260524
+  type: paper
+  description: Compiled PDF after shortening 7 cross-reference pointers; main text
+    ≤8 pages confirmed
+  path: projects/gen-depth-contamination/artifacts/_project/paper/paper_xref_v2_20260524.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T05:12:56.449803+00:00'
+  tags:
+  - paper
+  - page-check
+  - xref-v2
+- id: art_20260524_900b0a
+  name: page_check_xref_p8
+  type: intermediate
+  description: 'Page 8 screenshot: Conclusion ends, Limitations begins at bottom'
+  path: projects/gen-depth-contamination/artifacts/_project/intermediate/page08.png
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T05:12:58.988679+00:00'
+  tags:
+  - page-check
+  - xref-v2
+- id: art_20260524_f3e4f4
+  name: page_check_xref_p9
+  type: intermediate
+  description: 'Page 9 screenshot: Ethics Statement + References begin'
+  path: projects/gen-depth-contamination/artifacts/_project/intermediate/page09.png
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T05:13:00.350246+00:00'
+  tags:
+  - page-check
+  - xref-v2
+- id: art_20260524_f669fd
+  name: paper_final_v3_20260524
+  type: paper
+  description: 'Final paper PDF v3: compressed conclusion + cross-references + data
+    audit fixes'
+  path: projects/gen-depth-contamination/artifacts/_project/paper/paper_final_v3_20260524.pdf
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T05:16:42.430432+00:00'
+  tags:
+  - paper
+  - final
+  - v3
+- id: art_20260524_0a9d44
+  name: 7B Cross-Transfer Full Metrics (v2)
+  type: data
+  description: '2×2 cross-model transfer matrix (Qwen2.5-7B × LLaMA-3.1-8B) with full
+    metrics: 6-class accuracy, MAE, Kendall tau_b, pairwise AUC, transfer retention.
+    5K docs each, Qwen2.5-1.5B cross-scorer.'
+  path: projects/gen-depth-contamination/artifacts/_project/data/run_7b_cross_transfer_v2.py
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T08:59:06.000831+00:00'
+  tags:
+  - cross-transfer
+  - 7b
+  - post-submission
+- id: art_20260524_24a3bf
+  name: arxiv_multi_source_bootstrap_ci
+  type: data
+  description: Bootstrap CI + permutation test results for arxiv_multi_source K*=3
+    claim. All 3 configs (Qwen1.5B, Pythia1.4B, Pooled) confirm K*=3 with 2v3 CI_lower
+    > 0.60 and perm_p < 0.001.
+  path: projects/gen-depth-contamination/artifacts/arxiv_multi_source_bootstrap/data/bootstrap_ci_pointer.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: arxiv_multi_source_bootstrap
+  skill: ''
+  created_at: '2026-05-24T10:39:48.936455+00:00'
+  tags:
+  - bootstrap
+  - permutation-test
+  - kstar
+  - arxiv
+- id: art_20260524_4802e6
+  name: OLMo-1B C4 Cross-Scorer Results
+  type: data
+  description: OLMo-1B C4 domain cross-scorer experiment results with bootstrap CI
+    and permutation tests. K*=1, consistent with self-scoring.
+  path: projects/gen-depth-contamination/artifacts/olmo_c4_cross_scorer/data/run_olmo_c4_cross_scorer.py
+  url: null
+  project: gen-depth-contamination
+  exp_id: olmo_c4_cross_scorer
+  skill: ''
+  created_at: '2026-05-24T10:48:08.650814+00:00'
+  tags:
+  - olmo
+  - c4
+  - cross-scorer
+  - bootstrap-ci
+  - kstar
+- id: art_20260525_21b8d2
+  name: exp014_plan
+  type: report
+  description: exp-014 Naturalistic Validation 实验方案：FineWeb CC-MAIN-2025-26 50K docs,
+    9 独立质量指标, OBD depth prediction correlation analysis
+  path: projects/gen-depth-contamination/artifacts/exp-014/report/exp014_plan.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: exp-014
+  skill: ''
+  created_at: '2026-05-25T06:40:14.847626+00:00'
+  tags:
+  - rebuttal
+  - ecological-validity
+  - experiment-plan
+- id: art_20260525_d4f56f
+  name: runtime_benchmark_results
+  type: data
+  description: 'OBD pipeline runtime benchmark vs baselines (Binoculars, DivEye, Neural
+    Probe). 1000 docs on RTX PRO 6000 Blackwell. OBD: 44.3ms/doc, Binoculars: 17.0ms,
+    DivEye: 14.2ms, Neural Probe: 14.6ms.'
+  path: projects/gen-depth-contamination/artifacts/runtime_benchmark/data/benchmark_results_summary.txt
+  url: null
+  project: gen-depth-contamination
+  exp_id: runtime_benchmark
+  skill: ''
+  created_at: '2026-05-25T06:40:56.275039+00:00'
+  tags:
+  - runtime
+  - benchmark
+  - efficiency
+  - comparison
+- id: art_20260525_f94522
+  name: audit_experiments_tables
+  type: report
+  description: Audit of all numbers in experiments sections (experiments_c1.tex, experiments_c3.tex)
+    and 6 tables (tab_domain_model_kstar, tab_domain_model_kstar_full, tab_pairwise_significance,
+    tab_filtering_main, tab_alpha_sweep, tab_crossscorer) plus 2 inline tables (tab_kstar_ci,
+    tab_domain_kstar). ~340 numbers verified against experiment registry.
+  path: projects/gen-depth-contamination/artifacts/_project/report/audit_experiments_tables.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:02:24.169055+00:00'
+  tags:
+  - audit
+  - paper
+  - numbers
+- id: art_20260525_ff1897
+  name: audit_appendix_figures
+  type: report
+  description: 附录数字审计 + 全部Figure数据源追溯报告 (Part 3/3)
+  path: projects/gen-depth-contamination/artifacts/_project/report/audit_appendix_figures.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:03:47.890591+00:00'
+  tags:
+  - audit
+  - appendix
+  - figures
+  - data-source
+- id: art_20260525_7994cc
+  name: audit_ssh_investigation
+  type: report
+  description: 'SSH investigation of 3 audit issues: H5 (OBD accuracy 38.6% vs recall
+    sum 38.0%), H6 (MAE 0.984 not found), H4 (arXiv JSD 0.077 source)'
+  path: projects/gen-depth-contamination/artifacts/_project/report/audit_ssh_investigation.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:23:53.062328+00:00'
+  tags:
+  - audit
+  - data-integrity
+  - paper-review
+- id: art_20260525_9a2ac0
+  name: audit_ssh_investigation
+  type: report
+  description: SSH审计调查报告：H4(arXiv JSD 0.077确认正确)、H5(Tab s3c recall数字不一致)、H6(MAE 0.984为幻影数字无实验来源)
+  path: projects/gen-depth-contamination/artifacts/_project/report/audit_ssh_investigation_9a2ac0.md
+  url: null
+  project: gen-depth-contamination
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:35:06.160453+00:00'
+  tags:
+  - audit
+  - data-integrity
+  - pre-submission

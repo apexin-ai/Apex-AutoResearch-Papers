@@ -1,0 +1,360 @@
+tier: median
+narrative_guidance: 'Median 档下，C1'' 域阶梯核心（Wiki=1, C4=2, arXiv=3）成立但 Qwen-cont 边缘性和
+  θ 依赖性被审稿人重点追问。 C3 从 "K*-aware filtering outperforms" 降级为 "binary filtering suffices
+  for web text; graduated filtering  provides no incremental benefit, suggesting K*
+  captures discriminability rather than curation-relevant quality  differences"。两个
+  planned 实验（exp-014, exp-028）提供补充证据但不改变核心叙事。 exp-014 的 naturalistic validation 展示
+  lab-to-wild 迁移存在但偏弱，审稿人认为是 interesting preliminary  而非 convincing validation。exp-028
+  的 power curve 确认 n=5000 足够但暴露 n<3000 时边缘配置不稳定， 被用于 rebuttal 中论证现有样本量充足。what_if 的
+  arXiv negative 整合被一位审稿人认可科学诚实， 但另一位用它论证 C3 的 practical value 不足。总体 ARR 3.0-3.5，Findings
+  概率 0.65-0.85。
+
+  '
+imagined_experiments:
+- name: exp-014 Naturalistic CC Validation
+  plan_id: exp-014
+  description: '对 Common Crawl 2025-09/2026-01 snapshot 各抽 50K 文档，用训练好的 OBD-LightGBM  预测
+    depth distribution，与 AlignScore、vocabulary richness (type-token ratio,  hapax
+    legomena ratio)、重复率 (self-BLEU) 做 Spearman correlation。 额外分析：按预测 depth 分层后各质量指标的分布变化。
+
+    '
+  expected_results:
+    n_docs_per_snapshot: 50000
+    predicted_depth_distribution:
+      depth_0_pct: 62.3
+      depth_1_pct: 24.7
+      depth_2_pct: 8.4
+      depth_3plus_pct: 4.6
+    spearman_rho_alignscore_vs_predicted_depth: -0.28
+    spearman_rho_alignscore_p: <0.001
+    spearman_rho_ttr_vs_predicted_depth: -0.22
+    spearman_rho_ttr_p: <0.001
+    spearman_rho_hapax_vs_predicted_depth: -0.19
+    spearman_rho_hapax_p: <0.001
+    spearman_rho_selfbleu_vs_predicted_depth: 0.16
+    spearman_rho_selfbleu_p: <0.001
+    depth_stratified_alignscore_mean:
+      depth_0: 0.72
+      depth_1: 0.65
+      depth_2: 0.58
+      depth_3plus: 0.51
+    depth_stratified_ttr_mean:
+      depth_0: 0.483
+      depth_1: 0.451
+      depth_2: 0.422
+      depth_3plus: 0.398
+    snapshot_temporal_shift:
+      cc_2025_09_mean_depth: 0.58
+      cc_2026_01_mean_depth: 0.64
+      delta: 0.06
+      p_ks_test: 0.032
+    cross_validation_with_lab_features:
+      feature_rank_spearman_lab_vs_wild: 0.81
+      top3_wild_features:
+      - freq_entropy
+      - surp_d1_mean
+      - surp_std
+  result_rationale: 'Median 档下，lab-to-wild 迁移部分成功但受限。Spearman ρ~0.22-0.28 统计显著但 practically  moderate，原因有三：(1)
+    CC 真实数据包含多种非 prompt-chain 的合成路径（翻译管道、摘要重写、 RAG 输出），这些与训练时的 prompt-chain 分布不同；(2)
+    CC 包含大量非英文和低质量原始文本， 引入与 depth 无关的噪声；(3) 深度预测在 depth≥2 处 uncertainty 急剧增大（lab 中
+    2v3 AUC  仅 0.55-0.56），导致高 depth 预测噪声大。正向信号来自 depth-stratified quality 单调递减—— 预测的更深层文本确实质量更低——但效应大小不足以支持
+    "operational deployment" claim。 时间维度的 CC 2025→2026 depth 增长（+0.06）与合成文本扩散趋势一致但统计上
+    borderline。 审稿人会认为这是 "suggestive but not definitive" 的 preliminary validation，
+    一位审稿人可能要求排除明显的机器翻译文本后重做分析。Feature ranking 在 lab 和 wild 之间  ρ=0.81 说明特征空间迁移合理，但不完美——wild
+    数据中 freq_entropy 的重要性上升， 因为不同合成路径产生不同的词汇分布。
+
+    '
+  tables:
+  - name: 'Table: CC Depth Distribution vs Quality Metrics'
+    columns:
+    - Predicted Depth
+    - N docs
+    - AlignScore (mean±std)
+    - TTR (mean±std)
+    - Self-BLEU (mean±std)
+    rows:
+    - - 0 (human)
+      - ~31K
+      - 0.72±0.11
+      - 0.483±0.052
+      - 0.12±0.04
+    - - '1'
+      - ~12K
+      - 0.65±0.13
+      - 0.451±0.058
+      - 0.15±0.05
+    - - '2'
+      - ~4K
+      - 0.58±0.14
+      - 0.422±0.061
+      - 0.19±0.06
+    - - 3+
+      - ~2K
+      - 0.51±0.16
+      - 0.398±0.067
+      - 0.23±0.07
+  - name: 'Table: Spearman Correlations (Predicted Depth vs Quality)'
+    columns:
+    - Quality Metric
+    - ρ
+    - p-value
+    - 95% CI
+    rows:
+    - - AlignScore
+      - '-0.28'
+      - <0.001
+      - '[-0.30, -0.26]'
+    - - Type-Token Ratio
+      - '-0.22'
+      - <0.001
+      - '[-0.24, -0.20]'
+    - - Hapax Ratio
+      - '-0.19'
+      - <0.001
+      - '[-0.21, -0.17]'
+    - - Self-BLEU
+      - '+0.16'
+      - <0.001
+      - '[+0.14, +0.18]'
+  figures_description:
+  - 'Scatter plot: predicted depth (x) vs AlignScore (y), with density contours. 清晰但散布大。'
+  - 'Bar chart: depth-stratified AlignScore/TTR means with error bars,单调递减趋势可见。'
+  - 'Histogram: CC 2025-09 vs 2026-01 predicted depth distributions overlay,轻微右移。'
+  analysis: 'Naturalistic validation 提供了方向性证据但不是 decisive。核心限制：我们的 depth  predictor
+    训练于 prompt-chain controlled data，而 wild 合成文本的生成路径多样化且未知。 ρ~0.25 的 moderate correlation
+    足以进入 Discussion 作为 "promising direction"， 但审稿人不会将其视为强 external validity 证据。Median
+    档审稿人的典型反应： "The naturalistic analysis is interesting but the modest correlations
+    (ρ<0.30)  raise questions about whether the lab-measured K* translates to actionable  web-scale
+    data governance" — 这成为 major weakness #2 但不致命。 建议在论文中定位为 "preliminary naturalistic
+    analysis" 而非 "validation"， 并在 Limitations 中讨论 lab-to-wild gap。
+
+    '
+- name: exp-028 Subsampling Power Curve
+  plan_id: exp-028
+  description: '对 C4 数据（使用 exp-007 的 Qwen-cont 和 Pythia 数据），在 n={1000, 2000, 3000,
+    4000, 5000}  各做 10 次 bootstrap resample，每次重新计算 1v2 pairwise AUC 和 K* 判定， 绘制 power
+    curve：在各 n 下 K*=2 判定的成功率（即 1v2 CI lower > θ=0.60 的比例）。
+
+    '
+  expected_results:
+    models_tested:
+    - Qwen-cont (most marginal)
+    - Pythia-1.4B (moderate margin)
+    resamples_per_n: 10
+    qwen_cont_power_curve:
+      n_1000:
+        kstar2_success_rate: 0.3
+        mean_1v2_auc: 0.61
+        mean_ci_width: 0.038
+        mean_ci_lower: 0.591
+      n_2000:
+        kstar2_success_rate: 0.5
+        mean_1v2_auc: 0.611
+        mean_ci_width: 0.027
+        mean_ci_lower: 0.597
+      n_3000:
+        kstar2_success_rate: 0.7
+        mean_1v2_auc: 0.611
+        mean_ci_width: 0.022
+        mean_ci_lower: 0.6
+      n_4000:
+        kstar2_success_rate: 0.9
+        mean_1v2_auc: 0.611
+        mean_ci_width: 0.019
+        mean_ci_lower: 0.602
+      n_5000:
+        kstar2_success_rate: 1.0
+        mean_1v2_auc: 0.611
+        mean_ci_width: 0.017
+        mean_ci_lower: 0.603
+    pythia_power_curve:
+      n_1000:
+        kstar2_success_rate: 0.7
+        mean_1v2_auc: 0.653
+        mean_ci_width: 0.035
+        mean_ci_lower: 0.636
+      n_2000:
+        kstar2_success_rate: 0.9
+        mean_1v2_auc: 0.654
+        mean_ci_width: 0.025
+        mean_ci_lower: 0.641
+      n_3000:
+        kstar2_success_rate: 1.0
+        mean_1v2_auc: 0.654
+        mean_ci_width: 0.02
+        mean_ci_lower: 0.644
+      n_4000:
+        kstar2_success_rate: 1.0
+        mean_1v2_auc: 0.654
+        mean_ci_width: 0.018
+        mean_ci_lower: 0.645
+      n_5000:
+        kstar2_success_rate: 1.0
+        mean_1v2_auc: 0.654
+        mean_ci_width: 0.016
+        mean_ci_lower: 0.646
+    critical_n_for_95pct_power:
+      qwen_cont: 4500
+      pythia: 2000
+    arXiv_implication:
+      arXiv_n_per_model: 2200
+      arXiv_2v3_effect_size: larger (AUC~0.63-0.65)
+      arXiv_power_sufficient: true
+      note: arXiv 的 2v3 AUC 效应量 (0.63-0.65) 远大于 C4 1v2 (0.61)，n=2200 足够
+  result_rationale: 'Median 档下 power curve 揭示了已知的 Qwen-cont 边缘性问题的样本量根源。 Qwen-cont
+    1v2 AUC=0.6112 仅超过 θ=0.60 约 0.011，这意味着 CI lower > θ  需要很窄的 CI，即大样本。在 n=1000 时
+    CI width~0.038，CI lower~0.591 < 0.60， 导致 K*=2 判定失败率 70%。n=3000 是转折点（成功率 70%），n≥4500
+    才达到 95% power。 相比之下 Pythia 1v2 AUC=0.6539，margin 大得多，n=2000 即可达 90% power。 这为审稿人提供了两个信息：(1)
+    现有 n=5000 的主实验样本量充分（Qwen-cont 100% 通过）， (2) Qwen-cont 的边缘性是效应量问题而非方法论缺陷。 arXiv
+    实验 n=2200 但效应量更大（2v3 AUC 0.63-0.65），power 充足。 审稿人可能的反应：承认现有样本量 adequate，但指出 "the
+    marginal Qwen-cont result  suggests that for some model configurations, considerably
+    larger samples would  be needed to confidently determine K*"，这成为 minor weakness。
+
+    '
+  tables:
+  - name: 'Table: K*=2 Detection Power by Sample Size'
+    columns:
+    - n
+    - Qwen-cont Success Rate
+    - Qwen-cont mean CI lower
+    - Pythia Success Rate
+    - Pythia mean CI lower
+    rows:
+    - - 1,000
+      - 3/10
+      - '0.591'
+      - 7/10
+      - '0.636'
+    - - 2,000
+      - 5/10
+      - '0.597'
+      - 9/10
+      - '0.641'
+    - - 3,000
+      - 7/10
+      - '0.600'
+      - 10/10
+      - '0.644'
+    - - 4,000
+      - 9/10
+      - '0.602'
+      - 10/10
+      - '0.645'
+    - - 5,000
+      - 10/10
+      - '0.603'
+      - 10/10
+      - '0.646'
+  figures_description:
+  - 'Power curve: x=sample size, y=K*=2 detection success rate, 两条线 (Qwen-cont, Pythia)，虚线标
+    95% power 和对应 critical n。'
+  - 'CI width vs n: 显示 CI 收窄速度，标注 Qwen-cont 在各 n 下 CI lower 相对 θ=0.60 的位置。'
+  analysis: 'Power curve 的核心价值在于 rebuttal。当审稿人质疑 Qwen-cont CI lower=0.6015  的 marginal
+    性时，power curve 提供了量化回应："At n=5000, even the most marginal  configuration (Qwen-cont,
+    AUC=0.611) achieves 100% K*=2 detection rate.  The marginality reflects a genuine
+    small effect size for this particular  model in continuation mode, not insufficient
+    evidence." 同时 power curve 暴露了一个 honest limitation：如果有模型的 1v2 AUC 在 0.600-0.605  范围内（比
+    Qwen-cont 更边缘），n=5000 可能不够。这在 median 档下被审稿人标记为  minor concern 但可以通过 "our protocol
+    can be scaled to larger n for  borderline cases" 来回应。 Rebuttal 用途：直接回应 θ=0.60
+    任意性质疑——power analysis 表明在合理的 n 下， θ±0.02 范围内的 K* 判定结果一致（AUC 0.58 的 pair 在任何 n
+    下都不通过， AUC 0.63+ 的 pair 在 n≥1500 下就通过），证明 θ=0.60 处存在 natural gap。
+
+    '
+- name: exp_026_arxiv_filtering_integrated (what-if)
+  plan_id: exp_026_arxiv_filtering_integrated
+  description: '将 exp-026 arXiv graduated filtering 负向结果整合进论文：Section 5 增加 arXiv null  result
+    表格，Discussion 增加 "K* characterizes discriminability not data utility" 洞察， Appendix
+    放完整 15-run paired t-test 表。评估对审稿分数和 credibility 的影响。
+
+    '
+  expected_results:
+    section_5_addition:
+      table_rows: 3
+      table_content: no_filter/binary/graduated on arXiv, MMLU and HellaSwag means±std
+      paired_ttest_graduated_vs_nofilter_mmlu_p: 0.94
+      paired_ttest_graduated_vs_nofilter_hellaswag_p: 0.89
+      paired_ttest_binary_vs_nofilter_mmlu_p: 0.005
+      paired_ttest_binary_vs_nofilter_hellaswag_p: <0.001
+      binary_direction_conflict: MMLU -0.23pp vs HellaSwag +0.42pp
+    discussion_insight:
+      key_sentence: 'K* characterizes the statistical discriminability boundary of
+        recursive  generation, not a utility boundary — text at depth 2-3 is distinguishable  from
+        depth 3-4 on arXiv (2v3 AUC=0.64), but this discriminability does not  translate
+        to meaningful quality differences for downstream training.
+
+        '
+    reviewer_reactions:
+      reviewer_1_positive: '"The honest reporting of the arXiv null result (exp-026)
+        is appreciated  and strengthens the paper''s credibility. The reframing of
+        K* as a  discriminability measure rather than a utility measure is insightful."
+
+        '
+      reviewer_2_negative: '"The arXiv filtering result essentially means that K*-aware
+        curation only  works on C4 with one model family (Qwen). Combined with exp-025
+        (Pythia  null), the practical value of C3 is limited to a narrow setting."
+
+        '
+      reviewer_3_neutral: '"Honest negative results are expected in scientific practice,
+        not bonus  points. The C3 claim should be explicitly conditional on model
+        and domain."
+
+        '
+    credibility_delta: +0.15 to +0.25 on overall score (partial offset by C3 weakening)
+    c3_acceptance_prob_impact: -0.10 (from 0.55 to 0.45)
+    honest_negative_recognition: acknowledged by 2/3 reviewers but not viewed as special
+      merit
+    net_paper_impact:
+      arr_score_without_integration: 3.15
+      arr_score_with_integration: 3.25
+      findings_prob_without: 0.7
+      findings_prob_with: 0.78
+  result_rationale: 'Median 档下，诚实报告负向结果是双刃剑。正面：(1) 增加科学可信度——审稿人看到作者不 cherry-pick 结果；(2)
+    "K* ≠ data utility" 洞察为 K* 概念提供了更深层理解，从  "K* predicts optimal curation" 转为更 nuanced
+    的 "K* measures statistical  discriminability whose practical implications are
+    domain- and model-dependent"。 负面：(1) C3 的 practical claim 从 "K*-aware filtering
+    outperforms" 被迫降级为  "binary filtering suffices for web text; graduated filtering
+    provides no  additional benefit"——这削弱了论文的 practical impact story；(2) 两个负向 filtering  结果（exp-025
+    Pythia, exp-026 arXiv）加上 exp-006 仅 Qwen-C4 正向结果，让审稿人 总结为 "filtering benefit is
+    model-specific and domain-specific"；(3) 审稿人认为 honest negative 是 expected practice
+    而非加分项——"we don''t give extra credit  for not lying"。 净效应在 median 档下是 slightly
+    positive：credibility gain (+0.1-0.15 on score)  略大于 practical claim 损失，因为 C1''
+    是论文核心且不受影响。Findings 概率从 0.70  提升到 0.78，因为 Findings track 更看重 characterization
+    quality 而非 practical impact。
+
+    '
+  tables:
+  - name: 'Table: arXiv Filtering Results (Section 5 addition)'
+    columns:
+    - Strategy
+    - MMLU
+    - HellaSwag
+    - Δ MMLU vs no-filter
+    - Δ HellaSwag vs no-filter
+    rows:
+    - - No filter
+      - 0.5899±0.0008
+      - 0.6600±0.0002
+      - —
+      - —
+    - - Binary
+      - 0.5876±0.0004
+      - 0.6642±0.0004
+      - -0.0023 (p=0.005)
+      - +0.0042 (p<0.001)
+    - - Graduated α=0.9
+      - 0.5900±0.0011
+      - 0.6599±0.0003
+      - +0.0001 (p=0.94)
+      - -0.0001 (p=0.89)
+  figures_description:
+  - 无新图。现有 Section 5 的 filtering comparison figure 增加 arXiv panel。
+  analysis: 整合策略：在 Section 5 增加一段 "Domain Generalization of Filtering" 小节， 先呈 C4 正向结果（binary
+    > graduated ≈ no-filter），再呈 arXiv null result  （graduated ≈ no-filter, binary
+    有 metric-specific trade-off），最后 Pythia  null result（所有策略 indistinguishable）。Discussion
+    中将 C3 重新定位： "These results reveal that K* characterizes the boundary of statistical  discriminability
+    in recursive generations, not a boundary of training data  utility. The arXiv
+    domain sustains discrimination to K*=3, meaning depth-2  and depth-3 texts are
+    statistically distinguishable — but this distinguishability  does not translate
+    to differential value for language model training." 这个 reframing 实际上增加了 K* 概念的信息论深度——K*
+    是 information-theoretic  measurement，不是 utility metric。在 median 档下，一位审稿人会认为这是  "more
+    honest and nuanced" framing，另一位会用它来论证 practical impact 不足。

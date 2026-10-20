@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09e3abe14d6a668c9b59",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops 32b exit diagnosis",
+  "task_key": "worker_ops_32b-exit-diagnosis_20260518T070528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_32b-exit-diagnosis_20260518T070528_result.json",
+    "occurrence": 1,
+    "bytes": 965,
+    "sha256": "c267b7888898d943824565a1e32c3d32a7f6a2df096fde5289d9acb9ba9d650e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**进程并未退出，仍在正常运行。**\n\n- PID 44720 (exp_32b_c4) 正在运行，CPU 115%，GPU:1 占用 64768MiB / 97887MiB，GPU-Util 94%\n- tmux session `exp_32b_c4` 存活\n- 日志显示正在生成 depth 2（batch_size=2，5000 docs，共 2500 batches），刚开始不久（5/2500）\n- 无任何 error/traceback/OOM/killed 记录\n\n## 数据完成情况\n\n| depth | 文件 | 行数 | 状态 |\n|-------|------|------|------|\n| 0 | depth_0.jsonl | 5000 | 完成 |\n| 1 | depth_1.jsonl | 5000 | 完成 |\n| 2 | 生成中 | - | 进行中 |\n| 3-5 | 不存在 | - | 未开始 |\n\n## results 目录\n空（无 pairwise_auc.json）\n\n## 结论\n\n**进程正常运行中，未退出。** 当前正在生成 depth 2，depth 0-1 已完成（各 5000 行）。32B 模型 batch_size=2 速度较慢（~12s/batch），depth 2 预计需要 ~8.3h 完成，整个 pipeline（depth 2-5 + scoring）预计还需数十小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-32b-exit-diagnosis.md"
+}

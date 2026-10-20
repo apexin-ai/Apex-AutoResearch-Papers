@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp_cross_transfer_llama8b_to_qwen7b",
+  "project": "gen-depth-contamination",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T00:55:51.478Z",
+    "updated_at": "2026-05-20T01:14:44.430Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python scripts/run_deberta_cross_transfer.py --train_model wiki_llama8b --test_model wiki_qwen7b --gpu 1\"",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "270133",
+      "log_path": "~/runs/gen-depth-contamination/exp_cross_transfer_llama8b_to_qwen7b.log",
+      "submitted_at": "2026-05-20T00:55:51.062Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Cross-model transfer: DeBERTa trained on LLaMA-8B wiki depth data can discriminate Qwen-7B wiki depth boundaries (K* transfer), testing whether depth features are model-agnostic within wiki domain."
+  },
+  "timestamp": "2026-05-20T01:14:44.691307+00:00",
+  "trigger": "update_registry"
+}

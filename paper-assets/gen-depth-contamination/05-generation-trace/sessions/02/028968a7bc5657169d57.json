@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "028968a7bc5657169d57",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "agent / loop_8_1778819711.md",
+  "task_key": "loop_8_1778819711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778819711.md",
+    "occurrence": 1,
+    "bytes": 4898,
+    "sha256": "967065e341c45ee294d48189fe6c8465710422831631739d633025aa3d6c4a97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: max_wall_time\nupdated: '2026-05-15T02:17:21+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 westc-26893:cuda:0（gpu_ids 白名单唯一一张）\n- tmux session 名是 `exp_006_graduated_filtering`（不是 `exp006_resume`——之前用错名导致 cron 误报 on_failed 两次）\n- exit file `/tmp/agent-ml-exit/exp_006_graduated_filtering.exit` 已清理，但 cron 仍可能读到旧残留——如果再次出现 DONE(failed) 误报，先查 exit file 再动 registry\n- Registry DONE→RUNNING 不可直接转，必须走 DONE→PREPARING→QUEUED→ALLOCATED→RUNNING（5步），且 ALLOCATED→RUNNING 需要带 checkpoint_source + eval_data（因为有 parent 字段被判定为 eval 实验）\n- exp-006 的 50 runs 总数：no-filter(5) + binary-ours(5) + binary-drayson(5) + graduated×5α×5seeds(25) + surprisal(5) + dsir(5)，另有 1 个 base_model 不计入\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westc-26893，账号 root\n- 工作目录：`/root/autodl-tmp/gen-depth-contamination`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型缓存：`/root/autodl-tmp/.hf_cache/`\n  - Qwen2.5-1.5B-Instruct: `.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2.5-1.5B-Instruct/`（注意双层路径）\n  - Pythia-1.4B: `.hf_cache/EleutherAI/pythia-1.4b/`\n  - OLMo-1B: `.hf_cache/allenai/OLMo-1B-hf/`\n- 数据：`data_exp017_qwen_cont/`, `data_exp001_pythia/`, `data_exp002_olmo/`（各 30k 条，depth 0-5 各 5000）\n- exp-006 输出：`artifacts/exp-006/runs/{strategy}_{seed}/eval_results.json`\n- 活跃进程：exp-006 在 tmux `exp_006_graduated_filtering`，cron 已注册（interval 300s, pid=exp_006_graduated_filtering）\n- exp-015 重跑脚本就绪：`scripts/run_exp015_neural_probe.py` v2（含 bootstrap CI + permutation test + peak VRAM logging）\n\n### 3. 📊 当前状态\n**刚做完**：修复 exp-006 cron 误报（错误 session 名 + 旧 exit file），registry 恢复 RUNNING，向 Director 汇报进度。\n\n**RUNNING 实验**：\n- `exp_006_graduated_filtering`：上次检查 38/50 runs 完成（01:33 UTC），graduated_a0.9_s456 在 99%。剩余 ~12 runs（a0.9×2 + surprisal×5 + dsir×5），预估 ~7.5h。\n\n**等待中**：\n- Worker `worker_infra_exp006-urgent-check_20260515T021558` 正在执行 Director 最新指令——SSH 检查 exp-006 最新进度，如果 50/50 完成则跑分析脚本。**这个 Worker 回调是最高优先级**，回来后立即处理结果并汇报 Director。\n- Worker `worker_infra_exp006-eta-check_20260515T012836` 可能也在跑或已完成，需 check。\n- exp-015 readiness check 已完成：脚本/模型/数据全部就绪，等 exp-006 释放 GPU 后立即启动。\n\n### 4. 📋 待办（条件触发式）\n- `worker_infra_exp006-urgent-check` 回调 → 读结果：如果 50/50 完成 → 汇报 Director 完整 6 策略 MMLU/HS 数值 → Director 做 C3 叙事决策（Version A/B/B2）→ 立即启动 exp-015\n- `worker_infra_exp006-urgent-check` 回调 → 如果还在跑 → 报告进度和修正 ETA\n- exp-006 cron on_done 回调 → 跑 `scripts/exp006_analyze.py` → 更新 registry metrics → 汇报 Director\n- Director C3 叙事决策到达 → 激活对应 contingency version（A/B/B2），派 Worker 填 `experiments_c3.tex` 占位符\n- exp-015 完成 → 跨模型 K*_neural 确认 → 填 `experiments_c1.tex` neural probe table → 启动 exp-004 (7B cross-scale, ~3h)\n- exp-004 完成 → 全部实验结束 → Discussion/Conclusion 定稿 → re-dream → Reviewer 审查\n\n### 5. 🎯 战略上下文\n- **核心结论**：K*_empirical=2，跨 8 条件（3 模型族 × 4 解码策略）一致。K*_neural=3（仅 Qwen-cont 单模型，待确认）。\n- **C3 预警**：前 22 runs 显示 graduated(α=0.1,0.3) 均不如 binary-ours（MMLU -0.53~-0.68pp）。Version B（binary optimal）是大概率结局。`artifacts/exp-006/paper/c3_contingency_versions.tex` 有 Version A/B 完整预写文本。Version B 的叙事核心：不是 null result，而是 binary filtering at K* boundary 已经是信息论最优策略。\n- **易错点 1**：exp-006 registry 脆弱——cron 误报已发生 2 次。如果再次被打到 DONE(failed)，先查 `/tmp/agent-ml-exit/` exit file，再走 5 步状态恢复路径。\n- **易错点 2**：Worker 报告的 runs 总数可能不含 surprisal/dsir（脚本按策略顺序创建目录，未执行的策略目录不存在）。不要把\"目录数\"等同于\"总 run 数\"。\n- **DDL**：05-25 ARR 提交，11 天。exp-006→exp-015(1h)→exp-004(3h) 串行在 GPU 上。论文框架已基本完成，C3 章节和 neural probe table 是最后两个空白。\n- **决策链**：D016(universality narrative) → D019(K*=2 is operational bound) → D020(K*_neural=3 is representation-dependent) → D023(C3 fallback 并行准备)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778819711.md"
+}

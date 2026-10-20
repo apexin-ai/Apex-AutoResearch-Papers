@@ -1,0 +1,47 @@
+Academic paper pipeline diagram, horizontal left-to-right flow, 5 stages with clean connecting arrows. White background, publication quality 300 DPI, width ~7 inches height ~2.2 inches (fits a two-column figure).
+
+Stage 1 — "Seed Corpus" (leftmost):
+- Soft blue rounded rectangle (#4A90D9 fill, white text)
+- Inside: stack of 3 overlapping document shapes or lines suggesting text
+- Below box: small label "X (depth 0)" in gray italic
+- Represents: original human-written documents from C4/WikiText
+
+Stage 2 — "Recursive Generation" (second from left):
+- Larger coral/orange rounded rectangle (#E8724A fill, white text)
+- This is the KEY stage, slightly taller than others to emphasize it
+- Inside: show a vertical chain of depth labels: d=0 → d=1 → d=2 → ... → d=K, connected by small downward arrows
+- A curved feedback/loop arrow going from the bottom back to the top of this box (self-loop), labeled "G_δ" on the arrow
+- Below box: "Y_1, Y_2, ..., Y_K" in gray italic
+- Represents: LLM generation operator applied recursively
+
+Stage 3 — "Feature Extraction" (center):
+- Teal/green rounded rectangle (#2EAF7D fill, white text)
+- Inside: suggest a feature vector with 4 grouped rows: "Surprisal moments", "Surprisal derivatives", "Vocab diversity", "Freq. tail stats"
+- Below box: "15D feature vector" in gray italic
+- Represents: 15 statistical features computed per document
+
+Stage 4 — "OBD Classifier" (second from right):
+- Purple rounded rectangle (#7B61A8 fill, white text)
+- Inside: show K stacked binary classifier icons (small rectangles labeled "k>0?", "k>1?", ..., "k>K-1?") to represent ordinal binary decomposition
+- Below box: "Pairwise AUC" in gray italic
+- Represents: LightGBM ordinal binary decomposition
+
+Stage 5 — "K* Estimation" (rightmost):
+- Dark slate/charcoal rounded rectangle (#4A4A5A fill, white text)
+- Inside: a stylized threshold diagram — a small step function or bar chart showing AUC values with a horizontal dashed line at θ=0.60
+- The bars above the line are highlighted (green or bright), bars below are dimmed
+- Below box: "K* = max{k : AUC > θ}" in gray italic
+- Represents: the final empirical discrimination boundary
+
+Arrows between stages:
+- Thick, solid arrows (dark gray #555) with slight shadow, connecting right edge of each box to left edge of the next
+- Arrow from Stage 1 to Stage 2 is slightly thicker (main input flow)
+- All arrows have clean triangular arrowheads
+
+Overall style:
+- Boxes have subtle drop shadows (2px offset, 15% opacity)
+- Rounded corners (radius ~8px)
+- Clean sans-serif font (like Helvetica or Arial)
+- No excessive decoration — professional and clean
+- Color palette is cohesive: blue → orange → teal → purple → charcoal (left to right gradient)
+- Small mathematical annotations use serif/italic where appropriate

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e0ca61e910e79cb795b",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops cqa1 gpu check",
+  "task_key": "worker_ops_cqa1-gpu-check_20260518T092601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cqa1-gpu-check_20260518T092601_result.json",
+    "occurrence": 1,
+    "bytes": 981,
+    "sha256": "872bcbaaa9ecb90e85b0c0a453d7faa258a6011885a2db5f9b74637f712fc184"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n| GPU | 利用率 | 显存占用 | 进程 PID | 归属 |\n|-----|--------|----------|----------|------|\n| cuda:0 | **80%** | 5399MiB / 24564MiB | **22969** | exp025 ✅ |\n| cuda:1 | 0% | 0MiB | 无 | — |\n| cuda:2 | 0% | 0MiB | 无 | — |\n| cuda:3 | 0% | 0MiB | 无 | — |\n\n**cuda:0 进程详情：**\n- PID 22969：`python scripts/exp025_pythia_filtering.py --strategy graduated_a09 --seed 456 --device cuda:0`\n- 启动时间：17:20（约 6 分钟前）\n- 附带 32 个 torch inductor compile worker 子进程\n\n**exp025 主进程 (PID 15687)：**\n- 存活 ✅：`bash scripts/run_exp025.sh`，启动于 16:26\n\n**异常：exp025 只在 cuda:0 单卡运行，cuda:1/2/3 完全空闲。** 预期是 4 卡并行，但实际命令行显式指定了 `--device cuda:0`，且没有其他 GPU 上有进程。这可能是 `run_exp025.sh` 正在串行跑多个 seed/strategy（当前跑的是 `graduated_a09 --seed 456`），而非 4 卡并行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cqa1-gpu-check.md"
+}

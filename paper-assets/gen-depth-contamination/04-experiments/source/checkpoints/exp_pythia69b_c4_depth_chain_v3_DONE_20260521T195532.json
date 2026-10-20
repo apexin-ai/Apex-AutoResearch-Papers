@@ -1,0 +1,72 @@
+{
+  "exp_id": "exp_pythia69b_c4_depth_chain_v3",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T03:21:54.364Z",
+    "updated_at": "2026-05-21T19:55:32.551Z",
+    "hypothesis": "Pythia-6.9B 在 C4 上的 K*=2，与其他 ≥7B 模型一致，验证 K*=2 不依赖 Qwen 家族。使用 Qwen-1.5B scorer（D095）。",
+    "parent": "exp_pythia69b_c4_depth_chain_v2",
+    "spec": {
+      "command": "python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-6.9b/snapshots/c0e3eee36dc47af0c49f361c74cfe459c09f7f23 --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --num_samples 5000 --max_depth 5 --batch_size 4 --feat_batch_size 2 --generation_mode continuation --no_sample --data_dir data/exp_pythia69b_c4 --results_dir results/exp_pythia69b_c4",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "395575",
+      "log_path": "~/runs/gen-depth-contamination/exp_pythia69b_c4_depth_chain_v3.log",
+      "submitted_at": "2026-05-21T03:22:20.098Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "EleutherAI/pythia-6.9b",
+      "model_path": "/root/autodl-tmp/.hf_cache/models--EleutherAI--pythia-6.9b/snapshots/c0e3eee36dc47af0c49f361c74cfe459c09f7f23",
+      "scorer_path": "/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B",
+      "data_path": "data/exp_pythia69b_c4",
+      "data_count": 5000,
+      "seed": "default",
+      "generation_mode": "continuation",
+      "no_sample": true,
+      "max_depth": 5,
+      "checkpoint_source": "N/A (full pipeline)",
+      "eval_data": "N/A (full pipeline: seed->generation->features->OBD)",
+      "wall_clock_seconds": 32849.3,
+      "gpu_hours": 9.12
+    },
+    "reproduce": {
+      "finished_at": "2026-05-21T12:29:46.273Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "negative",
+    "completed_at": "2026-05-21T12:29:49.365Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T12:29:53.480338+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "0v1_auc": 0.9941,
+      "1v2_auc": 0.8542,
+      "2v3_auc": 0.5373,
+      "3v4_auc": 0.5339,
+      "4v5_auc": 0.5211,
+      "kstar_at_060": 2,
+      "0v1_jsd": 0.53459,
+      "1v2_jsd": 0.06438,
+      "2v3_jsd": 0.00502,
+      "empty_texts_total": 144,
+      "features_rows": 30000
+    },
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/data/exp_pythia69b_c4/features.csv",
+    "log_path": "~/runs/gen-depth-contamination/exp_pythia69b_c4_depth_chain_v3.log"
+  },
+  "timestamp": "2026-05-21T19:55:32.943609+00:00",
+  "trigger": "update_registry"
+}

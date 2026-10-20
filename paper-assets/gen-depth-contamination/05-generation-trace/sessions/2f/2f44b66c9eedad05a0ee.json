@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f44b66c9eedad05a0ee",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code exp 018 llama8b",
+  "task_key": "worker_code_exp_018_llama8b_20260516T045518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_018_llama8b_20260516T045518_result.json",
+    "occurrence": 1,
+    "bytes": 594,
+    "sha256": "241790b3a4a2cf81410c3ac9c1639fbee7f075cc20e846de49ea33213dd5690f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认完成：\n\n- **GPU 0**: 16041 MiB / 24564 MiB，利用率 96%，无 OOM 风险\n- **pipeline 正常运行**: depth 1 generation 进行中，batch_size=4，~6.4s/batch\n- **--scorer_path 修改已生效**: generation 用 LLaMA-3.1-8B，Step 4 feature extraction 将自动切换到 Qwen2.5-1.5B base\n- **depth_0.jsonl 复用 exp-016 数据**: 5000 条 C4 seed data（避免 HF tree listing 死循环）\n\n**Registry 已更新**: `exp_018_llama8b_depth` → RUNNING\n\n**预估时间**: depth chain 5 层 ~11h + feature extraction ~1h + analysis ~0.5h ≈ 12-13h 总计。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-018-llama8b.md"
+}

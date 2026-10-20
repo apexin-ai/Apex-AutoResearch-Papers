@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "34fa08b421e0c42d0a54",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "compute f1 optimal threshold",
+  "task_key": "worker_compute_f1-optimal-threshold_20260519T170145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_compute_f1-optimal-threshold_20260519T170145.log",
+    "occurrence": 1,
+    "bytes": 620290,
+    "sha256": "db7661c912ccd5f1cc6bc47fd3c5a3e14b7971bae5d425f49366d1cd2584f5c8"
+  },
+  "statistics": {
+    "messages": 261,
+    "user_turns": 0,
+    "tool_calls": 98,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 61,
+      "tool_call": 98,
+      "tool_result": 98,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 261,
+      "chunks": [
+        {
+          "path": "34fa08b421e0c42d0a54-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "34fa08b421e0c42d0a54-part-0002.json",
+          "message_count": 81
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/compute-f1-optimal-threshold.md"
+}

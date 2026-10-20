@@ -1,0 +1,26 @@
+paper_key: "mady2026feataugmented"
+title: "Feature-Augmented Transformers for Robust AI-Text Detection Across Domains and Generators"
+venue: "arXiv 2026 (submitted to ICML 2026)"
+full_text_available: false
+
+research:
+  baselines: [BERT, RoBERTa, DeBERTa-v3-base, zero-shot detectors (DetectGPT, Binoculars)]
+  metrics:
+    - {name: "balanced accuracy", direction: "higher_better"}
+    - {name: "in-domain accuracy", direction: "higher_better"}
+    - {name: "cross-domain transfer accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "HC3 PLUS", size: "not specified"}
+    - {name: "M4", size: "multi-domain multi-generator benchmark"}
+    - {name: "AI-Text-Detection-Pile", size: "not specified"}
+  ablation_dimensions: [feature type (readability, vocabulary, linguistic), fusion method (attention-based), backbone model]
+  training_recipe: {details: "Train transformer detectors on HC3 PLUS with fixed decision threshold from validation; augment with attention-based linguistic feature fusion for cross-domain robustness"}
+  method_family: "supervised detection with linguistic feature augmentation"
+
+positioning:
+  core_claim: "Attention-based fusion of linguistic features into transformer detectors improves cross-domain transfer, with DeBERTa-v3-base+FeatAttn achieving 85.9% balanced accuracy on M4 while base models degrade severely under distribution shift"
+  relation_to_us: "competitor"
+
+narrative: N/A
+figures: N/A
+tables: N/A

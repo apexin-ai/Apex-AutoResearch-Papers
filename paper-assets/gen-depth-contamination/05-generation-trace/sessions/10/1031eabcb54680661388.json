@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1031eabcb54680661388",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp 025 pythia arxiv",
+  "task_key": "worker_analysis_exp_025_pythia_arxiv_20260516T185842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_025_pythia_arxiv_20260516T185842_result.json",
+    "occurrence": 1,
+    "bytes": 1482,
+    "sha256": "af73710e856c3bb689d189c957ad724f8815ea7110cd34d8b288f74f9a1f0c02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。以下是完整分析结果：\n\n```\nK_star: 3\npairwise_auc:\n  0v1: 0.9877\n  1v2: 0.8047\n  2v3: 0.6545\n  3v4: 0.5507\n  4v5: 0.5287\npairwise_jsd:\n  0v1: 0.171338\n  1v2: 0.057344\n  2v3: 0.019524\n  3v4: 0.009917\n  4v5: 0.008846\nbootstrap_ci:\n  0v1: {auc: 0.9876, ci_lower: 0.9851, ci_upper: 0.9900, perm_p: 0.0001}\n  1v2: {auc: 0.8047, ci_lower: 0.7934, ci_upper: 0.8162, perm_p: 0.0001}\n  2v3: {auc: 0.6544, ci_lower: 0.6401, ci_upper: 0.6688, perm_p: 0.0001}\n  3v4: {auc: 0.5500, ci_lower: 0.5340, ci_upper: 0.5657, perm_p: 0.0001}\n  4v5: {auc: 0.5284, ci_lower: 0.5122, ci_upper: 0.5443, perm_p: 0.0010}\nordinal:\n  MAE: 0.8518\n  Accuracy: 0.4545\ntop_features:\n  1. freq_entropy (9845)\n  2. surp_std (7968)\n  3. surp_mean (7568)\n  4. surp_d1_skew (7180)\n  5. surp_d1_mean (7124)\nkey_finding: \"Pythia-1.4B on arXiv yields K*=3 (θ=0.60), identical to exp-024 (Qwen on arXiv). The 2v3 boundary is the last distinguishable pair with CI lower bound (0.6401) firmly above theta. Domain saturation depth is model-invariant for arXiv.\"\ncomparison_with_exp024: \"exp-024 Qwen arXiv: K*=3, 1v2=0.858, 2v3=0.6427, 3v4=0.5437. exp-025 Pythia arXiv: K*=3, 1v2=0.8047, 2v3=0.6545, 3v4=0.5507. Same K*, slightly different AUC magnitudes (Pythia lower at 1v2 by ~0.05, slightly higher at 2v3/3v4). Conclusion: arXiv domain effect (K*=3) is robust across model architectures — this is a domain property, not a Qwen-specific artifact.\"\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-025-pythia-arxiv.md"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_deberta_cross_transfer_wiki",
+  "project": "gen-depth-contamination",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:23:41.514Z",
+    "updated_at": "2026-05-19T22:23:41.514Z"
+  },
+  "timestamp": "2026-05-19T22:23:41.726133+00:00",
+  "trigger": "update_registry"
+}

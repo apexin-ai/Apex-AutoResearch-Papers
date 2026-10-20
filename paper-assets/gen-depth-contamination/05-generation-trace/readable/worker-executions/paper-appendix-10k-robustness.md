@@ -1,0 +1,847 @@
+# paper appendix 10k robustness
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 17
+- **Recorded user turns:** 0
+- **Tool calls:** 4
+- **Original source:** `logs/workers/worker_paper_appendix_10k_robustness_20260522T141751.log`
+- **Structured JSON:** [`972383f774b71b488173.json`](../../sessions/97/972383f774b71b488173.json)
+
+## Before a recorded user message
+
+17 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "session_id": "f6cf27d0-0d1b-42f5-be48-e405b77c52b3",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "32ac3e1a-80c4-45ba-bc05-fbb175ca3818",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779467400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "85fdd067-a308-4dca-bdb0-3a196c097c76",
+  "session_id": "f6cf27d0-0d1b-42f5-be48-e405b77c52b3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我先读取现有的 appendix_extended.tex 文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f6cf27d0-0d1b-42f5-be48-e405b77c52b3",
+  "uuid": "2afcefe9-a468-4ff9-826d-6a73c8460d31",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TjBgsBPnhNM5SDBSYbbwMy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12658,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12658
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_015g6uFA3XpntmEGyhqffsoY`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f6cf27d0-0d1b-42f5-be48-e405b77c52b3",
+  "uuid": "8898c715-5e57-4473-a8cf-93958b02837f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TjBgsBPnhNM5SDBSYbbwMy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12658,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12658
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-22T14:18:01.952Z_
+
+<details><summary>↩ Tool result · `toolu_015g6uFA3XpntmEGyhqffsoY`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f6cf27d0-0d1b-42f5-be48-e405b77c52b3",
+  "uuid": "0f89f86c-abb2-4fcc-8711-62248e83b018",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TsdPvasnFqzmAeGCGMBhRj`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/docs/paper/appendix_extended.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f6cf27d0-0d1b-42f5-be48-e405b77c52b3",
+  "uuid": "36fd18f2-2db3-4966-991b-4458fae9c960",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rq94CqgnWFvQBxwybR1jBp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 691,
+      "cache_read_input_tokens": 24499,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 691
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-22T14:18:06.177Z_
+
+<details><summary>↩ Tool result · `toolu_01TsdPvasnFqzmAeGCGMBhRj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Extended Discussion}\\n\\\\label{sec:extended_discussion}\\n\\n\\\\subsection{Theoretical Implications of $\\\\Kempirical = 2$}\\n\\nThe DPI guarantees a finite $\\\\Ktheory$; for general web text, $\\\\Kempirical \\\\leq 2$ across all 10 configurations (1B--8B, 6 families), while structured domains (arXiv) yield $\\\\Kempirical{=}3$, aligning with model collapse convergence~\\\\cite{shumailov2024collapse, dohmatob2024model, alemohammad2024selfconsuming}.\\nDecoding strategy modestly affects signal strength (1v2 $\\\\auc \\\\in [0.6866, 0.7039]$) but does not shift the boundary.\\n\\n\\\\subsection{Cross-Model Transfer Implications}\\n\\nCross-model classification retains 80--100\\\\% accuracy with scorer-invariant feature rankings ($\\\\rho > 0.90$), enabling single-classifier deployment across generators.\\nAbsolute discriminability at the $\\\\Kempirical$ boundary is scorer-sensitive: alternative scorers reduce Qwen-continuation $\\\\Kempirical$ from 2 to 1, while rewrite-mode $\\\\Kempirical = 2$ is preserved.\\nModel family similarity modulates transfer (Pythia$\\\\leftrightarrow$OLMo: 90--92\\\\% vs.\\\\ Qwen-cont$\\\\leftrightarrow$OLMo: 80--85\\\\%).\\n\\n\\\\begin{minipage}{\\\\columnwidth}\\n\\\\centering\\n\\\\captionof{table}{Cross-scorer validation on Qwen-generated text. Alternative scorers (Pythia-1.4B, OLMo-1B) preserve feature ranking ($\\\\rho > 0.90$) and rewrite-mode $\\\\Kempirical = 2$, but reduce continuation-mode $\\\\Kempirical$ from 2 to 1.}\\n\\\\label{tab:crossscorer}\\n\\\\resizebox{\\\\columnwidth}{!}{\\\\input{tables/tab_crossscorer}}\\n\\\\end{minipage}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{Three-way ANOVA (Generator $\\\\times$ Scorer $\\\\times$ Depth-Pair) on per-fold pairwise $\\\\auc$ values. DV = per-fold AUC; $N{=}300$ (12 cells $\\\\times$ 5 folds $\\\\times$ 5 depth-pairs). Scorer is statistically significant but explains modest variance ($\\\\eta^2_p{=}.166$) relative to Depth-Pair ($\\\\eta^2_p{=}.997$), supporting near-scorer-independence of depth discrimination.}\\n\\\\label{tab:anova_crossscorer}\\n\\\\begin{tabular}{lrrrr}\\n\\\\toprule\\n\\\\textbf{Source} & \\\\textbf{df} & $F$ & $p$ & $\\\\eta^2_p$ \\\\\\\\\\n\\\\midrule\\nGenerator     & 2  & 851.91  & ${<}.001$  & .866 \\\\\\\\\\nScorer        & 3  & 17.48  & ${<}.001$  & .166 \\\\\\\\\\nDepth-Pair    & 4  & 22737.70  & ${<}.001$  & .997 \\\\\\\\\\nGen$\\\\times$Scorer & 6 & 7.50 & ${<}.001$ & .146 \\\\\\\\\\nGen$\\\\times$Depth  & 8 & 913.41 & ${<}.001$ & .965 \\\\\\\\\\nScorer$\\\\times$Depth & 12 & 2.25 & $.010$ & .093 \\\\\\\\\\nResidual      & 264 & & & \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\subsection{Feature Importance Across Decoding Strategies}\\n\\nFeature importance ordering varies across decoding strategies: greedy and $T{=}0.7$ share highly correlated rankings ($\\\\rho = 0.914$), while greedy vs.\\\\ $T{=}1.2$ yields lower correlation ($\\\\rho = 0.53$, nonsignificant after Bonferroni).\\nThe depth boundary is robust but the optimal feature subset is strategy-dependent.\\n\\n\\\\subsection{Scale and Neural Probe}\\n\\\\label{sec:extended_neural_probe}\\n\\nCross-scale validation confirms $\\\\Kempirical = 2$ from 1.5B through 8B: Qwen-7B (1v2 $\\\\auc = 0.6168$ $[0.608, 0.626]$) and LLaMA-3.1-8B (1v2 $\\\\auc = 0.6123$, 0v1 $= 0.9225$) both exceed $\\\\theta$, with progressively lower 0v1 signal consistent with larger models generating more human-like text. Scaling to 13B+ remains open.\\n\\nThe neural probe yields model-dependent $\\\\Kempirical^{\\\\text{neural}}$: $3$ for Qwen (self-familiarity effect from instruction-tuned representations) but $2$ for Pythia; OLMo yields $\\\\Kempirical^{\\\\text{neural}} = 1$ (1v2 $\\\\auc = 0.5054$), consistent with the 15D LightGBM boundary.\\nThe 15D model-free features yield $\\\\Kempirical = 2$ for Pythia and Qwen, while OLMo yields $\\\\Kempirical = 1$ under the standardized pipeline.\\n\\n\\\\subsection{LLM Zero-Shot Baseline}\\n\\\\label{sec:extended_llm}\\n\\nGPT-5.5 achieves 33.2\\\\% accuracy (MAE = 1.10) and Claude Opus~4.6 33.1\\\\% (MAE = 1.15) on a balanced 500-sample test set, comparable to OBD-LightGBM's 38.0\\\\% (95\\\\% CI: $[0.340, 0.422]$; McNemar $p = 0.081$, $0.069$; Table~\\\\ref{tab:s3_llm_zeroshot}).\\nPer-depth recall confirms convergent failure at depths $\\\\geq 2$ (Section~\\\\re\\n\\n... [截断: 输出过长，省略 5835 字符] ...\\n\\ner seed$\\\\,{=}\\\\,123$, but the 2v3 AUC ($0.6067$) is marginal: one of five folds falls below $\\\\theta$ (fold~5 $= 0.595$), so this does not constitute strong evidence for $\\\\Kempirical{=}3$.\\nThe ${\\\\pm}9$\\\\,pp absolute AUC variation across seeds strengthens the methodological case for threshold-based $\\\\Kempirical$ over raw AUC comparisons: the qualitative boundary is robust even when point estimates shift.\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\footnotesize\\n\\\\caption{Seed robustness: $\\\\Kempirical$ under two random seeds. 1v2 $\\\\Delta$: change in 1v2 AUC from seed 42 to seed 123. $\\\\Kempirical$ is stable in 2/3 configurations; the Qwen-Wiki shift to $\\\\Kempirical{=}3$ is marginal (2v3 fold variance crosses $\\\\theta$).}\\n\\\\label{tab:seed_robustness}\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{llcccc}\\n\\\\toprule\\n\\\\textbf{Model} & \\\\textbf{Domain} & \\\\multicolumn{2}{c}{$\\\\Kempirical$} & \\\\textbf{1v2 $\\\\Delta$} & \\\\textbf{Stable?} \\\\\\\\\\n\\\\cmidrule(lr){3-4}\\n & & seed=42 & seed=123 & & \\\\\\\\\\n\\\\midrule\\nPythia-1.4B & Wikipedia & 1 & 1 & $-0.8$\\\\,pp & \\\\checkmark \\\\\\\\\\nQwen-1.5B  & C4        & 2 & 2 & $+9.0$\\\\,pp & \\\\checkmark \\\\\\\\\\nQwen-1.5B  & Wikipedia & 2 & 3$^\\\\dagger$ & $+8.7$\\\\,pp & $\\\\times$ \\\\\\\\\\n\\\\bottomrule\\n\\\\multicolumn{6}{l}{\\\\footnotesize $^\\\\dagger$2v3 $\\\\auc = 0.6067$; fold 5 $= 0.595 < \\\\theta$. Marginal boundary.}\\n\\\\end{tabular}}\\n\\\\end{table}\\n\\n\\\\subsection{Bonferroni-Corrected Confidence Intervals}\\n\\\\label{sec:bonferroni_ci}\\n\\nTo control the family-wise error rate across all 10 model configurations, we apply Bonferroni correction: $\\\\alpha_{\\\\text{corr}} = 0.05 / 10 = 0.005$, yielding 99.5\\\\% confidence intervals ($z = 2.807$).\\nTable~\\\\ref{tab:bonferroni_ci} reports the corrected intervals for each configuration's $\\\\Kempirical$ boundary pair.\\nEight of ten configurations retain CI lower bounds above $\\\\theta{=}0.60$; two marginal $\\\\Kempirical{=}2$ configurations (Qwen-cont, LLaMA-8B) see their lower bounds dip below $\\\\theta$ under the stricter criterion ($0.5976$ and $0.5988$, respectively).\\nThese near-misses reflect narrow effect sizes ($\\\\auc - \\\\theta < 0.013$) rather than classification failure: both retain point estimates above $\\\\theta$ and uncorrected 95\\\\% CI lower bounds above $\\\\theta$.\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\footnotesize\\n\\\\caption{Bonferroni-corrected 99.5\\\\% confidence intervals for $\\\\Kempirical$ boundary pairs across all 10 configurations. $\\\\alpha_{\\\\text{corr}} = 0.005$; CI computed as $\\\\auc \\\\pm 2.807 \\\\times \\\\hat{\\\\sigma}_{\\\\text{boot}}$. ``Pass $\\\\theta$'': CI lower bound $> 0.60$.}\\n\\\\label{tab:bonferroni_ci}\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{llcccc}\\n\\\\toprule\\n\\\\textbf{Configuration} & \\\\textbf{Boundary} & $\\\\auc$ & $\\\\hat{\\\\sigma}_{\\\\text{boot}}$ & \\\\textbf{99.5\\\\% CI} & \\\\textbf{Pass $\\\\theta$} \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{6}{l}{\\\\textit{$\\\\Kempirical = 2$ configurations}} \\\\\\\\\\nQwen-rw (Instruct)       & 1v2 & .6955 & .0046 & $[.683,\\\\,.708]$ & \\\\checkmark \\\\\\\\\\nPythia-1.4B               & 1v2 & .6539 & .0046 & $[.641,\\\\,.667]$ & \\\\checkmark \\\\\\\\\\nQwen-base                 & 1v2 & .6260 & .0047 & $[.613,\\\\,.639]$ & \\\\checkmark \\\\\\\\\\nQwen-7B$^\\\\ddagger$        & 1v2 & .6168 & .0046 & $[.604,\\\\,.630]$ & \\\\checkmark \\\\\\\\\\nLLaMA-8B                  & 1v2 & .6123 & .0048 & $[.599,\\\\,.626]$ & $\\\\times$ \\\\\\\\\\nQwen-cont (Instruct)     & 1v2 & .6112 & .0049 & $[.598,\\\\,.625]$ & $\\\\times$ \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{6}{l}{\\\\textit{$\\\\Kempirical = 1$ configurations}} \\\\\\\\\\nOLMo-1B                   & 0v1 & .9860 & .0009 & $[.983,\\\\,.989]$ & \\\\checkmark \\\\\\\\\\nMistral-7B                & 0v1 & .9842 & .0009 & $[.982,\\\\,.987]$ & \\\\checkmark \\\\\\\\\\nPythia-6.9B$^\\\\S$          & 0v1 & .9599 & .0015$^\\\\dagger$ & $[.956,\\\\,.964]$ & \\\\checkmark \\\\\\\\\\nGemma-2-2B                & 0v1 & .9530 & .0018 & $[.948,\\\\,.958]$ & \\\\checkmark \\\\\\\\\\n\\\\bottomrule\\n\\\\multicolumn{6}{l}{\\\\footnotesize $^\\\\ddagger$Generator: Qwen2.5-7B; scorer: Qwen2.5-1.5B.} \\\\\\\\\\n\\\\multicolumn{6}{l}{\\\\footnotesize $^\\\\S$Nucleus sampling ($p{=}0.95$, $T{=}1.0$).} \\\\\\\\\\n\\\\multicolumn{6}{l}{\\\\footnotesize $^\\\\dagger$Estimated from analogous configurations (no separate bootstrap JSON).}\\n\\\\end{tabular}}\\n\\\\end{table}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f6cf27d0-0d1b-42f5-be48-e405b77c52b3",
+  "uuid": "50722401-8f74-4dcf-8650-8fbc1d997c9c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Extended Discussion}\\\\n\\\\\\\\label{sec:extended_discussion}\\\\n\\\\n\\\\\\\\subsection{Theoretical Implications of $\\\\\\\\Kempirical = 2$}\\\\n\\\\nThe DPI guarantees a finite $\\\\\\\\Ktheory$; for general web text, $\\\\\\\\Kempirical \\\\\\\\leq 2$ across all 10 configurations (1B--8B, 6 families), while structured domains (arXiv) yield $\\\\\\\\Kempirical{=}3$, aligning with model collapse convergence~\\\\\\\\cite{shumailov2024collapse, dohmatob2024model, alemohammad2024selfconsuming}.\\\\nDecoding strategy modestly affects signal strength (1v2 $\\\\\\\\auc \\\\\\\\in [0.6866, 0.7039]$) but does not shift the boundary.\\\\n\\\\n\\\\\\\\subsection{Cross-Model Transfer Implications}\\\\n\\\\nCross-model classification retains 80--100\\\\\\\\% accuracy with scorer-invariant feature rankings ($\\\\\\\\rho > 0.90$), enabling single-classifier deployment across generators.\\\\nAbsolute discriminability at the $\\\\\\\\Kempirical$ boundary is scorer-sensitive: alternative scorers reduce Qwen-continuation $\\\\\\\\Kempirical$ from 2 to 1, while rewrite-mode $\\\\\\\\Kempirical = 2$ is preserved.\\\\nModel family similarity modulates transfer (Pythia$\\\\\\\\leftrightarrow$OLMo: 90--92\\\\\\\\% vs.\\\\\\\\ Qwen-cont$\\\\\\\\leftrightarrow$OLMo: 80--85\\\\\\\\%).\\\\n\\\\n\\\\\\\\begin{minipage}{\\\\\\\\columnwidth}\\\\n\\\\\\\\centering\\\\n\\\\\\\\captionof{table}{Cross-scorer validation on Qwen-generated text. Alternative scorers (Pythia-1.4B, OLMo-1B) preserve feature ranking ($\\\\\\\\rho > 0.90$) and rewrite-mode $\\\\\\\\Kempirical = 2$, but reduce continuation-mode $\\\\\\\\Kempirical$ from 2 to 1.}\\\\n\\\\\\\\label{tab:crossscorer}\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{\\\\\\\\input{tables/tab_crossscorer}}\\\\n\\\\\\\\end{minipage}\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\caption{Three-way ANOVA (Generator $\\\\\\\\times$ Scorer $\\\\\\\\times$ Depth-Pair) on per-fold pairwise $\\\\\\\\auc$ values. DV = per-fold AUC; $N{=}300$ (12 cells $\\\\\\\\times$ 5 folds $\\\\\\\\times$ 5 depth-pairs). Scorer is statistically significant but explains modest variance ($\\\\\\\\eta^2_p{=}.166$) relative to Depth-Pair ($\\\\\\\\eta^2_p{=}.997$), supporting near-scorer-independence of depth discrimination.}\\\\n\\\\\\\\label{tab:anova_crossscorer}\\\\n\\\\\\\\begin{tabular}{lrrrr}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Source} & \\\\\\\\textbf{df} & $F$ & $p$ & $\\\\\\\\eta^2_p$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nGenerator     & 2  & 851.91  & ${<}.001$  & .866 \\\\\\\\\\\\\\\\\\\\nScorer        & 3  & 17.48  & ${<}.001$  & .166 \\\\\\\\\\\\\\\\\\\\nDepth-Pair    & 4  & 22737.70  & ${<}.001$  & .997 \\\\\\\\\\\\\\\\\\\\nGen$\\\\\\\\times$Scorer & 6 & 7.50 & ${<}.001$ & .146 \\\\\\\\\\\\\\\\\\\\nGen$\\\\\\\\times$Depth  & 8 & 913.41 & ${<}.001$ & .965 \\\\\\\\\\\\\\\\\\\\nScorer$\\\\\\\\times$Depth & 12 & 2.25 & $.010$ & .093 \\\\\\\\\\\\\\\\\\\\nResidual      & 264 & & & \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{Feature Importance Across Decoding Strategies}\\\\n\\\\nFeature importance ordering varies across decoding strategies: greedy and $T{=}0.7$ share highly correlated rankings ($\\\\\\\\rho = 0.914$), while greedy vs.\\\\\\\\ $T{=}1.2$ yields lower correlation ($\\\\\\\\rho = 0.53$, nonsignificant after Bonferroni).\\\\nThe depth boundary is robust but the optimal feature subset is strategy-dependent.\\\\n\\\\n\\\\\\\\subsection{Scale and Neural Probe}\\\\n\\\\\\\\label{sec:extended_neural_probe}\\\\n\\\\nCross-scale validation confirms $\\\\\\\\Kempirical = 2$ from 1.5B through 8B: Qwen-7B (1v2 $\\\\\\\\auc = 0.6168$ $[0.608, 0.626]$) and LLaMA-3.1-8B (1v2 $\\\\\\\\auc = 0.6123$, 0v1 $= 0.9225$) both exceed $\\\\\\\\theta$, with progressively lower 0v1 signal consistent with larger models generating more human-like text. Scaling to 13B+ remains open.\\\\n\\\\nThe neural probe yields model-dependent $\\\\\\\\Kempirical^{\\\\\\\\text{neural}}$: $3$ for Qwen (self-familiarity effect from instruction-tuned representations) but $2$ for Pythia; OLMo yields $\\\\\\\\Kempirical^{\\\\\\\\text{neural}} = 1$ (1v2 $\\\\\\\\auc = 0.5054$), consistent with the 15D LightGBM boundary.\\\\nThe 15D model-free features yield $\\\\\\\\Kempirical = 2$ for Pythia and Qwen, while OLMo yields $\\\\\\\\Kempirical = 1$ under the standardized pipeline.\\\\n\\\\n\\\\\\\\subsection{LLM Zero-Shot Baseline}\\\\n\\\\\\\\label{sec:extended_llm}\\\\n\\\\nGPT-5.5 achieves 33.2\\\\\\\\% accuracy (MAE = 1.10) and Claude Opus~4.6 33.1\\\\\\\\% (MAE = 1.15) on a balanced 500-sample test set, comparable to OBD-LightGBM's 38.0\\\\\\\\% (95\\\\\\\\% CI: $[0.340, 0.422]$; McNemar $p = 0.081$, $0.069$; Table~\\\\\\\\ref{tab:s3_llm_zeroshot}).\\\\nPer-depth recall confirms convergent failure at depths $\\\\\\\\geq 2$ (Section~\\\\\\\\re\\\\n\\\\n... [截断: 输出过长，省略 5835 字符] ...\\\\n\\\\ner seed$\\\\\\\\,{=}\\\\\\\\,123$, but the 2v3 AUC ($0.6067$) is marginal: one of five folds falls below $\\\\\\\\theta$ (fold~5 $= 0.595$), so this does not constitute strong evidence for $\\\\\\\\Kempirical{=}3$.\\\\nThe ${\\\\\\\\pm}9$\\\\\\\\,pp absolute AUC variation across seeds strengthens the methodological case for threshold-based $\\\\\\\\Kempirical$ over raw AUC comparisons: the qualitative boundary is robust even when point estimates shift.\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\footnotesize\\\\n\\\\\\\\caption{Seed robustness: $\\\\\\\\Kempirical$ under two random seeds. 1v2 $\\\\\\\\Delta$: change in 1v2 AUC from seed 42 to seed 123. $\\\\\\\\Kempirical$ is stable in 2/3 configurations; the Qwen-Wiki shift to $\\\\\\\\Kempirical{=}3$ is marginal (2v3 fold variance crosses $\\\\\\\\theta$).}\\\\n\\\\\\\\label{tab:seed_robustness}\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{llcccc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Model} & \\\\\\\\textbf{Domain} & \\\\\\\\multicolumn{2}{c}{$\\\\\\\\Kempirical$} & \\\\\\\\textbf{1v2 $\\\\\\\\Delta$} & \\\\\\\\textbf{Stable?} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\cmidrule(lr){3-4}\\\\n & & seed=42 & seed=123 & & \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nPythia-1.4B & Wikipedia & 1 & 1 & $-0.8$\\\\\\\\,pp & \\\\\\\\checkmark \\\\\\\\\\\\\\\\\\\\nQwen-1.5B  & C4        & 2 & 2 & $+9.0$\\\\\\\\,pp & \\\\\\\\checkmark \\\\\\\\\\\\\\\\\\\\nQwen-1.5B  & Wikipedia & 2 & 3$^\\\\\\\\dagger$ & $+8.7$\\\\\\\\,pp & $\\\\\\\\times$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\multicolumn{6}{l}{\\\\\\\\footnotesize $^\\\\\\\\dagger$2v3 $\\\\\\\\auc = 0.6067$; fold 5 $= 0.595 < \\\\\\\\theta$. Marginal boundary.}\\\\n\\\\\\\\end{tabular}}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{Bonferroni-Corrected Confidence Intervals}\\\\n\\\\\\\\label{sec:bonferroni_ci}\\\\n\\\\nTo control the family-wise error rate across all 10 model configurations, we apply Bonferroni correction: $\\\\\\\\alpha_{\\\\\\\\text{corr}} = 0.05 / 10 = 0.005$, yielding 99.5\\\\\\\\% confidence intervals ($z = 2.807$).\\\\nTable~\\\\\\\\ref{tab:bonferroni_ci} reports the corrected intervals for each configuration's $\\\\\\\\Kempirical$ boundary pair.\\\\nEight of ten configurations retain CI lower bounds above $\\\\\\\\theta{=}0.60$; two marginal $\\\\\\\\Kempirical{=}2$ configurations (Qwen-cont, LLaMA-8B) see their lower bounds dip below $\\\\\\\\theta$ under the stricter criterion ($0.5976$ and $0.5988$, respectively).\\\\nThese near-misses reflect narrow effect sizes ($\\\\\\\\auc - \\\\\\\\theta < 0.013$) rather than classification failure: both retain point estimates above $\\\\\\\\theta$ and uncorrected 95\\\\\\\\% CI lower bounds above $\\\\\\\\theta$.\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\footnotesize\\\\n\\\\\\\\caption{Bonferroni-corrected 99.5\\\\\\\\% confidence intervals for $\\\\\\\\Kempirical$ boundary pairs across all 10 configurations. $\\\\\\\\alpha_{\\\\\\\\text{corr}} = 0.005$; CI computed as $\\\\\\\\auc \\\\\\\\pm 2.807 \\\\\\\\times \\\\\\\\hat{\\\\\\\\sigma}_{\\\\\\\\text{boot}}$. ``Pass $\\\\\\\\theta$'': CI lower bound $> 0.60$.}\\\\n\\\\\\\\label{tab:bonferroni_ci}\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{llcccc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Configuration} & \\\\\\\\textbf{Boundary} & $\\\\\\\\auc$ & $\\\\\\\\hat{\\\\\\\\sigma}_{\\\\\\\\text{boot}}$ & \\\\\\\\textbf{99.5\\\\\\\\% CI} & \\\\\\\\textbf{Pass $\\\\\\\\theta$} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{6}{l}{\\\\\\\\textit{$\\\\\\\\Kempirical = 2$ configurations}} \\\\\\\\\\\\\\\\\\\\nQwen-rw (Instruct)       & 1v2 & .6955 & .0046 & $[.683,\\\\\\\\,.708]$ & \\\\\\\\checkmark \\\\\\\\\\\\\\\\\\\\nPythia-1.4B               & 1v2 & .6539 & .0046 & $[.641,\\\\\\\\,.667]$ & \\\\\\\\checkmark \\\\\\\\\\\\\\\\\\\\nQwen-base                 & 1v2 & .6260 & .0047 & $[.613,\\\\\\\\,.639]$ & \\\\\\\\checkmark \\\\\\\\\\\\\\\\\\\\nQwen-7B$^\\\\\\\\ddagger$        & 1v2 & .6168 & .0046 & $[.604,\\\\\\\\,.630]$ & \\\\\\\\checkmark \\\\\\\\\\\\\\\\\\\\nLLaMA-8B                  & 1v2 & .6123 & .0048 & $[.599,\\\\\\\\,.626]$ & $\\\\\\\\times$ \\\\\\\\\\\\\\\\\\\\nQwen-cont (Instruct)     & 1v2 & .6112 & .0049 & $[.598,\\\\\\\\,.625]$ & $\\\\\\\\times$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{6}{l}{\\\\\\\\textit{$\\\\\\\\Kempirical = 1$ configurations}} \\\\\\\\\\\\\\\\\\\\nOLMo-1B                   & 0v1 & .9860 & .0009 & $[.983,\\\\\\\\,.989]$ & \\\\\\\\checkmark \\\\\\\\\\\\\\\\\\\\nMistral-7B                & 0v1 & .9842 & .0009 & $[.982,\\\\\\\\,.987]$ & \\\\\\\\checkmark \\\\\\\\\\\\\\\\\\\\nPythia-6.9B$^\\\\\\\\S$          & 0v1 & .9599 & .0015$^\\\\\\\\dagger$ & $[.956,\\\\\\\\,.964]$ & \\\\\\\\checkmark \\\\\\\\\\\\\\\\\\\\nGemma-2-2B                & 0v1 & .9530 & .0018 & $[.948,\\\\\\\\,.958]$ & \\\\\\\\checkmark \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\multicolumn{6}{l}{\\\\\\\\footnotesize $^\\\\\\\\ddagger$Generator: Qwen2.5-7B; scorer: Qwen2.5-1.5B.} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\multicolumn{6}{l}{\\\\\\\\footnotesize $^\\\\\\\\S$Nucleus sampling ($p{=}0.95$, $T{=}1.0$).} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\multicolumn{6}{l}{\\\\\\\\footnotesize $^\\\\\\\\dagger$Estimated from analogous configurations (no separate bootstrap JSON).}\\\\n\\\\\\\\end{tabular}}\\\\n\\\\\\\\end{table}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Extended Discussion}\\n\\\\label{sec:extended_discussion}\\n\\n\\\\subsection{Theoretical Implications of $\\\\Kempirical = 2$}\\n\\nThe DPI guarantees a finite $\\\\Ktheory$; for general web text, $\\\\Kempirical \\\\leq 2$ across all 10 configurations (1B--8B, 6 families), while structured domains (arXiv) yield $\\\\Kempirical{=}3$, aligning with model collapse convergence~\\\\cite{shumailov2024collapse, dohmatob2024model, alemohammad2024selfconsuming}.\\nDecoding strategy modestly affects signal strength (1v2 $\\\\auc \\\\in [0.6866, 0.7039]$) but does not shift the boundary.\\n\\n\\\\subsection{Cross-Model Transfer Implications}\\n\\nCross-model classification retains 80--100\\\\% accuracy with scorer-invariant feature rankings ($\\\\rho > 0.90$), enabling single-classifier deployment across generators.\\nAbsolute discriminability at the $\\\\Kempirical$ boundary is scorer-sensitive: alternative scorers reduce Qwen-continuation $\\\\Kempirical$ from 2 to 1, while rewrite-mode $\\\\Kempirical = 2$ is preserved.\\nModel family similarity modulates transfer (Pythia$\\\\leftrightarrow$OLMo: 90--92\\\\% vs.\\\\ Qwen-cont$\\\\leftrightarrow$OLMo: 80--85\\\\%).\\n\\n\\\\begin{minipage}{\\\\columnwidth}\\n\\\\centering\\n\\\\captionof{table}{Cross-scorer validation on Qwen-generated text. Alternative scorers (Pythia-1.4B, OLMo-1B) preserve feature ranking ($\\\\rho > 0.90$) and rewrite-mode $\\\\Kempirical = 2$, but reduce continuation-mode $\\\\Kempirical$ from 2 to 1.}\\n\\\\label{tab:crossscorer}\\n\\\\resizebox{\\\\columnwidth}{!}{\\\\input{tables/tab_crossscorer}}\\n\\\\end{minipage}\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\caption{Three-way ANOVA (Generator $\\\\times$ Scorer $\\\\times$ Depth-Pair) on per-fold pairwise $\\\\auc$ values. DV = per-fold AUC; $N{=}300$ (12 cells $\\\\times$ 5 folds $\\\\times$ 5 depth-pairs). Scorer is statistically significant but explains modest variance ($\\\\eta^2_p{=}.166$) relative to Depth-Pair ($\\\\eta^2_p{=}.997$), supporting near-scorer-independence of depth discrimination.}\\n\\\\label{tab:anova_crossscorer}\\n\\\\begin{tabular}{lrrrr}\\n\\\\toprule\\n\\\\textbf{Source} & \\\\textbf{df} & $F$ & $p$ & $\\\\eta^2_p$ \\\\\\\\\\n\\\\midrule\\nGenerator     & 2  & 851.91  & ${<}.001$  & .866 \\\\\\\\\\nScorer        & 3  & 17.48  & ${<}.001$  & .166 \\\\\\\\\\nDepth-Pair    & 4  & 22737.70  & ${<}.001$  & .997 \\\\\\\\\\nGen$\\\\times$Scorer & 6 & 7.50 & ${<}.001$ & .146 \\\\\\\\\\nGen$\\\\times$Depth  & 8 & 913.41 & ${<}.001$ & .965 \\\\\\\\\\nScorer$\\\\times$Depth & 12 & 2.25 & $.010$ & .093 \\\\\\\\\\nResidual      & 264 & & & \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\n\\\\subsection{Feature Importance Across Decoding Strategies}\\n\\nFeature importance ordering varies across decoding strategies: greedy and $T{=}0.7$ share highly correlated rankings ($\\\\rho = 0.914$), while greedy vs.\\\\ $T{=}1.2$ yields lower correlation ($\\\\rho = 0.53$, nonsignificant after Bonferroni).\\nThe depth boundary is robust but the optimal feature subset is strategy-dependent.\\n\\n\\\\subsection{Scale and Neural Probe}\\n\\\\label{sec:extended_neural_probe}\\n\\nCross-scale validation confirms $\\\\Kempirical = 2$ from 1.5B through 8B: Qwen-7B (1v2 $\\\\auc = 0.6168$ $[0.608, 0.626]$) and LLaMA-3.1-8B (1v2 $\\\\auc = 0.6123$, 0v1 $= 0.9225$) both exceed $\\\\theta$, with progressively lower 0v1 signal consistent with larger models generating more human-like text. Scaling to 13B+ remains open.\\n\\nThe neural probe yields model-dependent $\\\\Kempirical^{\\\\text{neural}}$: $3$ for Qwen (self-familiarity effect from instruction-tuned representations) but $2$ for Pythia; OLMo yields $\\\\Kempirical^{\\\\text{neural}} = 1$ (1v2 $\\\\auc = 0.5054$), consistent with the 15D LightGBM boundary.\\nThe 15D model-free features yield $\\\\Kempirical = 2$ for Pythia and Qwen, while OLMo yields $\\\\Kempirical = 1$ under the standardized pipeline.\\n\\n\\\\subsection{LLM Zero-Shot Baseline}\\n\\\\label{sec:extended_llm}\\n\\nGPT-5.5 achieves 33.2\\\\% accuracy (MAE = 1.10) and Claude Opus~4.6 33.1\\\\% (MAE = 1.15) on a balanced 500-sample test set, comparable to OBD-LightGBM's 38.0\\\\% (95\\\\% CI: $[0.340, 0.422]$; McNemar $p = 0.081$, $0.069$; Table~\\\\ref{tab:s3_llm_zeroshot}).\\nPer-depth recall confirms convergent failure at depths $\\\\geq 2$ (Section~\\\\re\\n\\n... [截断: 输出过长，省略 5835 字符] ...\\n\\ner seed$\\\\,{=}\\\\,123$, but the 2v3 AUC ($0.6067$) is marginal: one of five folds falls below $\\\\theta$ (fold~5 $= 0.595$), so this does not constitute strong evidence for $\\\\Kempirical{=}3$.\\nThe ${\\\\pm}9$\\\\,pp absolute AUC variation across seeds strengthens the methodological case for threshold-based $\\\\Kempirical$ over raw AUC comparisons: the qualitative boundary is robust even when point estimates shift.\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\footnotesize\\n\\\\caption{Seed robustness: $\\\\Kempirical$ under two random seeds. 1v2 $\\\\Delta$: change in 1v2 AUC from seed 42 to seed 123. $\\\\Kempirical$ is stable in 2/3 configurations; the Qwen-Wiki shift to $\\\\Kempirical{=}3$ is marginal (2v3 fold variance crosses $\\\\theta$).}\\n\\\\label{tab:seed_robustness}\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{llcccc}\\n\\\\toprule\\n\\\\textbf{Model} & \\\\textbf{Domain} & \\\\multicolumn{2}{c}{$\\\\Kempirical$} & \\\\textbf{1v2 $\\\\Delta$} & \\\\textbf{Stable?} \\\\\\\\\\n\\\\cmidrule(lr){3-4}\\n & & seed=42 & seed=123 & & \\\\\\\\\\n\\\\midrule\\nPythia-1.4B & Wikipedia & 1 & 1 & $-0.8$\\\\,pp & \\\\checkmark \\\\\\\\\\nQwen-1.5B  & C4        & 2 & 2 & $+9.0$\\\\,pp & \\\\checkmark \\\\\\\\\\nQwen-1.5B  & Wikipedia & 2 & 3$^\\\\dagger$ & $+8.7$\\\\,pp & $\\\\times$ \\\\\\\\\\n\\\\bottomrule\\n\\\\multicolumn{6}{l}{\\\\footnotesize $^\\\\dagger$2v3 $\\\\auc = 0.6067$; fold 5 $= 0.595 < \\\\theta$. Marginal boundary.}\\n\\\\end{tabular}}\\n\\\\end{table}\\n\\n\\\\subsection{Bonferroni-Corrected Confidence Intervals}\\n\\\\label{sec:bonferroni_ci}\\n\\nTo control the family-wise error rate across all 10 model configurations, we apply Bonferroni correction: $\\\\alpha_{\\\\text{corr}} = 0.05 / 10 = 0.005$, yielding 99.5\\\\% confidence intervals ($z = 2.807$).\\nTable~\\\\ref{tab:bonferroni_ci} reports the corrected intervals for each configuration's $\\\\Kempirical$ boundary pair.\\nEight of ten configurations retain CI lower bounds above $\\\\theta{=}0.60$; two marginal $\\\\Kempirical{=}2$ configurations (Qwen-cont, LLaMA-8B) see their lower bounds dip below $\\\\theta$ under the stricter criterion ($0.5976$ and $0.5988$, respectively).\\nThese near-misses reflect narrow effect sizes ($\\\\auc - \\\\theta < 0.013$) rather than classification failure: both retain point estimates above $\\\\theta$ and uncorrected 95\\\\% CI lower bounds above $\\\\theta$.\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\footnotesize\\n\\\\caption{Bonferroni-corrected 99.5\\\\% confidence intervals for $\\\\Kempirical$ boundary pairs across all 10 configurations. $\\\\alpha_{\\\\text{corr}} = 0.005$; CI computed as $\\\\auc \\\\pm 2.807 \\\\times \\\\hat{\\\\sigma}_{\\\\text{boot}}$. ``Pass $\\\\theta$'': CI lower bound $> 0.60$.}\\n\\\\label{tab:bonferroni_ci}\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{llcccc}\\n\\\\toprule\\n\\\\textbf{Configuration} & \\\\textbf{Boundary} & $\\\\auc$ & $\\\\hat{\\\\sigma}_{\\\\text{boot}}$ & \\\\textbf{99.5\\\\% CI} & \\\\textbf{Pass $\\\\theta$} \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{6}{l}{\\\\textit{$\\\\Kempirical = 2$ configurations}} \\\\\\\\\\nQwen-rw (Instruct)       & 1v2 & .6955 & .0046 & $[.683,\\\\,.708]$ & \\\\checkmark \\\\\\\\\\nPythia-1.4B               & 1v2 & .6539 & .0046 & $[.641,\\\\,.667]$ & \\\\checkmark \\\\\\\\\\nQwen-base                 & 1v2 & .6260 & .0047 & $[.613,\\\\,.639]$ & \\\\checkmark \\\\\\\\\\nQwen-7B$^\\\\ddagger$        & 1v2 & .6168 & .0046 & $[.604,\\\\,.630]$ & \\\\checkmark \\\\\\\\\\nLLaMA-8B                  & 1v2 & .6123 & .0048 & $[.599,\\\\,.626]$ & $\\\\times$ \\\\\\\\\\nQwen-cont (Instruct)     & 1v2 & .6112 & .0049 & $[.598,\\\\,.625]$ & $\\\\times$ \\\\\\\\\\n\\\\midrule\\n\\\\multicolumn{6}{l}{\\\\textit{$\\\\Kempirical = 1$ configurations}} \\\\\\\\\\nOLMo-1B                   & 0v1 & .9860 & .0009 & $[.983,\\\\,.989]$ & \\\\checkmark \\\\\\\\\\nMistral-7B                & 0v1 & .9842 & .0009 & $[.982,\\\\,.987]$ & \\\\checkmark \\\\\\\\\\nPythia-6.9B$^\\\\S$          & 0v1 & .9599 & .0015$^\\\\dagger$ & $[.956,\\\\,.964]$ & \\\\checkmark \\\\\\\\\\nGemma-2-2B                & 0v1 & .9530 & .0018 & $[.948,\\\\,.958]$ & \\\\checkmark \\\\\\\\\\n\\\\bottomrule\\n\\\\multicolumn{6}{l}{\\\\footnotesize $^\\\\ddagger$Generator: Qwen2.5-7B; scorer: Qwen2.5-1.5B.} \\\\\\\\\\n\\\\multicolumn{6}{l}{\\\\footnotesize $^\\\\S$Nucleus sampling ($p{=}0.95$, $T{=}1.0$).} \\\\\\\\\\n\\\\multicolumn{6}{l}{\\\\footnotesize $^\\\\dagger$Estimated from analogous configurations (no separate bootstrap JSON).}\\n\\\\end{tabular}}\\n\\\\end{table}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I now have the full content of the file. The last subsection is "Bonferroni-Corrected Confidence Intervals" which ends with the table. I also see a "Seed Robustness" subsection before it. I need to add the new subsection after the last subsection (Bonferroni-Corrected Confidence Intervals).
+
+Let me find the exact end of the file to know where to insert. The file seems to end after the Bonferroni CI table. Let me construct the new subsection content and append it.
+
+
+I'll place the new subsection right after the Bonferroni CI table, then use the SSH command to append it to the file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f6cf27d0-0d1b-42f5-be48-e405b77c52b3",
+  "uuid": "65a85282-d99f-45e1-ad07-8527dadbb332",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Rdqf5TfqQF3jB2u7Vkq1F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3985,
+      "cache_read_input_tokens": 25190,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3985
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+文件末尾是 Bonferroni CI 表。我将在其后追加新 subsection。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f6cf27d0-0d1b-42f5-be48-e405b77c52b3",
+  "uuid": "f5ddfbf9-6f28-4054-8bc4-3b8c0a66b682",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Rdqf5TfqQF3jB2u7Vkq1F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3985,
+      "cache_read_input_tokens": 25190,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3985
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Bf32ZkQ6aPyKFH9335qyRX`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat >> /root/autodl-tmp/gen-depth-contamination/docs/paper/appendix_extended.tex << 'ENDOFAPPEND'\n\n\\subsection{Cross-Sample Robustness: 5K vs.\\ 10K}\n\\label{sec:robustness_10k}\n\nThe preceding analyses fix the sample pool at $N{=}5{,}000$ passages per depth.\nTo assess between-sample variability, we re-draw an independent $N{=}10{,}000$ sample from C4 using a different random seed and repeat the full OBD pipeline.\nIf $\\Kempirical$ and the boundary AUC are driven by the underlying distributional shift rather than by idiosyncrasies of a particular sample, both quantities should remain stable across draws.\n\nTable~\\ref{tab:robustness_10k} reports the results.\nFor Pythia-1.4B (continuation, C4), the 5K and 10K samples agree on $\\Kempirical{=}2$: the 0v1 AUC is nearly identical ($0.9700$ vs.\\ $0.9712$), while the boundary 1v2 AUC decreases from $0.6539$ to $0.6175$ ($\\Delta = -0.036$).\nThis shift is consistent with natural sampling variability across C4 subsets and does not alter the qualitative depth boundary.\nThe 2v3 pair remains near chance in both draws ($0.54$, $0.54$), confirming that depths $\\geq 2$ are indistinguishable regardless of sample.\nResults for Qwen-1.5B and LLaMA-3.1-8B (continuation, C4) are pending; once available, they will allow a more comprehensive assessment of cross-sample stability across model scales.\n\n\\begin{table}[h]\n\\centering\n\\footnotesize\n\\caption{Cross-sample robustness: pairwise AUC and $\\Kempirical$ under 5K and 10K C4 samples drawn with different random seeds. All configurations use continuation mode. $\\Kempirical$ is determined by the $\\theta{=}0.60$ threshold on 1v2 AUC.}\n\\label{tab:robustness_10k}\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & $N$ & \\textbf{AUC(0v1)} & \\textbf{AUC(1v2)} & \\textbf{AUC(2v3)} & $\\Kempirical$ \\\\\n\\midrule\nPythia-1.4B cont & 5K  & 0.9700 & 0.6539 & 0.5400 & 2 \\\\\nPythia-1.4B cont & 10K & 0.9712 & 0.6175 & 0.5364 & 2 \\\\\n\\midrule\nQwen-1.5B cont  & 5K  & \\multicolumn{3}{c}{(see Table~\\ref{tab:bonferroni_ci})} & 2 \\\\\nQwen-1.5B cont  & 10K & \\multicolumn{4}{c}{\\textit{pending}} \\\\\n\\midrule\nLLaMA-8B cont   & 5K  & \\multicolumn{3}{c}{(see Table~\\ref{tab:bonferroni_ci})} & 2 \\\\\nLLaMA-8B cont   & 10K & \\multicolumn{4}{c}{\\textit{pending}} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\nENDOFAPPEND",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f6cf27d0-0d1b-42f5-be48-e405b77c52b3",
+  "uuid": "11553e07-4b75-43e4-8844-5ab6793d298b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Rdqf5TfqQF3jB2u7Vkq1F",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3985,
+      "cache_read_input_tokens": 25190,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3985
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T14:18:29.966Z_
+
+<details><summary>↩ Tool result · `toolu_01Bf32ZkQ6aPyKFH9335qyRX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f6cf27d0-0d1b-42f5-be48-e405b77c52b3",
+  "uuid": "ca30169c-d12c-42cc-b47b-9a5b994344be",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+验证写入结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f6cf27d0-0d1b-42f5-be48-e405b77c52b3",
+  "uuid": "2b971795-b9ce-4cbd-90bc-a83a2866b91e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AddB1oJ1WewXPne4h6mkU6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1301,
+      "cache_read_input_tokens": 29175,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1301
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PYTpGonoQtZLpW29gbZULw`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "tail -45 /root/autodl-tmp/gen-depth-contamination/docs/paper/appendix_extended.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f6cf27d0-0d1b-42f5-be48-e405b77c52b3",
+  "uuid": "d462a4fb-171d-4f4c-a912-fb708161dc2a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AddB1oJ1WewXPne4h6mkU6",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1301,
+      "cache_read_input_tokens": 29175,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1301
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-22T14:18:33.483Z_
+
+<details><summary>↩ Tool result · `toolu_01PYTpGonoQtZLpW29gbZULw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\multicolumn{6}{l}{\\\\textit{$\\\\Kempirical = 1$ configurations}} \\\\\\\\\\nOLMo-1B                   & 0v1 & .9860 & .0009 & $[.983,\\\\,.989]$ & \\\\checkmark \\\\\\\\\\nMistral-7B                & 0v1 & .9842 & .0009 & $[.982,\\\\,.987]$ & \\\\checkmark \\\\\\\\\\nPythia-6.9B$^\\\\S$          & 0v1 & .9599 & .0015$^\\\\dagger$ & $[.956,\\\\,.964]$ & \\\\checkmark \\\\\\\\\\nGemma-2-2B                & 0v1 & .9530 & .0018 & $[.948,\\\\,.958]$ & \\\\checkmark \\\\\\\\\\n\\\\bottomrule\\n\\\\multicolumn{6}{l}{\\\\footnotesize $^\\\\ddagger$Generator: Qwen2.5-7B; scorer: Qwen2.5-1.5B.} \\\\\\\\\\n\\\\multicolumn{6}{l}{\\\\footnotesize $^\\\\S$Nucleus sampling ($p{=}0.95$, $T{=}1.0$).} \\\\\\\\\\n\\\\multicolumn{6}{l}{\\\\footnotesize $^\\\\dagger$Estimated from analogous configurations (no separate bootstrap JSON).}\\n\\\\end{tabular}}\\n\\\\end{table}\\n\\n\\\\subsection{Cross-Sample Robustness: 5K vs.\\\\ 10K}\\n\\\\label{sec:robustness_10k}\\n\\nThe preceding analyses fix the sample pool at $N{=}5{,}000$ passages per depth.\\nTo assess between-sample variability, we re-draw an independent $N{=}10{,}000$ sample from C4 using a different random seed and repeat the full OBD pipeline.\\nIf $\\\\Kempirical$ and the boundary AUC are driven by the underlying distributional shift rather than by idiosyncrasies of a particular sample, both quantities should remain stable across draws.\\n\\nTable~\\\\ref{tab:robustness_10k} reports the results.\\nFor Pythia-1.4B (continuation, C4), the 5K and 10K samples agree on $\\\\Kempirical{=}2$: the 0v1 AUC is nearly identical ($0.9700$ vs.\\\\ $0.9712$), while the boundary 1v2 AUC decreases from $0.6539$ to $0.6175$ ($\\\\Delta = -0.036$).\\nThis shift is consistent with natural sampling variability across C4 subsets and does not alter the qualitative depth boundary.\\nThe 2v3 pair remains near chance in both draws ($0.54$, $0.54$), confirming that depths $\\\\geq 2$ are indistinguishable regardless of sample.\\nResults for Qwen-1.5B and LLaMA-3.1-8B (continuation, C4) are pending; once available, they will allow a more comprehensive assessment of cross-sample stability across model scales.\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\footnotesize\\n\\\\caption{Cross-sample robustness: pairwise AUC and $\\\\Kempirical$ under 5K and 10K C4 samples drawn with different random seeds. All configurations use continuation mode. $\\\\Kempirical$ is determined by the $\\\\theta{=}0.60$ threshold on 1v2 AUC.}\\n\\\\label{tab:robustness_10k}\\n\\\\begin{tabular}{llcccc}\\n\\\\toprule\\n\\\\textbf{Model} & $N$ & \\\\textbf{AUC(0v1)} & \\\\textbf{AUC(1v2)} & \\\\textbf{AUC(2v3)} & $\\\\Kempirical$ \\\\\\\\\\n\\\\midrule\\nPythia-1.4B cont & 5K  & 0.9700 & 0.6539 & 0.5400 & 2 \\\\\\\\\\nPythia-1.4B cont & 10K & 0.9712 & 0.6175 & 0.5364 & 2 \\\\\\\\\\n\\\\midrule\\nQwen-1.5B cont  & 5K  & \\\\multicolumn{3}{c}{(see Table~\\\\ref{tab:bonferroni_ci})} & 2 \\\\\\\\\\nQwen-1.5B cont  & 10K & \\\\multicolumn{4}{c}{\\\\textit{pending}} \\\\\\\\\\n\\\\midrule\\nLLaMA-8B cont   & 5K  & \\\\multicolumn{3}{c}{(see Table~\\\\ref{tab:bonferroni_ci})} & 2 \\\\\\\\\\nLLaMA-8B cont   & 10K & \\\\multicolumn{4}{c}{\\\\textit{pending}} \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f6cf27d0-0d1b-42f5-be48-e405b77c52b3",
+  "uuid": "76db617e-5f73-45fa-aa45-c5ee036ad900",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\multicolumn{6}{l}{\\\\\\\\textit{$\\\\\\\\Kempirical = 1$ configurations}} \\\\\\\\\\\\\\\\\\\\nOLMo-1B                   & 0v1 & .9860 & .0009 & $[.983,\\\\\\\\,.989]$ & \\\\\\\\checkmark \\\\\\\\\\\\\\\\\\\\nMistral-7B                & 0v1 & .9842 & .0009 & $[.982,\\\\\\\\,.987]$ & \\\\\\\\checkmark \\\\\\\\\\\\\\\\\\\\nPythia-6.9B$^\\\\\\\\S$          & 0v1 & .9599 & .0015$^\\\\\\\\dagger$ & $[.956,\\\\\\\\,.964]$ & \\\\\\\\checkmark \\\\\\\\\\\\\\\\\\\\nGemma-2-2B                & 0v1 & .9530 & .0018 & $[.948,\\\\\\\\,.958]$ & \\\\\\\\checkmark \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\multicolumn{6}{l}{\\\\\\\\footnotesize $^\\\\\\\\ddagger$Generator: Qwen2.5-7B; scorer: Qwen2.5-1.5B.} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\multicolumn{6}{l}{\\\\\\\\footnotesize $^\\\\\\\\S$Nucleus sampling ($p{=}0.95$, $T{=}1.0$).} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\multicolumn{6}{l}{\\\\\\\\footnotesize $^\\\\\\\\dagger$Estimated from analogous configurations (no separate bootstrap JSON).}\\\\n\\\\\\\\end{tabular}}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\subsection{Cross-Sample Robustness: 5K vs.\\\\\\\\ 10K}\\\\n\\\\\\\\label{sec:robustness_10k}\\\\n\\\\nThe preceding analyses fix the sample pool at $N{=}5{,}000$ passages per depth.\\\\nTo assess between-sample variability, we re-draw an independent $N{=}10{,}000$ sample from C4 using a different random seed and repeat the full OBD pipeline.\\\\nIf $\\\\\\\\Kempirical$ and the boundary AUC are driven by the underlying distributional shift rather than by idiosyncrasies of a particular sample, both quantities should remain stable across draws.\\\\n\\\\nTable~\\\\\\\\ref{tab:robustness_10k} reports the results.\\\\nFor Pythia-1.4B (continuation, C4), the 5K and 10K samples agree on $\\\\\\\\Kempirical{=}2$: the 0v1 AUC is nearly identical ($0.9700$ vs.\\\\\\\\ $0.9712$), while the boundary 1v2 AUC decreases from $0.6539$ to $0.6175$ ($\\\\\\\\Delta = -0.036$).\\\\nThis shift is consistent with natural sampling variability across C4 subsets and does not alter the qualitative depth boundary.\\\\nThe 2v3 pair remains near chance in both draws ($0.54$, $0.54$), confirming that depths $\\\\\\\\geq 2$ are indistinguishable regardless of sample.\\\\nResults for Qwen-1.5B and LLaMA-3.1-8B (continuation, C4) are pending; once available, they will allow a more comprehensive assessment of cross-sample stability across model scales.\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\footnotesize\\\\n\\\\\\\\caption{Cross-sample robustness: pairwise AUC and $\\\\\\\\Kempirical$ under 5K and 10K C4 samples drawn with different random seeds. All configurations use continuation mode. $\\\\\\\\Kempirical$ is determined by the $\\\\\\\\theta{=}0.60$ threshold on 1v2 AUC.}\\\\n\\\\\\\\label{tab:robustness_10k}\\\\n\\\\\\\\begin{tabular}{llcccc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Model} & $N$ & \\\\\\\\textbf{AUC(0v1)} & \\\\\\\\textbf{AUC(1v2)} & \\\\\\\\textbf{AUC(2v3)} & $\\\\\\\\Kempirical$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nPythia-1.4B cont & 5K  & 0.9700 & 0.6539 & 0.5400 & 2 \\\\\\\\\\\\\\\\\\\\nPythia-1.4B cont & 10K & 0.9712 & 0.6175 & 0.5364 & 2 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nQwen-1.5B cont  & 5K  & \\\\\\\\multicolumn{3}{c}{(see Table~\\\\\\\\ref{tab:bonferroni_ci})} & 2 \\\\\\\\\\\\\\\\\\\\nQwen-1.5B cont  & 10K & \\\\\\\\multicolumn{4}{c}{\\\\\\\\textit{pending}} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nLLaMA-8B cont   & 5K  & \\\\\\\\multicolumn{3}{c}{(see Table~\\\\\\\\ref{tab:bonferroni_ci})} & 2 \\\\\\\\\\\\\\\\\\\\nLLaMA-8B cont   & 10K & \\\\\\\\multicolumn{4}{c}{\\\\\\\\textit{pending}} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\multicolumn{6}{l}{\\\\textit{$\\\\Kempirical = 1$ configurations}} \\\\\\\\\\nOLMo-1B                   & 0v1 & .9860 & .0009 & $[.983,\\\\,.989]$ & \\\\checkmark \\\\\\\\\\nMistral-7B                & 0v1 & .9842 & .0009 & $[.982,\\\\,.987]$ & \\\\checkmark \\\\\\\\\\nPythia-6.9B$^\\\\S$          & 0v1 & .9599 & .0015$^\\\\dagger$ & $[.956,\\\\,.964]$ & \\\\checkmark \\\\\\\\\\nGemma-2-2B                & 0v1 & .9530 & .0018 & $[.948,\\\\,.958]$ & \\\\checkmark \\\\\\\\\\n\\\\bottomrule\\n\\\\multicolumn{6}{l}{\\\\footnotesize $^\\\\ddagger$Generator: Qwen2.5-7B; scorer: Qwen2.5-1.5B.} \\\\\\\\\\n\\\\multicolumn{6}{l}{\\\\footnotesize $^\\\\S$Nucleus sampling ($p{=}0.95$, $T{=}1.0$).} \\\\\\\\\\n\\\\multicolumn{6}{l}{\\\\footnotesize $^\\\\dagger$Estimated from analogous configurations (no separate bootstrap JSON).}\\n\\\\end{tabular}}\\n\\\\end{table}\\n\\n\\\\subsection{Cross-Sample Robustness: 5K vs.\\\\ 10K}\\n\\\\label{sec:robustness_10k}\\n\\nThe preceding analyses fix the sample pool at $N{=}5{,}000$ passages per depth.\\nTo assess between-sample variability, we re-draw an independent $N{=}10{,}000$ sample from C4 using a different random seed and repeat the full OBD pipeline.\\nIf $\\\\Kempirical$ and the boundary AUC are driven by the underlying distributional shift rather than by idiosyncrasies of a particular sample, both quantities should remain stable across draws.\\n\\nTable~\\\\ref{tab:robustness_10k} reports the results.\\nFor Pythia-1.4B (continuation, C4), the 5K and 10K samples agree on $\\\\Kempirical{=}2$: the 0v1 AUC is nearly identical ($0.9700$ vs.\\\\ $0.9712$), while the boundary 1v2 AUC decreases from $0.6539$ to $0.6175$ ($\\\\Delta = -0.036$).\\nThis shift is consistent with natural sampling variability across C4 subsets and does not alter the qualitative depth boundary.\\nThe 2v3 pair remains near chance in both draws ($0.54$, $0.54$), confirming that depths $\\\\geq 2$ are indistinguishable regardless of sample.\\nResults for Qwen-1.5B and LLaMA-3.1-8B (continuation, C4) are pending; once available, they will allow a more comprehensive assessment of cross-sample stability across model scales.\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\footnotesize\\n\\\\caption{Cross-sample robustness: pairwise AUC and $\\\\Kempirical$ under 5K and 10K C4 samples drawn with different random seeds. All configurations use continuation mode. $\\\\Kempirical$ is determined by the $\\\\theta{=}0.60$ threshold on 1v2 AUC.}\\n\\\\label{tab:robustness_10k}\\n\\\\begin{tabular}{llcccc}\\n\\\\toprule\\n\\\\textbf{Model} & $N$ & \\\\textbf{AUC(0v1)} & \\\\textbf{AUC(1v2)} & \\\\textbf{AUC(2v3)} & $\\\\Kempirical$ \\\\\\\\\\n\\\\midrule\\nPythia-1.4B cont & 5K  & 0.9700 & 0.6539 & 0.5400 & 2 \\\\\\\\\\nPythia-1.4B cont & 10K & 0.9712 & 0.6175 & 0.5364 & 2 \\\\\\\\\\n\\\\midrule\\nQwen-1.5B cont  & 5K  & \\\\multicolumn{3}{c}{(see Table~\\\\ref{tab:bonferroni_ci})} & 2 \\\\\\\\\\nQwen-1.5B cont  & 10K & \\\\multicolumn{4}{c}{\\\\textit{pending}} \\\\\\\\\\n\\\\midrule\\nLLaMA-8B cont   & 5K  & \\\\multicolumn{3}{c}{(see Table~\\\\ref{tab:bonferroni_ci})} & 2 \\\\\\\\\\nLLaMA-8B cont   & 10K & \\\\multicolumn{4}{c}{\\\\textit{pending}} \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+已完成。
+
+**插入位置**：文件末尾，紧接 `\subsection{Bonferroni-Corrected Confidence Intervals}` 及其表格之后。
+
+**添加内容**：
+- `\subsection{Cross-Sample Robustness: 5K vs.\ 10K}`（`\label{sec:robustness_10k}`）
+- 两段说明文字：第一段交代实验动机（between-sample variability），第二段报告 Pythia-1.4B 结果（K\*=2 一致，1v2 AUC Δ=-0.036，2v3 near chance），末尾留 pending 占位句
+- `Table~\ref{tab:robustness_10k}`：6 行表格，Pythia 行填入完整数据，Qwen/LLaMA 5K 行交叉引用 Bonferroni CI 表，10K 行标 *pending*
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f6cf27d0-0d1b-42f5-be48-e405b77c52b3",
+  "uuid": "6240b61f-2ef7-4644-98f9-f78c01e1c68b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HHA2dc4X9mdjgS8m82c26g",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1596,
+      "cache_read_input_tokens": 30476,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1596
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 17_
+
+已完成。
+
+**插入位置**：文件末尾，紧接 `\subsection{Bonferroni-Corrected Confidence Intervals}` 及其表格之后。
+
+**添加内容**：
+- `\subsection{Cross-Sample Robustness: 5K vs.\ 10K}`（`\label{sec:robustness_10k}`）
+- 两段说明文字：第一段交代实验动机（between-sample variability），第二段报告 Pythia-1.4B 结果（K\*=2 一致，1v2 AUC Δ=-0.036，2v3 near chance），末尾留 pending 占位句
+- `Table~\ref{tab:robustness_10k}`：6 行表格，Pythia 行填入完整数据，Qwen/LLaMA 5K 行交叉引用 Bonferroni CI 表，10K 行标 *pending*
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 42700,
+  "duration_api_ms": 42424,
+  "num_turns": 5,
+  "stop_reason": "end_turn",
+  "session_id": "f6cf27d0-0d1b-42f5-be48-e405b77c52b3",
+  "total_cost_usd": 0.23576325,
+  "usage": {
+    "input_tokens": 9,
+    "cache_creation_input_tokens": 20231,
+    "cache_read_input_tokens": 121181,
+    "output_tokens": 1875,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 20231,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 259,
+        "cache_read_input_tokens": 30476,
+        "cache_creation_input_tokens": 1596,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1596
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1709,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001809,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 9,
+      "outputTokens": 1875,
+      "cacheReadInputTokens": 121181,
+      "cacheCreationInputTokens": 20231,
+      "webSearchRequests": 0,
+      "costUSD": 0.23395425,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "f2929309-60cd-41f3-8abf-ce22ac5ac0fe"
+}
+```
+
+</details>
+
+---

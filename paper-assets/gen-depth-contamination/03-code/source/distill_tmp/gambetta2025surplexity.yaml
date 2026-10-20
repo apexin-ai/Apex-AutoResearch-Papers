@@ -1,0 +1,24 @@
+paper_key: "gambetta2025surplexity"
+title: "Learning by Surprise: Surplexity for Mitigating Model Collapse in Generative AI"
+venue: "arXiv 2024 (preprint)"
+full_text_available: false
+
+research:
+  baselines: [unfiltered retraining, human-data-only retraining, perplexity-based filtering]
+  metrics:
+    - {name: "generation diversity", direction: "higher_better"}
+    - {name: "distributional skewedness", direction: "lower_better"}
+    - {name: "model performance across generations", direction: "higher_better"}
+  datasets:
+    - {name: "LLM-generated text across recursive generations", size: "not specified"}
+  ablation_dimensions: [surplexity threshold, filtering strategy, number of retraining generations]
+  training_recipe: {details: "Filter training data by high surplexity (maximizing surprise to the model) without requiring human/AI origin labels; grounded in Free Energy Principle from cognitive science"}
+  method_family: "model collapse mitigation (surprise-based data filtering)"
+
+positioning:
+  core_claim: "Model collapse occurs when training data fails to surprise the model; filtering by high surplexity (next-token distribution surprise) mitigates collapse at least as effectively as human-data baselines without needing provenance labels"
+  relation_to_us: "complementary"
+
+narrative: N/A
+figures: N/A
+tables: N/A

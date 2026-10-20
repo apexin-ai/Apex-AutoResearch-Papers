@@ -1,0 +1,852 @@
+{
+  "schema_version": "1.0",
+  "id": "2b7a038bac76ef4802c0",
+  "project": "gen-depth-contamination",
+  "kind": "conversation",
+  "title": "ssh prep exp003 ablation",
+  "task_key": "worker_ssh_prep_exp003_ablation_20260513T023927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ssh_prep_exp003_ablation_20260513T023927.jsonl",
+    "occurrence": 1,
+    "bytes": 24707,
+    "sha256": "2d02e88290da9b5dc793e887c99a5387d81e6e765a7d627d08dbd6590e118c5c"
+  },
+  "statistics": {
+    "messages": 41,
+    "user_turns": 0,
+    "tool_calls": 20,
+    "roles": {
+      "tool_call": 20,
+      "tool_result": 20,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T02:42:04.356931+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T02:42:04.357371+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T02:42:04.357649+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "cat /root/autodl-tmp/gen-depth-contamination/scripts/run_exp003_ablation.sh",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T02:42:04.357909+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "df -h /root/autodl-tmp/",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T02:42:04.358105+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# exp-003: Decoding Strategy Ablation on Qwen2.5-1.5B-Instruct\\\\n# 4 configurations, each saves to separate data/results dirs\\\\n# Usage: bash scripts/run_exp003_ablation.sh <config_num>\\\\n#   1 = greedy\\\\n#   2 = nucleus p=0.9, T=1.0\\\\n#   3 = nucleus p=0.95, T=0.7\\\\n#   4 = nucleus p=0.95, T=1.2\\\\n\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\nsource /etc/network_turbo 2>/dev/null\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport HF_HUB_DISABLE_XET=1\\\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\\\nexport HF_ENDPOINT=https://hf-mirror.com\\\\n\\\\nMODEL=/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct\\\\nBASE=/root/autodl-tmp/gen-depth-contamination\\\\nSCRIPT=$BASE/scripts/run_pipeline.py\\\\nN=5000\\\\nD=5\\\\n\\\\ncase \\\\\\\"$1\\\\\\\" in\\\\n  1)\\\\n    DESC=\\\\\\\"greedy\\\\\\\"\\\\n    python $SCRIPT --model_path $MODEL --data_dir $BASE/data_exp003_greedy --results_dir $BASE/results_exp003_greedy --num_samples $N --max_depth $D --no_sample\\\\n    ;;\\\\n  2)\\\\n    DESC=\\\\\\\"nucleus_p0.9_t1.0\\\\\\\"\\\\n    python $SCRIPT --model_path $MODEL --data_dir $BASE/data_exp003_nuc09 --results_dir $BASE/results_exp003_nuc09 --num_samples $N --max_depth $D --top_p 0.9 --temperature 1.0\\\\n    ;;\\\\n  3)\\\\n    DESC=\\\\\\\"nucleus_p0.95_t0.7\\\\\\\"\\\\n    python $SCRIPT --model_path $MODEL --data_dir $BASE/data_exp003_t07 --results_dir $BASE/results_exp003_t07 --num_samples $N --max_depth $D --top_p 0.95 --temperature 0.7\\\\n    ;;\\\\n  4)\\\\n    DESC=\\\\\\\"nucleus_p0.95_t1.2\\\\\\\"\\\\n    python $SCRIPT --model_path $MODEL --data_dir $BASE/data_exp003_t12 --results_dir $BASE/results_exp003_t12 --num_samples $N --max_depth $D --top_p 0.95 --temperature 1.2\\\\n    ;;\\\\n  *)\\\\n    echo \\\\\\\"Usage: $0 {1|2|3|4}\\\\\\\"\\\\n    exit 1\\\\n    ;;\\\\nesac\\\\necho \\\\\\\"Completed: $DESC\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elaps\n…[truncated 22 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T02:42:04.358266+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md0        150G   13G  138G   9% /root/autodl-tmp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T02:42:04.358452+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "ls -d /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2.5-1.5B-Instruct/ 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T02:42:04.358591+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T02:42:04.358719+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "ls -d /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/ 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T02:42:04.358908+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T02:42:04.359051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "head -80 /root/autodl-tmp/gen-depth-contamination/scripts/run_pipeline.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T02:42:04.359231+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nMVP Pilot Saturation Study — Complete Pipeline (Steps 2-5)\\\\n\\\\nGenerates recursive depth chains from C4 seed data using Qwen2.5-1.5B,\\\\nextracts statistical features, and runs distinguishability analysis.\\\\n\\\\nInput:  C4 validation split (streamed from HuggingFace)\\\\nOutput: data/depth_{0..K}.jsonl, data/features.csv, results/*.json + summary.txt\\\\n\\\\nKey deps: torch, transformers, datasets, scipy, lightgbm, sklearn, tqdm\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport math\\\\nimport os\\\\nimport sys\\\\nfrom collections import Counter\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom scipy import stats\\\\nfrom tqdm import tqdm\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n    datefmt=\\\\\\\"%H:%M:%S\\\\\\\",\\\\n)\\\\nlog = logging.getLogger(__name__)\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Utility: simple 4-gram BLEU (no nltk dependency)\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef ngrams(tokens, n):\\\\n    return [tuple(tokens[i : i + n]) for i in range(len(tokens) - n + 1)]\\\\n\\\\n\\\\ndef simple_bleu(candidate_tokens, reference_tokens, max_n=4):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute sentence-level BLEU up to max_n grams with brevity penalty.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if len(candidate_tokens) == 0:\\\\n        return 0.0\\\\n    precisions = []\\\\n    for n in range(1, max_n + 1):\\\\n        cand_ngrams = ngrams(candidate_tokens, n)\\\\n        ref_ngrams = ngrams(reference_tokens, n)\\\\n        if not cand_ngrams:\\\\n            precisions.append(0.0)\\\\n            continue\\\\n        ref_counts = Counter(ref_ngrams)\\\\n        clipped = 0\\\\n        cand_counts = Counter(cand_ngrams)\\\\n        for ng, cnt in cand_counts.items():\\\\n            clipped += min(cnt, ref_counts.get(ng, 0))\\\\n        precisions.append(clipped / len(cand_\n…[truncated 1114 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T02:42:04.359396+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "find /root/autodl-tmp/.hf_cache/Qwen -maxdepth 3 -name \"config.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T02:42:04.359530+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-13T02:42:04.359659+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "grep -n \"generation_mode\\|rewrite\\|--no_sample\\|--top_p\\|--temperature\\|add_argument\" /root/autodl-tmp/gen-depth-contamination/scripts/run_pipeline.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T02:42:04.359818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-13T02:42:04.360003+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "find /root/autodl-tmp/.hf_cache/Qwen -maxdepth 4 -type f -name \"config.json\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-13T02:42:04.360140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2___5-1___5B-Instruct/config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-13T02:42:04.360263+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "grep -n \"generation_mode\\|rewrite\\|no_sample\\|top_p\\|temperature\\|add_argument\" /root/autodl-tmp/gen-depth-contamination/scripts/run_pipeline.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-13T02:42:04.360390+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-13T02:42:04.360544+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "grep -rn \"add_argument\\|generation_mode\\|rewrite\\|no_sample\\|top_p\\|temperature\" /root/autodl-tmp/gen-depth-contamination/scripts/run_pipeline.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-13T02:42:04.360682+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "ls /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2___5-1___5B-Instruct/config.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-13T02:42:04.360887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-13T02:42:04.361062+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2___5-1___5B-Instruct/config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-13T02:42:04.361195+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "grep -n \"add_argument\" /root/autodl-tmp/gen-depth-contamination/scripts/run_pipeline.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-13T02:42:04.361340+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"610:    parser.add_argument(\\\\\\\"--model_path\\\\\\\", type=str,\\\\n612:    parser.add_argument(\\\\\\\"--data_dir\\\\\\\", type=str,\\\\n614:    parser.add_argument(\\\\\\\"--results_dir\\\\\\\", type=str,\\\\n616:    parser.add_argument(\\\\\\\"--num_samples\\\\\\\", type=int, default=5000)\\\\n617:    parser.add_argument(\\\\\\\"--max_depth\\\\\\\", type=int, default=5)\\\\n618:    parser.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=16)\\\\n619:    parser.add_argument(\\\\\\\"--feat_batch_size\\\\\\\", type=int, default=8,\\\\n621:    parser.add_argument(\\\\\\\"--top_p\\\\\\\", type=float, default=0.95,\\\\n623:    parser.add_argument(\\\\\\\"--temperature\\\\\\\", type=float, default=1.0,\\\\n625:    parser.add_argument(\\\\\\\"--do_sample\\\\\\\", action=\\\\\\\"store_true\\\\\\\", default=True,\\\\n627:    parser.add_argument(\\\\\\\"--no_sample\\\\\\\", dest=\\\\\\\"do_sample\\\\\\\", action=\\\\\\\"store_false\\\\\\\",\\\\n629:    parser.add_argument(\\\\\\\"--generation_mode\\\\\\\", type=str, default=\\\\\\\"rewrite\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-13T02:42:04.361491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "grep -n \"from_pretrained\\|AutoModelForCausalLM\\|AutoTokenizer\\|model_path\" /root/autodl-tmp/gen-depth-contamination/scripts/run_pipeline.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-13T02:42:04.361626+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-13T02:42:04.361751+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "find /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct -maxdepth 1 -type f -name \"*.json\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-13T02:42:04.361944+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-13T02:42:04.362074+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "ls /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-13T02:42:04.362197+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "grep -n \"from_pretrained\" /root/autodl-tmp/gen-depth-contamination/scripts/run_pipeline.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-13T02:42:04.362323+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Qwen\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-13T02:42:04.362446+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"649:    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)\\\\n656:    model = AutoModelForCausalLM.from_pretrained(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-13T02:42:04.362615+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "ls /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2___5-1___5B-Instruct/",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-13T02:42:04.362748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"LICENSE\\\\nREADME.md\\\\nconfig.json\\\\nconfiguration.json\\\\ngeneration_config.json\\\\nmerges.txt\\\\nmodel.safetensors\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-13T02:42:04.362929+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "sed -i 's|MODEL=/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct|MODEL=/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2___5-1___5B-Instruct|' /root/autodl-tmp/gen-depth-contamination/scripts/run_exp003_ablation.sh",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-13T02:42:04.363070+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-13T02:42:04.363210+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "autodl-4090d",
+              "command": "cat /root/autodl-tmp/gen-depth-contamination/scripts/run_exp003_ablation.sh",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-13T02:42:04.363362+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# exp-003: Decoding Strategy Ablation on Qwen2.5-1.5B-Instruct\\\\n# 4 configurations, each saves to separate data/results dirs\\\\n# Usage: bash scripts/run_exp003_ablation.sh <config_num>\\\\n#   1 = greedy\\\\n#   2 = nucleus p=0.9, T=1.0\\\\n#   3 = nucleus p=0.95, T=0.7\\\\n#   4 = nucleus p=0.95, T=1.2\\\\n\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\nsource /etc/network_turbo 2>/dev/null\\\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\\\nexport HF_HUB_DISABLE_XET=1\\\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\\\nexport HF_ENDPOINT=https://hf-mirror.com\\\\n\\\\nMODEL=/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2___5-1___5B-Instruct\\\\nBASE=/root/autodl-tmp/gen-depth-contamination\\\\nSCRIPT=$BASE/scripts/run_pipeline.py\\\\nN=5000\\\\nD=5\\\\n\\\\ncase \\\\\\\"$1\\\\\\\" in\\\\n  1)\\\\n    DESC=\\\\\\\"greedy\\\\\\\"\\\\n    python $SCRIPT --model_path $MODEL --data_dir $BASE/data_exp003_greedy --results_dir $BASE/results_exp003_greedy --num_samples $N --max_depth $D --no_sample\\\\n    ;;\\\\n  2)\\\\n    DESC=\\\\\\\"nucleus_p0.9_t1.0\\\\\\\"\\\\n    python $SCRIPT --model_path $MODEL --data_dir $BASE/data_exp003_nuc09 --results_dir $BASE/results_exp003_nuc09 --num_samples $N --max_depth $D --top_p 0.9 --temperature 1.0\\\\n    ;;\\\\n  3)\\\\n    DESC=\\\\\\\"nucleus_p0.95_t0.7\\\\\\\"\\\\n    python $SCRIPT --model_path $MODEL --data_dir $BASE/data_exp003_t07 --results_dir $BASE/results_exp003_t07 --num_samples $N --max_depth $D --top_p 0.95 --temperature 0.7\\\\n    ;;\\\\n  4)\\\\n    DESC=\\\\\\\"nucleus_p0.95_t1.2\\\\\\\"\\\\n    python $SCRIPT --model_path $MODEL --data_dir $BASE/data_exp003_t12 --results_dir $BASE/results_exp003_t12 --num_samples $N --max_depth $D --top_p 0.95 --temperature 1.2\\\\n    ;;\\\\n  *)\\\\n    echo \\\\\\\"Usage: $0 {1|2|3|4}\\\\\\\"\\\\n    exit 1\\\\n    ;;\\\\nesac\\\\necho \\\\\\\"Completed: $DESC\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\n…[truncated 53 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-13T02:42:04.363548+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已修复。验证总结：\n\n| 检查项 | 状态 |\n|--------|------|\n| 4 个 decoding config (greedy, p=0.9/T=1.0, p=0.95/T=0.7, p=0.95/T=1.2) | ✅ |\n| 调用 run_pipeline.py + Qwen 模型 | ✅ |\n| 模型路径指向实际 config.json 所在目录 | ✅ 已修复 |\n| 输出到不同目录 | ✅ data_exp003_greedy / nuc09 / t07 / t12 |\n| generation_mode=rewrite | ✅ 默认值 |\n| 环境变量自包含 (network_turbo, HF_HOME, SSL) | ✅ |\n| 磁盘空间 | ✅ 138GB 可用 |\n\n## 提交命令\n\n`submit_training_job` 的 `command` 字段：\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/gen-depth-contamination && for i in 1 2 3 4; do echo \"=== Running config $i ===\" && bash scripts/run_exp003_ablation.sh $i; done\n```\n\n参数：\n- `server`: `autodl-4090d`\n- `account`: `root`\n- `command`: 如上\n- `timeout`: `108000` (30h)\n- `experiment_name`: `exp-003-decoding-ablation`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_prep_exp003_ablation_20260513T023927"
+          },
+          "id": "event-000041"
+        }
+      ],
+      "message_count": 41
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-prep-exp003-ablation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "310e7223d785f1eb8939",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops regenerate fig kstar theta",
+  "task_key": "worker_ops_regenerate_fig_kstar_theta_20260520T172539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_regenerate_fig_kstar_theta_20260520T172539_result.json",
+    "occurrence": 1,
+    "bytes": 550,
+    "sha256": "4c8e0f15ab01a7a9b119ccce1026b5d2c444ae32218cd23d290c931ab55f9c9d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`fig_kstar_theta.pdf` 已重新生成，Qwen-7B（紫色）已添加到两个 panel：\n\n- **Panel (a)**: 5 条 AUC decay 曲线（原 4 条 + Qwen-7B），含 CI shaded band\n- **Panel (b)**: 5 条 K*(θ) step function（原 4 条 + Qwen-7B），含 unanimous K*=2 shaded region\n\n文件已更新到：\n- `docs/paper/figures/fig_kstar_theta.pdf` / `.png`（本地 + 远程）\n- `paper/figures/fig_kstar_theta.pdf`\n- `scripts/draw_kstar_theta.py` 已同步更新（数据硬编码，包含 5 个 C4 模型的 CI 数据）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-regenerate-fig-kstar-theta.md"
+}

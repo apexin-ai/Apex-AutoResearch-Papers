@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp_024_arxiv_domain",
+  "project": "gen-depth-contamination",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T14:43:59.323Z",
+    "updated_at": "2026-05-16T14:46:40.753Z",
+    "hypothesis": "Domain ablation: arXiv abstracts 数据下 K*=2 是否成立？验证 K* 跨数据域（C4 vs Wikipedia vs arXiv）的稳定性。Qwen2.5-1.5B base, continuation, nucleus p=0.95 T=1.0, 5K docs, depth 0-5。",
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo && cd /root/autodl-tmp/gen-depth-contamination && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && bash scripts/exp024_arxiv_domain.sh\"",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "46766",
+      "log_path": "~/runs/gen-depth-contamination/exp_024_arxiv_domain.log",
+      "submitted_at": "2026-05-16T14:44:07.168Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-16T14:46:40.851610+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_7b_scorer_ablation",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:37:17.489Z",
+    "updated_at": "2026-05-20T11:37:35.640Z",
+    "hypothesis": "Qwen2.5-7B scorer yields same K* as Qwen2.5-1.5B scorer on C4 Pythia-1.4B and OLMo-1B depth chains, confirming K* is robust to scorer scale (4.7x parameter increase).",
+    "parent": "exp_022_cross_scorer"
+  },
+  "timestamp": "2026-05-20T11:37:35.918285+00:00",
+  "trigger": "update_registry"
+}

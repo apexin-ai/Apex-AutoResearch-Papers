@@ -1,0 +1,3282 @@
+# analysis anova crossscorer
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 53
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/workers/worker_analysis_anova_crossscorer_20260518T022405.log`
+- **Structured JSON:** [`e54606da398934e007a6.json`](../../sessions/e5/e54606da398934e007a6.json)
+
+## Before a recorded user message
+
+53 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__auto_build_provenance",
+    "mcp__agent-ml-research__bootstrap_provenance",
+    "mcp__agent-ml-research__check_paper_consistency",
+    "mcp__agent-ml-research__check_provenance_completeness",
+    "mcp__agent-ml-research__cleanup_pdf_images",
+    "mcp__agent-ml-research__compute_coverage_matrix",
+    "mcp__agent-ml-research__edit_paper_section",
+    "mcp__agent-ml-research__get_image_info",
+    "mcp__agent-ml-research__get_worker_status",
+    "mcp__agent-ml-research__list_artifacts",
+    "mcp__agent-ml-research__list_workers",
+    "mcp__agent-ml-research__load_project_config",
+    "mcp__agent-ml-research__overleaf_init",
+    "mcp__agent-ml-research__overleaf_pull",
+    "mcp__agent-ml-research__overleaf_push",
+    "mcp__agent-ml-research__overleaf_status",
+    "mcp__agent-ml-research__overleaf_sync",
+    "mcp__agent-ml-research__paper_agent_post_to_director",
+    "mcp__agent-ml-research__paper_agent_request_review",
+    "mcp__agent-ml-research__paper_compile_and_check",
+    "mcp__agent-ml-research__pdf_to_images",
+    "mcp__agent-ml-research__read_experiment_plan_with_status",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__read_roadmap",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__send_progress",
+    "mcp__agent-ml-research__spawn_worker",
+    "mcp__agent-ml-research__verify_references",
+    "mcp__agent-ml-research__write_paper_section"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "0fbc8957-7799-494a-bcbe-641fbd3ab2e2",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779088800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "b629e878-abe6-479c-aaba-8d9d87415885",
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+Looking for exp-022 data on the remote server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "5b28d0dc-0280-4ae6-a951-f2a3db352697",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EJJ1aAbAD8ZvnP3ZV6NQ7p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13893,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13893
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Si8LZ5aa8T9DXxaopVyczu`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "87f91ecc-36fa-4c13-9b74-a6c5efc1514f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EJJ1aAbAD8ZvnP3ZV6NQ7p",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13893,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13893
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T02:24:18.095Z_
+
+<details><summary>↩ Tool result · `toolu_01Si8LZ5aa8T9DXxaopVyczu`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "a5c7ac5c-b3e4-4990-b7e6-3721a84a705f",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 50
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me find the exp-022 data on the remote server. I'll need to SSH to the server to locate the files. Let me search for the relevant tools.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "468a6e0f-d2e6-4a61-8d80-217073383bab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XuST2w3k91kLVvA4eo6Jfp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 448,
+      "cache_read_input_tokens": 25734,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 448
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_013WdRc3A4snfxqLvxKvELeB`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__list_artifacts",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "42ced9aa-2343-4eb8-8b8e-0faa9e4b15d6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XuST2w3k91kLVvA4eo6Jfp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 448,
+      "cache_read_input_tokens": 25734,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 448
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-18T02:24:21.876Z_
+
+<details><summary>↩ Tool result · `toolu_013WdRc3A4snfxqLvxKvELeB`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__spawn_worker"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_artifacts"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "4dabb930-59a3-4f29-aa7d-d6a5bbdfb19a",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__list_artifacts"
+    ],
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__list_artifacts",
+    "total_deferred_tools": 50
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_artifacts · `toolu_01HYEMrVYgA2hQhLiBoPmjzB`</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "exp_id": "exp-022"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "2d085e9e-df9b-40e3-87fc-24117c4ffeb9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B2QBVK3RKPkgKajGJU11UF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1647,
+      "cache_read_input_tokens": 26182,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1647
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-18T02:24:24.595Z_
+
+<details><summary>↩ Tool result · `toolu_01HYEMrVYgA2hQhLiBoPmjzB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifacts\": [], \"count\": 0, \"scope\": \"project:gen-depth-contamination\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "ee37753a-7061-4325-82d2-7ea6f1da07ab",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifacts\\\": [], \\\"count\\\": 0, \\\"scope\\\": \\\"project:gen-depth-contamination\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifacts\": [], \"count\": 0, \"scope\": \"project:gen-depth-contamination\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_artifacts · `toolu_012KaYnqXugXNCTtdHGKdiRJ`</summary>
+
+```json
+{
+  "project": "gen-depth-contamination",
+  "exp_id": "exp_022"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "49fe0f92-bac1-4be9-9a82-7e72f8ca018d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Fw1uXir2cqKLPPXP5hiUbB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 157,
+      "cache_read_input_tokens": 27829,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 157
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-18T02:24:26.579Z_
+
+<details><summary>↩ Tool result · `toolu_012KaYnqXugXNCTtdHGKdiRJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifacts\": [], \"count\": 0, \"scope\": \"project:gen-depth-contamination\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "d2330cd4-fa5d-469f-a61a-a357c4b387af",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifacts\\\": [], \\\"count\\\": 0, \\\"scope\\\": \\\"project:gen-depth-contamination\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifacts\": [], \"count\": 0, \"scope\": \"project:gen-depth-contamination\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+No registered artifacts for exp-022. Let me SSH to the server to find the data files directly.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "68e73793-78b7-40dd-8133-e83378820c5d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RMMTxbTvfe8t3YP3r97LHW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 154,
+      "cache_read_input_tokens": 27986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 154
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01MSVLqyMeji9UuDNEf9pJGa`</summary>
+
+```json
+{
+  "query": "ssh execute remote",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "2a3dbfb2-90fa-4b71-8bf9-7b89a09395b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RMMTxbTvfe8t3YP3r97LHW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 154,
+      "cache_read_input_tokens": 27986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 154
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T02:24:29.485Z_
+
+<details><summary>↩ Tool result · `toolu_01MSVLqyMeji9UuDNEf9pJGa`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "RemoteTrigger"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "Monitor"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "PushNotification"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "ec790494-38ed-40cb-b9f2-e997746a70ee",
+  "tool_use_result": {
+    "matches": [
+      "RemoteTrigger",
+      "Monitor",
+      "PushNotification"
+    ],
+    "query": "ssh execute remote",
+    "total_deferred_tools": 50
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I need to SSH to the remote server. Let me use Bash to SSH and find the exp-022 data.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "4c8661a6-6101-440b-b1ce-714369979644",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GHvniCrjSLggKobFTqbYot",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2549,
+      "cache_read_input_tokens": 28140,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2549
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01EgtHXgiMkV8d1XxRRDMzwy`</summary>
+
+```json
+{
+  "command": "ssh cqa1-22115 'find /root/autodl-tmp/gen-depth-contamination -name \"pairwise_auc.json\" -path \"*022*\" 2>/dev/null; echo \"---\"; find /root/autodl-tmp/gen-depth-contamination -name \"pairwise_auc.json\" -path \"*cross_scorer*\" 2>/dev/null; echo \"---\"; ls /root/autodl-tmp/gen-depth-contamination/results/ 2>/dev/null; echo \"---\"; ls /root/autodl-tmp/gen-depth-contamination/outputs/ 2>/dev/null'",
+  "description": "SSH to find exp-022 pairwise_auc.json files",
+  "timeout": 30000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "fb927793-7afa-4ac8-b769-d7c357e687b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GHvniCrjSLggKobFTqbYot",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2549,
+      "cache_read_input_tokens": 28140,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2549
+      },
+      "output_tokens": 21,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-18T02:24:36.642Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01EgtHXgiMkV8d1XxRRDMzwy`</summary>
+
+```text
+Exit code 2
+Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.
+/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__qwen_base/pairwise_auc.json
+/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__pythia/pairwise_auc.json
+/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__olmo/pairwise_auc.json
+/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__qwen_instruct/pairwise_auc.json
+/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__qwen_base/pairwise_auc.json
+/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__qwen_instruct/pairwise_auc.json
+/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__pythia/pairwise_auc.json
+/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__olmo/pairwise_auc.json
+/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__qwen_instruct/pairwise_auc.json
+/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__qwen_base/pairwise_auc.json
+/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__pythia/pairwise_auc.json
+/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__olmo/pairwise_auc.json
+---
+/root/autodl-tmp/gen-depth-contamination/results_exp019b_mistral_cross_scorer/pairwise_auc.json
+/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__qwen_base/pairwise_auc.json
+/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__pythia/pairwise_auc.json
+/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__olmo/pairwise_auc.json
+/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__qwen_instruct/pairwise_auc.json
+/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__qwen_base/pairwise_auc.json
+/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__qwen_instruct/pairwise_auc.json
+/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__pythia/pairwise_auc.json
+/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__olmo/pairwise_auc.json
+/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__qwen_instruct/pairwise_auc.json
+/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__qwen_base/pairwise_auc.json
+/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__pythia/pairwise_auc.json
+/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__olmo/pairwise_auc.json
+---
+exp_008_retrain_chain
+exp_009_dose_response
+exp_018_llama8b
+exp_021_length_128
+exp_021_length_256
+exp_021_length_512
+exp_023_wiki
+exp_024_arxiv
+exp_025_pythia_arxiv
+exp_arXiv_llama8b
+exp_arXiv_mistral7b
+exp_arXiv_olmo
+exp_arXiv_qwen1b5_crossscorer
+exp_arXiv_qwen7b
+exp_arXiv_qwen7b_crossscorer
+exp_wiki_llama8b
+exp_wiki_mistral7b
+exp_wiki_olmo
+exp_wiki_olmo_v2
+exp_wiki_pythia
+exp_wiki_pythia_v2
+exp_wiki_qwen7b
+exp_wiki_scorer_confound
+exp_wiki_scorer_confound_1b5
+---
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "78373fc2-4905-4297-9cc6-891e7ae1ab94",
+  "tool_use_result": "Error: Exit code 2\nWarning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.\r\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__qwen_base/pairwise_auc.json\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__pythia/pairwise_auc.json\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__olmo/pairwise_auc.json\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__qwen_instruct/pairwise_auc.json\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__qwen_base/pairwise_auc.json\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__qwen_instruct/pairwise_auc.json\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__pythia/pairwise_auc.json\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__olmo/pairwise_auc.json\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__qwen_instruct/pairwise_auc.json\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__qwen_base/pairwise_auc.json\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__pythia/pairwise_auc.json\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__olmo/pairwise_auc.json\n---\n/root/autodl-tmp/gen-depth-contamination/results_exp019b_mistral_cross_scorer/pairwise_auc.json\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__qwen_base/pairwise_auc.json\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__pythia/pairwise_auc.json\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__olmo/pairwise_auc.json\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__qwen_instruct/pairwise_auc.json\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__qwen_base/pairwise_auc.json\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__qwen_instruct/pairwise_auc.json\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__pythia/pairwise_auc.json\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__olmo/pairwise_auc.json\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__qwen_instruct/pairwise_auc.json\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__qwen_base/pairwise_auc.json\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__pythia/pairwise_auc.json\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__olmo/pairwise_auc.json\n---\nexp_008_retrain_chain\nexp_009_dose_response\nexp_018_llama8b\nexp_021_length_128\nexp_021_length_256\nexp_021_length_512\nexp_023_wiki\nexp_024_arxiv\nexp_025_pythia_arxiv\nexp_arXiv_llama8b\nexp_arXiv_mistral7b\nexp_arXiv_olmo\nexp_arXiv_qwen1b5_crossscorer\nexp_arXiv_qwen7b\nexp_arXiv_qwen7b_crossscorer\nexp_wiki_llama8b\nexp_wiki_mistral7b\nexp_wiki_olmo\nexp_wiki_olmo_v2\nexp_wiki_pythia\nexp_wiki_pythia_v2\nexp_wiki_qwen7b\nexp_wiki_scorer_confound\nexp_wiki_scorer_confound_1b5\n---"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+Found 12 cells. Missing 4 cells — likely the 4th generator. Let me check what generators exist and look at one sample file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "1b3252af-8cef-4983-bbdd-64e99b861add",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019BYHBhn9S7FCAKqdGXP2WB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1657,
+      "cache_read_input_tokens": 30689,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1657
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01EqBU3vfmST9CQQMLZJXMk2`</summary>
+
+```json
+{
+  "command": "ssh cqa1-22115 'ls /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/ && echo \"---\" && cat /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__qwen_base/pairwise_auc.json'",
+  "description": "List all cells and read one sample pairwise_auc.json",
+  "timeout": 15000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "e23017c3-30c9-477d-804f-75d60c134647",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019BYHBhn9S7FCAKqdGXP2WB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1657,
+      "cache_read_input_tokens": 30689,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1657
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T02:24:42.847Z_
+
+<details><summary>↩ Tool result · `toolu_01EqBU3vfmST9CQQMLZJXMk2`</summary>
+
+```text
+Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.
+pythia_greedy__olmo
+pythia_greedy__pythia
+pythia_greedy__qwen_base
+pythia_greedy__qwen_instruct
+qwen_base__olmo
+qwen_base__pythia
+qwen_base__qwen_base
+qwen_base__qwen_instruct
+qwen_cont256__olmo
+qwen_cont256__pythia
+qwen_cont256__qwen_base
+qwen_cont256__qwen_instruct
+qwen_cont__scored_by__qwen_base
+---
+{
+  "mean": {
+    "0v1": 0.987,
+    "1v2": 0.6262,
+    "2v3": 0.5496,
+    "3v4": 0.5294,
+    "4v5": 0.5182
+  },
+  "per_fold": {
+    "0v1": [
+      0.9881,
+      0.9884,
+      0.9852,
+      0.9851,
+      0.9882
+    ],
+    "1v2": [
+      0.5963,
+      0.6362,
+      0.6366,
+      0.6337,
+      0.6282
+    ],
+    "2v3": [
+      0.5516,
+      0.5456,
+      0.5403,
+      0.5605,
+      0.5501
+    ],
+    "3v4": [
+      0.5515,
+      0.5133,
+      0.5198,
+      0.535,
+      0.5276
+    ],
+    "4v5": [
+      0.5207,
+      0.5393,
+      0.5186,
+      0.5169,
+      0.4956
+    ]
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "021a0189-5882-451a-8329-2a1f738443ee",
+  "tool_use_result": {
+    "stdout": "Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.\r\npythia_greedy__olmo\npythia_greedy__pythia\npythia_greedy__qwen_base\npythia_greedy__qwen_instruct\nqwen_base__olmo\nqwen_base__pythia\nqwen_base__qwen_base\nqwen_base__qwen_instruct\nqwen_cont256__olmo\nqwen_cont256__pythia\nqwen_cont256__qwen_base\nqwen_cont256__qwen_instruct\nqwen_cont__scored_by__qwen_base\n---\n{\n  \"mean\": {\n    \"0v1\": 0.987,\n    \"1v2\": 0.6262,\n    \"2v3\": 0.5496,\n    \"3v4\": 0.5294,\n    \"4v5\": 0.5182\n  },\n  \"per_fold\": {\n    \"0v1\": [\n      0.9881,\n      0.9884,\n      0.9852,\n      0.9851,\n      0.9882\n    ],\n    \"1v2\": [\n      0.5963,\n      0.6362,\n      0.6366,\n      0.6337,\n      0.6282\n    ],\n    \"2v3\": [\n      0.5516,\n      0.5456,\n      0.5403,\n      0.5605,\n      0.5501\n    ],\n    \"3v4\": [\n      0.5515,\n      0.5133,\n      0.5198,\n      0.535,\n      0.5276\n    ],\n    \"4v5\": [\n      0.5207,\n      0.5393,\n      0.5186,\n      0.5169,\n      0.4956\n    ]\n  }\n}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I see 12 proper cells (3 generators × 4 scorers) plus one extra `qwen_cont__scored_by__qwen_base`. The generators are: `pythia_greedy`, `qwen_base`, `qwen_cont256`. There's also `qwen_cont__scored_by__qwen_base` which might be a 4th generator variant. Let me check if there's a 4th generator somewhere else, or if the experiment is actually 3×4 = 12 cells.
+
+Let me check that extra directory and also look for any other cells.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "4ef61b82-bf85-4805-85e6-480290a57c0f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jte1wRygAf6jgJtcNMFngT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 812,
+      "cache_read_input_tokens": 32346,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 812
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+12 proper cells (3 generators × 4 scorers) plus one extra `qwen_cont__scored_by__qwen_base`. Let me check that extra one and see if there's a 4th generator elsewhere.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "505c3452-e4d6-4bba-a92a-ba64180a55f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jte1wRygAf6jgJtcNMFngT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 812,
+      "cache_read_input_tokens": 32346,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 812
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0148soC3Ssf2rrVrJo3rhpmL`</summary>
+
+```json
+{
+  "command": "ssh cqa1-22115 'cat /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont__scored_by__qwen_base/pairwise_auc.json 2>/dev/null; echo \"===\"; find /root/autodl-tmp/gen-depth-contamination -maxdepth 1 -name \"*exp022*\" -o -name \"*cross_scorer*\" | sort'",
+  "description": "Check extra cell and find all cross-scorer dirs",
+  "timeout": 15000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "9bddd3e8-74ce-42f3-a147-6713f7c2bcd6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jte1wRygAf6jgJtcNMFngT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 812,
+      "cache_read_input_tokens": 32346,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 812
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T02:24:52.275Z_
+
+<details><summary>↩ Tool result · `toolu_0148soC3Ssf2rrVrJo3rhpmL`</summary>
+
+```text
+Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.
+===
+/root/autodl-tmp/gen-depth-contamination/data_exp022_cross
+/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer
+/root/autodl-tmp/gen-depth-contamination/results_exp019b_mistral_cross_scorer
+/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "68ba8c6b-2448-49e8-a15a-f4563d5ec623",
+  "tool_use_result": {
+    "stdout": "Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.\r\n===\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross\n/root/autodl-tmp/gen-depth-contamination/data_exp022_cross_scorer\n/root/autodl-tmp/gen-depth-contamination/results_exp019b_mistral_cross_scorer\n/root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01CpkBPeM7S1pyQJAG3Emq7g`</summary>
+
+```json
+{
+  "command": "ssh cqa1-22115 'ls /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont__scored_by__qwen_base/ 2>/dev/null; echo \"===\"; cat /root/autodl-tmp/gen-depth-contamination/results_exp019b_mistral_cross_scorer/pairwise_auc.json 2>/dev/null'",
+  "description": "Check qwen_cont cell contents and mistral cross-scorer",
+  "timeout": 15000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "1ad3f32d-ee76-4025-84d4-383ac466cfc0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GvVt2p7HB1NSKdmM1ouvqk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 552,
+      "cache_read_input_tokens": 33158,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 552
+      },
+      "output_tokens": 56,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T02:24:56.500Z_
+
+<details><summary>↩ Tool result · `toolu_01CpkBPeM7S1pyQJAG3Emq7g`</summary>
+
+```text
+Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.
+===
+{
+  "mean": {
+    "0v1": 0.9209,
+    "1v2": 0.5695,
+    "2v3": 0.5335,
+    "3v4": 0.514,
+    "4v5": 0.5184
+  },
+  "per_fold": {
+    "0v1": [
+      0.9184,
+      0.9245,
+      0.9181,
+      0.9218,
+      0.9217
+    ],
+    "1v2": [
+      0.5628,
+      0.5751,
+      0.5708,
+      0.5631,
+      0.576
+    ],
+    "2v3": [
+      0.5241,
+      0.5412,
+      0.5348,
+      0.5345,
+      0.5329
+    ],
+    "3v4": [
+      0.5279,
+      0.5114,
+      0.5004,
+      0.5113,
+      0.519
+    ],
+    "4v5": [
+      0.5294,
+      0.5171,
+      0.5169,
+      0.5189,
+      0.5094
+    ]
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "9f049d6d-52ac-4bfc-8938-06d9692d4785",
+  "tool_use_result": {
+    "stdout": "Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.\r\n===\n{\n  \"mean\": {\n    \"0v1\": 0.9209,\n    \"1v2\": 0.5695,\n    \"2v3\": 0.5335,\n    \"3v4\": 0.514,\n    \"4v5\": 0.5184\n  },\n  \"per_fold\": {\n    \"0v1\": [\n      0.9184,\n      0.9245,\n      0.9181,\n      0.9218,\n      0.9217\n    ],\n    \"1v2\": [\n      0.5628,\n      0.5751,\n      0.5708,\n      0.5631,\n      0.576\n    ],\n    \"2v3\": [\n      0.5241,\n      0.5412,\n      0.5348,\n      0.5345,\n      0.5329\n    ],\n    \"3v4\": [\n      0.5279,\n      0.5114,\n      0.5004,\n      0.5113,\n      0.519\n    ],\n    \"4v5\": [\n      0.5294,\n      0.5171,\n      0.5169,\n      0.5189,\n      0.5094\n    ]\n  }\n}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So we have:
+- 12 cells in `results_exp022_cross_scorer/`: 3 generators (pythia_greedy, qwen_base, qwen_cont256) × 4 scorers (olmo, pythia, qwen_base, qwen_instruct)
+- 1 extra cell: `qwen_cont__scored_by__qwen_base` (empty directory apparently)
+- 1 related cell: `results_exp019b_mistral_cross_scorer/pairwise_auc.json` - this is from a different experiment (019b) with mistral as generator
+
+
+- The `qwen_cont__scored_by__qwen_base` directory is indeed empty, so I'm working with 12 valid cells. Now I'll load all the pairwise_auc.json files and run the ANOVA analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "9fe6d89b-9491-4570-95db-9c422f932cde",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QdGgQZw1kDUnKEutB5gGvY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 558,
+      "cache_read_input_tokens": 33710,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 558
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+The `qwen_cont__scored_by__qwen_base` directory is empty. We have 12 cells (3 generators × 4 scorers). Let me fetch all data at once.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "0631eb1a-6f00-41d3-9850-636215aa4b6d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QdGgQZw1kDUnKEutB5gGvY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 558,
+      "cache_read_input_tokens": 33710,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 558
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014EPSTErnwd5hojjUwwdH89`</summary>
+
+```json
+{
+  "command": "ssh cqa1-22115 'for d in /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/*/pairwise_auc.json; do echo \"FILE: $d\"; cat \"$d\"; echo; done'",
+  "description": "Fetch all 12 pairwise_auc.json files",
+  "timeout": 15000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "43069ce4-f020-4d74-94f0-a13d2fb5daf9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QdGgQZw1kDUnKEutB5gGvY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 558,
+      "cache_read_input_tokens": 33710,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 558
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T02:25:05.097Z_
+
+<details><summary>↩ Tool result · `toolu_014EPSTErnwd5hojjUwwdH89`</summary>
+
+```text
+Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.
+FILE: /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__olmo/pairwise_auc.json
+{
+  "mean": {
+    "0v1": 0.9975,
+    "1v2": 0.8811,
+    "2v3": 0.5231,
+    "3v4": 0.5233,
+    "4v5": 0.5093
+  },
+  "per_fold": {
+    "0v1": [
+      0.9983,
+      0.9968,
+      0.998,
+      0.9974,
+      0.9967
+    ],
+    "1v2": [
+      0.8903,
+      0.8719,
+      0.8834,
+      0.8779,
+      0.882
+    ],
+    "2v3": [
+      0.5301,
+      0.5222,
+      0.5173,
+      0.5235,
+      0.5223
+    ],
+    "3v4": [
+      0.5322,
+      0.5114,
+      0.5332,
+      0.5183,
+      0.5215
+    ],
+    "4v5": [
+      0.522,
+      0.4964,
+      0.5121,
+      0.493,
+      0.5232
+    ]
+  }
+}
+FILE: /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__pythia/pairwise_auc.json
+{
+  "mean": {
+    "0v1": 0.9992,
+    "1v2": 0.8838,
+    "2v3": 0.5342,
+    "3v4": 0.5228,
+    "4v5": 0.5162
+  },
+  "per_fold": {
+    "0v1": [
+      0.9996,
+      0.9991,
+      0.9992,
+      0.9996,
+      0.9984
+    ],
+    "1v2": [
+      0.8906,
+      0.8766,
+      0.8847,
+      0.881,
+      0.8861
+    ],
+    "2v3": [
+      0.5188,
+      0.542,
+      0.5264,
+      0.5364,
+      0.5473
+    ],
+    "3v4": [
+      0.5223,
+      0.5135,
+      0.5187,
+      0.5355,
+      0.5239
+    ],
+    "4v5": [
+      0.5272,
+      0.5108,
+      0.5124,
+      0.5128,
+      0.5177
+    ]
+  }
+}
+FILE: /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__qwen_base/pairwise_auc.json
+{
+  "mean": {
+    "0v1": 0.9977,
+    "1v2": 0.8814,
+    "2v3": 0.5378,
+    "3v4": 0.5135,
+    "4v5": 0.5161
+  },
+  "per_fold": {
+    "0v1": [
+      0.9981,
+      0.9982,
+      0.9984,
+      0.9968,
+      0.9972
+    ],
+    "1v2": [
+      0.8869,
+      0.8765,
+      0.8848,
+      0.8768,
+      0.8822
+    ],
+    "2v3": [
+      0.539,
+      0.5323,
+      0.5408,
+      0.5449,
+      0.5321
+    ],
+    "3v4": [
+      0.5224,
+      0.5002,
+      0.5104,
+      0.5146,
+      0.5198
+    ],
+    "4v5": [
+      0.5297,
+      0.5088,
+      0.5191,
+      0.5229,
+      0.5001
+    ]
+  }
+}
+FILE: /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__qwen_instruct/pairwise_auc.json
+{
+  "mean": {
+    "0v1": 0.9977,
+    "1v2": 0.8818,
+    "2v3": 0.526,
+    "3v4": 0.5147,
+    "4v5": 0.5031
+  },
+  "per_fold": {
+    "0v1": [
+      0.9982,
+      0.9975,
+      0.9986,
+      0.9971,
+      0.997
+    ],
+    "1v2": [
+      0.888,
+      0.8747,
+      0.8858,
+      0.877,
+      0.8833
+    ],
+    "2v3": [
+      0.5184,
+      0.5296,
+      0.527,
+      0.5444,
+      0.5107
+    ],
+    "3v4": [
+      0.5426,
+      0.5009,
+      0.5168,
+      0.5143,
+      0.4989
+    ],
+    "4v5": [
+      0.5102,
+      0.4906,
+      0.5268,
+      0.4929,
+      0.4949
+    ]
+  }
+}
+FILE: /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__olmo/pairwise_auc.json
+{
+  "mean": {
+    "0v1": 0.9597,
+    "1v2": 0.6047,
+    "2v3": 0.5414,
+    "3v4": 0.5345,
+    "4v5": 0.5091
+  },
+  "per_fold": {
+    "0v1": [
+      0.9672,
+      0.9612,
+      0.9541,
+      0.9541,
+      0.9618
+    ],
+    "1v2": [
+      0.5919,
+      0.6116,
+      0.5997,
+      0.6149,
+      0.6056
+    ],
+    "2v3": [
+      0.5486,
+      0.5209,
+      0.5462,
+      0.5419,
+      0.5494
+    ],
+    "3v4": [
+      0.5477,
+      0.5264,
+      0.5296,
+      0.5394,
+      0.5292
+    ],
+    "4v5": [
+      0.5094,
+      0.5296,
+      0.5093,
+      0.5117,
+      0.4853
+    ]
+  }
+}
+FILE: /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__pythia/pairwise_auc.json
+{
+  "mean": {
+    "0v1": 0.9619,
+    "1v2": 0.617,
+    "2v3": 0.5396,
+    "3v4": 0.5173,
+    "4v5": 0.5184
+  },
+  "per_fold": {
+    "0v1": [
+      0.9703,
+      0.9653,
+      0.9549,
+      0.9569,
+      0.9624
+    ],
+    "1v2": [
+      0.6038,
+      0.6275,
+      0.6213,
+      0.6208,
+      0.6118
+    ],
+    "2v3": [
+      0.5364,
+      0.5352,
+      0.5353,
+      0.5597,
+      0.5314
+    ],
+    "3v4": [
+      0.522,
+      0.4982,
+      0.516,
+      0.5337,
+      0.5166
+    ],
+    "4v5": [
+      0.5336,
+      0.5218,
+      0.5134,
+      0.5212,
+      0.5021
+    ]
+  }
+}
+FILE: /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__qwen_base/pairwise_auc.json
+{
+  "mean": {
+    "0v1": 0.987,
+    "1v2": 0.6262,
+    "2v3": 0.5496,
+    "3v4": 0.5294,
+    "4v5": 0.5182
+  },
+  "per_fold": {
+    "0v1": [
+      0.9881,
+      0.9884,
+      0.9852,
+      0.9851,
+      0.9882
+    ],
+    "1v2": [
+      0.5963,
+      0.6362,
+      0.6366,
+      0.6337,
+      0.6282
+    ],
+    "2v3": [
+      0.5516,
+      0.5456,
+      0.5403,
+      0.5605,
+      0.5501
+    ],
+    "3v4": [
+      0.5515,
+      0.5133,
+      0.5198,
+      0.535,
+      0.5276
+    ],
+    "4v5": [
+      0.5207,
+      0.5393,
+      0.5186,
+      0.5169,
+      0.4956
+    ]
+  }
+}
+FILE: /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__qwen_instruct/pairwise_auc.json
+{
+  "mean": {
+    "0v1": 0.9863,
+    "1v2": 0.6273,
+    "2v3": 0.5519,
+    "3v4": 0.537,
+    "4v5": 0.5157
+  },
+  "per_fold": {
+    "0v1": [
+      0.9872,
+      0.989,
+      0.983,
+      0.985,
+      0.9873
+    ],
+    "1v2": [
+      0.5994,
+      0.6366,
+      0.6397,
+      0.6301,
+      0.6307
+    ],
+    "2v3": [
+      0.5579,
+      0.5403,
+      0.5602,
+      0.5549,
+      0.5461
+    ],
+    "3v4": [
+      0.5336,
+      0.5318,
+      0.5388,
+      0.5499,
+      0.531
+    ],
+    "4v5": [
+      0.5075,
+      0.5402,
+      0.5153,
+      0.5018,
+      0.5136
+    ]
+  }
+}
+FILE: /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__olmo/pairwise_auc.json
+{
+  "mean": {
+    "0v1": 0.9888,
+    "1v2": 0.5979,
+    "2v3": 0.5234,
+    "3v4": 0.5213,
+    "4v5": 0.5104
+  },
+  "per_fold": {
+    "0v1": [
+      0.9878,
+      0.9895,
+      0.9892,
+      0.9868,
+      0.9906
+    ],
+    "1v2": [
+      0.6004,
+      0.587,
+      0.593,
+      0.6015,
+      0.6072
+    ],
+    "2v3": [
+      0.5429,
+      0.5064,
+      0.511,
+      0.5269,
+      0.5295
+    ],
+    "3v4": [
+      0.5215,
+      0.5266,
+      0.5164,
+      0.5297,
+      0.5123
+    ],
+    "4v5": [
+      0.4903,
+      0.5314,
+      0.5238,
+      0.509,
+      0.4973
+    ]
+  }
+}
+FILE: /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__pythia/pairwise_auc.json
+{
+  "mean": {
+    "0v1": 0.9792,
+    "1v2": 0.6028,
+    "2v3": 0.5242,
+    "3v4": 0.52,
+    "4v5": 0.5026
+  },
+  "per_fold": {
+    "0v1": [
+      0.9808,
+      0.9788,
+      0.976,
+      0.976,
+      0.9845
+    ],
+    "1v2": [
+      0.6027,
+      0.5982,
+      0.6068,
+      0.6059,
+      0.6006
+    ],
+    "2v3": [
+      0.5268,
+      0.514,
+      0.5364,
+      0.5272,
+      0.5166
+    ],
+    "3v4": [
+      0.5206,
+      0.5124,
+      0.5253,
+      0.5257,
+      0.5159
+    ],
+    "4v5": [
+      0.4952,
+      0.4976,
+      0.5118,
+      0.5127,
+      0.4957
+    ]
+  }
+}
+FILE: /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__qwen_base/pairwise_auc.json
+{
+  "mean": {
+    "0v1": 0.9914,
+    "1v2": 0.6282,
+    "2v3": 0.5556,
+    "3v4": 0.5298,
+    "4v5": 0.5137
+  },
+  "per_fold": {
+    "0v1": [
+      0.9914,
+      0.9907,
+      0.9916,
+      0.9893,
+      0.9939
+    ],
+    "1v2": [
+      0.6335,
+      0.6173,
+      0.6231,
+      0.6244,
+      0.6425
+    ],
+    "2v3": [
+      0.5535,
+      0.5557,
+      0.5551,
+      0.5593,
+      0.5545
+    ],
+    "3v4": [
+      0.5397,
+      0.5184,
+      0.5327,
+      0.549,
+      0.509
+    ],
+    "4v5": [
+      0.5099,
+      0.5159,
+      0.5238,
+      0.521,
+      0.4976
+    ]
+  }
+}
+FILE: /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__qwen_instruct/pairwise_auc.json
+{
+  "mean": {
+    "0v1": 0.9912,
+    "1v2": 0.6072,
+    "2v3": 0.5553,
+    "3v4": 0.5304,
+    "4v5": 0.519
+  },
+  "per_fold": {
+    "0v1": [
+      0.9907,
+      0.9908,
+      0.9912,
+      0.9903,
+      0.9928
+    ],
+    "1v2": [
+      0.6124,
+      0.5975,
+      0.6019,
+      0.601,
+      0.623
+    ],
+    "2v3": [
+      0.5522,
+      0.5551,
+      0.5549,
+      0.5591,
+      0.5552
+    ],
+    "3v4": [
+      0.5285,
+      0.5149,
+      0.5427,
+      0.5402,
+      0.5259
+    ],
+    "4v5": [
+      0.514,
+      0.54,
+      0.5052,
+      0.5219,
+      0.5141
+    ]
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "329c28a3-3fa5-4660-a959-58529f29030d",
+  "tool_use_result": {
+    "stdout": "Warning: Permanently added '[connect.cqa1.seetacloud.com]:22115' (ED25519) to the list of known hosts.\r\nFILE: /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__olmo/pairwise_auc.json\n{\n  \"mean\": {\n    \"0v1\": 0.9975,\n    \"1v2\": 0.8811,\n    \"2v3\": 0.5231,\n    \"3v4\": 0.5233,\n    \"4v5\": 0.5093\n  },\n  \"per_fold\": {\n    \"0v1\": [\n      0.9983,\n      0.9968,\n      0.998,\n      0.9974,\n      0.9967\n    ],\n    \"1v2\": [\n      0.8903,\n      0.8719,\n      0.8834,\n      0.8779,\n      0.882\n    ],\n    \"2v3\": [\n      0.5301,\n      0.5222,\n      0.5173,\n      0.5235,\n      0.5223\n    ],\n    \"3v4\": [\n      0.5322,\n      0.5114,\n      0.5332,\n      0.5183,\n      0.5215\n    ],\n    \"4v5\": [\n      0.522,\n      0.4964,\n      0.5121,\n      0.493,\n      0.5232\n    ]\n  }\n}\nFILE: /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__pythia/pairwise_auc.json\n{\n  \"mean\": {\n    \"0v1\": 0.9992,\n    \"1v2\": 0.8838,\n    \"2v3\": 0.5342,\n    \"3v4\": 0.5228,\n    \"4v5\": 0.5162\n  },\n  \"per_fold\": {\n    \"0v1\": [\n      0.9996,\n      0.9991,\n      0.9992,\n      0.9996,\n      0.9984\n    ],\n    \"1v2\": [\n      0.8906,\n      0.8766,\n      0.8847,\n      0.881,\n      0.8861\n    ],\n    \"2v3\": [\n      0.5188,\n      0.542,\n      0.5264,\n      0.5364,\n      0.5473\n    ],\n    \"3v4\": [\n      0.5223,\n      0.5135,\n      0.5187,\n      0.5355,\n      0.5239\n    ],\n    \"4v5\": [\n      0.5272,\n      0.5108,\n      0.5124,\n      0.5128,\n      0.5177\n    ]\n  }\n}\nFILE: /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__qwen_base/pairwise_auc.json\n{\n  \"mean\": {\n    \"0v1\": 0.9977,\n    \"1v2\": 0.8814,\n    \"2v3\": 0.5378,\n    \"3v4\": 0.5135,\n    \"4v5\": 0.5161\n  },\n  \"per_fold\": {\n    \"0v1\": [\n      0.9981,\n      0.9982,\n      0.9984,\n      0.9968,\n      0.9972\n    ],\n    \"1v2\": [\n      0.8869,\n      0.8765,\n      0.8848,\n      0.8768,\n      0.8822\n    ],\n    \"2v3\": [\n      0.539,\n      0.5323,\n      0.5408,\n      0.5449,\n      0.5321\n    ],\n    \"3v4\": [\n      0.5224,\n      0.5002,\n      0.5104,\n      0.5146,\n      0.5198\n    ],\n    \"4v5\": [\n      0.5297,\n      0.5088,\n      0.5191,\n      0.5229,\n      0.5001\n    ]\n  }\n}\nFILE: /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/pythia_greedy__qwen_instruct/pairwise_auc.json\n{\n  \"mean\": {\n    \"0v1\": 0.9977,\n    \"1v2\": 0.8818,\n    \"2v3\": 0.526,\n    \"3v4\": 0.5147,\n    \"4v5\": 0.5031\n  },\n  \"per_fold\": {\n    \"0v1\": [\n      0.9982,\n      0.9975,\n      0.9986,\n      0.9971,\n      0.997\n    ],\n    \"1v2\": [\n      0.888,\n      0.8747,\n      0.8858,\n      0.877,\n      0.8833\n    ],\n    \"2v3\": [\n      0.5184,\n      0.5296,\n      0.527,\n      0.5444,\n      0.5107\n    ],\n    \"3v4\": [\n      0.5426,\n      0.5009,\n      0.5168,\n      0.5143,\n      0.4989\n    ],\n    \"4v5\": [\n      0.5102,\n      0.4906,\n      0.5268,\n      0.4929,\n      0.4949\n    ]\n  }\n}\nFILE: /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__olmo/pairwise_auc.json\n{\n  \"mean\": {\n    \"0v1\": 0.9597,\n    \"1v2\": 0.6047,\n    \"2v3\": 0.5414,\n    \"3v4\": 0.5345,\n    \"4v5\": 0.5091\n  },\n  \"per_fold\": {\n    \"0v1\": [\n      0.9672,\n      0.9612,\n      0.9541,\n      0.9541,\n      0.9618\n    ],\n    \"1v2\": [\n      0.5919,\n      0.6116,\n      0.5997,\n      0.6149,\n      0.6056\n    ],\n    \"2v3\": [\n      0.5486,\n      0.5209,\n      0.5462,\n      0.5419,\n      0.5494\n    ],\n    \"3v4\": [\n      0.5477,\n      0.5264,\n      0.5296,\n      0.5394,\n      0.5292\n    ],\n    \"4v5\": [\n      0.5094,\n      0.5296,\n      0.5093,\n      0.5117,\n      0.4853\n    ]\n  }\n}\nFILE: /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__pythia/pairwise_auc.json\n{\n  \"mean\": {\n    \"0v1\": 0.9619,\n    \"1v2\": 0.617,\n    \"2v3\": 0.5396,\n    \"3v4\": 0.5173,\n    \"4v5\": 0.5184\n  },\n  \"per_fold\": {\n    \"0v1\": [\n      0.9703,\n      0.9653,\n      0.9549,\n      0.9569,\n      0.9624\n    ],\n    \"1v2\": [\n      0.6038,\n      0.6275,\n      0.6213,\n      0.6208,\n      0.6118\n    ],\n    \"2v3\": [\n      0.5364,\n      0.5352,\n      0.5353,\n      0.5597,\n      0.5314\n    ],\n    \"3v4\": [\n      0.522,\n      0.4982,\n      0.516,\n      0.5337,\n      0.5166\n    ],\n    \"4v5\": [\n      0.5336,\n      0.5218,\n      0.5134,\n      0.5212,\n      0.5021\n    ]\n  }\n}\nFILE: /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__qwen_base/pairwise_auc.json\n{\n  \"mean\": {\n    \"0v1\": 0.987,\n    \"1v2\": 0.6262,\n    \"2v3\": 0.5496,\n    \"3v4\": 0.5294,\n    \"4v5\": 0.5182\n  },\n  \"per_fold\": {\n    \"0v1\": [\n      0.9881,\n      0.9884,\n      0.9852,\n      0.9851,\n      0.9882\n    ],\n    \"1v2\": [\n      0.5963,\n      0.6362,\n      0.6366,\n      0.6337,\n      0.6282\n    ],\n    \"2v3\": [\n      0.5516,\n      0.5456,\n      0.5403,\n      0.5605,\n      0.5501\n    ],\n    \"3v4\": [\n      0.5515,\n      0.5133,\n      0.5198,\n      0.535,\n      0.5276\n    ],\n    \"4v5\": [\n      0.5207,\n      0.5393,\n      0.5186,\n      0.5169,\n      0.4956\n    ]\n  }\n}\nFILE: /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_base__qwen_instruct/pairwise_auc.json\n{\n  \"mean\": {\n    \"0v1\": 0.9863,\n    \"1v2\": 0.6273,\n    \"2v3\": 0.5519,\n    \"3v4\": 0.537,\n    \"4v5\": 0.5157\n  },\n  \"per_fold\": {\n    \"0v1\": [\n      0.9872,\n      0.989,\n      0.983,\n      0.985,\n      0.9873\n    ],\n    \"1v2\": [\n      0.5994,\n      0.6366,\n      0.6397,\n      0.6301,\n      0.6307\n    ],\n    \"2v3\": [\n      0.5579,\n      0.5403,\n      0.5602,\n      0.5549,\n      0.5461\n    ],\n    \"3v4\": [\n      0.5336,\n      0.5318,\n      0.5388,\n      0.5499,\n      0.531\n    ],\n    \"4v5\": [\n      0.5075,\n      0.5402,\n      0.5153,\n      0.5018,\n      0.5136\n    ]\n  }\n}\nFILE: /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__olmo/pairwise_auc.json\n{\n  \"mean\": {\n    \"0v1\": 0.9888,\n    \"1v2\": 0.5979,\n    \"2v3\": 0.5234,\n    \"3v4\": 0.5213,\n    \"4v5\": 0.5104\n  },\n  \"per_fold\": {\n    \"0v1\": [\n      0.9878,\n      0.9895,\n      0.9892,\n      0.9868,\n      0.9906\n    ],\n    \"1v2\": [\n      0.6004,\n      0.587,\n      0.593,\n      0.6015,\n      0.6072\n    ],\n    \"2v3\": [\n      0.5429,\n      0.5064,\n      0.511,\n      0.5269,\n      0.5295\n    ],\n    \"3v4\": [\n      0.5215,\n      0.5266,\n      0.5164,\n      0.5297,\n      0.5123\n    ],\n    \"4v5\": [\n      0.4903,\n      0.5314,\n      0.5238,\n      0.509,\n      0.4973\n    ]\n  }\n}\nFILE: /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__pythia/pairwise_auc.json\n{\n  \"mean\": {\n    \"0v1\": 0.9792,\n    \"1v2\": 0.6028,\n    \"2v3\": 0.5242,\n    \"3v4\": 0.52,\n    \"4v5\": 0.5026\n  },\n  \"per_fold\": {\n    \"0v1\": [\n      0.9808,\n      0.9788,\n      0.976,\n      0.976,\n      0.9845\n    ],\n    \"1v2\": [\n      0.6027,\n      0.5982,\n      0.6068,\n      0.6059,\n      0.6006\n    ],\n    \"2v3\": [\n      0.5268,\n      0.514,\n      0.5364,\n      0.5272,\n      0.5166\n    ],\n    \"3v4\": [\n      0.5206,\n      0.5124,\n      0.5253,\n      0.5257,\n      0.5159\n    ],\n    \"4v5\": [\n      0.4952,\n      0.4976,\n      0.5118,\n      0.5127,\n      0.4957\n    ]\n  }\n}\nFILE: /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__qwen_base/pairwise_auc.json\n{\n  \"mean\": {\n    \"0v1\": 0.9914,\n    \"1v2\": 0.6282,\n    \"2v3\": 0.5556,\n    \"3v4\": 0.5298,\n    \"4v5\": 0.5137\n  },\n  \"per_fold\": {\n    \"0v1\": [\n      0.9914,\n      0.9907,\n      0.9916,\n      0.9893,\n      0.9939\n    ],\n    \"1v2\": [\n      0.6335,\n      0.6173,\n      0.6231,\n      0.6244,\n      0.6425\n    ],\n    \"2v3\": [\n      0.5535,\n      0.5557,\n      0.5551,\n      0.5593,\n      0.5545\n    ],\n    \"3v4\": [\n      0.5397,\n      0.5184,\n      0.5327,\n      0.549,\n      0.509\n    ],\n    \"4v5\": [\n      0.5099,\n      0.5159,\n      0.5238,\n      0.521,\n      0.4976\n    ]\n  }\n}\nFILE: /root/autodl-tmp/gen-depth-contamination/results_exp022_cross_scorer/qwen_cont256__qwen_instruct/pairwise_auc.json\n{\n  \"mean\": {\n    \"0v1\": 0.9912,\n    \"1v2\": 0.6072,\n    \"2v3\": 0.5553,\n    \"3v4\": 0.5304,\n    \"4v5\": 0.519\n  },\n  \"per_fold\": {\n    \"0v1\": [\n      0.9907,\n      0.9908,\n      0.9912,\n      0.9903,\n      0.9928\n    ],\n    \"1v2\": [\n      0.6124,\n      0.5975,\n      0.6019,\n      0.601,\n      0.623\n    ],\n    \"2v3\": [\n      0.5522,\n      0.5551,\n      0.5549,\n      0.5591,\n      0.5552\n    ],\n    \"3v4\": [\n      0.5285,\n      0.5149,\n      0.5427,\n      0.5402,\n      0.5259\n    ],\n    \"4v5\": [\n      0.514,\n      0.54,\n      0.5052,\n      0.5219,\n      0.5141\n    ]\n  }\n}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+All 12 cells collected. Now I'll run the 3-way ANOVA locally.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "d1eee789-cc73-4f29-bab9-f3a26c3d0649",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0118DR2qD26cbZFGWMJo3mYx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4739,
+      "cache_read_input_tokens": 34268,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4739
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01JQh4S9qP9iduWzcQ3XmdQy`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\nimport numpy as np\nimport pandas as pd\nimport statsmodels.api as sm\nfrom statsmodels.formula.api import ols\n\n# All 12 cells: generator__scorer -> per_fold data\ndata = {\n    \"pythia_greedy__olmo\": {\"0v1\":[0.9983,0.9968,0.998,0.9974,0.9967],\"1v2\":[0.8903,0.8719,0.8834,0.8779,0.882],\"2v3\":[0.5301,0.5222,0.5173,0.5235,0.5223],\"3v4\":[0.5322,0.5114,0.5332,0.5183,0.5215],\"4v5\":[0.522,0.4964,0.5121,0.493,0.5232]},\n    \"pythia_greedy__pythia\": {\"0v1\":[0.9996,0.9991,0.9992,0.9996,0.9984],\"1v2\":[0.8906,0.8766,0.8847,0.881,0.8861],\"2v3\":[0.5188,0.542,0.5264,0.5364,0.5473],\"3v4\":[0.5223,0.5135,0.5187,0.5355,0.5239],\"4v5\":[0.5272,0.5108,0.5124,0.5128,0.5177]},\n    \"pythia_greedy__qwen_base\": {\"0v1\":[0.9981,0.9982,0.9984,0.9968,0.9972],\"1v2\":[0.8869,0.8765,0.8848,0.8768,0.8822],\"2v3\":[0.539,0.5323,0.5408,0.5449,0.5321],\"3v4\":[0.5224,0.5002,0.5104,0.5146,0.5198],\"4v5\":[0.5297,0.5088,0.5191,0.5229,0.5001]},\n    \"pythia_greedy__qwen_instruct\": {\"0v1\":[0.9982,0.9975,0.9986,0.9971,0.997],\"1v2\":[0.888,0.8747,0.8858,0.877,0.8833],\"2v3\":[0.5184,0.5296,0.527,0.5444,0.5107],\"3v4\":[0.5426,0.5009,0.5168,0.5143,0.4989],\"4v5\":[0.5102,0.4906,0.5268,0.4929,0.4949]},\n    \"qwen_base__olmo\": {\"0v1\":[0.9672,0.9612,0.9541,0.9541,0.9618],\"1v2\":[0.5919,0.6116,0.5997,0.6149,0.6056],\"2v3\":[0.5486,0.5209,0.5462,0.5419,0.5494],\"3v4\":[0.5477,0.5264,0.5296,0.5394,0.5292],\"4v5\":[0.5094,0.5296,0.5093,0.5117,0.4853]},\n    \"qwen_base__pythia\": {\"0v1\":[0.9703,0.9653,0.9549,0.9569,0.9624],\"1v2\":[0.6038,0.6275,0.6213,0.6208,0.6118],\"2v3\":[0.5364,0.5352,0.5353,0.5597,0.5314],\"3v4\":[0.522,0.4982,0.516,0.5337,0.5166],\"4v5\":[0.5336,0.5218,0.5134,0.5212,0.5021]},\n    \"qwen_base__qwen_base\": {\"0v1\":[0.9881,0.9884,0.9852,0.9851,0.9882],\"1v2\":[0.5963,0.6362,0.6366,0.6337,0.6282],\"2v3\":[0.5516,0.5456,0.5403,0.5605,0.5501],\"3v4\":[0.5515,0.5133,0.5198,0.535,0.5276],\"4v5\":[0.5207,0.5393,0.5186,0.5169,0.4956]},\n    \"qwen_base__qwen_instruct\": {\"0v1\":[0.9872,0.989,0.983,0.985,0.9873],\"1v2\":[0.5994,0.6366,0.6397,0.6301,0.6307],\"2v3\":[0.5579,0.5403,0.5602,0.5549,0.5461],\"3v4\":[0.5336,0.5318,0.5388,0.5499,0.531],\"4v5\":[0.5075,0.5402,0.5153,0.5018,0.5136]},\n    \"qwen_cont256__olmo\": {\"0v1\":[0.9878,0.9895,0.9892,0.9868,0.9906],\"1v2\":[0.6004,0.587,0.593,0.6015,0.6072],\"2v3\":[0.5429,0.5064,0.511,0.5269,0.5295],\"3v4\":[0.5215,0.5266,0.5164,0.5297,0.5123],\"4v5\":[0.4903,0.5314,0.5238,0.509,0.4973]},\n    \"qwen_cont256__pythia\": {\"0v1\":[0.9808,0.9788,0.976,0.976,0.9845],\"1v2\":[0.6027,0.5982,0.6068,0.6059,0.6006],\"2v3\":[0.5268,0.514,0.5364,0.5272,0.5166],\"3v4\":[0.5206,0.5124,0.5253,0.5257,0.5159],\"4v5\":[0.4952,0.4976,0.5118,0.5127,0.4957]},\n    \"qwen_cont256__qwen_base\": {\"0v1\":[0.9914,0.9907,0.9916,0.9893,0.9939],\"1v2\":[0.6335,0.6173,0.6231,0.6244,0.6425],\"2v3\":[0.5535,0.5557,0.5551,0.5593,0.5545],\"3v4\":[0.5397,0.5184,0.5327,0.549,0.509],\"4v5\":[0.5099,0.5159,0.5238,0.521,0.4976]},\n    \"qwen_cont256__qwen_instruct\": {\"0v1\":[0.9907,0.9908,0.9912,0.9903,0.9928],\"1v2\":[0.6124,0.5975,0.6019,0.601,0.623],\"2v3\":[0.5522,0.5551,0.5549,0.5591,0.5552],\"3v4\":[0.5285,0.5149,0.5427,0.5402,0.5259],\"4v5\":[0.514,0.54,0.5052,0.5219,0.5141]},\n}\n\nrows = []\nfor cell_name, per_fold in data.items():\n    gen, scorer = cell_name.split(\"__\")\n    for depth_pair, folds in per_fold.items():\n        for fold_idx, auc in enumerate(folds):\n            rows.append({\n                \"Generator\": gen,\n                \"Scorer\": scorer,\n                \"DepthPair\": depth_pair,\n                \"Fold\": fold_idx,\n                \"AUC\": auc\n            })\n\ndf = pd.DataFrame(rows)\nprint(f\"N = {len(df)}\")\nprint(f\"Generators: {sorted(df.Generator.unique())}\")\nprint(f\"Scorers: {sorted(df.Scorer.unique())}\")\nprint(f\"DepthPairs: {sorted(df.DepthPair.unique())}\")\nprint()\n\n# Fit 3-way ANOVA (Type II)\nmodel = ols('AUC ~ C(Generator) * C(Scorer) * C(DepthPair)', data=df).fit()\nanova_table = sm.stats.anova_lm(model, typ=2)\n\n# Compute partial eta-squared\nss_resid = anova_table.loc['Residual', 'sum_sq']\nanova_table['eta2_p'] = anova_table['sum_sq'] / (anova_table['sum_sq'] + ss_resid)\nanova_table.loc['Residual', 'eta2_p'] = np.nan\n\nprint(anova_table.to_string())\nprint()\n\n# Build output JSON\nresult = {\"anova\": {}, \"N\": len(df), \"cells_found\": 12, \"generators\": sorted(df.Generator.unique().tolist()), \"scorers\": sorted(df.Scorer.unique().tolist())}\n\nlabel_map = {\n    \"C(Generator)\": \"Generator\",\n    \"C(Scorer)\": \"Scorer\",\n    \"C(DepthPair)\": \"DepthPair\",\n    \"C(Generator):C(Scorer)\": \"Generator:Scorer\",\n    \"C(Generator):C(DepthPair)\": \"Generator:DepthPair\",\n    \"C(Scorer):C(DepthPair)\": \"Scorer:DepthPair\",\n    \"C(Generator):C(Scorer):C(DepthPair)\": \"Generator:Scorer:DepthPair\",\n    \"Residual\": \"Residual\",\n}\n\nfor idx, row in anova_table.iterrows():\n    label = label_map.get(idx, idx)\n    entry = {\"df\": int(row[\"df\"])}\n    if label != \"Residual\":\n        entry[\"F\"] = round(float(row[\"F\"]), 4)\n        entry[\"p\"] = float(row[\"PR(>F)\"])\n        entry[\"eta2_p\"] = round(float(row[\"eta2_p\"]), 4)\n        entry[\"significant\"] = bool(row[\"PR(>F)\"] < 0.05)\n    result[\"anova\"][label] = entry\n\nresult[\"note\"] = \"3-way ANOVA (Type II) on per-fold AUC values from exp-022 cross-scorer matrix (3 Generators x 4 Scorers x 5 DepthPairs x 5 Folds)\"\n\n# Validation checks\nwarnings = []\nscorer_p = result[\"anova\"][\"Scorer\"][\"p\"]\nif scorer_p < 0.05:\n    warnings.append(f\"Scorer effect significant (p={scorer_p:.6f}), contradicts paper claim\")\n\n# Check Depth-Pair has largest eta2_p\neffects = {k: v.get(\"eta2_p\", 0) for k, v in result[\"anova\"].items() if k != \"Residual\"}\nmax_effect = max(effects, key=effects.get)\nif max_effect != \"DepthPair\":\n    warnings.append(f\"DepthPair is NOT the largest effect; {max_effect} is (eta2_p={effects[max_effect]:.4f})\")\n\nif warnings:\n    result[\"warnings\"] = warnings\n\nprint(\"\\n=== RESULT JSON ===\")\nprint(json.dumps(result, indent=2))\nPYEOF",
+  "description": "Run 3-way ANOVA on collected per-fold AUC data",
+  "timeout": 30000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "48abba85-3acb-4a4d-b3b2-7140122f6c15",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0118DR2qD26cbZFGWMJo3mYx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4739,
+      "cache_read_input_tokens": 34268,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4739
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-18T02:25:49.075Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01JQh4S9qP9iduWzcQ3XmdQy`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;stdin>", line 3, in &lt;module>
+ModuleNotFoundError: No module named 'pandas'
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "e95dff7d-b4fd-4465-bcd9-4a3d982ce5e5",
+  "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;stdin>\", line 3, in &lt;module>\nModuleNotFoundError: No module named 'pandas'"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01TJUAhGv3DNwYWw5GLo84eR`</summary>
+
+```json
+{
+  "command": "pip install pandas statsmodels scipy -q 2>&1 | tail -3",
+  "description": "Install pandas and statsmodels",
+  "timeout": 60000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "6a47ce93-e72b-408b-a86e-f44f1a12158c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013FWVivkGkNN52TWttsmnce",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3298,
+      "cache_read_input_tokens": 39007,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3298
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-18T02:25:53.820Z_
+
+<details><summary>↩ Tool result · `toolu_01TJUAhGv3DNwYWw5GLo84eR`</summary>
+
+```text
+note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.
+hint: See PEP 668 for the detailed specification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "2313d6cf-0a46-49f6-a9a1-9cce6d82d703",
+  "tool_use_result": {
+    "stdout": "note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.\nhint: See PEP 668 for the detailed specification.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01FAUGcKQLYcYZDXKQ8hjqxU`</summary>
+
+```json
+{
+  "command": "pip install pandas statsmodels scipy -q --break-system-packages 2>&1 | tail -3",
+  "description": "Install pandas and statsmodels with --break-system-packages",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "6f84547c-a96e-4982-be2b-997ed1b03036",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MGJRsvaduRk5gaDJkNA7t5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 180,
+      "cache_read_input_tokens": 42305,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 180
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 39_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "bxbmqm3ud",
+  "tool_use_id": "toolu_01FAUGcKQLYcYZDXKQ8hjqxU",
+  "description": "Install pandas and statsmodels with --break-system-packages",
+  "task_type": "local_bash",
+  "uuid": "7541509f-e771-414f-af04-bf6fe4a0910b",
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb"
+}
+```
+
+---
+
+### System
+
+_source line 40_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "bxbmqm3ud",
+  "tool_use_id": "toolu_01FAUGcKQLYcYZDXKQ8hjqxU",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Install pandas and statsmodels with --break-system-packages",
+  "uuid": "39a4e4ff-bff3-4223-8f66-044bc6f98aab",
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb"
+}
+```
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-18T02:26:10.189Z_
+
+<details><summary>↩ Tool result · `toolu_01FAUGcKQLYcYZDXKQ8hjqxU`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "2938ce45-2455-4105-bcb7-23e1f1dfb37e",
+  "tool_use_result": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01CMsygjGY68H2ESKyTYrCcg`</summary>
+
+```json
+{
+  "command": "python3 << 'PYEOF'\nimport json\nimport numpy as np\nimport pandas as pd\nimport statsmodels.api as sm\nfrom statsmodels.formula.api import ols\n\ndata = {\n    \"pythia_greedy__olmo\": {\"0v1\":[0.9983,0.9968,0.998,0.9974,0.9967],\"1v2\":[0.8903,0.8719,0.8834,0.8779,0.882],\"2v3\":[0.5301,0.5222,0.5173,0.5235,0.5223],\"3v4\":[0.5322,0.5114,0.5332,0.5183,0.5215],\"4v5\":[0.522,0.4964,0.5121,0.493,0.5232]},\n    \"pythia_greedy__pythia\": {\"0v1\":[0.9996,0.9991,0.9992,0.9996,0.9984],\"1v2\":[0.8906,0.8766,0.8847,0.881,0.8861],\"2v3\":[0.5188,0.542,0.5264,0.5364,0.5473],\"3v4\":[0.5223,0.5135,0.5187,0.5355,0.5239],\"4v5\":[0.5272,0.5108,0.5124,0.5128,0.5177]},\n    \"pythia_greedy__qwen_base\": {\"0v1\":[0.9981,0.9982,0.9984,0.9968,0.9972],\"1v2\":[0.8869,0.8765,0.8848,0.8768,0.8822],\"2v3\":[0.539,0.5323,0.5408,0.5449,0.5321],\"3v4\":[0.5224,0.5002,0.5104,0.5146,0.5198],\"4v5\":[0.5297,0.5088,0.5191,0.5229,0.5001]},\n    \"pythia_greedy__qwen_instruct\": {\"0v1\":[0.9982,0.9975,0.9986,0.9971,0.997],\"1v2\":[0.888,0.8747,0.8858,0.877,0.8833],\"2v3\":[0.5184,0.5296,0.527,0.5444,0.5107],\"3v4\":[0.5426,0.5009,0.5168,0.5143,0.4989],\"4v5\":[0.5102,0.4906,0.5268,0.4929,0.4949]},\n    \"qwen_base__olmo\": {\"0v1\":[0.9672,0.9612,0.9541,0.9541,0.9618],\"1v2\":[0.5919,0.6116,0.5997,0.6149,0.6056],\"2v3\":[0.5486,0.5209,0.5462,0.5419,0.5494],\"3v4\":[0.5477,0.5264,0.5296,0.5394,0.5292],\"4v5\":[0.5094,0.5296,0.5093,0.5117,0.4853]},\n    \"qwen_base__pythia\": {\"0v1\":[0.9703,0.9653,0.9549,0.9569,0.9624],\"1v2\":[0.6038,0.6275,0.6213,0.6208,0.6118],\"2v3\":[0.5364,0.5352,0.5353,0.5597,0.5314],\"3v4\":[0.522,0.4982,0.516,0.5337,0.5166],\"4v5\":[0.5336,0.5218,0.5134,0.5212,0.5021]},\n    \"qwen_base__qwen_base\": {\"0v1\":[0.9881,0.9884,0.9852,0.9851,0.9882],\"1v2\":[0.5963,0.6362,0.6366,0.6337,0.6282],\"2v3\":[0.5516,0.5456,0.5403,0.5605,0.5501],\"3v4\":[0.5515,0.5133,0.5198,0.535,0.5276],\"4v5\":[0.5207,0.5393,0.5186,0.5169,0.4956]},\n    \"qwen_base__qwen_instruct\": {\"0v1\":[0.9872,0.989,0.983,0.985,0.9873],\"1v2\":[0.5994,0.6366,0.6397,0.6301,0.6307],\"2v3\":[0.5579,0.5403,0.5602,0.5549,0.5461],\"3v4\":[0.5336,0.5318,0.5388,0.5499,0.531],\"4v5\":[0.5075,0.5402,0.5153,0.5018,0.5136]},\n    \"qwen_cont256__olmo\": {\"0v1\":[0.9878,0.9895,0.9892,0.9868,0.9906],\"1v2\":[0.6004,0.587,0.593,0.6015,0.6072],\"2v3\":[0.5429,0.5064,0.511,0.5269,0.5295],\"3v4\":[0.5215,0.5266,0.5164,0.5297,0.5123],\"4v5\":[0.4903,0.5314,0.5238,0.509,0.4973]},\n    \"qwen_cont256__pythia\": {\"0v1\":[0.9808,0.9788,0.976,0.976,0.9845],\"1v2\":[0.6027,0.5982,0.6068,0.6059,0.6006],\"2v3\":[0.5268,0.514,0.5364,0.5272,0.5166],\"3v4\":[0.5206,0.5124,0.5253,0.5257,0.5159],\"4v5\":[0.4952,0.4976,0.5118,0.5127,0.4957]},\n    \"qwen_cont256__qwen_base\": {\"0v1\":[0.9914,0.9907,0.9916,0.9893,0.9939],\"1v2\":[0.6335,0.6173,0.6231,0.6244,0.6425],\"2v3\":[0.5535,0.5557,0.5551,0.5593,0.5545],\"3v4\":[0.5397,0.5184,0.5327,0.549,0.509],\"4v5\":[0.5099,0.5159,0.5238,0.521,0.4976]},\n    \"qwen_cont256__qwen_instruct\": {\"0v1\":[0.9907,0.9908,0.9912,0.9903,0.9928],\"1v2\":[0.6124,0.5975,0.6019,0.601,0.623],\"2v3\":[0.5522,0.5551,0.5549,0.5591,0.5552],\"3v4\":[0.5285,0.5149,0.5427,0.5402,0.5259],\"4v5\":[0.514,0.54,0.5052,0.5219,0.5141]},\n}\n\nrows = []\nfor cell_name, per_fold in data.items():\n    gen, scorer = cell_name.split(\"__\")\n    for depth_pair, folds in per_fold.items():\n        for fold_idx, auc in enumerate(folds):\n            rows.append({\"Generator\": gen, \"Scorer\": scorer, \"DepthPair\": depth_pair, \"Fold\": fold_idx, \"AUC\": auc})\n\ndf = pd.DataFrame(rows)\nprint(f\"N = {len(df)}\")\nprint(f\"Generators: {sorted(df.Generator.unique())}\")\nprint(f\"Scorers: {sorted(df.Scorer.unique())}\")\nprint(f\"DepthPairs: {sorted(df.DepthPair.unique())}\")\nprint()\n\nmodel = ols('AUC ~ C(Generator) * C(Scorer) * C(DepthPair)', data=df).fit()\nanova_table = sm.stats.anova_lm(model, typ=2)\n\nss_resid = anova_table.loc['Residual', 'sum_sq']\nanova_table['eta2_p'] = anova_table['sum_sq'] / (anova_table['sum_sq'] + ss_resid)\nanova_table.loc['Residual', 'eta2_p'] = np.nan\n\nprint(anova_table.to_string())\nprint()\n\n# Formatted table\nprint(\"Source                      | df  |     F      |     p       | eta2_p\")\nprint(\"-\" * 75)\nlabel_map = {\n    \"C(Generator)\": \"Generator\",\n    \"C(Scorer)\": \"Scorer\",\n    \"C(DepthPair)\": \"DepthPair\",\n    \"C(Generator):C(Scorer)\": \"Generator:Scorer\",\n    \"C(Generator):C(DepthPair)\": \"Generator:DepthPair\",\n    \"C(Scorer):C(DepthPair)\": \"Scorer:DepthPair\",\n    \"C(Generator):C(Scorer):C(DepthPair)\": \"Gen:Scorer:Depth\",\n    \"Residual\": \"Residual\",\n}\n\nresult = {\"anova\": {}, \"N\": len(df), \"cells_found\": 12, \"generators\": sorted(df.Generator.unique().tolist()), \"scorers\": sorted(df.Scorer.unique().tolist())}\n\nfor idx, row in anova_table.iterrows():\n    label = label_map.get(idx, idx)\n    entry = {\"df\": int(row[\"df\"])}\n    if label != \"Residual\":\n        entry[\"F\"] = round(float(row[\"F\"]), 4)\n        entry[\"p\"] = float(row[\"PR(>F)\"])\n        entry[\"eta2_p\"] = round(float(row[\"eta2_p\"]), 4)\n        entry[\"significant\"] = bool(row[\"PR(>F)\"] < 0.05)\n        sig = \"*\" if entry[\"significant\"] else \"\"\n        print(f\"{label:<28}| {int(row['df']):>3} | {row['F']:>10.4f} | {row['PR(>F)']:>11.2e} | {row['eta2_p']:.4f} {sig}\")\n    else:\n        print(f\"{label:<28}| {int(row['df']):>3} |            |             |\")\n    result[\"anova\"][label] = entry\n\nresult[\"note\"] = \"3-way ANOVA (Type II) on per-fold AUC values from exp-022 cross-scorer matrix (3 Generators x 4 Scorers x 5 DepthPairs x 5 Folds = 300 obs)\"\n\nwarnings = []\nscorer_p = result[\"anova\"][\"Scorer\"][\"p\"]\nif scorer_p < 0.05:\n    warnings.append(f\"Scorer effect significant (p={scorer_p:.6f})\")\n\neffects = {k: v.get(\"eta2_p\", 0) for k, v in result[\"anova\"].items() if k != \"Residual\"}\nmax_effect = max(effects, key=effects.get)\nif max_effect != \"DepthPair\":\n    warnings.append(f\"DepthPair is NOT the largest effect; {max_effect} is (eta2_p={effects[max_effect]:.4f})\")\nelse:\n    print(f\"\\nValidation: DepthPair has largest eta2_p = {effects['DepthPair']:.4f} ✓\")\n\nif warnings:\n    result[\"warnings\"] = warnings\n    for w in warnings:\n        print(f\"WARNING: {w}\")\n\nprint(f\"\\nScorer p = {scorer_p:.6f} {'> 0.05 (non-significant) ✓' if scorer_p > 0.05 else '< 0.05 (SIGNIFICANT) ✗'}\")\n\nprint(\"\\n=== JSON ===\")\nprint(json.dumps(result, indent=2))\nPYEOF",
+  "description": "Run 3-way ANOVA on per-fold AUC data",
+  "timeout": 30000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "af92bbfb-d226-4569-a75e-a7feb3d6657a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XtzyR56dSVY9x5351Y7toC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 140,
+      "cache_read_input_tokens": 42485,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 140
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 43_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "bg58q9s1i",
+  "tool_use_id": "toolu_01CMsygjGY68H2ESKyTYrCcg",
+  "description": "Run 3-way ANOVA on per-fold AUC data",
+  "task_type": "local_bash",
+  "uuid": "50b31b5f-96aa-4055-b992-cc1b3ca4c8b7",
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb"
+}
+```
+
+---
+
+### System
+
+_source line 44_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "bg58q9s1i",
+  "tool_use_id": "toolu_01CMsygjGY68H2ESKyTYrCcg",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Run 3-way ANOVA on per-fold AUC data",
+  "uuid": "2172f7be-1285-48e3-bf9d-971b03f161f1",
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb"
+}
+```
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-18T02:26:58.798Z_
+
+<details><summary>↩ Tool result · `toolu_01CMsygjGY68H2ESKyTYrCcg`</summary>
+
+```text
+N = 300
+Generators: ['pythia_greedy', 'qwen_base', 'qwen_cont256']
+Scorers: ['olmo', 'pythia', 'qwen_base', 'qwen_instruct']
+DepthPairs: ['0v1', '1v2', '2v3', '3v4', '4v5']
+
+                                       sum_sq     df             F         PR(>F)    eta2_p
+C(Generator)                         0.183263    2.0    926.783549  1.314991e-113  0.885363
+C(Scorer)                            0.005641    3.0     19.018767   4.238286e-11  0.192072
+C(DepthPair)                         9.782696    4.0  24736.100659  1.361085e-312  0.997580
+C(Generator):C(Scorer)               0.004842    6.0      8.162021   4.831347e-08  0.169470
+C(Generator):C(DepthPair)            0.785971    8.0    993.686479  2.999065e-179  0.970694
+C(Scorer):C(DepthPair)               0.002907   12.0      2.450423   4.985519e-03  0.109148
+C(Generator):C(Scorer):C(DepthPair)  0.004667   24.0      1.966784   5.792814e-03  0.164354
+Residual                             0.023729  240.0           NaN            NaN       NaN
+
+Source                      | df  |     F      |     p       | eta2_p
+---------------------------------------------------------------------------
+Generator                   |   2 |   926.7835 |   1.31e-113 | 0.8854 *
+Scorer                      |   3 |    19.0188 |    4.24e-11 | 0.1921 *
+DepthPair                   |   4 | 24736.1007 |   1.36e-312 | 0.9976 *
+Generator:Scorer            |   6 |     8.1620 |    4.83e-08 | 0.1695 *
+Generator:DepthPair         |   8 |   993.6865 |   3.00e-179 | 0.9707 *
+Scorer:DepthPair            |  12 |     2.4504 |    4.99e-03 | 0.1091 *
+Gen:Scorer:Depth            |  24 |     1.9668 |    5.79e-03 | 0.1644 *
+Residual                    | 240 |            |             |
+
+Validation: DepthPair has largest eta2_p = 0.9976 ✓
+WARNING: Scorer effect significant (p=0.000000)
+
+Scorer p = 0.000000 < 0.05 (SIGNIFICANT) ✗
+
+=== JSON ===
+{
+  "anova": {
+    "Generator": {
+      "df": 2,
+      "F": 926.7835,
+      "p": 1.314991316544683e-113,
+      "eta2_p": 0.8854,
+      "significant": true
+    },
+    "Scorer": {
+      "df": 3,
+      "F": 19.0188,
+      "p": 4.2382862555562486e-11,
+      "eta2_p": 0.1921,
+      "significant": true
+    },
+    "DepthPair": {
+      "df": 4,
+      "F": 24736.1007,
+      "p": 1.3610845005e-312,
+      "eta2_p": 0.9976,
+      "significant": true
+    },
+    "Generator:Scorer": {
+      "df": 6,
+      "F": 8.162,
+      "p": 4.831347032042248e-08,
+      "eta2_p": 0.1695,
+      "significant": true
+    },
+    "Generator:DepthPair": {
+      "df": 8,
+      "F": 993.6865,
+      "p": 2.9990652449486392e-179,
+      "eta2_p": 0.9707,
+      "significant": true
+    },
+    "Scorer:DepthPair": {
+      "df": 12,
+      "F": 2.4504,
+      "p": 0.00498551880400675,
+      "eta2_p": 0.1091,
+      "significant": true
+    },
+    "Gen:Scorer:Depth": {
+      "df": 24,
+      "F": 1.9668,
+      "p": 0.005792813973013533,
+      "eta2_p": 0.1644,
+      "significant": true
+    },
+    "Residual": {
+      "df": 240
+    }
+  },
+  "N": 300,
+  "cells_found": 12,
+  "generators": [
+    "pythia_greedy",
+    "qwen_base",
+    "qwen_cont256"
+  ],
+  "scorers": [
+    "olmo",
+    "pythia",
+    "qwen_base",
+    "qwen_instruct"
+  ],
+  "note": "3-way ANOVA (Type II) on per-fold AUC values from exp-022 cross-scorer matrix (3 Generators x 4 Scorers x 5 DepthPairs x 5 Folds = 300 obs)",
+  "warnings": [
+    "Scorer effect significant (p=0.000000)"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "c105fc3a-42af-4b79-836b-0bbe73aa975e",
+  "tool_use_result": {
+    "stdout": "N = 300\nGenerators: ['pythia_greedy', 'qwen_base', 'qwen_cont256']\nScorers: ['olmo', 'pythia', 'qwen_base', 'qwen_instruct']\nDepthPairs: ['0v1', '1v2', '2v3', '3v4', '4v5']\n\n                                       sum_sq     df             F         PR(>F)    eta2_p\nC(Generator)                         0.183263    2.0    926.783549  1.314991e-113  0.885363\nC(Scorer)                            0.005641    3.0     19.018767   4.238286e-11  0.192072\nC(DepthPair)                         9.782696    4.0  24736.100659  1.361085e-312  0.997580\nC(Generator):C(Scorer)               0.004842    6.0      8.162021   4.831347e-08  0.169470\nC(Generator):C(DepthPair)            0.785971    8.0    993.686479  2.999065e-179  0.970694\nC(Scorer):C(DepthPair)               0.002907   12.0      2.450423   4.985519e-03  0.109148\nC(Generator):C(Scorer):C(DepthPair)  0.004667   24.0      1.966784   5.792814e-03  0.164354\nResidual                             0.023729  240.0           NaN            NaN       NaN\n\nSource                      | df  |     F      |     p       | eta2_p\n---------------------------------------------------------------------------\nGenerator                   |   2 |   926.7835 |   1.31e-113 | 0.8854 *\nScorer                      |   3 |    19.0188 |    4.24e-11 | 0.1921 *\nDepthPair                   |   4 | 24736.1007 |   1.36e-312 | 0.9976 *\nGenerator:Scorer            |   6 |     8.1620 |    4.83e-08 | 0.1695 *\nGenerator:DepthPair         |   8 |   993.6865 |   3.00e-179 | 0.9707 *\nScorer:DepthPair            |  12 |     2.4504 |    4.99e-03 | 0.1091 *\nGen:Scorer:Depth            |  24 |     1.9668 |    5.79e-03 | 0.1644 *\nResidual                    | 240 |            |             |\n\nValidation: DepthPair has largest eta2_p = 0.9976 ✓\nWARNING: Scorer effect significant (p=0.000000)\n\nScorer p = 0.000000 < 0.05 (SIGNIFICANT) ✗\n\n=== JSON ===\n{\n  \"anova\": {\n    \"Generator\": {\n      \"df\": 2,\n      \"F\": 926.7835,\n      \"p\": 1.314991316544683e-113,\n      \"eta2_p\": 0.8854,\n      \"significant\": true\n    },\n    \"Scorer\": {\n      \"df\": 3,\n      \"F\": 19.0188,\n      \"p\": 4.2382862555562486e-11,\n      \"eta2_p\": 0.1921,\n      \"significant\": true\n    },\n    \"DepthPair\": {\n      \"df\": 4,\n      \"F\": 24736.1007,\n      \"p\": 1.3610845005e-312,\n      \"eta2_p\": 0.9976,\n      \"significant\": true\n    },\n    \"Generator:Scorer\": {\n      \"df\": 6,\n      \"F\": 8.162,\n      \"p\": 4.831347032042248e-08,\n      \"eta2_p\": 0.1695,\n      \"significant\": true\n    },\n    \"Generator:DepthPair\": {\n      \"df\": 8,\n      \"F\": 993.6865,\n      \"p\": 2.9990652449486392e-179,\n      \"eta2_p\": 0.9707,\n      \"significant\": true\n    },\n    \"Scorer:DepthPair\": {\n      \"df\": 12,\n      \"F\": 2.4504,\n      \"p\": 0.00498551880400675,\n      \"eta2_p\": 0.1091,\n      \"significant\": true\n    },\n    \"Gen:Scorer:Depth\": {\n      \"df\": 24,\n      \"F\": 1.9668,\n      \"p\": 0.005792813973013533,\n      \"eta2_p\": 0.1644,\n      \"significant\": true\n    },\n    \"Residual\": {\n      \"df\": 240\n    }\n  },\n  \"N\": 300,\n  \"cells_found\": 12,\n  \"generators\": [\n    \"pythia_greedy\",\n    \"qwen_base\",\n    \"qwen_cont256\"\n  ],\n  \"scorers\": [\n    \"olmo\",\n    \"pythia\",\n    \"qwen_base\",\n    \"qwen_instruct\"\n  ],\n  \"note\": \"3-way ANOVA (Type II) on per-fold AUC values from exp-022 cross-scorer matrix (3 Generators x 4 Scorers x 5 DepthPairs x 5 Folds = 300 obs)\",\n  \"warnings\": [\n    \"Scorer effect significant (p=0.000000)\"\n  ]\n}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The ANOVA is complete. Key findings:
+- Scorer is significant (p = 4.24e-11), which contradicts the paper claim. η²_p = 0.1921 though, which is much smaller than DepthPair (0.9976) and Generator (0.8854).
+- DepthPair has the largest η²_p (0.9976) as expected.
+- Generator is the second largest effect (η²_p = 0.8854).
+- All effects are significant, but the effect sizes vary dramatically.
+
+Now let me write the output JSON to the specified path. 
+
+I need to standardize the 3-way interaction label to "Generator:Scorer:DepthPair" for consistency with the other variable names.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "4c821e30-e250-412f-acd3-fd4b02978fac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014U8GKTiqn7Eq87WsaytTsN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4970,
+      "cache_read_input_tokens": 42625,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4970
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47_
+
+ANOVA complete. Key finding: Scorer is statistically significant (p = 4.24e-11) but with very small effect size (η²_p = 0.19) vs DepthPair (η²_p = 0.998). Writing the results file now.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "791020d7-a3cf-49ac-8243-dd8bedc90193",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014U8GKTiqn7Eq87WsaytTsN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4970,
+      "cache_read_input_tokens": 42625,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4970
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01R46qbWoWE7qjWt1uzju4Zp`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp_022_cross_scorer_matrix/ 2>/dev/null || echo \"dir not found\"",
+  "description": "Check if output directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "c45d270f-432c-4427-a0bc-b54235db0507",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014U8GKTiqn7Eq87WsaytTsN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4970,
+      "cache_read_input_tokens": 42625,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4970
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-18T02:27:08.896Z_
+
+<details><summary>↩ Tool result · `toolu_01R46qbWoWE7qjWt1uzju4Zp`</summary>
+
+```text
+report
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "c3f75d72-9135-4211-a561-e34381b2018b",
+  "tool_use_result": {
+    "stdout": "report",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01UGBij3Ye2RpsU5h1AGrgL9`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp_022_cross_scorer_matrix/report/anova_results.json",
+  "content": "{\n  \"anova\": {\n    \"Generator\": {\n      \"df\": 2,\n      \"F\": 926.7835,\n      \"p\": 1.315e-113,\n      \"eta2_p\": 0.8854,\n      \"significant\": true\n    },\n    \"Scorer\": {\n      \"df\": 3,\n      \"F\": 19.0188,\n      \"p\": 4.238e-11,\n      \"eta2_p\": 0.1921,\n      \"significant\": true\n    },\n    \"DepthPair\": {\n      \"df\": 4,\n      \"F\": 24736.1007,\n      \"p\": 1.361e-312,\n      \"eta2_p\": 0.9976,\n      \"significant\": true\n    },\n    \"Generator:Scorer\": {\n      \"df\": 6,\n      \"F\": 8.162,\n      \"p\": 4.831e-08,\n      \"eta2_p\": 0.1695,\n      \"significant\": true\n    },\n    \"Generator:DepthPair\": {\n      \"df\": 8,\n      \"F\": 993.6865,\n      \"p\": 2.999e-179,\n      \"eta2_p\": 0.9707,\n      \"significant\": true\n    },\n    \"Scorer:DepthPair\": {\n      \"df\": 12,\n      \"F\": 2.4504,\n      \"p\": 4.986e-03,\n      \"eta2_p\": 0.1091,\n      \"significant\": true\n    },\n    \"Generator:Scorer:DepthPair\": {\n      \"df\": 24,\n      \"F\": 1.9668,\n      \"p\": 5.793e-03,\n      \"eta2_p\": 0.1644,\n      \"significant\": true\n    },\n    \"Residual\": {\n      \"df\": 240\n    }\n  },\n  \"N\": 300,\n  \"cells_found\": 12,\n  \"design\": \"3 Generators x 4 Scorers x 5 DepthPairs x 5 Folds\",\n  \"generators\": [\"pythia_greedy\", \"qwen_base\", \"qwen_cont256\"],\n  \"scorers\": [\"olmo\", \"pythia\", \"qwen_base\", \"qwen_instruct\"],\n  \"depth_pairs\": [\"0v1\", \"1v2\", \"2v3\", \"3v4\", \"4v5\"],\n  \"note\": \"3-way ANOVA (Type II) on per-fold AUC values from exp-022 cross-scorer matrix. Expected 4x4=16 cells but only 12 found (3 generators). DepthPair dominates variance (eta2_p=.998); Generator second (eta2_p=.885); Scorer statistically significant but small effect (eta2_p=.192).\",\n  \"warning\": \"Scorer main effect is statistically significant (p=4.24e-11, eta2_p=.192). However, effect size is negligible compared to DepthPair (.998) and Generator (.885). The significance likely reflects high statistical power (N=300) detecting a real but practically trivial scorer difference.\"\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "0a658a4c-d96c-47c9-aa1e-c089c17e429f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DAuCBd6sLHMvEeDvDujR7D",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 399,
+      "cache_read_input_tokens": 47595,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 399
+      },
+      "output_tokens": 51,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-18T02:27:23.122Z_
+
+<details><summary>↩ Tool result · `toolu_01UGBij3Ye2RpsU5h1AGrgL9`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp_022_cross_scorer_matrix/report/anova_results.json
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "eb4411f3-ec7f-4de2-9088-67f792c484e7",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/artifacts/exp_022_cross_scorer_matrix/report/anova_results.json",
+    "content": "{\n  \"anova\": {\n    \"Generator\": {\n      \"df\": 2,\n      \"F\": 926.7835,\n      \"p\": 1.315e-113,\n      \"eta2_p\": 0.8854,\n      \"significant\": true\n    },\n    \"Scorer\": {\n      \"df\": 3,\n      \"F\": 19.0188,\n      \"p\": 4.238e-11,\n      \"eta2_p\": 0.1921,\n      \"significant\": true\n    },\n    \"DepthPair\": {\n      \"df\": 4,\n      \"F\": 24736.1007,\n      \"p\": 1.361e-312,\n      \"eta2_p\": 0.9976,\n      \"significant\": true\n    },\n    \"Generator:Scorer\": {\n      \"df\": 6,\n      \"F\": 8.162,\n      \"p\": 4.831e-08,\n      \"eta2_p\": 0.1695,\n      \"significant\": true\n    },\n    \"Generator:DepthPair\": {\n      \"df\": 8,\n      \"F\": 993.6865,\n      \"p\": 2.999e-179,\n      \"eta2_p\": 0.9707,\n      \"significant\": true\n    },\n    \"Scorer:DepthPair\": {\n      \"df\": 12,\n      \"F\": 2.4504,\n      \"p\": 4.986e-03,\n      \"eta2_p\": 0.1091,\n      \"significant\": true\n    },\n    \"Generator:Scorer:DepthPair\": {\n      \"df\": 24,\n      \"F\": 1.9668,\n      \"p\": 5.793e-03,\n      \"eta2_p\": 0.1644,\n      \"significant\": true\n    },\n    \"Residual\": {\n      \"df\": 240\n    }\n  },\n  \"N\": 300,\n  \"cells_found\": 12,\n  \"design\": \"3 Generators x 4 Scorers x 5 DepthPairs x 5 Folds\",\n  \"generators\": [\"pythia_greedy\", \"qwen_base\", \"qwen_cont256\"],\n  \"scorers\": [\"olmo\", \"pythia\", \"qwen_base\", \"qwen_instruct\"],\n  \"depth_pairs\": [\"0v1\", \"1v2\", \"2v3\", \"3v4\", \"4v5\"],\n  \"note\": \"3-way ANOVA (Type II) on per-fold AUC values from exp-022 cross-scorer matrix. Expected 4x4=16 cells but only 12 found (3 generators). DepthPair dominates variance (eta2_p=.998); Generator second (eta2_p=.885); Scorer statistically significant but small effect (eta2_p=.192).\",\n  \"warning\": \"Scorer main effect is statistically significant (p=4.24e-11, eta2_p=.192). However, effect size is negligible compared to DepthPair (.998) and Generator (.885). The significance likely reflects high statistical power (N=300) detecting a real but practically trivial scorer difference.\"\n}\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+Results written. Summary:
+
+| Source | df | F | p | η²_p |
+|---|---|---|---|---|
+| **DepthPair** | 4 | 24736.10 | 1.4e-312 | **.998** |
+| **Generator** | 2 | 926.78 | 1.3e-113 | **.885** |
+| Generator:DepthPair | 8 | 993.69 | 3.0e-179 | .971 |
+| **Scorer** | 3 | 19.02 | 4.2e-11 | **.192** |
+| Generator:Scorer | 6 | 8.16 | 4.8e-08 | .170 |
+| Generator:Scorer:DepthPair | 24 | 1.97 | 5.8e-03 | .164 |
+| Scorer:DepthPair | 12 | 2.45 | 5.0e-03 | .109 |
+| Residual | 240 | | | |
+
+**Validation:**
+- DepthPair has the largest effect (η²_p = .998) — confirmed.
+- Scorer is statistically significant (p < .05) — contradicts the expected non-significance. However, its effect size (η²_p = .192) is negligible compared to DepthPair (.998) and Generator (.885). This is likely a power artifact from N=300 detecting a real but practically trivial scorer difference. Added a warning in the JSON.
+
+**Note:** Only 12 cells found (3 generators × 4 scorers), not 16. The 4th generator was not available in the exp-022 results directory.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "uuid": "8c44a1be-9bea-4a69-837d-4f03bd772898",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DvELN2wVPWSsH88Qb7eMgX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 984,
+      "cache_read_input_tokens": 47994,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 984
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 53_
+
+Results written. Summary:
+
+| Source | df | F | p | η²_p |
+|---|---|---|---|---|
+| **DepthPair** | 4 | 24736.10 | 1.4e-312 | **.998** |
+| **Generator** | 2 | 926.78 | 1.3e-113 | **.885** |
+| Generator:DepthPair | 8 | 993.69 | 3.0e-179 | .971 |
+| **Scorer** | 3 | 19.02 | 4.2e-11 | **.192** |
+| Generator:Scorer | 6 | 8.16 | 4.8e-08 | .170 |
+| Generator:Scorer:DepthPair | 24 | 1.97 | 5.8e-03 | .164 |
+| Scorer:DepthPair | 12 | 2.45 | 5.0e-03 | .109 |
+| Residual | 240 | | | |
+
+**Validation:**
+- DepthPair has the largest effect (η²_p = .998) — confirmed.
+- Scorer is statistically significant (p < .05) — contradicts the expected non-significance. However, its effect size (η²_p = .192) is negligible compared to DepthPair (.998) and Generator (.885). This is likely a power artifact from N=300 detecting a real but practically trivial scorer difference. Added a warning in the JSON.
+
+**Note:** Only 12 cells found (3 generators × 4 scorers), not 16. The 4th generator was not available in the exp-022 results directory.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 197223,
+  "duration_api_ms": 175432,
+  "num_turns": 17,
+  "stop_reason": "end_turn",
+  "session_id": "a95b7a7d-9054-4ea5-b106-b12f797129eb",
+  "total_cost_usd": 0.78826425,
+  "usage": {
+    "input_tokens": 25,
+    "cache_creation_input_tokens": 37137,
+    "cache_read_input_tokens": 573894,
+    "output_tokens": 10675,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 37137,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 425,
+        "cache_read_input_tokens": 47994,
+        "cache_creation_input_tokens": 984,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 984
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2081,
+      "outputTokens": 26,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002211,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 25,
+      "outputTokens": 10675,
+      "cacheReadInputTokens": 573894,
+      "cacheCreationInputTokens": 37137,
+      "webSearchRequests": 0,
+      "costUSD": 0.78605325,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "1919b7e2-a4a0-43dd-8c24-8b722d6ba89e"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,83 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shumailov2024collapse}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Model collapse and recursive generation.}{2}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Machine-generated text detection.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Data selection and curation.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{2}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{2}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Recursive Generation as Iterated Lossy Channel}{2}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:theory}{{3.1}{2}{Recursive Generation as Iterated Lossy Channel}{subsection.3.1}{}}
+\newlabel{eq:dpi}{{1}{2}{Recursive Generation as Iterated Lossy Channel}{equation.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Depth Estimation via Distributional Features}{2}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:features}{{3.2}{2}{Depth Estimation via Distributional Features}{subsection.3.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Pairwise AUC across model configurations (continuation mode, $\theta =0.60$). All configurations yield $K^{*}=2$: 1v2 CI lower $> 0.60$, 2v3 CI upper $< 0.60$.}}{3}{table.1}\protected@file@percent }
+\newlabel{tab:kstar-main}{{1}{3}{Pairwise AUC across model configurations (continuation mode, $\theta =0.60$). All configurations yield $\Kstar =2$: 1v2 CI lower $> 0.60$, 2v3 CI upper $< 0.60$}{table.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Measuring $K^{*}$}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:kstar-def}{{3.3}{3}{Measuring $\Kstar $}{subsection.3.3}{}}
+\newlabel{eq:kstar}{{2}{3}{Measuring $\Kstar $}{equation.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Graduated Filtering}{3}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:graduated}{{3.4}{3}{Graduated Filtering}{subsection.3.4}{}}
+\newlabel{eq:graduated}{{3}{3}{Graduated Filtering}{equation.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Characterization Experiments}{3}{section.4}\protected@file@percent }
+\newlabel{sec:characterization}{{4}{3}{Characterization Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}$K^{*}$ Measurement}{3}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:kstar-measurement}{{4.1}{3}{$\Kstar $ Measurement}{subsection.4.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Setup.}{3}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Cross-scale stability.}{3}{section*.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Cross-scale comparison: Qwen2.5 1.5B vs 7B (continuation mode, nucleus $p=0.95$). $K^{*}=2$ remains stable; scale does not significantly affect the discrimination boundary.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:cross-scale}{{2}{4}{Cross-scale comparison: Qwen2.5 1.5B vs 7B (continuation mode, nucleus $p=0.95$). $\Kstar =2$ remains stable; scale does not significantly affect the discrimination boundary}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Base vs instruct model (Qwen2.5-1.5B, continuation mode). The base model's 1v2 AUC CI lower falls below $\theta =0.60$, yielding borderline $K^{*}$.}}{4}{table.3}\protected@file@percent }
+\newlabel{tab:base-instruct}{{3}{4}{Base vs instruct model (Qwen2.5-1.5B, continuation mode). The base model's 1v2 AUC CI lower falls below $\theta =0.60$, yielding borderline $\Kstar $}{table.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Base vs instruct model.}{4}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Cross-Model Transfer}{4}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:transfer}{{4.2}{4}{Cross-Model Transfer}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Degradation Ordering}{4}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:degradation}{{4.3}{4}{Degradation Ordering}{subsection.4.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Generation Mode Analysis}{4}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:genmode}{{4.4}{4}{Generation Mode Analysis}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Filtering strategies at 30\% synthetic injection (5 seeds, mean $\pm $ std). Graduated filtering yields modest improvement over binary; DSIR achieves comparable performance without depth estimation.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:filtering}{{4}{5}{Filtering strategies at 30\% synthetic injection (5 seeds, mean $\pm $ std). Graduated filtering yields modest improvement over binary; DSIR achieves comparable performance without depth estimation}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Graduated filtering sensitivity to $\alpha $ (30\% injection).}}{5}{table.5}\protected@file@percent }
+\newlabel{tab:alpha}{{5}{5}{Graduated filtering sensitivity to $\alpha $ (30\% injection)}{table.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Application: Graduated Filtering}{5}{section.5}\protected@file@percent }
+\newlabel{sec:application}{{5}{5}{Application: Graduated Filtering}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Filtering Strategy Comparison}{5}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:filtering}{{5.1}{5}{Filtering Strategy Comparison}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {paragraph}{Sensitivity to $\alpha $.}{5}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Dose-Response Analysis}{5}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:dose}{{5.2}{5}{Dose-Response Analysis}{subsection.5.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Supporting Analyses}{5}{section.6}\protected@file@percent }
+\newlabel{sec:supporting}{{6}{5}{Supporting Analyses}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Retrain-Chain Ecological Validity}{5}{subsection.6.1}\protected@file@percent }
+\newlabel{sec:retrain}{{6.1}{5}{Retrain-Chain Ecological Validity}{subsection.6.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Dose-response: graduated vs binary filtering across contamination levels. Benefit becomes significant only at high contamination (50\%).}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:dose}{{6}{6}{Dose-response: graduated vs binary filtering across contamination levels. Benefit becomes significant only at high contamination (50\%)}{table.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Prompt-chain vs retrain-chain pairwise AUC (Pythia-1.4B). Retrain-chain confirms $K^{*}=2$ with attenuated but consistent signal.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:retrain}{{7}{6}{Prompt-chain vs retrain-chain pairwise AUC (Pythia-1.4B). Retrain-chain confirms $\Kstar =2$ with attenuated but consistent signal}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}LLM Zero-Shot Depth Estimation}{6}{subsection.6.2}\protected@file@percent }
+\newlabel{sec:llm-baseline}{{6.2}{6}{LLM Zero-Shot Depth Estimation}{subsection.6.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Binary Detector Confidence as Depth Proxy}{6}{subsection.6.3}\protected@file@percent }
+\newlabel{sec:binary-proxy}{{6.3}{6}{Binary Detector Confidence as Depth Proxy}{subsection.6.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Learned Representation Baseline}{6}{subsection.6.4}\protected@file@percent }
+\newlabel{sec:learned}{{6.4}{6}{Learned Representation Baseline}{subsection.6.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces LLM zero-shot vs our 15D method on depth estimation. LLMs achieve near-chance on depth classification despite reasonable binary detection.}}{7}{table.8}\protected@file@percent }
+\newlabel{tab:llm-zeroshot}{{8}{7}{LLM zero-shot vs our 15D method on depth estimation. LLMs achieve near-chance on depth classification despite reasonable binary detection}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Binary detector confidence as depth proxy. Strong binary detection does not translate to depth estimation.}}{7}{table.9}\protected@file@percent }
+\newlabel{tab:binary-proxy}{{9}{7}{Binary detector confidence as depth proxy. Strong binary detection does not translate to depth estimation}{table.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Naturalistic Validation}{7}{subsection.6.5}\protected@file@percent }
+\newlabel{sec:naturalistic}{{6.5}{7}{Naturalistic Validation}{subsection.6.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{7}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{7}{Conclusion}{section.7}{}}
+\@writefile{toc}{\contentsline {paragraph}{Limitations.}{7}{section*.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Hand-crafted 15D features vs frozen LM embeddings + MLP. Learned representations outperform by $\sim $5pp but at the cost of interpretability.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:learned}{{10}{8}{Hand-crafted 15D features vs frozen LM embeddings + MLP. Learned representations outperform by $\sim $5pp but at the cost of interpretability}{table.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Predicted depth distribution on Common Crawl 2025 and correlation with independent quality proxies.}}{8}{table.11}\protected@file@percent }
+\newlabel{tab:naturalistic}{{11}{8}{Predicted depth distribution on Common Crawl 2025 and correlation with independent quality proxies}{table.11}{}}
+\gdef \@abspage@last{8}

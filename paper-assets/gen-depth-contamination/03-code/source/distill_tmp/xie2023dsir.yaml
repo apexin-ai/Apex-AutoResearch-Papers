@@ -1,0 +1,122 @@
+paper_key: "xie2023dsir"
+title: "Data Selection for Language Models via Importance Resampling"
+venue: "NeurIPS 2023"
+full_text_available: true
+
+research:
+  baselines:
+    - "Random selection (without replacement)"
+    - "Heuristic classification (GPT-3/Pile/PaLM binary classifier filtering)"
+    - "Top-k heuristic classification"
+    - "Manual curation (DAPT, Gururangan et al. 2020)"
+    - "DSIR with fasttext discriminative features"
+    - "DSIR with n-gram discriminative features"
+    - "DSIR with unigram-only features"
+  metrics:
+    - {name: "Macro-F1 (domain-specific tasks)", direction: "higher_better"}
+    - {name: "Micro-F1 (ChemProt, RCT)", direction: "higher_better"}
+    - {name: "Average GLUE accuracy", direction: "higher_better"}
+    - {name: "KL reduction", direction: "higher_better"}
+  datasets:
+    - {name: "The Pile (raw corpus)", size: "1.6B examples, 800GB"}
+    - {name: "ACL-ARC (CS papers)", size: "~1.6K"}
+    - {name: "Sci-ERC (CS papers)", size: "~500"}
+    - {name: "ChemProt (biomedical)", size: "~15K"}
+    - {name: "RCT (biomedical)", size: "~200K"}
+    - {name: "AGNews (news)", size: "~127K"}
+    - {name: "HyperPartisan (news)", size: "~600"}
+    - {name: "Helpfulness (reviews)", size: "~115K"}
+    - {name: "IMDB (reviews)", size: "~50K"}
+    - {name: "GLUE benchmark (8 tasks)", size: "varies per task"}
+  ablation_dimensions:
+    - "Feature type: generative vs discriminative models"
+    - "Feature granularity: unigram vs n-gram"
+    - "Resampling vs top-k selection"
+    - "Cross-domain transfer (8x8 domain pairs)"
+    - "Neural features (SentenceTransformer) vs hashed n-gram"
+  training_recipe:
+    optimizer: "Standard (RoBERTa defaults for fine-tuning)"
+    lr: "RoBERTa defaults"
+    hardware: "1 CPU node (96 cores) for data selection; standard GPU for model training"
+    base_model: "RoBERTa-base (continued pretraining), BERT-base (general-domain)"
+    selection_budget: "25M examples x 256 tokens (domain-specific); 51.2M examples (general-domain)"
+    general_domain_training: "50k steps, batch size 4096, token length 128"
+    selection_time: "100M documents from full Pile in 4.5 hours (4.36h importance weights + 1min fitting + 6min resampling)"
+  method_family: "importance resampling / distribution matching"
+
+positioning:
+  core_claim: "Reducing importance weight estimation to a low-dimensional hashed n-gram feature space makes classical importance resampling both tractable and effective for large-scale LM data selection, matching expert curation quality."
+  key_results: "Domain-specific: 83.76% avg F1 (vs 82.58% random, 83.46% manual curation). General-domain GLUE: 82.30% (vs 80.25% random, +2.05%). KL reduction correlates r=0.82 with downstream accuracy across 8 methods. 100M documents selected in 4.5 hours on single CPU node."
+  limitations:
+    - "N-gram features capture only superficial word-level overlap, not semantic similarity"
+    - "Neural feature spaces (SentenceTransformer) tested but underperformed n-grams and are more expensive"
+    - "Target distribution definition is heuristic (Wikipedia+books as quality proxy); unclear how to optimally collect target data"
+    - "Generative models require less tuning than discriminative, but estimator choice still matters"
+    - "Could amplify biases present in target data"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "The choice of pretraining data is critical given fixed compute budgets, yet existing methods rely on simple heuristics (GPT-3 binary classifier) or expensive manual curation with no distribution-matching guarantees."
+  tension: "Classical importance resampling is theoretically principled but statistically intractable on high-dimensional text data. How to bridge the gap between principled framework and practical scalability?"
+  key_insight: "Reducing to hashed n-gram feature space preserves enough distributional signal for effective importance weight estimation while making computation trivially parallelizable. Delivered in Section 3 with the bag-of-n-grams generative model parameterization."
+  argument_chain: "data selection matters → importance resampling is principled but intractable on text → reduce to feature space → instantiate with hashed n-grams → validate: matches expert curation on 8 domains, improves GLUE by 2-2.5%, and KL reduction metric (r=0.82) confirms feature space captures downstream-relevant signal"
+  contribution_framing: "Four contributions: (1) DSIR framework extending classical importance resampling to LM data selection, (2) scalable hashed n-gram instantiation, (3) KL reduction as model-free data quality metric, (4) comprehensive empirical validation"
+  intro_structure: "4 paragraphs: P1 = hook (data selection importance + heuristic status quo), P2 = prior work and gap (domain-specific curation exists but unscalable), P3 = DSIR contribution (feature-space reduction solves intractability), P4 = specific instantiation (hashed n-grams enable 100M-doc scale)"
+  notable_technique: "Proposing KL reduction as a model-free proxy metric (r=0.82 correlation) that validates the approach without requiring downstream evaluation, strengthening the theoretical narrative beyond empirical results alone."
+
+figures:
+  figure_count: 7
+  figure1:
+    type: "method_overview"
+    description: "Pipeline flow diagram showing data selection process: large raw dataset (The Pile) and small target dataset → importance weight computation in hashed n-gram feature space → resampling to produce selected subset. Includes sample text examples and weight computation illustration."
+    narrative_role: "Establishes the complete DSIR pipeline visually, making the three-step process (fit distributions → compute weights → resample) concrete and immediately comprehensible."
+    design_elements: ["flow diagram with arrows", "three-stage progression", "sample text examples", "schematic geometric style"]
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "heatmap"
+      what_compared: "Cross-domain transfer: 8x8 matrix of pretraining targets vs downstream tasks, showing F1 scores"
+      how_gain_highlighted: "Per-column color ranking (darker = better F1); diagonal (within-domain) visually stands out as strongest"
+      design_note: "Heatmap reveals transfer structure across domains at a glance; identifies which domain pairings fail catastrophically (HyperPartisan drops up to 30% cross-domain)"
+    - figure_id: "Figure 3"
+      viz_type: "scatter_plot"
+      what_compared: "KL reduction vs average downstream F1 across 8 data selection methods"
+      how_gain_highlighted: "Trend line with r=0.82 Pearson correlation; DSIR positioned at top-right corner"
+      design_note: "Single scatter plot delivers the core message of the metric contribution; each point = one method, making the correlation visually undeniable"
+    - figure_id: "Figure 4"
+      viz_type: "qualitative_comparison"
+      what_compared: "Sample selected text from Random vs Heuristic Classification vs DSIR"
+      how_gain_highlighted: "Side-by-side text panels showing DSIR selects more formal/clean text than alternatives"
+      design_note: "Qualitative evidence complements quantitative tables; three parallel panels for direct visual comparison of text quality"
+  ablation_figures:
+    - figure_id: "Figure 5 (Appendix C)"
+      viz_type: "bar_chart"
+      dimensions_varied: ["Data source distributions across selection methods"]
+      design_note: "Three-panel comparison of source composition under different selection approaches"
+  figure_narrative_role: "Figure 1 (pipeline overview) → Figure 2 (cross-domain transfer analysis) → Figure 3 (KL reduction metric validation) → Figure 4 (qualitative text examples) → Appendix figures (distribution analysis, additional scatter plots)"
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "8 downstream datasets (4 domains x 2 tasks each) + Average"
+    row_organization: "by_category"
+    col_organization: "grouped_by_domain"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "mean with subscript std across 5 seeds"
+    num_baselines: 5
+    design_note: "Clean layout with 8 task columns plus average; subscript standard deviations keep table compact; methods ordered from baseline through increasingly sophisticated approaches (random → heuristic → top-k → manual → DSIR)"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: ["Feature type (generative vs discriminative)", "Feature granularity (unigram vs n-gram)", "Selection method (resampling vs top-k vs calibrated threshold)"]
+      variation_style: "full_numbers"
+      design_note: "Same column structure as Table 1 for direct comparison; isolates contribution of each design choice; generative n-gram outperforms all discriminative variants by 0.6-0.7%"
+    - table_id: "Table 3"
+      what_varied: ["Selection method applied to general-domain (GLUE) setting"]
+      variation_style: "full_numbers"
+      design_note: "8 GLUE tasks + average; RTE shows largest gain (75.09% DSIR vs 67.37% random); demonstrates generalization from domain-specific to general-domain setting"
+  supplementary_tables:
+    in_appendix: true
+    content: "Table 4: neural features (SentenceTransformer) results showing 81.40% avg (underperforms n-gram 82.30%); Table 5: continued pretraining with formal text target on BERT-base (83.99% avg)"
+    reason: "Negative/preliminary results (neural features underperform) and alternative base model results separated from main positive narrative"

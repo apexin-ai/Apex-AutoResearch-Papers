@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_deberta_cross_transfer_gpu3",
+  "project": "gen-depth-contamination",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T00:45:58.698Z",
+    "updated_at": "2026-05-20T00:46:05.416Z",
+    "hypothesis": "Sub-experiment of exp_deberta_cross_transfer_wiki: GPU3 ran olmo↔llama8b, pythia↔mistral7b pairs (mistral7b pairs were bonus, qwen7b↔llama8b missing).",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T00:46:05.683823+00:00",
+  "trigger": "update_registry"
+}

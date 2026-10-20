@@ -1,0 +1,517 @@
+{
+  "figures_found": [
+    {
+      "number": "1",
+      "env_type": "figure*",
+      "image_path": "figures/pipeline.pdf",
+      "caption": "Generational depth estimation pipeline. Seed documents are recursively passed through a generation operator $G_\\delta$ to produce a depth chain. Corpus-level statistical features are fed to the OBD-Li",
+      "tool": "unknown",
+      "fig_type": "statistical",
+      "is_hero": true,
+      "source_file": "method.tex"
+    },
+    {
+      "number": "2",
+      "env_type": "figure",
+      "image_path": "figures/fig2_auc_decay.pdf",
+      "caption": "Pairwise $\\auc$ decay across adjacent depth pairs (0v1, 1v2, \\ldots, 4v5) for model-mode configurations (solid) and decoding strategies (dashed); shaded bands show bootstrap 95\\% confidence intervals.",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "experiments_c1.tex"
+    },
+    {
+      "number": "3",
+      "env_type": "figure*",
+      "image_path": "figures/fig_kstar_theta.pdf",
+      "caption": "$\\Kempirical(\\theta)$ sensitivity curve for five configurations. $\\Kempirical$: maximum discriminable depth; $\\theta$: AUC decision threshold. Four of five configurations yield $\\Kempirical{=}2$ at $\\",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "experiments_c1.tex"
+    },
+    {
+      "number": "4",
+      "env_type": "figure",
+      "image_path": "figures/fig3_transfer_heatmap.pdf",
+      "caption": "Cross-model transfer heatmap (three continuation-mode models plus Qwen-rewrite). Each cell shows 6-class ordinal accuracy when trained on the row model and tested on the column model, divided by in-do",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "experiments_c1.tex"
+    },
+    {
+      "number": "A.1",
+      "env_type": "figure",
+      "image_path": "figures/fig_filtering_strategies.pdf",
+      "caption": "Downstream performance of all filtering strategies (5 seeds, $\\pm$1 std). Binary-ours (red) minimizes MMLU degradation; graduated $\\alpha$ sweep shows monotonic convergence toward binary. Dashed line:",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "appendix.tex"
+    }
+  ],
+  "results": [
+    {
+      "number": "1",
+      "status": "optimized",
+      "tool": "unknown",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "2",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "3",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "4",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    },
+    {
+      "number": "A.1",
+      "status": "optimized",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    }
+  ],
+  "post_review": {
+    "compile": {
+      "success": true,
+      "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/_latex_iso_njt9_eu0/main.pdf"
+    },
+    "figure_check": {
+      "passed": true,
+      "critical": [],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:conclusion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:features} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:appendix} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:feature_degradation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:one_wash} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:gemma27b_filtering} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:extended_discussion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:introduction} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:robustness_10k} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:s8_cv_folds} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:gemma27b_transfer} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:gemma27b_filtering} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:robustness} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:ai-assistants} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:repr_dependence} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:extended_llm} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:s7_neural_probe} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:related_work} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:negative_graduated} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:generation_mode} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:neural_probe} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:experimental_setup} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:deberta_upperbound} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:seed_robustness} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:bootstrap_kstar} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:arxiv_multi_source} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:bonferroni_ci} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:21"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:44"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:70"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:124"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:195"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:213"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:275"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:333"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:354"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:376"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:445"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_extended.tex:98"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_extended.tex:130"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_extended.tex:158"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_extended.tex:204"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_extended.tex:244"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix_extended.tex:326"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments_c1.tex:12"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments_c1.tex:109"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments_c1.tex:139"
+        }
+      ],
+      "info": [],
+      "summary": "0 critical, 47 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper",
+      "sections": [
+        {
+          "file": "appendix_extended.tex",
+          "role": "other",
+          "num_numbers": 218,
+          "num_cites": 3
+        },
+        {
+          "file": "conclusion.tex",
+          "role": "headline",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "discussion.tex",
+          "role": "other",
+          "num_numbers": 19,
+          "num_cites": 1
+        },
+        {
+          "file": "experiments_c1.tex",
+          "role": "other",
+          "num_numbers": 100,
+          "num_cites": 2
+        },
+        {
+          "file": "experiments_c3.tex",
+          "role": "other",
+          "num_numbers": 12,
+          "num_cites": 4
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 6,
+          "num_cites": 12
+        },
+        {
+          "file": "method.tex",
+          "role": "other",
+          "num_numbers": 29,
+          "num_cites": 0
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 35
+        }
+      ],
+      "critical": [],
+      "warning": [],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "appendix_extended": [
+              "\\Delta",
+              "\\Kempirical",
+              "\\Kstar",
+              "\\Ktheory",
+              "\\S",
+              "\\alpha",
+              "\\auc",
+              "\\backslash",
+              "\\dagger",
+              "\\ddagger",
+              "\\eta",
+              "\\geq",
+              "\\hat",
+              "\\in",
+              "\\leftrightarrow",
+              "\\leq",
+              "\\pm",
+              "\\rho",
+              "\\sigma",
+              "\\sim",
+              "\\theta",
+              "\\times",
+              "\\to"
+            ],
+            "conclusion": [
+              "\\Kempirical",
+              "\\Ktheory",
+              "\\leq"
+            ],
+            "discussion": [
+              "\\Delta",
+              "\\Kempirical",
+              "\\Ktheory",
+              "\\auc",
+              "\\geq",
+              "\\rho",
+              "\\sim",
+              "\\theta",
+              "\\to"
+            ],
+            "experiments_c1": [
+              "\\Delta",
+              "\\Kempirical",
+              "\\S",
+              "\\auc",
+              "\\dagger",
+              "\\ddagger",
+              "\\eta",
+              "\\geq",
+              "\\in",
+              "\\leftrightarrow",
+              "\\leq",
+              "\\pm",
+              "\\rho",
+              "\\sim",
+              "\\theta",
+              "\\times",
+              "\\to"
+            ],
+            "experiments_c3": [
+              "\\Delta",
+              "\\Kempirical",
+              "\\Kstar",
+              "\\alpha",
+              "\\approx",
+              "\\cdot",
+              "\\exp",
+              "\\hat",
+              "\\in",
+              "\\ldots",
+              "\\leq",
+              "\\pm",
+              "\\sigma",
+              "\\sim"
+            ],
+            "introduction": [
+              "\\Kempirical",
+              "\\Kstar",
+              "\\auc",
+              "\\geq",
+              "\\leq",
+              "\\rho",
+              "\\theta"
+            ],
+            "method": [
+              "\\Kempirical",
+              "\\Ktheory",
+              "\\alpha",
+              "\\auc",
+              "\\cdots",
+              "\\delta",
+              "\\forall",
+              "\\geq",
+              "\\in",
+              "\\leq",
+              "\\mid",
+              "\\sim",
+              "\\theta",
+              "\\to",
+              "\\triangleq"
+            ],
+            "related_work": [
+              "\\Kempirical",
+              "\\Kstar"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "warning": 0,
+        "info": 1
+      }
+    }
+  },
+  "backup_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/_figure_backups/20260524_115454",
+  "error": "",
+  "timestamp": "2026-05-24T12:17:43.110808+00:00"
+}

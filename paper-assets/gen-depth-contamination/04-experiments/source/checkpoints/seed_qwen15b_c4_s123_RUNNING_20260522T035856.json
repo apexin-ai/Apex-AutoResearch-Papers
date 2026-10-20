@@ -1,0 +1,32 @@
+{
+  "exp_id": "seed_qwen15b_c4_s123",
+  "project": "gen-depth-contamination",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T00:34:11.792Z",
+    "updated_at": "2026-05-22T03:58:55.956Z",
+    "hypothesis": "Qwen-1.5B C4 的 K*=2 结论在 seed=123 下仍成立（原始 seed=42），验证 OBD 的 depth boundary 不依赖随机种子",
+    "spec": {
+      "command": "run_pipeline.py --generation_mode rewrite --top_p 0.95 --seed 123 (C4)",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "3156",
+      "log_path": "~/runs/gen-depth-contamination/seed_qwen15b_c4_s123.log",
+      "submitted_at": "2026-05-22T03:58:27.354Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/seed_robustness/seed_qwen15b_c4_s123",
+      "data_count": 5000,
+      "model_name": "Qwen2.5-1.5B-Instruct",
+      "seed": 123
+    }
+  },
+  "timestamp": "2026-05-22T03:58:56.279016+00:00",
+  "trigger": "update_registry"
+}

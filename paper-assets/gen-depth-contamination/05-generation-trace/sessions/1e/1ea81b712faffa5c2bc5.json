@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ea81b712faffa5c2bc5",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis exp 025 bootstrap ci",
+  "task_key": "worker_analysis_exp_025_bootstrap_ci_20260516T190329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_025_bootstrap_ci_20260516T190329_result.json",
+    "occurrence": 1,
+    "bytes": 595,
+    "sha256": "a91056488297c06749597b873c2ab792b5172f13d6421b1e84cd29dfd5dc7a1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n## 结果\n\n| Pair | AUC | 95% CI | Perm p | CI lower > 0.60? |\n|------|-----|--------|--------|-------------------|\n| 0v1 | 0.9876 | [0.9851, 0.9900] | 0.0001 | **PASS** |\n| 1v2 | 0.8047 | [0.7934, 0.8162] | 0.0001 | **PASS** |\n| **2v3** | **0.6544** | **[0.6401, 0.6688]** | **0.0001** | **PASS** |\n| 3v4 | 0.5500 | [0.5340, 0.5657] | 0.0001 | FAIL |\n| 4v5 | 0.5284 | [0.5122, 0.5443] | 0.0010 | FAIL |\n\n**K\\*\\_CI = 3**。2v3 CI lower = 0.6401 > 0.60 已确认，permutation p < 0.001 全部显著。Registry 已更新 bootstrap_ci 字段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-025-bootstrap-ci.md"
+}

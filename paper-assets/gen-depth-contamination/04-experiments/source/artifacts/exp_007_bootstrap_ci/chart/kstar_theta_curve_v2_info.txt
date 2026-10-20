@@ -1,0 +1,10 @@
+Remote files on westc-26893 (v2, CI lower bound):
+- /root/autodl-tmp/gen-depth-contamination/artifacts/kstar_theta_curve.pdf
+- /root/autodl-tmp/gen-depth-contamination/artifacts/kstar_theta_curve.png
+
+Fix: compute_kstar() changed from `auc >= theta` to `auc - ci >= theta`
+
+DISCREPANCY FLAG:
+Worker reports OLMo 1v2 CI lower = 0.585, Qwen-cont 1v2 CI lower = 0.582
+But exp-007 registry shows OLMo 1v2 ci_lower = 0.6045, Qwen-cont ci_lower = 0.6015
+Plot script ci_half values may not match exp-007 bootstrap results.

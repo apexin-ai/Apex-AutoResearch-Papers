@@ -1,0 +1,60 @@
+{
+  "exp_id": "exp_027_latex_ablation",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T10:19:59.624Z",
+    "updated_at": "2026-05-18T10:41:35.226Z",
+    "hypothesis": "arXiv K*=3 不依赖 LaTeX 格式特征。去除 LaTeX markup 后重新提取 15D features 并跑 pairwise classification，K* 应仍=3，排除 LaTeX 语法作为 confound。",
+    "parent": "exp_024_arxiv_depth_chain",
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation/",
+    "log_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_027_latex_ablation/summary.txt",
+    "metrics": {
+      "k_star": 3,
+      "k_star_preserved": true,
+      "pairwise_auc_original": {
+        "0v1": 0.9948,
+        "1v2": 0.8581,
+        "2v3": 0.6436,
+        "3v4": 0.544,
+        "4v5": 0.5299
+      },
+      "pairwise_auc_stripped": {
+        "0v1": 0.9948,
+        "1v2": 0.8297,
+        "2v3": 0.6229,
+        "3v4": 0.5468,
+        "4v5": 0.5476
+      },
+      "auc_delta": {
+        "0v1": 0,
+        "1v2": -0.028,
+        "2v3": -0.021,
+        "3v4": 0.003,
+        "4v5": 0.018
+      },
+      "latex_reduction_by_depth": {
+        "depth_0": "0.6%",
+        "depth_5": "4.4%"
+      },
+      "key_finding": "K*=3 preserved after LaTeX removal. 2v3 AUC 0.6436→0.6229 (still >θ=0.60). LaTeX format is NOT a confound."
+    },
+    "spec": {
+      "command": "python scripts/exp027_latex_ablation.py",
+      "server": "cqa1-22115",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/",
+      "data_count": 13200,
+      "model_name": "Qwen2.5-1.5B (scorer)",
+      "seed": 42,
+      "checkpoint_source": "exp_024_arxiv_depth_chain",
+      "eval_data": "GroupKFold(5) pairwise classification"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-18T10:41:35.226Z"
+  },
+  "timestamp": "2026-05-18T10:41:35.398001+00:00",
+  "trigger": "update_registry"
+}

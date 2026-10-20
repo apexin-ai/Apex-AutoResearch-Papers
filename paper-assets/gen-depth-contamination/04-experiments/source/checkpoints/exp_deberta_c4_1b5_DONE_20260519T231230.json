@@ -1,0 +1,79 @@
+{
+  "exp_id": "exp_deberta_c4_1b5",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:23:40.169Z",
+    "updated_at": "2026-05-19T23:12:29.921Z",
+    "hypothesis": "C4 1.5B DeBERTa apple-to-apple comparison with Table 2 OBD results: if DeBERTa K*=2 on same 1.5B C4 data as OBD, confirms boundary is intrinsic; if K*>2, quantifies neural vs handcrafted gap at 1.5B scale.",
+    "spec": {
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:0"
+      ],
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/gen-depth-contamination && python scripts/run_deberta_c4_1b5.py --config qwen_rw --gpu 0",
+      "pid": "255066",
+      "data_path": "/root/gen-depth-contamination/data/exp016_qwen_base/",
+      "data_count": "TBD",
+      "model_name": "DeBERTa-v3-base",
+      "seed": 42
+    },
+    "metrics": {
+      "config": "qwen_rw",
+      "kstar": 2,
+      "kstar_indexing": "1-indexed",
+      "pairwise_auc": {
+        "0v1": 0.9923,
+        "1v2": 0.7052,
+        "2v3": 0.5988,
+        "3v4": 0.5698,
+        "4v5": 0.5475
+      },
+      "ci_95": {
+        "0v1": [
+          0.9907,
+          0.9937
+        ],
+        "1v2": [
+          0.6977,
+          0.7129
+        ],
+        "2v3": [
+          0.5905,
+          0.6063
+        ],
+        "3v4": [
+          0.5626,
+          0.5774
+        ],
+        "4v5": [
+          0.5404,
+          0.5542
+        ]
+      },
+      "obd_baseline": {
+        "0v1": 0.987,
+        "1v2": 0.6262,
+        "2v3": 0.5496,
+        "3v4": 0.5294,
+        "4v5": 0.5182
+      },
+      "delta_vs_obd": {
+        "1v2": 0.079
+      },
+      "training_time_s": 3441,
+      "key_finding": "C4 1.5B DeBERTa K*=2 = OBD K*=2 on same data. DeBERTa +7.9pp on 1v2 but cannot extend K* boundary. Confirms intrinsic boundary on C4."
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T23:12:26.218Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-19T23:12:26.966Z"
+  },
+  "timestamp": "2026-05-19T23:12:30.604235+00:00",
+  "trigger": "update_registry"
+}

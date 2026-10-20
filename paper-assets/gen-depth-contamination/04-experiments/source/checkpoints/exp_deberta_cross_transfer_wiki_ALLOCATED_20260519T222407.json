@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_deberta_cross_transfer_wiki",
+  "project": "gen-depth-contamination",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:23:41.514Z",
+    "updated_at": "2026-05-19T22:24:07.729Z",
+    "hypothesis": "DeBERTa cross-model transfer on wiki domain: if off-diagonal retention is high (>90%), depth signals are model-family invariant even with neural features; if wiki retention exceeds C4 retention, domain complexity affects transfer more than feature representation."
+  },
+  "timestamp": "2026-05-19T22:24:07.939591+00:00",
+  "trigger": "update_registry"
+}

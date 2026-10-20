@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31944c72fe61e46d3b55",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops kill residual and check eta",
+  "task_key": "worker_ops_kill_residual_and_check_eta_20260521T143154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_residual_and_check_eta_20260521T143154_result.json",
+    "occurrence": 1,
+    "bytes": 1236,
+    "sha256": "2358e503f9e37eb20c37d00e905c6b0204c9fbe971d6201903a2862158583326"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n### 1. PID 421716（greedy 残留）\n✅ 已 kill\n\n### 2. Pythia-6.9B nuc（PID 438362, cuda:0）\n⚠️ **进程活着但可能卡死**\n- PID 存活 ~52min，CPU 106%，GPU 0 占 9010 MiB\n- 日志 76 行，**最后输出是 httpx RuntimeError**（`Cannot send a request, as the client has been closed`）— huggingface_hub 下载时崩溃\n- 日志自 22:28 起未增长（11070 bytes 不变），无生成进度输出\n- 已完成：depth_0（5000 行）；depth_1+ 未开始\n- 判断：进程大概率卡在异常处理后的死循环或挂起状态，不会再产出\n\n### 3. Pythia-1.4B nuc（cuda:1, screen pythia14b_nuc）\n❌ **进程已死**\n- `ps` 中无对应 python 进程，GPU 1 显存 0 MiB\n- 已完成：depth_0（5000 行）\n- depth_1 生成到 362/625 batches（~58%，约 2896/5000 samples）后崩溃\n- 日志最后修改 22:30:43\n\n### 4. GPU 状态\n| GPU | 显存 | 利用率 |\n|-----|------|--------|\n| 0 | 9010 MiB | 36% |\n| 1 | 0 MiB | 0% |\n| 2 | 0 MiB | 0% |\n| 3 | 0 MiB | 0% |\n\n**结论：两个 nucleus rerun 都出了问题。** 6.9B 疑似卡死（占着 GPU 0 但无输出），1.4B 已崩溃。需要 kill 6.9B 残留进程后重新启动两个任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-residual-and-check-eta.md"
+}

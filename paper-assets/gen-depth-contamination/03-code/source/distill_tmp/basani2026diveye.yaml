@@ -1,0 +1,24 @@
+paper_key: "basani2026diveye"
+title: "Diversity Boosts AI-Generated Text Detection"
+venue: "TMLR 2026"
+full_text_available: false
+
+research:
+  baselines: [DetectGPT, Fast-DetectGPT, DNA-GPT, Binoculars, GLTR, fine-tuned RoBERTa, OpenAI detector]
+  metrics:
+    - {name: "AUROC", direction: "higher_better"}
+    - {name: "detection accuracy", direction: "higher_better"}
+    - {name: "robustness under paraphrasing", direction: "higher_better"}
+  datasets:
+    - {name: "multiple benchmarks (cross-domain, cross-model)", size: "not specified"}
+  ablation_dimensions: [surprisal feature types, auxiliary signal integration, paraphrasing attacks]
+  training_recipe: {details: "Zero-shot framework using surprisal-based diversity features; captures variability in lexical and structural unpredictability across text"}
+  method_family: "zero-shot statistical detection (surprisal diversity)"
+
+positioning:
+  core_claim: "Human text exhibits richer variability in surprisal patterns than LLM output; capturing this rhythmic unpredictability via DivEye outperforms zero-shot detectors by up to 33.2% and boosts existing detectors by up to 18.7%"
+  relation_to_us: "competitor"
+
+narrative: N/A
+figures: N/A
+tables: N/A

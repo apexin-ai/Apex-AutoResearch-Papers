@@ -1,0 +1,70 @@
+{
+  "exp_id": "exp_013_cross_transfer",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T20:50:57.813Z",
+    "updated_at": "2026-05-13T06:53:07.326Z",
+    "spec": {
+      "command": "python scripts/run_exp013_cross_transfer.py --out_dir artifacts/",
+      "server": "autodl-4090d",
+      "data_path": "data/, data_exp001_pythia/, data_exp002_olmo/, data_exp017_qwen_cont/",
+      "data_count": 20000,
+      "model_name": "N/A (CPU classifiers: OBD-LightGBM)",
+      "seed": 42,
+      "input_sources": [
+        "mvp-001 Qwen-rewrite",
+        "exp-001 Pythia",
+        "exp-002 OLMo",
+        "exp-017 Qwen-cont"
+      ],
+      "checkpoint_path": "artifacts/cross_transfer_matrix.json",
+      "log_path": "N/A (CPU task)"
+    },
+    "hypothesis": "Depth signal 是文本固有属性还是 model self-familiarity artifact？4×4 cross-model transfer matrix 测试分类器跨模型泛化能力",
+    "metrics": {
+      "accuracy_matrix": {
+        "Qwen_rw→Qwen_rw": 0.4229,
+        "Qwen_rw→Pythia": 0.259,
+        "Qwen_rw→OLMo": 0.2653,
+        "Qwen_rw→Qwen_cont": 0.3466,
+        "Pythia→Qwen_rw": 0.2718,
+        "Pythia→Pythia": 0.3856,
+        "Pythia→OLMo": 0.3531,
+        "Pythia→Qwen_cont": 0.3287,
+        "OLMo→Qwen_rw": 0.2768,
+        "OLMo→Pythia": 0.345,
+        "OLMo→OLMo": 0.3822,
+        "OLMo→Qwen_cont": 0.3244,
+        "Qwen_cont→Qwen_rw": 0.344,
+        "Qwen_cont→Pythia": 0.3284,
+        "Qwen_cont→OLMo": 0.3112,
+        "Qwen_cont→Qwen_cont": 0.3875
+      },
+      "transfer_retention_accuracy": {
+        "Pythia↔OLMo": "91-92%",
+        "Qwen_rw→Pythia/OLMo": "61-63%",
+        "Qwen_cont↔Pythia": "83-85%",
+        "Qwen_cont↔OLMo": "80-85%"
+      },
+      "transfer_retention_tau": {
+        "Pythia↔OLMo": "85-86%",
+        "Qwen_rw→Pythia/OLMo": "45-50%",
+        "Qwen_cont↔others": "68-83%"
+      },
+      "mean_pw_auc_matrix": {
+        "within_avg": 0.6099,
+        "cross_avg": 0.5905,
+        "0v1_cross_all_above": 0.96
+      },
+      "key_finding": "depth signal ≈ 70-85% text-intrinsic + 15-30% model self-familiarity. Binary contamination detection (0v1) highly transferable (>0.96 AUC). Fine-grained depth transfer depends on model family similarity. Qwen-rewrite overfits style features; Qwen-cont transfers much better."
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-13T06:53:07.326Z"
+  },
+  "timestamp": "2026-05-13T06:53:07.358464+00:00",
+  "trigger": "update_registry"
+}

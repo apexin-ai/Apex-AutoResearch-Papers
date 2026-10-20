@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "194969352abe76d6b13e",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "rerun exp013 cross transfer olmo",
+  "task_key": "worker_rerun_exp013_cross_transfer_olmo_20260521T155907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_rerun_exp013_cross_transfer_olmo_20260521T155907_result.json",
+    "occurrence": 1,
+    "bytes": 860,
+    "sha256": "2fc50c187b3fbaf7fd37474634fbfb250ed325496f9e4d1b62cbc1da58277c10"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。结果摘要：\n\n**K\\* Transfer Matrix (train=row, test=col):**\n\n|              | OLMo | Pythia | Qwen |\n|--------------|------|--------|------|\n| **OLMo**     | 1    | 1 ✗    | 1 ✗  |\n| **Pythia**   | 1 ✓  | 2      | 1 ✗  |\n| **Qwen**     | 1 ✓  | 2 ✓    | 2    |\n\n**Aggregate accuracy: 6/9 = 66.7%**（原始 ~80-92%）\n\n核心发现：\n- 所有 **X → OLMo** pair 正确预测 K\\*=1\n- **Qwen** 是最佳通用训练器（3/3 正确），**OLMo** 是最差训练器（1/3 正确）\n- OLMo K\\*从2降为1 引入非对称性：弱信号模型的分类器无法向上迁移 K\\*\n- 3个错误 pair 都是训练模型信号不足以捕捉测试模型 depth 1→2 的区别\n\n结果已保存到：\n- 服务器：`results/exp013_olmo_rerun/`\n- 本地：`artifacts/exp013_cross_transfer_olmo_rerun.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/rerun-exp013-cross-transfer-olmo.md"
+}

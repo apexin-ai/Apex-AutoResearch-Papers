@@ -1,0 +1,1325 @@
+# ops verify analysis script and paths
+
+**Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 25
+- **Recorded user turns:** 0
+- **Tool calls:** 7
+- **Original source:** `logs/workers/worker_ops_verify-analysis-script-and-paths_20260519T040516.log`
+- **Structured JSON:** [`7a032b994f2ac7440f3e.json`](../../sessions/7a/7a032b994f2ac7440f3e.json)
+
+## Before a recorded user message
+
+25 recorded events
+
+### System
+
+_source line 1_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+  "session_id": "657c038e-55a5-4cee-89fa-c8869967ed1f",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "8064bccf-9ac7-4306-8dda-f4602fcf17c8",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779180000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "bfdb4398-5981-470b-98f4-7f2b288fa9d1",
+  "session_id": "657c038e-55a5-4cee-89fa-c8869967ed1f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to verify the `analyze_code_crossmodel.py` script's configuration and data paths on a remote server. Let me break this down:
+
+1. Read the script from the remote server
+2. Check EXPERIMENTS dict configuration
+3. Verify directory existence
+4. Check result file names
+5. Verify caption text
+6. Fix any issues
+7. Do a dry-run
+
+I'll start by reading the script from the remote server using SSH, and checking the directories.
+
+Let me also note there's a second task embedded in a JSON blob at the end - that appears to be a spawn_worker call that I should ignore (it's not a tool I have access to directly). Let me focus on the main task.
+
+
+Now I'll execute SSH commands to read the script and check what directories and files exist on the remote server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "657c038e-55a5-4cee-89fa-c8869967ed1f",
+  "uuid": "404c8d89-23b3-4f95-bb31-acfc6e7f3b68",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QEcLgasPnx3UrpTCwk1sjY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13413,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13413
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 4_
+
+读取脚本并检查服务器上的目录结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "657c038e-55a5-4cee-89fa-c8869967ed1f",
+  "uuid": "8a017ddf-a4c5-462c-87e2-3b7305584fa1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QEcLgasPnx3UrpTCwk1sjY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13413,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13413
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01KvmfK5v2PTivwdo2TXrDay`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "657c038e-55a5-4cee-89fa-c8869967ed1f",
+  "uuid": "4cae09ac-f1f2-46a7-a7fa-12784cb4dded",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QEcLgasPnx3UrpTCwk1sjY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13413,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13413
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T04:24:59.293Z_
+
+<details><summary>↩ Tool result · `toolu_01KvmfK5v2PTivwdo2TXrDay`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "657c038e-55a5-4cee-89fa-c8869967ed1f",
+  "uuid": "d1628406-0d69-4f31-a184-011e22782ede",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BNH45XK7yor8fx4zgfWrnV`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/scripts/analyze_code_crossmodel.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "657c038e-55a5-4cee-89fa-c8869967ed1f",
+  "uuid": "8a402a7b-ca68-4cfe-8aa3-189bf4864b88",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HDoGxD9ZWFq1Fd8SHjPcFV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 878,
+      "cache_read_input_tokens": 25254,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 878
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-19T04:25:05.210Z_
+
+<details><summary>↩ Tool result · `toolu_01BNH45XK7yor8fx4zgfWrnV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Analyze code-domain cross-model pairwise AUC results and generate LaTeX table + JSON.\\\"\\\"\\\"\\n\\nimport json\\nimport math\\nimport os\\nimport sys\\nfrom pathlib import Path\\n\\nPROJ_ROOT = Path(\\\"/root/autodl-tmp/gen-depth-contamination\\\")\\nRESULTS_DIR = PROJ_ROOT / \\\"results\\\"\\nARTIFACTS_DIR = PROJ_ROOT / \\\"artifacts\\\"\\nTHETA = 0.60\\n\\nEXPERIMENTS = {\\n    \\\"Qwen2.5-1.5B\\\": \\\"exp_code_qwen1b5\\\",\\n    \\\"Pythia-1.4B\\\": \\\"exp_code_pythia1b4\\\",\\n    \\\"Qwen2.5-7B\\\": \\\"exp_code_qwen7b\\\",\\n    \\\"Llama-3.1-8B\\\": \\\"exp_code_llama8b\\\",\\n    \\\"Mistral-7B-v0.3\\\": \\\"exp_code_mistral7b\\\",\\n}\\n\\nPAIRS = [\\\"0v1\\\", \\\"1v2\\\", \\\"2v3\\\", \\\"3v4\\\", \\\"4v5\\\"]\\n\\n\\ndef load_experiment(exp_dir: Path) -> dict | None:\\n    auc_file = exp_dir / \\\"pairwise_auc.json\\\"\\n    if not auc_file.exists():\\n        return None\\n    with open(auc_file) as f:\\n        data = json.load(f)\\n    return data\\n\\n\\ndef compute_ci(fold_values: list[float]) -> tuple[float, float, float]:\\n    n = len(fold_values)\\n    mean = sum(fold_values) / n\\n    std = math.sqrt(sum((x - mean) ** 2 for x in fold_values) / (n - 1))\\n    ci = 1.96 * std / math.sqrt(n)\\n    return mean, std, ci\\n\\n\\ndef determine_kstar(mean_aucs: dict[str, float], theta: float = THETA) -> int:\\n    kstar = 0\\n    for pair in PAIRS:\\n        k = int(pair.split(\\\"v\\\")[1])\\n        if mean_aucs.get(pair, 0) > theta:\\n            kstar = max(kstar, k)\\n        else:\\n            break\\n    return kstar\\n\\n\\ndef build_results(experiments: dict[str, str]) -> dict:\\n    all_results = {}\\n    for model_name, exp_name in experiments.items():\\n        exp_dir = RESULTS_DIR / exp_name\\n        data = load_experiment(exp_dir)\\n        if data is None:\\n            print(f\\\"[WARN] {exp_name} not found or incomplete, skipping\\\", file=sys.stderr)\\n            all_results[model_name] = None\\n            continue\\n\\n        model_result = {\\\"pairs\\\": {}}\\n        for pair in PAIRS:\\n            folds = data[\\\"per_fold\\\"][pair]\\n            mean, std, ci = compute_ci(folds)\\n            model_result[\\\"pairs\\\"][pair] = {\\n                \\\"mean\\\": round(mean, 4),\\n                \\\"std\\\": round(std, 4),\\n                \\\"ci\\\": round(ci, 4),\\n                \\\"folds\\\": folds,\\n            }\\n\\n        mean_aucs = {p: model_result[\\\"pairs\\\"][p][\\\"mean\\\"] for p in PAIRS}\\n        model_result[\\\"kstar\\\"] = determine_kstar(mean_aucs)\\n        all_results[model_name] = model_result\\n\\n    return all_results\\n\\n\\ndef generate_latex(all_results: dict) -> str:\\n    model_names = list(EXPERIMENTS.keys())\\n    n_models = len(model_names)\\n\\n    lines = []\\n    lines.append(\\\"% Code Domain Cross-Model Pairwise AUC Results\\\")\\n    lines.append(f\\\"% Generated: {__import__('datetime').datetime.now().strftime('%Y-%m-%d %H:%M')}\\\")\\n    lines.append(f\\\"% Threshold theta = {THETA}\\\")\\n    lines.append(\\\"\\\")\\n    lines.append(\\\"\\\\\\\\begin{table}[t]\\\")\\n    lines.append(\\\"\\\\\\\\centering\\\")\\n    lines.append(\\n        \\\"\\\\\\\\caption{Pairwise AUC ($k$ vs $k{+}1$) for code-domain contamination detection \\\"\\n        \\\"across five generator models trained on the CodeSearchNet Python subset \\\"\\n        \\\"\\\\\\\\citep{husain2019codesearchnet}. \\\"\\n        \\\"CI columns show 95\\\\\\\\% confidence intervals from 5-fold CV. \\\"\\n        \\\"Underlined values mark the $K^*$ boundary (last pair with AUC $> \\\\\\\\theta$).}\\\"\\n    )\\n    lines.append(\\\"\\\\\\\\label{tab:code_crossmodel_auc}\\\")\\n    lines.append(\\\"\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\")\\n\\n    col_spec = \\\"l\\\" + \\\" cc\\\" * n_models\\n    lines.append(f\\\"\\\\\\\\begin{{tabular}}{{{col_spec}}}\\\")\\n    lines.append(\\\"\\\\\\\\toprule\\\")\\n\\n    header1_parts = [\\\"\\\"]\\n    for name in model_names:\\n        header1_parts.append(f\\\"\\\\\\\\multicolumn{{2}}{{c}}{{{name}}}\\\")\\n    lines.append(\\\" & \\\".join(header1_parts) + \\\" \\\\\\\\\\\\\\\\\\\")\\n\\n    cmidrules = []\\n    for i in range(n_models):\\n        start = 2 + i * 2\\n        end = start + 1\\n        cmidrules.append(f\\\"\\\\\\\\cmidrule(lr){{{start}-{end}}}\\\")\\n    lines.append(\\\" \\\".join(cmidrules))\\n\\n    header2 = \\\"Pair\\\"\\n    for _ in model_names:\\n        header2 += \\\" & AUC & CI\\\"\\n    lines.append(header2 + \\\" \\\\\\\\\\\\\\\\\\\")\\n    lines.append(\\\"\\\\\\\\midrule\\\")\\n\\n    for pair in PAIRS:\\n        k_from, k_to = pair.split(\\\"v\\\")\\n        row_label = f\\\"${k_from}{{\\\\\\\\to}}{k_to}$\\\"\\n        row_parts = [row_label]\\n\\n        for model_name in model_names:\\n            result = all_results.get(model_name)\\n            if result is None:\\n                row_parts.extend([\\\"TBD\\\", \\\"\\\"])\\n            else:\\n                pair_data = result[\\\"pairs\\\"][pair]\\n                kstar = result[\\\"kstar\\\"]\\n                k = int(k_from)\\n                is_boundary = (k + 1 == kstar) and (pair_data[\\\"mean\\\"] > THETA)\\n\\n                auc_str = f\\\"{pair_data['mean']:.4f}\\\"\\n                ci_str = f\\\"$\\\\\\\\pm${pair_data['ci']:.4f}\\\"\\n\\n                if is_boundary:\\n                    auc_str = f\\\"\\\\\\\\underline{{{auc_str}}}\\\"\\n                    ci_str = f\\\"\\\\\\\\underline{{{ci_str}}}\\\"\\n\\n                row_parts.extend([auc_str, ci_str])\\n\\n        lines.append(\\\" & \\\".join(row_parts) + \\\" \\\\\\\\\\\\\\\\\\\")\\n\\n    lines.append(\\\"\\\\\\\\midrule\\\")\\n\\n    kstar_parts = [\\\"$K^*$\\\"]\\n    for model_name in model_names:\\n        result = all_results.get(model_name)\\n        if result is None:\\n            kstar_parts.extend([\\\"TBD\\\", \\\"\\\"])\\n        else:\\n            kstar_parts.extend([str(result[\\\"kstar\\\"]), \\\"\\\"])\\n    lines.append(\\\" & \\\".join(kstar_parts) + \\\" \\\\\\\\\\\\\\\\\\\")\\n\\n    lines.append(\\\"\\\\\\\\bottomrule\\\")\\n    lines.append(\\\"\\\\\\\\end{tabular}}\\\")\\n    lines.append(\\\"\\\")\\n    lines.append(\\\"\\\\\\\\vspace{2pt}\\\")\\n    lines.append(\\n        f\\\"{{\\\\\\\\footnotesize $\\\\\\\\theta = {THETA}$; $K^*$ = max $k$ s.t.\\\\\\\\ \\\"\\n        f\\\"AUC($k{{-}}1, k$) $> \\\\\\\\theta$. Domain: Code (CodeSearchNet Python subset). 5-fold CV.}}\\\"\\n    )\\n    lines.append(\\\"\\\\\\\\end{table}\\\")\\n\\n    return \\\"\\\\n\\\".join(lines)\\n\\n\\ndef main():\\n    all_results = build_results(EXPERIMENTS)\\n\\n    latex = generate_latex(all_results)\\n    print(latex)\\n    print()\\n\\n    json_out = {}\\n    for model_name, result in all_results.items():\\n        if result is None:\\n            json_out[model_name] = None\\n        else:\\n            json_out[model_name] = {\\n                \\\"kstar\\\": result[\\\"kstar\\\"],\\n                \\\"pairs\\\": {\\n                    p: {\\\"mean\\\": v[\\\"mean\\\"], \\\"ci\\\": v[\\\"ci\\\"]}\\n                    for p, v in result[\\\"pairs\\\"].items()\\n                },\\n            }\\n\\n    os.makedirs(ARTIFACTS_DIR, exist_ok=True)\\n    tex_path = ARTIFACTS_DIR / \\\"code_crossmodel_table.tex\\\"\\n    json_path = ARTIFACTS_DIR / \\\"code_crossmodel_results.json\\\"\\n\\n    with open(tex_path, \\\"w\\\") as f:\\n        f.write(latex + \\\"\\\\n\\\")\\n    with open(json_path, \\\"w\\\") as f:\\n        json.dump(json_out, f, indent=2)\\n\\n    print(f\\\"[INFO] LaTeX table written to {tex_path}\\\", file=sys.stderr)\\n    print(f\\\"[INFO] JSON results written to {json_path}\\\", file=sys.stderr)\\n\\n    for model_name, result in all_results.items():\\n        if result is not None:\\n            print(f\\\"[CHECK] {model_name}: K*={result['kstar']}, 0v1 AUC={result['pairs']['0v1']['mean']:.4f}\\\", file=sys.stderr)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "657c038e-55a5-4cee-89fa-c8869967ed1f",
+  "uuid": "aba48911-320d-48f7-becd-2a23216f1daa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Analyze code-domain cross-model pairwise AUC results and generate LaTeX table + JSON.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport math\\\\nimport os\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nPROJ_ROOT = Path(\\\\\\\"/root/autodl-tmp/gen-depth-contamination\\\\\\\")\\\\nRESULTS_DIR = PROJ_ROOT / \\\\\\\"results\\\\\\\"\\\\nARTIFACTS_DIR = PROJ_ROOT / \\\\\\\"artifacts\\\\\\\"\\\\nTHETA = 0.60\\\\n\\\\nEXPERIMENTS = {\\\\n    \\\\\\\"Qwen2.5-1.5B\\\\\\\": \\\\\\\"exp_code_qwen1b5\\\\\\\",\\\\n    \\\\\\\"Pythia-1.4B\\\\\\\": \\\\\\\"exp_code_pythia1b4\\\\\\\",\\\\n    \\\\\\\"Qwen2.5-7B\\\\\\\": \\\\\\\"exp_code_qwen7b\\\\\\\",\\\\n    \\\\\\\"Llama-3.1-8B\\\\\\\": \\\\\\\"exp_code_llama8b\\\\\\\",\\\\n    \\\\\\\"Mistral-7B-v0.3\\\\\\\": \\\\\\\"exp_code_mistral7b\\\\\\\",\\\\n}\\\\n\\\\nPAIRS = [\\\\\\\"0v1\\\\\\\", \\\\\\\"1v2\\\\\\\", \\\\\\\"2v3\\\\\\\", \\\\\\\"3v4\\\\\\\", \\\\\\\"4v5\\\\\\\"]\\\\n\\\\n\\\\ndef load_experiment(exp_dir: Path) -> dict | None:\\\\n    auc_file = exp_dir / \\\\\\\"pairwise_auc.json\\\\\\\"\\\\n    if not auc_file.exists():\\\\n        return None\\\\n    with open(auc_file) as f:\\\\n        data = json.load(f)\\\\n    return data\\\\n\\\\n\\\\ndef compute_ci(fold_values: list[float]) -> tuple[float, float, float]:\\\\n    n = len(fold_values)\\\\n    mean = sum(fold_values) / n\\\\n    std = math.sqrt(sum((x - mean) ** 2 for x in fold_values) / (n - 1))\\\\n    ci = 1.96 * std / math.sqrt(n)\\\\n    return mean, std, ci\\\\n\\\\n\\\\ndef determine_kstar(mean_aucs: dict[str, float], theta: float = THETA) -> int:\\\\n    kstar = 0\\\\n    for pair in PAIRS:\\\\n        k = int(pair.split(\\\\\\\"v\\\\\\\")[1])\\\\n        if mean_aucs.get(pair, 0) > theta:\\\\n            kstar = max(kstar, k)\\\\n        else:\\\\n            break\\\\n    return kstar\\\\n\\\\n\\\\ndef build_results(experiments: dict[str, str]) -> dict:\\\\n    all_results = {}\\\\n    for model_name, exp_name in experiments.items():\\\\n        exp_dir = RESULTS_DIR / exp_name\\\\n        data = load_experiment(exp_dir)\\\\n        if data is None:\\\\n            print(f\\\\\\\"[WARN] {exp_name} not found or incomplete, skipping\\\\\\\", file=sys.stderr)\\\\n            all_results[model_name] = None\\\\n            continue\\\\n\\\\n        model_result = {\\\\\\\"pairs\\\\\\\": {}}\\\\n        for pair in PAIRS:\\\\n            folds = data[\\\\\\\"per_fold\\\\\\\"][pair]\\\\n            mean, std, ci = compute_ci(folds)\\\\n            model_result[\\\\\\\"pairs\\\\\\\"][pair] = {\\\\n                \\\\\\\"mean\\\\\\\": round(mean, 4),\\\\n                \\\\\\\"std\\\\\\\": round(std, 4),\\\\n                \\\\\\\"ci\\\\\\\": round(ci, 4),\\\\n                \\\\\\\"folds\\\\\\\": folds,\\\\n            }\\\\n\\\\n        mean_aucs = {p: model_result[\\\\\\\"pairs\\\\\\\"][p][\\\\\\\"mean\\\\\\\"] for p in PAIRS}\\\\n        model_result[\\\\\\\"kstar\\\\\\\"] = determine_kstar(mean_aucs)\\\\n        all_results[model_name] = model_result\\\\n\\\\n    return all_results\\\\n\\\\n\\\\ndef generate_latex(all_results: dict) -> str:\\\\n    model_names = list(EXPERIMENTS.keys())\\\\n    n_models = len(model_names)\\\\n\\\\n    lines = []\\\\n    lines.append(\\\\\\\"% Code Domain Cross-Model Pairwise AUC Results\\\\\\\")\\\\n    lines.append(f\\\\\\\"% Generated: {__import__('datetime').datetime.now().strftime('%Y-%m-%d %H:%M')}\\\\\\\")\\\\n    lines.append(f\\\\\\\"% Threshold theta = {THETA}\\\\\\\")\\\\n    lines.append(\\\\\\\"\\\\\\\")\\\\n    lines.append(\\\\\\\"\\\\\\\\\\\\\\\\begin{table}[t]\\\\\\\")\\\\n    lines.append(\\\\\\\"\\\\\\\\\\\\\\\\centering\\\\\\\")\\\\n    lines.append(\\\\n        \\\\\\\"\\\\\\\\\\\\\\\\caption{Pairwise AUC ($k$ vs $k{+}1$) for code-domain contamination detection \\\\\\\"\\\\n        \\\\\\\"across five generator models trained on the CodeSearchNet Python subset \\\\\\\"\\\\n        \\\\\\\"\\\\\\\\\\\\\\\\citep{husain2019codesearchnet}. \\\\\\\"\\\\n        \\\\\\\"CI columns show 95\\\\\\\\\\\\\\\\% confidence intervals from 5-fold CV. \\\\\\\"\\\\n        \\\\\\\"Underlined values mark the $K^*$ boundary (last pair with AUC $> \\\\\\\\\\\\\\\\theta$).}\\\\\\\"\\\\n    )\\\\n    lines.append(\\\\\\\"\\\\\\\\\\\\\\\\label{tab:code_crossmodel_auc}\\\\\\\")\\\\n    lines.append(\\\\\\\"\\\\\\\\\\\\\\\\resizebox{\\\\\\\\\\\\\\\\columnwidth}{!}{%\\\\\\\")\\\\n\\\\n    col_spec = \\\\\\\"l\\\\\\\" + \\\\\\\" cc\\\\\\\" * n_models\\\\n    lines.append(f\\\\\\\"\\\\\\\\\\\\\\\\begin{{tabular}}{{{col_spec}}}\\\\\\\")\\\\n    lines.append(\\\\\\\"\\\\\\\\\\\\\\\\toprule\\\\\\\")\\\\n\\\\n    header1_parts = [\\\\\\\"\\\\\\\"]\\\\n    for name in model_names:\\\\n        header1_parts.append(f\\\\\\\"\\\\\\\\\\\\\\\\multicolumn{{2}}{{c}}{{{name}}}\\\\\\\")\\\\n    lines.append(\\\\\\\" & \\\\\\\".join(header1_parts) + \\\\\\\" \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")\\\\n\\\\n    cmidrules = []\\\\n    for i in range(n_models):\\\\n        start = 2 + i * 2\\\\n        end = start + 1\\\\n        cmidrules.append(f\\\\\\\"\\\\\\\\\\\\\\\\cmidrule(lr){{{start}-{end}}}\\\\\\\")\\\\n    lines.append(\\\\\\\" \\\\\\\".join(cmidrules))\\\\n\\\\n    header2 = \\\\\\\"Pair\\\\\\\"\\\\n    for _ in model_names:\\\\n        header2 += \\\\\\\" & AUC & CI\\\\\\\"\\\\n    lines.append(header2 + \\\\\\\" \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")\\\\n    lines.append(\\\\\\\"\\\\\\\\\\\\\\\\midrule\\\\\\\")\\\\n\\\\n    for pair in PAIRS:\\\\n        k_from, k_to = pair.split(\\\\\\\"v\\\\\\\")\\\\n        row_label = f\\\\\\\"${k_from}{{\\\\\\\\\\\\\\\\to}}{k_to}$\\\\\\\"\\\\n        row_parts = [row_label]\\\\n\\\\n        for model_name in model_names:\\\\n            result = all_results.get(model_name)\\\\n            if result is None:\\\\n                row_parts.extend([\\\\\\\"TBD\\\\\\\", \\\\\\\"\\\\\\\"])\\\\n            else:\\\\n                pair_data = result[\\\\\\\"pairs\\\\\\\"][pair]\\\\n                kstar = result[\\\\\\\"kstar\\\\\\\"]\\\\n                k = int(k_from)\\\\n                is_boundary = (k + 1 == kstar) and (pair_data[\\\\\\\"mean\\\\\\\"] > THETA)\\\\n\\\\n                auc_str = f\\\\\\\"{pair_data['mean']:.4f}\\\\\\\"\\\\n                ci_str = f\\\\\\\"$\\\\\\\\\\\\\\\\pm${pair_data['ci']:.4f}\\\\\\\"\\\\n\\\\n                if is_boundary:\\\\n                    auc_str = f\\\\\\\"\\\\\\\\\\\\\\\\underline{{{auc_str}}}\\\\\\\"\\\\n                    ci_str = f\\\\\\\"\\\\\\\\\\\\\\\\underline{{{ci_str}}}\\\\\\\"\\\\n\\\\n                row_parts.extend([auc_str, ci_str])\\\\n\\\\n        lines.append(\\\\\\\" & \\\\\\\".join(row_parts) + \\\\\\\" \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")\\\\n\\\\n    lines.append(\\\\\\\"\\\\\\\\\\\\\\\\midrule\\\\\\\")\\\\n\\\\n    kstar_parts = [\\\\\\\"$K^*$\\\\\\\"]\\\\n    for model_name in model_names:\\\\n        result = all_results.get(model_name)\\\\n        if result is None:\\\\n            kstar_parts.extend([\\\\\\\"TBD\\\\\\\", \\\\\\\"\\\\\\\"])\\\\n        else:\\\\n            kstar_parts.extend([str(result[\\\\\\\"kstar\\\\\\\"]), \\\\\\\"\\\\\\\"])\\\\n    lines.append(\\\\\\\" & \\\\\\\".join(kstar_parts) + \\\\\\\" \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\")\\\\n\\\\n    lines.append(\\\\\\\"\\\\\\\\\\\\\\\\bottomrule\\\\\\\")\\\\n    lines.append(\\\\\\\"\\\\\\\\\\\\\\\\end{tabular}}\\\\\\\")\\\\n    lines.append(\\\\\\\"\\\\\\\")\\\\n    lines.append(\\\\\\\"\\\\\\\\\\\\\\\\vspace{2pt}\\\\\\\")\\\\n    lines.append(\\\\n        f\\\\\\\"{{\\\\\\\\\\\\\\\\footnotesize $\\\\\\\\\\\\\\\\theta = {THETA}$; $K^*$ = max $k$ s.t.\\\\\\\\\\\\\\\\ \\\\\\\"\\\\n        f\\\\\\\"AUC($k{{-}}1, k$) $> \\\\\\\\\\\\\\\\theta$. Domain: Code (CodeSearchNet Python subset). 5-fold CV.}}\\\\\\\"\\\\n    )\\\\n    lines.append(\\\\\\\"\\\\\\\\\\\\\\\\end{table}\\\\\\\")\\\\n\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\".join(lines)\\\\n\\\\n\\\\ndef main():\\\\n    all_results = build_results(EXPERIMENTS)\\\\n\\\\n    latex = generate_latex(all_results)\\\\n    print(latex)\\\\n    print()\\\\n\\\\n    json_out = {}\\\\n    for model_name, result in all_results.items():\\\\n        if result is None:\\\\n            json_out[model_name] = None\\\\n        else:\\\\n            json_out[model_name] = {\\\\n                \\\\\\\"kstar\\\\\\\": result[\\\\\\\"kstar\\\\\\\"],\\\\n                \\\\\\\"pairs\\\\\\\": {\\\\n                    p: {\\\\\\\"mean\\\\\\\": v[\\\\\\\"mean\\\\\\\"], \\\\\\\"ci\\\\\\\": v[\\\\\\\"ci\\\\\\\"]}\\\\n                    for p, v in result[\\\\\\\"pairs\\\\\\\"].items()\\\\n                },\\\\n            }\\\\n\\\\n    os.makedirs(ARTIFACTS_DIR, exist_ok=True)\\\\n    tex_path = ARTIFACTS_DIR / \\\\\\\"code_crossmodel_table.tex\\\\\\\"\\\\n    json_path = ARTIFACTS_DIR / \\\\\\\"code_crossmodel_results.json\\\\\\\"\\\\n\\\\n    with open(tex_path, \\\\\\\"w\\\\\\\") as f:\\\\n        f.write(latex + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n    with open(json_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(json_out, f, indent=2)\\\\n\\\\n    print(f\\\\\\\"[INFO] LaTeX table written to {tex_path}\\\\\\\", file=sys.stderr)\\\\n    print(f\\\\\\\"[INFO] JSON results written to {json_path}\\\\\\\", file=sys.stderr)\\\\n\\\\n    for model_name, result in all_results.items():\\\\n        if result is not None:\\\\n            print(f\\\\\\\"[CHECK] {model_name}: K*={result['kstar']}, 0v1 AUC={result['pairs']['0v1']['mean']:.4f}\\\\\\\", file=sys.stderr)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Analyze code-domain cross-model pairwise AUC results and generate LaTeX table + JSON.\\\"\\\"\\\"\\n\\nimport json\\nimport math\\nimport os\\nimport sys\\nfrom pathlib import Path\\n\\nPROJ_ROOT = Path(\\\"/root/autodl-tmp/gen-depth-contamination\\\")\\nRESULTS_DIR = PROJ_ROOT / \\\"results\\\"\\nARTIFACTS_DIR = PROJ_ROOT / \\\"artifacts\\\"\\nTHETA = 0.60\\n\\nEXPERIMENTS = {\\n    \\\"Qwen2.5-1.5B\\\": \\\"exp_code_qwen1b5\\\",\\n    \\\"Pythia-1.4B\\\": \\\"exp_code_pythia1b4\\\",\\n    \\\"Qwen2.5-7B\\\": \\\"exp_code_qwen7b\\\",\\n    \\\"Llama-3.1-8B\\\": \\\"exp_code_llama8b\\\",\\n    \\\"Mistral-7B-v0.3\\\": \\\"exp_code_mistral7b\\\",\\n}\\n\\nPAIRS = [\\\"0v1\\\", \\\"1v2\\\", \\\"2v3\\\", \\\"3v4\\\", \\\"4v5\\\"]\\n\\n\\ndef load_experiment(exp_dir: Path) -> dict | None:\\n    auc_file = exp_dir / \\\"pairwise_auc.json\\\"\\n    if not auc_file.exists():\\n        return None\\n    with open(auc_file) as f:\\n        data = json.load(f)\\n    return data\\n\\n\\ndef compute_ci(fold_values: list[float]) -> tuple[float, float, float]:\\n    n = len(fold_values)\\n    mean = sum(fold_values) / n\\n    std = math.sqrt(sum((x - mean) ** 2 for x in fold_values) / (n - 1))\\n    ci = 1.96 * std / math.sqrt(n)\\n    return mean, std, ci\\n\\n\\ndef determine_kstar(mean_aucs: dict[str, float], theta: float = THETA) -> int:\\n    kstar = 0\\n    for pair in PAIRS:\\n        k = int(pair.split(\\\"v\\\")[1])\\n        if mean_aucs.get(pair, 0) > theta:\\n            kstar = max(kstar, k)\\n        else:\\n            break\\n    return kstar\\n\\n\\ndef build_results(experiments: dict[str, str]) -> dict:\\n    all_results = {}\\n    for model_name, exp_name in experiments.items():\\n        exp_dir = RESULTS_DIR / exp_name\\n        data = load_experiment(exp_dir)\\n        if data is None:\\n            print(f\\\"[WARN] {exp_name} not found or incomplete, skipping\\\", file=sys.stderr)\\n            all_results[model_name] = None\\n            continue\\n\\n        model_result = {\\\"pairs\\\": {}}\\n        for pair in PAIRS:\\n            folds = data[\\\"per_fold\\\"][pair]\\n            mean, std, ci = compute_ci(folds)\\n            model_result[\\\"pairs\\\"][pair] = {\\n                \\\"mean\\\": round(mean, 4),\\n                \\\"std\\\": round(std, 4),\\n                \\\"ci\\\": round(ci, 4),\\n                \\\"folds\\\": folds,\\n            }\\n\\n        mean_aucs = {p: model_result[\\\"pairs\\\"][p][\\\"mean\\\"] for p in PAIRS}\\n        model_result[\\\"kstar\\\"] = determine_kstar(mean_aucs)\\n        all_results[model_name] = model_result\\n\\n    return all_results\\n\\n\\ndef generate_latex(all_results: dict) -> str:\\n    model_names = list(EXPERIMENTS.keys())\\n    n_models = len(model_names)\\n\\n    lines = []\\n    lines.append(\\\"% Code Domain Cross-Model Pairwise AUC Results\\\")\\n    lines.append(f\\\"% Generated: {__import__('datetime').datetime.now().strftime('%Y-%m-%d %H:%M')}\\\")\\n    lines.append(f\\\"% Threshold theta = {THETA}\\\")\\n    lines.append(\\\"\\\")\\n    lines.append(\\\"\\\\\\\\begin{table}[t]\\\")\\n    lines.append(\\\"\\\\\\\\centering\\\")\\n    lines.append(\\n        \\\"\\\\\\\\caption{Pairwise AUC ($k$ vs $k{+}1$) for code-domain contamination detection \\\"\\n        \\\"across five generator models trained on the CodeSearchNet Python subset \\\"\\n        \\\"\\\\\\\\citep{husain2019codesearchnet}. \\\"\\n        \\\"CI columns show 95\\\\\\\\% confidence intervals from 5-fold CV. \\\"\\n        \\\"Underlined values mark the $K^*$ boundary (last pair with AUC $> \\\\\\\\theta$).}\\\"\\n    )\\n    lines.append(\\\"\\\\\\\\label{tab:code_crossmodel_auc}\\\")\\n    lines.append(\\\"\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\")\\n\\n    col_spec = \\\"l\\\" + \\\" cc\\\" * n_models\\n    lines.append(f\\\"\\\\\\\\begin{{tabular}}{{{col_spec}}}\\\")\\n    lines.append(\\\"\\\\\\\\toprule\\\")\\n\\n    header1_parts = [\\\"\\\"]\\n    for name in model_names:\\n        header1_parts.append(f\\\"\\\\\\\\multicolumn{{2}}{{c}}{{{name}}}\\\")\\n    lines.append(\\\" & \\\".join(header1_parts) + \\\" \\\\\\\\\\\\\\\\\\\")\\n\\n    cmidrules = []\\n    for i in range(n_models):\\n        start = 2 + i * 2\\n        end = start + 1\\n        cmidrules.append(f\\\"\\\\\\\\cmidrule(lr){{{start}-{end}}}\\\")\\n    lines.append(\\\" \\\".join(cmidrules))\\n\\n    header2 = \\\"Pair\\\"\\n    for _ in model_names:\\n        header2 += \\\" & AUC & CI\\\"\\n    lines.append(header2 + \\\" \\\\\\\\\\\\\\\\\\\")\\n    lines.append(\\\"\\\\\\\\midrule\\\")\\n\\n    for pair in PAIRS:\\n        k_from, k_to = pair.split(\\\"v\\\")\\n        row_label = f\\\"${k_from}{{\\\\\\\\to}}{k_to}$\\\"\\n        row_parts = [row_label]\\n\\n        for model_name in model_names:\\n            result = all_results.get(model_name)\\n            if result is None:\\n                row_parts.extend([\\\"TBD\\\", \\\"\\\"])\\n            else:\\n                pair_data = result[\\\"pairs\\\"][pair]\\n                kstar = result[\\\"kstar\\\"]\\n                k = int(k_from)\\n                is_boundary = (k + 1 == kstar) and (pair_data[\\\"mean\\\"] > THETA)\\n\\n                auc_str = f\\\"{pair_data['mean']:.4f}\\\"\\n                ci_str = f\\\"$\\\\\\\\pm${pair_data['ci']:.4f}\\\"\\n\\n                if is_boundary:\\n                    auc_str = f\\\"\\\\\\\\underline{{{auc_str}}}\\\"\\n                    ci_str = f\\\"\\\\\\\\underline{{{ci_str}}}\\\"\\n\\n                row_parts.extend([auc_str, ci_str])\\n\\n        lines.append(\\\" & \\\".join(row_parts) + \\\" \\\\\\\\\\\\\\\\\\\")\\n\\n    lines.append(\\\"\\\\\\\\midrule\\\")\\n\\n    kstar_parts = [\\\"$K^*$\\\"]\\n    for model_name in model_names:\\n        result = all_results.get(model_name)\\n        if result is None:\\n            kstar_parts.extend([\\\"TBD\\\", \\\"\\\"])\\n        else:\\n            kstar_parts.extend([str(result[\\\"kstar\\\"]), \\\"\\\"])\\n    lines.append(\\\" & \\\".join(kstar_parts) + \\\" \\\\\\\\\\\\\\\\\\\")\\n\\n    lines.append(\\\"\\\\\\\\bottomrule\\\")\\n    lines.append(\\\"\\\\\\\\end{tabular}}\\\")\\n    lines.append(\\\"\\\")\\n    lines.append(\\\"\\\\\\\\vspace{2pt}\\\")\\n    lines.append(\\n        f\\\"{{\\\\\\\\footnotesize $\\\\\\\\theta = {THETA}$; $K^*$ = max $k$ s.t.\\\\\\\\ \\\"\\n        f\\\"AUC($k{{-}}1, k$) $> \\\\\\\\theta$. Domain: Code (CodeSearchNet Python subset). 5-fold CV.}}\\\"\\n    )\\n    lines.append(\\\"\\\\\\\\end{table}\\\")\\n\\n    return \\\"\\\\n\\\".join(lines)\\n\\n\\ndef main():\\n    all_results = build_results(EXPERIMENTS)\\n\\n    latex = generate_latex(all_results)\\n    print(latex)\\n    print()\\n\\n    json_out = {}\\n    for model_name, result in all_results.items():\\n        if result is None:\\n            json_out[model_name] = None\\n        else:\\n            json_out[model_name] = {\\n                \\\"kstar\\\": result[\\\"kstar\\\"],\\n                \\\"pairs\\\": {\\n                    p: {\\\"mean\\\": v[\\\"mean\\\"], \\\"ci\\\": v[\\\"ci\\\"]}\\n                    for p, v in result[\\\"pairs\\\"].items()\\n                },\\n            }\\n\\n    os.makedirs(ARTIFACTS_DIR, exist_ok=True)\\n    tex_path = ARTIFACTS_DIR / \\\"code_crossmodel_table.tex\\\"\\n    json_path = ARTIFACTS_DIR / \\\"code_crossmodel_results.json\\\"\\n\\n    with open(tex_path, \\\"w\\\") as f:\\n        f.write(latex + \\\"\\\\n\\\")\\n    with open(json_path, \\\"w\\\") as f:\\n        json.dump(json_out, f, indent=2)\\n\\n    print(f\\\"[INFO] LaTeX table written to {tex_path}\\\", file=sys.stderr)\\n    print(f\\\"[INFO] JSON results written to {json_path}\\\", file=sys.stderr)\\n\\n    for model_name, result in all_results.items():\\n        if result is not None:\\n            print(f\\\"[CHECK] {model_name}: K*={result['kstar']}, 0v1 AUC={result['pairs']['0v1']['mean']:.4f}\\\", file=sys.stderr)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01AcQkYW67wHRCu2WeMszsFR`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "ls -la /root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen1b5/ /root/autodl-tmp/gen-depth-contamination/results/exp_code_pythia1b4/ /root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen7b/ /root/autodl-tmp/gen-depth-contamination/results/exp_code_llama8b/ /root/autodl-tmp/gen-depth-contamination/results/exp_code_mistral7b/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "657c038e-55a5-4cee-89fa-c8869967ed1f",
+  "uuid": "3c40e359-0d93-4dfe-8c03-484f3b7bc993",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HDoGxD9ZWFq1Fd8SHjPcFV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 878,
+      "cache_read_input_tokens": 25254,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 878
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T04:25:05.837Z_
+
+<details><summary>↩ Tool result · `toolu_01AcQkYW67wHRCu2WeMszsFR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_code_llama8b/:\\ntotal 4\\ndrwxr-xr-x  2 root root   10 May 19 04:43 .\\ndrwxr-xr-x 46 root root 4096 May 19 11:46 ..\\n\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_mistral7b/:\\ntotal 4\\ndrwxr-xr-x  2 root root   10 May 19 07:06 .\\ndrwxr-xr-x 46 root root 4096 May 19 11:46 ..\\n\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_pythia1b4/:\\ntotal 812\\ndrwxr-xr-x  2 root root    170 May 19 08:22 .\\ndrwxr-xr-x 46 root root   4096 May 19 11:46 ..\\n-rw-r--r--  1 root root    631 May 19 08:22 feature_importance.json\\n-rw-r--r--  1 root root     97 May 19 08:22 jsd.json\\n-rw-r--r--  1 root root     56 May 19 08:22 ordinal_results.json\\n-rw-r--r--  1 root root    572 May 19 08:22 pairwise_auc.json\\n-rw-r--r--  1 root root   1324 May 19 08:22 summary.txt\\n-rw-r--r--  1 root root 806191 May 19 08:22 train.log\\n\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen1b5/:\\ntotal 24\\ndrwxr-xr-x  2 root root  149 May 19 05:21 .\\ndrwxr-xr-x 46 root root 4096 May 19 11:46 ..\\n-rw-r--r--  1 root root  633 May 19 05:21 feature_importance.json\\n-rw-r--r--  1 root root   97 May 19 05:20 jsd.json\\n-rw-r--r--  1 root root   55 May 19 05:21 ordinal_results.json\\n-rw-r--r--  1 root root  574 May 19 05:20 pairwise_auc.json\\n-rw-r--r--  1 root root 1326 May 19 05:21 summary.txt\\n\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen7b/:\\ntotal 4\\ndrwxr-xr-x  2 root root   10 May 19 08:30 .\\ndrwxr-xr-x 46 root root 4096 May 19 11:46 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "657c038e-55a5-4cee-89fa-c8869967ed1f",
+  "uuid": "3e268c07-1d6d-4371-8d6c-e07235ffe484",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/gen-depth-contamination/results/exp_code_llama8b/:\\\\ntotal 4\\\\ndrwxr-xr-x  2 root root   10 May 19 04:43 .\\\\ndrwxr-xr-x 46 root root 4096 May 19 11:46 ..\\\\n\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_mistral7b/:\\\\ntotal 4\\\\ndrwxr-xr-x  2 root root   10 May 19 07:06 .\\\\ndrwxr-xr-x 46 root root 4096 May 19 11:46 ..\\\\n\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_pythia1b4/:\\\\ntotal 812\\\\ndrwxr-xr-x  2 root root    170 May 19 08:22 .\\\\ndrwxr-xr-x 46 root root   4096 May 19 11:46 ..\\\\n-rw-r--r--  1 root root    631 May 19 08:22 feature_importance.json\\\\n-rw-r--r--  1 root root     97 May 19 08:22 jsd.json\\\\n-rw-r--r--  1 root root     56 May 19 08:22 ordinal_results.json\\\\n-rw-r--r--  1 root root    572 May 19 08:22 pairwise_auc.json\\\\n-rw-r--r--  1 root root   1324 May 19 08:22 summary.txt\\\\n-rw-r--r--  1 root root 806191 May 19 08:22 train.log\\\\n\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen1b5/:\\\\ntotal 24\\\\ndrwxr-xr-x  2 root root  149 May 19 05:21 .\\\\ndrwxr-xr-x 46 root root 4096 May 19 11:46 ..\\\\n-rw-r--r--  1 root root  633 May 19 05:21 feature_importance.json\\\\n-rw-r--r--  1 root root   97 May 19 05:20 jsd.json\\\\n-rw-r--r--  1 root root   55 May 19 05:21 ordinal_results.json\\\\n-rw-r--r--  1 root root  574 May 19 05:20 pairwise_auc.json\\\\n-rw-r--r--  1 root root 1326 May 19 05:21 summary.txt\\\\n\\\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen7b/:\\\\ntotal 4\\\\ndrwxr-xr-x  2 root root   10 May 19 08:30 .\\\\ndrwxr-xr-x 46 root root 4096 May 19 11:46 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/gen-depth-contamination/results/exp_code_llama8b/:\\ntotal 4\\ndrwxr-xr-x  2 root root   10 May 19 04:43 .\\ndrwxr-xr-x 46 root root 4096 May 19 11:46 ..\\n\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_mistral7b/:\\ntotal 4\\ndrwxr-xr-x  2 root root   10 May 19 07:06 .\\ndrwxr-xr-x 46 root root 4096 May 19 11:46 ..\\n\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_pythia1b4/:\\ntotal 812\\ndrwxr-xr-x  2 root root    170 May 19 08:22 .\\ndrwxr-xr-x 46 root root   4096 May 19 11:46 ..\\n-rw-r--r--  1 root root    631 May 19 08:22 feature_importance.json\\n-rw-r--r--  1 root root     97 May 19 08:22 jsd.json\\n-rw-r--r--  1 root root     56 May 19 08:22 ordinal_results.json\\n-rw-r--r--  1 root root    572 May 19 08:22 pairwise_auc.json\\n-rw-r--r--  1 root root   1324 May 19 08:22 summary.txt\\n-rw-r--r--  1 root root 806191 May 19 08:22 train.log\\n\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen1b5/:\\ntotal 24\\ndrwxr-xr-x  2 root root  149 May 19 05:21 .\\ndrwxr-xr-x 46 root root 4096 May 19 11:46 ..\\n-rw-r--r--  1 root root  633 May 19 05:21 feature_importance.json\\n-rw-r--r--  1 root root   97 May 19 05:20 jsd.json\\n-rw-r--r--  1 root root   55 May 19 05:21 ordinal_results.json\\n-rw-r--r--  1 root root  574 May 19 05:20 pairwise_auc.json\\n-rw-r--r--  1 root root 1326 May 19 05:21 summary.txt\\n\\n/root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen7b/:\\ntotal 4\\ndrwxr-xr-x  2 root root   10 May 19 08:30 .\\ndrwxr-xr-x 46 root root 4096 May 19 11:46 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze what I found:
+
+1. **EXPERIMENTS dict**: The script has:
+   - "Qwen2.5-1.5B": "exp_code_qwen1b5" ✓
+   - "Pythia-1.4B": "exp_code_pythia1b4" ✓
+   - "Qwen2.5-7B": "exp_code_qwen7b" ✓
+   - "Llama-3.1-8B": "exp_code_llama8b" — **MISMATCH**: user specified "LLaMA-3.1-8B" but script has "Llama-3.1-8B"
+   - "Mistral-7B-v0.3": "exp_code_mistral7b" ✓
+
+The paths all check out, but there's a naming inconsistency with the Llama model—the user wrote "LLaMA-3.1-8B" while the script uses "Llama-3.1-8B", which is actually the official Meta naming convention.
+
+Looking at the directory structure, I see that only two experiments have actual data: exp_code_qwen1b5 and exp_code_pythia1b4 both contain pairwise_auc.json files, while the other three directories exist but are completely empty. The script is looking for pairwise_auc.json as the result file,
+
+which matches what's present in the completed runs. The caption references CodeSearchNet Python subset correctly, and the script handles missing data gracefully by showing "TBD" in the table. I should verify the actual structure of pairwise_auc.json to confirm the script's parsing logic is correct, and I'll note that the official Meta naming convention uses "Llama" rather than "LLaMA" for version 3.1.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "657c038e-55a5-4cee-89fa-c8869967ed1f",
+  "uuid": "47e29107-4aa4-43ab-b31b-115e5f0e413d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ME9C6BZJ9S78YxHzikqo1o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4482,
+      "cache_read_input_tokens": 26132,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4482
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+脚本已读取。发现一个名称差异：用户指定 "LLaMA-3.1-8B" 但脚本用 "Llama-3.1-8B"（Meta 官方 3.1 版命名）。路径全部匹配。目录状态：qwen1b5 和 pythia1b4 有数据，其余三个目录为空。
+
+验证 pairwise_auc.json 数据结构，然后 dry-run。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "657c038e-55a5-4cee-89fa-c8869967ed1f",
+  "uuid": "dd0275b2-8141-4224-83de-c53f4d474573",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ME9C6BZJ9S78YxHzikqo1o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4482,
+      "cache_read_input_tokens": 26132,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4482
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SSdCBmZhcYqr8DiVjwHYRA`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_code_qwen1b5/pairwise_auc.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "657c038e-55a5-4cee-89fa-c8869967ed1f",
+  "uuid": "d2529204-4ac7-4399-af8a-ddc078c268a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ME9C6BZJ9S78YxHzikqo1o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4482,
+      "cache_read_input_tokens": 26132,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4482
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YSxxhND4zMXUbKSYb3qDBV`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cat /root/autodl-tmp/gen-depth-contamination/results/exp_code_pythia1b4/pairwise_auc.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "657c038e-55a5-4cee-89fa-c8869967ed1f",
+  "uuid": "ebdd3cd1-fee3-4f79-859a-1af844c91724",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ME9C6BZJ9S78YxHzikqo1o",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4482,
+      "cache_read_input_tokens": 26132,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4482
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-19T04:25:25.206Z_
+
+<details><summary>↩ Tool result · `toolu_01SSdCBmZhcYqr8DiVjwHYRA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.9388,\\n    \\\"1v2\\\": 0.7382,\\n    \\\"2v3\\\": 0.53,\\n    \\\"3v4\\\": 0.5022,\\n    \\\"4v5\\\": 0.5219\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.9364,\\n      0.9382,\\n      0.9473,\\n      0.939,\\n      0.9332\\n    ],\\n    \\\"1v2\\\": [\\n      0.7373,\\n      0.7502,\\n      0.7238,\\n      0.756,\\n      0.7238\\n    ],\\n    \\\"2v3\\\": [\\n      0.5202,\\n      0.5251,\\n      0.5339,\\n      0.5295,\\n      0.5415\\n    ],\\n    \\\"3v4\\\": [\\n      0.4993,\\n      0.5122,\\n      0.5095,\\n      0.4969,\\n      0.4931\\n    ],\\n    \\\"4v5\\\": [\\n      0.5312,\\n      0.5226,\\n      0.5233,\\n      0.5146,\\n      0.5179\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "657c038e-55a5-4cee-89fa-c8869967ed1f",
+  "uuid": "cda99a94-beee-4065-97eb-eb7d79e7dc15",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mean\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": 0.9388,\\\\n    \\\\\\\"1v2\\\\\\\": 0.7382,\\\\n    \\\\\\\"2v3\\\\\\\": 0.53,\\\\n    \\\\\\\"3v4\\\\\\\": 0.5022,\\\\n    \\\\\\\"4v5\\\\\\\": 0.5219\\\\n  },\\\\n  \\\\\\\"per_fold\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": [\\\\n      0.9364,\\\\n      0.9382,\\\\n      0.9473,\\\\n      0.939,\\\\n      0.9332\\\\n    ],\\\\n    \\\\\\\"1v2\\\\\\\": [\\\\n      0.7373,\\\\n      0.7502,\\\\n      0.7238,\\\\n      0.756,\\\\n      0.7238\\\\n    ],\\\\n    \\\\\\\"2v3\\\\\\\": [\\\\n      0.5202,\\\\n      0.5251,\\\\n      0.5339,\\\\n      0.5295,\\\\n      0.5415\\\\n    ],\\\\n    \\\\\\\"3v4\\\\\\\": [\\\\n      0.4993,\\\\n      0.5122,\\\\n      0.5095,\\\\n      0.4969,\\\\n      0.4931\\\\n    ],\\\\n    \\\\\\\"4v5\\\\\\\": [\\\\n      0.5312,\\\\n      0.5226,\\\\n      0.5233,\\\\n      0.5146,\\\\n      0.5179\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.9388,\\n    \\\"1v2\\\": 0.7382,\\n    \\\"2v3\\\": 0.53,\\n    \\\"3v4\\\": 0.5022,\\n    \\\"4v5\\\": 0.5219\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.9364,\\n      0.9382,\\n      0.9473,\\n      0.939,\\n      0.9332\\n    ],\\n    \\\"1v2\\\": [\\n      0.7373,\\n      0.7502,\\n      0.7238,\\n      0.756,\\n      0.7238\\n    ],\\n    \\\"2v3\\\": [\\n      0.5202,\\n      0.5251,\\n      0.5339,\\n      0.5295,\\n      0.5415\\n    ],\\n    \\\"3v4\\\": [\\n      0.4993,\\n      0.5122,\\n      0.5095,\\n      0.4969,\\n      0.4931\\n    ],\\n    \\\"4v5\\\": [\\n      0.5312,\\n      0.5226,\\n      0.5233,\\n      0.5146,\\n      0.5179\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T04:25:25.718Z_
+
+<details><summary>↩ Tool result · `toolu_01YSxxhND4zMXUbKSYb3qDBV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.9592,\\n    \\\"1v2\\\": 0.5983,\\n    \\\"2v3\\\": 0.5215,\\n    \\\"3v4\\\": 0.5152,\\n    \\\"4v5\\\": 0.5046\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.9576,\\n      0.9576,\\n      0.9657,\\n      0.96,\\n      0.9552\\n    ],\\n    \\\"1v2\\\": [\\n      0.601,\\n      0.5884,\\n      0.6,\\n      0.5997,\\n      0.6024\\n    ],\\n    \\\"2v3\\\": [\\n      0.5236,\\n      0.5124,\\n      0.5311,\\n      0.5024,\\n      0.5381\\n    ],\\n    \\\"3v4\\\": [\\n      0.4981,\\n      0.5327,\\n      0.5092,\\n      0.5123,\\n      0.5238\\n    ],\\n    \\\"4v5\\\": [\\n      0.4983,\\n      0.4822,\\n      0.5074,\\n      0.5224,\\n      0.5128\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "657c038e-55a5-4cee-89fa-c8869967ed1f",
+  "uuid": "569fe100-383a-47b7-b8c2-f03448461793",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mean\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": 0.9592,\\\\n    \\\\\\\"1v2\\\\\\\": 0.5983,\\\\n    \\\\\\\"2v3\\\\\\\": 0.5215,\\\\n    \\\\\\\"3v4\\\\\\\": 0.5152,\\\\n    \\\\\\\"4v5\\\\\\\": 0.5046\\\\n  },\\\\n  \\\\\\\"per_fold\\\\\\\": {\\\\n    \\\\\\\"0v1\\\\\\\": [\\\\n      0.9576,\\\\n      0.9576,\\\\n      0.9657,\\\\n      0.96,\\\\n      0.9552\\\\n    ],\\\\n    \\\\\\\"1v2\\\\\\\": [\\\\n      0.601,\\\\n      0.5884,\\\\n      0.6,\\\\n      0.5997,\\\\n      0.6024\\\\n    ],\\\\n    \\\\\\\"2v3\\\\\\\": [\\\\n      0.5236,\\\\n      0.5124,\\\\n      0.5311,\\\\n      0.5024,\\\\n      0.5381\\\\n    ],\\\\n    \\\\\\\"3v4\\\\\\\": [\\\\n      0.4981,\\\\n      0.5327,\\\\n      0.5092,\\\\n      0.5123,\\\\n      0.5238\\\\n    ],\\\\n    \\\\\\\"4v5\\\\\\\": [\\\\n      0.4983,\\\\n      0.4822,\\\\n      0.5074,\\\\n      0.5224,\\\\n      0.5128\\\\n    ]\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mean\\\": {\\n    \\\"0v1\\\": 0.9592,\\n    \\\"1v2\\\": 0.5983,\\n    \\\"2v3\\\": 0.5215,\\n    \\\"3v4\\\": 0.5152,\\n    \\\"4v5\\\": 0.5046\\n  },\\n  \\\"per_fold\\\": {\\n    \\\"0v1\\\": [\\n      0.9576,\\n      0.9576,\\n      0.9657,\\n      0.96,\\n      0.9552\\n    ],\\n    \\\"1v2\\\": [\\n      0.601,\\n      0.5884,\\n      0.6,\\n      0.5997,\\n      0.6024\\n    ],\\n    \\\"2v3\\\": [\\n      0.5236,\\n      0.5124,\\n      0.5311,\\n      0.5024,\\n      0.5381\\n    ],\\n    \\\"3v4\\\": [\\n      0.4981,\\n      0.5327,\\n      0.5092,\\n      0.5123,\\n      0.5238\\n    ],\\n    \\\"4v5\\\": [\\n      0.4983,\\n      0.4822,\\n      0.5074,\\n      0.5224,\\n      0.5128\\n    ]\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+JSON structure matches what the script expects: `data["per_fold"][pair]` returns a list of fold values. Good.
+
+Now let me do the dry-run.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "657c038e-55a5-4cee-89fa-c8869967ed1f",
+  "uuid": "0bb64f25-d064-4d1a-abd8-3d390642f950",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017RskXYHitRHqJhJ5UjbJ5b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2186,
+      "cache_read_input_tokens": 30614,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2186
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+JSON 结构匹配：`per_fold` → pair → list of 5 fold values。脚本解析逻辑正确。
+
+执行 dry-run。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "657c038e-55a5-4cee-89fa-c8869967ed1f",
+  "uuid": "b537bc7a-174a-418b-ac18-e5138e27fca0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017RskXYHitRHqJhJ5UjbJ5b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2186,
+      "cache_read_input_tokens": 30614,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2186
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01B5YTfCsdTsjn7BHrDUn6tp`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cd /root/autodl-tmp/gen-depth-contamination && python scripts/analyze_code_crossmodel.py 2>&1 | head -80",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "657c038e-55a5-4cee-89fa-c8869967ed1f",
+  "uuid": "613264d6-418c-46a2-8ae8-46a8a4a7314c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017RskXYHitRHqJhJ5UjbJ5b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2186,
+      "cache_read_input_tokens": 30614,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2186
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T04:25:31.046Z_
+
+<details><summary>↩ Tool result · `toolu_01B5YTfCsdTsjn7BHrDUn6tp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"bash: line 1: python: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "657c038e-55a5-4cee-89fa-c8869967ed1f",
+  "uuid": "bed3a808-4f70-4248-9917-8157aeefb50e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bash: line 1: python: command not found\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"bash: line 1: python: command not found\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01UMEYA43pWFyY8u4wKyxFRQ`</summary>
+
+```json
+{
+  "server": "cqa1-22115",
+  "command": "cd /root/autodl-tmp/gen-depth-contamination && python3 scripts/analyze_code_crossmodel.py 2>&1 | head -80",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "657c038e-55a5-4cee-89fa-c8869967ed1f",
+  "uuid": "304a5ed9-c704-42f3-acf0-10d426083693",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q3sot3cbkoiJQTjzSZnGLh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 319,
+      "cache_read_input_tokens": 32800,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 319
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T04:25:34.677Z_
+
+<details><summary>↩ Tool result · `toolu_01UMEYA43pWFyY8u4wKyxFRQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[WARN] exp_code_qwen7b not found or incomplete, skipping\\n[WARN] exp_code_llama8b not found or incomplete, skipping\\n[WARN] exp_code_mistral7b not found or incomplete, skipping\\n[INFO] LaTeX table written to /root/autodl-tmp/gen-depth-contamination/artifacts/code_crossmodel_table.tex\\n[INFO] JSON results written to /root/autodl-tmp/gen-depth-contamination/artifacts/code_crossmodel_results.json\\n[CHECK] Qwen2.5-1.5B: K*=2, 0v1 AUC=0.9388\\n[CHECK] Pythia-1.4B: K*=1, 0v1 AUC=0.9592\\n% Code Domain Cross-Model Pairwise AUC Results\\n% Generated: 2026-05-19 12:25\\n% Threshold theta = 0.6\\n\\n\\\\begin{table}[t]\\n\\\\centering\\n\\\\caption{Pairwise AUC ($k$ vs $k{+}1$) for code-domain contamination detection across five generator models trained on the CodeSearchNet Python subset \\\\citep{husain2019codesearchnet}. CI columns show 95\\\\% confidence intervals from 5-fold CV. Underlined values mark the $K^*$ boundary (last pair with AUC $> \\\\theta$).}\\n\\\\label{tab:code_crossmodel_auc}\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{l cc cc cc cc cc}\\n\\\\toprule\\n & \\\\multicolumn{2}{c}{Qwen2.5-1.5B} & \\\\multicolumn{2}{c}{Pythia-1.4B} & \\\\multicolumn{2}{c}{Qwen2.5-7B} & \\\\multicolumn{2}{c}{Llama-3.1-8B} & \\\\multicolumn{2}{c}{Mistral-7B-v0.3} \\\\\\\\\\n\\\\cmidrule(lr){2-3} \\\\cmidrule(lr){4-5} \\\\cmidrule(lr){6-7} \\\\cmidrule(lr){8-9} \\\\cmidrule(lr){10-11}\\nPair & AUC & CI & AUC & CI & AUC & CI & AUC & CI & AUC & CI \\\\\\\\\\n\\\\midrule\\n$0{\\\\to}1$ & 0.9388 & $\\\\pm$0.0046 & \\\\underline{0.9592} & \\\\underline{$\\\\pm$0.0035} & TBD &  & TBD &  & TBD &  \\\\\\\\\\n$1{\\\\to}2$ & \\\\underline{0.7382} & \\\\underline{$\\\\pm$0.0130} & 0.5983 & $\\\\pm$0.0049 & TBD &  & TBD &  & TBD &  \\\\\\\\\\n$2{\\\\to}3$ & 0.5300 & $\\\\pm$0.0072 & 0.5215 & $\\\\pm$0.0125 & TBD &  & TBD &  & TBD &  \\\\\\\\\\n$3{\\\\to}4$ & 0.5022 & $\\\\pm$0.0072 & 0.5152 & $\\\\pm$0.0117 & TBD &  & TBD &  & TBD &  \\\\\\\\\\n$4{\\\\to}5$ & 0.5219 & $\\\\pm$0.0055 & 0.5046 & $\\\\pm$0.0134 & TBD &  & TBD &  & TBD &  \\\\\\\\\\n\\\\midrule\\n$K^*$ & 2 &  & 1 &  & TBD &  & TBD &  & TBD &  \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}}\\n\\n\\\\vspace{2pt}\\n{\\\\footnotesize $\\\\theta = 0.6$; $K^*$ = max $k$ s.t.\\\\ AUC($k{-}1, k$) $> \\\\theta$. Domain: Code (CodeSearchNet Python subset). 5-fold CV.}\\n\\\\end{table}\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "657c038e-55a5-4cee-89fa-c8869967ed1f",
+  "uuid": "9b307d9b-0d54-4227-9d85-eb7f6e220720",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[WARN] exp_code_qwen7b not found or incomplete, skipping\\\\n[WARN] exp_code_llama8b not found or incomplete, skipping\\\\n[WARN] exp_code_mistral7b not found or incomplete, skipping\\\\n[INFO] LaTeX table written to /root/autodl-tmp/gen-depth-contamination/artifacts/code_crossmodel_table.tex\\\\n[INFO] JSON results written to /root/autodl-tmp/gen-depth-contamination/artifacts/code_crossmodel_results.json\\\\n[CHECK] Qwen2.5-1.5B: K*=2, 0v1 AUC=0.9388\\\\n[CHECK] Pythia-1.4B: K*=1, 0v1 AUC=0.9592\\\\n% Code Domain Cross-Model Pairwise AUC Results\\\\n% Generated: 2026-05-19 12:25\\\\n% Threshold theta = 0.6\\\\n\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Pairwise AUC ($k$ vs $k{+}1$) for code-domain contamination detection across five generator models trained on the CodeSearchNet Python subset \\\\\\\\citep{husain2019codesearchnet}. CI columns show 95\\\\\\\\% confidence intervals from 5-fold CV. Underlined values mark the $K^*$ boundary (last pair with AUC $> \\\\\\\\theta$).}\\\\n\\\\\\\\label{tab:code_crossmodel_auc}\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{l cc cc cc cc cc}\\\\n\\\\\\\\toprule\\\\n & \\\\\\\\multicolumn{2}{c}{Qwen2.5-1.5B} & \\\\\\\\multicolumn{2}{c}{Pythia-1.4B} & \\\\\\\\multicolumn{2}{c}{Qwen2.5-7B} & \\\\\\\\multicolumn{2}{c}{Llama-3.1-8B} & \\\\\\\\multicolumn{2}{c}{Mistral-7B-v0.3} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\cmidrule(lr){2-3} \\\\\\\\cmidrule(lr){4-5} \\\\\\\\cmidrule(lr){6-7} \\\\\\\\cmidrule(lr){8-9} \\\\\\\\cmidrule(lr){10-11}\\\\nPair & AUC & CI & AUC & CI & AUC & CI & AUC & CI & AUC & CI \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n$0{\\\\\\\\to}1$ & 0.9388 & $\\\\\\\\pm$0.0046 & \\\\\\\\underline{0.9592} & \\\\\\\\underline{$\\\\\\\\pm$0.0035} & TBD &  & TBD &  & TBD &  \\\\\\\\\\\\\\\\\\\\n$1{\\\\\\\\to}2$ & \\\\\\\\underline{0.7382} & \\\\\\\\underline{$\\\\\\\\pm$0.0130} & 0.5983 & $\\\\\\\\pm$0.0049 & TBD &  & TBD &  & TBD &  \\\\\\\\\\\\\\\\\\\\n$2{\\\\\\\\to}3$ & 0.5300 & $\\\\\\\\pm$0.0072 & 0.5215 & $\\\\\\\\pm$0.0125 & TBD &  & TBD &  & TBD &  \\\\\\\\\\\\\\\\\\\\n$3{\\\\\\\\to}4$ & 0.5022 & $\\\\\\\\pm$0.0072 & 0.5152 & $\\\\\\\\pm$0.0117 & TBD &  & TBD &  & TBD &  \\\\\\\\\\\\\\\\\\\\n$4{\\\\\\\\to}5$ & 0.5219 & $\\\\\\\\pm$0.0055 & 0.5046 & $\\\\\\\\pm$0.0134 & TBD &  & TBD &  & TBD &  \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n$K^*$ & 2 &  & 1 &  & TBD &  & TBD &  & TBD &  \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}}\\\\n\\\\n\\\\\\\\vspace{2pt}\\\\n{\\\\\\\\footnotesize $\\\\\\\\theta = 0.6$; $K^*$ = max $k$ s.t.\\\\\\\\ AUC($k{-}1, k$) $> \\\\\\\\theta$. Domain: Code (CodeSearchNet Python subset). 5-fold CV.}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[WARN] exp_code_qwen7b not found or incomplete, skipping\\n[WARN] exp_code_llama8b not found or incomplete, skipping\\n[WARN] exp_code_mistral7b not found or incomplete, skipping\\n[INFO] LaTeX table written to /root/autodl-tmp/gen-depth-contamination/artifacts/code_crossmodel_table.tex\\n[INFO] JSON results written to /root/autodl-tmp/gen-depth-contamination/artifacts/code_crossmodel_results.json\\n[CHECK] Qwen2.5-1.5B: K*=2, 0v1 AUC=0.9388\\n[CHECK] Pythia-1.4B: K*=1, 0v1 AUC=0.9592\\n% Code Domain Cross-Model Pairwise AUC Results\\n% Generated: 2026-05-19 12:25\\n% Threshold theta = 0.6\\n\\n\\\\begin{table}[t]\\n\\\\centering\\n\\\\caption{Pairwise AUC ($k$ vs $k{+}1$) for code-domain contamination detection across five generator models trained on the CodeSearchNet Python subset \\\\citep{husain2019codesearchnet}. CI columns show 95\\\\% confidence intervals from 5-fold CV. Underlined values mark the $K^*$ boundary (last pair with AUC $> \\\\theta$).}\\n\\\\label{tab:code_crossmodel_auc}\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{l cc cc cc cc cc}\\n\\\\toprule\\n & \\\\multicolumn{2}{c}{Qwen2.5-1.5B} & \\\\multicolumn{2}{c}{Pythia-1.4B} & \\\\multicolumn{2}{c}{Qwen2.5-7B} & \\\\multicolumn{2}{c}{Llama-3.1-8B} & \\\\multicolumn{2}{c}{Mistral-7B-v0.3} \\\\\\\\\\n\\\\cmidrule(lr){2-3} \\\\cmidrule(lr){4-5} \\\\cmidrule(lr){6-7} \\\\cmidrule(lr){8-9} \\\\cmidrule(lr){10-11}\\nPair & AUC & CI & AUC & CI & AUC & CI & AUC & CI & AUC & CI \\\\\\\\\\n\\\\midrule\\n$0{\\\\to}1$ & 0.9388 & $\\\\pm$0.0046 & \\\\underline{0.9592} & \\\\underline{$\\\\pm$0.0035} & TBD &  & TBD &  & TBD &  \\\\\\\\\\n$1{\\\\to}2$ & \\\\underline{0.7382} & \\\\underline{$\\\\pm$0.0130} & 0.5983 & $\\\\pm$0.0049 & TBD &  & TBD &  & TBD &  \\\\\\\\\\n$2{\\\\to}3$ & 0.5300 & $\\\\pm$0.0072 & 0.5215 & $\\\\pm$0.0125 & TBD &  & TBD &  & TBD &  \\\\\\\\\\n$3{\\\\to}4$ & 0.5022 & $\\\\pm$0.0072 & 0.5152 & $\\\\pm$0.0117 & TBD &  & TBD &  & TBD &  \\\\\\\\\\n$4{\\\\to}5$ & 0.5219 & $\\\\pm$0.0055 & 0.5046 & $\\\\pm$0.0134 & TBD &  & TBD &  & TBD &  \\\\\\\\\\n\\\\midrule\\n$K^*$ & 2 &  & 1 &  & TBD &  & TBD &  & TBD &  \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}}\\n\\n\\\\vspace{2pt}\\n{\\\\footnotesize $\\\\theta = 0.6$; $K^*$ = max $k$ s.t.\\\\ AUC($k{-}1, k$) $> \\\\theta$. Domain: Code (CodeSearchNet Python subset). 5-fold CV.}\\n\\\\end{table}\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The dry-run succeeded. Let me summarize the findings:
+
+1. **EXPERIMENTS dict**: 5 entries, all paths correct. One naming difference: "Llama-3.1-8B" in script vs "LLaMA-3.1-8B" in user spec. Meta's official name for 3.1 is "Llama" so the script is correct.
+
+2. **Directory existence**: All 5 directories exist. But:
+   - exp_code_qwen1b5: has pairwise_auc.json ✓
+   - exp_code_pythia1b4: has pairwise_auc.json ✓
+   - exp_code_qwen7b: EMPTY
+   - exp_code_llama8b: EMPTY
+   - exp_code_mistral7b: EMPTY
+
+3. **Result file**: pairwise_auc.json, structure matches script expectations (per_fold → pair → list of 5 values)
+
+4. **Caption**: "CodeSearchNet Python subset" ✓ (not TheStack v2)
+
+5. **Dry-run status**: Checking the final validation step...
+
+The dry-run completed successfully with graceful handling of missing experiments—the script outputs [WARN] messages and "TBD" placeholders where needed, and both the LaTeX table and JSON results were generated and written to the correct locations. For K* computation, Qwen2.5-1.5B stops at K*=2 when the pairwise AUC drops below 0.6, while Pythia-1.4B stops at K*=1 with the same threshold. Everything looks good and the script is ready to go.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "657c038e-55a5-4cee-89fa-c8869967ed1f",
+  "uuid": "b899162d-9828-4ab9-abf3-28f455c82657",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016u63LtrBV1fptoaARJb3B9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1505,
+      "cache_read_input_tokens": 33119,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1505
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+验证完成，脚本就绪。
+
+**检查结果**：
+
+| 检查项 | 状态 |
+|--------|------|
+| EXPERIMENTS 5 个条目及路径 | 全部正确 |
+| 模型名 "Llama-3.1-8B" | Meta 3.1 官方命名，无需改为 "LLaMA" |
+| 数据文件名 pairwise_auc.json | 与脚本一致 |
+| JSON 结构 (`per_fold` → pair → 5-fold list) | 与脚本解析逻辑匹配 |
+| Caption "CodeSearchNet Python subset" | 正确，非 TheStack v2 |
+| 缺失实验 graceful handling | `[WARN]` + "TBD" 占位，不报错 |
+
+**目录数据状态**：
+- `exp_code_qwen1b5` — 有数据，K\*=2
+- `exp_code_pythia1b4` — 有数据，K\*=1
+- `exp_code_qwen7b` — 空目录（实验未完成）
+- `exp_code_llama8b` — 空目录（实验未完成）
+- `exp_code_mistral7b` — 空目录（实验未完成）
+
+**Dry-run**：成功。LaTeX 表格和 JSON 已输出到 `artifacts/`。exp_code_llama8b 完成后产生 `pairwise_auc.json`，重跑脚本即可自动填充，零延迟。无需修复。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "657c038e-55a5-4cee-89fa-c8869967ed1f",
+  "uuid": "9eca52bd-8681-4993-88eb-deb967b9ccd9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016u63LtrBV1fptoaARJb3B9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1505,
+      "cache_read_input_tokens": 33119,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1505
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 25_
+
+验证完成，脚本就绪。
+
+**检查结果**：
+
+| 检查项 | 状态 |
+|--------|------|
+| EXPERIMENTS 5 个条目及路径 | 全部正确 |
+| 模型名 "Llama-3.1-8B" | Meta 3.1 官方命名，无需改为 "LLaMA" |
+| 数据文件名 pairwise_auc.json | 与脚本一致 |
+| JSON 结构 (`per_fold` → pair → 5-fold list) | 与脚本解析逻辑匹配 |
+| Caption "CodeSearchNet Python subset" | 正确，非 TheStack v2 |
+| 缺失实验 graceful handling | `[WARN]` + "TBD" 占位，不报错 |
+
+**目录数据状态**：
+- `exp_code_qwen1b5` — 有数据，K\*=2
+- `exp_code_pythia1b4` — 有数据，K\*=1
+- `exp_code_qwen7b` — 空目录（实验未完成）
+- `exp_code_llama8b` — 空目录（实验未完成）
+- `exp_code_mistral7b` — 空目录（实验未完成）
+
+**Dry-run**：成功。LaTeX 表格和 JSON 已输出到 `artifacts/`。exp_code_llama8b 完成后产生 `pairwise_auc.json`，重跑脚本即可自动填充，零延迟。无需修复。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 58573,
+  "duration_api_ms": 58128,
+  "num_turns": 8,
+  "stop_reason": "end_turn",
+  "session_id": "657c038e-55a5-4cee-89fa-c8869967ed1f",
+  "total_cost_usd": 0.30152775,
+  "usage": {
+    "input_tokens": 9,
+    "cache_creation_input_tokens": 22783,
+    "cache_read_input_tokens": 159760,
+    "output_tokens": 3098,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 22783,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 889,
+        "cache_read_input_tokens": 33119,
+        "cache_creation_input_tokens": 1505,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1505
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1664,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001759,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 9,
+      "outputTokens": 3098,
+      "cacheReadInputTokens": 159760,
+      "cacheCreationInputTokens": 22783,
+      "webSearchRequests": 0,
+      "costUSD": 0.2997687499999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "b0e68469-cfa4-47a8-8d4d-a6268dc825ff"
+}
+```
+
+</details>
+
+---

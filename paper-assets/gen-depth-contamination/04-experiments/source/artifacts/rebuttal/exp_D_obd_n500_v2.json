@@ -1,0 +1,29 @@
+{
+  "obd_n500_accuracy": 0.38,
+  "obd_n500_ci_lower": 0.34,
+  "obd_n500_ci_upper": 0.424,
+  "n_bootstrap": 1000,
+  "n_samples": 500,
+  "sample_source": "exp011_samples.jsonl (same as LLM baseline)",
+  "gpt55_n500_accuracy": 0.332,
+  "claude_n500_accuracy": 0.331,
+  "obd_full_accuracy": 0.3856,
+  "obd_full_n": 30000,
+  "method": "OBD-LightGBM out-of-fold predictions, same 500 samples as exp-011",
+  "obd_hyperparams": {
+    "n_estimators": 200,
+    "max_depth": 6,
+    "learning_rate": 0.05,
+    "num_leaves": 31,
+    "n_binary_classifiers": 5,
+    "n_folds": 5
+  },
+  "per_depth_accuracy": {
+    "0": 0.96,
+    "1": 0.39,
+    "2": 0.14,
+    "3": 0.19,
+    "4": 0.22
+  },
+  "conclusion": "OBD at N=500 achieves 38.0% [34.0%, 42.4%], above LLM baselines (GPT-5.5: 33.2%, Claude: 33.1%)"
+}

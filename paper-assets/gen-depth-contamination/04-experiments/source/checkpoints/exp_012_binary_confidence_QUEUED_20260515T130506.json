@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp_012_binary_confidence",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T12:32:09.468Z",
+    "updated_at": "2026-05-15T13:05:06.455Z",
+    "spec": {
+      "hypothesis": "Binary detector confidence (Binoculars/log-perplexity) 与 true depth 的 Spearman ρ 是否显著？如果 ρ 低，直接支撑 binary confidence ≠ depth estimation 论点",
+      "server": "westc-26893",
+      "data_path": "data/ + data_exp001_pythia/ + data_exp002_olmo/ + data_exp017_qwen_cont/",
+      "data_count": "4×6×5000 = 120000 texts",
+      "model_name": "Binoculars: observer+performer pair; Log-PPL: Qwen2.5-1.5B-Instruct",
+      "seed": 42,
+      "note": "Queued after exp-004 7B completes. Code prepared and dry-run verified."
+    },
+    "notes": "Binoculars 模型对修复完成：observer=EleutherAI/pythia-1.4b, performer=allenai/OLMo-1B-0724（各自独立 tokenizer，无 shared vocab 假设）。脚本 scripts/exp012_ppl_depth_correlation.py，dry-run 通过。DivEye 单模型 log-PPL 部分不变（Qwen2.5-1.5B-Instruct）。等 exp-004 完成后可用 cuda:0 运行，预计 ~20min（3 模型 × 500 samples/depth）。",
+    "hypothesis": "Binary detector confidence (DivEye log-PPL + Binoculars ratio) 与 true depth 的 Spearman correlation，验证 binary confidence ≠ depth。Binoculars: observer=Pythia-1.4b, performer=OLMo-1B-0724。"
+  },
+  "timestamp": "2026-05-15T13:05:06.542087+00:00",
+  "trigger": "update_registry"
+}

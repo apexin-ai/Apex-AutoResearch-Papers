@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_026_arxiv_filtering",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T10:19:57.768Z",
+    "updated_at": "2026-05-18T10:25:08.071Z",
+    "hypothesis": "Graduated depth weighting (α=0.9^d) on arXiv depth chains will outperform both no-filter and binary-cut baselines on downstream benchmarks (MMLU, HellaSwag), because it preserves useful signal from deeper generations while down-weighting accumulated contamination, rather than discarding data entirely.",
+    "parent": "exp_006_graduated_filtering"
+  },
+  "timestamp": "2026-05-18T10:25:08.276232+00:00",
+  "trigger": "update_registry"
+}

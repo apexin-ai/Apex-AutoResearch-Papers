@@ -1,0 +1,8 @@
+Remote files on westc-26893:
+- /root/autodl-tmp/gen-depth-contamination/artifacts/kstar_theta_curve.pdf (19KB)
+- /root/autodl-tmp/gen-depth-contamination/artifacts/kstar_theta_curve.png (92KB)
+
+Key observations:
+- θ=0.60: all 4 models K*=2 (Qwen-RW, Pythia, OLMo, Qwen-cont)
+- Step function: θ<0.54 → K*=5, θ=0.60 → K*=2, θ>0.70 → K*=1
+- Qwen-RW retains higher K* at elevated θ (stronger rewrite signal)

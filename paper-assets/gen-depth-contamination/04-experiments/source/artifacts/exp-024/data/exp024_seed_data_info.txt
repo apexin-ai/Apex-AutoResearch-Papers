@@ -1,0 +1,5 @@
+Remote path: /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_0.jsonl
+Lines: 5000
+Fields: text, doc_id
+Source: arXiv API (export.arxiv.org), categories cs.CL/cs.LG/cs.AI/cs.CV/stat.ML
+Text length: min=99, max=67090, mean=1631

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "171b78cecd5da4821ee1",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis registry metrics ",
+  "task_key": "worker_analysis_registry_metrics____20260513T211333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_registry_metrics____20260513T211333_result.json",
+    "occurrence": 1,
+    "bytes": 585,
+    "sha256": "9d97fb156e0afffba51434e6712cc711f9b3560033695bb068e8f068b65b3491"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两组数据都找到了。\n\n```\nconfig4_t12:\n  0v1: 0.9982\n  1v2: 0.7039\n  2v3: 0.5823  (确认 < 0.60 ✓，K*=2 成立)\n  3v4: 0.5293\n  4v5: 0.5237\n  top3_features_1v2: [freq_entropy, hapax_ratio, surp_skew]\n\nqwen_cont_0v1:\n  ci_lower: 0.9963\n  ci_upper: 0.9978\n  perm_p: 0.000\n```\n\n数据来源：\n- config4_t12 → `results_exp003_t12/pairwise_auc.json` + `feature_importance.json`\n- qwen_cont_0v1 → `artifacts/bootstrap_ci_4model.json` 中的 `exp_017_qwen_cont.0v1`（注意不在 `bootstrap_ci_results.json` 里，那个只有 3 个模型）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-registry-metrics.md"
+}

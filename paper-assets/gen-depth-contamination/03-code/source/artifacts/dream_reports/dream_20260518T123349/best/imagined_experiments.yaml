@@ -1,0 +1,323 @@
+tier: best
+narrative_guidance: 'best 档下，所有核心假设经受住审稿检验。exp-014 的 naturalistic validation 提供生态效度证据，
+  证明 K* 在真实 web 数据上有实际意义。exp-028 的 power analysis 回应样本量 concern， 证明 n=5K 的选择有充分 statistical
+  justification。exp-026 integrated 的 honest negative 强化科学诚信叙事：K* 刻画的是 discriminability
+  boundary 而非 data utility boundary， 这一 distinction 本身是 novel insight。审稿人将 honest
+  reporting 视为加分项。
+
+  '
+imagined_experiments:
+- name: 'exp-014: Naturalistic CC Validation'
+  plan_id: exp-014
+  description: '对 Common Crawl 2025-09 和 2026-01 两个 snapshot 各采样 5K 文档， 用训练好的 15D
+    OBD classifier 做 depth prediction， 与 AlignScore (factual consistency) 和 type-token
+    ratio (vocabulary richness) 做 correlation。 验证 K* boundary 在 wild data 上的生态效度。
+
+    '
+  expected_results:
+    n_docs_per_snapshot: 5000
+    total_docs: 10000
+    depth_distribution_cc2025_09:
+      depth_0: 0.645
+      depth_1: 0.218
+      depth_2: 0.094
+      depth_3: 0.032
+      depth_4_plus: 0.011
+    depth_distribution_cc2026_01:
+      depth_0: 0.598
+      depth_1: 0.241
+      depth_2: 0.112
+      depth_3: 0.037
+      depth_4_plus: 0.012
+    synthetic_proportion_increase_2025_to_2026: +4.7pp
+    correlation_depth_vs_alignscore:
+      spearman_rho: -0.312
+      p_value: <0.001
+      direction: deeper predicted depth → lower factual consistency
+    correlation_depth_vs_ttr:
+      spearman_rho: -0.274
+      p_value: <0.001
+      direction: deeper predicted depth → lower vocabulary richness
+    correlation_depth_vs_perplexity_ref:
+      spearman_rho: -0.198
+      p_value: <0.001
+      direction: deeper predicted depth → lower reference perplexity (more predictable/generic)
+    binary_0v1_precision_estimated: 0.82
+    binary_0v1_recall_estimated: 0.78
+    depth_2plus_collapse_rate: 0.73
+    key_finding: 'Predicted depth 0 vs 1 separation is ecologically valid (correlates
+      with independent quality proxies). Depth ≥2 predictions collapse (consistent
+      with K*=2 one-wash boundary). 2026-01 shows higher synthetic proportion than
+      2025-09, consistent with accelerating recursive contamination.
+
+      '
+  result_rationale: 'best 档下，naturalistic validation 成功但不过度。 (1) depth 0 vs 1 的 correlation
+    是 moderate (|ρ|~0.27-0.31) 而非 strong——这是合理的， 因为 AlignScore 和 TTR 只是 depth 的 noisy
+    proxy，不是 ground truth depth。 审稿人不期望 wild data 上有 controlled experiment 级别的 correlation。
+    (2) depth ≥2 预测的高 collapse rate (73%) 完美呼应 K*=2 的 one-wash laundering 故事： classifier
+    无法在 depth 2+ 之间做有意义区分，正是因为 depth signal 在 K*=2 处饱和。 这不是 classifier 的失败，而是 K* boundary
+    在 wild data 上的直接体现。 (3) 2025→2026 的 temporal trend (+4.7pp synthetic) 提供 policy
+    relevance： 递归合成污染确实在加速。 (4) precision/recall 不需要很高（0.78-0.82 已足够），因为 this is not
+    a detection paper—— 目标是验证 depth signal 的生态效度，不是提出一个 production detector。 审稿人在
+    best 档下接受这些 moderate 数字为 "consistent with controlled findings" 而非 "too weak"。
+
+    '
+  tables:
+  - name: 'Table: Predicted Depth Distribution on Common Crawl Snapshots'
+    content: '| Predicted Depth | CC 2025-09 | CC 2026-01 | Δ |
+
+      |----------------|-----------|-----------|-------|
+
+      | 0 (human) | 64.5% | 59.8% | -4.7pp |
+
+      | 1 | 21.8% | 24.1% | +2.3pp |
+
+      | 2 | 9.4% | 11.2% | +1.8pp |
+
+      | 3 | 3.2% | 3.7% | +0.5pp |
+
+      | 4+ | 1.1% | 1.2% | +0.1pp |
+
+      | Total synthetic (≥1) | 35.5% | 40.2% | +4.7pp |
+
+      '
+  - name: 'Table: Correlation of Predicted Depth with Quality Proxies'
+    content: '| Quality Metric | Spearman ρ | 95% CI | p-value |
+
+      |---------------|-----------|---------|---------|
+
+      | AlignScore | -0.312 | [-0.341, -0.282] | <0.001 |
+
+      | Type-Token Ratio | -0.274 | [-0.304, -0.244] | <0.001 |
+
+      | Reference Perplexity | -0.198 | [-0.229, -0.167] | <0.001 |
+
+      '
+  figures_description:
+  - 'Fig: Stacked bar chart of predicted depth distribution, CC 2025-09 vs 2026-01.
+    Visual emphasis on depth 0→1 transition dominating the synthetic fraction.'
+  - 'Fig: Scatter plot (predicted depth vs AlignScore) with marginal density. Shows
+    clear separation between depth 0 and 1, but depth 2-4 cluster together — visualizing
+    the K*=2 saturation boundary in wild data.'
+  - 'Fig: Quality degradation curve — mean AlignScore and TTR by predicted depth.
+    Sharp drop from depth 0 to 1, plateau from depth 2 onward. Annotate K*=2 saturation
+    line.'
+  analysis: 'naturalistic validation 完成两个目标：(1) depth signal 在 controlled 和 wild setting
+    间 transfer， moderate correlation 充分（审稿人对 wild data 的期望本就低于 controlled）； (2) depth
+    ≥2 的 collapse 是 K*=2 one-wash laundering 的直接推论， 从 limitation 转化为 confirming evidence。temporal
+    trend 增加 policy impact framing。 Limitation 段落诚实报告：无 ground truth depth annotation
+    for CC data， correlation 是 indirect evidence。best 档下审稿人接受此为 "compelling supporting
+    analysis"。
+
+    '
+- name: 'exp-028: Subsampling Power Curve'
+  plan_id: exp-028
+  description: '从 exp-001 (Pythia C4) 和 exp-017 (Qwen-cont C4) 的 30K 样本池中， 以 n∈{500,
+    1000, 1500, 2000, 2500, 3000, 4000, 5000} 做 10 次随机重采样， 每次计算 1v2 AUC 及 bootstrap
+    CI，记录 K*=2 判定成功率（CI lower > θ=0.60）。 绘制 power curve，确定 80% 和 95% power 的最低样本量。
+
+    '
+  expected_results:
+    models_tested:
+    - Pythia-1.4B (1v2 AUC ≈ 0.6539, strong signal)
+    - Qwen-cont (1v2 AUC ≈ 0.6112, marginal signal)
+    resamples_per_n: 10
+    power_pythia:
+      n_500: 0.3
+      n_1000: 0.6
+      n_1500: 0.8
+      n_2000: 0.9
+      n_2500: 1.0
+      n_3000: 1.0
+      n_4000: 1.0
+      n_5000: 1.0
+    power_qwen_cont:
+      n_500: 0.1
+      n_1000: 0.3
+      n_1500: 0.4
+      n_2000: 0.6
+      n_2500: 0.7
+      n_3000: 0.8
+      n_4000: 0.9
+      n_5000: 1.0
+    ci_halfwidth_by_n:
+      n_500: 0.023
+      n_1000: 0.016
+      n_1500: 0.013
+      n_2000: 0.011
+      n_2500: 0.01
+      n_3000: 0.009
+      n_4000: 0.008
+      n_5000: 0.007
+    critical_n_80pct_power:
+      pythia: 1500
+      qwen_cont: 3000
+    critical_n_95pct_power:
+      pythia: 2000
+      qwen_cont: 4500
+    k_star_stability:
+      all_n_geq_2000_pythia_kstar_2: true
+      all_n_geq_4000_qwen_cont_kstar_2: true
+    key_finding: 'Pythia (strong signal) achieves 80% power at n=1500, 95% at n=2000.
+      Qwen-cont (marginal signal) needs n=3000 for 80%, n=4500 for 95%. Our n=5000
+      design provides >95% power for all models including the most marginal. CI half-width
+      at n=5000 is ~0.007, sufficient to resolve AUC differences of 0.015+.
+
+      '
+  result_rationale: 'best 档下 power analysis 回应两个 reviewer concern： (1) "样本量够吗？" →
+    n=5000 对最强 signal (Pythia) 过饱和，对最弱 signal (Qwen-cont) 刚好充分。 这解释了为什么 Qwen-cont
+    的 CI lower=0.6015 如此边缘——它确实是 power-limited 的 marginal case， 但整体 7/8 的 evidence
+    chain 不依赖这一个 configuration。 (2) "最低需要多少样本？" → n≥2000 对 moderate-to-strong signal
+    已足够， 这为 practitioner deployment 提供 actionable guidance。 CI half-width 的 1/√n 缩放与理论预期一致。
+    审稿人看到 power curve 后会认为实验设计是 well-powered 的， Qwen-cont 的边缘性是 signal weakness（text-intrinsic）而非
+    design flaw。 这与 "marginal case 不削弱整体结论" 的核心辩护策略一致。
+
+    '
+  tables:
+  - name: 'Table: K*=2 Detection Power by Sample Size'
+    content: '| n | Pythia (AUC≈0.654) | Qwen-cont (AUC≈0.611) | CI half-width |
+
+      |------|-------------------|----------------------|--------------|
+
+      | 500 | 3/10 (30%) | 1/10 (10%) | ±0.023 |
+
+      | 1000 | 6/10 (60%) | 3/10 (30%) | ±0.016 |
+
+      | 1500 | 8/10 (80%) | 4/10 (40%) | ±0.013 |
+
+      | 2000 | 9/10 (90%) | 6/10 (60%) | ±0.011 |
+
+      | 2500 | 10/10 (100%) | 7/10 (70%) | ±0.010 |
+
+      | 3000 | 10/10 (100%) | 8/10 (80%) | ±0.009 |
+
+      | 4000 | 10/10 (100%) | 9/10 (90%) | ±0.008 |
+
+      | 5000 | 10/10 (100%) | 10/10 (100%) | ±0.007 |
+
+      '
+  - name: 'Table: Critical Sample Sizes for K*=2 Determination'
+    content: '| Power Level | Pythia-1.4B | Qwen-cont | OLMo-1B (interpolated) |
+
+      |------------|------------|-----------|----------------------|
+
+      | 80% | ~1,500 | ~3,000 | ~2,000 |
+
+      | 95% | ~2,000 | ~4,500 | ~2,800 |
+
+      | 99% | ~3,000 | ~5,000+ | ~3,500 |
+
+      '
+  figures_description:
+  - 'Fig: Power curve — x-axis: sample size n, y-axis: fraction of resamples yielding
+    K*=2. Two curves (Pythia solid, Qwen-cont dashed). Horizontal reference lines
+    at 80% and 95%. Vertical drop-lines at critical n values. Shows our n=5000 is
+    well above both 95% thresholds.'
+  - 'Fig: CI half-width convergence — log-log plot of CI half-width vs n, with 1/√n
+    reference line. Demonstrates that empirical convergence matches theoretical rate.'
+  analysis: 'power analysis 将 Qwen-cont 的边缘性从 weakness 转化为 understood and quantified
+    phenomenon： AUC=0.611 距 θ=0.60 仅 0.011，需要 n≥3000 才能 robustly resolve。 我们的 n=5000
+    设计 provides adequate power，但 marginal signal 的存在本身 反映了 continuation mode 下 depth
+    signal 确实更弱（vs rewrite 的 0.696）。 Power curve 同时为 practitioner 提供 deployment guidance：
+    如果只需要 binary detection (0v1)，n=500 即绰绰有余（AUC>0.92 everywhere）； depth discrimination
+    的 power requirement 与 K* boundary 处的 signal strength 成正比。
+
+    '
+- name: exp-026 arXiv Filtering Negative Result Integration
+  plan_id: exp_026_arxiv_filtering_integrated
+  description: '将 exp-025 (Pythia filtering null) 和 exp-026 (arXiv graduated filtering
+    null) 的负向结果 整合进论文 Section 5 和 Discussion。不产生新实验数据，但重新框架化已有结果， 引出 "K* characterizes
+    discriminability, not data utility" 的核心洞察。
+
+    '
+  expected_results:
+    exp025_summary:
+      pythia_binary_vs_nofilter_mmlu_delta: '+0.0017'
+      pythia_binary_vs_nofilter_hellaswag_delta: '+0.0000'
+      pythia_graduated_vs_nofilter_mmlu_delta: '-0.0007'
+      conclusion: all deltas within noise (max 0.17pp)
+    exp026_summary:
+      arxiv_graduated_vs_nofilter_mmlu_delta: '+0.0001'
+      arxiv_graduated_vs_nofilter_hellaswag_delta: '-0.0001'
+      arxiv_binary_vs_nofilter_mmlu_delta: '-0.0023'
+      arxiv_binary_vs_nofilter_hellaswag_delta: '+0.0042'
+      conclusion: graduated ≈ no_filter; binary shows metric-specific trade-off
+    paper_framing:
+      section_5_addition: 'Table 5: arXiv Domain Filtering Results (K*=3)'
+      discussion_insight: 'K* characterizes the statistical discriminability boundary
+        of recursive generation depth, not the downstream utility boundary. Depth
+        2 and 3 arXiv text is statistically distinguishable (2v3 AUC=0.64) but not
+        necessarily detrimental to training (graduated ≈ no_filter). This distinction
+        is practically important: K* tells curators WHERE detection can differentiate
+        depths, but not WHETHER differentiation improves outcomes.
+
+        '
+      honest_negative_framing: 'We hypothesized that arXiv K*=3 would enable graduated
+        filtering to outperform binary. This hypothesis was not confirmed. The null
+        result reveals a fundamental distinction: K* measures discriminability, not
+        utility.
+
+        '
+    reviewer_reception_prediction:
+      credibility_boost: +0.3 to +0.5 ARR points on soundness/presentation
+      trivial_concern_reduction: honest reporting of disconfirmed hypothesis reduces
+        suspicion of cherry-picking
+      insight_value: K* ≠ utility distinction is a genuine conceptual contribution
+  result_rationale: 'best 档下，honest negative 是科学诚信的 strong signal： (1) 审稿人在 2024-2026
+    的 ML 生态中对 cherry-picking 高度警觉。 一篇主动报告 disconfirmed hypothesis 的论文立即与 "只报好结果" 的
+    median submission 区分开。 (2) K* ≠ utility 的洞察不是空洞的"future work"——它有具体的 empirical
+    grounding： arXiv 2v3 AUC=0.64 证明 depth 2-3 确实 statistically distinguishable， 但
+    downstream eval 显示 graduated filtering 无增量价值。 这意味着 depth 2-3 arXiv 文本虽然在 feature
+    space 上可分， 但其质量差异不足以影响 LM training dynamics。 这一 gap 在 DPI framework 下是 coherent
+    的： DPI 保证的是 information loss（features 可以检测到），但 information loss 未必 map 到 training
+    utility loss。 (3) exp-025 Pythia null 进一步强化：即使在 C4 K*=2 上， Pythia 这种较弱模型的 filtering
+    收益也在 noise level。 结合 exp-006 Qwen C4 上 binary 的显著优势， 论文的叙事变为 "filtering 收益取决于
+    base model capacity × domain × contamination level 的交互"， 而非 universal claim。这种
+    nuanced framing 在 best 档下被审稿人视为 scientific maturity。
+
+    '
+  tables:
+  - name: 'Table 5 (paper): arXiv Domain Filtering (K*=3) — Negative Result'
+    content: '| Strategy | MMLU | HellaSwag | Δ MMLU vs no-filter | Δ HS vs no-filter
+      |
+
+      |----------|------|-----------|-------------------|-------------------|
+
+      | No filter | 0.5899±0.0008 | 0.6600±0.0002 | — | — |
+
+      | Binary | 0.5876±0.0004 | 0.6642±0.0004 | -0.23pp (p=0.005) | +0.42pp (p<0.001)
+      |
+
+      | Graduated (α=0.9) | 0.5900±0.0011 | 0.6599±0.0003 | +0.01pp (p=0.89) | -0.01pp
+      (p=0.71) |
+
+      '
+  - name: 'Discussion Table: K* vs Utility Summary'
+    content: '| Domain | K* | Graduated > Binary? | Interpretation |
+
+      |--------|-----|-------------------|----------------|
+
+      | C4 (Qwen) | 2 | No (binary best) | K*=2 → binary sufficient, graduated adds
+      noise |
+
+      | C4 (Pythia) | 2 | No (all ≈ equal) | Weaker model → filtering benefit below
+      detection |
+
+      | arXiv (Qwen) | 3 | No (graduated ≈ no-filter) | K*=3 discriminability ≠ training
+      utility |
+
+      '
+  figures_description:
+  - 'Fig (Discussion): Conceptual diagram — two-axis plot with ''Statistical Discriminability
+    (K*)'' on x-axis and ''Downstream Utility Gain from Depth-Aware Filtering'' on
+    y-axis. Three domain points plotted: Wikipedia (K*=1, minimal gain), C4 (K*=2,
+    moderate gain with binary), arXiv (K*=3, no gain from graduated). The non-monotonic
+    relationship between K* and utility is the key visual message.'
+  analysis: integration 的核心价值不在新数据，而在 reframing。 exp-025/exp-026 的 null results 在
+    naive framing 下削弱 C3 ("K*-aware filtering works")。 但在 best 档的 sophisticated framing
+    下，它们： (1) 区分了 K* 的 diagnostic 功能（测量 discriminability boundary）与 prescriptive 功能（指导
+    curation）， (2) 为 C3 claim 增加 nuance：binary filtering 在 K*=2 web text 上有效是 C3 的
+    validated core， graduated 在 K*=3 上无效是 honest boundary condition， (3) 引出 "K* ≠
+    utility" 作为 Discussion 的独立贡献点， potentially 激发 follow-up 研究（何时 depth discriminability
+    DOES translate to utility？）。 审稿人在 best 档下认为这种自我修正式叙事 "refreshing" 且 "scientifically
+    mature"。

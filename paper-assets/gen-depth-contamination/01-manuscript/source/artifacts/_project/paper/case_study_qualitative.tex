@@ -1,0 +1,93 @@
+\subsection{Qualitative Case Study}
+\label{app:case-study}
+
+We present three representative document chains from our depth-generation pipeline, illustrating how text properties evolve across generation depths 0--3.
+Depth~0 is the original human-written text; each subsequent depth is produced by prompting the generator (Qwen-1.5B) with the text from the preceding depth.
+For each case, we report three key features from our 15-dimensional OBD feature set: type-token ratio (TTR), mean surprisal, and frequency entropy.
+
+\paragraph{Case A: C4 Web Content (Stylistic Convergence).}
+A vacation rental listing (depth~0) with fragmented promotional phrases converges to generic real-estate prose by depth~1. Depths~2 and~3 produce near-identical property descriptions, illustrating feature saturation consistent with $K^*{=}2$.
+
+\begin{center}
+{\footnotesize
+\begin{tabular}{lcccc}
+\toprule
+& \textbf{Depth 0} & \textbf{Depth 1} & \textbf{Depth 2} & \textbf{Depth 3} \\
+\midrule
+TTR & 0.683 & 0.659 & 0.628 & 0.604 \\
+Mean Surprisal & \textbf{3.434} & 2.098 & 2.091 & 2.155 \\
+Freq.\ Entropy & \textbf{5.767} & 6.599 & 6.631 & 6.682 \\
+\bottomrule
+\end{tabular}}
+\end{center}
+
+\noindent\textsc{Depth~0 (human):} {\small\itshape Cs By the Sea - Walk Out Straight to the Beach in Seagrove 30A! The Sandlot... Perfect Vacation Destination! Plan Your Next Vacation Here! Villa de la Mer, This Seagrove Beach Condo Has it ALL... 30A! Beach, Love \& Happiness in Beautiful Seagrove! Beckoning Breeze in NatureWalk at Seagrove Beach [...]}
+\smallskip
+
+\noindent\textsc{Depth~1:} {\small\itshape ! Beckoning Breeze in NatureWalk at Seagrove Beach 30A! (Photo Courtesy of Becky Slaughter) Located in Seagrove Beach, at the southeastern end of the beautiful Emerald Coast, this charming 2 bedroom, 1 bath condo is located in a gated community. Upon arrival, the large screened-in balcony offers a spectacular 360 [...]}
+\smallskip
+
+\noindent\textsc{Depth~2:} {\small\itshape The condo's main floor is fully furnished with a queen size sleeper sofa that can be converted into a queen size bed for 1 sleeping guest. The master suite features a king sized bed and en-suite bathroom, a second bedroom features a queen size bed and en-suite bathroom. Both of [...]}
+\smallskip
+
+\noindent\textsc{Depth~3:} {\small\itshape and friends! The living area features a 42'' HDTV. In addition to the dining area and living area, there are 2 full size tables that can be converted into a double sized beds, with a full size day bed available if needed. The house has air conditioning for comfort in [...]}
+
+\medskip
+
+\paragraph{Case B: C4 Encyclopedic (Factual Degradation).}
+A factual description of a historical stone (depth~0) degrades into a hallucinated Glastonbury legend by depth~1. Subsequent depths elaborate on the fabricated narrative with decreasing lexical diversity, again saturating after the first generation step.
+
+\begin{center}
+{\footnotesize
+\begin{tabular}{lcccc}
+\toprule
+& \textbf{Depth 0} & \textbf{Depth 1} & \textbf{Depth 2} & \textbf{Depth 3} \\
+\midrule
+TTR & 0.745 & 0.565 & 0.616 & 0.667 \\
+Mean Surprisal & \textbf{3.263} & 2.063 & 2.152 & 1.986 \\
+Freq.\ Entropy & 6.049 & 6.303 & 6.348 & 5.680 \\
+\bottomrule
+\end{tabular}}
+\end{center}
+
+\noindent\textsc{Depth~0 (human):} {\small\itshape This stone is the stuff of legend and is variously called the `Slaughter Stone' and the `Witches Stone'. Due to road widening it is no longer in its original position, but can be viewed in the shrubbery in front of the Hare and Hounds pub. The stone's silcrete composition indicates [...]}
+\smallskip
+
+\noindent\textsc{Depth~1:} {\small\itshape and there is a local legend linking its history to the `Buckingham Stone' (one of the four original stones of the old `Glastonbury Tor'). The legend goes that the people of Glastonbury were once very unhappy with the state of their town -- so much so that they went in [...]}
+\smallskip
+
+\noindent\textsc{Depth~2:} {\small\itshape actions. It is believed that the area where Glastonbury Abbey now stands is where these people lived when they were unhappy, which has inspired the myth of the original population having left behind their homes and settled in the surrounding area. The fact that most of the land here is [...]}
+\smallskip
+
+\noindent\textsc{Depth~3:} {\small\itshape bishop's authority was not recognised by the people. Eventually, in 1184 the monastery was given a charter from Richard the Lionheart which ensured its land was free of taxation. This charter was kept well into the 19th century, and is kept in a vault under the abbey, which is often [...]}
+
+\medskip
+
+\paragraph{Case C: arXiv (Domain-Specific Collapse).}
+An ML abstract on multiplex graphs (depth~0) retains topical coherence at depth~1 but collapses into hallucinated acknowledgement boilerplate by depth~2. Raw \LaTeX{} commands (e.g., \verb|\cite|, \verb|\section*|) appear in the generated text, reflecting the model's tendency to reproduce structural templates rather than substantive content.
+
+\begin{center}
+{\footnotesize
+\begin{tabular}{lcccc}
+\toprule
+& \textbf{Depth 0} & \textbf{Depth 1} & \textbf{Depth 2} & \textbf{Depth 3} \\
+\midrule
+TTR & 0.697 & 0.685 & 0.812 & 0.663 \\
+Mean Surprisal & \textbf{1.920} & 1.970 & 2.265 & 2.024 \\
+Freq.\ Entropy & \textbf{6.903} & 6.701 & 5.590 & 5.824 \\
+\bottomrule
+\end{tabular}}
+\end{center}
+
+\noindent\textsc{Depth~0 (human):} {\small\itshape Existing multiplex graph models often assume homophily, where connected nodes tend to belong to the same class or share similar attributes. Consequently, these models may struggle with graphs exhibiting heterophily, where connected nodes typically belong to different classes and have dissimilar attributes. While recent methods have been developed to learn [...]}
+\smallskip
+
+\noindent\textsc{Depth~1:} {\small\itshape and heterophilic dynamics simultaneously. \textbackslash methodname simultaneously learns node representations for each dimension of a multiplex graph, based on a deep learning framework, while accounting for the interdimensional connections. The method's multi-dimensional model formulation accounts for the complex relationships between nodes in a multiplex graph. To further refine the method, we [...]}
+\smallskip
+
+\noindent\textsc{Depth~2:} {\small\itshape and implementation on GitHub\textasciitilde{}\textbackslash cite\{github\}. \textbackslash end\{abstract\} \textbackslash section*\{Acknowledgements\} We thank Akinsho Goto for providing us access to real-world multi-modal traffic data. We thank Katsuhiko Iwasaki for providing us with multilabel datasets, data preprocessing tools and information on the datasets. Finally, we thank the anonymous reviewers for their careful review and constructive comments. [...]}
+\smallskip
+
+\noindent\textsc{Depth~3:} {\small\itshape preparation and feature engineering, and help with data extraction. We thank the two reviewers of this work for their detailed and thoughtful comments. We also thank the editorial group at ICLR for an insightful review and the anonymous reviewers for their useful feedback and comments, and Jozef Nowak and Yann [...]}
+
+\medskip

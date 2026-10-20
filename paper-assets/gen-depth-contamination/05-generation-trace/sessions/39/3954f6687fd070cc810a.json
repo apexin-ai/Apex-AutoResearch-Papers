@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3954f6687fd070cc810a",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "knowledge update paper framing d016",
+  "task_key": "worker_knowledge_update_paper_framing_d016_20260513T210012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_update_paper_framing_d016_20260513T210012_result.json",
+    "occurrence": 1,
+    "bytes": 1048,
+    "sha256": "5a9c3220e81adda60111d71e473c395e30b08634769760eab4fce3ad5c084ad6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "更新完成。主要变更：\n\n**C1'(a)**: 标题改为 \"K*=2 universality across architectures, generation modes, and decoding strategies\"，新增 exp-003 decoding strategy invariance 表格（greedy/nuc09/t07/t12 全部 K*=2, AUC range 0.6866-0.7039），paper 可写句改为强调 universality。\n\n**C1' 总描述**: 从\"表征 K* 的行为，包括控制因素\"改为\"发现 K*=2 在所有测试条件下保持不变，展现 universality\"。\n\n**Story Spine**: \"Our framing\" 从\"揭示控制因素\"改为\"揭示其 universality: K*=2 在所有测试条件下不变\"。Headline result 改为 \"Recursive generation has a universal discrimination boundary at K*=2: invariant across 4 architectures, 2 modes, 4 decoding strategies\"。\n\n**Reviewer concerns**: 重排优先级——#1 改为\"≤1.5B 模型能推广吗\"（最大攻击面），原 #1 \"K*=2 太浅\"降为 #4 并用 universality 反驳，新增 #8 decoding coverage concern。\n\nC3、Supporting Analysis、Canonical Condition 部分未动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-update-paper-framing-d016.md"
+}

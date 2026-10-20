@@ -1,0 +1,45 @@
+{
+  "exp_id": "exp_wiki_olmo",
+  "project": "gen-depth-contamination",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T10:54:01.835Z",
+    "updated_at": "2026-05-17T11:40:04.926Z",
+    "hypothesis": "OLMo-1B continuation on Wikipedia domain will show K*=2 depth saturation pattern consistent with Qwen2.5-1.5B, demonstrating cross-model generality of the distinguishability decay phenomenon.",
+    "parent": "exp_023_domain_ablation",
+    "server": "cqa1-22115",
+    "gpu": "cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "cqa1-22115",
+      "gpu": "cuda:3",
+      "started_at": "2026-05-17T10:59:50.182Z"
+    },
+    "spec": {
+      "command": "python scripts/run_pipeline.py ...",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "27620",
+      "log_path": "~/runs/gen-depth-contamination/exp_wiki_olmo.log",
+      "submitted_at": "2026-05-17T11:23:10.688Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/",
+      "data_count": 5000,
+      "model_name": "allenai/OLMo-1B-hf",
+      "seed": 42,
+      "git_commit": "N/A",
+      "checkpoint_source": "/root/autodl-tmp/.hf_cache/allenai/OLMo-1B-hf",
+      "eval_data": "/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-17T11:40:05.050065+00:00",
+  "trigger": "update_registry"
+}

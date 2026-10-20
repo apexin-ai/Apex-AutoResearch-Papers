@@ -1,0 +1,8 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We measure a lower bound on the generational depth discrimination boundary $\Kempirical$ for recursive synthetic text.
+$\Kempirical \in \{1, 2, 3\}$ depends on source domain and model characteristics: general web text yields $\Kempirical{=}2$ in 6/10 configurations (2/6 families unanimously, with a scale-dependent split in Pythia; 1B--8B; $p \leq 0.002$), with $\Kempirical{=}3$ for structured academic text.
+This one-wash laundering effect means that a single generation pass renders web text indistinguishable from deeper recursive content, limiting depth-aware curation to a binary boundary.
+For practitioners, binary filtering (depth 0 vs.\ $\geq$1) captures the only reliable discrimination signal; graduated weighting beyond $\Kempirical$ adds noise.
+$\Kempirical$ is feature-set dependent (15D provides a conservative lower bound; neural probes extend it by one level for some architectures) and established for 1B--8B models; scaling beyond 8B, additional structured domains, and retrain-chain $\Kstar$ remain open.

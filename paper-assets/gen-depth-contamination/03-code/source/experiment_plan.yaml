@@ -1,0 +1,287 @@
+experiments:
+- id: exp-001
+  claim: 1
+  description: 'Cross-model depth chain generation: Pythia-1.4B, nucleus p=0.95 T=1.0,
+    C4 5K docs, depth 0-5. 验证 K* 是否跨模型一致。'
+  priority: P0
+  gpu_budget_hours: 6
+  deps: []
+  registry_id: exp_001_pythia_depth
+- id: exp-002
+  claim: 1
+  description: 'Cross-model depth chain generation: OLMo-1B, nucleus p=0.95 T=1.0,
+    C4 5K docs, depth 0-5.'
+  priority: P0
+  gpu_budget_hours: 6
+  deps: []
+  registry_id: exp_002_olmo_depth
+- id: exp-003
+  claim:
+  - 1
+  - 3
+  description: 'Decoding strategy ablation on Qwen2.5-1.5B: greedy / nucleus p=0.9
+    / T=0.7 / T=1.2, C4 5K docs, depth 0-5. 测试解码策略对 K* 的调控效应。'
+  priority: P0
+  gpu_budget_hours: 20
+  deps: []
+  registry_id: exp_003_decoding_ablation
+- id: exp-004
+  claim: 1
+  description: 'Cross-scale probe: Qwen2.5-7B, nucleus p=0.95 T=1.0, C4 5K docs, depth
+    0-5, scorer=Qwen2.5-1.5B. 测试 K* 是否随模型规模变化。（实际参数已从原计划 1K/depth 0-3 扩展以匹配其他实验配置）'
+  priority: P0
+  gpu_budget_hours: 18
+  deps: []
+  registry_id: exp_004_7b_crossscale
+- id: exp-005
+  claim: 2
+  description: 'Feature group ablation + degradation ordering analysis: 对每个模型的 depth
+    chain，按 feature group（surprisal/diversity/tail-thinning）分别计算 pairwise AUC 和饱和深度，绘制
+    degradation ordering heatmap。'
+  priority: P0
+  gpu_budget_hours: 2
+  deps:
+  - exp-001
+  - exp-002
+  registry_id: exp_005_degradation
+- id: exp-006
+  claim: 3
+  description: 'Downstream filtering evaluation: 在 Qwen2.5-1.5B depth chain 上比较 no-filter
+    / binary-ours (同 15D 特征 binary classifier) / binary-Drayson (importance resampling)
+    / graduated / surprisal-based / DSIR 六种策略，用 continued pretraining + lm-eval-harness
+    (MMLU, HellaSwag) 评估。5 seeds（paired t-test 报 p-values）。graduated filtering 加 α
+    sensitivity sweep（α ∈ {0.1, 0.3, 0.5, 0.7, 0.9}）。关键对比：binary-ours vs graduated
+    （唯一变量 = binary/ordinal decision，公平验证 C3）。[Dream + Reviewer 行动项]'
+  priority: P0
+  gpu_budget_hours: 72
+  deps: []
+  registry_id: exp_006_graduated_filtering
+- id: exp-007
+  claim:
+  - 1
+  - 2
+  description: 'K* sensitivity + statistical rigor: 在 0.55/0.60/0.65/0.70 四个阈值下计算
+    K*， 展示 K* 对阈值选择的稳健性。加 bootstrap CI for AUC/JSD，permutation-test calibration 为
+    θ=0.60 提供 principled justification。显式报告 3-class accuracy。[Dream 行动项: 加 CI + permutation
+    test + 3-class metrics]'
+  priority: P0
+  gpu_budget_hours: 2
+  deps:
+  - exp-001
+  - exp-002
+  - exp-003
+  registry_id: exp_007_bootstrap_ci
+- id: exp-008
+  claim: 1
+  description: 'Retrain-chain ecological validity: Pythia-1.4B LoRA (rank=16, alpha=32),
+    C4 5K docs, depth 0-4. 对比 prompt-chain 和 retrain-chain 的 K* 和特征分布。'
+  priority: P1
+  gpu_budget_hours: 8
+  deps:
+  - exp-001
+  registry_id: exp_008_retrain_chain_v2
+- id: exp-009
+  claim: 3
+  description: 'Contamination dose-response: 在 10%/30%/50% synthetic injection 比例下测试
+    graduated vs binary filtering 的收益差异。'
+  priority: P1
+  gpu_budget_hours: 15
+  deps:
+  - exp-006
+  registry_id: exp_009_dose_50pct
+- id: exp-010
+  claim:
+  - 1
+  - 2
+  description: 'Ordinal vs multinomial vs regression baseline comparison: CORAL vs
+    standard multiclass vs ordinal regression，证明 ordinal structure 的必要性。'
+  priority: P1
+  gpu_budget_hours: 2
+  deps:
+  - exp-005
+  registry_id: exp_010_ordinal_baseline
+- id: exp-011
+  claim: 1
+  description: 'LLM zero-shot depth estimation baseline: GPT-4o / Claude 3.5 对 depth
+    0-4 文本做 zero-shot depth 判断，验证 depth estimation 需要专门方法。'
+  priority: P1
+  gpu_budget_hours: 0
+  deps: []
+  registry_id: exp_011_llm_zeroshot
+- id: exp-012
+  claim: 1
+  description: 'Binary detector confidence as depth proxy: 用 DivEye/Binoculars score
+    的 Spearman correlation with true depth，验证 binary confidence ≠ depth。'
+  priority: P1
+  gpu_budget_hours: 3
+  deps:
+  - exp-001
+  - exp-002
+  registry_id: exp_012_binary_confidence
+- id: exp-013
+  claim:
+  - 1
+  - 2
+  description: 'Cross-model transfer: 4×4 transfer matrix（mvp-001 Qwen rewrite + exp-001
+    Pythia cont. + exp-002 OLMo cont. + exp-017 Qwen cont.）。在 model A 训练的 depth classifier
+    在 model B 的 depth chain 上的 transfer accuracy。回答同模型 bias 的根本质疑—— depth signal 是文本固有属性还是
+    model self-familiarity。4 套 features 可区分 generation mode 效应 vs model 效应。'
+  priority: P0
+  gpu_budget_hours: 2
+  deps:
+  - exp-001
+  - exp-002
+  - exp-017
+  registry_id: exp_013_cross_transfer
+- id: exp-014
+  claim: 1
+  description: 'Naturalistic validation: 对 Common Crawl 2025/2026 snapshot 样本做 depth
+    预测，与 AlignScore 和独立 vocabulary richness 指标做 correlation。'
+  priority: P2
+  gpu_budget_hours: 8
+  deps:
+  - exp-005
+  registry_id: null
+- id: exp-015
+  claim: 1
+  description: 'Learned representation baseline: frozen Qwen2.5-1.5B embeddings +
+    MLP vs hand-crafted 15D features。如果 neural probe 也给 K*=2 → C1'' claim 从 "our features
+    find K*=2" 升级为 "K*=2 is data-intrinsic boundary"。[D014 升级 P0：Reviewer 评估为最高边际价值实验]'
+  priority: P0
+  gpu_budget_hours: 3
+  deps: []
+  registry_id: exp_015_neural_probe
+- id: exp-016
+  claim: 1
+  description: 'Base vs Instruct model comparison: Qwen2.5-1.5B base vs Instruct 的
+    K* 和特征分布差异。'
+  priority: P1
+  gpu_budget_hours: 6
+  deps: []
+  registry_id: exp_016_base_vs_instruct
+- id: exp-017
+  claim:
+  - 1
+  description: 'Generation mode control: Qwen2.5-1.5B-Instruct continuation mode,
+    C4 5K docs, depth 0-5. 与 mvp-001 (rewrite mode) 对比，分离 generation mode vs model
+    对 K* 的影响。'
+  priority: P0
+  gpu_budget_hours: 6
+  deps: []
+  registry_id: exp_017_qwen_continuation
+- id: mvp-001
+  claim:
+  - 1
+  - 2
+  - 3
+  description: 'MVP pilot saturation study: Qwen2.5-1.5B-Instruct, C4 5K docs, prompt-chain,
+    nucleus p=0.95 T=1.0, depth 0-5.'
+  priority: P0
+  gpu_budget_hours: 12
+  deps: []
+  registry_id: mvp_pilot_sat_v1
+- id: exp-018
+  claim: 1
+  description: 'Cross-family universality: LLaMA-3.1-8B, continuation mode, nucleus
+    p=0.95 T=1.0, C4 5K docs, depth 0-5, scorer=Qwen2.5-1.5B. 跨模型家族验证 K*。'
+  priority: P0
+  gpu_budget_hours: 6
+  deps: []
+  registry_id: exp_018_llama8b_depth
+- id: exp-019
+  claim: 1
+  description: 'Cross-family universality: Mistral-7B-v0.3, continuation mode, nucleus
+    p=0.95 T=1.0, C4 5K docs, depth 0-5, scorer=Qwen2.5-1.5B.'
+  priority: P0
+  gpu_budget_hours: 6
+  deps: []
+  registry_id: exp_019_mistral7b_depth
+- id: exp-020
+  claim:
+  - 1
+  - 3
+  description: 'Pythia-1.4B decoding ablation: greedy / nucleus p=0.9 / T=0.7 / T=1.2,
+    C4 5K docs, depth 0-5. 跨模型验证解码策略对 K* 的不变性。'
+  priority: P0
+  gpu_budget_hours: 8
+  deps: []
+  registry_id: exp_020_pythia_decoding
+- id: exp-021
+  claim: 1
+  description: 'Text length ablation: Qwen2.5-1.5B-Instruct continuation, 128/256/512
+    tokens, C4 5K docs, depth 0-5. 验证 K* 对文本长度的敏感性。'
+  priority: P0
+  gpu_budget_hours: 6
+  deps: []
+  registry_id: exp_021_length_ablation
+- id: exp-022
+  claim:
+  - 1
+  - 2
+  description: '4x4 cross-scorer matrix: 4 generators × 4 scorers, 验证 scorer independence
+    完整性。'
+  priority: P0
+  gpu_budget_hours: 3
+  deps:
+  - exp-021
+  registry_id: exp_022_cross_scorer_matrix
+- id: exp-023
+  claim:
+  - 1
+  description: 'Domain ablation: Wikipedia seed data, Qwen2.5-1.5B (base) continuation
+    mode, nucleus p=0.95 T=1.0, 5K docs, depth 0-5, scorer=Qwen2.5-1.5B. 验证 K*=2 是否跨数据域一致（C4
+    vs Wikipedia）。'
+  priority: P0
+  gpu_budget_hours: 6
+  deps: []
+  registry_id: exp_023_domain_ablation
+- id: exp-024
+  claim:
+  - 1
+  description: 'Domain ablation: arXiv abstracts seed data, Qwen2.5-1.5B (base) continuation
+    mode, nucleus p=0.95 T=1.0, 5K docs, depth 0-5, scorer=Qwen2.5-1.5B. 第三域验证—— 技术文本与
+    web text (C4) / 百科 (Wikipedia) 分布差异大，三域一致则 domain 维度从 Limitation 升级为 evidence。'
+  priority: P0
+  gpu_budget_hours: 6
+  deps: []
+  registry_id: exp_024_arxiv_domain
+- id: exp-025
+  claim: 3
+  description: 'Pythia-1.4B filtering replication: LoRA rank=8 continued pretraining
+    on C4 depth chain, 3 strategies (binary/graduated/no-filter) × 3 seeds, MMLU+HellaSwag.
+    验证 filtering strategy ordering 跨模型一致性。'
+  priority: P1
+  gpu_budget_hours: 16
+  deps:
+  - exp-006
+  - exp-001
+  registry_id: exp_025_pythia_filtering
+- id: exp-026
+  claim: 3
+  description: 'arXiv graduated vs binary filtering: Qwen2.5-1.5B base + LoRA rank=4,
+    arXiv depth chain (K*=3), 3 strategies (no_filter/binary/graduated α=0.9^d) × 5 seeds,
+    MMLU+HellaSwag. 关键实验：K*=3 域上 graduated 应超越 binary，展示 K*-aware filtering 增量价值。'
+  priority: P0
+  gpu_budget_hours: 24
+  deps:
+  - exp-006
+  - exp-024
+  registry_id: exp_026_arxiv_filtering
+- id: exp-027
+  claim: 1
+  description: 'LaTeX markup removal ablation: 去除 arXiv 文本中的 LaTeX 格式标记后重新提取
+    15D features，验证 K*=3 是否依赖格式特征而非内容层 depth signal。排除替代假说。'
+  priority: P0
+  gpu_budget_hours: 2
+  deps:
+  - exp-024
+  registry_id: exp_027_latex_ablation
+- id: exp-028
+  claim: 1
+  description: 'Subsampling power curve: C4 n={1000,2000,3000,4000,5000} × 10 resamples,
+    确定 K*=2 判定所需最低样本量。回应 m4 reviewer concern。'
+  priority: P1
+  gpu_budget_hours: 1
+  deps:
+  - exp-007
+  registry_id: exp_028_power_curve

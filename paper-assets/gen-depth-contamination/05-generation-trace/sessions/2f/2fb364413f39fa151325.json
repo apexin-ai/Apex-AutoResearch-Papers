@@ -1,0 +1,1491 @@
+{
+  "schema_version": "1.0",
+  "id": "2fb364413f39fa151325",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "paper d107 abstract appendix discussion",
+  "task_key": "worker_paper_d107_abstract_appendix_discussion_20260522T220435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d107_abstract_appendix_discussion_20260522T220435.log",
+    "occurrence": 1,
+    "bytes": 96055,
+    "sha256": "9676c995422968b50d41f0ece4ef7567de5bc779c3fc882f0af343ef070a678d"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 12,
+      "tool_result": 12,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "771d3ee6-0032-4913-8c5f-5e92945bbeb3",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779501600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "7929e405-dcad-45a3-98aa-96ab25881b16",
+                "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read all four files first."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "cef9b6dc-48ee-4426-98b8-0075f016cd2e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HLSYMsHVLRfE52ZLXUTLpR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12438,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12438
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Kap8BFN94V2gyPSxFAJcyE",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex",
+                "offset": 30,
+                "limit": 20
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "0f5a98e5-7337-4651-a773-d09403cc4479",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HLSYMsHVLRfE52ZLXUTLpR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12438,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12438
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T22:04:45.002Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Kap8BFN94V2gyPSxFAJcyE",
+              "type": "tool_result",
+              "content": "30\t\\begin{document}\n31\t\\maketitle\n32\t\n33\t% === Abstract ===\n34\t\\begin{abstract}\n35\tWeb-scale corpora are increasingly contaminated by recursive synthetic content, yet no method estimates a document's generational depth.\n36\tWe measure a lower bound on the generational discrimination boundary, $\\Kempirical$ (the maximum depth at which adjacent generations remain distinguishable), using 15 statistical features and an OBD-LightGBM classifier.\n37\tUnder prompt-chain generation across 10 model configurations (6 architecture families, 1B--8B), 3 source domains, and 4 decoding strategies, for web text (C4, Wikipedia), $\\Kempirical \\leq 2$ regardless of model family or scale ($\\theta{=}0.60$); across all ten configurations, $\\Kempirical \\leq 3$, with structured academic text (arXiv) reaching $\\Kempirical{=}3$ across two architectures.\n38\tAmong the six nominal $\\Kempirical{=}2$ configurations, four retain significance under Bonferroni correction; the two marginal cases reflect narrow effect sizes rather than classification failure.\n39\tA single generation pass suffices to render general web text indistinguishable from deeper synthetic content, a \\emph{one-wash laundering} effect.\n40\tModel-free statistical features enable 80--100\\% cross-model transfer with scorer-invariant feature rankings ($\\rho > 0.90$), supporting depth estimation on corpora from unknown generators without retraining.\n41\tAs a consistency check, domain-appropriate $\\Kempirical$ correctly predicts that binary filtering outperforms graduated alternatives for web text when contamination causes detectable quality loss.\n42\t\\end{abstract}\n43\t\n44\t% === Section 1: Introduction ===\n45\t\\input{introduction}\n46\t\n47\t% === Section 2: Related Work ===\n48\t\\input{related_work}\n49\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "15dcaa7e-56f4-44e9-b5d5-657810d20c1c",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex",
+                "content": "\\begin{document}\n\\maketitle\n\n% === Abstract ===\n\\begin{abstract}\nWeb-scale corpora are increasingly contaminated by recursive synthetic content, yet no method estimates a document's generational depth.\nWe measure a lower bound on the generational discrimination boundary, $\\Kempirical$ (the maximum depth at which adjacent generations remain distinguishable), using 15 statistical features and an OBD-LightGBM classifier.\nUnder prompt-chain generation across 10 model configurations (6 architecture families, 1B--8B), 3 source domains, and 4 decoding strategies, for web text (C4, Wikipedia), $\\Kempirical \\leq 2$ regardless of model family or scale ($\\theta{=}0.60$); across all ten configurations, $\\Kempirical \\leq 3$, with structured academic text (arXiv) reaching $\\Kempirical{=}3$ across two architectures.\nAmong the six nominal $\\Kempirical{=}2$ configurations, four retain significance under Bonferroni correction; the two marginal cases reflect narrow effect sizes rather than classification failure.\nA single generation pass suffices to render general web text indistinguishable from deeper synthetic content, a \\emph{one-wash laundering} effect.\nModel-free statistical features enable 80--100\\% cross-model transfer with scorer-invariant feature rankings ($\\rho > 0.90$), supporting depth estimation on corpora from unknown generators without retraining.\nAs a consistency check, domain-appropriate $\\Kempirical$ correctly predicts that binary filtering outperforms graduated alternatives for web text when contamination causes detectable quality loss.\n\\end{abstract}\n\n% === Section 1: Introduction ===\n\\input{introduction}\n\n% === Section 2: Related Work ===\n\\input{related_work}\n",
+                "numLines": 20,
+                "startLine": 30,
+                "totalLines": 88
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01536UQsdjFrfxt7QWMALAK5",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+                "offset": 160,
+                "limit": 30
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "6133d2ec-da96-42c7-88bd-9394ee266ff4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HLSYMsHVLRfE52ZLXUTLpR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12438,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12438
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T22:04:45.936Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01536UQsdjFrfxt7QWMALAK5",
+              "type": "tool_result",
+              "content": "160\t\\caption{Bonferroni-corrected 99.5\\% confidence intervals for $\\Kempirical$ boundary pairs across all 10 configurations. $\\alpha_{\\text{corr}} = 0.005$; CI computed as $\\auc \\pm 2.807 \\times \\hat{\\sigma}_{\\text{boot}}$. ``Pass $\\theta$'': CI lower bound $> 0.60$.}\n161\t\\label{tab:bonferroni_ci}\n162\t\\resizebox{\\columnwidth}{!}{%\n163\t\\begin{tabular}{llcccc}\n164\t\\toprule\n165\t\\textbf{Configuration} & \\textbf{Boundary} & $\\auc$ & $\\hat{\\sigma}_{\\text{boot}}$ & \\textbf{99.5\\% CI} & \\textbf{Pass $\\theta$} \\\\\n166\t\\midrule\n167\t\\multicolumn{6}{l}{\\textit{$\\Kempirical = 2$ configurations}} \\\\\n168\tQwen-rw (Instruct)       & 1v2 & .6955 & .0046 & $[.683,\\,.708]$ & \\checkmark \\\\\n169\tPythia-1.4B               & 1v2 & .6539 & .0046 & $[.641,\\,.667]$ & \\checkmark \\\\\n170\tQwen-base                 & 1v2 & .6260 & .0047 & $[.613,\\,.639]$ & \\checkmark \\\\\n171\tQwen-7B$^\\ddagger$        & 1v2 & .6168 & .0046 & $[.604,\\,.630]$ & \\checkmark \\\\\n172\tLLaMA-8B                  & 1v2 & .6123 & .0048 & $[.599,\\,.626]$ & $\\times$ \\\\\n173\tQwen-cont (Instruct)     & 1v2 & .6112 & .0049 & $[.598,\\,.625]$ & $\\times$ \\\\\n174\t\\midrule\n175\t\\multicolumn{6}{l}{\\textit{$\\Kempirical = 1$ configurations}} \\\\\n176\tOLMo-1B                   & 0v1 & .9860 & .0009 & $[.983,\\,.989]$ & \\checkmark \\\\\n177\tMistral-7B                & 0v1 & .9842 & .0009 & $[.982,\\,.987]$ & \\checkmark \\\\\n178\tPythia-6.9B$^\\S$          & 0v1 & .9599 & .0015$^\\dagger$ & $[.956,\\,.964]$ & \\checkmark \\\\\n179\tGemma-2-2B                & 0v1 & .9530 & .0018 & $[.948,\\,.958]$ & \\checkmark \\\\\n180\t\\bottomrule\n181\t\\multicolumn{6}{l}{\\footnotesize $^\\ddagger$Generator: Qwen2.5-7B; scorer: Qwen2.5-1.5B.} \\\\\n182\t\\multicolumn{6}{l}{\\footnotesize $^\\S$Nucleus sampling ($p{=}0.95$, $T{=}1.0$).} \\\\\n183\t\\multicolumn{6}{l}{\\footnotesize $^\\dagger$Estimated from analogous configurations (no separate bootstrap JSON).}\n184\t\\end{tabular}}\n185\t\\end{table}\n186\t\n187\t\\subsection{Cross-Sample Robustness: 5K vs.\\ 10K}\n188\t\\label{sec:robustness_10k}\n189\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "748af639-072b-45aa-9377-9f36043ba581",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+                "content": "\\caption{Bonferroni-corrected 99.5\\% confidence intervals for $\\Kempirical$ boundary pairs across all 10 configurations. $\\alpha_{\\text{corr}} = 0.005$; CI computed as $\\auc \\pm 2.807 \\times \\hat{\\sigma}_{\\text{boot}}$. ``Pass $\\theta$'': CI lower bound $> 0.60$.}\n\\label{tab:bonferroni_ci}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Configuration} & \\textbf{Boundary} & $\\auc$ & $\\hat{\\sigma}_{\\text{boot}}$ & \\textbf{99.5\\% CI} & \\textbf{Pass $\\theta$} \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{$\\Kempirical = 2$ configurations}} \\\\\nQwen-rw (Instruct)       & 1v2 & .6955 & .0046 & $[.683,\\,.708]$ & \\checkmark \\\\\nPythia-1.4B               & 1v2 & .6539 & .0046 & $[.641,\\,.667]$ & \\checkmark \\\\\nQwen-base                 & 1v2 & .6260 & .0047 & $[.613,\\,.639]$ & \\checkmark \\\\\nQwen-7B$^\\ddagger$        & 1v2 & .6168 & .0046 & $[.604,\\,.630]$ & \\checkmark \\\\\nLLaMA-8B                  & 1v2 & .6123 & .0048 & $[.599,\\,.626]$ & $\\times$ \\\\\nQwen-cont (Instruct)     & 1v2 & .6112 & .0049 & $[.598,\\,.625]$ & $\\times$ \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{$\\Kempirical = 1$ configurations}} \\\\\nOLMo-1B                   & 0v1 & .9860 & .0009 & $[.983,\\,.989]$ & \\checkmark \\\\\nMistral-7B                & 0v1 & .9842 & .0009 & $[.982,\\,.987]$ & \\checkmark \\\\\nPythia-6.9B$^\\S$          & 0v1 & .9599 & .0015$^\\dagger$ & $[.956,\\,.964]$ & \\checkmark \\\\\nGemma-2-2B                & 0v1 & .9530 & .0018 & $[.948,\\,.958]$ & \\checkmark \\\\\n\\bottomrule\n\\multicolumn{6}{l}{\\footnotesize $^\\ddagger$Generator: Qwen2.5-7B; scorer: Qwen2.5-1.5B.} \\\\\n\\multicolumn{6}{l}{\\footnotesize $^\\S$Nucleus sampling ($p{=}0.95$, $T{=}1.0$).} \\\\\n\\multicolumn{6}{l}{\\footnotesize $^\\dagger$Estimated from analogous configurations (no separate bootstrap JSON).}\n\\end{tabular}}\n\\end{table}\n\n\\subsection{Cross-Sample Robustness: 5K vs.\\ 10K}\n\\label{sec:robustness_10k}\n",
+                "numLines": 30,
+                "startLine": 160,
+                "totalLines": 222
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MwhF34ktj9CAtPg51wPz9R",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/conclusion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "650a7114-4e90-4ef7-b8fb-f4e5fdabcf2a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HLSYMsHVLRfE52ZLXUTLpR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12438,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12438
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T22:04:46.407Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MwhF34ktj9CAtPg51wPz9R",
+              "type": "tool_result",
+              "content": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe measure a lower bound on the generational depth discrimination boundary $\\Kempirical$ for prompt-chain recursive synthetic text.\n5\tFor general web text, $\\Kempirical \\leq 2$ regardless of model family or scale (six architecture families, 1B--8B, $\\theta{=}0.60$); across all ten configurations, $\\Kempirical \\leq 3$, with structured academic text (arXiv) reaching $\\Kempirical{=}3$ across two independent architectures.\n6\tThis one-wash laundering effect concentrates all exploitable signal at the 0v1 boundary, and the consistency check confirms that binary curation most effectively minimizes MMLU degradation ($-$0.77\\,pp vs.\\ $-$1.53\\,pp for no-filter).\n7\tFor structured domains where $\\Kempirical{=}3$, graduated strategies can exploit one additional depth level, so corpus curators should calibrate filtering to the source domain.\n8\tThe 15 statistical features enable deployment across generators without retraining (80--92\\% accuracy retention, $\\rho > 0.90$), supporting model-agnostic depth estimation for corpora where the generating model is unknown.\n9\tUnder Bonferroni correction for 10 simultaneous comparisons, four of six $\\Kempirical{=}2$ configurations retain significance at the 99.5\\% level; the remaining two marginal cases preserve point estimates above $\\theta$.\n10\t$\\Kempirical$ converts a continuous AUC decay surface into a discrete operating boundary grounded in the Data Processing Inequality, providing a principled basis for curation decisions that replaces heuristic assumptions about synthetic text recyclability.\n11\tSeveral directions remain open: tracking $\\Kempirical$ as model scale surpasses 13B, where our scale analysis suggests the boundary may shift toward $\\Kempirical{=}1$; bridging the prompt-chain and retrain-chain boundaries, given the substantially higher $\\Kempirical{\\geq}4$ observed under parameter retraining; and extending depth estimation to additional structured domains and multilingual text.\n12\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "3132656e-d756-4a30-8f8b-9b6284868791",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/conclusion.tex",
+                "content": "\\section{Conclusion}\n\\label{sec:conclusion}\n\nWe measure a lower bound on the generational depth discrimination boundary $\\Kempirical$ for prompt-chain recursive synthetic text.\nFor general web text, $\\Kempirical \\leq 2$ regardless of model family or scale (six architecture families, 1B--8B, $\\theta{=}0.60$); across all ten configurations, $\\Kempirical \\leq 3$, with structured academic text (arXiv) reaching $\\Kempirical{=}3$ across two independent architectures.\nThis one-wash laundering effect concentrates all exploitable signal at the 0v1 boundary, and the consistency check confirms that binary curation most effectively minimizes MMLU degradation ($-$0.77\\,pp vs.\\ $-$1.53\\,pp for no-filter).\nFor structured domains where $\\Kempirical{=}3$, graduated strategies can exploit one additional depth level, so corpus curators should calibrate filtering to the source domain.\nThe 15 statistical features enable deployment across generators without retraining (80--92\\% accuracy retention, $\\rho > 0.90$), supporting model-agnostic depth estimation for corpora where the generating model is unknown.\nUnder Bonferroni correction for 10 simultaneous comparisons, four of six $\\Kempirical{=}2$ configurations retain significance at the 99.5\\% level; the remaining two marginal cases preserve point estimates above $\\theta$.\n$\\Kempirical$ converts a continuous AUC decay surface into a discrete operating boundary grounded in the Data Processing Inequality, providing a principled basis for curation decisions that replaces heuristic assumptions about synthetic text recyclability.\nSeveral directions remain open: tracking $\\Kempirical$ as model scale surpasses 13B, where our scale analysis suggests the boundary may shift toward $\\Kempirical{=}1$; bridging the prompt-chain and retrain-chain boundaries, given the substantially higher $\\Kempirical{\\geq}4$ observed under parameter retraining; and extending depth estimation to additional structured domains and multilingual text.\n",
+                "numLines": 12,
+                "startLine": 1,
+                "totalLines": 12
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NAq14Bjqc6jyFMjqE1Kohh",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "9e866305-2406-4d59-9566-7e03ad1d1b59",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HLSYMsHVLRfE52ZLXUTLpR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12438,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12438
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T22:04:46.863Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NAq14Bjqc6jyFMjqE1Kohh",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\\label{sec:why_kstar}\n4\t\\label{sec:one_wash}\n5\t\\label{sec:negative_graduated}\n6\t\\label{sec:repr_dependence}\n7\t\\label{sec:boundary_cases}\n8\t\\label{sec:length_confound}\n9\t\n10\t\\paragraph{One-wash laundering (web text).}\n11\tFor general web text, $\\Kempirical{=}2$ reflects concentrated information loss: 0v1 is near-trivially separable ($\\auc \\geq 0.92$), 1v2 drops by ${\\sim}$30\\,pp, and 2v3 falls below $\\theta$.\n12\tA single generation pass renders text indistinguishable from multiply recycled content, limiting depth-aware curation to a binary boundary.\n13\tConverging evidence supports a data-intrinsic interpretation: OBD achieves 96\\% depth-0 recall but only 14--22\\% for depths 2--4; frontier LLMs show 8--38\\% (McNemar $p > 0.05$ vs.\\ OBD; Table~\\ref{tab:s3_llm_zeroshot}).\n14\t\n15\t\\paragraph{Representation dependence.}\n16\t$\\Kempirical$ is representation-dependent: frozen Qwen embeddings yield $\\Kempirical^{\\text{neural}} = 3$, while Pythia yields $\\Kempirical^{\\text{neural}} = 2$ and OLMo yields $\\Kempirical^{\\text{neural}} = 1$, consistent with its 15D boundary (Table~\\ref{tab:neural_probe_crossmodel}).\n17\tThe 15D features trade one depth level of sensitivity for cross-model consistency (6/10 configurations $\\Kempirical{=}2$), making them the preferred operational choice.\n18\tFeature rankings are scorer-independent ($\\rho > 0.90$); $\\Kempirical$ agreement is scorer-independent for strong-signal configurations (e.g., Qwen-rewrite retains $\\Kempirical{=}2$ under all scorers) but scorer-sensitive at marginal boundaries (Qwen-continuation drops to $\\Kempirical{=}1$; length confound ruled out in Appendix~\\ref{sec:extended_limitations}).\n19\tANOVA confirms this layered pattern: Scorer explains modest variance ($\\eta^2_p{=}.166$) with a significant Generator$\\times$Scorer interaction ($\\eta^2_p{=}.146$; Table~\\ref{tab:anova_crossscorer}).\n20\t\n21\t\\paragraph{Domain dependence of $\\Kempirical$.}\n22\tWeb text (C4, Wikipedia) consistently yields $\\Kempirical{=}2$, while structured academic text (arXiv) yields $\\Kempirical{=}3$ across two independent model families (Qwen-1.5B and Pythia-1.4B; Section~\\ref{sec:cross_domain}).\n23\tThe elevated arXiv signal reflects formulaic structure: citation patterns, mathematical notation, and section conventions create larger per-generation distributional shifts (1v2 JSD $= 0.077$ vs.\\ ${\\sim}0.01$ for C4), making contamination trackable to greater depth.\n24\tWikipedia matches C4 at $\\Kempirical{=}2$ (1v2 $\\auc = 0.623$, 2v3 $\\auc = 0.571$), consistent with its general-purpose prose lacking domain-specific structural markers.\n25\tThis domain dependence implies that corpus curators should calibrate depth-aware filtering to source characteristics rather than assuming a universal boundary.\n26\t\n27\t\\paragraph{Cross-model transfer.}\n28\tContinuation-mode classifiers transfer well across generators (80--92\\% retention; Figure~\\ref{fig:transfer_heatmap}), enabling portable depth estimation on corpora from unknown models without retraining.\n29\tThe poor transfer from rewrite-mode classifiers (61--63\\%) isolates generation mode, rather than architecture family, as the primary axis of distributional variation.\n30\t\n31\t\\paragraph{Prompt-chain scope and retrain-chain gap.}\n32\tRetrain-chain experiments (Pythia-1.4B LoRA) yield $\\Kempirical{\\geq}4$ (1v2 $\\auc = 0.9484$, 3v4 $= 0.7982$), far exceeding the prompt-chain boundary of $\\Kempirical{=}2$, because each retrain generation also modifies model parameters, introducing cumulative adaptation artifacts absent from text-only recycling.\n33\tPrompt-chain $\\Kempirical$ isolates text-intrinsic degradation, the operationally relevant quantity for data curation pipelines; our conclusions do not directly transfer to retrain-chain (model collapse) settings.\n34\t\n35\t\\paragraph{Boundary cases and scale effect.}\n36\t$\\Kempirical{=}1$ configurations cluster at 1v2 $\\auc$ 0.508--0.598, well separated from the $\\Kempirical{=}2$ range (0.611--0.696); $\\Kempirical{=}1$ is not a classifier failure but a text property, as these models produce first-generation output so human-like that statistical features cannot distinguish depth~1 from depth~2.\n37\tThat $\\Kempirical \\in \\{1, 2\\}$ for all web text configurations is the core empirical result; larger models reduce 0v1 JSD (0.077 at 8B vs.\\ 0.15--0.27 at $\\leq$1.5B), suggesting 13B+ may increasingly yield $\\Kempirical{=}1$.\n38\tThe $\\Kempirical{=}1$ vs.\\ $\\Kempirical{=}2$ distinction has a direct curation consequence: $\\Kempirical{=}1$ generators erase depth signal in one pass, leaving only the binary 0v1 boundary available for filtering.\n39\t\n40\t\\paragraph{Decoding strategy as confound.}\n41\tGreedy decoding inflates depth separability: Pythia-6.9B yields $\\Kempirical{=}2$ under greedy but $\\Kempirical{=}1$ under nucleus sampling ($p{=}0.95$), with the borderline 1v2 score (2 of 5 folds above $\\theta$) illustrating that the boundary is continuous rather than a cliff (Table~\\ref{tab:s10_pythia_decoding}).\n42\tPractitioners should calibrate $\\theta$ to their application-specific tolerance (Figure~\\ref{fig:kstar_theta}).\n43\t\n44\t\\paragraph{What $\\Kempirical$ reveals.}\n45\tAs a measurement tool, $\\Kempirical$ establishes why binary detection suffices for web text (depth${>}1$ is invisible to statistical features), identifies domains where finer strategies are viable (arXiv $\\Kempirical{=}3$), and quantifies how scale, scorer, and threshold jointly shape the boundary.\n46\tThe OBD framework provides a reproducible, low-cost depth estimation protocol requiring only corpus-level statistical features, unlike detection methods that need API access or model weights.\n47\tEven when the practical outcome remains binary filtering, $\\Kempirical$ grounds this choice in measurement rather than heuristic assumption.\n48\t$\\Kempirical$ also serves as a monitoring metric for tracking how the discrimination boundary shifts as model scale increases; future work may explore scorer-ensemble strategies to improve cross-scorer robustness at marginal boundaries.\n49\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "d99fab0d-21ee-4054-8143-e3fb073549fa",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex",
+                "content": "\\section{Discussion}\n\\label{sec:discussion}\n\\label{sec:why_kstar}\n\\label{sec:one_wash}\n\\label{sec:negative_graduated}\n\\label{sec:repr_dependence}\n\\label{sec:boundary_cases}\n\\label{sec:length_confound}\n\n\\paragraph{One-wash laundering (web text).}\nFor general web text, $\\Kempirical{=}2$ reflects concentrated information loss: 0v1 is near-trivially separable ($\\auc \\geq 0.92$), 1v2 drops by ${\\sim}$30\\,pp, and 2v3 falls below $\\theta$.\nA single generation pass renders text indistinguishable from multiply recycled content, limiting depth-aware curation to a binary boundary.\nConverging evidence supports a data-intrinsic interpretation: OBD achieves 96\\% depth-0 recall but only 14--22\\% for depths 2--4; frontier LLMs show 8--38\\% (McNemar $p > 0.05$ vs.\\ OBD; Table~\\ref{tab:s3_llm_zeroshot}).\n\n\\paragraph{Representation dependence.}\n$\\Kempirical$ is representation-dependent: frozen Qwen embeddings yield $\\Kempirical^{\\text{neural}} = 3$, while Pythia yields $\\Kempirical^{\\text{neural}} = 2$ and OLMo yields $\\Kempirical^{\\text{neural}} = 1$, consistent with its 15D boundary (Table~\\ref{tab:neural_probe_crossmodel}).\nThe 15D features trade one depth level of sensitivity for cross-model consistency (6/10 configurations $\\Kempirical{=}2$), making them the preferred operational choice.\nFeature rankings are scorer-independent ($\\rho > 0.90$); $\\Kempirical$ agreement is scorer-independent for strong-signal configurations (e.g., Qwen-rewrite retains $\\Kempirical{=}2$ under all scorers) but scorer-sensitive at marginal boundaries (Qwen-continuation drops to $\\Kempirical{=}1$; length confound ruled out in Appendix~\\ref{sec:extended_limitations}).\nANOVA confirms this layered pattern: Scorer explains modest variance ($\\eta^2_p{=}.166$) with a significant Generator$\\times$Scorer interaction ($\\eta^2_p{=}.146$; Table~\\ref{tab:anova_crossscorer}).\n\n\\paragraph{Domain dependence of $\\Kempirical$.}\nWeb text (C4, Wikipedia) consistently yields $\\Kempirical{=}2$, while structured academic text (arXiv) yields $\\Kempirical{=}3$ across two independent model families (Qwen-1.5B and Pythia-1.4B; Section~\\ref{sec:cross_domain}).\nThe elevated arXiv signal reflects formulaic structure: citation patterns, mathematical notation, and section conventions create larger per-generation distributional shifts (1v2 JSD $= 0.077$ vs.\\ ${\\sim}0.01$ for C4), making contamination trackable to greater depth.\nWikipedia matches C4 at $\\Kempirical{=}2$ (1v2 $\\auc = 0.623$, 2v3 $\\auc = 0.571$), consistent with its general-purpose prose lacking domain-specific structural markers.\nThis domain dependence implies that corpus curators should calibrate depth-aware filtering to source characteristics rather than assuming a universal boundary.\n\n\\paragraph{Cross-model transfer.}\nContinuation-mode classifiers transfer well across generators (80--92\\% retention; Figure~\\ref{fig:transfer_heatmap}), enabling portable depth estimation on corpora from unknown models without retraining.\nThe poor transfer from rewrite-mode classifiers (61--63\\%) isolates generation mode, rather than architecture family, as the primary axis of distributional variation.\n\n\\paragraph{Prompt-chain scope and retrain-chain gap.}\nRetrain-chain experiments (Pythia-1.4B LoRA) yield $\\Kempirical{\\geq}4$ (1v2 $\\auc = 0.9484$, 3v4 $= 0.7982$), far exceeding the prompt-chain boundary of $\\Kempirical{=}2$, because each retrain generation also modifies model parameters, introducing cumulative adaptation artifacts absent from text-only recycling.\nPrompt-chain $\\Kempirical$ isolates text-intrinsic degradation, the operationally relevant quantity for data curation pipelines; our conclusions do not directly transfer to retrain-chain (model collapse) settings.\n\n\\paragraph{Boundary cases and scale effect.}\n$\\Kempirical{=}1$ configurations cluster at 1v2 $\\auc$ 0.508--0.598, well separated from the $\\Kempirical{=}2$ range (0.611--0.696); $\\Kempirical{=}1$ is not a classifier failure but a text property, as these models produce first-generation output so human-like that statistical features cannot distinguish depth~1 from depth~2.\nThat $\\Kempirical \\in \\{1, 2\\}$ for all web text configurations is the core empirical result; larger models reduce 0v1 JSD (0.077 at 8B vs.\\ 0.15--0.27 at $\\leq$1.5B), suggesting 13B+ may increasingly yield $\\Kempirical{=}1$.\nThe $\\Kempirical{=}1$ vs.\\ $\\Kempirical{=}2$ distinction has a direct curation consequence: $\\Kempirical{=}1$ generators erase depth signal in one pass, leaving only the binary 0v1 boundary available for filtering.\n\n\\paragraph{Decoding strategy as confound.}\nGreedy decoding inflates depth separability: Pythia-6.9B yields $\\Kempirical{=}2$ under greedy but $\\Kempirical{=}1$ under nucleus sampling ($p{=}0.95$), with the borderline 1v2 score (2 of 5 folds above $\\theta$) illustrating that the boundary is continuous rather than a cliff (Table~\\ref{tab:s10_pythia_decoding}).\nPractitioners should calibrate $\\theta$ to their application-specific tolerance (Figure~\\ref{fig:kstar_theta}).\n\n\\paragraph{What $\\Kempirical$ reveals.}\nAs a measurement tool, $\\Kempirical$ establishes why binary detection suffices for web text (depth${>}1$ is invisible to statistical features), identifies domains where finer strategies are viable (arXiv $\\Kempirical{=}3$), and quantifies how scale, scorer, and threshold jointly shape the boundary.\nThe OBD framework provides a reproducible, low-cost depth estimation protocol requiring only corpus-level statistical features, unlike detection methods that need API access or model weights.\nEven when the practical outcome remains binary filtering, $\\Kempirical$ grounds this choice in measurement rather than heuristic assumption.\n$\\Kempirical$ also serves as a monitoring metric for tracking how the discrimination boundary shifts as model scale increases; future work may explore scorer-ensemble strategies to improve cross-scorer robustness at marginal boundaries.\n",
+                "numLines": 49,
+                "startLine": 1,
+                "totalLines": 49
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the context. Let me make the edits:\n\n1. **main.tex (Abstract)** - Line 38:\n   - \"four retain significance\" → \"three retain significance\"\n   - \"the two marginal cases\" → \"the three marginal cases\"\n\n2. **appendix_extended.tex** - Line 169, Pythia-1.4B row:\n   - AUC: `.6539` → `.6074`\n   - σ_boot: `.0046` → `.0050`\n   - CI: `[.641,\\,.667]` → `[.593,\\,.621]`\n   - Pass θ: `\\checkmark` → `$\\times$`\n\nI need to verify whether OLMo requires updates—it appears in the K*=1 section at line 176 rather than K*=2, so I'll check that separately.\n\n3. **conclusion.tex** - Line 9:\n   - \"four of six\" → \"three of six\"\n   - \"the remaining two marginal cases\" → \"the remaining three marginal cases\"\n\n4. **discussion.tex** - Add the self-scoring inflation paragraph after the scorer independence discussion around line 18-19, then proceed with all the edits.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "625a598c-1c96-47f1-9b55-f2cd147b5121",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014LVxqSDuY6rJYqqTiGEUMX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4322,
+                "cache_read_input_tokens": 24279,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4322
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll make all four sets of edits."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "47c92d6e-1804-4342-8117-1d88c91d001b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014LVxqSDuY6rJYqqTiGEUMX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4322,
+                "cache_read_input_tokens": 24279,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4322
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WVXV2HyAttYRNstRocm3a9",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex",
+                "old_string": "four retain significance under Bonferroni correction; the two marginal cases",
+                "new_string": "three retain significance under Bonferroni correction; the three marginal cases"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "5164342c-7b87-4a04-af7e-e7f0e2d29e48",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014LVxqSDuY6rJYqqTiGEUMX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4322,
+                "cache_read_input_tokens": 24279,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4322
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T22:05:01.178Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WVXV2HyAttYRNstRocm3a9",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "168f4182-bad2-4604-ab10-990d1fecf983",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex",
+              "oldString": "four retain significance under Bonferroni correction; the two marginal cases",
+              "newString": "three retain significance under Bonferroni correction; the three marginal cases",
+              "originalFile": "% EMNLP 2026 Main — ARR May 2026\n% Generational Depth Contamination\n\\documentclass[11pt]{article}\n\\usepackage[review]{acl}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n\\usepackage{graphicx}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{booktabs}\n\\usepackage{colortbl}\n\\usepackage{multirow}\n\\usepackage{enumitem}\n\\usepackage{subcaption}\n\\usepackage[section]{placeins}\n\n\\newcommand{\\Kstar}{{K^*}}\n\\newcommand{\\Kempirical}{{K^*_{\\text{empirical}}}}\n\\newcommand{\\Ktheory}{{K^*_{\\text{theory}}}}\n\\newcommand{\\auc}{\\text{AUC}}\n\\newcommand{\\jsd}{\\text{JSD}}\n\n\\title{Generational Depth Estimation of Recursive Synthetic Text:\\\\Measuring the Discrimination Boundary}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n% === Abstract ===\n\\begin{abstract}\nWeb-scale corpora are increasingly contaminated by recursive synthetic content, yet no method estimates a document's generational depth.\nWe measure a lower bound on the generational discrimination boundary, $\\Kempirical$ (the maximum depth at which adjacent generations remain distinguishable), using 15 statistical features and an OBD-LightGBM classifier.\nUnder prompt-chain generation across 10 model configurations (6 architecture families, 1B--8B), 3 source domains, and 4 decoding strategies, for web text (C4, Wikipedia), $\\Kempirical \\leq 2$ regardless of model family or scale ($\\theta{=}0.60$); across all ten configurations, $\\Kempirical \\leq 3$, with structured academic text (arXiv) reaching $\\Kempirical{=}3$ across two architectures.\nAmong the six nominal $\\Kempirical{=}2$ configurations, four retain significance under Bonferroni correction; the two marginal cases reflect narrow effect sizes rather than classification failure.\nA single generation pass suffices to render general web text indistinguishable from deeper synthetic content, a \\emph{one-wash laundering} effect.\nModel-free statistical features enable 80--100\\% cross-model transfer with scorer-invariant feature rankings ($\\rho > 0.90$), supporting depth estimation on corpora from unknown generators without retraining.\nAs a consistency check, domain-appropriate $\\Kempirical$ correctly predicts that binary filtering outperforms graduated alternatives for web text when contamination causes detectable quality loss.\n\\end{abstract}\n\n% === Section 1: Introduction ===\n\\input{introduction}\n\n% === Section 2: Related Work ===\n\\input{related_work}\n\n% === Section 3: Method ===\n\\input{method}\n\n% === Section 4: Experiments ===\n\\input{experiments_c1}\n\n% === Section 5: K*-Aware Data Filtering ===\n\\input{experiments_c3}\n\n% === Section 6: Discussion ===\n\\input{discussion}\n\n% === Section 7: Conclusion ===\n\\input{conclusion}\n\n% === Limitations (ACL required, unnumbered) ===\n\\section*{Limitations}\n\nOur study has three main limitations.\n(1)~\\emph{Scope}: we evaluate models up to 8B parameters across 6 architecture families, English text only (C4, Wikipedia, arXiv), and prompt-chain generation; retrain-chain dynamics may yield different boundaries.\n(2)~\\emph{Feature set}: the 15 statistical features provide a lower bound on $\\Ktheory$; richer representations (e.g., neural probes) can extend $\\Kempirical$ by one additional depth for some architectures.\n(3)~\\emph{Threshold sensitivity}: $\\Kempirical$ varies with the decision threshold $\\theta$, ranging from 2--3 at $\\theta{=}0.55$ to 1 at $\\theta{=}0.70$; two of ten configurations are marginal at our reference $\\theta{=}0.60$.\n\n% === Ethics Statement (ACL required, unnumbered) ===\n\\section*{Ethics Statement}\n\nGenerational depth estimation is intended for data curation and corpus auditing, positive-sum applications that improve training data quality.\nOur experiments use the publicly available C4 corpus and do not involve personally identifiable information.\nA potential dual-use concern is that depth estimation techniques could inform adversarial strategies to evade detection (e.g., by calibrating rewriting to mimic earlier-generation statistics); we note that this risk is shared by all detection research and that the binary detection boundary ($\\auc \\geq 0.96$ at 0v1) remains robust.\nCode and data will be released upon acceptance.\n\n\\bibliography{references}\n\n\\clearpage\n\\input{appendix}\n\\input{appendix_extended}\n\n\\end{document}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 35,
+                  "oldLines": 7,
+                  "newStart": 35,
+                  "newLines": 7,
+                  "lines": [
+                    " Web-scale corpora are increasingly contaminated by recursive synthetic content, yet no method estimates a document's generational depth.",
+                    " We measure a lower bound on the generational discrimination boundary, $\\Kempirical$ (the maximum depth at which adjacent generations remain distinguishable), using 15 statistical features and an OBD-LightGBM classifier.",
+                    " Under prompt-chain generation across 10 model configurations (6 architecture families, 1B--8B), 3 source domains, and 4 decoding strategies, for web text (C4, Wikipedia), $\\Kempirical \\leq 2$ regardless of model family or scale ($\\theta{=}0.60$); across all ten configurations, $\\Kempirical \\leq 3$, with structured academic text (arXiv) reaching $\\Kempirical{=}3$ across two architectures.",
+                    "-Among the six nominal $\\Kempirical{=}2$ configurations, four retain significance under Bonferroni correction; the two marginal cases reflect narrow effect sizes rather than classification failure.",
+                    "+Among the six nominal $\\Kempirical{=}2$ configurations, three retain significance under Bonferroni correction; the three marginal cases reflect narrow effect sizes rather than classification failure.",
+                    " A single generation pass suffices to render general web text indistinguishable from deeper synthetic content, a \\emph{one-wash laundering} effect.",
+                    " Model-free statistical features enable 80--100\\% cross-model transfer with scorer-invariant feature rankings ($\\rho > 0.90$), supporting depth estimation on corpora from unknown generators without retraining.",
+                    " As a consistency check, domain-appropriate $\\Kempirical$ correctly predicts that binary filtering outperforms graduated alternatives for web text when contamination causes detectable quality loss."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RVTMoRZShFFaY4st3RnQvt",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+                "old_string": "Pythia-1.4B               & 1v2 & .6539 & .0046 & $[.641,\\,.667]$ & \\checkmark \\\\",
+                "new_string": "Pythia-1.4B               & 1v2 & .6074 & .0050 & $[.593,\\,.621]$ & $\\times$ \\\\"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "1e4cc534-74f8-41d7-8487-443b6e3df1c0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014LVxqSDuY6rJYqqTiGEUMX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4322,
+                "cache_read_input_tokens": 24279,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4322
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T22:05:03.053Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RVTMoRZShFFaY4st3RnQvt",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "7c4e6f5b-00e4-4026-82ad-62df71a639f1",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+              "oldString": "Pythia-1.4B               & 1v2 & .6539 & .0046 & $[.641,\\,.667]$ & \\checkmark \\\\",
+              "newString": "Pythia-1.4B               & 1v2 & .6074 & .0050 & $[.593,\\,.621]$ & $\\times$ \\\\",
+              "originalFile": "\\section{Extended Discussion}\n\\label{sec:extended_discussion}\n\n\\subsection{Theoretical Implications of $\\Kempirical = 2$}\n\nThe DPI guarantees a finite $\\Ktheory$; for general web text, $\\Kempirical \\leq 2$ across all 10 configurations (1B--8B, 6 families), while structured domains (arXiv) yield $\\Kempirical{=}3$, aligning with model collapse convergence~\\cite{shumailov2024collapse, dohmatob2024model, alemohammad2024selfconsuming}.\nDecoding strategy modestly affects signal strength (1v2 $\\auc \\in [0.6866, 0.7039]$) but does not shift the boundary.\n\n\\subsection{Cross-Model Transfer Implications}\n\nCross-model classification retains 80--100\\% accuracy with scorer-invariant feature rankings ($\\rho > 0.90$), enabling single-classifier deployment across generators.\nAbsolute discriminability at the $\\Kempirical$ boundary is scorer-sensitive: alternative scorers reduce Qwen-continuation $\\Kempirical$ from 2 to 1, while rewrite-mode $\\Kempirical = 2$ is preserved.\nModel family similarity modulates transfer (Pythia$\\leftrightarrow$OLMo: 90--92\\% vs.\\ Qwen-cont$\\leftrightarrow$OLMo: 80--85\\%).\n\n\\begin{minipage}{\\columnwidth}\n\\centering\n\\captionof{table}{Cross-scorer validation on Qwen-generated text. Alternative scorers (Pythia-1.4B, OLMo-1B) preserve feature ranking ($\\rho > 0.90$) and rewrite-mode $\\Kempirical = 2$, but reduce continuation-mode $\\Kempirical$ from 2 to 1.}\n\\label{tab:crossscorer}\n\\resizebox{\\columnwidth}{!}{\\input{tables/tab_crossscorer}}\n\\end{minipage}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Three-way ANOVA (Generator $\\times$ Scorer $\\times$ Depth-Pair) on per-fold pairwise $\\auc$ values. DV = per-fold AUC; $N{=}300$ (12 cells $\\times$ 5 folds $\\times$ 5 depth-pairs). Scorer is statistically significant but explains modest variance ($\\eta^2_p{=}.166$) relative to Depth-Pair ($\\eta^2_p{=}.997$), supporting near-scorer-independence of depth discrimination.}\n\\label{tab:anova_crossscorer}\n\\begin{tabular}{lrrrr}\n\\toprule\n\\textbf{Source} & \\textbf{df} & $F$ & $p$ & $\\eta^2_p$ \\\\\n\\midrule\nGenerator     & 2  & 851.91  & ${<}.001$  & .866 \\\\\nScorer        & 3  & 17.48  & ${<}.001$  & .166 \\\\\nDepth-Pair    & 4  & 22737.70  & ${<}.001$  & .997 \\\\\nGen$\\times$Scorer & 6 & 7.50 & ${<}.001$ & .146 \\\\\nGen$\\times$Depth  & 8 & 913.41 & ${<}.001$ & .965 \\\\\nScorer$\\times$Depth & 12 & 2.25 & $.010$ & .093 \\\\\nResidual      & 264 & & & \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Feature Importance Across Decoding Strategies}\n\nFeature importance ordering varies across decoding strategies: greedy and $T{=}0.7$ share highly correlated rankings ($\\rho = 0.914$), while greedy vs.\\ $T{=}1.2$ yields lower correlation ($\\rho = 0.53$, nonsignificant after Bonferroni).\nThe depth boundary is robust but the optimal feature subset is strategy-dependent.\n\n\\subsection{Scale and Neural Probe}\n\\label{sec:extended_neural_probe}\n\nCross-scale validation confirms $\\Kempirical = 2$ from 1.5B through 8B: Qwen-7B (1v2 $\\auc = 0.6168$ $[0.608, 0.626]$) and LLaMA-3.1-8B (1v2 $\\auc = 0.6123$, 0v1 $= 0.9225$) both exceed $\\theta$, with progressively lower 0v1 signal consistent with larger models generating more human-like text. Scaling to 13B+ remains open.\n\nThe neural probe yields model-dependent $\\Kempirical^{\\text{neural}}$: $3$ for Qwen (self-familiarity effect from instruction-tuned representations) but $2$ for Pythia; OLMo yields $\\Kempirical^{\\text{neural}} = 1$ (1v2 $\\auc = 0.5054$), consistent with the 15D LightGBM boundary.\nThe 15D model-free features yield $\\Kempirical = 2$ for Pythia and Qwen, while OLMo yields $\\Kempirical = 1$ under the standardized pipeline.\n\n\\subsection{LLM Zero-Shot Baseline}\n\\label{sec:extended_llm}\n\nGPT-5.5 achieves 33.2\\% accuracy (MAE = 1.10) and Claude Opus~4.6 33.1\\% (MAE = 1.15) on a balanced 500-sample test set, comparable to OBD-LightGBM's 38.0\\% (95\\% CI: $[0.340, 0.422]$; McNemar $p = 0.081$, $0.069$; Table~\\ref{tab:s3_llm_zeroshot}).\nPer-depth recall confirms convergent failure at depths $\\geq 2$ (Section~\\ref{sec:why_kstar}).\nWhen 6-class probabilities are marginalized to 5 classes ($P(d{\\geq}4)$), accuracy rises to 44.4\\% but concentrates in depth-4 (recall: 22\\%$\\to$80\\%) while depths 2--3 collapse to 2--8\\%; we report raw 6-class results.\n\n\\subsection{Practical Considerations}\n\nAll filtering strategies degrade general capabilities (MMLU: 0.6018 $\\to$ 0.5865--0.5941; HellaSwag: 0.6821 $\\to$ 0.6638--0.6701); our 100\\% synthetic setting is an upper bound; in mixed corpora, degradation scales with contamination fraction~\\cite{shumailov2024collapse, dohmatob2024model}.\n$\\Kstar$-aware binary filtering reduces MMLU degradation by ${\\sim}$50\\% ($-$1.53\\,pp $\\to$ $-$0.77\\,pp), requires no per-model calibration, and is combinable with distribution-matching methods (DSIR, DoReMi).\n\n\\subsection{Extended Limitations}\n\\label{sec:extended_limitations}\n\n\\emph{Prompt-chain versus retrain-chain.}\nRetrain-chain validation (Pythia-1.4B LoRA, 5 generations) yields $\\Kempirical{\\geq}4$ (1v2 $\\auc = 0.9484$, 2v3 $= 0.8888$, 3v4 $= 0.7982$), far exceeding prompt-chain $\\Kempirical{=}2$.\nThe elevated signal arises from cumulative model-adaptation artifacts rather than text-intrinsic degradation; prompt-chain $\\Kempirical$ is the operationally relevant boundary for data curation.\n\n\\emph{Threshold sensitivity.}\nAt $\\theta = 0.55$, $\\Kempirical = 3$ for Qwen-rewrite/continuation; at $\\theta = 0.70$, $\\Kempirical = 1$ across all configurations (Figure~\\ref{fig:kstar_theta}).\nQwen-continuation's 1v2 CI lower bound exceeds $\\theta$ by only 0.2\\,pp; all ten boundary comparisons yield permutation $p < 0.001$.\n\n\\emph{Structural confound: token length.}\nIn continuation mode the generation prompt is discarded, so all depths $\\geq 1$ consist entirely of machine-generated tokens and the 1v2 boundary compares texts differing only in conditioning context (human-authored vs.\\ machine-generated prompt), not structural composition.\nDepth~0 texts average ${\\sim}$191 subword tokens (C4 truncation), while depth~1+ texts average 193--256 tokens depending on model (Table~\\ref{tab:token_length}).\nThis asymmetry is directionally opposite to a length-inflation confound: shorter depth-0 texts provide less feature-extraction context, making 0v1 discrimination harder, not easier.\nWithin depths 1--5, mean token counts are stable (within-model range $\\leq$ 4 tokens for all configurations except Qwen-continuation at 6 tokens), so the pairwise comparisons underlying $\\Kempirical{=}2$ are unaffected by length.\nEOS truncation rates are similarly depth-stable within each model: Qwen-rewrite 7--11\\%, Pythia 34--36\\%, OLMo $<$1\\%, Qwen-continuation 17--20\\%, Qwen-7B 45--47\\%.\nModels with the highest truncation (Pythia, Qwen-7B) still yield $\\Kempirical{=}2$ with the same step-function AUC decay pattern as low-truncation models (Table~\\ref{tab:kstar_ci}), confirming that EOS truncation does not drive the boundary.\n\n\\emph{Graduated filtering.}\nAll $\\alpha$ values (0.1--0.9) underperform binary-ours on MMLU ($\\alpha{=}0.1$: 0.5873; $\\alpha{=}0.9$: 0.5892 vs.\\ 0.5941); at $\\alpha{=}0.9$, HellaSwag matches exactly (0.6701).\nBinary-ours significantly outperforms all alternatives on MMLU ($p_{\\text{corr}} \\leq 0.021$); Graduated$_{0.9}$ is indistinguishable on HellaSwag ($p = 1.00$) but worse on MMLU ($p_{\\text{corr}} = 0.011$).\n\\label{tab:pairwise_significance}\n\n\\subsection{Dose-Response: Contamination Ratio Effect}\n\\label{sec:dose_response}\n\nThe main filtering experiments (Section~\\ref{sec:filtering}) use 100\\% synthetic data to maximize effect size.\nTo characterize behavior at lower contamination ratios, we mix synthetic depths 1--5 with clean C4 at 10\\%, 30\\%, and 50\\% contamination (Qwen-1.5B continuation, 5 seeds each; Table~\\ref{tab:dose_response}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{MMLU accuracy by contamination ratio (fraction of synthetic data in training set) and filtering strategy. Base model (no fine-tuning): 0.6018. Mean $\\pm$ std over 5 seeds.}\n\\label{tab:dose_response}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Strategy} & \\textbf{10\\%} & \\textbf{30\\%} & \\textbf{50\\%} \\\\\n\\midrule\nNo-filter   & $0.6009 \\pm .003$ & $0.5978 \\pm .004$ & $0.5932 \\pm .004$ \\\\\nBinary-ours & $0.6011 \\pm .003$ & $0.5988 \\pm .003$ & $0.5956 \\pm .004$ \\\\\nGraduated   & $0.6008 \\pm .003$ & $0.5982 \\pm .004$ & $0.5944 \\pm .004$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n\n{\\sloppy At 10\\% contamination, no-filter MMLU ($0.6009$) remains within noise of the base model ($0.6018$, $\\Delta = -0.09$\\,pp), and all three strategies are indistinguishable ($\\Delta_{\\max} = 0.03$\\,pp between strategies, $p > 0.8$).\nAt 30\\%, differences emerge directionally ($\\Delta = 0.10$\\,pp, binary vs.\\ no-filter) but remain non-significant ($p > 0.3$).\nAt 50\\%, binary-ours shows a 0.24\\,pp advantage over no-filter, approaching but not reaching significance ($p = 0.12$).\nThe strategy ordering (binary $>$ graduated $>$ no-filter) is consistent with the 100\\% setting, but effect sizes scale linearly with contamination fraction.\nThis demonstrates that $\\Kstar$-aware curation provides practical benefit primarily when contamination is severe enough to cause measurable quality degradation.\\par}\n\n\\subsection{Seed Robustness}\n\\label{sec:seed_robustness}\n\nBecause the random seed governs both corpus sampling and generation quality (not merely CV splits), absolute AUC values are seed-dependent.\nWe re-run three configurations with seed$\\,{=}\\,123$ (primary: seed$\\,{=}\\,42$; Table~\\ref{tab:seed_robustness}).\n$\\Kempirical$ is stable in 2/3 cases: Pythia-1.4B on Wikipedia yields $\\Kempirical{=}1$ under both seeds (1v2 $\\Delta = -0.8$\\,pp), and Qwen-1.5B on C4 yields $\\Kempirical{=}2$ (1v2 $\\Delta = +9.0$\\,pp, both seeds above $\\theta$).\nQwen-1.5B on Wikipedia shifts from $\\Kempirical{=}2$ to $\\Kempirical{=}3$ under seed$\\,{=}\\,123$, but the 2v3 AUC ($0.6067$) is marginal: one of five folds falls below $\\theta$ (fold~5 $= 0.595$), so this does not constitute strong evidence for $\\Kempirical{=}3$.\nThe ${\\pm}9$\\,pp absolute AUC variation across seeds strengthens the methodological case for threshold-based $\\Kempirical$ over raw AUC comparisons: the qualitative boundary is robust even when point estimates shift.\n\n\\begin{table}[h]\n\\centering\n\\footnotesize\n\\caption{Seed robustness: $\\Kempirical$ under two random seeds. 1v2 $\\Delta$: change in 1v2 AUC from seed 42 to seed 123. $\\Kempirical$ is stable in 2/3 configurations; the Qwen-Wiki shift to $\\Kempirical{=}3$ is marginal (2v3 fold variance crosses $\\theta$).}\n\\label{tab:seed_robustness}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Domain} & \\multicolumn{2}{c}{$\\Kempirical$} & \\textbf{1v2 $\\Delta$} & \\textbf{Stable?} \\\\\n\\cmidrule(lr){3-4}\n & & seed=42 & seed=123 & & \\\\\n\\midrule\nPythia-1.4B & Wikipedia & 1 & 1 & $-0.8$\\,pp & \\checkmark \\\\\nQwen-1.5B  & C4        & 2 & 2 & $+9.0$\\,pp & \\checkmark \\\\\nQwen-1.5B  & Wikipedia & 2 & 3$^\\dagger$ & $+8.7$\\,pp & $\\times$ \\\\\n\\bottomrule\n\\multicolumn{6}{l}{\\footnotesize $^\\dagger$2v3 $\\auc = 0.6067$; fold 5 $= 0.595 < \\theta$. Marginal boundary.}\n\\end{tabular}}\n\\end{table}\n\n\\subsection{Bonferroni-Corrected Confidence Intervals}\n\\label{sec:bonferroni_ci}\n\nTo control the family-wise error rate across all 10 model configurations, we apply Bonferroni correction: $\\alpha_{\\text{corr}} = 0.05 / 10 = 0.005$, yielding 99.5\\% confidence intervals ($z = 2.807$).\nTable~\\ref{tab:bonferroni_ci} reports the corrected intervals for each configuration's $\\Kempirical$ boundary pair.\nEight of ten configurations retain CI lower bounds above $\\theta{=}0.60$; two marginal $\\Kempirical{=}2$ configurations (Qwen-cont, LLaMA-8B) see their lower bounds dip below $\\theta$ under the stricter criterion ($0.5976$ and $0.5988$, respectively).\nThese near-misses reflect narrow effect sizes ($\\auc - \\theta < 0.013$) rather than classification failure: both retain point estimates above $\\theta$ and uncorrected 95\\% CI lower bounds above $\\theta$.\n\n\\begin{table}[h]\n\\centering\n\\footnotesize\n\\caption{Bonferroni-corrected 99.5\\% confidence intervals for $\\Kempirical$ boundary pairs across all 10 configurations. $\\alpha_{\\text{corr}} = 0.005$; CI computed as $\\auc \\pm 2.807 \\times \\hat{\\sigma}_{\\text{boot}}$. ``Pass $\\theta$'': CI lower bound $> 0.60$.}\n\\label{tab:bonferroni_ci}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Configuration} & \\textbf{Boundary} & $\\auc$ & $\\hat{\\sigma}_{\\text{boot}}$ & \\textbf{99.5\\% CI} & \\textbf{Pass $\\theta$} \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{$\\Kempirical = 2$ configurations}} \\\\\nQwen-rw (Instruct)       & 1v2 & .6955 & .0046 & $[.683,\\,.708]$ & \\checkmark \\\\\nPythia-1.4B               & 1v2 & .6539 & .0046 & $[.641,\\,.667]$ & \\checkmark \\\\\nQwen-base                 & 1v2 & .6260 & .0047 & $[.613,\\,.639]$ & \\checkmark \\\\\nQwen-7B$^\\ddagger$        & 1v2 & .6168 & .0046 & $[.604,\\,.630]$ & \\checkmark \\\\\nLLaMA-8B                  & 1v2 & .6123 & .0048 & $[.599,\\,.626]$ & $\\times$ \\\\\nQwen-cont (Instruct)     & 1v2 & .6112 & .0049 & $[.598,\\,.625]$ & $\\times$ \\\\\n\\midrule\n\\multicolumn{6}{l}{\\textit{$\\Kempirical = 1$ configurations}} \\\\\nOLMo-1B                   & 0v1 & .9860 & .0009 & $[.983,\\,.989]$ & \\checkmark \\\\\nMistral-7B                & 0v1 & .9842 & .0009 & $[.982,\\,.987]$ & \\checkmark \\\\\nPythia-6.9B$^\\S$          & 0v1 & .9599 & .0015$^\\dagger$ & $[.956,\\,.964]$ & \\checkmark \\\\\nGemma-2-2B                & 0v1 & .9530 & .0018 & $[.948,\\,.958]$ & \\checkmark \\\\\n\\bottomrule\n\\multicolumn{6}{l}{\\footnotesize $^\\ddagger$Generator: Qwen2.5-7B; scorer: Qwen2.5-1.5B.} \\\\\n\\multicolumn{6}{l}{\\footnotesize $^\\S$Nucleus sampling ($p{=}0.95$, $T{=}1.0$).} \\\\\n\\multicolumn{6}{l}{\\footnotesize $^\\dagger$Estimated from analogous configurations (no separate bootstrap JSON).}\n\\end{tabular}}\n\\end{table}\n\n\\subsection{Cross-Sample Robustness: 5K vs.\\ 10K}\n\\label{sec:robustness_10k}\n\nThe preceding analyses fix the sample pool at $N{=}5{,}000$ passages per depth.\nTo assess between-sample variability, we re-draw an independent $N{=}10{,}000$ sample from C4 using a different random seed and repeat the full OBD pipeline.\nIf $\\Kempirical$ and the boundary AUC are driven by the underlying distributional shift rather than by idiosyncrasies of a particular sample, both quantities should remain stable across draws.\n\nTable~\\ref{tab:robustness_10k} reports the results.\nFor Pythia-1.4B (continuation, C4), the 5K and 10K samples agree on $\\Kempirical{=}2$: the 0v1 AUC is nearly identical ($0.9700$ vs.\\ $0.9712$), while the boundary 1v2 AUC decreases from $0.6539$ to $0.6175$ ($\\Delta = -0.036$).\nThis shift is consistent with natural sampling variability across C4 subsets and does not alter the qualitative depth boundary.\nThe 2v3 pair remains near chance in both draws ($0.54$, $0.54$), confirming that depths $\\geq 2$ are indistinguishable regardless of sample.\nQwen-1.5B (continuation, C4) replicates the same pattern ($\\Kempirical{=}2$, 1v2 $\\auc = 0.6346$).\nLLaMA-3.1-8B (continuation, C4) is the sole configuration where the 10K OOF AUC drops below $\\theta$ ($0.5880$; pipeline AUC $= 0.6148$; Bonferroni 99.5\\% CI $[0.5776, 0.5978]$), yielding $\\Kempirical{=}1$ under the stricter criterion.\n\n\\begin{table}[h]\n\\centering\n\\footnotesize\n\\caption{Cross-sample robustness: pairwise AUC and $\\Kempirical$ under 5K and 10K C4 samples drawn with different random seeds. All configurations use continuation mode. $\\Kempirical$ is determined by the $\\theta{=}0.60$ threshold on 1v2 AUC.}\n\\label{tab:robustness_10k}\n\\resizebox{\\columnwidth}{!}{\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Model} & $N$ & \\textbf{AUC(0v1)} & \\textbf{AUC(1v2)} & \\textbf{AUC(2v3)} & $\\Kempirical$ \\\\\n\\midrule\nPythia-1.4B cont & 5K  & 0.9700 & 0.6539 & 0.5400 & 2 \\\\\nPythia-1.4B cont & 10K & 0.9712 & 0.6175 & 0.5364 & 2 \\\\\n\\midrule\nQwen-1.5B cont  & 5K  & \\multicolumn{3}{c}{(see Table~\\ref{tab:bonferroni_ci})} & 2 \\\\\nQwen-1.5B cont  & 10K & 0.9875 & 0.6346 & 0.5616 & 2 \\\\\n\\midrule\nLLaMA-8B cont   & 5K  & \\multicolumn{3}{c}{(see Table~\\ref{tab:bonferroni_ci})} & 2 \\\\\nLLaMA-8B cont   & 10K & 0.9282 & 0.5880$^\\dagger$ & 0.5247 & 1$^\\dagger$ \\\\\n\\bottomrule\n\\multicolumn{6}{l}{\\footnotesize $^\\dagger$OOF AUC (pipeline AUC $= 0.6148$); Bonferroni 99.5\\% CI $[0.5776, 0.5978]$ does not pass $\\theta$.} \\\\\n\\end{tabular}}\n\\end{table}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 166,
+                  "oldLines": 7,
+                  "newStart": 166,
+                  "newLines": 7,
+                  "lines": [
+                    " \\midrule",
+                    " \\multicolumn{6}{l}{\\textit{$\\Kempirical = 2$ configurations}} \\\\",
+                    " Qwen-rw (Instruct)       & 1v2 & .6955 & .0046 & $[.683,\\,.708]$ & \\checkmark \\\\",
+                    "-Pythia-1.4B               & 1v2 & .6539 & .0046 & $[.641,\\,.667]$ & \\checkmark \\\\",
+                    "+Pythia-1.4B               & 1v2 & .6074 & .0050 & $[.593,\\,.621]$ & $\\times$ \\\\",
+                    " Qwen-base                 & 1v2 & .6260 & .0047 & $[.613,\\,.639]$ & \\checkmark \\\\",
+                    " Qwen-7B$^\\ddagger$        & 1v2 & .6168 & .0046 & $[.604,\\,.630]$ & \\checkmark \\\\",
+                    " LLaMA-8B                  & 1v2 & .6123 & .0048 & $[.599,\\,.626]$ & $\\times$ \\\\"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012BeSEqRbBaB6imFNPLFvgZ",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/conclusion.tex",
+                "old_string": "four of six $\\Kempirical{=}2$ configurations retain significance at the 99.5\\% level; the remaining two marginal cases",
+                "new_string": "three of six $\\Kempirical{=}2$ configurations retain significance at the 99.5\\% level; the remaining three marginal cases"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "c92cdf0d-0656-455c-9581-54aa8c06c8b1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014LVxqSDuY6rJYqqTiGEUMX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4322,
+                "cache_read_input_tokens": 24279,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4322
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T22:05:04.395Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012BeSEqRbBaB6imFNPLFvgZ",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "1caa2006-e3c4-405b-9f8e-18705bb02d15",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/conclusion.tex",
+              "oldString": "four of six $\\Kempirical{=}2$ configurations retain significance at the 99.5\\% level; the remaining two marginal cases",
+              "newString": "three of six $\\Kempirical{=}2$ configurations retain significance at the 99.5\\% level; the remaining three marginal cases",
+              "originalFile": "\\section{Conclusion}\n\\label{sec:conclusion}\n\nWe measure a lower bound on the generational depth discrimination boundary $\\Kempirical$ for prompt-chain recursive synthetic text.\nFor general web text, $\\Kempirical \\leq 2$ regardless of model family or scale (six architecture families, 1B--8B, $\\theta{=}0.60$); across all ten configurations, $\\Kempirical \\leq 3$, with structured academic text (arXiv) reaching $\\Kempirical{=}3$ across two independent architectures.\nThis one-wash laundering effect concentrates all exploitable signal at the 0v1 boundary, and the consistency check confirms that binary curation most effectively minimizes MMLU degradation ($-$0.77\\,pp vs.\\ $-$1.53\\,pp for no-filter).\nFor structured domains where $\\Kempirical{=}3$, graduated strategies can exploit one additional depth level, so corpus curators should calibrate filtering to the source domain.\nThe 15 statistical features enable deployment across generators without retraining (80--92\\% accuracy retention, $\\rho > 0.90$), supporting model-agnostic depth estimation for corpora where the generating model is unknown.\nUnder Bonferroni correction for 10 simultaneous comparisons, four of six $\\Kempirical{=}2$ configurations retain significance at the 99.5\\% level; the remaining two marginal cases preserve point estimates above $\\theta$.\n$\\Kempirical$ converts a continuous AUC decay surface into a discrete operating boundary grounded in the Data Processing Inequality, providing a principled basis for curation decisions that replaces heuristic assumptions about synthetic text recyclability.\nSeveral directions remain open: tracking $\\Kempirical$ as model scale surpasses 13B, where our scale analysis suggests the boundary may shift toward $\\Kempirical{=}1$; bridging the prompt-chain and retrain-chain boundaries, given the substantially higher $\\Kempirical{\\geq}4$ observed under parameter retraining; and extending depth estimation to additional structured domains and multilingual text.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 6,
+                  "oldLines": 6,
+                  "newStart": 6,
+                  "newLines": 6,
+                  "lines": [
+                    " This one-wash laundering effect concentrates all exploitable signal at the 0v1 boundary, and the consistency check confirms that binary curation most effectively minimizes MMLU degradation ($-$0.77\\,pp vs.\\ $-$1.53\\,pp for no-filter).",
+                    " For structured domains where $\\Kempirical{=}3$, graduated strategies can exploit one additional depth level, so corpus curators should calibrate filtering to the source domain.",
+                    " The 15 statistical features enable deployment across generators without retraining (80--92\\% accuracy retention, $\\rho > 0.90$), supporting model-agnostic depth estimation for corpora where the generating model is unknown.",
+                    "-Under Bonferroni correction for 10 simultaneous comparisons, four of six $\\Kempirical{=}2$ configurations retain significance at the 99.5\\% level; the remaining two marginal cases preserve point estimates above $\\theta$.",
+                    "+Under Bonferroni correction for 10 simultaneous comparisons, three of six $\\Kempirical{=}2$ configurations retain significance at the 99.5\\% level; the remaining three marginal cases preserve point estimates above $\\theta$.",
+                    " $\\Kempirical$ converts a continuous AUC decay surface into a discrete operating boundary grounded in the Data Processing Inequality, providing a principled basis for curation decisions that replaces heuristic assumptions about synthetic text recyclability.",
+                    " Several directions remain open: tracking $\\Kempirical$ as model scale surpasses 13B, where our scale analysis suggests the boundary may shift toward $\\Kempirical{=}1$; bridging the prompt-chain and retrain-chain boundaries, given the substantially higher $\\Kempirical{\\geq}4$ observed under parameter retraining; and extending depth estimation to additional structured domains and multilingual text."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011ogGAgD6h7L92ek3C7t1Ci",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex",
+                "old_string": "ANOVA confirms this layered pattern: Scorer explains modest variance ($\\eta^2_p{=}.166$) with a significant Generator$\\times$Scorer interaction ($\\eta^2_p{=}.146$; Table~\\ref{tab:anova_crossscorer}).",
+                "new_string": "ANOVA confirms this layered pattern: Scorer explains modest variance ($\\eta^2_p{=}.166$) with a significant Generator$\\times$Scorer interaction ($\\eta^2_p{=}.146$; Table~\\ref{tab:anova_crossscorer}).\nSelf-scoring systematically inflates pairwise AUC relative to cross-family scoring: OLMo exhibits the largest gap (1v2 $\\Delta$ = +11.5 pp; self-scored $K^*$=2 vs.\\ cross-scored $K^*$=1), followed by Pythia ($\\Delta$ = +4.7 pp; $K^*$=2 under both but CI crosses $\\theta$ under cross-scoring) and LLaMA-8B ($\\Delta$ = +1.9 pp). This inflation is consistent with models being more sensitive to their own generation artifacts. Cross-scoring provides a conservative, deployment-realistic estimate of $K^*$, as real-world contamination originates from unknown generators."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "26305f41-db90-452c-8b60-1568932cab01",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014LVxqSDuY6rJYqqTiGEUMX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4322,
+                "cache_read_input_tokens": 24279,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4322
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T22:05:12.682Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011ogGAgD6h7L92ek3C7t1Ci",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "3033b314-8863-4363-be9d-5e1318739251",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex",
+              "oldString": "ANOVA confirms this layered pattern: Scorer explains modest variance ($\\eta^2_p{=}.166$) with a significant Generator$\\times$Scorer interaction ($\\eta^2_p{=}.146$; Table~\\ref{tab:anova_crossscorer}).",
+              "newString": "ANOVA confirms this layered pattern: Scorer explains modest variance ($\\eta^2_p{=}.166$) with a significant Generator$\\times$Scorer interaction ($\\eta^2_p{=}.146$; Table~\\ref{tab:anova_crossscorer}).\nSelf-scoring systematically inflates pairwise AUC relative to cross-family scoring: OLMo exhibits the largest gap (1v2 $\\Delta$ = +11.5 pp; self-scored $K^*$=2 vs.\\ cross-scored $K^*$=1), followed by Pythia ($\\Delta$ = +4.7 pp; $K^*$=2 under both but CI crosses $\\theta$ under cross-scoring) and LLaMA-8B ($\\Delta$ = +1.9 pp). This inflation is consistent with models being more sensitive to their own generation artifacts. Cross-scoring provides a conservative, deployment-realistic estimate of $K^*$, as real-world contamination originates from unknown generators.",
+              "originalFile": "\\section{Discussion}\n\\label{sec:discussion}\n\\label{sec:why_kstar}\n\\label{sec:one_wash}\n\\label{sec:negative_graduated}\n\\label{sec:repr_dependence}\n\\label{sec:boundary_cases}\n\\label{sec:length_confound}\n\n\\paragraph{One-wash laundering (web text).}\nFor general web text, $\\Kempirical{=}2$ reflects concentrated information loss: 0v1 is near-trivially separable ($\\auc \\geq 0.92$), 1v2 drops by ${\\sim}$30\\,pp, and 2v3 falls below $\\theta$.\nA single generation pass renders text indistinguishable from multiply recycled content, limiting depth-aware curation to a binary boundary.\nConverging evidence supports a data-intrinsic interpretation: OBD achieves 96\\% depth-0 recall but only 14--22\\% for depths 2--4; frontier LLMs show 8--38\\% (McNemar $p > 0.05$ vs.\\ OBD; Table~\\ref{tab:s3_llm_zeroshot}).\n\n\\paragraph{Representation dependence.}\n$\\Kempirical$ is representation-dependent: frozen Qwen embeddings yield $\\Kempirical^{\\text{neural}} = 3$, while Pythia yields $\\Kempirical^{\\text{neural}} = 2$ and OLMo yields $\\Kempirical^{\\text{neural}} = 1$, consistent with its 15D boundary (Table~\\ref{tab:neural_probe_crossmodel}).\nThe 15D features trade one depth level of sensitivity for cross-model consistency (6/10 configurations $\\Kempirical{=}2$), making them the preferred operational choice.\nFeature rankings are scorer-independent ($\\rho > 0.90$); $\\Kempirical$ agreement is scorer-independent for strong-signal configurations (e.g., Qwen-rewrite retains $\\Kempirical{=}2$ under all scorers) but scorer-sensitive at marginal boundaries (Qwen-continuation drops to $\\Kempirical{=}1$; length confound ruled out in Appendix~\\ref{sec:extended_limitations}).\nANOVA confirms this layered pattern: Scorer explains modest variance ($\\eta^2_p{=}.166$) with a significant Generator$\\times$Scorer interaction ($\\eta^2_p{=}.146$; Table~\\ref{tab:anova_crossscorer}).\n\n\\paragraph{Domain dependence of $\\Kempirical$.}\nWeb text (C4, Wikipedia) consistently yields $\\Kempirical{=}2$, while structured academic text (arXiv) yields $\\Kempirical{=}3$ across two independent model families (Qwen-1.5B and Pythia-1.4B; Section~\\ref{sec:cross_domain}).\nThe elevated arXiv signal reflects formulaic structure: citation patterns, mathematical notation, and section conventions create larger per-generation distributional shifts (1v2 JSD $= 0.077$ vs.\\ ${\\sim}0.01$ for C4), making contamination trackable to greater depth.\nWikipedia matches C4 at $\\Kempirical{=}2$ (1v2 $\\auc = 0.623$, 2v3 $\\auc = 0.571$), consistent with its general-purpose prose lacking domain-specific structural markers.\nThis domain dependence implies that corpus curators should calibrate depth-aware filtering to source characteristics rather than assuming a universal boundary.\n\n\\paragraph{Cross-model transfer.}\nContinuation-mode classifiers transfer well across generators (80--92\\% retention; Figure~\\ref{fig:transfer_heatmap}), enabling portable depth estimation on corpora from unknown models without retraining.\nThe poor transfer from rewrite-mode classifiers (61--63\\%) isolates generation mode, rather than architecture family, as the primary axis of distributional variation.\n\n\\paragraph{Prompt-chain scope and retrain-chain gap.}\nRetrain-chain experiments (Pythia-1.4B LoRA) yield $\\Kempirical{\\geq}4$ (1v2 $\\auc = 0.9484$, 3v4 $= 0.7982$), far exceeding the prompt-chain boundary of $\\Kempirical{=}2$, because each retrain generation also modifies model parameters, introducing cumulative adaptation artifacts absent from text-only recycling.\nPrompt-chain $\\Kempirical$ isolates text-intrinsic degradation, the operationally relevant quantity for data curation pipelines; our conclusions do not directly transfer to retrain-chain (model collapse) settings.\n\n\\paragraph{Boundary cases and scale effect.}\n$\\Kempirical{=}1$ configurations cluster at 1v2 $\\auc$ 0.508--0.598, well separated from the $\\Kempirical{=}2$ range (0.611--0.696); $\\Kempirical{=}1$ is not a classifier failure but a text property, as these models produce first-generation output so human-like that statistical features cannot distinguish depth~1 from depth~2.\nThat $\\Kempirical \\in \\{1, 2\\}$ for all web text configurations is the core empirical result; larger models reduce 0v1 JSD (0.077 at 8B vs.\\ 0.15--0.27 at $\\leq$1.5B), suggesting 13B+ may increasingly yield $\\Kempirical{=}1$.\nThe $\\Kempirical{=}1$ vs.\\ $\\Kempirical{=}2$ distinction has a direct curation consequence: $\\Kempirical{=}1$ generators erase depth signal in one pass, leaving only the binary 0v1 boundary available for filtering.\n\n\\paragraph{Decoding strategy as confound.}\nGreedy decoding inflates depth separability: Pythia-6.9B yields $\\Kempirical{=}2$ under greedy but $\\Kempirical{=}1$ under nucleus sampling ($p{=}0.95$), with the borderline 1v2 score (2 of 5 folds above $\\theta$) illustrating that the boundary is continuous rather than a cliff (Table~\\ref{tab:s10_pythia_decoding}).\nPractitioners should calibrate $\\theta$ to their application-specific tolerance (Figure~\\ref{fig:kstar_theta}).\n\n\\paragraph{What $\\Kempirical$ reveals.}\nAs a measurement tool, $\\Kempirical$ establishes why binary detection suffices for web text (depth${>}1$ is invisible to statistical features), identifies domains where finer strategies are viable (arXiv $\\Kempirical{=}3$), and quantifies how scale, scorer, and threshold jointly shape the boundary.\nThe OBD framework provides a reproducible, low-cost depth estimation protocol requiring only corpus-level statistical features, unlike detection methods that need API access or model weights.\nEven when the practical outcome remains binary filtering, $\\Kempirical$ grounds this choice in measurement rather than heuristic assumption.\n$\\Kempirical$ also serves as a monitoring metric for tracking how the discrimination boundary shifts as model scale increases; future work may explore scorer-ensemble strategies to improve cross-scorer robustness at marginal boundaries.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 17,
+                  "oldLines": 6,
+                  "newStart": 17,
+                  "newLines": 7,
+                  "lines": [
+                    " The 15D features trade one depth level of sensitivity for cross-model consistency (6/10 configurations $\\Kempirical{=}2$), making them the preferred operational choice.",
+                    " Feature rankings are scorer-independent ($\\rho > 0.90$); $\\Kempirical$ agreement is scorer-independent for strong-signal configurations (e.g., Qwen-rewrite retains $\\Kempirical{=}2$ under all scorers) but scorer-sensitive at marginal boundaries (Qwen-continuation drops to $\\Kempirical{=}1$; length confound ruled out in Appendix~\\ref{sec:extended_limitations}).",
+                    " ANOVA confirms this layered pattern: Scorer explains modest variance ($\\eta^2_p{=}.166$) with a significant Generator$\\times$Scorer interaction ($\\eta^2_p{=}.146$; Table~\\ref{tab:anova_crossscorer}).",
+                    "+Self-scoring systematically inflates pairwise AUC relative to cross-family scoring: OLMo exhibits the largest gap (1v2 $\\Delta$ = +11.5 pp; self-scored $K^*$=2 vs.\\ cross-scored $K^*$=1), followed by Pythia ($\\Delta$ = +4.7 pp; $K^*$=2 under both but CI crosses $\\theta$ under cross-scoring) and LLaMA-8B ($\\Delta$ = +1.9 pp). This inflation is consistent with models being more sensitive to their own generation artifacts. Cross-scoring provides a conservative, deployment-realistic estimate of $K^*$, as real-world contamination originates from unknown generators.",
+                    " ",
+                    " \\paragraph{Domain dependence of $\\Kempirical$.}",
+                    " Web text (C4, Wikipedia) consistently yields $\\Kempirical{=}2$, while structured academic text (arXiv) yields $\\Kempirical{=}3$ across two independent model families (Qwen-1.5B and Pythia-1.4B; Section~\\ref{sec:cross_domain})."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证修改结果。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "428cfea4-745b-437d-964f-3afe607ac331",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VL2Ph2DzrTrvFRGPvhWNex",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1730,
+                "cache_read_input_tokens": 28601,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1730
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ez681znWeoyxzTXT4a5Frw",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex",
+                "offset": 37,
+                "limit": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "2010481b-2fe2-4ca7-8faf-fa89ca8eee2e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VL2Ph2DzrTrvFRGPvhWNex",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1730,
+                "cache_read_input_tokens": 28601,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1730
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T22:05:15.344Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ez681znWeoyxzTXT4a5Frw",
+              "type": "tool_result",
+              "content": "37\tUnder prompt-chain generation across 10 model configurations (6 architecture families, 1B--8B), 3 source domains, and 4 decoding strategies, for web text (C4, Wikipedia), $\\Kempirical \\leq 2$ regardless of model family or scale ($\\theta{=}0.60$); across all ten configurations, $\\Kempirical \\leq 3$, with structured academic text (arXiv) reaching $\\Kempirical{=}3$ across two architectures.\n38\tAmong the six nominal $\\Kempirical{=}2$ configurations, three retain significance under Bonferroni correction; the three marginal cases reflect narrow effect sizes rather than classification failure.\n39\tA single generation pass suffices to render general web text indistinguishable from deeper synthetic content, a \\emph{one-wash laundering} effect."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "0c1ae132-1686-480b-b84d-490ef639800e",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/main.tex",
+                "content": "Under prompt-chain generation across 10 model configurations (6 architecture families, 1B--8B), 3 source domains, and 4 decoding strategies, for web text (C4, Wikipedia), $\\Kempirical \\leq 2$ regardless of model family or scale ($\\theta{=}0.60$); across all ten configurations, $\\Kempirical \\leq 3$, with structured academic text (arXiv) reaching $\\Kempirical{=}3$ across two architectures.\nAmong the six nominal $\\Kempirical{=}2$ configurations, three retain significance under Bonferroni correction; the three marginal cases reflect narrow effect sizes rather than classification failure.\nA single generation pass suffices to render general web text indistinguishable from deeper synthetic content, a \\emph{one-wash laundering} effect.",
+                "numLines": 3,
+                "startLine": 37,
+                "totalLines": 88
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WDAbbmu5sqruXBAKS8YTx1",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+                "offset": 167,
+                "limit": 6
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "d357998a-faf8-4c1f-9075-971ad215f5b5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VL2Ph2DzrTrvFRGPvhWNex",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1730,
+                "cache_read_input_tokens": 28601,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1730
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T22:05:16.282Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WDAbbmu5sqruXBAKS8YTx1",
+              "type": "tool_result",
+              "content": "167\t\\multicolumn{6}{l}{\\textit{$\\Kempirical = 2$ configurations}} \\\\\n168\tQwen-rw (Instruct)       & 1v2 & .6955 & .0046 & $[.683,\\,.708]$ & \\checkmark \\\\\n169\tPythia-1.4B               & 1v2 & .6074 & .0050 & $[.593,\\,.621]$ & $\\times$ \\\\\n170\tQwen-base                 & 1v2 & .6260 & .0047 & $[.613,\\,.639]$ & \\checkmark \\\\\n171\tQwen-7B$^\\ddagger$        & 1v2 & .6168 & .0046 & $[.604,\\,.630]$ & \\checkmark \\\\\n172\tLLaMA-8B                  & 1v2 & .6123 & .0048 & $[.599,\\,.626]$ & $\\times$ \\\\"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "fe755298-6df8-4b8c-98dc-e964186c664e",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/appendix_extended.tex",
+                "content": "\\multicolumn{6}{l}{\\textit{$\\Kempirical = 2$ configurations}} \\\\\nQwen-rw (Instruct)       & 1v2 & .6955 & .0046 & $[.683,\\,.708]$ & \\checkmark \\\\\nPythia-1.4B               & 1v2 & .6074 & .0050 & $[.593,\\,.621]$ & $\\times$ \\\\\nQwen-base                 & 1v2 & .6260 & .0047 & $[.613,\\,.639]$ & \\checkmark \\\\\nQwen-7B$^\\ddagger$        & 1v2 & .6168 & .0046 & $[.604,\\,.630]$ & \\checkmark \\\\\nLLaMA-8B                  & 1v2 & .6123 & .0048 & $[.599,\\,.626]$ & $\\times$ \\\\",
+                "numLines": 6,
+                "startLine": 167,
+                "totalLines": 222
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TiiYydxa7LTQYTVXQ7zwFG",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/conclusion.tex",
+                "offset": 8,
+                "limit": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "72749262-518a-4ab5-920b-835a93613f80",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VL2Ph2DzrTrvFRGPvhWNex",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1730,
+                "cache_read_input_tokens": 28601,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1730
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T22:05:17.206Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TiiYydxa7LTQYTVXQ7zwFG",
+              "type": "tool_result",
+              "content": "8\tThe 15 statistical features enable deployment across generators without retraining (80--92\\% accuracy retention, $\\rho > 0.90$), supporting model-agnostic depth estimation for corpora where the generating model is unknown.\n9\tUnder Bonferroni correction for 10 simultaneous comparisons, three of six $\\Kempirical{=}2$ configurations retain significance at the 99.5\\% level; the remaining three marginal cases preserve point estimates above $\\theta$.\n10\t$\\Kempirical$ converts a continuous AUC decay surface into a discrete operating boundary grounded in the Data Processing Inequality, providing a principled basis for curation decisions that replaces heuristic assumptions about synthetic text recyclability."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "754c3144-9a7a-480d-ab90-51b5fded3055",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/conclusion.tex",
+                "content": "The 15 statistical features enable deployment across generators without retraining (80--92\\% accuracy retention, $\\rho > 0.90$), supporting model-agnostic depth estimation for corpora where the generating model is unknown.\nUnder Bonferroni correction for 10 simultaneous comparisons, three of six $\\Kempirical{=}2$ configurations retain significance at the 99.5\\% level; the remaining three marginal cases preserve point estimates above $\\theta$.\n$\\Kempirical$ converts a continuous AUC decay surface into a discrete operating boundary grounded in the Data Processing Inequality, providing a principled basis for curation decisions that replaces heuristic assumptions about synthetic text recyclability.",
+                "numLines": 3,
+                "startLine": 8,
+                "totalLines": 12
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C6tr3g7XCsyD3pLVEcMmmL",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex",
+                "offset": 18,
+                "limit": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "8a3dc604-352e-4e04-af08-9fee7c90406b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VL2Ph2DzrTrvFRGPvhWNex",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1730,
+                "cache_read_input_tokens": 28601,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1730
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T22:05:17.733Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C6tr3g7XCsyD3pLVEcMmmL",
+              "type": "tool_result",
+              "content": "18\tFeature rankings are scorer-independent ($\\rho > 0.90$); $\\Kempirical$ agreement is scorer-independent for strong-signal configurations (e.g., Qwen-rewrite retains $\\Kempirical{=}2$ under all scorers) but scorer-sensitive at marginal boundaries (Qwen-continuation drops to $\\Kempirical{=}1$; length confound ruled out in Appendix~\\ref{sec:extended_limitations}).\n19\tANOVA confirms this layered pattern: Scorer explains modest variance ($\\eta^2_p{=}.166$) with a significant Generator$\\times$Scorer interaction ($\\eta^2_p{=}.146$; Table~\\ref{tab:anova_crossscorer}).\n20\tSelf-scoring systematically inflates pairwise AUC relative to cross-family scoring: OLMo exhibits the largest gap (1v2 $\\Delta$ = +11.5 pp; self-scored $K^*$=2 vs.\\ cross-scored $K^*$=1), followed by Pythia ($\\Delta$ = +4.7 pp; $K^*$=2 under both but CI crosses $\\theta$ under cross-scoring) and LLaMA-8B ($\\Delta$ = +1.9 pp). This inflation is consistent with models being more sensitive to their own generation artifacts. Cross-scoring provides a conservative, deployment-realistic estimate of $K^*$, as real-world contamination originates from unknown generators.\n21\t\n22\t\\paragraph{Domain dependence of $\\Kempirical$.}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "02ab7322-743b-406c-b624-2053a05e831f",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination/docs/paper/discussion.tex",
+                "content": "Feature rankings are scorer-independent ($\\rho > 0.90$); $\\Kempirical$ agreement is scorer-independent for strong-signal configurations (e.g., Qwen-rewrite retains $\\Kempirical{=}2$ under all scorers) but scorer-sensitive at marginal boundaries (Qwen-continuation drops to $\\Kempirical{=}1$; length confound ruled out in Appendix~\\ref{sec:extended_limitations}).\nANOVA confirms this layered pattern: Scorer explains modest variance ($\\eta^2_p{=}.166$) with a significant Generator$\\times$Scorer interaction ($\\eta^2_p{=}.146$; Table~\\ref{tab:anova_crossscorer}).\nSelf-scoring systematically inflates pairwise AUC relative to cross-family scoring: OLMo exhibits the largest gap (1v2 $\\Delta$ = +11.5 pp; self-scored $K^*$=2 vs.\\ cross-scored $K^*$=1), followed by Pythia ($\\Delta$ = +4.7 pp; $K^*$=2 under both but CI crosses $\\theta$ under cross-scoring) and LLaMA-8B ($\\Delta$ = +1.9 pp). This inflation is consistent with models being more sensitive to their own generation artifacts. Cross-scoring provides a conservative, deployment-realistic estimate of $K^*$, as real-world contamination originates from unknown generators.\n\n\\paragraph{Domain dependence of $\\Kempirical$.}",
+                "numLines": 5,
+                "startLine": 18,
+                "totalLines": 50
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改完成。汇总：\n\n| 文件 | 行号 | 旧值 | 新值 |\n|------|------|------|------|\n| `main.tex` | 38 | `four retain significance` | `three retain significance` |\n| `main.tex` | 38 | `the two marginal cases` | `the three marginal cases` |\n| `appendix_extended.tex` | 169 | `.6539` / `.0046` / `[.641,\\,.667]` / `\\checkmark` | `.6074` / `.0050` / `[.593,\\,.621]` / `$\\times$` |\n| `conclusion.tex` | 9 | `four of six` | `three of six` |\n| `conclusion.tex` | 9 | `two marginal cases` | `three marginal cases` |\n| `discussion.tex` | 20 (新增) | — | self-scoring inflation 量化段落 |\n\n新增段落无破折号违规（仅含复合词连字符 cross-family、cross-scoring、cross-scored、self-scored、deployment-realistic）。OLMo 行在 K*=1 分组（line 176），不涉及本次 Pythia 修正范围。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "uuid": "d1adf833-091e-49ce-bb22-f97ae64502d3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J5nhssFGexzdqjKYDpB7AD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1560,
+                "cache_read_input_tokens": 30331,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1560
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改完成。汇总：\n\n| 文件 | 行号 | 旧值 | 新值 |\n|------|------|------|------|\n| `main.tex` | 38 | `four retain significance` | `three retain significance` |\n| `main.tex` | 38 | `the two marginal cases` | `the three marginal cases` |\n| `appendix_extended.tex` | 169 | `.6539` / `.0046` / `[.641,\\,.667]` / `\\checkmark` | `.6074` / `.0050` / `[.593,\\,.621]` / `$\\times$` |\n| `conclusion.tex` | 9 | `four of six` | `three of six` |\n| `conclusion.tex` | 9 | `two marginal cases` | `three marginal cases` |\n| `discussion.tex` | 20 (新增) | — | self-scoring inflation 量化段落 |\n\n新增段落无破折号违规（仅含复合词连字符 cross-family、cross-scoring、cross-scored、self-scored、deployment-realistic）。OLMo 行在 K*=1 分组（line 176），不涉及本次 Pythia 修正范围。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 45739,
+            "duration_api_ms": 46580,
+            "num_turns": 13,
+            "stop_reason": "end_turn",
+            "session_id": "b35edbb9-21c0-448b-890e-1ba588accd75",
+            "total_cost_usd": 0.2352555,
+            "usage": {
+              "input_tokens": 5,
+              "cache_creation_input_tokens": 20050,
+              "cache_read_input_tokens": 95052,
+              "output_tokens": 2432,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 20050,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 327,
+                  "cache_read_input_tokens": 30331,
+                  "cache_creation_input_tokens": 1560,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1560
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1502,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001592,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 5,
+                "outputTokens": 2432,
+                "cacheReadInputTokens": 95052,
+                "cacheCreationInputTokens": 20050,
+                "webSearchRequests": 0,
+                "costUSD": 0.23366350000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "59d67357-8a2e-43be-a62b-91fd03b75aa0"
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-d107-abstract-appendix-discussion.md"
+}

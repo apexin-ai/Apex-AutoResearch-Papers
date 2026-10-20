@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "225b1f74b73570ff4cfc",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops nf s1 gsm8k cuda3",
+  "task_key": "worker_ops_nf_s1_gsm8k_cuda3_20260520T224939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_nf_s1_gsm8k_cuda3_20260520T224939_result.json",
+    "occurrence": 1,
+    "bytes": 394,
+    "sha256": "d1a93601c6737914f2982fe8a3ff5c7025485a69f0c258d5c9c125ad908db45c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已完成，日志显示 `[no_filter_seed1] All benchmarks complete, skipping`，说明结果已存在。\n\n从 SUMMARY 行可以直接读到：\n\n**no_filter_seed1 GSM8K = 0.5716**（exact_match,strict-match）\n\nno_filter 策略的完整下游评估结果：\n- arc_challenge: 0.5213\n- gsm8k: **0.5716**\n- piqa: 0.7508\n- truthfulqa_mc2: 0.4237\n- winogrande: 0.6456"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-nf-s1-gsm8k-cuda3.md"
+}

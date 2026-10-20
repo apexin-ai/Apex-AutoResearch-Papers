@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a088067a03c1263a961",
+  "project": "gen-depth-contamination",
+  "kind": "history",
+  "title": "agent / loop_10_1778859645.md",
+  "task_key": "loop_10_1778859645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778859645.md",
+    "occurrence": 1,
+    "bytes": 4051,
+    "sha256": "6a94e2d0aaf93b7f03ca1f16d148ec301c5897ef02359a5b51bcaf11de4d30ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T12:33:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 westc-26893:cuda:0（gpu_ids 白名单），其他 GPU 编号必须 push back Director\n- exp_015 neural probe 已 OOM 失败两次，第三次重跑前必须确认脚本修复（Worker 正在修）+ GPU 无僵尸进程\n- Qwen-cont 单模型 K*(neural)=3 结果**不可写入论文**——Director 明确要求 3 模型一致性确认后才能用\n- conda 环境激活用 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n- AutoDL 必须 `source /etc/network_turbo` + 设 HF_HUB_DISABLE_XET=1 + SSL_CERT_FILE\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westc-26893（原 autodl-4090d，已改名），RTX 4090D 24GB\n- 工作目录：/root/autodl-tmp/gen-depth-contamination\n- Python：/root/miniconda3/bin/python (conda base)\n- HF cache：/root/autodl-tmp/.hf_cache\n- 模型路径：Qwen2.5-1.5B-Instruct `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/Qwen/Qwen2.5-1.5B-Instruct`；Pythia-1.4B `/root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b`；OLMo-1B `/root/autodl-tmp/.hf_cache/allenai/OLMo-1B-hf`\n- 数据目录：data_exp001_pythia / data_exp002_olmo / data_exp017_qwen_cont（各 5000 samples × 6 depths）\n- 活跃进程：无（所有实验完成或失败）\n- 活跃 Worker：`worker_diagnose_exp_015_neural_probe_v3_20260515T092510`（诊断+修复 exp_015 OOM 脚本）\n- Cron：reconcile 返回 0 active\n\n### 3. 📊 当前状态\n**刚做完**：收到 exp_015 第二次 OOM 失败的 cron 回调，完成日志分析，派 Worker 诊断修复脚本，已向 Director 汇报。\n\n**Registry 全景**：12 实验全部 DONE（11 success + 1 failed=exp_015）。无 RUNNING/PREPARING。\n\n**等待中**：\n- Worker `worker_diagnose_exp_015_neural_probe_v3_20260515T092510` 回调——正在 SSH 到服务器检查僵尸进程、读脚本源码、修复内存释放 bug、dry-run 验证\n- 收到第二次重复 cron 失败通知（同一 exp_015），已忽略（Worker 已在处理）\n- Director 对 exp_015 失败汇报的回复\n\n### 4. 📋 待办\n- Worker 回调 + fix_verified=true → 杀僵尸进程（如有）→ 重新提交 exp_015（只补跑 Pythia + OLMo，保留 Qwen-cont 结果）→ submit_training_job\n- Worker 回调 + can_auto_fix=false → 向 Director 汇报具体阻塞原因，请求决策\n- exp_015 成功（3 模型 K*(neural) 一致）→ 更新 registry metrics → 按 on-experiment-done success 流程汇报 → 立即启动 exp_004 7B cross-scale（ROADMAP 下一个）\n- exp_015 成功但 K*(neural) 跨模型不一致 → 产出 Framing 调整提案（red-section 规范）\n- exp_004 完成 → 全部实验结束 → C3 章节定稿 + Neural probe 章节定稿 + Discussion/Conclusion\n\n### 5. 🎯 战略上下文\n**核心结论**：K*=2 是 15D hand-crafted features 的操作边界，跨 4 模型 × 4 解码策略 = 8 条件不变（D016 universality）。Neural probe K*(neural)=3 表明更丰富的表征可以推高 K*，但目前只有 Qwen-cont 单模型数据。\n\n**论文结构**：2+1 claims — C1'(K* characterization, 4 子组件 a-d) + C3(filtering application)。C3 已确认 Version B：binary-ours 最优，graduated α 单调递增（D026）。\n\n**DDL**：05-25 ARR 提交（10 天）。关键路径：exp_015 修复重跑(~30min) → exp_004 7B(~3h) → 章节定稿 → 审稿迭代。\n\n**易错点**：\n- exp_015 OOM root cause 是脚本 bug（模型间未释放显存），不是 GPU 不够——不要向 Director 申请更多 GPU，修脚本即可\n- exp_006 结果中 `binary-ours` 是最优策略（MMLU 0.5941），graduated filtering 全部不如 binary——不要在论文中暗示 graduated 有优势\n- Qwen-rewrite (mvp-001) 和 Qwen-continuation (exp-017) 是不同 generation mode，cross-transfer 结果差异巨大（61% vs 85% retention），论文中 continuation 是 canonical condition\n- 服务器别名已从 autodl-4090d 改为 westc-26893，exp-003 曾因此 cron 误标失败\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778859645.md"
+}

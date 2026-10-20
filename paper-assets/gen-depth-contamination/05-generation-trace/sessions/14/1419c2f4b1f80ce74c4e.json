@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "1419c2f4b1f80ce74c4e",
+  "project": "gen-depth-contamination",
+  "kind": "conversation",
+  "title": "Reviewer 1 coordination",
+  "task_key": "feishu_group_oc_INVALID_TEST_CHAT_404_reviewer_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/feishu_group_oc_INVALID_TEST_CHAT_404_reviewer_1.jsonl",
+    "occurrence": 1,
+    "bytes": 387,
+    "sha256": "3194534fc0bacb29004f08937e0a2b7f4be2740599cd3e76b2ab2abb72bd8dd7"
+  },
+  "statistics": {
+    "messages": 2,
+    "user_turns": 1,
+    "tool_calls": 0,
+    "roles": {
+      "user": 1,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T02:16:09.490711+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 999 审稿请求]:\n[probe] test message do-not-process"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_INVALID_TEST_CHAT_404:reviewer_1",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T02:16:19.476640+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "收到 probe 消息，不做处理。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_INVALID_TEST_CHAT_404:reviewer_1"
+          },
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/reviewer-1-coordination-copy-2.md"
+}

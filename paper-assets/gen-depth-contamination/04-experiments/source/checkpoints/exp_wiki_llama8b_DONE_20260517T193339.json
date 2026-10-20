@@ -1,0 +1,67 @@
+{
+  "exp_id": "exp_wiki_llama8b",
+  "project": "gen-depth-contamination",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:27:37.043Z",
+    "updated_at": "2026-05-17T19:33:39.300Z",
+    "hypothesis": "Cross-scale Wikipedia K* validation: LLaMA-3.1-8B continuation on Wikipedia 的 K* 是否 = 2？Pythia-1.4B K*=1, Qwen-1.5B K*=2, OLMo-1B K*=1。测试 8B scale 是否能在 Wikipedia 均质 domain 上维持 K*=2（scale 是否是决定因素）。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "parent": "exp_wiki_pythia_v2",
+    "server": "cqa1-22115",
+    "gpu": "cuda:2",
+    "account": "root",
+    "reproduce": {
+      "server": "cqa1-22115",
+      "gpu": "cuda:2",
+      "started_at": "2026-05-17T13:29:58.320Z",
+      "command": "cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python3.12 scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B --data_dir data/exp_wiki_llama8b --results_dir results/exp_wiki_llama8b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B",
+      "code_commit": "0b10b4309bd03e7fcc3cbeb7fca54744d69a73b5",
+      "finished_at": "2026-05-17T19:30:35.869Z",
+      "training_hours": 6.01
+    },
+    "spec": {
+      "command": "cd /root/autodl-tmp/gen-depth-contamination && /root/miniconda3/bin/python3.12 scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B --data_dir data/exp_wiki_llama8b --results_dir results/exp_wiki_llama8b --num_samples 5000 --max_depth 5 --batch_size 8 --generation_mode continuation --scorer_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:2"
+      ],
+      "data_path": "data/exp_wiki_llama8b",
+      "data_count": 5000,
+      "model_name": "Meta-Llama-3.1-8B",
+      "seed": 42,
+      "checkpoint_source": "pretrained:LLM-Research/Meta-Llama-3.1-8B",
+      "eval_data": "Wikipedia depth 0-5, scorer=Qwen2.5-1.5B"
+    },
+    "pid": "38142",
+    "log_path": "~/runs/gen-depth-contamination/exp_wiki_llama8b.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T19:30:39.064445+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "K_star": 1,
+      "ordinal_mae": 1.2954,
+      "ordinal_accuracy": 0.3313,
+      "auc_0v1": 0.9316,
+      "auc_1v2": 0.5954,
+      "auc_2v3": 0.5392,
+      "auc_3v4": 0.5221,
+      "auc_4v5": 0.5212,
+      "jsd_0v1": 0.06169,
+      "jsd_1v2": 0.00931
+    },
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/results/exp_wiki_llama8b",
+    "completed_at": "2026-05-17T19:33:39.300Z"
+  },
+  "timestamp": "2026-05-17T19:33:39.572110+00:00",
+  "trigger": "update_registry"
+}

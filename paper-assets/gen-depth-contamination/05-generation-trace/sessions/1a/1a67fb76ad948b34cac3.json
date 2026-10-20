@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a67fb76ad948b34cac3",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "diagnose exp 7b scorer arxiv",
+  "task_key": "worker_diagnose_exp_7b_scorer_arxiv_20260520T132530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_7b_scorer_arxiv_20260520T132530_result.json",
+    "occurrence": 1,
+    "bytes": 433,
+    "sha256": "2b8447888a5d83e40048b62b8c8891eb9c9d3824d925224bbfb8dd1749e71042"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**实验未崩溃，已于 20:34–21:14 成功运行完毕。** \"死亡5次\"是误报，原因是脚本不写 sentinel 文件也不接 W&B，监控系统无信号可检测。\n\n实验结果：7B scorer 与 1.5B scorer 在 arXiv 数据上的 K* 完全一致（pythia_arxiv: K\\*=3, olmo_arxiv: K\\*=1），假设得到验证。\n\n报告已写入 `artifacts/report_diagnose_7b_scorer_arxiv.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-7b-scorer-arxiv.md"
+}

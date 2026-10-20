@@ -1,0 +1,20 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Feature group ablation for 1\,vs.\,2 classification (AUC). \textbf{Single}: using only features from one group. \textbf{Leave-one-out}: removing one group from the full 15D feature set. $\Delta$ denotes the AUC drop from the full model.}
+\label{tab:feature_ablation}
+\begin{tabular}{l ccc ccc}
+\toprule
+& \multicolumn{3}{c}{\textbf{Single Group}} & \multicolumn{3}{c}{\textbf{Leave-One-Out ($\Delta$)}} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+Feature Group & C4 & arXiv & Wiki & C4 & arXiv & Wiki \\
+\midrule
+Surprisal (base) & 0.597 & 0.809 & 0.581 & 0.601 ($-$0.007) & 0.828 ($-$0.031) & 0.616 ($-$0.003) \\
+Surprisal (deriv.) & 0.590 & 0.789 & 0.590 & 0.612 (+0.003) & 0.856 ($-$0.003) & 0.623 (+0.004) \\
+Lexical diversity & 0.550 & 0.691 & 0.557 & 0.608 ($-$0.001) & 0.855 ($-$0.005) & 0.614 ($-$0.005) \\
+Freq. distribution & 0.533 & 0.684 & 0.564 & 0.604 ($-$0.005) & 0.851 ($-$0.009) & 0.612 ($-$0.007) \\
+\midrule
+Full (15D) & 0.609 & 0.860 & 0.619 & \multicolumn{3}{c}{---} \\
+\bottomrule
+\end{tabular}
+\end{table}

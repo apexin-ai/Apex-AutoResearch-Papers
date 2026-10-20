@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0785348c7adf6453d0ca",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "ops mistral wait submit v2",
+  "task_key": "worker_ops_mistral-wait-submit-v2_20260518T232847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mistral-wait-submit-v2_20260518T232847_result.json",
+    "occurrence": 1,
+    "bytes": 487,
+    "sha256": "384fdab2830697029843b52ea9b61e3cfc6fe4a5cb554d95a0d72d4945735ad4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功提交并运行。\n\n**报告：**\n\n1. **下载耗时**：约 24 小时（PID 104116 运行时长 23:52 时开始监控，约 20 分钟后完成）\n2. **模型路径**：`/root/autodl-tmp/.hf_cache/mistralai/Mistral-7B-v0___3`，总大小约 27.7GB（含 consolidated.safetensors 14G + 3 个分片共 13.7G），vocab size 32768\n3. **实验 PID**：107037（tmux session: `exp_code_mistral7b`），GPU 3 已占用 14183 MiB\n4. 下载成功，无错误"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-mistral-wait-submit-v2.md"
+}

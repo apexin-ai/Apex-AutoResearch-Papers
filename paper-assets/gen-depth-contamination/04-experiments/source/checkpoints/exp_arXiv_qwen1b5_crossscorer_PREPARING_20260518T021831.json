@@ -1,0 +1,34 @@
+{
+  "exp_id": "exp_arXiv_qwen1b5_crossscorer",
+  "project": "gen-depth-contamination",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T02:13:56.083Z",
+    "updated_at": "2026-05-18T02:18:31.015Z",
+    "hypothesis": "arXiv cross-scorer validation (1.5B): Pythia-1.4B scorer 重评 Qwen-1.5B arXiv depth 0-5 文本。验证 arXiv K*=3 在 1.5B scale 也是 scorer-independent。原 2v3 AUC=0.6427。",
+    "parent": "exp_wiki_scorer_confound",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/gen-depth-contamination && mkdir -p data/exp_arXiv_qwen1b5_crossscorer && for d in 0 1 2 3 4 5; do ln -sf /root/autodl-tmp/gen-depth-contamination/data/exp_024_arxiv/depth_\\${d}.jsonl data/exp_arXiv_qwen1b5_crossscorer/depth_\\${d}.jsonl; done && mkdir -p results/exp_arXiv_qwen1b5_crossscorer && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_CACHE=/root/autodl-tmp/.hf_cache /root/miniconda3/bin/python scripts/run_pipeline.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B --scorer_path /root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b/snapshots/fedc38a16eea3bd36a96b906d78d11d2ce18ed79 --data_dir data/exp_arXiv_qwen1b5_crossscorer --results_dir results/exp_arXiv_qwen1b5_crossscorer --num_samples 5000 --max_depth 5 --batch_size 16 --generation_mode continuation\"",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "190644",
+      "log_path": "~/runs/gen-depth-contamination/exp_arXiv_qwen1b5_crossscorer.log",
+      "submitted_at": "2026-05-18T02:14:23.657Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T02:18:28.461Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-18T02:18:31.351543+00:00",
+  "trigger": "update_registry"
+}

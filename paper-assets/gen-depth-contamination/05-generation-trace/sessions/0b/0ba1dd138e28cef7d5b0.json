@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ba1dd138e28cef7d5b0",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "research seed robustness scout",
+  "task_key": "worker_research_seed_robustness_scout_20260522T003433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_seed_robustness_scout_20260522T003433_result.json",
+    "occurrence": 1,
+    "bytes": 5864,
+    "sha256": "e926157f1cedbf859a41e170b491faa6b536243b5a7fc1e9e791fe1e4d956927"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已添加 `--seed` 参数。现在准备最终报告。\n\n---\n\n## 1. cuda:0 状态\n\n**服务器不可达。** cqa1-22115 (58.144.141.28:22115) SSH 连接失败。AutoDL 实例可能已重启，端口已变。需要去 AutoDL 控制台查新端口并更新 `~/.ssh/config`。\n\nPID 443243 状态和 GPU 空闲情况无法确认。\n\n## 2. Pipeline 侦查结果\n\n**主脚本**: `scripts/run_pipeline.py`，全流程 pipeline (prepare_seed → depth_chain_gen → feature_extract → OBD_analysis)。\n\n关键参数:\n- `--model_path`: 同时用于 generation 和 scoring（无独立 scorer 参数）\n- `--generation_mode`: `rewrite`(instruct) / `continuation`(base model)\n- `--top_p`, `--temperature`, `--do_sample`: sampling 控制\n- `--skip_generation`: 跳过 steps 2-3，只做 features + analysis\n- `--seed`: **刚添加**，需要 push 到服务器\n\n**关键路径**:\n- Pythia-1.4B: `/root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b`\n- Qwen-1.5B base: `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B`\n- WikiText depth_0 源: `/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/depth_0.jsonl`（5000 docs）\n- C4: pipeline 自动从 HF 下载\n\n**Pythia 需要两阶段**: pipeline 用同一模型做 generation 和 scoring。Pythia 生成 + Qwen 评分需要：Phase 1 用 Pythia 跑全 pipeline → 删 features.csv → Phase 2 用 Qwen `--skip_generation` 重新评分。\n\n## 3. 运行命令\n\n**前置条件**: 本地 `run_pipeline.py` 已添加 `--seed`，需先 push 到服务器并 `git pull`。\n\n### 实验 1: seed_pythia14b_wiki_s123 (cuda:1 → CUDA_VISIBLE_DEVICES=1)\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/autodl-tmp/gen-depth-contamination && \\\nexport HF_HOME=/root/autodl-tmp/.hf_cache && \\\nexport HF_ENDPOINT=https://hf-mirror.com && \\\nmkdir -p data/seed_robustness/seed_pythia14b_wiki_s123/results && \\\ncp data/exp_023_wiki/depth_0.jsonl data/seed_robustness/seed_pythia14b_wiki_s123/depth_0.jsonl && \\\npython scripts/run_pipeline.py \\\n  --model_path /root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b \\\n  --data_dir data/seed_robustness/seed_pythia14b_wiki_s123 \\\n  --results_dir data/seed_robustness/seed_pythia14b_wiki_s123/results_gen \\\n  --max_depth 5 --num_samples 5000 --batch_size 16 \\\n  --generation_mode continuation \\\n  --top_p 0.9 --temperature 1.0 --seed 123 && \\\nrm -f data/seed_robustness/seed_pythia14b_wiki_s123/features.csv && \\\npython scripts/run_pipeline.py \\\n  --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B \\\n  --data_dir data/seed_robustness/seed_pythia14b_wiki_s123 \\\n  --results_dir data/seed_robustness/seed_pythia14b_wiki_s123/results \\\n  --max_depth 5 --skip_generation --feat_batch_size 16 --seed 123\n```\n\n### 实验 2: seed_qwen15b_wiki_s123 (cuda:2 → CUDA_VISIBLE_DEVICES=2)\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/autodl-tmp/gen-depth-contamination && \\\nexport HF_HOME=/root/autodl-tmp/.hf_cache && \\\nexport HF_ENDPOINT=https://hf-mirror.com && \\\nmkdir -p data/seed_robustness/seed_qwen15b_wiki_s123/results && \\\ncp data/exp_023_wiki/depth_0.jsonl data/seed_robustness/seed_qwen15b_wiki_s123/depth_0.jsonl && \\\npython scripts/run_pipeline.py \\\n  --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B \\\n  --data_dir data/seed_robustness/seed_qwen15b_wiki_s123 \\\n  --results_dir data/seed_robustness/seed_qwen15b_wiki_s123/results \\\n  --max_depth 5 --num_samples 5000 --batch_size 16 \\\n  --generation_mode continuation \\\n  --top_p 0.95 --temperature 1.0 --seed 123\n```\n\n### 实验 3: seed_qwen15b_c4_s123 (cuda:3 → CUDA_VISIBLE_DEVICES=3)\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/autodl-tmp/gen-depth-contamination && \\\nexport HF_HOME=/root/autodl-tmp/.hf_cache && \\\nexport HF_ENDPOINT=https://hf-mirror.com && \\\nsource /etc/network_turbo 2>/dev/null && \\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && \\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && \\\nmkdir -p data/seed_robustness/seed_qwen15b_c4_s123/results && \\\npython scripts/run_pipeline.py \\\n  --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B \\\n  --data_dir data/seed_robustness/seed_qwen15b_c4_s123 \\\n  --results_dir data/seed_robustness/seed_qwen15b_c4_s123/results \\\n  --max_depth 5 --num_samples 5000 --batch_size 16 \\\n  --generation_mode continuation \\\n  --top_p 0.95 --temperature 1.0 --seed 123\n```\n\n注：C4 实验需要 `network_turbo` + SSL 证书设置来下载 C4 validation shard。WikiText 实验不需要（depth_0 已本地）。\n\n## 4. 预估运行时间\n\n基于同服务器 (cqa1-22115) 历史数据：\n\n| 实验 | 方式 | 预估时间 | 参考 |\n|------|------|---------|------|\n| seed_pythia14b_wiki_s123 | 两阶段 (Pythia gen ~1.6h + Qwen score ~0.5h) | **~2-2.5h** | exp_wiki_pythia_v2: 5810s |\n| seed_qwen15b_wiki_s123 | 单阶段 | **~3-3.5h** | exp_023: 12314s |\n| seed_qwen15b_c4_s123 | 单阶段 | **~3-3.5h** | exp_023 同量级 |\n\n三组并行运行，总 wall time **~3.5h**。\n\n## 5. 数据集路径\n\n| 数据集 | 服务器路径 | 来源 |\n|--------|----------|------|\n| WikiText depth_0 | `/root/autodl-tmp/gen-depth-contamination/data/exp_023_wiki/depth_0.jsonl` | exp-023 准备的 5000 docs |\n| C4 | pipeline 自动下载 (`allenai/c4` validation shard) | HuggingFace (via HF_ENDPOINT mirror) |\n\n## 6. 待办\n\n1. **去 AutoDL 控制台获取 cqa1-22115 新端口**，更新 `~/.ssh/config`\n2. **同步代码到服务器**（`run_pipeline.py` 的 `--seed` 改动需要 push + pull）\n3. 服务器恢复后验证 PID 443243 和 cuda:0 状态\n4. 确认 `data/exp_023_wiki/depth_0.jsonl` 在服务器上存在"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-seed-robustness-scout.md"
+}

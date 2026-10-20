@@ -1,0 +1,1382 @@
+{
+  "schema_version": "1.0",
+  "id": "1572746e7327a907ee9b",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "research reference verification r20",
+  "task_key": "worker_research_reference_verification_r20_20260520T140250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_reference_verification_r20_20260520T140250.log",
+    "occurrence": 1,
+    "bytes": 57257,
+    "sha256": "ab00b9238fc2a21a36d7a0aee624c692f5e0a4ec188f804ba436f84242e5a637"
+  },
+  "statistics": {
+    "messages": 25,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 8,
+      "tool_result": 8,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_7/projects/gen-depth-contamination",
+                "session_id": "61106dee-d403-4991-840d-0ac37dc50792",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "02b69d07-35ab-4737-b205-19aa63f562a2",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-7-projects-gen-depth-contamination/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779297600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "bf6d4a40-e607-4622-913b-eb41ac513765",
+                "session_id": "61106dee-d403-4991-840d-0ac37dc50792"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user has two requests:\n\n1. A literature verification task using WebSearch to verify several papers and find Youden's J statistic citation\n2. A spawn_worker call (which appears to be a JSON-RPC request that was pasted in, likely from some system) - this seems to be about checking experiment status on a server\n\nLet me focus on the literature verification task first, as that's the main request. The spawn_worker JSON at the end seems to be a system message or accidental paste - I should handle the WebSearch tasks.\n\nLet me search for all the papers in parallel using WebSearch. I need to load the WebSearch tool first.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61106dee-d403-4991-840d-0ac37dc50792",
+            "uuid": "7aff71f5-43a9-4473-bc93-1222d1d9be31",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NYMPpi8vFguiJZwBDo9NHV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12581,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12581
+                },
+                "output_tokens": 22,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "开始文献验证。先加载 WebSearch 工具。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61106dee-d403-4991-840d-0ac37dc50792",
+            "uuid": "6ed06749-026f-45b8-80c2-0462e7f3cce6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NYMPpi8vFguiJZwBDo9NHV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12581,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12581
+                },
+                "output_tokens": 22,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V2jjVXqHrG1HwHU9cKqhWr",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61106dee-d403-4991-840d-0ac37dc50792",
+            "uuid": "f62cf3a7-e9b5-4bd1-bdc6-f5b6527b9790",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NYMPpi8vFguiJZwBDo9NHV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12581,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12581
+                },
+                "output_tokens": 22,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T14:22:39.316Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01V2jjVXqHrG1HwHU9cKqhWr",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "61106dee-d403-4991-840d-0ac37dc50792",
+            "uuid": "65d45ee8-67a8-4f20-9f16-eb1f7f7b84a9",
+            "tool_use_result": {
+              "matches": [
+                "WebSearch"
+              ],
+              "query": "select:WebSearch",
+              "total_deferred_tools": 19
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me launch parallel searches for all the papers and the Youden's J statistic.",
+              "signature": "EpkCCmMIDRgCKkAAp/8ZSTKde4gnwrsgZ8x+q9llADUuCeb5eS7Lg9Nbd77OoiNSTncfglqHFdjk8Osf4VLoJ5irPutoqGcE5VzUMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDCZihu577gkJjbySKBoMS9xqgNTBmCtAp2pjIjBVryKBS0P1tX5RdbOqRBcXQ3yvAcrnQKvnPB6Qa05VKaDU76cRHY7m0J4U5p0xKykqZAy3NsCG8wzjpXJYblNOW+EkgJ8r8qE1eG1rW4jLbs1ca9/AkqweCmq/lVKtIkmVAa0dpo27u5wMZ4WRJ2rBHRYq9spp0t/AgZp6rhNFDV75c4pYweZOPf4DQlQ1Z3gW/pNDFmQYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61106dee-d403-4991-840d-0ac37dc50792",
+            "uuid": "89bfa09d-ddae-4c55-ad18-0b30e75536d9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TUkspb4SrwjKaY29btpJBi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 777,
+                "cache_read_input_tokens": 24422,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 777
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "并行搜索所有论文和 Youden's J statistic。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61106dee-d403-4991-840d-0ac37dc50792",
+            "uuid": "7758b55f-12bf-43ab-85e8-76ff96d6077d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TUkspb4SrwjKaY29btpJBi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 777,
+                "cache_read_input_tokens": 24422,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 777
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GT46UcoysnFBFYvEeiBFQy",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2502.20258 LLM Broken Telephone iterative generation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61106dee-d403-4991-840d-0ac37dc50792",
+            "uuid": "0b67df44-75fc-4f7f-bfc9-1f2cfbff29a0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TUkspb4SrwjKaY29btpJBi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 777,
+                "cache_read_input_tokens": 24422,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 777
+                },
+                "output_tokens": 20,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T14:22:49.321Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GT46UcoysnFBFYvEeiBFQy",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2502.20258 LLM Broken Telephone iterative generation\"\n\nLinks: [{\"title\":\"[2502.20258] LLM as a Broken Telephone: Iterative Generation Distorts Information\",\"url\":\"https://arxiv.org/abs/2502.20258\"},{\"title\":\"[Quick Review] LLM as a Broken Telephone: Iterative Generation Distorts Information\",\"url\":\"https://liner.com/review/llm-as-broken-telephone-iterative-generation-distorts-information\"},{\"title\":\"LLM as a Broken Telephone: Iterative Generation Distorts Information\",\"url\":\"https://arxiv.org/html/2502.20258v1\"},{\"title\":\"LLM as a Broken Telephone: Iterative Generation Distorts Information\",\"url\":\"https://arxiv.org/pdf/2502.20258\"},{\"title\":\"Paper page - LLM as a Broken Telephone: Iterative Generation Distorts Information\",\"url\":\"https://huggingface.co/papers/2502.20258\"},{\"title\":\"LLM as a Broken Telephone: Iterative Generation Distorts Information | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2502.20258v1\"},{\"title\":\"GitHub - amr-mohamedd/LLM-as-a-Broken-Telephone: [ACL 2025] Code implementation for the \\\"LLM as a Broken Telephone: Iterative Generation Distorts Information\\\" paper.\",\"url\":\"https://github.com/amr-mohamedd/LLM-as-a-Broken-Telephone\"},{\"title\":\"Computer Science Feb 2025\",\"url\":\"https://arxiv.org/list/cs/2025-02?skip=10175&show=2000\"},{\"title\":\"LLM as a Broken Telephone: Iterative Generation Distorts Information - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.acl-long.371/\"},{\"title\":\"dblp: LLM as a Broken Telephone: Iterative Generation Distorts Information.\",\"url\":\"https://dblp.org/rec/journals/corr/abs-2502-20258.html\"}]\n\nBased on the search results, here's what I found about arXiv paper 2502.20258:\n\n**Title:** LLM as a Broken Telephone: Iterative Generation Distorts Information\n\n**Authors:** Amr Mohamed, Mingmeng Geng, Michalis Vazirgiannis, Guokan Shang\n\n**Overview:** The study investigates whether LLMs similarly distort information through iterative generation, inspired by the \"broken telephone\" effect in chained human communication.\n\n**Key Findings:**\n- Distortion accumulates over time, influenced by language choice and chain complexity.\n- The degree of information distortion in translation chains depends on the choice of intermediate languages, influenced by their linguistic similarity to the source language and their prevalence in the model's pre-training and post-training corpora.\n- Greater chain complexity, whether by adding languages or models, often amplifies distortion, with longer chains introducing more degradation regardless of the type of iterative chain.\n- While degradation is inevitable, it can be mitigated through strategic prompting techniques.\n\n**Publication Status:** The paper was accepted to ACL 2025, Main Conference, and code implementation is available on GitHub.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "61106dee-d403-4991-840d-0ac37dc50792",
+            "uuid": "11a5d5f8-38b9-4378-ae88-7d3ddfc79431",
+            "tool_use_result": {
+              "query": "arXiv 2502.20258 LLM Broken Telephone iterative generation",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_017rhRdoqfgzxEKFSyrGVQPD",
+                  "content": [
+                    {
+                      "title": "[2502.20258] LLM as a Broken Telephone: Iterative Generation Distorts Information",
+                      "url": "https://arxiv.org/abs/2502.20258"
+                    },
+                    {
+                      "title": "[Quick Review] LLM as a Broken Telephone: Iterative Generation Distorts Information",
+                      "url": "https://liner.com/review/llm-as-broken-telephone-iterative-generation-distorts-information"
+                    },
+                    {
+                      "title": "LLM as a Broken Telephone: Iterative Generation Distorts Information",
+                      "url": "https://arxiv.org/html/2502.20258v1"
+                    },
+                    {
+                      "title": "LLM as a Broken Telephone: Iterative Generation Distorts Information",
+                      "url": "https://arxiv.org/pdf/2502.20258"
+                    },
+                    {
+                      "title": "Paper page - LLM as a Broken Telephone: Iterative Generation Distorts Information",
+                      "url": "https://huggingface.co/papers/2502.20258"
+                    },
+                    {
+                      "title": "LLM as a Broken Telephone: Iterative Generation Distorts Information | alphaXiv",
+                      "url": "https://www.alphaxiv.org/overview/2502.20258v1"
+                    },
+                    {
+                      "title": "GitHub - amr-mohamedd/LLM-as-a-Broken-Telephone: [ACL 2025] Code implementation for the \"LLM as a Broken Telephone: Iterative Generation Distorts Information\" paper.",
+                      "url": "https://github.com/amr-mohamedd/LLM-as-a-Broken-Telephone"
+                    },
+                    {
+                      "title": "Computer Science Feb 2025",
+                      "url": "https://arxiv.org/list/cs/2025-02?skip=10175&show=2000"
+                    },
+                    {
+                      "title": "LLM as a Broken Telephone: Iterative Generation Distorts Information - ACL Anthology",
+                      "url": "https://aclanthology.org/2025.acl-long.371/"
+                    },
+                    {
+                      "title": "dblp: LLM as a Broken Telephone: Iterative Generation Distorts Information.",
+                      "url": "https://dblp.org/rec/journals/corr/abs-2502-20258.html"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found about arXiv paper 2502.20258:\n\n**Title:** LLM as a Broken Telephone: Iterative Generation Distorts Information\n\n**Authors:** Amr Mohamed, Mingmeng Geng, Michalis Vazirgiannis, Guokan Shang\n\n**Overview:** The study investigates whether LLMs similarly distort information through iterative generation, inspired by the \"broken telephone\" effect in chained human communication.\n\n**Key Findings:**\n- Distortion accumulates over time, influenced by language choice and chain complexity.\n- The degree of information distortion in translation chains depends on the choice of intermediate languages, influenced by their linguistic similarity to the source language and their prevalence in the model's pre-training and post-training corpora.\n- Greater chain complexity, whether by adding languages or models, often amplifies distortion, with longer chains introducing more degradation regardless of the type of iterative chain.\n- While degradation is inevitable, it can be mitigated through strategic prompting techniques.\n\n**Publication Status:** The paper was accepted to ACL 2025, Main Conference, and code implementation is available on GitHub."
+              ],
+              "durationSeconds": 6.039720434000017
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CbpHh1pAZTyX9MSzrDqnw2",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2603.11228 Markovian Generation Chains Large Language Models"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61106dee-d403-4991-840d-0ac37dc50792",
+            "uuid": "818d9743-e055-4bdf-94bc-475ad49fd4ac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011JRGcUtqUjdmBCgdWEMzne",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 965,
+                "cache_read_input_tokens": 25199,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 965
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T14:22:59.785Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CbpHh1pAZTyX9MSzrDqnw2",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2603.11228 Markovian Generation Chains Large Language Models\"\n\nLinks: [{\"title\":\"[2603.11228] Markovian Generation Chains in Large Language Models\",\"url\":\"https://arxiv.org/abs/2603.11228\"},{\"title\":\"Markovian Generation Chains in Large Language Models\",\"url\":\"https://arxiv.org/pdf/2603.11228\"},{\"title\":\"Markovian Generation Chains in Large Language Models\",\"url\":\"https://arxiv.org/html/2603.11228\"},{\"title\":\"Markovian Generation Chains in Large Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=nTDn4OMiym\"},{\"title\":\"[2410.02724v1] Large Language Models as Markov Chains\",\"url\":\"https://arxiv.org/abs/2410.02724v1\"},{\"title\":\"[2410.02724] Large Language Models as Markov Chains\",\"url\":\"https://arxiv.org/abs/2410.02724\"}]\n\nBased on the search results, here's what I found about arXiv paper 2603.11228:\n\n**Title:** Markovian Generation Chains in Large Language Models\n\n**Authors:** Mingmeng Geng, Amr Mohamed, Guokan Shang, Michalis Vazirgiannis, and Thierry Poibeau\n\n**Main Topic:** The paper addresses the question of how texts evolve when they are repeatedly processed by LLMs.\n\n**Key Definition:** Markovian generation chains are defined as an iterative inference process where each step takes a specific prompt template and the previous output as input, without including any prior memory.\n\n**Key Findings:** In iterative rephrasing and round-trip translation experiments, the output either converges to a small recurrent set or continues to produce novel sentences over a finite horizon. Additionally, the iterative process can either increase or reduce sentence diversity depending on factors such as the temperature parameter and the initial input sentence.\n\n**Submission Date:** The paper was submitted on March 11, 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "61106dee-d403-4991-840d-0ac37dc50792",
+            "uuid": "9209616a-87c6-443d-aeb4-6f4e83d1cb22",
+            "tool_use_result": {
+              "query": "arXiv 2603.11228 Markovian Generation Chains Large Language Models",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01K4SgbZMu7tvBXVSm2qYtBA",
+                  "content": [
+                    {
+                      "title": "[2603.11228] Markovian Generation Chains in Large Language Models",
+                      "url": "https://arxiv.org/abs/2603.11228"
+                    },
+                    {
+                      "title": "Markovian Generation Chains in Large Language Models",
+                      "url": "https://arxiv.org/pdf/2603.11228"
+                    },
+                    {
+                      "title": "Markovian Generation Chains in Large Language Models",
+                      "url": "https://arxiv.org/html/2603.11228"
+                    },
+                    {
+                      "title": "Markovian Generation Chains in Large Language Models | OpenReview",
+                      "url": "https://openreview.net/forum?id=nTDn4OMiym"
+                    },
+                    {
+                      "title": "[2410.02724v1] Large Language Models as Markov Chains",
+                      "url": "https://arxiv.org/abs/2410.02724v1"
+                    },
+                    {
+                      "title": "[2410.02724] Large Language Models as Markov Chains",
+                      "url": "https://arxiv.org/abs/2410.02724"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found about arXiv paper 2603.11228:\n\n**Title:** Markovian Generation Chains in Large Language Models\n\n**Authors:** Mingmeng Geng, Amr Mohamed, Guokan Shang, Michalis Vazirgiannis, and Thierry Poibeau\n\n**Main Topic:** The paper addresses the question of how texts evolve when they are repeatedly processed by LLMs.\n\n**Key Definition:** Markovian generation chains are defined as an iterative inference process where each step takes a specific prompt template and the previous output as input, without including any prior memory.\n\n**Key Findings:** In iterative rephrasing and round-trip translation experiments, the output either converges to a small recurrent set or continues to produce novel sentences over a finite horizon. Additionally, the iterative process can either increase or reduce sentence diversity depending on factors such as the temperature parameter and the initial input sentence.\n\n**Submission Date:** The paper was submitted on March 11, 2026."
+              ],
+              "durationSeconds": 6.2992799840001386
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N2NE6nJXtrAyHk4va4RgWf",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2402.07087 Self-Correcting Self-Consuming Loops generative model training"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61106dee-d403-4991-840d-0ac37dc50792",
+            "uuid": "d5e979db-bd7b-46eb-84d1-ca250754ac22",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019pWhVyCQVQFSjcomun8M7b",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 595,
+                "cache_read_input_tokens": 26164,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 595
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T14:23:14.504Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N2NE6nJXtrAyHk4va4RgWf",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2402.07087 Self-Correcting Self-Consuming Loops generative model training\"\n\nLinks: [{\"title\":\"Self-Correcting Self-Consuming Loops for Generative Model Training\",\"url\":\"https://arxiv.org/html/2402.07087v2\"},{\"title\":\"[2402.07087] Self-Correcting Self-Consuming Loops for Generative Model Training\",\"url\":\"https://arxiv.org/abs/2402.07087\"},{\"title\":\"Nate Gillman's articles on arXiv\",\"url\":\"https://arxiv.org/a/gillman_n_1.html\"},{\"title\":\"Self-Correcting Self-Consuming Loops for Generative Model Training\",\"url\":\"https://nategillman.com/pubs/sc-sc.pdf\"},{\"title\":\"Self-Correcting Self-Consuming Loops for Generative Model Training | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/self-correcting-self-consuming-loops-generative-model\"},{\"title\":\"ReDiFine: Reusable Diffusion Finetuning for Mitigating Degradation in the Chain of Diffusion\",\"url\":\"https://arxiv.org/html/2407.17493v1\"},{\"title\":\"Model Collapse in the Self-Consuming Chain of Diffusion Finetuning: A Novel Perspective from Quantitative Trait Modeling\",\"url\":\"https://arxiv.org/html/2407.17493v2\"},{\"title\":\"Self-Correcting Self-Consuming Loops for Generative ...\",\"url\":\"https://arxiv.org/pdf/2402.07087.pdf\"},{\"title\":\"Self-Correcting Self-Consuming Loops for Generative ...\",\"url\":\"https://www.alphaxiv.org/overview/2402.07087v3\"},{\"title\":\"Large Language Models Suffer From Their Own Output: An Analysis of the   Self-Consuming Training Loop\",\"url\":\"https://arxiv.org/pdf/2311.16822\"}]\n\nBased on the search results, here's what I found about arXiv paper 2402.07087:\n\n## Self-Correcting Self-Consuming Loops for Generative Model Training\n\nThe paper was published on April 5, 2024, by authors Nate Gillman, Michael Freeman, Daksh Aggarwal, Chia-Hong Hsu, Calvin Luo, Yonglong Tian, and Chen Sun, and it was accepted as a camera-ready version for ICML 2024.\n\n### Core Problem and Solution\n\nUsing synthetic data for generative model training creates \"self-consuming loops\" which may lead to training instability or even collapse, unless certain conditions are met. \n\nThe paper's main contribution is that by introducing an idealized correction function, which maps a data point to be more likely under the true data distribution, self-consuming loops can be made exponentially more stable.\n\n### Practical Approach\n\nThe authors propose self-correction functions, which rely on expert knowledge (e.g. the laws of physics programmed in a simulator), and aim to approximate the idealized corrector automatically and at scale.\n\nThe paper addresses the growing challenge that as synthetic data becomes higher quality and proliferates on the internet, machine learning models are increasingly trained on a mix of human- and machine-generated data.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "61106dee-d403-4991-840d-0ac37dc50792",
+            "uuid": "77d7c4b1-b1bb-40a9-8efc-81b8c54807bf",
+            "tool_use_result": {
+              "query": "arXiv 2402.07087 Self-Correcting Self-Consuming Loops generative model training",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01UDp6NN9QDPTbwGPhp31dsa",
+                  "content": [
+                    {
+                      "title": "Self-Correcting Self-Consuming Loops for Generative Model Training",
+                      "url": "https://arxiv.org/html/2402.07087v2"
+                    },
+                    {
+                      "title": "[2402.07087] Self-Correcting Self-Consuming Loops for Generative Model Training",
+                      "url": "https://arxiv.org/abs/2402.07087"
+                    },
+                    {
+                      "title": "Nate Gillman's articles on arXiv",
+                      "url": "https://arxiv.org/a/gillman_n_1.html"
+                    },
+                    {
+                      "title": "Self-Correcting Self-Consuming Loops for Generative Model Training",
+                      "url": "https://nategillman.com/pubs/sc-sc.pdf"
+                    },
+                    {
+                      "title": "Self-Correcting Self-Consuming Loops for Generative Model Training | AI Research Paper Details",
+                      "url": "https://www.aimodels.fyi/papers/arxiv/self-correcting-self-consuming-loops-generative-model"
+                    },
+                    {
+                      "title": "ReDiFine: Reusable Diffusion Finetuning for Mitigating Degradation in the Chain of Diffusion",
+                      "url": "https://arxiv.org/html/2407.17493v1"
+                    },
+                    {
+                      "title": "Model Collapse in the Self-Consuming Chain of Diffusion Finetuning: A Novel Perspective from Quantitative Trait Modeling",
+                      "url": "https://arxiv.org/html/2407.17493v2"
+                    },
+                    {
+                      "title": "Self-Correcting Self-Consuming Loops for Generative ...",
+                      "url": "https://arxiv.org/pdf/2402.07087.pdf"
+                    },
+                    {
+                      "title": "Self-Correcting Self-Consuming Loops for Generative ...",
+                      "url": "https://www.alphaxiv.org/overview/2402.07087v3"
+                    },
+                    {
+                      "title": "Large Language Models Suffer From Their Own Output: An Analysis of the   Self-Consuming Training Loop",
+                      "url": "https://arxiv.org/pdf/2311.16822"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found about arXiv paper 2402.07087:\n\n## Self-Correcting Self-Consuming Loops for Generative Model Training\n\nThe paper was published on April 5, 2024, by authors Nate Gillman, Michael Freeman, Daksh Aggarwal, Chia-Hong Hsu, Calvin Luo, Yonglong Tian, and Chen Sun, and it was accepted as a camera-ready version for ICML 2024.\n\n### Core Problem and Solution\n\nUsing synthetic data for generative model training creates \"self-consuming loops\" which may lead to training instability or even collapse, unless certain conditions are met. \n\nThe paper's main contribution is that by introducing an idealized correction function, which maps a data point to be more likely under the true data distribution, self-consuming loops can be made exponentially more stable.\n\n### Practical Approach\n\nThe authors propose self-correction functions, which rely on expert knowledge (e.g. the laws of physics programmed in a simulator), and aim to approximate the idealized corrector automatically and at scale.\n\nThe paper addresses the growing challenge that as synthetic data becomes higher quality and proliferates on the internet, machine learning models are increasingly trained on a mix of human- and machine-generated data."
+              ],
+              "durationSeconds": 8.704919885000214
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WrMPBr7UQjxvBnADH84wVx",
+              "name": "WebSearch",
+              "input": {
+                "query": "Youden 1950 \"Index for rating diagnostic tests\" Cancer journal citation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61106dee-d403-4991-840d-0ac37dc50792",
+            "uuid": "d462344a-578f-4d26-8a68-065b872bb91b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016tUNGiKd7JmveaBZV8Uqsf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 895,
+                "cache_read_input_tokens": 26759,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 895
+                },
+                "output_tokens": 46,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T14:23:21.326Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WrMPBr7UQjxvBnADH84wVx",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Youden 1950 \"Index for rating diagnostic tests\" Cancer journal citation\"\n\nLinks: [{\"title\":\"Youden, W.J. (1950) Index for Rating Diagnostic Tests. Cancer, 3, 32-35. - References - Scientific Research Publishing\",\"url\":\"https://www.scirp.org/reference/referencespapers?referenceid=2049166\"},{\"title\":\"Youden, W. (1950) An Index for Rating Diagnostic Tests. Cancer, 3, 32-35. - References - Scientific Research Publishing\",\"url\":\"https://www.scirp.org/reference/referencespapers?referenceid=1908757\"},{\"title\":\"W. J. Youden, “Index for Rating Diagnostic Tests,” Cancer, Vol. 3, No. 1, 1950, pp. 32-35. doi10.1002/1097-0142(1950)313.0.CO;2-3 - References - Scientific Research Publishing\",\"url\":\"https://www.scirp.org/reference/referencespapers?referenceid=878687\"},{\"title\":\"Index for rating diagnostic tests - Youden - 1950 - Cancer - Wiley Online Library\",\"url\":\"https://acsjournals.onlinelibrary.wiley.com/doi/10.1002/1097-0142(1950)3:1%3C32::AID-CNCR2820030106%3E3.0.CO;2-3\"},{\"title\":\"Youden's J statistic — Grokipedia\",\"url\":\"https://grokipedia.com/page/Youden's_J_statistic\"},{\"title\":\"(PDF) Youden Index and Associated Cut-Points for Three Ordinal Diagnostic Groups\",\"url\":\"https://www.researchgate.net/publication/241694956_Youden_Index_and_Associated_Cut-Points_for_Three_Ordinal_Diagnostic_Groups\"},{\"title\":\"Improved Confidence Intervals for the Youden Index | PLOS One\",\"url\":\"https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0127272\"},{\"title\":\"(Open Access) Index for rating diagnostic tests (1950) | W. J. Youden | 10507 Citations\",\"url\":\"https://scispace.com/papers/index-for-rating-diagnostic-tests-kmur76cyd2\"},{\"title\":\"Google Scholar\",\"url\":\"https://scholar.google.com/scholar_lookup?title=Index+for+rating+diagnostic+tests&amp=&author=WJ.+Youden&amp=&publication_year=1950&amp=&journal=Cancer.&amp=&volume=3&amp=&pages=32-35\"}]\n\nBased on the search results, here is the citation information for the Youden 1950 paper:\n\nW. J. Youden, \"Index for Rating Diagnostic Tests,\" Cancer, Vol. 3, No. 1, 1950, pp. 32-35. doi: 10.1002/1097-0142(1950)313.0.CO;2-3\n\nThis seminal work developed a straightforward index for comparing the efficacy of diagnostic procedures, particularly in medical contexts like cancer screening. The paper is authored by W. J. Youden Ph.D. from the National Bureau of Standards, Washington, D.C.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "61106dee-d403-4991-840d-0ac37dc50792",
+            "uuid": "31e3b1b8-b91b-4fd4-afc4-48f64859f36f",
+            "tool_use_result": {
+              "query": "Youden 1950 \"Index for rating diagnostic tests\" Cancer journal citation",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_016gqAK9TmdqY83wXCYwEQ32",
+                  "content": [
+                    {
+                      "title": "Youden, W.J. (1950) Index for Rating Diagnostic Tests. Cancer, 3, 32-35. - References - Scientific Research Publishing",
+                      "url": "https://www.scirp.org/reference/referencespapers?referenceid=2049166"
+                    },
+                    {
+                      "title": "Youden, W. (1950) An Index for Rating Diagnostic Tests. Cancer, 3, 32-35. - References - Scientific Research Publishing",
+                      "url": "https://www.scirp.org/reference/referencespapers?referenceid=1908757"
+                    },
+                    {
+                      "title": "W. J. Youden, “Index for Rating Diagnostic Tests,” Cancer, Vol. 3, No. 1, 1950, pp. 32-35. doi10.1002/1097-0142(1950)313.0.CO;2-3 - References - Scientific Research Publishing",
+                      "url": "https://www.scirp.org/reference/referencespapers?referenceid=878687"
+                    },
+                    {
+                      "title": "Index for rating diagnostic tests - Youden - 1950 - Cancer - Wiley Online Library",
+                      "url": "https://acsjournals.onlinelibrary.wiley.com/doi/10.1002/1097-0142(1950)3:1%3C32::AID-CNCR2820030106%3E3.0.CO;2-3"
+                    },
+                    {
+                      "title": "Youden's J statistic — Grokipedia",
+                      "url": "https://grokipedia.com/page/Youden's_J_statistic"
+                    },
+                    {
+                      "title": "(PDF) Youden Index and Associated Cut-Points for Three Ordinal Diagnostic Groups",
+                      "url": "https://www.researchgate.net/publication/241694956_Youden_Index_and_Associated_Cut-Points_for_Three_Ordinal_Diagnostic_Groups"
+                    },
+                    {
+                      "title": "Improved Confidence Intervals for the Youden Index | PLOS One",
+                      "url": "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0127272"
+                    },
+                    {
+                      "title": "(Open Access) Index for rating diagnostic tests (1950) | W. J. Youden | 10507 Citations",
+                      "url": "https://scispace.com/papers/index-for-rating-diagnostic-tests-kmur76cyd2"
+                    },
+                    {
+                      "title": "Google Scholar",
+                      "url": "https://scholar.google.com/scholar_lookup?title=Index+for+rating+diagnostic+tests&amp=&author=WJ.+Youden&amp=&publication_year=1950&amp=&journal=Cancer.&amp=&volume=3&amp=&pages=32-35"
+                    }
+                  ]
+                },
+                "Based on the search results, here is the citation information for the Youden 1950 paper:\n\nW. J. Youden, \"Index for Rating Diagnostic Tests,\" Cancer, Vol. 3, No. 1, 1950, pp. 32-35. doi: 10.1002/1097-0142(1950)313.0.CO;2-3\n\nThis seminal work developed a straightforward index for comparing the efficacy of diagnostic procedures, particularly in medical contexts like cancer screening. The paper is authored by W. J. Youden Ph.D. from the National Bureau of Standards, Washington, D.C."
+              ],
+              "durationSeconds": 3.956877036000136
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LBDAQDSRsEWXNzQZXYT3A6",
+              "name": "WebSearch",
+              "input": {
+                "query": "alemohammad self-consuming generative models arXiv first author"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61106dee-d403-4991-840d-0ac37dc50792",
+            "uuid": "ffde65aa-315a-4782-a98f-3790955f412c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011EcNa3aE1KCat7JgNFwAXh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 906,
+                "cache_read_input_tokens": 27654,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 906
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T14:23:28.084Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LBDAQDSRsEWXNzQZXYT3A6",
+              "type": "tool_result",
+              "content": "Web search results for query: \"alemohammad self-consuming generative models arXiv first author\"\n\nLinks: [{\"title\":\"[2307.01850] Self-Consuming Generative Models Go MAD\",\"url\":\"https://arxiv.org/abs/2307.01850\"},{\"title\":\"(PDF) Self-Consuming Generative Models Go MAD\",\"url\":\"https://www.researchgate.net/publication/372136378_Self-Consuming_Generative_Models_Go_MAD\"},{\"title\":\"Self-Correcting Self-Consuming Loops for Generative Model Training\",\"url\":\"https://arxiv.org/html/2402.07087v2\"},{\"title\":\"[PDF] Self-Consuming Generative Models Go MAD | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Self-Consuming-Generative-Models-Go-MAD-Alemohammad-Casco-Rodriguez/ad022cd5da75637ac3e0a8f8cc4f0d394ba5ff7a\"},{\"title\":\"[2402.11778] Towards Theoretical Understandings of Self-Consuming Generative Models\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2402.11778\"},{\"title\":\"Self-Consuming Generative Models with Curated Data Provably Optimize Human Preferences\",\"url\":\"https://arxiv.org/html/2407.09499v1\"},{\"title\":\"Towards Theoretical Understandings of Self-Consuming Generative Models\",\"url\":\"https://arxiv.org/pdf/2402.11778\"},{\"title\":\"Self-Consuming AI Resources\",\"url\":\"https://dsp.rice.edu/ai-loops/\"},{\"title\":\"Self-Consuming Generative Models Go MAD | Montreal AI Ethics Institute\",\"url\":\"https://montrealethics.ai/self-consuming-generative-models-go-mad/\"},{\"title\":\"Self-Consuming Generative Models Go MAD - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2023arXiv230701850A/abstract\"}]\n\nBased on the search results, the first author of \"Self-Consuming Generative Models Go MAD\" is Sina Alemohammad. The paper, which examines how using synthetic data to train next-generation models creates autophagous (self-consuming) loops, was authored by Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, and Richard G. Baraniuk. The paper was published on arXiv in July 2023 (arXiv:2307.01850).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "61106dee-d403-4991-840d-0ac37dc50792",
+            "uuid": "88423e28-3a0e-4886-a5fa-03f7b2efe6e6",
+            "tool_use_result": {
+              "query": "alemohammad self-consuming generative models arXiv first author",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01KxF8Jip33VcHXrTSDnQVpp",
+                  "content": [
+                    {
+                      "title": "[2307.01850] Self-Consuming Generative Models Go MAD",
+                      "url": "https://arxiv.org/abs/2307.01850"
+                    },
+                    {
+                      "title": "(PDF) Self-Consuming Generative Models Go MAD",
+                      "url": "https://www.researchgate.net/publication/372136378_Self-Consuming_Generative_Models_Go_MAD"
+                    },
+                    {
+                      "title": "Self-Correcting Self-Consuming Loops for Generative Model Training",
+                      "url": "https://arxiv.org/html/2402.07087v2"
+                    },
+                    {
+                      "title": "[PDF] Self-Consuming Generative Models Go MAD | Semantic Scholar",
+                      "url": "https://www.semanticscholar.org/paper/Self-Consuming-Generative-Models-Go-MAD-Alemohammad-Casco-Rodriguez/ad022cd5da75637ac3e0a8f8cc4f0d394ba5ff7a"
+                    },
+                    {
+                      "title": "[2402.11778] Towards Theoretical Understandings of Self-Consuming Generative Models",
+                      "url": "https://ar5iv.labs.arxiv.org/html/2402.11778"
+                    },
+                    {
+                      "title": "Self-Consuming Generative Models with Curated Data Provably Optimize Human Preferences",
+                      "url": "https://arxiv.org/html/2407.09499v1"
+                    },
+                    {
+                      "title": "Towards Theoretical Understandings of Self-Consuming Generative Models",
+                      "url": "https://arxiv.org/pdf/2402.11778"
+                    },
+                    {
+                      "title": "Self-Consuming AI Resources",
+                      "url": "https://dsp.rice.edu/ai-loops/"
+                    },
+                    {
+                      "title": "Self-Consuming Generative Models Go MAD | Montreal AI Ethics Institute",
+                      "url": "https://montrealethics.ai/self-consuming-generative-models-go-mad/"
+                    },
+                    {
+                      "title": "Self-Consuming Generative Models Go MAD - ADS",
+                      "url": "https://ui.adsabs.harvard.edu/abs/2023arXiv230701850A/abstract"
+                    }
+                  ]
+                },
+                "Based on the search results, the first author of \"Self-Consuming Generative Models Go MAD\" is Sina Alemohammad. The paper, which examines how using synthetic data to train next-generation models creates autophagous (self-consuming) loops, was authored by Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, and Richard G. Baraniuk. The paper was published on arXiv in July 2023 (arXiv:2307.01850)."
+              ],
+              "durationSeconds": 4.06521440399997
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011yemrZajQn3QdchGhfaJM1",
+              "name": "WebSearch",
+              "input": {
+                "query": "Roger Levy \"expectation-based syntactic comprehension\" Cognition 2008"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61106dee-d403-4991-840d-0ac37dc50792",
+            "uuid": "ad6a74df-4f64-4a07-9536-3b3860414713",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019YNP2Yx9RpLGsji8UgXPRi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 749,
+                "cache_read_input_tokens": 28560,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 749
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T14:23:41.979Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011yemrZajQn3QdchGhfaJM1",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Roger Levy \"expectation-based syntactic comprehension\" Cognition 2008\"\n\nLinks: [{\"title\":\"ERIC - EJ784548 - Expectation-Based Syntactic Comprehension, Cognition, 2008-Mar\",\"url\":\"https://eric.ed.gov/?id=EJ784548\"},{\"title\":\"[PDF] Expectation-based syntactic comprehension | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Expectation-based-syntactic-comprehension-Levy/2a92864d3f44e1b34da0fa17e13d5752d089eddf\"},{\"title\":\"Roger Levy | Brain and Cognitive Sciences\",\"url\":\"https://bcs.mit.edu/directory/roger-levy\"},{\"title\":\"Expectation-based syntactic comprehension Roger Levy\",\"url\":\"https://www.mit.edu/~rplevy/papers/levy-2008-cognition.pdf\"},{\"title\":\"Expectation-based syntactic comprehension - PubMed\",\"url\":\"https://pubmed.ncbi.nlm.nih.gov/17662975/\"},{\"title\":\"Expectation-based syntactic comprehension\",\"url\":\"https://escholarship.org/uc/item/66v7520b\"},{\"title\":\"Roger Levy, Expectation-based syntactic comprehension - PhilPapers\",\"url\":\"https://philpapers.org/rec/LEVESC\"},{\"title\":\"Expectation-Based syntactic comprehension | Request PDF\",\"url\":\"https://www.researchgate.net/publication/6176117_Expectation-Based_syntactic_comprehension\"}]\n\nI found the paper you're looking for. Here's what the search results show:\n\nRoger Levy's \"Expectation-Based Syntactic Comprehension\" was published in Cognition, Volume 106, Issue 3, pages 1126-1177 in March 2008. The paper investigates the role of resource allocation as a source of processing difficulty in human sentence comprehension.\n\nThe paper proposes an information-theoretic characterization of processing difficulty as the work incurred by resource reallocation during parallel, incremental, probabilistic disambiguation in sentence comprehension, and demonstrates its equivalence to Hale's theory of probabilistic parsing.\n\nThe paper is highly influential in psycholinguistics, and the surprisal generated from these models highly correlates with human processing difficulty indexed by behavioral measures such as reading times.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "61106dee-d403-4991-840d-0ac37dc50792",
+            "uuid": "a560139e-90c3-45ed-a1f4-ca76c603c83d",
+            "tool_use_result": {
+              "query": "Roger Levy \"expectation-based syntactic comprehension\" Cognition 2008",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01CzpFw4cpJfUiPFwL9EVBty",
+                  "content": [
+                    {
+                      "title": "ERIC - EJ784548 - Expectation-Based Syntactic Comprehension, Cognition, 2008-Mar",
+                      "url": "https://eric.ed.gov/?id=EJ784548"
+                    },
+                    {
+                      "title": "[PDF] Expectation-based syntactic comprehension | Semantic Scholar",
+                      "url": "https://www.semanticscholar.org/paper/Expectation-based-syntactic-comprehension-Levy/2a92864d3f44e1b34da0fa17e13d5752d089eddf"
+                    },
+                    {
+                      "title": "Roger Levy | Brain and Cognitive Sciences",
+                      "url": "https://bcs.mit.edu/directory/roger-levy"
+                    },
+                    {
+                      "title": "Expectation-based syntactic comprehension Roger Levy",
+                      "url": "https://www.mit.edu/~rplevy/papers/levy-2008-cognition.pdf"
+                    },
+                    {
+                      "title": "Expectation-based syntactic comprehension - PubMed",
+                      "url": "https://pubmed.ncbi.nlm.nih.gov/17662975/"
+                    },
+                    {
+                      "title": "Expectation-based syntactic comprehension",
+                      "url": "https://escholarship.org/uc/item/66v7520b"
+                    },
+                    {
+                      "title": "Roger Levy, Expectation-based syntactic comprehension - PhilPapers",
+                      "url": "https://philpapers.org/rec/LEVESC"
+                    },
+                    {
+                      "title": "Expectation-Based syntactic comprehension | Request PDF",
+                      "url": "https://www.researchgate.net/publication/6176117_Expectation-Based_syntactic_comprehension"
+                    }
+                  ]
+                },
+                "I found the paper you're looking for. Here's what the search results show:\n\nRoger Levy's \"Expectation-Based Syntactic Comprehension\" was published in Cognition, Volume 106, Issue 3, pages 1126-1177 in March 2008. The paper investigates the role of resource allocation as a source of processing difficulty in human sentence comprehension.\n\nThe paper proposes an information-theoretic characterization of processing difficulty as the work incurred by resource reallocation during parallel, incremental, probabilistic disambiguation in sentence comprehension, and demonstrates its equivalence to Hale's theory of probabilistic parsing.\n\nThe paper is highly influential in psycholinguistics, and the surprisal generated from these models highly correlates with human processing difficulty indexed by behavioral measures such as reading times."
+              ],
+              "durationSeconds": 10.510884820999811
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me check if Roger Levy's name has an accent (Lévy vs Levy). The search results show \"Roger Levy\" consistently without accent. Let me verify more carefully.",
+              "signature": "EuoCCmMIDRgCKkCMtO8xnOJEoUNquW1uOI5HyyKYvQ9I+WXFeWN4TNjaARgzGbHAPMS0/Kpe6SJZKO0y9ZnFNNFNZlnjBYVn0HxDMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDJs+bBGI2hD7oZ9ncxoMDvY7cb7gXYDl//cfIjD0c45kyupmEpMjB/Z9mmRjh3nvzm5TY1Tr1HFKxFxz0am3Ae/sCV0vjGrgc4K6pz4qtAETuAWYlWaW4avN/o7ZqomBxyp+wtzoRtphmKjoNvegmFAfFE2ChpAHFi/Dw5y6gtV+zmWKmgo7YVabawPs5lAGSklpB5ANHdZJGrG5Yvqvge4uHcgYMGOghOaGirckuIGfiYg7ghcMpjJLZc9xb5XnJ0nIYcb5ayp5m1FoToDxPSJP1FIE5jgfvjFdQRzne1ZCKU69vyWJj2frhqs/FLSmNSwHlfdNI0fqXiMBRhVntXJeA4AYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61106dee-d403-4991-840d-0ac37dc50792",
+            "uuid": "8ae76570-2739-4d80-b29e-85d554d5da20",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FLhGzfty9JhPSkdggAehJC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 673,
+                "cache_read_input_tokens": 29309,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 673
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qy14rVgZDSagjcHwZmSaVj",
+              "name": "WebSearch",
+              "input": {
+                "query": "Roger Levy MIT \"Roger Lévy\" accent name spelling"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61106dee-d403-4991-840d-0ac37dc50792",
+            "uuid": "fd1dea7d-b841-4801-a956-0fc584268ec1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FLhGzfty9JhPSkdggAehJC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 673,
+                "cache_read_input_tokens": 29309,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 673
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T14:23:49.835Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qy14rVgZDSagjcHwZmSaVj",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Roger Levy MIT \"Roger Lévy\" accent name spelling\"\n\nLinks: [{\"title\":\"Roger Levy\",\"url\":\"https://www.mit.edu/~rplevy/\"},{\"title\":\"Roger Levy | The MIT Siegel Family Quest for Intelligence\",\"url\":\"https://sqi.mit.edu/about/people/roger-levy\"},{\"title\":\"Roger Levy | Brain and Cognitive Sciences\",\"url\":\"https://bcs.mit.edu/directory/roger-levy\"},{\"title\":\"Roger Levy | Underline\",\"url\":\"https://underline.io/speakers/58095-roger-levy\"},{\"title\":\"Roger Levy\",\"url\":\"https://scholar.google.com/citations?user=i86O0SAAAAAJ&hl=en\"},{\"title\":\"Roger Levy - Massachusetts Institute of Technology (MIT)\",\"url\":\"https://mit.academia.edu/RogerLevy\"},{\"title\":\"Roger Levy | Center for Academic Research and Training in Anthropogeny (CARTA)\",\"url\":\"https://carta.anthropogeny.org/users/roger-levy\"},{\"title\":\"rlevy (Roger Levy) · GitHub\",\"url\":\"https://github.com/rlevy\"}]\n\nBased on the search results, Roger Levy is a professor in MIT's Department of Brain and Cognitive Sciences, where he heads the Computational Psycholinguistics Laboratory. \n\nThe search results consistently refer to him as \"Roger Levy\" without the accent mark on the \"e.\" All official MIT sources, academic databases, and his personal MIT website use the spelling \"Roger Levy\" rather than \"Roger Lévy.\" There is no indication in the search results that his name includes an accent mark.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "61106dee-d403-4991-840d-0ac37dc50792",
+            "uuid": "5005d004-4f0a-4543-8f08-c4ba91389ec9",
+            "tool_use_result": {
+              "query": "Roger Levy MIT \"Roger Lévy\" accent name spelling",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01Dh5sYXdZzWsU3oHg7zidEh",
+                  "content": [
+                    {
+                      "title": "Roger Levy",
+                      "url": "https://www.mit.edu/~rplevy/"
+                    },
+                    {
+                      "title": "Roger Levy | The MIT Siegel Family Quest for Intelligence",
+                      "url": "https://sqi.mit.edu/about/people/roger-levy"
+                    },
+                    {
+                      "title": "Roger Levy | Brain and Cognitive Sciences",
+                      "url": "https://bcs.mit.edu/directory/roger-levy"
+                    },
+                    {
+                      "title": "Roger Levy | Underline",
+                      "url": "https://underline.io/speakers/58095-roger-levy"
+                    },
+                    {
+                      "title": "Roger Levy",
+                      "url": "https://scholar.google.com/citations?user=i86O0SAAAAAJ&hl=en"
+                    },
+                    {
+                      "title": "Roger Levy - Massachusetts Institute of Technology (MIT)",
+                      "url": "https://mit.academia.edu/RogerLevy"
+                    },
+                    {
+                      "title": "Roger Levy | Center for Academic Research and Training in Anthropogeny (CARTA)",
+                      "url": "https://carta.anthropogeny.org/users/roger-levy"
+                    },
+                    {
+                      "title": "rlevy (Roger Levy) · GitHub",
+                      "url": "https://github.com/rlevy"
+                    }
+                  ]
+                },
+                "Based on the search results, Roger Levy is a professor in MIT's Department of Brain and Cognitive Sciences, where he heads the Computational Psycholinguistics Laboratory. \n\nThe search results consistently refer to him as \"Roger Levy\" without the accent mark on the \"e.\" All official MIT sources, academic databases, and his personal MIT website use the spelling \"Roger Levy\" rather than \"Roger Lévy.\" There is no indication in the search results that his name includes an accent mark."
+              ],
+              "durationSeconds": 3.6754923199999614
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部搜索完成，汇总结果如下。\n\n---\n\n## 论文 1: Mohamed et al.\n\n- **arXiv ID**: [2502.20258](https://arxiv.org/abs/2502.20258) — **存在，匹配**\n- **实际 title**: \"LLM as a Broken Telephone: Iterative Generation Distorts Information\" — **完全匹配**\n- **实际作者**: Amr Mohamed, Mingmeng Geng, Michalis Vazirgiannis, Guokan Shang\n- **Abstract 摘要**: 研究 LLM 在迭代生成中是否像 \"broken telephone\" 一样扭曲信息。发现失真随链长度累积，受中间语言选择和链复杂度影响；更长的链和更多模型会放大退化。\n- **发表状态**: **ACL 2025 Main Conference**（已有 [ACL Anthology 条目](https://aclanthology.org/2025.acl-long.371/)和 [GitHub 代码](https://github.com/amr-mohamedd/LLM-as-a-Broken-Telephone)）\n- **结论**: 全部信息验证通过 ✓\n\n---\n\n## 论文 2: Geng et al.\n\n- **arXiv ID**: [2603.11228](https://arxiv.org/abs/2603.11228) — **存在，匹配**\n- **实际 title**: \"Markovian Generation Chains in Large Language Models\" — **完全匹配**\n- **实际作者**: Mingmeng Geng, Amr Mohamed, Guokan Shang, Michalis Vazirgiannis, Thierry Poibeau\n- **Abstract 摘要**: 定义 Markovian generation chains 为迭代推理过程（每步仅使用前一步输出，无记忆）。在迭代改写和往返翻译实验中，输出要么收敛到小的循环集，要么在有限范围内持续产生新句子。多样性变化取决于温度参数和初始输入。\n- **发表状态**: 2026年3月提交，preprint（[OpenReview 页面](https://openreview.net/forum?id=nTDn4OMiym)存在）\n- **结论**: 全部信息验证通过 ✓\n\n---\n\n## 论文 3: Gillman et al.\n\n- **arXiv ID**: [2402.07087](https://arxiv.org/abs/2402.07087) — **存在，匹配**\n- **实际 title**: \"Self-Correcting Self-Consuming Loops for Generative Model Training\" — **完全匹配**\n- **实际作者**: Nate Gillman, Michael Freeman, Daksh Aggarwal, Chia-Hong Hsu, Calvin Luo, Yonglong Tian, Chen Sun\n- **Abstract 摘要**: 用合成数据训练生成模型会形成 self-consuming loops，可能导致训练不稳定或崩溃。提出引入 idealized correction function 使 self-consuming loops 指数级更稳定，并用模拟器中的专家知识实现近似校正。\n- **发表状态**: **ICML 2024**（camera-ready 版本已确认）\n- **结论**: 全部信息验证通过 ✓\n\n---\n\n## Youden's J Statistic 经典引用\n\n- **完整引用**: Youden, W. J. (1950). Index for rating diagnostic tests. *Cancer*, 3(1), 32–35. doi: [10.1002/1097-0142(1950)3:1<32::AID-CNCR2820030106>3.0.CO;2-3](https://acsjournals.onlinelibrary.wiley.com/doi/10.1002/1097-0142(1950)3:1%3C32::AID-CNCR2820030106%3E3.0.CO;2-3)\n- **BibTeX key 建议**: `youden1950index`\n- **用途**: Youden's J = Sensitivity + Specificity − 1，用于选择最优分类阈值。在 ML Method section 中引用此文作为 threshold selection criterion 的经典出处即可。\n\n---\n\n## Bib 条目检查\n\n1. **Alemohammad et al.**: \"Self-Consuming Generative Models Go MAD\" 的 first author 是 **Sina Alemohammad**（不是 Casco-Rodriguez）。Josue Casco-Rodriguez 是第二作者。arXiv: [2307.01850](https://arxiv.org/abs/2307.01850)。\n\n2. **Roger Levy**: MIT 官方页面、Google Scholar、所有学术数据库一致使用 **Roger Levy**（无重音符号）。不是 \"Lévy\"。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "61106dee-d403-4991-840d-0ac37dc50792",
+            "uuid": "aa6bf3d3-9dc1-4282-8252-e250aa5361ce",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AzAhSdzjhK17tK3SuH8ULJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 639,
+                "cache_read_input_tokens": 29982,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 639
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部搜索完成，汇总结果如下。\n\n---\n\n## 论文 1: Mohamed et al.\n\n- **arXiv ID**: [2502.20258](https://arxiv.org/abs/2502.20258) — **存在，匹配**\n- **实际 title**: \"LLM as a Broken Telephone: Iterative Generation Distorts Information\" — **完全匹配**\n- **实际作者**: Amr Mohamed, Mingmeng Geng, Michalis Vazirgiannis, Guokan Shang\n- **Abstract 摘要**: 研究 LLM 在迭代生成中是否像 \"broken telephone\" 一样扭曲信息。发现失真随链长度累积，受中间语言选择和链复杂度影响；更长的链和更多模型会放大退化。\n- **发表状态**: **ACL 2025 Main Conference**（已有 [ACL Anthology 条目](https://aclanthology.org/2025.acl-long.371/)和 [GitHub 代码](https://github.com/amr-mohamedd/LLM-as-a-Broken-Telephone)）\n- **结论**: 全部信息验证通过 ✓\n\n---\n\n## 论文 2: Geng et al.\n\n- **arXiv ID**: [2603.11228](https://arxiv.org/abs/2603.11228) — **存在，匹配**\n- **实际 title**: \"Markovian Generation Chains in Large Language Models\" — **完全匹配**\n- **实际作者**: Mingmeng Geng, Amr Mohamed, Guokan Shang, Michalis Vazirgiannis, Thierry Poibeau\n- **Abstract 摘要**: 定义 Markovian generation chains 为迭代推理过程（每步仅使用前一步输出，无记忆）。在迭代改写和往返翻译实验中，输出要么收敛到小的循环集，要么在有限范围内持续产生新句子。多样性变化取决于温度参数和初始输入。\n- **发表状态**: 2026年3月提交，preprint（[OpenReview 页面](https://openreview.net/forum?id=nTDn4OMiym)存在）\n- **结论**: 全部信息验证通过 ✓\n\n---\n\n## 论文 3: Gillman et al.\n\n- **arXiv ID**: [2402.07087](https://arxiv.org/abs/2402.07087) — **存在，匹配**\n- **实际 title**: \"Self-Correcting Self-Consuming Loops for Generative Model Training\" — **完全匹配**\n- **实际作者**: Nate Gillman, Michael Freeman, Daksh Aggarwal, Chia-Hong Hsu, Calvin Luo, Yonglong Tian, Chen Sun\n- **Abstract 摘要**: 用合成数据训练生成模型会形成 self-consuming loops，可能导致训练不稳定或崩溃。提出引入 idealized correction function 使 self-consuming loops 指数级更稳定，并用模拟器中的专家知识实现近似校正。\n- **发表状态**: **ICML 2024**（camera-ready 版本已确认）\n- **结论**: 全部信息验证通过 ✓\n\n---\n\n## Youden's J Statistic 经典引用\n\n- **完整引用**: Youden, W. J. (1950). Index for rating diagnostic tests. *Cancer*, 3(1), 32–35. doi: [10.1002/1097-0142(1950)3:1<32::AID-CNCR2820030106>3.0.CO;2-3](https://acsjournals.onlinelibrary.wiley.com/doi/10.1002/1097-0142(1950)3:1%3C32::AID-CNCR2820030106%3E3.0.CO;2-3)\n- **BibTeX key 建议**: `youden1950index`\n- **用途**: Youden's J = Sensitivity + Specificity − 1，用于选择最优分类阈值。在 ML Method section 中引用此文作为 threshold selection criterion 的经典出处即可。\n\n---\n\n## Bib 条目检查\n\n1. **Alemohammad et al.**: \"Self-Consuming Generative Models Go MAD\" 的 first author 是 **Sina Alemohammad**（不是 Casco-Rodriguez）。Josue Casco-Rodriguez 是第二作者。arXiv: [2307.01850](https://arxiv.org/abs/2307.01850)。\n\n2. **Roger Levy**: MIT 官方页面、Google Scholar、所有学术数据库一致使用 **Roger Levy**（无重音符号）。不是 \"Lévy\"。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 102494,
+            "duration_api_ms": 104152,
+            "num_turns": 9,
+            "stop_reason": "end_turn",
+            "session_id": "61106dee-d403-4991-840d-0ac37dc50792",
+            "total_cost_usd": 0.4437700000000001,
+            "usage": {
+              "input_tokens": 12,
+              "cache_creation_input_tokens": 18780,
+              "cache_read_input_tokens": 229890,
+              "output_tokens": 2173,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 18780,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 1327,
+                  "cache_read_input_tokens": 29982,
+                  "cache_creation_input_tokens": 639,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 639
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 75635,
+                "outputTokens": 2286,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 7,
+                "costUSD": 0.157065,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 12,
+                "outputTokens": 2173,
+                "cacheReadInputTokens": 229890,
+                "cacheCreationInputTokens": 18780,
+                "webSearchRequests": 0,
+                "costUSD": 0.286705,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "04929b16-b45d-4d3a-b2f1-a3855969e8d7"
+          },
+          "id": "event-000025"
+        }
+      ],
+      "message_count": 25
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-reference-verification-r20.md"
+}

@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp_028_subsampling_power",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T13:30:47.472Z",
+    "updated_at": "2026-05-18T13:31:14.737Z",
+    "hypothesis": "C4 K*=2 信号的 minimum sample size: 在 n={1000..5000} 范围内，GroupKFold(5) 1v2 AUC 是否稳定超过 θ=0.60？确定可靠判定 K*=2 所需的最小样本量。",
+    "checkpoint_path": "/root/autodl-tmp/gen-depth-contamination/results/c4_power_curve/",
+    "log_path": "/root/autodl-tmp/gen-depth-contamination/results/c4_power_curve/power_curve_results.json",
+    "metrics": {
+      "n_1000": {
+        "mean_auc": 0.608,
+        "std": 0.012,
+        "detection_prob": 0.9
+      },
+      "n_2500": {
+        "mean_auc": 0.618,
+        "std": 0.006,
+        "detection_prob": 1
+      },
+      "n_5000": {
+        "mean_auc": 0.629,
+        "std": 0,
+        "detection_prob": 1
+      },
+      "key_finding": "n>=2500 gives 100% reliable K*=2 detection. n=1000 already 90%. Signal is robust, not large-sample artifact."
+    }
+  },
+  "timestamp": "2026-05-18T13:31:14.931990+00:00",
+  "trigger": "update_registry"
+}

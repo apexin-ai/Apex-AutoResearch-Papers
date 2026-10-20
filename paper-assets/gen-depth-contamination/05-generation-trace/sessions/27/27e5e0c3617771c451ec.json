@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "27e5e0c3617771c451ec",
+  "project": "gen-depth-contamination",
+  "kind": "worker",
+  "title": "ops exp contamination rate sweep continue",
+  "task_key": "worker_ops_exp_contamination_rate_sweep_continue_20260520T175717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp_contamination_rate_sweep_continue_20260520T175717.log",
+    "occurrence": 1,
+    "bytes": 712271,
+    "sha256": "6f6e73714f6c317f78893f2e8e6522f7a1d42dde187fd8c3843cb04769b5145a"
+  },
+  "statistics": {
+    "messages": 144,
+    "user_turns": 0,
+    "tool_calls": 53,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 34,
+      "tool_call": 53,
+      "tool_result": 53,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 144,
+      "chunks": [
+        {
+          "path": "27e5e0c3617771c451ec-part-0001.json",
+          "message_count": 115
+        },
+        {
+          "path": "27e5e0c3617771c451ec-part-0002.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-exp-contamination-rate-sweep-continue.md"
+}

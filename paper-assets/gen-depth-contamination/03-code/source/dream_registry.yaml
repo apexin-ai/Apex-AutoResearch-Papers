@@ -1,0 +1,207 @@
+dreams:
+  dream_20260512T200328:
+    dream_id: dream_20260512T200328
+    project: gen-depth-contamination
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: EMNLP 2026
+    focus: 'Route B framing: K* as first-measured saturation boundary, DPI theory
+      validation, graduated filtering with coarse 3-class signal. Key risk: K*=2 may
+      be seen as too shallow for practical impact.'
+    what_if: []
+    pid: 140121
+    chat_id: oc_5d2a0ec1de3a456564133278c1a9b203
+    card_message_id: om_x100b6f0c37fbdca0c22ea01b1f725b1
+    started_at: '2026-05-12T20:03:28+00:00'
+    updated_at: '2026-05-12T20:54:04+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 65afac22bd2e3c2bea5cd5aeb1ac8ca2832b3937ff4a0b7fe2651c922805cd22
+  dream_20260513T080728:
+    dream_id: dream_20260513T080728
+    project: gen-depth-contamination
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: ''
+    what_if: []
+    pid: 195322
+    chat_id: oc_5d2a0ec1de3a456564133278c1a9b203
+    card_message_id: om_x100b6f775adda480c2749cc1e449294
+    started_at: '2026-05-13T08:07:28+00:00'
+    updated_at: '2026-05-13T09:05:49+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: f54a42c613080c077900903ea0e015574906b02da4eb3b34df9bb1cb061fcdc9
+  dream_20260516T073047:
+    dream_id: dream_20260516T073047
+    project: gen-depth-contamination
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: ''
+    what_if: []
+    pid: 519249
+    chat_id: oc_5d2a0ec1de3a456564133278c1a9b203
+    card_message_id: om_x100b6fb59c4de0a8c491046f49cafff
+    started_at: '2026-05-16T07:30:47+00:00'
+    updated_at: '2026-05-16T08:32:27+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: dffba8736d91a325e94974c901f9365623897cd7631b2489f9c21cf64d0ca7f8
+  dream_20260518T113009:
+    dream_id: dream_20260518T113009
+    project: gen-depth-contamination
+    status: done
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 不包含 exp_026 arXiv graduated filtering 的负向结果。论文 Section 5 维持当前写法（仅含 C4 filtering
+      + Pythia replication），不加 arXiv filtering 数据。评估这种版本的审稿得分。
+    what_if: []
+    pid: 823660
+    chat_id: oc_5d2a0ec1de3a456564133278c1a9b203
+    card_message_id: om_x100b6f9bcaf3f8b0c3abec569f6f230
+    started_at: '2026-05-18T11:30:09+00:00'
+    updated_at: '2026-05-18T12:15:41+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: d5ed03a69c4871bf7834970e42952fbcc13a654e9510b775ea862d79cab21078
+  dream_20260518T122223:
+    dream_id: dream_20260518T122223
+    project: gen-depth-contamination
+    status: failed
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 包含 exp_026 arXiv graduated filtering 的负向结果，诚实报告。Section 5 增加 arXiv null
+      result，Discussion 增加 K* ≠ data utility 洞察。评估加入这个 honest negative 是否提升论文可信度和审稿得分。
+    what_if:
+    - name: exp_026_arxiv_filtering_integrated
+      claim: C3
+      description: 'arXiv graduated filtering negative result integrated into paper:
+        graduated ≈ no_filter on arXiv K*=3 (paired t-test p>0.24), binary has metric-specific
+        trade-off (MMLU -0.23pp p=0.005, HellaSwag +0.41pp p<0.00001). Section 5 adds
+        arXiv null result table. Discussion adds key insight: K* characterizes signal
+        discriminability not data utility — depth 2-3 text is statistically distinguishable
+        but not necessarily beneficial for training. Appendix includes full 15-run
+        table with paired t-tests.'
+      estimated_gpu_hours: 0.0
+    pid: null
+    chat_id: oc_5d2a0ec1de3a456564133278c1a9b203
+    card_message_id: om_x100b6f8406d638b8c320529ec9a5c7e
+    started_at: '2026-05-18T12:22:23+00:00'
+    updated_at: '2026-05-18T12:33:35+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: ba09650a5a1e60a27f1a8587ba7c250086bd6a2945dc58c931386b6de4941326
+  dream_20260518T123349:
+    dream_id: dream_20260518T123349
+    project: gen-depth-contamination
+    status: failed
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 包含 exp_026 arXiv graduated filtering 的负向结果，诚实报告。Section 5 增加 arXiv null
+      result，Discussion 增加 K* ≠ data utility 洞察。评估加入这个 honest negative 是否提升论文可信度和审稿得分。
+    what_if:
+    - name: exp_026_arxiv_filtering_integrated
+      claim: C3
+      description: 'arXiv graduated filtering negative result integrated into paper:
+        graduated ≈ no_filter on arXiv K*=3 (paired t-test p>0.24), binary has metric-specific
+        trade-off (MMLU -0.23pp p=0.005, HellaSwag +0.41pp p<0.00001). Section 5 adds
+        arXiv null result table. Discussion adds key insight: K* characterizes signal
+        discriminability not data utility — depth 2-3 text is statistically distinguishable
+        but not necessarily beneficial for training. Appendix includes full 15-run
+        table with paired t-tests.'
+      estimated_gpu_hours: 0.0
+    pid: null
+    chat_id: oc_5d2a0ec1de3a456564133278c1a9b203
+    card_message_id: om_x100b6f843c2e18a8c4abef7dee90462
+    started_at: '2026-05-18T12:33:49+00:00'
+    updated_at: '2026-05-18T12:57:41+00:00'
+    stages_completed:
+    - imagine
+    - write
+    error: 'zombie: orchestrator process crashed'
+    context_hash: ba09650a5a1e60a27f1a8587ba7c250086bd6a2945dc58c931386b6de4941326
+  dream_20260518T125757:
+    dream_id: dream_20260518T125757
+    project: gen-depth-contamination
+    status: done
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 包含 exp_026 arXiv graduated filtering 的负向结果，诚实报告。Section 5 增加 arXiv null
+      result，Discussion 增加 K* ≠ data utility 洞察。评估加入这个 honest negative 是否提升论文可信度和审稿得分。
+    what_if:
+    - name: exp_026_arxiv_filtering_integrated
+      claim: C3
+      description: 'arXiv graduated filtering negative result integrated into paper:
+        graduated ≈ no_filter on arXiv K*=3 (paired t-test p>0.24), binary has metric-specific
+        trade-off (MMLU -0.23pp p=0.005, HellaSwag +0.41pp p<0.00001). Section 5 adds
+        arXiv null result table. Discussion adds key insight: K* characterizes signal
+        discriminability not data utility — depth 2-3 text is statistically distinguishable
+        but not necessarily beneficial for training. Appendix includes full 15-run
+        table with paired t-tests.'
+      estimated_gpu_hours: 0.0
+    pid: 833500
+    chat_id: oc_5d2a0ec1de3a456564133278c1a9b203
+    card_message_id: om_x100b6f84839334a4c4a315c02591b6a
+    started_at: '2026-05-18T12:57:57+00:00'
+    updated_at: '2026-05-18T13:42:02+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: ba09650a5a1e60a27f1a8587ba7c250086bd6a2945dc58c931386b6de4941326
+  dream_20260519T090934:
+    dream_id: dream_20260519T090934
+    project: gen-depth-contamination
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Code domain cross-model results now include LLaMA-8B K*=2 (cross-family
+      confirmed) + cross-scorer validation K*=2 (D079). Mistral-7B and Qwen-7B Code
+      still RUNNING. Domain hierarchy: Wiki=1, C4=Code=2, arXiv=3. Retrain K*=7 (two
+      families). Focus on: (1) whether 4-domain + 6-architecture-family coverage is
+      sufficient for EMNLP accept; (2) C3 filtering weakness (negative results on
+      arXiv/Pythia); (3) Excitement score — is domain ceiling framework + one-wash
+      laundering concept enough to push from 3.5 to 4.0?'
+    what_if: []
+    pid: 974168
+    chat_id: oc_5d2a0ec1de3a456564133278c1a9b203
+    card_message_id: om_x100b6ff6c3c3d8a4c26968d1f209fec
+    started_at: '2026-05-19T09:09:34+00:00'
+    updated_at: '2026-05-19T10:17:42+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: d28b32d6597b985afd2618e2cb3b916fb8d653d9e9413aad648a572d853d13a1

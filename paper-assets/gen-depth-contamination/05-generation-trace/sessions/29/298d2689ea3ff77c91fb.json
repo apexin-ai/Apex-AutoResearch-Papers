@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "298d2689ea3ff77c91fb",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "code check 3 experiments eta",
+  "task_key": "worker_code_check_3_experiments_eta_20260522T202459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_3_experiments_eta_20260522T202459_result.json",
+    "occurrence": 1,
+    "bytes": 2069,
+    "sha256": "62e5a4eb4cc56b635f471c5eaf6945b37c343932e8be99ef76c9de17a43d3b12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度汇总\n\n当前服务器时间约 CST 04:25 (UTC 20:25)\n\n### 1. seed_gemma27b_c4_s42 (cuda:0, PID 26893)\n| 指标 | 值 |\n|------|-----|\n| 状态 | RUNNING (10h21m) |\n| 当前 depth | **depth 5 / 5** (最后一个 depth) |\n| 当前 batch | 137/625 (**22%**) |\n| 速度 | ~14.14 s/it |\n| 已完成 | depth_0–depth_4 各 5000 行 |\n| 整体进度 | **~84%** (4/5 generation depths + 22% of depth 5) |\n| depth 5 剩余 | 488 batches × 14.14s ≈ **1h55m** |\n| 生成完成 ETA | ~CST 06:20 / **UTC 22:20** |\n| GPU 显存 | 53,375 MiB, 93% util |\n| 异常 | 无 |\n\n### 2. exp_gemma2b_10k (cuda:3, PID 54709)\n| 指标 | 值 |\n|------|-----|\n| 状态 | RUNNING (2h27m) |\n| 当前 depth | **depth 3 / 5** |\n| 当前 batch | 427/625 (**68%**) |\n| 速度 | ~5.25 s/it |\n| 已完成 | depth_0–depth_2 各 10,000 行 |\n| 整体进度 | **~54%** (2/5 + 68% of depth 3) |\n| 剩余 | depth 3: ~17min + depth 4: ~55min + depth 5: ~55min ≈ **2h7m** |\n| 生成完成 ETA | ~CST 06:32 / **UTC 22:32** |\n| GPU 显存 | 6,381 MiB, 57% util |\n| 异常 | 无 |\n\n### 3. exp_olmo1b_10k (cuda:2, PID 66415)\n| 指标 | 值 |\n|------|-----|\n| 状态 | RUNNING (18min) |\n| 当前 depth | **depth 2 / 5** |\n| 当前 batch | 201/313 (**64%**) |\n| 速度 | ~2.29 s/it |\n| 已完成 | depth_0–depth_1 各 10,000 行 |\n| 整体进度 | **~33%** (1/5 + 64% of depth 2) |\n| 剩余 | depth 2: ~4min + depths 3–5: ~36min ≈ **40min** |\n| 生成完成 ETA | ~CST 05:05 / **UTC 21:05** |\n| GPU 显存 | 3,977 MiB, 63% util |\n| 异常 | 无 |\n\n### GPU 总览\n| GPU | 显存占用 | 利用率 | 任务 |\n|-----|---------|--------|------|\n| 0 | 53,375 MiB | 93% | gemma-2-27b |\n| 1 | 0 MiB | 0% | 空闲 |\n| 2 | 3,977 MiB | 63% | OLMo-1B |\n| 3 | 6,381 MiB | 57% | gemma-2-2b |\n\n三个实验均正常运行，无报错。OLMo-1B 最先完成（~40min），Gemma-27B 和 Gemma-2B 大致同时完成（~2h 后）。注意以上 ETA 仅为生成阶段，pipeline 后续可能还有 feature extraction / scoring 阶段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-3-experiments-eta.md"
+}

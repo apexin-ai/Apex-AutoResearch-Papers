@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Code domain (Python, CodeSearchNet) generational depth contamination results for Qwen2.5-1.5B. Pairwise AUC measures distinguishability between consecutive generation depths via 5-fold GroupKFold LightGBM classification on surprisal and lexical features. JSD quantifies distributional divergence of token frequencies.}
+\label{tab:code_domain_qwen}
+\begin{tabular}{l c c c}
+\toprule
+Pair & AUC & 95\% CI & JSD \\
+\midrule
+0 vs 1 & 0.9388 & [0.929, 0.949] & 0.0814 \\
+1 vs 2 & 0.7382 & [0.709, 0.767] & 0.0443 \\
+2 vs 3 & 0.5300 & [0.514, 0.546] & 0.0038 \\
+3 vs 4 & 0.5022 & [0.486, 0.518] & 0.0033 \\
+4 vs 5 & 0.5219 & [0.510, 0.534] & 0.0030 \\
+\midrule
+\multicolumn{4}{l}{$K^* = 2$ ($\theta = 0.60$)} \\
+\bottomrule
+\end{tabular}
+\end{table}

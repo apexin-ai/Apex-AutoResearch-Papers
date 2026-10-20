@@ -1,0 +1,34 @@
+{
+  "exp_id": "exp_003_decoding_ablation",
+  "project": "gen-depth-contamination",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T20:06:25.260Z",
+    "updated_at": "2026-05-13T06:48:58.226Z",
+    "hypothesis": "解码策略调控 K*：不同 top_p/temperature 设置是否改变饱和边界（greedy→更低 K*? 高温度→更高 K*?）",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && source /etc/network_turbo 2>/dev/null && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://hf-mirror.com && cd /root/autodl-tmp/gen-depth-contamination && bash scripts/run_exp003_ablation.sh 1 && bash scripts/run_exp003_ablation.sh 2 && bash scripts/run_exp003_ablation.sh 3 && bash scripts/run_exp003_ablation.sh 4\"",
+      "server": "autodl-4090d",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "29459",
+      "log_path": "~/runs/gen-depth-contamination/exp_003_decoding_ablation.log",
+      "submitted_at": "2026-05-13T06:43:59.756Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/gen-depth-contamination/data_exp003_*",
+      "data_count": 5000,
+      "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+      "seed": 42,
+      "configs": "4 ablation configs: greedy, nucleus p=0.9/T=1.0, nucleus p=0.95/T=0.7, nucleus p=0.95/T=1.2",
+      "estimated_runtime_hours": 10
+    }
+  },
+  "timestamp": "2026-05-13T06:48:58.256505+00:00",
+  "trigger": "update_registry"
+}

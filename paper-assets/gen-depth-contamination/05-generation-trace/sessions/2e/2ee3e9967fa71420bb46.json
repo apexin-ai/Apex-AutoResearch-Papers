@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ee3e9967fa71420bb46",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "paper update code table pythia",
+  "task_key": "worker_paper_update-code-table-pythia_20260519T031644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_update-code-table-pythia_20260519T031644_result.json",
+    "occurrence": 1,
+    "bytes": 444,
+    "sha256": "6b194f402b062512d64c0e7f926162206b289da057546c5aa50abb301fa6ae97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。Pythia-1.4B 列已填入：\n\n- **0v1**: .9592 [.956, .963] — 该行最高，已加 \\textbf（Qwen 的 \\textbf 已移除）\n- **1v2**: .5983 [.593, .603] — 低于 0.60 阈值，无 boundary marker\n- **2v3**: .5215 --- — CI [.509, .534] 接近 chance，用 ---\n- **3v4**: .5152 --- — CI [.503, .527] 接近 chance，用 ---\n- **4v5**: .5046 --- — CI [.491, .518] 跨越 chance，用 ---\n- **K\\***: 1"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-update-code-table-pythia.md"
+}

@@ -1,0 +1,36 @@
+{
+  "experiment": "exp_qwen_retrain_chain",
+  "model": "Qwen-1.5B",
+  "domain": "retrain-chain",
+  "status": "DONE",
+  "checked_at": "2026-05-18T22:30:00Z",
+  "ci_method": "5-fold CV",
+  "K_star": 4,
+  "pairwise_auc": {
+    "mean": {
+      "0v1": 0.9838,
+      "1v2": 0.8969,
+      "2v3": 0.8100,
+      "3v4": 0.7624
+    },
+    "per_fold": {
+      "0v1": [0.9838, 0.9819, 0.9839, 0.9822, 0.9870],
+      "1v2": [0.8909, 0.8979, 0.8985, 0.9007, 0.8965],
+      "2v3": [0.8104, 0.8060, 0.8185, 0.8047, 0.8103],
+      "3v4": [0.7546, 0.7650, 0.7775, 0.7574, 0.7577]
+    }
+  },
+  "jsd": {
+    "0v1": 0.226339,
+    "1v2": 0.104630,
+    "2v3": 0.075186,
+    "3v4": 0.065361
+  },
+  "bootstrap_ci": "INVALIDATED — bootstrap resampling broke GroupKFold structure, causing data leakage (+6.4pp inflation on 1v2). Use fold-based CI from pairwise_auc.per_fold instead.",
+  "fold_ci_95": {
+    "0v1": [0.9820, 0.9855],
+    "1v2": [0.8937, 0.9001],
+    "2v3": [0.8052, 0.8147],
+    "3v4": [0.7543, 0.7706]
+  }
+}

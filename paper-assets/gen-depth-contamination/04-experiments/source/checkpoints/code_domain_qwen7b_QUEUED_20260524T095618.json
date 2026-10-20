@@ -1,0 +1,44 @@
+{
+  "exp_id": "code_domain_qwen7b",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T09:48:59.617Z",
+    "updated_at": "2026-05-24T09:56:17.741Z",
+    "hypothesis": "Qwen2.5-7B on Python Code domain will yield K*=2 (matching Code ceiling=2 from Qwen-1.5B, LLaMA-8B, Mistral-7B), confirming Code ceiling=2 is scale-invariant within the Qwen family. This fills the last \"pending\" slot in paper_framing for Code domain.",
+    "metrics": {
+      "k_star": 2,
+      "pairwise_auc": {
+        "0v1": 0.9051,
+        "1v2": 0.7276,
+        "2v3": 0.5368,
+        "3v4": 0.509,
+        "4v5": 0.5139
+      },
+      "pairwise_auc_std": {
+        "0v1": 0.0043,
+        "1v2": 0.0055,
+        "2v3": 0.0145,
+        "3v4": 0.0055,
+        "4v5": 0.0128
+      },
+      "pairwise_jsd": {
+        "0v1": 0.0613,
+        "1v2": 0.0423,
+        "2v3": 0.0041,
+        "3v4": 0.0032,
+        "4v5": 0.0034
+      },
+      "ordinal_mae": 1.2651,
+      "ordinal_accuracy": 0.342,
+      "scorer": "Qwen2.5-1.5B-Instruct",
+      "key_finding": "Qwen-7B Code K*=2. JSD cliff at 2v3 (0.042→0.004). 7B scale does not exceed 1.5B ceiling, confirming domain-determined K*."
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-24T09:56:18.079349+00:00",
+  "trigger": "update_registry"
+}

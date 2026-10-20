@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17e5db40e8e035e11e56",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "diagnose exp015 check results",
+  "task_key": "worker_diagnose_exp015_check_results_20260515T104439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp015_check_results_20260515T104439_result.json",
+    "occurrence": 1,
+    "bytes": 1009,
+    "sha256": "3cb7aed13de14b9088df3e0f21f84461b1109f370f0447898ab715d6068ea624"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验状态：SUCCESS** — 3 个模型全部完成，结果完整。\n\nEXIT_CODE=129（SIGHUP）是进程在写完结果后被 kill，不影响数据完整性。\n\n### 完整结果\n\n| 模型 | K\\*_neural | K\\*_lgbm | Accuracy | AUC(0v1) | AUC(1v2) | AUC(2v3) | AUC(3v4) | AUC(4v5) |\n|------|-----------|---------|----------|----------|----------|----------|----------|----------|\n| **Pythia-1.4B** | 2 | 2 | 0.3892 | 0.966 | 0.676 | 0.596 | 0.555 | 0.532 |\n| **OLMo-1B** | 2 | 2 | 0.3729 | 0.950 | 0.657 | 0.589 | 0.547 | 0.530 |\n| **Qwen-cont** | **3** | 2 | 0.4368 | 0.988 | 0.702 | **0.616** | 0.590 | 0.566 |\n\n关键发现：\n- Neural probe 在所有模型上 AUC(2v3) 都高于 LightGBM baseline（Pythia: 0.596 vs 0.552, OLMo: 0.589 vs 0.550, Qwen: 0.616 vs 0.561）\n- **Qwen-cont 是唯一 K\\*_neural=3 的模型**（2v3 AUC=0.616 > 0.6 threshold），Pythia 和 OLMo 的 K\\*_neural 与 K\\*_lgbm 一致都是 2\n- 所有 permutation test p-value = 0.0，统计显著"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp015-check-results.md"
+}

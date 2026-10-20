@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_code_qwen7b",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T00:30:13.401Z",
+    "updated_at": "2026-05-19T00:30:32.935Z",
+    "hypothesis": "Qwen2.5-7B code domain K* measurement: Qwen family scale invariance test on CodeSearchNet Python. Pythia Code K*=1 弱化了跨模型一致性。Qwen-7B 测试两个方向：(1) Qwen 家族内 Code 的 scale invariance（1.5B K*=2, 7B K*=?），(2) 若 LLaMA/Mistral 也 K*=1，Qwen-7B K*=2 能维持 \"code-competent models reach K*=2\" 叙事。5000 docs, depth 0-5, nucleus p=0.95 T=1.0, scorer=Qwen2.5-1.5B.",
+    "parent": "exp_code_pythia1b4"
+  },
+  "timestamp": "2026-05-19T00:30:33.145160+00:00",
+  "trigger": "update_registry"
+}

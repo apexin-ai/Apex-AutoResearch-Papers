@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ca6bda98242ac2d4c6a",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "analysis q5 contamination 10pct",
+  "task_key": "worker_analysis_q5_contamination_10pct_20260520T044840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_q5_contamination_10pct_20260520T044840_result.json",
+    "occurrence": 1,
+    "bytes": 1138,
+    "sha256": "fa3b7e419b94d113416916c30e19eb57b2f42630b8d6c3b14e5203559468648b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐全。汇总如下：\n\n---\n\n## 10% contamination: binary classifier vs no-filter\n\n| | MMLU (5-seed mean) |\n|---|---|\n| **no_filter** | 60.58% |\n| **binary_ours** | 60.79% |\n| **pp 差距** | **+0.21 pp** |\n| **p-value** | **0.00103** (paired t-test, Holm-Bonferroni corrected α=0.0125, **显著**) |\n| Cohen's d | 3.82 |\n\n---\n\n## 全部 contamination ratios 汇总 (binary_ours vs no_filter, MMLU)\n\n| Ratio | no_filter | binary_ours | Δ (pp) | p-value | Significant? |\n|-------|-----------|-------------|--------|---------|-------------|\n| **10%** | 60.58 | 60.79 | **+0.21** | **0.00103** | **Yes** (α=0.0125) |\n| 30% | 60.69 | 60.82 | +0.13 | 0.0739 | No (α=0.0167) |\n| 50% | 60.63 | 60.88 | +0.25 | 0.0377 | No (α=0.0167) |\n\n---\n\n**数据来源**: `/root/autodl-tmp/gen-depth-contamination/results/exp_009_dose_response/ratio_{10,30,50}/statistical_analysis.json`\n\n10% ratio 是唯一在 MMLU 上通过 Holm-Bonferroni 校正后仍显著的条件（p=0.00103, d=3.82）。差距虽仅 0.21 pp，但跨 5 个 seed 非常稳定（binary_ours std=0.044%, no_filter std=0.018%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-q5-contamination-10pct.md"
+}

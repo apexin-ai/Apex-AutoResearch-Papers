@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_pythia14b_c4_rerun",
+  "project": "gen-depth-contamination",
+  "state": "ALLOCATED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T11:10:50.827Z",
+    "updated_at": "2026-05-21T14:09:04.870Z",
+    "hypothesis": "Pythia-1.4B C4 depth chain 可复现性验证：标准化 pipeline（Qwen-1.5B scorer）下 K* 值与主表一致。",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-21T14:09:05.165196+00:00",
+  "trigger": "update_registry"
+}

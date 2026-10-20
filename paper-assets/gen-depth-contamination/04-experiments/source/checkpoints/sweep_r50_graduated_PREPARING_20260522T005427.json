@@ -1,0 +1,28 @@
+{
+  "exp_id": "sweep_r50_graduated",
+  "project": "gen-depth-contamination",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T17:53:10.838Z",
+    "updated_at": "2026-05-22T00:54:27.679Z",
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_ENDPOINT=https://huggingface.co && cd /root/autodl-tmp/gen-depth-contamination && python scripts/exp_contamination_rate_sweep.py --rate 50 --strategy graduated --device cuda:0\"",
+      "server": "cqa1-22115",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "344395",
+      "log_path": "~/runs/gen-depth-contamination/sweep_r50_graduated.log",
+      "submitted_at": "2026-05-20T17:53:10.443Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-22T00:54:27.999080+00:00",
+  "trigger": "update_registry"
+}

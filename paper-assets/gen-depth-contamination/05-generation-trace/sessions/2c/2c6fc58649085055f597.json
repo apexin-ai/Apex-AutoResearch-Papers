@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c6fc58649085055f597",
+  "project": "gen-depth-contamination",
+  "kind": "result",
+  "title": "run exp 011 diagnose and complete",
+  "task_key": "worker_run_exp_011_diagnose_and_complete_20260513T105759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_exp_011_diagnose_and_complete_20260513T105759_result.json",
+    "occurrence": 1,
+    "bytes": 1481,
+    "sha256": "8e1b4a40e7eb3d6f502379edd1d4d80c32eb3e0b29af0f8df52cf7d8ef88ad52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-011 全部完成。以下是完整产出。\n\n---\n\n## 产出总结\n\n### 1. Claude 诊断结果\n\n| Model ID | 结果 |\n|---|---|\n| `anthropic/claude-opus-4-6` | **FAIL** — 503 model_not_found: \"No available channel for model anthropic/claude-opus-4-6 under group default (distributor)\" |\n| `claude-opus-4-6` | **SUCCESS** |\n| `anthropic/claude-opus-4.6` | **SUCCESS** |\n\n已修复脚本 MODEL_MAP 从 `anthropic/claude-opus-4-6` → `claude-opus-4-6`。\n\n### 2. GPT-5.5 诊断结果\n单条测试 **SUCCESS**。\n\n### 3. GPT-5.5 最终状态\n- **行数**: 500（已去重，原始 504 行有 4 个重复）\n- **解析失败**: 0\n\n### 4. Claude 最终状态\n- **行数**: 500\n- **解析失败**: 1\n\n### 5. 分析结果 (`exp011_analysis.json`)\n\n| Model | Acc(5-class) | MAE | Spearman ρ | Binary Acc |\n|---|---|---|---|---|\n| OBD-LightGBM (baseline) | 0.3856 | 1.1072 | τ_b=0.4745 | N/A |\n| Claude Opus 4.6 | 0.3307 | 1.1503 | 0.4162 | 0.8818 |\n| GPT-5.5 | 0.3320 | 1.1020 | 0.3834 | 0.8780 |\n\n**Per-depth accuracy:**\n\n| Depth | Claude | GPT-5.5 |\n|---|---|---|\n| 0 (human) | 0.690 | 0.770 |\n| 1 | 0.210 | 0.190 |\n| 2 | 0.280 | 0.380 |\n| 3 | 0.101 | 0.240 |\n| 4 | 0.370 | 0.080 |\n\n两个 LLM 的 5-class accuracy 均略低于 OBD-LightGBM baseline（~33% vs 38.6%），但 binary detection（人/AI）准确率都很高（~88%）。Claude 在高 depth (4) 上表现更好，GPT-5.5 在中间 depth (2-3) 上更好。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-exp-011-diagnose-and-complete.md"
+}

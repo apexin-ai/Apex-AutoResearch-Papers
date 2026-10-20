@@ -1,0 +1,34 @@
+{
+  "exp_id": "exp_015_neural_probe",
+  "project": "gen-depth-contamination",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 2,
+    "created_at": "2026-05-13T18:53:34.791Z",
+    "updated_at": "2026-05-15T09:28:38.727Z",
+    "hypothesis": "Learned representations (frozen LLM → MLP) 的 K* 是否高于 hand-crafted 15D features？若 K*_neural > K*_15D，说明 15D projection 是 K*=2 的部分原因；若相同，加强 information-theoretic impossibility 论证",
+    "notes": "v3 rerun OOM 第二次失败 (2026-05-15 09:21 UTC)。日志分析: OOM 发生在 Qwen2 forward pass，GPU 上两个进程 (55665: 13.36 GiB + 56371: 9.09 GiB)。但 Qwen-cont 实际完成: K*(neural)=3, K*(lgbm)=2, acc=0.4335。Pythia/OLMo 结果缺失。EXIT_CODE=129 (SIGHUP)。可能原因: 脚本未正确释放前一个模型的 GPU 内存。诊断 Worker: worker_diagnose_exp_015_neural_probe_v3_20260515T092510 正在修复脚本。",
+    "completed_at": "2026-05-14T02:58:02.023Z",
+    "failure_reason": "CUDA OOM: CUDA out of memory. Tried to allocate 26.00 MiB. GPU 0 has a total capacity of 23.52 GiB of which 20.06 MiB is free. Process 55665 has 13.36 GiB memory in use. Process 56371 has 9.09 GiB memory in use. Including non-PyTorch memory, this process has 1",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "v3 rerun OOM 第二次失败 (2026-05-15 09:21 UTC)。日志分析: OOM 发生在 Qwen2 forward pass，GPU 上两个进程 (55665: 13.36 GiB + 56371: 9.09 GiB)。但 Qwen-cont 实际完成: K*(neural)=3, K*(lgbm)=2, acc=0.4335。Pythia/OLMo 结果缺失。EXIT_CODE=129 (SIGHUP)。可能原因: 脚本未正确释放前一个模型的 GPU 内存。诊断 Worker: worker_diagnose_exp_015_neural_probe_v3_20260515T092510 正在修复脚本。"
+      },
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T09:21:59.744073+00:00"
+        }
+      ]
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T09:21:54.840Z"
+    }
+  },
+  "timestamp": "2026-05-15T09:28:38.797572+00:00",
+  "trigger": "update_registry"
+}
