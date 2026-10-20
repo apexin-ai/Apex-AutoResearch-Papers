@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "id": "ac8738b66601789b9ee1",
+  "project": "trace-verdict-study",
+  "kind": "conversation",
+  "title": "analysis label only seed456",
+  "task_key": "worker_analysis_label_only_seed456_20260516T090219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_label_only_seed456_20260516T090219.jsonl",
+    "occurrence": 1,
+    "bytes": 6847,
+    "sha256": "dd649cddf2465ba59201be2f44e3939c63e5bb46376c806ba4e8da5b5c75e008"
+  },
+  "statistics": {
+    "messages": 7,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "tool_call": 3,
+      "tool_result": 3,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T09:02:42.658080+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_label_only_seed456_20260516T090219",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T09:02:42.658465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_label_only_seed456_20260516T090219",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T09:02:42.658638+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_label_only_seed456_20260516T090219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "cat /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed456/final/eval_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T09:02:42.658785+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_label_only_seed456_20260516T090219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "tail -50 ~/runs/trace-verdict-study/label_only_seed456.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T09:02:42.658952+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"full_trace\\\\\\\",\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed456/final\\\\\\\",\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8588235294117647,\\\\n    \\\\\\\"majority_baseline\\\\\\\": 0.7151260504201681,\\\\n    \\\\\\\"lift\\\\\\\": 0.14369747899159657,\\\\n    \\\\\\\"majority_class\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n    \\\\\\\"n\\\\\\\": 1190,\\\\n    \\\\\\\"pass_precision\\\\\\\": 0.8740416210295728,\\\\n    \\\\\\\"pass_recall\\\\\\\": 0.9377203290246768,\\\\n    \\\\\\\"pass_f1\\\\\\\": 0.9047619047619048,\\\\n    \\\\\\\"fail_precision\\\\\\\": 0.8086642599277978,\\\\n    \\\\\\\"fail_recall\\\\\\\": 0.6607669616519174,\\\\n    \\\\\\\"fail_f1\\\\\\\": 0.7272727272727272\\\\n  },\\\\n  \\\\\\\"confidence_intervals\\\\\\\": {\\\\n    \\\\\\\"accuracy_ci_lower\\\\\\\": 0.8394747899159664,\\\\n    \\\\\\\"accuracy_ci_upper\\\\\\\": 0.8773109243697479,\\\\n    \\\\\\\"majority_baseline_ci_lower\\\\\\\": 0.6915966386554622,\\\\n    \\\\\\\"majority_baseline_ci_upper\\\\\\\": 0.738655462184874,\\\\n    \\\\\\\"lift_ci_lower\\\\\\\": 0.11848739495798322,\\\\n    \\\\\\\"lift_ci_upper\\\\\\\": 0.16890756302521015,\\\\n    \\\\\\\"pass_precision_ci_lower\\\\\\\": 0.8541414065999702,\\\\n    \\\\\\\"pass_precision_ci_upper\\\\\\\": 0.8952386202551583,\\\\n    \\\\\\\"pass_recall_ci_lower\\\\\\\": 0.9212321822568612,\\\\n    \\\\\\\"pass_recall_ci_upper\\\\\\\": 0.9538675368871189,\\\\n    \\\\\\\"pass_f1_ci_lower\\\\\\\": 0.891223635694025,\\\\n    \\\\\\\"pass_f1_ci_upper\\\\\\\": 0.9183465449450032,\\\\n    \\\\\\\"fail_precision_ci_lower\\\\\\\": 0.7624048891047434,\\\\n    \\\\\\\"fail_precision_ci_upper\\\\\\\": 0.8536126142376141,\\\\n    \\\\\\\"fail_recall_ci_lower\\\\\\\": 0.6115821256038647,\\\\n    \\\\\\\"fail_recall_ci_upper\\\\\\\": 0.7110481586402266,\\\\n    \\\\\\\"fail_f1_ci_lower\\\\\\\": 0.6871630094043887,\\\\n    \\\\\\\"fail_f1_ci_upper\\\\\\\": 0.7639768999930211\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_label_only_seed456_20260516T090219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T09:02:42.659145+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Training complete. Model saved to /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed456/final\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\nCondition: full_trace\\\\nCheckpoint: /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed456/final\\\\nTest samples: 1190\\\\nLoading base model from /root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.19it/s]\\\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.19it/s]\\\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.26it/s]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.81it/s]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.54it/s]\\\\nThe following generation flags are not valid and may be ignored: ['top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\\nLoading LoRA adapter from /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed456/final\\\\nRunning inference...\\\\n  [50/1190] running accuracy: 0.9200\\\\n  [100/1190] running accuracy: 0.8900\\\\n  [150/1190] running accuracy: 0.9133\\\\n  [200/1190] running accuracy: 0.9350\\\\n  [250/1190] running accuracy: 0.9400\\\\n  [300/1190] running accuracy: 0.8833\\\\n  [350/1190] running accuracy: 0.9000\\\\n  [400/1190] running accuracy: 0.8950\\\\n  [450/1190] running accuracy: 0.8911\\\\n  [500/1190] running accuracy: 0.9020\\\\n  [550/1190] running accuracy: 0.8964\\\\n  [600/1190] running accuracy: 0.8950\\\\n  [650/1190] running accuracy: 0.8985\\\\n  [700/1190] running accuracy: 0.9057\\\\n  [750/1190] running accuracy: 0.8853\\\\n  [800/1190] running accuracy: 0.8925\\\\n  [850/1190] running accuracy: 0.8871\\\\n  [900/1190] running accuracy: 0.8922\\\\n  [950/1190] running accuracy: 0.8789\\\\n  [1000/1190] running accuracy: 0.8750\\\\n  [1050/1190] running accuracy:\n…[truncated 832 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_label_only_seed456_20260516T090219",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T09:02:42.659374+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常完成（EXIT_CODE=0）。评估结果：\n\n## label_only_seed456 评估结果\n\n| 指标 | 值 | 95% CI |\n|------|-----|--------|\n| **Accuracy** | 85.9% | [83.9%, 87.7%] |\n| Majority baseline | 71.5% | [69.2%, 73.9%] |\n| **Lift** | +14.4pp | [+11.8pp, +16.9pp] |\n| n | 1190 | — |\n\n### Per-class metrics\n\n| Class | Precision | Recall | F1 |\n|-------|-----------|--------|-----|\n| **pass** | 0.874 [0.854, 0.895] | 0.938 [0.921, 0.954] | 0.905 [0.891, 0.918] |\n| **fail** | 0.809 [0.762, 0.854] | 0.661 [0.612, 0.711] | 0.727 [0.687, 0.764] |\n\n模型对 pass 类预测较强（高 recall），对 fail 类 recall 偏低（66.1%），存在一定漏检。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_label_only_seed456_20260516T090219"
+          },
+          "id": "event-000007"
+        }
+      ],
+      "message_count": 7
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-label-only-seed456.md"
+}

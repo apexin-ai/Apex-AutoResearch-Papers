@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9fc888eea447c13ed32",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "prep codellama 13b download",
+  "task_key": "worker_prep_codellama-13b-download_20260516T074828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_codellama-13b-download_20260516T074828_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "4e065aef9e078b93f1cb517dfdceb8f019e0f28dab562c2acc5b3922d0be498b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 当前状态\n\n**下载进度**: Shard 1 已下载 2.26 GB / ~8.7 GB，总模型 24.2 GB。速度 ~9 MB/s。\n\n**预计完成时间**: 约 35-40 分钟后全部下载完成。\n\n**已完成**:\n- 7B 下载进程已终止 ✓\n- 7B 残留文件已清理 ✓  \n- 磁盘空间充足 (111 GB 可用) ✓\n- 小文件(config/tokenizer)已下载 ✓\n- 训练命令 artifact 已注册 ✓\n\n**进行中**:\n- PID 255083: `wget` 从 hf-mirror.com 下载 3 个 safetensors shards（无代理直连）\n\n**待完成**:\n- 验证下载完整性\n- CPU dry-run（tokenizer + config 检查）\n\n下载在稳定运行，需要等待。是否继续轮询直到完成，还是你想之后再来检查？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-codellama-13b-download.md"
+}

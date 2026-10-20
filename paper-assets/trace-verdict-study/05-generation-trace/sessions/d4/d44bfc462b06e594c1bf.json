@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d44bfc462b06e594c1bf",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_10_1778907304.md",
+  "task_key": "loop_10_1778907304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778907304.md",
+    "occurrence": 1,
+    "bytes": 4098,
+    "sha256": "7611e97d1f59c8cd260e6fde7706fd9dcee6644211442fcb91de7321921782fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-16T04:54:42+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**只能用 westd-11235 的 cuda:0 和 cuda:1**，不可动其他卡\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不能用 `.venv`\n- **eval max_length 必须匹配训练 max_length**（DeepSeek 事故教训：2048→16384 导致 79%→28% OOD 崩溃）\n- 论文正文必须压到 **8 页以内**（EMNLP 限制），当前 ~13 页，Discussion 分析性小节已决定移入 appendix（D042/D043）\n- ARR 截止 **2026-05-25**，距今 9 天，所有工作以此为硬 deadline\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-11235**，工作目录 `/root/trace-verdict-study`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 数据：`/root/autodl-tmp/trace-verdict-study-data/` （各 condition 的 train/test jsonl）\n- Checkpoints：`/root/autodl-tmp/trace-verdict-study-checkpoints/`\n- HF cache：`/root/autodl-tmp/.hf_cache`（`HF_HOME` 必须设这个路径）\n- W&B project：`trace-verdict-study`\n- 活跃进程：\n  - ae_only_seed123：cuda:0，cron 监控中（pid=ae_only_seed123）\n  - ae_only_seed456：cuda:1，cron 监控中（pid=ae_only_seed456）\n- 产出目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/`\n\n### 3. 📊 当前状态\n**刚完成**：1024tok trace length ablation + regex baseline 分析 + DebugBench 跨任务验证 + 论文页面压缩方案 + ablation 图绘制 + 对抗审稿。所有 Worker 已完成。\n\n**RUNNING (2)**：\n- `ae_only_seed123` — cuda:0，Qwen ae_only seed=123 robustness（验证 99.92% 稳定性）\n- `ae_only_seed456` — cuda:1，Qwen ae_only seed=456 robustness\n\n**PREPARING (2)**：\n- `label_only_seed123` — 等 GPU 释放\n- `label_only_seed456` — 等 GPU 释放\n\n**等待中**：\n- 2 个 cron 监控 ae_only seeds 完成回调\n- ae_only seeds 完成后需 patch seed 数据进论文 + 提交 label_only seeds\n- Paper Agent 正在整合 regex baseline + DebugBench + ablation 数据进初稿（图表 fig2/fig3 已完成，trace_length_ablation 图刚完成）\n\n### 4. 📋 待办（条件触发式）\n- ae_only_seed123/456 cron 回调到 → spawn Worker 分析 seed 结果 → update_registry → 如果 ≥99% 则 patch 进论文 seed robustness 表；如果异常则报 Director\n- ae_only 两个都完成 → 立即提交 label_only_seed123 (cuda:0) + label_only_seed456 (cuda:1)，GPU 不能空\n- label_only seeds 完成 → patch 进论文 → seed robustness 数据全部就绪\n- 所有 seed 实验完成 → Paper Agent 交付完整初稿 → 启动 Reviewer 对抗审稿流程（计划 5/18-20 三轮）\n- 论文初稿就绪 → 8 页压缩（Discussion 移 appendix）→ 定稿 → 5/24 提交 ARR\n\n### 5. 🎯 战略上下文\n**核心结论**：Exception events 是 verdict prediction 最有效的 trace component。exception_only 在 Qwen 上 99.83%±0.00（3 seeds 完美稳定），DebugBench 100%，显著优于 full_trace（81.76%）和 regex baseline（93.61%，McNemar p=0.041）。\n\n**决策链**：\n- D042/D043：论文 13→8 页，Discussion 分析小节移 appendix\n- D044-D047：regex baseline + DebugBench 补充实验全部完成，堵住审稿攻击面\n- plan_006 (trace length ablation) 是唯一 negative：256→512→1024→unlimited 非单调，叙事转为\"raw trace 无论多长都不如结构化压缩\"\n\n**易踩的坑**：\n- DeepSeek exception_only seed123=91.09% 是 LoRA initialization outlier，不是方法问题——另外两个 seed 99.33%。论文中需注明 variance\n- 不要把 DeepSeek VOTA 84.45% 当 face value——82.6% 是垃圾 token（D032 evaluation artifact），跨模型表已简化为 exception_only vs no_trace 核心对比\n- label_only_seed123/456 还在 PREPARING，不要忘记 ae_only 完成后立即提交，GPU 空着就是失职\n- 论文 fig1_trace_overview 还在生成中，确认是否已完成后再定稿\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778907304.md"
+}

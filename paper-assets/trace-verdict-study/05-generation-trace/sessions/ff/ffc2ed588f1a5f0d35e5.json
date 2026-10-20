@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffc2ed588f1a5f0d35e5",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis full trace seed42 v5",
+  "task_key": "worker_analysis_full_trace_seed42_v5_20260515T035938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_full_trace_seed42_v5_20260515T035938_result.json",
+    "occurrence": 1,
+    "bytes": 1051,
+    "sha256": "4aa2f966f4757beecd49cc3827f93bf202c2d7afed08763e6a8784d0467e903f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the summary:\n\n---\n\n## full_trace_seed42_v5 — **SUCCESS**\n\n| Metric | full_trace v5 | no_trace v4 (baseline) | vota v4 | full_trace v2 |\n|--------|:---:|:---:|:---:|:---:|\n| **Accuracy** | **81.76%** | 75.13% | 95.63% | 28.4% |\n| Pass F1 | 0.872 | 0.813 | 0.970 | 0.155 |\n| Fail F1 | 0.685 | 0.627 | 0.917 | 0.568 |\n| Train loss | 0.042 | 0.180 | 0.046 | 0.037 |\n| Eval loss | 0.084 | 0.645 | 0.084 | 0.082 |\n\n**Lift vs no_trace baseline: +6.63pp** (conservative CI: [+4.5pp, +8.8pp], excludes 0)\n\n**Findings:**\n1. v5 chat template fix **completely resolved the v2 collapse** (28.4% → 81.8%) — the hypothesis that label truncation from chat template overhead was causing the collapse is confirmed.\n2. Full trace provides **significant lift over no_trace** (+6.63pp), passing MVP criteria (≥2pp + CI excludes 0).\n3. However, **VOTA still dominates** full trace by a wide margin (95.6% vs 81.8%, ~14pp gap). The full execution trace is too noisy/long compared to VOTA's distilled signal."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-full-trace-seed42-v5.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "928bf57f3c3471c8130a",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "exp cross dataset training",
+  "task_key": "worker_exp_cross_dataset_training_20260522T042845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_cross_dataset_training_20260522T042845_result.json",
+    "occurrence": 1,
+    "bytes": 1028,
+    "sha256": "6a70c1ac2d48fa25b6445d694287c2e685d9b2a7d5b4c5b8625e2dae4810c5f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。\n\n**已完成：**\n- 修改 `train_sft.py` 和 `evaluate.py` 的 `--condition` choices，新增 4 个 cross-dataset 条件\n- 创建串行脚本 `/root/trace-verdict-study/scripts/run_cross_dataset.sh`（4 个实验依次训练+评测）\n- 注册 4 个实验（PREPARING）并设置 hypothesis\n- 通过 `submit_training_job` 提交到 cuda:1，tmux session: `cross_dataset_batch`\n\n**当前状态：** 脚本正在等待 cuda:1 释放。deepseek_loop_only 在 step 148/444（~33%），预计还需 ~2 小时。等它结束后，4 个 cross-dataset 实验会自动依次执行。\n\n**预计训练时长：**\n- HE→MBPP（1640 train samples）：3 epochs ≈ 16 steps/epoch × 3 = ~15 min/experiment\n- MBPP→HE（4270 train samples）：3 epochs ≈ 40 steps/epoch × 3 = ~40 min/experiment\n- 加上 eval：总计约 2-3 小时\n\n**日志：** `tail -f /root/runs/trace-verdict-study/cross_dataset_batch.log` 或 `/root/autodl-tmp/trace-verdict-study-checkpoints/cross_dataset_batch.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-cross-dataset-training.md"
+}

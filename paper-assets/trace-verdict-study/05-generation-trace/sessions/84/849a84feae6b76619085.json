@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "849a84feae6b76619085",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ssh check training progress",
+  "task_key": "worker_ssh_check_training_progress_20260515T140932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_training_progress_20260515T140932_result.json",
+    "occurrence": 1,
+    "bytes": 181,
+    "sha256": "067683673c09d46ef306bdd1aedbe24473bf8a80cf2e0857dbecde518f298773"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\ndeepseek_exception_only: step 215/444, ~43 min remaining\ndeepseek_full_trace:     step 65/444,  ~3h49m remaining\nGPU utilization: cuda:0 100%, cuda:1 100%\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-training-progress.md"
+}

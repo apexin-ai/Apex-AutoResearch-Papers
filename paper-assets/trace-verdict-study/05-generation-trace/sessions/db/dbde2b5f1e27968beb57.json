@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbde2b5f1e27968beb57",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper intro percentage sync final",
+  "task_key": "worker_paper_intro_percentage_sync_final_20260521T123757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_intro_percentage_sync_final_20260521T123757_result.json",
+    "occurrence": 1,
+    "bytes": 366,
+    "sha256": "11cbccd10ba1d71c479a28ef926dd181923620cee3d888f38516c3734d9282ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，0 个错误，21 页，443888 bytes。\n\n**修改汇总**：\n| 位置 | 修改前 | 修改后 |\n|------|--------|--------|\n| L21 (正文段落) | information overload `~76%`, gradient dilution `~24%` | `~74%`, `~26%` |\n| L29 (贡献第3条) | gradient dilution `~17--24%`, information overload `~76--83%` | `~17--26%`, `~74--83%` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-intro-percentage-sync-final.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ee46ca259a6925b42de",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops urgent harvest both codellama",
+  "task_key": "worker_ops_urgent_harvest_both_codellama_20260518T060214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent_harvest_both_codellama_20260518T060214_result.json",
+    "occurrence": 1,
+    "bytes": 1326,
+    "sha256": "ee82aeac558fae8f773a7240b1c0290f7ec66a710b6d8c618e310177db9fabb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### GPU 状态\n| GPU | 型号 | 显存占用 | GPU-Util |\n|-----|------|----------|----------|\n| 0 | RTX PRO 6000 | 49175/97887 MiB | **0%** (空闲) |\n| 1 | RTX PRO 6000 | 36535/97887 MiB | **100%** (活跃) |\n\n只有 GPU 1 上有进程 (PID 405141)。\n\n---\n\n### 实验 1: `codellama13b_full_trace_tail1024_seed42_v2` (cuda:0)\n\n| 项目 | 状态 |\n|------|------|\n| tmux session | **不存在**（已退出） |\n| 训练进度 | **已完成** — 444/444 steps, 3 epochs, 耗时 2h27m |\n| train_loss | 0.0937 |\n| eval_loss | 0.1859 |\n| eval_mean_token_accuracy | **0.9612** |\n| eval_entropy | 0.0708 |\n| 模型保存 | `/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail1024_seed42_v2/final` |\n| EXIT_CODE | 0 |\n| eval_results.json | **不存在**（eval 指标在训练日志末尾输出，未单独写 JSON） |\n\n---\n\n### 实验 2: `codellama13b_full_trace_tail2048_seed42_v2` (cuda:1)\n\n| 项目 | 状态 |\n|------|------|\n| tmux session | **存活** |\n| 训练进度 | **进行中** — 263/444 steps (59%), ~28.4s/it |\n| 预计剩余 | ~1h26m |\n| eval_results.json | 不存在（训练未完成） |\n\n---\n\n**总结**: tail1024 已完成（token accuracy 96.1%），tail2048 还在跑，约 59%，预计还需 ~1.5 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-harvest-both-codellama.md"
+}

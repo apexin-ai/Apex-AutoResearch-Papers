@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27d284c413f3ff747dbf",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "util fetch budget curve pdf",
+  "task_key": "worker_util_fetch_budget_curve_pdf_20260517T103920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_util_fetch_budget_curve_pdf_20260517T103920_result.json",
+    "occurrence": 1,
+    "bytes": 154,
+    "sha256": "95861cad89fc832165cb4e9cbcf078bee3cd810855672b198e32afc99b82c661"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor 超时确认：文件未被下载到本地。如前所述，`ssh_execute` 工具在当前环境不可用，无法完成此任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/util-fetch-budget-curve-pdf.md"
+}

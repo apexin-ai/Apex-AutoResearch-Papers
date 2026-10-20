@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "5740fecd1c2e7dbf581b",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "util sync fig2 and bib check",
+  "task_key": "worker_util_sync_fig2_and_bib_check_20260519T145502",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_util_sync_fig2_and_bib_check_20260519T145502.log",
+    "occurrence": 1,
+    "bytes": 761375,
+    "sha256": "9dc29d8996993afd224a4fca503df7f4efbb90012c13761260c988c03582e9e9"
+  },
+  "statistics": {
+    "messages": 247,
+    "user_turns": 1,
+    "tool_calls": 88,
+    "roles": {
+      "log": 1,
+      "system": 42,
+      "record": 2,
+      "assistant": 26,
+      "tool_call": 88,
+      "tool_result": 87,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 125,
+      "chunks": [
+        {
+          "path": "5740fecd1c2e7dbf581b-part-0001.json",
+          "message_count": 125
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 122,
+      "chunks": [
+        {
+          "path": "5740fecd1c2e7dbf581b-part-0001.json",
+          "message_count": 50
+        },
+        {
+          "path": "5740fecd1c2e7dbf581b-part-0002.json",
+          "message_count": 72
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/util-sync-fig2-and-bib-check.md"
+}

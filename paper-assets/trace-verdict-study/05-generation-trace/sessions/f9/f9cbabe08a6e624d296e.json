@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9cbabe08a6e624d296e",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops local scp pull pdf",
+  "task_key": "worker_ops_local_scp_pull_pdf_20260520T195337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_local_scp_pull_pdf_20260520T195337_result.json",
+    "occurrence": 1,
+    "bytes": 335,
+    "sha256": "a46372d0e16ca3a373de853fc69367dd2ff457974f8e91271a2a4dfb4cbcb6f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SSH config 中没有 `westd-11235` 的条目，无法解析该主机名。项目上下文提到连接命令是 `ssh connect.westd.seetacloud.com`，但 SSH config 里未配置对应别名。\n\n需要确认：服务器的实际 hostname/端口信息，或者让用户补充 `~/.ssh/config` 中的 `westd-11235` 条目。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-local-scp-pull-pdf.md"
+}

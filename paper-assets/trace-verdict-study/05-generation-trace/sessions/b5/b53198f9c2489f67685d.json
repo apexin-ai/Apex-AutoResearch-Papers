@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b53198f9c2489f67685d",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops check codellama both",
+  "task_key": "worker_ops_check_codellama_both_20260518T001634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_codellama_both_20260518T001634_result.json",
+    "occurrence": 1,
+    "bytes": 670,
+    "sha256": "610f7ee0bbafb9c17831c96a35b9605c6e9b186d2309daabe4b3e84b752ccf01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在跑，尚未完成。\n\n**CodeLlama-13B tail-512** (`codellama13b_full_trace_tail512_seed42`):\n- 进度: 224/444 steps (50%)\n- 速度: ~13.5s/step\n- 剩余训练: ~220 steps × 13.5s ≈ **50 分钟**\n- 之后还有 eval 阶段\n\n**CodeLlama-13B head-2048** (`codellama13b_full_trace_head2048_seed42`):\n- 进度: 71/444 steps (16%)\n- 速度: ~28.3s/step\n- 剩余训练: ~373 steps × 28.3s ≈ **2 小时 56 分钟**\n- 之后还有 eval 阶段\n\n两个都在正常训练（GPU 0 和 GPU 1 各自 100% 利用率），无需干预。tail-512 预计约 1 小时后完成（含 eval），head-2048 预计约 3.5 小时后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-codellama-both.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66409d35d386029e4962",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops plan001 status and eval",
+  "task_key": "worker_ops_plan001-status-and-eval_20260515T044436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan001-status-and-eval_20260515T044436_result.json",
+    "occurrence": 1,
+    "bytes": 364,
+    "sha256": "6a63e73afd8a3e070c6aab1d766ce52bcdb961aa0e71f6a5990d84c1f1bb84fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**plan_001 (vota_no_ae_seed42) 状态：正在训练中**\n\n- 进度：101/444 steps (23%)\n- 速度：~14.5s/step\n- 已运行：~23 分钟\n- 预计剩余：~1 小时 23 分钟\n- PID：953138（在 GPU 1 上，52.8GB 显存占用，利用率 100%）\n\n训练正常进行中，预计约 1.5 小时后完成。完成后需要进入评估流程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan001-status-and-eval.md"
+}

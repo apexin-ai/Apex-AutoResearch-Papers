@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60f58513d6676fe2e3f6",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "exp ae only seed robustness",
+  "task_key": "worker_exp_ae_only_seed_robustness_20260516T033909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_ae_only_seed_robustness_20260516T033909_result.json",
+    "occurrence": 1,
+    "bytes": 397,
+    "sha256": "f453f9ec7d4f0442536f49d7e892541fd19724c824f09c3dc968ab59b02b9770"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已成功启动：\n\n- **ae_only_seed123** (GPU 0): 模型已加载，数据已 tokenize (Train: 4720, Eval: 1190)，训练开始 (0/444 steps)\n- **ae_only_seed456** (GPU 1): 同上，训练开始 (0/444 steps)\n\ntmux sessions: `ae_only_seed123`, `ae_only_seed456`。日志分别在 `/tmp/ae_only_seed123.log` 和 `/tmp/ae_only_seed456.log`。预计 2-3h 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-ae-only-seed-robustness.md"
+}

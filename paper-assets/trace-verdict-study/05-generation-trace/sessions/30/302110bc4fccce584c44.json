@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "302110bc4fccce584c44",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops gpu check and submit queued",
+  "task_key": "worker_ops_gpu_check_and_submit_queued_20260521T144833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_check_and_submit_queued_20260521T144833_result.json",
+    "occurrence": 1,
+    "bytes": 1057,
+    "sha256": "253be4bbe8e3aa988cae65430a47e120b7c5b243df16fabdb484e86ec83b9be8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在正常训练，GPU 隔离正确。\n\n## 汇总\n\n### 1. GPU 初始状态\n| GPU | 显存占用 | 利用率 | 进程 |\n|-----|---------|--------|------|\n| cuda:0 | 49175/97887 MiB | 0% | 无（孤儿显存） |\n| cuda:1 | 0/97887 MiB | 0% | 无 |\n\n### 2. codellama_exception_only_seed42 (cuda:1)\n- **PID**: 706833\n- **显存**: 39078 MiB on GPU-48463d2b (GPU 1)\n- **进度**: 2/444 步, ~16s/step, 预计 ~2 小时\n- **注**: 首次因 `--model_name`（应为 `--model_path`）参数错误失败；第二次无 `--gradient_checkpointing` OOM；第三次加上后正常运行\n\n### 3. qwen1.5b_no_trace_seed42 (cuda:0)\n- **PID**: 706059\n- **显存**: 35984 MiB on GPU-ade8d9bb (GPU 0)\n- **进度**: 已跑 ~40 步/444, ~1.1s/step, 预计 ~8 分钟完成\n\n### 4. GPU 隔离验证\n| PID | GPU UUID | 显存 |\n|-----|----------|------|\n| 706059 (Qwen-1.5B) | GPU-ade8d9bb (GPU 0) | 35984 MiB |\n| 706833 (CodeLlama-13B) | GPU-48463d2b (GPU 1) | 39078 MiB |\n\n隔离正确，两进程分别独占各自 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-check-and-submit-queued.md"
+}

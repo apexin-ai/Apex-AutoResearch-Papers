@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d21502f10baa653c1dc",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "sync pull final to artifacts",
+  "task_key": "worker_sync_pull-final-to-artifacts_20260525T071454",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_pull-final-to-artifacts_20260525T071454_result.json",
+    "occurrence": 1,
+    "bytes": 513,
+    "sha256": "bf8a1471900675e45311066da1df5e2ed0912efb3a6186add85f8e8fd05ebb38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。汇报：\n\n| 项目 | 值 |\n|------|-----|\n| main.pdf 路径 | `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_project/paper/main.pdf` |\n| main.tex 路径 | `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_project/paper/main.tex` |\n| PDF 大小 | 448479 bytes |\n| MD5 本地 | `23c031204218b0f9461f23fec4f21598` |\n| MD5 远程 | `23c031204218b0f9461f23fec4f21598` |\n| MD5 一致 | **一致** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-pull-final-to-artifacts.md"
+}

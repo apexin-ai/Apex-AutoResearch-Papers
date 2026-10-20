@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "id": "c15e47cc48014aa24f43",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "sync clean rebuild",
+  "task_key": "worker_sync_clean-rebuild_20260524T143429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_clean-rebuild_20260524T143429.log",
+    "occurrence": 1,
+    "bytes": 762084,
+    "sha256": "5da7b9706ee62ee94cd658222169158e3ab9181377635b9bc75f98eb9b3b3303"
+  },
+  "statistics": {
+    "messages": 338,
+    "user_turns": 3,
+    "tool_calls": 115,
+    "roles": {
+      "log": 1,
+      "system": 48,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 115,
+      "tool_result": 115,
+      "user": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 191,
+      "chunks": [
+        {
+          "path": "c15e47cc48014aa24f43-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c15e47cc48014aa24f43-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "c15e47cc48014aa24f43-part-0002.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 48,
+      "chunks": [
+        {
+          "path": "c15e47cc48014aa24f43-part-0002.json",
+          "message_count": 48
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 66,
+      "chunks": [
+        {
+          "path": "c15e47cc48014aa24f43-part-0002.json",
+          "message_count": 66
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/sync-clean-rebuild.md"
+}

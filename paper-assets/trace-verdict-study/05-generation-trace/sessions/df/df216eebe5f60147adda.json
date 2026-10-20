@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df216eebe5f60147adda",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops pdflatex final pass",
+  "task_key": "worker_ops_pdflatex-final-pass_20260522T160121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pdflatex-final-pass_20260522T160121_result.json",
+    "occurrence": 1,
+    "bytes": 189,
+    "sha256": "5b7663080cd84499fcf6958ab37b9651560441503a8c7eefac1ce258ce9b17d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无输出，说明 cross-reference warnings 已全部消除。\n\n**结果：0 条 reference/label warning，PDF 共 21 页。** 无需再跑额外轮次，引用已收敛。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-pdflatex-final-pass.md"
+}

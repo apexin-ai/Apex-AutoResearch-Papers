@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62892931d62df8a4eec4",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops check ae only seeds progress",
+  "task_key": "worker_ops_check_ae_only_seeds_progress_20260516T050128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_ae_only_seeds_progress_20260516T050128_result.json",
+    "occurrence": 1,
+    "bytes": 907,
+    "sha256": "2cea9c3816dbfd4cd9149309f5db084160cefbd58664d45849ab7930a8c8797b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态报告\n\n| | ae_only_seed123 | ae_only_seed456 |\n|---|---|---|\n| **进程状态** | Running (PID 235494, GPU 0) | Running (PID 235571, GPU 1) |\n| **训练进度** | **252/444 steps (57%)** | **222/444 steps (50%)** |\n| **已运行** | ~1h21m | ~1h21m |\n| **速度** | ~18.5s/step | ~19.0s/step |\n| **剩余步数** | 192 steps | 222 steps |\n| **预估剩余训练时间** | **~59 min** | **~70 min** |\n| **预估训练完成** | ~约 50 分钟后 | ~约 1h10m 后 |\n\n**注意事项**：\n- 两个 tmux session 都是今天 **11:40** 创建的，实际只跑了约 1.5 小时，不是 15+ 小时。可能之前的实验被重启了。\n- 训练完成后会自动链式执行 `eval/evaluate.py`，eval 结果会写入 `final/eval_results.json`。\n- 目前各有一个 `checkpoint-148`（第 148 步的中间 checkpoint）。\n- GPU 利用率均 100%，运行正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-ae-only-seeds-progress.md"
+}

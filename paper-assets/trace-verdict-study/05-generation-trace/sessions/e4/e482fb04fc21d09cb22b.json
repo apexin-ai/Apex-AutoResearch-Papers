@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e482fb04fc21d09cb22b",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis quick gpu registry check",
+  "task_key": "worker_analysis_quick_gpu_registry_check_20260519T013128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_quick_gpu_registry_check_20260519T013128_result.json",
+    "occurrence": 1,
+    "bytes": 459,
+    "sha256": "a141d0916724cea4bae98f3111ffea717268c57dc3ea0ed8e26663482ca1f021"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\ncuda:0: PID=476966 95479MiB/97887MiB 97%\ncuda:1: 空闲       0MiB/97887MiB  0%\n\ntmux: codellama13b_full_trace_tail512_seed42 (running)\n\nRegistry:\n  seed42:  未找到\n  seed456: 未找到\n```\n\nGPU0 正在跑 seed42 训练（PID 476966，显存几乎满，利用率 97%），GPU1 空闲。两个实验名在 registry 中都不存在——可能未注册或名称不同。需要我查一下 registry 里实际有哪些实验吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-quick-gpu-registry-check.md"
+}

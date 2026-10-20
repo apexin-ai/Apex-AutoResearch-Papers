@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55a31a84467479e83a1d",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "upload fig1 confirm",
+  "task_key": "worker_upload_fig1-confirm_20260524T152655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_upload_fig1-confirm_20260524T152655_result.json",
+    "occurrence": 1,
+    "bytes": 104,
+    "sha256": "037315276f0d6dfdcfc474643a00e0e70162030bf460becf9ce7b2d112355e90"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已上传到飞书群，file_key: `file_v3_00120_b86f7483-a810-4b3b-abc4-57d2f9a8a00g`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/upload-fig1-confirm.md"
+}

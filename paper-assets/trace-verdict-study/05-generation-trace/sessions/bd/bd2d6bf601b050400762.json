@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd2d6bf601b050400762",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper final reference audit",
+  "task_key": "worker_paper_final_reference_audit_20260516T024835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_final_reference_audit_20260516T024835_result.json",
+    "occurrence": 1,
+    "bytes": 1554,
+    "sha256": "fec3c6c78fbb6f17a9fea1aa52abb2dda25192d70935abeda5c7d11577971941"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Reference Audit 结果\n\n| 指标 | 数量 |\n|------|------|\n| **PASS** | **27** |\n| **WARN** | **10** |\n| **FAIL** | **0** |\n\n**Bib 条目 27 个，Cite key 27 个，完全一一对应。无缺失，无孤立，无 placeholder。**\n\n### 10 个 WARN（非致命，可选修复）\n\n**Type Mismatch (2)**\n- `hu2022lora` — `@article` 但 journal 填的是 \"Proceedings of...ICLR\"，应为 `@inproceedings` + `booktitle`\n- `haque2025traces` — `@article` 但 journal 是 \"KnowledgeNLP Workshop at ACL 2025\"，应为 `@inproceedings` + `booktitle`\n\n**ArXiv-only (8)** — 仍标记为 arXiv preprint，需确认是否已有正式 venue：\n| Key | 说明 |\n|-----|------|\n| `austin2021program` | Google 2021，未正式发表，arXiv 合理 |\n| `chen2021evaluating` | Codex/HumanEval，未正式发表，arXiv 合理 |\n| `deepseek2024coder` | 2024，未查到正式 venue |\n| `ferrando2025execute` | 2025，较新 |\n| `qwen2025coder` | 2025，技术报告 |\n| `wang2025inspectcoder` | 2025，较新 |\n| `wu2026runtime` | 2026，非常新 |\n| `yang2025apsg` | 2025，较新 |\n\n### 结论\n\n上次修复的 10 个问题全部保留完好。新增引用（`spiess2025calibration` in experiments.tex, `yang2024generalization` in discussion.tex）均已在 bib 中且字段完整。无 FAIL 项，audit 通过。\n\n2 个 type-mismatch WARN 如需修复，改 `@article`→`@inproceedings` + `journal`→`booktitle` 即可；8 个 arXiv-only 多数为未正式发表的论文/技术报告，保持现状合理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-final-reference-audit.md"
+}

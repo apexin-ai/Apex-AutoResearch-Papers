@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7bd91881c65d115798a",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper discussion maxlength robustness",
+  "task_key": "worker_paper_discussion_maxlength_robustness_20260516T024644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_discussion_maxlength_robustness_20260516T024644_result.json",
+    "occurrence": 1,
+    "bytes": 333,
+    "sha256": "a2cb140600fc18ab327b1e4048da99b447770b69179ef6a91b9874119488309c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "discussion.tex 中已有 `\\subsection{Sensitivity to Evaluation Context Length}`（位于 Error Analysis 和 Limitations 之间），完整覆盖了任务要求的所有内容点（full_trace 崩溃、VOTA 互补性脆弱、exception_only 免疫、DeepSeek 特异性、部署鲁棒性结论）。无需额外添加。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-discussion-maxlength-robustness.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e93dd9d1f88938f2b1e1",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis calibration reliability diagram",
+  "task_key": "worker_analysis_calibration_reliability_diagram_20260517T004711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_calibration_reliability_diagram_20260517T004711_result.json",
+    "occurrence": 1,
+    "bytes": 453,
+    "sha256": "82d180fa0c9f72a27e2207e74b8634a7e2082c9dafdf2f73c31170ba4338089f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已完成，输出在 `/root/trace-verdict-study/docs/paper/figures/calibration_reliability.pdf`。\n\n**关键发现：**\n- Exception Only：99.3% 样本 confidence > 0.95 且 accuracy = 1.0，几乎完美校准（ECE = 0.0027）\n- No Trace：confidence 分散，各 bin accuracy 系统性低于 predicted confidence，典型 overconfidence 模式（ECE = 0.1715）\n\n图中两条件对比非常直观，适合直接放入论文。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-calibration-reliability-diagram.md"
+}

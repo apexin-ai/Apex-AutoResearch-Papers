@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "d7d91357b997fcbe4801",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "paper sync trace hurts patch",
+  "task_key": "worker_paper_sync_trace_hurts_patch_20260520T163001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_sync_trace_hurts_patch_20260520T163001.log",
+    "occurrence": 1,
+    "bytes": 795351,
+    "sha256": "46da7d04e4a02ec6fbec700c96e77eff5bcd2c526352362bdce61855b0508e85"
+  },
+  "statistics": {
+    "messages": 297,
+    "user_turns": 1,
+    "tool_calls": 93,
+    "roles": {
+      "log": 1,
+      "system": 68,
+      "record": 1,
+      "assistant": 39,
+      "tool_call": 93,
+      "tool_result": 93,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 90,
+      "chunks": [
+        {
+          "path": "d7d91357b997fcbe4801-part-0001.json",
+          "message_count": 90
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 207,
+      "chunks": [
+        {
+          "path": "d7d91357b997fcbe4801-part-0001.json",
+          "message_count": 90
+        },
+        {
+          "path": "d7d91357b997fcbe4801-part-0002.json",
+          "message_count": 117
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-sync-trace-hurts-patch.md"
+}

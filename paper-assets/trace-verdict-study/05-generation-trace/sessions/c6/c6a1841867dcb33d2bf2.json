@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6a1841867dcb33d2bf2",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper final compress v4",
+  "task_key": "worker_paper_final-compress-v4_20260516T053602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_final-compress-v4_20260516T053602_result.json",
+    "occurrence": 1,
+    "bytes": 1601,
+    "sha256": "2593b8d1a6c231fb896dd08f058ac5d79bbb57a3a08a594ac601b46c6201b95c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No LaTeX warnings. All done. Here's the summary:\n\n---\n\n## 结果\n\n### 行数对比\n\n| 文件 | 压缩前 | 压缩后 | 变化 |\n|------|--------|--------|------|\n| introduction.tex | 30 | 30 | 0 |\n| method.tex | 85 | 51 | -34 |\n| experiments.tex | 210 | 106 | -104 |\n| discussion.tex | 28 | 28 | 0 |\n| related_work.tex | 29 | 19 | -10 |\n| conclusion.tex | 19 | 19 | 0 |\n| appendix.tex | 324 | 465 | +141 |\n\n### McNemar p 值修正\n\n- **修正位置**: experiments.tex 第208行 (唯一出现)\n- **修正前**: B4 vs SFT: `McNemar $p{=}0.041$` (错误)\n- **修正后**: B4 vs SFT: `McNemar $p{<}0.001$`; B5 vs SFT: `McNemar $p{=}0.041$`\n\n### 编译结果\n\n- **总页数**: 19页\n- **正文页数**: 8页 (pages 1-8, bibliography starts page 9)\n- **Undefined references**: 0\n- **LaTeX errors**: 0 (仅有预存在的 package-level warnings)\n\n### 移入 Appendix 的内容\n\n1. Trace length ablation (表+分析) → `sec:trace_length_full`\n2. Calibration analysis (表+图+分析) → `sec:calibration_full`  \n3. Density decomposition table → `sec:density_analysis`\n4. Robustness analysis → `sec:robustness_analysis`\n5. DebugBench full results → `sec:debugbench_full`\n6. Regex baseline details → `sec:regex_baselines`\n7. Tokenizer analysis → `sec:tokenizer_analysis`\n8. Training dynamics label alias → `sec:training_dynamics`\n\n### B5 regex 扩写\n\n正文 regex 段落中增加了 B5 format marker 的详细分析（4句），说明其利用 preprocessing artifact、与 SFT 的机制差异、以及 McNemar p=0.041 的正确归属。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-final-compress-v4.md"
+}

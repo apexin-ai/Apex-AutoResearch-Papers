@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96ad0954c7b794170d56",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_16_1779348058.md",
+  "task_key": "loop_16_1779348058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1779348058.md",
+    "occurrence": 1,
+    "bytes": 4468,
+    "sha256": "e6cfade836f4140eafb79a519c14c9993dc99d0d2b4510f3a4421a17ed4da1db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-21T06:09:36+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅** westd-11235:cuda:0 和 cuda:1，无例外\n- Python 必须用绝对路径 `/root/miniconda3/bin/python`，不要 `python` 或 `python3`\n- CodeLlama-13B 所有训练必须加 `--label_only_loss`（tokenizer 膨胀导致 gradient dilution，D074 教训）\n- 实验 ID 命名：用 `qwen15b_` 不用 `qwen1.5b_`（dot 与 submit_on_allocated 不兼容，历史事故）\n- submit_training_job 不支持 shell builtin（source/conda activate），命令里用绝对路径\n- 论文已 resubmit review，**未收到 Review 团队反馈前不要动 paper/** 下任何文件\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-11235，账号 root\n- **工作目录**: `/root/trace-verdict-study`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- **模型路径**:\n  - Qwen-7B: `/root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct`\n  - Qwen-1.5B: `/root/trace-verdict-study/models/Qwen2.5-Coder-1.5B-Instruct`\n  - CodeLlama-13B: `/root/autodl-tmp/models/CodeLlama-13b-Instruct-hf/`\n  - DeepSeek-6.7B: `/root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct`\n- **数据**: `/root/autodl-tmp/trace-verdict-study-data/`（训练集 4720，测试集 1190）\n- **Checkpoints**: `/root/autodl-tmp/trace-verdict-study-checkpoints/{exp_id}/`\n- **磁盘**: 根分区 69%（9.5GB 可用），autodl-tmp 充足\n- **活跃进程**: 无。cuda:0 有 49175 MiB 孤儿显存（无进程占用，需重启容器清理）\n- **Cron**: reconcile 返回 0 条活跃 cron\n- **Worker**: 0 个 running\n\n### 3. 📊 当前状态\n- **论文阶段**: PDF 已提交 resubmit review（continue 模式），等待 Review 团队反馈。EMNLP ARR DDL = 2026-05-25（4 天）\n- **实验总计**: 151 个 — 106 success, 16 negative, 8 failed, 11 killed。所有核心 + rebuttal 储备实验已完成\n- **RUNNING**: 无\n- **QUEUED (6) + ALLOCATED (1)**: 全部是 stale 重复条目（旧命名 qwen1.5b_/codellama_ 已被 qwen15b_/codellama13b_ 替代完成），conclusion 已标 killed，可忽略\n- **PREPARING (3)**: qwen15b_label_only_seed42、codellama13b_label_only_seed42（均 conclusion=failed）、deepseek_exception_only_seed123（已被 v2 替代完成）\n- **plan_019** (cross-model calibration): ROADMAP 说已派 Agent 到 cuda:1，但当前无 running worker、无 cron——可能上一个 session 派了但未实际启动，需要重新派\n- **plan_018** (error analysis): planned，不需 GPU，纯分析已有 predictions.jsonl\n- **等待**: Review 团队对 resubmitted paper 的反馈\n\n### 4. 📋 待办（条件触发式）\n- Review 团队反馈到达 → 逐条处理反馈意见，必要时改 paper 并重新提交（DDL 5/25，时间紧）\n- plan_019 未实际启动 → 重新 spawn worker 跑 4 模型 × exception_only 的 ECE/Brier（纯 eval，用已有 checkpoint，rebuttal 储备）\n- plan_018 未执行 → spawn worker 做 error analysis（不需 GPU，可与 plan_019 并行）\n- cuda:0 孤儿显存 49175 MiB → 如需用 cuda:0 跑实验，先提醒 Director 重启容器清理\n- codellama13b_label_only_seed123_v2 最近 failed (EXIT_CODE=1) → 如果 label_only collapse 分析需要更多数据点，spawn worker 查日志诊断\n\n### 5. 🎯 战略上下文\n- **核心叙事**: Information density determines learning efficiency（v4.0 framing）。exception_only 50 步收敛 99.33%，full_trace 全程震荡 82-89% 不收敛\n- **4 Claims 全部强支撑**: C1 Exception dominance ★★★★★, C2 Density decomposition ★★★★, C3 Tier hierarchy ★★★★★, C4 VOTA universality ★★★★\n- **关键决策链**: D099-D108 覆盖了 loop_only tier 确认、label_only collapse 跨模型验证、VOTA seed 仲裁、scale 叙事定调\n- **易错点**:\n  - 不要把 GC4-par (DeepSeek parallel) 和 GC4-seq (Qwen sequential) 直接对比\n  - DeepSeek seed123=91.09% 是 LoRA init sensitivity outlier，论文诚实披露但不作为主要结论依据\n  - CodeLlama/DeepSeek label_only collapse (28.5%) 是 systematic 的，不是 bug——C2 用 Qwen decomposition + 其他模型 collapse 诚实披露\n  - VOTA seed42 正确参考是 vota_seed42_v5 (99.41%)，不是 v4 (95.63%)\n  - 项目几乎进入收尾态，GPU 空闲不是失职——论文已提交等反馈，除非 Review 要求补实验否则不需主动开新实验\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779348058.md"
+}

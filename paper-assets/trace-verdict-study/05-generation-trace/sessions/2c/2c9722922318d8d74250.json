@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c9722922318d8d74250",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops qwen15b tail256 harvest",
+  "task_key": "worker_ops_qwen15b_tail256_harvest_20260517T205440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_qwen15b_tail256_harvest_20260517T205440_result.json",
+    "occurrence": 1,
+    "bytes": 690,
+    "sha256": "31170770a17f5986eab81401c3c4281392e21a9230a155b96ab730ba0dc4ddcd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（之前可能已被清除）。\n\n## 收割总结\n\n| 指标 | Qwen-1.5B tail-256 | Qwen-7B tail-256 |\n|------|-------------------|-----------------|\n| Accuracy | 72.6% [70.0%, 75.3%] | 78.9% |\n| Lift over majority | +1.1pp [-2.1pp, +4.4pp] | +7.4pp |\n| Fail F1 | 0.54 | — |\n\n**结论：negative**。假设被否定。1.5B 在 tail-256 条件下仅比 majority baseline 高 1.1pp（CI 包含 0，不显著），而 7B 达到 78.9%。这说明 256-token 尾部截断下的 phase transition 是 **capacity-limited**（模型容量受限），而非单纯 signal-limited。1.5B 不具备从 256 token trace 尾部提取足够判别信号的能力。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-qwen15b-tail256-harvest.md"
+}

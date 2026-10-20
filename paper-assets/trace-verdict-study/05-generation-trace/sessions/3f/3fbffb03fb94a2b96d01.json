@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fbffb03fb94a2b96d01",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis harvest dynamics gpu status",
+  "task_key": "worker_analysis_harvest_dynamics_gpu_status_20260519T053914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_harvest_dynamics_gpu_status_20260519T053914_result.json",
+    "occurrence": 1,
+    "bytes": 1551,
+    "sha256": "4e4943321edc6e386b085d791c4b3922a6691b2553c464fbde488f39d391ac35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n```\nGPU STATUS:\n  cuda:0: Idle, 31°C, 49GB/98GB (model loaded, not computing)\n  cuda:1: 100% util, 70°C, 41GB/98GB — running full_trace dynamics (PID 485347)\n\nEXCEPTION_ONLY DYNAMICS (qwen7b_exception_only_dynamics_seed42):\n  Status: ✅ 完成\n  Learning curve:\n    step  50: acc=0.9933  loss=0.1897  (pass_f1=0.9953, fail_f1=0.9883)\n    step 100: acc=0.9933  loss=0.1272\n    step 150: acc=0.9933  loss=0.0793\n    step 200: acc=0.9983  loss=0.0475  ← 跳跃点，之后饱和\n    step 250: acc=0.9983  loss=0.0437\n    step 300: acc=0.9983  loss=0.0378\n    step 350: acc=0.9983  loss=0.0333\n    step 400: acc=0.9983  loss=0.0347\n    step 444: acc=0.9983  loss=0.0329  (pass_f1=0.9988, fail_f1=0.9971)\n  \n  关键发现: step 200 饱和 (99.83%)，之后 loss 继续下降但 acc 不再变化\n  Pass precision=1.0 (零 false positive), Fail recall=1.0 (零 false negative for fail)\n\nFULL_TRACE DYNAMICS (qwen7b_full_trace_dynamics_seed42):\n  Status: 🔄 训练中 step 356/444 (80%)\n  ~28s/step, 剩余 88 steps ≈ 41 min 训练 + batch eval ≈ 1h15m 完成\n  ETA: ~14:55 UTC\n  尚无 eval 数据（batch eval 在训练完成后执行）\n```\n\nException_only 的 dynamics 非常 clean：50 步就到 99.3%，200 步饱和在 99.83%。这个 task 对 Qwen-7B 来说几乎 trivial。full_trace 的 dynamics 对比将更有意义，看是否收敛更慢或有不同的 plateau pattern。\n\n需要我等 full_trace 完成后再收割，还是先用 exception_only 的数据做什么？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-harvest-dynamics-gpu-status.md"
+}

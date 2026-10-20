@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36027ce3b4bf97603200",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "fix crossseed table audit and fix",
+  "task_key": "worker_fix_crossseed_table_audit_and_fix_20260519T024119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_crossseed_table_audit_and_fix_20260519T024119_result.json",
+    "occurrence": 1,
+    "bytes": 1401,
+    "sha256": "f62e32b0ace7f1999a0f0a18cf16a0f5e87d66807f2a60bfc1ab0291d59712f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "论文中**不存在**包含这 12 个数据点的 cross-seed 表格。用户提供的数值（93.61, 96.00, 97.65 等）与论文中任何现有表格或 registry 中的数据都不匹配。\n\n以下是论文中实际的 cross-seed 数据：\n\n**exception_only 条件（registry 数据）：**\n\n| 模型 | seed42 | seed123 | seed456 | Mean ± Std |\n|------|--------|---------|---------|------------|\n| Qwen-7B | 99.83 | 99.83 | 99.83 | 99.83 ± 0.00 |\n| DeepSeek-6.7B | 99.33 | 91.09 | 99.33 | 96.58 ± 4.76 |\n| Qwen-1.5B | 99.83 | — | — | — |\n| CodeLlama-13B | 99.83 | 100.0 | RUNNING | — |\n\n**nomarker 消融（Qwen-7B only）：**\n\n| seed42 | seed123 | seed456 | Mean ± Std |\n|--------|---------|---------|------------|\n| 96.55 | 98.32 | 98.07 | 97.65 ± 0.96 |\n\n用户提供的 12 个\"正确值\"（Qwen-7B: 93.61/96.00/97.65, DeepSeek: 93.95/95.04/96.10, Qwen-1.5B: 95.63/97.65/96.72, CodeLlama: 98.24/98.24/98.24）在论文 .tex 文件和 registry 数据中**均不存在**。这些值与任何已知的实验条件都不对应——不是 exception_only，不是 nomarker，也不是任何其他条件。\n\n**结论：论文中没有需要修正的 cross-seed 表格。** 用户提供的数据点可能来自一个尚未创建的表格，或者是对某个不同实验的混淆。请确认这些数据点对应的具体实验条件和表格标签。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-crossseed-table-audit-and-fix.md"
+}

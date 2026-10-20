@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4be46c796630717395f",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops prepare p0 queued experiments",
+  "task_key": "worker_ops_prepare_p0_queued_experiments_20260518T113829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prepare_p0_queued_experiments_20260518T113829_result.json",
+    "occurrence": 1,
+    "bytes": 1315,
+    "sha256": "48151f24fc9aca4a790bf66f2a8f5d7864e0a5e8a57b1530afaf9f1787ac19b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**所有 7 个 QUEUED 实验已经在不同 exp_id 下完成了。** QUEUED 条目是旧命名（含点号）的残留，实际已用新命名跑完。\n\n对应关系和结果：\n\n| QUEUED exp_id | 已完成的 exp_id | Accuracy |\n|---|---|---|\n| `codellama_no_trace_seed42` | `codellama13b_no_trace_seed42` | 76.5% |\n| `codellama_vota_seed42` | `codellama13b_vota_seed42` | 98.57% |\n| `codellama_exception_only_seed42` | `codellama13b_exception_only_seed42` | 99.83% |\n| `qwen1.5b_no_trace_seed42` | `qwen15b_no_trace_seed42` | 67.31% |\n| `qwen1.5b_vota_seed42` | `qwen15b_vota_seed42` | 99.58% |\n| `qwen1.5b_exception_only_seed42` | `qwen15b_exception_only_seed42` | 99.83% |\n| `qwen1.5b_full_trace_seed42` | `qwen15b_full_trace_seed42` | 77.06% |\n\n证据：\n- QUEUED 条目的 `failure_reason` 已标注 \"replaced by qwen15b_* entries (dot in exp_id incompatible with submit_on_allocated)\" 和 \"user approved 13B not 7B\"\n- 完成的实验命令、condition、seed 完全一致，只是 exp_id 命名从 `qwen1.5b_*` 改为 `qwen15b_*`，从 `codellama_*` 改为 `codellama13b_*`\n- 所有 7 个的 conclusion 均为 success\n\n**建议：** 将这 7 个 QUEUED 条目状态更新为 DONE（或 CANCELLED），指向已完成的对应实验，避免混淆。需要我执行吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prepare-p0-queued-experiments.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "85ee6c9f0e59f798768f",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "exp plan 020 fewshot execute",
+  "task_key": "worker_exp_plan_020_fewshot_execute_20260521T174031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_plan_020_fewshot_execute_20260521T174031.log",
+    "occurrence": 1,
+    "bytes": 788442,
+    "sha256": "e3a8548043432536436b4c80fdc8525969ad61bd1ad6bb99a295e2301c6c33e2"
+  },
+  "statistics": {
+    "messages": 539,
+    "user_turns": 0,
+    "tool_calls": 205,
+    "roles": {
+      "log": 1,
+      "system": 8,
+      "record": 1,
+      "assistant": 117,
+      "tool_call": 205,
+      "tool_result": 205,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 539,
+      "chunks": [
+        {
+          "path": "85ee6c9f0e59f798768f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "85ee6c9f0e59f798768f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "85ee6c9f0e59f798768f-part-0003.json",
+          "message_count": 179
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-plan-020-fewshot-execute.md"
+}

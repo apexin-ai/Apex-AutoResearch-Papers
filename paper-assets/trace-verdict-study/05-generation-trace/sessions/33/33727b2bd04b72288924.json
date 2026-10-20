@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33727b2bd04b72288924",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis qwen7b full trace dynamics seed42",
+  "task_key": "worker_analysis_qwen7b_full_trace_dynamics_seed42_20260519T063917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen7b_full_trace_dynamics_seed42_20260519T063917_result.json",
+    "occurrence": 1,
+    "bytes": 1152,
+    "sha256": "046eaac7229e339ac70c06dc4886cf27477df7d22a104e1bfa7348e2ee0a91a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## 结论：**SUCCESS** (hypothesis 强确认)\n\n### 关键数据\n\n| 指标 | full_trace | exception_only | 差距 |\n|------|-----------|----------------|------|\n| Step 50 accuracy | **87.39%** | 99.33% | -11.94 pp |\n| Best accuracy | **88.82%** (step 350) | 99.83% (step 150) | -11.01 pp |\n| Final accuracy | **88.24%** | 99.83% | -11.59 pp |\n| 收敛 step | 未收敛（持续震荡） | ~150 steps | N/A |\n\n### 核心发现\n\n1. **信号密度效应远超预期**：full_trace 不仅收敛慢，且 ceiling 比 exception_only 低 ~11 pp，即使训练完整 epoch 也无法弥合\n2. **非单调震荡**：full_trace accuracy 在 step 100 骤降 5.3 pp、step 250-300 再跌 3.5 pp，说明模型在 pass/fail 判断策略间反复摇摆\n3. **Train-eval gap**：train loss 降至 0.0085 但 eval accuracy 卡在 88%，过拟合 trace 中的 spurious pattern\n4. **Fail 类困难**：Fail F1 始终比 Pass F1 低 15-19 pp，failure signal 被冗余 trace 信息淹没\n\n报告已存入 `artifacts/qwen7b_full_trace_dynamics_seed42/report/full_trace_dynamics.md`，registry 已更新为 DONE(success)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen7b-full-trace-dynamics-seed42.md"
+}

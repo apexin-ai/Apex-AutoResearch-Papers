@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "id": "a4234eaa7aa73758c53c",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "writing section 3 experimental setup",
+  "task_key": "worker_writing_section-3-experimental-setup_20260515T191701",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_section-3-experimental-setup_20260515T191701_result.json",
+    "occurrence": 1,
+    "bytes": 2744,
+    "sha256": "83a45721053f96ce938928b6518f5e283c06326793748a9f25b49334d5e913a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Section 3 已写入。\n\n```json\n{\n  \"section\": \"Section 3: Experimental Setup\",\n  \"word_count\": 702,\n  \"citations_needed\": [\n    \"placeholder_WangEMNLP2025 — Wang et al. EMNLP Findings 2025 (DCSH verdict dataset)\",\n    \"placeholder_GuICML2024 — Gu et al. ICML 2024 (CRUXEval benchmark)\",\n    \"placeholder_Qwen25Coder — Qwen2.5-Coder technical report\",\n    \"placeholder_DeepSeekCoder — DeepSeek-Coder technical report\",\n    \"placeholder_HuLoRA2022 — Hu et al. ICLR 2022 (LoRA)\",\n    \"placeholder_FerrandoArXiv2025 — Ferrando et al. 2025 (compact scratchpads)\",\n    \"placeholder_TraceCoderICSE2026 — TraceCoder ICSE 2026\",\n    \"placeholder_NaeiniICML2015 — Naeini et al. ICML 2015 (ECE)\"\n  ],\n  \"figures_needed\": [\n    \"fig:vota_example — Full trace → VOTA transformation example (placeholder included, needs real data)\"\n  ],\n  \"tables_needed\": [\n    \"tab:conditions — 7 experimental conditions (included)\"\n  ],\n  \"notes\": [\n    \"experiments.tex 用 'TracePile' 指代数据集，本 section 按 prompt 用 CRUXEval — 需统一\",\n    \"VOTA 示例图用简化代码，正式版应换成 CRUXEval 真实样本\",\n    \"引用了 Appendix A (app:truncation) 描述 label truncation 问题，需确保 appendix 存在\",\n    \"DeepSeek full_trace 条件待重跑 (v3 QUEUED)，section 4 表格中标 N/A\"\n  ]\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "section": "Section 3: Experimental Setup",
+              "word_count": 702,
+              "citations_needed": [
+                "placeholder_WangEMNLP2025 — Wang et al. EMNLP Findings 2025 (DCSH verdict dataset)",
+                "placeholder_GuICML2024 — Gu et al. ICML 2024 (CRUXEval benchmark)",
+                "placeholder_Qwen25Coder — Qwen2.5-Coder technical report",
+                "placeholder_DeepSeekCoder — DeepSeek-Coder technical report",
+                "placeholder_HuLoRA2022 — Hu et al. ICLR 2022 (LoRA)",
+                "placeholder_FerrandoArXiv2025 — Ferrando et al. 2025 (compact scratchpads)",
+                "placeholder_TraceCoderICSE2026 — TraceCoder ICSE 2026",
+                "placeholder_NaeiniICML2015 — Naeini et al. ICML 2015 (ECE)"
+              ],
+              "figures_needed": [
+                "fig:vota_example — Full trace → VOTA transformation example (placeholder included, needs real data)"
+              ],
+              "tables_needed": [
+                "tab:conditions — 7 experimental conditions (included)"
+              ],
+              "notes": [
+                "experiments.tex 用 'TracePile' 指代数据集，本 section 按 prompt 用 CRUXEval — 需统一",
+                "VOTA 示例图用简化代码，正式版应换成 CRUXEval 真实样本",
+                "引用了 Appendix A (app:truncation) 描述 label truncation 问题，需确保 appendix 存在",
+                "DeepSeek full_trace 条件待重跑 (v3 QUEUED)，section 4 表格中标 N/A"
+              ]
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-section-3-experimental-setup.md"
+}

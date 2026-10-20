@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "309868778a0407df48f3",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code submit deepseek loop only seed42",
+  "task_key": "worker_code_submit_deepseek_loop_only_seed42_20260519T173009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_submit_deepseek_loop_only_seed42_20260519T173009_result.json",
+    "occurrence": 1,
+    "bytes": 544,
+    "sha256": "a35a8272fd744b00f6a6b83c92bb41355cfcb8501e81b6e67ba24e465236df78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并注册。\n\n**汇报：**\n\n| 项目 | 值 |\n|------|-----|\n| **Token 长度分布** | 4720 样本，mean=1629, median=1374, p90=2756, p95=2773, p99=2811, max=2838 |\n| **超限** | 0/4720 (0.0%)，model_max_length=16384，无风险 |\n| **提交状态** | RUNNING，tmux session `deepseek_loop_only_seed42`，cuda:1，日志 `/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_loop_only_seed42.log` |\n| **预估训练时长** | ~2h（参考 deepseek_exception_only），训练完成后自动执行 eval |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-submit-deepseek-loop-only-seed42.md"
+}

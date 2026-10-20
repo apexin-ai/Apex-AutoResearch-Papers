@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4d0fa2d4c996f80e0ec",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "figure fix fig1 label",
+  "task_key": "worker_figure_fix_fig1_label_20260516T021141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fix_fig1_label_20260516T021141_result.json",
+    "occurrence": 1,
+    "bytes": 278,
+    "sha256": "95f2b517c4d7ac8a4be15135c1e8067c20c4f7b17098b385955e71588a875522"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**文字差异：**\n- 修改前：`(truncate 2048)`\n- 修改后：`(up to 2048 tok)`\n\n**输出文件（刚刚重新生成）：**\n| 文件 | 大小 |\n|------|------|\n| `fig1_trace_overview.pdf` | 37 KB |\n| `fig1_trace_overview.png` | 204 KB |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fix-fig1-label.md"
+}

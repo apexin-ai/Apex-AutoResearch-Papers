@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c08287dc79f9d38c48da",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_2_1778837550.md",
+  "task_key": "loop_2_1778837550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778837550.md",
+    "occurrence": 1,
+    "bytes": 3747,
+    "sha256": "4b9881d7072beb294d185fc71ef36e74b97a47cfccd4accd211ae96c85240e71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_wall_time\nupdated: '2026-05-15T05:08:12+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：只能用 westd-11235 的 cuda:0 和 cuda:1，`--gpu` 参数始终从 0 开始（框架自动映射物理 GPU）\n- cuda:0 有 ~49GB 驱动级孤儿显存无法软件清除，训练必须加 `--gradient_checkpointing`，否则 OOM\n- vota_v5 准确率是 99.16%（不是 99.41%），以 eval_results.json 为准，registry 已修正\n- plan_002 用了 gradient_checkpointing（数学等价，Director 已确认不影响对比）\n- train_sft.py 的 `--condition` 参数决定数据路径，新增了 `vota_no_ae`、`ae_only`、`exception_only`、`loop_only` 四个选项\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-11235，账号 root，工作目录 /root/trace-verdict-study\n- Python：/root/miniconda3/bin/python，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：Qwen2.5-Coder-7B-Instruct，HF cache `/root/autodl-tmp/.hf_cache`\n- 数据：`/root/autodl-tmp/trace-verdict-study-data/`（含 no_trace/vota/full_trace/vota_no_ae/ae_only/exception_only/loop_only 各 train+test）\n- Checkpoints：`/root/autodl-tmp/trace-verdict-study-checkpoints/{condition}/final/`\n- 活跃进程：\n  - plan_001 vota_no_ae_seed42：PID 953138，cuda:1，tmux session 含 vota_no_ae，cron 已注册（120s）\n  - plan_002 full_trace_label_only_seed42：PID 955301，cuda:0，tmux session `full_trace_label_only_seed42`，cron 已注册（120s）\n\n### 3. 📊 当前状态\n刚处理完 Director 综合指令：确认 plan_001 RUNNING (27%, ETA ~06:15 UTC)，清理 cuda:0 孤儿进程后通过 gradient_checkpointing 成功启动 plan_002。plan_003 数据准备 Worker 也已完成（ae_only/exception_only/loop_only 三个条件数据集已生成）。\n\nRegistry RUNNING：\n- `vota_no_ae_seed42`（plan_001）— cuda:1，测试去掉 actual/expected 后 VOTA 是否仍准确\n- `full_trace_label_only_seed42`（plan_002）— cuda:0，测试 label-only loss 能否提升 full_trace 81.8%\n\n等待：两个实验的 cron 完成回调。\n\n### 4. 📋 待办\n- plan_001 cron 回调（训练完成）→ 立即提交 no_trace_v5 到 cuda:1（~20min，统一代码版本）→ 并行派 Worker 评估 plan_001（evaluate.py + bootstrap_compare.py）\n- plan_001 eval 结果出来 → 判断：降到 ~75% = trivial comparison（需 reframing）；>85% = genuine understanding（story 成立）→ 汇报 Director → Director 决定是否启动 plan_003\n- plan_002 cron 回调 → 评估 → 与 full_trace_v5 (81.8%) 对比\n- 两实验都完成后 → 安排服务器重启清除 cuda:0 孤儿显存\n- plan_003 就绪：数据已生成（ae_only/exception_only/loop_only），train_sft.py 已支持新 condition，等 Director 审批 + GPU 空闲即可启动（4 条件，需串行或 2 并行）\n\n### 5. 🎯 战略上下文\n- 核心问题：VOTA 99.16% 是 genuine understanding 还是 trivial actual/expected 字符串比对？plan_001 是 make-or-break\n- 决策链：D001(pass 阈值) → D002(Round1 无效) → D003(MVP PASS) → D004(full_trace 28.4% = chat template bug) → D005(full_trace_v5 81.8% 确认非 collapse)\n- v5 三条件：no_trace 75.1%、full_trace 81.8%、VOTA 99.16%\n- full_trace_v2 的 28.4% 是 chat template overhead bug 导致的标签截断，不是 gradient dilution——之前误判为 genuine negative 已纠正\n- 投稿目标：EMNLP 2026 ARR，deadline May 25（还剩 10 天）\n- 易错点：eval_results.json（checkpoint 目录下）可能是训练时 eval，不是 test eval——必须用 bootstrap_compare.json 作为 ground truth\n- exception_only 有 66.7% 样本无异常数据（pass 样本没有 exception），这是预期行为不是 bug\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778837550.md"
+}

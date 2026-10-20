@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7cd38013a9555651baf",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_6_1778894204.md",
+  "task_key": "loop_6_1778894204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778894204.md",
+    "occurrence": 1,
+    "bytes": 3851,
+    "sha256": "c01e09037b730111afb9f69e39645509b0a75b520c9df7ccd968d06b93ad0094"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_wall_time\nupdated: '2026-05-16T01:16:35+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单严格限制 `westd-11235:cuda:0` 和 `westd-11235:cuda:1`，不得使用其他 GPU\n- DeepSeek 系列实验必须用旧代码（无 `load_best_model_at_end`），保持 DeepSeek 组内一致性——train_sft.py 中 L149-152 标记为 `# TEMP_DISABLED`\n- 论文中 DeepSeek 预训练数据量是 **2T tokens**（非 1.17T），cross-model-trace-lit Worker 产出的数据有误不得引用\n- VOTA 14.96pp cross-model gap 的叙事是 \"trace truncation + model capability confound\"（D034），**不是** \"label truncation\"\n- Bootstrap CI 方法：Qwen=paired, DeepSeek 当前=unpaired——同一张表不能混用，需补跑 `--save_predictions` 后统一为 paired\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`westd-11235`，工作目录 `/root/trace-verdict-study`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 活跃进程：\n  - `full_trace_1024tok_seed42`：PID 212643, cuda:0, cron 监控中\n  - `debugbench_exception_only_seed42`：PID 216806, cuda:1, cron 监控中\n- W&B project: 对应 run 名同 exp_id\n\n### 3. 📊 当前状态\n**刚做完**：D030 关闭 + paper framing v3.0 narrative correction + 派发 3 个 paper fix Workers。\n\n**RUNNING 实验**：\n- `full_trace_1024tok_seed42`（cuda:0）— plan_006 trace length ablation 1024 token 条件\n- `debugbench_exception_only_seed42`（cuda:1）— plan_005 DebugBench 跨任务验证 exception_only 条件\n\n**QUEUED**：`full_trace_2048tok_seed42`（等 cuda:0 空出）\n\n**活跃 Workers（3个）**：\n- `worker_paper_fix_table1_deepseek_ft` — 修正论文 Table 1 DeepSeek full_trace 条目\n- `worker_paper_fix_vota_token_count` — 修正论文 VOTA token count 数据\n- `worker_verify_deepseek_predictions` — 验证 DeepSeek predictions 文件\n\n**等待**：上述 3 个 Worker 回调 + 2 个实验 cron 完成回调。\n\n### 4. 📋 待办（条件触发式）\n- `full_trace_1024tok_seed42` 完成 → 分析 accuracy（预期 81-83%）→ 立即提交 `full_trace_2048tok_seed42` 到 cuda:0\n- `debugbench_exception_only_seed42` 完成 → 对比 DebugBench VOTA (99.77%) + no_trace 结果 → 若 ≥99% 确认跨任务 exception_only 有效性\n- `full_trace_2048tok_seed42` 完成 → 4 点 token-length ablation 完整 → 跑可视化 + paired bootstrap → 更新论文 Table/Figure\n- 3 个 paper fix Workers 回调 → 检查修改质量 → 推进 Paper Agent 初稿交付\n- Paper Agent 初稿完成 → 进入 Reviewer 对抗迭代阶段（5/19-21 窗口）\n- 所有 DebugBench 条件完成 → 补跑 multi-epoch eval + `--save_predictions`\n\n### 5. 🎯 战略上下文\n- **核心结论**：Exception events 是 verdict prediction 最有效 trace 组件（Qwen 99.83%±0.00, DeepSeek 2/3 seeds 99.33%）。Full trace 因 information overload 反而更差。VOTA 跨模型 gap 由 tokenizer efficiency 导致 trace truncation 所致。\n- **投稿 DDL**：ARR May 25（约 9 天），当前在 paper writing + 补实验并行阶段\n- **决策链**：D029（Claim 1 finalized）→ D034（D030 closed, narrative v3.0）→ D035（plan_005 DebugBench design confirmed）\n- **易错点**：\n  1. 不要把 DeepSeek VOTA 84.45% 当作\"模型学不会\"——根因是 91.7% 样本被截断，不截断的 99 样本 100% 正确\n  2. fail_f1 在 token-length ablation 中非单调——论文只能 claim \"directional trend\"，不能说 statistically significant\n  3. plan_005 DebugBench `format_data.py` 有 VOTA 路径缺失 bug，已有 Worker 处理中但需确认修复状态\n  4. seed123 (91.09%) 是 LoRA 初始化离群值，论文 limitation 需提及，但不影响 Claim 1\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778894204.md"
+}

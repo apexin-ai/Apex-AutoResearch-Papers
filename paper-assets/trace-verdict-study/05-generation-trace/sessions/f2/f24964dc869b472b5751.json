@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f24964dc869b472b5751",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ssh kill orphan cuda0",
+  "task_key": "worker_ssh_kill_orphan_cuda0_20260515T144805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_orphan_cuda0_20260515T144805_result.json",
+    "occurrence": 1,
+    "bytes": 390,
+    "sha256": "ca5326f30f156da43210f6863809372488a77befce963e41a488d6437bb5ddcf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **PID 111481**: 已杀死（日志最后可见 `Terminated` + `EXIT_CODE=129`）\n- **PID 112299**: 存活，运行 1h00m55s\n- **GPU 显存**: GPU 0 占用 71.6GB / 97.9GB（孤儿进程的 ~22GB 尚未完全释放或被当前进程回收），GPU 1 占用 22.4GB / 97.9GB\n- **训练进度**: 当前进程正常推进，已到 129/444 步（~29%），~36s/it"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-orphan-cuda0.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58341a60df55df6abcaa",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops write full results matrix",
+  "task_key": "worker_ops_write-full-results-matrix_20260516T215835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_write-full-results-matrix_20260516T215835_result.json",
+    "occurrence": 1,
+    "bytes": 55,
+    "sha256": "e595e97f11e77688ec11b83efce07c42e179e0ad03e24f988b7b4ae9310a71e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "写入完成。146 行，内容正确。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-write-full-results-matrix.md"
+}

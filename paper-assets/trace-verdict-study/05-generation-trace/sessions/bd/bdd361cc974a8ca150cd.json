@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bdd361cc974a8ca150cd",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops fix vota seed42 v5 metrics",
+  "task_key": "worker_ops_fix_vota_seed42_v5_metrics_20260521T062912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_vota_seed42_v5_metrics_20260521T062912_result.json",
+    "occurrence": 1,
+    "bytes": 608,
+    "sha256": "9d9abb03d950ac11cf614724218eae035cbf43677fbb0a7bb8a423a65b9dace5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已存在（只是之前查询没检索到），metrics 已更新。\n\n**旧值 → 新值对比：**\n\n| 指标 | 旧值 | 新值 |\n|---|---|---|\n| pass_recall | 0.9882 (TP=841) | **0.9918** (TP=844) |\n| fail_precision | 0.9714 | **0.9798** |\n| pass_precision | — | **1.0000** |\n| fail_recall | — | **1.0000** |\n| pass_f1 | — | **0.9959** |\n| fail_f1 | — | **0.9898** |\n| accuracy | 0.9941 | 0.9941 (不变) |\n\n**Confusion matrix：** TP=844, FP=0, TN=339, FN=7, N=1190。FP=0 说明模型判 pass 时从不误判，所有 7 个错误都是把 pass 误判为 fail。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-vota-seed42-v5-metrics.md"
+}

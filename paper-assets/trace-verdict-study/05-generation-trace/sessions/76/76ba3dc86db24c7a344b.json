@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76ba3dc86db24c7a344b",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_14.md",
+  "task_key": "loop_14",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14.md",
+    "occurrence": 1,
+    "bytes": 4752,
+    "sha256": "dcf94d79536b0cc5dc56c77993f266d4af8a0058d7bd4028fa9d11b48d46d9cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: max_wall_time\nupdated: '2026-05-17T20:28:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-11235 cuda:0 + cuda:1，不得使用其他卡\n- DeepSeek 模型路径极长：`/root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct`，不要猜短路径\n- tail-truncation 数据可能在两个位置：`/root/trace-verdict-study/data/` 或 `/root/autodl-tmp/trace-verdict-study-data/`，Worker 生成时位置不一致，提交前必须 ls 确认\n- DeepSeek head-2048 训练是 nohup 后台（非 tmux），训练完不会自动跑 eval，需要手动触发\n- registry 状态机 PREPARING→DONE 必须逐级推进（PREPARING→PENDING→QUEUED→ALLOCATED→RUNNING→DONE），eval-only 实验也不能跳步\n- zero-shot eval 脚本 `/root/trace-verdict-study/eval/zeroshot_eval.py` 和 few-shot 脚本 `fewshot_eval.py` 已部署在远程，复用即可\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-11235，工作目录 `/root/trace-verdict-study/`\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 模型路径：\n  - Qwen-7B: `/root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct`\n  - Qwen-1.5B: `/root/trace-verdict-study/models/Qwen2.5-Coder-1.5B-Instruct`\n  - DeepSeek-6.7B: `/root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct`\n  - CodeLlama-13B: `/root/autodl-tmp/models/CodeLlama-13b-Instruct-hf/`\n- Checkpoints: `/root/autodl-tmp/trace-verdict-study-checkpoints/{exp_id}/`\n- W&B project: `trace-verdict-study`\n- 磁盘：root 80% (6.2G free), autodl-tmp 84% (42G free)\n- 活跃进程：\n  - cuda:0: DeepSeek head-2048 训练（PID 371041/371047, nohup, ~444 steps 接近完成）\n  - cuda:1: Qwen-1.5B tail-256 训练（刚提交，worker `worker_code_qwen15b_tail256_20260517T202656` 可能还在跑或已回调）\n\n### 3. 📊 当前状态\n**刚做完**：本 session 完成了大量 baseline 实验：\n- 3 模型 zero-shot (Qwen-7B 89.08%, DeepSeek 90.59%, CodeLlama-13B 51.01%)\n- Qwen-7B 3-shot (90.84%)\n- Qwen-1.5B zero-shot (93.45%)\n- CodeLlama-13B SFT 两个条件（exception_only 99.83%, vota 98.57%）\n- tail-2048 跨模型（DeepSeek 94.96%, Qwen-1.5B 97.90%）\n- head-2048 跨模型（Qwen-1.5B 75.29%）\n- Qwen-7B tail-256 (78.9%, negative)\n\n**RUNNING in registry**：\n- `deepseek_full_trace_head2048_seed42` — 训练 ~95% 完成，status=ALLOCATED（我推进到 ALLOCATED 后没来得及推 RUNNING，需先确认训练完成+跑 eval）\n- `qwen15b_full_trace_tail256_seed42` — 刚提交，status=PREPARING（Worker 可能已提交训练）\n\n**等待中**：\n- Worker `worker_code_qwen15b_tail256_20260517T202656` 回调\n- DeepSeek head-2048 训练完成后需手动跑 eval\n\n### 4. 📋 待办\n- `worker_code_qwen15b_tail256` 回调 → 确认训练已提交，等 cron 回调\n- DeepSeek head-2048 完成（检查进程/日志）→ 手动触发 eval → 收割结果 → update_registry → 汇报 Director 完整 head vs tail 跨模型表\n- Qwen-1.5B tail-256 完成 → 收割 → 与 7B tail-256 (78.9%) 对比，验证 phase transition cross-scale 一致性\n- 两卡都空闲时 → 汇报 Director 完整 budget curve + 跨模型矩阵，请求下一步指示\n- Director 要求写论文 → 将所有 baseline（zero-shot/few-shot/regex/SFT）+ budget curve + 跨模型矩阵写入 paper\n\n### 5. 🎯 战略上下文\n**项目核心**：Exception events 是 test verdict prediction 的 minimal sufficient signal，跨 4 模型 3 架构 1.5B-13B 达到 ≥99.33%。\n\n**三个 Core Claims**：\n1. Exception sufficiency（exception_only 99.33-99.83%）— 充分验证\n2. Signal positional concentration（tail >> head）— 跨模型验证中，DeepSeek head-2048 是最后缺失的数据点\n3. SFT necessity（zero-shot 51-93% → SFT 99%+）— 已有完整 3 模型 zero-shot + few-shot 数据\n\n**Budget curve 关键发现**：256→512 存在 14.7pp phase transition，exception traceback 需要 ~500 tokens 才能完整捕获。tail-256 (78.9%) ≈ head-2048 (81.76%)，说明 256 tokens 不论从哪端截都不够。\n\n**易错点**：\n- Qwen-1.5B zero-shot (93.45%) 高于 7B (89.08%)，不要套 \"bigger=better\" 直觉。论文 framing 已从 \"scale normalization\" 调整为 \"architecture normalization\"\n- tail-1024 之前是 negative（低于 tail-512），存在 non-monotonicity，论文已解释为 \"中等长度 trace 积极有害\"\n- DeepSeek 有 format collapse 倾向（seed123 教训），DeepSeek 实验结果比其他模型更不稳定\n- registry 中有 ~13 个 killed 的旧实验（no_trace_seed42, vota_seed42 等 v1/v2/v3），这些是历史残留已被替代，不要尝试恢复\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14.md"
+}

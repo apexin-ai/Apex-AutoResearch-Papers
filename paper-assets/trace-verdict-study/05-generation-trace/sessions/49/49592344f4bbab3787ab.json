@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49592344f4bbab3787ab",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis deduplicated bootstrap",
+  "task_key": "worker_analysis_deduplicated_bootstrap_20260522T070032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deduplicated_bootstrap_20260522T070032_result.json",
+    "occurrence": 1,
+    "bytes": 1996,
+    "sha256": "7c94980da9243df2567c25f730e25b820f0001bd6882e64868d28b5149935923"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All confirmed. Here are the results:\n\n---\n\n## MF-4 Results\n\n### 1. Unique Problems\n**119 unique problems** (all HumanEval), each appearing exactly **10 times** (10 code variants per problem). This is far more extreme than the assumed \"49% duplicates / 607 unique\" — the effective sample size is 119, not 1190.\n\n### 2. CI Width Changes\n\n| Method | Mean Width | Max Width | Mean Ratio vs Original |\n|--------|-----------|-----------|----------------------|\n| Original (n=1190) | 0.0292 | 0.0538 | 1.00x |\n| Deduplicated (n=119) | 0.0881 | 0.1681 | **2.47x** |\n| Clustered (119 problems) | 0.0731 | 0.1479 | **2.24x** |\n\nCI widths roughly **double** under proper clustered bootstrap. The original CIs were systematically too narrow.\n\n### 3. Pairwise Significance (Clustered Bootstrap)\n**14/19 comparisons remain significant.** All 9 comparisons with ≥14pp difference remain significant.\n\n**5 comparisons that lost significance** (all small-effect or cross-model):\n- exception_only vs ae_only (Δ=0.08pp) — near-ceiling, trivially n.s.\n- label_only vs full_trace (Δ=4.45pp) — **borderline, most notable loss**\n- Qwen-7B vs DeepSeek exception_only (Δ=0.5pp)\n- Qwen-7B vs DeepSeek no_trace (Δ=1.8pp)\n- Qwen-7B vs CodeLlama no_trace (Δ=1.3pp)\n\n### 4. Data Quality\n- 25/27 conditions used real prediction files\n- 2 simulated (DeepSeek-6.7B/vota had garbled predictions; Qwen-7B/vota accuracy mismatch)\n\n### Output Files\n```\n/root/autodl-tmp/trace-verdict-study-checkpoints/deduplicated_bootstrap/\n├── deduplicated_bootstrap_results.json  (17.7KB)\n├── ci_comparison_table.csv              (3.1KB)\n└── pairwise_significance.json           (4.0KB)\n```\n\n**Bottom line:** The core findings (exception > no_trace, ae > loop, all ~20-30pp gaps) are robust to deduplication. Only small cross-model differences (<5pp) lose significance. The paper should report clustered CIs (2.24x wider on average) and note effective n=119."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deduplicated-bootstrap.md"
+}

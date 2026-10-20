@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "863fa1e7d0795a1a984c",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "sync reverse intro",
+  "task_key": "worker_sync_reverse-intro_20260524T193934",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_reverse-intro_20260524T193934_result.json",
+    "occurrence": 1,
+    "bytes": 287,
+    "sha256": "bc0a3c40f4330046e637a339c83fac996dbf38b4eae22e37637ab69350cace3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成，MD5 一致。\n\n| | 远程 | 本地 |\n|---|---|---|\n| MD5 | `678439865f02f55172b743a4c86fd70c` | `678439865f02f55172b743a4c86fd70c` |\n| 字节数 | 4870 | 4870 |\n\n主要变更：figure 环境从文末移至第一段之后（与远程版本对齐）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-reverse-intro.md"
+}

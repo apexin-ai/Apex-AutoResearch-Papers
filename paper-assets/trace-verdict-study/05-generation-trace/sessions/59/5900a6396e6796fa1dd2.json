@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5900a6396e6796fa1dd2",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_12_1778958515.md",
+  "task_key": "loop_12_1778958515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778958515.md",
+    "occurrence": 1,
+    "bytes": 3611,
+    "sha256": "a067f8661a14b32b237d7d433d7f0a311b3702983a53bd531d2fdf66de7a9b32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T18:28:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-11235:cuda:0 和 westd-11235:cuda:1，白名单外必须 push back Director\n- W&B entity 未配置，fetch_wandb_metrics 会失败——必须 SSH 读 eval_results.json 获取指标\n- qwen15b_* 和 qwen1.5b_* 是不同前缀的实验条目，qwen1.5b_* 带 conclusion=killed 是旧条目，qwen15b_* 是实际完成的\n- 论文 DDL: ARR May 25 = 2026-05-24，剩 8 天\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-11235，account: root，工作目录 /root/trace-verdict-study\n- Python：/root/miniconda3/bin/python（conda base，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型路径：/root/autodl-tmp/models/Qwen2.5-Coder-1.5B-Instruct\n- Checkpoint 目录：/root/autodl-tmp/trace-verdict-study-checkpoints/\n- HF_HOME：/root/autodl-tmp/.hf_cache\n- Code commit: e404237ccc765768e267d4d6fd3c89549dcf41a4\n- 活跃进程：codellama13b_exception_only_seed42 (PID 271776, cuda:0, cron 监控中) + codellama13b_vota_seed42 (cuda:1, cron 监控中)\n\n### 3. 📊 当前状态\nSession #12 刚完成初始化：read_registry + reconcile_crons + 向 Director 汇报。\n- **RUNNING**: codellama13b_exception_only_seed42 (cuda:0) + codellama13b_vota_seed42 (cuda:1)\n- **Worker 池 2 个运行中**:\n  - `worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T142527` — 分析 1.5B vs 7B exception_only 错误样本重叠（零 GPU cost）\n  - `worker_analysis_cross_scale_summary_20260516T142615` — 编制跨模型/跨规模实验结果汇总表\n- **两个 Worker 尚未回调**\n- Qwen-1.5B grid 4/4 完成，loop_only 3-seed 完成，codellama13b_no_trace 完成\n- 已更新 loop_only_seed123/456 registry notes（seed robustness: 86.05% ± 0.43）\n\n### 4. 📋 待办（条件触发式）\n- Worker prediction_overlap 回调 → 读产出 → 更新 memory.md（irreducible ceiling 结论）→ 汇报 Director\n- Worker cross_scale_summary 回调 → 读产出 → 作为论文 Table 1 数据源存 artifacts\n- codellama13b_exception_only_seed42 cron 回调 → SSH 读 eval_results.json → update_registry(DONE) → 若 success 则 cuda:0 提交下一个（优先 codellama13b 剩余 or format marker removal）\n- codellama13b_vota_seed42 cron 回调 → 同上流程 → cuda:1 提交下一个\n- CodeLlama-13B 3 条件全完成 → 派 Worker patch 论文 Table 1 + cross-scale analysis section\n- 所有新实验完成 → 提交 Review Director Round 6\n\n### 5. 🎯 战略上下文\n- **核心结论**：Exception events 是 verdict prediction 最有效的 trace component。Qwen-7B exception_only 99.83% ± 0.00 (3 seeds)，1.5B 也是 99.83%（scale-invariant）。ae_only 99.64% ± 0.48 统计等价。Signal-rich conditions scale-invariant，signal-poor conditions scale-sensitive\n- **CodeLlama-13B 是当前最高优先级**：exception_only 结果决定 \"cross-family generalization\" claim 强度。no_trace baseline 76.5% 已确认 scale monotonic。如果 exception_only ≥99%，三家族 claim 成立\n- **易踩坑**：\n  - DeepSeek VOTA 84.45% 只在 max_length=2048 下成立，max_length=16384 会因 evaluate.py front-truncation 降到 16%——不要用 16384 重跑 eval\n  - DeepSeek exception_only seed123 是 91.09% 离群值（seed42/456 均 99.33%），论文中报 2/3 seeds robust\n  - QUEUED 中 codellama_* (7B) 和 qwen1.5b_* 条目是旧的 killed 实验，不要重复提交；实际 CodeLlama 实验用 codellama13b_* 前缀\n  - report.md 是 auto-generated，不能直接 save_project_file 写入\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778958515.md"
+}

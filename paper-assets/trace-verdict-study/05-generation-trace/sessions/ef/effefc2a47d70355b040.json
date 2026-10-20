@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "effefc2a47d70355b040",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis exception type breakdown",
+  "task_key": "worker_analysis_exception_type_breakdown_20260517T004655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exception_type_breakdown_20260517T004655_result.json",
+    "occurrence": 1,
+    "bytes": 594,
+    "sha256": "99008c05129585a095c5451417ba13d662b4d7a5d276d977eaaf5e661b021882"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。报告已写入 `/root/trace-verdict-study/docs/paper/exception_type_breakdown.md`。\n\n核心发现：\n- **Exception-only 模型在 1190 个样本中仅有 2 个错误**（99.83% accuracy），且 3 个 seed 结果完全一致\n- **唯一失败模式**：HumanEval/95 的 2 个 `pass_with_GeneratorExit` 样本（benign exception 被误判为 fail）\n- 所有真实 exception types（AssertionError 188, TypeError 53, NameError 21, AttributeError 5, StopIteration 2）和 no_trace_fail（70）均 100% 正确\n- HumanEval vs MBPP 差异完全由 GeneratorExit 造成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exception-type-breakdown.md"
+}

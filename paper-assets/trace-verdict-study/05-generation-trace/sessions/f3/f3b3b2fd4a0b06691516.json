@@ -1,0 +1,1196 @@
+{
+  "schema_version": "1.0",
+  "id": "f3b3b2fd4a0b06691516",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "analyze qwen15b ae only seed42",
+  "task_key": "worker_analyze_qwen15b_ae_only_seed42_20260520T075010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_qwen15b_ae_only_seed42_20260520T075010.log",
+    "occurrence": 1,
+    "bytes": 62771,
+    "sha256": "26b2aea07f4d904dbdb24c848bcc8d22c82d63d7a623fc7b4079f4a63ea9c428"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 9,
+      "tool_result": 9,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+                "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "c271e730-17b5-4217-bfe8-a69d903cafc8",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779280200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "764a1d71-175c-474e-aded-dc538106878c",
+                "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to:\n1. Clean up residual GPU memory on cuda:0\n2. Analyze the qwen15b_ae_only_seed42 experiment results\n3. Update the registry\n4. Summarize findings\n\nLet me start by doing the GPU cleanup and reading experiment results in parallel.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3",
+            "uuid": "0c9e0e14-70e9-48c7-9c91-d07452253d73",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LFVVs1kmXsmVUZfPw3kzKT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12213,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12213
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me start by cleaning up cuda:0 and reading the experiment results in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3",
+            "uuid": "075eea51-d678-4413-8138-6c6ee225fd4e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LFVVs1kmXsmVUZfPw3kzKT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12213,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12213
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Lstrf9kUP6DTbnYjAfuRLz",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+                "max_results": 4
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3",
+            "uuid": "1f632c8e-41bc-4d57-ab5a-243e02ea2cc9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LFVVs1kmXsmVUZfPw3kzKT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12213,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12213
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T07:50:25.331Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Lstrf9kUP6DTbnYjAfuRLz",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3",
+            "uuid": "49a53054-673b-4d58-a11a-6fbb3e6e4821",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__update_registry",
+                "mcp__agent-ml-research__read_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me execute the tasks in parallel:\n1. Find and kill residual processes on cuda:0\n2. Read eval results\n3. Read training log",
+              "signature": "Er0CClkIDRgCKkAfXhdFDTNEXW+tbk0EMA3Ply6bxORlcdT0nM5RhH6Cac09+XITHvG0iWWdQ65JsNFGMeVHLWS9CfewR7/7vWCmMg9jbGF1ZGUtb3B1cy00LTY4ABIMqMAMQ79u95NEy6CPGgw07dZp2BFGmUPFdU0iMJPv5XJhx01dWjiBrQxxsOQznEVWe07LzDaZ3WJcGvoM4u/BZN2Raw2bO9AoKGmxMyqRAfNmlKw9F0fzhL3dwervtRLDVgvmI/WwUHrhSywgzL9GbtXERKmML0nTLnpPgmm1Uyeqyv0YUUsgg0rXfD5Woeff4LGcR8whQx9p8kazTDS+WTeY+OTqX/2hzBUQAlJ5/YyGCDKQlsFTz6fLWgQqEkNRobne0dp9g11fBwZVToPRlJzqov4aFUOvp8dvjik7WX4YAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3",
+            "uuid": "ae295093-d0af-4bde-977d-8262666f4444",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0135v6vitdB55r8rrhBW36ut",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1611,
+                "cache_read_input_tokens": 24054,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1611
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TXv6LdYJ2JeuDuo1sYct9U",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader -i 0",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3",
+            "uuid": "cfd01f59-4e39-4517-92de-66175ae5b3a1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0135v6vitdB55r8rrhBW36ut",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1611,
+                "cache_read_input_tokens": 24054,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1611
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011Tw8R7jpu95sgrDsn2nFG3",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "cat /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_ae_only_seed42/final/eval_results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3",
+            "uuid": "b4175abe-031b-4b96-8cfc-7b06b8735b87",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0135v6vitdB55r8rrhBW36ut",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1611,
+                "cache_read_input_tokens": 24054,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1611
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LGCQCRUR2XCoidYH8AKjvs",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "tail -20 /root/runs/trace-verdict-study/qwen15b_ae_only_seed42.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3",
+            "uuid": "243df06e-ae40-410c-8d72-bebec41c5f6d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0135v6vitdB55r8rrhBW36ut",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1611,
+                "cache_read_input_tokens": 24054,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1611
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T07:50:31.841Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TXv6LdYJ2JeuDuo1sYct9U",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3",
+            "uuid": "b0a049fb-c391-496e-85b4-961fd97cbac0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.31}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.31}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T07:50:32.360Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011Tw8R7jpu95sgrDsn2nFG3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"ae_only\\\\\\\",\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_ae_only_seed42/final\\\\\\\",\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.9907563025210084,\\\\n    \\\\\\\"majority_baseline\\\\\\\": 0.7151260504201681,\\\\n    \\\\\\\"lift\\\\\\\": 0.27563025210084036,\\\\n    \\\\\\\"majority_class\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n    \\\\\\\"n\\\\\\\": 1190,\\\\n    \\\\\\\"pass_precision\\\\\\\": 1.0,\\\\n    \\\\\\\"pass_recall\\\\\\\": 0.9870740305522914,\\\\n    \\\\\\\"pass_f1\\\\\\\": 0.9934949733885274,\\\\n    \\\\\\\"fail_precision\\\\\\\": 0.9685714285714285,\\\\n    \\\\\\\"fail_recall\\\\\\\": 1.0,\\\\n    \\\\\\\"fail_f1\\\\\\\": 0.9840348330914369\\\\n  },\\\\n  \\\\\\\"confidence_intervals\\\\\\\": {\\\\n    \\\\\\\"accuracy_ci_lower\\\\\\\": 0.984873949579832,\\\\n    \\\\\\\"accuracy_ci_upper\\\\\\\": 0.9957983193277311,\\\\n    \\\\\\\"majority_baseline_ci_lower\\\\\\\": 0.6915966386554622,\\\\n    \\\\\\\"majority_baseline_ci_upper\\\\\\\": 0.738655462184874,\\\\n    \\\\\\\"lift_ci_lower\\\\\\\": 0.25126050420168067,\\\\n    \\\\\\\"lift_ci_upper\\\\\\\": 0.3016806722689075,\\\\n    \\\\\\\"pass_precision_ci_lower\\\\\\\": 1.0,\\\\n    \\\\\\\"pass_precision_ci_upper\\\\\\\": 1.0,\\\\n    \\\\\\\"pass_recall_ci_lower\\\\\\\": 0.9787453692927673,\\\\n    \\\\\\\"pass_recall_ci_upper\\\\\\\": 0.9941108917065059,\\\\n    \\\\\\\"pass_f1_ci_lower\\\\\\\": 0.989258531574921,\\\\n    \\\\\\\"pass_f1_ci_upper\\\\\\\": 0.9970467498479771,\\\\n    \\\\\\\"fail_precision_ci_lower\\\\\\\": 0.9476740181946314,\\\\n    \\\\\\\"fail_precision_ci_upper\\\\\\\": 0.9858356940509915,\\\\n    \\\\\\\"fail_recall_ci_lower\\\\\\\": 1.0,\\\\n    \\\\\\\"fail_recall_ci_upper\\\\\\\": 1.0,\\\\n    \\\\\\\"fail_f1_ci_lower\\\\\\\": 0.9731341172496781,\\\\n    \\\\\\\"fail_f1_ci_upper\\\\\\\": 0.992867332382311\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3",
+            "uuid": "63d84e48-bc9f-483d-bc79-f10539599bdd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"ae_only\\\\\\\",\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_ae_only_seed42/final\\\\\\\",\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.9907563025210084,\\\\n    \\\\\\\"majority_baseline\\\\\\\": 0.7151260504201681,\\\\n    \\\\\\\"lift\\\\\\\": 0.27563025210084036,\\\\n    \\\\\\\"majority_class\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n    \\\\\\\"n\\\\\\\": 1190,\\\\n    \\\\\\\"pass_precision\\\\\\\": 1.0,\\\\n    \\\\\\\"pass_recall\\\\\\\": 0.9870740305522914,\\\\n    \\\\\\\"pass_f1\\\\\\\": 0.9934949733885274,\\\\n    \\\\\\\"fail_precision\\\\\\\": 0.9685714285714285,\\\\n    \\\\\\\"fail_recall\\\\\\\": 1.0,\\\\n    \\\\\\\"fail_f1\\\\\\\": 0.9840348330914369\\\\n  },\\\\n  \\\\\\\"confidence_intervals\\\\\\\": {\\\\n    \\\\\\\"accuracy_ci_lower\\\\\\\": 0.984873949579832,\\\\n    \\\\\\\"accuracy_ci_upper\\\\\\\": 0.9957983193277311,\\\\n    \\\\\\\"majority_baseline_ci_lower\\\\\\\": 0.6915966386554622,\\\\n    \\\\\\\"majority_baseline_ci_upper\\\\\\\": 0.738655462184874,\\\\n    \\\\\\\"lift_ci_lower\\\\\\\": 0.25126050420168067,\\\\n    \\\\\\\"lift_ci_upper\\\\\\\": 0.3016806722689075,\\\\n    \\\\\\\"pass_precision_ci_lower\\\\\\\": 1.0,\\\\n    \\\\\\\"pass_precision_ci_upper\\\\\\\": 1.0,\\\\n    \\\\\\\"pass_recall_ci_lower\\\\\\\": 0.9787453692927673,\\\\n    \\\\\\\"pass_recall_ci_upper\\\\\\\": 0.9941108917065059,\\\\n    \\\\\\\"pass_f1_ci_lower\\\\\\\": 0.989258531574921,\\\\n    \\\\\\\"pass_f1_ci_upper\\\\\\\": 0.9970467498479771,\\\\n    \\\\\\\"fail_precision_ci_lower\\\\\\\": 0.9476740181946314,\\\\n    \\\\\\\"fail_precision_ci_upper\\\\\\\": 0.9858356940509915,\\\\n    \\\\\\\"fail_recall_ci_lower\\\\\\\": 1.0,\\\\n    \\\\\\\"fail_recall_ci_upper\\\\\\\": 1.0,\\\\n    \\\\\\\"fail_f1_ci_lower\\\\\\\": 0.9731341172496781,\\\\n    \\\\\\\"fail_f1_ci_upper\\\\\\\": 0.992867332382311\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition\\\": \\\"ae_only\\\",\\n  \\\"checkpoint_dir\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_ae_only_seed42/final\\\",\\n  \\\"metrics\\\": {\\n    \\\"accuracy\\\": 0.9907563025210084,\\n    \\\"majority_baseline\\\": 0.7151260504201681,\\n    \\\"lift\\\": 0.27563025210084036,\\n    \\\"majority_class\\\": \\\"pass\\\",\\n    \\\"n\\\": 1190,\\n    \\\"pass_precision\\\": 1.0,\\n    \\\"pass_recall\\\": 0.9870740305522914,\\n    \\\"pass_f1\\\": 0.9934949733885274,\\n    \\\"fail_precision\\\": 0.9685714285714285,\\n    \\\"fail_recall\\\": 1.0,\\n    \\\"fail_f1\\\": 0.9840348330914369\\n  },\\n  \\\"confidence_intervals\\\": {\\n    \\\"accuracy_ci_lower\\\": 0.984873949579832,\\n    \\\"accuracy_ci_upper\\\": 0.9957983193277311,\\n    \\\"majority_baseline_ci_lower\\\": 0.6915966386554622,\\n    \\\"majority_baseline_ci_upper\\\": 0.738655462184874,\\n    \\\"lift_ci_lower\\\": 0.25126050420168067,\\n    \\\"lift_ci_upper\\\": 0.3016806722689075,\\n    \\\"pass_precision_ci_lower\\\": 1.0,\\n    \\\"pass_precision_ci_upper\\\": 1.0,\\n    \\\"pass_recall_ci_lower\\\": 0.9787453692927673,\\n    \\\"pass_recall_ci_upper\\\": 0.9941108917065059,\\n    \\\"pass_f1_ci_lower\\\": 0.989258531574921,\\n    \\\"pass_f1_ci_upper\\\": 0.9970467498479771,\\n    \\\"fail_precision_ci_lower\\\": 0.9476740181946314,\\n    \\\"fail_precision_ci_upper\\\": 0.9858356940509915,\\n    \\\"fail_recall_ci_lower\\\": 1.0,\\n    \\\"fail_recall_ci_upper\\\": 1.0,\\n    \\\"fail_f1_ci_lower\\\": 0.9731341172496781,\\n    \\\"fail_f1_ci_upper\\\": 0.992867332382311\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T07:50:32.888Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LGCQCRUR2XCoidYH8AKjvs",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  [1050/1190] running accuracy: 0.9895\\\\n  [1100/1190] running accuracy: 0.9900\\\\n  [1150/1190] running accuracy: 0.9904\\\\n\\\\nComputing metrics...\\\\n\\\\n=== Evaluation Results (condition: ae_only) ===\\\\nAccuracy:           99.1% (95% CI: [98.5%, 99.6%])\\\\nMajority baseline:  71.5% (always predict 'pass')\\\\nLift over majority: +27.6pp (95% CI: [+25.1pp, +30.2pp])\\\\n\\\\nPer-class metrics:\\\\n  pass:  P=1.00  R=0.99  F1=0.99\\\\n  fail:  P=0.97  R=1.00  F1=0.98\\\\n\\\\nBootstrap: 1000 resamples\\\\nPredictions saved to /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_ae_only_seed42/final/predictions.jsonl\\\\n\\\\nResults saved to /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_ae_only_seed42/final/eval_results.json\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3",
+            "uuid": "297e7d1f-7fbc-4706-a0c9-8d9694e22399",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  [1050/1190] running accuracy: 0.9895\\\\n  [1100/1190] running accuracy: 0.9900\\\\n  [1150/1190] running accuracy: 0.9904\\\\n\\\\nComputing metrics...\\\\n\\\\n=== Evaluation Results (condition: ae_only) ===\\\\nAccuracy:           99.1% (95% CI: [98.5%, 99.6%])\\\\nMajority baseline:  71.5% (always predict 'pass')\\\\nLift over majority: +27.6pp (95% CI: [+25.1pp, +30.2pp])\\\\n\\\\nPer-class metrics:\\\\n  pass:  P=1.00  R=0.99  F1=0.99\\\\n  fail:  P=0.97  R=1.00  F1=0.98\\\\n\\\\nBootstrap: 1000 resamples\\\\nPredictions saved to /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_ae_only_seed42/final/predictions.jsonl\\\\n\\\\nResults saved to /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_ae_only_seed42/final/eval_results.json\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  [1050/1190] running accuracy: 0.9895\\n  [1100/1190] running accuracy: 0.9900\\n  [1150/1190] running accuracy: 0.9904\\n\\nComputing metrics...\\n\\n=== Evaluation Results (condition: ae_only) ===\\nAccuracy:           99.1% (95% CI: [98.5%, 99.6%])\\nMajority baseline:  71.5% (always predict 'pass')\\nLift over majority: +27.6pp (95% CI: [+25.1pp, +30.2pp])\\n\\nPer-class metrics:\\n  pass:  P=1.00  R=0.99  F1=0.99\\n  fail:  P=0.97  R=1.00  F1=0.98\\n\\nBootstrap: 1000 resamples\\nPredictions saved to /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_ae_only_seed42/final/predictions.jsonl\\n\\nResults saved to /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_ae_only_seed42/final/eval_results.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:0 已无残留进程（nvidia-smi 返回空），无需 kill。\n\n实验结果已读取。现在更新 registry。\n\n**qwen15b_ae_only_seed42 结果：**\n- **Accuracy: 99.08%** (95% CI: [98.5%, 99.6%])\n- Majority baseline: 71.5%，Lift: +27.6pp\n- pass: P=1.00, R=0.99, F1=0.99\n- fail: P=0.97, R=1.00, F1=0.98\n- 训练正常完成，EXIT_CODE=0\n\nHypothesis 要求 ≥95% accuracy，实际达到 99.08% → **success**。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3",
+            "uuid": "d53d72b9-6c6c-4183-b91e-b936daf0fbc7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YJESKKEGMaWqobp4YdjiYv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1795,
+                "cache_read_input_tokens": 25665,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1795
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VxR1gCP4Q3dS4r6CxWfqpP",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "qwen15b_ae_only_seed42",
+                "field": "metrics",
+                "value": {
+                  "accuracy": 0.9908,
+                  "majority_baseline": 0.7151,
+                  "lift": 0.2756,
+                  "pass_precision": 1,
+                  "pass_recall": 0.987,
+                  "pass_f1": 0.9935,
+                  "fail_precision": 0.9686,
+                  "fail_recall": 1,
+                  "fail_f1": 0.984,
+                  "n": 1190,
+                  "accuracy_ci_lower": 0.9849,
+                  "accuracy_ci_upper": 0.9958
+                },
+                "project": "trace-verdict-study"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3",
+            "uuid": "194ec155-ddbb-4f07-8efb-34e9241bf6de",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YJESKKEGMaWqobp4YdjiYv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1795,
+                "cache_read_input_tokens": 25665,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1795
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T07:50:41.399Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VxR1gCP4Q3dS4r6CxWfqpP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen15b_ae_only_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T06:52:17.793Z\\\", \\\"updated_at\\\": \\\"2026-05-20T07:50:41.081Z\\\", \\\"hypothesis\\\": \\\"Qwen-1.5B ae_only 应达 ≥95% accuracy，与 Qwen-7B (99.92%) / CodeLlama-13B (99.08%) / DeepSeek (98.74%) 一致，验证 Tier 1 ae_only 在最小 scale (1.5B) 仍然有效\\\", \\\"parent\\\": \\\"qwen15b_exception_only_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"...qwen15b_ae_only_seed42...\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"598258\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/qwen15b_ae_only_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T06:52:39.041Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-1.5B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"self-trained\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_test.jsonl\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T07:46:34.828Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T07:46:39.544624+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.9908, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2756, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.987, \\\"pass_f1\\\": 0.9935, \\\"fail_precision\\\": 0.9686, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.984, \\\"n\\\": 1190, \\\"accuracy_ci_lower\\\": 0.9849, \\\"accuracy_ci_upper\\\": 0.9958}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7255}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3",
+            "uuid": "a5ac8024-470f-4953-b8cb-8bb04f1fda5d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen15b_ae_only_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T06:52:17.793Z\\\", \\\"updated_at\\\": \\\"2026-05-20T07:50:41.081Z\\\", \\\"hypothesis\\\": \\\"Qwen-1.5B ae_only 应达 ≥95% accuracy，与 Qwen-7B (99.92%) / CodeLlama-13B (99.08%) / DeepSeek (98.74%) 一致，验证 Tier 1 ae_only 在最小 scale (1.5B) 仍然有效\\\", \\\"parent\\\": \\\"qwen15b_exception_only_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"...qwen15b_ae_only_seed42...\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"598258\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/qwen15b_ae_only_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T06:52:39.041Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-1.5B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"self-trained\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_test.jsonl\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T07:46:34.828Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T07:46:39.544624+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.9908, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2756, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.987, \\\"pass_f1\\\": 0.9935, \\\"fail_precision\\\": 0.9686, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.984, \\\"n\\\": 1190, \\\"accuracy_ci_lower\\\": 0.9849, \\\"accuracy_ci_upper\\\": 0.9958}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7255}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"qwen15b_ae_only_seed42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T06:52:17.793Z\", \"updated_at\": \"2026-05-20T07:50:41.081Z\", \"hypothesis\": \"Qwen-1.5B ae_only 应达 ≥95% accuracy，与 Qwen-7B (99.92%) / CodeLlama-13B (99.08%) / DeepSeek (98.74%) 一致，验证 Tier 1 ae_only 在最小 scale (1.5B) 仍然有效\", \"parent\": \"qwen15b_exception_only_seed42\", \"spec\": {\"command\": \"bash -c \\\"...qwen15b_ae_only_seed42...\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"598258\", \"log_path\": \"~/runs/trace-verdict-study/qwen15b_ae_only_seed42.log\", \"submitted_at\": \"2026-05-20T06:52:39.041Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-1.5B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"self-trained\", \"eval_data\": \"/root/autodl-tmp/trace-verdict-study-data/ae_only_test.jsonl\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T07:46:34.828Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T07:46:39.544624+00:00\"}]}, \"metrics\": {\"accuracy\": 0.9908, \"majority_baseline\": 0.7151, \"lift\": 0.2756, \"pass_precision\": 1, \"pass_recall\": 0.987, \"pass_f1\": 0.9935, \"fail_precision\": 0.9686, \"fail_recall\": 1, \"fail_f1\": 0.984, \"n\": 1190, \"accuracy_ci_lower\": 0.9849, \"accuracy_ci_upper\": 0.9958}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7255}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013dpiF29ps4fJQPgc1apPNT",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "qwen15b_ae_only_seed42",
+                "field": "checkpoint_path",
+                "value": "/root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_ae_only_seed42/final/",
+                "project": "trace-verdict-study"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3",
+            "uuid": "a4c53adc-64c4-4fa4-b4ed-22d3c6f1f381",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P8jvwar5tmHNoS8CV2gDSL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1203,
+                "cache_read_input_tokens": 27460,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1203
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011YFm9aH9YX4euYHgpkRtES",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "qwen15b_ae_only_seed42",
+                "field": "log_path",
+                "value": "~/runs/trace-verdict-study/qwen15b_ae_only_seed42.log",
+                "project": "trace-verdict-study"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3",
+            "uuid": "877cf4ee-98c4-4ad3-9d4f-ff8fcd1e7423",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P8jvwar5tmHNoS8CV2gDSL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1203,
+                "cache_read_input_tokens": 27460,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1203
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T07:50:46.012Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013dpiF29ps4fJQPgc1apPNT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen15b_ae_only_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T06:52:17.793Z\\\", \\\"updated_at\\\": \\\"2026-05-20T07:50:45.660Z\\\", \\\"hypothesis\\\": \\\"Qwen-1.5B ae_only 应达 ≥95% accuracy，与 Qwen-7B (99.92%) / CodeLlama-13B (99.08%) / DeepSeek (98.74%) 一致，验证 Tier 1 ae_only 在最小 scale (1.5B) 仍然有效\\\", \\\"parent\\\": \\\"qwen15b_exception_only_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"...qwen15b_ae_only_seed42...\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"598258\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/qwen15b_ae_only_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T06:52:39.041Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-1.5B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"self-trained\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_test.jsonl\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T07:46:34.828Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T07:46:39.544624+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.9908, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2756, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.987, \\\"pass_f1\\\": 0.9935, \\\"fail_precision\\\": 0.9686, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.984, \\\"n\\\": 1190, \\\"accuracy_ci_lower\\\": 0.9849, \\\"accuracy_ci_upper\\\": 0.9958}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_ae_only_seed42/final/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8785}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3",
+            "uuid": "d14d4387-18e4-4c61-8146-75450eb75d22",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen15b_ae_only_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T06:52:17.793Z\\\", \\\"updated_at\\\": \\\"2026-05-20T07:50:45.660Z\\\", \\\"hypothesis\\\": \\\"Qwen-1.5B ae_only 应达 ≥95% accuracy，与 Qwen-7B (99.92%) / CodeLlama-13B (99.08%) / DeepSeek (98.74%) 一致，验证 Tier 1 ae_only 在最小 scale (1.5B) 仍然有效\\\", \\\"parent\\\": \\\"qwen15b_exception_only_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"...qwen15b_ae_only_seed42...\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"598258\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/qwen15b_ae_only_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T06:52:39.041Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-1.5B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"self-trained\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_test.jsonl\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T07:46:34.828Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T07:46:39.544624+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.9908, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2756, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.987, \\\"pass_f1\\\": 0.9935, \\\"fail_precision\\\": 0.9686, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.984, \\\"n\\\": 1190, \\\"accuracy_ci_lower\\\": 0.9849, \\\"accuracy_ci_upper\\\": 0.9958}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_ae_only_seed42/final/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8785}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"qwen15b_ae_only_seed42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T06:52:17.793Z\", \"updated_at\": \"2026-05-20T07:50:45.660Z\", \"hypothesis\": \"Qwen-1.5B ae_only 应达 ≥95% accuracy，与 Qwen-7B (99.92%) / CodeLlama-13B (99.08%) / DeepSeek (98.74%) 一致，验证 Tier 1 ae_only 在最小 scale (1.5B) 仍然有效\", \"parent\": \"qwen15b_exception_only_seed42\", \"spec\": {\"command\": \"bash -c \\\"...qwen15b_ae_only_seed42...\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"598258\", \"log_path\": \"~/runs/trace-verdict-study/qwen15b_ae_only_seed42.log\", \"submitted_at\": \"2026-05-20T06:52:39.041Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-1.5B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"self-trained\", \"eval_data\": \"/root/autodl-tmp/trace-verdict-study-data/ae_only_test.jsonl\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T07:46:34.828Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T07:46:39.544624+00:00\"}]}, \"metrics\": {\"accuracy\": 0.9908, \"majority_baseline\": 0.7151, \"lift\": 0.2756, \"pass_precision\": 1, \"pass_recall\": 0.987, \"pass_f1\": 0.9935, \"fail_precision\": 0.9686, \"fail_recall\": 1, \"fail_f1\": 0.984, \"n\": 1190, \"accuracy_ci_lower\": 0.9849, \"accuracy_ci_upper\": 0.9958}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_ae_only_seed42/final/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8785}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T07:50:46.855Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011YFm9aH9YX4euYHgpkRtES",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen15b_ae_only_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T06:52:17.793Z\\\", \\\"updated_at\\\": \\\"2026-05-20T07:50:46.488Z\\\", \\\"hypothesis\\\": \\\"Qwen-1.5B ae_only 应达 ≥95% accuracy，与 Qwen-7B (99.92%) / CodeLlama-13B (99.08%) / DeepSeek (98.74%) 一致，验证 Tier 1 ae_only 在最小 scale (1.5B) 仍然有效\\\", \\\"parent\\\": \\\"qwen15b_exception_only_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"...qwen15b_ae_only_seed42...\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"598258\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/qwen15b_ae_only_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T06:52:39.041Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-1.5B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"self-trained\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_test.jsonl\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T07:46:34.828Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T07:46:39.544624+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.9908, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2756, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.987, \\\"pass_f1\\\": 0.9935, \\\"fail_precision\\\": 0.9686, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.984, \\\"n\\\": 1190, \\\"accuracy_ci_lower\\\": 0.9849, \\\"accuracy_ci_upper\\\": 0.9958}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_ae_only_seed42/final/\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/qwen15b_ae_only_seed42.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8292}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3",
+            "uuid": "d7370f81-3916-49ec-87f5-5c27e16193e8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen15b_ae_only_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T06:52:17.793Z\\\", \\\"updated_at\\\": \\\"2026-05-20T07:50:46.488Z\\\", \\\"hypothesis\\\": \\\"Qwen-1.5B ae_only 应达 ≥95% accuracy，与 Qwen-7B (99.92%) / CodeLlama-13B (99.08%) / DeepSeek (98.74%) 一致，验证 Tier 1 ae_only 在最小 scale (1.5B) 仍然有效\\\", \\\"parent\\\": \\\"qwen15b_exception_only_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"...qwen15b_ae_only_seed42...\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"598258\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/qwen15b_ae_only_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T06:52:39.041Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-1.5B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"self-trained\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_test.jsonl\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T07:46:34.828Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T07:46:39.544624+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.9908, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2756, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.987, \\\"pass_f1\\\": 0.9935, \\\"fail_precision\\\": 0.9686, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.984, \\\"n\\\": 1190, \\\"accuracy_ci_lower\\\": 0.9849, \\\"accuracy_ci_upper\\\": 0.9958}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_ae_only_seed42/final/\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/qwen15b_ae_only_seed42.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8292}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"qwen15b_ae_only_seed42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T06:52:17.793Z\", \"updated_at\": \"2026-05-20T07:50:46.488Z\", \"hypothesis\": \"Qwen-1.5B ae_only 应达 ≥95% accuracy，与 Qwen-7B (99.92%) / CodeLlama-13B (99.08%) / DeepSeek (98.74%) 一致，验证 Tier 1 ae_only 在最小 scale (1.5B) 仍然有效\", \"parent\": \"qwen15b_exception_only_seed42\", \"spec\": {\"command\": \"bash -c \\\"...qwen15b_ae_only_seed42...\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"598258\", \"log_path\": \"~/runs/trace-verdict-study/qwen15b_ae_only_seed42.log\", \"submitted_at\": \"2026-05-20T06:52:39.041Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-1.5B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"self-trained\", \"eval_data\": \"/root/autodl-tmp/trace-verdict-study-data/ae_only_test.jsonl\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T07:46:34.828Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T07:46:39.544624+00:00\"}]}, \"metrics\": {\"accuracy\": 0.9908, \"majority_baseline\": 0.7151, \"lift\": 0.2756, \"pass_precision\": 1, \"pass_recall\": 0.987, \"pass_f1\": 0.9935, \"fail_precision\": 0.9686, \"fail_recall\": 1, \"fail_f1\": 0.984, \"n\": 1190, \"accuracy_ci_lower\": 0.9849, \"accuracy_ci_upper\": 0.9958}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_ae_only_seed42/final/\", \"log_path\": \"~/runs/trace-verdict-study/qwen15b_ae_only_seed42.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8292}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XMnRU7QwU8FBSkUjP14gSx",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "qwen15b_ae_only_seed42",
+                "field": "conclusion",
+                "value": "success",
+                "project": "trace-verdict-study"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3",
+            "uuid": "9058fcfb-8bfb-48f6-a3d8-285b287c82cb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WzVmjEw4N4EYRrbgtMgLS4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1982,
+                "cache_read_input_tokens": 28663,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1982
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T07:50:55.029Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XMnRU7QwU8FBSkUjP14gSx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen15b_ae_only_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T06:52:17.793Z\\\", \\\"updated_at\\\": \\\"2026-05-20T07:50:54.125Z\\\", \\\"hypothesis\\\": \\\"Qwen-1.5B ae_only 应达 ≥95% accuracy，与 Qwen-7B (99.92%) / CodeLlama-13B (99.08%) / DeepSeek (98.74%) 一致，验证 Tier 1 ae_only 在最小 scale (1.5B) 仍然有效\\\", \\\"parent\\\": \\\"qwen15b_exception_only_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"...qwen15b_ae_only_seed42...\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"598258\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/qwen15b_ae_only_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T06:52:39.041Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-1.5B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"self-trained\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_test.jsonl\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T07:46:34.828Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T07:46:39.544624+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.9908, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2756, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.987, \\\"pass_f1\\\": 0.9935, \\\"fail_precision\\\": 0.9686, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.984, \\\"n\\\": 1190, \\\"accuracy_ci_lower\\\": 0.9849, \\\"accuracy_ci_upper\\\": 0.9958}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_ae_only_seed42/final/\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/qwen15b_ae_only_seed42.log\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8819}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3",
+            "uuid": "78f0c94d-7a13-41a9-84c9-3844fa9e5dbb",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen15b_ae_only_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T06:52:17.793Z\\\", \\\"updated_at\\\": \\\"2026-05-20T07:50:54.125Z\\\", \\\"hypothesis\\\": \\\"Qwen-1.5B ae_only 应达 ≥95% accuracy，与 Qwen-7B (99.92%) / CodeLlama-13B (99.08%) / DeepSeek (98.74%) 一致，验证 Tier 1 ae_only 在最小 scale (1.5B) 仍然有效\\\", \\\"parent\\\": \\\"qwen15b_exception_only_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"...qwen15b_ae_only_seed42...\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"598258\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/qwen15b_ae_only_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T06:52:39.041Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-1.5B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"self-trained\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_test.jsonl\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T07:46:34.828Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T07:46:39.544624+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.9908, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2756, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.987, \\\"pass_f1\\\": 0.9935, \\\"fail_precision\\\": 0.9686, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.984, \\\"n\\\": 1190, \\\"accuracy_ci_lower\\\": 0.9849, \\\"accuracy_ci_upper\\\": 0.9958}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_ae_only_seed42/final/\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/qwen15b_ae_only_seed42.log\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8819}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"qwen15b_ae_only_seed42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T06:52:17.793Z\", \"updated_at\": \"2026-05-20T07:50:54.125Z\", \"hypothesis\": \"Qwen-1.5B ae_only 应达 ≥95% accuracy，与 Qwen-7B (99.92%) / CodeLlama-13B (99.08%) / DeepSeek (98.74%) 一致，验证 Tier 1 ae_only 在最小 scale (1.5B) 仍然有效\", \"parent\": \"qwen15b_exception_only_seed42\", \"spec\": {\"command\": \"bash -c \\\"...qwen15b_ae_only_seed42...\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"598258\", \"log_path\": \"~/runs/trace-verdict-study/qwen15b_ae_only_seed42.log\", \"submitted_at\": \"2026-05-20T06:52:39.041Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-1.5B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"self-trained\", \"eval_data\": \"/root/autodl-tmp/trace-verdict-study-data/ae_only_test.jsonl\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T07:46:34.828Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T07:46:39.544624+00:00\"}]}, \"metrics\": {\"accuracy\": 0.9908, \"majority_baseline\": 0.7151, \"lift\": 0.2756, \"pass_precision\": 1, \"pass_recall\": 0.987, \"pass_f1\": 0.9935, \"fail_precision\": 0.9686, \"fail_recall\": 1, \"fail_f1\": 0.984, \"n\": 1190, \"accuracy_ci_lower\": 0.9849, \"accuracy_ci_upper\": 0.9958}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_ae_only_seed42/final/\", \"log_path\": \"~/runs/trace-verdict-study/qwen15b_ae_only_seed42.log\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8819}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014eyy8FM8hfbAvG7d9EseP9",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "qwen15b_ae_only_seed42",
+                "field": "status",
+                "value": "DONE",
+                "project": "trace-verdict-study"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3",
+            "uuid": "8d387a41-2007-4ac4-b7fe-96f9f522106e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ld6W2CkKD8U3a7qwYw1kMJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1070,
+                "cache_read_input_tokens": 30645,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1070
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T07:50:59.905Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014eyy8FM8hfbAvG7d9EseP9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen15b_ae_only_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T06:52:17.793Z\\\", \\\"updated_at\\\": \\\"2026-05-20T07:50:58.882Z\\\", \\\"hypothesis\\\": \\\"Qwen-1.5B ae_only 应达 ≥95% accuracy，与 Qwen-7B (99.92%) / CodeLlama-13B (99.08%) / DeepSeek (98.74%) 一致，验证 Tier 1 ae_only 在最小 scale (1.5B) 仍然有效\\\", \\\"parent\\\": \\\"qwen15b_exception_only_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"...qwen15b_ae_only_seed42...\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"598258\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/qwen15b_ae_only_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T06:52:39.041Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-1.5B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"self-trained\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_test.jsonl\\\", \\\"wall_clock_seconds\\\": 3499.8, \\\"gpu_hours\\\": 0.97}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T07:46:34.828Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T07:46:39.544624+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.9908, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2756, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.987, \\\"pass_f1\\\": 0.9935, \\\"fail_precision\\\": 0.9686, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.984, \\\"n\\\": 1190, \\\"accuracy_ci_lower\\\": 0.9849, \\\"accuracy_ci_upper\\\": 0.9958}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_ae_only_seed42/final/\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/qwen15b_ae_only_seed42.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T07:50:58.882Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4854}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3",
+            "uuid": "c82343d0-97dc-44b1-8ee9-fb1a681577e1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"qwen15b_ae_only_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T06:52:17.793Z\\\", \\\"updated_at\\\": \\\"2026-05-20T07:50:58.882Z\\\", \\\"hypothesis\\\": \\\"Qwen-1.5B ae_only 应达 ≥95% accuracy，与 Qwen-7B (99.92%) / CodeLlama-13B (99.08%) / DeepSeek (98.74%) 一致，验证 Tier 1 ae_only 在最小 scale (1.5B) 仍然有效\\\", \\\"parent\\\": \\\"qwen15b_exception_only_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"...qwen15b_ae_only_seed42...\\\\\\\"\\\", \\\"server\\\": \\\"westd-11235\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"598258\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/qwen15b_ae_only_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T06:52:39.041Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\\\", \\\"data_count\\\": 4720, \\\"model_name\\\": \\\"Qwen2.5-Coder-1.5B-Instruct\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"self-trained\\\", \\\"eval_data\\\": \\\"/root/autodl-tmp/trace-verdict-study-data/ae_only_test.jsonl\\\", \\\"wall_clock_seconds\\\": 3499.8, \\\"gpu_hours\\\": 0.97}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T07:46:34.828Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T07:46:39.544624+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.9908, \\\"majority_baseline\\\": 0.7151, \\\"lift\\\": 0.2756, \\\"pass_precision\\\": 1, \\\"pass_recall\\\": 0.987, \\\"pass_f1\\\": 0.9935, \\\"fail_precision\\\": 0.9686, \\\"fail_recall\\\": 1, \\\"fail_f1\\\": 0.984, \\\"n\\\": 1190, \\\"accuracy_ci_lower\\\": 0.9849, \\\"accuracy_ci_upper\\\": 0.9958}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_ae_only_seed42/final/\\\", \\\"log_path\\\": \\\"~/runs/trace-verdict-study/qwen15b_ae_only_seed42.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T07:50:58.882Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4854}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"qwen15b_ae_only_seed42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T06:52:17.793Z\", \"updated_at\": \"2026-05-20T07:50:58.882Z\", \"hypothesis\": \"Qwen-1.5B ae_only 应达 ≥95% accuracy，与 Qwen-7B (99.92%) / CodeLlama-13B (99.08%) / DeepSeek (98.74%) 一致，验证 Tier 1 ae_only 在最小 scale (1.5B) 仍然有效\", \"parent\": \"qwen15b_exception_only_seed42\", \"spec\": {\"command\": \"bash -c \\\"...qwen15b_ae_only_seed42...\\\"\", \"server\": \"westd-11235\", \"gpu\": [\"cuda:0\"], \"pid\": \"598258\", \"log_path\": \"~/runs/trace-verdict-study/qwen15b_ae_only_seed42.log\", \"submitted_at\": \"2026-05-20T06:52:39.041Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/trace-verdict-study-data/ae_only_train.jsonl\", \"data_count\": 4720, \"model_name\": \"Qwen2.5-Coder-1.5B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"self-trained\", \"eval_data\": \"/root/autodl-tmp/trace-verdict-study-data/ae_only_test.jsonl\", \"wall_clock_seconds\": 3499.8, \"gpu_hours\": 0.97}, \"reproduce\": {\"finished_at\": \"2026-05-20T07:46:34.828Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T07:46:39.544624+00:00\"}]}, \"metrics\": {\"accuracy\": 0.9908, \"majority_baseline\": 0.7151, \"lift\": 0.2756, \"pass_precision\": 1, \"pass_recall\": 0.987, \"pass_f1\": 0.9935, \"fail_precision\": 0.9686, \"fail_recall\": 1, \"fail_f1\": 0.984, \"n\": 1190, \"accuracy_ci_lower\": 0.9849, \"accuracy_ci_upper\": 0.9958}, \"checkpoint_path\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_ae_only_seed42/final/\", \"log_path\": \"~/runs/trace-verdict-study/qwen15b_ae_only_seed42.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T07:50:58.882Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4854}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## qwen15b_ae_only_seed42 — ✓ Success\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **99.08%** [98.5%, 99.6%] |\n| Majority baseline | 71.5% |\n| Lift | +27.6pp |\n| pass P/R/F1 | 1.00 / 0.99 / 0.99 |\n| fail P/R/F1 | 0.97 / 1.00 / 0.98 |\n| GPU hours | 0.97h |\n\n### 跨模型 ae_only 对比\n\n| Model | Accuracy |\n|-------|----------|\n| Qwen-7B | 99.92% |\n| CodeLlama-13B | 99.08% |\n| **Qwen-1.5B** | **99.08%** |\n| DeepSeek-Coder-6.7B | 98.74% |\n\nQwen-1.5B 以最小参数量（1.5B）达到与 CodeLlama-13B（13B）完全相同的 99.08% accuracy，远超 ≥95% 的 hypothesis 阈值。ae_only 条件在 1.5B scale 依然高度有效，Tier 1 的结论跨模型 scale 稳健。\n\ncuda:0 无残留进程，GPU 已空闲可用。Registry 已更新为 DONE/success。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3",
+            "uuid": "6a9ac772-dc5f-4b4a-adcc-c09b89d9a29e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014GPMSfR5jrikYj8XYEh2mQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1050,
+                "cache_read_input_tokens": 31715,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1050
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## qwen15b_ae_only_seed42 — ✓ Success\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **99.08%** [98.5%, 99.6%] |\n| Majority baseline | 71.5% |\n| Lift | +27.6pp |\n| pass P/R/F1 | 1.00 / 0.99 / 0.99 |\n| fail P/R/F1 | 0.97 / 1.00 / 0.98 |\n| GPU hours | 0.97h |\n\n### 跨模型 ae_only 对比\n\n| Model | Accuracy |\n|-------|----------|\n| Qwen-7B | 99.92% |\n| CodeLlama-13B | 99.08% |\n| **Qwen-1.5B** | **99.08%** |\n| DeepSeek-Coder-6.7B | 98.74% |\n\nQwen-1.5B 以最小参数量（1.5B）达到与 CodeLlama-13B（13B）完全相同的 99.08% accuracy，远超 ≥95% 的 hypothesis 阈值。ae_only 条件在 1.5B scale 依然高度有效，Tier 1 的结论跨模型 scale 稳健。\n\ncuda:0 无残留进程，GPU 已空闲可用。Registry 已更新为 DONE/success。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 48307,
+            "duration_api_ms": 43811,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "df3ae611-ca49-4182-b637-f75e00125fa3",
+            "total_cost_usd": 0.27374450000000006,
+            "usage": {
+              "input_tokens": 10,
+              "cache_creation_input_tokens": 20924,
+              "cache_read_input_tokens": 180043,
+              "output_tokens": 2048,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 20924,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 404,
+                  "cache_read_input_tokens": 31715,
+                  "cache_creation_input_tokens": 1050,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1050
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1568,
+                "outputTokens": 26,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0016979999999999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 10,
+                "outputTokens": 2048,
+                "cacheReadInputTokens": 180043,
+                "cacheCreationInputTokens": 20924,
+                "webSearchRequests": 0,
+                "costUSD": 0.2720465,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "30582111-ad24-45c1-91e7-34764aec911e"
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/worker-executions/analyze-qwen15b-ae-only-seed42.md"
+}

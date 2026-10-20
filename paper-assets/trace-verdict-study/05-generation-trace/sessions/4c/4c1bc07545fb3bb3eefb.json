@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c1bc07545fb3bb3eefb",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper draw new figures cd",
+  "task_key": "worker_paper_draw-new-figures-cd_20260525T142016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_draw-new-figures-cd_20260525T142016_result.json",
+    "occurrence": 1,
+    "bytes": 678,
+    "sha256": "a09039d8a5fe230fca10b1a39203a543f638addc38d51c1a3d978171eaec1ea1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n图 C (token_distribution):\n- 数据来源：schematic（基于项目统计：exception_only median≈160/mean≈363, VOTA median≈710/mean≈888, full_trace median≈2622/mean≈2567, >2048占93.8%）\n- 文件大小：27,393 bytes (PDF) / 119,378 bytes (PNG)\n- 生成路径：/root/trace-verdict-study/figures/paper/token_distribution.pdf\n\n图 D (zeroshot_vs_sft):\n- 文件大小：31,638 bytes (PDF) / 93,223 bytes (PNG)\n- 生成路径：/root/trace-verdict-study/figures/paper/zeroshot_vs_sft.pdf\n```\n\n脚本位置：\n- `/root/trace-verdict-study/figures/gen_token_distribution.py`\n- `/root/trace-verdict-study/figures/gen_zeroshot_vs_sft.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-draw-new-figures-cd.md"
+}

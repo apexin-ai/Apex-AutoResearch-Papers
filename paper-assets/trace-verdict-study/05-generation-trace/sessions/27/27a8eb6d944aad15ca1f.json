@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27a8eb6d944aad15ca1f",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops check and fix exception only v2",
+  "task_key": "worker_ops_check_and_fix_exception_only_v2_20260515T071918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_and_fix_exception_only_v2_20260515T071918_result.json",
+    "occurrence": 1,
+    "bytes": 1070,
+    "sha256": "46d832d529a8181977adb9f6b4b3182db2c186610b6a851d9487218267d68a87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**cuda:1** — `vota_exception_only_seed42_v2` 训练中，状态正常\n- PID 79633，71280 MiB 显存，100% GPU 利用率\n- 进度 24/444 步 (5%)，~10.65s/step\n- loss 从 0.956 降到 0.735，token accuracy 0.837，趋势正常\n- 有 `--gradient_checkpointing`，不会再 OOM\n- 训练完后会自动跑 eval（命令里 `&&` 串联了 evaluate.py）\n- **预计训练剩余 ~75 分钟（约 1h15m），加 eval ~10min，总计约 16:40 完成**\n- 注意：该 session 没有 log file redirect（输出在 tmux pane 里），不影响训练但没有持久化日志\n\n**cuda:0** — analysis Worker 正在跑 `full_trace_label_only` 的 eval\n- 两个 eval 进程（PID 80087 + 80437），各占 16186 MiB，共 ~32 GB\n- 看起来被重复提交了一次（一个直接启动，一个 nohup 包装），但不影响 cuda:1 上的训练\n\n**无需干预**，exception_only_v2 正在正常训练。基于 vota_no_ae 的 ~1.9h wall clock，本次因有 gradient_checkpointing 会稍慢，预计 ~1.5-1.7h 完成训练 + eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-and-fix-exception-only-v2.md"
+}

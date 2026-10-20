@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "6b7396dba1f5fba7506c",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "analysis trace length ablation fig",
+  "task_key": "worker_analysis_trace_length_ablation_fig_20260516T040942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_trace_length_ablation_fig_20260516T040942.log",
+    "occurrence": 1,
+    "bytes": 1006317,
+    "sha256": "009f18da18f9df7f0d1609be6e0d04468bbb1f846db8e58bc968cf95bdceeeba"
+  },
+  "statistics": {
+    "messages": 722,
+    "user_turns": 0,
+    "tool_calls": 307,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 104,
+      "tool_call": 307,
+      "tool_result": 307,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 722,
+      "chunks": [
+        {
+          "path": "6b7396dba1f5fba7506c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6b7396dba1f5fba7506c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6b7396dba1f5fba7506c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "6b7396dba1f5fba7506c-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "6b7396dba1f5fba7506c-part-0005.json",
+          "message_count": 2
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-trace-length-ablation-fig.md"
+}

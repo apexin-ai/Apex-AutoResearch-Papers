@@ -1,0 +1,578 @@
+====================================================================================================
+REGISTRY AUDIT EXTRACT — trace-verdict-study
+Generated from: mcp-agent-ml-research-read_registry-1779563834793.txt
+Total experiments in registry: 188
+====================================================================================================
+
+====================================================================================================
+SECTION 1: TABLE 1 CANDIDATES — Main SFT Conditions (Qwen2.5-Coder-7B-Instruct, n=1190)
+====================================================================================================
+
+--- exception_only (Qwen-7B) ---
+  Seed 42 accuracy: 0.9983 (from seed_comparison in exception_only_seed123)
+  Seed 123 accuracy: 0.9983  | exp_id: exception_only_seed123
+    accuracy_ci: [0.9958, 1.0]
+    pass_precision: 1.0000  pass_recall: 0.9976  pass_f1: 0.9988
+    fail_precision: 0.9941  fail_recall: 1.0000  fail_f1: 0.9971
+    majority_baseline: 0.7151  lift: 0.2832  n: 1190
+  Seed 456 accuracy: 0.9983  | exp_id: exception_only_seed456
+    accuracy_ci: [0.9958, 1.0]  eval_loss: 0.4629  train_loss: 0.1087
+  MEAN across 3 seeds: 0.9983 ± 0.0000 (all identical, max_diff=0)
+  NOTE: each seed has exactly 2/1190 errors
+
+--- full_trace (Qwen-7B) ---
+  Seed 123 accuracy: 0.7958  | exp_id: full_trace_seed123
+    accuracy_ci_lower: 0.7714  accuracy_ci_upper: 0.8202
+    pass_precision: 0.8753  pass_recall: 0.8331  pass_f1: 0.8537
+    fail_precision: 0.6263  fail_recall: 0.7021  fail_f1: 0.6620
+    majority_baseline: 0.7151  lift: 0.0807  n: 1190
+  Seed 42 (v5) accuracy: 0.8176  | exp_id: full_trace_seed42_v5
+    accuracy_ci_lower: 0.797  accuracy_ci_upper: 0.839
+    pass_precision: 0.8774  pass_recall: 0.8660  pass_f1: 0.8717
+    fail_precision: 0.6743  fail_recall: 0.6962  fail_f1: 0.6851
+    lift: 0.1025  lift_vs_notrace: 0.0664  (CI: [0.0437, 0.0899])
+    epoch_level: epoch1=0.8303 epoch2=0.7630 epoch3=0.8176 (non-monotonic)
+  Seed 456 accuracy: 0.8050  | exp_id: full_trace_seed456
+    accuracy_ci_lower: 0.7824  accuracy_ci_upper: 0.8269
+    pass_f1: 0.8637  fail_f1: 0.6578
+    lift: 0.0899
+  Seed 123 (qwen7b_full_trace_seed123) accuracy: 0.8020  | exp_id: qwen7b_full_trace_seed123
+    ci_lower: 0.778  ci_upper: 0.825  lift_pp: 8.7
+  Seed 456 (v2) accuracy: 0.8235  | exp_id: qwen7b_full_trace_seed456_v2
+    ci_lower: 0.8017  ci_upper: 0.8454  lift_pp: 10.84
+  3-SEED MEAN (seed42=0.8176, seed123=0.8020, seed456=0.8235): ~0.814
+
+--- no_trace (Qwen-7B) ---
+  Seed 42 (v4/v5) accuracy: 0.7513  | exp_id: no_trace_seed42_v5
+    accuracy_ci_lower: 0.7277  accuracy_ci_upper: 0.7748
+    pass_precision: 0.8776  pass_recall: 0.7579  pass_f1: 0.8134
+    fail_precision: 0.5473  fail_recall: 0.7345  fail_f1: 0.6272
+    majority_baseline: 0.7151  lift: 0.0361  (CI: [0.0042, 0.0706])
+    epoch_level: epoch1=0.7429 epoch2=0.7630 epoch3=0.7513
+  Seed 123 accuracy: 0.7908  | exp_id: no_trace_seed123
+    pass_f1: 0.8523  fail_f1: 0.6581  n: 1190
+  Seed 456 accuracy: 0.7504  | exp_id: no_trace_seed456
+    accuracy_ci: [0.7235, 0.7748]  pass_f1: 0.8119  fail_f1: 0.6292
+  3-SEED MEAN (seed42=0.7513, seed123=0.7908, seed456=0.7504): ~0.764
+
+--- VOTA (Qwen-7B) ---
+  Seed 42 (v4) accuracy: 0.9563  | exp_id: vota_seed42_v4  [canonical v4]
+    lift: 0.2412  lift_vs_notrace: 0.2050  (CI: [0.177, 0.234])
+    pass_precision: 0.9440  pass_recall: 0.9980  pass_f1: 0.9700
+    fail_precision: 0.9930  fail_recall: 0.8530  fail_f1: 0.9170
+  Seed 42 (v5) accuracy: 0.9941  | exp_id: vota_seed42_v5  [note: diff script]
+    pass_precision: 1.0000  pass_recall: 0.9918  pass_f1: 0.9959
+    fail_precision: 0.9798  fail_recall: 1.0000  fail_f1: 0.9898  n: 1190
+  Seed 123 accuracy: 0.9866  | exp_id: qwen7b_vota_seed123
+    accuracy_ci_lower: 0.9790  accuracy_ci_upper: 0.9925  lift: 0.2714
+    pass_f1: 0.9905  fail_f1: 0.9769
+  Seed 456 accuracy: 0.9908  | exp_id: qwen7b_vota_seed456
+    accuracy_ci_lower: 0.9849  accuracy_ci_upper: 0.9958  lift: 0.2756
+    pass_f1: 0.9935  fail_f1: 0.9840
+  Seed 456 v2 accuracy: 0.9908  | exp_id: vota_seed456_v2
+    ci_95: [0.985, 0.996]  pass_f1: 0.9930  fail_f1: 0.9840
+  3-SEED MEAN (seed42=0.9941, seed123=0.9866, seed456=0.9908): ~0.991
+    [using v5 for seed42; note v4 gives 0.9563 — version discrepancy]
+
+--- ae_only (Qwen-7B) ---
+  Seed 42 accuracy: 0.9992  | exp_id: vota_ae_only_seed42
+    accuracy_ci: [0.9975, 1.0000]
+    bootstrap vs no_trace: diff=0.2479 CI=[0.2235, 0.2731] p=0
+    bootstrap vs exception_only: diff=0.0008 CI=[-0.0017, 0.0034] p=0.8002 (n.s.)
+    bootstrap vs vota: diff=0.0050 CI=[0.0017, 0.0092] p=0.0046
+  Seed 123 accuracy: 0.9908  | exp_id: ae_only_seed123
+    pass_recall: 0.987  fail_recall: 1.0  n: 1190  lift: 0.2757
+  Seed 456 accuracy: 0.9992  | exp_id: ae_only_seed456
+    lift: 0.2841  n: 1190
+    seed_comparison: seed42=0.9992 seed123=0.9908 seed456=0.9992 → mean=0.9964 ± 0.0049
+  3-SEED MEAN: 0.9964 ± 0.0049
+
+--- loop_only (Qwen-7B) ---
+  Seed 42 accuracy: 0.8563  | exp_id: vota_loop_only_seed42
+    accuracy_ci: [0.8353, 0.8756]  lift: 0.1412
+    pass_precision: 0.9239  pass_recall: 0.8707  pass_f1: 0.8966
+    fail_precision: 0.7165  fail_recall: 0.8201  fail_f1: 0.7648
+    bootstrap vs vota: diff=-0.1378 CI=[-0.1571, -0.1185] (sig)
+  Seed 123 accuracy: 0.8588  | exp_id: loop_only_seed123
+    accuracy_ci: [0.8403, 0.8773]  lift: 0.1437
+    pass_f1: 0.8999  fail_f1: 0.7607
+  Seed 456 accuracy: 0.8664  | exp_id: loop_only_seed456
+    accuracy_ci: [0.8470, 0.8840]
+    pass_f1: 0.9053  fail_f1: 0.7732
+    seed_comparison: seed42=0.8563 seed123=0.8588 seed456=0.8664 → mean=0.8605 ± 0.0053
+  3-SEED MEAN: 0.8605 ± 0.0053
+
+--- label_only / full_trace_label_only_loss (Qwen-7B) ---
+  Seed 42 (full_trace, label_only_loss) accuracy: 0.8622  | exp_id: full_trace_label_only_seed42
+    accuracy_ci_lower: 0.8437  accuracy_ci_upper: 0.8807  lift: 0.1471
+    pass_f1: 0.9063  fail_f1: 0.7397  n: 1190
+    lift_vs_notrace: 0.1109  CI: [0.0849, 0.1370]
+    lift_vs_standard_fulltrace: 0.0445  CI: [0.0235, 0.0655]  p=0
+  Seed 123 accuracy: 0.8689  | exp_id: qwen7b_full_trace_label_only_seed123
+    accuracy_ci: [0.8496, 0.8874]  pass_f1: 0.9121  fail_f1: 0.7426  lift: 0.1538
+  Seed 456 accuracy: 0.8470  | exp_id: qwen7b_full_trace_label_only_seed456
+    accuracy_ci: [0.827, 0.866]  pass_f1: 0.9000  fail_f1: 0.7100  lift: 0.1319
+  NOTE: standalone label_only seeds (no trace at all):
+    label_only_seed123 accuracy: 0.8706  pass_f1: 0.915  fail_f1: 0.729
+    label_only_seed456 accuracy: 0.8590  pass_f1: 0.905  fail_f1: 0.727
+
+
+====================================================================================================
+SECTION 2: CROSS-MODEL TABLE — All 4 Models × Main Conditions
+====================================================================================================
+
+--- DeepSeek-Coder-6.7B ---
+
+  exception_only:
+    Seed 42  accuracy: 0.9933  | exp_id: deepseek_exception_only_seed42
+      pass_f1: 0.9953  fail_f1: 0.9883  n: 1190  lift: 0.2782
+    Seed 123 accuracy: 0.9950  | exp_id: deepseek_exception_only_seed123_v2
+    Seed 456 accuracy: 0.9933  | exp_id: deepseek_exception_only_seed456
+      accuracy_ci: [0.9882, 0.9975]
+      seed_comparison: seed42=0.9933 seed456=0.9933 seed123=0.9109 (outlier)
+      NOTE: seed123 v1 was OOM-crash; seed123_v2 = 0.9950 (canonical)
+    3-SEED MEAN (using v2 for seed123): ~0.994
+
+  full_trace:
+    Seed 42 (v3) accuracy: 0.7916  | exp_id: deepseek_full_trace_seed42_v3
+      accuracy_ci: [0.768, 0.813]  lift: 0.0765
+      pass_f1: 0.854  fail_f1: 0.637  n: 1190
+    (v1, v2 = killed/negative)
+
+  no_trace:
+    Seed 42 accuracy: 0.7336  | exp_id: deepseek_no_trace_seed42
+      accuracy_ci: [0.708, 0.757]  lift: 0.0185
+      pass_f1: 0.8130  fail_f1: 0.5390  n: 1190
+
+  VOTA:
+    Seed 42 accuracy: 0.8445  | exp_id: deepseek_vota_seed42  [early canonical]
+      accuracy_ci: [0.826, 0.864]  lift: 0.1294
+      pass_f1: 0.9020  fail_f1: 0.6250
+    Seed 123 accuracy: 0.9916  | exp_id: deepseek_vota_seed123
+      accuracy_ci_lower: 0.9857  accuracy_ci_upper: 0.9966
+    Seed 456 accuracy: 0.9933  | exp_id: deepseek_vota_seed456
+    NOTE: large seed variance — seed42 may be from different pipeline version
+
+  ae_only:
+    Seed 42 accuracy: 0.9874  | exp_id: deepseek_ae_only_seed42
+      accuracy_ci: [0.9807, 0.9933]  pass_f1: 0.9910  fail_f1: 0.9770
+    Seed 123 accuracy: 0.9832  | exp_id: deepseek_ae_only_seed123
+
+  loop_only:
+    Seed 42 accuracy: 0.8126  | exp_id: deepseek_loop_only_seed42
+      accuracy_ci: [0.7908, 0.8345]
+    Seed 123 accuracy: 0.8126  | exp_id: deepseek_loop_only_seed123
+      accuracy_ci: [0.792, 0.834]
+    Seed 456 accuracy: 0.784   | exp_id: deepseek_loop_only_seed456
+      fail_f1: 0.63  majority_baseline: 0.715
+
+  label_only (full_trace_label_only_loss):
+    Seed 42 accuracy: 0.285   | exp_id: deepseek_label_only_seed42  [COLLAPSED]
+      accuracy_ci: [0.261, 0.308]  lift: -0.430
+      pass_f1: 0.0  fail_f1: 0.44
+
+--- CodeLlama-13B ---
+
+  exception_only:
+    Seed 42  accuracy: 0.9983  | exp_id: codellama13b_exception_only_seed42
+      accuracy_ci: [0.9958, 1.000]  pass_f1: 0.9988  fail_f1: 0.9971
+    Seed 123 accuracy: 1.0000  | exp_id: codellama13b_exception_only_seed123
+      pass_f1: 1.0  fail_f1: 1.0  n: 1190
+    Seed 456 accuracy: 0.9983  | exp_id: codellama13b_exception_only_seed456
+      pass_f1: 0.9988  fail_f1: 0.9971  n: 1190
+    3-SEED MEAN: 0.9989
+
+  full_trace (canonical tail512, label_only_loss):
+    Seed 42  accuracy: 0.9824  | exp_id: codellama13b_full_trace_tail512_seed42
+      accuracy_ci: [0.9748, 0.9899]  lift: 0.2672  pass_f1: 0.9878  fail_f1: 0.9680
+    Seed 123 accuracy: 0.9824  | exp_id: codellama13b_full_trace_tail512_seed123
+      accuracy_ci: [0.9748, 0.9899]
+    Seed 456 accuracy: 0.9824  | exp_id: codellama13b_full_trace_tail512_seed456
+      NOTE: all 3 seeds identical at 0.9824
+    NOTE: full-seq loss at tail2048 collapsed (0.296); label_only_loss v3 at tail1024 = 0.9824 epoch1
+
+  no_trace:
+    Seed 42 accuracy: 0.7650  | exp_id: codellama13b_no_trace_seed42
+      accuracy_ci: [0.738, 0.787]  lift: 0.050
+      pass_f1: 0.840  fail_f1: 0.590  n: 1190
+
+  VOTA:
+    Seed 42  accuracy: 0.9857  | exp_id: codellama13b_vota_seed42
+      accuracy_ci: [0.9790, 0.9916]  pass_f1: 0.9900  fail_f1: 0.9748
+    Seed 123 accuracy: 0.9891  | exp_id: codellama13b_vota_seed123
+      accuracy_ci: [0.9832, 0.9941]  pass_f1: 0.9924  fail_f1: 0.9809  n: 1190  lift: 0.2739
+
+  ae_only:
+    Seed 42  accuracy: 0.9908  | exp_id: codellama13b_ae_only_seed42
+      accuracy_ci: [0.9849, 0.9958]  pass_f1: 0.9935  fail_f1: 0.9840
+    Seed 123 accuracy: 0.9908  | exp_id: codellama13b_ae_only_seed123
+      accuracy_ci: [0.9849, 0.9958]  pass_f1: 0.9930  fail_f1: 0.9840
+
+  loop_only:
+    Seed 42  accuracy: 0.7706  | exp_id: codellama13b_loop_only_seed42
+      accuracy_ci: [0.7487, 0.7941]  lift: 0.0555  pass_f1: 0.820  fail_f1: 0.670
+    Seed 123 accuracy: 0.7605  | exp_id: codellama13b_loop_only_seed123
+      accuracy_ci: [0.7387, 0.7857]  pass_f1: 0.8078  fail_f1: 0.6823  lift: 0.0454
+    Seed 456 accuracy: 0.7908  | exp_id: codellama13b_loop_only_seed456
+      pass_f1: 0.843  fail_f1: 0.688  n: 1190  lift: 0.0757
+
+  label_only (full_trace_label_only_loss):
+    Seed 42 (v2) accuracy: 0.2849  | exp_id: codellama13b_label_only_seed42_v2  [COLLAPSED]
+      accuracy_ci: [0.2613, 0.3084]  pass_f1: 0.0  fail_f1: 0.4434
+    Seed 123 (v2) accuracy: 'collapsed' | exp_id: codellama13b_label_only_seed123_v2
+
+--- Qwen2.5-Coder-1.5B ---
+
+  exception_only:
+    Seed 42  accuracy: 0.9983  | exp_id: qwen15b_exception_only_seed42
+      accuracy_ci: [0.9958, 1.000]  lift: 0.283  pass_f1: 0.9988  fail_f1: 0.9971
+    Seed 123 accuracy: 0.9983  | exp_id: qwen15b_exception_only_seed123_v2
+      accuracy_ci: [0.9958, 1.000]
+    Seed 456 accuracy: 0.9983  | exp_id: qwen15b_exception_only_seed456
+      seed_comparison: all 3 seeds identical — fully seed-robust
+    3-SEED MEAN: 0.9983 ± 0.0000
+
+  full_trace:
+    Seed 42 (full_trace, no trunc) accuracy: 0.7706  | exp_id: qwen15b_full_trace_seed42
+    Seed 42 (tail512) accuracy: 0.956   | exp_id: qwen15b_full_trace_tail512_seed42
+      accuracy_ci: [0.945, 0.968]  pass_f1: 0.970  fail_f1: 0.920
+    Seed 123 (tail512) accuracy: 0.9765  | exp_id: qwen15b_full_trace_tail512_seed123
+      accuracy_ci: [0.9681, 0.9849]  lift: 0.2613
+    Seed 456 (tail512) accuracy: 0.9672  | exp_id: qwen15b_full_trace_tail512_seed456
+      accuracy_ci: [0.9563, 0.9773]  lift: 0.2521
+
+  no_trace:
+    Seed 42  accuracy: 0.6731  | exp_id: qwen15b_no_trace_seed42
+      pass_f1: 0.7527  fail_f1: 0.518  n: 1190
+    Seed 123 accuracy: 0.7588  | exp_id: qwen15b_no_trace_seed123
+      accuracy_ci: [0.7328, 0.7824]  lift: 0.0437
+      pass_f1: 0.8323  fail_f1: 0.571
+    Seed 456 accuracy: 0.7387  | exp_id: qwen15b_no_trace_seed456
+      pass_f1: 0.8195  fail_f1: 0.5266
+
+  VOTA:
+    Seed 42  accuracy: 0.9958  | exp_id: qwen15b_vota_seed42
+      pass_f1: 0.9971  fail_f1: 0.9926  n: 1190
+    Seed 123 accuracy: 0.9950  | exp_id: qwen15b_vota_seed123
+      ci_95: [0.9908, 0.9983]  pass_f1: 0.9965  fail_f1: 0.9912
+
+  ae_only:
+    Seed 42  accuracy: 0.9908  | exp_id: qwen15b_ae_only_seed42
+      accuracy_ci: [0.9849, 0.9958]  lift: 0.2756  pass_f1: 0.9935  fail_f1: 0.9840
+    Seed 123 accuracy: 0.9857  | exp_id: qwen15b_ae_only_seed123
+      majority_baseline: 0.715  fail_f1: 0.975
+
+  loop_only:
+    Seed 42  accuracy: 0.7832  | exp_id: qwen15b_loop_only_seed42
+      pass_f1: 0.8526  fail_f1: 0.5905
+    Seed 123 accuracy: 0.8109  | exp_id: qwen15b_loop_only_seed123
+      pass_f1: 0.8737  fail_f1: 0.6244
+    Seed 456 accuracy: 0.7920  | exp_id: qwen15b_loop_only_seed456
+      ci_95: [0.768, 0.813]  majority_baseline: 0.715
+
+  label_only (full_trace_label_only_loss):
+    Seed 42 (v2) accuracy: 0.7890  | exp_id: qwen15b_label_only_seed42_v2
+      accuracy_ci: [0.766, 0.812]  pass_f1: 0.860  fail_f1: 0.570
+    Seed 123 (v2) accuracy: 0.8134  | exp_id: qwen15b_label_only_seed123_v2
+      accuracy_ci: [0.7924, 0.8345]  pass_f1: 0.878  fail_f1: 0.602
+    Seed 456 (v2) accuracy: 0.8252  | exp_id: qwen15b_label_only_seed456_v2
+      pass_f1: 0.885  fail_f1: 0.639
+
+
+====================================================================================================
+SECTION 3: TABLE 2 — ABLATION CONDITIONS (Qwen-7B, seed42 canonical)
+====================================================================================================
+
+--- Ablation: VOTA component decomposition ---
+  ae_only (Qwen-7B seed42) accuracy: 0.9992  CI:[0.9975, 1.0]  | exp_id: vota_ae_only_seed42
+  exception_only (Qwen-7B) accuracy: 0.9983  CI:[0.9958, 1.0]  | exp_id: vota_exception_only_seed42_v2
+  loop_only (Qwen-7B seed42) accuracy: 0.8563  CI:[0.8353, 0.8756]  | exp_id: vota_loop_only_seed42
+  VOTA-no-ae (Qwen-7B seed42) accuracy: 0.9940  CI:[0.989, 0.998]  | exp_id: vota_no_ae_seed42
+    lift_vs_notrace: 0.2430  CI:[0.218, 0.268]
+
+--- Ablation: Exception sub-component ---
+  exc_message_only_seed42: accuracy=0.9950 CI:[0.991, 0.998] | exp_id: exc_message_only_seed42
+    pass_f1: 0.9960  fail_f1: 0.9910  n: 1190
+  exc_stacktrace_only_seed42: accuracy=0.9980 CI:[0.996, 1.0] | exp_id: exc_stacktrace_only_seed42
+    pass_f1: 0.9990  fail_f1: 0.9970  n: 1190
+  exc_type_only_seed42: no metrics (None conclusion)
+
+--- Ablation: full_trace with label_only_loss ---
+  full_trace_label_only_seed42: accuracy=0.8622 CI:[0.8437, 0.8807] | exp_id: full_trace_label_only_seed42
+    lift_vs_notrace: 0.1109 CI:[0.0849, 0.1370]
+    lift_vs_standard_fulltrace: +0.0445 CI:[0.0235, 0.0655] p=0
+    pass_f1: 0.9063  fail_f1: 0.7397
+
+--- Ablation: nomarker (Qwen-7B) ---
+  Seed 42  accuracy: 0.9655  CI:[0.955, 0.976] | exp_id: exception_only_nomarker_seed42
+  Seed 123 accuracy: 0.9832  CI:[0.9756, 0.9899] | exp_id: exception_only_nomarker_seed123
+    pass_f1: 0.9882  fail_f1: 0.9705  lift_over_majority: 0.2681
+  Seed 456 accuracy: 0.9807  CI:[0.9712, 0.9871] | exp_id: exception_only_nomarker_seed456
+    errors: 23  pass_f1: 0.9865  fail_f1: 0.9658  lift_over_majority: 0.2660
+  NOTE: vs exception_only (0.9983), marker contributes ~1.5-3.3pp
+
+--- Ablation: nomarker (Qwen-1.5B) ---
+  qwen15b_nomarker_seed42: accuracy=0.9780 CI:[0.970, 0.986]  | exp_id: qwen15b_nomarker_seed42
+    majority_baseline: 0.715  lift: 0.263
+    pass_precision: 0.970  pass_recall: 1.0  pass_f1: 0.980
+    fail_precision: 1.0    fail_recall: 0.92  fail_f1: 0.960
+
+--- Ablation: exception_only padded to 2048 tokens ---
+  exception_only_padded2048_seed42: accuracy=0.9983  | exp_id: exception_only_padded2048_seed42
+    (identical to unpadded — padding does not degrade accuracy)
+
+
+====================================================================================================
+SECTION 4: TABLE 3 — DENSITY DECOMPOSITION (gradient masking, tail truncation)
+====================================================================================================
+
+--- Gradient Masking (99.8% masked, exception_only) ---
+  Qwen-7B Seed 42 accuracy: 0.9933 CI:[0.9882, 0.9975] | exp_id: gradient_masking_qwen7b_seed42
+    NOTE: metrics empty (None conclusion) — see seed123/456 for canonical
+  Qwen-7B Seed 123 accuracy: 0.9933 CI:[0.9882, 0.9975] | exp_id: gradient_masking_qwen7b_seed123
+    pass_f1: 0.9953  fail_f1: 0.9883  lift: 0.2782  train_loss: 1.6031  eval_loss: 0.0381
+  Qwen-7B Seed 456 accuracy: 0.9933 CI:[0.9882, 0.9975] | exp_id: gradient_masking_qwen7b_seed456
+    (identical to seed123)
+  3-SEED MEAN: 0.9933 ± 0.0000  dilution_pct: N/A (vs baseline 0.9983 → dilution ~0.5%)
+
+  DeepSeek-6.7B Seed 42 accuracy: 0.9933 CI:[0.9882, 0.9975] | exp_id: deepseek_gradient_masking_seed42
+    dilution_pct: N/A  baseline_accuracy: 99.39%  lift: 0.278  eval_loss: 0.0529
+    majority_baseline: 0.715
+  DeepSeek-6.7B Seed 123 accuracy: 0.9395 | exp_id: deepseek_gradient_masking_seed123
+    pass_precision: 0.924  pass_recall: 0.998  pass_f1: 0.959
+    fail_precision: 0.993  fail_recall: 0.794  fail_f1: 0.882
+    conclusion: negative (fell below 98.5% threshold)
+
+  CodeLlama-13B Seed 42 accuracy: 1.0000 | exp_id: codellama_gradient_masking_seed42
+    accuracy_ci_lower: 1.0  accuracy_ci_upper: 1.0
+    eval_loss: 0.0625  dilution_pct: -0.11  pass_f1: 1.0  fail_f1: 1.0  n_test: 1190
+    baseline_accuracy: 99.89%
+
+--- Tail Truncation Budget Curve (Qwen-7B) ---
+  tail-256 (full_trace_tail_256_seed42):  accuracy=0.7748  CI:[0.7496, 0.7975]  pass_f1: 0.8333  fail_f1: 0.6528
+  tail-384 (qwen7b_full_trace_tail384_seed42): accuracy=0.798  CI:[0.776, 0.821]  pass_f1: 0.85  fail_f1: 0.68
+  tail-512 (full_trace_tail_512_seed42):  accuracy=0.9360  CI:[0.922, 0.950]   pass_f1: 0.950  fail_f1: 0.890
+  tail-512 Seed 123 (qwen7b_full_trace_tail512_seed123): accuracy=0.9597 CI:[0.9487, 0.9706]
+  tail-512 Seed 456 (qwen7b_full_trace_tail512_seed456): accuracy=0.9765 CI:[0.9681, 0.9849]
+  tail-1024 (full_trace_tail_1024_seed42): accuracy=0.9647  CI:[0.9546, 0.9748]  pass_f1: 0.9753  fail_f1: 0.9381
+  tail-2048 (full_trace_tail_seed42):     accuracy=0.9730  CI:[0.964, 0.982]    pass_f1: 0.980  fail_f1: 0.950
+  head-2048 (qwen7b_full_trace_head2048_seed42): accuracy=0.8160 (epoch1 best)
+    pass_f1_epoch1: 0.87  fail_f1_epoch1: 0.686
+
+--- Tail Truncation Budget Curve (DeepSeek-6.7B) ---
+  tail-256 (deepseek_full_trace_tail256_seed42):  accuracy=0.7639  CI:[0.7403, 0.7874]  pass_f1: 0.8424  fail_f1: 0.5293
+  tail-384 (deepseek_full_trace_tail384_seed42):  accuracy=0.8070  CI:[0.786, 0.829]    pass_f1: 0.87  fail_f1: 0.60
+  tail-512 (deepseek_full_trace_tail512_seed42):  accuracy=0.9390  CI:[0.926, 0.953]    pass_f1: 0.960  fail_f1: 0.900
+  tail-512 Seed 123 (v2): accuracy=0.9504  CI:[0.9387, 0.9630]
+  tail-512 Seed 456: accuracy=0.9605  CI:[0.9496, 0.9714]
+  tail-1024 (deepseek_full_trace_tail1024_seed42): accuracy=0.9647 CI:[0.9538, 0.9748]  pass_f1: 0.976  fail_f1: 0.936
+  tail-2048 (deepseek_full_trace_tail2048_seed42): accuracy=0.9496 CI:[0.937, 0.962]    pass_f1: 0.965  fail_f1: 0.913
+  head-2048 (deepseek_full_trace_head2048_seed42): accuracy=0.7870 CI:[0.765, 0.810]    pass_f1: 0.850  fail_f1: 0.620
+
+--- Tail Truncation Budget Curve (CodeLlama-13B) ---
+  tail-256 (codellama13b_full_trace_tail256_seed42): accuracy=0.779  CI:[0.757, 0.803]  pass_f1: 0.843  fail_f1: 0.626
+  tail-384 (codellama13b_full_trace_tail384_seed42): accuracy=0.827  CI:[0.807, 0.847]  pass_f1: 0.887  fail_f1: 0.630
+    NOTE: label_only_loss used; conclusion=negative (lower than expected)
+  tail-512 (codellama13b_full_trace_tail512_seed42): accuracy=0.9824 CI:[0.9748, 0.9899]
+    pass_f1: 0.9878  fail_f1: 0.9680  lift: 0.2672  (all 3 seeds identical)
+  tail-1024 (v3, label_only_loss): accuracy_epoch1=0.9824 accuracy_epoch3=0.9756  best_epoch=1
+    pass_f1_epoch1: 0.988  fail_f1_epoch1: 0.968
+  head-2048 (codellama13b_full_trace_head2048_seed42): accuracy=0.7992  CI:[0.7765, 0.8227]
+    pass_f1: 0.8602  fail_f1: 0.6438  lift: 0.084
+
+--- Tail Truncation Budget Curve (Qwen-1.5B) ---
+  tail-256 (qwen15b_full_trace_tail256_seed42):  accuracy=0.7260  CI:[0.700, 0.753]  lift_over_majority: 0.011 (near-0)
+  tail-384 (qwen15b_full_trace_tail384_seed42):  accuracy=0.7361  CI:[0.7101, 0.7622]  lift: 0.021
+  tail-512 (qwen15b_full_trace_tail512_seed42):  accuracy=0.9560  CI:[0.945, 0.968]
+  tail-1024 (qwen15b_full_trace_tail1024_seed42): accuracy=0.966   CI:[0.955, 0.976]   pass_f1: 0.98  fail_f1: 0.94
+  tail-2048 (qwen15b_full_trace_tail2048_seed42): accuracy=0.979   CI:[0.9706, 0.9874]  pass_f1: 0.986  fail_f1: 0.962
+  head-2048 (qwen15b_full_trace_head2048_seed42): accuracy=0.7529  CI:[0.7286, 0.7782]  pass_f1: 0.835  fail_f1: 0.508
+
+
+====================================================================================================
+SECTION 5: REGEX AND MAJORITY BASELINES
+====================================================================================================
+
+--- Regex Baseline (marker condition) ---
+  exp_id: regex_baseline_analysis  n=1190
+  B1 (ERROR presence):   0.9345
+  B2 (Traceback):        0.7151
+  B3 (any keyword):      0.9345
+  B4 (exception type):   0.9361
+  B5 (format marker):    0.9933  ← best regex, McNemar p=0.041 vs SFT
+  B6 (error count ≥2):   0.9202
+  SFT exception_only:    0.9983
+  Best regex gap vs SFT: -0.0622 (B5 at 99.33%, SFT at 99.83%)
+
+--- Regex Baseline (nomarker condition) ---
+  exp_id: regex_nomarker_baseline  n=1190
+  B5_marker_acc:   0.9933  (original with marker)
+  B5_nomarker_acc: 0.2849  (drops 70.84pp without marker)
+  B5_delta_pp:     -70.84
+  B1_marker_acc:   0.9345
+  B1_nomarker_acc: 0.7151
+  B4_marker_acc:   0.9361
+  B4_nomarker_acc: 0.9361  (unchanged — exception type is format-independent)
+  B5b_nomarker_acc: 0.9345  (alternative regex without marker dependency)
+
+--- Majority Baseline (from experiment metrics) ---
+  majority_baseline across experiments: 0.7151 (standard HumanEval/MBPP split)
+  DebugBench majority_baseline: 0.5141  (50/50 pass/fail)
+  Cross-HE2MBPP majority_baseline: 0.6902
+
+
+====================================================================================================
+SECTION 6: CALIBRATION (ECE / Brier Score)
+====================================================================================================
+
+--- Qwen-7B calibration across conditions (exp_id: calibration_analysis_seed42, n=1190) ---
+  no_trace:
+    ECE: 0.171476  MCE: 0.475643  Brier: 0.197152  accuracy: 0.751261
+  full_trace:
+    ECE: 0.095817  MCE: 0.249061  Brier: 0.143924  accuracy: 0.817647
+  label_only:
+    ECE: 0.110686  MCE: 0.417124  Brier: 0.120144  accuracy: 0.862185
+  loop_only:
+    ECE: 0.083085  MCE: 0.183406  Brier: 0.118335  accuracy: 0.856303
+  ae_only:
+    ECE: 0.000415  MCE: 0.000415  Brier: 0.000847  accuracy: 0.99916
+  exception_only:
+    ECE: 0.002717  MCE: 0.835484  Brier: 0.001311  accuracy: 0.998319
+  vota:
+    ECE: 0.005410  MCE: 0.622459  Brier: 0.005234  accuracy: 0.994118
+
+--- Cross-model calibration (exp_id: cross_model_calibration_eval, exception_only, n=1190) ---
+  Qwen-7B:
+    ECE: 0.0027  MCE: 0.8355  Brier: 0.0013  accuracy: 0.9983
+  Qwen-1.5B:
+    ECE: 0.0020  MCE: 0.7549  Brier: 0.0013  accuracy: 0.9983
+  CodeLlama-13B:
+    ECE: 0.0020  MCE: 0.0411  Brier: 0.0013  accuracy: 0.9983
+  DeepSeek-6.7B:
+    ECE: 0.0064  MCE: 0.7756  Brier: 0.0061  accuracy: 0.9933
+  ALL: ECE < 0.007, Brier < 0.007 — universally well-calibrated across architectures
+
+
+====================================================================================================
+SECTION 7: CROSS-DATASET GENERALIZATION
+====================================================================================================
+
+--- HE→MBPP (train HumanEval, test MBPP) ---
+  exception_only (exp_id: cross_he2mbpp_exception_only_seed42):
+    accuracy: 0.9941  majority_baseline: 0.6902  lift: 0.3040
+    pass_f1: 0.9957  fail_f1: 0.9906
+    pass_precision: 0.9980  pass_recall: 0.9936
+    fail_precision: 0.9858  fail_recall: 0.9955
+  no_trace (exp_id: cross_he2mbpp_no_trace_seed42):
+    accuracy: 0.7056  majority_baseline: 0.6902  lift: 0.0155
+    pass_f1: 0.8074  fail_f1: 0.3756
+    pass_precision: 0.7360  pass_recall: 0.8941
+    fail_precision: 0.5478  fail_recall: 0.2857
+
+--- MBPP→HE (train MBPP, test HumanEval) ---
+  exception_only (exp_id: cross_mbpp2he_exception_only_seed42): status=DONE, no metrics in spec
+  no_trace (exp_id: cross_mbpp2he_no_trace_seed42): status=DONE, no metrics in spec
+
+--- Cross-dataset nomarker ablation (HE→MBPP, nomarker) ---
+  exp_id: nomarker_cross_he2mbpp_exception_only
+  accuracy: 0.9546  (vs marker 0.9941 → delta = -0.0395)
+  pass_f1: 0.9662  fail_f1: 0.9309
+  pass_precision: 0.9943  pass_recall: 0.9396
+  fail_precision: 0.8801  fail_recall: 0.9879
+  eval_loss: 1.09  train_loss: 0.247
+  NOTE: even without markers, cross-dataset accuracy ~95.5% (strong generalization)
+
+
+====================================================================================================
+SECTION 8: OUT-OF-DISTRIBUTION (DebugBench)
+====================================================================================================
+
+  DebugBench exception_only (exp_id: debugbench_exception_only_seed42, n=426):
+    accuracy: 1.0000  CI_wilson:[0.9914, 1.0]  majority_baseline: 0.5141  lift: 0.4859
+    pass_f1: 1.0  fail_f1: 1.0  (zero errors)
+
+  DebugBench VOTA (exp_id: debugbench_vota_seed42, n=426):
+    accuracy: 0.9977  errors: 1  CI:[0.993, 1.0]  majority_baseline: 0.5141  lift: 0.4836
+    pass_f1: 1.0  fail_f1: 1.0
+
+  DebugBench no_trace (exp_id: debugbench_no_trace_seed42):
+    accuracy: 0.9671  majority_baseline: 0.5141  lift: 0.4531
+    pass_f1: 0.967  fail_f1: 0.967
+    CI: [0.948, 0.984]
+  NOTE: no_trace lift is higher on DebugBench because 50/50 class balance
+
+
+====================================================================================================
+SECTION 9: FRONTIER LLM COMPARISON (GPT-4o, GPT-4.1, zero-shot Qwen-7B)
+====================================================================================================
+
+  GPT-4o 0-shot exception_only (exp_id: fewshot_gpt4o_exception_only_0shot):
+    accuracy: 0.8798  fail_f1: 0.8228
+  GPT-4o 3-shot exception_only (exp_id: fewshot_gpt4o_exception_only_3shot):
+    accuracy: 0.8681  fail_f1: 0.7995  (3-shot worse than 0-shot)
+  GPT-4o 0-shot no_trace (exp_id: fewshot_gpt4o_no_trace_0shot):
+    accuracy: 0.8445  fail_f1: 0.7543
+
+  GPT-4.1 0-shot exception_only (exp_id: fewshot_gpt41_exception_only_0shot):
+    accuracy: 0.8218  fail_f1: 0.7452
+  GPT-4.1 3-shot exception_only (exp_id: fewshot_gpt41_exception_only_3shot):
+    accuracy: 0.8193  fail_f1: 0.7413
+  GPT-4.1 0-shot no_trace (exp_id: fewshot_gpt41_no_trace_0shot):
+    accuracy: 0.7731  fail_f1: 0.6608
+
+  Qwen-7B 0-shot exception_only (exp_id: zeroshot_qwen7b_exception_only):
+    accuracy: 0.8908  CI:[0.8731, 0.9076]  pass_f1: 0.9276  fail_f1: 0.7774  n: 1190
+  Qwen-7B 3-shot exception_only (exp_id: fewshot_qwen7b_exception_only):
+    accuracy: 0.9084  CI:[0.8908, 0.9244]  pass_f1: 0.9368  fail_f1: 0.8336  n: 1190
+  → SFT Qwen-7B exception_only: 0.9983  (gap vs 0-shot: +10.75pp)
+
+  DeepSeek-6.7B 0-shot (exp_id: zeroshot_deepseek7b_exception_only):
+    accuracy: 0.9059  CI:[0.8899, 0.9218]  pass_f1: 0.9313  fail_f1: 0.8507  n: 1190
+  Qwen-1.5B 0-shot (exp_id: zeroshot_qwen15b_exception_only):
+    accuracy: 0.9345  CI:[0.9202, 0.9479]  pass_f1: 0.9690  fail_f1: 0.8730  n: 1190  unknown: 24
+  CodeLlama-13B 0-shot (exp_id: zeroshot_codellama13b_exception_only):
+    accuracy: 0.5101  CI:[0.4824, 0.5395]  pass_f1: 0.5187  fail_f1: 0.5146  n: 1190  unknown: 30
+    NOTE: near-random, heavy bias toward fail
+
+
+====================================================================================================
+SECTION 10: LEARNING DYNAMICS (step-level, Qwen-7B)
+====================================================================================================
+
+  exception_only dynamics (exp_id: qwen7b_exception_only_dynamics_seed42):
+    step50:  0.9933  step100: 0.9933  step150: 0.9933
+    step200: 0.9983  step250: 0.9983  step300: 0.9983
+    step350: 0.9983  step400: 0.9983  step444: 0.9983
+    saturation_step: 200  final_loss: 0.0329  pass_f1: 0.9988  fail_f1: 0.9971
+
+  full_trace (label_only_loss) dynamics (exp_id: qwen7b_full_trace_dynamics_seed42):
+    step50:  0.8739  step100: 0.821  step150: 0.857
+    step200: 0.866   step250: 0.874  step300: 0.849
+    step350: 0.888   step400: 0.857  step444: 0.882
+    best_step: 350  best_acc: 0.8882  final_loss: 0.0085
+    NOTE: non-monotonic, no saturation (vs exception_only which saturates at step 200)
+
+
+====================================================================================================
+SECTION 11: MISC / COVERAGE NOTES
+====================================================================================================
+
+  attention_gradient_analysis: DONE, no numeric metrics stored
+
+  Qwen-1.5B (earlier alias qwen1.5b_*): all killed — use qwen15b_* experiments
+  CodeLlama (earlier alias codellama_*): all killed — use codellama13b_* experiments
+
+  cross_mbpp2he_exception_only_seed42: DONE, metrics NOT stored in registry
+  cross_mbpp2he_no_trace_seed42: DONE, metrics NOT stored in registry
+
+  Seed-42 canonical for Qwen-7B exception_only NOT separately recorded;
+    accuracy confirmed 0.9983 via seed_comparison fields in seed123 and seed456 records
+
+  codellama_gradient_masking_seed42: accuracy=1.0000 dilution_pct=-0.11 (better than baseline)
+
+  deepseek_gradient_masking summary:
+    seed42: accuracy=0.9933 (success) | seed123: accuracy=0.9395 (negative — below 98.5% threshold)
+
+====================================================================================================
+END OF REGISTRY AUDIT EXTRACT
+====================================================================================================

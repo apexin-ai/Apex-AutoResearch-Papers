@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4485f1a1816afeb0566f",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis tier clustering",
+  "task_key": "worker_analysis_tier_clustering_20260522T071852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_tier_clustering_20260522T071852_result.json",
+    "occurrence": 1,
+    "bytes": 1928,
+    "sha256": "55de9e6f132d86605b4de438cdbea42fb02282303d94760e2ede6c9160a7847c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部文件已生成。结果汇总：\n\n---\n\n### 1. 每个模型的最优 k\n\n| 模型 | Gap statistic 最优 k | Silhouette (k=2) |\n|------|---------------------|-------------------|\n| **Qwen-7B** | **2** | 0.747 |\n| **Qwen-1.5B** | **2** | 0.888 |\n| **DeepSeek-6.7B** | **1** | 0.784 |\n| **CodeLlama-13B** | **2** | 0.967 |\n| **Pooled** | **2** | 0.800 |\n\nDeepSeek gap statistic 选 k=1（数据分布较连续），但强制 k=2 时 silhouette 仍高达 0.78。其余 3 个模型和 pooled 分析均选 k=2。\n\n### 2. k=2 cluster 分配 vs 论文\n\n| 模型 | 匹配论文 Tier 划分？ | 差异 |\n|------|---------------------|------|\n| Qwen-7B | **完全匹配** | — |\n| Qwen-1.5B | **完全匹配** | — |\n| DeepSeek-6.7B | **不匹配** | vota (0.8445) 被聚到 Tier 2 而非论文的 Tier 1 |\n| CodeLlama-13B | **完全匹配** | — |\n\n### 3. CodeLlama loop_only 的归属\n\nloop_only (0.7706) 和 no_trace (0.7650) 仅差 **0.56pp**，两者均被聚入 Tier 2。k=2 下它们不可分离——这实际上意味着 CodeLlama 上 loop_only trace 几乎没有比 no_trace baseline 提供更多信息。\n\n### 4. 跨模型一致性\n\n- **7/8 conditions 一致**：exception_only, ae_only, nomarker, loop_only, full_trace, label_only, no_trace 在所有出现的模型中聚类结果一致\n- **vota 不一致**：3 个模型归 Tier 1，但 DeepSeek 归 Tier 2（0.8445 处于边界，距 Tier 1 中心 0.143，距 Tier 2 上边沿仅 0.032）\n\n### 5. Pooled k=2 分界\n\nTier 1 (≥0.9563): exception_only, ae_only, vota (除 DeepSeek), nomarker\nTier 2 (≤0.8622): label_only, loop_only, full_trace, no_trace, DeepSeek:vota\n\n**结论**：论文的 Two-Tier 划分在 3/4 模型上与 k-means 聚类完全吻合，pooled 分析也支持 k=2。唯一例外是 DeepSeek 的 vota (0.8445) 处于边界。建议论文中注明 vota 在 DeepSeek 上为 borderline case。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-tier-clustering.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca1c618f571d6d85a9ab",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper mf3 placeholder template",
+  "task_key": "worker_paper_mf3_placeholder_template_20260521T091812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_mf3_placeholder_template_20260521T091812_result.json",
+    "occurrence": 1,
+    "bytes": 1166,
+    "sha256": "2005f570ac4e37ae427c226746b6746fbf859157d0d0be7027408f0fca81666b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n---\n\n## MF-3 修改结果\n\n### 已修改（4 处，6 个值）\n\n| 文件 | 行 | 修改前 | 修改后 |\n|---|---|---|---|\n| experiments.tex (Table 2) | 85 | `81.76` | `XX.XX$\\pm$Y.YY` |\n| experiments.tex (Table 2) | 85 | `[79.70, 83.90]` | `[LL.LL, UU.UU]` |\n| experiments.tex (§Info Density) | 123 | `17.29pp ... (81.76\\%)` | `XX.XXpp ... (XX.XX\\%$\\pm$Y.YY)` |\n| experiments.tex (Table 3) | 135 | `81.76` | `XX.XX$\\pm$Y.YY` |\n| method.tex (Fig 1 caption) | 33 | `(81.76\\%)` | `(XX.XX\\%)` |\n\n**Dagger 标记**: full_trace 行 (L85) 原本无 `†`，无需去除。\n\n### 编译验证\n- **Errors**: 0\n- **总页数**: 21（Appendix 从第 12 页起，主文 ≤ 8 页不变）\n- **PDF MD5**: `9a8a7cbb4516ff899a4236708a97a850`\n\n### 待确认位置（未修改）\n\n**\"76--82%\" 范围**（等 multi-seed 结果再改）：\n- `main.tex:23` — Abstract: \"complete traces reach only 76--82%\"\n- `introduction.tex:14` — Intro: \"complete traces (76--82%; §3.4)\"\n\n**\"we observe\" / \"we find\" C2 措辞**: introduction.tex / experiments.tex / discussion.tex 中均未匹配到。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-mf3-placeholder-template.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c49b72e708be3dc0f818",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper compilation provenance check",
+  "task_key": "worker_paper_compilation-provenance-check_20260516T045807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compilation-provenance-check_20260516T045807_result.json",
+    "occurrence": 1,
+    "bytes": 844,
+    "sha256": "e42b9044dfd70e866d73be0f43d5040c42e848babdadf81234e339f5bb583d51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存。汇总如下：\n\n### 1. 256/512 数据溯源 — 已确认\n两个数据点**均可完整溯源**：\n- **256tok (78.82%)**：checkpoint 在 `full_trace_256tok/`，`final/eval_results.json` 中 accuracy=0.78824，训练通过 `train_sft.py --max_trace_tokens 256`\n- **512tok (80.42%)**：checkpoint 在 `full_trace_512tok/`，`final/eval_results.json` 中 accuracy=0.80420，训练通过 `train_sft.py --max_trace_tokens 512`\n\n缺失项：这两个实验没有像 1024tok 那样注册到 registry，建议补注册。\n\n### 2. 论文编译 — 成功\n`main.pdf` 编译成功，18 页，仅有 underfull hbox 排版警告，无错误。\n\n### 3. ae_only 训练 — 运行中\n- seed123：241/444 (54%)，预计 ~64min 完成\n- seed456：211/444 (48%)，预计 ~74min 完成\n- 双 GPU 均 100% 利用率"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compilation-provenance-check.md"
+}

@@ -1,0 +1,1403 @@
+{
+  "schema_version": "1.0",
+  "id": "cccb2b53b53ba527c51e",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "paper mf3 fill placeholders final",
+  "task_key": "worker_paper_mf3_fill_placeholders_final_20260521T122505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_mf3_fill_placeholders_final_20260521T122505.log",
+    "occurrence": 1,
+    "bytes": 109241,
+    "sha256": "c79094dac4ecc68d6f11b00cc8eb45f03f7913e26c4e1973dcd591b903ca3ddc"
+  },
+  "statistics": {
+    "messages": 34,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 11,
+      "tool_result": 11
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+                "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "e30f7f13-aa90-4cd9-9673-edca7357b0ab",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779383400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "52d31ad7-5e6e-450a-8664-ff8779840747",
+                "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the seed123 eval results, then proceed step by step.",
+              "signature": "EpECCmMIDRgCKkDnykOQbx8qvezSY8ISCwB5IK4ZBquIk1EQtAYty5p3Oc0MxRuQeyOX+ULR7aqpUjtPU1Zjb8djL6R+ChHNDK91Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDL+1/NOejI8oFV4DKBoMCtJ9vLibChPkKy7mIjBf/nqdJqmp0sWU5LLhu5SEv7+LiVVK52EyWifGa+KgDT+qg/j7uSTZeFav+2fhy6YqXH20wbZl59ObQi1JftCQEjGBsibJdJ6SXVKhYiy4FSfpBANRWEhfY6TJuHX5ESQEJIzd3IdiwdaXuZdXW5gEIBYrsP7fMSP0K8bx9V0TlyGmazniB3F9760+foeTGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "7bd7e6b0-94ff-4eb6-972a-ee960fb22937",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FSjB6FCotCUutqZA24xDHu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13074,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13074
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "开始执行 MF-3 最终步骤。先读取 seed123 精确值。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "61fdaead-8ef2-45a9-ba0b-fefa92746d32",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FSjB6FCotCUutqZA24xDHu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13074,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13074
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018RjDPpoHHSFWYAajoddLbs",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "54ce3a98-ed70-4999-b8d2-b87ca3b9bfda",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FSjB6FCotCUutqZA24xDHu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13074,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13074
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T12:25:16.845Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_018RjDPpoHHSFWYAajoddLbs",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "8d409eae-d57b-4dd2-a377-0030c9fdeafb",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RDycnHaUibctqsdDktmn3a",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "cat /root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed123/final/eval_results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "6cf14f62-0e14-4ffe-814e-75fe7ab791ff",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GMxRSWCcfDUPZsTGt6faVr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 732,
+                "cache_read_input_tokens": 24915,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 732
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T12:25:22.439Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RDycnHaUibctqsdDktmn3a",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"full_trace\\\\\\\",\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed123/final\\\\\\\",\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8016806722689076,\\\\n    \\\\\\\"majority_baseline\\\\\\\": 0.7151260504201681,\\\\n    \\\\\\\"lift\\\\\\\": 0.08655462184873952,\\\\n    \\\\\\\"majority_class\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n    \\\\\\\"n\\\\\\\": 1190,\\\\n    \\\\\\\"pass_precision\\\\\\\": 0.8754578754578755,\\\\n    \\\\\\\"pass_recall\\\\\\\": 0.8425381903642774,\\\\n    \\\\\\\"pass_f1\\\\\\\": 0.8586826347305389,\\\\n    \\\\\\\"fail_precision\\\\\\\": 0.6388140161725068,\\\\n    \\\\\\\"fail_recall\\\\\\\": 0.6991150442477876,\\\\n    \\\\\\\"fail_f1\\\\\\\": 0.6676056338028169\\\\n  },\\\\n  \\\\\\\"confidence_intervals\\\\\\\": {\\\\n    \\\\\\\"accuracy_ci_lower\\\\\\\": 0.7781302521008403,\\\\n    \\\\\\\"accuracy_ci_upper\\\\\\\": 0.8252100840336134,\\\\n    \\\\\\\"majority_baseline_ci_lower\\\\\\\": 0.6915966386554622,\\\\n    \\\\\\\"majority_baseline_ci_upper\\\\\\\": 0.738655462184874,\\\\n    \\\\\\\"lift_ci_lower\\\\\\\": 0.05712184873949571,\\\\n    \\\\\\\"lift_ci_upper\\\\\\\": 0.11764705882352944,\\\\n    \\\\\\\"pass_precision_ci_lower\\\\\\\": 0.8541500796178344,\\\\n    \\\\\\\"pass_precision_ci_upper\\\\\\\": 0.8973400480337647,\\\\n    \\\\\\\"pass_recall_ci_lower\\\\\\\": 0.8172137527529915,\\\\n    \\\\\\\"pass_recall_ci_upper\\\\\\\": 0.8667490058922016,\\\\n    \\\\\\\"pass_f1_ci_lower\\\\\\\": 0.839453931988692,\\\\n    \\\\\\\"pass_f1_ci_upper\\\\\\\": 0.8763270734902926,\\\\n    \\\\\\\"fail_precision_ci_lower\\\\\\\": 0.5899402605244997,\\\\n    \\\\\\\"fail_precision_ci_upper\\\\\\\": 0.689569623585154,\\\\n    \\\\\\\"fail_recall_ci_lower\\\\\\\": 0.6496899678903063,\\\\n    \\\\\\\"fail_recall_ci_upper\\\\\\\": 0.7492354740061162,\\\\n    \\\\\\\"fail_f1_ci_lower\\\\\\\": 0.6277121356048335,\\\\n    \\\\\\\"fail_f1_ci_upper\\\\\\\": 0.7066931136010929\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "c1574aa2-90b4-44a8-9466-895ee41d29d7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"full_trace\\\\\\\",\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed123/final\\\\\\\",\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8016806722689076,\\\\n    \\\\\\\"majority_baseline\\\\\\\": 0.7151260504201681,\\\\n    \\\\\\\"lift\\\\\\\": 0.08655462184873952,\\\\n    \\\\\\\"majority_class\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n    \\\\\\\"n\\\\\\\": 1190,\\\\n    \\\\\\\"pass_precision\\\\\\\": 0.8754578754578755,\\\\n    \\\\\\\"pass_recall\\\\\\\": 0.8425381903642774,\\\\n    \\\\\\\"pass_f1\\\\\\\": 0.8586826347305389,\\\\n    \\\\\\\"fail_precision\\\\\\\": 0.6388140161725068,\\\\n    \\\\\\\"fail_recall\\\\\\\": 0.6991150442477876,\\\\n    \\\\\\\"fail_f1\\\\\\\": 0.6676056338028169\\\\n  },\\\\n  \\\\\\\"confidence_intervals\\\\\\\": {\\\\n    \\\\\\\"accuracy_ci_lower\\\\\\\": 0.7781302521008403,\\\\n    \\\\\\\"accuracy_ci_upper\\\\\\\": 0.8252100840336134,\\\\n    \\\\\\\"majority_baseline_ci_lower\\\\\\\": 0.6915966386554622,\\\\n    \\\\\\\"majority_baseline_ci_upper\\\\\\\": 0.738655462184874,\\\\n    \\\\\\\"lift_ci_lower\\\\\\\": 0.05712184873949571,\\\\n    \\\\\\\"lift_ci_upper\\\\\\\": 0.11764705882352944,\\\\n    \\\\\\\"pass_precision_ci_lower\\\\\\\": 0.8541500796178344,\\\\n    \\\\\\\"pass_precision_ci_upper\\\\\\\": 0.8973400480337647,\\\\n    \\\\\\\"pass_recall_ci_lower\\\\\\\": 0.8172137527529915,\\\\n    \\\\\\\"pass_recall_ci_upper\\\\\\\": 0.8667490058922016,\\\\n    \\\\\\\"pass_f1_ci_lower\\\\\\\": 0.839453931988692,\\\\n    \\\\\\\"pass_f1_ci_upper\\\\\\\": 0.8763270734902926,\\\\n    \\\\\\\"fail_precision_ci_lower\\\\\\\": 0.5899402605244997,\\\\n    \\\\\\\"fail_precision_ci_upper\\\\\\\": 0.689569623585154,\\\\n    \\\\\\\"fail_recall_ci_lower\\\\\\\": 0.6496899678903063,\\\\n    \\\\\\\"fail_recall_ci_upper\\\\\\\": 0.7492354740061162,\\\\n    \\\\\\\"fail_f1_ci_lower\\\\\\\": 0.6277121356048335,\\\\n    \\\\\\\"fail_f1_ci_upper\\\\\\\": 0.7066931136010929\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.37}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition\\\": \\\"full_trace\\\",\\n  \\\"checkpoint_dir\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/qwen7b_full_trace_seed123/final\\\",\\n  \\\"metrics\\\": {\\n    \\\"accuracy\\\": 0.8016806722689076,\\n    \\\"majority_baseline\\\": 0.7151260504201681,\\n    \\\"lift\\\": 0.08655462184873952,\\n    \\\"majority_class\\\": \\\"pass\\\",\\n    \\\"n\\\": 1190,\\n    \\\"pass_precision\\\": 0.8754578754578755,\\n    \\\"pass_recall\\\": 0.8425381903642774,\\n    \\\"pass_f1\\\": 0.8586826347305389,\\n    \\\"fail_precision\\\": 0.6388140161725068,\\n    \\\"fail_recall\\\": 0.6991150442477876,\\n    \\\"fail_f1\\\": 0.6676056338028169\\n  },\\n  \\\"confidence_intervals\\\": {\\n    \\\"accuracy_ci_lower\\\": 0.7781302521008403,\\n    \\\"accuracy_ci_upper\\\": 0.8252100840336134,\\n    \\\"majority_baseline_ci_lower\\\": 0.6915966386554622,\\n    \\\"majority_baseline_ci_upper\\\": 0.738655462184874,\\n    \\\"lift_ci_lower\\\": 0.05712184873949571,\\n    \\\"lift_ci_upper\\\": 0.11764705882352944,\\n    \\\"pass_precision_ci_lower\\\": 0.8541500796178344,\\n    \\\"pass_precision_ci_upper\\\": 0.8973400480337647,\\n    \\\"pass_recall_ci_lower\\\": 0.8172137527529915,\\n    \\\"pass_recall_ci_upper\\\": 0.8667490058922016,\\n    \\\"pass_f1_ci_lower\\\": 0.839453931988692,\\n    \\\"pass_f1_ci_upper\\\": 0.8763270734902926,\\n    \\\"fail_precision_ci_lower\\\": 0.5899402605244997,\\n    \\\"fail_precision_ci_upper\\\": 0.689569623585154,\\n    \\\"fail_recall_ci_lower\\\": 0.6496899678903063,\\n    \\\"fail_recall_ci_upper\\\": 0.7492354740061162,\\n    \\\"fail_f1_ci_lower\\\": 0.6277121356048335,\\n    \\\"fail_f1_ci_upper\\\": 0.7066931136010929\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.37}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "seed123 accuracy = 0.8016806722689076 = 80.17%\n\nNow let me calculate the 3-seed statistics:\n- seed42: 81.76%\n- seed123: 80.17% (80.1680672268...)\n- seed456: 82.35%\n\nLet me compute:\nmean = (81.76 + 80.17 + 82.35) / 3 = 244.28 / 3 = 81.4267... ≈ 81.43\n\nWait, let me be more precise. \n\nNow I'm recalculating the mean more carefully: 81.76 + 80.17 + 82.35 gives 244.28, and dividing by 3 yields approximately 81.43. Next I need to compute the sample standard deviation.\n\nComputing the sample standard deviation by finding the squared deviations from the mean, summing them, dividing by 2 (for sample variance), and taking the square root gives me about 1.13. The gap between the maximum value and the mean is roughly 18.40. I should verify these calculations with Python to ensure precision.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "49766e16-4cd7-45f3-8df6-2a21827d1556",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DXFk2oDjbHHx6Gf1Ck38Cy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1003,
+                "cache_read_input_tokens": 25647,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1003
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "seed123 = 80.17% (0.8016806722689076)。现在计算 3-seed 统计。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "f550a26f-957e-42ee-884c-a088c6557691",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DXFk2oDjbHHx6Gf1Ck38Cy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1003,
+                "cache_read_input_tokens": 25647,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1003
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FTVRfTrK9Uk4MUfZgtqgNt",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "python3 -c \"\nimport numpy as np\nfrom scipy import stats\nseeds = [81.76, 80.17, 82.35]\nmean = np.mean(seeds)\nstd = np.std(seeds, ddof=1)\ngap = 99.83 - mean\nt_val = stats.t.ppf(0.975, df=2)\nse = std / np.sqrt(3)\nci_lower = mean - t_val * se\nci_upper = mean + t_val * se\nprint(f'seeds={seeds}')\nprint(f'mean={mean:.2f}')\nprint(f'std={std:.2f}')\nprint(f'gap={gap:.2f}pp')\nprint(f'CI=[{ci_lower:.2f}, {ci_upper:.2f}]')\nprint(f't_val={t_val:.4f}, se={se:.4f}')\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "2bfec065-9476-479d-9c4f-13118661cd0e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DXFk2oDjbHHx6Gf1Ck38Cy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1003,
+                "cache_read_input_tokens": 25647,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1003
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T12:25:35.736Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FTVRfTrK9Uk4MUfZgtqgNt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 2, in <module>\\\\nModuleNotFoundError: No module named 'numpy'\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "23cf7d3b-f476-489a-b95e-b3b42f31ea30",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 2, in <module>\\\\nModuleNotFoundError: No module named 'numpy'\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"Traceback (most recent call last):\\n  File \\\"<string>\\\", line 2, in <module>\\nModuleNotFoundError: No module named 'numpy'\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AJg9fTUMwybjqwbjtzaqmo",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "/root/miniconda3/bin/python -c \"\nimport numpy as np\nfrom scipy import stats\nseeds = [81.76, 80.17, 82.35]\nmean = np.mean(seeds)\nstd = np.std(seeds, ddof=1)\ngap = 99.83 - mean\nt_val = stats.t.ppf(0.975, df=2)\nse = std / np.sqrt(3)\nci_lower = mean - t_val * se\nci_upper = mean + t_val * se\nprint(f'seeds={seeds}')\nprint(f'mean={mean:.2f}')\nprint(f'std={std:.2f}')\nprint(f'gap={gap:.2f}pp')\nprint(f'CI=[{ci_lower:.2f}, {ci_upper:.2f}]')\nprint(f't_val={t_val:.4f}, se={se:.4f}')\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "fd71114e-9c26-4d2e-8084-db4f9b61dac0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011iLie5FGuxkPvtYGbznpcT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1013,
+                "cache_read_input_tokens": 26650,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1013
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T12:25:41.574Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AJg9fTUMwybjqwbjtzaqmo",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"seeds=[81.76, 80.17, 82.35]\\\\nmean=81.43\\\\nstd=1.13\\\\ngap=18.40pp\\\\nCI=[78.63, 84.23]\\\\nt_val=4.3027, se=0.6510\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "3bf2dc44-a525-4c49-8345-76337e40a9dd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"seeds=[81.76, 80.17, 82.35]\\\\nmean=81.43\\\\nstd=1.13\\\\ngap=18.40pp\\\\nCI=[78.63, 84.23]\\\\nt_val=4.3027, se=0.6510\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"seeds=[81.76, 80.17, 82.35]\\nmean=81.43\\nstd=1.13\\ngap=18.40pp\\nCI=[78.63, 84.23]\\nt_val=4.3027, se=0.6510\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "3-seed statistics:\n- mean = 81.43%\n- std = 1.13\n- gap = 18.40pp\n- CI = [78.63, 84.23]\n\nNow σ = 1.13 > 1pp, ≤ 3pp → C2 措辞: \"we consistently observe\"\n\nNow let me read the current paper files to find the placeholders and replace them.\n\nLet me read the relevant sections of experiments.tex and method.tex.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "e0e1afc6-0c56-4837-b2d3-642df569348a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014fE6FU8KPZvDufF6j5ZZ1W",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 476,
+                "cache_read_input_tokens": 27663,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 476
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "3-seed 统计结果：\n- mean = 81.43%, std = 1.13, gap = 18.40pp, CI = [78.63, 84.23]\n- σ = 1.13 → 1pp < σ ≤ 3pp → C2 措辞用 \"we consistently observe\"\n\n现在读取论文中需要替换的位置。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "e9937773-ea02-435f-8aea-79bb0f565cb6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014fE6FU8KPZvDufF6j5ZZ1W",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 476,
+                "cache_read_input_tokens": 27663,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 476
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KHxdAw5A8qRkpuTbQrWpPX",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "sed -n '80,95p' /root/trace-verdict-study/docs/paper/experiments.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "ee6fe97a-18b6-4ed6-813a-c216c3a3b66c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014fE6FU8KPZvDufF6j5ZZ1W",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 476,
+                "cache_read_input_tokens": 27663,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 476
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T12:25:47.993Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KHxdAw5A8qRkpuTbQrWpPX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "11061bf5-8fad-469a-85e7-2a956f910a27",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DfngWkquMTKG5Seb1r8uPG",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "sed -n '115,135p' /root/trace-verdict-study/docs/paper/experiments.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "81727f49-49ee-408a-a149-6e19102b911a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014fE6FU8KPZvDufF6j5ZZ1W",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 476,
+                "cache_read_input_tokens": 27663,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 476
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T12:25:48.556Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DfngWkquMTKG5Seb1r8uPG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "ae79b4db-00f8-453a-a479-02ec162cff36",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SHyQMH7gH2KHfk2ZndmMfB",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "sed -n '130,145p' /root/trace-verdict-study/docs/paper/experiments.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "8d4375c6-e10a-4cf0-ad17-ac9934a4b5f0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014fE6FU8KPZvDufF6j5ZZ1W",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 476,
+                "cache_read_input_tokens": 27663,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 476
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T12:25:49.480Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SHyQMH7gH2KHfk2ZndmMfB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "4554cbf1-dc3a-49e7-8755-2b536361a8ab",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LM3Npipavh6fFW7omDzYcG",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "sed -n '28,40p' /root/trace-verdict-study/docs/paper/method.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "59936ed6-d153-4167-a843-2f673b30dc5f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014fE6FU8KPZvDufF6j5ZZ1W",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 476,
+                "cache_read_input_tokens": 27663,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 476
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T12:25:50.310Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LM3Npipavh6fFW7omDzYcG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "cb0283a0-aec4-445a-a6ba-9d358e8fc899",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "sed is blocked. Let me use head/tail to read those lines.",
+              "signature": "Ev4BCmMIDRgCKkDfEBq8ReEzP6s+1XnWx8yeihSUQ9HREZ3TF4fUKfbeYNjsvmaB9eFH7N/tGWJtrajlZs79NIXjCjAh4dzDhA6mMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDC8M00/Y6tmM/QNS+RoM5U+1fW1hLsRJC0xgIjAgSpyKshQSSS7sfOoMeN19KcFWzISm2Ue3QYfszwIRpJUIbqwUrz5X6Ry4habRf9UqSU7RFeaI8iv3s6ZlLAyKc5AyQ2itKg5fKG16BwZpnh1VAoPXS8piaA/a0EBOeJYXAIpESh+sQcvOMEbgSJ2RxwXphlG0NLO3MsEYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "2255d1c7-dbb4-4cc8-a2f1-b615ee88b0c5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LUxvyeoMpAGDd1R5TjMt9c",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1262,
+                "cache_read_input_tokens": 28139,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1262
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DQXUrtAo25H12WYgsVVJYT",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "head -95 /root/trace-verdict-study/docs/paper/experiments.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "ce6ea61f-aa4c-4733-b908-525cfaa56b94",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LUxvyeoMpAGDd1R5TjMt9c",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1262,
+                "cache_read_input_tokens": 28139,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1262
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T12:25:54.188Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DQXUrtAo25H12WYgsVVJYT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Experiments}\\\\n\\\\nWe evaluate across two research questions:\\\\n(1)~Do Tier~1 exception signals generalize across models?\\\\n(2)~What is the relative contribution of each trace component?\\\\nAll experiments use $N{=}1{,}190$ test samples; accuracy is reported with Wilson 95\\\\\\\\% CIs.\\\\\\\\footnote{Data is partitioned at the problem level (472 train / 119 test problems, zero crossover; \\\\\\\\S\\\\\\\\ref{sec:dataset}). The \\\\\\\\texttt{exception\\\\\\\\_only} format collapses passing solutions into identical rows (48.99\\\\\\\\% test duplicates; Appendix~\\\\\\\\ref{sec:dedup_stats}), but these arise from within-problem variants, not cross-set leakage; deduplication sensitivity analysis confirms 0.00pp delta across all 19 experimental conditions.}\\\\nPairwise comparisons use paired bootstrap resampling ($B{=}10{,}000$, seed=42); all differences are significant at $p{<}.0001$ unless noted.\\\\n\\\\n\\\\\\\\subsection{Cross-Model Comparison}\\\\n\\\\\\\\label{sec:cross_model}\\\\n\\\\nTable~\\\\\\\\ref{tab:cross_model} compares four models spanning an 8.7$\\\\\\\\times$ parameter range (1.5B--13B) and three architecture families (Qwen, DeepSeek, CodeLlama) under key conditions.\\\\n\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Cross-model verdict accuracy (\\\\\\\\%, $N{=}1{,}190$) across four models (1.5B--13B) and three architecture families. Multi-seed entries report mean$\\\\\\\\pm$std over 2--3 seeds. Bold: best per model. Full per-seed breakdowns in Appendix~\\\\\\\\ref{sec:full_results}; per-class metrics in Appendix~\\\\\\\\ref{sec:per_class}. $\\\\\\\\dagger$Single seed (seed~42).}\\\\n\\\\\\\\label{tab:cross_model}\\\\n\\\\\\\\small\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{lcccc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Condition} & \\\\\\\\textbf{Qwen-7B} & \\\\\\\\textbf{Qwen-1.5B} & \\\\\\\\textbf{CL-13B} & \\\\\\\\textbf{DS-6.7B} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nexception\\\\\\\\_only & \\\\\\\\textbf{99.83}{\\\\\\\\scriptsize$\\\\\\\\pm$0.00} & \\\\\\\\textbf{99.83}{\\\\\\\\scriptsize$\\\\\\\\pm$0.00} & \\\\\\\\textbf{99.89}{\\\\\\\\scriptsize$\\\\\\\\pm$0.10} & \\\\\\\\textbf{99.39}{\\\\\\\\scriptsize$\\\\\\\\pm$0.10} \\\\\\\\\\\\\\\\\\\\nae\\\\\\\\_only & 99.64{\\\\\\\\scriptsize$\\\\\\\\pm$0.49} & 98.83{\\\\\\\\scriptsize$\\\\\\\\pm$0.36} & 99.08{\\\\\\\\scriptsize$\\\\\\\\pm$0.00} & 98.53{\\\\\\\\scriptsize$\\\\\\\\pm$0.30} \\\\\\\\\\\\\\\\\\\\nVOTA & 99.05{\\\\\\\\scriptsize$\\\\\\\\pm$0.38} & 99.54{\\\\\\\\scriptsize$\\\\\\\\pm$0.06} & 98.74{\\\\\\\\scriptsize$\\\\\\\\pm$0.24} & 99.25$^\\\\\\\\ddag$ \\\\\\\\\\\\\\\\\\\\nloop\\\\\\\\_only & 86.05{\\\\\\\\scriptsize$\\\\\\\\pm$0.52} & 79.54{\\\\\\\\scriptsize$\\\\\\\\pm$1.42} & 77.40{\\\\\\\\scriptsize$\\\\\\\\pm$1.54} & 80.31{\\\\\\\\scriptsize$\\\\\\\\pm$1.65} \\\\\\\\\\\\\\\\\\\\nno\\\\\\\\_trace & 75.13$^\\\\\\\\dagger$ & 72.35{\\\\\\\\scriptsize$\\\\\\\\pm$4.48} & 76.47$^\\\\\\\\dagger$ & 73.36$^\\\\\\\\dagger$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nMajority baseline & \\\\\\\\multicolumn{4}{c}{71.51} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}%\\\\n}\\\\n\\\\\\\\vspace{2pt}\\\\n\\\\\\\\par\\\\\\\\raggedright\\\\\\\\footnotesize\\\\nDeepSeek \\\\\\\\texttt{exception\\\\\\\\_only} 3 seeds: 99.33/99.50/99.33 ($\\\\\\\\sigma{=}$0.10pp).\\\\nVOTA on Qwen-7B: 99.41/98.66/99.08 ($\\\\\\\\sigma{=}$0.38).\\\\n\\\\\\\\texttt{ae\\\\\\\\_only} 3 seeds: 99.92/99.08/99.92 (mean 99.64\\\\\\\\%); Qwen-7B \\\\\\\\texttt{loop\\\\\\\\_only} 3 seeds: 85.63/85.88/86.64 (mean 86.05\\\\\\\\%).\\\\nQwen-1.5B \\\\\\\\texttt{exception\\\\\\\\_only}: 99.83\\\\\\\\% across 3 seeds ($\\\\\\\\sigma{=}$0).\\\\n$^\\\\\\\\ddag$DeepSeek VOTA 3 seeds: 84.45/99.16/99.33; seed 42 (84.45\\\\\\\\%, fail recall\\\\\\\\,=\\\\\\\\,45.4\\\\\\\\%) is a training failure due to tokenizer-driven truncation (Appendix~\\\\\\\\ref{sec:tokenizer_analysis}), reported as 2-seed mean.\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\paragraph{Exception dominance across families.}\\\\nUnder \\\\\\\\texttt{exception\\\\\\\\_only}, all four models achieve ${\\\\\\\\geq}$99.33\\\\\\\\% across all seeds: Qwen-7B (99.83\\\\\\\\%$\\\\\\\\pm$0.00, 3 seeds), Qwen-1.5B (99.83\\\\\\\\%), CodeLlama-13B (99.89\\\\\\\\%$\\\\\\\\pm$0.10, 3 seeds; seed 123 achieves 100\\\\\\\\%), and DeepSeek-6.7B (99.39\\\\\\\\%$\\\\\\\\pm$0.10, 3 seeds).\\\\nThe cross-model range is 0.50pp (99.39--99.89\\\\\\\\%), the tightest of any condition.\\\\n\\\\n\\\\\\\\paragraph{Scale invariance of exception signals.}\\\\nException-based accuracy is shared by models spanning 1.5B to 13B parameters (8.7$\\\\\\\\times$): both Qwen-1.5B and CodeLlama-13B achieve 99.83\\\\\\\\%+ on the same representation.\\\\nCodeLlama-13B seed 123 achieves 100\\\\\\\\% (0/1190 errors), confirming that Qwen's two persistent errors (from \\\\\\\\texttt{GeneratorExit}; Appendix~\\\\\\\\ref{sec:irreducible}) are high-probability convergence artifacts rather than hard data limitations.\\\\nIn contrast, \\\\\\\\texttt{no\\\\\\\\_trace} scales monotonically with capacity: 72.35\\\\\\\\% (1.5B) $\\\\\\\\to$ 75.13\\\\\\\\% (7B) $\\\\\\\\to$ 76.47\\\\\\\\% (13B), a 4.12pp range eliminated by exception events (Figure~\\\\\\\\ref{fig:cross_scale}); \\\\\\\\texttt{no\\\\\\\\_trace} also shows the highest seed variance ($\\\\\\\\sigma{=}$4.48pp vs.\\\\\\\\ ${\\\\\\\\leq}$1.65pp for trace conditions).\\\\n\\\\n\\\\\\\\begin{figure}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\includegraphics[width=\\\\\\\\columnwidth]{fig3_cross_model_gap}\\\\n\\\\\\\\caption{Verdict accuracy vs.\\\\\\\\ model scale. \\\\\\\\texttt{exception\\\\\\\\_only} maintains ${\\\\\\\\geq}$99.33\\\\\\\\% regardless of scale, while \\\\\\\\texttt{no\\\\\\\\_trace} shows monotonic sensitivity (+4.12pp). \\\\\\\\texttt{nomarker} (markers removed) shows no scale degradation.}\\\\n\\\\\\\\label{fig:cross_scale}\\\\n\\\\\\\\end{figure}\\\\n\\\\n\\\\\\\\paragraph{VOTA cross-family variation.}\\\\nExcluding outlier seeds, VOTA achieves ${\\\\\\\\geq}$98.57\\\\\\\\% across all four models: 99.54\\\\\\\\%$\\\\\\\\pm$0.06 (Qwen-1.5B, 2 seeds) $>$ 99.25\\\\\\\\%$\\\\\\\\pm$0.12 (DeepSeek-6.7B, 2 seeds) $>$ 99.05\\\\\\\\%$\\\\\\\\pm$0.38 (Qwen-7B, 3 seeds) $>$ 98.74\\\\\\\\%$\\\\\\\\pm$0.24 (CodeLlama-13B, 2 seeds), a 0.80pp range.\\\\nDeepSeek seed 42 (84.45\\\\\\\\%, fail recall = 45.4\\\\\\\\%) is a training failure driven by tokenizer-induced truncation (91.7\\\\\\\\% of training samples affected; Appendix~\\\\\\\\ref{sec:tokenizer_analysis}); the remaining seeds (99.16\\\\\\\\%, 99.33\\\\\\\\%) match cross-model performance.\\\\n\\\\\\\\texttt{exception\\\\\\\\_only} inputs are compact (median 150 tokens), sidestepping truncation entirely (Appendix~\\\\\\\\ref{sec:robustness_analysis}).\\\\n\\\\n\\\\\\\\subsection{Component Ablation}\\\\n\\\\\\\\label{sec:ablation}\\\\n\\\\nMulti-seed \\\\\\\\texttt{ae\\\\\\\\_only} ablations use Qwen-7B; \\\\\\\\texttt{loop\\\\\\\\_only} is evaluated across three models to test Tier~2 generalization (Table~\\\\\\\\ref{tab:cross_model}).\\\\nTable~\\\\\\\\ref{tab:ablation} decomposes VOTA on Qwen-2.5-7B and reveals a consistent two-tier pattern: Tier~1 (\\\\\\\\texttt{exception\\\\\\\\_only}) generalizes across all four models (${\\\\\\\\geq}$99.33\\\\\\\\%), while Tier~2 (\\\\\\\\texttt{loop\\\\\\\\_only}) is model-dependent.\\\\n\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Component ablation on Qwen-2.5-7B ($N{=}1{,}190$). Tier~1 signals achieve near-perfect accuracy; combining them (VOTA) slightly dilutes performance. Entries marked $^\\\\\\\\dag$/$^\\\\\\\\S$/$^\\\\\\\\ddag$ are 3-seed mean$\\\\\\\\pm$std; per-seed breakdowns in Appendix~\\\\\\\\ref{sec:full_results}. Seed $\\\\\\\\sigma$ negatively correlates with density (0.00 for exception to 0.52 for loop). Unmarked entries are single seed (seed~42).}\\\\n\\\\\\\\label{tab:ablation}\\\\n\\\\\\\\small\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{llccc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Condition} & \\\\\\\\textbf{Components} & \\\\\\\\textbf{Acc (\\\\\\\\%)} & \\\\\\\\textbf{95\\\\\\\\% CI} & \\\\\\\\textbf{Tier} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nae\\\\\\\\_only & assertion-point & 99.64$^\\\\\\\\dag$ & [99.26, 99.87] & 1 \\\\\\\\\\\\\\\\\\\\nexception\\\\\\\\_only & exception events & \\\\\\\\textbf{99.83} & [99.58, 100.00] & 1 \\\\\\\\\\\\\\\\\\\\nVOTA & exc+ae+loop & 99.05$^\\\\\\\\S$ & [98.49, 99.50] & --- \\\\\\\\\\\\\\\\\\\\nVOTA\\\\\\\\_no\\\\\\\\_ae & exc+loop & 99.41 & [98.90, 99.80] & --- \\\\\\\\\\\\\\\\\\\\nloop\\\\\\\\_only & loop compression & 86.05$^\\\\\\\\ddag$ & [83.97, 87.96] & 2 \\\\\\\\\\\\\\\\\\\\nfull\\\\\\\\_trace & complete trace & XX.XX$\\\\\\\\pm$Y.YY & [LL.LL, UU.UU] & --- \\\\\\\\\\\\\\\\\\\\nno\\\\\\\\_trace & none & 75.13 & [72.77, 77.48] & --- \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nRegex ($B_4$) & exc.\\\\\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\\\\\\\\\\\n3-shot (Qwen-7B) & in-context learning & 90.84 & --- & --- \\\\\\\\\\\\\\\\\\\\nZero-shot (4 models) & prompting & 51.0--93.5 & --- & --- \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}%\\\\n}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "58441bae-2ec6-44a4-a219-9dfe972defa3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Experiments}\\\\n\\\\nWe evaluate across two research questions:\\\\n(1)~Do Tier~1 exception signals generalize across models?\\\\n(2)~What is the relative contribution of each trace component?\\\\nAll experiments use $N{=}1{,}190$ test samples; accuracy is reported with Wilson 95\\\\\\\\% CIs.\\\\\\\\footnote{Data is partitioned at the problem level (472 train / 119 test problems, zero crossover; \\\\\\\\S\\\\\\\\ref{sec:dataset}). The \\\\\\\\texttt{exception\\\\\\\\_only} format collapses passing solutions into identical rows (48.99\\\\\\\\% test duplicates; Appendix~\\\\\\\\ref{sec:dedup_stats}), but these arise from within-problem variants, not cross-set leakage; deduplication sensitivity analysis confirms 0.00pp delta across all 19 experimental conditions.}\\\\nPairwise comparisons use paired bootstrap resampling ($B{=}10{,}000$, seed=42); all differences are significant at $p{<}.0001$ unless noted.\\\\n\\\\n\\\\\\\\subsection{Cross-Model Comparison}\\\\n\\\\\\\\label{sec:cross_model}\\\\n\\\\nTable~\\\\\\\\ref{tab:cross_model} compares four models spanning an 8.7$\\\\\\\\times$ parameter range (1.5B--13B) and three architecture families (Qwen, DeepSeek, CodeLlama) under key conditions.\\\\n\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Cross-model verdict accuracy (\\\\\\\\%, $N{=}1{,}190$) across four models (1.5B--13B) and three architecture families. Multi-seed entries report mean$\\\\\\\\pm$std over 2--3 seeds. Bold: best per model. Full per-seed breakdowns in Appendix~\\\\\\\\ref{sec:full_results}; per-class metrics in Appendix~\\\\\\\\ref{sec:per_class}. $\\\\\\\\dagger$Single seed (seed~42).}\\\\n\\\\\\\\label{tab:cross_model}\\\\n\\\\\\\\small\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{lcccc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Condition} & \\\\\\\\textbf{Qwen-7B} & \\\\\\\\textbf{Qwen-1.5B} & \\\\\\\\textbf{CL-13B} & \\\\\\\\textbf{DS-6.7B} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nexception\\\\\\\\_only & \\\\\\\\textbf{99.83}{\\\\\\\\scriptsize$\\\\\\\\pm$0.00} & \\\\\\\\textbf{99.83}{\\\\\\\\scriptsize$\\\\\\\\pm$0.00} & \\\\\\\\textbf{99.89}{\\\\\\\\scriptsize$\\\\\\\\pm$0.10} & \\\\\\\\textbf{99.39}{\\\\\\\\scriptsize$\\\\\\\\pm$0.10} \\\\\\\\\\\\\\\\\\\\nae\\\\\\\\_only & 99.64{\\\\\\\\scriptsize$\\\\\\\\pm$0.49} & 98.83{\\\\\\\\scriptsize$\\\\\\\\pm$0.36} & 99.08{\\\\\\\\scriptsize$\\\\\\\\pm$0.00} & 98.53{\\\\\\\\scriptsize$\\\\\\\\pm$0.30} \\\\\\\\\\\\\\\\\\\\nVOTA & 99.05{\\\\\\\\scriptsize$\\\\\\\\pm$0.38} & 99.54{\\\\\\\\scriptsize$\\\\\\\\pm$0.06} & 98.74{\\\\\\\\scriptsize$\\\\\\\\pm$0.24} & 99.25$^\\\\\\\\ddag$ \\\\\\\\\\\\\\\\\\\\nloop\\\\\\\\_only & 86.05{\\\\\\\\scriptsize$\\\\\\\\pm$0.52} & 79.54{\\\\\\\\scriptsize$\\\\\\\\pm$1.42} & 77.40{\\\\\\\\scriptsize$\\\\\\\\pm$1.54} & 80.31{\\\\\\\\scriptsize$\\\\\\\\pm$1.65} \\\\\\\\\\\\\\\\\\\\nno\\\\\\\\_trace & 75.13$^\\\\\\\\dagger$ & 72.35{\\\\\\\\scriptsize$\\\\\\\\pm$4.48} & 76.47$^\\\\\\\\dagger$ & 73.36$^\\\\\\\\dagger$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nMajority baseline & \\\\\\\\multicolumn{4}{c}{71.51} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}%\\\\n}\\\\n\\\\\\\\vspace{2pt}\\\\n\\\\\\\\par\\\\\\\\raggedright\\\\\\\\footnotesize\\\\nDeepSeek \\\\\\\\texttt{exception\\\\\\\\_only} 3 seeds: 99.33/99.50/99.33 ($\\\\\\\\sigma{=}$0.10pp).\\\\nVOTA on Qwen-7B: 99.41/98.66/99.08 ($\\\\\\\\sigma{=}$0.38).\\\\n\\\\\\\\texttt{ae\\\\\\\\_only} 3 seeds: 99.92/99.08/99.92 (mean 99.64\\\\\\\\%); Qwen-7B \\\\\\\\texttt{loop\\\\\\\\_only} 3 seeds: 85.63/85.88/86.64 (mean 86.05\\\\\\\\%).\\\\nQwen-1.5B \\\\\\\\texttt{exception\\\\\\\\_only}: 99.83\\\\\\\\% across 3 seeds ($\\\\\\\\sigma{=}$0).\\\\n$^\\\\\\\\ddag$DeepSeek VOTA 3 seeds: 84.45/99.16/99.33; seed 42 (84.45\\\\\\\\%, fail recall\\\\\\\\,=\\\\\\\\,45.4\\\\\\\\%) is a training failure due to tokenizer-driven truncation (Appendix~\\\\\\\\ref{sec:tokenizer_analysis}), reported as 2-seed mean.\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\paragraph{Exception dominance across families.}\\\\nUnder \\\\\\\\texttt{exception\\\\\\\\_only}, all four models achieve ${\\\\\\\\geq}$99.33\\\\\\\\% across all seeds: Qwen-7B (99.83\\\\\\\\%$\\\\\\\\pm$0.00, 3 seeds), Qwen-1.5B (99.83\\\\\\\\%), CodeLlama-13B (99.89\\\\\\\\%$\\\\\\\\pm$0.10, 3 seeds; seed 123 achieves 100\\\\\\\\%), and DeepSeek-6.7B (99.39\\\\\\\\%$\\\\\\\\pm$0.10, 3 seeds).\\\\nThe cross-model range is 0.50pp (99.39--99.89\\\\\\\\%), the tightest of any condition.\\\\n\\\\n\\\\\\\\paragraph{Scale invariance of exception signals.}\\\\nException-based accuracy is shared by models spanning 1.5B to 13B parameters (8.7$\\\\\\\\times$): both Qwen-1.5B and CodeLlama-13B achieve 99.83\\\\\\\\%+ on the same representation.\\\\nCodeLlama-13B seed 123 achieves 100\\\\\\\\% (0/1190 errors), confirming that Qwen's two persistent errors (from \\\\\\\\texttt{GeneratorExit}; Appendix~\\\\\\\\ref{sec:irreducible}) are high-probability convergence artifacts rather than hard data limitations.\\\\nIn contrast, \\\\\\\\texttt{no\\\\\\\\_trace} scales monotonically with capacity: 72.35\\\\\\\\% (1.5B) $\\\\\\\\to$ 75.13\\\\\\\\% (7B) $\\\\\\\\to$ 76.47\\\\\\\\% (13B), a 4.12pp range eliminated by exception events (Figure~\\\\\\\\ref{fig:cross_scale}); \\\\\\\\texttt{no\\\\\\\\_trace} also shows the highest seed variance ($\\\\\\\\sigma{=}$4.48pp vs.\\\\\\\\ ${\\\\\\\\leq}$1.65pp for trace conditions).\\\\n\\\\n\\\\\\\\begin{figure}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\includegraphics[width=\\\\\\\\columnwidth]{fig3_cross_model_gap}\\\\n\\\\\\\\caption{Verdict accuracy vs.\\\\\\\\ model scale. \\\\\\\\texttt{exception\\\\\\\\_only} maintains ${\\\\\\\\geq}$99.33\\\\\\\\% regardless of scale, while \\\\\\\\texttt{no\\\\\\\\_trace} shows monotonic sensitivity (+4.12pp). \\\\\\\\texttt{nomarker} (markers removed) shows no scale degradation.}\\\\n\\\\\\\\label{fig:cross_scale}\\\\n\\\\\\\\end{figure}\\\\n\\\\n\\\\\\\\paragraph{VOTA cross-family variation.}\\\\nExcluding outlier seeds, VOTA achieves ${\\\\\\\\geq}$98.57\\\\\\\\% across all four models: 99.54\\\\\\\\%$\\\\\\\\pm$0.06 (Qwen-1.5B, 2 seeds) $>$ 99.25\\\\\\\\%$\\\\\\\\pm$0.12 (DeepSeek-6.7B, 2 seeds) $>$ 99.05\\\\\\\\%$\\\\\\\\pm$0.38 (Qwen-7B, 3 seeds) $>$ 98.74\\\\\\\\%$\\\\\\\\pm$0.24 (CodeLlama-13B, 2 seeds), a 0.80pp range.\\\\nDeepSeek seed 42 (84.45\\\\\\\\%, fail recall = 45.4\\\\\\\\%) is a training failure driven by tokenizer-induced truncation (91.7\\\\\\\\% of training samples affected; Appendix~\\\\\\\\ref{sec:tokenizer_analysis}); the remaining seeds (99.16\\\\\\\\%, 99.33\\\\\\\\%) match cross-model performance.\\\\n\\\\\\\\texttt{exception\\\\\\\\_only} inputs are compact (median 150 tokens), sidestepping truncation entirely (Appendix~\\\\\\\\ref{sec:robustness_analysis}).\\\\n\\\\n\\\\\\\\subsection{Component Ablation}\\\\n\\\\\\\\label{sec:ablation}\\\\n\\\\nMulti-seed \\\\\\\\texttt{ae\\\\\\\\_only} ablations use Qwen-7B; \\\\\\\\texttt{loop\\\\\\\\_only} is evaluated across three models to test Tier~2 generalization (Table~\\\\\\\\ref{tab:cross_model}).\\\\nTable~\\\\\\\\ref{tab:ablation} decomposes VOTA on Qwen-2.5-7B and reveals a consistent two-tier pattern: Tier~1 (\\\\\\\\texttt{exception\\\\\\\\_only}) generalizes across all four models (${\\\\\\\\geq}$99.33\\\\\\\\%), while Tier~2 (\\\\\\\\texttt{loop\\\\\\\\_only}) is model-dependent.\\\\n\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Component ablation on Qwen-2.5-7B ($N{=}1{,}190$). Tier~1 signals achieve near-perfect accuracy; combining them (VOTA) slightly dilutes performance. Entries marked $^\\\\\\\\dag$/$^\\\\\\\\S$/$^\\\\\\\\ddag$ are 3-seed mean$\\\\\\\\pm$std; per-seed breakdowns in Appendix~\\\\\\\\ref{sec:full_results}. Seed $\\\\\\\\sigma$ negatively correlates with density (0.00 for exception to 0.52 for loop). Unmarked entries are single seed (seed~42).}\\\\n\\\\\\\\label{tab:ablation}\\\\n\\\\\\\\small\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{llccc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Condition} & \\\\\\\\textbf{Components} & \\\\\\\\textbf{Acc (\\\\\\\\%)} & \\\\\\\\textbf{95\\\\\\\\% CI} & \\\\\\\\textbf{Tier} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nae\\\\\\\\_only & assertion-point & 99.64$^\\\\\\\\dag$ & [99.26, 99.87] & 1 \\\\\\\\\\\\\\\\\\\\nexception\\\\\\\\_only & exception events & \\\\\\\\textbf{99.83} & [99.58, 100.00] & 1 \\\\\\\\\\\\\\\\\\\\nVOTA & exc+ae+loop & 99.05$^\\\\\\\\S$ & [98.49, 99.50] & --- \\\\\\\\\\\\\\\\\\\\nVOTA\\\\\\\\_no\\\\\\\\_ae & exc+loop & 99.41 & [98.90, 99.80] & --- \\\\\\\\\\\\\\\\\\\\nloop\\\\\\\\_only & loop compression & 86.05$^\\\\\\\\ddag$ & [83.97, 87.96] & 2 \\\\\\\\\\\\\\\\\\\\nfull\\\\\\\\_trace & complete trace & XX.XX$\\\\\\\\pm$Y.YY & [LL.LL, UU.UU] & --- \\\\\\\\\\\\\\\\\\\\nno\\\\\\\\_trace & none & 75.13 & [72.77, 77.48] & --- \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nRegex ($B_4$) & exc.\\\\\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\\\\\\\\\\\n3-shot (Qwen-7B) & in-context learning & 90.84 & --- & --- \\\\\\\\\\\\\\\\\\\\nZero-shot (4 models) & prompting & 51.0--93.5 & --- & --- \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}%\\\\n}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Experiments}\\n\\nWe evaluate across two research questions:\\n(1)~Do Tier~1 exception signals generalize across models?\\n(2)~What is the relative contribution of each trace component?\\nAll experiments use $N{=}1{,}190$ test samples; accuracy is reported with Wilson 95\\\\% CIs.\\\\footnote{Data is partitioned at the problem level (472 train / 119 test problems, zero crossover; \\\\S\\\\ref{sec:dataset}). The \\\\texttt{exception\\\\_only} format collapses passing solutions into identical rows (48.99\\\\% test duplicates; Appendix~\\\\ref{sec:dedup_stats}), but these arise from within-problem variants, not cross-set leakage; deduplication sensitivity analysis confirms 0.00pp delta across all 19 experimental conditions.}\\nPairwise comparisons use paired bootstrap resampling ($B{=}10{,}000$, seed=42); all differences are significant at $p{<}.0001$ unless noted.\\n\\n\\\\subsection{Cross-Model Comparison}\\n\\\\label{sec:cross_model}\\n\\nTable~\\\\ref{tab:cross_model} compares four models spanning an 8.7$\\\\times$ parameter range (1.5B--13B) and three architecture families (Qwen, DeepSeek, CodeLlama) under key conditions.\\n\\n\\\\begin{table}[t]\\n\\\\centering\\n\\\\caption{Cross-model verdict accuracy (\\\\%, $N{=}1{,}190$) across four models (1.5B--13B) and three architecture families. Multi-seed entries report mean$\\\\pm$std over 2--3 seeds. Bold: best per model. Full per-seed breakdowns in Appendix~\\\\ref{sec:full_results}; per-class metrics in Appendix~\\\\ref{sec:per_class}. $\\\\dagger$Single seed (seed~42).}\\n\\\\label{tab:cross_model}\\n\\\\small\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{lcccc}\\n\\\\toprule\\n\\\\textbf{Condition} & \\\\textbf{Qwen-7B} & \\\\textbf{Qwen-1.5B} & \\\\textbf{CL-13B} & \\\\textbf{DS-6.7B} \\\\\\\\\\n\\\\midrule\\nexception\\\\_only & \\\\textbf{99.83}{\\\\scriptsize$\\\\pm$0.00} & \\\\textbf{99.83}{\\\\scriptsize$\\\\pm$0.00} & \\\\textbf{99.89}{\\\\scriptsize$\\\\pm$0.10} & \\\\textbf{99.39}{\\\\scriptsize$\\\\pm$0.10} \\\\\\\\\\nae\\\\_only & 99.64{\\\\scriptsize$\\\\pm$0.49} & 98.83{\\\\scriptsize$\\\\pm$0.36} & 99.08{\\\\scriptsize$\\\\pm$0.00} & 98.53{\\\\scriptsize$\\\\pm$0.30} \\\\\\\\\\nVOTA & 99.05{\\\\scriptsize$\\\\pm$0.38} & 99.54{\\\\scriptsize$\\\\pm$0.06} & 98.74{\\\\scriptsize$\\\\pm$0.24} & 99.25$^\\\\ddag$ \\\\\\\\\\nloop\\\\_only & 86.05{\\\\scriptsize$\\\\pm$0.52} & 79.54{\\\\scriptsize$\\\\pm$1.42} & 77.40{\\\\scriptsize$\\\\pm$1.54} & 80.31{\\\\scriptsize$\\\\pm$1.65} \\\\\\\\\\nno\\\\_trace & 75.13$^\\\\dagger$ & 72.35{\\\\scriptsize$\\\\pm$4.48} & 76.47$^\\\\dagger$ & 73.36$^\\\\dagger$ \\\\\\\\\\n\\\\midrule\\nMajority baseline & \\\\multicolumn{4}{c}{71.51} \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}%\\n}\\n\\\\vspace{2pt}\\n\\\\par\\\\raggedright\\\\footnotesize\\nDeepSeek \\\\texttt{exception\\\\_only} 3 seeds: 99.33/99.50/99.33 ($\\\\sigma{=}$0.10pp).\\nVOTA on Qwen-7B: 99.41/98.66/99.08 ($\\\\sigma{=}$0.38).\\n\\\\texttt{ae\\\\_only} 3 seeds: 99.92/99.08/99.92 (mean 99.64\\\\%); Qwen-7B \\\\texttt{loop\\\\_only} 3 seeds: 85.63/85.88/86.64 (mean 86.05\\\\%).\\nQwen-1.5B \\\\texttt{exception\\\\_only}: 99.83\\\\% across 3 seeds ($\\\\sigma{=}$0).\\n$^\\\\ddag$DeepSeek VOTA 3 seeds: 84.45/99.16/99.33; seed 42 (84.45\\\\%, fail recall\\\\,=\\\\,45.4\\\\%) is a training failure due to tokenizer-driven truncation (Appendix~\\\\ref{sec:tokenizer_analysis}), reported as 2-seed mean.\\n\\\\end{table}\\n\\n\\\\paragraph{Exception dominance across families.}\\nUnder \\\\texttt{exception\\\\_only}, all four models achieve ${\\\\geq}$99.33\\\\% across all seeds: Qwen-7B (99.83\\\\%$\\\\pm$0.00, 3 seeds), Qwen-1.5B (99.83\\\\%), CodeLlama-13B (99.89\\\\%$\\\\pm$0.10, 3 seeds; seed 123 achieves 100\\\\%), and DeepSeek-6.7B (99.39\\\\%$\\\\pm$0.10, 3 seeds).\\nThe cross-model range is 0.50pp (99.39--99.89\\\\%), the tightest of any condition.\\n\\n\\\\paragraph{Scale invariance of exception signals.}\\nException-based accuracy is shared by models spanning 1.5B to 13B parameters (8.7$\\\\times$): both Qwen-1.5B and CodeLlama-13B achieve 99.83\\\\%+ on the same representation.\\nCodeLlama-13B seed 123 achieves 100\\\\% (0/1190 errors), confirming that Qwen's two persistent errors (from \\\\texttt{GeneratorExit}; Appendix~\\\\ref{sec:irreducible}) are high-probability convergence artifacts rather than hard data limitations.\\nIn contrast, \\\\texttt{no\\\\_trace} scales monotonically with capacity: 72.35\\\\% (1.5B) $\\\\to$ 75.13\\\\% (7B) $\\\\to$ 76.47\\\\% (13B), a 4.12pp range eliminated by exception events (Figure~\\\\ref{fig:cross_scale}); \\\\texttt{no\\\\_trace} also shows the highest seed variance ($\\\\sigma{=}$4.48pp vs.\\\\ ${\\\\leq}$1.65pp for trace conditions).\\n\\n\\\\begin{figure}[t]\\n\\\\centering\\n\\\\includegraphics[width=\\\\columnwidth]{fig3_cross_model_gap}\\n\\\\caption{Verdict accuracy vs.\\\\ model scale. \\\\texttt{exception\\\\_only} maintains ${\\\\geq}$99.33\\\\% regardless of scale, while \\\\texttt{no\\\\_trace} shows monotonic sensitivity (+4.12pp). \\\\texttt{nomarker} (markers removed) shows no scale degradation.}\\n\\\\label{fig:cross_scale}\\n\\\\end{figure}\\n\\n\\\\paragraph{VOTA cross-family variation.}\\nExcluding outlier seeds, VOTA achieves ${\\\\geq}$98.57\\\\% across all four models: 99.54\\\\%$\\\\pm$0.06 (Qwen-1.5B, 2 seeds) $>$ 99.25\\\\%$\\\\pm$0.12 (DeepSeek-6.7B, 2 seeds) $>$ 99.05\\\\%$\\\\pm$0.38 (Qwen-7B, 3 seeds) $>$ 98.74\\\\%$\\\\pm$0.24 (CodeLlama-13B, 2 seeds), a 0.80pp range.\\nDeepSeek seed 42 (84.45\\\\%, fail recall = 45.4\\\\%) is a training failure driven by tokenizer-induced truncation (91.7\\\\% of training samples affected; Appendix~\\\\ref{sec:tokenizer_analysis}); the remaining seeds (99.16\\\\%, 99.33\\\\%) match cross-model performance.\\n\\\\texttt{exception\\\\_only} inputs are compact (median 150 tokens), sidestepping truncation entirely (Appendix~\\\\ref{sec:robustness_analysis}).\\n\\n\\\\subsection{Component Ablation}\\n\\\\label{sec:ablation}\\n\\nMulti-seed \\\\texttt{ae\\\\_only} ablations use Qwen-7B; \\\\texttt{loop\\\\_only} is evaluated across three models to test Tier~2 generalization (Table~\\\\ref{tab:cross_model}).\\nTable~\\\\ref{tab:ablation} decomposes VOTA on Qwen-2.5-7B and reveals a consistent two-tier pattern: Tier~1 (\\\\texttt{exception\\\\_only}) generalizes across all four models (${\\\\geq}$99.33\\\\%), while Tier~2 (\\\\texttt{loop\\\\_only}) is model-dependent.\\n\\n\\\\begin{table}[t]\\n\\\\centering\\n\\\\caption{Component ablation on Qwen-2.5-7B ($N{=}1{,}190$). Tier~1 signals achieve near-perfect accuracy; combining them (VOTA) slightly dilutes performance. Entries marked $^\\\\dag$/$^\\\\S$/$^\\\\ddag$ are 3-seed mean$\\\\pm$std; per-seed breakdowns in Appendix~\\\\ref{sec:full_results}. Seed $\\\\sigma$ negatively correlates with density (0.00 for exception to 0.52 for loop). Unmarked entries are single seed (seed~42).}\\n\\\\label{tab:ablation}\\n\\\\small\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{llccc}\\n\\\\toprule\\n\\\\textbf{Condition} & \\\\textbf{Components} & \\\\textbf{Acc (\\\\%)} & \\\\textbf{95\\\\% CI} & \\\\textbf{Tier} \\\\\\\\\\n\\\\midrule\\nae\\\\_only & assertion-point & 99.64$^\\\\dag$ & [99.26, 99.87] & 1 \\\\\\\\\\nexception\\\\_only & exception events & \\\\textbf{99.83} & [99.58, 100.00] & 1 \\\\\\\\\\nVOTA & exc+ae+loop & 99.05$^\\\\S$ & [98.49, 99.50] & --- \\\\\\\\\\nVOTA\\\\_no\\\\_ae & exc+loop & 99.41 & [98.90, 99.80] & --- \\\\\\\\\\nloop\\\\_only & loop compression & 86.05$^\\\\ddag$ & [83.97, 87.96] & 2 \\\\\\\\\\nfull\\\\_trace & complete trace & XX.XX$\\\\pm$Y.YY & [LL.LL, UU.UU] & --- \\\\\\\\\\nno\\\\_trace & none & 75.13 & [72.77, 77.48] & --- \\\\\\\\\\n\\\\midrule\\nRegex ($B_4$) & exc.\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\n3-shot (Qwen-7B) & in-context learning & 90.84 & --- & --- \\\\\\\\\\nZero-shot (4 models) & prompting & 51.0--93.5 & --- & --- \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}%\\n}\\n\\\\end{table}\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016Q4nPiF9oBEt2oCVbQocCN",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "cat /root/trace-verdict-study/docs/paper/method.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "96f41fd2-4f95-4e25-aba5-97cf48f8682f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LUxvyeoMpAGDd1R5TjMt9c",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1262,
+                "cache_read_input_tokens": 28139,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1262
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T12:25:55.123Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016Q4nPiF9oBEt2oCVbQocCN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Method}\\\\n\\\\n\\\\\\\\subsection{Task Definition}\\\\n\\\\nWe study \\\\\\\\emph{verdict prediction}: given a Python function, a test input, and an optional execution trace, predict whether the test passes or fails.\\\\nThe model produces a single token (\\\\\\\\texttt{pass} or \\\\\\\\texttt{fail}), making this a binary classification task.\\\\nUnlike code generation \\\\\\\\citep{chen2025tracepile} or output prediction \\\\\\\\citep{gu2024cruxeval}, verdict prediction isolates the model's ability to detect faults from its ability to simulate execution.\\\\nThe discrete binary outcome makes the effect of each trace component directly measurable, providing cleaner ablation contrasts than generation tasks where output quality varies continuously.\\\\n\\\\n\\\\\\\\subsection{Dataset}\\\\n\\\\\\\\label{sec:dataset}\\\\n\\\\nWe sampled 10 candidate solutions per problem from Qwen-2.5-Coder-7B-Instruct (temperature 0.8, top\\\\\\\\_p 0.95) for 591 problems from HumanEval \\\\\\\\citep{chen2021evaluating} (164) and MBPP-sanitized \\\\\\\\citep{austin2021program} (427), executed each against canonical tests with \\\\\\\\texttt{sys.settrace} to obtain line-level traces and pass/fail verdicts, yielding 5,910 pairs (67\\\\\\\\% pass, 33\\\\\\\\% fail).\\\\nThe dataset is split 80/20 by problem ID into 4,720 training and 1,190 test samples (majority baseline: 71.51\\\\\\\\%).\\\\nThe \\\\\\\\texttt{exception\\\\\\\\_only} format collapses passing solutions into identical rows (39.45\\\\\\\\% train, 48.99\\\\\\\\% test duplicates); these duplicates arise from multiple candidate solutions per problem, with the train--test split enforced at the problem level (472 train / 119 test problems, zero crossover; Appendix~\\\\\\\\ref{sec:dedup_stats}).\\\\n\\\\n\\\\\\\\subsection{Trace Representations}\\\\n\\\\nWe define seven conditions that vary the trace information available (Figure~\\\\\\\\ref{fig:trace_overview}):\\\\n\\\\\\\\begin{itemize}\\\\n\\\\\\\\item \\\\\\\\texttt{no\\\\\\\\_trace}: Source code and test input only.\\\\n\\\\\\\\item \\\\\\\\texttt{full\\\\\\\\_trace}: Complete line-by-line trace with variable states.\\\\n\\\\\\\\item \\\\\\\\texttt{VOTA}: Exception events + assertion-point comparisons + loop compression (Appendix~\\\\\\\\ref{sec:vota_algorithm}).\\\\n\\\\\\\\item \\\\\\\\texttt{exception\\\\\\\\_only}: Only exception/error events.\\\\n\\\\\\\\item \\\\\\\\texttt{ae\\\\\\\\_only}: Only assertion-point actual/expected pairs.\\\\n\\\\\\\\item \\\\\\\\texttt{loop\\\\\\\\_only}: Only loop compression summaries.\\\\n\\\\\\\\item \\\\\\\\texttt{VOTA\\\\\\\\_no\\\\\\\\_ae}: VOTA without assertion-point information.\\\\n\\\\\\\\end{itemize}\\\\n\\\\n\\\\\\\\begin{figure*}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\includegraphics[width=\\\\\\\\textwidth]{fig1_trace_overview}\\\\n\\\\\\\\caption{Overview of the verdict prediction pipeline. Source code and a test input are executed to produce a full raw trace. Four conditions vary the trace information: \\\\\\\\texttt{no\\\\\\\\_trace} (75.13\\\\\\\\%), \\\\\\\\texttt{full\\\\\\\\_trace} (XX.XX\\\\\\\\%), VOTA (99.41\\\\\\\\%), and \\\\\\\\texttt{exception\\\\\\\\_only} (99.83\\\\\\\\%). Accuracies for Qwen-2.5-7B (seed=42 except full\\\\\\\\_trace which reports 3-seed mean; $N{=}1{,}190$). Appendix~\\\\\\\\ref{sec:vota_examples} provides input/output examples.}\\\\n\\\\\\\\label{fig:trace_overview}\\\\n\\\\\\\\end{figure*}\\\\n\\\\n\\\\\\\\paragraph{Working definition of information density.}\\\\nThroughout this paper, we use \\\\\\\\emph{information density} as a descriptive shorthand for the proportion of verdict-relevant tokens---such as exception events and assertion outcomes---relative to the total number of tokens in a trace representation. This is an operational characterization rather than a formal information-theoretic quantity; we do not compute entropy or mutual information.\\\\n\\\\n\\\\\\\\subsection{Models and Training}\\\\n\\\\nWe evaluate four models spanning three architecture families: \\\\\\\\textbf{Qwen-2.5-Coder-7B/1.5B-Instruct} \\\\\\\\citep{qwen2025coder}, \\\\\\\\textbf{CodeLlama-13B-Instruct} \\\\\\\\citep{roziere2024code}, and \\\\\\\\textbf{DeepSeek-Coder-6.7B-Instruct} \\\\\\\\citep{deepseek2024coder}, covering a 1.5B--13B parameter range (8.7$\\\\\\\\times$).\\\\nAll conditions use LoRA \\\\\\\\citep{hu2022lora} (rank=16, $\\\\\\\\alpha$=32, dropout=0.05) on all linear layers, 3 epochs, effective batch size 32, LR $2 \\\\\\\\times 10^{-4}$ with linear warmup/decay, max sequence length 2{,}048 tokens.\\\\nSequences exceeding this limit are truncated while preserving the verdict label.\\\\nThe primary seed is 42; seeds 123 and 456 test \\\\\\\\texttt{exception\\\\\\\\_only} robustness (Appendix~\\\\\\\\ref{sec:training_details}).\\\\n\\\\n\\\\\\\\subsection{Loss Ablation}\\\\n\\\\nTo disentangle training signal from input signal quality, we introduce \\\\\\\\texttt{full\\\\\\\\_trace\\\\\\\\_label\\\\\\\\_only}: identical full-trace input but loss computed only on the verdict token (trace positions masked).\\\\nImprovement over standard \\\\\\\\texttt{full\\\\\\\\_trace} is attributable to \\\\\\\\emph{gradient dilution}; the remaining gap to VOTA reflects \\\\\\\\emph{information overload} at inference time.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "0847c223-687f-4d9c-bb5b-6b64d46eac89",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Method}\\\\n\\\\n\\\\\\\\subsection{Task Definition}\\\\n\\\\nWe study \\\\\\\\emph{verdict prediction}: given a Python function, a test input, and an optional execution trace, predict whether the test passes or fails.\\\\nThe model produces a single token (\\\\\\\\texttt{pass} or \\\\\\\\texttt{fail}), making this a binary classification task.\\\\nUnlike code generation \\\\\\\\citep{chen2025tracepile} or output prediction \\\\\\\\citep{gu2024cruxeval}, verdict prediction isolates the model's ability to detect faults from its ability to simulate execution.\\\\nThe discrete binary outcome makes the effect of each trace component directly measurable, providing cleaner ablation contrasts than generation tasks where output quality varies continuously.\\\\n\\\\n\\\\\\\\subsection{Dataset}\\\\n\\\\\\\\label{sec:dataset}\\\\n\\\\nWe sampled 10 candidate solutions per problem from Qwen-2.5-Coder-7B-Instruct (temperature 0.8, top\\\\\\\\_p 0.95) for 591 problems from HumanEval \\\\\\\\citep{chen2021evaluating} (164) and MBPP-sanitized \\\\\\\\citep{austin2021program} (427), executed each against canonical tests with \\\\\\\\texttt{sys.settrace} to obtain line-level traces and pass/fail verdicts, yielding 5,910 pairs (67\\\\\\\\% pass, 33\\\\\\\\% fail).\\\\nThe dataset is split 80/20 by problem ID into 4,720 training and 1,190 test samples (majority baseline: 71.51\\\\\\\\%).\\\\nThe \\\\\\\\texttt{exception\\\\\\\\_only} format collapses passing solutions into identical rows (39.45\\\\\\\\% train, 48.99\\\\\\\\% test duplicates); these duplicates arise from multiple candidate solutions per problem, with the train--test split enforced at the problem level (472 train / 119 test problems, zero crossover; Appendix~\\\\\\\\ref{sec:dedup_stats}).\\\\n\\\\n\\\\\\\\subsection{Trace Representations}\\\\n\\\\nWe define seven conditions that vary the trace information available (Figure~\\\\\\\\ref{fig:trace_overview}):\\\\n\\\\\\\\begin{itemize}\\\\n\\\\\\\\item \\\\\\\\texttt{no\\\\\\\\_trace}: Source code and test input only.\\\\n\\\\\\\\item \\\\\\\\texttt{full\\\\\\\\_trace}: Complete line-by-line trace with variable states.\\\\n\\\\\\\\item \\\\\\\\texttt{VOTA}: Exception events + assertion-point comparisons + loop compression (Appendix~\\\\\\\\ref{sec:vota_algorithm}).\\\\n\\\\\\\\item \\\\\\\\texttt{exception\\\\\\\\_only}: Only exception/error events.\\\\n\\\\\\\\item \\\\\\\\texttt{ae\\\\\\\\_only}: Only assertion-point actual/expected pairs.\\\\n\\\\\\\\item \\\\\\\\texttt{loop\\\\\\\\_only}: Only loop compression summaries.\\\\n\\\\\\\\item \\\\\\\\texttt{VOTA\\\\\\\\_no\\\\\\\\_ae}: VOTA without assertion-point information.\\\\n\\\\\\\\end{itemize}\\\\n\\\\n\\\\\\\\begin{figure*}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\includegraphics[width=\\\\\\\\textwidth]{fig1_trace_overview}\\\\n\\\\\\\\caption{Overview of the verdict prediction pipeline. Source code and a test input are executed to produce a full raw trace. Four conditions vary the trace information: \\\\\\\\texttt{no\\\\\\\\_trace} (75.13\\\\\\\\%), \\\\\\\\texttt{full\\\\\\\\_trace} (XX.XX\\\\\\\\%), VOTA (99.41\\\\\\\\%), and \\\\\\\\texttt{exception\\\\\\\\_only} (99.83\\\\\\\\%). Accuracies for Qwen-2.5-7B (seed=42 except full\\\\\\\\_trace which reports 3-seed mean; $N{=}1{,}190$). Appendix~\\\\\\\\ref{sec:vota_examples} provides input/output examples.}\\\\n\\\\\\\\label{fig:trace_overview}\\\\n\\\\\\\\end{figure*}\\\\n\\\\n\\\\\\\\paragraph{Working definition of information density.}\\\\nThroughout this paper, we use \\\\\\\\emph{information density} as a descriptive shorthand for the proportion of verdict-relevant tokens---such as exception events and assertion outcomes---relative to the total number of tokens in a trace representation. This is an operational characterization rather than a formal information-theoretic quantity; we do not compute entropy or mutual information.\\\\n\\\\n\\\\\\\\subsection{Models and Training}\\\\n\\\\nWe evaluate four models spanning three architecture families: \\\\\\\\textbf{Qwen-2.5-Coder-7B/1.5B-Instruct} \\\\\\\\citep{qwen2025coder}, \\\\\\\\textbf{CodeLlama-13B-Instruct} \\\\\\\\citep{roziere2024code}, and \\\\\\\\textbf{DeepSeek-Coder-6.7B-Instruct} \\\\\\\\citep{deepseek2024coder}, covering a 1.5B--13B parameter range (8.7$\\\\\\\\times$).\\\\nAll conditions use LoRA \\\\\\\\citep{hu2022lora} (rank=16, $\\\\\\\\alpha$=32, dropout=0.05) on all linear layers, 3 epochs, effective batch size 32, LR $2 \\\\\\\\times 10^{-4}$ with linear warmup/decay, max sequence length 2{,}048 tokens.\\\\nSequences exceeding this limit are truncated while preserving the verdict label.\\\\nThe primary seed is 42; seeds 123 and 456 test \\\\\\\\texttt{exception\\\\\\\\_only} robustness (Appendix~\\\\\\\\ref{sec:training_details}).\\\\n\\\\n\\\\\\\\subsection{Loss Ablation}\\\\n\\\\nTo disentangle training signal from input signal quality, we introduce \\\\\\\\texttt{full\\\\\\\\_trace\\\\\\\\_label\\\\\\\\_only}: identical full-trace input but loss computed only on the verdict token (trace positions masked).\\\\nImprovement over standard \\\\\\\\texttt{full\\\\\\\\_trace} is attributable to \\\\\\\\emph{gradient dilution}; the remaining gap to VOTA reflects \\\\\\\\emph{information overload} at inference time.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Method}\\n\\n\\\\subsection{Task Definition}\\n\\nWe study \\\\emph{verdict prediction}: given a Python function, a test input, and an optional execution trace, predict whether the test passes or fails.\\nThe model produces a single token (\\\\texttt{pass} or \\\\texttt{fail}), making this a binary classification task.\\nUnlike code generation \\\\citep{chen2025tracepile} or output prediction \\\\citep{gu2024cruxeval}, verdict prediction isolates the model's ability to detect faults from its ability to simulate execution.\\nThe discrete binary outcome makes the effect of each trace component directly measurable, providing cleaner ablation contrasts than generation tasks where output quality varies continuously.\\n\\n\\\\subsection{Dataset}\\n\\\\label{sec:dataset}\\n\\nWe sampled 10 candidate solutions per problem from Qwen-2.5-Coder-7B-Instruct (temperature 0.8, top\\\\_p 0.95) for 591 problems from HumanEval \\\\citep{chen2021evaluating} (164) and MBPP-sanitized \\\\citep{austin2021program} (427), executed each against canonical tests with \\\\texttt{sys.settrace} to obtain line-level traces and pass/fail verdicts, yielding 5,910 pairs (67\\\\% pass, 33\\\\% fail).\\nThe dataset is split 80/20 by problem ID into 4,720 training and 1,190 test samples (majority baseline: 71.51\\\\%).\\nThe \\\\texttt{exception\\\\_only} format collapses passing solutions into identical rows (39.45\\\\% train, 48.99\\\\% test duplicates); these duplicates arise from multiple candidate solutions per problem, with the train--test split enforced at the problem level (472 train / 119 test problems, zero crossover; Appendix~\\\\ref{sec:dedup_stats}).\\n\\n\\\\subsection{Trace Representations}\\n\\nWe define seven conditions that vary the trace information available (Figure~\\\\ref{fig:trace_overview}):\\n\\\\begin{itemize}\\n\\\\item \\\\texttt{no\\\\_trace}: Source code and test input only.\\n\\\\item \\\\texttt{full\\\\_trace}: Complete line-by-line trace with variable states.\\n\\\\item \\\\texttt{VOTA}: Exception events + assertion-point comparisons + loop compression (Appendix~\\\\ref{sec:vota_algorithm}).\\n\\\\item \\\\texttt{exception\\\\_only}: Only exception/error events.\\n\\\\item \\\\texttt{ae\\\\_only}: Only assertion-point actual/expected pairs.\\n\\\\item \\\\texttt{loop\\\\_only}: Only loop compression summaries.\\n\\\\item \\\\texttt{VOTA\\\\_no\\\\_ae}: VOTA without assertion-point information.\\n\\\\end{itemize}\\n\\n\\\\begin{figure*}[t]\\n\\\\centering\\n\\\\includegraphics[width=\\\\textwidth]{fig1_trace_overview}\\n\\\\caption{Overview of the verdict prediction pipeline. Source code and a test input are executed to produce a full raw trace. Four conditions vary the trace information: \\\\texttt{no\\\\_trace} (75.13\\\\%), \\\\texttt{full\\\\_trace} (XX.XX\\\\%), VOTA (99.41\\\\%), and \\\\texttt{exception\\\\_only} (99.83\\\\%). Accuracies for Qwen-2.5-7B (seed=42 except full\\\\_trace which reports 3-seed mean; $N{=}1{,}190$). Appendix~\\\\ref{sec:vota_examples} provides input/output examples.}\\n\\\\label{fig:trace_overview}\\n\\\\end{figure*}\\n\\n\\\\paragraph{Working definition of information density.}\\nThroughout this paper, we use \\\\emph{information density} as a descriptive shorthand for the proportion of verdict-relevant tokens---such as exception events and assertion outcomes---relative to the total number of tokens in a trace representation. This is an operational characterization rather than a formal information-theoretic quantity; we do not compute entropy or mutual information.\\n\\n\\\\subsection{Models and Training}\\n\\nWe evaluate four models spanning three architecture families: \\\\textbf{Qwen-2.5-Coder-7B/1.5B-Instruct} \\\\citep{qwen2025coder}, \\\\textbf{CodeLlama-13B-Instruct} \\\\citep{roziere2024code}, and \\\\textbf{DeepSeek-Coder-6.7B-Instruct} \\\\citep{deepseek2024coder}, covering a 1.5B--13B parameter range (8.7$\\\\times$).\\nAll conditions use LoRA \\\\citep{hu2022lora} (rank=16, $\\\\alpha$=32, dropout=0.05) on all linear layers, 3 epochs, effective batch size 32, LR $2 \\\\times 10^{-4}$ with linear warmup/decay, max sequence length 2{,}048 tokens.\\nSequences exceeding this limit are truncated while preserving the verdict label.\\nThe primary seed is 42; seeds 123 and 456 test \\\\texttt{exception\\\\_only} robustness (Appendix~\\\\ref{sec:training_details}).\\n\\n\\\\subsection{Loss Ablation}\\n\\nTo disentangle training signal from input signal quality, we introduce \\\\texttt{full\\\\_trace\\\\_label\\\\_only}: identical full-trace input but loss computed only on the verdict token (trace positions masked).\\nImprovement over standard \\\\texttt{full\\\\_trace} is attributable to \\\\emph{gradient dilution}; the remaining gap to VOTA reflects \\\\emph{information overload} at inference time.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I can see the placeholders. Let me identify them:\n\n**In experiments.tex (Table 2 / tab:ablation):**\nLine with `full_trace`: `full\\_trace & complete trace & XX.XX$\\pm$Y.YY & [LL.LL, UU.UU] & --- \\\\`\n\nNeed to replace:\n- `XX.XX$\\pm$Y.YY` → `81.43$\\pm$1.13`\n- `[LL.LL, UU.UU]` → `[78.63, 84.23]`\n\n\n- `\\texttt{full\\_trace} (XX.XX\\%)` in the method.tex figure caption → `\\texttt{full\\_trace} (81.43\\%)`\n\nNow I'm searching through the rest of experiments.tex to locate the Info Density section and Table 3 that need updating.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "cfc7349f-9ba7-4a98-9911-3576f735af15",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CcrEzm6PdKhjn7uat3A4wB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5336,
+                "cache_read_input_tokens": 29401,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5336
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到了两处占位符。继续读取 experiments.tex 剩余部分查找其他占位符。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "a662f683-bad7-4b75-a508-e9be55d1e24a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CcrEzm6PdKhjn7uat3A4wB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5336,
+                "cache_read_input_tokens": 29401,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5336
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S6YgUoBu2mE5HRVXf31p1T",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "tail -n +95 /root/trace-verdict-study/docs/paper/experiments.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "b21a1ba0-e6a4-4e0e-a140-f421edac1800",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CcrEzm6PdKhjn7uat3A4wB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5336,
+                "cache_read_input_tokens": 29401,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5336
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T12:26:04.191Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S6YgUoBu2mE5HRVXf31p1T",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\nTier~1 signals are individually sufficient: \\\\\\\\texttt{exception\\\\\\\\_only} (99.83\\\\\\\\%$\\\\\\\\pm$0.00) exceeds VOTA (99.05\\\\\\\\%$\\\\\\\\pm$0.38) by +0.78pp (2/3 seeds $p{<}.05$, all directionally consistent), implying that combining signals introduces noise.\\\\nRemoving assertion points has no effect (\\\\\\\\texttt{VOTA\\\\\\\\_no\\\\\\\\_ae} = 99.41\\\\\\\\%, single seed), confirming exception dominance.\\\\nThe Tier~1/2 boundary is unambiguous: the lowest Tier~1 condition (\\\\\\\\texttt{ae\\\\\\\\_only} on DeepSeek, 98.53\\\\\\\\%$\\\\\\\\pm$0.30, 2 seeds) exceeds the highest Tier~2 (\\\\\\\\texttt{loop\\\\\\\\_only} on Qwen-7B, 86.05\\\\\\\\%, CI [83.97, 87.96]) by 12.48\\\\\\\\,pp with non-overlapping confidence intervals.\\\\nTier~2 \\\\\\\\texttt{loop\\\\\\\\_only} lifts over \\\\\\\\texttt{no\\\\\\\\_trace} are model-dependent: Qwen shows +10.92pp (7B) and +7.19pp (1.5B, $p{<}.0001$), with the larger 7B gain likely reflecting greater capacity to exploit structured loop patterns; DeepSeek +6.95pp (80.31\\\\\\\\%), CodeLlama +0.93pp (77.40\\\\\\\\%, n.s.).\\\\n\\\\\\\\paragraph{Rule-based baseline comparison.}\\\\nThe strongest non-trivial regex heuristic (B4: exception class name matching; Table~\\\\\\\\ref{tab:regex}) achieves 93.61\\\\\\\\% accuracy (F1=0.876), trailing SFT \\\\\\\\texttt{exception\\\\\\\\_only} (99.83\\\\\\\\%, F1=0.997) by 6.22pp (McNemar $p{<}.001$).\\\\nThe gap concentrates on caught-exception boundary cases: regex flags all exception events as failures, while SFT learns to distinguish caught exceptions (benign, inside \\\\\\\\texttt{try/except}) from uncaught faults, correctly resolving 6/8 boundary samples (Appendix~\\\\\\\\ref{sec:regex_baselines}).\\\\nAcross all formats, SFT outperforms the best applicable regex by +3.62--23.86pp (Appendix~\\\\\\\\ref{sec:regex_baselines}).\\\\n\\\\n\\\\\\\\paragraph{Zero-shot and few-shot LLM baselines.}\\\\nZero-shot prompting spans 51.0--93.5\\\\\\\\% across four models (42.44pp range); three-shot ICL on Qwen-7B (90.84\\\\\\\\%) improves only 1.76pp.\\\\nSFT compresses this range to 0.50pp (99.39--99.89\\\\\\\\%), closing a 6--49pp gap with 4,720 samples (Appendix~\\\\\\\\ref{sec:zeroshot_cross_model}).\\\\n\\\\n\\\\\\\\subsection{Format Marker Ablation}\\\\n\\\\\\\\label{sec:nomarker}\\\\n\\\\nThe \\\\\\\\texttt{exception\\\\\\\\_only} format includes a \\\\\\\\texttt{[No exception data in trace]} marker in all pass-class samples (regex baseline B5 exploits this for 99.33\\\\\\\\% accuracy; Appendix~\\\\\\\\ref{sec:regex_baselines}).\\\\nTo quantify the marker's contribution, we retrain with all format markers removed (\\\\\\\\texttt{nomarker} condition).\\\\n\\\\nQwen-7B 3-seed mean: 97.65\\\\\\\\% $\\\\\\\\pm$ 0.96 (seeds 42/123/456: 96.55/98.32/98.07\\\\\\\\%), a drop of 2.18pp from \\\\\\\\texttt{exception\\\\\\\\_only} (99.83\\\\\\\\%).\\\\nQwen-1.5B: 97.82\\\\\\\\%, drop of 2.01pp.\\\\nThe marker contribution (${\\\\\\\\sim}$2pp) accounts for only ${\\\\\\\\sim}$9\\\\\\\\% of the total exception lift over \\\\\\\\texttt{no\\\\\\\\_trace} (24.70pp on 7B).\\\\nException events thus provide two signal layers that show no degradation at smaller scale: structural markers (${\\\\\\\\sim}$2pp, regex-learnable) and semantic exception content (${\\\\\\\\sim}$22pp, requiring SFT to distinguish caught from uncaught exceptions).\\\\n\\\\n\\\\\\\\subsection{Information Density Decomposition}\\\\n\\\\\\\\label{sec:density}\\\\n\\\\nThe XX.XXpp gap between \\\\\\\\texttt{full\\\\\\\\_trace} (XX.XX\\\\\\\\%$\\\\\\\\pm$Y.YY) and VOTA (99.05\\\\\\\\%, 3-seed mean) decomposes via \\\\\\\\texttt{full\\\\\\\\_trace\\\\\\\\_label\\\\\\\\_only} (85.94\\\\\\\\%$\\\\\\\\pm$1.12, 3 seeds; Table~\\\\\\\\ref{tab:density}), which retains the full trace but masks all trace tokens from the loss.\\\\n\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Approximate information density decomposition: gradient dilution (${\\\\\\\\sim}$24\\\\\\\\%) vs.\\\\\\\\ information overload (${\\\\\\\\sim}$76\\\\\\\\%). \\\\\\\\texttt{label\\\\\\\\_only} and VOTA are 3-seed means on Qwen-7B. Results are from Qwen-2.5-Coder-7B only; cross-model validation is left for future work.}\\\\n\\\\\\\\label{tab:density}\\\\n\\\\\\\\small\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{lccc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Condition} & \\\\\\\\textbf{Acc (\\\\\\\\%)} & \\\\\\\\textbf{$\\\\\\\\Delta$ vs.\\\\\\\\ full\\\\\\\\_trace} & \\\\\\\\textbf{Gap explained} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nfull\\\\\\\\_trace & XX.XX$\\\\\\\\pm$Y.YY & --- & --- \\\\\\\\\\\\\\\\\\\\nlabel\\\\\\\\_only & 85.94{\\\\\\\\scriptsize$\\\\\\\\pm$1.12} & +4.18pp & 24\\\\\\\\% \\\\\\\\\\\\\\\\\\\\nVOTA & 99.05{\\\\\\\\scriptsize$\\\\\\\\pm$0.38} & +17.29pp & 100\\\\\\\\% \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}%\\\\n}\\\\n\\\\\\\\end{table}\\\\n\\\\nGradient dilution accounts for approximately 24\\\\\\\\% of the gap (+4.18pp, 3-seed \\\\n\\\\n... [截断: 输出过长，省略 1600 字符] ...\\\\n\\\\nimization dynamics; the 24\\\\\\\\%/76\\\\\\\\% attribution is an approximate decomposition (Qwen family, 2 scales, 3 seeds each).\\\\n\\\\n\\\\\\\\subsection{Additional Analyses}\\\\n\\\\\\\\label{sec:additional}\\\\n\\\\n\\\\\\\\paragraph{Trace length ablation.}\\\\n\\\\\\\\label{sec:trace_length}\\\\nVarying the head-truncated trace token budget (256--no limit) on Qwen-7B yields accuracy in a narrow 77.2\\\\\\\\%--81.8\\\\\\\\% band with a non-monotonic pattern: 1024-token prefixes (77.23\\\\\\\\%) underperform 512-token prefixes (80.42\\\\\\\\%, $p{=}.002$), because mid-length prefixes retain enough irrelevant content to mislead the model while discarding diagnostic events near the trace terminus (Appendix~\\\\\\\\ref{sec:trace_length_full}).\\\\nThis non-monotonicity is specific to head-truncation; under tail-truncation, accuracy increases monotonically for two of three models (Table~\\\\\\\\ref{tab:tail_cross_model} in Appendix), with only DeepSeek showing a mild architecture-specific reversal at tail-1024$\\\\\\\\to$tail-2048 ($-$1.5pp).\\\\n\\\\n\\\\\\\\paragraph{Truncation direction and budget curve.}\\\\nTail-truncation (retaining the last $k$ tokens) dramatically outperforms head-truncation: among the three models with complete data, tail-2048 exceeds head-2048 by 15.5--22.6pp, with the gap widening at smaller scale (Qwen-1.5B: +22.6pp vs.\\\\\\\\ Qwen-7B: +15.5pp; Appendix~\\\\\\\\ref{sec:trace_length_full}, Table~\\\\\\\\ref{tab:head_vs_tail}).\\\\nAll four models' head-2048 accuracies converge into a narrow 75.3--81.8\\\\\\\\% band (6.5pp), comparable to the tail-256 band (72.6--78.9\\\\\\\\%, 6.3pp), indicating that signal-poor conditions produce a shared performance floor regardless of scale or architecture.\\\\n\\\\nA cross-model budget sweep across four models and three architecture families reveals a phase transition localized between 384 and 512 tail tokens.\\\\nAt tail-384, all models remain near baseline (73.6--82.9\\\\\\\\%, only +1.0--6.5pp over tail-256); the steep jump occurs at 384$\\\\\\\\to$512 (+11.0--22.0pp), crossing from near-baseline to near-ceiling (${\\\\\\\\sim}$94--98\\\\\\\\%).\\\\nThis localizes the critical threshold to ${\\\\\\\\sim}$400--500 tokens, matching the typical exception traceback length (Table~\\\\\\\\ref{tab:tail_cross_model}).\\\\nBeyond 512 tokens, accuracy converges further: multi-seed validation across all 12 model$\\\\\\\\times$seed combinations confirms all tail-512 accuracies fall within a 4.63pp band [93.61\\\\\\\\%, 98.24\\\\\\\\%] (Table~\\\\\\\\ref{tab:tail512_seeds}); at tail-1024, three models reach 96.5--98.2\\\\\\\\%, compressing the 6.3pp cross-model spread observed at tail-256.\\\\n\\\\\\\\texttt{tail\\\\\\\\_2048} captures 95--98\\\\\\\\% of \\\\\\\\texttt{exception\\\\\\\\_only}'s accuracy across all completed configurations.\\\\nThe residual 2--5pp gap confirms that semantic extraction (identifying exception type and message) still outperforms positional extraction (retaining a fixed window containing non-diagnostic lines).\\\\n\\\\n\\\\\\\\paragraph{Calibration.}\\\\n\\\\\\\\label{sec:calibration}\\\\nCalibration mirrors the tier pattern: \\\\\\\\texttt{exception\\\\\\\\_only} achieves ECE = 0.0027 vs.\\\\\\\\ 0.171 for \\\\\\\\texttt{no\\\\\\\\_trace}, a 63$\\\\\\\\times$ gap (Figure~\\\\\\\\ref{fig:calibration}).\\\\nThis calibration advantage generalizes across architectures and scales: all four models (1.5B--13B) achieve ECE ${<}$ 0.007 under \\\\\\\\texttt{exception\\\\\\\\_only} (Appendix~\\\\\\\\ref{sec:calibration_full}).\\\\n\\\\n\\\\\\\\paragraph{Error orthogonality.}\\\\n\\\\\\\\texttt{exception\\\\\\\\_only}'s 2 errors have zero overlap with all other conditions' error sets (Jaccard = 0.000), confirming it operates on an independent signal dimension (Appendix~\\\\\\\\ref{sec:error_overlap}).\\\\n\\\\n\\\\\\\\paragraph{Exception type breakdown.}\\\\nA per-exception-type breakdown (Appendix~\\\\\\\\ref{sec:exception_type}) confirms that all standard exception types achieve 100\\\\\\\\% accuracy; the only failures arise from \\\\\\\\texttt{GeneratorExit}, a benign \\\\\\\\texttt{BaseException} subclass.\\\\n\\\\n\\\\\\\\paragraph{Supplementary out-of-distribution check.}\\\\n\\\\\\\\label{sec:debugbench}\\\\nOn DebugBench \\\\\\\\citep{tian2024debugbench} ($N{=}426$), the ranking is preserved: \\\\\\\\texttt{exception\\\\\\\\_only} 100\\\\\\\\%, VOTA 99.77\\\\\\\\%, \\\\\\\\texttt{no\\\\\\\\_trace} 96.71\\\\\\\\%; narrow margins reflect a ceiling effect from structurally distinctive mutations (Appendix~\\\\\\\\ref{sec:debugbench_full}).\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b75056c9-ca80-45da-84b2-51a9e6f6320f",
+            "uuid": "dfe38247-3964-4e98-bfca-4d0d1b21972f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\nTier~1 signals are individually sufficient: \\\\\\\\texttt{exception\\\\\\\\_only} (99.83\\\\\\\\%$\\\\\\\\pm$0.00) exceeds VOTA (99.05\\\\\\\\%$\\\\\\\\pm$0.38) by +0.78pp (2/3 seeds $p{<}.05$, all directionally consistent), implying that combining signals introduces noise.\\\\nRemoving assertion points has no effect (\\\\\\\\texttt{VOTA\\\\\\\\_no\\\\\\\\_ae} = 99.41\\\\\\\\%, single seed), confirming exception dominance.\\\\nThe Tier~1/2 boundary is unambiguous: the lowest Tier~1 condition (\\\\\\\\texttt{ae\\\\\\\\_only} on DeepSeek, 98.53\\\\\\\\%$\\\\\\\\pm$0.30, 2 seeds) exceeds the highest Tier~2 (\\\\\\\\texttt{loop\\\\\\\\_only} on Qwen-7B, 86.05\\\\\\\\%, CI [83.97, 87.96]) by 12.48\\\\\\\\,pp with non-overlapping confidence intervals.\\\\nTier~2 \\\\\\\\texttt{loop\\\\\\\\_only} lifts over \\\\\\\\texttt{no\\\\\\\\_trace} are model-dependent: Qwen shows +10.92pp (7B) and +7.19pp (1.5B, $p{<}.0001$), with the larger 7B gain likely reflecting greater capacity to exploit structured loop patterns; DeepSeek +6.95pp (80.31\\\\\\\\%), CodeLlama +0.93pp (77.40\\\\\\\\%, n.s.).\\\\n\\\\\\\\paragraph{Rule-based baseline comparison.}\\\\nThe strongest non-trivial regex heuristic (B4: exception class name matching; Table~\\\\\\\\ref{tab:regex}) achieves 93.61\\\\\\\\% accuracy (F1=0.876), trailing SFT \\\\\\\\texttt{exception\\\\\\\\_only} (99.83\\\\\\\\%, F1=0.997) by 6.22pp (McNemar $p{<}.001$).\\\\nThe gap concentrates on caught-exception boundary cases: regex flags all exception events as failures, while SFT learns to distinguish caught exceptions (benign, inside \\\\\\\\texttt{try/except}) from uncaught faults, correctly resolving 6/8 boundary samples (Appendix~\\\\\\\\ref{sec:regex_baselines}).\\\\nAcross all formats, SFT outperforms the best applicable regex by +3.62--23.86pp (Appendix~\\\\\\\\ref{sec:regex_baselines}).\\\\n\\\\n\\\\\\\\paragraph{Zero-shot and few-shot LLM baselines.}\\\\nZero-shot prompting spans 51.0--93.5\\\\\\\\% across four models (42.44pp range); three-shot ICL on Qwen-7B (90.84\\\\\\\\%) improves only 1.76pp.\\\\nSFT compresses this range to 0.50pp (99.39--99.89\\\\\\\\%), closing a 6--49pp gap with 4,720 samples (Appendix~\\\\\\\\ref{sec:zeroshot_cross_model}).\\\\n\\\\n\\\\\\\\subsection{Format Marker Ablation}\\\\n\\\\\\\\label{sec:nomarker}\\\\n\\\\nThe \\\\\\\\texttt{exception\\\\\\\\_only} format includes a \\\\\\\\texttt{[No exception data in trace]} marker in all pass-class samples (regex baseline B5 exploits this for 99.33\\\\\\\\% accuracy; Appendix~\\\\\\\\ref{sec:regex_baselines}).\\\\nTo quantify the marker's contribution, we retrain with all format markers removed (\\\\\\\\texttt{nomarker} condition).\\\\n\\\\nQwen-7B 3-seed mean: 97.65\\\\\\\\% $\\\\\\\\pm$ 0.96 (seeds 42/123/456: 96.55/98.32/98.07\\\\\\\\%), a drop of 2.18pp from \\\\\\\\texttt{exception\\\\\\\\_only} (99.83\\\\\\\\%).\\\\nQwen-1.5B: 97.82\\\\\\\\%, drop of 2.01pp.\\\\nThe marker contribution (${\\\\\\\\sim}$2pp) accounts for only ${\\\\\\\\sim}$9\\\\\\\\% of the total exception lift over \\\\\\\\texttt{no\\\\\\\\_trace} (24.70pp on 7B).\\\\nException events thus provide two signal layers that show no degradation at smaller scale: structural markers (${\\\\\\\\sim}$2pp, regex-learnable) and semantic exception content (${\\\\\\\\sim}$22pp, requiring SFT to distinguish caught from uncaught exceptions).\\\\n\\\\n\\\\\\\\subsection{Information Density Decomposition}\\\\n\\\\\\\\label{sec:density}\\\\n\\\\nThe XX.XXpp gap between \\\\\\\\texttt{full\\\\\\\\_trace} (XX.XX\\\\\\\\%$\\\\\\\\pm$Y.YY) and VOTA (99.05\\\\\\\\%, 3-seed mean) decomposes via \\\\\\\\texttt{full\\\\\\\\_trace\\\\\\\\_label\\\\\\\\_only} (85.94\\\\\\\\%$\\\\\\\\pm$1.12, 3 seeds; Table~\\\\\\\\ref{tab:density}), which retains the full trace but masks all trace tokens from the loss.\\\\n\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Approximate information density decomposition: gradient dilution (${\\\\\\\\sim}$24\\\\\\\\%) vs.\\\\\\\\ information overload (${\\\\\\\\sim}$76\\\\\\\\%). \\\\\\\\texttt{label\\\\\\\\_only} and VOTA are 3-seed means on Qwen-7B. Results are from Qwen-2.5-Coder-7B only; cross-model validation is left for future work.}\\\\n\\\\\\\\label{tab:density}\\\\n\\\\\\\\small\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{lccc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Condition} & \\\\\\\\textbf{Acc (\\\\\\\\%)} & \\\\\\\\textbf{$\\\\\\\\Delta$ vs.\\\\\\\\ full\\\\\\\\_trace} & \\\\\\\\textbf{Gap explained} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nfull\\\\\\\\_trace & XX.XX$\\\\\\\\pm$Y.YY & --- & --- \\\\\\\\\\\\\\\\\\\\nlabel\\\\\\\\_only & 85.94{\\\\\\\\scriptsize$\\\\\\\\pm$1.12} & +4.18pp & 24\\\\\\\\% \\\\\\\\\\\\\\\\\\\\nVOTA & 99.05{\\\\\\\\scriptsize$\\\\\\\\pm$0.38} & +17.29pp & 100\\\\\\\\% \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}%\\\\n}\\\\n\\\\\\\\end{table}\\\\n\\\\nGradient dilution accounts for approximately 24\\\\\\\\% of the gap (+4.18pp, 3-seed \\\\n\\\\n... [截断: 输出过长，省略 1600 字符] ...\\\\n\\\\nimization dynamics; the 24\\\\\\\\%/76\\\\\\\\% attribution is an approximate decomposition (Qwen family, 2 scales, 3 seeds each).\\\\n\\\\n\\\\\\\\subsection{Additional Analyses}\\\\n\\\\\\\\label{sec:additional}\\\\n\\\\n\\\\\\\\paragraph{Trace length ablation.}\\\\n\\\\\\\\label{sec:trace_length}\\\\nVarying the head-truncated trace token budget (256--no limit) on Qwen-7B yields accuracy in a narrow 77.2\\\\\\\\%--81.8\\\\\\\\% band with a non-monotonic pattern: 1024-token prefixes (77.23\\\\\\\\%) underperform 512-token prefixes (80.42\\\\\\\\%, $p{=}.002$), because mid-length prefixes retain enough irrelevant content to mislead the model while discarding diagnostic events near the trace terminus (Appendix~\\\\\\\\ref{sec:trace_length_full}).\\\\nThis non-monotonicity is specific to head-truncation; under tail-truncation, accuracy increases monotonically for two of three models (Table~\\\\\\\\ref{tab:tail_cross_model} in Appendix), with only DeepSeek showing a mild architecture-specific reversal at tail-1024$\\\\\\\\to$tail-2048 ($-$1.5pp).\\\\n\\\\n\\\\\\\\paragraph{Truncation direction and budget curve.}\\\\nTail-truncation (retaining the last $k$ tokens) dramatically outperforms head-truncation: among the three models with complete data, tail-2048 exceeds head-2048 by 15.5--22.6pp, with the gap widening at smaller scale (Qwen-1.5B: +22.6pp vs.\\\\\\\\ Qwen-7B: +15.5pp; Appendix~\\\\\\\\ref{sec:trace_length_full}, Table~\\\\\\\\ref{tab:head_vs_tail}).\\\\nAll four models' head-2048 accuracies converge into a narrow 75.3--81.8\\\\\\\\% band (6.5pp), comparable to the tail-256 band (72.6--78.9\\\\\\\\%, 6.3pp), indicating that signal-poor conditions produce a shared performance floor regardless of scale or architecture.\\\\n\\\\nA cross-model budget sweep across four models and three architecture families reveals a phase transition localized between 384 and 512 tail tokens.\\\\nAt tail-384, all models remain near baseline (73.6--82.9\\\\\\\\%, only +1.0--6.5pp over tail-256); the steep jump occurs at 384$\\\\\\\\to$512 (+11.0--22.0pp), crossing from near-baseline to near-ceiling (${\\\\\\\\sim}$94--98\\\\\\\\%).\\\\nThis localizes the critical threshold to ${\\\\\\\\sim}$400--500 tokens, matching the typical exception traceback length (Table~\\\\\\\\ref{tab:tail_cross_model}).\\\\nBeyond 512 tokens, accuracy converges further: multi-seed validation across all 12 model$\\\\\\\\times$seed combinations confirms all tail-512 accuracies fall within a 4.63pp band [93.61\\\\\\\\%, 98.24\\\\\\\\%] (Table~\\\\\\\\ref{tab:tail512_seeds}); at tail-1024, three models reach 96.5--98.2\\\\\\\\%, compressing the 6.3pp cross-model spread observed at tail-256.\\\\n\\\\\\\\texttt{tail\\\\\\\\_2048} captures 95--98\\\\\\\\% of \\\\\\\\texttt{exception\\\\\\\\_only}'s accuracy across all completed configurations.\\\\nThe residual 2--5pp gap confirms that semantic extraction (identifying exception type and message) still outperforms positional extraction (retaining a fixed window containing non-diagnostic lines).\\\\n\\\\n\\\\\\\\paragraph{Calibration.}\\\\n\\\\\\\\label{sec:calibration}\\\\nCalibration mirrors the tier pattern: \\\\\\\\texttt{exception\\\\\\\\_only} achieves ECE = 0.0027 vs.\\\\\\\\ 0.171 for \\\\\\\\texttt{no\\\\\\\\_trace}, a 63$\\\\\\\\times$ gap (Figure~\\\\\\\\ref{fig:calibration}).\\\\nThis calibration advantage generalizes across architectures and scales: all four models (1.5B--13B) achieve ECE ${<}$ 0.007 under \\\\\\\\texttt{exception\\\\\\\\_only} (Appendix~\\\\\\\\ref{sec:calibration_full}).\\\\n\\\\n\\\\\\\\paragraph{Error orthogonality.}\\\\n\\\\\\\\texttt{exception\\\\\\\\_only}'s 2 errors have zero overlap with all other conditions' error sets (Jaccard = 0.000), confirming it operates on an independent signal dimension (Appendix~\\\\\\\\ref{sec:error_overlap}).\\\\n\\\\n\\\\\\\\paragraph{Exception type breakdown.}\\\\nA per-exception-type breakdown (Appendix~\\\\\\\\ref{sec:exception_type}) confirms that all standard exception types achieve 100\\\\\\\\% accuracy; the only failures arise from \\\\\\\\texttt{GeneratorExit}, a benign \\\\\\\\texttt{BaseException} subclass.\\\\n\\\\n\\\\\\\\paragraph{Supplementary out-of-distribution check.}\\\\n\\\\\\\\label{sec:debugbench}\\\\nOn DebugBench \\\\\\\\citep{tian2024debugbench} ($N{=}426$), the ranking is preserved: \\\\\\\\texttt{exception\\\\\\\\_only} 100\\\\\\\\%, VOTA 99.77\\\\\\\\%, \\\\\\\\texttt{no\\\\\\\\_trace} 96.71\\\\\\\\%; narrow margins reflect a ceiling effect from structurally distinctive mutations (Appendix~\\\\\\\\ref{sec:debugbench_full}).\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\nTier~1 signals are individually sufficient: \\\\texttt{exception\\\\_only} (99.83\\\\%$\\\\pm$0.00) exceeds VOTA (99.05\\\\%$\\\\pm$0.38) by +0.78pp (2/3 seeds $p{<}.05$, all directionally consistent), implying that combining signals introduces noise.\\nRemoving assertion points has no effect (\\\\texttt{VOTA\\\\_no\\\\_ae} = 99.41\\\\%, single seed), confirming exception dominance.\\nThe Tier~1/2 boundary is unambiguous: the lowest Tier~1 condition (\\\\texttt{ae\\\\_only} on DeepSeek, 98.53\\\\%$\\\\pm$0.30, 2 seeds) exceeds the highest Tier~2 (\\\\texttt{loop\\\\_only} on Qwen-7B, 86.05\\\\%, CI [83.97, 87.96]) by 12.48\\\\,pp with non-overlapping confidence intervals.\\nTier~2 \\\\texttt{loop\\\\_only} lifts over \\\\texttt{no\\\\_trace} are model-dependent: Qwen shows +10.92pp (7B) and +7.19pp (1.5B, $p{<}.0001$), with the larger 7B gain likely reflecting greater capacity to exploit structured loop patterns; DeepSeek +6.95pp (80.31\\\\%), CodeLlama +0.93pp (77.40\\\\%, n.s.).\\n\\\\paragraph{Rule-based baseline comparison.}\\nThe strongest non-trivial regex heuristic (B4: exception class name matching; Table~\\\\ref{tab:regex}) achieves 93.61\\\\% accuracy (F1=0.876), trailing SFT \\\\texttt{exception\\\\_only} (99.83\\\\%, F1=0.997) by 6.22pp (McNemar $p{<}.001$).\\nThe gap concentrates on caught-exception boundary cases: regex flags all exception events as failures, while SFT learns to distinguish caught exceptions (benign, inside \\\\texttt{try/except}) from uncaught faults, correctly resolving 6/8 boundary samples (Appendix~\\\\ref{sec:regex_baselines}).\\nAcross all formats, SFT outperforms the best applicable regex by +3.62--23.86pp (Appendix~\\\\ref{sec:regex_baselines}).\\n\\n\\\\paragraph{Zero-shot and few-shot LLM baselines.}\\nZero-shot prompting spans 51.0--93.5\\\\% across four models (42.44pp range); three-shot ICL on Qwen-7B (90.84\\\\%) improves only 1.76pp.\\nSFT compresses this range to 0.50pp (99.39--99.89\\\\%), closing a 6--49pp gap with 4,720 samples (Appendix~\\\\ref{sec:zeroshot_cross_model}).\\n\\n\\\\subsection{Format Marker Ablation}\\n\\\\label{sec:nomarker}\\n\\nThe \\\\texttt{exception\\\\_only} format includes a \\\\texttt{[No exception data in trace]} marker in all pass-class samples (regex baseline B5 exploits this for 99.33\\\\% accuracy; Appendix~\\\\ref{sec:regex_baselines}).\\nTo quantify the marker's contribution, we retrain with all format markers removed (\\\\texttt{nomarker} condition).\\n\\nQwen-7B 3-seed mean: 97.65\\\\% $\\\\pm$ 0.96 (seeds 42/123/456: 96.55/98.32/98.07\\\\%), a drop of 2.18pp from \\\\texttt{exception\\\\_only} (99.83\\\\%).\\nQwen-1.5B: 97.82\\\\%, drop of 2.01pp.\\nThe marker contribution (${\\\\sim}$2pp) accounts for only ${\\\\sim}$9\\\\% of the total exception lift over \\\\texttt{no\\\\_trace} (24.70pp on 7B).\\nException events thus provide two signal layers that show no degradation at smaller scale: structural markers (${\\\\sim}$2pp, regex-learnable) and semantic exception content (${\\\\sim}$22pp, requiring SFT to distinguish caught from uncaught exceptions).\\n\\n\\\\subsection{Information Density Decomposition}\\n\\\\label{sec:density}\\n\\nThe XX.XXpp gap between \\\\texttt{full\\\\_trace} (XX.XX\\\\%$\\\\pm$Y.YY) and VOTA (99.05\\\\%, 3-seed mean) decomposes via \\\\texttt{full\\\\_trace\\\\_label\\\\_only} (85.94\\\\%$\\\\pm$1.12, 3 seeds; Table~\\\\ref{tab:density}), which retains the full trace but masks all trace tokens from the loss.\\n\\n\\\\begin{table}[t]\\n\\\\centering\\n\\\\caption{Approximate information density decomposition: gradient dilution (${\\\\sim}$24\\\\%) vs.\\\\ information overload (${\\\\sim}$76\\\\%). \\\\texttt{label\\\\_only} and VOTA are 3-seed means on Qwen-7B. Results are from Qwen-2.5-Coder-7B only; cross-model validation is left for future work.}\\n\\\\label{tab:density}\\n\\\\small\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{lccc}\\n\\\\toprule\\n\\\\textbf{Condition} & \\\\textbf{Acc (\\\\%)} & \\\\textbf{$\\\\Delta$ vs.\\\\ full\\\\_trace} & \\\\textbf{Gap explained} \\\\\\\\\\n\\\\midrule\\nfull\\\\_trace & XX.XX$\\\\pm$Y.YY & --- & --- \\\\\\\\\\nlabel\\\\_only & 85.94{\\\\scriptsize$\\\\pm$1.12} & +4.18pp & 24\\\\% \\\\\\\\\\nVOTA & 99.05{\\\\scriptsize$\\\\pm$0.38} & +17.29pp & 100\\\\% \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}%\\n}\\n\\\\end{table}\\n\\nGradient dilution accounts for approximately 24\\\\% of the gap (+4.18pp, 3-seed \\n\\n... [截断: 输出过长，省略 1600 字符] ...\\n\\nimization dynamics; the 24\\\\%/76\\\\% attribution is an approximate decomposition (Qwen family, 2 scales, 3 seeds each).\\n\\n\\\\subsection{Additional Analyses}\\n\\\\label{sec:additional}\\n\\n\\\\paragraph{Trace length ablation.}\\n\\\\label{sec:trace_length}\\nVarying the head-truncated trace token budget (256--no limit) on Qwen-7B yields accuracy in a narrow 77.2\\\\%--81.8\\\\% band with a non-monotonic pattern: 1024-token prefixes (77.23\\\\%) underperform 512-token prefixes (80.42\\\\%, $p{=}.002$), because mid-length prefixes retain enough irrelevant content to mislead the model while discarding diagnostic events near the trace terminus (Appendix~\\\\ref{sec:trace_length_full}).\\nThis non-monotonicity is specific to head-truncation; under tail-truncation, accuracy increases monotonically for two of three models (Table~\\\\ref{tab:tail_cross_model} in Appendix), with only DeepSeek showing a mild architecture-specific reversal at tail-1024$\\\\to$tail-2048 ($-$1.5pp).\\n\\n\\\\paragraph{Truncation direction and budget curve.}\\nTail-truncation (retaining the last $k$ tokens) dramatically outperforms head-truncation: among the three models with complete data, tail-2048 exceeds head-2048 by 15.5--22.6pp, with the gap widening at smaller scale (Qwen-1.5B: +22.6pp vs.\\\\ Qwen-7B: +15.5pp; Appendix~\\\\ref{sec:trace_length_full}, Table~\\\\ref{tab:head_vs_tail}).\\nAll four models' head-2048 accuracies converge into a narrow 75.3--81.8\\\\% band (6.5pp), comparable to the tail-256 band (72.6--78.9\\\\%, 6.3pp), indicating that signal-poor conditions produce a shared performance floor regardless of scale or architecture.\\n\\nA cross-model budget sweep across four models and three architecture families reveals a phase transition localized between 384 and 512 tail tokens.\\nAt tail-384, all models remain near baseline (73.6--82.9\\\\%, only +1.0--6.5pp over tail-256); the steep jump occurs at 384$\\\\to$512 (+11.0--22.0pp), crossing from near-baseline to near-ceiling (${\\\\sim}$94--98\\\\%).\\nThis localizes the critical threshold to ${\\\\sim}$400--500 tokens, matching the typical exception traceback length (Table~\\\\ref{tab:tail_cross_model}).\\nBeyond 512 tokens, accuracy converges further: multi-seed validation across all 12 model$\\\\times$seed combinations confirms all tail-512 accuracies fall within a 4.63pp band [93.61\\\\%, 98.24\\\\%] (Table~\\\\ref{tab:tail512_seeds}); at tail-1024, three models reach 96.5--98.2\\\\%, compressing the 6.3pp cross-model spread observed at tail-256.\\n\\\\texttt{tail\\\\_2048} captures 95--98\\\\% of \\\\texttt{exception\\\\_only}'s accuracy across all completed configurations.\\nThe residual 2--5pp gap confirms that semantic extraction (identifying exception type and message) still outperforms positional extraction (retaining a fixed window containing non-diagnostic lines).\\n\\n\\\\paragraph{Calibration.}\\n\\\\label{sec:calibration}\\nCalibration mirrors the tier pattern: \\\\texttt{exception\\\\_only} achieves ECE = 0.0027 vs.\\\\ 0.171 for \\\\texttt{no\\\\_trace}, a 63$\\\\times$ gap (Figure~\\\\ref{fig:calibration}).\\nThis calibration advantage generalizes across architectures and scales: all four models (1.5B--13B) achieve ECE ${<}$ 0.007 under \\\\texttt{exception\\\\_only} (Appendix~\\\\ref{sec:calibration_full}).\\n\\n\\\\paragraph{Error orthogonality.}\\n\\\\texttt{exception\\\\_only}'s 2 errors have zero overlap with all other conditions' error sets (Jaccard = 0.000), confirming it operates on an independent signal dimension (Appendix~\\\\ref{sec:error_overlap}).\\n\\n\\\\paragraph{Exception type breakdown.}\\nA per-exception-type breakdown (Appendix~\\\\ref{sec:exception_type}) confirms that all standard exception types achieve 100\\\\% accuracy; the only failures arise from \\\\texttt{GeneratorExit}, a benign \\\\texttt{BaseException} subclass.\\n\\n\\\\paragraph{Supplementary out-of-distribution check.}\\n\\\\label{sec:debugbench}\\nOn DebugBench \\\\citep{tian2024debugbench} ($N{=}426$), the ranking is preserved: \\\\texttt{exception\\\\_only} 100\\\\%, VOTA 99.77\\\\%, \\\\texttt{no\\\\_trace} 96.71\\\\%; narrow margins reflect a ceiling effect from structurally distinctive mutations (Appendix~\\\\ref{sec:debugbench_full}).\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000034"
+        }
+      ],
+      "message_count": 34
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-mf3-fill-placeholders-final.md"
+}

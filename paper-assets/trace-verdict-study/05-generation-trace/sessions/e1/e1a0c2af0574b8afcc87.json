@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1a0c2af0574b8afcc87",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops sync check and fix",
+  "task_key": "worker_ops_sync_check_and_fix_20260520T141322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_check_and_fix_20260520T141322_result.json",
+    "occurrence": 1,
+    "bytes": 761,
+    "sha256": "5b902cbd0994d2886f3294836fc9b324216e3fe48b340f2863abc9347d53df1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. Sync 状态\n- experiments.tex 等 9 个文件大小已匹配，无需同步\n- **appendix.tex 不同步**（本地 48,357B vs 远程 16,119B）→ 已通过 scp 修复，远程验证 48,357B 匹配\n- \"77.40\" 本地和远程都不存在（不是 sync 问题，数据本身不含此值）\n\n### 2. 编译结果\n- **0 errors**\n- **21 pages**, 440,298 bytes (430KB)\n- pdflatex + bibtex + 2x pdflatex 全部成功\n\n### 3. 实验状态\n| 实验 | PID | 状态 | GPU |\n|------|-----|------|-----|\n| qwen15b_loop_only_seed456 | 630189→630199 | **alive** | cuda:0, 100% util, 89.7/97.9 GB |\n| deepseek_ae_only_seed123 | 626709→626719 | **alive** | cuda:1, 89% util, 22.4/97.9 GB |\n\n两个实验均在正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-check-and-fix.md"
+}

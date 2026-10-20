@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4393256b2018337c178e",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code qwen15b head2048",
+  "task_key": "worker_code_qwen15b_head2048_20260517T181635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen15b_head2048_20260517T181635_result.json",
+    "occurrence": 1,
+    "bytes": 689,
+    "sha256": "fb031ec02717aa259c311074c6dd90679914349b14564aff879616fa3e24fe6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练+评估已提交并运行中。\n\n**摘要**：\n- **数据确认**：`full_trace_head_train.jsonl` (4720) / `full_trace_head_test.jsonl` (1190) 存在于 `/root/autodl-tmp/trace-verdict-study-data/`\n- **Condition 确认**：`full_trace_head` 已注册在 `train_sft.py` 和 `evaluate.py`\n- **GPU**：cuda:1 空闲，进程已启动，正在 tokenize\n- **任务**：训练完成后自动执行评估，结果写入 `/root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_full_trace_head2048_seed42/final/eval_results.json`\n- **日志**：`/root/trace-verdict-study/logs/qwen15b_full_trace_head2048_seed42.log`\n- **WandB**：`qwen15b_full_trace_head2048_seed42`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwen15b-head2048.md"
+}

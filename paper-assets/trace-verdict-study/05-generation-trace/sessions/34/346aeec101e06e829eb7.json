@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "346aeec101e06e829eb7",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code calibration fix",
+  "task_key": "worker_code_calibration_fix_20260515T124057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_calibration_fix_20260515T124057_result.json",
+    "occurrence": 1,
+    "bytes": 663,
+    "sha256": "0e65881529d2847e9f00cae2b9e207ce96e6195b8e05a4b66927e499cc40345b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**三个 bug 均已修复并验证：**\n- **P0** (Token ID 硬编码): 改为 `resolve_token_ids()` 动态查询，Qwen 验证得到 pass=6385, fail=18403，与原值一致\n- **P1** (预测方式不一致): 改为 greedy generation + `classify_prediction()`，与 evaluate.py 对齐；confidence 仍从 logits 计算\n- **P2** (MCE 空 bin): `compute_mce()` 跳过空 bin，loop_only MCE 从 null → 0.1834\n\n**Registry 已更新** (`calibration_analysis_seed42.metrics`)，artifact 已注册。服务器上结果保存在 `/root/autodl-tmp/trace-verdict-study-checkpoints/calibration/calibration_metrics_v2.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-calibration-fix.md"
+}

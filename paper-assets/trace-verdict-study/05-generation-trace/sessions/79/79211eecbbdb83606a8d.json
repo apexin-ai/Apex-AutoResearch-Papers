@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79211eecbbdb83606a8d",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis deepseek vota seed42",
+  "task_key": "worker_analysis_deepseek_vota_seed42_20260515T130802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek_vota_seed42_20260515T130802_result.json",
+    "occurrence": 1,
+    "bytes": 771,
+    "sha256": "2bacc0599573793d0e6b0e3ffe99cbbc0e5b2ae91a4573cc970d8dc3c2599e8d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 和 artifact 都已更新。汇总：\n\n## deepseek_vota_seed42 结果\n\n| Metric | Value | 95% CI |\n|--------|-------|--------|\n| **Accuracy** | **84.45%** | [82.6%, 86.4%] |\n| Majority baseline | 71.51% | — |\n| Lift | +12.94pp | [+11.1pp, +14.9pp] |\n| Pass P/R/F1 | 0.82 / 1.00 / 0.90 | — |\n| Fail P/R/F1 | 1.00 / 0.45 / 0.63 | — |\n| Final train loss | 0.0522 | — |\n| Best eval loss | 0.0679 (epoch 1) | — |\n\n**结论：success**\n- 84.5% 显著高于 no_trace baseline 75.1%（CI 不重叠），VOTA 对 DeepSeek 有效\n- 但远低于 Qwen VOTA 99.2%（-14.75pp），模型选择对 trace 利用效率影响巨大\n- Pass 偏向严重（fail recall 仅 45.4%），过拟合明显（eval loss epoch 1→3: 0.068→0.112）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-vota-seed42.md"
+}

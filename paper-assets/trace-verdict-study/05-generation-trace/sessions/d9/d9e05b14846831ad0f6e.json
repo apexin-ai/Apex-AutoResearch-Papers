@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "d9e05b14846831ad0f6e",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "investigation deepseek ft v3 reproducibility",
+  "task_key": "worker_investigation_deepseek_ft_v3_reproducibility_20260516T020725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigation_deepseek_ft_v3_reproducibility_20260516T020725.log",
+    "occurrence": 1,
+    "bytes": 655180,
+    "sha256": "422b01bea860dc93cf6bae6081fbddd59c5c13cbc34e33dc665b0c83f13af194"
+  },
+  "statistics": {
+    "messages": 230,
+    "user_turns": 0,
+    "tool_calls": 94,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 38,
+      "tool_call": 94,
+      "tool_result": 94,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 230,
+      "chunks": [
+        {
+          "path": "d9e05b14846831ad0f6e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d9e05b14846831ad0f6e-part-0002.json",
+          "message_count": 50
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/investigation-deepseek-ft-v3-reproducibility.md"
+}

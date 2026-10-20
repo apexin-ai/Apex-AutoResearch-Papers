@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a7ab4a9ca4910e9c9af",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper patch regex debugbench",
+  "task_key": "worker_paper_patch-regex-debugbench_20260516T052010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_patch-regex-debugbench_20260516T052010_result.json",
+    "occurrence": 1,
+    "bytes": 969,
+    "sha256": "39dfa18c087b3b1ade08dc66553c980543c2aa05726b76887df203409eb34b9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，0 错误，12 页（正文 + appendix）。\n\n总结完成的修改：\n\n1. **Abstract** (`main.tex:24`): 新增 DebugBench 跨数据集验证句 — \"Cross-dataset evaluation on DebugBench (N=426) confirms that exception dominance generalizes, with exception_only achieving 100% accuracy on an out-of-distribution bug dataset.\"\n\n2. **Introduction contribution 1** (`introduction.tex:20`): 扩展为包含 DebugBench (100%) 和 regex baseline (6.22pp gap, McNemar p<0.001) 交叉验证引用，增加 `\\S\\ref{sec:debugbench}` 交叉引用。\n\n3. **Appendix Qwen 全结果表** (`appendix.tex:176`): ae_only S123/S456 从 `---` 改为 `\\textit{[TODO]}` placeholder，caption 注明 pending。\n\n4. **Appendix regex 表** (`appendix.tex:473`): 新增 B6 (Error count ≥2, 92.02%) 行，caption 更新，intro 文本 \"five\" → \"six\"。\n\n5. **数字一致性**: 全文 27 个关键数字交叉验证通过，无不一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-patch-regex-debugbench.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "526d7dfb86fb3d067b62",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "exp deepseek ae only seed42",
+  "task_key": "worker_exp_deepseek_ae_only_seed42_20260522T024246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_deepseek_ae_only_seed42_20260522T024246_result.json",
+    "occurrence": 1,
+    "bytes": 476,
+    "sha256": "f8c62e6dc82697827abb908a0ce4713c8ba199a4f1d5b3fede2a63dc09a76783"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已提交完成。\n\n**汇总：**\n- **exp_id**: `deepseek_ae_only_seed42`\n- **PID**: 738584\n- **tmux session**: `deepseek_ae_only_seed42`\n- **日志**: `~/runs/trace-verdict-study/deepseek_ae_only_seed42.log`\n- **GPU**: cuda:0（RTX PRO 6000 Blackwell, 48GB 空闲）\n- **状态**: PREPARING → 训练中（含训练后自动 evaluate）\n\n注意：该实验此前在 5/19 有过一次成功运行（accuracy 98.74%），本次为重新提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-deepseek-ae-only-seed42.md"
+}

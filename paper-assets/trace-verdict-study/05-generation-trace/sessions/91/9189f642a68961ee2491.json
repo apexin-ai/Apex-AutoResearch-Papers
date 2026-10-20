@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9189f642a68961ee2491",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code submit qwen7b full trace tail512 seed42",
+  "task_key": "worker_code_submit_qwen7b_full_trace_tail512_seed42_20260519T125607",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_submit_qwen7b_full_trace_tail512_seed42_20260519T125607_result.json",
+    "occurrence": 1,
+    "bytes": 347,
+    "sha256": "96999f2ad90647f3c8bcf9a11d6b7069b72defeb47adbfc16e01c8bc4dfb391d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正常启动：\n- **tmux 会话**: `qwen7b_full_trace_tail512_seed42`\n- **进度**: 2/444 steps，~7.18s/step\n- **预估耗时**: ~53 分钟\n- **数据**: 4720 训练样本 + 1190 评估样本已 tokenize 完成\n- **Registry**: RUNNING，spec 已补充\n- **监控 cron**: 每 12 分钟自动检查（job `e66bff68`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-submit-qwen7b-full-trace-tail512-seed42.md"
+}

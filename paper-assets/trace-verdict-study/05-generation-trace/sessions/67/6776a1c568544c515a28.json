@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6776a1c568544c515a28",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "director / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_3.md",
+    "occurrence": 1,
+    "bytes": 3979,
+    "sha256": "85062156659fee1cd64dacf718e420f49eeabaecff013a0f4914e45726c2b7ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_messages\nupdated: '2026-05-15T10:12:55+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 cuda:0 和 cuda:1（westd-11235 分配给本项目的两张 RTX PRO 6000 Blackwell 98GB）\n- 所有训练必须加 `--gradient_checkpointing`（两次 OOM 教训：plan_002 首次、exception_only 首次）\n- vota_v5 registry accuracy 以 eval_results.json (0.9916) 为准，不是旧 registry 值 (0.9941)\n- ae_only 数据 88% 是 fallback locals dump，不能在论文主表中将 ae_only 结果归因于 \"actual/expected comparison values\"（D007）\n- cuda:0 曾有 49GB 孤儿显存问题（无法软件清除），服务器重启后已解决但可能复发\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-11235 (connect.westd.seetacloud.com)，账号 root\n- 工作目录：/root/trace-verdict-study\n- Checkpoints：/root/autodl-tmp/trace-verdict-study-checkpoints/{condition}/final/\n- 模型：Qwen2.5-7B（主模型）；DeepSeek-Coder-6.7B（plan_004 需下载）\n- 数据：/root/trace-verdict-study/data/ 下各 condition 的 train/test jsonl\n- 活跃进程：ae_only 在 cuda:1 训练中（~2h15m 总时长，启动约 1h 前）；plan_004 刚指令 Agent 启动 cuda:0\n- Dream：dream_20260515T084908 running（full mode），完成后会注入 Director session\n\n### 3. 📊 当前状态\nplan_001/002/003(exception_only+loop_only) 全部完成，三个 Core Claims 均有实验支撑。我刚完成：\n- D011 记录完整 component hierarchy（two-tier architecture）\n- paper_framing.md 三个 Claims 全部更新到最新实验结果\n- 指令 Agent 启动 plan_004（DeepSeek-Coder 三条件复现）on cuda:0\n\nRegistry RUNNING/PREPARING：\n- `vota_ae_only_seed42` — cuda:1 训练中（plan_003 最后一个 sub-condition，结果入 Appendix）\n- plan_004 尚未注册 registry（Agent 刚收到指令）\n\n等待中：\n- ae_only 训练完成 cron 回调\n- plan_004 Agent 启动确认\n- Dream dream_20260515T084908 完成回调\n- Reviewer 审查报告（Related Work 有两个 WARNING：遗漏 TRACED/TracePile、全部引用为 placeholder）\n\n### 4. 📋 待办\n- ae_only 完成 → eval + registry，结果仅入 Appendix 附 caveat（D007）\n- plan_004 DeepSeek-Coder 三条件完成 → 与 Qwen 结果对比，确认 VOTA 跨模型泛化\n- Dream 完成 → Read `skills/global/dream-report-action.skill.md`，按协议处理三档审稿报告\n- plan_003 + plan_004 全部完成 → 决定是否启动 Paper Agent（写 Related Work/Method/Setup），或先跑 plan_005（第二 verdict task）\n- Related Work Reviewer WARNING → Agent 需补 TRACED (ICSE 2024) + TracePile (NeurIPS 2025)，但写作暂缓到 Dream 之后\n- EMNLP ARR deadline May 25（还剩 10 天）→ plan_003+004 完成后评估是否够 Main 还是走 Findings\n\n### 5. 🎯 战略上下文\n**决策链**：D003 MVP PASS → D006 collapse=bug → D008 ae冗余 → D009 gradient dilution 26% → D010 exception 是核心机制 → D011 two-tier architecture\n\n**核心结论**：verdict prediction 本质是 fault detection。VOTA 有效因为它保留了 exception signals（Tier 1 fault indicators，99.83% 单独即近完美）。loop 是 Tier 2（85.6%，有信息但被 Tier 1 覆盖）。非 exception 组件组合反而引入噪声（exception_only > VOTA full, p=0.01）。\n\n**易错点**：\n- Claim 1 不能说 \"behavioral understanding\"——已精确化为 \"fault indicator preservation\"（D010）\n- exception_only > VOTA full 是 positive finding 不是 limitation——定位为 \"identifying minimal sufficient diagnostic signal\"\n- plan_002 的 4.5pp 提升已通过 paired bootstrap 确认显著（p<0.001, CI [2.4, 6.6]），不要因 individual CI 重叠而质疑\n- Reviewer 建议过在 Discussion 做 failure-type 分组分析（AssertionError vs RuntimeError），不需额外实验用现有数据即可，值得做\n- ROADMAP 需要更新（当前版本未反映 D009-D011 和 plan_003 完成），新 session 启动后先 update_roadmap\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3.md"
+}

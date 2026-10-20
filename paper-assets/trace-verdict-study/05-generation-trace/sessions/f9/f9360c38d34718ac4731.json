@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "f9360c38d34718ac4731",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "paper narrative fix group analysis",
+  "task_key": "worker_paper_narrative_fix_group_analysis_20260515T232155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_narrative_fix_group_analysis_20260515T232155.log",
+    "occurrence": 1,
+    "bytes": 1064958,
+    "sha256": "a1360130388b267fb37c40cfacadbbd8dab4e55b983867e831059c6c23a6992d"
+  },
+  "statistics": {
+    "messages": 468,
+    "user_turns": 1,
+    "tool_calls": 156,
+    "roles": {
+      "log": 1,
+      "system": 104,
+      "record": 1,
+      "assistant": 48,
+      "tool_call": 156,
+      "tool_result": 156,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 138,
+      "chunks": [
+        {
+          "path": "f9360c38d34718ac4731-part-0001.json",
+          "message_count": 138
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 330,
+      "chunks": [
+        {
+          "path": "f9360c38d34718ac4731-part-0001.json",
+          "message_count": 42
+        },
+        {
+          "path": "f9360c38d34718ac4731-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f9360c38d34718ac4731-part-0003.json",
+          "message_count": 108
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-narrative-fix-group-analysis.md"
+}

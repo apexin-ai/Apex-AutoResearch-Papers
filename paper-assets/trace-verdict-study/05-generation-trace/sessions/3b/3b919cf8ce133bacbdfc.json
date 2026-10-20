@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "3b919cf8ce133bacbdfc",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "sync audit fixes compile",
+  "task_key": "worker_sync_audit-fixes-compile_20260524T162421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_audit-fixes-compile_20260524T162421.log",
+    "occurrence": 1,
+    "bytes": 850752,
+    "sha256": "33cce51a623412b62ea7a05031980d5711b75d15234eccfce96f0a5c11df6059"
+  },
+  "statistics": {
+    "messages": 244,
+    "user_turns": 1,
+    "tool_calls": 86,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 64,
+      "tool_call": 86,
+      "tool_result": 86,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 189,
+      "chunks": [
+        {
+          "path": "3b919cf8ce133bacbdfc-part-0001.json",
+          "message_count": 177
+        },
+        {
+          "path": "3b919cf8ce133bacbdfc-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 55,
+      "chunks": [
+        {
+          "path": "3b919cf8ce133bacbdfc-part-0002.json",
+          "message_count": 55
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/sync-audit-fixes-compile.md"
+}

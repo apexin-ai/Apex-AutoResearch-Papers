@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c91a30544b7f1d407e6",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ssh verify deepseek gpu status",
+  "task_key": "worker_ssh_verify_deepseek_gpu_status_20260515T131311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_deepseek_gpu_status_20260515T131311_result.json",
+    "occurrence": 1,
+    "bytes": 1271,
+    "sha256": "a12064144d59ad3c22419ceb6850a5e4236c5c57165f49dffd09dd244ae7fd68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### GPU 使用\n| GPU | 型号 | 显存占用 | 利用率 |\n|-----|------|---------|--------|\n| cuda:0 | RTX PRO 6000 Blackwell | 71,235 / 97,887 MiB (73%) | 88% |\n| cuda:1 | RTX PRO 6000 Blackwell | 22,421 / 97,887 MiB (23%) | 100% |\n\n### 实验状态\n\n**1. deepseek_no_trace_seed42** (PID 106822, cuda:0) — **运行中**\n- 已运行 3h54m\n- 训练进度：**71/444 steps (16%)**，~3.09s/step\n- 预计剩余：~19 分钟完成训练（基于当前速度）\n- 训练后会自动执行 evaluate.py\n\n**2. deepseek_exception_only_seed42** (PID 107188, cuda:1) — **运行中**\n- 已运行 2h58m\n- 训练进度：**11/444 steps (2%)**，~15s/step\n- 预计剩余：~108 分钟完成训练\n- cuda:1 上每 step 耗时约为 cuda:0 的 5 倍（15s vs 3s），显存占用也低很多（23% vs 73%），可能是 batch size 不同或数据加载瓶颈\n\n### deepseek_vota_seed42 评估结果（已完成）\n\n| 指标 | 值 |\n|------|-----|\n| Accuracy | **84.45%** (baseline 71.5%, lift +12.9pp) |\n| Pass P/R/F1 | 0.821 / 1.000 / 0.902 |\n| Fail P/R/F1 | 1.000 / 0.454 / 0.625 |\n| n | 1190 |\n\n模型对 pass 类别 recall 100% 但 fail 类别 recall 仅 45.4%——倾向于预测 pass，漏掉过半的 fail case。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-deepseek-gpu-status.md"
+}

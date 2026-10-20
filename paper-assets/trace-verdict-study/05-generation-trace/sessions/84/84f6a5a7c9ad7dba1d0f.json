@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84f6a5a7c9ad7dba1d0f",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_4_1778849725.md",
+  "task_key": "loop_4_1778849725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778849725.md",
+    "occurrence": 1,
+    "bytes": 5076,
+    "sha256": "63e175441861dad1c79520a88ea61a202bcbab95833167c1f19c50cc8b94c414"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: max_wall_time\nupdated: '2026-05-15T12:04:31+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-11235 的 cuda:0 和 cuda:1，不得使用其他 GPU\n- 多 GPU 服务器上必须设 `CUDA_VISIBLE_DEVICES`，否则 PyTorch 会在所有可见 GPU 上分配 context（ae_only 事故教训：未设 CVD 导致 cuda:0 泄漏 49GB）\n- 所有训练必须加 `--gradient_checkpointing`（两次 OOM 教训）\n- submit_training_job 提交训练，不用 nohup/tmux（自动监控 + 回调）\n- DeepSeek 模型路径是 `/root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct`（注意下划线转义），不要猜\n- HF 下载必须 `HF_HUB_DISABLE_XET=1` 或优先用 ModelScope CDN\n- ae_only 数据 88% fallback 污染——结果只能入 Appendix，不入主表\n\n### 2. 🖥️ 基础设施快照\n- 服务器: westd-11235 (2x RTX PRO 6000 Blackwell 94GB, CUDA 12.8)\n- 工作目录: `/root/trace-verdict-study/`\n- Python: `/root/miniconda3/bin/python`，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- HF cache: `/root/autodl-tmp/.hf_cache`\n- Qwen 模型: `/root/autodl-tmp/models/Qwen2.5-Coder-7B-Instruct`\n- DeepSeek 模型: `/root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct`\n- Checkpoints: `/root/autodl-tmp/trace-verdict-study-checkpoints/{condition}/final/`\n- 数据: `/root/autodl-tmp/trace-verdict-study-data/{condition}_{train,test}.jsonl`（每个 4720/1190）\n- W&B project: `trace-verdict-study`\n- Tokenizer: \"pass\"=6385, \"fail\"=18403 (Qwen); chat template overhead=31 tokens\n- 活跃进程:\n  - deepseek_vota_seed42: PID 93484, cuda:0, cron 监控中, ~159/444 steps (~83min remaining at handoff time)\n  - vota_ae_only_seed42: PID 87061 (tmux \"ae_only\"), cuda:1, cron 监控中, ~358/444 steps (~27min remaining at handoff time)\n\n### 3. 📊 当前状态\n刚完成 plan_007 calibration 脚本（`eval/calibration.py` 已部署在服务器，dry-run 通过），等 ae_only 释放 cuda:1 后跑。\n\n**RUNNING**:\n- `deepseek_vota_seed42` (cuda:0) — plan_004 第 1/4 条件，DeepSeek-Coder VOTA\n- `vota_ae_only_seed42` (cuda:1) — plan_003c，ae_only（88% fallback，结果→Appendix）\n\n**PREPARING**:\n- `deepseek_no_trace_seed42`, `deepseek_full_trace_seed42`, `deepseek_exception_only_seed42` — plan_004 剩余 3 条件，串行 cuda:0\n\n**等待中的回调**:\n- Worker `worker_research_literature_survey_trace_sft_20260515T120307` — 紧急文献调研（Director 直接要求），完成后需直接向 Director 回复完整报告\n- ae_only cron 回调 → eval + calibration + 确认层级表\n- deepseek_vota cron 回调 → eval + 启动 deepseek_no_trace\n\n### 4. 📋 待办（条件触发式）\n- **文献调研 Worker 完成** → 读产出 `artifacts/_project/intermediate/literature_survey_20260515.md`，全文转发给 Director（`main_agent_post_to_director`）。这是用户直接要求的紧急任务，最高优先级\n- **ae_only cron 回调 (EXIT_CODE=0)** → spawn eval Worker 跑 bootstrap → 更新 registry → 确认层级表最终版 → 在 cuda:1 跑 calibration batch（6 个 Qwen 条件: vota, no_trace, full_trace, label_only, exception_only, ae_only）→ 向 Director 汇报\n- **ae_only cron 回调 (failed)** → 走 on-experiment-failed skill，ae_only 本身不 critical（88% fallback，plan_001 已替代验证）\n- **deepseek_vota cron 回调 (EXIT_CODE=0)** → 读 eval_results.json → 更新 registry → 提交 deepseek_no_trace_seed42 到 cuda:0（命令已由 prep Worker 准备好，见 Worker 产出）→ 向 Director 汇报\n- **deepseek 4 条件全完成** → 跨模型对比表 → 更新 framing → Director 决定启动 Paper Agent\n- **calibration 全部跑完** → 结果入 registry + 产出 calibration 对比表 → plan_007 DONE\n\n### 5. 🎯 战略上下文\n- **投稿**: EMNLP 2026 ARR May 25（还剩 10 天）\n- **核心结论已确立**: exception_only (99.83%) >>> loop_only (85.6%) >> ae (冗余)；VOTA (99.2%) >> full_trace (81.8%) > no_trace (75.1%)；gradient dilution 只占 ~4.5pp，information overload 占 ~13pp\n- **决策链**: D003(MVP pass) → D006(collapse 根因=chat template) → D008(ae 冗余,Claim1 positive) → D009(gradient dilution partial) → D010(exception=主信号) → D011(完整层级) → D012(plan_004 扩为 4 条件)\n- **当前最大风险**: 用户担心\"虚空画靶\"——trace SFT 方向是否真实存在、exception 训练是否已有人做。文献调研 Worker 正在回答这个问题，结果可能影响 framing\n- **易错点**:\n  - deepseek 3 个剩余条件必须串行跑 cuda:0（不能并行，显存不够）\n  - label_only 条件用 full_trace test data（不是单独的 label_only_test.jsonl）\n  - ae_only 结果无论好坏都只入 Appendix（88% fallback 污染）\n  - calibration 脚本支持 `--batch` 模式一次跑多个条件，每个跑完释放显存再加载下一个\n  - 写作暂停中——Director 明确说等 loop_only + DeepSeek 结果后再启动 Paper Agent\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778849725.md"
+}

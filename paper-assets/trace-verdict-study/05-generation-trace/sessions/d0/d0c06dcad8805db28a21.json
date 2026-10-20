@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0",
+  "id": "d0c06dcad8805db28a21",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "paper micro patch sync",
+  "task_key": "worker_paper_micro_patch_sync_20260520T060444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_micro_patch_sync_20260520T060444.log",
+    "occurrence": 1,
+    "bytes": 1045988,
+    "sha256": "ff6adf100045484551d759573339f6c759258859c8b8b429f0bf78353e6c6974"
+  },
+  "statistics": {
+    "messages": 626,
+    "user_turns": 5,
+    "tool_calls": 211,
+    "roles": {
+      "log": 1,
+      "system": 94,
+      "record": 2,
+      "assistant": 101,
+      "tool_call": 211,
+      "tool_result": 211,
+      "user": 5,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 117,
+      "chunks": [
+        {
+          "path": "d0c06dcad8805db28a21-part-0001.json",
+          "message_count": 117
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 56,
+      "chunks": [
+        {
+          "path": "d0c06dcad8805db28a21-part-0001.json",
+          "message_count": 56
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 66,
+      "chunks": [
+        {
+          "path": "d0c06dcad8805db28a21-part-0001.json",
+          "message_count": 7
+        },
+        {
+          "path": "d0c06dcad8805db28a21-part-0002.json",
+          "message_count": 59
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 83,
+      "chunks": [
+        {
+          "path": "d0c06dcad8805db28a21-part-0002.json",
+          "message_count": 83
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 139,
+      "chunks": [
+        {
+          "path": "d0c06dcad8805db28a21-part-0002.json",
+          "message_count": 38
+        },
+        {
+          "path": "d0c06dcad8805db28a21-part-0003.json",
+          "message_count": 101
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 165,
+      "chunks": [
+        {
+          "path": "d0c06dcad8805db28a21-part-0003.json",
+          "message_count": 79
+        },
+        {
+          "path": "d0c06dcad8805db28a21-part-0004.json",
+          "message_count": 86
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-micro-patch-sync.md"
+}

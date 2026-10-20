@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fe883521969d1a37423",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code full trace tail 256",
+  "task_key": "worker_code_full_trace_tail_256_20260517T081351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_full_trace_tail_256_20260517T081351_result.json",
+    "occurrence": 1,
+    "bytes": 270,
+    "sha256": "0cf440bb7d1267c52b161694d5df2be236eefb6e1bcc77e362af822bf3a2d5e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n\n- **数据**: `full_trace_tail_256_{train,test}.jsonl` — train=4720, test=1190, 5768/5910 样本被截断\n- **训练**: PID 339962, tmux session `full_trace_tail_256_seed42`, cuda:0\n- **Registry**: `full_trace_tail_256_seed42` → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-full-trace-tail-256.md"
+}

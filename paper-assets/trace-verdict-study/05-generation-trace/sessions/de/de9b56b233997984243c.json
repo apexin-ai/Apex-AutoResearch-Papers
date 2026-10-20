@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de9b56b233997984243c",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "compile final all changes",
+  "task_key": "worker_compile_final-all-changes_20260525T142622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_compile_final-all-changes_20260525T142622_result.json",
+    "occurrence": 1,
+    "bytes": 2600,
+    "sha256": "a775c7b4d2f5d77817a52cef7fa77c3b3132f89815a9165a58e174b33714686d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF 已拉回，443,076 字节，与编译输出一致。\n\n---\n\n## 最终报告\n\n### 1. 文件传输结果\n\n| 文件 | 方向 | MD5 校验 | 状态 |\n|------|------|----------|------|\n| main.tex | local → remote | `10ccc072b48727d9218b092b6d988697` | ✅ |\n| introduction.tex | local → remote | `7601723c4f82b2fffdce9b46c344d67e` | ✅ |\n| experiments.tex | local → remote | `3e9d7a5bcd26a33bf27bf7ed4e378305` | ✅ |\n| discussion.tex | local → remote | `9588f9c401e5e250f4c7a19b0a159f6b` | ✅ |\n| related_work.tex | local → remote | `80c82fb621a2be4ab93ef7c23bd4f822` | ✅ |\n| method.tex | local → remote | `1b545aeda1bb8e59471459cbc8eefd0f` | ✅ |\n| conclusion.tex | local → remote | `0fe85e5c6e8543078c928397c293a50f` | ✅ |\n| appendix.tex | local → remote | `5eb15a4ddf252ce42b959c6e8e7453d5` | ✅ |\n| references.bib | local → remote | `ae51722d4e06ea14080cdf7fec6dd0cd` | ✅ |\n| forest_plot_tier_boundary.pdf | local → remote | `4224f7039c9880eeebe0c4f9f4e3c7ac` | ✅ |\n| error_overlap.pdf | local → remote | `587e1c27dc9a8bd16de17313351bdc3e` | ✅ |\n\n**11/11 文件传输成功，MD5 校验全部通过。**\n\n### 2. 图片文件验证\n\n| 图片 | 大小 (bytes) | 状态 |\n|------|-------------|------|\n| fig1_trace_overview.pdf | 225,534 | ✅ ≥225,000，未被覆盖 |\n| fig3_cross_model_gap.pdf | 27,066 | ✅ |\n| fig4_trace_length.pdf | 14,632 | ✅ |\n| token_distribution.pdf | 27,393 | ✅ |\n| zeroshot_vs_sft.pdf | 31,638 | ✅ |\n| forest_plot_tier_boundary.pdf | 36,680 | ✅ |\n| error_overlap.pdf | 19,063 | ✅ |\n\n**7/7 图片文件全部存在。**\n\n### 3. LaTeX 编译结果\n\n| 项目 | 结果 |\n|------|------|\n| 编译流程 | pdflatex → bibtex → pdflatex → pdflatex ✅ |\n| Rerun 警告 | 0 |\n| Undefined references | 0 |\n| Warnings | 2 |\n| 输出 | main.pdf (20 pages, 443,076 bytes) |\n\n### 4. 页面分布\n\n| 页码 | 内容 |\n|------|------|\n| 1–7 | 正文 (Title, Abstract, Introduction, Method, Experiments, Related Work, Discussion) |\n| 8 | Conclusion + Limitations |\n| 9–11 | References |\n| 12–20 | Appendix |\n\n**正文 = 8 页（第 1–8 页），符合 EMNLP 2026 的 8 页限制。** Limitations 在第 8 页，按 EMNLP 规则不计入页数限制，因此即使 Limitations 占据了第 8 页的部分空间，主体内容仍在限制内。\n\n### 5. 本地 PDF\n\n- 路径：`/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/main_latest.pdf`\n- 大小：443,076 bytes\n- MD5：`2811ac47c58f22a9061e3f6dd791b2da`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/compile-final-all-changes.md"
+}

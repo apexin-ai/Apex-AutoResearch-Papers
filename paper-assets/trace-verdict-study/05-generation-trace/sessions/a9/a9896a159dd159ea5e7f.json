@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9896a159dd159ea5e7f",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "eval missing predictions batch",
+  "task_key": "worker_eval_missing_predictions_batch_20260516T013951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_missing_predictions_batch_20260516T013951_result.json",
+    "occurrence": 1,
+    "bytes": 1115,
+    "sha256": "0b16d69a77447a3b85f80c60a76111d303ed344522b8793ba77e02f433305deb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 全部更新完毕。\n\n## 执行总结\n\n### 完成\n- **debugbench_vota_seed42**: predictions.jsonl 生成成功 (426 行), accuracy=99.77%, 与 registry 一致\n- **deepseek_full_trace_seed42_v3**: predictions.jsonl 生成成功 (1190 行)\n\n### 需要注意的问题\n**deepseek_full_trace_seed42_v3 accuracy 异常**: \n- Registry 记录 accuracy=79.16% (pass_recall=0.851, fail_recall=0.643)\n- 实际重跑结果 accuracy=28.5% (模型全部预测 fail, pass_recall=0.0, fail_recall=1.0)\n- 即使用 `--max_length 16384` 也是同样结果\n- 该 checkpoint 目录下已有的旧 eval_results.json 也显示 28.5%\n\n这说明 registry 中记录的 79.16% 可能来自不同的评估流程/代码版本/checkpoint 状态。predictions.jsonl 已按当前 checkpoint 正确生成，但 paired bootstrap 检验使用时需注意此差异。\n\n### 文件路径\n- `/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_seed42_v3/final/predictions.jsonl` (1190 行)\n- `/root/autodl-tmp/trace-verdict-study-checkpoints/debugbench_vota/final/predictions.jsonl` (426 行)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-missing-predictions-batch.md"
+}

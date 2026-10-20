@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6e497d60b3158725d07",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops v3 eval and 512tok registry",
+  "task_key": "worker_ops_v3_eval_and_512tok_registry_20260515T233607",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_v3_eval_and_512tok_registry_20260515T233607_result.json",
+    "occurrence": 1,
+    "bytes": 1179,
+    "sha256": "bae97b6323b168e9309f87aa0505cd95412774fa26a58b881a2bc3a54d3ebadc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两项更新均成功。汇总：\n\n### Part A: deepseek_full_trace_seed42_v3 — 已完成\n\nPID 207777 已结束。eval 结果已在 registry 中（之前的 Worker 已更新）。\n\n| 指标 | 值 |\n|------|-----|\n| accuracy | **0.7916** |\n| majority_baseline | 0.7151 |\n| lift | +0.0765 |\n| pass_f1 | 0.854 |\n| fail_f1 | 0.637 |\n| accuracy CI | [0.768, 0.813] |\n| n | 1190 |\n\nRegistry 状态: DONE / success。修正了 `log_path` → `/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_seed42_v3.log`。\n\n### Part B: full_trace_512tok_seed42 — reproduce 字段已补全\n\n| 字段 | 值 |\n|------|-----|\n| pid | 197608 |\n| gpu | cuda:0 |\n| started_at | 2026-05-15T23:16:13Z |\n| wandb_run_name | full_trace_512tok_seed42 |\n| code_commit | e404237 |\n\n训练进度: step ~140/444 (~32%), epoch ~0.68, loss 0.108, token_accuracy 0.970。\n\n### 异常\n- 512tok 日志中未见 wandb 初始化输出（grep 为空），但命令行有 `--wandb_project trace-verdict-study --wandb_run_name full_trace_512tok_seed42`。可能 wandb 输出被 tqdm 覆盖，或 wandb 未登录。建议后续确认 wandb 是否在记录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-v3-eval-and-512tok-registry.md"
+}

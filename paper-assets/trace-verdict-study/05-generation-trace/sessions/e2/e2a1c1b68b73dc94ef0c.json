@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2a1c1b68b73dc94ef0c",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "infra train monitor setup",
+  "task_key": "worker_infra_train-monitor-setup_20260514T180346",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_train-monitor-setup_20260514T180346_result.json",
+    "occurrence": 1,
+    "bytes": 1509,
+    "sha256": "e8cd158253b77565a13af8736298fb7d3de4d6cb20492d20707a3a74b9ab8d36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个训练都在正常运行。\n\n## 汇报\n\n### 进程状态\n| 任务 | PID (wrapper/python) | 已运行 | GPU |\n|------|---------------------|--------|-----|\n| no_trace | 710523 / 710528 | ~3min | cuda:0 |\n| vota | 710601 / 710606 | ~3min | cuda:1 |\n\n### GPU 利用率\n| GPU | 型号 | 利用率 | 显存 | 温度 | 功耗 |\n|-----|------|--------|------|------|------|\n| 0 (no_trace) | RTX PRO 6000 Black | 98% | 81.1/97.9 GB (83%) | 71°C | 461W/600W |\n| 1 (vota) | RTX PRO 6000 Black | 100% | 41.2/97.9 GB (42%) | 71°C | 472W/600W |\n\n### 训练进度\n| 任务 | 当前 step | 速度 | 预估剩余时间 |\n|------|----------|------|-------------|\n| no_trace | **64/444** (14.4%) | ~2.7s/step | **~17 min** |\n| vota | **8/444** (1.8%) | ~18s/step | **~2.2 hr** |\n\n### Checkpoint\n两个目录下尚未生成 checkpoint（只有 `runs/` 子目录），刚开始训练属正常。\n\n### 注意事项\n1. **vota 比 no_trace 慢 ~6.7x**（18s vs 2.7s per step）。vota 显存占用也更高（41GB vs 32GB），推测是 vota 条件下 sequence 更长（包含推理 trace），导致计算量大幅增加。\n2. 日志中只有进度条，**未看到 loss 值输出**——loss 可能只在 eval step 或 wandb 中记录，当前 step 数还不够触发 eval。\n3. `torch_dtype` deprecated warning 无影响，可忽略。\n4. tmux 状态无法通过 read_only 检查，但两个任务都是通过 `submit_training_job` 提交的 wrapper 进程，正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-train-monitor-setup.md"
+}

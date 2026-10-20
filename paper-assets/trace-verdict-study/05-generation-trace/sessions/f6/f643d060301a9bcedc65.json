@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f643d060301a9bcedc65",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "audit condition consistency check",
+  "task_key": "worker_audit_condition_consistency_check_20260518T153742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_condition_consistency_check_20260518T153742_result.json",
+    "occurrence": 1,
+    "bytes": 5553,
+    "sha256": "1ec853fe880206c084991dec4d09b7f1dfb5ed07d5cfb26fd3e5a19077253654"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "排查完成。以下是完整结果。\n\n---\n\n## Condition 定义（train_sft.py）\n\n| Condition 名 | 数据文件 | 截断逻辑 |\n|---|---|---|\n| `full_trace_tail` | `full_trace_tail_*.jsonl` | **动态**：trace tail 填满 2048 总 token 剩余空间，每条样本 budget 不同 |\n| `full_trace_tail_256` | `full_trace_tail_256_*.jsonl` | **硬截断**：trace tail ≤ 256 tokens，超出 2048 总限再次截断 |\n| `full_trace_tail_384` | `full_trace_tail_384_*.jsonl` | **硬截断**：trace tail ≤ 384 tokens |\n| `full_trace_tail_512` | `full_trace_tail_512_*.jsonl` | **硬截断**：trace tail ≤ 512 tokens |\n| `full_trace_tail_1024` | `full_trace_tail_1024_*.jsonl` | **硬截断**：trace tail ≤ 1024 tokens |\n| `full_trace_head` | `full_trace_head_*.jsonl` | **动态**：trace head 填满 2048 总 token 剩余空间 |\n\n注意：`full_trace_tail_2048` **不存在**（无 condition、无数据文件）。\n\n---\n\n## Condition 一致性对比表\n\n以下基于 **log 文件中实际打印的 `Condition:`** 确认，不依赖 registry 中可能过时的 command。\n\n### tail-256\n\n| Model | Experiment | Actual Condition | 一致？ |\n|---|---|---|---|\n| Qwen-7B | `full_trace_tail_256_seed42` | `full_trace_tail_256` | ✓ |\n| DeepSeek | `deepseek_full_trace_tail256_seed42` | `full_trace_tail_256` | ✓ |\n| Qwen-1.5B | `qwen15b_full_trace_tail256_seed42` | `full_trace_tail_256` | ✓ |\n| CodeLlama | `codellama13b_full_trace_tail256_seed42` | `full_trace_tail_256` | ✓ |\n\n**一致** ✓\n\n### tail-384\n\n| Model | Experiment | Actual Condition | 一致？ |\n|---|---|---|---|\n| Qwen-7B | `qwen7b_full_trace_tail384_seed42` | `full_trace_tail_384` | ✓ |\n| DeepSeek | `deepseek_full_trace_tail384_seed42` | `full_trace_tail_384` | ✓ |\n| Qwen-1.5B | `qwen15b_full_trace_tail384_seed42` | `full_trace_tail_384` | ✓ |\n| CodeLlama | `codellama13b_full_trace_tail384_seed42` | `full_trace_tail_384` | ✓ |\n\n**一致** ✓（但 CodeLlama registry status=ALLOCATED，实际 checkpoint 已存在 May 18，registry 未更新）\n\n### tail-512\n\n| Model | Experiment | Actual Condition | 一致？ |\n|---|---|---|---|\n| **Qwen-7B** | **`full_trace_tail_seed42`** | **`full_trace_tail`（动态）** | **✗ 不一致** |\n| Qwen-7B (补跑) | `full_trace_tail_512_seed42` | `full_trace_tail_512` | ✓ 已有正确版本 |\n| Qwen-7B (新) | `qwen7b_full_trace_tail512_seed42` | PREPARING（未训练） | — |\n| DeepSeek | `deepseek_full_trace_tail512_seed42` | `full_trace_tail_512` | ✓ |\n| Qwen-1.5B | `qwen15b_full_trace_tail512_seed42` | `full_trace_tail_512` | ✓ |\n| CodeLlama | `codellama13b_full_trace_tail512_seed42` | `full_trace_tail_512` | ✓ |\n\n**不一致**：Qwen-7B 原实验 `full_trace_tail_seed42` 用了动态 `full_trace_tail`。已有补跑 `full_trace_tail_512_seed42` 用了正确的 `full_trace_tail_512`。\n\n### tail-1024\n\n| Model | Experiment | Actual Condition | 一致？ |\n|---|---|---|---|\n| Qwen-7B | `full_trace_tail_1024_seed42` | `full_trace_tail_1024` | ✓ |\n| DeepSeek | `deepseek_full_trace_tail1024_seed42` | `full_trace_tail_1024` | ✓ |\n| Qwen-1.5B | `qwen15b_full_trace_tail1024_seed42` | `full_trace_tail_1024` | ✓ |\n| CodeLlama | `codellama13b_full_trace_tail1024_seed42_v3` | `full_trace_tail_1024` | ✓ |\n\n**一致** ✓\n\n### tail-2048（= dynamic `full_trace_tail`）\n\n| Model | Experiment | Actual Condition | 一致？ |\n|---|---|---|---|\n| Qwen-7B | `full_trace_tail_seed42` | `full_trace_tail` | ✓ |\n| DeepSeek | `deepseek_full_trace_tail2048_seed42` | `full_trace_tail` | ✓ |\n| Qwen-1.5B | `qwen15b_full_trace_tail2048_seed42` | `full_trace_tail` | ✓ |\n| CodeLlama | `codellama13b_full_trace_tail2048_seed42_v3` | `full_trace_tail` | ✓ |\n\n**一致** ✓（全部使用动态 `full_trace_tail`，trace tail 填满 2048 总 token 预算）\n\n### head-2048（= dynamic `full_trace_head`）\n\n| Model | Experiment | Actual Condition | 一致？ |\n|---|---|---|---|\n| Qwen-7B | `qwen7b_full_trace_head2048_seed42` | `full_trace_head` | ✓ |\n| DeepSeek | `deepseek_full_trace_head2048_seed42` | `full_trace_head` | ✓ |\n| Qwen-1.5B | `qwen15b_full_trace_head2048_seed42` | `full_trace_head` | ✓ |\n| CodeLlama | `codellama13b_full_trace_head2048_seed42` | `full_trace_head` | ✓ |\n\n**一致** ✓\n\n---\n\n## 问题清单\n\n| # | 问题 | 严重度 | 状态 |\n|---|---|---|---|\n| 1 | **Qwen-7B tail-512**：`full_trace_tail_seed42` 用了动态 `full_trace_tail` 而非硬截断 `full_trace_tail_512` | **高** | 已有补跑 `full_trace_tail_512_seed42`（condition 正确），在 budget curve 中替换即可 |\n| 2 | `codellama13b_full_trace_tail384_seed42` registry status=ALLOCATED，但 checkpoint 已存在 | 低 | 需更新 registry |\n| 3 | `qwen7b_full_trace_tail512_seed42` status=PREPARING，无命令 | 信息 | 不需要——`full_trace_tail_512_seed42` 已覆盖此需求 |\n| 4 | Registry 中多个实验的 command 字段仍记录着已删除的 `train.py` 脚本 | 低 | 实际已用 `train/train_sft.py` 重跑，最终结果正确 |\n| 5 | `codellama13b_full_trace_tail2048_seed42`(v1) 用了不存在的 `full_trace_tail_2048` condition | 已修复 | v3 已用正确的 `full_trace_tail` 替代 |\n\n---\n\n**结论**：除已知的 Qwen-7B tail-512 问题外，所有 budget point × 4 模型的 condition **一致**。唯一需要行动的是在 budget curve 图表中将 Qwen-7B 512 点替换为 `full_trace_tail_512_seed42` 的结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-condition-consistency-check.md"
+}

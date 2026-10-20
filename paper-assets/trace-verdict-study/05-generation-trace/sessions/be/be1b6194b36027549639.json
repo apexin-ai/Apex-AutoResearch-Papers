@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be1b6194b36027549639",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analyze deepseek loop only seed123",
+  "task_key": "worker_analyze_deepseek_loop_only_seed123_20260520T001212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_deepseek_loop_only_seed123_20260520T001212_result.json",
+    "occurrence": 1,
+    "bytes": 581,
+    "sha256": "2a05d7027d56410d550925fcb526e8a37f3bf7b5326ec70a2bad2a5262338aba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| Metric | seed123 | seed42 | Δ |\n|--------|---------|--------|---|\n| **Accuracy** | **81.26%** | **81.26%** | **0.00pp** |\n| Accuracy 95% CI | [79.2%, 83.4%] | — | — |\n| pass_recall | 0.856 | 0.883 | −2.7pp |\n| fail_recall | 0.705 | 0.637 | +6.8pp |\n\n**结论：✅ Seed robust.** Accuracy 与 seed42 完全一致（81.26%），在 78–84% 接受范围内。per-class recall 有轻微 tradeoff 偏移（seed123 更偏向 fail 检出），但总体性能无差异。无需额外 seed sweep。\n\n报告已注册：`art_20260520_01050f`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-deepseek-loop-only-seed123.md"
+}

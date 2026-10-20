@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a23f4f5509d00c15658d",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis deepseek exception only seed123 v2",
+  "task_key": "worker_analysis_deepseek_exception_only_seed123_v2_20260520T064922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek_exception_only_seed123_v2_20260520T064922_result.json",
+    "occurrence": 1,
+    "bytes": 711,
+    "sha256": "784170ff22aa491b83afd9d769aea29afcc78d062aa204bbabd1db106748da17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 实验结果\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **99.50%** (95% CI: [99.08%, 99.83%]) |\n| Train Loss | 0.1234 |\n| Eval Loss (epoch 3) | 0.478 |\n| 训练时长 | ~1h 45min (3 epochs, 444 steps) |\n\n## 对比\n\n| 实验 | Accuracy | 结论 |\n|------|----------|------|\n| seed42 (current code) | 99.33% | baseline |\n| **seed123 v2 (current code)** | **99.50%** | seed 一致 (+0.17pp) |\n| seed123 old (5/15, old code) | 91.09% | **确认是代码 bug** |\n\n**结论: SUCCESS** — seed123 在当前代码下达到 99.50%，与 seed42 基本一致，旧版 91.09% 确认为代码问题导致。Registry 已更新为 DONE/success，报告已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-exception-only-seed123-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "faab58d1d89c31cf3606",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis error analysis plan018",
+  "task_key": "worker_analysis_error_analysis_plan018_20260518T134244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_error_analysis_plan018_20260518T134244_result.json",
+    "occurrence": 1,
+    "bytes": 1192,
+    "sha256": "a0cd746d4219aea04c5bfcc8eb8e2927fa839b1b35905f5a74803972ca8d685c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error analysis 完成。报告已保存到 `artifacts/error_analysis_report.md` 并注册。\n\n核心发现：\n\n**exception_only (99.83%, 2 errors)**：仅有的 2 个错误都是 HumanEval/95 的 FN，根因是 `GeneratorExit`（`all()` 短路时 generator 正常清理触发的异常，非真实 bug）。\n\n**vota (99.41%, 7 errors)**：全部 FN，6 个来自 MBPP/113（`try/except ValueError` 正常捕获异常，但 trace 中仍显示 `[ERROR] ValueError`），1 个来自 MBPP/794。额外 noise 来自 assert/call/return 事件。\n\n**full_trace (81.76%, 217 errors)**：**100% 的错误都发生在 trace 被截断的样本上**。2048 token 限制导致截断后只剩 module imports 和内存地址，所有 error/assert 标记被丢失。这不是任务难度问题，是信息过载问题。\n\n**no_trace (75.13%, 296 errors)**：FN 主导（206 vs 90），模型在缺乏 trace 时采取保守策略偏向预测 fail。140 个错误可被任意 trace 条件修复。\n\n**跨条件**：exception_only 和其他条件的错误集**零重叠**。61 个样本在 no_trace 下正确但在 full_trace 下错误，说明截断的 trace 比没有 trace 更糟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-error-analysis-plan018.md"
+}

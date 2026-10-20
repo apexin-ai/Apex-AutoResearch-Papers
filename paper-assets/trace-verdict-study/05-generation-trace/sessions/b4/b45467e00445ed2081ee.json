@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b45467e00445ed2081ee",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analyze qwen15b loop only seed42",
+  "task_key": "worker_analyze_qwen15b_loop_only_seed42_20260520T084230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_qwen15b_loop_only_seed42_20260520T084230_result.json",
+    "occurrence": 1,
+    "bytes": 928,
+    "sha256": "f9d00760b8c92fcee6fda12148c8b975ecc61ded52948f882fb6f79cb6a9def2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## qwen15b_loop_only_seed42 结果\n\n**Accuracy: 78.3%** (95% CI: [76.1%, 80.7%])，lift over majority baseline +6.8pp。\n\n| Metric | Pass | Fail |\n|--------|------|------|\n| Precision | 0.83 | 0.64 |\n| Recall | 0.88 | 0.55 |\n| F1 | 0.85 | 0.59 |\n\n## 跨模型 loop_only 对比\n\n| Model | Params | Accuracy | Δ vs Qwen-7B |\n|-------|--------|----------|---------------|\n| **Qwen-7B** | 7B | **86.05%** | — |\n| DeepSeek-Coder | 6.7B | 81.26% | -4.8pp |\n| **Qwen-1.5B** | 1.5B | **78.32%** | **-7.7pp** |\n| CodeLlama | 13B | 76.56% | -9.5pp |\n\n## Conclusion: **success**\n\n78.3% 落在预期 75-85% 范围内。Qwen-1.5B 在 loop_only 条件下仍有意义地超过 majority baseline（+6.8pp），但 fail 召回仅 0.55，说明 1.5B 规模对低信号密度条件的 fail 案例区分力有限。cuda:0 已清空，无残留进程。Registry 已更新至 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-qwen15b-loop-only-seed42.md"
+}

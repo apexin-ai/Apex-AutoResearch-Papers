@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7719625b0f7b246384e",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis oscillation metrics",
+  "task_key": "worker_analysis_oscillation_metrics_20260522T073914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_oscillation_metrics_20260522T073914_result.json",
+    "occurrence": 1,
+    "bytes": 1407,
+    "sha256": "609db8e059e06d39631527cb77298cdbd3e68a33fd9bd4a54adaa38be6b10a1a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "输出文件已生成。汇总如下：\n\n## 数据来源\n训练日志（loss/mean_token_accuracy，每50步记录一次，共44个点）+ 硬编码 registry eval accuracy（每50步 checkpoint，9个点）\n\n## 关键指标\n\n| 指标 | exception_only | full_trace | 比率 |\n|------|---------------|------------|------|\n| **Loss 滚动方差** (window=5) | 0.0036 | 0.1658 | **46x** |\n| **Eval accuracy CV** (全程) | 0.0024 | 0.0222 | **9.4x** |\n| **Eval accuracy CV** (后半段) | 0.0000 | 0.0172 | **∞** |\n| **末尾3 checkpoint std** | 0.0000 | 0.0135 | — |\n| **Max drop** | 0.00pp | **5.29pp** (step 50→100) | — |\n| **Recovery time** | N/A (无下降) | **150步** (step 100→250) | — |\n| **Accuracy方向变化** | 2/8 | **5/8** | 2.5x |\n| **首次稳定** (ε=0.005) | step 200 | **从未达到** | — |\n\n## 推荐论文使用的指标\n\n1. **CV of eval accuracy** — 最直观，full_trace 振荡幅度是 exception_only 的 9.4 倍；后半段 exception_only CV=0 而 full_trace 仍为 0.017\n2. **Convergence std (最后 3-5 个 checkpoint)** — 干净地表明 exception_only 已收敛 (std=0) 而 full_trace 未收敛 (std=0.0135)\n\n输出路径：\n- `/root/autodl-tmp/trace-verdict-study-checkpoints/oscillation_metrics/oscillation_metrics.json`\n- `/root/autodl-tmp/trace-verdict-study-checkpoints/oscillation_metrics/oscillation_summary.txt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-oscillation-metrics.md"
+}

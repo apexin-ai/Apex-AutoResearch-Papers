@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f03be11d0bb51fd7bf1c",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper experiments l149 fix sync",
+  "task_key": "worker_paper_experiments_l149_fix_sync_20260520T213223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_experiments_l149_fix_sync_20260520T213223_result.json",
+    "occurrence": 1,
+    "bytes": 172,
+    "sha256": "15d3142bbe7c42879956a4da7b47ebdf4dd3019aa218e952bc5a25227df46fe4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译完成。\n\n- **0 errors, 0 undefined references**\n- PDF: 21 pages, 440,849 bytes (431 KB)\n- 路径: `/root/trace-verdict-study/docs/paper/main.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-experiments-l149-fix-sync.md"
+}

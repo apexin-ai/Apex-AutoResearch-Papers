@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce2f6ce1a11db9cd082c",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper patch ablation significance",
+  "task_key": "worker_paper_patch_ablation_significance_20260516T043905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_patch_ablation_significance_20260516T043905_result.json",
+    "occurrence": 1,
+    "bytes": 972,
+    "sha256": "ace820d007e2d23b7e701f0159937fa497270bee0dd12977b5482faf3439e071"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`multirow` is already loaded. Both edits are complete:\n\n**experiments.tex §4.4** (line 129-130): Replaced the vague \"broadly overlapping CIs\" description with specific bootstrap results — the 512→1024 significant drop (p=0.002), the 1024 vs no_trace non-significance (p=0.078), and the no_limit vs 1024 significance (p<0.001). Added Figure cross-reference.\n\n**appendix.tex trace_length_full** (lines 261-310): \n- Updated the per-condition table caption to reference bootstrap CIs and the new pairwise table\n- Added a 12-row pairwise bootstrap comparison table (Table `trace_length_pairwise`) organized in three groups: adjacent budgets, vs no_trace, vs exception_only\n- Replaced the old discussion with three structured paragraphs: non-monotonic pattern analysis (with the \"worst-of-both-worlds\" interpretation for the 1024 dip), baseline comparisons, and interpretation — all backed by specific p-values and CIs from the bootstrap results"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-patch-ablation-significance.md"
+}

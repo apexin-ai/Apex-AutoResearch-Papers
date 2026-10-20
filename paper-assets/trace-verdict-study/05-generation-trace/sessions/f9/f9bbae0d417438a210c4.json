@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9bbae0d417438a210c4",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code fix calibration cvd",
+  "task_key": "worker_code_fix_calibration_cvd_20260515T130642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_calibration_cvd_20260515T130642_result.json",
+    "occurrence": 1,
+    "bytes": 628,
+    "sha256": "74907ce9d4b3b12e67e5738cd59f06902afce2a30b1b4d830d41e622831de059"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有赋值行现在都缩进了一级（在 `if` guard 内部），无残留的无条件覆盖。\n\n**calibration.py** — 278、345 两处已加 `if \"CUDA_VISIBLE_DEVICES\" not in os.environ:` guard。\n\n**额外修复的 6 个文件**（同样的问题）：\n| 文件 | 原行号 |\n|---|---|\n| `train/train_sft.py` | 90 |\n| `eval/evaluate.py` | 127 |\n| `eval/bootstrap_compare.py` | 335 |\n| `eval/eval_label_only_bootstrap.py` | 10 |\n| `eval/bootstrap_loop_only.py` | 61 |\n| `eval/bootstrap_ae_only.py` | 79 |\n\n当前正在跑的 calibration 进程不受影响，下次启动时新逻辑生效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-calibration-cvd.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b975303335fc7cf25823",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis deepseek seed123 diagnosis",
+  "task_key": "worker_analysis_deepseek_seed123_diagnosis_20260516T164035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek_seed123_diagnosis_20260516T164035_result.json",
+    "occurrence": 1,
+    "bytes": 905,
+    "sha256": "3157bc6ce649b82f0c10fab2f41d4cf6a1885f9383d280d68a65833f6762ff02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成，报告已写入 `/root/trace-verdict-study/analysis/deepseek_seed123_diagnosis.md`。\n\n**结论：A — LoRA 初始化失败（非 signal insufficiency）**\n\n核心发现：\n1. **三个 seed 的 training loss 完全一致**（~0.122），训练过程无任何异常\n2. seed123 的 100 个错误不是\"分类混淆\"（fail→pass），而是**格式崩溃**——模型输出 `\"assert\"`（54 次）、`\"[\"`（36 次）等 trace 片段代替分类标签\n3. **全部 100 个错误都是长输入样本**（≥4919 chars），输入被截断到 2048 tokens 后，seed123 的 LoRA 权重在截断边界触发了\"续写 trace\"行为\n4. 失败不可从 training metrics 检测——因为 `label_only_loss=False`，1-token 输出在总 loss 中占比 <0.1%\n\n论文可以安全排除此 seed 并注明 \"LoRA initialization sensitivity at truncation boundaries\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-seed123-diagnosis.md"
+}

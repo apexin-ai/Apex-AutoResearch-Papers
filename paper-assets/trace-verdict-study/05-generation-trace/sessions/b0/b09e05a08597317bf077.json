@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b09e05a08597317bf077",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analyze qwen15b label only seed456 v2",
+  "task_key": "worker_analyze_qwen15b_label_only_seed456_v2_20260520T211519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_qwen15b_label_only_seed456_v2_20260520T211519_result.json",
+    "occurrence": 1,
+    "bytes": 1025,
+    "sha256": "86ce03cfe121403d9fa8b250d2a1e54469553607582c5c05c2da8e8a641bf750"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已标记 DONE(success)。汇总如下：\n\n## qwen15b_label_only_seed456_v2 结果\n\n| Metric | Value |\n|--------|-------|\n| **Accuracy** | **82.52%** [80.3%, 84.7%] |\n| Pass F1 | 0.885 (P=0.837, R=0.938) |\n| Fail F1 | 0.639 (P=0.776, R=0.543) |\n| Train/Eval Loss | 0.239 / 0.306 |\n\n## Qwen-1.5B label_only 3-Seed 汇总\n\n| Seed | Accuracy | Pass F1 | Fail F1 |\n|------|----------|---------|---------|\n| 42 | 78.90% | 0.860 | 0.570 |\n| 123 | 81.34% | 0.878 | 0.602 |\n| 456 | 82.52% | 0.885 | 0.639 |\n| **Mean ± Std** | **80.92% ± 1.85%** | **0.874 ± 0.013** | **0.604 ± 0.035** |\n\n## vs Qwen-7B\n\n- Qwen-7B label_only 3-seed: **85.94% ± 1.12%**\n- Qwen-1.5B label_only 3-seed: **80.92% ± 1.85%**\n- Scale gap: **~5.0pp**，1-std 范围不重叠（1.5B 上界 82.8% < 7B 下界 84.8%）\n\nSeed 456 是 3 个 seed 中最好的，3-seed 数据现在与 Qwen-7B 可比。分析已写入 `artifacts/qwen15b_label_only_seed456_v2/analysis.md`，registry 已更新为 DONE(success)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-qwen15b-label-only-seed456-v2.md"
+}

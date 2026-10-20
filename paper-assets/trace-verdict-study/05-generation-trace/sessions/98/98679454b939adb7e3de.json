@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "98679454b939adb7e3de",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "eval deepseek full trace diagnosis",
+  "task_key": "worker_eval_deepseek_full_trace_diagnosis_20260515T163942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_deepseek_full_trace_diagnosis_20260515T163942.log",
+    "occurrence": 1,
+    "bytes": 636003,
+    "sha256": "2159f444e24a38f6606d39cfc745770845bd7a8463b30e4d691fa921dd8c5023"
+  },
+  "statistics": {
+    "messages": 372,
+    "user_turns": 0,
+    "tool_calls": 153,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 63,
+      "tool_call": 153,
+      "tool_result": 153
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 372,
+      "chunks": [
+        {
+          "path": "98679454b939adb7e3de-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "98679454b939adb7e3de-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "98679454b939adb7e3de-part-0003.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-deepseek-full-trace-diagnosis.md"
+}

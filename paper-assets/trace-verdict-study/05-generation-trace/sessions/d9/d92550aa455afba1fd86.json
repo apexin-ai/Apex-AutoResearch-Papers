@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "id": "d92550aa455afba1fd86",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis loop only seed456",
+  "task_key": "worker_analysis_loop_only_seed456_20260516T134041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_loop_only_seed456_20260516T134041_result.json",
+    "occurrence": 1,
+    "bytes": 4135,
+    "sha256": "902124509f51021603f6a980b5ba5c2f31d741f0541760308b04415a2f088047"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## eval_results.json\n\n```json\n{\n  \"condition\": \"loop_only\",\n  \"checkpoint_dir\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed456/final\",\n  \"metrics\": {\n    \"accuracy\": 0.8663865546218488,\n    \"majority_baseline\": 0.7151260504201681,\n    \"lift\": 0.1512605042016807,\n    \"majority_class\": \"pass\",\n    \"n\": 1190,\n    \"pass_precision\": 0.9178743961352657,\n    \"pass_recall\": 0.8930669800235017,\n    \"pass_f1\": 0.905300774270399,\n    \"fail_precision\": 0.7486187845303868,\n    \"fail_recall\": 0.799410029498525,\n    \"fail_f1\": 0.7731811697574893\n  },\n  \"confidence_intervals\": {\n    \"accuracy_ci_lower\": 0.8470378151260504,\n    \"accuracy_ci_upper\": 0.8840336134453781,\n    \"majority_baseline_ci_lower\": 0.6915966386554622,\n    \"majority_baseline_ci_upper\": 0.738655462184874,\n    \"lift_ci_lower\": 0.12268907563025211,\n    \"lift_ci_upper\": 0.18067226890756305,\n    \"pass_precision_ci_lower\": 0.9004681680331177,\n    \"pass_precision_ci_upper\": 0.9353749943575383,\n    \"pass_recall_ci_lower\": 0.8714256198347108,\n    \"pass_recall_ci_upper\": 0.9140845811049194,\n    \"pass_f1_ci_lower\": 0.8897009655310747,\n    \"pass_f1_ci_upper\": 0.9187609585037989,\n    \"fail_precision_ci_lower\": 0.7054011242647606,\n    \"fail_precision_ci_upper\": 0.7930153268029049,\n    \"fail_recall_ci_lower\": 0.7596410887858194,\n    \"fail_recall_ci_upper\": 0.8395299145299144,\n    \"fail_f1_ci_lower\": 0.7396449704142012,\n    \"fail_f1_ci_upper\": 0.8047833058011855\n  }\n}\n```\n\n## Checkpoint 目录\n\n| 文件 | 大小 |\n|------|------|\n| adapter_model.safetensors | 154 MB |\n| tokenizer.json | 10.9 MB |\n| vocab.json | 2.6 MB |\n| merges.txt | 1.6 MB |\n| predictions.jsonl | 77 KB |\n| training_args.bin | 6.3 KB |\n| README.md | 5.2 KB |\n| chat_template.jinja | 2.5 KB |\n| tokenizer_config.json | 4.6 KB |\n| eval_results.json | 1.4 KB |\n| adapter_config.json | 1.1 KB |\n| added_tokens.json | 605 B |\n| special_tokens_map.json | 499 B |\n\n## 训练日志尾部（loss/accuracy）\n\n训练已完成，评估推理过程中的 running accuracy 轨迹：\n\n```\n  [50/1190]  running accuracy: 0.9200\n  [100/1190] running accuracy: 0.9600\n  ...\n  [1150/1190] running accuracy: 0.8617\n```\n\n最终评估结果：\n- **Accuracy: 86.6%** (95% CI: [84.7%, 88.4%])\n- Majority baseline: 71.5% (always predict 'pass')\n- **Lift over majority: +15.1pp** (95% CI: [+12.3pp, +18.1pp])\n- pass: P=0.92, R=0.89, F1=0.91\n- fail: P=0.75, R=0.80, F1=0.77\n\n## predictions.jsonl\n\n**1190 行**（与测试样本数一致）"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "condition": "loop_only",
+              "checkpoint_dir": "/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed456/final",
+              "metrics": {
+                "accuracy": 0.8663865546218488,
+                "majority_baseline": 0.7151260504201681,
+                "lift": 0.1512605042016807,
+                "majority_class": "pass",
+                "n": 1190,
+                "pass_precision": 0.9178743961352657,
+                "pass_recall": 0.8930669800235017,
+                "pass_f1": 0.905300774270399,
+                "fail_precision": 0.7486187845303868,
+                "fail_recall": 0.799410029498525,
+                "fail_f1": 0.7731811697574893
+              },
+              "confidence_intervals": {
+                "accuracy_ci_lower": 0.8470378151260504,
+                "accuracy_ci_upper": 0.8840336134453781,
+                "majority_baseline_ci_lower": 0.6915966386554622,
+                "majority_baseline_ci_upper": 0.738655462184874,
+                "lift_ci_lower": 0.12268907563025211,
+                "lift_ci_upper": 0.18067226890756305,
+                "pass_precision_ci_lower": 0.9004681680331177,
+                "pass_precision_ci_upper": 0.9353749943575383,
+                "pass_recall_ci_lower": 0.8714256198347108,
+                "pass_recall_ci_upper": 0.9140845811049194,
+                "pass_f1_ci_lower": 0.8897009655310747,
+                "pass_f1_ci_upper": 0.9187609585037989,
+                "fail_precision_ci_lower": 0.7054011242647606,
+                "fail_precision_ci_upper": 0.7930153268029049,
+                "fail_recall_ci_lower": 0.7596410887858194,
+                "fail_recall_ci_upper": 0.8395299145299144,
+                "fail_f1_ci_lower": 0.7396449704142012,
+                "fail_f1_ci_upper": 0.8047833058011855
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-loop-only-seed456.md"
+}

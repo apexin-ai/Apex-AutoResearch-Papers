@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe2812b57bfa5ea2b67d",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis cross model calibration",
+  "task_key": "worker_analysis_cross_model_calibration_20260520T231532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_model_calibration_20260520T231532_result.json",
+    "occurrence": 1,
+    "bytes": 1182,
+    "sha256": "a4cc9b351d3fb231e47565fca95c15af4c6c8507d0eedf0900633a04015ba83b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The results are complete. Here's the summary:\n\n## Calibration Results (exception_only, 4 models, n=1190)\n\n| Model | Accuracy | ECE | Brier Score | Mean Confidence |\n|---|---|---|---|---|\n| **Qwen2.5-1.5B** | 99.83% | **0.0014** | **0.0013** | 99.82% |\n| **Qwen2.5-7B** | 99.83% | 0.0017 | 0.0013 | 99.80% |\n| **CodeLlama-13B** | 99.83% | 0.0020 | 0.0013 | 99.63% |\n| **DeepSeek-Coder-7B** | 99.33% | 0.0048 | 0.0059 | 99.71% |\n\n**All 4 models have probability data** — I computed logits via forward pass (not from cached predictions, which lacked probabilities).\n\n**Findings**:\n- All models are extremely well-calibrated (ECE < 0.005). exception_only is near-saturated so there's minimal room for miscalibration.\n- DeepSeek-Coder-7B is the weakest on both accuracy and calibration, showing slight overconfidence (99.71% confidence vs 99.33% accuracy).\n- Qwen2.5-1.5B has the best ECE despite being the smallest model.\n\n**Artifacts produced**:\n- Report: `artifacts/calibration_analysis.md`\n- JSON: `/root/trace-verdict-study/outputs/calibration_results.json` (on server)\n- Script: `/root/trace-verdict-study/eval/calibration_eval.py` (on server)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cross-model-calibration.md"
+}

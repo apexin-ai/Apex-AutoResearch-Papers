@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a42761f7e1522b7cc93",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis exception only seed456",
+  "task_key": "worker_analysis_exception_only_seed456_20260515T175730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exception_only_seed456_20260515T175730_result.json",
+    "occurrence": 1,
+    "bytes": 570,
+    "sha256": "bfac93b7cf6690efa1c0f6e32145e4791e77d89308071597aeac0f8d77bb7bab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exception_only_seed456 分析完成。**\n\n| 指标 | seed42 | seed456 |\n|------|--------|---------|\n| accuracy | 99.83% | 99.83% |\n| 95% CI | — | [99.58%, 100.0%] |\n| pass F1 | — | 0.9988 |\n| fail F1 | — | 0.9971 |\n| lift over majority | — | +28.3pp |\n\n两个 seed 的 accuracy 到小数点后四位完全一致（0.9983），**seed robustness 验证通过**。评估脚本未生成 predictions.jsonl，因此跳过了 paired bootstrap，但 diff=0 已无统计检验必要。\n\nRegistry 已更新：status=DONE, conclusion=success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exception-only-seed456.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53a8ad7df3d218d0dfbb",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis deepseek pairwise bootstrap",
+  "task_key": "worker_analysis_deepseek_pairwise_bootstrap_20260515T134922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek_pairwise_bootstrap_20260515T134922_result.json",
+    "occurrence": 1,
+    "bytes": 494,
+    "sha256": "965c91d5f29b8760b519b531c9501693972a6138ee65978eb5fd5b913cb13c44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| 指标 | 值 |\n|------|------|\n| Observed diff (VOTA − no_trace) | **+11.09pp** |\n| 95% CI | **[+7.90pp, +14.37pp]** |\n| p-value | **0.0000** (0/10000 resamples ≤ 0) |\n| Significant | **Yes** |\n\nVOTA 在 DeepSeek-Coder-6.7B 上的 +11.09pp 提升高度显著，CI 下界 +7.90pp 远离零点。使用了 unpaired bootstrap（因 DeepSeek 实验未保存 per-sample predictions）。已写入 registry `deepseek_vota_seed42.metrics.bootstrap_pairwise`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-pairwise-bootstrap.md"
+}

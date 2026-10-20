@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bcc0a2fa35e16cd7c583",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "sync all figs layout compile",
+  "task_key": "worker_sync_all-figs-layout-compile_20260524T193017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_all-figs-layout-compile_20260524T193017_result.json",
+    "occurrence": 1,
+    "bytes": 1202,
+    "sha256": "c0a02a262a7a0a33d615bc917f160796ec1eca8f47875b7a32237b85b841f60c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报如下：\n\n---\n\n**图片同步 MD5**\n\n| 文件 | MD5 | 匹配 |\n|------|-----|------|\n| fig1_trace_overview.pdf (215KB) | 5c71fe3e7b970c13... | ✓ |\n| fig2_calibration.pdf (12KB) | b5100768b7ca396f... | ✓ |\n| fig3_cross_model_gap.pdf (27KB) | 2429863a1911e704... | ✓ |\n| budget_curve.pdf (22KB) | cf37c217236a6587... | ✓ |\n| training_dynamics.pdf (15KB) | 7d58522cc4a836f2... | ✓ |\n\n**布局（调整后）**\n\n| Page | Display Items |\n|------|--------------|\n| 1 | (标题+摘要页，ACL 格式正常) |\n| 2 | Figure 1 |\n| 3 | Figure 1 caption 续 |\n| 4 | Figure 2, Table 1 |\n| 5 | Figure 2, Table 2 |\n| 6 | Table 3 |\n| 7 | Figure 3, Figure 4 |\n| 8 | Figure 3, Figure 4, Figure 5 |\n| 9+ | Limitations, References, Appendix tables |\n\n**布局调整**：将 Figure 1 的 `figure*[t]` 从 introduction 末尾（line 35）移至第一段之后，使其从 Page 3 提前到 Page 2 顶部。\n\n**编译结果**\n- Errors: 0\n- Warnings: 0（不含字体）\n- 正文: 8 页（Limitations + References 从 Page 9 开始）\n- 总页数: 20 页\n- PDF 大小: 615KB\n\n**PDF 已上传飞书**: `trace-verdict-study-visual-final-20260524.pdf`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-all-figs-layout-compile.md"
+}

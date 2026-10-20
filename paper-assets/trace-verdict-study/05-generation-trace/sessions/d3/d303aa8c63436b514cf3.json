@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d303aa8c63436b514cf3",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis exception only bootstrap",
+  "task_key": "worker_analysis_exception_only_bootstrap_20260515T093628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exception_only_bootstrap_20260515T093628_result.json",
+    "occurrence": 1,
+    "bytes": 963,
+    "sha256": "d9bfe36010594d0a8f11290d2e5d5f2bd28f5200ca788e22172641cf4b4aacaf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### Bootstrap 对比结果\n\n| 对比 | Δacc (pp) | 95% CI | p-value | 显著 |\n|------|-----------|--------|---------|------|\n| exception_only vs vota | **+0.67** | [+0.17, +1.26] | 0.010 | YES |\n| exception_only vs full_trace | **+18.07** | [+15.88, +20.34] | <0.001 | YES |\n| exception_only vs no_trace | **+24.71** | [+22.27, +27.14] | <0.001 | YES |\n\nz-test 交叉验证 (exception_only vs vota): z=2.32, p=0.021\n\n**结论**: exception_only (99.83%) 三对比较在 α=0.05 下全部显著。尽管 vs VOTA 仅差 0.67pp (8 errors vs 2 errors on 1190 samples)，CI 下界仍 >0。这是 unpaired bootstrap，CI 偏保守，实际差异可能更显著。\n\nreport.md 已更新，反映了 bootstrap 数据、loop_only (step 296/444 on cuda:0) 和 ae_only (刚启动 cuda:1) 的运行状态。结果 JSON 已存到服务器 `/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/bootstrap_compare.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exception-only-bootstrap.md"
+}

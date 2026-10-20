@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "bf3fbdd6328688a8fb1c",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "sync reverse sync appendix checklist",
+  "task_key": "worker_sync_reverse-sync-appendix-checklist_20260524T165526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_reverse-sync-appendix-checklist_20260524T165526.log",
+    "occurrence": 1,
+    "bytes": 1687378,
+    "sha256": "5bf9c5d7bb6319810710a22b2f2382c9edf50f445403b687e628f0e3c44a2f00"
+  },
+  "statistics": {
+    "messages": 324,
+    "user_turns": 2,
+    "tool_calls": 120,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 72,
+      "tool_call": 120,
+      "tool_result": 120,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 127,
+      "chunks": [
+        {
+          "path": "bf3fbdd6328688a8fb1c-part-0001.json",
+          "message_count": 108
+        },
+        {
+          "path": "bf3fbdd6328688a8fb1c-part-0002.json",
+          "message_count": 19
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 96,
+      "chunks": [
+        {
+          "path": "bf3fbdd6328688a8fb1c-part-0002.json",
+          "message_count": 65
+        },
+        {
+          "path": "bf3fbdd6328688a8fb1c-part-0003.json",
+          "message_count": 31
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 101,
+      "chunks": [
+        {
+          "path": "bf3fbdd6328688a8fb1c-part-0003.json",
+          "message_count": 101
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/sync-reverse-sync-appendix-checklist.md"
+}

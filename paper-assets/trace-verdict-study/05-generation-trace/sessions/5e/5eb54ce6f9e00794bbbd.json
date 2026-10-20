@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5eb54ce6f9e00794bbbd",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops check training v4",
+  "task_key": "worker_ops_check-training-v4_20260514T221633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-training-v4_20260514T221633_result.json",
+    "occurrence": 1,
+    "bytes": 1336,
+    "sha256": "aeea5743b760010456ee69f9b86cb58ff25298088bc03a31585cdda7635ccfb4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态汇报\n\n### 1. no_trace_seed42_v4\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | **running** (PID 835084, 已运行 4m16s) |\n| 进度 | step 86/444 (~19%), ~2.7s/step |\n| 预计剩余 | ~16-17 分钟 |\n| GPU 0 | 100% 利用率, 75619 MiB / 97887 MiB |\n| Checkpoint | `/no_trace/final/` 存在（来自之前的 run，May 15 02:22），当前 run 尚未生成 final checkpoint |\n\n### 2. vota_seed42_v4\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | **crashed** (PID 835161 已退出, EXIT_CODE=1) |\n| 失败原因 | `torch.OutOfMemoryError` — step 0 即崩溃，尝试分配 4.64 GiB 时 GPU 仅剩 3.64 GiB 可用 |\n| GPU 1 | 当前 0% 利用率, 0 MiB（已释放） |\n| Checkpoint | `/vota/final/` 存在（来自之前的 run，May 15 04:18），包含 eval_results.json |\n\n**之前 vota run 的 eval 指标**（来自 final/eval_results.json）：\n\n| 指标 | 值 |\n|------|-----|\n| Accuracy | 99.16% (CI: 98.57–99.66%) |\n| Pass F1 | 99.41% |\n| Fail F1 | 98.55% |\n| Lift over majority | +27.6% |\n| N | 1190 |\n\n### 关键问题\n\nvota_v4 的 OOM 错误显示崩溃时 GPU 上有另一个进程（PID 835089，占用 23.58 GiB）。可能两个进程都被分配到了 GPU 0，导致显存不足。需要确认 vota 的 `CUDA_VISIBLE_DEVICES` 是否正确设为 1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-training-v4.md"
+}

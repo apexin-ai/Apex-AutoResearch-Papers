@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e30762f4d0d79e66357",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops anonymous repo push",
+  "task_key": "worker_ops_anonymous-repo-push_20260523T132023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_anonymous-repo-push_20260523T132023_result.json",
+    "occurrence": 1,
+    "bytes": 1102,
+    "sha256": "5580cd168a7019fdbb8af58d9986483b2e1d111c574a309c86e3118fc624b5ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**汇报**：\n\n- **Repo URL**: `https://github.com/anonymous-nlp-2026/trace-verdict-study`\n- **文件数**: 81 个文件\n- **代码行数**: 15,680 行\n- **Commit**: 1 个 (`Anonymous submission code`, author: `Anonymous <anonymous@example.com>`)\n\n**包含的目录**:\n- `train/` — SFT 训练脚本（train_sft.py, gradient_mask_trainer.py）\n- `eval/` — 评估脚本（evaluate.py, bootstrap_compare.py, calibration.py, fewshot 等 20+ 文件）\n- `src/` — 核心模块（vota.py, assert_decompose.py）\n- `scripts/` — 工具脚本（seed robustness, regex baseline 等）\n- `analysis/` — 分析脚本（token length, trace ablation, attention 等）\n- `tests/` — 单元测试\n\n**匿名化处理**:\n- 所有 `/root/` 硬编码路径 → 相对路径 `./`\n- 所有 `/root/autodl-tmp/` 模型/数据路径 → `./models/`, `./data/`, `./checkpoints/`\n- 无个人身份信息（姓名、邮箱、机构）\n- 移除了 `.bak` 文件\n- 排除了 data/、outputs/、checkpoints/、paper/、figures/、models/ 等目录\n- README 不含作者信息"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-anonymous-repo-push.md"
+}

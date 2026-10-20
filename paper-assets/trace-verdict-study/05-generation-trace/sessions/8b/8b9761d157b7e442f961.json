@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b9761d157b7e442f961",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis deepseek paired bootstrap full trace",
+  "task_key": "worker_analysis_deepseek_paired_bootstrap_full_trace_20260516T031448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek_paired_bootstrap_full_trace_20260516T031448_result.json",
+    "occurrence": 1,
+    "bytes": 780,
+    "sha256": "de144c18ad0cefc407134b9178f32872a9938db56b810b71435d6cce63c213cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。Accuracy 与预期完全匹配，3 对比较均显著（p < 0.001）。\n\n## 结果汇总\n\n| 比较 | Acc A | Acc B | Δ | 95% CI | p_bootstrap | p_McNemar | Sig |\n|------|-------|-------|---|--------|-------------|-----------|-----|\n| full_trace vs VOTA | 79.16% | 84.45% | -5.29% | [-8.15%, -2.35%] | 3.00e-04 | 4.03e-04 | *** |\n| full_trace vs exception_only | 79.16% | 99.33% | -20.17% | [-22.61%, -17.82%] | 1.00e-04 | 8.85e-64 | *** |\n| full_trace vs no_trace | 79.16% | 73.36% | +5.80% | [+3.61%, +7.98%] | 1.00e-04 | 3.67e-07 | *** |\n\n所有 3 对差异均在 p < 0.001 水平显著。结果已保存到 `/root/trace-verdict-study/analysis/deepseek_full_trace_paired_bootstrap.json` 并合并到 `deepseek_paired_comparisons.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-paired-bootstrap-full-trace.md"
+}

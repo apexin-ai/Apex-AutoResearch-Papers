@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8ad081b26848f046613",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analyze codellama13b loop only seed456",
+  "task_key": "worker_analyze_codellama13b_loop_only_seed456_20260520T125604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_codellama13b_loop_only_seed456_20260520T125604_result.json",
+    "occurrence": 1,
+    "bytes": 402,
+    "sha256": "5a55c77056bf80fbb168d4e1189b37ca752c7b5a1dfa967f2fb42c2120d7bbdb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE (success)。cuda:0 无残留进程。\n\n## CodeLlama-13B loop_only 跨 seed 汇总\n\n| Seed | Accuracy |\n|------|----------|\n| 42 | 77.06% |\n| 123 | 76.05% |\n| 456 | **79.08%** |\n| **Mean ± Std** | **77.40% ± 1.25pp** |\n\nseed456 = 79.08%，落在假设区间内。3-seed 标准差仅 1.25pp，loop_only condition 在 CodeLlama-13B 上表现稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-codellama13b-loop-only-seed456.md"
+}

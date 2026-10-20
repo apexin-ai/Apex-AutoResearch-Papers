@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "acca40b30c3ef42770a2",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code eval codellama13b ae only seed42",
+  "task_key": "worker_code_eval_codellama13b_ae_only_seed42_20260519T170414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval_codellama13b_ae_only_seed42_20260519T170414_result.json",
+    "occurrence": 1,
+    "bytes": 51,
+    "sha256": "0e2d544f384b1d1f66b8644423e7bea0ac9f2c89baed8a5e0b31b5003c25911b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练中，90 秒后回来检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-codellama13b-ae-only-seed42.md"
+}

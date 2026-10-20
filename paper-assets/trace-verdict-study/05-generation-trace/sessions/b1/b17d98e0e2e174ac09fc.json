@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b17d98e0e2e174ac09fc",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "diagnose codellama13b label only seed123 v2",
+  "task_key": "worker_diagnose_codellama13b_label_only_seed123_v2_20260521T010347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_codellama13b_label_only_seed123_v2_20260521T010347_result.json",
+    "occurrence": 1,
+    "bytes": 936,
+    "sha256": "31b4fc3709377c7744cb22d77efa234f1e841e56b0f4104c0cb6ec79177ef2f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。核心发现：\n\n1. **失败原因**：根分区磁盘满（30G/30G），checkpoint-444 保存时 `No space left on device`。训练 444/444 steps 全部完成，`evaluate.py` 从未执行。\n\n2. **模型已完全 collapse**：epoch 2-3 全程 loss=0.0，grad_norm≈0，eval_loss=nan，entropy=0.25。与 seed42（28.5% 全预测 fail）完全一致。\n\n3. **科学结论确认**：CodeLlama-13B label-only collapse 是 systematic 的（seed42 + seed123 双种子验证），与 DeepSeek collapse pattern 一致，支持 \"label-only collapse is systematic for non-Qwen architectures\" 假设。\n\n4. **可恢复性**：checkpoint-296（epoch 2）完整可用，但模型早已 collapse，重跑 eval 无科学价值。\n\n5. **紧急问题**：根分区 100% 满，会影响后续所有实验，需要优先清理。\n\n报告已写入 `artifacts/diagnose_codellama13b_label_only_seed123_v2.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-codellama13b-label-only-seed123-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75ec6f9d862e52ea9de6",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code plan 005 train config",
+  "task_key": "worker_code_plan_005_train_config_20260515T232914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_005_train_config_20260515T232914_result.json",
+    "occurrence": 1,
+    "bytes": 2916,
+    "sha256": "a6862bfaf35810b41d74579535e4aeeac0fb14556e467f7a3562b2594d7b0464"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 产出汇总\n\n### 1. 代码修改（已完成并提交）\n\n`train/train_sft.py:104` 和 `eval/evaluate.py:121` 的 `--condition choices` 列表添加了 5 个 DebugBench 条件：`debugbench_no_trace`, `debugbench_vota`, `debugbench_full_trace`, `debugbench_ae_only`, `debugbench_exception_only`。\n\n无需其他改动——`load_data()` 用 `f\"{condition}_train.jsonl\"` 构造路径，`debugbench_no_trace` 正好匹配 `debugbench_no_trace_train.jsonl`。\n\n### 2. 数据兼容性确认\n\n| 项目 | 状态 |\n|------|------|\n| 文件路径 | ✅ `debugbench_{condition}_{train,test}.jsonl` 全部存在 |\n| 数据量 | ✅ 每条件 1622 train / 426 test |\n| Label 格式 | ✅ `\"output\": \"pass\"/\"fail\"`，与 DCSH 一致 |\n| Prompt 格式 | ✅ 尾部 `\"Does this code pass all tests? Answer: \"`，evaluate.py 的 `classify_prediction()` 兼容 |\n| Trace marker | ✅ vota/full_trace/exception_only/ae_only 含 `\"Execution trace:\\n\"` marker，`truncate_traces()` 可正常工作 |\n\n### 3. 训练参数（与 DCSH 完全一致）\n\n| 参数 | 值 |\n|------|-----|\n| LoRA r/alpha/dropout | 16 / 32 / 0.05 |\n| target_modules | q/k/v/o/gate/up/down_proj |\n| epochs | 3 |\n| batch / grad_accum | 4 / 8 (effective=32) |\n| lr / warmup | 2e-4 / 0.1 |\n| max_length | 2048 |\n| bf16 | True |\n\nDebugBench 步数：1622/32 ≈ 51 steps/epoch × 3 = **153 steps**（DCSH 是 444 steps），预计每条件 ~18 min 训练 + ~2 min eval。\n\n### 4. 5 条完整训练命令\n\n每个 CONDITION 替换为 `exception_only` / `no_trace` / `ae_only` / `vota` / `full_trace`：\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nexport HF_HOME=/root/autodl-tmp/.hf_cache && \\\ncd /root/trace-verdict-study && \\\npython train/train_sft.py \\\n  --condition debugbench_CONDITION \\\n  --gradient_checkpointing \\\n  --gpu 0 \\\n  --seed 42 \\\n  --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/debugbench_CONDITION \\\n  --wandb_project trace-verdict-study \\\n  --wandb_run_name debugbench_CONDITION_seed42 && \\\npython eval/evaluate.py \\\n  --condition debugbench_CONDITION \\\n  --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/debugbench_CONDITION/final \\\n  --gpu 0 \\\n  --output /root/autodl-tmp/trace-verdict-study-checkpoints/debugbench_CONDITION/final/eval_results.json\"\n```\n\n### 5. RUNNING 实验进度\n\n| 实验 | GPU | 进度 | 预估剩余 |\n|------|-----|------|----------|\n| `full_trace_512tok_seed42` | cuda:0 | 130/444 (29%), epoch 1 | ~36 min 训练 + ~3 min eval（含 2 次 epoch eval） |\n| `full_trace_256tok_seed42` | cuda:1 | 151/444 (34%), epoch 2 刚开始 | ~34 min 训练 + ~3 min eval（还剩 2 次 epoch eval） |\n\n**两个 GPU 都被占用**，DebugBench 训练需等当前实验完成后才能启动。预计 ~40 min 后两个 GPU 都空出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-005-train-config.md"
+}

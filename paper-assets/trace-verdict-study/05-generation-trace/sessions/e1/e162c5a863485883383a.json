@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e162c5a863485883383a",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "reviewer / loop_9.md",
+  "task_key": "loop_9",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_9.md",
+    "occurrence": 1,
+    "bytes": 3549,
+    "sha256": "625a13f728c55da969989b5d24ef7a9ae343fdaee74f934386f545c573b1ae35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: max_wall_time\nupdated: '2026-05-16T19:56:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0 和 cuda:1（仅两张卡，westd-11235）\n- GPU 0 有 ~49GB 残留死内存（历史泄漏，无法 reset），实际可用 ~48GB，必须用 --gradient_checkpointing\n- nomarker 实验 output_dir 必须显式指定带 seed 后缀（seed123 因缺失 --output_dir 覆盖了 1.5B checkpoint，已发生事故）\n- 训练命令必须链式 eval：`python train/train_sft.py ... && python eval/evaluate.py ...`，否则 eval 不会执行（seed123 事故教训）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-11235(root)，工作目录 /root/trace-verdict-study\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 模型路径：/root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct，/root/autodl-tmp/models/CodeLlama-13b-Instruct-hf\n- 数据：/root/autodl-tmp/trace-verdict-study-data/\n- Checkpoints：/root/autodl-tmp/trace-verdict-study-checkpoints/\n- HF_HOME：/root/autodl-tmp/.hf_cache\n- 活跃进程：PID 299741 = codellama13b_exception_only_seed123（GPU 0, CUDA_VISIBLE_DEVICES=0）\n- GPU 1：空闲（seed456 已完成释放）\n\n### 3. 📊 当前状态\n本轮完成的审查：\n1. codellama13b_vota_seed42 = 98.57% — PASS，填补 Table 1 最后空格\n2. exception_only_nomarker_seed123 — 发现 CRITICAL（eval 未执行，registry 录入了旧 1.5B 数据 97.82%）→ 已修正为真实值 98.32%\n3. exception_only_nomarker_seed456 = 98.07% — PASS\n4. cross_model_exception_only_overlap 分析 — 5 模型完美重叠（same 2 errors）确认\n5. 跨架构 claim 评估 — 已给 Director 四层建议（exception_only 强 claim / VOTA 需 caveat / nomarker 仅 Qwen 内 / 不要 claim nomarker 跨架构）\n\nRegistry RUNNING：codellama13b_exception_only_seed123（GPU 0）\nRegistry ANALYZING：exception_only_nomarker_seed456（Worker 在写结论）\ntable1_data.md 仍有 CodeLlama VOTA = \"*pending*\"（多个 Worker 未成功更新，但 LaTeX experiments.tex 已正确写入 98.57%）\n\n### 4. 📋 待办\n- codellama13b_exception_only_seed123 完成 → 核实 accuracy（预期 99.83% 匹配 seed42），验证 GPU 合规，确认是否跑了 eval\n- exception_only_nomarker_seed456 registry 更新为 DONE → 验证 metrics = 98.07% 是否正确录入\n- 若 Director 问 nomarker 3-seed 汇总 → 数据已备好：97.65% ± 0.96pp（seed42 是 outlier）\n- 若要求审查论文章节 → 需先 Read `review-reviewer-session-start` skill 和 `paper-visual-review` skill\n\n### 5. 🎯 战略上下文\n核心结论链：exception_only traces 提供 architecture-general, scale-invariant 信号（≥99.33% across 4 models）。残余 2/1190 error 是 GeneratorExit 数据标注 artifact，非模型能力问题。\n\n关键决策：D053 升级 signal-limited claim 为 \"demonstrate\"（非 \"suggest\"），D054 nomarker 升格为 gatekeeper 实验（阈值 99.5% 未达到但 ~97.65% 仍支持 two-layer signal 叙事）。\n\n易错点：\n- `exception_only_nomarker/` 目录现在包含 7B seed123 模型权重（不是 1.5B！），但 eval_results.json 是旧的 1.5B 数据 — 真实 seed123 结果在 `eval_results_seed123_real.json`\n- DeepSeek seed123 = 91.09% 是 LoRA init outlier（不是 overfitting），决策 D027 已确认\n- CodeLlama VOTA = 98.57% 证明 DeepSeek VOTA 退化（84.45%）是模型特异性问题，不是 VOTA 方法缺陷\n- table1_data.md（markdown 版）未更新不代表 paper 未更新 — LaTeX experiments.tex 已有正确数据\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-copy-3.md"
+}

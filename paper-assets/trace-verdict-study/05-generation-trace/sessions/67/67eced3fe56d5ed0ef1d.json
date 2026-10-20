@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67eced3fe56d5ed0ef1d",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code codellama13b head2048",
+  "task_key": "worker_code_codellama13b_head2048_20260517T234035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_codellama13b_head2048_20260517T234035_result.json",
+    "occurrence": 1,
+    "bytes": 398,
+    "sha256": "f77e19f95b93063bc761e5e9a4a1000251c50835ff3f165af2716b0ab504e3e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动。\n\n- **GPU 1**: 36.5GB / 97.9GB 显存，100% 利用率，远未 OOM\n- **Condition**: `full_trace_head`（head-truncated to 2048 tokens）\n- **Steps**: 0/444，预计 ~1.6h 完成训练\n- **日志**: `/root/trace-verdict-study/logs/codellama13b_head2048_seed42.log`\n- **W&B**: `codellama13b_full_trace_head2048_seed42`\n- 训练完成后自动执行 eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-codellama13b-head2048.md"
+}

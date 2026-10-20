@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b83012ccef481199d90e",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "eval dry run no trace",
+  "task_key": "worker_eval_dry-run-no-trace_20260514T195021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_dry-run-no-trace_20260514T195021_result.json",
+    "occurrence": 1,
+    "bytes": 1707,
+    "sha256": "da7e97ae064adfb3f8d65a98dafe4e858fb541e86de1f674f679551f927e6f9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估脚本 dry-run 完成，无报错，输出格式正确。\n\n## 评估结果\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | 75.1% (95% CI: [72.8%, 77.5%]) |\n| **Majority baseline** | 71.5% (always predict 'pass') |\n| **Lift over majority** | +3.6pp (95% CI: [+0.4pp, +7.1pp]) |\n\n**Per-class metrics:**\n\n| Class | Precision | Recall | F1 |\n|-------|-----------|--------|----|\n| pass | 0.88 | 0.76 | 0.81 |\n| fail | 0.55 | 0.73 | 0.63 |\n\nBootstrap: 1000 resamples\n\n## eval_results.json 内容\n\n```json\n{\n  \"condition\": \"no_trace\",\n  \"checkpoint_dir\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final\",\n  \"metrics\": {\n    \"accuracy\": 0.7513,\n    \"majority_baseline\": 0.7151,\n    \"lift\": 0.0361,\n    \"majority_class\": \"pass\",\n    \"n\": 1190,\n    \"pass_precision\": 0.8776, \"pass_recall\": 0.7579, \"pass_f1\": 0.8134,\n    \"fail_precision\": 0.5473, \"fail_recall\": 0.7345, \"fail_f1\": 0.6272\n  },\n  \"confidence_intervals\": { ... }  // 所有指标的 95% bootstrap CI\n}\n```\n\n## 汇报\n\n- **脚本无 bug**，端到端顺利完成\n- **输出格式正确**：accuracy + CI、majority baseline、lift + CI、per-class P/R/F1、bootstrap 1000 resamples 全部齐全\n- **运行耗时**：约 2 分钟（含模型加载 + 1190 条推理 + bootstrap）\n- **使用 GPU 1**（GPU 0 显存不够），占用 ~15.6GB 显存\n- **唯一 warning**：`torch_dtype` deprecated（transformers 新版改用 `dtype`），不影响结果\n- **no_trace 的 lift 仅 +3.6pp**，CI 下界接近 0，说明不看 trace 时模型略优于 majority baseline 但提升有限——符合预期，trace 条件的对比值得期待"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-dry-run-no-trace.md"
+}

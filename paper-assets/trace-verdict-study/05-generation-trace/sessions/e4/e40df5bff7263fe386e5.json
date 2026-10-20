@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e40df5bff7263fe386e5",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "eval plan 007 calibration",
+  "task_key": "worker_eval_plan_007_calibration_20260515T121655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan_007_calibration_20260515T121655_result.json",
+    "occurrence": 1,
+    "bytes": 941,
+    "sha256": "b795b6cf055da01d9b7445a3b1b2a4e4a11cdb509aa4346f64f36e324c5fdd25"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总结果：\n\n## Calibration Analysis 汇总（5 条件 × 1190 测试样本）\n\n| Condition | Accuracy | ECE ↓ | Brier ↓ |\n|-----------|----------|-------|---------|\n| **exception_only** | 99.83% | **0.0024** | **0.0013** |\n| **VOTA** | 99.41% | 0.0054 | 0.0052 |\n| **loop_only** | 85.63% | 0.0833 | 0.1183 |\n| **full_trace** | 81.76% | 0.0946 | 0.1438 |\n| **no_trace** | 75.13% | 0.1715 | 0.1972 |\n\n关键发现：\n- **exception_only** 和 **VOTA** calibration 极优（ECE < 0.01），模型置信度与实际准确率高度一致\n- **no_trace** calibration 最差（ECE=0.17），模型过度自信\n- **loop_only** 和 **full_trace** 处于中间水平\n- Calibration 排序与 accuracy 排序一致：trace 信息越丰富，模型越\"知道自己知道什么\"\n\nJSON 结果保存在 `/root/autodl-tmp/trace-verdict-study-checkpoints/calibration/` 下，每个条件一个文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan-007-calibration.md"
+}

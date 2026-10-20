@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cbb583af0a12e81f6b01",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "eval cuda0 sanity and deepseek reeval",
+  "task_key": "worker_eval_cuda0_sanity_and_deepseek_reeval_20260515T180312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cuda0_sanity_and_deepseek_reeval_20260515T180312_result.json",
+    "occurrence": 1,
+    "bytes": 1831,
+    "sha256": "17c78d1f414b694712c422cb62b0e963655c2218fc7db5979920a4f4d29cbf4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部结果已收集。汇总如下：\n\n---\n\n## Sanity Check — 两项均通过 (偏差 = 0)\n\n| Condition | 期望 | 实际 | 状态 |\n|-----------|------|------|------|\n| VOTA (Qwen) | 99.41% | 99.41% | **PASS** |\n| full_trace (Qwen) | 81.76% | 81.76% | **PASS** |\n\nevaluate.py 的 truncation 修复已验证正确。\n\n---\n\n## DeepSeek full_trace 重评结果（修复后）\n\n| Metric | 值 |\n|--------|-----|\n| **Accuracy** | **10.59%** (95% CI: [8.9%, 12.3%]) |\n| Majority baseline | 71.5% (always \"pass\") |\n| **Lift vs majority** | **-60.9pp** |\n| pass P / R / F1 | 0.00 / 0.00 / 0.00 |\n| fail P / R / F1 | 0.37 / 0.37 / 0.37 |\n\n### 与旧评估对比\n\n| 版本 | Accuracy | Lift | fail R |\n|------|----------|------|--------|\n| 旧 (无截断) | 28.49% | -43.0pp | 1.00 |\n| **新 (截断修复)** | **10.59%** | **-60.9pp** | **0.37** |\n\n修复截断后结果**更差了**：旧评估中模型至少一致地预测 \"fail\"（fail recall=1.0），现在模型输出大量垃圾 token：\n\n| raw_pred | 数量 |\n|----------|------|\n| `fail` | 338 |\n| `{` | 276 |\n| `execution` | 125 |\n| `{}` | 121 |\n| `assert` | 120 |\n| `import` | 73 |\n| `this` | 37 |\n\n模型**从未输出 \"pass\"**。\n\n### vs DeepSeek no_trace baseline\n\n| Condition | Accuracy | Lift |\n|-----------|----------|------|\n| deepseek_no_trace | 73.36% | +1.8pp |\n| **deepseek_full_trace (fixed)** | **10.59%** | **-60.9pp** |\n\n**结论：DeepSeek full_trace LoRA 本身是坏的**，不是 evaluate.py 的问题。截断修复反而暴露了更严重的问题——当输入被正确截断到 2048 tokens（保留 chat template 结构），模型产生大量无关 token 而非分类标签。训练可能失败或未收敛。建议检查 DeepSeek full_trace 的训练日志和 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cuda0-sanity-and-deepseek-reeval.md"
+}

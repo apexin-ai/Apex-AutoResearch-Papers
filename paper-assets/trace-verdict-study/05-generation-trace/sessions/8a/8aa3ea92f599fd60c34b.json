@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8aa3ea92f599fd60c34b",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "verify deepseek predictions",
+  "task_key": "worker_verify_deepseek_predictions_20260516T011401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_deepseek_predictions_20260516T011401_result.json",
+    "occurrence": 1,
+    "bytes": 1731,
+    "sha256": "3b55147c33052808e13c5fb868d8d773089c73768ba91ab9330279c98591e454"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个注册全部成功。汇总结果：\n\n---\n\n## 一致性验证结果\n\n| 实验 | predictions n | pred_acc | eval_acc | 状态 |\n|------|-------------|----------|----------|------|\n| deepseek_exception_only/checkpoint-148 | 1190 | 0.9983 | 0.9983 | **MATCH** |\n| deepseek_exception_only_seed123/checkpoint-148 | 1190 | 0.9143 | 0.9143 | **MATCH** |\n| deepseek_exception_only_seed456/checkpoint-148 | 1190 | 0.9933 | 0.9933 | **MATCH** |\n| deepseek_no_trace/final | 1190 | 0.7336 | 0.7336 | **MATCH** |\n| deepseek_vota/final | 1190 | 0.8445 | 0.1597 | **MISMATCH** |\n| deepseek_full_trace/checkpoint-148 | 1190 | 0.2353 | 0.2849 | **MISMATCH** |\n| deepseek_full_trace/final | 1190 | 0.1059 | 0.2849 | **MISMATCH** |\n\n## 已注册到 registry\n\n- `deepseek_no_trace_seed42` → `.../deepseek_no_trace/final/predictions.jsonl`\n- `deepseek_exception_only_seed42` → `.../deepseek_exception_only/checkpoint-148/predictions.jsonl`\n- `deepseek_exception_only_seed123` → `.../deepseek_exception_only_seed123/checkpoint-148/predictions.jsonl`\n- `deepseek_exception_only_seed456` → `.../deepseek_exception_only_seed456/checkpoint-148/predictions.jsonl`\n\n## 未注册（MISMATCH）\n\n- **deepseek_vota_seed42**: predictions 算出 84.45%，eval_results 记录 15.97%。predictions.jsonl 与 eval_results.json 可能来自不同 eval run。\n- **deepseek_full_trace_seed42**: checkpoint-148 和 final 的 predictions 均与 eval_results 不一致。\n\n## deepseek_full_trace_seed42_v3 缺失确认\n\n**CONFIRMED MISSING** — v3 目录有 checkpoint-148/296/444/final 和 eval_results.json，但整个目录树中无任何 predictions.jsonl 文件。需要重新运行 eval 生成 predictions。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-deepseek-predictions.md"
+}

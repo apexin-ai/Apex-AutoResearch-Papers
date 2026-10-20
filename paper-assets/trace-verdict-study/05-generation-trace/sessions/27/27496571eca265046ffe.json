@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27496571eca265046ffe",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper integrate qwen15b data",
+  "task_key": "worker_paper_integrate-qwen15b-data_20260516T111258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_integrate-qwen15b-data_20260516T111258_result.json",
+    "occurrence": 1,
+    "bytes": 867,
+    "sha256": "c2cb3ffbd4808478d1a086c40a620f14fac0fc075e1fc8660b557d7f35ce75ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。更新了三个文件：\n\n1. **`artifacts/_project/paper/main_results_tables.tex`** — Table 2 重构为 Cross-Model Generalization 表，Qwen-1.5B 作为独立模型行（exception_only=99.83%, VOTA=99.58%, no_trace=67.31%），底部增加跨尺度比较摘要\n2. **`artifacts/paper_tables/main_results_tables.tex`** — 同步更新\n3. **`docs/paper/experiments.tex`** — 内联表改为四列（Qwen-7B / Qwen-1.5B / DeepSeek-6.7B / Range），正文重写为强调 scale invariance 发现\n\n关键叙事强化点：\n- Exception only 在 Qwen-7B 和 1.5B 上精确一致（99.83%），跨 4.7× 参数差异完全 scale-invariant\n- 新增 \"Range\" 列一目了然：exception 0.50pp vs VOTA 15.13pp vs no_trace 7.82pp\n- no_trace 在最小模型上退化最严重（67.31%），反衬 exception signal 绕过了模型容量瓶颈"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-integrate-qwen15b-data.md"
+}

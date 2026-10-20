@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d07b1ab86d275c798a97",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops monitor full trace progress",
+  "task_key": "worker_ops_monitor_full_trace_progress_20260521T074145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_monitor_full_trace_progress_20260521T074145_result.json",
+    "occurrence": 1,
+    "bytes": 54,
+    "sha256": "2ce27984074350587f545e1eb9f87ca49b664c8d309aed474f65bc62c04b7af1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "30 分钟后自动回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-monitor-full-trace-progress.md"
+}

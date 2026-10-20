@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35f3819de3acadaa2b22",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "sync final local to remote",
+  "task_key": "worker_sync_final-local-to-remote_20260524T212257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_final-local-to-remote_20260524T212257_result.json",
+    "occurrence": 1,
+    "bytes": 803,
+    "sha256": "73313321df8d7fdce653380c6cb32e37493dcdfc36c714e3db9ef26f655d2525"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 5 步完成。汇总报告：\n\n---\n\n**Pipeline 执行报告**\n\n| 步骤 | 状态 | 详情 |\n|------|------|------|\n| **1. 文件同步** | ✓ | `main.tex` (3201B) + `conclusion.tex` (846B) 已从本地推送到远程。内容语义一致（尾部换行差 1B） |\n| **2. 远程编译** | ✓ | pdflatex×3 + bibtex，0 errors，0 undefined references，输出 21 页，621316 bytes |\n| **3. 页数验证** | ✓ | Limitations 从第 9 页开始 → 正文 ≤ 8 页，符合 EMNLP 2026 要求 |\n| **4. PDF 拉回本地** | ✓ | SCP 直传，本地/远程 MD5 一致：`92e25296e6e9f0ad6e069a473f9b0cd8`，621316 bytes |\n| **5. 飞书上传** | ✓ | 文件名 `trace-verdict-study-final-20260524.pdf`，file_key: `file_v3_00121_84d0b6b4-079b-4b9f-9be4-5ec3e378e71g` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-final-local-to-remote.md"
+}

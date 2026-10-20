@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b1722fe3512c4028176",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_17_1779402818.md",
+  "task_key": "loop_17_1779402818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_17_1779402818.md",
+    "occurrence": 1,
+    "bytes": 4469,
+    "sha256": "36cfcd6e9add2ba24eefa3d06025ce50b3ae6b052d6910095090c6fa4628bb10"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-21T21:20:00+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 `westd-11235:cuda:0` 和 `westd-11235:cuda:1`，其他设备号 push back Director\n- cuda:0 有 49175 MiB 孤儿显存（无进程），已派 Worker 清理中——清理完成前不要在 cuda:0 提交实验\n- 所有 `qwen1.5b_*` 和 `codellama_*`（无 13b）前缀的 QUEUED/ALLOCATED/PREPARING 条目是**废弃残留**，实际实验在 `qwen15b_*` / `codellama13b_*` 下已完成，**不要重跑**\n- CodeLlama-13B 训练**必须** `--label_only_loss`，否则 loss dilution 导致灾难性 accuracy（29.6%）\n- 论文已进入 resubmit review，**不要自行改 paper/** 下的任何文件**，等 Review 团队反馈\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-11235，工作目录 `/root/trace-verdict-study/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- **环境激活**: `source /root/miniconda3/bin/activate`\n- **模型路径**:\n  - Qwen-7B: `/root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct`\n  - Qwen-1.5B: `/root/trace-verdict-study/models/Qwen2.5-Coder-1.5B-Instruct`\n  - CodeLlama-13B: `/root/autodl-tmp/models/CodeLlama-13b-Instruct-hf/`\n  - DeepSeek-6.7B: `/root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct`\n- **数据路径**: `/root/autodl-tmp/trace-verdict-study-data/`（训练 4720 条，eval 1190 条）\n- **Checkpoint 路径**: `/root/autodl-tmp/trace-verdict-study-checkpoints/{exp_id}/`\n- **磁盘**: 根分区 69%（9.5GB 可用），`/autodl-pub` 5.3T/7.3T（24%），数据盘 400G/439G（4%）\n- **活跃进程**: 无训练在跑，0 active crons\n- **活跃 Worker**: 2 个 running — `worker_analysis_error_analysis_plan018`（plan_018 error analysis，CPU-only）+ `worker_ops_gpu0_orphan_cleanup`（cuda:0 孤儿显存清理）\n\n### 3. 📊 当前状态\nSession #17 刚完成 session-start 初始化并向 Director 汇报。无新事件发生——上一轮 session 已完成全部论文工作（PDF 视觉检查 21 页通过、tex 源码同步、resubmit review continue 模式、派 plan_018/019 任务）。\n\n- Registry：151 实验，106 success / 16 negative / 8 failed / 11 killed\n- 0 RUNNING 实验\n- PREPARING 3 条 + ALLOCATED 1 条均为废弃残留（conclusion=failed/killed）\n- 等待 2 个 Worker 回调：error_analysis_plan018 + gpu0_orphan_cleanup\n- 等待 Review 团队对 resubmitted 论文的反馈（最关键阻塞项）\n\n### 4. 📋 待办（条件触发式）\n- Review 团队反馈到达 → 读反馈内容，按反馈决定是否需要改 paper（改动需 Director 批准）\n- `worker_analysis_error_analysis_plan018` 完成 → 读产出，更新 registry，如有新发现写入 memory.md 并汇报 Director\n- `worker_ops_gpu0_orphan_cleanup` 完成 → 确认 cuda:0 显存释放，更新 report.md GPU 状态\n- Director 指示新实验 → 两张 GPU 空闲可立即使用\n- DDL 2026-05-25 前如 Review 未回 → 汇报 Director 确认是否直接提交当前版本\n\n### 5. 🎯 战略上下文\n**项目核心结论**: Information density determines learning efficiency。Exception events（最高密度信号）在 4 模型 3 架构 1.5B-13B 上 ≥99.33%，50 步收敛；full trace（信息超集）全程震荡 82-89% 不收敛。核心 narrative = \"more information actively impairs learning\"。\n\n**Claims 强度**: C1★★★★★ C2★★★★ C3★★★★★ C4★★★★。C2 是最弱环（CodeLlama+DeepSeek label_only collapse，诚实披露但非完美验证）。\n\n**决策链关键节点**: D108（C2 维持 ★★★★）、D107（C4 最后缺口填补）、D104（DeepSeek VOTA seed42 outlier 仲裁）、D100（C4 hierarchy wording 定稿）。\n\n**易错点**:\n- QUEUED/ALLOCATED 里的 `qwen1.5b_*` / `codellama_*` 条目看起来像未完成实验，但全是废弃残留——实际在 `qwen15b_*` / `codellama13b_*` 下已完成，**不要重跑**\n- DeepSeek VOTA seed42=84.45% 是 outlier（seed123=99.16%, seed456=99.33%），论文已按 D104 处理\n- `deepseek_exception_only_seed123` PREPARING 但 conclusion=negative（91.09%），已在 v2 重跑成功（99.50%），**不要再重跑 v1**\n- 论文 resubmit 是 continue 模式（不是 fresh submit），Review 团队看的是增量改动\n- plan_018（error analysis）和 plan_019（cross-model calibration）是最后两个 rebuttal 储备任务，非阻塞论文提交\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1779402818.md"
+}

@@ -1,0 +1,2174 @@
+{
+  "schema_version": "1.0",
+  "id": "bec8ae6a00ee76dd0ce2",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "paper fix table1 regex label b4",
+  "task_key": "worker_paper_fix_table1_regex_label_b4_20260521T080821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_table1_regex_label_b4_20260521T080821.log",
+    "occurrence": 1,
+    "bytes": 130309,
+    "sha256": "94185bf80c9964ab176166302e74e6f2b810ad423b28c65c326960028d77af1a"
+  },
+  "statistics": {
+    "messages": 53,
+    "user_turns": 0,
+    "tool_calls": 19,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 11,
+      "tool_call": 19,
+      "tool_result": 19,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+                "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "6c3061a8-49e4-4a7f-9c7d-76ed9f873cc7",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779364200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "bdd496ca-3435-49f9-9982-75b8150c5acc",
+                "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the file on the server to see the current state of Table 1 in experiments.tex.",
+              "signature": "Ep8CCmMIDRgCKkB1GEujh1G9dxR3XcNXgoKTYh5XsT2nzYMdgfQnLAt8HWnoLHqcmHh+GBBWnk6/xFagIv3Id2XSGq+XhWRNoUqlMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDOEuPt9gqT+pkk7njRoMbPUexeZpbyfalpEBIjBfLu113mKSccXOWvCAvOOnw8FBPYU8ukMQrBkZz5g7sYvbtoLVZ507PY3AzqSqv1gqasfLZKcKwagkH5f1Ve7kPgUXbB402Sy3UGMJkEB9s7TMCoaxvknQtabNt84WDgCA4jxEmyLA7E6he7fcC80JnI3+sJgzOwa1zz75rYL7CMV/58y3j6N6n9rTrp/CBi1lTmDt99feizLWTukYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "961a68b4-aa28-44b1-8251-c84411c6bb33",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YEHqS5VKBuLKqSpWZi92aE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12192,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12192
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TKEcjkskbYenSXpeHy43ks",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "2fd39eca-5b14-440c-ace4-95139ca012dd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YEHqS5VKBuLKqSpWZi92aE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12192,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12192
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T08:08:35.499Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01TKEcjkskbYenSXpeHy43ks",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "e8e6c41e-d974-4e8e-ad3a-3d07c199962c",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XqRXxdHk2SVvWnDkZgDNoJ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "sed -n '75,105p' /root/trace-verdict-study/docs/paper/experiments.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "97ce3d02-ac0d-427e-8544-dd6b3794ab29",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016kZuUQnyHbvWczU1VqrsPM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 709,
+                "cache_read_input_tokens": 24033,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 709
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T08:08:38.516Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XqRXxdHk2SVvWnDkZgDNoJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "338d3de2-8647-4d2c-b59a-430a59015e4f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012dLXPzCznrZcJeP2bi3RUV",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "head -105 /root/trace-verdict-study/docs/paper/experiments.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "cb52495f-5b99-4e04-91c5-8bfedd346276",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XzuSWnhB5Hi9xha18J5D7x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 221,
+                "cache_read_input_tokens": 24742,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 221
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T08:08:44.959Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012dLXPzCznrZcJeP2bi3RUV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Experiments}\\\\n\\\\nWe evaluate across two research questions:\\\\n(1)~Do Tier~1 exception signals generalize across models?\\\\n(2)~What is the relative contribution of each trace component?\\\\nAll experiments use $N{=}1{,}190$ test samples; accuracy is reported with Wilson 95\\\\\\\\% CIs.\\\\\\\\footnote{Data is partitioned at the problem level (472 train / 119 test problems, zero crossover; \\\\\\\\S\\\\\\\\ref{sec:dataset}). The \\\\\\\\texttt{exception\\\\\\\\_only} format collapses passing solutions into identical rows (48.99\\\\\\\\% test duplicates; Appendix~\\\\\\\\ref{sec:dedup_stats}), but these arise from within-problem variants, not cross-set leakage; deduplication sensitivity analysis confirms 0.00pp delta across all 19 experimental conditions.}\\\\nPairwise comparisons use paired bootstrap resampling ($B{=}10{,}000$, seed=42); all differences are significant at $p{<}.0001$ unless noted.\\\\n\\\\n\\\\\\\\subsection{Cross-Model Comparison}\\\\n\\\\\\\\label{sec:cross_model}\\\\n\\\\nTable~\\\\\\\\ref{tab:cross_model} compares four models spanning an 8.7$\\\\\\\\times$ parameter range (1.5B--13B) and three architecture families (Qwen, DeepSeek, CodeLlama) under key conditions.\\\\n\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Cross-model verdict accuracy (\\\\\\\\%, $N{=}1{,}190$) across four models (1.5B--13B) and three architecture families. Multi-seed entries report mean$\\\\\\\\pm$std over 2--3 seeds. Bold: best per model. Full per-seed breakdowns in Appendix~\\\\\\\\ref{sec:full_results}; per-class metrics in Appendix~\\\\\\\\ref{sec:per_class}. $\\\\\\\\dagger$Single seed (seed~42).}\\\\n\\\\\\\\label{tab:cross_model}\\\\n\\\\\\\\small\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{lcccc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Condition} & \\\\\\\\textbf{Qwen-7B} & \\\\\\\\textbf{Qwen-1.5B} & \\\\\\\\textbf{CL-13B} & \\\\\\\\textbf{DS-6.7B} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nexception\\\\\\\\_only & \\\\\\\\textbf{99.83}{\\\\\\\\scriptsize$\\\\\\\\pm$0.00} & \\\\\\\\textbf{99.83}{\\\\\\\\scriptsize$\\\\\\\\pm$0.00} & \\\\\\\\textbf{99.89}{\\\\\\\\scriptsize$\\\\\\\\pm$0.10} & \\\\\\\\textbf{99.39}{\\\\\\\\scriptsize$\\\\\\\\pm$0.10} \\\\\\\\\\\\\\\\\\\\nae\\\\\\\\_only & 99.64{\\\\\\\\scriptsize$\\\\\\\\pm$0.49} & 98.83{\\\\\\\\scriptsize$\\\\\\\\pm$0.36} & 99.08{\\\\\\\\scriptsize$\\\\\\\\pm$0.00} & 98.53{\\\\\\\\scriptsize$\\\\\\\\pm$0.30} \\\\\\\\\\\\\\\\\\\\nVOTA & 99.05{\\\\\\\\scriptsize$\\\\\\\\pm$0.38} & 99.54{\\\\\\\\scriptsize$\\\\\\\\pm$0.06} & 98.74{\\\\\\\\scriptsize$\\\\\\\\pm$0.24} & 99.25$^\\\\\\\\ddag$ \\\\\\\\\\\\\\\\\\\\nloop\\\\\\\\_only & 86.05{\\\\\\\\scriptsize$\\\\\\\\pm$0.52} & 79.54{\\\\\\\\scriptsize$\\\\\\\\pm$1.42} & 77.40{\\\\\\\\scriptsize$\\\\\\\\pm$1.54} & 80.31{\\\\\\\\scriptsize$\\\\\\\\pm$1.65} \\\\\\\\\\\\\\\\\\\\nno\\\\\\\\_trace & 75.13$^\\\\\\\\dagger$ & 72.35{\\\\\\\\scriptsize$\\\\\\\\pm$4.48} & 76.47$^\\\\\\\\dagger$ & 73.36$^\\\\\\\\dagger$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nMajority baseline & \\\\\\\\multicolumn{4}{c}{71.51} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}%\\\\n}\\\\n\\\\\\\\vspace{2pt}\\\\n\\\\\\\\par\\\\\\\\raggedright\\\\\\\\footnotesize\\\\nDeepSeek \\\\\\\\texttt{exception\\\\\\\\_only} 3 seeds: 99.33/99.50/99.33 ($\\\\\\\\sigma{=}$0.10pp).\\\\nVOTA on Qwen-7B: 99.41/98.66/99.08 ($\\\\\\\\sigma{=}$0.38).\\\\n\\\\\\\\texttt{ae\\\\\\\\_only} 3 seeds: 99.92/99.08/99.92 (mean 99.64\\\\\\\\%); Qwen-7B \\\\\\\\texttt{loop\\\\\\\\_only} 3 seeds: 85.63/85.88/86.64 (mean 86.05\\\\\\\\%).\\\\nQwen-1.5B \\\\\\\\texttt{exception\\\\\\\\_only}: 99.83\\\\\\\\% across 3 seeds ($\\\\\\\\sigma{=}$0).\\\\n$^\\\\\\\\ddag$DeepSeek VOTA 3 seeds: 84.45/99.16/99.33; seed 42 (84.45\\\\\\\\%, fail recall\\\\\\\\,=\\\\\\\\,45.4\\\\\\\\%) is a training failure due to tokenizer-driven truncation (Appendix~\\\\\\\\ref{sec:tokenizer_analysis}), reported as 2-seed mean.\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\paragraph{Exception dominance across families.}\\\\nUnder \\\\\\\\texttt{exception\\\\\\\\_only}, all four models achieve ${\\\\\\\\geq}$99.33\\\\\\\\% across all seeds: Qwen-7B (99.83\\\\\\\\%$\\\\\\\\pm$0.00, 3 seeds), Qwen-1.5B (99.83\\\\\\\\%), CodeLlama-13B (99.89\\\\\\\\%$\\\\\\\\pm$0.10, 3 seeds; seed 123 achieves 100\\\\\\\\%), and DeepSeek-6.7B (99.39\\\\\\\\%$\\\\\\\\pm$0.10, 3 seeds).\\\\nThe cross-model range is 0.50pp (99.39--99.89\\\\\\\\%), the tightest of any condition.\\\\n\\\\n\\\\\\\\paragraph{Scale invariance of exception signals.}\\\\nException-based accuracy is shared by models spanning 1.5B to 13B parameters (8.7$\\\\\\\\times$): both Qwen-1.5B and CodeLlama-13B achieve 99.83\\\\\\\\%+ on the same representation.\\\\nCodeLlama-13B seed 123 achieves 100\\\\\\\\% (0/1190 errors), confirming that Qwen's two persistent errors (from \\\\\\\\texttt{GeneratorExit}; Appendix~\\\\\\\\ref{sec:irreducible}) are high-probability convergence artifacts rather than hard data limitations.\\\\nIn contrast, \\\\\\\\texttt{no\\\\\\\\_trace} scales monotonically with capacity: 72.35\\\\\\\\% (1.5B) $\\\\\\\\to$ 75.13\\\\\\\\% (7B) $\\\\\\\\to$ 76.47\\\\\\\\% (13B), a\\\\n\\\\n... [截断: 输出过长，省略 802 字符] ...\\\\n\\\\n3 seeds) $>$ 98.74\\\\\\\\%$\\\\\\\\pm$0.24 (CodeLlama-13B, 2 seeds), a 0.80pp range.\\\\nDeepSeek seed 42 (84.45\\\\\\\\%, fail recall = 45.4\\\\\\\\%) is a training failure driven by tokenizer-induced truncation (91.7\\\\\\\\% of training samples affected; Appendix~\\\\\\\\ref{sec:tokenizer_analysis}); the remaining seeds (99.16\\\\\\\\%, 99.33\\\\\\\\%) match cross-model performance.\\\\n\\\\\\\\texttt{exception\\\\\\\\_only} inputs are compact (median 150 tokens), sidestepping truncation entirely (Appendix~\\\\\\\\ref{sec:robustness_analysis}).\\\\n\\\\n\\\\\\\\subsection{Component Ablation}\\\\n\\\\\\\\label{sec:ablation}\\\\n\\\\nMulti-seed \\\\\\\\texttt{ae\\\\\\\\_only} ablations use Qwen-7B; \\\\\\\\texttt{loop\\\\\\\\_only} is evaluated across three models to test Tier~2 generalization (Table~\\\\\\\\ref{tab:cross_model}).\\\\nTable~\\\\\\\\ref{tab:ablation} decomposes VOTA on Qwen-2.5-7B and reveals a consistent two-tier pattern: Tier~1 (\\\\\\\\texttt{exception\\\\\\\\_only}) generalizes across all four models (${\\\\\\\\geq}$99.33\\\\\\\\%), while Tier~2 (\\\\\\\\texttt{loop\\\\\\\\_only}) is model-dependent.\\\\n\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Component ablation on Qwen-2.5-7B ($N{=}1{,}190$). Tier~1 signals achieve near-perfect accuracy; combining them (VOTA) slightly dilutes performance. Entries marked $^\\\\\\\\dag$/$^\\\\\\\\S$/$^\\\\\\\\ddag$ are 3-seed mean$\\\\\\\\pm$std; per-seed breakdowns in Appendix~\\\\\\\\ref{sec:full_results}. Seed $\\\\\\\\sigma$ negatively correlates with density (0.00 for exception to 0.52 for loop). Unmarked entries are single seed (seed~42).}\\\\n\\\\\\\\label{tab:ablation}\\\\n\\\\\\\\small\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{llccc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Condition} & \\\\\\\\textbf{Components} & \\\\\\\\textbf{Acc (\\\\\\\\%)} & \\\\\\\\textbf{95\\\\\\\\% CI} & \\\\\\\\textbf{Tier} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nae\\\\\\\\_only & assertion-point & 99.64$^\\\\\\\\dag$ & [99.26, 99.87] & 1 \\\\\\\\\\\\\\\\\\\\nexception\\\\\\\\_only & exception events & \\\\\\\\textbf{99.83} & [99.58, 100.00] & 1 \\\\\\\\\\\\\\\\\\\\nVOTA & exc+ae+loop & 99.05$^\\\\\\\\S$ & [98.49, 99.50] & --- \\\\\\\\\\\\\\\\\\\\nVOTA\\\\\\\\_no\\\\\\\\_ae & exc+loop & 99.41 & [98.90, 99.80] & --- \\\\\\\\\\\\\\\\\\\\nloop\\\\\\\\_only & loop compression & 86.05$^\\\\\\\\ddag$ & [83.97, 87.96] & 2 \\\\\\\\\\\\\\\\\\\\nfull\\\\\\\\_trace & complete trace & 81.76 & [79.70, 83.90] & --- \\\\\\\\\\\\\\\\\\\\nno\\\\\\\\_trace & none & 75.13 & [72.77, 77.48] & --- \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nRegex ($B_{\\\\\\\\text{marker}}$)\\\\\\\\footnotemark & exc.\\\\\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\\\\\\\\\\\n3-shot (Qwen-7B) & in-context learning & 90.84 & --- & --- \\\\\\\\\\\\\\\\\\\\nZero-shot (4 models) & prompting & 51.0--93.5 & --- & --- \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}%\\\\n}\\\\n\\\\\\\\end{table}\\\\n\\\\\\\\footnotetext{$B_{\\\\\\\\text{marker}}$ detects the absence marker \\\\\\\\texttt{[No exception data in trace]}; see Discussion for details.}\\\\n\\\\nTier~1 signals are individually sufficient: \\\\\\\\texttt{exception\\\\\\\\_only} (99.83\\\\\\\\%$\\\\\\\\pm$0.00) exceeds VOTA (99.05\\\\\\\\%$\\\\\\\\pm$0.38) by +0.78pp (2/3 seeds $p{<}.05$, all directionally consistent), implying that combining signals introduces noise.\\\\nRemoving assertion points has no effect (\\\\\\\\texttt{VOTA\\\\\\\\_no\\\\\\\\_ae} = 99.41\\\\\\\\%, single seed), confirming exception dominance.\\\\nThe Tier~1/2 boundary is unambiguous: the lowest Tier~1 condition (\\\\\\\\texttt{ae\\\\\\\\_only} on DeepSeek, 98.53\\\\\\\\%$\\\\\\\\pm$0.30, 2 seeds) exceeds the highest Tier~2 (\\\\\\\\texttt{loop\\\\\\\\_only} on Qwen-7B, 86.05\\\\\\\\%, CI [83.97, 87.96]) by 12.48\\\\\\\\,pp with non-overlapping confidence intervals.\\\\nTier~2 \\\\\\\\texttt{loop\\\\\\\\_only} lifts over \\\\\\\\texttt{no\\\\\\\\_trace} are model-dependent: Qwen shows +10.92pp (7B) and +7.19pp (1.5B, $p{<}.0001$), with the larger 7B gain likely reflecting greater capacity to exploit structured loop patterns; DeepSeek +6.95pp (80.31\\\\\\\\%), CodeLlama +0.93pp (77.40\\\\\\\\%, n.s.).\\\\n\\\\\\\\paragraph{Rule-based baseline comparison.}\\\\nThe strongest non-trivial regex heuristic (B4: exception class name matching; Table~\\\\\\\\ref{tab:regex}) achieves 93.61\\\\\\\\% accuracy (F1=0.876), trailing SFT \\\\\\\\texttt{exception\\\\\\\\_only} (99.83\\\\\\\\%, F1=0.997) by 6.22pp (McNemar $p{<}.001$).\\\\nThe gap concentrates on caught-exception boundary cases: regex flags all exception events as failures, while SFT learns to distinguish caught exceptions (benign, inside \\\\\\\\texttt{try/except}) from uncaught faults, correctly resolving 6/8 boundary samples (Appendix~\\\\\\\\ref{sec:regex_baselines}).\\\\nAcross all formats, SFT outperforms the best applicable regex by +3.62--23.86pp (Appendix~\\\\\\\\ref{sec:regex_baselines}).\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "17c1352f-67cb-4abc-b11d-90ff7565b87a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Experiments}\\\\n\\\\nWe evaluate across two research questions:\\\\n(1)~Do Tier~1 exception signals generalize across models?\\\\n(2)~What is the relative contribution of each trace component?\\\\nAll experiments use $N{=}1{,}190$ test samples; accuracy is reported with Wilson 95\\\\\\\\% CIs.\\\\\\\\footnote{Data is partitioned at the problem level (472 train / 119 test problems, zero crossover; \\\\\\\\S\\\\\\\\ref{sec:dataset}). The \\\\\\\\texttt{exception\\\\\\\\_only} format collapses passing solutions into identical rows (48.99\\\\\\\\% test duplicates; Appendix~\\\\\\\\ref{sec:dedup_stats}), but these arise from within-problem variants, not cross-set leakage; deduplication sensitivity analysis confirms 0.00pp delta across all 19 experimental conditions.}\\\\nPairwise comparisons use paired bootstrap resampling ($B{=}10{,}000$, seed=42); all differences are significant at $p{<}.0001$ unless noted.\\\\n\\\\n\\\\\\\\subsection{Cross-Model Comparison}\\\\n\\\\\\\\label{sec:cross_model}\\\\n\\\\nTable~\\\\\\\\ref{tab:cross_model} compares four models spanning an 8.7$\\\\\\\\times$ parameter range (1.5B--13B) and three architecture families (Qwen, DeepSeek, CodeLlama) under key conditions.\\\\n\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Cross-model verdict accuracy (\\\\\\\\%, $N{=}1{,}190$) across four models (1.5B--13B) and three architecture families. Multi-seed entries report mean$\\\\\\\\pm$std over 2--3 seeds. Bold: best per model. Full per-seed breakdowns in Appendix~\\\\\\\\ref{sec:full_results}; per-class metrics in Appendix~\\\\\\\\ref{sec:per_class}. $\\\\\\\\dagger$Single seed (seed~42).}\\\\n\\\\\\\\label{tab:cross_model}\\\\n\\\\\\\\small\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{lcccc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Condition} & \\\\\\\\textbf{Qwen-7B} & \\\\\\\\textbf{Qwen-1.5B} & \\\\\\\\textbf{CL-13B} & \\\\\\\\textbf{DS-6.7B} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nexception\\\\\\\\_only & \\\\\\\\textbf{99.83}{\\\\\\\\scriptsize$\\\\\\\\pm$0.00} & \\\\\\\\textbf{99.83}{\\\\\\\\scriptsize$\\\\\\\\pm$0.00} & \\\\\\\\textbf{99.89}{\\\\\\\\scriptsize$\\\\\\\\pm$0.10} & \\\\\\\\textbf{99.39}{\\\\\\\\scriptsize$\\\\\\\\pm$0.10} \\\\\\\\\\\\\\\\\\\\nae\\\\\\\\_only & 99.64{\\\\\\\\scriptsize$\\\\\\\\pm$0.49} & 98.83{\\\\\\\\scriptsize$\\\\\\\\pm$0.36} & 99.08{\\\\\\\\scriptsize$\\\\\\\\pm$0.00} & 98.53{\\\\\\\\scriptsize$\\\\\\\\pm$0.30} \\\\\\\\\\\\\\\\\\\\nVOTA & 99.05{\\\\\\\\scriptsize$\\\\\\\\pm$0.38} & 99.54{\\\\\\\\scriptsize$\\\\\\\\pm$0.06} & 98.74{\\\\\\\\scriptsize$\\\\\\\\pm$0.24} & 99.25$^\\\\\\\\ddag$ \\\\\\\\\\\\\\\\\\\\nloop\\\\\\\\_only & 86.05{\\\\\\\\scriptsize$\\\\\\\\pm$0.52} & 79.54{\\\\\\\\scriptsize$\\\\\\\\pm$1.42} & 77.40{\\\\\\\\scriptsize$\\\\\\\\pm$1.54} & 80.31{\\\\\\\\scriptsize$\\\\\\\\pm$1.65} \\\\\\\\\\\\\\\\\\\\nno\\\\\\\\_trace & 75.13$^\\\\\\\\dagger$ & 72.35{\\\\\\\\scriptsize$\\\\\\\\pm$4.48} & 76.47$^\\\\\\\\dagger$ & 73.36$^\\\\\\\\dagger$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nMajority baseline & \\\\\\\\multicolumn{4}{c}{71.51} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}%\\\\n}\\\\n\\\\\\\\vspace{2pt}\\\\n\\\\\\\\par\\\\\\\\raggedright\\\\\\\\footnotesize\\\\nDeepSeek \\\\\\\\texttt{exception\\\\\\\\_only} 3 seeds: 99.33/99.50/99.33 ($\\\\\\\\sigma{=}$0.10pp).\\\\nVOTA on Qwen-7B: 99.41/98.66/99.08 ($\\\\\\\\sigma{=}$0.38).\\\\n\\\\\\\\texttt{ae\\\\\\\\_only} 3 seeds: 99.92/99.08/99.92 (mean 99.64\\\\\\\\%); Qwen-7B \\\\\\\\texttt{loop\\\\\\\\_only} 3 seeds: 85.63/85.88/86.64 (mean 86.05\\\\\\\\%).\\\\nQwen-1.5B \\\\\\\\texttt{exception\\\\\\\\_only}: 99.83\\\\\\\\% across 3 seeds ($\\\\\\\\sigma{=}$0).\\\\n$^\\\\\\\\ddag$DeepSeek VOTA 3 seeds: 84.45/99.16/99.33; seed 42 (84.45\\\\\\\\%, fail recall\\\\\\\\,=\\\\\\\\,45.4\\\\\\\\%) is a training failure due to tokenizer-driven truncation (Appendix~\\\\\\\\ref{sec:tokenizer_analysis}), reported as 2-seed mean.\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\paragraph{Exception dominance across families.}\\\\nUnder \\\\\\\\texttt{exception\\\\\\\\_only}, all four models achieve ${\\\\\\\\geq}$99.33\\\\\\\\% across all seeds: Qwen-7B (99.83\\\\\\\\%$\\\\\\\\pm$0.00, 3 seeds), Qwen-1.5B (99.83\\\\\\\\%), CodeLlama-13B (99.89\\\\\\\\%$\\\\\\\\pm$0.10, 3 seeds; seed 123 achieves 100\\\\\\\\%), and DeepSeek-6.7B (99.39\\\\\\\\%$\\\\\\\\pm$0.10, 3 seeds).\\\\nThe cross-model range is 0.50pp (99.39--99.89\\\\\\\\%), the tightest of any condition.\\\\n\\\\n\\\\\\\\paragraph{Scale invariance of exception signals.}\\\\nException-based accuracy is shared by models spanning 1.5B to 13B parameters (8.7$\\\\\\\\times$): both Qwen-1.5B and CodeLlama-13B achieve 99.83\\\\\\\\%+ on the same representation.\\\\nCodeLlama-13B seed 123 achieves 100\\\\\\\\% (0/1190 errors), confirming that Qwen's two persistent errors (from \\\\\\\\texttt{GeneratorExit}; Appendix~\\\\\\\\ref{sec:irreducible}) are high-probability convergence artifacts rather than hard data limitations.\\\\nIn contrast, \\\\\\\\texttt{no\\\\\\\\_trace} scales monotonically with capacity: 72.35\\\\\\\\% (1.5B) $\\\\\\\\to$ 75.13\\\\\\\\% (7B) $\\\\\\\\to$ 76.47\\\\\\\\% (13B), a\\\\n\\\\n... [截断: 输出过长，省略 802 字符] ...\\\\n\\\\n3 seeds) $>$ 98.74\\\\\\\\%$\\\\\\\\pm$0.24 (CodeLlama-13B, 2 seeds), a 0.80pp range.\\\\nDeepSeek seed 42 (84.45\\\\\\\\%, fail recall = 45.4\\\\\\\\%) is a training failure driven by tokenizer-induced truncation (91.7\\\\\\\\% of training samples affected; Appendix~\\\\\\\\ref{sec:tokenizer_analysis}); the remaining seeds (99.16\\\\\\\\%, 99.33\\\\\\\\%) match cross-model performance.\\\\n\\\\\\\\texttt{exception\\\\\\\\_only} inputs are compact (median 150 tokens), sidestepping truncation entirely (Appendix~\\\\\\\\ref{sec:robustness_analysis}).\\\\n\\\\n\\\\\\\\subsection{Component Ablation}\\\\n\\\\\\\\label{sec:ablation}\\\\n\\\\nMulti-seed \\\\\\\\texttt{ae\\\\\\\\_only} ablations use Qwen-7B; \\\\\\\\texttt{loop\\\\\\\\_only} is evaluated across three models to test Tier~2 generalization (Table~\\\\\\\\ref{tab:cross_model}).\\\\nTable~\\\\\\\\ref{tab:ablation} decomposes VOTA on Qwen-2.5-7B and reveals a consistent two-tier pattern: Tier~1 (\\\\\\\\texttt{exception\\\\\\\\_only}) generalizes across all four models (${\\\\\\\\geq}$99.33\\\\\\\\%), while Tier~2 (\\\\\\\\texttt{loop\\\\\\\\_only}) is model-dependent.\\\\n\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Component ablation on Qwen-2.5-7B ($N{=}1{,}190$). Tier~1 signals achieve near-perfect accuracy; combining them (VOTA) slightly dilutes performance. Entries marked $^\\\\\\\\dag$/$^\\\\\\\\S$/$^\\\\\\\\ddag$ are 3-seed mean$\\\\\\\\pm$std; per-seed breakdowns in Appendix~\\\\\\\\ref{sec:full_results}. Seed $\\\\\\\\sigma$ negatively correlates with density (0.00 for exception to 0.52 for loop). Unmarked entries are single seed (seed~42).}\\\\n\\\\\\\\label{tab:ablation}\\\\n\\\\\\\\small\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{llccc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Condition} & \\\\\\\\textbf{Components} & \\\\\\\\textbf{Acc (\\\\\\\\%)} & \\\\\\\\textbf{95\\\\\\\\% CI} & \\\\\\\\textbf{Tier} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nae\\\\\\\\_only & assertion-point & 99.64$^\\\\\\\\dag$ & [99.26, 99.87] & 1 \\\\\\\\\\\\\\\\\\\\nexception\\\\\\\\_only & exception events & \\\\\\\\textbf{99.83} & [99.58, 100.00] & 1 \\\\\\\\\\\\\\\\\\\\nVOTA & exc+ae+loop & 99.05$^\\\\\\\\S$ & [98.49, 99.50] & --- \\\\\\\\\\\\\\\\\\\\nVOTA\\\\\\\\_no\\\\\\\\_ae & exc+loop & 99.41 & [98.90, 99.80] & --- \\\\\\\\\\\\\\\\\\\\nloop\\\\\\\\_only & loop compression & 86.05$^\\\\\\\\ddag$ & [83.97, 87.96] & 2 \\\\\\\\\\\\\\\\\\\\nfull\\\\\\\\_trace & complete trace & 81.76 & [79.70, 83.90] & --- \\\\\\\\\\\\\\\\\\\\nno\\\\\\\\_trace & none & 75.13 & [72.77, 77.48] & --- \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nRegex ($B_{\\\\\\\\text{marker}}$)\\\\\\\\footnotemark & exc.\\\\\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\\\\\\\\\\\n3-shot (Qwen-7B) & in-context learning & 90.84 & --- & --- \\\\\\\\\\\\\\\\\\\\nZero-shot (4 models) & prompting & 51.0--93.5 & --- & --- \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}%\\\\n}\\\\n\\\\\\\\end{table}\\\\n\\\\\\\\footnotetext{$B_{\\\\\\\\text{marker}}$ detects the absence marker \\\\\\\\texttt{[No exception data in trace]}; see Discussion for details.}\\\\n\\\\nTier~1 signals are individually sufficient: \\\\\\\\texttt{exception\\\\\\\\_only} (99.83\\\\\\\\%$\\\\\\\\pm$0.00) exceeds VOTA (99.05\\\\\\\\%$\\\\\\\\pm$0.38) by +0.78pp (2/3 seeds $p{<}.05$, all directionally consistent), implying that combining signals introduces noise.\\\\nRemoving assertion points has no effect (\\\\\\\\texttt{VOTA\\\\\\\\_no\\\\\\\\_ae} = 99.41\\\\\\\\%, single seed), confirming exception dominance.\\\\nThe Tier~1/2 boundary is unambiguous: the lowest Tier~1 condition (\\\\\\\\texttt{ae\\\\\\\\_only} on DeepSeek, 98.53\\\\\\\\%$\\\\\\\\pm$0.30, 2 seeds) exceeds the highest Tier~2 (\\\\\\\\texttt{loop\\\\\\\\_only} on Qwen-7B, 86.05\\\\\\\\%, CI [83.97, 87.96]) by 12.48\\\\\\\\,pp with non-overlapping confidence intervals.\\\\nTier~2 \\\\\\\\texttt{loop\\\\\\\\_only} lifts over \\\\\\\\texttt{no\\\\\\\\_trace} are model-dependent: Qwen shows +10.92pp (7B) and +7.19pp (1.5B, $p{<}.0001$), with the larger 7B gain likely reflecting greater capacity to exploit structured loop patterns; DeepSeek +6.95pp (80.31\\\\\\\\%), CodeLlama +0.93pp (77.40\\\\\\\\%, n.s.).\\\\n\\\\\\\\paragraph{Rule-based baseline comparison.}\\\\nThe strongest non-trivial regex heuristic (B4: exception class name matching; Table~\\\\\\\\ref{tab:regex}) achieves 93.61\\\\\\\\% accuracy (F1=0.876), trailing SFT \\\\\\\\texttt{exception\\\\\\\\_only} (99.83\\\\\\\\%, F1=0.997) by 6.22pp (McNemar $p{<}.001$).\\\\nThe gap concentrates on caught-exception boundary cases: regex flags all exception events as failures, while SFT learns to distinguish caught exceptions (benign, inside \\\\\\\\texttt{try/except}) from uncaught faults, correctly resolving 6/8 boundary samples (Appendix~\\\\\\\\ref{sec:regex_baselines}).\\\\nAcross all formats, SFT outperforms the best applicable regex by +3.62--23.86pp (Appendix~\\\\\\\\ref{sec:regex_baselines}).\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Experiments}\\n\\nWe evaluate across two research questions:\\n(1)~Do Tier~1 exception signals generalize across models?\\n(2)~What is the relative contribution of each trace component?\\nAll experiments use $N{=}1{,}190$ test samples; accuracy is reported with Wilson 95\\\\% CIs.\\\\footnote{Data is partitioned at the problem level (472 train / 119 test problems, zero crossover; \\\\S\\\\ref{sec:dataset}). The \\\\texttt{exception\\\\_only} format collapses passing solutions into identical rows (48.99\\\\% test duplicates; Appendix~\\\\ref{sec:dedup_stats}), but these arise from within-problem variants, not cross-set leakage; deduplication sensitivity analysis confirms 0.00pp delta across all 19 experimental conditions.}\\nPairwise comparisons use paired bootstrap resampling ($B{=}10{,}000$, seed=42); all differences are significant at $p{<}.0001$ unless noted.\\n\\n\\\\subsection{Cross-Model Comparison}\\n\\\\label{sec:cross_model}\\n\\nTable~\\\\ref{tab:cross_model} compares four models spanning an 8.7$\\\\times$ parameter range (1.5B--13B) and three architecture families (Qwen, DeepSeek, CodeLlama) under key conditions.\\n\\n\\\\begin{table}[t]\\n\\\\centering\\n\\\\caption{Cross-model verdict accuracy (\\\\%, $N{=}1{,}190$) across four models (1.5B--13B) and three architecture families. Multi-seed entries report mean$\\\\pm$std over 2--3 seeds. Bold: best per model. Full per-seed breakdowns in Appendix~\\\\ref{sec:full_results}; per-class metrics in Appendix~\\\\ref{sec:per_class}. $\\\\dagger$Single seed (seed~42).}\\n\\\\label{tab:cross_model}\\n\\\\small\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{lcccc}\\n\\\\toprule\\n\\\\textbf{Condition} & \\\\textbf{Qwen-7B} & \\\\textbf{Qwen-1.5B} & \\\\textbf{CL-13B} & \\\\textbf{DS-6.7B} \\\\\\\\\\n\\\\midrule\\nexception\\\\_only & \\\\textbf{99.83}{\\\\scriptsize$\\\\pm$0.00} & \\\\textbf{99.83}{\\\\scriptsize$\\\\pm$0.00} & \\\\textbf{99.89}{\\\\scriptsize$\\\\pm$0.10} & \\\\textbf{99.39}{\\\\scriptsize$\\\\pm$0.10} \\\\\\\\\\nae\\\\_only & 99.64{\\\\scriptsize$\\\\pm$0.49} & 98.83{\\\\scriptsize$\\\\pm$0.36} & 99.08{\\\\scriptsize$\\\\pm$0.00} & 98.53{\\\\scriptsize$\\\\pm$0.30} \\\\\\\\\\nVOTA & 99.05{\\\\scriptsize$\\\\pm$0.38} & 99.54{\\\\scriptsize$\\\\pm$0.06} & 98.74{\\\\scriptsize$\\\\pm$0.24} & 99.25$^\\\\ddag$ \\\\\\\\\\nloop\\\\_only & 86.05{\\\\scriptsize$\\\\pm$0.52} & 79.54{\\\\scriptsize$\\\\pm$1.42} & 77.40{\\\\scriptsize$\\\\pm$1.54} & 80.31{\\\\scriptsize$\\\\pm$1.65} \\\\\\\\\\nno\\\\_trace & 75.13$^\\\\dagger$ & 72.35{\\\\scriptsize$\\\\pm$4.48} & 76.47$^\\\\dagger$ & 73.36$^\\\\dagger$ \\\\\\\\\\n\\\\midrule\\nMajority baseline & \\\\multicolumn{4}{c}{71.51} \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}%\\n}\\n\\\\vspace{2pt}\\n\\\\par\\\\raggedright\\\\footnotesize\\nDeepSeek \\\\texttt{exception\\\\_only} 3 seeds: 99.33/99.50/99.33 ($\\\\sigma{=}$0.10pp).\\nVOTA on Qwen-7B: 99.41/98.66/99.08 ($\\\\sigma{=}$0.38).\\n\\\\texttt{ae\\\\_only} 3 seeds: 99.92/99.08/99.92 (mean 99.64\\\\%); Qwen-7B \\\\texttt{loop\\\\_only} 3 seeds: 85.63/85.88/86.64 (mean 86.05\\\\%).\\nQwen-1.5B \\\\texttt{exception\\\\_only}: 99.83\\\\% across 3 seeds ($\\\\sigma{=}$0).\\n$^\\\\ddag$DeepSeek VOTA 3 seeds: 84.45/99.16/99.33; seed 42 (84.45\\\\%, fail recall\\\\,=\\\\,45.4\\\\%) is a training failure due to tokenizer-driven truncation (Appendix~\\\\ref{sec:tokenizer_analysis}), reported as 2-seed mean.\\n\\\\end{table}\\n\\n\\\\paragraph{Exception dominance across families.}\\nUnder \\\\texttt{exception\\\\_only}, all four models achieve ${\\\\geq}$99.33\\\\% across all seeds: Qwen-7B (99.83\\\\%$\\\\pm$0.00, 3 seeds), Qwen-1.5B (99.83\\\\%), CodeLlama-13B (99.89\\\\%$\\\\pm$0.10, 3 seeds; seed 123 achieves 100\\\\%), and DeepSeek-6.7B (99.39\\\\%$\\\\pm$0.10, 3 seeds).\\nThe cross-model range is 0.50pp (99.39--99.89\\\\%), the tightest of any condition.\\n\\n\\\\paragraph{Scale invariance of exception signals.}\\nException-based accuracy is shared by models spanning 1.5B to 13B parameters (8.7$\\\\times$): both Qwen-1.5B and CodeLlama-13B achieve 99.83\\\\%+ on the same representation.\\nCodeLlama-13B seed 123 achieves 100\\\\% (0/1190 errors), confirming that Qwen's two persistent errors (from \\\\texttt{GeneratorExit}; Appendix~\\\\ref{sec:irreducible}) are high-probability convergence artifacts rather than hard data limitations.\\nIn contrast, \\\\texttt{no\\\\_trace} scales monotonically with capacity: 72.35\\\\% (1.5B) $\\\\to$ 75.13\\\\% (7B) $\\\\to$ 76.47\\\\% (13B), a\\n\\n... [截断: 输出过长，省略 802 字符] ...\\n\\n3 seeds) $>$ 98.74\\\\%$\\\\pm$0.24 (CodeLlama-13B, 2 seeds), a 0.80pp range.\\nDeepSeek seed 42 (84.45\\\\%, fail recall = 45.4\\\\%) is a training failure driven by tokenizer-induced truncation (91.7\\\\% of training samples affected; Appendix~\\\\ref{sec:tokenizer_analysis}); the remaining seeds (99.16\\\\%, 99.33\\\\%) match cross-model performance.\\n\\\\texttt{exception\\\\_only} inputs are compact (median 150 tokens), sidestepping truncation entirely (Appendix~\\\\ref{sec:robustness_analysis}).\\n\\n\\\\subsection{Component Ablation}\\n\\\\label{sec:ablation}\\n\\nMulti-seed \\\\texttt{ae\\\\_only} ablations use Qwen-7B; \\\\texttt{loop\\\\_only} is evaluated across three models to test Tier~2 generalization (Table~\\\\ref{tab:cross_model}).\\nTable~\\\\ref{tab:ablation} decomposes VOTA on Qwen-2.5-7B and reveals a consistent two-tier pattern: Tier~1 (\\\\texttt{exception\\\\_only}) generalizes across all four models (${\\\\geq}$99.33\\\\%), while Tier~2 (\\\\texttt{loop\\\\_only}) is model-dependent.\\n\\n\\\\begin{table}[t]\\n\\\\centering\\n\\\\caption{Component ablation on Qwen-2.5-7B ($N{=}1{,}190$). Tier~1 signals achieve near-perfect accuracy; combining them (VOTA) slightly dilutes performance. Entries marked $^\\\\dag$/$^\\\\S$/$^\\\\ddag$ are 3-seed mean$\\\\pm$std; per-seed breakdowns in Appendix~\\\\ref{sec:full_results}. Seed $\\\\sigma$ negatively correlates with density (0.00 for exception to 0.52 for loop). Unmarked entries are single seed (seed~42).}\\n\\\\label{tab:ablation}\\n\\\\small\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{llccc}\\n\\\\toprule\\n\\\\textbf{Condition} & \\\\textbf{Components} & \\\\textbf{Acc (\\\\%)} & \\\\textbf{95\\\\% CI} & \\\\textbf{Tier} \\\\\\\\\\n\\\\midrule\\nae\\\\_only & assertion-point & 99.64$^\\\\dag$ & [99.26, 99.87] & 1 \\\\\\\\\\nexception\\\\_only & exception events & \\\\textbf{99.83} & [99.58, 100.00] & 1 \\\\\\\\\\nVOTA & exc+ae+loop & 99.05$^\\\\S$ & [98.49, 99.50] & --- \\\\\\\\\\nVOTA\\\\_no\\\\_ae & exc+loop & 99.41 & [98.90, 99.80] & --- \\\\\\\\\\nloop\\\\_only & loop compression & 86.05$^\\\\ddag$ & [83.97, 87.96] & 2 \\\\\\\\\\nfull\\\\_trace & complete trace & 81.76 & [79.70, 83.90] & --- \\\\\\\\\\nno\\\\_trace & none & 75.13 & [72.77, 77.48] & --- \\\\\\\\\\n\\\\midrule\\nRegex ($B_{\\\\text{marker}}$)\\\\footnotemark & exc.\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\n3-shot (Qwen-7B) & in-context learning & 90.84 & --- & --- \\\\\\\\\\nZero-shot (4 models) & prompting & 51.0--93.5 & --- & --- \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}%\\n}\\n\\\\end{table}\\n\\\\footnotetext{$B_{\\\\text{marker}}$ detects the absence marker \\\\texttt{[No exception data in trace]}; see Discussion for details.}\\n\\nTier~1 signals are individually sufficient: \\\\texttt{exception\\\\_only} (99.83\\\\%$\\\\pm$0.00) exceeds VOTA (99.05\\\\%$\\\\pm$0.38) by +0.78pp (2/3 seeds $p{<}.05$, all directionally consistent), implying that combining signals introduces noise.\\nRemoving assertion points has no effect (\\\\texttt{VOTA\\\\_no\\\\_ae} = 99.41\\\\%, single seed), confirming exception dominance.\\nThe Tier~1/2 boundary is unambiguous: the lowest Tier~1 condition (\\\\texttt{ae\\\\_only} on DeepSeek, 98.53\\\\%$\\\\pm$0.30, 2 seeds) exceeds the highest Tier~2 (\\\\texttt{loop\\\\_only} on Qwen-7B, 86.05\\\\%, CI [83.97, 87.96]) by 12.48\\\\,pp with non-overlapping confidence intervals.\\nTier~2 \\\\texttt{loop\\\\_only} lifts over \\\\texttt{no\\\\_trace} are model-dependent: Qwen shows +10.92pp (7B) and +7.19pp (1.5B, $p{<}.0001$), with the larger 7B gain likely reflecting greater capacity to exploit structured loop patterns; DeepSeek +6.95pp (80.31\\\\%), CodeLlama +0.93pp (77.40\\\\%, n.s.).\\n\\\\paragraph{Rule-based baseline comparison.}\\nThe strongest non-trivial regex heuristic (B4: exception class name matching; Table~\\\\ref{tab:regex}) achieves 93.61\\\\% accuracy (F1=0.876), trailing SFT \\\\texttt{exception\\\\_only} (99.83\\\\%, F1=0.997) by 6.22pp (McNemar $p{<}.001$).\\nThe gap concentrates on caught-exception boundary cases: regex flags all exception events as failures, while SFT learns to distinguish caught exceptions (benign, inside \\\\texttt{try/except}) from uncaught faults, correctly resolving 6/8 boundary samples (Appendix~\\\\ref{sec:regex_baselines}).\\nAcross all formats, SFT outperforms the best applicable regex by +3.62--23.86pp (Appendix~\\\\ref{sec:regex_baselines}).\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I found the issue. In the table around line 97-98 area, there's:\n\n```\nRegex ($B_{\\text{marker}}$)\\footnotemark & exc.\\ type regex & 93.61 & --- & --- \\\\\n```\n\nAnd the footnote:\n```\n\\footnotetext{$B_{\\text{marker}}$ detects the absence marker \\texttt{[No exception data in trace]}; see Discussion for details.}\n```\n\nI need to:\n1. Change `Regex ($B_{\\text{marker}}$)` to `Regex ($B_4$)`\n\n\n2. Update or remove the footnote since it's describing the wrong baseline\n\nLet me search for the exact line numbers to make sure I'm editing the right sections.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "e7de3725-4912-4425-90c8-68b01640a099",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VXk3Hp8ArXv2F86ZCkQjcK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3875,
+                "cache_read_input_tokens": 24963,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3875
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015PCm83L8DfkfLb1kfLzspP",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "grep -n \"B_marker\\|B_{\\\\\\\\text{marker}}\\|Regex\\|footnote\" /root/trace-verdict-study/docs/paper/experiments.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "ad9247bd-dba0-4bf8-9a72-0fa08e9601c3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VXk3Hp8ArXv2F86ZCkQjcK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3875,
+                "cache_read_input_tokens": 24963,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3875
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T08:08:52.519Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015PCm83L8DfkfLb1kfLzspP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "46b568c6-4a98-44f7-a93b-358e32f05071",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VGtQu54aVeJ85pMXnmdYDK",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "grep -n \"B_marker\\|B_{.text{marker}}\\|footnotemark\\|footnotetext\" /root/trace-verdict-study/docs/paper/experiments.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "cbd993c3-c72f-4ac1-aa23-48f9d1038bbe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EyqsVqKPwTn444x26qmLkF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 442,
+                "cache_read_input_tokens": 28838,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 442
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T08:08:55.889Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VGtQu54aVeJ85pMXnmdYDK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "0c8316e9-c003-48bc-91a7-0a8b14c86607",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QE1jpRLWr7dNE96cFgvwjF",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "grep -n \"marker\" /root/trace-verdict-study/docs/paper/experiments.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "194ba241-156c-4871-a823-2ce4c562ea79",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D1mrj49E9QdKqAbgqqWW8N",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 237,
+                "cache_read_input_tokens": 29280,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 237
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T08:08:59.452Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QE1jpRLWr7dNE96cFgvwjF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"55:\\\\\\\\caption{Verdict accuracy vs.\\\\\\\\ model scale. \\\\\\\\texttt{exception\\\\\\\\_only} maintains ${\\\\\\\\geq}$99.33\\\\\\\\% regardless of scale, while \\\\\\\\texttt{no\\\\\\\\_trace} shows monotonic sensitivity (+4.12pp). \\\\\\\\texttt{nomarker} (markers removed) shows no scale degradation.}\\\\n88:Regex ($B_{\\\\\\\\text{marker}}$)\\\\\\\\footnotemark & exc.\\\\\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\\\\\\\\\\\n95:\\\\\\\\footnotetext{$B_{\\\\\\\\text{marker}}$ detects the absence marker \\\\\\\\texttt{[No exception data in trace]}; see Discussion for details.}\\\\n111:\\\\\\\\label{sec:nomarker}\\\\n113:The \\\\\\\\texttt{exception\\\\\\\\_only} format includes a \\\\\\\\texttt{[No exception data in trace]} marker in all pass-class samples (regex baseline B5 exploits this for 99.33\\\\\\\\% accuracy; Appendix~\\\\\\\\ref{sec:regex_baselines}).\\\\n114:To quantify the marker's contribution, we retrain with all format markers removed (\\\\\\\\texttt{nomarker} condition).\\\\n118:The marker contribution (${\\\\\\\\sim}$2pp) accounts for only ${\\\\\\\\sim}$9\\\\\\\\% of the total exception lift over \\\\\\\\texttt{no\\\\\\\\_trace} (24.70pp on 7B).\\\\n119:Exception events thus provide two signal layers that show no degradation at smaller scale: structural markers (${\\\\\\\\sim}$2pp, regex-learnable) and semantic exception content (${\\\\\\\\sim}$22pp, requiring SFT to distinguish caught from uncaught exceptions).\\\\n150:Error analysis provides direct evidence: all 217 \\\\\\\\texttt{full\\\\\\\\_trace} errors occur in samples where tokenizer truncation removes diagnostic markers, and among the 61 samples where \\\\\\\\texttt{full\\\\\\\\_trace} underperforms \\\\\\\\texttt{no\\\\\\\\_trace}, all exhibit the same truncation pattern---confirming that information overload manifests through a mechanical truncation pathway rather than semantic confusion.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "64f86c87-ce15-4953-b28f-04acdbe80b6a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"55:\\\\\\\\caption{Verdict accuracy vs.\\\\\\\\ model scale. \\\\\\\\texttt{exception\\\\\\\\_only} maintains ${\\\\\\\\geq}$99.33\\\\\\\\% regardless of scale, while \\\\\\\\texttt{no\\\\\\\\_trace} shows monotonic sensitivity (+4.12pp). \\\\\\\\texttt{nomarker} (markers removed) shows no scale degradation.}\\\\n88:Regex ($B_{\\\\\\\\text{marker}}$)\\\\\\\\footnotemark & exc.\\\\\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\\\\\\\\\\\n95:\\\\\\\\footnotetext{$B_{\\\\\\\\text{marker}}$ detects the absence marker \\\\\\\\texttt{[No exception data in trace]}; see Discussion for details.}\\\\n111:\\\\\\\\label{sec:nomarker}\\\\n113:The \\\\\\\\texttt{exception\\\\\\\\_only} format includes a \\\\\\\\texttt{[No exception data in trace]} marker in all pass-class samples (regex baseline B5 exploits this for 99.33\\\\\\\\% accuracy; Appendix~\\\\\\\\ref{sec:regex_baselines}).\\\\n114:To quantify the marker's contribution, we retrain with all format markers removed (\\\\\\\\texttt{nomarker} condition).\\\\n118:The marker contribution (${\\\\\\\\sim}$2pp) accounts for only ${\\\\\\\\sim}$9\\\\\\\\% of the total exception lift over \\\\\\\\texttt{no\\\\\\\\_trace} (24.70pp on 7B).\\\\n119:Exception events thus provide two signal layers that show no degradation at smaller scale: structural markers (${\\\\\\\\sim}$2pp, regex-learnable) and semantic exception content (${\\\\\\\\sim}$22pp, requiring SFT to distinguish caught from uncaught exceptions).\\\\n150:Error analysis provides direct evidence: all 217 \\\\\\\\texttt{full\\\\\\\\_trace} errors occur in samples where tokenizer truncation removes diagnostic markers, and among the 61 samples where \\\\\\\\texttt{full\\\\\\\\_trace} underperforms \\\\\\\\texttt{no\\\\\\\\_trace}, all exhibit the same truncation pattern---confirming that information overload manifests through a mechanical truncation pathway rather than semantic confusion.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"55:\\\\caption{Verdict accuracy vs.\\\\ model scale. \\\\texttt{exception\\\\_only} maintains ${\\\\geq}$99.33\\\\% regardless of scale, while \\\\texttt{no\\\\_trace} shows monotonic sensitivity (+4.12pp). \\\\texttt{nomarker} (markers removed) shows no scale degradation.}\\n88:Regex ($B_{\\\\text{marker}}$)\\\\footnotemark & exc.\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\n95:\\\\footnotetext{$B_{\\\\text{marker}}$ detects the absence marker \\\\texttt{[No exception data in trace]}; see Discussion for details.}\\n111:\\\\label{sec:nomarker}\\n113:The \\\\texttt{exception\\\\_only} format includes a \\\\texttt{[No exception data in trace]} marker in all pass-class samples (regex baseline B5 exploits this for 99.33\\\\% accuracy; Appendix~\\\\ref{sec:regex_baselines}).\\n114:To quantify the marker's contribution, we retrain with all format markers removed (\\\\texttt{nomarker} condition).\\n118:The marker contribution (${\\\\sim}$2pp) accounts for only ${\\\\sim}$9\\\\% of the total exception lift over \\\\texttt{no\\\\_trace} (24.70pp on 7B).\\n119:Exception events thus provide two signal layers that show no degradation at smaller scale: structural markers (${\\\\sim}$2pp, regex-learnable) and semantic exception content (${\\\\sim}$22pp, requiring SFT to distinguish caught from uncaught exceptions).\\n150:Error analysis provides direct evidence: all 217 \\\\texttt{full\\\\_trace} errors occur in samples where tokenizer truncation removes diagnostic markers, and among the 61 samples where \\\\texttt{full\\\\_trace} underperforms \\\\texttt{no\\\\_trace}, all exhibit the same truncation pattern---confirming that information overload manifests through a mechanical truncation pathway rather than semantic confusion.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到了。需要修改两处：\n- **L88**: `Regex ($B_{\\text{marker}}$)\\footnotemark` → `Regex ($B_4$)`（去掉 `\\footnotemark`）\n- **L95**: 删除整行 `\\footnotetext{...}`（描述的是 B5 marker detection，不是 B4）"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "52fa17bf-3724-4fb1-b110-cf0c13748dac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KahVPAvKhgAFiDHAKQRAdV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 717,
+                "cache_read_input_tokens": 29517,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 717
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UhtFrwrJgw5nEWLwVfRDvk",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-11235",
+                "command": "cd /root/trace-verdict-study/docs/paper && sed -i '88s/Regex ($B_{\\\\text{marker}}$)\\\\footnotemark/Regex ($B_4$)/' experiments.tex && sed -i '95d' experiments.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "ff1457ed-5810-4f0e-978e-b0e6b3d0d9f9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KahVPAvKhgAFiDHAKQRAdV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 717,
+                "cache_read_input_tokens": 29517,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 717
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T08:09:05.352Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UhtFrwrJgw5nEWLwVfRDvk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "6c34e0ce-38aa-4cb9-a574-1783bb000bde",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QoaFSWDL4KmjYp4ZnZmHEf",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "grep -n \"B_4\\|Regex\\|footnote\" /root/trace-verdict-study/docs/paper/experiments.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "308b455c-f48e-4b6c-891a-585b7cd03780",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RZtXGDLR57MR8zp8vcUXpY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 328,
+                "cache_read_input_tokens": 30234,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 328
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T08:09:08.398Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QoaFSWDL4KmjYp4ZnZmHEf",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "9fbcad19-6eb4-4310-baab-84bcb5d3cb46",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01URFHyDFfwi7u629Uv9TNf9",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "grep -n \"B_4\" /root/trace-verdict-study/docs/paper/experiments.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "dad395b6-d8a3-4051-aa6e-93d5fead4ba5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DiRWkAiY2xgwkF9GR2R9mr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 226,
+                "cache_read_input_tokens": 30562,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 226
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T08:09:12.238Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01URFHyDFfwi7u629Uv9TNf9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "94844849-a681-480e-a88f-aa58c4dfbe74",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013hqVVvfUuo8avkVhVD18Wg",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "grep -n \"marker\" /root/trace-verdict-study/docs/paper/experiments.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "05d9f083-7b2a-40d2-838a-bdf8bf01b74a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DiRWkAiY2xgwkF9GR2R9mr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 226,
+                "cache_read_input_tokens": 30562,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 226
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T08:09:12.843Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013hqVVvfUuo8avkVhVD18Wg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"55:\\\\\\\\caption{Verdict accuracy vs.\\\\\\\\ model scale. \\\\\\\\texttt{exception\\\\\\\\_only} maintains ${\\\\\\\\geq}$99.33\\\\\\\\% regardless of scale, while \\\\\\\\texttt{no\\\\\\\\_trace} shows monotonic sensitivity (+4.12pp). \\\\\\\\texttt{nomarker} (markers removed) shows no scale degradation.}\\\\n88:Regex ($B_{\\\\\\\\text{marker}}$)\\\\\\\\footnotemark & exc.\\\\\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\\\\\\\\\\\n110:\\\\\\\\label{sec:nomarker}\\\\n112:The \\\\\\\\texttt{exception\\\\\\\\_only} format includes a \\\\\\\\texttt{[No exception data in trace]} marker in all pass-class samples (regex baseline B5 exploits this for 99.33\\\\\\\\% accuracy; Appendix~\\\\\\\\ref{sec:regex_baselines}).\\\\n113:To quantify the marker's contribution, we retrain with all format markers removed (\\\\\\\\texttt{nomarker} condition).\\\\n117:The marker contribution (${\\\\\\\\sim}$2pp) accounts for only ${\\\\\\\\sim}$9\\\\\\\\% of the total exception lift over \\\\\\\\texttt{no\\\\\\\\_trace} (24.70pp on 7B).\\\\n118:Exception events thus provide two signal layers that show no degradation at smaller scale: structural markers (${\\\\\\\\sim}$2pp, regex-learnable) and semantic exception content (${\\\\\\\\sim}$22pp, requiring SFT to distinguish caught from uncaught exceptions).\\\\n149:Error analysis provides direct evidence: all 217 \\\\\\\\texttt{full\\\\\\\\_trace} errors occur in samples where tokenizer truncation removes diagnostic markers, and among the 61 samples where \\\\\\\\texttt{full\\\\\\\\_trace} underperforms \\\\\\\\texttt{no\\\\\\\\_trace}, all exhibit the same truncation pattern---confirming that information overload manifests through a mechanical truncation pathway rather than semantic confusion.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "9c06c95e-c0be-42e3-8020-d1134ee7bb6a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"55:\\\\\\\\caption{Verdict accuracy vs.\\\\\\\\ model scale. \\\\\\\\texttt{exception\\\\\\\\_only} maintains ${\\\\\\\\geq}$99.33\\\\\\\\% regardless of scale, while \\\\\\\\texttt{no\\\\\\\\_trace} shows monotonic sensitivity (+4.12pp). \\\\\\\\texttt{nomarker} (markers removed) shows no scale degradation.}\\\\n88:Regex ($B_{\\\\\\\\text{marker}}$)\\\\\\\\footnotemark & exc.\\\\\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\\\\\\\\\\\n110:\\\\\\\\label{sec:nomarker}\\\\n112:The \\\\\\\\texttt{exception\\\\\\\\_only} format includes a \\\\\\\\texttt{[No exception data in trace]} marker in all pass-class samples (regex baseline B5 exploits this for 99.33\\\\\\\\% accuracy; Appendix~\\\\\\\\ref{sec:regex_baselines}).\\\\n113:To quantify the marker's contribution, we retrain with all format markers removed (\\\\\\\\texttt{nomarker} condition).\\\\n117:The marker contribution (${\\\\\\\\sim}$2pp) accounts for only ${\\\\\\\\sim}$9\\\\\\\\% of the total exception lift over \\\\\\\\texttt{no\\\\\\\\_trace} (24.70pp on 7B).\\\\n118:Exception events thus provide two signal layers that show no degradation at smaller scale: structural markers (${\\\\\\\\sim}$2pp, regex-learnable) and semantic exception content (${\\\\\\\\sim}$22pp, requiring SFT to distinguish caught from uncaught exceptions).\\\\n149:Error analysis provides direct evidence: all 217 \\\\\\\\texttt{full\\\\\\\\_trace} errors occur in samples where tokenizer truncation removes diagnostic markers, and among the 61 samples where \\\\\\\\texttt{full\\\\\\\\_trace} underperforms \\\\\\\\texttt{no\\\\\\\\_trace}, all exhibit the same truncation pattern---confirming that information overload manifests through a mechanical truncation pathway rather than semantic confusion.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"55:\\\\caption{Verdict accuracy vs.\\\\ model scale. \\\\texttt{exception\\\\_only} maintains ${\\\\geq}$99.33\\\\% regardless of scale, while \\\\texttt{no\\\\_trace} shows monotonic sensitivity (+4.12pp). \\\\texttt{nomarker} (markers removed) shows no scale degradation.}\\n88:Regex ($B_{\\\\text{marker}}$)\\\\footnotemark & exc.\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\n110:\\\\label{sec:nomarker}\\n112:The \\\\texttt{exception\\\\_only} format includes a \\\\texttt{[No exception data in trace]} marker in all pass-class samples (regex baseline B5 exploits this for 99.33\\\\% accuracy; Appendix~\\\\ref{sec:regex_baselines}).\\n113:To quantify the marker's contribution, we retrain with all format markers removed (\\\\texttt{nomarker} condition).\\n117:The marker contribution (${\\\\sim}$2pp) accounts for only ${\\\\sim}$9\\\\% of the total exception lift over \\\\texttt{no\\\\_trace} (24.70pp on 7B).\\n118:Exception events thus provide two signal layers that show no degradation at smaller scale: structural markers (${\\\\sim}$2pp, regex-learnable) and semantic exception content (${\\\\sim}$22pp, requiring SFT to distinguish caught from uncaught exceptions).\\n149:Error analysis provides direct evidence: all 217 \\\\texttt{full\\\\_trace} errors occur in samples where tokenizer truncation removes diagnostic markers, and among the 61 samples where \\\\texttt{full\\\\_trace} underperforms \\\\texttt{no\\\\_trace}, all exhibit the same truncation pattern---confirming that information overload manifests through a mechanical truncation pathway rather than semantic confusion.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HixFcLTkPjTqu2UwARyFxn",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "grep -n \"footnote\" /root/trace-verdict-study/docs/paper/experiments.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "a615a628-5f80-4b9d-bc43-04ea2caa25c5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DiRWkAiY2xgwkF9GR2R9mr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 226,
+                "cache_read_input_tokens": 30562,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 226
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T08:09:13.952Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HixFcLTkPjTqu2UwARyFxn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"6:All experiments use $N{=}1{,}190$ test samples; accuracy is reported with Wilson 95\\\\\\\\% CIs.\\\\\\\\footnote{Data is partitioned at the problem level (472 train / 119 test problems, zero crossover; \\\\\\\\S\\\\\\\\ref{sec:dataset}). The \\\\\\\\texttt{exception\\\\\\\\_only} format collapses passing solutions into identical rows (48.99\\\\\\\\% test duplicates; Appendix~\\\\\\\\ref{sec:dedup_stats}), but these arise from within-problem variants, not cross-set leakage; deduplication sensitivity analysis confirms 0.00pp delta across all 19 experimental conditions.}\\\\n35:\\\\\\\\par\\\\\\\\raggedright\\\\\\\\footnotesize\\\\n88:Regex ($B_{\\\\\\\\text{marker}}$)\\\\\\\\footnotemark & exc.\\\\\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\\\\\\\\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "e918e457-3c95-473c-8dc1-fc8841a62942",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"6:All experiments use $N{=}1{,}190$ test samples; accuracy is reported with Wilson 95\\\\\\\\% CIs.\\\\\\\\footnote{Data is partitioned at the problem level (472 train / 119 test problems, zero crossover; \\\\\\\\S\\\\\\\\ref{sec:dataset}). The \\\\\\\\texttt{exception\\\\\\\\_only} format collapses passing solutions into identical rows (48.99\\\\\\\\% test duplicates; Appendix~\\\\\\\\ref{sec:dedup_stats}), but these arise from within-problem variants, not cross-set leakage; deduplication sensitivity analysis confirms 0.00pp delta across all 19 experimental conditions.}\\\\n35:\\\\\\\\par\\\\\\\\raggedright\\\\\\\\footnotesize\\\\n88:Regex ($B_{\\\\\\\\text{marker}}$)\\\\\\\\footnotemark & exc.\\\\\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\\\\\\\\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"6:All experiments use $N{=}1{,}190$ test samples; accuracy is reported with Wilson 95\\\\% CIs.\\\\footnote{Data is partitioned at the problem level (472 train / 119 test problems, zero crossover; \\\\S\\\\ref{sec:dataset}). The \\\\texttt{exception\\\\_only} format collapses passing solutions into identical rows (48.99\\\\% test duplicates; Appendix~\\\\ref{sec:dedup_stats}), but these arise from within-problem variants, not cross-set leakage; deduplication sensitivity analysis confirms 0.00pp delta across all 19 experimental conditions.}\\n35:\\\\par\\\\raggedright\\\\footnotesize\\n88:Regex ($B_{\\\\text{marker}}$)\\\\footnotemark & exc.\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The sed command didn't work as expected. Line 88 still shows the old content: `Regex ($B_{\\text{marker}}$)\\footnotemark`. The `\\footnotetext` line (previously L95) was deleted (the footnote grep doesn't show it anymore), but the table row wasn't changed.\n\nThe issue is likely escaping in the sed command. Let me try a different approach.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "62c2fae0-7d4b-4124-ad0e-d95faa753ffb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FwNLcTLh39egGNaWHfs5kf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1449,
+                "cache_read_input_tokens": 30788,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1449
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "L95 的 `\\footnotetext` 已删除，但 L88 的 sed 替换没生效（转义问题）。重新修改 L88。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "9163a032-e2b8-4feb-851a-efec798c4f10",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FwNLcTLh39egGNaWHfs5kf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1449,
+                "cache_read_input_tokens": 30788,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1449
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Bnh3bhB9vYuAtHrnpARK3M",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-11235",
+                "command": "cd /root/trace-verdict-study/docs/paper && sed -i '88s|Regex ($B_{\\\\text{marker}}$)\\\\footnotemark|Regex ($B_4$)|' experiments.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "bd0dad90-15b3-4e98-a905-053c3ec6a462",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FwNLcTLh39egGNaWHfs5kf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1449,
+                "cache_read_input_tokens": 30788,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1449
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T08:09:20.881Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Bnh3bhB9vYuAtHrnpARK3M",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "a9d346ef-5522-422e-ab5b-51a4ba3b7206",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P9vqCf159D8HbULZyszh4g",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "head -90 /root/trace-verdict-study/docs/paper/experiments.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "7054260b-69a0-4de0-b619-57d04ad8bc08",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01989yLqUYHfkbLSZtsTTWfG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 372,
+                "cache_read_input_tokens": 32237,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 372
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T08:09:24.392Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P9vqCf159D8HbULZyszh4g",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Experiments}\\\\n\\\\nWe evaluate across two research questions:\\\\n(1)~Do Tier~1 exception signals generalize across models?\\\\n(2)~What is the relative contribution of each trace component?\\\\nAll experiments use $N{=}1{,}190$ test samples; accuracy is reported with Wilson 95\\\\\\\\% CIs.\\\\\\\\footnote{Data is partitioned at the problem level (472 train / 119 test problems, zero crossover; \\\\\\\\S\\\\\\\\ref{sec:dataset}). The \\\\\\\\texttt{exception\\\\\\\\_only} format collapses passing solutions into identical rows (48.99\\\\\\\\% test duplicates; Appendix~\\\\\\\\ref{sec:dedup_stats}), but these arise from within-problem variants, not cross-set leakage; deduplication sensitivity analysis confirms 0.00pp delta across all 19 experimental conditions.}\\\\nPairwise comparisons use paired bootstrap resampling ($B{=}10{,}000$, seed=42); all differences are significant at $p{<}.0001$ unless noted.\\\\n\\\\n\\\\\\\\subsection{Cross-Model Comparison}\\\\n\\\\\\\\label{sec:cross_model}\\\\n\\\\nTable~\\\\\\\\ref{tab:cross_model} compares four models spanning an 8.7$\\\\\\\\times$ parameter range (1.5B--13B) and three architecture families (Qwen, DeepSeek, CodeLlama) under key conditions.\\\\n\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Cross-model verdict accuracy (\\\\\\\\%, $N{=}1{,}190$) across four models (1.5B--13B) and three architecture families. Multi-seed entries report mean$\\\\\\\\pm$std over 2--3 seeds. Bold: best per model. Full per-seed breakdowns in Appendix~\\\\\\\\ref{sec:full_results}; per-class metrics in Appendix~\\\\\\\\ref{sec:per_class}. $\\\\\\\\dagger$Single seed (seed~42).}\\\\n\\\\\\\\label{tab:cross_model}\\\\n\\\\\\\\small\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{lcccc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Condition} & \\\\\\\\textbf{Qwen-7B} & \\\\\\\\textbf{Qwen-1.5B} & \\\\\\\\textbf{CL-13B} & \\\\\\\\textbf{DS-6.7B} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nexception\\\\\\\\_only & \\\\\\\\textbf{99.83}{\\\\\\\\scriptsize$\\\\\\\\pm$0.00} & \\\\\\\\textbf{99.83}{\\\\\\\\scriptsize$\\\\\\\\pm$0.00} & \\\\\\\\textbf{99.89}{\\\\\\\\scriptsize$\\\\\\\\pm$0.10} & \\\\\\\\textbf{99.39}{\\\\\\\\scriptsize$\\\\\\\\pm$0.10} \\\\\\\\\\\\\\\\\\\\nae\\\\\\\\_only & 99.64{\\\\\\\\scriptsize$\\\\\\\\pm$0.49} & 98.83{\\\\\\\\scriptsize$\\\\\\\\pm$0.36} & 99.08{\\\\\\\\scriptsize$\\\\\\\\pm$0.00} & 98.53{\\\\\\\\scriptsize$\\\\\\\\pm$0.30} \\\\\\\\\\\\\\\\\\\\nVOTA & 99.05{\\\\\\\\scriptsize$\\\\\\\\pm$0.38} & 99.54{\\\\\\\\scriptsize$\\\\\\\\pm$0.06} & 98.74{\\\\\\\\scriptsize$\\\\\\\\pm$0.24} & 99.25$^\\\\\\\\ddag$ \\\\\\\\\\\\\\\\\\\\nloop\\\\\\\\_only & 86.05{\\\\\\\\scriptsize$\\\\\\\\pm$0.52} & 79.54{\\\\\\\\scriptsize$\\\\\\\\pm$1.42} & 77.40{\\\\\\\\scriptsize$\\\\\\\\pm$1.54} & 80.31{\\\\\\\\scriptsize$\\\\\\\\pm$1.65} \\\\\\\\\\\\\\\\\\\\nno\\\\\\\\_trace & 75.13$^\\\\\\\\dagger$ & 72.35{\\\\\\\\scriptsize$\\\\\\\\pm$4.48} & 76.47$^\\\\\\\\dagger$ & 73.36$^\\\\\\\\dagger$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nMajority baseline & \\\\\\\\multicolumn{4}{c}{71.51} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}%\\\\n}\\\\n\\\\\\\\vspace{2pt}\\\\n\\\\\\\\par\\\\\\\\raggedright\\\\\\\\footnotesize\\\\nDeepSeek \\\\\\\\texttt{exception\\\\\\\\_only} 3 seeds: 99.33/99.50/99.33 ($\\\\\\\\sigma{=}$0.10pp).\\\\nVOTA on Qwen-7B: 99.41/98.66/99.08 ($\\\\\\\\sigma{=}$0.38).\\\\n\\\\\\\\texttt{ae\\\\\\\\_only} 3 seeds: 99.92/99.08/99.92 (mean 99.64\\\\\\\\%); Qwen-7B \\\\\\\\texttt{loop\\\\\\\\_only} 3 seeds: 85.63/85.88/86.64 (mean 86.05\\\\\\\\%).\\\\nQwen-1.5B \\\\\\\\texttt{exception\\\\\\\\_only}: 99.83\\\\\\\\% across 3 seeds ($\\\\\\\\sigma{=}$0).\\\\n$^\\\\\\\\ddag$DeepSeek VOTA 3 seeds: 84.45/99.16/99.33; seed 42 (84.45\\\\\\\\%, fail recall\\\\\\\\,=\\\\\\\\,45.4\\\\\\\\%) is a training failure due to tokenizer-driven truncation (Appendix~\\\\\\\\ref{sec:tokenizer_analysis}), reported as 2-seed mean.\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\paragraph{Exception dominance across families.}\\\\nUnder \\\\\\\\texttt{exception\\\\\\\\_only}, all four models achieve ${\\\\\\\\geq}$99.33\\\\\\\\% across all seeds: Qwen-7B (99.83\\\\\\\\%$\\\\\\\\pm$0.00, 3 seeds), Qwen-1.5B (99.83\\\\\\\\%), CodeLlama-13B (99.89\\\\\\\\%$\\\\\\\\pm$0.10, 3 seeds; seed 123 achieves 100\\\\\\\\%), and DeepSeek-6.7B (99.39\\\\\\\\%$\\\\\\\\pm$0.10, 3 seeds).\\\\nThe cross-model range is 0.50pp (99.39--99.89\\\\\\\\%), the tightest of any condition.\\\\n\\\\n\\\\\\\\paragraph{Scale invariance of exception signals.}\\\\nException-based accuracy is shared by models spanning 1.5B to 13B parameters (8.7$\\\\\\\\times$): both Qwen-1.5B and CodeLlama-13B achieve 99.83\\\\\\\\%+ on the same representation.\\\\nCodeLlama-13B seed 123 achieves 100\\\\\\\\% (0/1190 errors), confirming that Qwen's two persistent errors (from \\\\\\\\texttt{GeneratorExit}; Appendix~\\\\\\\\ref{sec:irreducible}) are high-probability convergence artifacts rather than hard data limitations.\\\\nIn contrast, \\\\\\\\texttt{no\\\\\\\\_trace} scales monotonically with capacity: 72.35\\\\\\\\% (1.5B) $\\\\\\\\to$ 75.13\\\\\\\\% (7B) $\\\\\\\\to$ 76.47\\\\\\\\% (13B), a 4.12pp range eliminated by exception events (Figure~\\\\\\\\ref{fig:cross_scale}); \\\\\\\\texttt{no\\\\\\\\_trace} also shows the highest seed variance ($\\\\\\\\sigma{=}$4.48pp vs.\\\\\\\\ ${\\\\\\\\leq}$1.65pp for trace conditions).\\\\n\\\\n\\\\\\\\begin{figure}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\includegraphics[width=\\\\\\\\columnwidth]{fig3_cross_model_gap}\\\\n\\\\\\\\caption{Verdict accuracy vs.\\\\\\\\ model scale. \\\\\\\\texttt{exception\\\\\\\\_only} maintains ${\\\\\\\\geq}$99.33\\\\\\\\% regardless of scale, while \\\\\\\\texttt{no\\\\\\\\_trace} shows monotonic sensitivity (+4.12pp). \\\\\\\\texttt{nomarker} (markers removed) shows no scale degradation.}\\\\n\\\\\\\\label{fig:cross_scale}\\\\n\\\\\\\\end{figure}\\\\n\\\\n\\\\\\\\paragraph{VOTA cross-family variation.}\\\\nExcluding outlier seeds, VOTA achieves ${\\\\\\\\geq}$98.57\\\\\\\\% across all four models: 99.54\\\\\\\\%$\\\\\\\\pm$0.06 (Qwen-1.5B, 2 seeds) $>$ 99.25\\\\\\\\%$\\\\\\\\pm$0.12 (DeepSeek-6.7B, 2 seeds) $>$ 99.05\\\\\\\\%$\\\\\\\\pm$0.38 (Qwen-7B, 3 seeds) $>$ 98.74\\\\\\\\%$\\\\\\\\pm$0.24 (CodeLlama-13B, 2 seeds), a 0.80pp range.\\\\nDeepSeek seed 42 (84.45\\\\\\\\%, fail recall = 45.4\\\\\\\\%) is a training failure driven by tokenizer-induced truncation (91.7\\\\\\\\% of training samples affected; Appendix~\\\\\\\\ref{sec:tokenizer_analysis}); the remaining seeds (99.16\\\\\\\\%, 99.33\\\\\\\\%) match cross-model performance.\\\\n\\\\\\\\texttt{exception\\\\\\\\_only} inputs are compact (median 150 tokens), sidestepping truncation entirely (Appendix~\\\\\\\\ref{sec:robustness_analysis}).\\\\n\\\\n\\\\\\\\subsection{Component Ablation}\\\\n\\\\\\\\label{sec:ablation}\\\\n\\\\nMulti-seed \\\\\\\\texttt{ae\\\\\\\\_only} ablations use Qwen-7B; \\\\\\\\texttt{loop\\\\\\\\_only} is evaluated across three models to test Tier~2 generalization (Table~\\\\\\\\ref{tab:cross_model}).\\\\nTable~\\\\\\\\ref{tab:ablation} decomposes VOTA on Qwen-2.5-7B and reveals a consistent two-tier pattern: Tier~1 (\\\\\\\\texttt{exception\\\\\\\\_only}) generalizes across all four models (${\\\\\\\\geq}$99.33\\\\\\\\%), while Tier~2 (\\\\\\\\texttt{loop\\\\\\\\_only}) is model-dependent.\\\\n\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Component ablation on Qwen-2.5-7B ($N{=}1{,}190$). Tier~1 signals achieve near-perfect accuracy; combining them (VOTA) slightly dilutes performance. Entries marked $^\\\\\\\\dag$/$^\\\\\\\\S$/$^\\\\\\\\ddag$ are 3-seed mean$\\\\\\\\pm$std; per-seed breakdowns in Appendix~\\\\\\\\ref{sec:full_results}. Seed $\\\\\\\\sigma$ negatively correlates with density (0.00 for exception to 0.52 for loop). Unmarked entries are single seed (seed~42).}\\\\n\\\\\\\\label{tab:ablation}\\\\n\\\\\\\\small\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{llccc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Condition} & \\\\\\\\textbf{Components} & \\\\\\\\textbf{Acc (\\\\\\\\%)} & \\\\\\\\textbf{95\\\\\\\\% CI} & \\\\\\\\textbf{Tier} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nae\\\\\\\\_only & assertion-point & 99.64$^\\\\\\\\dag$ & [99.26, 99.87] & 1 \\\\\\\\\\\\\\\\\\\\nexception\\\\\\\\_only & exception events & \\\\\\\\textbf{99.83} & [99.58, 100.00] & 1 \\\\\\\\\\\\\\\\\\\\nVOTA & exc+ae+loop & 99.05$^\\\\\\\\S$ & [98.49, 99.50] & --- \\\\\\\\\\\\\\\\\\\\nVOTA\\\\\\\\_no\\\\\\\\_ae & exc+loop & 99.41 & [98.90, 99.80] & --- \\\\\\\\\\\\\\\\\\\\nloop\\\\\\\\_only & loop compression & 86.05$^\\\\\\\\ddag$ & [83.97, 87.96] & 2 \\\\\\\\\\\\\\\\\\\\nfull\\\\\\\\_trace & complete trace & 81.76 & [79.70, 83.90] & --- \\\\\\\\\\\\\\\\\\\\nno\\\\\\\\_trace & none & 75.13 & [72.77, 77.48] & --- \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nRegex ($B_{\\\\\\\\text{marker}}$)\\\\\\\\footnotemark & exc.\\\\\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\\\\\\\\\\\n3-shot (Qwen-7B) & in-context learning & 90.84 & --- & --- \\\\\\\\\\\\\\\\\\\\nZero-shot (4 models) & prompting & 51.0--93.5 & --- & --- \\\\\\\\\\\\\\\\\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "031c58aa-e318-49fc-a4aa-fcee2b112582",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Experiments}\\\\n\\\\nWe evaluate across two research questions:\\\\n(1)~Do Tier~1 exception signals generalize across models?\\\\n(2)~What is the relative contribution of each trace component?\\\\nAll experiments use $N{=}1{,}190$ test samples; accuracy is reported with Wilson 95\\\\\\\\% CIs.\\\\\\\\footnote{Data is partitioned at the problem level (472 train / 119 test problems, zero crossover; \\\\\\\\S\\\\\\\\ref{sec:dataset}). The \\\\\\\\texttt{exception\\\\\\\\_only} format collapses passing solutions into identical rows (48.99\\\\\\\\% test duplicates; Appendix~\\\\\\\\ref{sec:dedup_stats}), but these arise from within-problem variants, not cross-set leakage; deduplication sensitivity analysis confirms 0.00pp delta across all 19 experimental conditions.}\\\\nPairwise comparisons use paired bootstrap resampling ($B{=}10{,}000$, seed=42); all differences are significant at $p{<}.0001$ unless noted.\\\\n\\\\n\\\\\\\\subsection{Cross-Model Comparison}\\\\n\\\\\\\\label{sec:cross_model}\\\\n\\\\nTable~\\\\\\\\ref{tab:cross_model} compares four models spanning an 8.7$\\\\\\\\times$ parameter range (1.5B--13B) and three architecture families (Qwen, DeepSeek, CodeLlama) under key conditions.\\\\n\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Cross-model verdict accuracy (\\\\\\\\%, $N{=}1{,}190$) across four models (1.5B--13B) and three architecture families. Multi-seed entries report mean$\\\\\\\\pm$std over 2--3 seeds. Bold: best per model. Full per-seed breakdowns in Appendix~\\\\\\\\ref{sec:full_results}; per-class metrics in Appendix~\\\\\\\\ref{sec:per_class}. $\\\\\\\\dagger$Single seed (seed~42).}\\\\n\\\\\\\\label{tab:cross_model}\\\\n\\\\\\\\small\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{lcccc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Condition} & \\\\\\\\textbf{Qwen-7B} & \\\\\\\\textbf{Qwen-1.5B} & \\\\\\\\textbf{CL-13B} & \\\\\\\\textbf{DS-6.7B} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nexception\\\\\\\\_only & \\\\\\\\textbf{99.83}{\\\\\\\\scriptsize$\\\\\\\\pm$0.00} & \\\\\\\\textbf{99.83}{\\\\\\\\scriptsize$\\\\\\\\pm$0.00} & \\\\\\\\textbf{99.89}{\\\\\\\\scriptsize$\\\\\\\\pm$0.10} & \\\\\\\\textbf{99.39}{\\\\\\\\scriptsize$\\\\\\\\pm$0.10} \\\\\\\\\\\\\\\\\\\\nae\\\\\\\\_only & 99.64{\\\\\\\\scriptsize$\\\\\\\\pm$0.49} & 98.83{\\\\\\\\scriptsize$\\\\\\\\pm$0.36} & 99.08{\\\\\\\\scriptsize$\\\\\\\\pm$0.00} & 98.53{\\\\\\\\scriptsize$\\\\\\\\pm$0.30} \\\\\\\\\\\\\\\\\\\\nVOTA & 99.05{\\\\\\\\scriptsize$\\\\\\\\pm$0.38} & 99.54{\\\\\\\\scriptsize$\\\\\\\\pm$0.06} & 98.74{\\\\\\\\scriptsize$\\\\\\\\pm$0.24} & 99.25$^\\\\\\\\ddag$ \\\\\\\\\\\\\\\\\\\\nloop\\\\\\\\_only & 86.05{\\\\\\\\scriptsize$\\\\\\\\pm$0.52} & 79.54{\\\\\\\\scriptsize$\\\\\\\\pm$1.42} & 77.40{\\\\\\\\scriptsize$\\\\\\\\pm$1.54} & 80.31{\\\\\\\\scriptsize$\\\\\\\\pm$1.65} \\\\\\\\\\\\\\\\\\\\nno\\\\\\\\_trace & 75.13$^\\\\\\\\dagger$ & 72.35{\\\\\\\\scriptsize$\\\\\\\\pm$4.48} & 76.47$^\\\\\\\\dagger$ & 73.36$^\\\\\\\\dagger$ \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nMajority baseline & \\\\\\\\multicolumn{4}{c}{71.51} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}%\\\\n}\\\\n\\\\\\\\vspace{2pt}\\\\n\\\\\\\\par\\\\\\\\raggedright\\\\\\\\footnotesize\\\\nDeepSeek \\\\\\\\texttt{exception\\\\\\\\_only} 3 seeds: 99.33/99.50/99.33 ($\\\\\\\\sigma{=}$0.10pp).\\\\nVOTA on Qwen-7B: 99.41/98.66/99.08 ($\\\\\\\\sigma{=}$0.38).\\\\n\\\\\\\\texttt{ae\\\\\\\\_only} 3 seeds: 99.92/99.08/99.92 (mean 99.64\\\\\\\\%); Qwen-7B \\\\\\\\texttt{loop\\\\\\\\_only} 3 seeds: 85.63/85.88/86.64 (mean 86.05\\\\\\\\%).\\\\nQwen-1.5B \\\\\\\\texttt{exception\\\\\\\\_only}: 99.83\\\\\\\\% across 3 seeds ($\\\\\\\\sigma{=}$0).\\\\n$^\\\\\\\\ddag$DeepSeek VOTA 3 seeds: 84.45/99.16/99.33; seed 42 (84.45\\\\\\\\%, fail recall\\\\\\\\,=\\\\\\\\,45.4\\\\\\\\%) is a training failure due to tokenizer-driven truncation (Appendix~\\\\\\\\ref{sec:tokenizer_analysis}), reported as 2-seed mean.\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\paragraph{Exception dominance across families.}\\\\nUnder \\\\\\\\texttt{exception\\\\\\\\_only}, all four models achieve ${\\\\\\\\geq}$99.33\\\\\\\\% across all seeds: Qwen-7B (99.83\\\\\\\\%$\\\\\\\\pm$0.00, 3 seeds), Qwen-1.5B (99.83\\\\\\\\%), CodeLlama-13B (99.89\\\\\\\\%$\\\\\\\\pm$0.10, 3 seeds; seed 123 achieves 100\\\\\\\\%), and DeepSeek-6.7B (99.39\\\\\\\\%$\\\\\\\\pm$0.10, 3 seeds).\\\\nThe cross-model range is 0.50pp (99.39--99.89\\\\\\\\%), the tightest of any condition.\\\\n\\\\n\\\\\\\\paragraph{Scale invariance of exception signals.}\\\\nException-based accuracy is shared by models spanning 1.5B to 13B parameters (8.7$\\\\\\\\times$): both Qwen-1.5B and CodeLlama-13B achieve 99.83\\\\\\\\%+ on the same representation.\\\\nCodeLlama-13B seed 123 achieves 100\\\\\\\\% (0/1190 errors), confirming that Qwen's two persistent errors (from \\\\\\\\texttt{GeneratorExit}; Appendix~\\\\\\\\ref{sec:irreducible}) are high-probability convergence artifacts rather than hard data limitations.\\\\nIn contrast, \\\\\\\\texttt{no\\\\\\\\_trace} scales monotonically with capacity: 72.35\\\\\\\\% (1.5B) $\\\\\\\\to$ 75.13\\\\\\\\% (7B) $\\\\\\\\to$ 76.47\\\\\\\\% (13B), a 4.12pp range eliminated by exception events (Figure~\\\\\\\\ref{fig:cross_scale}); \\\\\\\\texttt{no\\\\\\\\_trace} also shows the highest seed variance ($\\\\\\\\sigma{=}$4.48pp vs.\\\\\\\\ ${\\\\\\\\leq}$1.65pp for trace conditions).\\\\n\\\\n\\\\\\\\begin{figure}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\includegraphics[width=\\\\\\\\columnwidth]{fig3_cross_model_gap}\\\\n\\\\\\\\caption{Verdict accuracy vs.\\\\\\\\ model scale. \\\\\\\\texttt{exception\\\\\\\\_only} maintains ${\\\\\\\\geq}$99.33\\\\\\\\% regardless of scale, while \\\\\\\\texttt{no\\\\\\\\_trace} shows monotonic sensitivity (+4.12pp). \\\\\\\\texttt{nomarker} (markers removed) shows no scale degradation.}\\\\n\\\\\\\\label{fig:cross_scale}\\\\n\\\\\\\\end{figure}\\\\n\\\\n\\\\\\\\paragraph{VOTA cross-family variation.}\\\\nExcluding outlier seeds, VOTA achieves ${\\\\\\\\geq}$98.57\\\\\\\\% across all four models: 99.54\\\\\\\\%$\\\\\\\\pm$0.06 (Qwen-1.5B, 2 seeds) $>$ 99.25\\\\\\\\%$\\\\\\\\pm$0.12 (DeepSeek-6.7B, 2 seeds) $>$ 99.05\\\\\\\\%$\\\\\\\\pm$0.38 (Qwen-7B, 3 seeds) $>$ 98.74\\\\\\\\%$\\\\\\\\pm$0.24 (CodeLlama-13B, 2 seeds), a 0.80pp range.\\\\nDeepSeek seed 42 (84.45\\\\\\\\%, fail recall = 45.4\\\\\\\\%) is a training failure driven by tokenizer-induced truncation (91.7\\\\\\\\% of training samples affected; Appendix~\\\\\\\\ref{sec:tokenizer_analysis}); the remaining seeds (99.16\\\\\\\\%, 99.33\\\\\\\\%) match cross-model performance.\\\\n\\\\\\\\texttt{exception\\\\\\\\_only} inputs are compact (median 150 tokens), sidestepping truncation entirely (Appendix~\\\\\\\\ref{sec:robustness_analysis}).\\\\n\\\\n\\\\\\\\subsection{Component Ablation}\\\\n\\\\\\\\label{sec:ablation}\\\\n\\\\nMulti-seed \\\\\\\\texttt{ae\\\\\\\\_only} ablations use Qwen-7B; \\\\\\\\texttt{loop\\\\\\\\_only} is evaluated across three models to test Tier~2 generalization (Table~\\\\\\\\ref{tab:cross_model}).\\\\nTable~\\\\\\\\ref{tab:ablation} decomposes VOTA on Qwen-2.5-7B and reveals a consistent two-tier pattern: Tier~1 (\\\\\\\\texttt{exception\\\\\\\\_only}) generalizes across all four models (${\\\\\\\\geq}$99.33\\\\\\\\%), while Tier~2 (\\\\\\\\texttt{loop\\\\\\\\_only}) is model-dependent.\\\\n\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Component ablation on Qwen-2.5-7B ($N{=}1{,}190$). Tier~1 signals achieve near-perfect accuracy; combining them (VOTA) slightly dilutes performance. Entries marked $^\\\\\\\\dag$/$^\\\\\\\\S$/$^\\\\\\\\ddag$ are 3-seed mean$\\\\\\\\pm$std; per-seed breakdowns in Appendix~\\\\\\\\ref{sec:full_results}. Seed $\\\\\\\\sigma$ negatively correlates with density (0.00 for exception to 0.52 for loop). Unmarked entries are single seed (seed~42).}\\\\n\\\\\\\\label{tab:ablation}\\\\n\\\\\\\\small\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{llccc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Condition} & \\\\\\\\textbf{Components} & \\\\\\\\textbf{Acc (\\\\\\\\%)} & \\\\\\\\textbf{95\\\\\\\\% CI} & \\\\\\\\textbf{Tier} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nae\\\\\\\\_only & assertion-point & 99.64$^\\\\\\\\dag$ & [99.26, 99.87] & 1 \\\\\\\\\\\\\\\\\\\\nexception\\\\\\\\_only & exception events & \\\\\\\\textbf{99.83} & [99.58, 100.00] & 1 \\\\\\\\\\\\\\\\\\\\nVOTA & exc+ae+loop & 99.05$^\\\\\\\\S$ & [98.49, 99.50] & --- \\\\\\\\\\\\\\\\\\\\nVOTA\\\\\\\\_no\\\\\\\\_ae & exc+loop & 99.41 & [98.90, 99.80] & --- \\\\\\\\\\\\\\\\\\\\nloop\\\\\\\\_only & loop compression & 86.05$^\\\\\\\\ddag$ & [83.97, 87.96] & 2 \\\\\\\\\\\\\\\\\\\\nfull\\\\\\\\_trace & complete trace & 81.76 & [79.70, 83.90] & --- \\\\\\\\\\\\\\\\\\\\nno\\\\\\\\_trace & none & 75.13 & [72.77, 77.48] & --- \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nRegex ($B_{\\\\\\\\text{marker}}$)\\\\\\\\footnotemark & exc.\\\\\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\\\\\\\\\\\n3-shot (Qwen-7B) & in-context learning & 90.84 & --- & --- \\\\\\\\\\\\\\\\\\\\nZero-shot (4 models) & prompting & 51.0--93.5 & --- & --- \\\\\\\\\\\\\\\\\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Experiments}\\n\\nWe evaluate across two research questions:\\n(1)~Do Tier~1 exception signals generalize across models?\\n(2)~What is the relative contribution of each trace component?\\nAll experiments use $N{=}1{,}190$ test samples; accuracy is reported with Wilson 95\\\\% CIs.\\\\footnote{Data is partitioned at the problem level (472 train / 119 test problems, zero crossover; \\\\S\\\\ref{sec:dataset}). The \\\\texttt{exception\\\\_only} format collapses passing solutions into identical rows (48.99\\\\% test duplicates; Appendix~\\\\ref{sec:dedup_stats}), but these arise from within-problem variants, not cross-set leakage; deduplication sensitivity analysis confirms 0.00pp delta across all 19 experimental conditions.}\\nPairwise comparisons use paired bootstrap resampling ($B{=}10{,}000$, seed=42); all differences are significant at $p{<}.0001$ unless noted.\\n\\n\\\\subsection{Cross-Model Comparison}\\n\\\\label{sec:cross_model}\\n\\nTable~\\\\ref{tab:cross_model} compares four models spanning an 8.7$\\\\times$ parameter range (1.5B--13B) and three architecture families (Qwen, DeepSeek, CodeLlama) under key conditions.\\n\\n\\\\begin{table}[t]\\n\\\\centering\\n\\\\caption{Cross-model verdict accuracy (\\\\%, $N{=}1{,}190$) across four models (1.5B--13B) and three architecture families. Multi-seed entries report mean$\\\\pm$std over 2--3 seeds. Bold: best per model. Full per-seed breakdowns in Appendix~\\\\ref{sec:full_results}; per-class metrics in Appendix~\\\\ref{sec:per_class}. $\\\\dagger$Single seed (seed~42).}\\n\\\\label{tab:cross_model}\\n\\\\small\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{lcccc}\\n\\\\toprule\\n\\\\textbf{Condition} & \\\\textbf{Qwen-7B} & \\\\textbf{Qwen-1.5B} & \\\\textbf{CL-13B} & \\\\textbf{DS-6.7B} \\\\\\\\\\n\\\\midrule\\nexception\\\\_only & \\\\textbf{99.83}{\\\\scriptsize$\\\\pm$0.00} & \\\\textbf{99.83}{\\\\scriptsize$\\\\pm$0.00} & \\\\textbf{99.89}{\\\\scriptsize$\\\\pm$0.10} & \\\\textbf{99.39}{\\\\scriptsize$\\\\pm$0.10} \\\\\\\\\\nae\\\\_only & 99.64{\\\\scriptsize$\\\\pm$0.49} & 98.83{\\\\scriptsize$\\\\pm$0.36} & 99.08{\\\\scriptsize$\\\\pm$0.00} & 98.53{\\\\scriptsize$\\\\pm$0.30} \\\\\\\\\\nVOTA & 99.05{\\\\scriptsize$\\\\pm$0.38} & 99.54{\\\\scriptsize$\\\\pm$0.06} & 98.74{\\\\scriptsize$\\\\pm$0.24} & 99.25$^\\\\ddag$ \\\\\\\\\\nloop\\\\_only & 86.05{\\\\scriptsize$\\\\pm$0.52} & 79.54{\\\\scriptsize$\\\\pm$1.42} & 77.40{\\\\scriptsize$\\\\pm$1.54} & 80.31{\\\\scriptsize$\\\\pm$1.65} \\\\\\\\\\nno\\\\_trace & 75.13$^\\\\dagger$ & 72.35{\\\\scriptsize$\\\\pm$4.48} & 76.47$^\\\\dagger$ & 73.36$^\\\\dagger$ \\\\\\\\\\n\\\\midrule\\nMajority baseline & \\\\multicolumn{4}{c}{71.51} \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}%\\n}\\n\\\\vspace{2pt}\\n\\\\par\\\\raggedright\\\\footnotesize\\nDeepSeek \\\\texttt{exception\\\\_only} 3 seeds: 99.33/99.50/99.33 ($\\\\sigma{=}$0.10pp).\\nVOTA on Qwen-7B: 99.41/98.66/99.08 ($\\\\sigma{=}$0.38).\\n\\\\texttt{ae\\\\_only} 3 seeds: 99.92/99.08/99.92 (mean 99.64\\\\%); Qwen-7B \\\\texttt{loop\\\\_only} 3 seeds: 85.63/85.88/86.64 (mean 86.05\\\\%).\\nQwen-1.5B \\\\texttt{exception\\\\_only}: 99.83\\\\% across 3 seeds ($\\\\sigma{=}$0).\\n$^\\\\ddag$DeepSeek VOTA 3 seeds: 84.45/99.16/99.33; seed 42 (84.45\\\\%, fail recall\\\\,=\\\\,45.4\\\\%) is a training failure due to tokenizer-driven truncation (Appendix~\\\\ref{sec:tokenizer_analysis}), reported as 2-seed mean.\\n\\\\end{table}\\n\\n\\\\paragraph{Exception dominance across families.}\\nUnder \\\\texttt{exception\\\\_only}, all four models achieve ${\\\\geq}$99.33\\\\% across all seeds: Qwen-7B (99.83\\\\%$\\\\pm$0.00, 3 seeds), Qwen-1.5B (99.83\\\\%), CodeLlama-13B (99.89\\\\%$\\\\pm$0.10, 3 seeds; seed 123 achieves 100\\\\%), and DeepSeek-6.7B (99.39\\\\%$\\\\pm$0.10, 3 seeds).\\nThe cross-model range is 0.50pp (99.39--99.89\\\\%), the tightest of any condition.\\n\\n\\\\paragraph{Scale invariance of exception signals.}\\nException-based accuracy is shared by models spanning 1.5B to 13B parameters (8.7$\\\\times$): both Qwen-1.5B and CodeLlama-13B achieve 99.83\\\\%+ on the same representation.\\nCodeLlama-13B seed 123 achieves 100\\\\% (0/1190 errors), confirming that Qwen's two persistent errors (from \\\\texttt{GeneratorExit}; Appendix~\\\\ref{sec:irreducible}) are high-probability convergence artifacts rather than hard data limitations.\\nIn contrast, \\\\texttt{no\\\\_trace} scales monotonically with capacity: 72.35\\\\% (1.5B) $\\\\to$ 75.13\\\\% (7B) $\\\\to$ 76.47\\\\% (13B), a 4.12pp range eliminated by exception events (Figure~\\\\ref{fig:cross_scale}); \\\\texttt{no\\\\_trace} also shows the highest seed variance ($\\\\sigma{=}$4.48pp vs.\\\\ ${\\\\leq}$1.65pp for trace conditions).\\n\\n\\\\begin{figure}[t]\\n\\\\centering\\n\\\\includegraphics[width=\\\\columnwidth]{fig3_cross_model_gap}\\n\\\\caption{Verdict accuracy vs.\\\\ model scale. \\\\texttt{exception\\\\_only} maintains ${\\\\geq}$99.33\\\\% regardless of scale, while \\\\texttt{no\\\\_trace} shows monotonic sensitivity (+4.12pp). \\\\texttt{nomarker} (markers removed) shows no scale degradation.}\\n\\\\label{fig:cross_scale}\\n\\\\end{figure}\\n\\n\\\\paragraph{VOTA cross-family variation.}\\nExcluding outlier seeds, VOTA achieves ${\\\\geq}$98.57\\\\% across all four models: 99.54\\\\%$\\\\pm$0.06 (Qwen-1.5B, 2 seeds) $>$ 99.25\\\\%$\\\\pm$0.12 (DeepSeek-6.7B, 2 seeds) $>$ 99.05\\\\%$\\\\pm$0.38 (Qwen-7B, 3 seeds) $>$ 98.74\\\\%$\\\\pm$0.24 (CodeLlama-13B, 2 seeds), a 0.80pp range.\\nDeepSeek seed 42 (84.45\\\\%, fail recall = 45.4\\\\%) is a training failure driven by tokenizer-induced truncation (91.7\\\\% of training samples affected; Appendix~\\\\ref{sec:tokenizer_analysis}); the remaining seeds (99.16\\\\%, 99.33\\\\%) match cross-model performance.\\n\\\\texttt{exception\\\\_only} inputs are compact (median 150 tokens), sidestepping truncation entirely (Appendix~\\\\ref{sec:robustness_analysis}).\\n\\n\\\\subsection{Component Ablation}\\n\\\\label{sec:ablation}\\n\\nMulti-seed \\\\texttt{ae\\\\_only} ablations use Qwen-7B; \\\\texttt{loop\\\\_only} is evaluated across three models to test Tier~2 generalization (Table~\\\\ref{tab:cross_model}).\\nTable~\\\\ref{tab:ablation} decomposes VOTA on Qwen-2.5-7B and reveals a consistent two-tier pattern: Tier~1 (\\\\texttt{exception\\\\_only}) generalizes across all four models (${\\\\geq}$99.33\\\\%), while Tier~2 (\\\\texttt{loop\\\\_only}) is model-dependent.\\n\\n\\\\begin{table}[t]\\n\\\\centering\\n\\\\caption{Component ablation on Qwen-2.5-7B ($N{=}1{,}190$). Tier~1 signals achieve near-perfect accuracy; combining them (VOTA) slightly dilutes performance. Entries marked $^\\\\dag$/$^\\\\S$/$^\\\\ddag$ are 3-seed mean$\\\\pm$std; per-seed breakdowns in Appendix~\\\\ref{sec:full_results}. Seed $\\\\sigma$ negatively correlates with density (0.00 for exception to 0.52 for loop). Unmarked entries are single seed (seed~42).}\\n\\\\label{tab:ablation}\\n\\\\small\\n\\\\resizebox{\\\\columnwidth}{!}{%\\n\\\\begin{tabular}{llccc}\\n\\\\toprule\\n\\\\textbf{Condition} & \\\\textbf{Components} & \\\\textbf{Acc (\\\\%)} & \\\\textbf{95\\\\% CI} & \\\\textbf{Tier} \\\\\\\\\\n\\\\midrule\\nae\\\\_only & assertion-point & 99.64$^\\\\dag$ & [99.26, 99.87] & 1 \\\\\\\\\\nexception\\\\_only & exception events & \\\\textbf{99.83} & [99.58, 100.00] & 1 \\\\\\\\\\nVOTA & exc+ae+loop & 99.05$^\\\\S$ & [98.49, 99.50] & --- \\\\\\\\\\nVOTA\\\\_no\\\\_ae & exc+loop & 99.41 & [98.90, 99.80] & --- \\\\\\\\\\nloop\\\\_only & loop compression & 86.05$^\\\\ddag$ & [83.97, 87.96] & 2 \\\\\\\\\\nfull\\\\_trace & complete trace & 81.76 & [79.70, 83.90] & --- \\\\\\\\\\nno\\\\_trace & none & 75.13 & [72.77, 77.48] & --- \\\\\\\\\\n\\\\midrule\\nRegex ($B_{\\\\text{marker}}$)\\\\footnotemark & exc.\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\n3-shot (Qwen-7B) & in-context learning & 90.84 & --- & --- \\\\\\\\\\nZero-shot (4 models) & prompting & 51.0--93.5 & --- & --- \\\\\\\\\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The sed replacement still didn't work on L88. The issue is that the backslashes in the LaTeX are being interpreted by the shell. I need to use a different approach. Let me use Python to do the replacement instead, which avoids shell escaping issues.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "9720dcec-7652-4555-b52b-9266e501e7f0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AkiAEFVMUyoBQyQaAhHZHw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3519,
+                "cache_read_input_tokens": 32609,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3519
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "sed 转义太复杂了，用 Python 替换。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "1025fe19-01f5-412c-8d04-c65742628c4b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AkiAEFVMUyoBQyQaAhHZHw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3519,
+                "cache_read_input_tokens": 32609,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3519
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UAtHfFgnqcpi8WeafUwWLm",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-11235",
+                "command": "python3 -c \"\nimport re\nf = '/root/trace-verdict-study/docs/paper/experiments.tex'\nwith open(f) as fh:\n    lines = fh.readlines()\n# Fix line 88 (0-indexed: 87)\nold = lines[87]\nprint('BEFORE:', repr(old))\nnew = old.replace(r'Regex ($B_{\\text{marker}}$)\\footnotemark', r'Regex ($B_4$)')\nprint('AFTER:', repr(new))\nlines[87] = new\nwith open(f, 'w') as fh:\n    fh.writelines(lines)\nprint('DONE')\n\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "d1e9070e-c529-44bb-9094-2f295b3eeac4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AkiAEFVMUyoBQyQaAhHZHw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3519,
+                "cache_read_input_tokens": 32609,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3519
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T08:09:30.858Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UAtHfFgnqcpi8WeafUwWLm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"BEFORE: 'Regex ($B_{\\\\\\\\\\\\\\\\text{marker}}$)\\\\\\\\\\\\\\\\footnotemark & exc.\\\\\\\\\\\\\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n'\\\\nAFTER: 'Regex ($B_{\\\\\\\\\\\\\\\\text{marker}}$)\\\\\\\\\\\\\\\\footnotemark & exc.\\\\\\\\\\\\\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n'\\\\nDONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "666124c5-39ef-4646-a7a0-41eab5ead7cf",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"BEFORE: 'Regex ($B_{\\\\\\\\\\\\\\\\text{marker}}$)\\\\\\\\\\\\\\\\footnotemark & exc.\\\\\\\\\\\\\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n'\\\\nAFTER: 'Regex ($B_{\\\\\\\\\\\\\\\\text{marker}}$)\\\\\\\\\\\\\\\\footnotemark & exc.\\\\\\\\\\\\\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\n'\\\\nDONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"BEFORE: 'Regex ($B_{\\\\\\\\text{marker}}$)\\\\\\\\footnotemark & exc.\\\\\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\\\\\\\\\\\n'\\nAFTER: 'Regex ($B_{\\\\\\\\text{marker}}$)\\\\\\\\footnotemark & exc.\\\\\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\\\\\\\\\\\n'\\nDONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The replace didn't match because the actual file content has different escaping. The `repr()` shows `\\\\\\\\text` meaning the file literally has `\\\\text`. Let me check the raw bytes of line 88.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "fe535de5-c8a3-4dd7-bb30-6e0fd4c2159f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WhhZeu9wsj5d6NWSHpwdg4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 556,
+                "cache_read_input_tokens": 36128,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 556
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The raw string escaping doesn't match the actual file content. Let me check the exact bytes."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "f586743a-12c0-4b3e-a14b-1b7674d8815c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WhhZeu9wsj5d6NWSHpwdg4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 556,
+                "cache_read_input_tokens": 36128,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 556
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YQBNtAENpRKpGS4X8BseiS",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-11235",
+                "command": "python3 -c \"\nf = '/root/trace-verdict-study/docs/paper/experiments.tex'\nwith open(f) as fh:\n    lines = fh.readlines()\nline = lines[87]\nprint('LINE 88:', line, end='')\nprint('---')\n# Show exact chars\nfor i, c in enumerate(line[:60]):\n    print(f'{i}: {c!r}')\n\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "cf554561-879f-4b4b-8217-3ad83e2eaa4b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WhhZeu9wsj5d6NWSHpwdg4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 556,
+                "cache_read_input_tokens": 36128,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 556
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-21T08:09:37.277Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YQBNtAENpRKpGS4X8BseiS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"LINE 88: Regex ($B_{\\\\\\\\text{marker}}$)\\\\\\\\footnotemark & exc.\\\\\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\\\\\\\\\\\n---\\\\n0: 'R'\\\\n1: 'e'\\\\n2: 'g'\\\\n3: 'e'\\\\n4: 'x'\\\\n5: ' '\\\\n6: '('\\\\n7: '$'\\\\n8: 'B'\\\\n9: '_'\\\\n10: '{'\\\\n11: '\\\\\\\\\\\\\\\\'\\\\n12: 't'\\\\n13: 'e'\\\\n14: 'x'\\\\n15: 't'\\\\n16: '{'\\\\n17: 'm'\\\\n18: 'a'\\\\n19: 'r'\\\\n20: 'k'\\\\n21: 'e'\\\\n22: 'r'\\\\n23: '}'\\\\n24: '}'\\\\n25: '$'\\\\n26: ')'\\\\n27: '\\\\\\\\\\\\\\\\'\\\\n28: 'f'\\\\n29: 'o'\\\\n30: 'o'\\\\n31: 't'\\\\n32: 'n'\\\\n33: 'o'\\\\n34: 't'\\\\n35: 'e'\\\\n36: 'm'\\\\n37: 'a'\\\\n38: 'r'\\\\n39: 'k'\\\\n40: ' '\\\\n41: '&'\\\\n42: ' '\\\\n43: 'e'\\\\n44: 'x'\\\\n45: 'c'\\\\n46: '.'\\\\n47: '\\\\\\\\\\\\\\\\'\\\\n48: ' '\\\\n49: 't'\\\\n50: 'y'\\\\n51: 'p'\\\\n52: 'e'\\\\n53: ' '\\\\n54: 'r'\\\\n55: 'e'\\\\n56: 'g'\\\\n57: 'e'\\\\n58: 'x'\\\\n59: ' '\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "0f477281-a003-493e-96dc-9c741d349100",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"LINE 88: Regex ($B_{\\\\\\\\text{marker}}$)\\\\\\\\footnotemark & exc.\\\\\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\\\\\\\\\\\n---\\\\n0: 'R'\\\\n1: 'e'\\\\n2: 'g'\\\\n3: 'e'\\\\n4: 'x'\\\\n5: ' '\\\\n6: '('\\\\n7: '$'\\\\n8: 'B'\\\\n9: '_'\\\\n10: '{'\\\\n11: '\\\\\\\\\\\\\\\\'\\\\n12: 't'\\\\n13: 'e'\\\\n14: 'x'\\\\n15: 't'\\\\n16: '{'\\\\n17: 'm'\\\\n18: 'a'\\\\n19: 'r'\\\\n20: 'k'\\\\n21: 'e'\\\\n22: 'r'\\\\n23: '}'\\\\n24: '}'\\\\n25: '$'\\\\n26: ')'\\\\n27: '\\\\\\\\\\\\\\\\'\\\\n28: 'f'\\\\n29: 'o'\\\\n30: 'o'\\\\n31: 't'\\\\n32: 'n'\\\\n33: 'o'\\\\n34: 't'\\\\n35: 'e'\\\\n36: 'm'\\\\n37: 'a'\\\\n38: 'r'\\\\n39: 'k'\\\\n40: ' '\\\\n41: '&'\\\\n42: ' '\\\\n43: 'e'\\\\n44: 'x'\\\\n45: 'c'\\\\n46: '.'\\\\n47: '\\\\\\\\\\\\\\\\'\\\\n48: ' '\\\\n49: 't'\\\\n50: 'y'\\\\n51: 'p'\\\\n52: 'e'\\\\n53: ' '\\\\n54: 'r'\\\\n55: 'e'\\\\n56: 'g'\\\\n57: 'e'\\\\n58: 'x'\\\\n59: ' '\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"LINE 88: Regex ($B_{\\\\text{marker}}$)\\\\footnotemark & exc.\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\n---\\n0: 'R'\\n1: 'e'\\n2: 'g'\\n3: 'e'\\n4: 'x'\\n5: ' '\\n6: '('\\n7: '$'\\n8: 'B'\\n9: '_'\\n10: '{'\\n11: '\\\\\\\\'\\n12: 't'\\n13: 'e'\\n14: 'x'\\n15: 't'\\n16: '{'\\n17: 'm'\\n18: 'a'\\n19: 'r'\\n20: 'k'\\n21: 'e'\\n22: 'r'\\n23: '}'\\n24: '}'\\n25: '$'\\n26: ')'\\n27: '\\\\\\\\'\\n28: 'f'\\n29: 'o'\\n30: 'o'\\n31: 't'\\n32: 'n'\\n33: 'o'\\n34: 't'\\n35: 'e'\\n36: 'm'\\n37: 'a'\\n38: 'r'\\n39: 'k'\\n40: ' '\\n41: '&'\\n42: ' '\\n43: 'e'\\n44: 'x'\\n45: 'c'\\n46: '.'\\n47: '\\\\\\\\'\\n48: ' '\\n49: 't'\\n50: 'y'\\n51: 'p'\\n52: 'e'\\n53: ' '\\n54: 'r'\\n55: 'e'\\n56: 'g'\\n57: 'e'\\n58: 'x'\\n59: ' '\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01U5zPD7bagFxLmvcH6rbXR9",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-11235",
+                "command": "python3 << 'PYEOF'\nf = '/root/trace-verdict-study/docs/paper/experiments.tex'\nwith open(f) as fh:\n    content = fh.read()\n\nold_str = 'Regex ($B_{\\\\text{marker}}$)\\\\footnotemark'\nnew_str = 'Regex ($B_4$)'\n\nif old_str in content:\n    content = content.replace(old_str, new_str)\n    with open(f, 'w') as fh:\n        fh.write(content)\n    print('Replaced successfully')\nelse:\n    print('NOT FOUND - trying to locate...')\n    for i, line in enumerate(content.split('\\n'), 1):\n        if 'Regex' in line and 'marker' in line:\n            print(f'L{i}: {line}')\nPYEOF",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "34db6cea-653e-4409-b214-e6b2764dff4c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QCLP5T68CtnSuEBmZUYzPU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 849,
+                "cache_read_input_tokens": 36684,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 849
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-21T08:09:42.933Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01U5zPD7bagFxLmvcH6rbXR9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Replaced successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "f7e523cb-77c3-46a4-a5ef-6252cceda91e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Replaced successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Replaced successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证修改结果。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "0ad98138-11e5-4550-abc7-51a43e378521",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015ckY1WdHSSE6RgJtFX4QMK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 391,
+                "cache_read_input_tokens": 37533,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 391
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019EhKGAjc4eFxKk3u52nefv",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "grep -n \"Regex\" /root/trace-verdict-study/docs/paper/experiments.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "421d51f8-c5c1-4c32-8183-3d0f0433206d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015ckY1WdHSSE6RgJtFX4QMK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 391,
+                "cache_read_input_tokens": 37533,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 391
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-21T08:09:46.907Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019EhKGAjc4eFxKk3u52nefv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"88:Regex ($B_4$) & exc.\\\\\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\\\\\\\\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "e8fe12e7-9ac1-4b91-97a3-440738a8bbe4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"88:Regex ($B_4$) & exc.\\\\\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\\\\\\\\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"88:Regex ($B_4$) & exc.\\\\ type regex & 93.61 & --- & --- \\\\\\\\\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019xUYjda654WfZCmG389ae1",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "grep -n \"marker\" /root/trace-verdict-study/docs/paper/experiments.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "c120892b-4e2f-414d-b262-9da11ffa2b9b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015ckY1WdHSSE6RgJtFX4QMK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 391,
+                "cache_read_input_tokens": 37533,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 391
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PugnCnCzcSJa9A8mcgxWNg",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "grep -n \"footnote\" /root/trace-verdict-study/docs/paper/experiments.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "639f0ed0-edb5-4b56-8299-f6e5e3b0e093",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015ckY1WdHSSE6RgJtFX4QMK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 391,
+                "cache_read_input_tokens": 37533,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 391
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-21T08:09:47.914Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019xUYjda654WfZCmG389ae1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"55:\\\\\\\\caption{Verdict accuracy vs.\\\\\\\\ model scale. \\\\\\\\texttt{exception\\\\\\\\_only} maintains ${\\\\\\\\geq}$99.33\\\\\\\\% regardless of scale, while \\\\\\\\texttt{no\\\\\\\\_trace} shows monotonic sensitivity (+4.12pp). \\\\\\\\texttt{nomarker} (markers removed) shows no scale degradation.}\\\\n110:\\\\\\\\label{sec:nomarker}\\\\n112:The \\\\\\\\texttt{exception\\\\\\\\_only} format includes a \\\\\\\\texttt{[No exception data in trace]} marker in all pass-class samples (regex baseline B5 exploits this for 99.33\\\\\\\\% accuracy; Appendix~\\\\\\\\ref{sec:regex_baselines}).\\\\n113:To quantify the marker's contribution, we retrain with all format markers removed (\\\\\\\\texttt{nomarker} condition).\\\\n117:The marker contribution (${\\\\\\\\sim}$2pp) accounts for only ${\\\\\\\\sim}$9\\\\\\\\% of the total exception lift over \\\\\\\\texttt{no\\\\\\\\_trace} (24.70pp on 7B).\\\\n118:Exception events thus provide two signal layers that show no degradation at smaller scale: structural markers (${\\\\\\\\sim}$2pp, regex-learnable) and semantic exception content (${\\\\\\\\sim}$22pp, requiring SFT to distinguish caught from uncaught exceptions).\\\\n149:Error analysis provides direct evidence: all 217 \\\\\\\\texttt{full\\\\\\\\_trace} errors occur in samples where tokenizer truncation removes diagnostic markers, and among the 61 samples where \\\\\\\\texttt{full\\\\\\\\_trace} underperforms \\\\\\\\texttt{no\\\\\\\\_trace}, all exhibit the same truncation pattern---confirming that information overload manifests through a mechanical truncation pathway rather than semantic confusion.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "fa42bf71-8d09-4a29-ad84-394acc498be6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"55:\\\\\\\\caption{Verdict accuracy vs.\\\\\\\\ model scale. \\\\\\\\texttt{exception\\\\\\\\_only} maintains ${\\\\\\\\geq}$99.33\\\\\\\\% regardless of scale, while \\\\\\\\texttt{no\\\\\\\\_trace} shows monotonic sensitivity (+4.12pp). \\\\\\\\texttt{nomarker} (markers removed) shows no scale degradation.}\\\\n110:\\\\\\\\label{sec:nomarker}\\\\n112:The \\\\\\\\texttt{exception\\\\\\\\_only} format includes a \\\\\\\\texttt{[No exception data in trace]} marker in all pass-class samples (regex baseline B5 exploits this for 99.33\\\\\\\\% accuracy; Appendix~\\\\\\\\ref{sec:regex_baselines}).\\\\n113:To quantify the marker's contribution, we retrain with all format markers removed (\\\\\\\\texttt{nomarker} condition).\\\\n117:The marker contribution (${\\\\\\\\sim}$2pp) accounts for only ${\\\\\\\\sim}$9\\\\\\\\% of the total exception lift over \\\\\\\\texttt{no\\\\\\\\_trace} (24.70pp on 7B).\\\\n118:Exception events thus provide two signal layers that show no degradation at smaller scale: structural markers (${\\\\\\\\sim}$2pp, regex-learnable) and semantic exception content (${\\\\\\\\sim}$22pp, requiring SFT to distinguish caught from uncaught exceptions).\\\\n149:Error analysis provides direct evidence: all 217 \\\\\\\\texttt{full\\\\\\\\_trace} errors occur in samples where tokenizer truncation removes diagnostic markers, and among the 61 samples where \\\\\\\\texttt{full\\\\\\\\_trace} underperforms \\\\\\\\texttt{no\\\\\\\\_trace}, all exhibit the same truncation pattern---confirming that information overload manifests through a mechanical truncation pathway rather than semantic confusion.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"55:\\\\caption{Verdict accuracy vs.\\\\ model scale. \\\\texttt{exception\\\\_only} maintains ${\\\\geq}$99.33\\\\% regardless of scale, while \\\\texttt{no\\\\_trace} shows monotonic sensitivity (+4.12pp). \\\\texttt{nomarker} (markers removed) shows no scale degradation.}\\n110:\\\\label{sec:nomarker}\\n112:The \\\\texttt{exception\\\\_only} format includes a \\\\texttt{[No exception data in trace]} marker in all pass-class samples (regex baseline B5 exploits this for 99.33\\\\% accuracy; Appendix~\\\\ref{sec:regex_baselines}).\\n113:To quantify the marker's contribution, we retrain with all format markers removed (\\\\texttt{nomarker} condition).\\n117:The marker contribution (${\\\\sim}$2pp) accounts for only ${\\\\sim}$9\\\\% of the total exception lift over \\\\texttt{no\\\\_trace} (24.70pp on 7B).\\n118:Exception events thus provide two signal layers that show no degradation at smaller scale: structural markers (${\\\\sim}$2pp, regex-learnable) and semantic exception content (${\\\\sim}$22pp, requiring SFT to distinguish caught from uncaught exceptions).\\n149:Error analysis provides direct evidence: all 217 \\\\texttt{full\\\\_trace} errors occur in samples where tokenizer truncation removes diagnostic markers, and among the 61 samples where \\\\texttt{full\\\\_trace} underperforms \\\\texttt{no\\\\_trace}, all exhibit the same truncation pattern---confirming that information overload manifests through a mechanical truncation pathway rather than semantic confusion.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-21T08:09:48.459Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PugnCnCzcSJa9A8mcgxWNg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"6:All experiments use $N{=}1{,}190$ test samples; accuracy is reported with Wilson 95\\\\\\\\% CIs.\\\\\\\\footnote{Data is partitioned at the problem level (472 train / 119 test problems, zero crossover; \\\\\\\\S\\\\\\\\ref{sec:dataset}). The \\\\\\\\texttt{exception\\\\\\\\_only} format collapses passing solutions into identical rows (48.99\\\\\\\\% test duplicates; Appendix~\\\\\\\\ref{sec:dedup_stats}), but these arise from within-problem variants, not cross-set leakage; deduplication sensitivity analysis confirms 0.00pp delta across all 19 experimental conditions.}\\\\n35:\\\\\\\\par\\\\\\\\raggedright\\\\\\\\footnotesize\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "280acfc3-8db2-4978-a92e-72a346a04ab6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"6:All experiments use $N{=}1{,}190$ test samples; accuracy is reported with Wilson 95\\\\\\\\% CIs.\\\\\\\\footnote{Data is partitioned at the problem level (472 train / 119 test problems, zero crossover; \\\\\\\\S\\\\\\\\ref{sec:dataset}). The \\\\\\\\texttt{exception\\\\\\\\_only} format collapses passing solutions into identical rows (48.99\\\\\\\\% test duplicates; Appendix~\\\\\\\\ref{sec:dedup_stats}), but these arise from within-problem variants, not cross-set leakage; deduplication sensitivity analysis confirms 0.00pp delta across all 19 experimental conditions.}\\\\n35:\\\\\\\\par\\\\\\\\raggedright\\\\\\\\footnotesize\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"6:All experiments use $N{=}1{,}190$ test samples; accuracy is reported with Wilson 95\\\\% CIs.\\\\footnote{Data is partitioned at the problem level (472 train / 119 test problems, zero crossover; \\\\S\\\\ref{sec:dataset}). The \\\\texttt{exception\\\\_only} format collapses passing solutions into identical rows (48.99\\\\% test duplicates; Appendix~\\\\ref{sec:dedup_stats}), but these arise from within-problem variants, not cross-set leakage; deduplication sensitivity analysis confirms 0.00pp delta across all 19 experimental conditions.}\\n35:\\\\par\\\\raggedright\\\\footnotesize\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+              }
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成，两处变更：\n\n| 行 | 修改前 | 修改后 |\n|---|--------|--------|\n| **L88** | `Regex ($B_{\\text{marker}}$)\\footnotemark & exc.\\ type regex & 93.61 & --- & ---` | `Regex ($B_4$) & exc.\\ type regex & 93.61 & --- & ---` |\n| **L95** (原) | `\\footnotetext{$B_{\\text{marker}}$ detects the absence marker \\texttt{[No exception data in trace]}; see Discussion for details.}` | **已删除** |\n\n- Regex 标签已从 $B_{\\text{marker}}$ 改为 $B_4$，`\\footnotemark` 一并移除\n- 描述 B5 (marker detection) 的 `\\footnotetext` 已删除\n- 数值 93.61% 不变\n- 未触发编译"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "uuid": "8b478729-8921-4c8b-b9a7-babef067616a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UnVoibEiCU6jWN7c6L74oB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1397,
+                "cache_read_input_tokens": 37924,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1397
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成，两处变更：\n\n| 行 | 修改前 | 修改后 |\n|---|--------|--------|\n| **L88** | `Regex ($B_{\\text{marker}}$)\\footnotemark & exc.\\ type regex & 93.61 & --- & ---` | `Regex ($B_4$) & exc.\\ type regex & 93.61 & --- & ---` |\n| **L95** (原) | `\\footnotetext{$B_{\\text{marker}}$ detects the absence marker \\texttt{[No exception data in trace]}; see Discussion for details.}` | **已删除** |\n\n- Regex 标签已从 $B_{\\text{marker}}$ 改为 $B_4$，`\\footnotemark` 一并移除\n- 描述 B5 (marker detection) 的 `\\footnotetext` 已删除\n- 数值 93.61% 不变\n- 未触发编译"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 83972,
+            "duration_api_ms": 80080,
+            "num_turns": 20,
+            "stop_reason": "end_turn",
+            "session_id": "b5551405-f8c1-440c-9573-c6e05da73c4c",
+            "total_cost_usd": 0.5047415,
+            "usage": {
+              "input_tokens": 20,
+              "cache_creation_input_tokens": 27480,
+              "cache_read_input_tokens": 477913,
+              "output_tokens": 3693,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 27480,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 249,
+                  "cache_read_input_tokens": 37924,
+                  "cache_creation_input_tokens": 1397,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1397
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1530,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0016099999999999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 20,
+                "outputTokens": 3693,
+                "cacheReadInputTokens": 477913,
+                "cacheCreationInputTokens": 27480,
+                "webSearchRequests": 0,
+                "costUSD": 0.5031315,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "43ca3dda-05b3-4298-b1d1-d28cf5f9757f"
+          },
+          "id": "event-000053"
+        }
+      ],
+      "message_count": 53
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-fix-table1-regex-label-b4.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd7635cf22fa43e6d916",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis codellama13b full trace tail512 seed42",
+  "task_key": "worker_analysis_codellama13b_full_trace_tail512_seed42_20260518T011515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_codellama13b_full_trace_tail512_seed42_20260518T011515_result.json",
+    "occurrence": 1,
+    "bytes": 645,
+    "sha256": "0abf10bdf5953331f1b05921ab7fdaca2f5f44762ce8b7a7c0fde4e39c2d0faf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分析完成\n\n**Conclusion: success**\n\n| 指标 | 值 |\n|------|-----|\n| Accuracy | **97.5%** (95% CI: [96.6%, 98.4%]) |\n| Pass F1 / Fail F1 | 0.98 / 0.95 |\n\n**与 hypothesis 对比**：预测 93-96%，实际 97.5%，略高于上界 1.5pp。但核心结论成立——4 个模型 tail-512 全部收敛到 >93% 高精度带（93.6%--97.5%，3.9pp spread），phase transition 的跨模型普适性确认。\n\nCodeLlama-13B 偏高可能归因于 13B 参数规模和 code-specialized pretraining 的优势。\n\n**Registry 已更新**: status=DONE, conclusion=success, metrics 已录入, checkpoint/log path 已设置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-codellama13b-full-trace-tail512-seed42.md"
+}

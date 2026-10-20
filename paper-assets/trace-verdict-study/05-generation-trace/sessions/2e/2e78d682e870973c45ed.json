@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e78d682e870973c45ed",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper fix unreferenced labels",
+  "task_key": "worker_paper_fix_unreferenced_labels_20260519T181519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_unreferenced_labels_20260519T181519_result.json",
+    "occurrence": 1,
+    "bytes": 1106,
+    "sha256": "ccbe979f482cf0684aafc7a6bccfc236eb37d15abefd5f6adb0201eb82bd00c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 7 edits complete (1 was already done). Summary:\n\n| Label | Location | Edit |\n|---|---|---|\n| `tab:density` | experiments.tex:122 | Already referenced (**was pre-fixed**) |\n| `sec:per_class` | experiments.tex:16 (tab:cross_model caption) | Added \"; per-class metrics in Appendix~\\ref{sec:per_class}\" |\n| `sec:vota_algorithm` | method.tex:23 (VOTA item) | Added \"(Appendix~\\ref{sec:vota_algorithm})\" |\n| `sec:vota_examples` | method.tex:33 (fig:trace_overview caption) | Added \"Appendix~\\ref{sec:vota_examples} provides input/output examples.\" |\n| `fig:calibration` | experiments.tex:170 | Added \"(Figure~\\ref{fig:calibration})\" |\n| `sec:robustness_analysis` | experiments.tex:61 | Added \"(Appendix~\\ref{sec:robustness_analysis})\" |\n| `tab:regex` | experiments.tex:99 | Added \"; Table~\\ref{tab:regex}\" in parenthetical |\n| `sec:calibration` | — | Skipped (subsection heading, no natural \\ref needed) |\n| `sec:additional` | — | Skipped (subsection heading, no natural \\ref needed) |\n\nAll insertions are short parenthetical additions — no page impact."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-unreferenced-labels.md"
+}

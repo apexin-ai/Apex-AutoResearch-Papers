@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91e48442b01595faed3a",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis qwen15b label only seed123 v2",
+  "task_key": "worker_analysis_qwen15b_label_only_seed123_v2_20260520T201708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen15b_label_only_seed123_v2_20260520T201708_result.json",
+    "occurrence": 1,
+    "bytes": 1062,
+    "sha256": "28f098fcbfedc6595f50084f86175027042eaf247f93a8aa80bd4b23902d3f6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验结果：qwen15b_label_only_seed123_v2 — **SUCCESS**\n\n### Metrics\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **81.34%** (95% CI: [79.24%, 83.45%]) |\n| Majority baseline | 71.51% |\n| **Lift over majority** | **+9.83pp** (CI: [+7.56pp, +12.18pp]) |\n| Pass P / R / F1 | 0.824 / 0.940 / 0.878 |\n| Fail P / R / F1 | 0.767 / 0.496 / 0.602 |\n\n### 对比分析\n\n| 对比 | seed42 | seed123 | 差异 |\n|------|--------|---------|------|\n| Accuracy | 78.9% | 81.3% | +2.4pp |\n| vs no_trace (67.31%) | +11.6pp | +14.0pp | — |\n\n- **跨 seed 稳定性**：seed123 (81.3%) 在 seed42 (78.9%) 的 ±5pp 范围内，CI 重叠，确认跨 seed 稳定\n- **label_only lift 确认**：两个 seed 平均 lift = +12.8pp (vs no_trace 67.31%)，略高于假设的 ~11pp，label formatting 贡献稳健\n- **Conclusion**: success — C2 decomposition 跨 seed 稳定性得到验证\n\n### Registry 已更新\n- status: DONE, conclusion: success\n- checkpoint: `/root/trace-verdict-study/outputs/qwen15b_label_only_seed123_v2/final`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen15b-label-only-seed123-v2.md"
+}

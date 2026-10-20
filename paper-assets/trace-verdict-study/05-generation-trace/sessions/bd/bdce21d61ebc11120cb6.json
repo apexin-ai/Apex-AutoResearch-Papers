@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bdce21d61ebc11120cb6",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper micro patch sync",
+  "task_key": "worker_paper_micro_patch_sync_20260520T060444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_micro_patch_sync_20260520T060444_result.json",
+    "occurrence": 1,
+    "bytes": 755,
+    "sha256": "0ed8dd5f272bd9695fb546700600a87f10a8d54e7bf17695c75fc801ff60b6da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 最终汇报\n\n### 编译结果\n| 项目 | 结果 |\n|------|------|\n| 编译是否通过 | **通过** |\n| 错误数 | **0** |\n| 页数 | **21 页**（≤21 ✓） |\n| 未定义引用 | **0** |\n\n### 实验进度\n\n| 实验 | PID | 状态 | Accuracy | Fail Recall | Pass Recall |\n|------|-----|------|----------|-------------|-------------|\n| `deepseek_exception_only_seed123_v2` | 591985 | **已完成** (exit 0) | **99.50%** | 100% | 99.29% |\n| `codellama13b_ae_only_seed123` | 583496 | **已完成** | **99.08%** | 100% | 98.71% |\n\n两个实验均已完成，DeepSeek exception_only seed123 v2 达到 99.50% accuracy（较之前 seed123 的 91.09% 大幅改善），CodeLlama-13B ae_only seed123 达到 99.08% accuracy。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-micro-patch-sync.md"
+}

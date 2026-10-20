@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7b8f9db49eb0d4aeb15",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper compile results tables",
+  "task_key": "worker_paper_compile_results_tables_20260516T001056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile_results_tables_20260516T001056_result.json",
+    "occurrence": 1,
+    "bytes": 1107,
+    "sha256": "7764075bf48f8bffe51d890678650247c205f283b3c4fca77f1b13433f1914c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 张表格已生成并注册，保存在 `artifacts/paper_tables/main_results_tables.tex`。\n\n**数据校验摘要**：\n\n| 表格 | 内容 | 数据源 |\n|------|------|--------|\n| Table 1 | Qwen 9 条件主结果 | 全部来自 registry（v5 系列 + 组件实验） |\n| Table 2 | DeepSeek 4 条件 + 跨模型 gap | deepseek_* registry 条目 |\n| Table 3 | 种子鲁棒性（Qwen 3 seed + DeepSeek 3 seed + VOTA 2 seed） | exception_only_seed{42,123,456} + deepseek 对应条目 |\n| Table 4 | 校准指标 ECE/MCE/Brier | calibration_analysis_seed42 registry 条目 |\n\n**注意事项**：\n- ae_only 的 F1 值（标注 †）是从混淆矩阵推导的（registry 无显式 F1），1 个错误 / 1190 样本\n- exception_only MCE=0.8355 已加脚注说明是低样本 bin 导致的膨胀（2 个 GeneratorExit 不可约误差）\n- Table 2 脚注标注 DeepSeek 用 unpaired bootstrap，且 VOTA gap 部分归因于训练时 trace content 截断（非 label 截断，符合 v3.0 framing）\n- DeepSeek full_trace 使用 v3（label-preserving truncation fix），脚注已标注"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compile-results-tables.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30eb352b62e67024245a",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "eval qwen 4condition reeval",
+  "task_key": "worker_eval_qwen_4condition_reeval_20260515T160232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_qwen_4condition_reeval_20260515T160232_result.json",
+    "occurrence": 1,
+    "bytes": 15,
+    "sha256": "ce4a1647d45fe2a4c49a27ff15d18a962283163096043939113e1780f0c8cb91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-qwen-4condition-reeval.md"
+}

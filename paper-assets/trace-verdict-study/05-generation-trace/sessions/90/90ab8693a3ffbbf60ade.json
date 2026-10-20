@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90ab8693a3ffbbf60ade",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "eval full trace v5",
+  "task_key": "worker_eval_full-trace-v5_20260515T040151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_full-trace-v5_20260515T040151_result.json",
+    "occurrence": 1,
+    "bytes": 638,
+    "sha256": "132f592ff67d8c69bf475681642195cbe4a4fa8ef9700918d1fc195ee797933d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## full_trace_v5 评估结果\n\n| 指标 | 值 |\n|------|-----|\n| **accuracy** | **81.8%** (95% CI: [79.7%, 83.9%]) |\n| majority_baseline | 71.5% |\n| **lift** | **+10.3pp** (95% CI: [+7.4pp, +13.2pp]) |\n| pass P/R/F1 | 0.88 / 0.87 / 0.87 |\n| fail P/R/F1 | 0.67 / 0.70 / 0.69 |\n| **collapse 确认** | **否** — collapse 消除 |\n| eval 来源 | eval_results.json（刚由 PID 951029 生成） |\n\n**关键发现**：v5 没有 collapse。accuracy 从 v2 的 28.4% 跃升至 81.8%，chat template overhead 修复彻底解决了 collapse 问题。模型不再全部预测 majority class，fail recall 达到 70%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-full-trace-v5.md"
+}

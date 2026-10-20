@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "7378d265a3182059da47",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "paper sync compile",
+  "task_key": "worker_paper_sync_compile_20260519T203508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_sync_compile_20260519T203508.log",
+    "occurrence": 1,
+    "bytes": 616682,
+    "sha256": "5fa909786b342bf4f26d36d9bc3e91187d7f36edfe00fc3a779b53a237af2d68"
+  },
+  "statistics": {
+    "messages": 164,
+    "user_turns": 0,
+    "tool_calls": 51,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 48,
+      "tool_call": 51,
+      "tool_result": 51,
+      "result": 3
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 164,
+      "chunks": [
+        {
+          "path": "7378d265a3182059da47-part-0001.json",
+          "message_count": 145
+        },
+        {
+          "path": "7378d265a3182059da47-part-0002.json",
+          "message_count": 19
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-sync-compile.md"
+}

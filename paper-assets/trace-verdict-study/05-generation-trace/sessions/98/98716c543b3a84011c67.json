@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98716c543b3a84011c67",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "data plan 005 vota regen",
+  "task_key": "worker_data_plan_005_vota_regen_20260515T231831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_plan_005_vota_regen_20260515T231831_result.json",
+    "occurrence": 1,
+    "bytes": 1791,
+    "sha256": "eadd16ef8c7a73a72c60d53177c6c95a49cdfcc69aeebe0ae18ebaaefb58e4dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已全部重新生成。汇总报告：\n\n## 修复前后对比\n\n### Bug 影响范围\n- 1006 fail 样本中，仅 376 (37.4%) 在 `trace_raw` 有 exception 事件\n- 全部 1006 (100%) 在 `test_results.error` 有错误信息\n- **630 个 fail 样本的异常信息被遗漏**\n\n### 修复内容\n在 `format_sample` 中为 `exception_only` 和 `vota` 条件添加了 `test_results.error` fallback：当 `trace_raw` 无 exception 事件时，从 `test_results.error` 生成合成 exception 事件。\n\n### 各条件变化\n\n| 条件 | 受影响 | 变化样本数 | 说明 |\n|------|--------|-----------|------|\n| **exception_only** | 是 | 630 (123 test + 507 train) | Empty trace: 修复前含 fail 样本 → 修复后只剩 pass 样本 (50.9%) |\n| **vota** | 是 | 630 (123 test + 507 train) | fail [ERROR] 覆盖: test 82→205 (39.6%→99.0%), empty: 122→0 |\n| **ae_only** | 否 | 0 | 完全一致，不使用 exception |\n\n### Token 长度分布（修复前 → 修复后）\n\n| 条件 | mean | median | p75 | max |\n|------|------|--------|-----|-----|\n| exception_only | 376.5 → 377.1 | 297 → 299 | 445 → 445 | 1877 → 1879 |\n| vota | 1502.7 → 1508.0 | 2047 → 2047 | 2048 → 2048 | 2048 → 2048 |\n\nToken 长度几乎无变化，因为注入的 exception 文本很短（通常一行 `[ERROR] SyntaxError at line ?: ...`）。\n\n### VOTA 2 个 fail 样本仍无 [ERROR]\n205/207 (99.0%)，2 个样本有 trace exception 事件但格式可能不匹配 `_extract_exceptions` 提取模式，属于边缘情况。\n\n### 产出文件\n- `/root/autodl-tmp/trace-verdict-study-data/debugbench_{exception_only,vota}_{train,test}.jsonl` — 已重新生成\n- `/root/autodl-tmp/trace-verdict-study-data/backup_pre_fix/` — 修复前备份"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-plan-005-vota-regen.md"
+}

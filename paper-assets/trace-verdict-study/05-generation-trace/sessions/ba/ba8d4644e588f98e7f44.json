@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba8d4644e588f98e7f44",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis error analysis plan018",
+  "task_key": "worker_analysis_error_analysis_plan018_20260520T102400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_error_analysis_plan018_20260520T102400_result.json",
+    "occurrence": 1,
+    "bytes": 933,
+    "sha256": "74153a4840b6e0cc55e56b86b29811792018c569ef6e1ca63c5c573d8267a30b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。报告已写入 `artifacts/error_analysis_report.md` 并注册为 artifact (`art_20260520_0e880c`)。\n\n核心发现总结：\n\n1. **Tier 1 错误全是 FP（pass→fail 误报）**，根因是两类 trace 伪影：\n   - **GeneratorExit**：Python `all()` 短路触发的内部异常被 tracer 标记为 `[ERROR]`，HumanEval/95 因此在所有 4 个模型×3 个 seed 上一致出错\n   - **Caught exception**：`try/except` 中被捕获的异常也标记为 `[ERROR]`，DeepSeek 最敏感（MBPP/113 全部 10 个通过解被误判）\n\n2. **Tier 2 (loop_only) 与 Tier 1 错误几乎不重叠**（Qwen-7B 交集=0），loop trace 对 75% 的错误样本缺乏诊断信息（no_error 类型）\n\n3. **FP/FN 比例随 trace 质量变化**：T1 ~100% FP → T2 ~60/40 → BL ~55/45\n\n4. **Tier 1 错误跨 seed 完全确定**（3 个 seed 完全一致），是格式盲区而非模型泛化失败"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-error-analysis-plan018-copy-2.md"
+}

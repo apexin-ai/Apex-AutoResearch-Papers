@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "715f9f61e930704e4918",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code submit codellama13b ae only seed42",
+  "task_key": "worker_code_submit_codellama13b_ae_only_seed42_20260519T125805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_submit_codellama13b_ae_only_seed42_20260519T125805_result.json",
+    "occurrence": 1,
+    "bytes": 326,
+    "sha256": "fd311c8a519e83c6e3aad28c046405d15f9e35c6cb832eb469a6e0397b6b6f39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 `codellama13b_ae_only_seed42` 已提交：\n\n- **tmux session**: `codellama13b_ae_only_seed42` on cuda:1 (PID 511626, 31762 MiB)\n- **状态**: RUNNING，正在 tokenize 4720 条训练数据\n- **Registry**: 已更新，spec 字段已填充\n- **Cron 监控**: 每 7 分钟检查一次（job d70d2002）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-submit-codellama13b-ae-only-seed42.md"
+}

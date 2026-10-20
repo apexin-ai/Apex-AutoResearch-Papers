@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79b94c331e8129c60df2",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper fix table captions and formatting",
+  "task_key": "worker_paper_fix-table-captions-and-formatting_20260516T050923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-table-captions-and-formatting_20260516T050923_result.json",
+    "occurrence": 1,
+    "bytes": 1261,
+    "sha256": "ced5895fb03135fb8421cfc252726284e31e44477b4e68248e6578e3eb0e8e87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All changes verified. Here's the summary:\n\n---\n\n## 修改清单\n\n### Critical: Table caption 位置（9 个表）\n- **experiments.tex**: Tables 1-3 (cross_model, ablation, density) — `\\caption` + `\\label` 从 `\\end{tabular}` 之后移到 `\\begin{tabular}` 之前\n- **appendix.tex**: 6 个表 (trace_length, trace_length_pairwise, calibration, debugbench, dedup, regex) — 同样处理\n- appendix.tex 中另外 5 个表已经是正确格式，无需修改\n\n### Should-fix 1: VOTA-AE 命名统一\n- appendix.tex per_class 表: `VOTA$-$AE` → `VOTA\\_no\\_ae`（统一为全文主流写法）\n\n### Should-fix 2: \\texttt{} 一致性\n- experiments.tex 正文: 裸露的 `VOTA\\_no\\_ae` 加上 `\\texttt{}`\n- appendix.tex 3 个表 (train_time, full_qwen, full_deepseek): 去掉表内条件名的 `\\texttt{}` 包裹，与其他表格保持一致（表内不用 \\texttt{}，正文用）\n\n### Should-fix 3 & 4: 无需修改\n- full_trace 命名已统一（技术引用用 `\\texttt{full\\_trace}`，自然语言用 \"full-trace\"/\"full traces\"）\n- Rounding 已一致（abstract/conclusion 用 85.6%，表格/实验正文用 85.63%）\n\n### 编译验证\n- pdflatex 两次编译通过，**无 error**，引用正常解析"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-table-captions-and-formatting.md"
+}

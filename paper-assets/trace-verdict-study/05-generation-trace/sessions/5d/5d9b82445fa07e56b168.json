@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "5d9b82445fa07e56b168",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "paper round5 edits",
+  "task_key": "worker_paper_round5-edits_20260516T064949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_round5-edits_20260516T064949.log",
+    "occurrence": 1,
+    "bytes": 708729,
+    "sha256": "919d310b9b772db56eb80c9b6c2b41dbceab6515665136ca112d9b6941c4871f"
+  },
+  "statistics": {
+    "messages": 146,
+    "user_turns": 0,
+    "tool_calls": 57,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 28,
+      "tool_call": 57,
+      "tool_result": 57,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 146,
+      "chunks": [
+        {
+          "path": "5d9b82445fa07e56b168-part-0001.json",
+          "message_count": 116
+        },
+        {
+          "path": "5d9b82445fa07e56b168-part-0002.json",
+          "message_count": 30
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-round5-edits.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c0a83820b4475e7c0a8",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis regex baseline",
+  "task_key": "worker_analysis_regex_baseline_20260516T033831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_regex_baseline_20260516T033831_result.json",
+    "occurrence": 1,
+    "bytes": 1336,
+    "sha256": "eb3909b702d945af6a60dbccc7f132d4017f1fd8d7a188d0c51fd4d65f5ef07e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果总结\n\n### Exception_only 格式（主战场）\n\n| Baseline | Accuracy | Gap vs SFT |\n|---|---|---|\n| B1: `[ERROR]` 存在 | 93.45% | -6.39 pp |\n| B2: `Traceback` 存在 | 71.51% | -28.32 pp |\n| B3: 任意关键词 | 93.45% | -6.39 pp |\n| B4: 异常类型 regex | 93.61% | -6.22 pp |\n| **B5: 数据格式标记利用** | **99.33%** | **-0.50 pp** |\n| B6: ERROR 计数≥2 | 92.02% | -7.81 pp |\n| **SFT (exception_only)** | **99.83%** | — |\n\n### 关键发现\n\n**SFT 必要性得到证明。** 标准 regex baseline (B1-B4) 最高 93.61%，与 SFT 差距 >6 pp。\n\n**B5 的 99.33% 是数据格式伪像**，不是真正的 regex 能力：它仅靠 `[No exception data in trace]` 标记判断 pass，其余判 fail。这不是对 trace 内容的理解。\n\n**McNemar p=0.041**，B5 与 SFT 差异统计显著。\n\n**8 个关键边界样本**（pass 但 trace 含异常）：\n- 6 个 `ValueError`（被 try/except 捕获）→ SFT 全部正确，B5 全错\n- 2 个 `GeneratorExit` → SFT 和 B5 都错\n\n**跨格式对比**：vota 上 regex 最高 75.55%（SFT 99.41%），full_trace 上 regex 77.39%（SFT 81.76%）。\n\n**结论：简单 regex 无法替代 SFT。** 论文的 SFT 方法论站得住。结果已保存到 `/root/trace-verdict-study/analysis/regex_baseline_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-regex-baseline.md"
+}

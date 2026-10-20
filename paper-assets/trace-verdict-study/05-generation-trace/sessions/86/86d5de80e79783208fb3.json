@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86d5de80e79783208fb3",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code submit vota seed456",
+  "task_key": "worker_code_submit_vota_seed456_20260519T064227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_submit_vota_seed456_20260519T064227_result.json",
+    "occurrence": 1,
+    "bytes": 386,
+    "sha256": "f6b6e1848da231f0280a0bbe7bae5993e440707a6edd96f0f481265cc98a67bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **exp_id**: qwen7b_vota_seed456\n- **GPU**: cuda:1 @ westd-11235\n- **PID**: 494086, tmux session 存活\n- **Registry spec** 已更新（data_count=1190, seed=456, model=Qwen2.5-Coder-7B-Instruct）\n- GPU 进程暂未出现在 nvidia-smi，属正常（conda activate + 模型加载中），log 文件: `~/runs/trace-verdict-study/qwen7b_vota_seed456.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-submit-vota-seed456.md"
+}

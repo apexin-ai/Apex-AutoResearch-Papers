@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cdd1f4d7abca32d20efe",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis gradient masking qwen7b seed123",
+  "task_key": "worker_analysis_gradient_masking_qwen7b_seed123_20260522T143448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gradient_masking_qwen7b_seed123_20260522T143448_result.json",
+    "occurrence": 1,
+    "bytes": 1686,
+    "sha256": "c1c693f5b4b4c54949da999efef8d79fdae25d9e05b686c8b7c7ce1784f0d431"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n## gradient_masking_qwen7b_seed123 实验结果\n\n### 训练状态：✅ 正常完成\n- EXIT_CODE=0，无 error/exception\n- 3 epochs, 444 steps, 耗时 ~77 分钟\n- Gradient masking 已生效：ratio=0.998, keep=0.002\n\n### 训练指标（来自 log）\n| 指标 | 值 |\n|------|-----|\n| train_loss | 1.6128 |\n| eval_loss | 0.0600 |\n| train_runtime | 4611.3s |\n| train_samples/s | 3.071 |\n\n### ⚠️ Accuracy / F1 等指标：**尚未计算**\n\n训练脚本只计算了 loss，accuracy、fail_f1、precision、recall 等分类指标需要**单独运行评估脚本**。W&B 也未配置（服务器上无 wandb 目录）。\n\n需要运行：\n```bash\n/root/miniconda3/bin/python /root/trace-verdict-study/eval/evaluate.py \\\n  --condition exception_only \\\n  --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/gradient_masking_qwen7b_seed123/final \\\n  --model_path /root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct \\\n  --gpu 0 \\\n  --output /root/trace-verdict-study/results/gradient_masking_qwen7b_seed123_eval.json \\\n  --save_predictions\n```\n\n### Checkpoint 路径\n`/root/autodl-tmp/trace-verdict-study-checkpoints/gradient_masking_qwen7b_seed123/final`\n（含 checkpoint-148, checkpoint-296, checkpoint-444, final）\n\n### Log 路径\n`/root/runs/trace-verdict-study/gradient_masking_qwen7b_seed123.log`\n\n### 与 seed42 对比\n无法对比——seed42 的 98.99% accuracy 来自评估脚本，seed123 尚未运行评估。\n\n### 结论\n**Pending** — 训练成功完成，但需要运行上述评估命令才能得到 accuracy/f1 等指标并与 seed42 对比。是否现在执行评估？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gradient-masking-qwen7b-seed123.md"
+}

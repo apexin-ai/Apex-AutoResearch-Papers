@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5b55bd8af55d2e21f8c",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ssh check qwen epoch accuracy",
+  "task_key": "worker_ssh_check_qwen_epoch_accuracy_20260515T140516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_qwen_epoch_accuracy_20260515T140516_result.json",
+    "occurrence": 1,
+    "bytes": 1217,
+    "sha256": "eebd6dda862a78ce2a333ac1acd5aa88f50be318b20756965e58f363fae2a3dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### Qwen 三个条件的 epoch-level 数据汇总\n\n| 条件 | Epoch 1 eval_loss | Epoch 2 eval_loss | Epoch 3 eval_loss | 趋势 | 中间 checkpoint | epoch-level verdict accuracy |\n|------|-------------------|-------------------|-------------------|------|----------------|------------------------------|\n| **vota** | 0.0654 | 0.0795 | 0.0867 | 递增 ↑ | ✅ (148, 296, 444) | ❌ 无 |\n| **no_trace** | 0.4944 | 0.5886 | 0.6454 | 递增 ↑ | ✅ (148, 296, 444) | ❌ 无 |\n| **full_trace** | 0.0619 | 0.0766 | 0.0841 | 递增 ↑ | ✅ (148, 296, 444) | ❌ 无 |\n\n### 关键发现\n\n1. **三个 Qwen 条件的 eval_loss 都是单调递增的**（epoch 1 最低），与 DeepSeek VOTA 行为一致。\n2. **中间 checkpoint 存在但未跑 evaluate.py**——eval_results.json 只在 `final/` 目录下，中间 checkpoint 目录内没有。唯一有中间 checkpoint eval_results 的是 `deepseek_vota/checkpoint-148`。\n3. **需要派 eval Worker** 对 Qwen 的 6 个中间 checkpoint（3 条件 × checkpoint-148 和 checkpoint-296）跑 evaluate.py，才能获得 epoch-level verdict accuracy，验证 eval_loss 与 accuracy 是否在 Qwen 上也存在解耦现象。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-qwen-epoch-accuracy.md"
+}

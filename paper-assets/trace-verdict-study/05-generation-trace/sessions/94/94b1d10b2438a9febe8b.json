@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94b1d10b2438a9febe8b",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "submit deepseek full trace seed42 v2",
+  "task_key": "worker_submit_deepseek_full_trace_seed42_v2_20260515T181407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_deepseek_full_trace_seed42_v2_20260515T181407_result.json",
+    "occurrence": 1,
+    "bytes": 508,
+    "sha256": "0f69a37bfdebf1961ceafbc0139740c123068a4fd0f99e89df680deee2086359"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动并正常运行。\n\n**状态汇总：**\n- **exp_id**: `deepseek_full_trace_seed42_v2`\n- **GPU**: cuda:1（cuda:0 被旧实验的 eval 占用，改用 GPU 1）\n- **tmux session**: `deepseek_full_trace_seed42_v2`\n- **日志**: `~/runs/trace-verdict-study/deepseek_full_trace_seed42_v2.log`\n- **启动确认**: 模型加载中，Train: 4720, Eval: 1190，无报错\n- **Registry**: 已更新 spec，状态 PREPARING\n\n训练完成后会自动接 evaluate.py 评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-deepseek-full-trace-seed42-v2.md"
+}

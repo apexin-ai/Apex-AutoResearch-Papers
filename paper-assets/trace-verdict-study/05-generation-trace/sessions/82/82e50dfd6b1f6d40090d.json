@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82e50dfd6b1f6d40090d",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "figure fig1 trace overview",
+  "task_key": "worker_figure_fig1_trace_overview_20260516T013107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig1_trace_overview_20260516T013107_result.json",
+    "occurrence": 1,
+    "bytes": 658,
+    "sha256": "63c95996475b751d29d6c65b8ca8445897acd884b3f32cfb611ed32ff62d49c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有 `register_artifact` 工具可用。\n\n**任务完成。** 生成脚本位于 `/root/trace-verdict-study/figures/gen_fig1.py`，输出：\n\n| 文件 | 路径 | 大小 |\n|------|------|------|\n| PDF | `/root/trace-verdict-study/figures/paper/fig1_trace_overview.pdf` | 37K |\n| PNG | `/root/trace-verdict-study/figures/paper/fig1_trace_overview.png` | 200K |\n\n图表内容：从左到右的 pipeline 流程图，包含 Code+Test → Execute → Raw Trace → Compression（4 种策略分支，虚线框标注）→ SFT Training → Verdict，每个压缩策略标注了 accuracy，Exception Only 用绿色高亮并带星号标记。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig1-trace-overview.md"
+}

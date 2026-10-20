@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bebb495b57e0bf7f86c",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis deepseek full trace seed42",
+  "task_key": "worker_analysis_deepseek_full_trace_seed42_20260515T163712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek_full_trace_seed42_20260515T163712_result.json",
+    "occurrence": 1,
+    "bytes": 1223,
+    "sha256": "6d0bc69fd569285f9a0a27bcb1f63d31e95a5d0b43c14522795f3d3744dbf19d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已全部更新，status 已转为 DONE。\n\n## 结果摘要\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **28.5%** [26.1%, 30.8%] |\n| Majority baseline | 71.5% |\n| Lift | **-43.0pp** |\n| Pass P/R/F1 | 0.00 / 0.00 / 0.00 |\n| Fail P/R/F1 | 0.28 / 1.00 / 0.44 |\n| Train loss | 0.052 |\n| Eval loss (ep2→ep3) | 0.090 → 0.110 |\n| 训练时长 | 2.7h (2.85 GPU-hours) |\n\n## 诊断：模型坍塌，全部预测为 fail\n\n**关键对比：**\n\n| Condition | DeepSeek | Qwen |\n|-----------|----------|------|\n| no_trace | 73.4% | — |\n| full_trace | **28.5%** ❌ | 81.8% |\n| VOTA | 84.5% | — |\n| exception_only | 99.3% | — |\n\n**核心发现：**\n1. 模型将 1190 个测试样本全部预测为 fail（少数类），pass recall = 0\n2. Qwen 在同一 full_trace 数据上正常工作 (81.8%)，说明数据没问题\n3. DeepSeek 在 VOTA/exception_only 上表现优秀，说明模型本身有能力\n4. eval_loss 从 epoch2 到 epoch3 上升，存在 overfitting，但核心问题是 generation collapse\n5. Registry 中的 metrics.note 提到 **与 Qwen full_trace_v2 (28.4%) chat template fix 前的模式相同**——可能是 chat template 导致 label 被截断"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-full-trace-seed42.md"
+}

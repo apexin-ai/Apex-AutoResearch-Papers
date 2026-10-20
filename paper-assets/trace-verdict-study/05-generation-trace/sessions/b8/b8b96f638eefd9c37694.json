@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8b96f638eefd9c37694",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis diagnose restart experiments",
+  "task_key": "worker_analysis_diagnose_restart_experiments_20260519T131056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_diagnose_restart_experiments_20260519T131056_result.json",
+    "occurrence": 1,
+    "bytes": 1365,
+    "sha256": "d85e197f1135398751652a956fd0f86063423531255f7232dd899e3d4820a653"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CPU 时间在两次读取之间显著增长（各 +5596 jiffies），确认两个进程正在活跃计算。\n\n## 检查结果\n\n### 1. qwen7b_full_trace_tail512_seed42 (PID 511626, cuda:0)\n\n| 项目 | 状态 |\n|------|------|\n| **进程状态** | **运行中** — 287 线程，CPU 时间 ~17 min 且持续增长 |\n| **已运行时间** | ~15 分钟（预期 ~53 min） |\n| **预估进度** | ~step 126/444（未到第一个 checkpoint-148） |\n| **checkpoint** | 无 — output_dir 只有 tfevents 文件（10.7KB） |\n| **final/** | 不存在 |\n| **eval** | 未运行（训练未完成） |\n| **wandb** | 未找到 wandb 目录，可能未启用或写入 wandb 云端 |\n\n### 2. codellama13b_ae_only_seed42 (PID 512034, cuda:1)\n\n| 项目 | 状态 |\n|------|------|\n| **进程状态** | **运行中** — 287 线程，CPU 时间 ~16 min 且持续增长 |\n| **已运行时间** | ~14 分钟 |\n| **checkpoint** | 无 — output_dir 只有 tfevents 文件（6.4KB） |\n| **final/** | 不存在 |\n| **eval** | 未运行（训练未完成） |\n| **wandb** | 同上 |\n\n### 结论\n\n两个实验都**仍在正常训练中**，cron 监控丢失不影响实际训练进程。标记 failed 是误报。训练尚未到第一个 checkpoint 保存点（step 148），预计 qwen7b 还需 ~38 分钟完成，之后需手动触发 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-diagnose-restart-experiments.md"
+}

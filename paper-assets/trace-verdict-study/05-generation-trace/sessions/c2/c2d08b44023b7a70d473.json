@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "c2d08b44023b7a70d473",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "ops sync fig4 and confirm",
+  "task_key": "worker_ops_sync_fig4_and_confirm_20260516T020300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_fig4_and_confirm_20260516T020300.log",
+    "occurrence": 1,
+    "bytes": 553678,
+    "sha256": "d58bc8457b48e38c0aab6938b00d4bec020cc7e010fdf53e2af51583796d7a5a"
+  },
+  "statistics": {
+    "messages": 288,
+    "user_turns": 0,
+    "tool_calls": 23,
+    "roles": {
+      "log": 15,
+      "system": 206,
+      "record": 6,
+      "assistant": 17,
+      "tool_call": 23,
+      "tool_result": 21
+    },
+    "unparsed_lines_preserved": 15,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 288,
+      "chunks": [
+        {
+          "path": "c2d08b44023b7a70d473-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c2d08b44023b7a70d473-part-0002.json",
+          "message_count": 108
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-sync-fig4-and-confirm.md"
+}

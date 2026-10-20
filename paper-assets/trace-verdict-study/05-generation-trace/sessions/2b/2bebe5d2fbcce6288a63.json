@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2bebe5d2fbcce6288a63",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper reference audit",
+  "task_key": "worker_paper_reference-audit_20260516T023811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_reference-audit_20260516T023811_result.json",
+    "occurrence": 1,
+    "bytes": 692,
+    "sha256": "66f08c4b4b72a7c41e70c915577be29dc0d9a7b3d0d436bd2f099ada00d27205"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。汇总：\n\n**28 条引用全部验证，0 缺失，0 孤立。**\n\n| 状态 | 数量 | 说明 |\n|------|------|------|\n| FAIL（已修复） | 2 | `ferrando2025execute` 和 `appt2024`：作者名完全是 AI 幻觉，已替换为正确作者 |\n| WARNING（已修复） | 8 | 年份错误 1 条、workshop 名错 1 条、作者名细节 1 条、标题格式 2 条、作者列表不完整 3 条 |\n| PASS | 18 | 标题/作者/年份/venue/arXiv ID 全部正确 |\n\n**已直接修复 `references.bib`**，所有 10 个问题条目均已更正。无引用上下文错误（张冠李戴）。报告写入 `artifacts/_project/paper/reference_audit_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-reference-audit-copy-2.md"
+}

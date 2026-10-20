@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d4429c22c1910b18035",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "eval cuda1 qwen eval batch 20260515",
+  "task_key": "worker_eval_cuda1_qwen_eval_batch_20260515_20260515T151342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cuda1_qwen_eval_batch_20260515_20260515T151342_result.json",
+    "occurrence": 1,
+    "bytes": 1530,
+    "sha256": "23008147f6baef0817c77b56222a6d76f570f0de23c14781d41e4f83df281d27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部任务完成。汇总所有结果：\n\n---\n\n## 产出汇总\n\n### 1. deepseek_exception_only 完整 metrics\n| Metric | Value |\n|--------|-------|\n| **accuracy** | 0.9933 |\n| majority_baseline | 0.7151 |\n| lift | +0.2782 |\n| n | 1190 |\n| pass: P/R/F1 | 1.00 / 0.9906 / 0.9953 |\n| fail: P/R/F1 | 0.9769 / 1.00 / 0.9883 |\n\n### 2. VOTA 重跑结果\n- **accuracy: 0.9941** (确认不是旧的 0.9916) ✅\n- predictions.jsonl: **1190 行**\n- eval_results.json 已更新\n\n### 3. 其他 Qwen 条件一致性检查\n| 条件 | eval_results.json | registry | 状态 |\n|------|------------------|----------|------|\n| no_trace | 0.7513 | 0.7513 | ✅ 一致 |\n| full_trace | 0.8176 | 0.8176 | ✅ 一致 |\n| exception_only | 0.9983 | 0.9983 | ✅ 一致 |\n| loop_only | 0.8563 | 0.8563 | ✅ 一致 |\n\n所有条件均已重跑生成 predictions.jsonl（各 1190 行）。\n\n### 4. eval_qwen_epochs.sh epoch-level accuracy\n\n| 条件 | checkpoint-148 (epoch 1) | checkpoint-296 (epoch 2) | final |\n|------|-------------------------|-------------------------|-------|\n| **vota** | 0.9933 | 0.9941 | 0.9941 |\n| **no_trace** | 0.7429 | 0.7630 | 0.7513 |\n| **full_trace** | 0.8303 | 0.7630 | 0.8176 |\n\n注意：full_trace 从 epoch 1 (0.8303) 到 epoch 2 (0.7630) 出现了 accuracy 下降，final checkpoint 为 0.8176，说明可能存在过拟合或训练不稳定。no_trace 的 final (0.7513) 也低于 epoch 2 (0.7630)，可能是类似情况。vota 在各阶段保持稳定高性能。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cuda1-qwen-eval-batch-20260515.md"
+}

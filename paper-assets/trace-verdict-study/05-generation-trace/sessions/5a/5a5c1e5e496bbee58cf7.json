@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a5c1e5e496bbee58cf7",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis prediction overlap 1 5b vs 7b",
+  "task_key": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T142527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T142527_result.json",
+    "occurrence": 1,
+    "bytes": 836,
+    "sha256": "3cbbbb0710752249884862950b5c698ba217b09c28fadfd600061bfb85b1a790"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n**IDs 901 和 905（HumanEval/95）是 universal irreducible errors**，所有模型（Qwen-7B/1.5B、DeepSeek-7B）在所有稳定 seed 上均错误预测为 \"fail\"。\n\n根因：Python `all()` 短路时触发 `GeneratorExit`，tracer 标记为 `[ERROR]`，但这不是真实错误——是 Python generator protocol 的正常行为。模型无法区分这种 benign internal exception 和真实的运行时错误。\n\n额外发现：\n- DeepSeek 还在 MBPP/113（try/except ValueError）上稳定出错（6 samples），但 Qwen 不受影响\n- 整个测试集仅 8/1190 samples 有\"误导性 trace\"（`[ERROR]` + label=pass），所有模型错误都集中在这 8 个样本上\n- 潜在修复：从 trace 中过滤 `GeneratorExit`/`StopIteration` 等 Python 内部协议异常"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-prediction-overlap-1-5b-vs-7b-copy-2.md"
+}

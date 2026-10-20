@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0b28fed00129aa2e881",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code plan 003 exception only v2",
+  "task_key": "worker_code_plan_003_exception_only_v2_20260515T071441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_003_exception_only_v2_20260515T071441_result.json",
+    "occurrence": 1,
+    "bytes": 429,
+    "sha256": "ed93ee1d1338561d7753c1c457afe841025c3a20700d285f18da8c5cea2750e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n- **旧进程**：已清理，旧 checkpoint 已删除\n- **训练已启动**：tmux session `vota_exception_only_seed42_v2`，cuda:1，100% GPU / 52283 MiB\n- **进度**：3/444 steps，无 OOM，gradient_checkpointing 生效\n- **Registry**：`vota_exception_only_seed42_v2` → RUNNING，含完整 spec\n- **训练完成后自动链接 eval**：evaluate.py 会输出到 `eval_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-003-exception-only-v2.md"
+}

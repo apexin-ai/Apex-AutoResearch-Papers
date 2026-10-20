@@ -1,0 +1,212 @@
+{
+  "schema_version": "1.0",
+  "id": "5abf810015dbfe8d6949",
+  "project": "trace-verdict-study",
+  "kind": "conversation",
+  "title": "analysis deepseek no trace seed42",
+  "task_key": "worker_analysis_deepseek_no_trace_seed42_20260515T133757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_deepseek_no_trace_seed42_20260515T133757.jsonl",
+    "occurrence": 1,
+    "bytes": 12185,
+    "sha256": "d19a196815924522d89b6956711e53b2fcbe59a6cb7abc0555eb18fe22f04e42"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "tool_call": 4,
+      "tool_result": 4,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T13:38:37.726431+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_deepseek_no_trace_seed42_20260515T133757",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T13:38:37.726769+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_deepseek_no_trace_seed42_20260515T133757",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T13:38:37.726937+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_deepseek_no_trace_seed42_20260515T133757",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "cat /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T13:38:37.727073+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_deepseek_no_trace_seed42_20260515T133757",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "tail -50 /root/runs/trace-verdict-study/deepseek_no_trace_seed42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T13:38:37.727212+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_deepseek_no_trace_seed42_20260515T133757",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "ls -la /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T13:38:37.727450+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"no_trace\\\\\\\",\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\\\\\\\",\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.7336134453781512,\\\\n    \\\\\\\"majority_baseline\\\\\\\": 0.7151260504201681,\\\\n    \\\\\\\"lift\\\\\\\": 0.018487394957983128,\\\\n    \\\\\\\"majority_class\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n    \\\\\\\"n\\\\\\\": 1190,\\\\n    \\\\\\\"pass_precision\\\\\\\": 0.8171021377672208,\\\\n    \\\\\\\"pass_recall\\\\\\\": 0.8084606345475911,\\\\n    \\\\\\\"pass_f1\\\\\\\": 0.8127584170112226,\\\\n    \\\\\\\"fail_precision\\\\\\\": 0.5316091954022989,\\\\n    \\\\\\\"fail_recall\\\\\\\": 0.5457227138643068,\\\\n    \\\\\\\"fail_f1\\\\\\\": 0.5385735080058225\\\\n  },\\\\n  \\\\\\\"confidence_intervals\\\\\\\": {\\\\n    \\\\\\\"accuracy_ci_lower\\\\\\\": 0.7083823529411765,\\\\n    \\\\\\\"accuracy_ci_upper\\\\\\\": 0.7571638655462184,\\\\n    \\\\\\\"majority_baseline_ci_lower\\\\\\\": 0.6915966386554622,\\\\n    \\\\\\\"majority_baseline_ci_upper\\\\\\\": 0.738655462184874,\\\\n    \\\\\\\"lift_ci_lower\\\\\\\": -0.00926470588235291,\\\\n    \\\\\\\"lift_ci_upper\\\\\\\": 0.04628151260504201,\\\\n    \\\\\\\"pass_precision_ci_lower\\\\\\\": 0.7911681259616019,\\\\n    \\\\\\\"pass_precision_ci_upper\\\\\\\": 0.8414634146341463,\\\\n    \\\\\\\"pass_recall_ci_lower\\\\\\\": 0.7817252253719553,\\\\n    \\\\\\\"pass_recall_ci_upper\\\\\\\": 0.8339224725694577,\\\\n    \\\\\\\"pass_f1_ci_lower\\\\\\\": 0.7920628820065595,\\\\n    \\\\\\\"pass_f1_ci_upper\\\\\\\": 0.831428547097829,\\\\n    \\\\\\\"fail_precision_ci_lower\\\\\\\": 0.484403376464283,\\\\n    \\\\\\\"fail_precision_ci_upper\\\\\\\": 0.5819702715928554,\\\\n    \\\\\\\"fail_recall_ci_lower\\\\\\\": 0.49531876198978136,\\\\n    \\\\\\\"fail_recall_ci_upper\\\\\\\": 0.5977476332292196,\\\\n    \\\\\\\"fail_f1_ci_lower\\\\\\\": 0.4951023096050912,\\\\n    \\\\\\\"fail_f1_ci_upper\\\\\\\": 0.5819443099273607\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_deepseek_no_trace_seed42_20260515T133757",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T13:38:37.727639+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Setting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nLoading LoRA adapter from /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\\\\nRunning inference...\\\\n  [50/1190] running accuracy: 0.7200\\\\n  [100/1190] running accuracy: 0.6700\\\\n  [150/1190] running accuracy: 0.6667\\\\n  [200/1190] running accuracy: 0.7000\\\\n  [250/1190] running accuracy: 0.7120\\\\n  [300/1190] running accuracy: 0.6800\\\\n  [350/1190] running accuracy: 0.6943\\\\n  [400/1190] running accuracy: 0.7075\\\\n  [450/1190] running accuracy: 0.7200\\\\n  [500/1190] running accuracy: 0.7480\\\\n  [550/1190] running accuracy: 0.7382\\\\n  [600/1190] running accuracy: 0.7367\\\\n  [650/1190] running accuracy: 0.7354\\\\n  [700/1190] running accuracy: 0.7414\\\\n  [750/1190] running accuracy: 0.7320\\\\n  [800/1190] running accuracy: 0.7238\\\\n  [850/1190] running accuracy: 0.7282\\\\n  [900/1190] running accuracy: 0.7344\\\\n  [950/1190] running accuracy: 0.7347\\\\n  [1000/1190] running accuracy: 0.7380\\\\n  [1050/1190] running accuracy: 0.7324\\\\n  [1100/1190] running accuracy: 0.7336\\\\n  [1150/1190] running accuracy: 0.7330\\\\n\\\\nComputing metrics...\\\\n\\\\n=== Evaluation Results (condition: no_trace) ===\\\\nAccuracy:           73.4% (95% CI: [70.8%, 75.7%])\\\\nMajority baseline:  71.5% (always predict 'pass')\\\\nLift over majority: +1.8pp (95% CI: [-0.9pp, +\n…[truncated 366 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_deepseek_no_trace_seed42_20260515T133757",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T13:38:37.727869+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 158504\\\\ndrwxr-xr-x 2 root root      4096 May 15 21:35 .\\\\ndrwxr-xr-x 7 root root       142 May 15 21:34 ..\\\\n-rw-r--r-- 1 root root      5356 May 15 21:34 README.md\\\\n-rw-r--r-- 1 root root      1174 May 15 21:34 adapter_config.json\\\\n-rw-r--r-- 1 root root 159967880 May 15 21:34 adapter_model.safetensors\\\\n-rw-r--r-- 1 root root      1041 May 15 21:34 chat_template.jinja\\\\n-rw-r--r-- 1 root root      1421 May 15 21:35 eval_results.json\\\\n-rw-r--r-- 1 root root       349 May 15 21:34 special_tokens_map.json\\\\n-rw-r--r-- 1 root root   2289810 May 15 21:34 tokenizer.json\\\\n-rw-r--r-- 1 root root      4297 May 15 21:34 tokenizer_config.json\\\\n-rw-r--r-- 1 root root      6481 May 15 21:34 training_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_deepseek_no_trace_seed42_20260515T133757",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T13:38:37.728082+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "### eval_results.json\n\n```json\n{\n  \"condition\": \"no_trace\",\n  \"checkpoint_dir\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\",\n  \"metrics\": {\n    \"accuracy\": 0.7336134453781512,\n    \"majority_baseline\": 0.7151260504201681,\n    \"lift\": 0.018487394957983128,\n    \"majority_class\": \"pass\",\n    \"n\": 1190,\n    \"pass_precision\": 0.8171021377672208,\n    \"pass_recall\": 0.8084606345475911,\n    \"pass_f1\": 0.8127584170112226,\n    \"fail_precision\": 0.5316091954022989,\n    \"fail_recall\": 0.5457227138643068,\n    \"fail_f1\": 0.5385735080058225\n  },\n  \"confidence_intervals\": {\n    \"accuracy_ci_lower\": 0.7083823529411765,\n    \"accuracy_ci_upper\": 0.7571638655462184,\n    \"majority_baseline_ci_lower\": 0.6915966386554622,\n    \"majority_baseline_ci_upper\": 0.738655462184874,\n    \"lift_ci_lower\": -0.00926470588235291,\n    \"lift_ci_upper\": 0.04628151260504201,\n    \"pass_precision_ci_lower\": 0.7911681259616019,\n    \"pass_precision_ci_upper\": 0.8414634146341463,\n    \"pass_recall_ci_lower\": 0.7817252253719553,\n    \"pass_recall_ci_upper\": 0.8339224725694577,\n    \"pass_f1_ci_lower\": 0.7920628820065595,\n    \"pass_f1_ci_upper\": 0.831428547097829,\n    \"fail_precision_ci_lower\": 0.484403376464283,\n    \"fail_precision_ci_upper\": 0.5819702715928554,\n    \"fail_recall_ci_lower\": 0.49531876198978136,\n    \"fail_recall_ci_upper\": 0.5977476332292196,\n    \"fail_f1_ci_lower\": 0.4951023096050912,\n    \"fail_f1_ci_upper\": 0.5819443099273607\n  }\n}\n```\n\n### 训练日志尾部（最后 50 行）\n\n```\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\nLoading LoRA adapter from /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\nRunning inference...\n  [50/1190] running accuracy: 0.7200\n  [100/1190] running accuracy: 0.6700\n  [150/1190] running accuracy: 0.6667\n  [200/1190] running accuracy: 0.7000\n  [250/1190] running accuracy: 0.7120\n  [300/1190] running accuracy: 0.6800\n  [350/1190] running accuracy: 0.6943\n  [400/1190] running accuracy: 0.7075\n  [450/1190] running accuracy: 0.7200\n  [500/1190] running accuracy: 0.7480\n  [550/1190] running accuracy: 0.7382\n  [600/1190] running accuracy: 0.7367\n  [650/1190] running accuracy: 0.7354\n  [700/1190] running accuracy: 0.7414\n  [750/1190] running accuracy: 0.7320\n  [800/1190] running accuracy: 0.7238\n  [850/1190] running accuracy: 0.7282\n  [900/1190] running accuracy: 0.7344\n  [950/1190] running accuracy: 0.7347\n  [1000/1190] running accuracy: 0.7380\n  [1050/1190] running accuracy: 0.7324\n  [1100/1190] running accuracy: 0.7336\n  [1150/1190] running accuracy: 0.7330\n\nComputing metrics...\n\n=== Evaluation Results (condition: no_trace) ===\nAccuracy:           73.4% (95% CI: [70.8%, 75.7%])\nMajority baseline:  71.5% (always predict 'pass')\nLift over majority: +1.8pp (95% CI: [-0.9pp, +4.6pp])\n\nPer-class metrics:\n  pass:  P=0.82  R=0.81  F1=0.81\n  fail:  P=0.53  R=0.55  F1=0.54\n\nBootstrap: 1000 resamples\n\nResults saved to /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json\nEXIT_CODE=0\n```\n\n### Checkpoint 目录\n\n目录存在，内容完整：\n\n```\n-rw-r--r-- 1 root root      5356 May 15 21:34 README.md\n-rw-r--r-- 1 root root      1174 May 15 21:34 adapter_config.json\n-rw-r--r-- 1 root root 159967880 May 15 21:34 adapter_model.safetensors\n-rw-r--r-- 1 root root      1041 May 15 21:34 chat_template.jinja\n-rw-r--r-- 1 root root      1421 May 15 21:35 eval_results.json\n-rw-r--r-- 1 root root       349 May 15 21:34 special_tokens_map.json\n-rw-r--r-- 1 root root   2289810 May 15 21:34 tokenizer.json\n-rw-r--r-- 1 root root      4297 May 15 21:34 tokenizer_config.json\n-rw-r--r-- 1 root root      6481 May 15 21:34 training_args.bin\n```\n\nCheckpoint 完整，adapter 模型约 153MB，eval 已完成，`EXIT_CODE=0`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_deepseek_no_trace_seed42_20260515T133757"
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-deepseek-no-trace-seed42.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "932344cfd4b31ea978a0",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_17_1779568194.md",
+  "task_key": "loop_17_1779568194",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_17_1779568194.md",
+    "occurrence": 1,
+    "bytes": 3254,
+    "sha256": "947923b478c109e3758a67f81bb8e875a81deab53a6345f22905dab7e67d37b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-22T02:01:28+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-11235 的 cuda:0 和 cuda:1（gpu_ids 白名单）\n- full_trace condition 的 Qwen-7B SFT 显存接近 95 GiB GPU 上限（seed456 单进程占 94.74/94.97 GiB），两个 full_trace 实验不能同时跑在同一张卡上\n- EMNLP ARR DDL: 2026-05-25（还剩 3 天），D111 Action Matrix 是当前最高优先级\n- 代码 commit 锁定 e404237，训练命令必须带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-11235，账户 root\n- 工作目录：/root/trace-verdict-study\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- HF cache：/root/autodl-tmp/.hf_cache\n- Checkpoint 目录：/root/autodl-tmp/trace-verdict-study-checkpoints/\n- 日志目录：~/runs/trace-verdict-study/\n- W&B project：trace-verdict-study\n- 磁盘：/autodl-pub 5.3T/7.3T 可用（24%），充足\n- 活跃进程：无（两个实验均已 OOM 退出）\n- Cron：已 reconcile，qwen7b_full_trace_seed456 的 stale cron 已清理\n\n### 3. 📊 当前状态\n收到 qwen7b_full_trace_seed123 失败 cron 回调，发现 seed456 也同时 OOM 失败。已派诊断 Worker（worker_diagnose_qwen7b_full_trace_oom_20260521T073438）SSH 到 westd-11235 读日志 + 检查 GPU 状态 + 查训练脚本配置。另有一个自动触发的 Worker（worker_ops_diagnose_and_resubmit_full_trace_multiseed_20260521T073512）也在跑。\n\nRegistry 状态：\n- QUEUED (6)：qwen1.5b_full_trace_seed42, codellama_no_trace_seed42, qwen1.5b_vota_seed42, codellama_vota_seed42, qwen1.5b_exception_only_seed42, codellama_exception_only_seed42\n- ALLOCATED (1)：qwen1.5b_no_trace_seed42（等待提交）\n- PREPARING (3)：qwen15b_label_only_seed42, codellama13b_label_only_seed42, deepseek_exception_only_seed123\n- qwen7b_full_trace_seed123 + seed456：DONE(failed)，需重跑\n\n已向 Director 汇报失败情况，等待诊断 Worker 回调。\n\n### 4. 📋 待办\n- 诊断 Worker 回调 → 读诊断报告 → 确定 OOM 根因（可能需降 batch_size 或启用 gradient_checkpointing 或串行跑）→ 修复后重新提交 seed123+456\n- seed123+456 重跑成功 → 进入 D111 Day 2：全面论文修改（MF-1~3, SF-1~9, FIX 项）\n- ALLOCATED 的 qwen1.5b_no_trace_seed42 → 诊断完 OOM 后如果 GPU 有空余可提交\n- 论文修改全部完成 → Day 3 (5/23) resubmit continue review\n\n### 5. 🎯 战略上下文\n- 项目核心：information density 与 trace-based verdict prediction 学习效率的关系。C2 claim \"more info hurts\"（full_trace 81.76% < exception_only 99.83%）是论文核心论点之一\n- full_trace multi-seed 是 MF-3 要求：reviewer 标记单 seed 为风险，需要 3-seed mean±std 替换 Table 2 中的单值\n- D111 是 Round 11 审稿 3.0 (Findings) 的 Action Matrix，时间极紧（DDL 5/25）\n- 易错点：full_trace 7B 显存极限 ~95 GiB，parent (seed42_v5) 成功但那是单独跑的。两个 seed 同时跑时如果 CUDA_VISIBLE_DEVICES 没正确隔离会互相挤爆。诊断 Worker 的结论决定是串行跑还是降 batch_size\n- 决策链：D102→D109→D110→D111，当前在 D111 执行阶段\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1779568194.md"
+}

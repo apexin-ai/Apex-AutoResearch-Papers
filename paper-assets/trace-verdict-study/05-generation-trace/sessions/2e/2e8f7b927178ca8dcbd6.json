@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e8f7b927178ca8dcbd6",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops gpu status check",
+  "task_key": "worker_ops_gpu_status_check_20260522T024231",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_status_check_20260522T024231_result.json",
+    "occurrence": 1,
+    "bytes": 982,
+    "sha256": "1456011b08262bace81d4fe571b3df97f1ae04d949dd732449765d68b80f41b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态报告 — westd-11235\n\n| | GPU 0 (RTX PRO 6000 Blackwell) | GPU 1 (RTX PRO 6000 Blackwell) |\n|---|---|---|\n| 显存 | **49175 MiB / 97887 MiB (50.2%)** | 0 MiB / 97887 MiB (0%) |\n| GPU 利用率 | **100%** | 0% |\n| 温度 | 41°C | 32°C |\n| 功耗 | 105W / 600W | 36W / 600W |\n\n**问题：cuda:0 的 orphan 进程未清除。**\n\n虽然 `nvidia-smi` 的 Processes 表显示 \"No running processes found\"，但 cuda:0 仍占用 49175 MiB 显存且 GPU 利用率 100%。这是典型的 orphan GPU context —— 宿主进程已死但 GPU 内存未释放（nvidia-smi 看不到 PID）。\n\ncuda:1 状态正常，显存和利用率均为 0。\n\n**修复方案：** 需要重置 GPU 0 来释放 orphan 显存。可以执行：\n1. `nvidia-smi --gpu-reset -i 0` — 尝试软重置\n2. 如果软重置失败（Persistence Mode 开启时常见），可能需要先 `nvidia-smi -pm 0 -i 0` 关闭持久模式再重置\n\n是否执行 GPU 重置？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check-copy-2.md"
+}

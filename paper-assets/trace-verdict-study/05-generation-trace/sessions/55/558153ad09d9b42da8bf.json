@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "558153ad09d9b42da8bf",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops disk cleanup and gpu reset",
+  "task_key": "worker_ops_disk_cleanup_and_gpu_reset_20260521T010737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk_cleanup_and_gpu_reset_20260521T010737_result.json",
+    "occurrence": 1,
+    "bytes": 672,
+    "sha256": "d1d04160ac7b0b8bfde72af200acf62898d47f56879060fd6095719ead70b88c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n| 指标 | 清理前 | 清理后 |\n|------|--------|--------|\n| 根分区使用 | 30G / 30G (100%) | 21G / 30G (69%) |\n| 可用空间 | 300K | **9.5GB** |\n| outputs/ | ~6.1GB | 499MB (仅保留 final/) |\n| 释放总量 | — | **~9.5GB** |\n\n**清理明细：**\n- checkpoint-* 目录：~5.7GB（18个中间 checkpoint）\n- `/root/.cache/huggingface/`：~3.9GB（无关模型 gpt2/contriever/Qwen3-1.7B + wikitext 数据集）\n- conda 包缓存：~107MB\n- pip 缓存 + lock/incomplete 文件：少量\n\n**GPU 状态：** 2× RTX PRO 6000 (98GB)，无残留进程，GPU 0 有 49GB 显存被 VRAM 预留占用但无计算进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-and-gpu-reset.md"
+}

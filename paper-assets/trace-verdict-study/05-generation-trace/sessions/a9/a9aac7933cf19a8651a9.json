@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9aac7933cf19a8651a9",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analyze codellama13b exception only seed42",
+  "task_key": "worker_analyze_codellama13b_exception_only_seed42_20260516T144625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_codellama13b_exception_only_seed42_20260516T144625_result.json",
+    "occurrence": 1,
+    "bytes": 1037,
+    "sha256": "3db8c98a0356565f317260a3463dbc9804cfe453e050e97234cbeeff49af1238"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告：`codellama13b_exception_only_seed42`\n\n### 评估结果\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **99.83%** (1188/1190) |\n| 95% CI | [99.58%, 100.0%] |\n| Majority baseline | 71.5% (always predict \"pass\") |\n| Lift over baseline | +28.3pp |\n\n### Per-class 指标\n\n| Class | Precision | Recall | F1 |\n|-------|-----------|--------|-----|\n| pass | 1.00 | 1.00 | 1.00 |\n| fail | 0.99 | 1.00 | 1.00 |\n\n### 错误分析\n\n仅 **2 个错误**，均为 pass→fail 误判（false negative for pass）：\n- id=901, id=905：label=pass, pred=fail\n\n无 fail→pass 误判（fail recall = 100%）。\n\n### 训练状态\n\n- 训练正常完成，`EXIT_CODE=0`\n- 无 error / OOM\n- Checkpoint 完整：adapter_model.safetensors (239MB) + tokenizer + eval_results + predictions\n\n### Checkpoint 文件\n\n```\nadapter_config.json, adapter_model.safetensors (239MB), \ntokenizer.json, tokenizer.model, tokenizer_config.json,\neval_results.json, predictions.jsonl, training_args.bin\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-codellama13b-exception-only-seed42.md"
+}

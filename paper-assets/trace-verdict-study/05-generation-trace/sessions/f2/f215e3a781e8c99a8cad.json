@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f215e3a781e8c99a8cad",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops cuda0 reset epoch1 vota eval",
+  "task_key": "worker_ops_cuda0_reset_epoch1_vota_eval_20260515T221615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda0_reset_epoch1_vota_eval_20260515T221615_result.json",
+    "occurrence": 1,
+    "bytes": 1520,
+    "sha256": "bb289067ef2e5fa9c5c5a764bfaf5824747dde231d34a9a2579f81c24e0d64f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三步全部完成。汇报如下：\n\n---\n\n## 结果汇报\n\n### Step 1: GPU 0 Reset\n- GPU 0 有 49GB 残留显存但无活跃进程\n- `nvidia-smi --gpu-reset -i 0` **不支持**（硬件限制）\n- 直接使用 GPU 0 跑 eval，PyTorch 成功分配显存，不受影响\n- GPU 1 (PID 163109, deepseek_full_trace_v3) 未受任何干扰\n\n### Step 2: seed456 epoch1 (checkpoint-148) eval\n| 指标 | 值 |\n|------|-----|\n| Accuracy | **99.3%** (95% CI: [98.8%, 99.7%]) |\n| fail F1 | **0.99** (P=0.98, R=1.00) |\n| pass F1 | 1.00 (P=1.00, R=0.99) |\n| Majority baseline | 71.5% |\n\n**关键发现：epoch1 (99.3%) 与 epoch3 (99.33%) 几乎无差异，1 epoch 即已收敛。**\n\nPredictions 已保存至：`/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed456/checkpoint-148/predictions.jsonl`\n\n### Step 3: DeepSeek VOTA eval\n| 指标 | 值 |\n|------|-----|\n| Accuracy | **16.0%** (95% CI: [13.9%, 18.0%]) |\n| fail F1 | 0.61 (P=0.90, R=0.47) |\n| pass F1 | 0.07 (P=1.00, R=0.04) |\n\n**VOTA 表现极差** — accuracy 仅 16%，远低于多数类基线 71.5%。模型严重偏向预测 fail（pass recall 仅 4%），几乎把所有样本都判为 fail。这说明 DeepSeek VOTA 模型未正确学到 VOTA 条件下的判别模式。\n\nPredictions 已保存至：`/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final/predictions.jsonl`\nResults JSON：`/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final/eval_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda0-reset-epoch1-vota-eval.md"
+}

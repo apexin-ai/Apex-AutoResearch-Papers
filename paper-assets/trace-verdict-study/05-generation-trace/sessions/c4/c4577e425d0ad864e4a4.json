@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4577e425d0ad864e4a4",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis harvest full trace seed123",
+  "task_key": "worker_analysis_harvest_full_trace_seed123_20260519T110606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_harvest_full_trace_seed123_20260519T110606_result.json",
+    "occurrence": 1,
+    "bytes": 551,
+    "sha256": "8e03abaed6ecc28c9c4a14e15f34e2e67995080cca76f43d924c6cf81fbcf8c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "收割完成。\n\n**qwen7b_full_trace_label_only_seed123 结果汇总：**\n\n| 指标 | seed123 | seed42 (参考) |\n|------|---------|--------------|\n| Accuracy | 86.89% | 86.22% |\n| 95% CI | [85.0%, 88.7%] | — |\n| pass F1 | 0.912 | — |\n| fail F1 | 0.743 | — |\n| Lift over majority | +15.4pp | — |\n\n**操作完成：**\n- ✅ Cron 已删除\n- ✅ Registry → DONE (conclusion=success)\n- ✅ Metrics、checkpoint_path、log_path 已录入\n\n**GPU 状态：** cuda:0 已空闲，cuda:1 正在运行 seed456 训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-harvest-full-trace-seed123.md"
+}

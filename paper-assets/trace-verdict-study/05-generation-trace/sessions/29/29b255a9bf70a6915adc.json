@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29b255a9bf70a6915adc",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis qwen15b no trace seed42 log check",
+  "task_key": "worker_analysis_qwen15b_no_trace_seed42_log_check_20260520T215558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen15b_no_trace_seed42_log_check_20260520T215558_result.json",
+    "occurrence": 1,
+    "bytes": 2361,
+    "sha256": "0ff029885a2882ee03590efc89627a04e0c7e49f9b142219f59ba3240a9624a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。汇报如下：\n\n## seed42 日志检查结果\n\n### 异常检查\n- **无 NaN**：grep \"nan\" 无匹配\n- **无 OOM**：grep \"oom\" 无匹配  \n- **训练正常完成**：444 steps，3 epochs，EXIT_CODE=0\n\n### 训练 Loss 曲线（正常收敛，无异常跳变）\n\n| Epoch | Train Loss | Token Accuracy | \n|-------|-----------|----------------|\n| 0.07 | 1.9413 | 0.688 |\n| 0.34 | 0.4716 | 0.877 |\n| 0.68 | 0.2717 | 0.927 |\n| 0.95 | 0.1679 | 0.955 |\n| ~2.0 | ~0.06 | ~0.983 |\n| ~3.0 | ~0.05 | ~0.986 |\n\nLoss 持续单调下降，无异常。\n\n### Eval Loss（关键信号）\n- **Epoch 2.0**: eval_loss = **0.697**, eval_token_acc = 0.873\n- **Epoch 3.0**: eval_loss = **0.794**, eval_token_acc = 0.870\n\n**eval_loss 从 epoch 2→3 上升了 14%**，而 train_loss 继续下降（0.06→0.05）。这是**典型的过拟合信号**。\n\n### seed42 vs seed123 对比\n\n| 指标 | seed42 | seed123 | 差距 |\n|------|--------|---------|------|\n| **Accuracy** | **67.3%** | **75.9%** | -8.6pp |\n| Majority baseline | 71.5% | 71.5% | — |\n| Lift | **-4.2pp** | **+4.4pp** | — |\n| Pass P/R/F1 | 0.82/0.70/0.75 | 0.83/0.84/0.83 | recall 差距大 |\n| Fail P/R/F1 | 0.45/0.62/0.52 | 0.58/0.56/0.57 | precision 差距大 |\n\n### 诊断结论\n\n**seed42 有严重问题，但不是训练崩溃，而是泛化失败：**\n\n1. **过拟合**：train loss 降到 0.05（token acc 98.6%）但 eval_loss 在 epoch 2→3 反弹，说明 3 epochs 训练过头了。\n2. **Accuracy 低于 majority baseline**（67.3% < 71.5%），lift 为负，说明模型学到了有害的 pattern——它过度预测 fail（fail recall 0.62 但 precision 仅 0.45），把大量 pass 样本错判为 fail。\n3. **seed123 正常**（75.9%，lift +4.4pp），说明 no_trace condition 本身不是问题，而是 seed42 的数据 split 或随机初始化导致模型 overfit 到了训练集特有的 spurious pattern。\n4. **8.6pp 的 seed 间差异非常大**，远超正常随机波动（通常 1-3pp），这对 no_trace condition 的实验结论有影响——如果只看 seed42 会低估 no_trace 的能力。\n\n**建议关注**：seed456 的结果是否存在（日志文件 `qwen15b_no_trace_seed456.log` 存在但 eval_results.json 未找到），三个 seed 的均值和标准差才能给出可靠结论。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen15b-no-trace-seed42-log-check.md"
+}

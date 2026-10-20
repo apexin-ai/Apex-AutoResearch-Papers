@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7afa6baefb18e9678883",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "data plan 005 debugbench supplement",
+  "task_key": "worker_data_plan_005_debugbench_supplement_20260515T225700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_plan_005_debugbench_supplement_20260515T225700_result.json",
+    "occurrence": 1,
+    "bytes": 1101,
+    "sha256": "8c3dcc9684f710ec5faced5661aa6df59830b05a1420d92369f51db975c13c5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n### 1. 数据衰减 (1414 → 1024, -390)\n- **Stage 1** test_builder (-192): skip_complex 160 (TreeNode/ListNode), skip_parse_fail 26, skip_nondeterministic 6\n- **Stage 2** validation (-198): 正确解未通过生成的测试用例\n\n### 2. VOTA 条件：**缺失**\n`debugbench_format_data.py` 只实现了 no_trace / exception_only / full_trace 三个条件，没有 VOTA 格式化路径。\n\n### 3. Exception_only 理论上限：**71.1% 已验证**\n- 测试集 207 个 fail 样本中 59.4% (123) 无异常（logic error），exception_only 无法区分这些和 pass\n- 所有 219 个 pass 样本均无异常 → \"有异常\"是 fail 确定信号，\"无异常\"则歧义\n- 上限 = (219 + 84) / 426 = 71.1%\n\n### 4. Full_trace token 分布\n- **68.9% 被截断**（1412/2048 样本命中 2048 上限）\n- Median = 2048, Mean = 1508\n- exception_only mean 372, no_trace mean 274（均安全）\n\n### 5. Registry\n无 plan_005 实验注册。仅数据准备完成。\n\n报告已注册为 artifact `debugbench_data_audit`，memory.md 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-plan-005-debugbench-supplement.md"
+}

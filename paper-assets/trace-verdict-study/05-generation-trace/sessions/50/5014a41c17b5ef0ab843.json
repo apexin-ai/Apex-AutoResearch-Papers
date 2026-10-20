@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5014a41c17b5ef0ab843",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "check epoch checkpoints",
+  "task_key": "worker_check_epoch_checkpoints_20260516T001852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_epoch_checkpoints_20260516T001852_result.json",
+    "occurrence": 1,
+    "bytes": 1072,
+    "sha256": "f3f46b5eca6d924308a4c614fd53d801581afb941d0e990f8686d63a096666ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n## Checkpoint 存在情况\n\n| 实验 | Checkpoints | Final |\n|------|------------|-------|\n| **256tok** | checkpoint-3, checkpoint-148 (epoch 1), checkpoint-296 (epoch 2), checkpoint-444 (epoch 3) | ✅ 有 final/ |\n| **512tok** | checkpoint-148 (epoch 1), checkpoint-296 (epoch 2), checkpoint-444 (epoch 3) | ✅ 有 final/ |\n| **1024tok** | 无中间 checkpoint | 仅有 `runs/` 目录，尚无 checkpoint |\n\n256tok 多了一个 `checkpoint-3`（可能是早期调试保存的）。两个实验的 epoch 1/2/3 checkpoint 全部保留。\n\n## evaluate.py --save_predictions\n\n**支持。** 参数定义在 L132-133，`action=\"store_true\"`。启用后将 per-sample predictions 写入 `predictions.jsonl`，路径为 `--output` 同级目录下。\n\n## 已有 predictions\n\n256tok 和 512tok 均 **无** predictions.jsonl 文件。\n\n## 训练保存策略\n\n- `save_strategy=\"epoch\"`（每 epoch 保存）\n- `save_total_limit=3` **已被注释掉**（`TEMP_DISABLED`），所以所有 epoch checkpoint 都保留了下来"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-epoch-checkpoints.md"
+}

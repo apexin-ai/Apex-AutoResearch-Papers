@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5fa099292ad4c6ad7115",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis token length ablation viz",
+  "task_key": "worker_analysis_token_length_ablation_viz_20260516T010251",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_token_length_ablation_viz_20260516T010251_result.json",
+    "occurrence": 1,
+    "bytes": 979,
+    "sha256": "1265e25fed8ce7b78bf52a310b360b84f87a1591cc45449f4bf031d5bf10bbbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**生成的文件（westd-11235 上）：**\n\n| 文件 | 路径 |\n|------|------|\n| 分析脚本 | `/root/trace-verdict-study/analysis/token_length_ablation.py` |\n| 图表 PDF | `/root/trace-verdict-study/analysis/figures/token_length_ablation.pdf` |\n| 图表 PNG | `/root/trace-verdict-study/analysis/figures/token_length_ablation.png` |\n| 汇总 CSV | `/root/trace-verdict-study/analysis/figures/token_length_ablation_summary.csv` |\n\n**当前数据（3/5 完成）：**\n\n| Tokens | Accuracy | 95% CI | Δ vs No-trace |\n|--------|----------|--------|---------------|\n| 256 | 78.82% | [76.4, 81.0] | +3.70 |\n| 512 | 80.42% | [78.1, 82.6] | +5.29 |\n| 1024 | — | pending | — |\n| 2048 | — | pending | — |\n| full | 81.76% | [79.7, 83.9] | +6.64 |\n\n图中包含 exception_only (99.83%) 和 no_trace (75.1%) 两条参考线，pending 的 1024/2048 以虚线标注。1024tok 和 2048tok 完成后重新跑脚本即可自动补上。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-token-length-ablation-viz.md"
+}

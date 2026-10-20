@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53c852a9adc01a71662d",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code full trace tail truncation",
+  "task_key": "worker_code_full_trace_tail_truncation_20260517T040927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_full_trace_tail_truncation_20260517T040927_result.json",
+    "occurrence": 1,
+    "bytes": 1036,
+    "sha256": "a53006cb239b504b90693a6549b6bf22ee6525cebaa34573d23f2ff6153c8fad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n## 方案选择：B + C 结合\n\n1. **数据层（方案 C）**：写了 `data/format_tail_truncation.py`，从 raw_traces.jsonl 重新格式化 full_trace 数据，对 trace 部分做 tail-truncation（`trace_tokens[-trace_budget:]`），保留 code/test_code/suffix 完整。生成 `full_trace_tail_train.jsonl` (4720) / `full_trace_tail_test.jsonl` (1190)\n\n2. **代码层（方案 B）**：给 `train_sft.py` 和 `evaluate.py` 添加了 `--truncation_side` 参数（`left`=保留尾部），作为二次截断的保障\n\n## 验证结果\n- 数据结构正确：code, test_code, trace marker, question 全部完整\n- 5610/5910 (95%) 样本被截断\n- 截断标记 `[...trace truncated...]` 放在 trace 开头（表示前面被截掉了）\n\n## 训练状态\n- PID: 327379\n- GPU: cuda:1\n- 已进入 tokenization 阶段，模型加载成功\n- 训练 + eval 链式执行，结果将输出到 `/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_tail_seed42/final/eval_results.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-full-trace-tail-truncation.md"
+}

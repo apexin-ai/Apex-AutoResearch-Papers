@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fff2f810a7780458072e",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper abstract trim",
+  "task_key": "worker_paper_abstract_trim_20260519T154034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_abstract_trim_20260519T154034_result.json",
+    "occurrence": 1,
+    "bytes": 779,
+    "sha256": "9b36af7ba30c020b37d9675d79026b3f8254e75a17f0c9b1831fa558aaebe0c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证统计：\n\n**词数**：~154（在 150-200 范围内）\n\n**具体数字**：3 个\n1. ≥99.33% — exception_only 跨模型表现\n2. 18 percentage points — full_trace gap\n3. 50 training steps — 收敛速度\n\n**Narrative arc**：\n1. Exception events suffice → \"≥99.33% accuracy on three of four models\"\n2. More info hurts → \"complete traces plateau roughly 18 pp lower\"\n3. Mechanism (training dynamics) → \"converges within 50 steps\" vs \"oscillates throughout training\"\n4. Mechanism (density) → \"information overload and gradient dilution from low-density tokens\"\n\n**已删除**：55.5%、150 tokens、500 tokens、76%/24%、96.58%、82-88%、82-89%、100% recall、10×\n\n**无 AI 风格词汇**，主动语态为主。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-abstract-trim.md"
+}

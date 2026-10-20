@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94d51b2496272ee017ec",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis calibration plan007",
+  "task_key": "worker_analysis_calibration_plan007_20260515T122737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_calibration_plan007_20260515T122737_result.json",
+    "occurrence": 1,
+    "bytes": 1031,
+    "sha256": "f76f63477c51b15093d6d864d638d9ed83a87a7185cd78a287ff1769bf1d624b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n| Condition | Accuracy | ECE | MCE | Brier |\n|-----------|----------|-----|-----|-------|\n| No Trace | 0.7513 | 0.1715 | 0.4754 | 0.1972 |\n| Full Trace | 0.8176 | 0.0946 | 0.2490 | 0.1438 |\n| Exception Only | **0.9983** | **0.0024** | 0.8359* | **0.0013** |\n| VOTA | 0.9941 | 0.0054 | 0.6211* | 0.0052 |\n\n\\* MCE 高是因为极少样本（1-2个）落在低置信度 bin 导致的离群值，不影响整体 calibration 质量。\n\n**产出文件**（westd-11235 服务器）：\n- `calibration_metrics.json`: `/root/autodl-tmp/trace-verdict-study-checkpoints/calibration/calibration_metrics.json`\n- `reliability_diagram.pdf`: `/root/autodl-tmp/trace-verdict-study-checkpoints/calibration/reliability_diagram.pdf`\n- `reliability_diagram.png`: `/root/autodl-tmp/trace-verdict-study-checkpoints/calibration/reliability_diagram.png`\n- 4 个条件的详细 calibration JSON 也在同目录下\n\n两个 artifact 已注册（`art_20260515_f778e0`, `art_20260515_aec352`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-calibration-plan007.md"
+}

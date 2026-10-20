@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "965c77b351791316d053",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops eval and submit next",
+  "task_key": "worker_ops_eval_and_submit_next_20260522T094543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_and_submit_next_20260522T094543_result.json",
+    "occurrence": 1,
+    "bytes": 1038,
+    "sha256": "ebd87a97049e2c8137525b0af58287e27913a8572333160a1a6f29eb69bc782d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正在启动（Train: 4720, Eval: 1190），模型加载中。\n\n---\n\n## 报告\n\n### 1. 代码修改\n`train/train_sft.py` 和 `eval/evaluate.py` 的 `--condition` choices 列表已添加 `exc_type_only`, `exc_stacktrace_only`, `exc_message_only`。数据加载逻辑无需修改——已有的 `f\"{condition}_train.jsonl\"` 模式直接适配，训练时传 `--data_dir /root/autodl-tmp/trace-verdict-study-data/exc_subcomponent/` 即可。\n\n### 2. Gradient Masking 评估结果\n\n| Metric | Value | 95% CI |\n|--------|-------|--------|\n| **Accuracy** | **98.99%** | [98.4%, 99.5%] |\n| Majority baseline | 71.5% | — |\n| **Lift** | **+27.5pp** | [+25.0pp, +30.0pp] |\n| Pass F1 | 0.993 | [0.989, 0.996] |\n| **Fail F1** | **0.982** | [0.972, 0.991] |\n| Pass P/R | 1.00 / 0.99 | — |\n| Fail P/R | 0.98 / 0.99 | — |\n\n### 3. exc_type_only 训练\n已提交，tmux session `exc_type_only_seed42`，cuda:1，Train=4720 / Eval=1190。Registry 已创建（PREPARING, hypothesis + parent 已设置）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-and-submit-next.md"
+}

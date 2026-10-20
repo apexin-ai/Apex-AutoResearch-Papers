@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31dfbe52a7d3d999fdaa",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops eval tail1024 epoch1",
+  "task_key": "worker_ops_eval_tail1024_epoch1_20260518T063358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_tail1024_epoch1_20260518T063358_result.json",
+    "occurrence": 1,
+    "bytes": 1101,
+    "sha256": "5d8534610bf48450f95fc37127d103e8c40b51c013cd7fb3f8d9462c78847407"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### CodeLlama-13B tail-1024 Epoch 1 (checkpoint-148) vs Epoch 3 (final)\n\n| 指标 | Epoch 1 | Epoch 3 | 变化 |\n|------|---------|---------|------|\n| **Accuracy** | 79.9% [77.7%, 82.2%] | 87.6% [85.6%, 89.3%] | **-7.7pp** |\n| **fail_recall** | 0.295 [0.249, 0.346] | 0.563 [0.509, 0.617] | **-0.268** |\n| **fail_precision** | 1.00 | 1.00 | 不变 |\n| **fail_F1** | 0.456 | 0.721 | -0.265 |\n| **pass_recall** | 1.00 | 1.00 | 不变 |\n| **pass_precision** | 0.781 | 0.852 | -0.071 |\n| n_test | 1190 | 1190 | - |\n\n**结论：epoch 1 没有恢复到 ~96%，反而更差（79.9% vs 87.6%）。** Epoch 1 的 fail_recall 只有 0.295（epoch 3 是 0.563），说明 epoch 1 欠拟合严重，模型几乎把所有样本都预测为 pass。这不是过拟合到恢复的问题，而是 CodeLlama-13B 在 tail-1024 条件下学习本身就困难，3 个 epoch 的训练方向是对的（accuracy 持续提升），但 fail_recall 仍远低于其他条件的 ~96%。\n\n### tail-2048 训练进度\n323/444 步（~73%），约 28s/step，预计还需 ~57 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-tail1024-epoch1.md"
+}

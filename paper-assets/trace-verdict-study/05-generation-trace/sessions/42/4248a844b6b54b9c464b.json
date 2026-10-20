@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "4248a844b6b54b9c464b",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "audit ece investigation",
+  "task_key": "worker_audit_ece-investigation_20260523T112743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_ece-investigation_20260523T112743.log",
+    "occurrence": 1,
+    "bytes": 669766,
+    "sha256": "fdfafc77faf3d1518a3a5db768f0e675fda5c49b9cdd333864e4ad633a98b7b2"
+  },
+  "statistics": {
+    "messages": 102,
+    "user_turns": 1,
+    "tool_calls": 35,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 22,
+      "tool_call": 35,
+      "tool_result": 35,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 26,
+      "chunks": [
+        {
+          "path": "4248a844b6b54b9c464b-part-0001.json",
+          "message_count": 26
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 76,
+      "chunks": [
+        {
+          "path": "4248a844b6b54b9c464b-part-0001.json",
+          "message_count": 68
+        },
+        {
+          "path": "4248a844b6b54b9c464b-part-0002.json",
+          "message_count": 8
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-ece-investigation.md"
+}

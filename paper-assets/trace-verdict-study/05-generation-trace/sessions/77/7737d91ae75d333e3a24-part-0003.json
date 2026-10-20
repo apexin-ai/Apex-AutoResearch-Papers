@@ -1,0 +1,1393 @@
+{
+  "schema_version": "1.0",
+  "session_id": "7737d91ae75d333e3a24",
+  "rounds": [
+    {
+      "number": 4,
+      "messages": [
+        {
+          "source_line": 361,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Wf8Cwa7oLUhmWeFzst2zqJ",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"test verdict prediction\" execution trace LLM code 2024 2025 arxiv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_015kkR2s4BVUvDGetncio1Yz",
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "uuid": "da0aeeea-11a3-4549-8741-03ee9e030e8a",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_016bgtbsDRTfmkMo8vGhiwq2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2587,
+                "cache_read_input_tokens": 33784,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2587,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000361"
+        },
+        {
+          "source_line": 362,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a38318202d77b59cf",
+                "tool_use_id": "toolu_015kkR2s4BVUvDGetncio1Yz",
+                "description": "Searching for automated test oracle problem \"execution trace\" n…",
+                "usage": {
+                  "total_tokens": 37275,
+                  "tool_uses": 33,
+                  "duration_ms": 105493
+                },
+                "last_tool_name": "WebSearch",
+                "uuid": "968e703d-34e5-4146-85a7-b8fe9d69cbaf",
+                "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00"
+              }
+            }
+          ],
+          "id": "event-000362"
+        },
+        {
+          "source_line": 363,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013JRYo8MZqX6ujR4fBVBri1",
+              "name": "WebSearch",
+              "input": {
+                "query": "automated test oracle problem \"execution trace\" neural network classification 2022 2023 2024"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_015kkR2s4BVUvDGetncio1Yz",
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "uuid": "0d4c44f3-73c8-45e9-9c45-ac8bbae747a5",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_016bgtbsDRTfmkMo8vGhiwq2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2587,
+                "cache_read_input_tokens": 33784,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2587,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000363"
+        },
+        {
+          "source_line": 364,
+          "timestamp": "2026-05-15T12:06:09.205Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013JRYo8MZqX6ujR4fBVBri1",
+              "type": "tool_result",
+              "content": "Web search results for query: \"automated test oracle problem \"execution trace\" neural network classification 2022 2023 2024\"\n\nLinks: [{\"title\":\"Neural networks-based automated test oracles | Neural Computing and Applications | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s00521-026-11909-3\"},{\"title\":\"CSSE | A Hybridized Artificial Neural Network for Automated Software Test Oracle\",\"url\":\"https://www.techscience.com/csse/v45n2/50392\"},{\"title\":\"A Metaheuristic and Neural Network-Based Framework for Automated Software Test Oracles Under Limited Test Data Conditions | Journal of Electronic Testing | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s10836-025-06210-5\"},{\"title\":\"CSSE | Free Full-Text | A Hybridized Artificial Neural Network for Automated Software Test Oracle\",\"url\":\"https://www.techscience.com/csse/v45n2/50392/html\"},{\"title\":\"Trace is the Next AutoDiff: Generative Optimization with ...\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/83ba7056bce2c3c3c27e17397cf3e1f0-Paper-Conference.pdf\"},{\"title\":\"Supervised learning over test executions as a test oracle | Proceedings of the 36th Annual ACM Symposium on Applied Computing\",\"url\":\"https://dl.acm.org/doi/10.1145/3412841.3442027\"},{\"title\":\"Test Oracle Automation: LLM and Hybrid Methods\",\"url\":\"https://www.emergentmind.com/topics/test-oracle-automation\"},{\"title\":\"Neural-Based Test Oracle Generation: A Large-Scale Evaluation and Lessons Learned | Request PDF\",\"url\":\"https://www.researchgate.net/publication/376107399_Neural-Based_Test_Oracle_Generation_A_Large-Scale_Evaluation_and_Lessons_Learned\"},{\"title\":\"Generating executable oracles to check conformance of client code to requirements of JDK Javadocs using LLMs\",\"url\":\"https://arxiv.org/html/2411.01789v1\"},{\"title\":\"Towards More Realistic Evaluation for Neural Test Oracle Generation\",\"url\":\"https://arxiv.org/pdf/2305.17047\"}]\n\nI've completed the web search for your query on automated test oracle problems, execution traces, and neural network classification from 2022-2024. Here's a summary of the key findings:\n\n## Research Overview\n\nThe test oracle problem involves determining the correct output given an input in software testing, which becomes increasingly challenging as software systems grow in complexity.\n\n## Neural Network Approaches to Test Oracle Automation\n\nSeveral recent studies have explored using neural networks for automating test oracles:\n\n1. **Execution Trace-Based Classification**: The test oracle problem can be solved using supervised learning over test execution traces, where a neural network model is trained to distinguish runtime patterns for passing versus failing executions. Classification models achieved high precision, recall and specificity, averaging 89%, 88% and 92% respectively.\n\n2. **Recent Advances (2023-2024)**: Execution trace-driven oracles use supervised machine learning like LSTMs and transformers to classify pass/fail outcomes based on dynamic behavior, with one approach (Go-Oracle) demonstrating 96% true positive accuracy on failing traces.\n\n3. **Hybrid Neural Approaches**: A 2023 study proposed a Hybridized Artificial Neural Network for Automated Software Test Oracle published in Computer Systems Science and Engineering.\n\n4. **Metaheuristic-Based Frameworks**: Recent work combines metaheuristic algorithms with multi-layer perceptrons to create test oracles that accurately predict expected software outputs.\n\nThe search results show active research across 2022-2024 addressing this challenge through various neural network architectures and machine learning classification techniques applied to execution traces.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_015kkR2s4BVUvDGetncio1Yz",
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "uuid": "add03cb1-cd3e-44ae-aef8-6e7bd3311e31"
+          },
+          "id": "event-000364"
+        },
+        {
+          "source_line": 365,
+          "timestamp": "2026-05-15T12:06:10.056Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Wf8Cwa7oLUhmWeFzst2zqJ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"test verdict prediction\" execution trace LLM code 2024 2025 arxiv\"\n\nLinks: [{\"title\":\"Demystifying Errors in LLM Reasoning Traces: An Empirical Study of Code Execution Simulation\",\"url\":\"https://arxiv.org/html/2512.00215v1\"},{\"title\":\"What I cannot execute, I do not understand: Training and Evaluating LLMs on Program Execution Traces\",\"url\":\"https://arxiv.org/html/2503.05703v1\"},{\"title\":\"trace: Evaluating Execution Efficiency of LLM-Based Code Translation\",\"url\":\"https://arxiv.org/html/2603.16479\"},{\"title\":\"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\",\"url\":\"https://arxiv.org/html/2505.04441v1\"},{\"title\":\"Preprint. Under review. Verdict: A Library for Scaling Judge-Time Compute\",\"url\":\"https://arxiv.org/pdf/2502.18018\"},{\"title\":\"The Double Life of Code World Models: Provably Unmasking Malicious Behavior Through Execution Traces\",\"url\":\"https://arxiv.org/html/2512.13821\"},{\"title\":\"[2512.00215] Demystifying Errors in LLM Reasoning Traces: An Empirical Study of Code Execution Simulation\",\"url\":\"https://arxiv.org/abs/2512.00215\"},{\"title\":\"Evaluating Code Reasoning Abilities of Large Language Models Under Real-World Settings\",\"url\":\"https://arxiv.org/html/2512.14917v1\"},{\"title\":\"Evaluating Large Language Models with Runtime Behavior of Program Execution\",\"url\":\"https://arxiv.org/html/2403.16437v1\"},{\"title\":\"CodeCircuit: Toward Inferring LLM-Generated Code Correctness via Attribution Graphs\",\"url\":\"https://arxiv.org/html/2602.07080\"}]\n\nBased on the search results, I found several recent arxiv papers (2024-2025) related to test verdict prediction, execution traces, and LLM code understanding:\n\n## Key Papers Found:\n\n1. **\"Demystifying Errors in LLM Reasoning Traces: An Empirical Study of Code Execution Simulation\"** (November 2025)\n   - Takes a process-centric perspective to systematically collect, annotate, and analyze reasoning traces from multiple state-of-the-art reasoning LLMs on program execution inference tasks, introducing a three-tier input regime (regular, edge-case, invalid) to stress-test models across diverse execution scenarios.\n\n2. **\"What I cannot execute, I do not understand: Training and Evaluating LLMs on Program Execution Traces\"** (February 2025)\n   - Studies Execution Tuning (E.T.), a training procedure that explicitly models real-world program execution traces without requiring manual test annotations, achieving approximately 80% accuracy on CruxEval and MBPP on the task of output prediction.\n\n3. **\"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\"** (May 2025)\n   - Evaluates the effectiveness of including program execution traces into LLM prompts for solving automated program repair tasks, measured through Correct Program Accuracy (CPA) and Correct Fix Accuracy (CFA).\n\n4. **\"The Double Life of Code World Models: Provably Unmasking Malicious Behavior Through Execution Traces\"** (February 2026)\n   - Presents Cross-Trace Verification Protocol (CTVP), a novel AI control framework that verifies untrusted code-generating models through semantic orbit analysis, leveraging the model's own predictions of execution traces across semantically equivalent program transformations to detect behavioral anomalies indicative of backdoors.\n\n5. **\"Evaluating Code Reasoning Abilities of Large Language Models Under Real-World Settings\"** (December 2025)\n   - Explores various tasks to assess LLM code reasoning, including input and output prediction and execution path or entire execution trace prediction.\n\nThese papers collectively address test verdict prediction and execution trace analysis for LLM-based code understanding from multiple angles: error analysis, training approaches, program repair, security verification, and general code reasoning abilities.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_015kkR2s4BVUvDGetncio1Yz",
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "uuid": "3a68d1e4-3d10-4026-b3c2-1b31136445f8"
+          },
+          "id": "event-000365"
+        },
+        {
+          "source_line": 366,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a38318202d77b59cf",
+                "tool_use_id": "toolu_015kkR2s4BVUvDGetncio1Yz",
+                "description": "Fetching https://arxiv.org/html/2403.16437v1",
+                "usage": {
+                  "total_tokens": 39596,
+                  "tool_uses": 34,
+                  "duration_ms": 117392
+                },
+                "last_tool_name": "WebFetch",
+                "uuid": "12be2f19-f980-406d-848e-3ac035547db2",
+                "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00"
+              }
+            }
+          ],
+          "id": "event-000366"
+        },
+        {
+          "source_line": 367,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VEuNYxrPhs6Ud1NYo3ZW7g",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2403.16437v1",
+                "prompt": "Extract title, venue/year, authors, core methodology (does it evaluate LLMs on test verdict prediction pass/fail using execution traces?), and key results."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_015kkR2s4BVUvDGetncio1Yz",
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "uuid": "83cb2230-1355-4150-88ea-bfbc8f66df1e",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01Q24umodE3uK3opJJVpTtea",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 967,
+                "cache_creation_input_tokens": 1311,
+                "cache_read_input_tokens": 36371,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1311,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000367"
+        },
+        {
+          "source_line": 368,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a38318202d77b59cf",
+                "tool_use_id": "toolu_015kkR2s4BVUvDGetncio1Yz",
+                "description": "Fetching https://arxiv.org/html/2503.05703v1",
+                "usage": {
+                  "total_tokens": 39640,
+                  "tool_uses": 35,
+                  "duration_ms": 118741
+                },
+                "last_tool_name": "WebFetch",
+                "uuid": "93aa22dd-2743-4e5b-bdc0-8799d581bf3f",
+                "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00"
+              }
+            }
+          ],
+          "id": "event-000368"
+        },
+        {
+          "source_line": 369,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013QMqP22UGx5uBfPJHQwFEh",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2503.05703v1",
+                "prompt": "Extract title, venue/year, authors, core methodology (execution tuning, what tasks are solved, pass/fail verdict?), and key results."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_015kkR2s4BVUvDGetncio1Yz",
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "uuid": "24d129c0-6a32-4c3c-b850-ab04a70017d0",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01Q24umodE3uK3opJJVpTtea",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 967,
+                "cache_creation_input_tokens": 1311,
+                "cache_read_input_tokens": 36371,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1311,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000369"
+        },
+        {
+          "source_line": 370,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a38318202d77b59cf",
+                "tool_use_id": "toolu_015kkR2s4BVUvDGetncio1Yz",
+                "description": "Fetching https://dl.acm.org/doi/10.1145/3702972",
+                "usage": {
+                  "total_tokens": 39684,
+                  "tool_uses": 36,
+                  "duration_ms": 119842
+                },
+                "last_tool_name": "WebFetch",
+                "uuid": "9ba7e5b7-608a-4cd5-a869-bb95fb63b1c2",
+                "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00"
+              }
+            }
+          ],
+          "id": "event-000370"
+        },
+        {
+          "source_line": 371,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FXi2WM4ap7kp6wyE3S5L3h",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://dl.acm.org/doi/10.1145/3702972",
+                "prompt": "Extract title, venue/year, authors, and which patch correctness methods use execution traces. Specifically list all execution-based or dynamic approaches mentioned in the survey."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_015kkR2s4BVUvDGetncio1Yz",
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "uuid": "564379ee-fbe0-40a9-a931-c378c8b2caf3",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01Q24umodE3uK3opJJVpTtea",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 967,
+                "cache_creation_input_tokens": 1311,
+                "cache_read_input_tokens": 36371,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1311,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000371"
+        },
+        {
+          "source_line": 372,
+          "timestamp": "2026-05-15T12:06:15.796Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Request failed with status code 403",
+              "is_error": true,
+              "tool_use_id": "toolu_01FXi2WM4ap7kp6wyE3S5L3h"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_015kkR2s4BVUvDGetncio1Yz",
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "uuid": "9a6edd55-7239-4270-89a1-b268f72f91d8",
+            "tool_use_result": "Error: Request failed with status code 403"
+          },
+          "id": "event-000372"
+        },
+        {
+          "source_line": 373,
+          "timestamp": "2026-05-15T12:06:19.910Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VEuNYxrPhs6Ud1NYo3ZW7g",
+              "type": "tool_result",
+              "content": "# Paper Analysis\n\n**Title:** \"Evaluating Large Language Models with Runtime Behavior of Program Execution\"\n\n**Venue/Year:** arXiv:2403.16437v1, March 25, 2024\n\n**Authors:** Junkai Chen, Zhenhao Li, Zhiyuan Pan, Ge Li, Xing Hu, Xin Xia (from Zhejiang University, Peking University, and Concordia University)\n\n**Core Methodology:** This paper does NOT evaluate test verdict prediction. Instead, it proposes REval, a framework assessing code LLM reasoning through four execution-related tasks:\n- Code Coverage Prediction (whether statements execute)\n- Program State Prediction (variable values/types after execution)\n- Execution Path Prediction (next statement to execute)\n- Output Prediction (program output generation)\n\nThe framework also introduces \"Incremental Consistency\" scoring, measuring logical consistency across these sequentially dependent tasks using traces from actual program execution.\n\n**Key Results:**\n- Most LLMs show \"unsatisfactory performance\" with average accuracy of 44.4% on runtime behavior reasoning\n- Incremental Consistency Score averages just 10.3 across open-source models\n- GPT-4-Turbo substantially outperforms others (82.6% average accuracy, 42.5 IC score)\n- Code-specialized LLMs don't significantly outperform general models at equivalent sizes\n- Chain-of-Thought prompting improved some tasks but degraded output prediction accuracy"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_015kkR2s4BVUvDGetncio1Yz",
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "uuid": "9146b11c-9571-4c4c-be16-f0905b9fa764"
+          },
+          "id": "event-000373"
+        },
+        {
+          "source_line": 374,
+          "timestamp": "2026-05-15T12:06:21.606Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013QMqP22UGx5uBfPJHQwFEh",
+              "type": "tool_result",
+              "content": "# Paper Summary\n\n**Title:** \"What I cannot execute, I do not understand: Training and Evaluating LLMs on Program Execution Traces\"\n\n**Venue/Year:** arXiv, 2025\n\n**Authors:** Jordi Armengol-Estapé, Quentin Carbonneaux, Tianjun Zhang, Aram H. Markosyan, Volker Seeker, Chris Cummins, Melanie Kambadur, Michael F.P. O'Boyle, Sida Wang, Gabriel Synnaeve, Hugh Leather\n\n## Core Methodology\n\nThe researchers introduce **Execution Tuning (E.T.)**, which trains LLMs by explicitly modeling real-world program execution traces. They collected ~300k executable Python functions with automatically-generated test inputs (via LLM prompting and fuzzing), creating 1.5M+ execution traces. The work compares three trace granularities (direct output, line-level, instruction-level) and three scratchpad strategies for storing intermediate computations, including a novel \"dynamic scratchpad\" approach.\n\n## Key Results\n\n- **CruxEval:** Models achieve ~80% accuracy on output prediction, substantially outperforming direct prediction (49.3%)\n- **MBPP:** 80.6% accuracy on functions with nested loops\n- **Long Executions:** Dynamic scratchpad models successfully handle up to 14,055 execution steps, with Line-n variant reducing steps needed by 61% through selective step-skipping\n- **Downstream Effects:** Modest gains on code generation tasks (HumanEval, MBPP); 1.2-point improvement on reasoning task GSM8K\n\n## Pass/Fail Verdict\n\n**Partial Success:** E.T. effectively improves output prediction and handles long sequences, but provides limited transfer benefits to broader code generation tasks. The approach identifies execution understanding as valuable but reveals this capability doesn't directly enhance downstream coding performance."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_015kkR2s4BVUvDGetncio1Yz",
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "uuid": "9a2a9327-ac8b-4a28-ae49-f2ef226679b1"
+          },
+          "id": "event-000374"
+        },
+        {
+          "source_line": 375,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a38318202d77b59cf",
+                "tool_use_id": "toolu_015kkR2s4BVUvDGetncio1Yz",
+                "description": "Searching for patch correctness assessment survey 2024 2025 exe…",
+                "usage": {
+                  "total_tokens": 40921,
+                  "tool_uses": 37,
+                  "duration_ms": 127571
+                },
+                "last_tool_name": "WebSearch",
+                "uuid": "0cf547ff-57c8-42b7-b06d-36852b60d105",
+                "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00"
+              }
+            }
+          ],
+          "id": "event-000375"
+        },
+        {
+          "source_line": 376,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F3v2LytNtsD27bFQ2dpiAD",
+              "name": "WebSearch",
+              "input": {
+                "query": "patch correctness assessment survey 2024 2025 execution trace dynamic analysis approaches"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_015kkR2s4BVUvDGetncio1Yz",
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "uuid": "af18f32a-1a96-436b-bb74-924c568aaf07",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01GExpq5HjMZjWVpSH8mAJpW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 39,
+                "cache_creation_input_tokens": 2123,
+                "cache_read_input_tokens": 37682,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2123,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000376"
+        },
+        {
+          "source_line": 377,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a38318202d77b59cf",
+                "tool_use_id": "toolu_015kkR2s4BVUvDGetncio1Yz",
+                "description": "Fetching https://arxiv.org/html/2403.01003v1",
+                "usage": {
+                  "total_tokens": 40963,
+                  "tool_uses": 38,
+                  "duration_ms": 130666
+                },
+                "last_tool_name": "WebFetch",
+                "uuid": "91945299-b64a-42e4-8543-1093cffe00e1",
+                "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00"
+              }
+            }
+          ],
+          "id": "event-000377"
+        },
+        {
+          "source_line": 378,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FhCzQRQGJxQyQT4u78PenH",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2403.01003v1",
+                "prompt": "Extract title, venue/year, authors, core methodology for FlaKat. Does it use execution traces? What features are used for flaky test categorization?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_015kkR2s4BVUvDGetncio1Yz",
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "uuid": "16456d74-32bf-47f3-a21b-23e962ac0a23",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01GExpq5HjMZjWVpSH8mAJpW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 39,
+                "cache_creation_input_tokens": 2123,
+                "cache_read_input_tokens": 37682,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2123,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000378"
+        },
+        {
+          "source_line": 379,
+          "timestamp": "2026-05-15T12:06:29.810Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F3v2LytNtsD27bFQ2dpiAD",
+              "type": "tool_result",
+              "content": "Web search results for query: \"patch correctness assessment survey 2024 2025 execution trace dynamic analysis approaches\"\n\nLinks: [{\"title\":\"Patch Correctness Assessment: A Survey | Request PDF\",\"url\":\"https://www.researchgate.net/publication/385670765_Patch_Correctness_Assessment_A_Survey\"},{\"title\":\"Patch Correctness Assessment: A Survey | ACM Transactions on Software Engineering and Methodology\",\"url\":\"https://dl.acm.org/doi/10.1145/3702972\"},{\"title\":\"ComPass: Contrastive Learning for Automated Patch Correctness Assessment in Program Repair\",\"url\":\"https://arxiv.org/html/2602.07561\"},{\"title\":\"Automated Patch Correctness Assessment: How Far are We? | IEEE Conference Publication | IEEE Xplore\",\"url\":\"https://ieeexplore.ieee.org/document/9286063\"},{\"title\":\"Automated patch assessment for program repair at scale | Empirical Software Engineering | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s10664-020-09920-w\"},{\"title\":\"Crex: Predicting patch correctness in automated repair of C programs through transfer learning of execution semantics - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S0950584922001562\"},{\"title\":\"Patch Correctness Assessment: A Survey - R Discovery\",\"url\":\"https://discovery.researcher.life/article/patch-correctness-assessment-a-survey/9b4c4224522333148629cc7ec062e349\"},{\"title\":\"Patch correctness assessment in automated program repair based on the impact of patches on production and test code | Proceedings of the 31st ACM SIGSOFT International Symposium on Software Testing and Analysis\",\"url\":\"https://dl.acm.org/doi/10.1145/3533767.3534368\"},{\"title\":\"APPT: Boosting Automated Patch Correctness Prediction ...\",\"url\":\"https://arxiv.org/pdf/2301.12453\"},{\"title\":\"PATCHEVAL: A New Benchmark for Evaluating LLMs on Patching\",\"url\":\"https://arxiv.org/pdf/2511.11019\"}]\n\nBased on the web search results, here are the key findings related to patch correctness assessment surveys and dynamic analysis approaches:\n\n## Recent Survey Work\n\nA comprehensive survey on \"Patch Correctness Assessment\" was published in ACM Transactions on Software Engineering and Methodology in January 2025.\n\n## Dynamic Analysis Approaches\n\nDynamic-based patch correctness assessment (APCA) mainly identifies the correctness of patches based on the results of test case execution or the program's execution path. Specific dynamic analysis techniques include:\n\n- Daikon utilizes program invariants and oracle information to explore differences between overfitting and correct patches\n- PATCH-SIM predicts patch correctness based on the assumption that the execution traces of passing tests on the buggy and patched programs may be similar\n\n## Key Challenges\n\nMost automated program repair methods rely on test cases to determine the correctness of generated patches; however, due to the incompleteness of available test suites, some patches that pass all the test cases may still be incorrect.\n\n## Recent Learning-Based Approaches\n\nAPPT is a pre-trained language model (PLM)-based patch correctness assessment technique by jointly fine-tuning BERT and classifier to predict patch correctness, and there are also recent approaches like ComPass that use contrastive learning for patch correctness assessment.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_015kkR2s4BVUvDGetncio1Yz",
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "uuid": "b0ed5950-f394-45c3-939d-3a94b271ceba"
+          },
+          "id": "event-000379"
+        },
+        {
+          "source_line": 380,
+          "timestamp": "2026-05-15T12:06:37.416Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FhCzQRQGJxQyQT4u78PenH",
+              "type": "tool_result",
+              "content": "# FlaKat: Flaky Test Categorization Framework\n\n**Title:** \"FlaKat: A Machine Learning-Based Categorization Framework for Flaky Tests\"\n\n**Venue/Year:** arXiv:2403.01003v1 [cs.SE], March 1, 2024\n\n**Authors:** Shizhe Lin, Ryan Liu, Ladan Tahvildari (University of Waterloo)\n\n## Core Methodology\n\nFlaKat uses machine learning classifiers to predict flaky test categories based on source code analysis. The framework operates through four phases:\n\n1. **Parsing & Preprocessing:** Extract and tokenize Java test code\n2. **Vector Embedding:** Convert test code into numerical representations using three techniques:\n   - doc2vec (neural semantic representation)\n   - code2vec (Abstract Syntax Tree-based)\n   - tf-idf (bag-of-words)\n3. **Dimensionality Reduction:** Apply LDA, PCA, Isomap, t-SNE, or UMAP\n4. **Classification:** Train KNN, SVM, or Random Forest classifiers with sampling techniques (SMOTE/Tomek Link)\n\n## Does It Use Execution Traces?\n\n**No.** FlaKat is a static analysis approach that does not require test execution. The authors note that \"machine learning solutions are much faster at locating flaky tests\" compared to dynamic approaches requiring hundreds or thousands of test runs.\n\n## Features Used\n\nThe framework uses **source code content itself as features** rather than hand-crafted metrics. It vectorizes the raw test case source code, preserving either semantic relationships (doc2vec) or syntactic structure (code2vec) or term frequencies (tf-idf). No explicit feature engineering of execution time, line counts, or keywords is performed—the classifiers learn directly from code representations."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_015kkR2s4BVUvDGetncio1Yz",
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "uuid": "0bb87d69-1463-43cf-bb04-3ff367b8541c"
+          },
+          "id": "event-000380"
+        },
+        {
+          "source_line": 381,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "a8ecf0f130726c6b4",
+                "tool_use_id": "toolu_018tR4akstrxL14Q5i5KXuui",
+                "status": "completed",
+                "output_file": "",
+                "summary": "方向2: Exception/Error训练调研",
+                "usage": {
+                  "total_tokens": 40337,
+                  "tool_uses": 30,
+                  "duration_ms": 163418
+                },
+                "uuid": "ab3cbc2b-ef40-45be-8be4-c0a806f22337",
+                "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00"
+              }
+            }
+          ],
+          "id": "event-000381"
+        },
+        {
+          "source_line": 382,
+          "timestamp": "2026-05-15T12:06:41.738Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018tR4akstrxL14Q5i5KXuui",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "已获取足够信息。整理输出。\n\n---\n\n## 调研结果\n\n### 1. DCSH — \"Do Code Semantics Help?\" (Wang et al., EMNLP 2025 Findings)\n\n**标题**: Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models\n**arxiv**: 2509.11686 | ACL Anthology: 2025.findings-emnlp.548\n\n**5种trace格式（确认）**:\n1. **Scratchpad** — 语言模型做中间计算的草稿格式\n2. **NExT** — 将执行trace作为内联注释嵌入代码\n3. **SemCoder** — 用自然语言逐行描述代码执行过程\n4. **CodeExecutor** — 记录每行变量的状态变化（单独呈现）\n5. **Concise** — CodeExecutor的变体，忽略值未改变的变量\n\n**与我们的关系**: 没有exception-only变体。5种格式全部是完整语义执行信息（变量状态、逐行描述等），不包含错误/异常专项格式。关键发现与我们相反的方向有所印证：论文结论是\"semantic information has limited usefulness for SFT and test time scaling\"，即更丰富的语义trace并不总是有帮助。没有人做过exception-only的消融。\n\n---\n\n### 2. Fault Localization via Fine-tuning LLMs with Mutation Generated Stack Traces (Jambigi et al., ICST 2025 Industry)\n\n**arxiv**: 2501.18005 | 会议: ICST 2025 Industry Track\n\n**核心做法**: 用代码变异器生成64,369条合成crash数据，fine-tune LLM，输入信号为stack trace（仅stack frame名称+行号，去除动态成分如内存地址、线程ID），预测root cause所在函数。\n\n**准确率**: SAP HANA 66.9%，SQLite 63%，DuckDB 74%。\n\n**关键消融**: 将stack trace内容用SHA-256哈希后，GPT-4o准确率降至0%，说明模型依赖人类可读的方法名。加入源代码反而降低准确率。\n\n**与我们的关系**: 最接近的相关工作之一——同样只用exception/crash信号（无完整trace），也发现最小信号（stack trace only）就够用，不需要额外运行时信息。但任务是fault localization而非verdict prediction，且用的是stack trace全内容而非仅exception message。没有exception-only vs. full-trace对比实验。\n\n---\n\n### 3. SBEST: Leveraging Stack Traces for Spectrum-based Fault Localization (Pacheco et al., EMSE 2024)\n\n**arxiv**: 2405.00565 | 期刊: Empirical Software Engineering (Springer, 2024–2025)\n\n**核心做法**: 将stack trace信息整合进Spectrum-Based FL，在无fault-triggering test的场景下定位bug。\n\n**关键发现**: \n- Defects4J中仅3.33%的crash bug有fault-triggering test\n- **98.3%的bug修复意图直接对应stack trace中的exception**\n- stack trace alone可定位60个bug中的34个进Top-5\n\n**与我们的关系**: 高度相关的实证发现——\"98.3%的bug修复直接和exception相关\"支持了exception-only信号的充分性。这是最接近\"minimal diagnostic signal\"论证的现有工作，但领域是fault localization而非verdict prediction。\n\n---\n\n### 4. LLM4PatchCorrect (Zhou et al., TSE 2024)\n\n**标题**: Leveraging Large Language Model for Automatic Patch Correctness Assessment\n**期刊**: IEEE Transactions on Software Engineering 2024\n\n**核心做法**: ICL（in-context learning），输入包含：bug descriptions + execution traces + failing test cases + test coverage + similar labeled patches，判断patch是否correct（binary）。使用StarCoder。\n\n**准确率**: 84.4% accuracy，86.5% F1（Defects4J + BEARS数据集）。\n\n**与我们的关系**: 做binary verdict prediction（correct/overfitting），但依赖多种信号的组合，execution trace是其中一项输入而非唯一输入。没有消融说明哪种信号贡献最大。我们的工作恰好可以和这个对比：我们用exception-only就能达到99.83%，而他们需要多种信号才达84.4%。\n\n---\n\n### 5. AutoCrashFL (SAP研究组, arXiv 2510.22530, Oct 2025)\n\n**标题**: Finding the Needle in the Crash Stack: Industrial-Scale Crash Root Cause Localization with AutoCrashFL\n\n**核心做法**: LLM agent + crash dump + source code repository，做工业规模crash的root cause定位。\n\n**准确率**: 30% acc@1（vs. baseline 17%），数据来自SAP HANA 454个真实crash。\n\n**与我们的关系**: 同样使用crash dump（包含exception信息）作为核心输入，工业规模验证，但任务是定位而非verdict预测，且准确率远低于我们的结果。\n\n---\n\n### 6. Crash Report Enhancement with LLMs (arXiv 2509.13535, Sep 2025)\n\n**核心做法**: 用LLM增强crash report（stack trace + repo代码），将bug定位准确率从10.6%提升至40.2–43.1%。\n\n**与我们的关系**: 以stack trace/exception作为核心输入信号，但任务是report增强和bug定位，非verdict prediction。\n\n---\n\n### 7. APPT (TSE 2024) — 已知基线\n\n已知：79.7% accuracy，BERT，无trace，patch correctness prediction。无新发现。\n\n---\n\n## 结论\n\n**DCSH的5种格式确认**: Scratchpad、NExT、SemCoder、CodeExecutor、Concise，均为完整语义执行信息，**无exception-only变体**。\n\n**\"minimal diagnostic signal\"领域空白确认**:\n- 最接近的工作是SBEST（98.3% bug fixes直接对应stack trace exception）和ICST'25 stack trace fine-tuning，但这些工作都在fault localization领域，没有人在verdict prediction任务上做过exception-only vs. full-trace的系统对比。\n- LLM4PatchCorrect做binary verdict但需要多信号组合（84.4%），APPT也是多特征（79.7%）。\n- **没有发现任何人专门用exception-only信号做verdict prediction并报告99%+准确率的工作**，这个发现在文献中是空白的。\n\n**可引用的最直接相关工作**:\n1. ICST'25 (Jambigi et al.): stack trace-only fine-tuning，66.9% fault localization\n2. SBEST (Pacheco et al., EMSE 2024): 98.3% bug fixes correlated with exception in stack trace\n3. LLM4PatchCorrect (Zhou et al., TSE 2024): binary patch verdict with execution traces, 84.4%\n4. DCSH (Wang et al., EMNLP 2025): 5种trace格式对比，发现更多语义未必更好"
+                },
+                {
+                  "type": "text",
+                  "text": "agentId: a8ecf0f130726c6b4 (use SendMessage with to: 'a8ecf0f130726c6b4' to continue this agent)\n<usage>total_tokens: 41988\ntool_uses: 30\nduration_ms: 163421</usage>"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "uuid": "00b1c83c-c44f-4a8b-ba0a-941b3537eadb",
+            "tool_use_result": {
+              "status": "completed",
+              "prompt": "你是ML文献调研助手。搜索 exception/error/fault 信息用于 LLM 训练的相关工作。\n\n背景：我们发现 exception-only trace 达到 99.83% accuracy 做 binary verdict prediction，远超 full trace (81.8%)。需要了解是否有人做过类似的工作。\n\n已知：\n- DCSH (Wang et al., EMNLP 2025): 用5种trace格式做pretraining，需要确认具体是哪5种格式\n- APPT (TSE 2024): patch correctness prediction, 79.7%, BERT, 无trace\n\n任务：搜索以下关键词组：\n\n1. \"error message\" fine-tuning LLM code\n2. \"exception\" \"stack trace\" training \"language model\"\n3. \"fault localization\" LLM fine-tuning\n4. \"error-aware\" code generation training\n5. DCSH execution trace format types Wang EMNLP 2025\n6. \"bug detection\" \"error message\" \"language model\" training\n7. \"stack trace\" \"fault localization\" deep learning\n8. \"minimal diagnostic signal\" bug detection\n\n对每组用 WebSearch 搜索（2023-2026），对高相关论文用 WebFetch 读 abstract。\n\n特别关注：\n- DCSH的5种trace格式具体是什么？有没有exception-only变体？\n- bug detection/fault localization/automated repair 领域有没有\"minimal diagnostic signal\"的发现？\n- 有没有人专门用error message做LLM fine-tuning？\n\n输出格式（每篇）：标题、会议/年份、核心做法、与我们的关系\n最后给出结论。不要编造论文。",
+              "agentId": "a8ecf0f130726c6b4",
+              "agentType": "general-purpose",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "已获取足够信息。整理输出。\n\n---\n\n## 调研结果\n\n### 1. DCSH — \"Do Code Semantics Help?\" (Wang et al., EMNLP 2025 Findings)\n\n**标题**: Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models\n**arxiv**: 2509.11686 | ACL Anthology: 2025.findings-emnlp.548\n\n**5种trace格式（确认）**:\n1. **Scratchpad** — 语言模型做中间计算的草稿格式\n2. **NExT** — 将执行trace作为内联注释嵌入代码\n3. **SemCoder** — 用自然语言逐行描述代码执行过程\n4. **CodeExecutor** — 记录每行变量的状态变化（单独呈现）\n5. **Concise** — CodeExecutor的变体，忽略值未改变的变量\n\n**与我们的关系**: 没有exception-only变体。5种格式全部是完整语义执行信息（变量状态、逐行描述等），不包含错误/异常专项格式。关键发现与我们相反的方向有所印证：论文结论是\"semantic information has limited usefulness for SFT and test time scaling\"，即更丰富的语义trace并不总是有帮助。没有人做过exception-only的消融。\n\n---\n\n### 2. Fault Localization via Fine-tuning LLMs with Mutation Generated Stack Traces (Jambigi et al., ICST 2025 Industry)\n\n**arxiv**: 2501.18005 | 会议: ICST 2025 Industry Track\n\n**核心做法**: 用代码变异器生成64,369条合成crash数据，fine-tune LLM，输入信号为stack trace（仅stack frame名称+行号，去除动态成分如内存地址、线程ID），预测root cause所在函数。\n\n**准确率**: SAP HANA 66.9%，SQLite 63%，DuckDB 74%。\n\n**关键消融**: 将stack trace内容用SHA-256哈希后，GPT-4o准确率降至0%，说明模型依赖人类可读的方法名。加入源代码反而降低准确率。\n\n**与我们的关系**: 最接近的相关工作之一——同样只用exception/crash信号（无完整trace），也发现最小信号（stack trace only）就够用，不需要额外运行时信息。但任务是fault localization而非verdict prediction，且用的是stack trace全内容而非仅exception message。没有exception-only vs. full-trace对比实验。\n\n---\n\n### 3. SBEST: Leveraging Stack Traces for Spectrum-based Fault Localization (Pacheco et al., EMSE 2024)\n\n**arxiv**: 2405.00565 | 期刊: Empirical Software Engineering (Springer, 2024–2025)\n\n**核心做法**: 将stack trace信息整合进Spectrum-Based FL，在无fault-triggering test的场景下定位bug。\n\n**关键发现**: \n- Defects4J中仅3.33%的crash bug有fault-triggering test\n- **98.3%的bug修复意图直接对应stack trace中的exception**\n- stack trace alone可定位60个bug中的34个进Top-5\n\n**与我们的关系**: 高度相关的实证发现——\"98.3%的bug修复直接和exception相关\"支持了exception-only信号的充分性。这是最接近\"minimal diagnostic signal\"论证的现有工作，但领域是fault localization而非verdict prediction。\n\n---\n\n### 4. LLM4PatchCorrect (Zhou et al., TSE 2024)\n\n**标题**: Leveraging Large Language Model for Automatic Patch Correctness Assessment\n**期刊**: IEEE Transactions on Software Engineering 2024\n\n**核心做法**: ICL（in-context learning），输入包含：bug descriptions + execution traces + failing test cases + test coverage + similar labeled patches，判断patch是否correct（binary）。使用StarCoder。\n\n**准确率**: 84.4% accuracy，86.5% F1（Defects4J + BEARS数据集）。\n\n**与我们的关系**: 做binary verdict prediction（correct/overfitting），但依赖多种信号的组合，execution trace是其中一项输入而非唯一输入。没有消融说明哪种信号贡献最大。我们的工作恰好可以和这个对比：我们用exception-only就能达到99.83%，而他们需要多种信号才达84.4%。\n\n---\n\n### 5. AutoCrashFL (SAP研究组, arXiv 2510.22530, Oct 2025)\n\n**标题**: Finding the Needle in the Crash Stack: Industrial-Scale Crash Root Cause Localization with AutoCrashFL\n\n**核心做法**: LLM agent + crash dump + source code repository，做工业规模crash的root cause定位。\n\n**准确率**: 30% acc@1（vs. baseline 17%），数据来自SAP HANA 454个真实crash。\n\n**与我们的关系**: 同样使用crash dump（包含exception信息）作为核心输入，工业规模验证，但任务是定位而非verdict预测，且准确率远低于我们的结果。\n\n---\n\n### 6. Crash Report Enhancement with LLMs (arXiv 2509.13535, Sep 2025)\n\n**核心做法**: 用LLM增强crash report（stack trace + repo代码），将bug定位准确率从10.6%提升至40.2–43.1%。\n\n**与我们的关系**: 以stack trace/exception作为核心输入信号，但任务是report增强和bug定位，非verdict prediction。\n\n---\n\n### 7. APPT (TSE 2024) — 已知基线\n\n已知：79.7% accuracy，BERT，无trace，patch correctness prediction。无新发现。\n\n---\n\n## 结论\n\n**DCSH的5种格式确认**: Scratchpad、NExT、SemCoder、CodeExecutor、Concise，均为完整语义执行信息，**无exception-only变体**。\n\n**\"minimal diagnostic signal\"领域空白确认**:\n- 最接近的工作是SBEST（98.3% bug fixes直接对应stack trace exception）和ICST'25 stack trace fine-tuning，但这些工作都在fault localization领域，没有人在verdict prediction任务上做过exception-only vs. full-trace的系统对比。\n- LLM4PatchCorrect做binary verdict但需要多信号组合（84.4%），APPT也是多特征（79.7%）。\n- **没有发现任何人专门用exception-only信号做verdict prediction并报告99%+准确率的工作**，这个发现在文献中是空白的。\n\n**可引用的最直接相关工作**:\n1. ICST'25 (Jambigi et al.): stack trace-only fine-tuning，66.9% fault localization\n2. SBEST (Pacheco et al., EMSE 2024): 98.3% bug fixes correlated with exception in stack trace\n3. LLM4PatchCorrect (Zhou et al., TSE 2024): binary patch verdict with execution traces, 84.4%\n4. DCSH (Wang et al., EMNLP 2025): 5种trace格式对比，发现更多语义未必更好"
+                }
+              ],
+              "totalDurationMs": 163421,
+              "totalTokens": 41988,
+              "totalToolUseCount": 30,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2446,
+                "cache_read_input_tokens": 37512,
+                "output_tokens": 2029,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2446
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2029,
+                    "cache_read_input_tokens": 37512,
+                    "cache_creation_input_tokens": 2446,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2446,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 0,
+                "searchCount": 0,
+                "bashCount": 0,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 30
+              }
+            }
+          },
+          "id": "event-000382"
+        },
+        {
+          "source_line": 383,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "ad6f6d170ea78226e",
+                "tool_use_id": "toolu_014GG55WE2jMaeEtM9EiYQtg",
+                "status": "completed",
+                "output_file": "",
+                "summary": "方向3: 信息粒度匹配调研",
+                "usage": {
+                  "total_tokens": 36520,
+                  "tool_uses": 28,
+                  "duration_ms": 171903
+                },
+                "uuid": "c54e19e1-7f79-4e97-8867-b12a263d4df4",
+                "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00"
+              }
+            }
+          ],
+          "id": "event-000383"
+        },
+        {
+          "source_line": 384,
+          "timestamp": "2026-05-15T12:06:58.609Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014GG55WE2jMaeEtM9EiYQtg",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "充足信息已收集，整理输出。\n\n---\n\n## 调研结论\n\n### 1. 信息瓶颈理论核心文献\n\n**Deep Learning and the Information Bottleneck Principle**\n- Tishby & Zaslavsky，IEEE ITW 2015，arXiv:1503.02406\n- 核心做法：将 DNN 每一层视为对输入 X 的有损压缩，优化目标是最大化与标签 Y 的互信息同时最小化与 X 的互信息。最优架构的层数和宽度由\"信息曲线的分岔点\"决定。\n- 与我们的关系：**直接理论支撑**。IB 框架明确说明分类网络应压缩掉任务无关信息——exception-only trace 等价于手动执行了这个压缩步骤。\n\n**On the Information Bottleneck Theory of Deep Learning**\n- Saxe et al.，ICLR 2018（ICLR best paper nominee）\n- 核心做法：反驳 Tishby 的\"压缩是普遍现象\"——压缩只在 tanh 等双饱和激活函数下出现，ReLU 网络不出现压缩相。但确认了一点：当输入包含任务相关和任务无关子集时，表示确实会压缩任务无关信息（与训练同步发生，而非独立的压缩阶段）。且\"没有发现压缩与泛化之间明确的因果关系\"。\n- 与我们的关系：**部分支撑，需注意**。压缩发生但未必是性能提升的原因；不能简单说\"压缩了所以更好\"，应说\"去掉任务无关噪声使信号更纯净\"。\n\n**Minimal Achievable Sufficient Statistic (MASS) Learning**\n- Cvitkovic & Koliander，ICML 2019，arXiv:1905.07822\n- 核心做法：提出训练目标使网络学到\"相对于当前函数类的最小充分统计量\"，引入 CDI（Conserved Differential Information）处理确定性连续变量的互信息计算限制。在监督学习和不确定性量化 benchmark 上达到竞争性性能。\n- 与我们的关系：**形式化支撑**。最小充分统计量框架直接对应\"exception-only trace 是 pass/fail 任务的充分统计量\"这一假设——IB 是 MSS 的推广，允许在充分性和复杂度之间折中。\n\n---\n\n### 2. 任务导向压缩（信息论）\n\n**Task-Oriented Lossy Compression with Data, Perception, and Classification Constraints**\n- IEEE Information Theory Workshop 2024，arXiv:2405.04144\n- 核心做法：推导 binary 和 Gaussian 源的率-失真-分类（RDC）和率-感知-分类（RPC）闭合解。结论：分类任务的最小充分信息量远小于重建任务。\n- 与我们的关系：**信息论量化支撑**。为 binary classification 只需要极少信息提供了严格的信息论证明；full trace 的信息率远超 binary 判决所需，多余信息是\"费率\"而非增益。\n\n---\n\n### 3. LLM 长上下文性能退化（与我们的实验最直接类比）\n\n**Lost in the Middle: How Language Models Use Long Contexts**\n- Liu et al.，TACL 2023，arXiv:2307.03172\n- 核心做法：在多文档 QA 和 key-value retrieval 任务上系统测试相关信息位置对 LLM 性能的影响，发现 U 形曲线——信息在开头或结尾时性能最高，在中间时性能甚至低于闭卷基线。30+ 文档时准确率下降超 30%。\n- 与我们的关系：**最强的实证类比**。全 trace 把关键的 exception 信号\"淹没\"在执行细节中，等价于把相关信息放在超长上下文中间，LLM 无法有效利用。\n\n**Context Length Alone Hurts LLM Performance Despite Perfect Retrieval**\n- arXiv 2025，arXiv:2510.05381\n- 核心做法：控制变量实验——检索质量完美的情况下，仅增加上下文长度就导致 5 个主流模型（Llama-3.1-8B, Mistral-7B, GPT-4o, Claude-3.5, Gemini-2.0）性能下降 13.9%–85%。即使将无关 token 替换为空白，只保留相关 token 可见，性能仍然下降。\n- 与我们的关系：**极强的直接支撑**。这正是我们的实验机制：full trace 的长度本身（而非内容）就是对 LLM 的负担。exception-only trace 通过极度压缩消除了这个长度惩罚。\n\n---\n\n### 4. 输入中无关特征伤害分类性能\n\n**Quantifying the impact of uninformative features on the performance of supervised classification and dimensionality reduction algorithms**\n- APL Machine Learning 2023\n- 核心做法：系统量化高维数据集中无信息特征对多种分类算法的影响。结论：无信息特征的存在对部分算法（基于距离的，如 kNN）有显著伤害，对内嵌特征选择的算法（决策树、MARS、Lasso）则相对鲁棒。\n- 与我们的关系：**支撑性背景**。full trace 包含大量执行细节对 LLM 而言等价于无信息特征，伤害效应取决于模型架构的\"内嵌过滤\"能力。\n\n---\n\n### 5. 标签粒度与输入表示匹配\n\n**Should we always train models on fine-grained classes?**\n- arXiv 2025\n- 核心做法：理论+实验证明细粒度标签训练并不总优于粗粒度，关键在于数据几何结构和\"边界冗余\"概念——当细粒度决策边界与粗粒度任务无关时，细粒度信息成为\"干扰信息\"。在大数据集场景下直接用粗粒度标签训练优于细粒度标签。\n- 与我们的关系：**标签-输入粒度匹配的直接论证**。pass/fail 是粗粒度标签，全 trace 包含的细粒度执行路径信息对粗粒度决策边界是干扰，而非帮助。\n\n**Rethinking Minimal Sufficient Representation in Contrastive Learning**\n- CVPR 2022\n- 核心做法：挑战对比学习中\"最小化表示\"的假设，认为保留非最小信息反而有助于下游分类。\n- 与我们的关系：**反例，需注意**。该研究结论相反——但场景是自监督预训练后迁移，而非直接分类；预训练时保留多余信息有益，因为下游任务未知；我们的场景是直接 inference，目标已知，两者不可比。\n\n---\n\n### 6. NLP 信息论分析\n\n**An Information-Theoretic Approach to Analyze NLP Classification Tasks**\n- Wang et al.，arXiv 2024，Cambridge\n- 核心做法：用互信息分解输入对输出分布的影响，发现阅读理解中\"更难的上下文允许更大的问题复杂度变化\"，简单上下文反而限制了问题多样性——即输入难度与任务输出复杂度存在信息论层面的耦合关系。\n- 与我们的关系：**方法论参考**。提供了用互信息框架定量分析\"输入信息粒度 vs 任务输出复杂度\"的工具，可用于后续理论分析。\n\n---\n\n## 综合结论\n\n**有直接文献支撑的论点：**\n\n1. **IB 框架**（Tishby 2015）从信息论层面证明：最优分类表示应压缩任务无关信息。exception-only trace 相当于手动执行此压缩。\n\n2. **MASS 学习**（ICML 2019）将此形式化为\"最小充分统计量\"——任务的最小充分信息量即已足够，多余信息是冗余而非增益。\n\n3. **长上下文性能退化**（TACL 2023 + arXiv 2025）提供了最接近的实证类比：LLM 处理长上下文时即使检索完美性能也下降 13.9–85%；exception 信号被 full trace 淹没是已知问题。\n\n4. **标签粒度匹配**（arXiv 2025）：粗粒度任务（binary）直接用粗粒度标签训练优于强迫模型学细粒度；类比到输入侧，binary 任务不需要细粒度的全执行轨迹。\n\n**没有找到的直接证据：**\n- 没有找到专门研究\"trace 信息粒度 vs 代码分析任务复杂度\"的系统性工作——这是我们研究的新颖性空间。\n- 没有\"exception-only 信号 vs full trace for pass/fail\"的直接对比实验。\n- NLP/CV 中\"input granularity vs task output complexity\"的**系统性**框架性研究缺失，大多是特例研究。\n\n**建议的理论框架**：将我们的发现定位为 IB 理论在 LLM-based program analysis 中的实证验证——exception-only trace 是 pass/fail binary 分类任务的近似最小充分统计量，full trace 的信息冗余通过\"上下文长度惩罚\"和\"任务无关特征干扰\"两个机制同时伤害性能。"
+                },
+                {
+                  "type": "text",
+                  "text": "agentId: ad6f6d170ea78226e (use SendMessage with to: 'ad6f6d170ea78226e' to continue this agent)\n<usage>total_tokens: 38561\ntool_uses: 28\nduration_ms: 171905</usage>"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "uuid": "ef3e7eb5-24d1-448c-b702-b2d89010b146",
+            "tool_use_result": {
+              "status": "completed",
+              "prompt": "你是ML文献调研助手。搜索\"信息粒度/输入压缩 vs 任务复杂度匹配\"的理论和实证工作。\n\n背景：我们发现 exception-only trace（极度压缩的信息）在 binary classification (pass/fail) 上远超 full trace。我们猜测这符合\"信息粒度应匹配任务输出复杂度\"的原则——binary 任务只需要 binary-level 的 diagnostic signal。\n\n任务：搜索以下关键词组：\n\n1. \"information granularity\" \"task complexity\" machine learning\n2. \"input compression\" classification \"information bottleneck\"\n3. \"trace abstraction\" level granularity code analysis\n4. \"sufficient statistics\" \"task complexity\" deep learning\n5. \"information bottleneck\" principle classification neural network\n6. \"input detail\" \"task difficulty\" matching deep learning\n7. \"noise\" \"irrelevant features\" hurt classification performance\n8. \"less is more\" feature selection machine learning\n\n重点关注：\n- 信息瓶颈理论（Information Bottleneck, Tishby et al.）在深度学习中的应用\n- 有没有从信息论角度讨论过\"过多输入信息反而降低分类性能\"？\n- NLP/CV领域有没有\"input granularity vs task complexity\"的系统性研究？\n- 特征选择/降维领域有没有类似的\"minimal sufficient representation\"理论？\n\n对每组用 WebSearch 搜索，对高相关论文用 WebFetch 读 abstract。\n\n输出格式（每篇）：标题、会议/年份、核心做法、与我们的关系\n最后给出结论。不要编造论文。",
+              "agentId": "ad6f6d170ea78226e",
+              "agentType": "general-purpose",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "充足信息已收集，整理输出。\n\n---\n\n## 调研结论\n\n### 1. 信息瓶颈理论核心文献\n\n**Deep Learning and the Information Bottleneck Principle**\n- Tishby & Zaslavsky，IEEE ITW 2015，arXiv:1503.02406\n- 核心做法：将 DNN 每一层视为对输入 X 的有损压缩，优化目标是最大化与标签 Y 的互信息同时最小化与 X 的互信息。最优架构的层数和宽度由\"信息曲线的分岔点\"决定。\n- 与我们的关系：**直接理论支撑**。IB 框架明确说明分类网络应压缩掉任务无关信息——exception-only trace 等价于手动执行了这个压缩步骤。\n\n**On the Information Bottleneck Theory of Deep Learning**\n- Saxe et al.，ICLR 2018（ICLR best paper nominee）\n- 核心做法：反驳 Tishby 的\"压缩是普遍现象\"——压缩只在 tanh 等双饱和激活函数下出现，ReLU 网络不出现压缩相。但确认了一点：当输入包含任务相关和任务无关子集时，表示确实会压缩任务无关信息（与训练同步发生，而非独立的压缩阶段）。且\"没有发现压缩与泛化之间明确的因果关系\"。\n- 与我们的关系：**部分支撑，需注意**。压缩发生但未必是性能提升的原因；不能简单说\"压缩了所以更好\"，应说\"去掉任务无关噪声使信号更纯净\"。\n\n**Minimal Achievable Sufficient Statistic (MASS) Learning**\n- Cvitkovic & Koliander，ICML 2019，arXiv:1905.07822\n- 核心做法：提出训练目标使网络学到\"相对于当前函数类的最小充分统计量\"，引入 CDI（Conserved Differential Information）处理确定性连续变量的互信息计算限制。在监督学习和不确定性量化 benchmark 上达到竞争性性能。\n- 与我们的关系：**形式化支撑**。最小充分统计量框架直接对应\"exception-only trace 是 pass/fail 任务的充分统计量\"这一假设——IB 是 MSS 的推广，允许在充分性和复杂度之间折中。\n\n---\n\n### 2. 任务导向压缩（信息论）\n\n**Task-Oriented Lossy Compression with Data, Perception, and Classification Constraints**\n- IEEE Information Theory Workshop 2024，arXiv:2405.04144\n- 核心做法：推导 binary 和 Gaussian 源的率-失真-分类（RDC）和率-感知-分类（RPC）闭合解。结论：分类任务的最小充分信息量远小于重建任务。\n- 与我们的关系：**信息论量化支撑**。为 binary classification 只需要极少信息提供了严格的信息论证明；full trace 的信息率远超 binary 判决所需，多余信息是\"费率\"而非增益。\n\n---\n\n### 3. LLM 长上下文性能退化（与我们的实验最直接类比）\n\n**Lost in the Middle: How Language Models Use Long Contexts**\n- Liu et al.，TACL 2023，arXiv:2307.03172\n- 核心做法：在多文档 QA 和 key-value retrieval 任务上系统测试相关信息位置对 LLM 性能的影响，发现 U 形曲线——信息在开头或结尾时性能最高，在中间时性能甚至低于闭卷基线。30+ 文档时准确率下降超 30%。\n- 与我们的关系：**最强的实证类比**。全 trace 把关键的 exception 信号\"淹没\"在执行细节中，等价于把相关信息放在超长上下文中间，LLM 无法有效利用。\n\n**Context Length Alone Hurts LLM Performance Despite Perfect Retrieval**\n- arXiv 2025，arXiv:2510.05381\n- 核心做法：控制变量实验——检索质量完美的情况下，仅增加上下文长度就导致 5 个主流模型（Llama-3.1-8B, Mistral-7B, GPT-4o, Claude-3.5, Gemini-2.0）性能下降 13.9%–85%。即使将无关 token 替换为空白，只保留相关 token 可见，性能仍然下降。\n- 与我们的关系：**极强的直接支撑**。这正是我们的实验机制：full trace 的长度本身（而非内容）就是对 LLM 的负担。exception-only trace 通过极度压缩消除了这个长度惩罚。\n\n---\n\n### 4. 输入中无关特征伤害分类性能\n\n**Quantifying the impact of uninformative features on the performance of supervised classification and dimensionality reduction algorithms**\n- APL Machine Learning 2023\n- 核心做法：系统量化高维数据集中无信息特征对多种分类算法的影响。结论：无信息特征的存在对部分算法（基于距离的，如 kNN）有显著伤害，对内嵌特征选择的算法（决策树、MARS、Lasso）则相对鲁棒。\n- 与我们的关系：**支撑性背景**。full trace 包含大量执行细节对 LLM 而言等价于无信息特征，伤害效应取决于模型架构的\"内嵌过滤\"能力。\n\n---\n\n### 5. 标签粒度与输入表示匹配\n\n**Should we always train models on fine-grained classes?**\n- arXiv 2025\n- 核心做法：理论+实验证明细粒度标签训练并不总优于粗粒度，关键在于数据几何结构和\"边界冗余\"概念——当细粒度决策边界与粗粒度任务无关时，细粒度信息成为\"干扰信息\"。在大数据集场景下直接用粗粒度标签训练优于细粒度标签。\n- 与我们的关系：**标签-输入粒度匹配的直接论证**。pass/fail 是粗粒度标签，全 trace 包含的细粒度执行路径信息对粗粒度决策边界是干扰，而非帮助。\n\n**Rethinking Minimal Sufficient Representation in Contrastive Learning**\n- CVPR 2022\n- 核心做法：挑战对比学习中\"最小化表示\"的假设，认为保留非最小信息反而有助于下游分类。\n- 与我们的关系：**反例，需注意**。该研究结论相反——但场景是自监督预训练后迁移，而非直接分类；预训练时保留多余信息有益，因为下游任务未知；我们的场景是直接 inference，目标已知，两者不可比。\n\n---\n\n### 6. NLP 信息论分析\n\n**An Information-Theoretic Approach to Analyze NLP Classification Tasks**\n- Wang et al.，arXiv 2024，Cambridge\n- 核心做法：用互信息分解输入对输出分布的影响，发现阅读理解中\"更难的上下文允许更大的问题复杂度变化\"，简单上下文反而限制了问题多样性——即输入难度与任务输出复杂度存在信息论层面的耦合关系。\n- 与我们的关系：**方法论参考**。提供了用互信息框架定量分析\"输入信息粒度 vs 任务输出复杂度\"的工具，可用于后续理论分析。\n\n---\n\n## 综合结论\n\n**有直接文献支撑的论点：**\n\n1. **IB 框架**（Tishby 2015）从信息论层面证明：最优分类表示应压缩任务无关信息。exception-only trace 相当于手动执行此压缩。\n\n2. **MASS 学习**（ICML 2019）将此形式化为\"最小充分统计量\"——任务的最小充分信息量即已足够，多余信息是冗余而非增益。\n\n3. **长上下文性能退化**（TACL 2023 + arXiv 2025）提供了最接近的实证类比：LLM 处理长上下文时即使检索完美性能也下降 13.9–85%；exception 信号被 full trace 淹没是已知问题。\n\n4. **标签粒度匹配**（arXiv 2025）：粗粒度任务（binary）直接用粗粒度标签训练优于强迫模型学细粒度；类比到输入侧，binary 任务不需要细粒度的全执行轨迹。\n\n**没有找到的直接证据：**\n- 没有找到专门研究\"trace 信息粒度 vs 代码分析任务复杂度\"的系统性工作——这是我们研究的新颖性空间。\n- 没有\"exception-only 信号 vs full trace for pass/fail\"的直接对比实验。\n- NLP/CV 中\"input granularity vs task output complexity\"的**系统性**框架性研究缺失，大多是特例研究。\n\n**建议的理论框架**：将我们的发现定位为 IB 理论在 LLM-based program analysis 中的实证验证——exception-only trace 是 pass/fail binary 分类任务的近似最小充分统计量，full trace 的信息冗余通过\"上下文长度惩罚\"和\"任务无关特征干扰\"两个机制同时伤害性能。"
+                }
+              ],
+              "totalDurationMs": 171905,
+              "totalTokens": 38561,
+              "totalToolUseCount": 28,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 425,
+                "cache_read_input_tokens": 35258,
+                "output_tokens": 2877,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 425
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2877,
+                    "cache_read_input_tokens": 35258,
+                    "cache_creation_input_tokens": 425,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 425,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 0,
+                "searchCount": 0,
+                "bashCount": 0,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 28
+              }
+            }
+          },
+          "id": "event-000384"
+        },
+        {
+          "source_line": 385,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "a38318202d77b59cf",
+                "tool_use_id": "toolu_015kkR2s4BVUvDGetncio1Yz",
+                "status": "completed",
+                "output_file": "",
+                "summary": "方向4: Verdict任务trace使用调研",
+                "usage": {
+                  "total_tokens": 42450,
+                  "tool_uses": 38,
+                  "duration_ms": 213455
+                },
+                "uuid": "d9570bc3-f5de-4c6c-9696-0ef79b8b4ca1",
+                "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00"
+              }
+            }
+          ],
+          "id": "event-000385"
+        },
+        {
+          "source_line": 386,
+          "timestamp": "2026-05-15T12:07:49.390Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015kkR2s4BVUvDGetncio1Yz",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "I now have sufficient information. Let me compile the comprehensive findings.\n\n---\n\n## 调研结果\n\n### 1. Execution Trace 用于 pass/fail 分类\n\n---\n\n**Learning to Encode and Classify Test Executions**\n- 会议/年份：ACM SAC 2021\n- 核心做法：对程序插桩记录方法调用序列和全局状态，将少量标注过 pass/fail 的 trace 用于训练神经网络嵌入分类器（解决 test oracle 问题）。训练集仅占全部 trace 的 9%，precision/recall/specificity 均超 95%。\n- 与我们的关系：**最直接的前驱**。这是用 execution trace 解决 pass/fail 二分类的核心工作，但停留在 oracle 问题（没有真实 verdict 标签时如何判定），我们的场景是已有 test verdict 标签、借助 LLM 来做预测，切入点不同。\n\n---\n\n**TRACED: Execution-Aware Pre-Training for Source Code**\n- 会议/年份：ICSE 2024\n- 核心做法：将程序执行状态（identifier 的动态值）对齐到代码 token，做执行感知预训练。下游任务是 clone 检索和漏洞检测，**不是 test verdict 分类**。\n- 与我们的关系：常被引用为\"用 trace 做代码理解\"的代表性工作，但任务与我们不同，无直接竞争关系。我们引用时需要澄清任务差异。\n\n---\n\n**AbstractTrace: The Use of Execution Traces to Cluster, Classify, Prioritize, and Optimize a Bloated Test Suite**\n- 会议/年份：Applied Sciences 2024（MDPI）\n- 核心做法：用 execution trace 做测试套件的聚类和分类，目标是去冗余优化测试套件，不是预测 verdict。\n- 与我们的关系：展示了 trace 在测试管理中的多用途，但任务定位不同（测试套件优化 vs. 结果预测）。\n\n---\n\n### 2. Patch Correctness Prediction 领域（有无 trace）\n\n---\n\n**PATCH-SIM（Xiong 等，2018）**\n- 会议/年份：ICSE 2018\n- 核心做法：**直接使用 execution trace**。假设正确 patch 不改变 passing test 的行为，通过比较 CPS（complete-path spectrum，执行语句 ID 序列）的相似度判断 patch 是否 overfitting。需要生成新测试用例（Randoop）再对比 trace。\n- 与我们的关系：patch correctness 领域**唯一**明确使用 execution trace 的经典方法。验证了\"trace 相似度作为正确性信号\"这一思路，但局限于 trace 相似度比较，没有直接分类模型。\n\n---\n\n**Crex（2022）**\n- 会议/年份：Information and Software Technology 2022\n- 核心做法：**使用 micro-trace（欠约束动态 trace）**。基于 TREX 框架对 C 程序 function 的 micro-trace 做执行语义嵌入，逻辑回归分类 patch correctness。F1 达到 89.0%，Recall 100%。\n- 与我们的关系：patch correctness + execution trace 的直接结合，是该领域除 PATCH-SIM 外唯一使用动态 trace 的方法，值得重点对比。\n\n---\n\n**Invalidator（Le-Cong 等，TSE 2023）**\n- 会议/年份：IEEE TSE 2023\n- 核心做法：**不用 trace**。用 Daikon 推断程序不变量（语义）+ 预训练语言模型（句法），判断 patch 是否违反规范。Accuracy 81%，比 ODS/RGT 高 19%。\n- 与我们的关系：patch correctness 领域的强 baseline，纯静态/不变量方法，无 trace，说明该领域主流已转向语义推理+PLM。\n\n---\n\n**ODS（Ye 等，TSE 2021）**\n- 会议/年份：IEEE TSE 2021\n- 核心做法：**不用 trace**。从 AST 提取静态代码特征 + 监督学习，分类 overfitting patch。准确率 71.9%。\n- 与我们的关系：patch correctness 经典 baseline，纯静态，无 trace。\n\n---\n\n**APPT（Zhang 等，TSE 2024）**\n- 会议/年份：IEEE TSE 2024\n- 核心做法：**不用 trace**。联合微调 BERT + 分类器，将 buggy code 和 patched code 一起编码，准确率 79.7%。\n- 与我们的关系：你们的已知基线，无 trace，是纯代码表示方法的最新代表。\n\n---\n\n**ComPass（Zhang 等，arXiv 2026/EMSE in press）**\n- 会议/年份：Empirical Software Engineering 2026\n- 核心做法：**不用 trace**。对比学习预训练（18种语义等价变换数据增强）+ BERT 微调，准确率 88.35%，超 APPT 6.33%。\n- 与我们的关系：当前 patch correctness 的 SOTA，说明该领域可以不用 trace 达到高性能，但也留下了\"trace 能否进一步提升\"的开放问题。\n\n---\n\n**On the Effectiveness of Code Representation for Patch Correctness Assessment（Zhang 等，arXiv 2026）**\n- 会议/年份：arXiv 2026（under review）\n- 核心做法：**不用 trace**。系统对比 TF-IDF、token 序列、AST、CFG/PDG/CPG 等 500+ 模型，最好结果 CPG+GGNN 82.69%。\n- 与我们的关系：表明图结构代码表示在静态方法中已到天花板，trace 是未被充分探索的动态信号。\n\n---\n\n**TraceRepair（arXiv 2026）**\n- 会议/年份：arXiv 2026\n- 核心做法：**使用 execution trace**，但任务是 APR（program repair），不是二分类。Probe Agent 插桩捕获运行时状态，三个 repair agent 生成候选 patch，Judge Agent 仲裁。Defects4J 修复 392 个 bug。\n- 与我们的关系：证明了 trace 作为 LLM agent 的 grounding 信号有效，我们的工作（trace 辅助 LLM 做 verdict 分类）可以看作其分类侧的对应物。\n\n---\n\n**Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs（arXiv 2025）**\n- 会议/年份：arXiv 2025（JPMorgan AI Research）\n- 核心做法：研究将 trace 加入 APR prompt 的效果，发现 trace 不一致地优于无 trace 方案，GPT-4 + LLM 优化后的 trace 效果最佳，长 trace 反而降低效果。\n- 与我们的关系：对我们的直接参考意义高——分析了\"trace 加入 prompt\"的边界条件，提示了 trace 压缩/抽象的重要性。\n\n---\n\n### 3. Flaky Test Prediction\n\n---\n\n**FlaKat（Lin 等，arXiv 2024）**\n- 会议/年份：arXiv 2024\n- 核心做法：**不用 trace**，纯静态分析（doc2vec/code2vec/tf-idf）分类 flaky test 的根因类别。KNN/SVM/RF 分类器。\n- 与我们的关系：flaky test 领域主流也不用 trace。\n\n---\n\n**CANNIER（Empirical Software Engineering 2023）**\n- 会议/年份：EMSE 2023\n- 核心做法：结合 test rerun 检测 + ML 模型，减少 rerun 次数。特征来自 test execution history（历史 verdict 序列和时长），不用完整 trace。89,668 test cases，30 Python 项目。\n- 与我们的关系：使用了 test 历史（verdict 序列）作为特征，与 trace 特征不同，但说明时序 verdict 信息有预测价值。\n\n---\n\n### 4. LLM 执行理解相关\n\n---\n\n**Evaluating Large Language Models with Runtime Behavior of Program Execution（REval，arXiv 2024）**\n- 会议/年份：arXiv 2024（浙大/北大/Concordia）\n- 核心做法：评估 LLM 在 4 类执行任务上的能力（覆盖预测/状态预测/路径预测/输出预测），引入 Incremental Consistency 评分。GPT-4-Turbo 平均 82.6%，开源模型平均 44.4%。**不是 test verdict 分类**。\n- 与我们的关系：提供了 LLM 理解 trace 能力的基准数据，但任务不同。\n\n---\n\n**Execution Tuning (E.T.)（arXiv 2025）**\n- 会议/年份：arXiv 2025（Meta/Edinburgh）\n- 核心做法：用 1.5M+ Python 程序执行 trace 训练 LLM，CruxEval 输出预测准确率 ~80%，但下游代码生成收益有限。**不是 verdict 分类**。\n- 与我们的关系：展示 trace 大规模训练的边界，表明 trace 理解能力不自动迁移到分类任务。\n\n---\n\n### 5. Build Failure / CI Test Failure Prediction\n\n---\n\n**DL-CIBuild / CI Build Failure Prediction（Automated Software Engineering 2022）**\n- 会议/年份：Automated Software Engineering 2022\n- 核心做法：LSTM-RNN 预测 CI build 失败，特征来自 build 历史（commit 元数据、历史结果），**不用 trace**。\n- 与我们的关系：CI 失败预测的代表性工作，特征空间是 build-level 而非 test execution trace，任务粒度不同。\n\n---\n\n## 综合结论\n\n**任务全景：** \"test verdict prediction（binary pass/fail classification）\"这个精确任务几乎没有被直接命名和系统研究。最接近的工作分布在：\n\n1. **Test oracle 问题**（Tsimpourlas 等 SAC 2021）——用 trace 解决\"有没有预言机\"的问题，不是在有标签情况下预测；\n2. **Patch correctness prediction**——最成熟的相关领域，但主流（ODS/APPT/Invalidator/ComPass）均不用 trace，只有 PATCH-SIM（2018）和 Crex（2022）用了 trace，且 Crex 的 micro-trace 方法限于 C 程序；\n3. **CI failure prediction**——粒度是 build 而非 test case，不用 trace；\n4. **Flaky test detection**——无 trace，以静态代码特征为主。\n\n**关于 trace 的使用：** 在分类任务上，明确使用 execution trace 的工作极少：SAC 2021 的 oracle 工作、PATCH-SIM（相似度方法）、Crex（micro-trace 嵌入）。**没有工作将完整 execution trace 作为特征喂给 LLM 做 test verdict 分类**，这是你们工作的核心空白。\n\n**关于 LLM + trace：** 2025-2026 年涌现了若干 LLM + trace 的工作（TraceRepair、arXiv 2025 APR 工作），均用于 program repair，不是分类。LLM 理解 trace 有效但对 downstream 任务迁移有限（E.T. 论文）这一发现，为你们提供了研究动机：需要针对性设计 trace 的表示/摘要方式，而不是直接 concat 原始 trace。\n\n**空白点：** 没有任何工作将 test verdict prediction 作为独立任务 + 使用 execution trace + 使用 LLM 三者结合。TRACED（ICSE 2024）常被误引为这个方向，但实际上是代码预训练工作，不做 verdict 分类。"
+                },
+                {
+                  "type": "text",
+                  "text": "agentId: a38318202d77b59cf (use SendMessage with to: 'a38318202d77b59cf' to continue this agent)\n<usage>total_tokens: 44900\ntool_uses: 38\nduration_ms: 213457</usage>"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "uuid": "8a7937d6-1f75-4efb-8fa8-451a78833285",
+            "tool_use_result": {
+              "status": "completed",
+              "prompt": "你是ML文献调研助手。搜索 verdict/classification 任务上使用 execution trace 的相关工作。\n\n背景：我们做的是 test verdict prediction (pass/fail binary classification)，用 execution trace 辅助 LLM。已知：\n- TRACED (ICSE 2024): trace-based classification\n- APPT (TSE 2024): patch correctness prediction, 79.7%, BERT, 无trace\n\n任务：搜索以下关键词组：\n\n1. \"test verdict prediction\" OR \"test outcome prediction\"\n2. \"execution trace\" classification \"pass\" \"fail\"\n3. \"patch correctness\" \"execution\" prediction\n4. \"test result prediction\" machine learning\n5. \"automated patch correctness\" deep learning\n6. \"test failure prediction\" \"machine learning\" OR \"deep learning\"\n7. \"program correctness\" classification \"trace\" OR \"execution\"\n8. \"flaky test\" prediction machine learning\n9. \"mutation testing\" \"test outcome\" prediction\n\n对每组用 WebSearch 搜索（2023-2026为主，经典工作不限年份），对高相关论文用 WebFetch 读 abstract。\n\n特别关注：\n- test verdict/outcome prediction 这个具体任务的现有方法全景\n- patch correctness prediction 领域（ODS, APPT, Invalidator等）有没有用trace的？\n- flaky test detection 是否用过 execution trace？\n- 除 TRACED 外还有谁在分类任务上用过 execution trace？\n\n输出格式（每篇）：标题、会议/年份、核心做法、与我们的关系\n最后给出结论。不要编造论文。",
+              "agentId": "a38318202d77b59cf",
+              "agentType": "general-purpose",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "I now have sufficient information. Let me compile the comprehensive findings.\n\n---\n\n## 调研结果\n\n### 1. Execution Trace 用于 pass/fail 分类\n\n---\n\n**Learning to Encode and Classify Test Executions**\n- 会议/年份：ACM SAC 2021\n- 核心做法：对程序插桩记录方法调用序列和全局状态，将少量标注过 pass/fail 的 trace 用于训练神经网络嵌入分类器（解决 test oracle 问题）。训练集仅占全部 trace 的 9%，precision/recall/specificity 均超 95%。\n- 与我们的关系：**最直接的前驱**。这是用 execution trace 解决 pass/fail 二分类的核心工作，但停留在 oracle 问题（没有真实 verdict 标签时如何判定），我们的场景是已有 test verdict 标签、借助 LLM 来做预测，切入点不同。\n\n---\n\n**TRACED: Execution-Aware Pre-Training for Source Code**\n- 会议/年份：ICSE 2024\n- 核心做法：将程序执行状态（identifier 的动态值）对齐到代码 token，做执行感知预训练。下游任务是 clone 检索和漏洞检测，**不是 test verdict 分类**。\n- 与我们的关系：常被引用为\"用 trace 做代码理解\"的代表性工作，但任务与我们不同，无直接竞争关系。我们引用时需要澄清任务差异。\n\n---\n\n**AbstractTrace: The Use of Execution Traces to Cluster, Classify, Prioritize, and Optimize a Bloated Test Suite**\n- 会议/年份：Applied Sciences 2024（MDPI）\n- 核心做法：用 execution trace 做测试套件的聚类和分类，目标是去冗余优化测试套件，不是预测 verdict。\n- 与我们的关系：展示了 trace 在测试管理中的多用途，但任务定位不同（测试套件优化 vs. 结果预测）。\n\n---\n\n### 2. Patch Correctness Prediction 领域（有无 trace）\n\n---\n\n**PATCH-SIM（Xiong 等，2018）**\n- 会议/年份：ICSE 2018\n- 核心做法：**直接使用 execution trace**。假设正确 patch 不改变 passing test 的行为，通过比较 CPS（complete-path spectrum，执行语句 ID 序列）的相似度判断 patch 是否 overfitting。需要生成新测试用例（Randoop）再对比 trace。\n- 与我们的关系：patch correctness 领域**唯一**明确使用 execution trace 的经典方法。验证了\"trace 相似度作为正确性信号\"这一思路，但局限于 trace 相似度比较，没有直接分类模型。\n\n---\n\n**Crex（2022）**\n- 会议/年份：Information and Software Technology 2022\n- 核心做法：**使用 micro-trace（欠约束动态 trace）**。基于 TREX 框架对 C 程序 function 的 micro-trace 做执行语义嵌入，逻辑回归分类 patch correctness。F1 达到 89.0%，Recall 100%。\n- 与我们的关系：patch correctness + execution trace 的直接结合，是该领域除 PATCH-SIM 外唯一使用动态 trace 的方法，值得重点对比。\n\n---\n\n**Invalidator（Le-Cong 等，TSE 2023）**\n- 会议/年份：IEEE TSE 2023\n- 核心做法：**不用 trace**。用 Daikon 推断程序不变量（语义）+ 预训练语言模型（句法），判断 patch 是否违反规范。Accuracy 81%，比 ODS/RGT 高 19%。\n- 与我们的关系：patch correctness 领域的强 baseline，纯静态/不变量方法，无 trace，说明该领域主流已转向语义推理+PLM。\n\n---\n\n**ODS（Ye 等，TSE 2021）**\n- 会议/年份：IEEE TSE 2021\n- 核心做法：**不用 trace**。从 AST 提取静态代码特征 + 监督学习，分类 overfitting patch。准确率 71.9%。\n- 与我们的关系：patch correctness 经典 baseline，纯静态，无 trace。\n\n---\n\n**APPT（Zhang 等，TSE 2024）**\n- 会议/年份：IEEE TSE 2024\n- 核心做法：**不用 trace**。联合微调 BERT + 分类器，将 buggy code 和 patched code 一起编码，准确率 79.7%。\n- 与我们的关系：你们的已知基线，无 trace，是纯代码表示方法的最新代表。\n\n---\n\n**ComPass（Zhang 等，arXiv 2026/EMSE in press）**\n- 会议/年份：Empirical Software Engineering 2026\n- 核心做法：**不用 trace**。对比学习预训练（18种语义等价变换数据增强）+ BERT 微调，准确率 88.35%，超 APPT 6.33%。\n- 与我们的关系：当前 patch correctness 的 SOTA，说明该领域可以不用 trace 达到高性能，但也留下了\"trace 能否进一步提升\"的开放问题。\n\n---\n\n**On the Effectiveness of Code Representation for Patch Correctness Assessment（Zhang 等，arXiv 2026）**\n- 会议/年份：arXiv 2026（under review）\n- 核心做法：**不用 trace**。系统对比 TF-IDF、token 序列、AST、CFG/PDG/CPG 等 500+ 模型，最好结果 CPG+GGNN 82.69%。\n- 与我们的关系：表明图结构代码表示在静态方法中已到天花板，trace 是未被充分探索的动态信号。\n\n---\n\n**TraceRepair（arXiv 2026）**\n- 会议/年份：arXiv 2026\n- 核心做法：**使用 execution trace**，但任务是 APR（program repair），不是二分类。Probe Agent 插桩捕获运行时状态，三个 repair agent 生成候选 patch，Judge Agent 仲裁。Defects4J 修复 392 个 bug。\n- 与我们的关系：证明了 trace 作为 LLM agent 的 grounding 信号有效，我们的工作（trace 辅助 LLM 做 verdict 分类）可以看作其分类侧的对应物。\n\n---\n\n**Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs（arXiv 2025）**\n- 会议/年份：arXiv 2025（JPMorgan AI Research）\n- 核心做法：研究将 trace 加入 APR prompt 的效果，发现 trace 不一致地优于无 trace 方案，GPT-4 + LLM 优化后的 trace 效果最佳，长 trace 反而降低效果。\n- 与我们的关系：对我们的直接参考意义高——分析了\"trace 加入 prompt\"的边界条件，提示了 trace 压缩/抽象的重要性。\n\n---\n\n### 3. Flaky Test Prediction\n\n---\n\n**FlaKat（Lin 等，arXiv 2024）**\n- 会议/年份：arXiv 2024\n- 核心做法：**不用 trace**，纯静态分析（doc2vec/code2vec/tf-idf）分类 flaky test 的根因类别。KNN/SVM/RF 分类器。\n- 与我们的关系：flaky test 领域主流也不用 trace。\n\n---\n\n**CANNIER（Empirical Software Engineering 2023）**\n- 会议/年份：EMSE 2023\n- 核心做法：结合 test rerun 检测 + ML 模型，减少 rerun 次数。特征来自 test execution history（历史 verdict 序列和时长），不用完整 trace。89,668 test cases，30 Python 项目。\n- 与我们的关系：使用了 test 历史（verdict 序列）作为特征，与 trace 特征不同，但说明时序 verdict 信息有预测价值。\n\n---\n\n### 4. LLM 执行理解相关\n\n---\n\n**Evaluating Large Language Models with Runtime Behavior of Program Execution（REval，arXiv 2024）**\n- 会议/年份：arXiv 2024（浙大/北大/Concordia）\n- 核心做法：评估 LLM 在 4 类执行任务上的能力（覆盖预测/状态预测/路径预测/输出预测），引入 Incremental Consistency 评分。GPT-4-Turbo 平均 82.6%，开源模型平均 44.4%。**不是 test verdict 分类**。\n- 与我们的关系：提供了 LLM 理解 trace 能力的基准数据，但任务不同。\n\n---\n\n**Execution Tuning (E.T.)（arXiv 2025）**\n- 会议/年份：arXiv 2025（Meta/Edinburgh）\n- 核心做法：用 1.5M+ Python 程序执行 trace 训练 LLM，CruxEval 输出预测准确率 ~80%，但下游代码生成收益有限。**不是 verdict 分类**。\n- 与我们的关系：展示 trace 大规模训练的边界，表明 trace 理解能力不自动迁移到分类任务。\n\n---\n\n### 5. Build Failure / CI Test Failure Prediction\n\n---\n\n**DL-CIBuild / CI Build Failure Prediction（Automated Software Engineering 2022）**\n- 会议/年份：Automated Software Engineering 2022\n- 核心做法：LSTM-RNN 预测 CI build 失败，特征来自 build 历史（commit 元数据、历史结果），**不用 trace**。\n- 与我们的关系：CI 失败预测的代表性工作，特征空间是 build-level 而非 test execution trace，任务粒度不同。\n\n---\n\n## 综合结论\n\n**任务全景：** \"test verdict prediction（binary pass/fail classification）\"这个精确任务几乎没有被直接命名和系统研究。最接近的工作分布在：\n\n1. **Test oracle 问题**（Tsimpourlas 等 SAC 2021）——用 trace 解决\"有没有预言机\"的问题，不是在有标签情况下预测；\n2. **Patch correctness prediction**——最成熟的相关领域，但主流（ODS/APPT/Invalidator/ComPass）均不用 trace，只有 PATCH-SIM（2018）和 Crex（2022）用了 trace，且 Crex 的 micro-trace 方法限于 C 程序；\n3. **CI failure prediction**——粒度是 build 而非 test case，不用 trace；\n4. **Flaky test detection**——无 trace，以静态代码特征为主。\n\n**关于 trace 的使用：** 在分类任务上，明确使用 execution trace 的工作极少：SAC 2021 的 oracle 工作、PATCH-SIM（相似度方法）、Crex（micro-trace 嵌入）。**没有工作将完整 execution trace 作为特征喂给 LLM 做 test verdict 分类**，这是你们工作的核心空白。\n\n**关于 LLM + trace：** 2025-2026 年涌现了若干 LLM + trace 的工作（TraceRepair、arXiv 2025 APR 工作），均用于 program repair，不是分类。LLM 理解 trace 有效但对 downstream 任务迁移有限（E.T. 论文）这一发现，为你们提供了研究动机：需要针对性设计 trace 的表示/摘要方式，而不是直接 concat 原始 trace。\n\n**空白点：** 没有任何工作将 test verdict prediction 作为独立任务 + 使用 execution trace + 使用 LLM 三者结合。TRACED（ICSE 2024）常被误引为这个方向，但实际上是代码预训练工作，不做 verdict 分类。"
+                }
+              ],
+              "totalDurationMs": 213457,
+              "totalTokens": 44900,
+              "totalToolUseCount": 38,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1524,
+                "cache_read_input_tokens": 39805,
+                "output_tokens": 3570,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1524
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3570,
+                    "cache_read_input_tokens": 39805,
+                    "cache_creation_input_tokens": 1524,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1524,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 0,
+                "searchCount": 0,
+                "bashCount": 0,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 38
+              }
+            }
+          },
+          "id": "event-000386"
+        },
+        {
+          "source_line": 387,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "All 4 agents have returned with comprehensive results. Let me now compile the full report and write it to the specified output file. Let me organize the findings from all 4 directions into the required format.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "uuid": "c3ae755c-4d8b-4e00-885f-bb0bebba9c94",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ChPcyfVyse13Xdt87e2LQv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13518,
+                "cache_read_input_tokens": 25567,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13518
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000387"
+        },
+        {
+          "source_line": 388,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个方向调研完成，开始整合报告。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "uuid": "f4853082-a9f3-4c6f-b349-e9f713fabbb1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ChPcyfVyse13Xdt87e2LQv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13518,
+                "cache_read_input_tokens": 25567,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13518
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000388"
+        },
+        {
+          "source_line": 389,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Xgvm6oDadPwpYj6sYeDb5x",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_project/intermediate/literature_survey_20260515.md",
+                "content": "# Trace-Verdict-Study 文献调研报告\n\n日期：2026-05-15\n\n---\n\n## 方向 1: Trace SFT / Trace-augmented LLM Training 全景\n\n除已知工作外，找到 8 篇直接相关工作：\n\n| # | 标题 | 会议/年份 | 核心做法 | 与我们的关系 |\n|---|------|----------|----------|-------------|\n| 1 | **SemCoder: Training Code Language Models with Comprehensive Semantics Reasoning** | NeurIPS 2024 | 训练 Code LLM 用自然语言逐行描述控制流和变量状态（\"execution monologue\"），在全量可执行 Python 上做 SFT | trace-as-text SFT 的代表性工作，关注\"模拟执行\"而非分类 |\n| 2 | **NExT: Teaching LLMs to Reason about Code Execution** | arXiv 2024 (Google DeepMind) | 自训练方法，将行级变量状态 trace 嵌入 CoT，SFT 微调 PaLM 2 做程序修复 | trace SFT 用于 repair，证明 trace-aware CoT 可泛化到推理时无 trace 场景 |\n| 3 | **CodeExecutor** | Findings of ACL 2023 | 构造 mutation-based Python 数据集（含逐行变量状态），课程学习做 execution trace pretraining | 最早的 trace pretraining 工作之一，让模型学会\"执行\"代码 |\n| 4 | **What I Cannot Execute, I Do Not Understand (E.T.)** | arXiv 2025 (Meta + Edinburgh) | Execution Tuning，行级/指令级 trace 粒度训练 LLM，1.5M+ 程序，dynamic scratchpad 处理长 trace | 系统研究 trace FT 粒度与有效性，CruxEval ~80% 但下游代码生成收益有限 |\n| 5 | **Do Code Semantics Help? (DCSH)** | EMNLP 2025 Findings | 5 种 trace 格式（Scratchpad/NExT/SemCoder/CodeExecutor/Concise）做 SFT，结论：trace 对 SFT 提升有限，对推理时 self-debugging/voting 更有价值 | 直接竞争——对\"trace + SFT\"方向的系统批判，负面结论恰好是我们的研究动机 |\n| 6 | **CWM: Open-Weights LLM for Code Generation with World Models** | arXiv 2025 (Meta FAIR, 32B) | 常规预训练后 mid-training：Python interpreter trace + Docker agentic 轨迹混入（+5T tokens），再 SFT + RL | 工业级 trace mid-training 实践，验证方向被工业界采纳 |\n| 7 | **Investigating Execution-Aware LMs for Code Optimization** | ICPC 2025 | CodeT5+ 三种训练策略 × 四种执行信息（行执行次数/行覆盖/分支覆盖/变量状态），代码优化任务 | 消融研究，结论偏负面（执行信息对代码优化提升有限） |\n| 8 | **ET-CoT: Execution Trace Chain of Thought** | ICML 2025 Workshop | PyTracify 生成大规模 trace，SFT 微调 LLM 生成 trace CoT 预测程序输出 | CRUXEval-O 和 LiveCodeBench 上验证 |\n\n边缘相关（提示工程而非训练）：\n- **Towards Effectively Leveraging Execution Traces for Program Repair** (arXiv 2025, JPMorgan): trace 加入 prompt，长 trace 反而降低效果\n- **Runtime Traces Guided APR with Multi-Agent Debate** (arXiv 2026): 多智能体调用 trace，不涉及训练\n- **EG-CFG: Execution Guided Line-by-Line Code Generation** (NeurIPS 2025): 推理时执行反馈，不做 trace training\n\n**结论：这是一个真实且活跃的研究方向（8 篇直接相关，2023-2025 年持续产出）。** 关键规律：(1) 多数工作聚焦\"模拟执行\"（predict output/trace），而非用 trace 提升分类；(2) DCSH 和 ICPC'25 均报告 SFT 收益有限，方向存在争议，恰好是研究空间；(3) Meta CWM 的工业投入验证了方向价值。\n\n---\n\n## 方向 2: Exception/Error/Fault 信息用于 LLM 训练\n\n### DCSH 的 5 种 trace 格式（确认）\n\n1. **Scratchpad** — LLM 做中间计算的草稿格式\n2. **NExT** — 执行 trace 作为内联注释嵌入代码\n3. **SemCoder** — 自然语言逐行描述执行过程\n4. **CodeExecutor** — 记录每行变量状态变化\n5. **Concise** — CodeExecutor 变体，忽略值未改变的变量\n\n**关键发现：5 种格式全部是完整语义执行信息（变量状态、逐行描述），不包含 exception-only 变体。没有人在 trace 格式消融中测试过 exception-only。**\n\n### 找到的相关工作\n\n| # | 标题 | 会议/年份 | 核心做法 | 与我们的关系 |\n|---|------|----------|----------|-------------|\n| 1 | **Fault Localization via Fine-tuning LLMs with Mutation Generated Stack Traces** | ICST 2025 Industry (Jambigi et al.) | 变异生成 64K 条 crash 数据，FT LLM，输入仅 stack trace（方法名+行号），预测 root cause 函数。SAP HANA 66.9% | **最接近的工作**——仅用 crash/exception 信号（无完整 trace），发现最小信号就够用。加入源代码反而降低准确率。但任务是 fault localization |\n| 2 | **SBEST: Leveraging Stack Traces for Spectrum-based FL** | EMSE 2024 (Pacheco et al.) | 将 stack trace 整合进 SBFL。关键实证：**98.3% 的 bug 修复直接对应 stack trace 中的 exception** | \"minimal diagnostic signal\"的最强实证支撑——98.3% 相关性证明 exception 信号的充分性 |\n| 3 | **LLM4PatchCorrect** | TSE 2024 (Zhou et al.) | ICL，输入 = bug description + execution trace + failing tests + coverage + similar patches，判断 patch correct/overfitting。StarCoder，84.4% acc | 做 binary verdict 但需要多种信号组合才达 84.4%，我们用 exception-only 达 99.83%，对比鲜明 |\n| 4 | **AutoCrashFL** | arXiv 2025 (SAP) | LLM agent + crash dump + source code，工业规模 crash root cause 定位，30% acc@1 | 同样以 crash/exception 为核心输入，工业规模验证 |\n| 5 | **Crash Report Enhancement with LLMs** | arXiv 2025 | LLM 增强 crash report（stack trace + repo 代码），bug 定位准确率 10.6% → 40.2-43.1% | stack trace/exception 作为核心输入信号的又一例证 |\n\n**结论：没有发现任何人专门用 exception-only 信号做 verdict prediction 并报告 99%+ 准确率。** ICST'25 的 stack trace FT 和 SBEST 的 98.3% 实证是最接近的支撑。fault localization 领域有\"minimal diagnostic signal\"的初步发现，但未迁移到 verdict/classification 任务。这是明确的文献空白。\n\n---\n\n## 方向 3: 信息粒度 / 任务复杂度匹配\n\n### 信息论核心文献\n\n| # | 标题 | 会议/年份 | 核心做法 | 与我们的关系 |\n|---|------|----------|----------|-------------|\n| 1 | **Deep Learning and the Information Bottleneck Principle** | IEEE ITW 2015 (Tishby & Zaslavsky) | DNN 每层是对输入的有损压缩，最优表示应最大化与标签的互信息同时最小化与输入的互信息 | **直接理论支撑**——IB 框架证明分类网络应压缩任务无关信息，exception-only 等价于手动执行此压缩 |\n| 2 | **On the Information Bottleneck Theory of Deep Learning** | ICLR 2018 (Saxe et al.) | 反驳 Tishby 的\"压缩普遍性\"——压缩只在双饱和激活下出现；但确认输入含任务无关子集时表示会压缩无关信息 | 部分支撑——不能说\"压缩所以更好\"，应说\"去掉任务无关噪声使信号更纯净\" |\n| 3 | **Minimal Achievable Sufficient Statistic (MASS) Learning** | ICML 2019 | 训练目标使网络学到\"最小充分统计量\"，引入 CDI 处理确定性变量 | **形式化支撑**——exception-only 是 pass/fail 任务的近似最小充分统计量 |\n\n### 任务导向压缩\n\n| # | 标题 | 会议/年份 | 核心做法 | 与我们的关系 |\n|---|------|----------|----------|-------------|\n| 4 | **Task-Oriented Lossy Compression with Classification Constraints** | IEEE ITW 2024 | 推导 binary/Gaussian 源的率-失真-分类闭合解，证明分类任务的最小充分信息量远小于重建任务 | **信息论量化支撑**——binary classification 只需极少信息，full trace 的信息率远超所需 |\n\n### LLM 长上下文性能退化\n\n| # | 标题 | 会议/年份 | 核心做法 | 与我们的关系 |\n|---|------|----------|----------|-------------|\n| 5 | **Lost in the Middle: How Language Models Use Long Contexts** | TACL 2023 (Liu et al.) | 多文档 QA 中信息在中间时性能低于闭卷基线，U 形曲线，30+ 文档时准确率降 30%+ | **最强实证类比**——full trace 把 exception 信号淹没在执行细节中，等价于相关信息在超长上下文中间 |\n| 6 | **Context Length Alone Hurts LLM Performance Despite Perfect Retrieval** | arXiv 2025 | 控制变量：检索完美时仅增加上下文长度就导致 5 个模型性能降 13.9%-85%，即使无关 token 替换为空白仍下降 | **极强直接支撑**——full trace 的长度本身就是负担，exception-only 消除了长度惩罚 |\n\n### 输入特征与标签粒度匹配\n\n| # | 标题 | 会议/年份 | 核心做法 | 与我们的关系 |\n|---|------|----------|----------|-------------|\n| 7 | **Quantifying Impact of Uninformative Features on Classification** | APL Machine Learning 2023 | 系统量化无信息特征对分类的影响，对 kNN 等基于距离的算法有显著伤害 | 背景支撑——full trace 的执行细节对 LLM 等价于无信息特征 |\n| 8 | **Should We Always Train on Fine-Grained Classes?** | arXiv 2025 | 粗粒度标签训练在大数据集上优于细粒度；细粒度决策边界与粗粒度任务无关时成为干扰 | **标签-输入粒度匹配直接论证**——binary pass/fail 不需要细粒度执行路径信息 |\n| 9 | **An Information-Theoretic Approach to Analyze NLP Classification Tasks** | arXiv 2024 (Cambridge) | 互信息分解输入对输出的影响，发现输入难度与任务输出复杂度存在信息论耦合 | 方法论参考——可用于定量分析 trace 粒度 vs 任务输出复杂度 |\n\n反例注意：\n- **Rethinking Minimal Sufficient Representation in Contrastive Learning** (CVPR 2022): 对比学习中保留非最小信息反而有助于下游分类。但场景是自监督预训练后迁移（下游任务未知），与我们直接 inference/已知目标的场景不可比。\n\n**结论：有充分的理论支撑链。** IB (Tishby 2015) → MASS (ICML 2019) → 任务导向压缩 (ITW 2024) 构成理论框架；Lost in the Middle (TACL 2023) + Context Length Hurts (arXiv 2025) 提供 LLM 特有的实证机制。**但没有找到专门研究\"trace 信息粒度 vs 代码分析任务复杂度\"的系统性工作**——这是新颖性空间。\n\n---\n\n## 方向 4: Verdict/Classification 任务上的 Trace 使用\n\n### Test Verdict / Pass-Fail Classification\n\n| # | 标题 | 会议/年份 | 核心做法 | 与我们的关系 |\n|---|------|----------|----------|-------------|\n| 1 | **Learning to Encode and Classify Test Executions** | ACM SAC 2021 (Tsimpourlas et al.) | 方法调用序列 + 全局状态 trace → 神经网络嵌入分类器，9% 标注 trace 做 pass/fail 分类，precision/recall/specificity 均 >95% | **最直接前驱**——trace → pass/fail 分类，但解决 test oracle 问题（无标签场景），且不用 LLM |\n| 2 | **AbstractTrace** | Applied Sciences 2024 (MDPI) | execution trace 做测试套件聚类和分类，去冗余优化测试套件 | trace 用于测试管理，任务不同（套件优化 vs 结果预测） |\n\n### Patch Correctness Prediction（最成熟的相关领域）\n\n| # | 标题 | 会议/年份 | 用 Trace? | 准确率 | 与我们的关系 |\n|---|------|----------|----------|--------|-------------|\n| 3 | **PATCH-SIM** | ICSE 2018 (Xiong et al.) | **是**（complete-path spectrum） | — | 经典方法，trace 相似度比较，非分类模型 |\n| 4 | **Crex** | IST 2022 | **是**（micro-trace） | F1=89.0% | **唯一用动态 trace 做 patch correctness 分类的方法**，限 C 程序 |\n| 5 | **ODS** | TSE 2021 (Ye et al.) | 否 | 71.9% | 纯 AST 静态特征 baseline |\n| 6 | **Invalidator** | TSE 2023 (Le-Cong et al.) | 否 | 81% | Daikon 不变量 + PLM，无 trace |\n| 7 | **APPT** | TSE 2024 | 否 | 79.7% | BERT FT，纯代码，已知 baseline |\n| 8 | **LLM4PatchCorrect** | TSE 2024 (Zhou et al.) | **是**（多信号之一） | 84.4% | ICL + 多信号组合，trace 是输入之一 |\n| 9 | **ComPass** | EMSE 2026 (Zhang et al.) | 否 | 88.35% | 对比学习+BERT，当前 SOTA，不用 trace |\n| 10 | **Code Representation for PCA** | arXiv 2026 (Zhang et al.) | 否 | 82.69% (CPG+GGNN) | 500+ 模型系统对比，图结构表示天花板 |\n\n### 相关但不同任务\n\n| # | 标题 | 会议/年份 | 核心做法 | 与我们的关系 |\n|---|------|----------|----------|-------------|\n| 11 | **REval** | arXiv 2024 (浙大/北大) | 评估 LLM 在 4 类执行任务（覆盖/状态/路径/输出预测）的能力，GPT-4-Turbo 82.6% | LLM 理解 trace 能力基准，非 verdict 分类 |\n| 12 | **CANNIER** | EMSE 2023 | test rerun + ML，用 verdict 历史序列和时长预测 flaky test | flaky test 领域使用 verdict 序列作为特征 |\n| 13 | **FlaKat** | arXiv 2024 | doc2vec/code2vec/tf-idf 分类 flaky test 根因 | flaky test 纯静态，无 trace |\n| 14 | **DL-CIBuild** | ASE 2022 | LSTM-RNN 预测 CI build 失败，特征为 build 历史和 commit 元数据 | CI 失败预测，build-level 粒度，不用 trace |\n\n**结论：\"test verdict prediction\"作为独立任务几乎没有被系统研究。** 最接近的是 SAC 2021 的 test oracle 工作和 patch correctness 领域。Patch correctness 主流（ODS/APPT/Invalidator/ComPass）均不用 trace，仅 PATCH-SIM 和 Crex 用了 trace。**没有工作将 LLM + execution trace + test verdict classification 三者结合**——这是明确的文献空白。\n\n---\n\n## 综合评估\n\n### \"虚空画靶\"风险评估\n\n**风险不大，但需要精准定位。**\n\ntrace SFT 是真实且活跃的方向（8+ 篇，2023-2025），但现有工作的任务集中在\"模拟执行\"（输出预测）和\"程序修复\"，**不是分类**。test verdict prediction 本身作为独立任务缺乏足够的研究积累，可能被质疑\"任务本身是否有足够价值\"。\n\n建议的回应：将 verdict prediction 定位为 patch correctness prediction 的自然延伸（该领域成熟，有 APPT/ODS/Invalidator/ComPass 等多个 baseline），但强调现有方法几乎都是纯静态的，trace 作为动态信号未被充分探索。\n\n### 最接近的竞争工作\n\n1. **DCSH (EMNLP 2025)**: 5 种 trace 格式 SFT 消融，但 (a) 无 exception-only 变体，(b) 任务是代码生成不是分类，(c) 负面结论恰好是我们的出发点\n2. **LLM4PatchCorrect (TSE 2024)**: LLM + trace + binary verdict，但 (a) 是 ICL 不是 SFT，(b) 需要多信号组合才达 84.4%，(c) 无 trace 粒度消融\n3. **Crex (IST 2022)**: 唯一用 trace 做 patch correctness 分类的方法，但 (a) 非 LLM，(b) micro-trace 限 C 程序，(c) 无 exception-only 变体\n4. **ICST 2025 (Jambigi et al.)**: stack trace-only FT，最小信号够用的发现最接近我们，但任务是 fault localization\n\n### 建议的 Framing 调整\n\n1. **核心卖点重新聚焦**：不是\"trace SFT\"（DCSH 已覆盖且结论负面），而是 **\"trace 粒度选择对分类任务的影响\"**——DCSH 证明 full trace 对 SFT 帮助有限，我们的贡献是揭示原因（信息粒度不匹配）并给出解法（exception-only）\n\n2. **理论框架嫁接**：将 IB 理论 (Tishby 2015) + Lost in the Middle (Liu et al. 2023) + Context Length Hurts (2025) 组合为解释框架——exception-only 同时解决了两个问题：(a) 信息论层面的最小充分统计量，(b) LLM 工程层面的长上下文退化\n\n3. **Baseline 对齐**：将 patch correctness 领域的 APPT (79.7%)、ComPass (88.35%)、LLM4PatchCorrect (84.4%) 作为直接 baseline，强调它们要么不用 trace 要么需要多信号组合\n\n4. **差异化声明**：文献中 (a) 无 exception-only trace 格式的消融实验，(b) 无 trace 粒度 vs 任务输出复杂度的系统性研究，(c) 无 LLM + trace + binary verdict 三者结合——三重空白支撑新颖性\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "uuid": "3260d263-4582-4b78-9278-a0eb40fe142a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ChPcyfVyse13Xdt87e2LQv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13518,
+                "cache_read_input_tokens": 25567,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13518
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000389"
+        },
+        {
+          "source_line": 390,
+          "timestamp": "2026-05-15T12:10:41.819Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Xgvm6oDadPwpYj6sYeDb5x",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_project/intermediate/literature_survey_20260515.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "uuid": "6896980b-30d8-4d6d-a540-d960c188af85",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/_project/intermediate/literature_survey_20260515.md",
+              "content": "# Trace-Verdict-Study 文献调研报告\n\n日期：2026-05-15\n\n---\n\n## 方向 1: Trace SFT / Trace-augmented LLM Training 全景\n\n除已知工作外，找到 8 篇直接相关工作：\n\n| # | 标题 | 会议/年份 | 核心做法 | 与我们的关系 |\n|---|------|----------|----------|-------------|\n| 1 | **SemCoder: Training Code Language Models with Comprehensive Semantics Reasoning** | NeurIPS 2024 | 训练 Code LLM 用自然语言逐行描述控制流和变量状态（\"execution monologue\"），在全量可执行 Python 上做 SFT | trace-as-text SFT 的代表性工作，关注\"模拟执行\"而非分类 |\n| 2 | **NExT: Teaching LLMs to Reason about Code Execution** | arXiv 2024 (Google DeepMind) | 自训练方法，将行级变量状态 trace 嵌入 CoT，SFT 微调 PaLM 2 做程序修复 | trace SFT 用于 repair，证明 trace-aware CoT 可泛化到推理时无 trace 场景 |\n| 3 | **CodeExecutor** | Findings of ACL 2023 | 构造 mutation-based Python 数据集（含逐行变量状态），课程学习做 execution trace pretraining | 最早的 trace pretraining 工作之一，让模型学会\"执行\"代码 |\n| 4 | **What I Cannot Execute, I Do Not Understand (E.T.)** | arXiv 2025 (Meta + Edinburgh) | Execution Tuning，行级/指令级 trace 粒度训练 LLM，1.5M+ 程序，dynamic scratchpad 处理长 trace | 系统研究 trace FT 粒度与有效性，CruxEval ~80% 但下游代码生成收益有限 |\n| 5 | **Do Code Semantics Help? (DCSH)** | EMNLP 2025 Findings | 5 种 trace 格式（Scratchpad/NExT/SemCoder/CodeExecutor/Concise）做 SFT，结论：trace 对 SFT 提升有限，对推理时 self-debugging/voting 更有价值 | 直接竞争——对\"trace + SFT\"方向的系统批判，负面结论恰好是我们的研究动机 |\n| 6 | **CWM: Open-Weights LLM for Code Generation with World Models** | arXiv 2025 (Meta FAIR, 32B) | 常规预训练后 mid-training：Python interpreter trace + Docker agentic 轨迹混入（+5T tokens），再 SFT + RL | 工业级 trace mid-training 实践，验证方向被工业界采纳 |\n| 7 | **Investigating Execution-Aware LMs for Code Optimization** | ICPC 2025 | CodeT5+ 三种训练策略 × 四种执行信息（行执行次数/行覆盖/分支覆盖/变量状态），代码优化任务 | 消融研究，结论偏负面（执行信息对代码优化提升有限） |\n| 8 | **ET-CoT: Execution Trace Chain of Thought** | ICML 2025 Workshop | PyTracify 生成大规模 trace，SFT 微调 LLM 生成 trace CoT 预测程序输出 | CRUXEval-O 和 LiveCodeBench 上验证 |\n\n边缘相关（提示工程而非训练）：\n- **Towards Effectively Leveraging Execution Traces for Program Repair** (arXiv 2025, JPMorgan): trace 加入 prompt，长 trace 反而降低效果\n- **Runtime Traces Guided APR with Multi-Agent Debate** (arXiv 2026): 多智能体调用 trace，不涉及训练\n- **EG-CFG: Execution Guided Line-by-Line Code Generation** (NeurIPS 2025): 推理时执行反馈，不做 trace training\n\n**结论：这是一个真实且活跃的研究方向（8 篇直接相关，2023-2025 年持续产出）。** 关键规律：(1) 多数工作聚焦\"模拟执行\"（predict output/trace），而非用 trace 提升分类；(2) DCSH 和 ICPC'25 均报告 SFT 收益有限，方向存在争议，恰好是研究空间；(3) Meta CWM 的工业投入验证了方向价值。\n\n---\n\n## 方向 2: Exception/Error/Fault 信息用于 LLM 训练\n\n### DCSH 的 5 种 trace 格式（确认）\n\n1. **Scratchpad** — LLM 做中间计算的草稿格式\n2. **NExT** — 执行 trace 作为内联注释嵌入代码\n3. **SemCoder** — 自然语言逐行描述执行过程\n4. **CodeExecutor** — 记录每行变量状态变化\n5. **Concise** — CodeExecutor 变体，忽略值未改变的变量\n\n**关键发现：5 种格式全部是完整语义执行信息（变量状态、逐行描述），不包含 exception-only 变体。没有人在 trace 格式消融中测试过 exception-only。**\n\n### 找到的相关工作\n\n| # | 标题 | 会议/年份 | 核心做法 | 与我们的关系 |\n|---|------|----------|----------|-------------|\n| 1 | **Fault Localization via Fine-tuning LLMs with Mutation Generated Stack Traces** | ICST 2025 Industry (Jambigi et al.) | 变异生成 64K 条 crash 数据，FT LLM，输入仅 stack trace（方法名+行号），预测 root cause 函数。SAP HANA 66.9% | **最接近的工作**——仅用 crash/exception 信号（无完整 trace），发现最小信号就够用。加入源代码反而降低准确率。但任务是 fault localization |\n| 2 | **SBEST: Leveraging Stack Traces for Spectrum-based FL** | EMSE 2024 (Pacheco et al.) | 将 stack trace 整合进 SBFL。关键实证：**98.3% 的 bug 修复直接对应 stack trace 中的 exception** | \"minimal diagnostic signal\"的最强实证支撑——98.3% 相关性证明 exception 信号的充分性 |\n| 3 | **LLM4PatchCorrect** | TSE 2024 (Zhou et al.) | ICL，输入 = bug description + execution trace + failing tests + coverage + similar patches，判断 patch correct/overfitting。StarCoder，84.4% acc | 做 binary verdict 但需要多种信号组合才达 84.4%，我们用 exception-only 达 99.83%，对比鲜明 |\n| 4 | **AutoCrashFL** | arXiv 2025 (SAP) | LLM agent + crash dump + source code，工业规模 crash root cause 定位，30% acc@1 | 同样以 crash/exception 为核心输入，工业规模验证 |\n| 5 | **Crash Report Enhancement with LLMs** | arXiv 2025 | LLM 增强 crash report（stack trace + repo 代码），bug 定位准确率 10.6% → 40.2-43.1% | stack trace/exception 作为核心输入信号的又一例证 |\n\n**结论：没有发现任何人专门用 exception-only 信号做 verdict prediction 并报告 99%+ 准确率。** ICST'25 的 stack trace FT 和 SBEST 的 98.3% 实证是最接近的支撑。fault localization 领域有\"minimal diagnostic signal\"的初步发现，但未迁移到 verdict/classification 任务。这是明确的文献空白。\n\n---\n\n## 方向 3: 信息粒度 / 任务复杂度匹配\n\n### 信息论核心文献\n\n| # | 标题 | 会议/年份 | 核心做法 | 与我们的关系 |\n|---|------|----------|----------|-------------|\n| 1 | **Deep Learning and the Information Bottleneck Principle** | IEEE ITW 2015 (Tishby & Zaslavsky) | DNN 每层是对输入的有损压缩，最优表示应最大化与标签的互信息同时最小化与输入的互信息 | **直接理论支撑**——IB 框架证明分类网络应压缩任务无关信息，exception-only 等价于手动执行此压缩 |\n| 2 | **On the Information Bottleneck Theory of Deep Learning** | ICLR 2018 (Saxe et al.) | 反驳 Tishby 的\"压缩普遍性\"——压缩只在双饱和激活下出现；但确认输入含任务无关子集时表示会压缩无关信息 | 部分支撑——不能说\"压缩所以更好\"，应说\"去掉任务无关噪声使信号更纯净\" |\n| 3 | **Minimal Achievable Sufficient Statistic (MASS) Learning** | ICML 2019 | 训练目标使网络学到\"最小充分统计量\"，引入 CDI 处理确定性变量 | **形式化支撑**——exception-only 是 pass/fail 任务的近似最小充分统计量 |\n\n### 任务导向压缩\n\n| # | 标题 | 会议/年份 | 核心做法 | 与我们的关系 |\n|---|------|----------|----------|-------------|\n| 4 | **Task-Oriented Lossy Compression with Classification Constraints** | IEEE ITW 2024 | 推导 binary/Gaussian 源的率-失真-分类闭合解，证明分类任务的最小充分信息量远小于重建任务 | **信息论量化支撑**——binary classification 只需极少信息，full trace 的信息率远超所需 |\n\n### LLM 长上下文性能退化\n\n| # | 标题 | 会议/年份 | 核心做法 | 与我们的关系 |\n|---|------|----------|----------|-------------|\n| 5 | **Lost in the Middle: How Language Models Use Long Contexts** | TACL 2023 (Liu et al.) | 多文档 QA 中信息在中间时性能低于闭卷基线，U 形曲线，30+ 文档时准确率降 30%+ | **最强实证类比**——full trace 把 exception 信号淹没在执行细节中，等价于相关信息在超长上下文中间 |\n| 6 | **Context Length Alone Hurts LLM Performance Despite Perfect Retrieval** | arXiv 2025 | 控制变量：检索完美时仅增加上下文长度就导致 5 个模型性能降 13.9%-85%，即使无关 token 替换为空白仍下降 | **极强直接支撑**——full trace 的长度本身就是负担，exception-only 消除了长度惩罚 |\n\n### 输入特征与标签粒度匹配\n\n| # | 标题 | 会议/年份 | 核心做法 | 与我们的关系 |\n|---|------|----------|----------|-------------|\n| 7 | **Quantifying Impact of Uninformative Features on Classification** | APL Machine Learning 2023 | 系统量化无信息特征对分类的影响，对 kNN 等基于距离的算法有显著伤害 | 背景支撑——full trace 的执行细节对 LLM 等价于无信息特征 |\n| 8 | **Should We Always Train on Fine-Grained Classes?** | arXiv 2025 | 粗粒度标签训练在大数据集上优于细粒度；细粒度决策边界与粗粒度任务无关时成为干扰 | **标签-输入粒度匹配直接论证**——binary pass/fail 不需要细粒度执行路径信息 |\n| 9 | **An Information-Theoretic Approach to Analyze NLP Classification Tasks** | arXiv 2024 (Cambridge) | 互信息分解输入对输出的影响，发现输入难度与任务输出复杂度存在信息论耦合 | 方法论参考——可用于定量分析 trace 粒度 vs 任务输出复杂度 |\n\n反例注意：\n- **Rethinking Minimal Sufficient Representation in Contrastive Learning** (CVPR 2022): 对比学习中保留非最小信息反而有助于下游分类。但场景是自监督预训练后迁移（下游任务未知），与我们直接 inference/已知目标的场景不可比。\n\n**结论：有充分的理论支撑链。** IB (Tishby 2015) → MASS (ICML 2019) → 任务导向压缩 (ITW 2024) 构成理论框架；Lost in the Middle (TACL 2023) + Context Length Hurts (arXiv 2025) 提供 LLM 特有的实证机制。**但没有找到专门研究\"trace 信息粒度 vs 代码分析任务复杂度\"的系统性工作**——这是新颖性空间。\n\n---\n\n## 方向 4: Verdict/Classification 任务上的 Trace 使用\n\n### Test Verdict / Pass-Fail Classification\n\n| # | 标题 | 会议/年份 | 核心做法 | 与我们的关系 |\n|---|------|----------|----------|-------------|\n| 1 | **Learning to Encode and Classify Test Executions** | ACM SAC 2021 (Tsimpourlas et al.) | 方法调用序列 + 全局状态 trace → 神经网络嵌入分类器，9% 标注 trace 做 pass/fail 分类，precision/recall/specificity 均 >95% | **最直接前驱**——trace → pass/fail 分类，但解决 test oracle 问题（无标签场景），且不用 LLM |\n| 2 | **AbstractTrace** | Applied Sciences 2024 (MDPI) | execution trace 做测试套件聚类和分类，去冗余优化测试套件 | trace 用于测试管理，任务不同（套件优化 vs 结果预测） |\n\n### Patch Correctness Prediction（最成熟的相关领域）\n\n| # | 标题 | 会议/年份 | 用 Trace? | 准确率 | 与我们的关系 |\n|---|------|----------|----------|--------|-------------|\n| 3 | **PATCH-SIM** | ICSE 2018 (Xiong et al.) | **是**（complete-path spectrum） | — | 经典方法，trace 相似度比较，非分类模型 |\n| 4 | **Crex** | IST 2022 | **是**（micro-trace） | F1=89.0% | **唯一用动态 trace 做 patch correctness 分类的方法**，限 C 程序 |\n| 5 | **ODS** | TSE 2021 (Ye et al.) | 否 | 71.9% | 纯 AST 静态特征 baseline |\n| 6 | **Invalidator** | TSE 2023 (Le-Cong et al.) | 否 | 81% | Daikon 不变量 + PLM，无 trace |\n| 7 | **APPT** | TSE 2024 | 否 | 79.7% | BERT FT，纯代码，已知 baseline |\n| 8 | **LLM4PatchCorrect** | TSE 2024 (Zhou et al.) | **是**（多信号之一） | 84.4% | ICL + 多信号组合，trace 是输入之一 |\n| 9 | **ComPass** | EMSE 2026 (Zhang et al.) | 否 | 88.35% | 对比学习+BERT，当前 SOTA，不用 trace |\n| 10 | **Code Representation for PCA** | arXiv 2026 (Zhang et al.) | 否 | 82.69% (CPG+GGNN) | 500+ 模型系统对比，图结构表示天花板 |\n\n### 相关但不同任务\n\n| # | 标题 | 会议/年份 | 核心做法 | 与我们的关系 |\n|---|------|----------|----------|-------------|\n| 11 | **REval** | arXiv 2024 (浙大/北大) | 评估 LLM 在 4 类执行任务（覆盖/状态/路径/输出预测）的能力，GPT-4-Turbo 82.6% | LLM 理解 trace 能力基准，非 verdict 分类 |\n| 12 | **CANNIER** | EMSE 2023 | test rerun + ML，用 verdict 历史序列和时长预测 flaky test | flaky test 领域使用 verdict 序列作为特征 |\n| 13 | **FlaKat** | arXiv 2024 | doc2vec/code2vec/tf-idf 分类 flaky test 根因 | flaky test 纯静态，无 trace |\n| 14 | **DL-CIBuild** | ASE 2022 | LSTM-RNN 预测 CI build 失败，特征为 build 历史和 commit 元数据 | CI 失败预测，build-level 粒度，不用 trace |\n\n**结论：\"test verdict prediction\"作为独立任务几乎没有被系统研究。** 最接近的是 SAC 2021 的 test oracle 工作和 patch correctness 领域。Patch correctness 主流（ODS/APPT/Invalidator/ComPass）均不用 trace，仅 PATCH-SIM 和 Crex 用了 trace。**没有工作将 LLM + execution trace + test verdict classification 三者结合**——这是明确的文献空白。\n\n---\n\n## 综合评估\n\n### \"虚空画靶\"风险评估\n\n**风险不大，但需要精准定位。**\n\ntrace SFT 是真实且活跃的方向（8+ 篇，2023-2025），但现有工作的任务集中在\"模拟执行\"（输出预测）和\"程序修复\"，**不是分类**。test verdict prediction 本身作为独立任务缺乏足够的研究积累，可能被质疑\"任务本身是否有足够价值\"。\n\n建议的回应：将 verdict prediction 定位为 patch correctness prediction 的自然延伸（该领域成熟，有 APPT/ODS/Invalidator/ComPass 等多个 baseline），但强调现有方法几乎都是纯静态的，trace 作为动态信号未被充分探索。\n\n### 最接近的竞争工作\n\n1. **DCSH (EMNLP 2025)**: 5 种 trace 格式 SFT 消融，但 (a) 无 exception-only 变体，(b) 任务是代码生成不是分类，(c) 负面结论恰好是我们的出发点\n2. **LLM4PatchCorrect (TSE 2024)**: LLM + trace + binary verdict，但 (a) 是 ICL 不是 SFT，(b) 需要多信号组合才达 84.4%，(c) 无 trace 粒度消融\n3. **Crex (IST 2022)**: 唯一用 trace 做 patch correctness 分类的方法，但 (a) 非 LLM，(b) micro-trace 限 C 程序，(c) 无 exception-only 变体\n4. **ICST 2025 (Jambigi et al.)**: stack trace-only FT，最小信号够用的发现最接近我们，但任务是 fault localization\n\n### 建议的 Framing 调整\n\n1. **核心卖点重新聚焦**：不是\"trace SFT\"（DCSH 已覆盖且结论负面），而是 **\"trace 粒度选择对分类任务的影响\"**——DCSH 证明 full trace 对 SFT 帮助有限，我们的贡献是揭示原因（信息粒度不匹配）并给出解法（exception-only）\n\n2. **理论框架嫁接**：将 IB 理论 (Tishby 2015) + Lost in the Middle (Liu et al. 2023) + Context Length Hurts (2025) 组合为解释框架——exception-only 同时解决了两个问题：(a) 信息论层面的最小充分统计量，(b) LLM 工程层面的长上下文退化\n\n3. **Baseline 对齐**：将 patch correctness 领域的 APPT (79.7%)、ComPass (88.35%)、LLM4PatchCorrect (84.4%) 作为直接 baseline，强调它们要么不用 trace 要么需要多信号组合\n\n4. **差异化声明**：文献中 (a) 无 exception-only trace 格式的消融实验，(b) 无 trace 粒度 vs 任务输出复杂度的系统性研究，(c) 无 LLM + trace + binary verdict 三者结合——三重空白支撑新颖性\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000390"
+        },
+        {
+          "source_line": 391,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018mAyZK3P7XxDKosFq5tpJW",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__save_project_file",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "uuid": "8a707700-09c7-4b8b-a7fb-8320146837a2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MBaeF63znyUybDUqBwBj2v",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6386,
+                "cache_read_input_tokens": 39085,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6386
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000391"
+        },
+        {
+          "source_line": 392,
+          "timestamp": "2026-05-15T12:10:44.567Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_018mAyZK3P7XxDKosFq5tpJW",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "uuid": "849aa5f6-8ffe-4c92-b883-82d6220e2271",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__save_project_file"
+              ],
+              "query": "select:mcp__agent-ml-research__save_project_file",
+              "total_deferred_tools": 22
+            }
+          },
+          "id": "event-000392"
+        },
+        {
+          "source_line": 393,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The report has been written. Let me register it and give the user a summary.",
+              "signature": "EocCClkIDRgCKkC4IJGpcoG4Ug2T+dsTHuFUaTcglEyVMyGJldohat7NrrgLC2/KeFJ6qovdYv4LiGhzfL6Nl3BeqGJEantsAA/cMg9jbGF1ZGUtb3B1cy00LTY4ABIMYkQZpWCFRJhmQJ2PGgwylGQYU3NVtc3vAdgiMHIOFWNDAHnl8csOE6sRIfqZWeAFub/gs167VKRstqQpoRRdqds9yS1NeDTzRRoc6ipcdkfzzGbWTDfsY+VTgBx0BXPR39T51Lh3nowM5fWTA5PmUjmct1XyRYNx7nov25wiuNydkW/TORMjgHZmRwxPd48VjBWhxSR3NUGJWgJIMWlz5p8lpPsZYW/7sW8YAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "uuid": "776f21f1-1042-4ef3-939c-17541ed5b87d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JQ7kg4ZePXtYvVaW4hUQVR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 465,
+                "cache_read_input_tokens": 45471,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 465
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000393"
+        },
+        {
+          "source_line": 394,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/_project/intermediate/literature_survey_20260515.md`。\n\n核心发现：\n\n**方向 1（Trace SFT）**：真实且活跃的方向，找到 8 篇直接相关工作（SemCoder/NExT/CodeExecutor/E.T./DCSH/CWM/ICPC'25/ET-CoT）。多数聚焦\"模拟执行\"而非分类，DCSH 和 ICPC'25 均报告 SFT 收益有限——恰好是我们的研究动机。\n\n**方向 2（Exception/Error 训练）**：DCSH 的 5 种格式确认为 Scratchpad/NExT/SemCoder/CodeExecutor/Concise，**全部是完整语义信息，无 exception-only 变体**。ICST'25 的 stack trace FT（加源代码反而降低准确率）和 SBEST 的\"98.3% bug 修复直接对应 exception\"是最接近的支撑，但无人在 verdict 任务上做过 exception-only 消融。\n\n**方向 3（信息粒度匹配）**：IB 理论 → MASS → 任务导向压缩构成理论链；Lost in the Middle + Context Length Hurts 提供 LLM 特有的实证机制。没有找到\"trace 粒度 vs 代码任务复杂度\"的专门研究——新颖性空间。\n\n**方向 4（Verdict 任务）**：test verdict prediction 几乎没有被独立研究。Patch correctness 领域最成熟但主流不用 trace（APPT 79.7%、ComPass 88.35%），仅 Crex (IST 2022) 用 micro-trace 做过分类。**LLM + trace + binary verdict 三者结合是明确的文献空白。**\n\n**综合判断：不存在\"虚空画靶\"风险。** 建议 framing 从\"trace SFT\"转向\"trace 粒度选择对分类任务的影响\"——DCSH 证明 full trace 对 SFT 帮助有限，我们揭示原因（信息粒度不匹配）并给出解法（exception-only）。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "uuid": "a3ac3b11-3883-475a-9cc3-b5ec407c83ac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JQ7kg4ZePXtYvVaW4hUQVR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 465,
+                "cache_read_input_tokens": 45471,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 465
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000394"
+        },
+        {
+          "source_line": 395,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/_project/intermediate/literature_survey_20260515.md`。\n\n核心发现：\n\n**方向 1（Trace SFT）**：真实且活跃的方向，找到 8 篇直接相关工作（SemCoder/NExT/CodeExecutor/E.T./DCSH/CWM/ICPC'25/ET-CoT）。多数聚焦\"模拟执行\"而非分类，DCSH 和 ICPC'25 均报告 SFT 收益有限——恰好是我们的研究动机。\n\n**方向 2（Exception/Error 训练）**：DCSH 的 5 种格式确认为 Scratchpad/NExT/SemCoder/CodeExecutor/Concise，**全部是完整语义信息，无 exception-only 变体**。ICST'25 的 stack trace FT（加源代码反而降低准确率）和 SBEST 的\"98.3% bug 修复直接对应 exception\"是最接近的支撑，但无人在 verdict 任务上做过 exception-only 消融。\n\n**方向 3（信息粒度匹配）**：IB 理论 → MASS → 任务导向压缩构成理论链；Lost in the Middle + Context Length Hurts 提供 LLM 特有的实证机制。没有找到\"trace 粒度 vs 代码任务复杂度\"的专门研究——新颖性空间。\n\n**方向 4（Verdict 任务）**：test verdict prediction 几乎没有被独立研究。Patch correctness 领域最成熟但主流不用 trace（APPT 79.7%、ComPass 88.35%），仅 Crex (IST 2022) 用 micro-trace 做过分类。**LLM + trace + binary verdict 三者结合是明确的文献空白。**\n\n**综合判断：不存在\"虚空画靶\"风险。** 建议 framing 从\"trace SFT\"转向\"trace 粒度选择对分类任务的影响\"——DCSH 证明 full trace 对 SFT 帮助有限，我们揭示原因（信息粒度不匹配）并给出解法（exception-only）。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 467766,
+            "duration_api_ms": 1396872,
+            "num_turns": 8,
+            "stop_reason": "end_turn",
+            "session_id": "c05136d3-4506-4eb4-8d5b-bd537b52fd00",
+            "total_cost_usd": 4.92762045,
+            "usage": {
+              "input_tokens": 10,
+              "cache_creation_input_tokens": 34095,
+              "cache_read_input_tokens": 146299,
+              "output_tokens": 9531,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 34095,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 3,
+                  "output_tokens": 672,
+                  "cache_read_input_tokens": 45471,
+                  "cache_creation_input_tokens": 465,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 465
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2369333,
+                "outputTokens": 45641,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 68,
+                "costUSD": 3.2775379999999994,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 10,
+                "outputTokens": 9531,
+                "cacheReadInputTokens": 146299,
+                "cacheCreationInputTokens": 34095,
+                "webSearchRequests": 0,
+                "costUSD": 0.5245682500000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              },
+              "claude-sonnet-4-6": {
+                "inputTokens": 11908,
+                "outputTokens": 20781,
+                "cacheReadInputTokens": 1018734,
+                "cacheCreationInputTokens": 125988,
+                "webSearchRequests": 0,
+                "costUSD": 1.1255141999999998,
+                "contextWindow": 1000000,
+                "maxOutputTokens": 32000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "63edbb99-1048-49c4-8753-3a885411fd0e"
+          },
+          "id": "event-000395"
+        }
+      ]
+    }
+  ]
+}

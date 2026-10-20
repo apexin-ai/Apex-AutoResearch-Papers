@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f7a48a40a1c4a2d86a8",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis prediction overlap",
+  "task_key": "worker_analysis_prediction_overlap_20260516T191106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_prediction_overlap_20260516T191106_result.json",
+    "occurrence": 1,
+    "bytes": 635,
+    "sha256": "f66e2fa1b1c2bdad259af77d264e888d1e31a54ce01415546700180cdc9ee268"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n**核心结论**：5 个模型（Qwen-7B×3 seeds、Qwen-1.5B、CodeLlama-13B）在 exception_only 条件下犯完全相同的 2 个错误，100% 重叠，0 个独有错误。\n\n两个错误均为 HumanEval/95 的 `GeneratorExit` 伪异常——`all()` 短路时 Python 正常的生成器回收机制在 exception_only trace 中表现为 `[ERROR]`，误导所有模型预测 \"fail\"（实际 label 为 \"pass\"）。\n\n这强力支持 \"universal irreducible ceiling\" 结论：0.17% 的错误率是数据质量天花板，而非模型能力限制。跨架构、跨规模、跨种子完全一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-prediction-overlap-copy-2.md"
+}

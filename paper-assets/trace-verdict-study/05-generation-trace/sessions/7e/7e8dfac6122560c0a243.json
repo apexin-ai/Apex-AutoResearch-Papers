@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e8dfac6122560c0a243",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper cohens d removal sync",
+  "task_key": "worker_paper_cohens_d_removal_sync_20260520T193843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_cohens_d_removal_sync_20260520T193843_result.json",
+    "occurrence": 1,
+    "bytes": 714,
+    "sha256": "591dcdfeacd613bbe17e5ff4c2e7ea974dc8156a32c0e135e7aa4c1d3d895ccf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**编译结果**\n- 0 errors，0 warnings，0 undefined references\n- `sec:effect_sizes` 相关引用已完全清除\n- PDF：**21 页**，**440,553 bytes** (430 KB)\n- MD5：`57166c125c68828d6d94431a56b88ed5`\n\n**文件同步**\n- `experiments.tex`：通过 base64 + ssh_execute 上传，184 行，与本地一致\n- `appendix.tex`：直接在远程 sed 删除第 774-791 行（Effect Sizes subsection），773 行，与本地一致\n\n**PDF 拉取**\n- SCP / SSH 直连不可用（本地权限配置不匹配）。PDF 未拉回本地。如需本地副本，建议手动 `scp connect.westd.seetacloud.com:/root/trace-verdict-study/docs/paper/main.pdf .` 或通过其他方式获取。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-cohens-d-removal-sync.md"
+}

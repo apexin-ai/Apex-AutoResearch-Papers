@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a97109a0eccb8cf8cdaa",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis c1 truncation group analysis",
+  "task_key": "worker_analysis_c1_truncation_group_analysis_20260515T225641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c1_truncation_group_analysis_20260515T225641_result.json",
+    "occurrence": 1,
+    "bytes": 1137,
+    "sha256": "669c79e65fbc13850b4bf0b406ca012cb58f981db3ab6c08fed979ece9ba5891"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果如下：\n\n```\n=== DeepSeek VOTA: Training Truncation Group Analysis ===\n(Inference without truncation, overall accuracy = 84.45%)\n\nGroup A (train-truncated, >1976 content tok): N=1091, accuracy=83.04%, 95% CI [80.75%, 85.24%]\nGroup B (train-intact, ≤1976 content tok):    N=99,   accuracy=100.00%, 95% CI [100%, 100%]\nDifference: 16.96pp, Fisher exact p < 1e-6\n\nPer-class breakdown:\n  Truncated - pass: N=822, accuracy=100% (perfect)\n  Truncated - fail: N=269, accuracy=31.23% (185 errors, all errors come from here)\n  Intact - pass:    N=29,  accuracy=100%\n  Intact - fail:    N=70,  accuracy=100%\n```\n\n关键发现：\n- 未被截断的 99 个样本 **100% 准确率**（pass 和 fail 全对）\n- 被截断的 1091 个样本总体 83.04%，但 pass 类全对，**所有 185 个错误集中在截断组的 fail 类**（fail recall 仅 31.2%）\n- 模型对截断样本学到了 pass 偏置——训练时截断丢失了输入末尾的 question suffix，但 pass 类的标签信号仍可从代码结构中学到；fail 类则需要完整的 trace+question 才能准确判断"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-c1-truncation-group-analysis.md"
+}

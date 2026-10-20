@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f60b276f76e50dc4e54f",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code vota loop only prep and train",
+  "task_key": "worker_code_vota_loop_only_prep_and_train_20260515T075656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_vota_loop_only_prep_and_train_20260515T075656_result.json",
+    "occurrence": 1,
+    "bytes": 564,
+    "sha256": "cf330dcfe8ed6b9f350922f43f73e4b163e38bed0dfc2c853ae6d62169189453"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正在加载模型，启动正常。\n\n### 结果\n\n| 项目 | 状态 |\n|------|------|\n| **数据** | 就绪。train=4720, test=1190, `input`/`output` 格式（与 exception_only 一致） |\n| **cuda:0** | 空闲，训练已成功提交 |\n| **训练** | PID 82362，模型加载中，带 `--gradient_checkpointing` |\n| **Registry** | `vota_loop_only_seed42` 已注册，关联 plan_003 |\n| **预计时长** | 参照 exception_only 同规模数据，约 2-3 小时训练 + eval |\n\n训练完成后会自动运行 `eval/evaluate.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-vota-loop-only-prep-and-train.md"
+}

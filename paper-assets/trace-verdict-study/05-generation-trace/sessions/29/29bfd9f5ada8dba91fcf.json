@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29bfd9f5ada8dba91fcf",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops check regex baseline and disk",
+  "task_key": "worker_ops_check_regex_baseline_and_disk_20260517T125800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_regex_baseline_and_disk_20260517T125800_result.json",
+    "occurrence": 1,
+    "bytes": 1749,
+    "sha256": "a7017abc12ef39ea5f382fe769311160cd531106147092e10f2cadab94467fca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 1. Regex Baseline 已存在\n\n文件位置：`/root/trace-verdict-study/analysis/regex_baseline_results.json`\n\n测试集：**exception_only_test.jsonl**（1190 samples，851 pass / 339 fail）\n\n#### 核心 Metrics\n\n| Baseline | Accuracy | Fail F1 | Pass F1 | Macro F1 |\n|----------|----------|---------|---------|----------|\n| B1_ERROR_tag | 93.45% | 0.8734 | 0.9558 | 0.9146 |\n| B2_Traceback | 71.51% | 0 | 0.8339 | 0.4170 |\n| B3_any_keyword | 93.45% | 0.8734 | 0.9558 | 0.9146 |\n| **B4_exception_regex** | **93.61%** | 0.8762 | 0.9570 | 0.9166 |\n| **B5_no_exception_data_heuristic** | **99.33%** | 0.9883 | 0.9953 | 0.9918 |\n| B6_error_count_t1 | 93.45% | 0.8734 | 0.9558 | 0.9146 |\n| B6_error_count_t2 | 92.02% | — | — | — |\n| B6_error_count_t3 | 85.13% | 0.6495 | 0.9056 | 0.7776 |\n| **SFT (ours)** | **99.83%** | 0.9971 | 0.9988 | 0.9979 |\n\n#### 跨格式对比\n\n| Format | SFT Acc | Best Regex Acc | Gap |\n|--------|---------|---------------|-----|\n| exception_only | 99.83% | 93.61% (standard) / 99.33% (artifact heuristic) | 6.2pp / 0.5pp |\n| vota | 99.41% | 75.55% | 23.9pp |\n| full_trace | 81.76% | 77.39% | 4.4pp |\n| no_trace | 75.13% | 71.51% | 3.6pp |\n\n**结论**：B5 (99.33%) 利用了数据格式 artifact（`[No exception data in trace]` marker），非真实错误检测能力。标准 regex 最高 93.6%，与 SFT 99.83% 有 6.2pp gap。McNemar p=0.041 显著。\n\n---\n\n### 2. 磁盘空间\n\n| 挂载点 | 总容量 | 已用 | 可用 | 使用率 |\n|--------|--------|------|------|--------|\n| `/` (系统盘) | 30G | 24G | **6.2G** | 80% |\n| `/root/autodl-tmp` (数据盘) | 250G | 209G | **42G** | 84% |\n\n主要占用：\n- checkpoints: 73G\n- data: 767M"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-regex-baseline-and-disk.md"
+}

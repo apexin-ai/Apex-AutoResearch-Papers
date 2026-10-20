@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8cb971db1ec05f9eac1d",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops generate tail384 data",
+  "task_key": "worker_ops_generate_tail384_data_20260518T114607",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_generate_tail384_data_20260518T114607_result.json",
+    "occurrence": 1,
+    "bytes": 229,
+    "sha256": "fd9fe1580e349dfe0dde5cc515ad88ff0f9303c1c1f33b12c8222d9f4c8b8aca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n数据生成: 成功\ntrain 条数: 4720\ntest 条数: 1190\n文件路径: /root/autodl-tmp/trace-verdict-study-data/full_trace_tail_384_{train,test}.jsonl\n截断统计: 5610/5910 样本被截断 (94.9%)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-generate-tail384-data.md"
+}

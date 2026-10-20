@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48429745134c8cd8a84e",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "fix orphan bib key",
+  "task_key": "worker_fix_orphan_bib_key_20260519T084035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_orphan_bib_key_20260519T084035_result.json",
+    "occurrence": 1,
+    "bytes": 243,
+    "sha256": "41e323687a21cac40363eb396db30705ee9da08ab0d0cc3bd2b8458463341fd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`yang2024generalization` 在 `appendix.tex:236` 被 `\\citep{yang2024generalization}` 引用，**不是 orphan key**。该引用支撑了关于 SFT 泛化依赖预训练质量的论点。\n\n不需要删除。bib entry 保留。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-orphan-bib-key.md"
+}

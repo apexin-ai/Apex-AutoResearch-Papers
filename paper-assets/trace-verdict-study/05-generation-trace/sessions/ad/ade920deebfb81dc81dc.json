@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ade920deebfb81dc81dc",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops fix tail2048 condition",
+  "task_key": "worker_ops_fix_tail2048_condition_20260518T034945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_tail2048_condition_20260518T034945_result.json",
+    "occurrence": 1,
+    "bytes": 1311,
+    "sha256": "2e9b1d762a5a093205d4f4ebaa23aeb620b51211bdb5e5480ff31480ca16f8fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查结果：\n\n**`full_trace_tail_2048` 不存在。** choices 里没有这个 condition，也没有对应的数据文件。\n\n**`full_trace_tail` 就是 tail-2048。** 逻辑：\n- `full_trace_tail` 加载 `full_trace_tail_train.jsonl`（不做 trace token 截断）\n- `to_chat_text` 把整个序列截断到 `max_length=2048`\n- 因为数据本身是 tail 格式（保留 trace 的尾部），最终效果 = tail-2048\n- 与之对比：`full_trace_tail_1024` / `_512` / `_256` 是先把 trace 截到 N tokens 再套 2048 总长\n\n**CodeLlama-13B 模型路径**：`/root/autodl-tmp/models/CodeLlama-13b-Instruct-hf`（注意在 autodl-tmp 下，不在 trace-verdict-study/models/ 下）\n\n**正确命令：**\n```bash\n/root/miniconda3/bin/python /root/trace-verdict-study/train/train_sft.py \\\n  --condition full_trace_tail \\\n  --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf \\\n  --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail_seed42 \\\n  --wandb_run_name codellama13b_full_trace_tail_seed42 \\\n  --gradient_checkpointing \\\n  --max_steps 444\n```\n\n注：`--max_steps 444` 参照之前 codellama13b tail 实验的 step 数（从 tail512 log 可见 444 steps）。如果需要匹配其他实验的 step 数请确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-tail2048-condition.md"
+}

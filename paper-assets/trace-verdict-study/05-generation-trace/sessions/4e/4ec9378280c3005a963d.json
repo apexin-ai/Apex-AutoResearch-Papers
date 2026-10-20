@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ec9378280c3005a963d",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper figure fig1 trace overview",
+  "task_key": "worker_paper_figure_fig1_trace_overview_20260515T174754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig1_trace_overview_20260515T174754_result.json",
+    "occurrence": 1,
+    "bytes": 411,
+    "sha256": "af6ff56e5fab37bb597315425d5fc7a703c0d855636aff8a31b37b3e087d16c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册。\n\n输出文件：\n- PDF: `figures/paper/fig1_trace_overview.pdf` (36KB, 矢量)\n- PNG: `figures/paper/fig1_trace_overview.png` (172KB, 300 DPI)\n\n布局：Code + Test Input → Execution → Full Raw Trace → 4 条分支（No Trace 75.1% / Full Trace 81.8% / VOTA 99.4% / Exception Only 99.8%★），Exception Only 加粗边框+星号标注为 headline result。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig1-trace-overview.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b2adb42da91f5f25b48",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis pass fail trace diff",
+  "task_key": "worker_analysis_pass_fail_trace_diff_20260522T041601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_pass_fail_trace_diff_20260522T041601_result.json",
+    "occurrence": 1,
+    "bytes": 2072,
+    "sha256": "0ee0042a72707f992e741d95ff6a0691e0e8914675a595c7f9f8b5530572587b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结果汇总：\n\n## MF-3 Pass/Fail Trace Diff 分析结果\n\n### 1. Section-Level Diff（29 个配对 problem）\n| Condition | Code diff | Test diff | Trace diff |\n|-----------|-----------|-----------|------------|\n| full_trace | 10.4% | 0% | **89.6%** |\n| exception_only | 17.1% | 0% | **82.9%** |\n| ae_only | 13.7% | 0% | **86.3%** |\n| no_trace | 100% | 0% | 0% |\n\nTest diff 恒为 0（同一 problem 的 test 完全相同），trace 占据绝大多数 diff。\n\n### 2. Trace 内部分类\n| Condition | Diagnostic ratio | Detail |\n|-----------|-----------------|--------|\n| exception_only | **100%** | 93.5% exception + 6.5% structural marker |\n| full_trace | 0.3% | 99.7% 是 code-induced runtime context（不同代码产生不同 trace） |\n| ae_only | 2.0% | 大量 `[fallback: full locals]` 在 pass/fail 中都出现 |\n\n### 3. Diagnostic Feature → Verdict Prediction\n| Condition | Accuracy | Coverage |\n|-----------|----------|----------|\n| exception_only | **99.3%** | **100%** |\n| ae_only | **98.7%** | 75.5% |\n| full_trace | 100% | 5.9%（只有 `[No trace available]` 标记可判） |\n| no_trace | - | 0%（无任何 feature 可用） |\n\n### 关键发现\n- **exception_only**: 100% 的 trace diff 都是 diagnostic 内容，仅凭 exception 有无即可 99.3% 准确率预测 verdict → exception tokens 是唯一的 verdict-discriminative signal\n- **ae_only**: actual/expected 值匹配/不匹配预测准确率 98.7%，但 token 级占比低（大量 locals dump 噪声）\n- **full_trace**: trace 占 diff 的 90%，但几乎全部是 code-induced（不同 solution → 不同执行路径），diagnostic marker 占 < 1%。信号极稀疏但确定性。\n- **no_trace**: 完全无 diagnostic feature → 模型必须做 code reasoning\n\n产出：\n- JSON: `/root/trace-verdict-study/artifacts/pass_fail_diff/pass_fail_diff_results.json`\n- 图表: `pass_fail_diff_analysis.{pdf,png}`, `diff_decomposition.{pdf,png}`\n- 脚本: `/root/trace-verdict-study/analysis/pass_fail_trace_diff.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-pass-fail-trace-diff.md"
+}

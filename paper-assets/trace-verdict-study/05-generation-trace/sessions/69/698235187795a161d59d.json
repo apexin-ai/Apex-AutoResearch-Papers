@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "698235187795a161d59d",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "eval deepseek exception only predictions",
+  "task_key": "worker_eval_deepseek_exception_only_predictions_20260516T020540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_deepseek_exception_only_predictions_20260516T020540_result.json",
+    "occurrence": 1,
+    "bytes": 92,
+    "sha256": "abe0cb667e3b362e975f9298bb9785678b3b6fa1723e38bd14e439f91b5fa930"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台等待任务已完成，eval 早已跑完，结果已在上面报告。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-deepseek-exception-only-predictions.md"
+}

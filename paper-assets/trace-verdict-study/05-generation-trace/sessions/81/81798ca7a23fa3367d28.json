@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81798ca7a23fa3367d28",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper fix table1 deepseek ft",
+  "task_key": "worker_paper_fix_table1_deepseek_ft_20260516T010950",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_table1_deepseek_ft_20260516T010950_result.json",
+    "occurrence": 1,
+    "bytes": 830,
+    "sha256": "954ad6563309a0d954fb2835cff9022bf97370156945619bc886b7a00dab891a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No N/A remaining. All changes applied and PDF compiles.\n\n**Summary of changes:**\n\n| File | Change |\n|------|--------|\n| `experiments.tex` L24 | Table 1: `N/A$^\\ddag$` → `79.16%`, gap `---` → `2.60pp` |\n| `experiments.tex` L30 | Caption: added DeepSeek `full_trace` CI [76.80, 81.30]; removed `$^\\ddag$` invalidation footnote |\n| `experiments.tex` L39 | Removed dangling \"Unlike...`$^\\ddag$`\" clause referencing invalidated condition |\n| `discussion.tex` L60 | Replaced \"was invalidated...report it as N/A\" with re-run result (79.16%, 2.60pp below Qwen) |\n| `appendix.tex` L199 | DeepSeek full results table: `N/A / label truncated` → `79.16 / CI [76.80, 81.30]` |\n| `appendix.tex` L24–26 | Per-class table: added DeepSeek Full Trace row (P/R/F1: pass 85.7/85.1/85.4, fail 63.2/64.3/63.7) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-table1-deepseek-ft.md"
+}

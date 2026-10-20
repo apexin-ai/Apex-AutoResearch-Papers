@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "580c562c928c330dabc1",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "audit citation verify w1",
+  "task_key": "worker_audit_citation-verify-w1_20260526T101523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_citation-verify-w1_20260526T101523.log",
+    "occurrence": 1,
+    "bytes": 722991,
+    "sha256": "d55368536d132f54137ae2ad622a7d7112720b4d10540a06aa4c90cc182ac667"
+  },
+  "statistics": {
+    "messages": 162,
+    "user_turns": 0,
+    "tool_calls": 68,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 22,
+      "tool_call": 68,
+      "tool_result": 68,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 162,
+      "chunks": [
+        {
+          "path": "580c562c928c330dabc1-part-0001.json",
+          "message_count": 131
+        },
+        {
+          "path": "580c562c928c330dabc1-part-0002.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-citation-verify-w1.md"
+}

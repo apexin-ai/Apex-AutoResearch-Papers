@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "265cad7532ec3a0e9628",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "data fewshot predictions collect",
+  "task_key": "worker_data_fewshot_predictions_collect_20260521T181350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_fewshot_predictions_collect_20260521T181350_result.json",
+    "occurrence": 1,
+    "bytes": 953,
+    "sha256": "6b2d8c508de6a499286c5afbc2f96730268ec45a49627e1692cbe28d64d40ac0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。6 个 fewshot baseline prediction 文件已从 westd-11235 下载到本地 `artifacts/fewshot_predictions/`，并注册为 artifact `art_20260521_16ea99`（type=data, tags=[fewshot, predictions, plan_020]）。\n\n文件清单：\n| 文件 | 模型 | 条件 | Shots | Accuracy |\n|---|---|---|---|---|\n| fewshot_gpt4o_exception_only_0shot.json | GPT-4o | exception_only | 0 | 87.98% |\n| fewshot_gpt4o_exception_only_3shot.json | GPT-4o | exception_only | 3 | 86.81% |\n| fewshot_gpt4o_no_trace_0shot.json | GPT-4o | no_trace | 0 | 84.45% |\n| fewshot_gpt41_exception_only_0shot.json | GPT-4.1 | exception_only | 0 | 82.18% |\n| fewshot_gpt41_exception_only_3shot.json | GPT-4.1 | exception_only | 3 | 81.93% |\n| fewshot_gpt41_no_trace_0shot.json | GPT-4.1 | no_trace | 0 | 77.31% |\n\n每个文件含 1190 条 per-sample predictions。SFT baseline（Qwen-7B）exception_only 精度 99.83%，远超 few-shot 最佳的 87.98%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-fewshot-predictions-collect.md"
+}

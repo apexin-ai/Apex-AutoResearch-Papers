@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e32d5eda6122eba628a5",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code fix leakage truncation",
+  "task_key": "worker_code_fix-leakage-truncation_20260514T215113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-leakage-truncation_20260514T215113_result.json",
+    "occurrence": 1,
+    "bytes": 1339,
+    "sha256": "5966c752c7b37e404126653b774ce522446f4a60630e2d73d07872e3db41d7d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n---\n\n## 修改文件\n\n| 文件 | 修改内容 |\n|------|---------|\n| `src/vota.py` | 移除 3 处 `match=` 输出（Strategy 0/1/2），删除 `match` 变量赋值 |\n| `data/format_training_data.py` | 1) `[No trace available - execution failed]` → `[No trace available]`；2) 新增 `_truncate_trace` 智能截断，保证 label 不被丢弃；3) tokenizer 前置加载；4) 截断统计输出 |\n| `tests/test_vota.py` | 7 处 `assert \"match=True/False\" in result` → `assert \"match=\" not in result`；所有事件补充 `\"source\": \"test\"` 字段 |\n\n## 截断率统计\n\n| 条件 | 截断率 | 截断后 avg tokens | p50 | max |\n|------|--------|-------------------|-----|-----|\n| no_trace | 0.0% | 178 | 151 | 1260 |\n| vota | 88.7% | 1922 | 2048 | 2048 |\n| full_trace | 94.9% | 1957 | 2048 | 2048 |\n\n## 数据样本数\n\n- 总计 5910 样本（pass=3958, fail=1952）\n- train: 4720, test: 1190\n- 三组各 6 个文件（train+test）已输出到 `/root/autodl-tmp/trace-verdict-study-data/`\n\n## 验证结果\n\n- test_vota.py: **35/35 通过**\n- match=True/False 泄漏: **0**（10 个 `total_match` 是 HumanEval/74 的函数名，非泄漏）\n- label 超 2048 tokens: **0/5910（所有条件）**\n- label 均为单 token（pass=[6385], fail=[18403]）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-leakage-truncation.md"
+}

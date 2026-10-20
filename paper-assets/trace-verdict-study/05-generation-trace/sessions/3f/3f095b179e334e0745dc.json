@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f095b179e334e0745dc",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper insert 4 figures latex",
+  "task_key": "worker_paper_insert-4-figures-latex_20260525T142040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_insert-4-figures-latex_20260525T142040_result.json",
+    "occurrence": 1,
+    "bytes": 878,
+    "sha256": "473807e01915fd0fbe01c56102d971971f94f64ed038ffb90765c9a3b02534a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 figure 环境和 3 处正文引用全部插入完成。总结：\n\n| 图 | Label | 插入位置 | 正文引用 |\n|---|---|---|---|\n| A: forest_plot | `fig:forest_plot` | L69–74, Section 4.2 末尾 | L61 tier boundary 句 |\n| B: error_overlap | `fig:error_overlap` | L150–155, Section 4.5 error orthogonality 后 | L147 Jaccard 句 |\n| C: token_distribution | `fig:token_distribution` | L114–119, Section 4.4 末尾 | L111 truncation 句 |\n| D: zeroshot_vs_sft | `fig:zeroshot_vs_sft` | L161–166, 文件末尾 | L67 Baselines 段 |\n\n所有 caption 中的 `\\texttt{}` 已替换为 `\\cond{}`；原文 \"confirming\" 改为 \"which confirms\"。\n\n**注意**：Figure A 的路径 `../../figures/forest_plot_tier_boundary.pdf` — 本地文件实际在 `artifacts/figures/` 下，服务器上如果目录结构不同可能需要调整路径。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-insert-4-figures-latex.md"
+}

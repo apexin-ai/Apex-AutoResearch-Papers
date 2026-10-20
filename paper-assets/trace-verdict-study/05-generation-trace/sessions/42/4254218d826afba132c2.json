@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4254218d826afba132c2",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code submit nomarker seed42",
+  "task_key": "worker_code_submit_nomarker_seed42_20260516T151245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_submit_nomarker_seed42_20260516T151245_result.json",
+    "occurrence": 1,
+    "bytes": 205,
+    "sha256": "fa26ea6ee428c3e1b736ff9f34fe0a84d3f8106887d9db83b763c581049aff5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`train_sft.py` 和 `evaluate.py` 都已原生支持 `--condition exception_only_nomarker`，无需代码修改。完整训练+eval命令已写入 `artifacts/nomarker_command.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-submit-nomarker-seed42.md"
+}

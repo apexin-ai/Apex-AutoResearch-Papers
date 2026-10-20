@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a53200fe61dfede67b62",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "diag deepseek full trace tail256 seed42",
+  "task_key": "worker_diag_deepseek_full_trace_tail256_seed42_20260517T204425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_deepseek_full_trace_tail256_seed42_20260517T204425_result.json",
+    "occurrence": 1,
+    "bytes": 959,
+    "sha256": "54de9335449793e28f03635e023f379519a595a9eedec660c4dc2236505c5e0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n**进程存活：是**\n- PID 379548 (bash wrapper) 存活，子进程 PID 379561 (python) 在 GPU 上运行\n\n**GPU cuda:0 状态：**\n- NVIDIA RTX PRO 6000 Black, 73°C, 438W/600W, GPU-Util 100%\n- 显存占用 70281 MiB / 97887 MiB\n- 训练进程 PID 379561 使用 21100 MiB\n\n**训练进度：**\n- 当前 step 112/444 (约 25%)\n- 速度 ~3.3-3.7 s/step\n- 预估剩余时间 ~19 分钟（基于日志中 ETA）\n- 训练开始时间：2026-05-18 04:38 CST (20:38 UTC)\n\n**Checkpoint 目录：** 已创建但尚无 checkpoint 产出（只有 `runs/` 子目录，训练还在进行中）\n\n**W&B：** 日志未截断到 W&B init 部分，但从 spec 中配置了 `--wandb_project trace-verdict-study --wandb_run_name deepseek_full_trace_tail256_seed42`，应已创建 run。\n\n**结论：** 实验正常运行中，约 25% 进度，预计还需 ~19 分钟完成训练步骤，之后还会自动执行 evaluation。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-deepseek-full-trace-tail256-seed42.md"
+}

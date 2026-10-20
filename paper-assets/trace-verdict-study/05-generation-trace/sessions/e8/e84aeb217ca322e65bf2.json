@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e84aeb217ca322e65bf2",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops urgent appendix sync compile",
+  "task_key": "worker_ops_urgent-appendix-sync-compile_20260523T202943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-appendix-sync-compile_20260523T202943_result.json",
+    "occurrence": 1,
+    "bytes": 468,
+    "sha256": "d1ba72e6da9726f3839773359b1ef1455befb95a9582c00dd7e8086fb8ad3c01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n| 项目 | 结果 |\n|------|------|\n| **MD5 校验** | 本地 `84b4da0711ecb169e9fb0380ec2c0885` = 远程 `84b4da0711ecb169e9fb0380ec2c0885` |\n| **文件大小** | 51,736 bytes（本地 = 远程） |\n| **编译错误** | 0 errors |\n| **PDF 页数** | 20 页 |\n| **main.pdf 时间戳** | May 24 06:22（晚于 appendix.tex 的 May 24 06:22） |\n| **Conclusion** | 通过 `\\input{conclusion}` 引入，在主文件中 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-appendix-sync-compile.md"
+}

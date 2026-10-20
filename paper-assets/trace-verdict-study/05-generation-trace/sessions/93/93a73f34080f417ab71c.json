@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93a73f34080f417ab71c",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code codellama13b tail256",
+  "task_key": "worker_code_codellama13b_tail256_20260518T013828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_codellama13b_tail256_20260518T013828_result.json",
+    "occurrence": 1,
+    "bytes": 377,
+    "sha256": "9d4fdf8724979c8db279ab5b181696b4813dace7ab7d4c279885768852e5aec6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动，正在 cuda:0 上运行。\n\n- **Condition**: `full_trace_tail_256`\n- **模型**: CodeLlama-13b-Instruct-hf\n- **Steps**: 444 total, ~5s/it（比 tail-512 的 ~13s/it 快约 2.5x）\n- **预计训练时间**: ~37 分钟\n- **日志**: `~/runs/trace-verdict-study/codellama13b_full_trace_tail256_seed42.log`\n- 训练完成后自动执行 eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-codellama13b-tail256.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b0f0ade876b2e304468",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "figure fig4 calibration",
+  "task_key": "worker_figure_fig4-calibration_20260524T105055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig4-calibration_20260524T105055_result.json",
+    "occurrence": 1,
+    "bytes": 595,
+    "sha256": "8899e0aaffff87648ceceae68fa3e0d21a5ac7e88a868bfa2c30344f81da5d84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **PDF**: 25KB, **PNG**: 209KB (300 dpi, 7×7 inch)\n- 已上传至飞书群（file_key: `file_v3_00120_367d3071-11bf-435c-8a3b-1e6e32884a5g`）\n\n图表说明：Figure 4 校准可靠性图（2×2 layout）。4 个 panel 分别展示 no_trace / full_trace / exception_only / VOTA 四种条件的预测校准情况。每个 panel 上方为 reliability diagram（预测置信度 vs 实际准确率，对角线=完美校准），下方为置信度分布直方图。exception_only 和 VOTA 几乎完美校准（ECE < 0.007），no_trace 偏离最大（ECE = 0.172）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig4-calibration-copy-3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33ba6048bd58edb49d91",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "eval check and evaluate all",
+  "task_key": "worker_eval_check-and-evaluate-all_20260514T213122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_check-and-evaluate-all_20260514T213122_result.json",
+    "occurrence": 1,
+    "bytes": 1726,
+    "sha256": "6962b642779e3d28173c85708c16d5d3770e236c9ee2ac4bf5090844536e9444"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三组完整结果如下：\n\n## 训练最终状态\n\n| 条件 | 状态 | train_loss | eval_loss | eval_mean_token_accuracy | 耗时 |\n|------|------|-----------|-----------|--------------------------|------|\n| vota | EXIT_CODE=0 ✓ | 0.046 | 0.085 | 0.983 | 2h17m |\n| full_trace | EXIT_CODE=0 ✓ | 0.037 | 0.084 | 0.984 | 2h11m |\n\n## 三组评估对比 (n=1190)\n\n| 条件 | Accuracy | Lift over majority | Lift 95% CI | fail_F1 | pass_F1 |\n|------|----------|-------------------|-------------|---------|---------|\n| no_trace | 75.1% | +3.6pp | [+0.4, +7.1] | 0.63 | 0.81 |\n| **vota** | **99.2%** | **+27.6pp** | **[+25.2, +30.2]** | **0.99** | **0.99** |\n| full_trace | 28.4% | -43.1pp | [-47.4, -38.6] | 0.57 | 0.16 |\n\n## 条件间差值\n\n| 对比 | Accuracy Δ | fail_F1 Δ |\n|------|-----------|-----------|\n| vota vs no_trace | **+24.1pp** | +0.36 |\n| full_trace vs no_trace | -46.7pp | -0.06 |\n\n## MVP 判断\n\n**VOTA: PASS** — VOTA (99.2%) 大幅超过 no_trace (75.1%)，差值 +24.1pp，远超 2pp 阈值，bootstrap 95% CI [+25.2, +30.2] 不含 0。\n\n**full_trace: FAIL** — 28.4% 低于 majority baseline，模型几乎总是预测 \"fail\"（pass_recall=0.08）。原因：full_trace 输入序列长度 69413 tokens 远超模型上下文窗口 32768，被截断后丢失关键信息，模型无法正确分类。\n\n## 产出路径\n- vota: `/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/eval_results.json`\n- full_trace: `/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/eval_results.json`\n\n**结论：VOTA 条件压倒性胜出。full_trace 因上下文溢出导致性能崩塌，需要截断/摘要策略才能使用完整 trace。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-check-and-evaluate-all.md"
+}

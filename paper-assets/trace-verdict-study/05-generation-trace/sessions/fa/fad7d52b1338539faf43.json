@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fad7d52b1338539faf43",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis full trace data consistency",
+  "task_key": "worker_analysis_full_trace_data_consistency_20260519T090924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_full_trace_data_consistency_20260519T090924_result.json",
+    "occurrence": 1,
+    "bytes": 1273,
+    "sha256": "50f2cfa9941b6a5375e1f014dc14c0b9ae7cd9106ff0a63ec23c6eca40539531"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据完全一致。结论如下：\n\n## 结果\n\n### 1. seed42 (full_trace_label_only_seed42)\n- **数据路径**: `/root/autodl-tmp/trace-verdict-study-data/full_trace_{train,test}.jsonl`（脚本默认 `--data_dir`，日志未覆盖）\n- **样本数**: Train: 4720, Eval: 1190 (total 5910)\n- **Accuracy**: 86.22%\n\n### 2. N5 seed123/456\n- **seed123 数据路径**: `/root/autodl-tmp/trace-verdict-study-data/full_trace_{train,test}.jsonl`（registry spec.data_path 明确记录）\n- **seed123 样本数**: Train: 4720, Eval: 1190 (total 5910), Accuracy: 87.06%\n- **seed456 数据路径**: `/root/autodl-tmp/trace-verdict-study-data/full_trace_{train,test}.jsonl`（同上）\n- **seed456 样本数**: Train: 4720, Eval: 1190 (total 5910), Accuracy: 85.90%\n\n### 3. 一致性判定: **完全一致**\n\n三个 seed 使用相同数据文件（`/root/autodl-tmp/trace-verdict-study-data/full_trace_train.jsonl` 4720行 + `full_trace_test.jsonl` 1190行），相同 condition (`full_trace`)，相同 `--label_only_loss` flag，相同模型 (`Qwen2.5-Coder-7B-Instruct`)，相同 code commit (`e404237`)。唯一差异是 seed 和 output_dir。\n\n数据文件 MD5: train `62a3fa164d20135ff2a609d1cf336139`, test `4a751d6ae89c504234203e02be97629f`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-full-trace-data-consistency.md"
+}

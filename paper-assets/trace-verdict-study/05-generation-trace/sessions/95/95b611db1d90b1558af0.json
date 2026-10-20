@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95b611db1d90b1558af0",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops cuda0 status check",
+  "task_key": "worker_ops_cuda0_status_check_20260522T090814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda0_status_check_20260522T090814_result.json",
+    "occurrence": 1,
+    "bytes": 985,
+    "sha256": "4bf6227fe25ebea44dd88450f564e784e38a002b5eae1bed55f7b8803f5963d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n**cuda:0** — 49175MiB / 97887MiB, **0% utilization**, 无进程。这仍是之前的孤儿显存（49GB），状态未变——并非 Director 说的 85GB/100%。\n\n**cuda:1** — 71287MiB / 97887MiB, **98% utilization**。正在运行 `gradient_masking` 训练：\n- PID: 782378\n- 命令: `/root/miniconda3/bin/python train/train_sft.py --condition exception_only --gpu 0 --gradient_mask_ratio 0.998 --gradient_checkpointing --seed 42 --wandb_project trace-verdict-study --wandb_run_name gradient_masking_qwen7b_seed42 --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/gradient_masking_qwen7b_seed42`\n- 工作目录: `/root/trace-verdict-study`\n\n注意：命令行参数写的是 `--gpu 0`，但实际跑在 **物理 GPU 1** 上（可能通过 `CUDA_VISIBLE_DEVICES` 映射）。\n\n**总结**：Director 可能看反了两张卡。cuda:0 仍然是 49GB 孤儿显存 + 0% util；cuda:1 是 gradient_masking 训练在跑，状态正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda0-status-check.md"
+}

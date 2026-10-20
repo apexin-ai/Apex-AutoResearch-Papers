@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2807c99e8b1c2648f0d0",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis token length ablation prep",
+  "task_key": "worker_analysis_token_length_ablation_prep_20260516T002034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_token_length_ablation_prep_20260516T002034_result.json",
+    "occurrence": 1,
+    "bytes": 814,
+    "sha256": "46a89a115b12d10ef6f523540ed78b6ec3174ff62a3bd39e25d48ecbc23c1ee2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。产出汇总：\n\n**脚本**: `/root/trace-verdict-study/analysis/token_length_analysis.py`\n\n**产出文件** (在 `analysis/figures/`):\n- `token_length_ablation.pdf` (14KB)\n- `token_length_ablation.png` (71KB, 300dpi)\n- `token_length_ablation_table.tex`\n\n**Dry-run 结果** (3/5 数据点，1024tok 和 2048tok 缺失被正确跳过):\n\n| Token Limit | Accuracy | 95% CI | Δ vs No-trace |\n|---|---|---|---|\n| 256 | 78.82% | [76.4, 81.0] | +3.70 |\n| 512 | 80.42% | [78.1, 82.6] | +5.29 |\n| full | 81.76% | [79.7, 83.9] | +6.64 |\n\n图表样式：单栏宽度 3.5in，无 grid，top/right spine 去除，两条虚线 baseline（majority 71.5% 灰色，no-trace 75.1% 黄色），蓝色实线带 95% CI error bar。1024tok 和 2048tok 完成后重跑即可自动补上。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-token-length-ablation-prep.md"
+}

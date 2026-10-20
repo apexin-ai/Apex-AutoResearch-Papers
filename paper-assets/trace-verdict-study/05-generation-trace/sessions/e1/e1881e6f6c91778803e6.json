@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1881e6f6c91778803e6",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code deepseek tail2048",
+  "task_key": "worker_code_deepseek_tail2048_20260517T145312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_deepseek_tail2048_20260517T145312_result.json",
+    "occurrence": 1,
+    "bytes": 592,
+    "sha256": "6daa5dc955a908f60cfb0e67a6c53616e1878ee9108cc33dd067e007d31871f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交并注册为 RUNNING。\n\n**总结：**\n- **tmux session**: `deepseek_tail2048` on westd-11235\n- **GPU**: cuda:0 (RTX PRO 6000 Blackwell, 98GB)\n- **数据**: 复用已有 `full_trace_tail` 数据 (4720 train / 1190 test)\n- **训练**: 444 步 (3 epochs)，~18.5s/step，预计 ~2h15m\n- **流程**: 训练完成后自动执行 evaluate.py，结果写入 `eval_results.json`\n- **日志**: `/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_tail2048_seed42/train_eval.log`\n- **Registry**: `deepseek_full_trace_tail2048_seed42` → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-deepseek-tail2048.md"
+}

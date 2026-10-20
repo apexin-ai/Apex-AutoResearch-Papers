@@ -1,0 +1,580 @@
+{
+  "schema_version": "1.0",
+  "id": "631f39bbf98b34e1c912",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "analysis label only seed456",
+  "task_key": "worker_analysis_label_only_seed456_20260516T090219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_label_only_seed456_20260516T090219.log",
+    "occurrence": 1,
+    "bytes": 25981,
+    "sha256": "5c98c9ac1fadaf4e8afc80174caa256da52cb5ac25034a23589d21308adcf23e"
+  },
+  "statistics": {
+    "messages": 12,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 2,
+      "tool_call": 3,
+      "tool_result": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+                "session_id": "559aeaac-4c21-419b-a65d-7cdda759aa8c",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "ab134018-218a-4cdc-b411-b4c77ff49e23",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778940000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "ba500178-45e6-44a1-ada7-bde39eedcaec",
+                "session_id": "559aeaac-4c21-419b-a65d-7cdda759aa8c"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to read evaluation results from a training run on the server. Let me use the SSH tools to do this.",
+              "signature": "ErACClkIDRgCKkDX7wspQCACiE08+6/aBzlRqzbx+BbRaSOTM4R8uAsxeEflg1FCoPYumRN1Azahf/qIzkVz4NTuKAGt5GN9EgcEMg9jbGF1ZGUtb3B1cy00LTY4ABIM9rwYVE+iYxrv0apMGgy7xZINtDObWFfQfbwiMEY0uFgort19Oy1CMdQ2VfrM6+xYTeHzZZql7p8O5e6j8ImFkGmZlx5c/1d4BRkieCqEAfmJ/JAc5ovDTqhVqoR3cgFZ7jTc9v0j9lpIlGyyL0T/rANog2zDHpYDEbBL/x3zfoC5o2YzriFx0/bt7rrVcP++4mxVP5Ut0ssFTYl2+jO83zQC0DIYKAjUbkCRn/yP4pBLQkevNWrPVZwIzOPXGnYFWwxljx1NqeNU451pyVGyRpwL8BgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "559aeaac-4c21-419b-a65d-7cdda759aa8c",
+            "uuid": "4e52a864-da45-4b1f-b4c5-663378f2f492",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FrnK8wjN3PJxhGjfY3SBUT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 10926,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10926
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SLhc1LJPFhrUwyedHNFWU8",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "559aeaac-4c21-419b-a65d-7cdda759aa8c",
+            "uuid": "8c86b1ca-d589-4760-822f-9c80f3ad46c7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FrnK8wjN3PJxhGjfY3SBUT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 10926,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10926
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T09:02:29.781Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01SLhc1LJPFhrUwyedHNFWU8",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "559aeaac-4c21-419b-a65d-7cdda759aa8c",
+            "uuid": "6963533f-f97f-4f7e-a935-1ca9b2c1df27",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A37aK8tqPwvspt5LasVWAk",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "cat /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed456/final/eval_results.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "559aeaac-4c21-419b-a65d-7cdda759aa8c",
+            "uuid": "4e9bef21-81c6-4103-9475-aa35df50e3fa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015btjaepQMqkHPm62LubUtm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 467,
+                "cache_read_input_tokens": 22767,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 467
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Cx7CrEN6vi7ruCeSznesXd",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11235",
+                "command": "tail -50 ~/runs/trace-verdict-study/label_only_seed456.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "559aeaac-4c21-419b-a65d-7cdda759aa8c",
+            "uuid": "84b0ee02-f8ff-4f80-b05c-e1ea9ec112df",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015btjaepQMqkHPm62LubUtm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 467,
+                "cache_read_input_tokens": 22767,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 467
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T09:02:34.801Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A37aK8tqPwvspt5LasVWAk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"full_trace\\\\\\\",\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed456/final\\\\\\\",\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8588235294117647,\\\\n    \\\\\\\"majority_baseline\\\\\\\": 0.7151260504201681,\\\\n    \\\\\\\"lift\\\\\\\": 0.14369747899159657,\\\\n    \\\\\\\"majority_class\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n    \\\\\\\"n\\\\\\\": 1190,\\\\n    \\\\\\\"pass_precision\\\\\\\": 0.8740416210295728,\\\\n    \\\\\\\"pass_recall\\\\\\\": 0.9377203290246768,\\\\n    \\\\\\\"pass_f1\\\\\\\": 0.9047619047619048,\\\\n    \\\\\\\"fail_precision\\\\\\\": 0.8086642599277978,\\\\n    \\\\\\\"fail_recall\\\\\\\": 0.6607669616519174,\\\\n    \\\\\\\"fail_f1\\\\\\\": 0.7272727272727272\\\\n  },\\\\n  \\\\\\\"confidence_intervals\\\\\\\": {\\\\n    \\\\\\\"accuracy_ci_lower\\\\\\\": 0.8394747899159664,\\\\n    \\\\\\\"accuracy_ci_upper\\\\\\\": 0.8773109243697479,\\\\n    \\\\\\\"majority_baseline_ci_lower\\\\\\\": 0.6915966386554622,\\\\n    \\\\\\\"majority_baseline_ci_upper\\\\\\\": 0.738655462184874,\\\\n    \\\\\\\"lift_ci_lower\\\\\\\": 0.11848739495798322,\\\\n    \\\\\\\"lift_ci_upper\\\\\\\": 0.16890756302521015,\\\\n    \\\\\\\"pass_precision_ci_lower\\\\\\\": 0.8541414065999702,\\\\n    \\\\\\\"pass_precision_ci_upper\\\\\\\": 0.8952386202551583,\\\\n    \\\\\\\"pass_recall_ci_lower\\\\\\\": 0.9212321822568612,\\\\n    \\\\\\\"pass_recall_ci_upper\\\\\\\": 0.9538675368871189,\\\\n    \\\\\\\"pass_f1_ci_lower\\\\\\\": 0.891223635694025,\\\\n    \\\\\\\"pass_f1_ci_upper\\\\\\\": 0.9183465449450032,\\\\n    \\\\\\\"fail_precision_ci_lower\\\\\\\": 0.7624048891047434,\\\\n    \\\\\\\"fail_precision_ci_upper\\\\\\\": 0.8536126142376141,\\\\n    \\\\\\\"fail_recall_ci_lower\\\\\\\": 0.6115821256038647,\\\\n    \\\\\\\"fail_recall_ci_upper\\\\\\\": 0.7110481586402266,\\\\n    \\\\\\\"fail_f1_ci_lower\\\\\\\": 0.6871630094043887,\\\\n    \\\\\\\"fail_f1_ci_upper\\\\\\\": 0.7639768999930211\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "559aeaac-4c21-419b-a65d-7cdda759aa8c",
+            "uuid": "c51f49ff-079e-4e97-96bf-69f72fe48c4e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"full_trace\\\\\\\",\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed456/final\\\\\\\",\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8588235294117647,\\\\n    \\\\\\\"majority_baseline\\\\\\\": 0.7151260504201681,\\\\n    \\\\\\\"lift\\\\\\\": 0.14369747899159657,\\\\n    \\\\\\\"majority_class\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n    \\\\\\\"n\\\\\\\": 1190,\\\\n    \\\\\\\"pass_precision\\\\\\\": 0.8740416210295728,\\\\n    \\\\\\\"pass_recall\\\\\\\": 0.9377203290246768,\\\\n    \\\\\\\"pass_f1\\\\\\\": 0.9047619047619048,\\\\n    \\\\\\\"fail_precision\\\\\\\": 0.8086642599277978,\\\\n    \\\\\\\"fail_recall\\\\\\\": 0.6607669616519174,\\\\n    \\\\\\\"fail_f1\\\\\\\": 0.7272727272727272\\\\n  },\\\\n  \\\\\\\"confidence_intervals\\\\\\\": {\\\\n    \\\\\\\"accuracy_ci_lower\\\\\\\": 0.8394747899159664,\\\\n    \\\\\\\"accuracy_ci_upper\\\\\\\": 0.8773109243697479,\\\\n    \\\\\\\"majority_baseline_ci_lower\\\\\\\": 0.6915966386554622,\\\\n    \\\\\\\"majority_baseline_ci_upper\\\\\\\": 0.738655462184874,\\\\n    \\\\\\\"lift_ci_lower\\\\\\\": 0.11848739495798322,\\\\n    \\\\\\\"lift_ci_upper\\\\\\\": 0.16890756302521015,\\\\n    \\\\\\\"pass_precision_ci_lower\\\\\\\": 0.8541414065999702,\\\\n    \\\\\\\"pass_precision_ci_upper\\\\\\\": 0.8952386202551583,\\\\n    \\\\\\\"pass_recall_ci_lower\\\\\\\": 0.9212321822568612,\\\\n    \\\\\\\"pass_recall_ci_upper\\\\\\\": 0.9538675368871189,\\\\n    \\\\\\\"pass_f1_ci_lower\\\\\\\": 0.891223635694025,\\\\n    \\\\\\\"pass_f1_ci_upper\\\\\\\": 0.9183465449450032,\\\\n    \\\\\\\"fail_precision_ci_lower\\\\\\\": 0.7624048891047434,\\\\n    \\\\\\\"fail_precision_ci_upper\\\\\\\": 0.8536126142376141,\\\\n    \\\\\\\"fail_recall_ci_lower\\\\\\\": 0.6115821256038647,\\\\n    \\\\\\\"fail_recall_ci_upper\\\\\\\": 0.7110481586402266,\\\\n    \\\\\\\"fail_f1_ci_lower\\\\\\\": 0.6871630094043887,\\\\n    \\\\\\\"fail_f1_ci_upper\\\\\\\": 0.7639768999930211\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"condition\\\": \\\"full_trace\\\",\\n  \\\"checkpoint_dir\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed456/final\\\",\\n  \\\"metrics\\\": {\\n    \\\"accuracy\\\": 0.8588235294117647,\\n    \\\"majority_baseline\\\": 0.7151260504201681,\\n    \\\"lift\\\": 0.14369747899159657,\\n    \\\"majority_class\\\": \\\"pass\\\",\\n    \\\"n\\\": 1190,\\n    \\\"pass_precision\\\": 0.8740416210295728,\\n    \\\"pass_recall\\\": 0.9377203290246768,\\n    \\\"pass_f1\\\": 0.9047619047619048,\\n    \\\"fail_precision\\\": 0.8086642599277978,\\n    \\\"fail_recall\\\": 0.6607669616519174,\\n    \\\"fail_f1\\\": 0.7272727272727272\\n  },\\n  \\\"confidence_intervals\\\": {\\n    \\\"accuracy_ci_lower\\\": 0.8394747899159664,\\n    \\\"accuracy_ci_upper\\\": 0.8773109243697479,\\n    \\\"majority_baseline_ci_lower\\\": 0.6915966386554622,\\n    \\\"majority_baseline_ci_upper\\\": 0.738655462184874,\\n    \\\"lift_ci_lower\\\": 0.11848739495798322,\\n    \\\"lift_ci_upper\\\": 0.16890756302521015,\\n    \\\"pass_precision_ci_lower\\\": 0.8541414065999702,\\n    \\\"pass_precision_ci_upper\\\": 0.8952386202551583,\\n    \\\"pass_recall_ci_lower\\\": 0.9212321822568612,\\n    \\\"pass_recall_ci_upper\\\": 0.9538675368871189,\\n    \\\"pass_f1_ci_lower\\\": 0.891223635694025,\\n    \\\"pass_f1_ci_upper\\\": 0.9183465449450032,\\n    \\\"fail_precision_ci_lower\\\": 0.7624048891047434,\\n    \\\"fail_precision_ci_upper\\\": 0.8536126142376141,\\n    \\\"fail_recall_ci_lower\\\": 0.6115821256038647,\\n    \\\"fail_recall_ci_upper\\\": 0.7110481586402266,\\n    \\\"fail_f1_ci_lower\\\": 0.6871630094043887,\\n    \\\"fail_f1_ci_upper\\\": 0.7639768999930211\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T09:02:35.325Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Cx7CrEN6vi7ruCeSznesXd",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Training complete. Model saved to /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed456/final\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\nCondition: full_trace\\\\nCheckpoint: /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed456/final\\\\nTest samples: 1190\\\\nLoading base model from /root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.19it/s]\\\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.19it/s]\\\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.26it/s]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.81it/s]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.54it/s]\\\\nThe following generation flags are not valid and may be ignored: ['top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\\nLoading LoRA adapter from /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed456/final\\\\nRunning inference...\\\\n  [50/1190] running accuracy: 0.9200\\\\n  [100/1190] running accuracy: 0.8900\\\\n  [150/1190] running accuracy: 0.9133\\\\n  [200/1190] running accuracy: 0.9350\\\\n  [250/1190] running accuracy: 0.9400\\\\n  [300/1190] running accuracy: 0.8833\\\\n  [350/1190] running accuracy: 0.9000\\\\n  [400/1190] running accuracy: 0.8950\\\\n  [450/1190] running accuracy: 0.8911\\\\n  [500/1190] running accuracy: 0.9020\\\\n  [550/1190] running accuracy: 0.8964\\\\n  [600/1190] running accuracy: 0.8950\\\\n  [650/1190] running accuracy: 0.8985\\\\n  [700/1190] running accuracy: 0.9057\\\\n  [750/1190] running accuracy: 0.8853\\\\n  [800/1190] running accuracy: 0.8925\\\\n  [850/1190] running accuracy: 0.8871\\\\n  [900/1190] running accuracy: 0.8922\\\\n  [950/1190] running accuracy: 0.8789\\\\n  [1000/1190] running accuracy: 0.8750\\\\n  [1050/1190] running accuracy: 0.8619\\\\n  [1100/1190] running accuracy: 0.8618\\\\n  [1150/1190] running accuracy: 0.8609\\\\n\\\\nComputing metrics...\\\\n\\\\n=== Evaluation Results (condition: full_trace) ===\\\\nAccuracy:           85.9% (95% CI: [83.9%, 87.7%])\\\\nMajority baseline:  71.5% (always predict 'pass')\\\\nLift over majority: +14.4pp (95% CI: [+11.8pp, +16.9pp])\\\\n\\\\nPer-class metrics:\\\\n  pass:  P=0.87  R=0.94  F1=0.90\\\\n  fail:  P=0.81  R=0.66  F1=0.73\\\\n\\\\nBootstrap: 1000 resamples\\\\nPredictions saved to /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed456/final/predictions.jsonl\\\\n\\\\nResults saved to /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed456/final/eval_results.json\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "559aeaac-4c21-419b-a65d-7cdda759aa8c",
+            "uuid": "5b7d3b4b-4945-4394-bf61-3d37c833d360",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Training complete. Model saved to /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed456/final\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\nCondition: full_trace\\\\nCheckpoint: /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed456/final\\\\nTest samples: 1190\\\\nLoading base model from /root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.19it/s]\\\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.19it/s]\\\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.26it/s]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.81it/s]\\\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.54it/s]\\\\nThe following generation flags are not valid and may be ignored: ['top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\\nLoading LoRA adapter from /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed456/final\\\\nRunning inference...\\\\n  [50/1190] running accuracy: 0.9200\\\\n  [100/1190] running accuracy: 0.8900\\\\n  [150/1190] running accuracy: 0.9133\\\\n  [200/1190] running accuracy: 0.9350\\\\n  [250/1190] running accuracy: 0.9400\\\\n  [300/1190] running accuracy: 0.8833\\\\n  [350/1190] running accuracy: 0.9000\\\\n  [400/1190] running accuracy: 0.8950\\\\n  [450/1190] running accuracy: 0.8911\\\\n  [500/1190] running accuracy: 0.9020\\\\n  [550/1190] running accuracy: 0.8964\\\\n  [600/1190] running accuracy: 0.8950\\\\n  [650/1190] running accuracy: 0.8985\\\\n  [700/1190] running accuracy: 0.9057\\\\n  [750/1190] running accuracy: 0.8853\\\\n  [800/1190] running accuracy: 0.8925\\\\n  [850/1190] running accuracy: 0.8871\\\\n  [900/1190] running accuracy: 0.8922\\\\n  [950/1190] running accuracy: 0.8789\\\\n  [1000/1190] running accuracy: 0.8750\\\\n  [1050/1190] running accuracy: 0.8619\\\\n  [1100/1190] running accuracy: 0.8618\\\\n  [1150/1190] running accuracy: 0.8609\\\\n\\\\nComputing metrics...\\\\n\\\\n=== Evaluation Results (condition: full_trace) ===\\\\nAccuracy:           85.9% (95% CI: [83.9%, 87.7%])\\\\nMajority baseline:  71.5% (always predict 'pass')\\\\nLift over majority: +14.4pp (95% CI: [+11.8pp, +16.9pp])\\\\n\\\\nPer-class metrics:\\\\n  pass:  P=0.87  R=0.94  F1=0.90\\\\n  fail:  P=0.81  R=0.66  F1=0.73\\\\n\\\\nBootstrap: 1000 resamples\\\\nPredictions saved to /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed456/final/predictions.jsonl\\\\n\\\\nResults saved to /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed456/final/eval_results.json\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Training complete. Model saved to /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed456/final\\n`torch_dtype` is deprecated! Use `dtype` instead!\\nCondition: full_trace\\nCheckpoint: /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed456/final\\nTest samples: 1190\\nLoading base model from /root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct\\n\\rLoading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]\\rLoading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.19it/s]\\rLoading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.19it/s]\\rLoading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.26it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.81it/s]\\rLoading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.54it/s]\\nThe following generation flags are not valid and may be ignored: ['top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\nLoading LoRA adapter from /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed456/final\\nRunning inference...\\n  [50/1190] running accuracy: 0.9200\\n  [100/1190] running accuracy: 0.8900\\n  [150/1190] running accuracy: 0.9133\\n  [200/1190] running accuracy: 0.9350\\n  [250/1190] running accuracy: 0.9400\\n  [300/1190] running accuracy: 0.8833\\n  [350/1190] running accuracy: 0.9000\\n  [400/1190] running accuracy: 0.8950\\n  [450/1190] running accuracy: 0.8911\\n  [500/1190] running accuracy: 0.9020\\n  [550/1190] running accuracy: 0.8964\\n  [600/1190] running accuracy: 0.8950\\n  [650/1190] running accuracy: 0.8985\\n  [700/1190] running accuracy: 0.9057\\n  [750/1190] running accuracy: 0.8853\\n  [800/1190] running accuracy: 0.8925\\n  [850/1190] running accuracy: 0.8871\\n  [900/1190] running accuracy: 0.8922\\n  [950/1190] running accuracy: 0.8789\\n  [1000/1190] running accuracy: 0.8750\\n  [1050/1190] running accuracy: 0.8619\\n  [1100/1190] running accuracy: 0.8618\\n  [1150/1190] running accuracy: 0.8609\\n\\nComputing metrics...\\n\\n=== Evaluation Results (condition: full_trace) ===\\nAccuracy:           85.9% (95% CI: [83.9%, 87.7%])\\nMajority baseline:  71.5% (always predict 'pass')\\nLift over majority: +14.4pp (95% CI: [+11.8pp, +16.9pp])\\n\\nPer-class metrics:\\n  pass:  P=0.87  R=0.94  F1=0.90\\n  fail:  P=0.81  R=0.66  F1=0.73\\n\\nBootstrap: 1000 resamples\\nPredictions saved to /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed456/final/predictions.jsonl\\n\\nResults saved to /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only_seed456/final/eval_results.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常完成（EXIT_CODE=0）。评估结果：\n\n## label_only_seed456 评估结果\n\n| 指标 | 值 | 95% CI |\n|------|-----|--------|\n| **Accuracy** | 85.9% | [83.9%, 87.7%] |\n| Majority baseline | 71.5% | [69.2%, 73.9%] |\n| **Lift** | +14.4pp | [+11.8pp, +16.9pp] |\n| n | 1190 | — |\n\n### Per-class metrics\n\n| Class | Precision | Recall | F1 |\n|-------|-----------|--------|-----|\n| **pass** | 0.874 [0.854, 0.895] | 0.938 [0.921, 0.954] | 0.905 [0.891, 0.918] |\n| **fail** | 0.809 [0.762, 0.854] | 0.661 [0.612, 0.711] | 0.727 [0.687, 0.764] |\n\n模型对 pass 类预测较强（高 recall），对 fail 类 recall 偏低（66.1%），存在一定漏检。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "559aeaac-4c21-419b-a65d-7cdda759aa8c",
+            "uuid": "073c344c-3815-4189-a893-a7b4e9aced74",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QDH724vqGUGBHmgLkKjp96",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2343,
+                "cache_read_input_tokens": 23234,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2343
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常完成（EXIT_CODE=0）。评估结果：\n\n## label_only_seed456 评估结果\n\n| 指标 | 值 | 95% CI |\n|------|-----|--------|\n| **Accuracy** | 85.9% | [83.9%, 87.7%] |\n| Majority baseline | 71.5% | [69.2%, 73.9%] |\n| **Lift** | +14.4pp | [+11.8pp, +16.9pp] |\n| n | 1190 | — |\n\n### Per-class metrics\n\n| Class | Precision | Recall | F1 |\n|-------|-----------|--------|-----|\n| **pass** | 0.874 [0.854, 0.895] | 0.938 [0.921, 0.954] | 0.905 [0.891, 0.918] |\n| **fail** | 0.809 [0.762, 0.854] | 0.661 [0.612, 0.711] | 0.727 [0.687, 0.764] |\n\n模型对 pass 类预测较强（高 recall），对 fail 类 recall 偏低（66.1%），存在一定漏检。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 16374,
+            "duration_api_ms": 16452,
+            "num_turns": 4,
+            "stop_reason": "end_turn",
+            "session_id": "559aeaac-4c21-419b-a65d-7cdda759aa8c",
+            "total_cost_usd": 0.133128,
+            "usage": {
+              "input_tokens": 7,
+              "cache_creation_input_tokens": 13736,
+              "cache_read_input_tokens": 57842,
+              "output_tokens": 698,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 13736,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 326,
+                  "cache_read_input_tokens": 23234,
+                  "cache_creation_input_tokens": 2343,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2343
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 792,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0008719999999999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 7,
+                "outputTokens": 698,
+                "cacheReadInputTokens": 57842,
+                "cacheCreationInputTokens": 13736,
+                "webSearchRequests": 0,
+                "costUSD": 0.132256,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "27ddb988-6bb3-472d-8948-57d4c0098c71"
+          },
+          "id": "event-000012"
+        }
+      ],
+      "message_count": 12
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-label-only-seed456.md"
+}

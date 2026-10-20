@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68fe7cbc68cfa6a675ad",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis qwen15b loop only seed123",
+  "task_key": "worker_analysis_qwen15b_loop_only_seed123_20260520T124327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen15b_loop_only_seed123_20260520T124327_result.json",
+    "occurrence": 1,
+    "bytes": 560,
+    "sha256": "7ff968b6f0650997ae1869c3299b44d1b97dd49511439ed93aed2f2cff7f52fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n**qwen15b_loop_only_seed123 → SUCCESS**\n\n| Metric | seed123 | seed42 | 2-seed mean±std |\n|--------|---------|--------|-----------------|\n| accuracy | **81.09%** | 78.32% | **79.71±1.96%** |\n| pass_f1 | 0.8737 | 0.8526 | 0.8632±0.0149 |\n| fail_f1 | 0.6244 | 0.5905 | 0.6075±0.0240 |\n\nseed123 与 seed42 差 2.77pp，在 ±5pp 内，跨 seed 稳定性验证通过。1.5B 的 seed 方差 (1.96pp) 高于 7B (0.52pp)，符合小模型更敏感的预期。Registry 已标记 DONE/success，报告已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen15b-loop-only-seed123.md"
+}

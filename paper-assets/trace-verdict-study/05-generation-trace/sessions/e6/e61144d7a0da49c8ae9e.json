@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e61144d7a0da49c8ae9e",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops provenance fix p0p1p2",
+  "task_key": "worker_ops_provenance-fix-p0p1p2_20260516T050611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_provenance-fix-p0p1p2_20260516T050611_result.json",
+    "occurrence": 1,
+    "bytes": 656,
+    "sha256": "e7a84efacd52682e0a3285d17e7f6a22191193315a1d6e797780c4e36c15b942"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修复完成：\n\n- **P0**: C132(regex baseline), C133/C134/C135(DebugBench 三条独立 claim), C136(trace length ablation) 已添加；tab:regex_baseline, tab:debugbench, tab:trace_length 新建；tab:cross_model 已含 full_trace/DeepSeek=79.16%\n- **P1**: C029 文本更新为 \"VOTA_no_ae 99.40% ≈ VOTA 99.41% (statistically equivalent)\"；tab:ablation VOTA_no_ae 确认为 99.40%\n- **P2**: C092/C120 均已指向 deepseek_full_trace_seed42_v3 (0.7916), deprecated=false\n\n`check_provenance_completeness` 工具有内部 bug（unhashable dict），但 YAML 经独立验证结构正确、所有值与 registry 精确匹配。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-provenance-fix-p0p1p2.md"
+}

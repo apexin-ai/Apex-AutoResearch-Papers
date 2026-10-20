@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa7f560e1fa63693f195",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops cuda0 check",
+  "task_key": "worker_ops_cuda0_check_20260522T084503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda0_check_20260522T084503_result.json",
+    "occurrence": 1,
+    "bytes": 1187,
+    "sha256": "d3a6a909b36816b1f25ab29e97324e148b801bfde8d0baed9f932ddd20e1c580"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### cuda:0 状态\n- **显存**: 49175 MiB / 97887 MiB（50%）\n- **Utilization**: 0%\n- **无任何计算进程** — 49GB 是孤儿显存（之前某进程退出后未释放）\n\n### cuda:1 状态\n- **显存**: 71287 MiB / 97887 MiB（73%）\n- **Utilization**: 100%\n- **进程**: PID 782378，本项目的 gradient masking 实验\n  - 命令: `train_sft.py --condition exception_only --gpu 0 --gradient_mask_ratio 0.998 --gradient_checkpointing --seed 42 --wandb_run_name gradient_masking_qwen7b_seed42`\n  - 启动时间: 今天 16:04:50\n  - tmux session: `gradient_masking_qwen7b_seed42`\n  - 注意：脚本参数 `--gpu 0` 但实际通过 `CUDA_VISIBLE_DEVICES=1` 映射到物理 GPU 1\n\n### cuda:0 孤儿显存\n49GB 被占但没有对应进程，只能通过以下方式释放：\n1. 重启实例（会中断 cuda:1 上正在跑的实验）\n2. 等当前实验跑完后重启\n\n### 建议\ncuda:0 虽然可用（0% utilization），但 49GB 孤儿显存只剩 ~48GB 可用空间。对于 Qwen-7B 训练（需要 ~70GB）不够。**等 gradient masking 实验跑完后重启实例释放孤儿显存，之后 cuda:0 就有完整 97GB 可用。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda0-check-copy-3.md"
+}

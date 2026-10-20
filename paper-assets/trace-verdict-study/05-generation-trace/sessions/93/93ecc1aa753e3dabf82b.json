@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "93ecc1aa753e3dabf82b",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "ssh cuda1 eval batch 20260515",
+  "task_key": "worker_ssh_cuda1_eval_batch_20260515_20260515T151333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cuda1_eval_batch_20260515_20260515T151333.log",
+    "occurrence": 1,
+    "bytes": 1077083,
+    "sha256": "63ab1c1ef7b2163e065690c7f66c0c67ea5792d75ffe0e5f52a3dea18f3d4c79"
+  },
+  "statistics": {
+    "messages": 956,
+    "user_turns": 0,
+    "tool_calls": 439,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 74,
+      "tool_call": 439,
+      "tool_result": 439,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 956,
+      "chunks": [
+        {
+          "path": "93ecc1aa753e3dabf82b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "93ecc1aa753e3dabf82b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "93ecc1aa753e3dabf82b-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "93ecc1aa753e3dabf82b-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "93ecc1aa753e3dabf82b-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "93ecc1aa753e3dabf82b-part-0006.json",
+          "message_count": 56
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-cuda1-eval-batch-20260515.md"
+}

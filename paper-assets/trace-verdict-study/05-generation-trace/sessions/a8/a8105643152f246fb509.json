@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8105643152f246fb509",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code prepare seed analysis",
+  "task_key": "worker_code_prepare-seed-analysis_20260516T040932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare-seed-analysis_20260516T040932_result.json",
+    "occurrence": 1,
+    "bytes": 1731,
+    "sha256": "6d50e2c068616a67ea3c7c117595d9d59eba942abb9525afd0c9424bc9064683"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进度报告\n\n| Seed | 进度 | 速度 | 预估剩余 |\n|------|------|------|----------|\n| seed123 | 92/444 (21%) | ~18.7s/step | ~1h52m |\n| seed456 | 92/444 (21%) | ~18.9s/step | ~1h52m |\n\n两个训练进度一致，均在 epoch 1 中段（444 steps = 3 epochs × 148 steps/epoch）。预计约 2 小时后完成。\n\n## Eval 脚本参数确认\n\n`eval/evaluate.py` 的 `--max_length` 默认值已经是 **2048**，无需显式传参。训练完成后的 eval 命令：\n\n```bash\n# seed123 (可用 cuda:0)\npython eval/evaluate.py --condition ae_only \\\n  --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only_seed123/final \\\n  --gpu 0 --save_predictions \\\n  --output /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only_seed123/final/eval_results.json\n\n# seed456 (可用 cuda:1)\npython eval/evaluate.py --condition ae_only \\\n  --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only_seed456/final \\\n  --gpu 1 --save_predictions \\\n  --output /root/autodl-tmp/trace-verdict-study-checkpoints/ae_only_seed456/final/eval_results.json\n```\n\n## seed_robustness_summary.py\n\n已写入 `/root/trace-verdict-study/analysis/seed_robustness_summary.py`。功能：\n\n- 读取 3 个 seed 的 `eval_results.json` + `predictions.jsonl`\n- 计算 mean ± std accuracy\n- 两两 McNemar test（含连续性校正）\n- Paired bootstrap CI（10000 次，α=0.05）\n- 输出 LaTeX table\n- 保存 `seed_robustness_ae_only.json`\n\n当前只有 seed42 的结果可用，已验证脚本能正确运行（检测到缺失的 seed 会 warn 并等待）。两个训练完成并 eval 后，直接运行 `python analysis/seed_robustness_summary.py` 即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-seed-analysis.md"
+}

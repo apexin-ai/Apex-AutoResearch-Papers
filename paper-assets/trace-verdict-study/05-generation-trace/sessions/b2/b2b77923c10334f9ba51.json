@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2b77923c10334f9ba51",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis full trace 256tok seed42",
+  "task_key": "worker_analysis_full_trace_256tok_seed42_20260516T000218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_full_trace_256tok_seed42_20260516T000218_result.json",
+    "occurrence": 1,
+    "bytes": 578,
+    "sha256": "29fc577da89def7bfc2261d8721560afd38fbcaf040dcc6b87989743d0b2748a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。Registry 已更新为 DONE/negative，报告已注册。\n\n**结果摘要**：\n\n| Condition | Accuracy |\n|-----------|----------|\n| exception_only | 99.83% |\n| VOTA | 99.41% |\n| full_trace (无截断) | 81.8% |\n| **full_trace_256tok** | **78.82%** |\n| no_trace | 75.1% |\n\n**NEGATIVE**：256 token 截断使 full_trace 从 81.8% 降至 78.82%（-3.0pp，CI 不重叠）。截断后 lift over no_trace 仅 3.7pp（无截断时 6.7pp），256 tokens 不足以保留有效信号。训练正常收敛（train_loss=0.109, 3 epochs, 0.85h）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-full-trace-256tok-seed42.md"
+}

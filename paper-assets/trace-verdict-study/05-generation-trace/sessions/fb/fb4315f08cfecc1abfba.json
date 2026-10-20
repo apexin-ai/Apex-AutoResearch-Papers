@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb4315f08cfecc1abfba",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops gpu state probe",
+  "task_key": "worker_ops_gpu_state_probe_20260516T153611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_state_probe_20260516T153611_result.json",
+    "occurrence": 1,
+    "bytes": 823,
+    "sha256": "fd568742ecc41b6558d3eca6d6cbfc6ee8da7f4144e8b69f5de3aff4f03c11eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nGPU 0: [异常] | 进程=无 | 显存=49175/97887 MiB | 泄漏显存（nomarker OOM 崩溃后未释放）\nGPU 1: [占用] | 进程=train_sft(vota) PID 279483 | 显存=36535/97887 MiB | 100% 利用率，正常训练中\n```\n\n- **codellama13b_vota_seed42**: 仍在跑（step 63/298，~21%，~1 it/s，预计还需 ~4 分钟完成当前 epoch）\n- **exception_only_nomarker_seed42**: 已崩溃（CUDA OOM，EXIT_CODE=1，尝试分配 472 MiB 时 GPU 0 只剩 17.56 MiB）\n- **nomarker checkpoint 残留**: 无（目录不存在，重跑无需清理）\n- **loop_only_seed123**: 已完成（EXIT_CODE=0，eval 结果已保存）\n\n**GPU 0 问题**: 49 GB 显存被泄漏占用（无进程持有），重跑 nomarker 前需要 `nvidia-smi --gpu-reset -i 0` 释放，或等 vota 训完后整机重置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-state-probe.md"
+}

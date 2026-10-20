@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3cd98b08bf35740eb0e3",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis paper status and debugbench summary",
+  "task_key": "worker_analysis_paper_status_and_debugbench_summary_20260516T040953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_paper_status_and_debugbench_summary_20260516T040953_result.json",
+    "occurrence": 1,
+    "bytes": 1482,
+    "sha256": "64e217ab50ecec1e06e1de9ef2447f7849e7479db32882115844f1c6cdfb67eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n---\n\n## 任务 1：论文状态\n\n| 文件 | 行数 | 最后修改 |\n|------|------|----------|\n| main.tex | 39 | 03:46 (框架文件) |\n| introduction.tex | 30 | 07:44 |\n| method.tex | 85 | 07:48 |\n| experiments.tex | 189 | 10:29 |\n| discussion.tex | 86 | 10:50 |\n| related_work.tex | 29 | 07:55 |\n| conclusion.tex | 19 | 07:56 |\n| appendix.tex | 224 | 09:32 |\n| references.bib | 213 | 08:00 |\n| **main.pdf** | — | **12:11 (已编译)** |\n\n论文位于 `/root/trace-verdict-study/docs/paper/`（不是 `/paper/`），ACL review 格式，标题 *\"Exception Events Are All You Need: Cross-Model Fault Detection for Verdict Prediction\"*。Abstract 完整，所有 section 有内容，PDF 已编译（322KB）。Introduction 和 related_work 较短（各~30行），experiments 和 appendix 最充实。Discussion 今天最近修改（10:50）。\n\n## 任务 2：DebugBench 跨任务分析\n\n已写入 `artifacts/debugbench_cross_task_analysis.md` 并注册（`art_20260516_bbd3c1`）。\n\n核心数字全部通过 registry 交叉验证（修正 no_trace 为 75.13%，用户原文 75.10% 有微小偏差）。分析包含：\n- 跨任务对比表（3 conditions × 2 benchmarks）\n- 4 个关键发现（baseline 极高、exception 100%、marginal contribution 任务依赖、universal signal）\n- Regex baseline 6 策略汇总（B5 最高 99.33%，McNemar p=0.041）\n- 4 个 Discussion 角度及可直接用于论文的英文句子"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-paper-status-and-debugbench-summary.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f26b7045cf4740d3c820",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ssh deepseek progress update",
+  "task_key": "worker_ssh_deepseek_progress_update_20260515T150930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_deepseek_progress_update_20260515T150930_result.json",
+    "occurrence": 1,
+    "bytes": 759,
+    "sha256": "65a3d787db9e4efa4e9c83aa368362ecb9a63f04abb3fe89212aaa85d08db93d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态报告\n\n### exception_only — **已完成** ✓\n\n| 指标 | 值 |\n|------|-----|\n| Accuracy | **99.3%** (95% CI: 98.8%–99.7%) |\n| Majority baseline | 71.5% (always predict pass) |\n| Lift over baseline | **+27.8pp** |\n| pass | P=1.00, R=0.99, F1=1.00 |\n| fail | P=0.98, R=1.00, F1=0.99 |\n\n结果已保存至 `deepseek_exception_only/final/eval_results.json`。\n\n### full_trace — **训练中**\n\n- 当前进度：**167/444 steps (37.6%)**\n- 已运行：~1h21m\n- 速度：~16.6s/step\n- 剩余 277 steps，预估还需 **~1h17m**\n\n### GPU\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| GPU 0 | 100% | 71.6 / 97.9 GB |\n| GPU 1 | 0% | 0 / 97.9 GB |\n\nfull_trace 只用了 GPU 0，GPU 1 空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-deepseek-progress-update.md"
+}

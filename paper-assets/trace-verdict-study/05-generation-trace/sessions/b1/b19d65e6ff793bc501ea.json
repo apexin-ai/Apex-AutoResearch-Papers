@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b19d65e6ff793bc501ea",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops eval qwen15b no trace and calibration",
+  "task_key": "worker_ops_eval_qwen15b_no_trace_and_calibration_20260521T151956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_qwen15b_no_trace_and_calibration_20260521T151956_result.json",
+    "occurrence": 1,
+    "bytes": 1075,
+    "sha256": "007bc846591e7111aadda59f8ab375f44eaf149842f141d64fb5e50dc03bffa7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务全部完成。\n\n---\n\n## 汇总\n\n### Part 1: qwen1.5b_no_trace_seed42 Eval\n\n| 指标 | 值 |\n|------|-----|\n| Accuracy | **72.6%** (CI: 70.1%-75.3%) |\n| Majority baseline | 71.5% |\n| Lift | +1.1pp (CI 含 0，**不显著**) |\n| Pass F1 | 0.802 |\n| Fail F1 | 0.557 |\n\n与 qwen15b_no_trace_seed42 (67.31%) 差 5.3pp——这是独立训练的不同 checkpoint，不是重复。Registry 已从 `killed` 更新为 `success`。\n\n### Part 2: Cross-Model Calibration (plan_019)\n\n| Model | Accuracy | ECE | MCE | Brier |\n|-------|----------|-----|-----|-------|\n| Qwen-7B | 99.83% | 0.0027 | 0.8355 | 0.0013 |\n| DeepSeek-6.7B | 99.33% | 0.0049 | 0.4692 | 0.0059 |\n| CodeLlama-13B | 99.83% | 0.0020 | 0.0411 | 0.0013 |\n| Qwen-1.5B | 99.83% | 0.0020 | 0.7549 | 0.0013 |\n\nECE 全部 < 0.005，calibration 跨 4 模型 3 架构 1.5B-13B 普遍良好。MCE 高值来自极少量低置信度样本（1-2 个），不具实际意义。产出已保存至 `artifacts/cross_model_calibration_plan019.json` 和 `.md`，artifact 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-qwen15b-no-trace-and-calibration.md"
+}

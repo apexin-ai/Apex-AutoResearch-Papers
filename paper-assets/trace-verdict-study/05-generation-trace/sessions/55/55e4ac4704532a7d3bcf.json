@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "55e4ac4704532a7d3bcf",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "prep codellama 13b redownload",
+  "task_key": "worker_prep_codellama-13b-redownload_20260516T081715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_codellama-13b-redownload_20260516T081715.log",
+    "occurrence": 1,
+    "bytes": 928515,
+    "sha256": "bc75f07889ec0cea064cc9de6de3f51cf5ce19495e4a79d7fb23bf4d095025c3"
+  },
+  "statistics": {
+    "messages": 701,
+    "user_turns": 0,
+    "tool_calls": 253,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 191,
+      "tool_call": 253,
+      "tool_result": 253,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 701,
+      "chunks": [
+        {
+          "path": "55e4ac4704532a7d3bcf-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "55e4ac4704532a7d3bcf-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "55e4ac4704532a7d3bcf-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "55e4ac4704532a7d3bcf-part-0004.json",
+          "message_count": 161
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/prep-codellama-13b-redownload.md"
+}

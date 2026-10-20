@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cdc80875cc741b4c921e",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis codellama13b cross model",
+  "task_key": "worker_analysis_codellama13b_cross_model_20260516T192003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_codellama13b_cross_model_20260516T192003_result.json",
+    "occurrence": 1,
+    "bytes": 655,
+    "sha256": "cea25a5614b4784ee581905db20935a26d6c52ae5c4778910aa1058928d32b48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 数字全部验证通过，分析完成。\n\n核心结论：\n\n**Scale monotonicity (no_trace)**：严格单调 — 1.5B (67.31%) < 6.7B (73.36%) < 7B (75.13%) < 13B (76.50%)，边际收益递减。\n\n**Scale-invariance (exception_only)**：确认。所有模型 ≥99.33%，最小的 1.5B 和最大的 13B 同为 99.83%。说明 exception trace 提供的信号足以使任务变得 trivial，与模型容量无关。\n\n**关键 takeaway**：Information > Scale。exception_only 相对 no_trace 的提升 (22-33 pp) 远大于同条件下最小到最大模型的差距 (9.19 pp)。\n\n产出已注册为 `art_20260516_d1d1bd`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-codellama13b-cross-model.md"
+}

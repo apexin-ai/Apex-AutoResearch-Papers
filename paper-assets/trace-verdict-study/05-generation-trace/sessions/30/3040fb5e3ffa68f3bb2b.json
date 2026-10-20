@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3040fb5e3ffa68f3bb2b",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis paper draft completeness",
+  "task_key": "worker_analysis_paper_draft_completeness_20260516T041651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_paper_draft_completeness_20260516T041651_result.json",
+    "occurrence": 1,
+    "bytes": 872,
+    "sha256": "5f300cd9fc4c81f0434b2f22f48874e110be4c9f7d9b02e667a0714c2f9f0b27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Checklist 已生成：`artifacts/paper_completeness_check.md`\n\n**总结**：\n\n论文初稿**完成度很高** — 全部 7 个 section + appendix 12 个子 section 均有实质内容，数据与 registry 全部一致（21/22 精确匹配，1 个 rounding 差异）。4 个 figure 文件齐全，13 个 table 内容完整。DeepSeek full_trace v3 (79.16%) 已补入。编译通过，正文约 7 页，在 8 页限制内。\n\n**3 个 P0 阻塞项**：\n1. 缺 **Ethics Statement**（ARR mandatory）\n2. Trace length 256/512 **数据溯源**不明（registry 只有 1024tok）\n3. 需准备 **ARR Reproducibility Checklist**\n\n**2 个关键提升点**：\n- Discussion 偏薄（26 行），paper_framing.md 的 D1/D9/D11 等发现只在 appendix — 建议提炼到正文\n- 正文除 Figure 1 外无 figure — 建议将 cross-model gap 图移入正文"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-paper-draft-completeness.md"
+}

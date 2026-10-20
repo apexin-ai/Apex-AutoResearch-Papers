@@ -1,0 +1,714 @@
+{
+  "schema_version": "1.0",
+  "id": "5c2bdee110011aa8cdda",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "sync final fix 857",
+  "task_key": "worker_sync_final-fix-857_20260524T044530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_final-fix-857_20260524T044530.log",
+    "occurrence": 1,
+    "bytes": 104717,
+    "sha256": "c029f6337fa7ff7fea82b814dd984540f2786634339d87fb43e7feac3142b9dd"
+  },
+  "statistics": {
+    "messages": 16,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 3,
+      "tool_result": 3
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+                "session_id": "7295d96b-1474-4b46-bb64-207673fb1d22",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "9d678c8e-47c6-4f54-bde1-334a20199f0f",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779615000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "3491269d-3011-41ba-9bb3-0eb34852df0f",
+                "session_id": "7295d96b-1474-4b46-bb64-207673fb1d22"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to sync a fixed experiments.tex file to a remote server and recompile the PDF. Let me start by reading the local file, then proceed with the remote operations.\n\nNote the constraint C001 says the paper path on the server is `/root/trace-verdict-study/docs/paper/`, but the user's task says `/root/trace-verdict-study/paper/`. The constraint C001 explicitly warns that `/root/trace-verdict-study/paper/` doesn't exist. I should use the correct path from C001: `/root/trace-verdict-study/docs/paper/`.\n\n\nNow I'll read the local file to get its contents.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7295d96b-1474-4b46-bb64-207673fb1d22",
+            "uuid": "2bb247ee-cb19-4de2-9ac3-4bacc87c1fdb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LMuarrDX9UyFV7TnzunhbX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12299,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12299
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "注意：任务中指定的远程路径 `/root/trace-verdict-study/paper/` 与约束 C001 冲突——真源路径是 `/root/trace-verdict-study/docs/paper/`。我将使用 C001 的正确路径。\n\n先读取本地文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7295d96b-1474-4b46-bb64-207673fb1d22",
+            "uuid": "0c4d9d3d-55ab-4d11-84f1-85e0090327e2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LMuarrDX9UyFV7TnzunhbX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12299,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12299
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JJynaoQL3yabWar5CyzQQC",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7295d96b-1474-4b46-bb64-207673fb1d22",
+            "uuid": "59d332f9-d9c2-4d5a-882d-f0e553bdb949",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LMuarrDX9UyFV7TnzunhbX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12299,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12299
+                },
+                "output_tokens": 26,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T04:45:47.415Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JJynaoQL3yabWar5CyzQQC",
+              "type": "tool_result",
+              "content": "1\t\\section{Experiments}\n2\t\n3\tWe evaluate across two research questions:\n4\t(1)~Why do complete traces degrade SFT verdict accuracy despite containing all diagnostic information?\n5\t(2)~Which trace components carry the verdict signal, and how does their density affect learning?\n6\tAll experiments use $N{=}1{,}190$ test samples; accuracy is reported with Wilson 95\\% CIs.\\footnote{Problem-level partition (472 train / 119 test, zero crossover; \\S\\ref{sec:dataset}). \\texttt{exception\\_only} duplicates (48.99\\% test; Appendix~\\ref{sec:dedup_stats}) arise from within-problem variants; deduplication yields negligible ($<$0.1pp) delta.}\n7\tPairwise comparisons use paired bootstrap resampling ($B{=}10{,}000$, seed=42); all differences are significant at $p{<}.0001$ unless noted.\n8\tUnder problem-level clustered bootstrap ($n_\\text{eff}{=}119$), all cross-tier gaps remain significant ($p{<}.001$); 3 of 80 within-tier pairwise comparisons lose significance after Holm--Bonferroni correction.\n9\t\n10\t\\subsection{Cross-Model Comparison}\n11\t\\label{sec:cross_model}\n12\t\n13\tTable~\\ref{tab:cross_model} compares four models spanning an 8.7$\\times$ parameter range (1.5B--13B) and three architecture families under key conditions; single-seed entries are marked with $^\\dag$.\n14\tRegex B5 (99.33\\%) exploits the \\texttt{[No exception data in trace]} format marker, providing a non-learned baseline; its collapse to 28.49\\% under marker removal (\\S\\ref{sec:nomarker}) shows the SFT advantage is not format-driven.\n15\t\n16\t\\begin{table}[t]\n17\t\\centering\n18\t\\caption{Cross-model verdict accuracy (\\%, $N{=}1{,}190$) across four models (1.5B--13B) and three architecture families. Multi-seed entries report mean$\\pm$std over 2--3 seeds; $^\\dag$ = single seed (seed 42). Bold: best per model. Full per-seed breakdowns in Appendix~\\ref{sec:full_results}; per-class metrics in Appendix~\\ref{sec:per_class}.}\n19\t\\label{tab:cross_model}\n20\t\\small\n21\t\\resizebox{\\columnwidth}{!}{%\n22\t\\begin{tabular}{lcccc}\n23\t\\toprule\n24\t\\textbf{Condition} & \\textbf{Qwen-7B} & \\textbf{Qwen-1.5B} & \\textbf{CL-13B} & \\textbf{DS-6.7B} \\\\\n25\t\\midrule\n26\texception\\_only & \\textbf{99.83}{\\scriptsize$\\pm$0.00} & \\textbf{99.83}{\\scriptsize$\\pm$0.00} & \\textbf{99.89}{\\scriptsize$\\pm$0.10} & \\textbf{99.39}{\\scriptsize$\\pm$0.10} \\\\\n27\tae\\_only & 99.64{\\scriptsize$\\pm$0.49} & 98.83{\\scriptsize$\\pm$0.36} & 99.08{\\scriptsize$\\pm$0.00} & 98.53{\\scriptsize$\\pm$0.30} \\\\\n28\tVOTA & 99.05{\\scriptsize$\\pm$0.38} & 99.54{\\scriptsize$\\pm$0.06} & 98.74{\\scriptsize$\\pm$0.24} & 99.25$^\\ddag$ \\\\\n29\tloop\\_only & 86.05{\\scriptsize$\\pm$0.52} & 79.54{\\scriptsize$\\pm$1.42} & 77.40{\\scriptsize$\\pm$1.54} & 80.31{\\scriptsize$\\pm$1.65} \\\\\n30\tfull\\_trace & 81.44{\\scriptsize$\\pm$1.11} & 77.06$^\\dag$ & 79.9$^\\S$ & 79.16$^\\dag$ \\\\\n31\tno\\_trace & 75.13$^\\dag$ & 72.35{\\scriptsize$\\pm$4.48} & 76.47$^\\dag$ & 73.36$^\\dag$ \\\\\n32\t\\midrule\n33\tRegex B5 (marker) & \\multicolumn{4}{c}{99.33} \\\\\n34\tMajority baseline & \\multicolumn{4}{c}{71.51} \\\\\n35\t\\bottomrule\n36\t\\end{tabular}%\n37\t}\n38\t\\vspace{2pt}\n39\t\\par\\raggedright\\footnotesize\n40\t$^\\ddag$DeepSeek VOTA seed 42 (84.45\\%) is a tokenizer-driven truncation failure (Appendix~\\ref{sec:tokenizer_analysis}), reported as 2-seed mean.\n41\t$^\\S$CodeLlama \\texttt{full\\_trace} not available; head-2048 proxy reported.\n42\tPer-seed breakdowns for all conditions in Appendix~\\ref{sec:full_results}.\n43\t\\end{table}\n44\t\n45\t\\paragraph{Exception dominance across families.}\n46\tUnder \\texttt{exception\\_only}, all four models achieve ${\\geq}$99.33\\% across all available seeds (Table~\\ref{tab:cross_model}), spanning only 0.50pp across architectures (the tightest of any condition).\n47\tCodeLlama-13B seed 123 achieves 100\\%, indicating the 2 persistent errors (\\texttt{GeneratorExit}; Appendix~\\ref{sec:irreducible}) are convergence artifacts; 99.83\\% is a floor, not a ceiling.\n48\t\n49\t\\paragraph{Scale effects concentrate in Tier~2.}\n50\tTier~1 signals are scale-invariant across 1.5B--13B (8.7$\\times$): both \\texttt{exception\\_only} and \\texttt{ae\\_only} span ${\\leq}$1.2pp.\n51\t\\texttt{loop\\_only} spans 8.65pp, with CodeLlama-13B below Qwen-1.5B, suggesting architecture matters more than parameter count for lower-density signals.\n52\tIn contrast, \\texttt{no\\_trace} scales with capacity (Figure~\\ref{fig:cross_scale}) and shows the highest seed variance ($\\sigma{=}$4.48pp).\n53\t\n54\t\\begin{figure}[t]\n55\t\\centering\n56\t\\includegraphics[width=\\columnwidth]{fig3_cross_model_gap}\n57\t\\caption{Verdict accuracy vs.\\ model scale. \\texttt{exception\\_only} maintains ${\\geq}$99.33\\% regardless of scale, while \\texttt{no\\_trace} shows monotonic sensitivity (+4.12pp). \\texttt{nomarker} (markers removed) shows no scale degradation.}\n58\t\\label{fig:cross_scale}\n59\t\\end{figure}\n60\t\n61\t\\paragraph{VOTA cross-family variation.}\n62\tExcluding outlier seeds, VOTA achieves ${\\geq}$98.57\\% across all four models (0.80pp range).\n63\tDeepSeek seed 42 (84.45\\%) is a tokenizer-driven truncation failure (91.7\\% of samples exceed 2{,}048 tokens after tokenization; Appendix~\\ref{sec:tokenizer_analysis}), demonstrating that VOTA's longer sequences are sensitive to tokenizer efficiency: 1/4 models suffers catastrophic truncation under standard training length. \\texttt{exception\\_only}'s compact inputs (median 150 tokens) sidestep this vulnerability entirely.\n64\t\n65\t\\subsection{Component Ablation}\n66\t\\label{sec:ablation}\n67\t\n68\tMulti-seed \\texttt{ae\\_only} ablations use Qwen-7B; \\texttt{loop\\_only} is evaluated across three models to test Tier~2 generalization (Table~\\ref{tab:cross_model}).\n69\tTable~\\ref{tab:ablation} decomposes VOTA on Qwen-2.5-7B and reveals a two-tier hierarchy validated across all four models and three architecture families (Table~\\ref{tab:cross_model}): Tier~1 (${\\geq}$98.53\\%) and Tier~2 (77--86\\%) are separated by 12+pp with non-overlapping CIs.\n70\t\n71\t\\begin{table}[t]\n72\t\\centering\n73\t\\caption{Component ablation on Qwen-2.5-7B ($N{=}1{,}190$). Tier~1 signals achieve near-perfect accuracy; combining them (VOTA) slightly dilutes performance. Entries marked $^\\dag$/$^\\S$/$^\\ddag$ are 3-seed mean$\\pm$std; unmarked entries are single seed (seed 42). Per-seed breakdowns in Appendix~\\ref{sec:full_results}. Seed $\\sigma$ negatively correlates with density (0.00 for exception to 0.52 for loop).}\n74\t\\label{tab:ablation}\n75\t\\small\n76\t\\resizebox{\\columnwidth}{!}{%\n77\t\\begin{tabular}{llccc}\n78\t\\toprule\n79\t\\textbf{Condition} & \\textbf{Components} & \\textbf{Acc (\\%)} & \\textbf{95\\% CI} & \\textbf{Tier} \\\\\n80\t\\midrule\n81\tae\\_only & assertion-point & 99.64$^\\dag$ & [99.26, 99.87] & 1 \\\\\n82\texception\\_only & exception events & \\textbf{99.83} & [99.58, 100.00] & 1 \\\\\n83\tVOTA & exc+ae+loop & 99.05$^\\S$ & [98.49, 99.50] & --- \\\\\n84\tVOTA\\_no\\_ae & exc+loop & 99.41 & [98.90, 99.80] & --- \\\\\n85\tloop\\_only & loop compression & 86.05$^\\ddag$ & [83.97, 87.96] & 2 \\\\\n86\tfull\\_trace & complete trace & 81.44{\\scriptsize$\\pm$1.11} & --- & --- \\\\\n87\tno\\_trace & none & 75.13 & [72.77, 77.48] & --- \\\\\n88\t\\midrule\n89\tRegex (best) & exc.\\ type regex & 93.61 & --- & --- \\\\\n90\t3-shot (Qwen-7B) & in-context learning & 90.84 & --- & --- \\\\\n91\tZero-shot (4 models) & prompting & 51.0--93.5 & --- & --- \\\\\n92\t\\bottomrule\n93\t\\end{tabular}%\n94\t}\n95\t\\end{table}\n96\t\n97\tTier~1 signals are individually sufficient: \\texttt{exception\\_only} (99.83\\%$\\pm$0.00) exceeds VOTA (99.05\\%$\\pm$0.38) by +0.78pp (2/3 seeds $p{<}.05$, all directionally consistent), implying that combining signals introduces noise.\n98\tRemoving assertion points has no effect (\\texttt{VOTA\\_no\\_ae} = 99.41\\%, single seed), indicating exception dominance.\n99\tIndividual exception subcomponents (type, stacktrace, message) each independently achieve ${\\geq}$99.50\\%, indicating that the binary presence of an exception event, rather than any specific subcomponent, drives Tier~1 performance (Appendix~\\ref{sec:exc_subcomponent}).\n100\tThe Tier~1/2 boundary is unambiguous: the lowest Tier~1 condition (\\texttt{ae\\_only} on DeepSeek, 98.53\\%$\\pm$0.30, 2 seeds) exceeds the highest Tier~2 (\\texttt{loop\\_only} on Qwen-7B, 86.05\\%, CI [83.97, 87.96]) by 12.48\\,pp with non-overlapping CIs (gap statistic supports $k{=}2$ clusters, silhouette ${\\geq}$0.74).\n101\tTier~2 \\texttt{loop\\_only} lifts over \\texttt{no\\_trace} are model-dependent: Qwen +10.92pp (7B) and +7.19pp (1.5B); DeepSeek +6.95pp; CodeLlama +0.93pp (n.s.).\n102\t\\paragraph{Rule-based baseline comparison.}\n103\tThe strongest non-trivial regex heuristic (B4: exception class name matching; Table~\\ref{tab:regex}) achieves 93.61\\% accuracy (F1=0.876), trailing SFT \\texttt{exception\\_only} (99.83\\%, F1=0.997) by 6.22pp (McNemar $p{<}.001$).\n104\tThe gap concentrates on caught-exception boundary cases: regex flags all exception events as failures, while SFT learns to distinguish caught exceptions (benign, inside \\texttt{try/except}) from uncaught faults, correctly resolving 6/8 boundary samples (Appendix~\\ref{sec:regex_baselines}).\n105\tAcross all formats, SFT outperforms the best applicable regex by +3.62--23.86pp (Appendix~\\ref{sec:regex_baselines}).\n106\t\n107\t\\paragraph{Zero-shot and few-shot LLM baselines.}\n108\tZero-shot prompting spans 51.0--93.5\\% across four models (42.44pp range); three-shot ICL on Qwen-7B (90.84\\%) improves only 1.76pp.\n109\tSFT compresses this range to 0.50pp (99.39--99.89\\%), closing a 6--49pp gap with 4,720 samples (Appendix~\\ref{sec:zeroshot_cross_model}).\n110\t\\paragraph{Frontier model crossover.}\n111\tTwo frontier models illustrate that SFT's advantage depends on input density: under \\texttt{no\\_trace}, GPT-4o (84.45\\%) and GPT-4.1 (77.31\\%) outperform SFT Qwen-7B (75.13\\%), but under \\texttt{exception\\_only} the ranking reverses (SFT 99.83\\% vs.\\ GPT-4o 87.98\\%).\n112\tCompact diagnostic input unlocks SFT's full advantage over general reasoning capacity.\n113\t\n114\t\\subsection{Format Marker Ablation}\n115\t\\label{sec:nomarker}\n116\t\n117\tThe \\texttt{exception\\_only} format includes a \\texttt{[No exception data in trace]} marker in all pass-class samples (regex baseline B5 exploits this for 99.33\\% accuracy; Appendix~\\ref{sec:regex_baselines}).\n118\tTo quantify the marker's contribution, we retrain with all format markers removed (\\texttt{nomarker} condition).\n119\t\n120\tQwen-7B 3-seed mean: 97.65\\% $\\pm$ 0.96 (seeds 42/123/456: 96.55/98.32/98.07\\%), a drop of 2.18pp from \\texttt{exception\\_only} (99.83\\%).\n121\tQwen-1.5B: 97.82\\%, drop of 2.01pp.\n122\tThe marker contribution (${\\sim}$2pp) accounts for only ${\\sim}$9\\% of the total exception lift over \\texttt{no\\_trace} (24.70pp on 7B).\n123\tRegex baselines illustrate this decomposition: B5 (\\texttt{[No exception data]}$\\to$pass, 99.33\\% with markers) collapses to 28.49\\% without markers, showing it is entirely format-dependent.\n124\tThe strongest semantic regex B4 (exception class matching, 93.61\\%) is marker-invariant; SFT \\texttt{nomarker} (97.65\\%) exceeds it by 4.04pp, isolating the learned semantic contribution beyond pattern matching.\n125\t\n126\t\\paragraph{Cross-dataset transfer.}\n127\tBidirectional evaluation demonstrates generalization: HumanEval${\\to}$MBPP \\texttt{exception\\_only} achieves 99.41\\% ($N{=}4{,}270$) and MBPP${\\to}$HumanEval achieves 100.0\\% ($N{=}1{,}640$), while \\texttt{no\\_trace} drops to near-majority baseline in both directions (70.56\\% vs.\\ 69.02\\% majority; 67.99\\% vs.\\ 61.65\\%).\n128\tThe near-zero transfer loss for exception signals, across independently authored problem sets with no problem overlap, shows SFT learns language-level diagnostic patterns, not dataset-specific artifacts.\n129\tUnder marker removal, cross-dataset accuracy drops to 95.5\\% ($-$3.9pp), indicating that the majority of cross-dataset transfer relies on learned diagnostic patterns rather than format markers.\n130\t\n131\t\\subsection{Decomposing the Full-Trace Degradation}\n132\t\\label{sec:density}\n133\t\n134\tThe 18.07pp gap between \\texttt{exception\\_only} (99.83\\%) and \\texttt{full\\_trace} (81.76\\%) could reflect gradient dilution (diagnostic tokens are ${\\sim}$1/500 of full traces, diluting gradient signal during training) or content quality (verbose input buries diagnostic signals at inference).\n135\t\n136\t\\paragraph{Controlled gradient masking.}\n137\tTo isolate gradient dilution, we mask 99.8\\% of gradient updates during \\texttt{exception\\_only} training, matching the diagnostic token ratio of full traces while preserving compact input.\n138\tThis yields 99.22\\% (mean $-$0.61pp from \\texttt{exception\\_only}, 3 seeds), limiting gradient dilution to ${\\leq}$4\\% of the 18.07pp gap (Table~\\ref{tab:density}).\n139\tThe gradient masking bound attributes the remaining ${\\geq}$96\\% to content quality (diagnostic signal density at inference), though forward-pass attention during masked training is an unquantified residual.\n140\tNote that masking affects only the backward pass; the model still attends to all input tokens during the forward pass, so this bounds gradient dilution's contribution but does not rule out attention-based information flow as a residual confound.\n141\t\n142\t\\begin{table}[t]\n143\t\\centering\n144\t\\caption{Decomposition of the full-trace degradation (Qwen-7B). Gradient masking attributes ${\\leq}$4\\% to gradient dilution; the bound assigns the remainder to content quality, though forward-pass attention is a residual confound (\\S\\ref{sec:density}). Label-only loss provides a confounded but directionally consistent complementary estimate.}\n145\t\\label{tab:density}\n146\t\\small\n147\t\\begin{tabular}{lcc}\n148\t\\toprule\n149\t\\textbf{Condition} & \\textbf{Acc (\\%)} & \\textbf{$\\Delta$} \\\\\n150\t\\midrule\n151\texception\\_only & 99.83{\\scriptsize$\\pm$0.00} & --- \\\\\n152\t\\quad + grad mask (99.8\\%) & 99.22{\\scriptsize$\\pm$0.20}$^\\S$ & $-$0.61pp \\\\\n153\tfull\\_trace & 81.76$^\\ddag$ & $-$18.07pp \\\\\n154\t\\midrule\n155\t\\multicolumn{3}{l}{\\textit{Complementary (confounded):}} \\\\\n156\tfull\\_trace + label-only loss & 85.94{\\scriptsize$\\pm$1.12} & +4.50pp$^\\dag$ \\\\\n157\t\\bottomrule\n158\t\\end{tabular}\n159\t\\vspace{2pt}\n160\t\\par\\raggedright\\footnotesize\n161\t$^\\S$Mean $\\pm$ std over 3 seeds (42, 123, 456).\n162\t$^\\ddag$Matched-seed baseline; 3-seed mean 81.44\\%$\\pm$1.11 (Table~\\ref{tab:cross_model}).\n163\t$^\\dag$vs.\\ \\texttt{full\\_trace} (81.44\\%$\\pm$1.11); not significant under clustered bootstrap (95\\% CI [$-$0.6, +9.8]pp, $n_\\text{eff}{=}119$).\n164\t\\end{table}\n165\t\n166\t\\paragraph{Complementary evidence.}\n167\tLabel-only loss on full traces (+4.50pp, 3 seeds) yields a confounded upper bound of ${\\leq}$26\\% gradient contribution, consistent with the masking estimate (${\\leq}$4\\%) but not significant under clustered bootstrap (95\\% CI [$-$0.6, +9.8]pp).\n168\tQwen-1.5B shows a similar label-only pattern (17\\%/83\\%, 3 seeds); CodeLlama and DeepSeek exhibit label-only collapse to majority baseline (28.5\\%), limiting this complementary analysis to the Qwen family.\n169\tThe architecture dependence suggests label-only training is sensitive to model capacity or optimization landscape; the gradient masking ablation provides a more robust, architecture-independent decomposition.\n170\tCross-architecture validation on two additional families is directionally consistent (single seed each): DeepSeek-Coder-6.7B achieves 99.33\\% and CodeLlama-13B achieves 100\\% under 99.8\\% masking, both well above the full-trace range (77--82\\%, Table~\\ref{tab:cross_model}), supporting content quality as the dominant factor across architectures.\n171\tError analysis supports the content quality interpretation: all 217 \\texttt{full\\_trace} errors occur where tokenizer truncation removes diagnostic markers, manifesting through mechanical truncation rather than semantic confusion.\n172\t\n173\t\\subsection{Complementary Analyses}\n174\t\\label{sec:additional}\n175\t\n176\t\\paragraph{Trace length ablation.}\n177\t\\label{sec:trace_length}\n178\tVarying the head-truncated trace token budget (256--no limit) on Qwen-7B yields accuracy in a narrow 77.2\\%--81.8\\% band with a non-monotonic pattern: 1024-token prefixes (77.23\\%) underperform 512-token prefixes (80.42\\%, $p{=}.002$), because mid-length prefixes retain enough irrelevant content to mislead the model while discarding diagnostic events near the trace terminus (Appendix~\\ref{sec:trace_length_full}).\n179\tCritically, removing the token budget entirely (no truncation) yields 81.76\\%, identical to head-2048, ruling out truncation as the explanation for the full-trace degradation.\n180\tThis non-monotonicity is specific to head-truncation; under tail-truncation, accuracy increases monotonically for two of three models (Table~\\ref{tab:tail_cross_model} in Appendix), with only DeepSeek showing a mild architecture-specific reversal at tail-1024$\\to$tail-2048 ($-$1.5pp).\n181\t\n182\t\\paragraph{Truncation direction and budget curve.}\n183\tTail-truncation dramatically outperforms head-truncation: tail-2048 exceeds head-2048 by 15.5--22.6pp across three models (Appendix~\\ref{sec:trace_length_full}).\n184\tFigure~\\ref{fig:budget_curve} reveals a sharp phase transition at 384$\\to$512 tail tokens: all four models simultaneously jump +13.2--22.0pp, crossing from near-baseline to 93--98\\%.\n185\tThis threshold coincides with the globals module dump boundary (${\\sim}$384 tokens), beyond which structured execution markers become visible (Table~\\ref{tab:tail_cross_model}).\n186\tBeyond 512 tokens, all 12 model$\\times$seed combinations converge into [93.61\\%, 98.24\\%] (Table~\\ref{tab:tail512_seeds}).\n187\t\\texttt{tail\\_2048} captures 95--98\\% of \\texttt{exception\\_only}'s accuracy; the residual 2--5pp gap shows semantic extraction still outperforms positional extraction.\n188\t\n189\t\\begin{figure}[t]\n190\t\\centering\n191\t\\includegraphics[width=\\columnwidth]{budget_curve}\n192\t\\caption{Tail-truncation budget curve across four models and three architecture families ($N{=}1{,}190$). A sharp phase transition at 384$\\to$512 tokens (+13.2--22.0pp) coincides with the globals module dump boundary. Dashed lines: \\texttt{exception\\_only} ceiling and \\texttt{no\\_trace} floor.}\n193\t\\label{fig:budget_curve}\n194\t\\end{figure}\n195\t\n196\t\\paragraph{Calibration.}\n197\t\\label{sec:calibration}\n198\tCalibration mirrors the tier hierarchy: \\texttt{exception\\_only} achieves ECE = 0.0027 vs.\\ 0.171 for \\texttt{no\\_trace}, a 63$\\times$ gap (Figure~\\ref{fig:calibration}).\n199\tThis calibration advantage generalizes across architectures and scales: all four models (1.5B--13B) achieve ECE ${<}$ 0.007 under \\texttt{exception\\_only} (Table~\\ref{tab:calibration_cross} in Appendix), indicating well-calibrated predictions rather than overfit confidence.\n200\t\n201\t\\paragraph{Error analysis.}\n202\t\\texttt{exception\\_only}'s 2 errors have zero overlap with all other conditions' error sets (Jaccard = 0.000; Appendix~\\ref{sec:error_overlap}); per-type breakdown shows all standard exception types achieve 100\\% accuracy, with only \\texttt{GeneratorExit} (a benign \\texttt{BaseException} subclass) causing failures (Appendix~\\ref{sec:exception_type}).\n203\t\n204\t\\paragraph{Length control.}\n205\tPadding \\texttt{exception\\_only} to 2{,}048 tokens, even in a semantically loaded position (after the verdict region), yields identical accuracy (99.83\\%), indicating the 18--23pp gap arises from spurious patterns in verbose trace content, not sequence length.\n206\t\n207\t\\paragraph{Supplementary OOD analysis.}\n208\t\\label{sec:debugbench}\n209\tOn DebugBench \\citep{tian2024debugbench} ($N{=}426$), the condition ranking is preserved: \\texttt{exception\\_only} 100\\%, VOTA 99.77\\%, \\texttt{no\\_trace} 96.71\\%.\n210\tHowever, narrow margins (3.29pp headroom from \\texttt{no\\_trace}) limit discriminative power; this supplementary analysis preserves the ranking but cannot establish effect sizes comparable to the primary dataset (Appendix~\\ref{sec:debugbench_full}).\n211\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7295d96b-1474-4b46-bb64-207673fb1d22",
+            "uuid": "ae4a3fb2-4ec0-46a6-aa12-903f8fbea1d5",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex",
+                "content": "\\section{Experiments}\n\nWe evaluate across two research questions:\n(1)~Why do complete traces degrade SFT verdict accuracy despite containing all diagnostic information?\n(2)~Which trace components carry the verdict signal, and how does their density affect learning?\nAll experiments use $N{=}1{,}190$ test samples; accuracy is reported with Wilson 95\\% CIs.\\footnote{Problem-level partition (472 train / 119 test, zero crossover; \\S\\ref{sec:dataset}). \\texttt{exception\\_only} duplicates (48.99\\% test; Appendix~\\ref{sec:dedup_stats}) arise from within-problem variants; deduplication yields negligible ($<$0.1pp) delta.}\nPairwise comparisons use paired bootstrap resampling ($B{=}10{,}000$, seed=42); all differences are significant at $p{<}.0001$ unless noted.\nUnder problem-level clustered bootstrap ($n_\\text{eff}{=}119$), all cross-tier gaps remain significant ($p{<}.001$); 3 of 80 within-tier pairwise comparisons lose significance after Holm--Bonferroni correction.\n\n\\subsection{Cross-Model Comparison}\n\\label{sec:cross_model}\n\nTable~\\ref{tab:cross_model} compares four models spanning an 8.7$\\times$ parameter range (1.5B--13B) and three architecture families under key conditions; single-seed entries are marked with $^\\dag$.\nRegex B5 (99.33\\%) exploits the \\texttt{[No exception data in trace]} format marker, providing a non-learned baseline; its collapse to 28.49\\% under marker removal (\\S\\ref{sec:nomarker}) shows the SFT advantage is not format-driven.\n\n\\begin{table}[t]\n\\centering\n\\caption{Cross-model verdict accuracy (\\%, $N{=}1{,}190$) across four models (1.5B--13B) and three architecture families. Multi-seed entries report mean$\\pm$std over 2--3 seeds; $^\\dag$ = single seed (seed 42). Bold: best per model. Full per-seed breakdowns in Appendix~\\ref{sec:full_results}; per-class metrics in Appendix~\\ref{sec:per_class}.}\n\\label{tab:cross_model}\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Condition} & \\textbf{Qwen-7B} & \\textbf{Qwen-1.5B} & \\textbf{CL-13B} & \\textbf{DS-6.7B} \\\\\n\\midrule\nexception\\_only & \\textbf{99.83}{\\scriptsize$\\pm$0.00} & \\textbf{99.83}{\\scriptsize$\\pm$0.00} & \\textbf{99.89}{\\scriptsize$\\pm$0.10} & \\textbf{99.39}{\\scriptsize$\\pm$0.10} \\\\\nae\\_only & 99.64{\\scriptsize$\\pm$0.49} & 98.83{\\scriptsize$\\pm$0.36} & 99.08{\\scriptsize$\\pm$0.00} & 98.53{\\scriptsize$\\pm$0.30} \\\\\nVOTA & 99.05{\\scriptsize$\\pm$0.38} & 99.54{\\scriptsize$\\pm$0.06} & 98.74{\\scriptsize$\\pm$0.24} & 99.25$^\\ddag$ \\\\\nloop\\_only & 86.05{\\scriptsize$\\pm$0.52} & 79.54{\\scriptsize$\\pm$1.42} & 77.40{\\scriptsize$\\pm$1.54} & 80.31{\\scriptsize$\\pm$1.65} \\\\\nfull\\_trace & 81.44{\\scriptsize$\\pm$1.11} & 77.06$^\\dag$ & 79.9$^\\S$ & 79.16$^\\dag$ \\\\\nno\\_trace & 75.13$^\\dag$ & 72.35{\\scriptsize$\\pm$4.48} & 76.47$^\\dag$ & 73.36$^\\dag$ \\\\\n\\midrule\nRegex B5 (marker) & \\multicolumn{4}{c}{99.33} \\\\\nMajority baseline & \\multicolumn{4}{c}{71.51} \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\vspace{2pt}\n\\par\\raggedright\\footnotesize\n$^\\ddag$DeepSeek VOTA seed 42 (84.45\\%) is a tokenizer-driven truncation failure (Appendix~\\ref{sec:tokenizer_analysis}), reported as 2-seed mean.\n$^\\S$CodeLlama \\texttt{full\\_trace} not available; head-2048 proxy reported.\nPer-seed breakdowns for all conditions in Appendix~\\ref{sec:full_results}.\n\\end{table}\n\n\\paragraph{Exception dominance across families.}\nUnder \\texttt{exception\\_only}, all four models achieve ${\\geq}$99.33\\% across all available seeds (Table~\\ref{tab:cross_model}), spanning only 0.50pp across architectures (the tightest of any condition).\nCodeLlama-13B seed 123 achieves 100\\%, indicating the 2 persistent errors (\\texttt{GeneratorExit}; Appendix~\\ref{sec:irreducible}) are convergence artifacts; 99.83\\% is a floor, not a ceiling.\n\n\\paragraph{Scale effects concentrate in Tier~2.}\nTier~1 signals are scale-invariant across 1.5B--13B (8.7$\\times$): both \\texttt{exception\\_only} and \\texttt{ae\\_only} span ${\\leq}$1.2pp.\n\\texttt{loop\\_only} spans 8.65pp, with CodeLlama-13B below Qwen-1.5B, suggesting architecture matters more than parameter count for lower-density signals.\nIn contrast, \\texttt{no\\_trace} scales with capacity (Figure~\\ref{fig:cross_scale}) and shows the highest seed variance ($\\sigma{=}$4.48pp).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_cross_model_gap}\n\\caption{Verdict accuracy vs.\\ model scale. \\texttt{exception\\_only} maintains ${\\geq}$99.33\\% regardless of scale, while \\texttt{no\\_trace} shows monotonic sensitivity (+4.12pp). \\texttt{nomarker} (markers removed) shows no scale degradation.}\n\\label{fig:cross_scale}\n\\end{figure}\n\n\\paragraph{VOTA cross-family variation.}\nExcluding outlier seeds, VOTA achieves ${\\geq}$98.57\\% across all four models (0.80pp range).\nDeepSeek seed 42 (84.45\\%) is a tokenizer-driven truncation failure (91.7\\% of samples exceed 2{,}048 tokens after tokenization; Appendix~\\ref{sec:tokenizer_analysis}), demonstrating that VOTA's longer sequences are sensitive to tokenizer efficiency: 1/4 models suffers catastrophic truncation under standard training length. \\texttt{exception\\_only}'s compact inputs (median 150 tokens) sidestep this vulnerability entirely.\n\n\\subsection{Component Ablation}\n\\label{sec:ablation}\n\nMulti-seed \\texttt{ae\\_only} ablations use Qwen-7B; \\texttt{loop\\_only} is evaluated across three models to test Tier~2 generalization (Table~\\ref{tab:cross_model}).\nTable~\\ref{tab:ablation} decomposes VOTA on Qwen-2.5-7B and reveals a two-tier hierarchy validated across all four models and three architecture families (Table~\\ref{tab:cross_model}): Tier~1 (${\\geq}$98.53\\%) and Tier~2 (77--86\\%) are separated by 12+pp with non-overlapping CIs.\n\n\\begin{table}[t]\n\\centering\n\\caption{Component ablation on Qwen-2.5-7B ($N{=}1{,}190$). Tier~1 signals achieve near-perfect accuracy; combining them (VOTA) slightly dilutes performance. Entries marked $^\\dag$/$^\\S$/$^\\ddag$ are 3-seed mean$\\pm$std; unmarked entries are single seed (seed 42). Per-seed breakdowns in Appendix~\\ref{sec:full_results}. Seed $\\sigma$ negatively correlates with density (0.00 for exception to 0.52 for loop).}\n\\label{tab:ablation}\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llccc}\n\\toprule\n\\textbf{Condition} & \\textbf{Components} & \\textbf{Acc (\\%)} & \\textbf{95\\% CI} & \\textbf{Tier} \\\\\n\\midrule\nae\\_only & assertion-point & 99.64$^\\dag$ & [99.26, 99.87] & 1 \\\\\nexception\\_only & exception events & \\textbf{99.83} & [99.58, 100.00] & 1 \\\\\nVOTA & exc+ae+loop & 99.05$^\\S$ & [98.49, 99.50] & --- \\\\\nVOTA\\_no\\_ae & exc+loop & 99.41 & [98.90, 99.80] & --- \\\\\nloop\\_only & loop compression & 86.05$^\\ddag$ & [83.97, 87.96] & 2 \\\\\nfull\\_trace & complete trace & 81.44{\\scriptsize$\\pm$1.11} & --- & --- \\\\\nno\\_trace & none & 75.13 & [72.77, 77.48] & --- \\\\\n\\midrule\nRegex (best) & exc.\\ type regex & 93.61 & --- & --- \\\\\n3-shot (Qwen-7B) & in-context learning & 90.84 & --- & --- \\\\\nZero-shot (4 models) & prompting & 51.0--93.5 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\nTier~1 signals are individually sufficient: \\texttt{exception\\_only} (99.83\\%$\\pm$0.00) exceeds VOTA (99.05\\%$\\pm$0.38) by +0.78pp (2/3 seeds $p{<}.05$, all directionally consistent), implying that combining signals introduces noise.\nRemoving assertion points has no effect (\\texttt{VOTA\\_no\\_ae} = 99.41\\%, single seed), indicating exception dominance.\nIndividual exception subcomponents (type, stacktrace, message) each independently achieve ${\\geq}$99.50\\%, indicating that the binary presence of an exception event, rather than any specific subcomponent, drives Tier~1 performance (Appendix~\\ref{sec:exc_subcomponent}).\nThe Tier~1/2 boundary is unambiguous: the lowest Tier~1 condition (\\texttt{ae\\_only} on DeepSeek, 98.53\\%$\\pm$0.30, 2 seeds) exceeds the highest Tier~2 (\\texttt{loop\\_only} on Qwen-7B, 86.05\\%, CI [83.97, 87.96]) by 12.48\\,pp with non-overlapping CIs (gap statistic supports $k{=}2$ clusters, silhouette ${\\geq}$0.74).\nTier~2 \\texttt{loop\\_only} lifts over \\texttt{no\\_trace} are model-dependent: Qwen +10.92pp (7B) and +7.19pp (1.5B); DeepSeek +6.95pp; CodeLlama +0.93pp (n.s.).\n\\paragraph{Rule-based baseline comparison.}\nThe strongest non-trivial regex heuristic (B4: exception class name matching; Table~\\ref{tab:regex}) achieves 93.61\\% accuracy (F1=0.876), trailing SFT \\texttt{exception\\_only} (99.83\\%, F1=0.997) by 6.22pp (McNemar $p{<}.001$).\nThe gap concentrates on caught-exception boundary cases: regex flags all exception events as failures, while SFT learns to distinguish caught exceptions (benign, inside \\texttt{try/except}) from uncaught faults, correctly resolving 6/8 boundary samples (Appendix~\\ref{sec:regex_baselines}).\nAcross all formats, SFT outperforms the best applicable regex by +3.62--23.86pp (Appendix~\\ref{sec:regex_baselines}).\n\n\\paragraph{Zero-shot and few-shot LLM baselines.}\nZero-shot prompting spans 51.0--93.5\\% across four models (42.44pp range); three-shot ICL on Qwen-7B (90.84\\%) improves only 1.76pp.\nSFT compresses this range to 0.50pp (99.39--99.89\\%), closing a 6--49pp gap with 4,720 samples (Appendix~\\ref{sec:zeroshot_cross_model}).\n\\paragraph{Frontier model crossover.}\nTwo frontier models illustrate that SFT's advantage depends on input density: under \\texttt{no\\_trace}, GPT-4o (84.45\\%) and GPT-4.1 (77.31\\%) outperform SFT Qwen-7B (75.13\\%), but under \\texttt{exception\\_only} the ranking reverses (SFT 99.83\\% vs.\\ GPT-4o 87.98\\%).\nCompact diagnostic input unlocks SFT's full advantage over general reasoning capacity.\n\n\\subsection{Format Marker Ablation}\n\\label{sec:nomarker}\n\nThe \\texttt{exception\\_only} format includes a \\texttt{[No exception data in trace]} marker in all pass-class samples (regex baseline B5 exploits this for 99.33\\% accuracy; Appendix~\\ref{sec:regex_baselines}).\nTo quantify the marker's contribution, we retrain with all format markers removed (\\texttt{nomarker} condition).\n\nQwen-7B 3-seed mean: 97.65\\% $\\pm$ 0.96 (seeds 42/123/456: 96.55/98.32/98.07\\%), a drop of 2.18pp from \\texttt{exception\\_only} (99.83\\%).\nQwen-1.5B: 97.82\\%, drop of 2.01pp.\nThe marker contribution (${\\sim}$2pp) accounts for only ${\\sim}$9\\% of the total exception lift over \\texttt{no\\_trace} (24.70pp on 7B).\nRegex baselines illustrate this decomposition: B5 (\\texttt{[No exception data]}$\\to$pass, 99.33\\% with markers) collapses to 28.49\\% without markers, showing it is entirely format-dependent.\nThe strongest semantic regex B4 (exception class matching, 93.61\\%) is marker-invariant; SFT \\texttt{nomarker} (97.65\\%) exceeds it by 4.04pp, isolating the learned semantic contribution beyond pattern matching.\n\n\\paragraph{Cross-dataset transfer.}\nBidirectional evaluation demonstrates generalization: HumanEval${\\to}$MBPP \\texttt{exception\\_only} achieves 99.41\\% ($N{=}4{,}270$) and MBPP${\\to}$HumanEval achieves 100.0\\% ($N{=}1{,}640$), while \\texttt{no\\_trace} drops to near-majority baseline in both directions (70.56\\% vs.\\ 69.02\\% majority; 67.99\\% vs.\\ 61.65\\%).\nThe near-zero transfer loss for exception signals, across independently authored problem sets with no problem overlap, shows SFT learns language-level diagnostic patterns, not dataset-specific artifacts.\nUnder marker removal, cross-dataset accuracy drops to 95.5\\% ($-$3.9pp), indicating that the majority of cross-dataset transfer relies on learned diagnostic patterns rather than format markers.\n\n\\subsection{Decomposing the Full-Trace Degradation}\n\\label{sec:density}\n\nThe 18.07pp gap between \\texttt{exception\\_only} (99.83\\%) and \\texttt{full\\_trace} (81.76\\%) could reflect gradient dilution (diagnostic tokens are ${\\sim}$1/500 of full traces, diluting gradient signal during training) or content quality (verbose input buries diagnostic signals at inference).\n\n\\paragraph{Controlled gradient masking.}\nTo isolate gradient dilution, we mask 99.8\\% of gradient updates during \\texttt{exception\\_only} training, matching the diagnostic token ratio of full traces while preserving compact input.\nThis yields 99.22\\% (mean $-$0.61pp from \\texttt{exception\\_only}, 3 seeds), limiting gradient dilution to ${\\leq}$4\\% of the 18.07pp gap (Table~\\ref{tab:density}).\nThe gradient masking bound attributes the remaining ${\\geq}$96\\% to content quality (diagnostic signal density at inference), though forward-pass attention during masked training is an unquantified residual.\nNote that masking affects only the backward pass; the model still attends to all input tokens during the forward pass, so this bounds gradient dilution's contribution but does not rule out attention-based information flow as a residual confound.\n\n\\begin{table}[t]\n\\centering\n\\caption{Decomposition of the full-trace degradation (Qwen-7B). Gradient masking attributes ${\\leq}$4\\% to gradient dilution; the bound assigns the remainder to content quality, though forward-pass attention is a residual confound (\\S\\ref{sec:density}). Label-only loss provides a confounded but directionally consistent complementary estimate.}\n\\label{tab:density}\n\\small\n\\begin{tabular}{lcc}\n\\toprule\n\\textbf{Condition} & \\textbf{Acc (\\%)} & \\textbf{$\\Delta$} \\\\\n\\midrule\nexception\\_only & 99.83{\\scriptsize$\\pm$0.00} & --- \\\\\n\\quad + grad mask (99.8\\%) & 99.22{\\scriptsize$\\pm$0.20}$^\\S$ & $-$0.61pp \\\\\nfull\\_trace & 81.76$^\\ddag$ & $-$18.07pp \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textit{Complementary (confounded):}} \\\\\nfull\\_trace + label-only loss & 85.94{\\scriptsize$\\pm$1.12} & +4.50pp$^\\dag$ \\\\\n\\bottomrule\n\\end{tabular}\n\\vspace{2pt}\n\\par\\raggedright\\footnotesize\n$^\\S$Mean $\\pm$ std over 3 seeds (42, 123, 456).\n$^\\ddag$Matched-seed baseline; 3-seed mean 81.44\\%$\\pm$1.11 (Table~\\ref{tab:cross_model}).\n$^\\dag$vs.\\ \\texttt{full\\_trace} (81.44\\%$\\pm$1.11); not significant under clustered bootstrap (95\\% CI [$-$0.6, +9.8]pp, $n_\\text{eff}{=}119$).\n\\end{table}\n\n\\paragraph{Complementary evidence.}\nLabel-only loss on full traces (+4.50pp, 3 seeds) yields a confounded upper bound of ${\\leq}$26\\% gradient contribution, consistent with the masking estimate (${\\leq}$4\\%) but not significant under clustered bootstrap (95\\% CI [$-$0.6, +9.8]pp).\nQwen-1.5B shows a similar label-only pattern (17\\%/83\\%, 3 seeds); CodeLlama and DeepSeek exhibit label-only collapse to majority baseline (28.5\\%), limiting this complementary analysis to the Qwen family.\nThe architecture dependence suggests label-only training is sensitive to model capacity or optimization landscape; the gradient masking ablation provides a more robust, architecture-independent decomposition.\nCross-architecture validation on two additional families is directionally consistent (single seed each): DeepSeek-Coder-6.7B achieves 99.33\\% and CodeLlama-13B achieves 100\\% under 99.8\\% masking, both well above the full-trace range (77--82\\%, Table~\\ref{tab:cross_model}), supporting content quality as the dominant factor across architectures.\nError analysis supports the content quality interpretation: all 217 \\texttt{full\\_trace} errors occur where tokenizer truncation removes diagnostic markers, manifesting through mechanical truncation rather than semantic confusion.\n\n\\subsection{Complementary Analyses}\n\\label{sec:additional}\n\n\\paragraph{Trace length ablation.}\n\\label{sec:trace_length}\nVarying the head-truncated trace token budget (256--no limit) on Qwen-7B yields accuracy in a narrow 77.2\\%--81.8\\% band with a non-monotonic pattern: 1024-token prefixes (77.23\\%) underperform 512-token prefixes (80.42\\%, $p{=}.002$), because mid-length prefixes retain enough irrelevant content to mislead the model while discarding diagnostic events near the trace terminus (Appendix~\\ref{sec:trace_length_full}).\nCritically, removing the token budget entirely (no truncation) yields 81.76\\%, identical to head-2048, ruling out truncation as the explanation for the full-trace degradation.\nThis non-monotonicity is specific to head-truncation; under tail-truncation, accuracy increases monotonically for two of three models (Table~\\ref{tab:tail_cross_model} in Appendix), with only DeepSeek showing a mild architecture-specific reversal at tail-1024$\\to$tail-2048 ($-$1.5pp).\n\n\\paragraph{Truncation direction and budget curve.}\nTail-truncation dramatically outperforms head-truncation: tail-2048 exceeds head-2048 by 15.5--22.6pp across three models (Appendix~\\ref{sec:trace_length_full}).\nFigure~\\ref{fig:budget_curve} reveals a sharp phase transition at 384$\\to$512 tail tokens: all four models simultaneously jump +13.2--22.0pp, crossing from near-baseline to 93--98\\%.\nThis threshold coincides with the globals module dump boundary (${\\sim}$384 tokens), beyond which structured execution markers become visible (Table~\\ref{tab:tail_cross_model}).\nBeyond 512 tokens, all 12 model$\\times$seed combinations converge into [93.61\\%, 98.24\\%] (Table~\\ref{tab:tail512_seeds}).\n\\texttt{tail\\_2048} captures 95--98\\% of \\texttt{exception\\_only}'s accuracy; the residual 2--5pp gap shows semantic extraction still outperforms positional extraction.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{budget_curve}\n\\caption{Tail-truncation budget curve across four models and three architecture families ($N{=}1{,}190$). A sharp phase transition at 384$\\to$512 tokens (+13.2--22.0pp) coincides with the globals module dump boundary. Dashed lines: \\texttt{exception\\_only} ceiling and \\texttt{no\\_trace} floor.}\n\\label{fig:budget_curve}\n\\end{figure}\n\n\\paragraph{Calibration.}\n\\label{sec:calibration}\nCalibration mirrors the tier hierarchy: \\texttt{exception\\_only} achieves ECE = 0.0027 vs.\\ 0.171 for \\texttt{no\\_trace}, a 63$\\times$ gap (Figure~\\ref{fig:calibration}).\nThis calibration advantage generalizes across architectures and scales: all four models (1.5B--13B) achieve ECE ${<}$ 0.007 under \\texttt{exception\\_only} (Table~\\ref{tab:calibration_cross} in Appendix), indicating well-calibrated predictions rather than overfit confidence.\n\n\\paragraph{Error analysis.}\n\\texttt{exception\\_only}'s 2 errors have zero overlap with all other conditions' error sets (Jaccard = 0.000; Appendix~\\ref{sec:error_overlap}); per-type breakdown shows all standard exception types achieve 100\\% accuracy, with only \\texttt{GeneratorExit} (a benign \\texttt{BaseException} subclass) causing failures (Appendix~\\ref{sec:exception_type}).\n\n\\paragraph{Length control.}\nPadding \\texttt{exception\\_only} to 2{,}048 tokens, even in a semantically loaded position (after the verdict region), yields identical accuracy (99.83\\%), indicating the 18--23pp gap arises from spurious patterns in verbose trace content, not sequence length.\n\n\\paragraph{Supplementary OOD analysis.}\n\\label{sec:debugbench}\nOn DebugBench \\citep{tian2024debugbench} ($N{=}426$), the condition ranking is preserved: \\texttt{exception\\_only} 100\\%, VOTA 99.77\\%, \\texttt{no\\_trace} 96.71\\%.\nHowever, narrow margins (3.29pp headroom from \\texttt{no\\_trace}) limit discriminative power; this supplementary analysis preserves the ranking but cannot establish effect sizes comparable to the primary dataset (Appendix~\\ref{sec:debugbench_full}).\n",
+                "numLines": 211,
+                "startLine": 1,
+                "totalLines": 211
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已读取，确认第 51 行已包含 \"8.65pp\"（修复已就位）。现在将文件同步到远程服务器。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7295d96b-1474-4b46-bb64-207673fb1d22",
+            "uuid": "157f81df-9814-43a3-9326-c05d93991a10",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H8t1FyTQMdUBTMZ3Gv1P99",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7342,
+                "cache_read_input_tokens": 24140,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7342
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qae9YUfLHuC5Fx5jsUwq7M",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7295d96b-1474-4b46-bb64-207673fb1d22",
+            "uuid": "4cf9031d-6ad0-4e89-9a0d-c43f704c9253",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H8t1FyTQMdUBTMZ3Gv1P99",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7342,
+                "cache_read_input_tokens": 24140,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7342
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-24T04:45:52.258Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01Qae9YUfLHuC5Fx5jsUwq7M",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7295d96b-1474-4b46-bb64-207673fb1d22",
+            "uuid": "15ff6a0a-8b87-460c-ac35-ee2cd1aa1f3f",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I need to base64 encode the file content and send it to the remote server. Let me first base64 encode the local file, then transmit it.\n\nThe constraint C001 says the correct path is `/root/trace-verdict-study/docs/paper/`. Let me use that path.\n\nLet me first base64 encode the file content locally.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7295d96b-1474-4b46-bb64-207673fb1d22",
+            "uuid": "9aeb51ac-e718-42d5-9ee9-1e804d5a8f9f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WMdaUfnqWfjDTzpGYfbSCx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 715,
+                "cache_read_input_tokens": 31482,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 715
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先将本地文件 base64 编码。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7295d96b-1474-4b46-bb64-207673fb1d22",
+            "uuid": "1a87b8bc-21a1-41a1-ad84-b2c2d6b1253d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WMdaUfnqWfjDTzpGYfbSCx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 715,
+                "cache_read_input_tokens": 31482,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 715
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013VMszzusvwmCQLygPLEBoS",
+              "name": "Bash",
+              "input": {
+                "command": "base64 /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex",
+                "description": "Base64 encode experiments.tex for transfer"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7295d96b-1474-4b46-bb64-207673fb1d22",
+            "uuid": "7acb51ef-535a-48af-a2d1-3148fa06ce84",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WMdaUfnqWfjDTzpGYfbSCx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 715,
+                "cache_read_input_tokens": 31482,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 715
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-24T04:45:57.659Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013VMszzusvwmCQLygPLEBoS",
+              "type": "tool_result",
+              "content": "XHNlY3Rpb257RXhwZXJpbWVudHN9CgpXZSBldmFsdWF0ZSBhY3Jvc3MgdHdvIHJlc2VhcmNoIHF1\nZXN0aW9uczoKKDEpfldoeSBkbyBjb21wbGV0ZSB0cmFjZXMgZGVncmFkZSBTRlQgdmVyZGljdCBh\nY2N1cmFjeSBkZXNwaXRlIGNvbnRhaW5pbmcgYWxsIGRpYWdub3N0aWMgaW5mb3JtYXRpb24/Cigy\nKX5XaGljaCB0cmFjZSBjb21wb25lbnRzIGNhcnJ5IHRoZSB2ZXJkaWN0IHNpZ25hbCwgYW5kIGhv\ndyBkb2VzIHRoZWlyIGRlbnNpdHkgYWZmZWN0IGxlYXJuaW5nPwpBbGwgZXhwZXJpbWVudHMgdXNl\nICROez19MXssfTE5MCQgdGVzdCBzYW1wbGVzOyBhY2N1cmFjeSBpcyByZXBvcnRlZCB3aXRoIFdp\nbHNvbiA5NVwlIENJcy5cZm9vdG5vdGV7UHJvYmxlbS1sZXZlbCBwYXJ0aXRpb24gKDQ3MiB0cmFp\nbiAvIDExOSB0ZXN0LCB6ZXJvIGNyb3Nzb3ZlcjsgXFNccmVme3NlYzpkYXRhc2V0fSkuIFx0ZXh0\ndHR7ZXhjZXB0aW9uXF9vbmx5fSBkdXBsaWNhdGVzICg0OC45OVwlIHRlc3Q7IEFwcGVuZGl4flxy\nZWZ7c2VjOmRlZHVwX3N0YXRzfSkgYXJpc2UgZnJvbSB3aXRoaW4tcHJvYmxlbSB2YXJpYW50czsg\nZGVkdXBsaWNhdGlvbiB5aWVsZHMgbmVnbGlnaWJsZSAoJDwkMC4xcHApIGRlbHRhLn0KUGFpcndp\nc2UgY29tcGFyaXNvbnMgdXNlIHBhaXJlZCBib290c3RyYXAgcmVzYW1wbGluZyAoJEJ7PX0xMHss\nfTAwMCQsIHNlZWQ9NDIpOyBhbGwgZGlmZmVyZW5jZXMgYXJlIHNpZ25pZmljYW50IGF0ICRwezx9\nLjAwMDEkIHVubGVzcyBub3RlZC4KVW5kZXIgcHJvYmxlbS1sZXZlbCBjbHVzdGVyZWQgYm9vdHN0\ncmFwICgkbl9cdGV4dHtlZmZ9ez19MTE5JCksIGFsbCBjcm9zcy10aWVyIGdhcHMgcmVtYWluIHNp\nZ25pZmljYW50ICgkcHs8fS4wMDEkKTsgMyBvZiA4MCB3aXRoaW4tdGllciBwYWlyd2lzZSBjb21w\nYXJpc29ucyBsb3NlIHNpZ25pZmljYW5jZSBhZnRlciBIb2xtLS1Cb25mZXJyb25pIGNvcnJlY3Rp\nb24uCgpcc3Vic2VjdGlvbntDcm9zcy1Nb2RlbCBDb21wYXJpc29ufQpcbGFiZWx7c2VjOmNyb3Nz\nX21vZGVsfQoKVGFibGV+XHJlZnt0YWI6Y3Jvc3NfbW9kZWx9IGNvbXBhcmVzIGZvdXIgbW9kZWxz\nIHNwYW5uaW5nIGFuIDguNyRcdGltZXMkIHBhcmFtZXRlciByYW5nZSAoMS41Qi0tMTNCKSBhbmQg\ndGhyZWUgYXJjaGl0ZWN0dXJlIGZhbWlsaWVzIHVuZGVyIGtleSBjb25kaXRpb25zOyBzaW5nbGUt\nc2VlZCBlbnRyaWVzIGFyZSBtYXJrZWQgd2l0aCAkXlxkYWckLgpSZWdleCBCNSAoOTkuMzNcJSkg\nZXhwbG9pdHMgdGhlIFx0ZXh0dHR7W05vIGV4Y2VwdGlvbiBkYXRhIGluIHRyYWNlXX0gZm9ybWF0\nIG1hcmtlciwgcHJvdmlkaW5nIGEgbm9uLWxlYXJuZWQgYmFzZWxpbmU7IGl0cyBjb2xsYXBzZSB0\nbyAyOC40OVwlIHVuZGVyIG1hcmtlciByZW1vdmFsIChcU1xyZWZ7c2VjOm5vbWFya2VyfSkgc2hv\nd3MgdGhlIFNGVCBhZHZhbnRhZ2UgaXMgbm90IGZvcm1hdC1kcml2ZW4uCgpcYmVnaW57dGFibGV9\nW3RdClxjZW50ZXJpbmcKXGNhcHRpb257Q3Jvc3MtbW9kZWwgdmVyZGljdCBhY2N1cmFjeSAoXCUs\nICROez19MXssfTE5MCQpIGFjcm9zcyBmb3VyIG1vZGVscyAoMS41Qi0tMTNCKSBhbmQgdGhyZWUg\nYXJjaGl0ZWN0dXJlIGZhbWlsaWVzLiBNdWx0aS1zZWVkIGVudHJpZXMgcmVwb3J0IG1lYW4kXHBt\nJHN0ZCBvdmVyIDItLTMgc2VlZHM7ICReXGRhZyQgPSBzaW5nbGUgc2VlZCAoc2VlZCA0MikuIEJv\nbGQ6IGJlc3QgcGVyIG1vZGVsLiBGdWxsIHBlci1zZWVkIGJyZWFrZG93bnMgaW4gQXBwZW5kaXh+\nXHJlZntzZWM6ZnVsbF9yZXN1bHRzfTsgcGVyLWNsYXNzIG1ldHJpY3MgaW4gQXBwZW5kaXh+XHJl\nZntzZWM6cGVyX2NsYXNzfS59ClxsYWJlbHt0YWI6Y3Jvc3NfbW9kZWx9ClxzbWFsbApccmVzaXpl\nYm94e1xjb2x1bW53aWR0aH17IX17JQpcYmVnaW57dGFidWxhcn17bGNjY2N9Clx0b3BydWxlClx0\nZXh0YmZ7Q29uZGl0aW9ufSAmIFx0ZXh0YmZ7UXdlbi03Qn0gJiBcdGV4dGJme1F3ZW4tMS41Qn0g\nJiBcdGV4dGJme0NMLTEzQn0gJiBcdGV4dGJme0RTLTYuN0J9IFxcClxtaWRydWxlCmV4Y2VwdGlv\nblxfb25seSAmIFx0ZXh0YmZ7OTkuODN9e1xzY3JpcHRzaXplJFxwbSQwLjAwfSAmIFx0ZXh0YmZ7\nOTkuODN9e1xzY3JpcHRzaXplJFxwbSQwLjAwfSAmIFx0ZXh0YmZ7OTkuODl9e1xzY3JpcHRzaXpl\nJFxwbSQwLjEwfSAmIFx0ZXh0YmZ7OTkuMzl9e1xzY3JpcHRzaXplJFxwbSQwLjEwfSBcXAphZVxf\nb25seSAmIDk5LjY0e1xzY3JpcHRzaXplJFxwbSQwLjQ5fSAmIDk4Ljgze1xzY3JpcHRzaXplJFxw\nbSQwLjM2fSAmIDk5LjA4e1xzY3JpcHRzaXplJFxwbSQwLjAwfSAmIDk4LjUze1xzY3JpcHRzaXpl\nJFxwbSQwLjMwfSBcXApWT1RBICYgOTkuMDV7XHNjcmlwdHNpemUkXHBtJDAuMzh9ICYgOTkuNTR7\nXHNjcmlwdHNpemUkXHBtJDAuMDZ9ICYgOTguNzR7XHNjcmlwdHNpemUkXHBtJDAuMjR9ICYgOTku\nMjUkXlxkZGFnJCBcXApsb29wXF9vbmx5ICYgODYuMDV7XHNjcmlwdHNpemUkXHBtJDAuNTJ9ICYg\nNzkuNTR7XHNjcmlwdHNpemUkXHBtJDEuNDJ9ICYgNzcuNDB7XHNjcmlwdHNpemUkXHBtJDEuNTR9\nICYgODAuMzF7XHNjcmlwdHNpemUkXHBtJDEuNjV9IFxcCmZ1bGxcX3RyYWNlICYgODEuNDR7XHNj\ncmlwdHNpemUkXHBtJDEuMTF9ICYgNzcuMDYkXlxkYWckICYgNzkuOSReXFMkICYgNzkuMTYkXlxk\nYWckIFxcCm5vXF90cmFjZSAmIDc1LjEzJF5cZGFnJCAmIDcyLjM1e1xzY3JpcHRzaXplJFxwbSQ0\nLjQ4fSAmIDc2LjQ3JF5cZGFnJCAmIDczLjM2JF5cZGFnJCBcXApcbWlkcnVsZQpSZWdleCBCNSAo\nbWFya2VyKSAmIFxtdWx0aWNvbHVtbns0fXtjfXs5OS4zM30gXFwKTWFqb3JpdHkgYmFzZWxpbmUg\nJiBcbXVsdGljb2x1bW57NH17Y317NzEuNTF9IFxcClxib3R0b21ydWxlClxlbmR7dGFidWxhcn0l\nCn0KXHZzcGFjZXsycHR9ClxwYXJccmFnZ2VkcmlnaHRcZm9vdG5vdGVzaXplCiReXGRkYWckRGVl\ncFNlZWsgVk9UQSBzZWVkIDQyICg4NC40NVwlKSBpcyBhIHRva2VuaXplci1kcml2ZW4gdHJ1bmNh\ndGlvbiBmYWlsdXJlIChBcHBlbmRpeH5ccmVme3NlYzp0b2tlbml6ZXJfYW5hbHlzaXN9KSwgcmVw\nb3J0ZWQgYXMgMi1zZWVkIG1lYW4uCiReXFMkQ29kZUxsYW1hIFx0ZXh0dHR7ZnVsbFxfdHJhY2V9\nIG5vdCBhdmFpbGFibGU7IGhlYWQtMjA0OCBwcm94eSByZXBvcnRlZC4KUGVyLXNlZWQgYnJlYWtk\nb3ducyBmb3IgYWxsIGNvbmRpdGlvbnMgaW4gQXBwZW5kaXh+XHJlZntzZWM6ZnVsbF9yZXN1bHRz\nfS4KXGVuZHt0YWJsZX0KClxwYXJhZ3JhcGh7RXhjZXB0aW9uIGRvbWluYW5jZSBhY3Jvc3MgZmFt\naWxpZXMufQpVbmRlciBcdGV4dHR0e2V4Y2VwdGlvblxfb25seX0sIGFsbCBmb3VyIG1vZGVscyBh\nY2hpZXZlICR7XGdlcX0kOTkuMzNcJSBhY3Jvc3MgYWxsIGF2YWlsYWJsZSBzZWVkcyAoVGFibGV+\nXHJlZnt0YWI6Y3Jvc3NfbW9kZWx9KSwgc3Bhbm5pbmcgb25seSAwLjUwcHAgYWNyb3NzIGFyY2hp\ndGVjdHVyZXMgKHRoZSB0aWdodGVzdCBvZiBhbnkgY29uZGl0aW9uKS4KQ29kZUxsYW1hLTEzQiBz\nZWVkIDEyMyBhY2hpZXZlcyAxMDBcJSwgaW5kaWNhdGluZyB0aGUgMiBwZXJzaXN0ZW50IGVycm9y\ncyAoXHRleHR0dHtHZW5lcmF0b3JFeGl0fTsgQXBwZW5kaXh+XHJlZntzZWM6aXJyZWR1Y2libGV9\nKSBhcmUgY29udmVyZ2VuY2UgYXJ0aWZhY3RzOyA5OS44M1wlIGlzIGEgZmxvb3IsIG5vdCBhIGNl\naWxpbmcuCgpccGFyYWdyYXBoe1NjYWxlIGVmZmVjdHMgY29uY2VudHJhdGUgaW4gVGllcn4yLn0K\nVGllcn4xIHNpZ25hbHMgYXJlIHNjYWxlLWludmFyaWFudCBhY3Jvc3MgMS41Qi0tMTNCICg4Ljck\nXHRpbWVzJCk6IGJvdGggXHRleHR0dHtleGNlcHRpb25cX29ubHl9IGFuZCBcdGV4dHR0e2FlXF9v\nbmx5fSBzcGFuICR7XGxlcX0kMS4ycHAuClx0ZXh0dHR7bG9vcFxfb25seX0gc3BhbnMgOC42NXBw\nLCB3aXRoIENvZGVMbGFtYS0xM0IgYmVsb3cgUXdlbi0xLjVCLCBzdWdnZXN0aW5nIGFyY2hpdGVj\ndHVyZSBtYXR0ZXJzIG1vcmUgdGhhbiBwYXJhbWV0ZXIgY291bnQgZm9yIGxvd2VyLWRlbnNpdHkg\nc2lnbmFscy4KSW4gY29udHJhc3QsIFx0ZXh0dHR7bm9cX3RyYWNlfSBzY2FsZXMgd2l0aCBjYXBh\nY2l0eSAoRmlndXJlflxyZWZ7ZmlnOmNyb3NzX3NjYWxlfSkgYW5kIHNob3dzIHRoZSBoaWdoZXN0\nIHNlZWQgdmFyaWFuY2UgKCRcc2lnbWF7PX0kNC40OHBwKS4KClxiZWdpbntmaWd1cmV9W3RdClxj\nZW50ZXJpbmcKXGluY2x1ZGVncmFwaGljc1t3aWR0aD1cY29sdW1ud2lkdGhde2ZpZzNfY3Jvc3Nf\nbW9kZWxfZ2FwfQpcY2FwdGlvbntWZXJkaWN0IGFjY3VyYWN5IHZzLlwgbW9kZWwgc2NhbGUuIFx0\nZXh0dHR7ZXhjZXB0aW9uXF9vbmx5fSBtYWludGFpbnMgJHtcZ2VxfSQ5OS4zM1wlIHJlZ2FyZGxl\nc3Mgb2Ygc2NhbGUsIHdoaWxlIFx0ZXh0dHR7bm9cX3RyYWNlfSBzaG93cyBtb25vdG9uaWMgc2Vu\nc2l0aXZpdHkgKCs0LjEycHApLiBcdGV4dHR0e25vbWFya2VyfSAobWFya2VycyByZW1vdmVkKSBz\naG93cyBubyBzY2FsZSBkZWdyYWRhdGlvbi59ClxsYWJlbHtmaWc6Y3Jvc3Nfc2NhbGV9ClxlbmR7\nZmlndXJlfQoKXHBhcmFncmFwaHtWT1RBIGNyb3NzLWZhbWlseSB2YXJpYXRpb24ufQpFeGNsdWRp\nbmcgb3V0bGllciBzZWVkcywgVk9UQSBhY2hpZXZlcyAke1xnZXF9JDk4LjU3XCUgYWNyb3NzIGFs\nbCBmb3VyIG1vZGVscyAoMC44MHBwIHJhbmdlKS4KRGVlcFNlZWsgc2VlZCA0MiAoODQuNDVcJSkg\naXMgYSB0b2tlbml6ZXItZHJpdmVuIHRydW5jYXRpb24gZmFpbHVyZSAoOTEuN1wlIG9mIHNhbXBs\nZXMgZXhjZWVkIDJ7LH0wNDggdG9rZW5zIGFmdGVyIHRva2VuaXphdGlvbjsgQXBwZW5kaXh+XHJl\nZntzZWM6dG9rZW5pemVyX2FuYWx5c2lzfSksIGRlbW9uc3RyYXRpbmcgdGhhdCBWT1RBJ3MgbG9u\nZ2VyIHNlcXVlbmNlcyBhcmUgc2Vuc2l0aXZlIHRvIHRva2VuaXplciBlZmZpY2llbmN5OiAxLzQg\nbW9kZWxzIHN1ZmZlcnMgY2F0YXN0cm9waGljIHRydW5jYXRpb24gdW5kZXIgc3RhbmRhcmQgdHJh\naW5pbmcgbGVuZ3RoLiBcdGV4dHR0e2V4Y2VwdGlvblxfb25seX0ncyBjb21wYWN0IGlucHV0cyAo\nbWVkaWFuIDE1MCB0b2tlbnMpIHNpZGVzdGVwIHRoaXMgdnVsbmVyYWJpbGl0eSBlbnRpcmVseS4K\nClxzdWJzZWN0aW9ue0NvbXBvbmVudCBBYmxhdGlvbn0KXGxhYmVse3NlYzphYmxhdGlvbn0KCk11\nbHRpLXNlZWQgXHRleHR0dHthZVxfb25seX0gYWJsYXRpb25zIHVzZSBRd2VuLTdCOyBcdGV4dHR0\ne2xvb3BcX29ubHl9IGlzIGV2YWx1YXRlZCBhY3Jvc3MgdGhyZWUgbW9kZWxzIHRvIHRlc3QgVGll\ncn4yIGdlbmVyYWxpemF0aW9uIChUYWJsZX5ccmVme3RhYjpjcm9zc19tb2RlbH0pLgpUYWJsZX5c\ncmVme3RhYjphYmxhdGlvbn0gZGVjb21wb3NlcyBWT1RBIG9uIFF3ZW4tMi41LTdCIGFuZCByZXZl\nYWxzIGEgdHdvLXRpZXIgaGllcmFyY2h5IHZhbGlkYXRlZCBhY3Jvc3MgYWxsIGZvdXIgbW9kZWxz\nIGFuZCB0aHJlZSBhcmNoaXRlY3R1cmUgZmFtaWxpZXMgKFRhYmxlflxyZWZ7dGFiOmNyb3NzX21v\nZGVsfSk6IFRpZXJ+MSAoJHtcZ2VxfSQ5OC41M1wlKSBhbmQgVGllcn4yICg3Ny0tODZcJSkgYXJl\nIHNlcGFyYXRlZCBieSAxMitwcCB3aXRoIG5vbi1vdmVybGFwcGluZyBDSXMuCgpcYmVnaW57dGFi\nbGV9W3RdClxjZW50ZXJpbmcKXGNhcHRpb257Q29tcG9uZW50IGFibGF0aW9uIG9uIFF3ZW4tMi41\nLTdCICgkTns9fTF7LH0xOTAkKS4gVGllcn4xIHNpZ25hbHMgYWNoaWV2ZSBuZWFyLXBlcmZlY3Qg\nYWNjdXJhY3k7IGNvbWJpbmluZyB0aGVtIChWT1RBKSBzbGlnaHRseSBkaWx1dGVzIHBlcmZvcm1h\nbmNlLiBFbnRyaWVzIG1hcmtlZCAkXlxkYWckLyReXFMkLyReXGRkYWckIGFyZSAzLXNlZWQgbWVh\nbiRccG0kc3RkOyB1bm1hcmtlZCBlbnRyaWVzIGFyZSBzaW5nbGUgc2VlZCAoc2VlZCA0MikuIFBl\nci1zZWVkIGJyZWFrZG93bnMgaW4gQXBwZW5kaXh+XHJlZntzZWM6ZnVsbF9yZXN1bHRzfS4gU2Vl\nZCAkXHNpZ21hJCBuZWdhdGl2ZWx5IGNvcnJlbGF0ZXMgd2l0aCBkZW5zaXR5ICgwLjAwIGZvciBl\neGNlcHRpb24gdG8gMC41MiBmb3IgbG9vcCkufQpcbGFiZWx7dGFiOmFibGF0aW9ufQpcc21hbGwK\nXHJlc2l6ZWJveHtcY29sdW1ud2lkdGh9eyF9eyUKXGJlZ2lue3RhYnVsYXJ9e2xsY2NjfQpcdG9w\ncnVsZQpcdGV4dGJme0NvbmRpdGlvbn0gJiBcdGV4dGJme0NvbXBvbmVudHN9ICYgXHRleHRiZntB\nY2MgKFwlKX0gJiBcdGV4dGJmezk1XCUgQ0l9ICYgXHRleHRiZntUaWVyfSBcXApcbWlkcnVsZQph\nZVxfb25seSAmIGFzc2VydGlvbi1wb2ludCAmIDk5LjY0JF5cZGFnJCAmIFs5OS4yNiwgOTkuODdd\nICYgMSBcXApleGNlcHRpb25cX29ubHkgJiBleGNlcHRpb24gZXZlbnRzICYgXHRleHRiZns5OS44\nM30gJiBbOTkuNTgsIDEwMC4wMF0gJiAxIFxcClZPVEEgJiBleGMrYWUrbG9vcCAmIDk5LjA1JF5c\nUyQgJiBbOTguNDksIDk5LjUwXSAmIC0tLSBcXApWT1RBXF9ub1xfYWUgJiBleGMrbG9vcCAmIDk5\nLjQxICYgWzk4LjkwLCA5OS44MF0gJiAtLS0gXFwKbG9vcFxfb25seSAmIGxvb3AgY29tcHJlc3Np\nb24gJiA4Ni4wNSReXGRkYWckICYgWzgzLjk3LCA4Ny45Nl0gJiAyIFxcCmZ1bGxcX3RyYWNlICYg\nY29tcGxldGUgdHJhY2UgJiA4MS40NHtcc2NyaXB0c2l6ZSRccG0kMS4xMX0gJiAtLS0gJiAtLS0g\nXFwKbm9cX3RyYWNlICYgbm9uZSAmIDc1LjEzICYgWzcyLjc3LCA3Ny40OF0gJiAtLS0gXFwKXG1p\nZHJ1bGUKUmVnZXggKGJlc3QpICYgZXhjLlwgdHlwZSByZWdleCAmIDkzLjYxICYgLS0tICYgLS0t\nIFxcCjMtc2hvdCAoUXdlbi03QikgJiBpbi1jb250ZXh0IGxlYXJuaW5nICYgOTAuODQgJiAtLS0g\nJiAtLS0gXFwKWmVyby1zaG90ICg0IG1vZGVscykgJiBwcm9tcHRpbmcgJiA1MS4wLS05My41ICYg\nLS0tICYgLS0tIFxcClxib3R0b21ydWxlClxlbmR7dGFidWxhcn0lCn0KXGVuZHt0YWJsZX0KClRp\nZXJ+MSBzaWduYWxzIGFyZSBpbmRpdmlkdWFsbHkgc3VmZmljaWVudDogXHRleHR0dHtleGNlcHRp\nb25cX29ubHl9ICg5OS44M1wlJFxwbSQwLjAwKSBleGNlZWRzIFZPVEEgKDk5LjA1XCUkXHBtJDAu\nMzgpIGJ5ICswLjc4cHAgKDIvMyBzZWVkcyAkcHs8fS4wNSQsIGFsbCBkaXJlY3Rpb25hbGx5IGNv\nbnNpc3RlbnQpLCBpbXBseWluZyB0aGF0IGNvbWJpbmluZyBzaWduYWxzIGludHJvZHVjZXMgbm9p\nc2UuClJlbW92aW5nIGFzc2VydGlvbiBwb2ludHMgaGFzIG5vIGVmZmVjdCAoXHRleHR0dHtWT1RB\nXF9ub1xfYWV9ID0gOTkuNDFcJSwgc2luZ2xlIHNlZWQpLCBpbmRpY2F0aW5nIGV4Y2VwdGlvbiBk\nb21pbmFuY2UuCkluZGl2aWR1YWwgZXhjZXB0aW9uIHN1YmNvbXBvbmVudHMgKHR5cGUsIHN0YWNr\ndHJhY2UsIG1lc3NhZ2UpIGVhY2ggaW5kZXBlbmRlbnRseSBhY2hpZXZlICR7XGdlcX0kOTkuNTBc\nJSwgaW5kaWNhdGluZyB0aGF0IHRoZSBiaW5hcnkgcHJlc2VuY2Ugb2YgYW4gZXhjZXB0aW9uIGV2\nZW50LCByYXRoZXIgdGhhbiBhbnkgc3BlY2lmaWMgc3ViY29tcG9uZW50LCBkcml2ZXMgVGllcn4x\nIHBlcmZvcm1hbmNlIChBcHBlbmRpeH5ccmVme3NlYzpleGNfc3ViY29tcG9uZW50fSkuClRoZSBU\naWVyfjEvMiBib3VuZGFyeSBpcyB1bmFtYmlndW91czogdGhlIGxvd2VzdCBUaWVyfjEgY29uZGl0\naW9uIChcdGV4dHR0e2FlXF9vbmx5fSBvbiBEZWVwU2VlaywgOTguNTNcJSRccG0kMC4zMCwgMiBz\nZWVkcykgZXhjZWVkcyB0aGUgaGlnaGVzdCBUaWVyfjIgKFx0ZXh0dHR7bG9vcFxfb25seX0gb24g\nUXdlbi03QiwgODYuMDVcJSwgQ0kgWzgzLjk3LCA4Ny45Nl0pIGJ5IDEyLjQ4XCxwcCB3aXRoIG5v\nbi1vdmVybGFwcGluZyBDSXMgKGdhcCBzdGF0aXN0aWMgc3VwcG9ydHMgJGt7PX0yJCBjbHVzdGVy\ncywgc2lsaG91ZXR0ZSAke1xnZXF9JDAuNzQpLgpUaWVyfjIgXHRleHR0dHtsb29wXF9vbmx5fSBs\naWZ0cyBvdmVyIFx0ZXh0dHR7bm9cX3RyYWNlfSBhcmUgbW9kZWwtZGVwZW5kZW50OiBRd2VuICsx\nMC45MnBwICg3QikgYW5kICs3LjE5cHAgKDEuNUIpOyBEZWVwU2VlayArNi45NXBwOyBDb2RlTGxh\nbWEgKzAuOTNwcCAobi5zLikuClxwYXJhZ3JhcGh7UnVsZS1iYXNlZCBiYXNlbGluZSBjb21wYXJp\nc29uLn0KVGhlIHN0cm9uZ2VzdCBub24tdHJpdmlhbCByZWdleCBoZXVyaXN0aWMgKEI0OiBleGNl\ncHRpb24gY2xhc3MgbmFtZSBtYXRjaGluZzsgVGFibGV+XHJlZnt0YWI6cmVnZXh9KSBhY2hpZXZl\ncyA5My42MVwlIGFjY3VyYWN5IChGMT0wLjg3NiksIHRyYWlsaW5nIFNGVCBcdGV4dHR0e2V4Y2Vw\ndGlvblxfb25seX0gKDk5LjgzXCUsIEYxPTAuOTk3KSBieSA2LjIycHAgKE1jTmVtYXIgJHB7PH0u\nMDAxJCkuClRoZSBnYXAgY29uY2VudHJhdGVzIG9uIGNhdWdodC1leGNlcHRpb24gYm91bmRhcnkg\nY2FzZXM6IHJlZ2V4IGZsYWdzIGFsbCBleGNlcHRpb24gZXZlbnRzIGFzIGZhaWx1cmVzLCB3aGls\nZSBTRlQgbGVhcm5zIHRvIGRpc3Rpbmd1aXNoIGNhdWdodCBleGNlcHRpb25zIChiZW5pZ24sIGlu\nc2lkZSBcdGV4dHR0e3RyeS9leGNlcHR9KSBmcm9tIHVuY2F1Z2h0IGZhdWx0cywgY29ycmVjdGx5\nIHJlc29sdmluZyA2LzggYm91bmRhcnkgc2FtcGxlcyAoQXBwZW5kaXh+XHJlZntzZWM6cmVnZXhf\nYmFzZWxpbmVzfSkuCkFjcm9zcyBhbGwgZm9ybWF0cywgU0ZUIG91dHBlcmZvcm1zIHRoZSBiZXN0\nIGFwcGxpY2FibGUgcmVnZXggYnkgKzMuNjItLTIzLjg2cHAgKEFwcGVuZGl4flxyZWZ7c2VjOnJl\nZ2V4X2Jhc2VsaW5lc30pLgoKXHBhcmFncmFwaHtaZXJvLXNob3QgYW5kIGZldy1zaG90IExMTSBi\nYXNlbGluZXMufQpaZXJvLXNob3QgcHJvbXB0aW5nIHNwYW5zIDUxLjAtLTkzLjVcJSBhY3Jvc3Mg\nZm91ciBtb2RlbHMgKDQyLjQ0cHAgcmFuZ2UpOyB0aHJlZS1zaG90IElDTCBvbiBRd2VuLTdCICg5\nMC44NFwlKSBpbXByb3ZlcyBvbmx5IDEuNzZwcC4KU0ZUIGNvbXByZXNzZXMgdGhpcyByYW5nZSB0\nbyAwLjUwcHAgKDk5LjM5LS05OS44OVwlKSwgY2xvc2luZyBhIDYtLTQ5cHAgZ2FwIHdpdGggNCw3\nMjAgc2FtcGxlcyAoQXBwZW5kaXh+XHJlZntzZWM6emVyb3Nob3RfY3Jvc3NfbW9kZWx9KS4KXHBh\ncmFncmFwaHtGcm9udGllciBtb2RlbCBjcm9zc292ZXIufQpUd28gZnJvbnRpZXIgbW9kZWxzIGls\nbHVzdHJhdGUgdGhhdCBTRlQncyBhZHZhbnRhZ2UgZGVwZW5kcyBvbiBpbnB1dCBkZW5zaXR5OiB1\nbmRlciBcdGV4dHR0e25vXF90cmFjZX0sIEdQVC00byAoODQuNDVcJSkgYW5kIEdQVC00LjEgKDc3\nLjMxXCUpIG91dHBlcmZvcm0gU0ZUIFF3ZW4tN0IgKDc1LjEzXCUpLCBidXQgdW5kZXIgXHRleHR0\ndHtleGNlcHRpb25cX29ubHl9IHRoZSByYW5raW5nIHJldmVyc2VzIChTRlQgOTkuODNcJSB2cy5c\nIEdQVC00byA4Ny45OFwlKS4KQ29tcGFjdCBkaWFnbm9zdGljIGlucHV0IHVubG9ja3MgU0ZUJ3Mg\nZnVsbCBhZHZhbnRhZ2Ugb3ZlciBnZW5lcmFsIHJlYXNvbmluZyBjYXBhY2l0eS4KClxzdWJzZWN0\naW9ue0Zvcm1hdCBNYXJrZXIgQWJsYXRpb259ClxsYWJlbHtzZWM6bm9tYXJrZXJ9CgpUaGUgXHRl\neHR0dHtleGNlcHRpb25cX29ubHl9IGZvcm1hdCBpbmNsdWRlcyBhIFx0ZXh0dHR7W05vIGV4Y2Vw\ndGlvbiBkYXRhIGluIHRyYWNlXX0gbWFya2VyIGluIGFsbCBwYXNzLWNsYXNzIHNhbXBsZXMgKHJl\nZ2V4IGJhc2VsaW5lIEI1IGV4cGxvaXRzIHRoaXMgZm9yIDk5LjMzXCUgYWNjdXJhY3k7IEFwcGVu\nZGl4flxyZWZ7c2VjOnJlZ2V4X2Jhc2VsaW5lc30pLgpUbyBxdWFudGlmeSB0aGUgbWFya2VyJ3Mg\nY29udHJpYnV0aW9uLCB3ZSByZXRyYWluIHdpdGggYWxsIGZvcm1hdCBtYXJrZXJzIHJlbW92ZWQg\nKFx0ZXh0dHR7bm9tYXJrZXJ9IGNvbmRpdGlvbikuCgpRd2VuLTdCIDMtc2VlZCBtZWFuOiA5Ny42\nNVwlICRccG0kIDAuOTYgKHNlZWRzIDQyLzEyMy80NTY6IDk2LjU1Lzk4LjMyLzk4LjA3XCUpLCBh\nIGRyb3Agb2YgMi4xOHBwIGZyb20gXHRleHR0dHtleGNlcHRpb25cX29ubHl9ICg5OS44M1wlKS4K\nUXdlbi0xLjVCOiA5Ny44MlwlLCBkcm9wIG9mIDIuMDFwcC4KVGhlIG1hcmtlciBjb250cmlidXRp\nb24gKCR7XHNpbX0kMnBwKSBhY2NvdW50cyBmb3Igb25seSAke1xzaW19JDlcJSBvZiB0aGUgdG90\nYWwgZXhjZXB0aW9uIGxpZnQgb3ZlciBcdGV4dHR0e25vXF90cmFjZX0gKDI0LjcwcHAgb24gN0Ip\nLgpSZWdleCBiYXNlbGluZXMgaWxsdXN0cmF0ZSB0aGlzIGRlY29tcG9zaXRpb246IEI1IChcdGV4\ndHR0e1tObyBleGNlcHRpb24gZGF0YV19JFx0byRwYXNzLCA5OS4zM1wlIHdpdGggbWFya2Vycykg\nY29sbGFwc2VzIHRvIDI4LjQ5XCUgd2l0aG91dCBtYXJrZXJzLCBzaG93aW5nIGl0IGlzIGVudGly\nZWx5IGZvcm1hdC1kZXBlbmRlbnQuClRoZSBzdHJvbmdlc3Qgc2VtYW50aWMgcmVnZXggQjQgKGV4\nY2VwdGlvbiBjbGFzcyBtYXRjaGluZywgOTMuNjFcJSkgaXMgbWFya2VyLWludmFyaWFudDsgU0ZU\nIFx0ZXh0dHR7bm9tYXJrZXJ9ICg5Ny42NVwlKSBleGNlZWRzIGl0IGJ5IDQuMDRwcCwgaXNvbGF0\naW5nIHRoZSBsZWFybmVkIHNlbWFudGljIGNvbnRyaWJ1dGlvbiBiZXlvbmQgcGF0dGVybiBtYXRj\naGluZy4KClxwYXJhZ3JhcGh7Q3Jvc3MtZGF0YXNldCB0cmFuc2Zlci59CkJpZGlyZWN0aW9uYWwg\nZXZhbHVhdGlvbiBkZW1vbnN0cmF0ZXMgZ2VuZXJhbGl6YXRpb246IEh1bWFuRXZhbCR7XHRvfSRN\nQlBQIFx0ZXh0dHR7ZXhjZXB0aW9uXF9vbmx5fSBhY2hpZXZlcyA5OS40MVwlICgkTns9fTR7LH0y\nNzAkKSBhbmQgTUJQUCR7XHRvfSRIdW1hbkV2YWwgYWNoaWV2ZXMgMTAwLjBcJSAoJE57PX0xeyx9\nNjQwJCksIHdoaWxlIFx0ZXh0dHR7bm9cX3RyYWNlfSBkcm9wcyB0byBuZWFyLW1ham9yaXR5IGJh\nc2VsaW5lIGluIGJvdGggZGlyZWN0aW9ucyAoNzAuNTZcJSB2cy5cIDY5LjAyXCUgbWFqb3JpdHk7\nIDY3Ljk5XCUgdnMuXCA2MS42NVwlKS4KVGhlIG5lYXItemVybyB0cmFuc2ZlciBsb3NzIGZvciBl\neGNlcHRpb24gc2lnbmFscywgYWNyb3NzIGluZGVwZW5kZW50bHkgYXV0aG9yZWQgcHJvYmxlbSBz\nZXRzIHdpdGggbm8gcHJvYmxlbSBvdmVybGFwLCBzaG93cyBTRlQgbGVhcm5zIGxhbmd1YWdlLWxl\ndmVsIGRpYWdub3N0aWMgcGF0dGVybnMsIG5vdCBkYXRhc2V0LXNwZWNpZmljIGFydGlmYWN0cy4K\nVW5kZXIgbWFya2VyIHJlbW92YWwsIGNyb3NzLWRhdGFzZXQgYWNjdXJhY3kgZHJvcHMgdG8gOTUu\nNVwlICgkLSQzLjlwcCksIGluZGljYXRpbmcgdGhhdCB0aGUgbWFqb3JpdHkgb2YgY3Jvc3MtZGF0\nYXNldCB0cmFuc2ZlciByZWxpZXMgb24gbGVhcm5lZCBkaWFnbm9zdGljIHBhdHRlcm5zIHJhdGhl\nciB0aGFuIGZvcm1hdCBtYXJrZXJzLgoKXHN1YnNlY3Rpb257RGVjb21wb3NpbmcgdGhlIEZ1bGwt\nVHJhY2UgRGVncmFkYXRpb259ClxsYWJlbHtzZWM6ZGVuc2l0eX0KClRoZSAxOC4wN3BwIGdhcCBi\nZXR3ZWVuIFx0ZXh0dHR7ZXhjZXB0aW9uXF9vbmx5fSAoOTkuODNcJSkgYW5kIFx0ZXh0dHR7ZnVs\nbFxfdHJhY2V9ICg4MS43NlwlKSBjb3VsZCByZWZsZWN0IGdyYWRpZW50IGRpbHV0aW9uIChkaWFn\nbm9zdGljIHRva2VucyBhcmUgJHtcc2ltfSQxLzUwMCBvZiBmdWxsIHRyYWNlcywgZGlsdXRpbmcg\nZ3JhZGllbnQgc2lnbmFsIGR1cmluZyB0cmFpbmluZykgb3IgY29udGVudCBxdWFsaXR5ICh2ZXJi\nb3NlIGlucHV0IGJ1cmllcyBkaWFnbm9zdGljIHNpZ25hbHMgYXQgaW5mZXJlbmNlKS4KClxwYXJh\nZ3JhcGh7Q29udHJvbGxlZCBncmFkaWVudCBtYXNraW5nLn0KVG8gaXNvbGF0ZSBncmFkaWVudCBk\naWx1dGlvbiwgd2UgbWFzayA5OS44XCUgb2YgZ3JhZGllbnQgdXBkYXRlcyBkdXJpbmcgXHRleHR0\ndHtleGNlcHRpb25cX29ubHl9IHRyYWluaW5nLCBtYXRjaGluZyB0aGUgZGlhZ25vc3RpYyB0b2tl\nbiByYXRpbyBvZiBmdWxsIHRyYWNlcyB3aGlsZSBwcmVzZXJ2aW5nIGNvbXBhY3QgaW5wdXQuClRo\naXMgeWllbGRzIDk5LjIyXCUgKG1lYW4gJC0kMC42MXBwIGZyb20gXHRleHR0dHtleGNlcHRpb25c\nX29ubHl9LCAzIHNlZWRzKSwgbGltaXRpbmcgZ3JhZGllbnQgZGlsdXRpb24gdG8gJHtcbGVxfSQ0\nXCUgb2YgdGhlIDE4LjA3cHAgZ2FwIChUYWJsZX5ccmVme3RhYjpkZW5zaXR5fSkuClRoZSBncmFk\naWVudCBtYXNraW5nIGJvdW5kIGF0dHJpYnV0ZXMgdGhlIHJlbWFpbmluZyAke1xnZXF9JDk2XCUg\ndG8gY29udGVudCBxdWFsaXR5IChkaWFnbm9zdGljIHNpZ25hbCBkZW5zaXR5IGF0IGluZmVyZW5j\nZSksIHRob3VnaCBmb3J3YXJkLXBhc3MgYXR0ZW50aW9uIGR1cmluZyBtYXNrZWQgdHJhaW5pbmcg\naXMgYW4gdW5xdWFudGlmaWVkIHJlc2lkdWFsLgpOb3RlIHRoYXQgbWFza2luZyBhZmZlY3RzIG9u\nbHkgdGhlIGJhY2t3YXJkIHBhc3M7IHRoZSBtb2RlbCBzdGlsbCBhdHRlbmRzIHRvIGFsbCBpbnB1\ndCB0b2tlbnMgZHVyaW5nIHRoZSBmb3J3YXJkIHBhc3MsIHNvIHRoaXMgYm91bmRzIGdyYWRpZW50\nIGRpbHV0aW9uJ3MgY29udHJpYnV0aW9uIGJ1dCBkb2VzIG5vdCBydWxlIG91dCBhdHRlbnRpb24t\nYmFzZWQgaW5mb3JtYXRpb24gZmxvdyBhcyBhIHJlc2lkdWFsIGNvbmZvdW5kLgoKXGJlZ2lue3Rh\nYmxlfVt0XQpcY2VudGVyaW5nClxjYXB0aW9ue0RlY29tcG9zaXRpb24gb2YgdGhlIGZ1bGwtdHJh\nY2UgZGVncmFkYXRpb24gKFF3ZW4tN0IpLiBHcmFkaWVudCBtYXNraW5nIGF0dHJpYnV0ZXMgJHtc\nbGVxfSQ0XCUgdG8gZ3JhZGllbnQgZGlsdXRpb247IHRoZSBib3VuZCBhc3NpZ25zIHRoZSByZW1h\naW5kZXIgdG8gY29udGVudCBxdWFsaXR5LCB0aG91Z2ggZm9yd2FyZC1wYXNzIGF0dGVudGlvbiBp\ncyBhIHJlc2lkdWFsIGNvbmZvdW5kIChcU1xyZWZ7c2VjOmRlbnNpdHl9KS4gTGFiZWwtb25seSBs\nb3NzIHByb3ZpZGVzIGEgY29uZm91bmRlZCBidXQgZGlyZWN0aW9uYWxseSBjb25zaXN0ZW50IGNv\nbXBsZW1lbnRhcnkgZXN0aW1hdGUufQpcbGFiZWx7dGFiOmRlbnNpdHl9ClxzbWFsbApcYmVnaW57\ndGFidWxhcn17bGNjfQpcdG9wcnVsZQpcdGV4dGJme0NvbmRpdGlvbn0gJiBcdGV4dGJme0FjYyAo\nXCUpfSAmIFx0ZXh0YmZ7JFxEZWx0YSR9IFxcClxtaWRydWxlCmV4Y2VwdGlvblxfb25seSAmIDk5\nLjgze1xzY3JpcHRzaXplJFxwbSQwLjAwfSAmIC0tLSBcXApccXVhZCArIGdyYWQgbWFzayAoOTku\nOFwlKSAmIDk5LjIye1xzY3JpcHRzaXplJFxwbSQwLjIwfSReXFMkICYgJC0kMC42MXBwIFxcCmZ1\nbGxcX3RyYWNlICYgODEuNzYkXlxkZGFnJCAmICQtJDE4LjA3cHAgXFwKXG1pZHJ1bGUKXG11bHRp\nY29sdW1uezN9e2x9e1x0ZXh0aXR7Q29tcGxlbWVudGFyeSAoY29uZm91bmRlZCk6fX0gXFwKZnVs\nbFxfdHJhY2UgKyBsYWJlbC1vbmx5IGxvc3MgJiA4NS45NHtcc2NyaXB0c2l6ZSRccG0kMS4xMn0g\nJiArNC41MHBwJF5cZGFnJCBcXApcYm90dG9tcnVsZQpcZW5ke3RhYnVsYXJ9Clx2c3BhY2V7MnB0\nfQpccGFyXHJhZ2dlZHJpZ2h0XGZvb3Rub3Rlc2l6ZQokXlxTJE1lYW4gJFxwbSQgc3RkIG92ZXIg\nMyBzZWVkcyAoNDIsIDEyMywgNDU2KS4KJF5cZGRhZyRNYXRjaGVkLXNlZWQgYmFzZWxpbmU7IDMt\nc2VlZCBtZWFuIDgxLjQ0XCUkXHBtJDEuMTEgKFRhYmxlflxyZWZ7dGFiOmNyb3NzX21vZGVsfSku\nCiReXGRhZyR2cy5cIFx0ZXh0dHR7ZnVsbFxfdHJhY2V9ICg4MS40NFwlJFxwbSQxLjExKTsgbm90\nIHNpZ25pZmljYW50IHVuZGVyIGNsdXN0ZXJlZCBib290c3RyYXAgKDk1XCUgQ0kgWyQtJDAuNiwg\nKzkuOF1wcCwgJG5fXHRleHR7ZWZmfXs9fTExOSQpLgpcZW5ke3RhYmxlfQoKXHBhcmFncmFwaHtD\nb21wbGVtZW50YXJ5IGV2aWRlbmNlLn0KTGFiZWwtb25seSBsb3NzIG9uIGZ1bGwgdHJhY2VzICgr\nNC41MHBwLCAzIHNlZWRzKSB5aWVsZHMgYSBjb25mb3VuZGVkIHVwcGVyIGJvdW5kIG9mICR7XGxl\ncX0kMjZcJSBncmFkaWVudCBjb250cmlidXRpb24sIGNvbnNpc3RlbnQgd2l0aCB0aGUgbWFza2lu\nZyBlc3RpbWF0ZSAoJHtcbGVxfSQ0XCUpIGJ1dCBub3Qgc2lnbmlmaWNhbnQgdW5kZXIgY2x1c3Rl\ncmVkIGJvb3RzdHJhcCAoOTVcJSBDSSBbJC0kMC42LCArOS44XXBwKS4KUXdlbi0xLjVCIHNob3dz\nIGEgc2ltaWxhciBsYWJlbC1vbmx5IHBhdHRlcm4gKDE3XCUvODNcJSwgMyBzZWVkcyk7IENvZGVM\nbGFtYSBhbmQgRGVlcFNlZWsgZXhoaWJpdCBsYWJlbC1vbmx5IGNvbGxhcHNlIHRvIG1ham9yaXR5\nIGJhc2VsaW5lICgyOC41XCUpLCBsaW1pdGluZyB0aGlzIGNvbXBsZW1lbnRhcnkgYW5hbHlzaXMg\ndG8gdGhlIFF3ZW4gZmFtaWx5LgpUaGUgYXJjaGl0ZWN0dXJlIGRlcGVuZGVuY2Ugc3VnZ2VzdHMg\nbGFiZWwtb25seSB0cmFpbmluZyBpcyBzZW5zaXRpdmUgdG8gbW9kZWwgY2FwYWNpdHkgb3Igb3B0\naW1pemF0aW9uIGxhbmRzY2FwZTsgdGhlIGdyYWRpZW50IG1hc2tpbmcgYWJsYXRpb24gcHJvdmlk\nZXMgYSBtb3JlIHJvYnVzdCwgYXJjaGl0ZWN0dXJlLWluZGVwZW5kZW50IGRlY29tcG9zaXRpb24u\nCkNyb3NzLWFyY2hpdGVjdHVyZSB2YWxpZGF0aW9uIG9uIHR3byBhZGRpdGlvbmFsIGZhbWlsaWVz\nIGlzIGRpcmVjdGlvbmFsbHkgY29uc2lzdGVudCAoc2luZ2xlIHNlZWQgZWFjaCk6IERlZXBTZWVr\nLUNvZGVyLTYuN0IgYWNoaWV2ZXMgOTkuMzNcJSBhbmQgQ29kZUxsYW1hLTEzQiBhY2hpZXZlcyAx\nMDBcJSB1bmRlciA5OS44XCUgbWFza2luZywgYm90aCB3ZWxsIGFib3ZlIHRoZSBmdWxsLXRyYWNl\nIHJhbmdlICg3Ny0tODJcJSwgVGFibGV+XHJlZnt0YWI6Y3Jvc3NfbW9kZWx9KSwgc3VwcG9ydGlu\nZyBjb250ZW50IHF1YWxpdHkgYXMgdGhlIGRvbWluYW50IGZhY3RvciBhY3Jvc3MgYXJjaGl0ZWN0\ndXJlcy4KRXJyb3IgYW5hbHlzaXMgc3VwcG9ydHMgdGhlIGNvbnRlbnQgcXVhbGl0eSBpbnRlcnBy\nZXRhdGlvbjogYWxsIDIxNyBcdGV4dHR0e2Z1bGxcX3RyYWNlfSBlcnJvcnMgb2NjdXIgd2hlcmUg\ndG9rZW5pemVyIHRydW5jYXRpb24gcmVtb3ZlcyBkaWFnbm9zdGljIG1hcmtlcnMsIG1hbmlmZXN0\naW5nIHRocm91Z2ggbWVjaGFuaWNhbCB0cnVuY2F0aW9uIHJhdGhlciB0aGFuIHNlbWFudGljIGNv\nbmZ1c2lvbi4KClxzdWJzZWN0aW9ue0NvbXBsZW1lbnRhcnkgQW5hbHlzZXN9ClxsYWJlbHtzZWM6\nYWRkaXRpb25hbH0KClxwYXJhZ3JhcGh7VHJhY2UgbGVuZ3RoIGFibGF0aW9uLn0KXGxhYmVse3Nl\nYzp0cmFjZV9sZW5ndGh9ClZhcnlpbmcgdGhlIGhlYWQtdHJ1bmNhdGVkIHRyYWNlIHRva2VuIGJ1\nZGdldCAoMjU2LS1ubyBsaW1pdCkgb24gUXdlbi03QiB5aWVsZHMgYWNjdXJhY3kgaW4gYSBuYXJy\nb3cgNzcuMlwlLS04MS44XCUgYmFuZCB3aXRoIGEgbm9uLW1vbm90b25pYyBwYXR0ZXJuOiAxMDI0\nLXRva2VuIHByZWZpeGVzICg3Ny4yM1wlKSB1bmRlcnBlcmZvcm0gNTEyLXRva2VuIHByZWZpeGVz\nICg4MC40MlwlLCAkcHs9fS4wMDIkKSwgYmVjYXVzZSBtaWQtbGVuZ3RoIHByZWZpeGVzIHJldGFp\nbiBlbm91Z2ggaXJyZWxldmFudCBjb250ZW50IHRvIG1pc2xlYWQgdGhlIG1vZGVsIHdoaWxlIGRp\nc2NhcmRpbmcgZGlhZ25vc3RpYyBldmVudHMgbmVhciB0aGUgdHJhY2UgdGVybWludXMgKEFwcGVu\nZGl4flxyZWZ7c2VjOnRyYWNlX2xlbmd0aF9mdWxsfSkuCkNyaXRpY2FsbHksIHJlbW92aW5nIHRo\nZSB0b2tlbiBidWRnZXQgZW50aXJlbHkgKG5vIHRydW5jYXRpb24pIHlpZWxkcyA4MS43NlwlLCBp\nZGVudGljYWwgdG8gaGVhZC0yMDQ4LCBydWxpbmcgb3V0IHRydW5jYXRpb24gYXMgdGhlIGV4cGxh\nbmF0aW9uIGZvciB0aGUgZnVsbC10cmFjZSBkZWdyYWRhdGlvbi4KVGhpcyBub24tbW9ub3Rvbmlj\naXR5IGlzIHNwZWNpZmljIHRvIGhlYWQtdHJ1bmNhdGlvbjsgdW5kZXIgdGFpbC10cnVuY2F0aW9u\nLCBhY2N1cmFjeSBpbmNyZWFzZXMgbW9ub3RvbmljYWxseSBmb3IgdHdvIG9mIHRocmVlIG1vZGVs\ncyAoVGFibGV+XHJlZnt0YWI6dGFpbF9jcm9zc19tb2RlbH0gaW4gQXBwZW5kaXgpLCB3aXRoIG9u\nbHkgRGVlcFNlZWsgc2hvd2luZyBhIG1pbGQgYXJjaGl0ZWN0dXJlLXNwZWNpZmljIHJldmVyc2Fs\nIGF0IHRhaWwtMTAyNCRcdG8kdGFpbC0yMDQ4ICgkLSQxLjVwcCkuCgpccGFyYWdyYXBoe1RydW5j\nYXRpb24gZGlyZWN0aW9uIGFuZCBidWRnZXQgY3VydmUufQpUYWlsLXRydW5jYXRpb24gZHJhbWF0\naWNhbGx5IG91dHBlcmZvcm1zIGhlYWQtdHJ1bmNhdGlvbjogdGFpbC0yMDQ4IGV4Y2VlZHMgaGVh\nZC0yMDQ4IGJ5IDE1LjUtLTIyLjZwcCBhY3Jvc3MgdGhyZWUgbW9kZWxzIChBcHBlbmRpeH5ccmVm\ne3NlYzp0cmFjZV9sZW5ndGhfZnVsbH0pLgpGaWd1cmV+XHJlZntmaWc6YnVkZ2V0X2N1cnZlfSBy\nZXZlYWxzIGEgc2hhcnAgcGhhc2UgdHJhbnNpdGlvbiBhdCAzODQkXHRvJDUxMiB0YWlsIHRva2Vu\nczogYWxsIGZvdXIgbW9kZWxzIHNpbXVsdGFuZW91c2x5IGp1bXAgKzEzLjItLTIyLjBwcCwgY3Jv\nc3NpbmcgZnJvbSBuZWFyLWJhc2VsaW5lIHRvIDkzLS05OFwlLgpUaGlzIHRocmVzaG9sZCBjb2lu\nY2lkZXMgd2l0aCB0aGUgZ2xvYmFscyBtb2R1bGUgZHVtcCBib3VuZGFyeSAoJHtcc2ltfSQzODQg\ndG9rZW5zKSwgYmV5b25kIHdoaWNoIHN0cnVjdHVyZWQgZXhlY3V0aW9uIG1hcmtlcnMgYmVjb21l\nIHZpc2libGUgKFRhYmxlflxyZWZ7dGFiOnRhaWxfY3Jvc3NfbW9kZWx9KS4KQmV5b25kIDUxMiB0\nb2tlbnMsIGFsbCAxMiBtb2RlbCRcdGltZXMkc2VlZCBjb21iaW5hdGlvbnMgY29udmVyZ2UgaW50\nbyBbOTMuNjFcJSwgOTguMjRcJV0gKFRhYmxlflxyZWZ7dGFiOnRhaWw1MTJfc2VlZHN9KS4KXHRl\neHR0dHt0YWlsXF8yMDQ4fSBjYXB0dXJlcyA5NS0tOThcJSBvZiBcdGV4dHR0e2V4Y2VwdGlvblxf\nb25seX0ncyBhY2N1cmFjeTsgdGhlIHJlc2lkdWFsIDItLTVwcCBnYXAgc2hvd3Mgc2VtYW50aWMg\nZXh0cmFjdGlvbiBzdGlsbCBvdXRwZXJmb3JtcyBwb3NpdGlvbmFsIGV4dHJhY3Rpb24uCgpcYmVn\naW57ZmlndXJlfVt0XQpcY2VudGVyaW5nClxpbmNsdWRlZ3JhcGhpY3Nbd2lkdGg9XGNvbHVtbndp\nZHRoXXtidWRnZXRfY3VydmV9ClxjYXB0aW9ue1RhaWwtdHJ1bmNhdGlvbiBidWRnZXQgY3VydmUg\nYWNyb3NzIGZvdXIgbW9kZWxzIGFuZCB0aHJlZSBhcmNoaXRlY3R1cmUgZmFtaWxpZXMgKCROez19\nMXssfTE5MCQpLiBBIHNoYXJwIHBoYXNlIHRyYW5zaXRpb24gYXQgMzg0JFx0byQ1MTIgdG9rZW5z\nICgrMTMuMi0tMjIuMHBwKSBjb2luY2lkZXMgd2l0aCB0aGUgZ2xvYmFscyBtb2R1bGUgZHVtcCBi\nb3VuZGFyeS4gRGFzaGVkIGxpbmVzOiBcdGV4dHR0e2V4Y2VwdGlvblxfb25seX0gY2VpbGluZyBh\nbmQgXHRleHR0dHtub1xfdHJhY2V9IGZsb29yLn0KXGxhYmVse2ZpZzpidWRnZXRfY3VydmV9Clxl\nbmR7ZmlndXJlfQoKXHBhcmFncmFwaHtDYWxpYnJhdGlvbi59ClxsYWJlbHtzZWM6Y2FsaWJyYXRp\nb259CkNhbGlicmF0aW9uIG1pcnJvcnMgdGhlIHRpZXIgaGllcmFyY2h5OiBcdGV4dHR0e2V4Y2Vw\ndGlvblxfb25seX0gYWNoaWV2ZXMgRUNFID0gMC4wMDI3IHZzLlwgMC4xNzEgZm9yIFx0ZXh0dHR7\nbm9cX3RyYWNlfSwgYSA2MyRcdGltZXMkIGdhcCAoRmlndXJlflxyZWZ7ZmlnOmNhbGlicmF0aW9u\nfSkuClRoaXMgY2FsaWJyYXRpb24gYWR2YW50YWdlIGdlbmVyYWxpemVzIGFjcm9zcyBhcmNoaXRl\nY3R1cmVzIGFuZCBzY2FsZXM6IGFsbCBmb3VyIG1vZGVscyAoMS41Qi0tMTNCKSBhY2hpZXZlIEVD\nRSAkezx9JCAwLjAwNyB1bmRlciBcdGV4dHR0e2V4Y2VwdGlvblxfb25seX0gKFRhYmxlflxyZWZ7\ndGFiOmNhbGlicmF0aW9uX2Nyb3NzfSBpbiBBcHBlbmRpeCksIGluZGljYXRpbmcgd2VsbC1jYWxp\nYnJhdGVkIHByZWRpY3Rpb25zIHJhdGhlciB0aGFuIG92ZXJmaXQgY29uZmlkZW5jZS4KClxwYXJh\nZ3JhcGh7RXJyb3IgYW5hbHlzaXMufQpcdGV4dHR0e2V4Y2VwdGlvblxfb25seX0ncyAyIGVycm9y\ncyBoYXZlIHplcm8gb3ZlcmxhcCB3aXRoIGFsbCBvdGhlciBjb25kaXRpb25zJyBlcnJvciBzZXRz\nIChKYWNjYXJkID0gMC4wMDA7IEFwcGVuZGl4flxyZWZ7c2VjOmVycm9yX292ZXJsYXB9KTsgcGVy\nLXR5cGUgYnJlYWtkb3duIHNob3dzIGFsbCBzdGFuZGFyZCBleGNlcHRpb24gdHlwZXMgYWNoaWV2\nZSAxMDBcJSBhY2N1cmFjeSwgd2l0aCBvbmx5IFx0ZXh0dHR7R2VuZXJhdG9yRXhpdH0gKGEgYmVu\naWduIFx0ZXh0dHR7QmFzZUV4Y2VwdGlvbn0gc3ViY2xhc3MpIGNhdXNpbmcgZmFpbHVyZXMgKEFw\ncGVuZGl4flxyZWZ7c2VjOmV4Y2VwdGlvbl90eXBlfSkuCgpccGFyYWdyYXBoe0xlbmd0aCBjb250\ncm9sLn0KUGFkZGluZyBcdGV4dHR0e2V4Y2VwdGlvblxfb25seX0gdG8gMnssfTA0OCB0b2tlbnMs\nIGV2ZW4gaW4gYSBzZW1hbnRpY2FsbHkgbG9hZGVkIHBvc2l0aW9uIChhZnRlciB0aGUgdmVyZGlj\ndCByZWdpb24pLCB5aWVsZHMgaWRlbnRpY2FsIGFjY3VyYWN5ICg5OS44M1wlKSwgaW5kaWNhdGlu\nZyB0aGUgMTgtLTIzcHAgZ2FwIGFyaXNlcyBmcm9tIHNwdXJpb3VzIHBhdHRlcm5zIGluIHZlcmJv\nc2UgdHJhY2UgY29udGVudCwgbm90IHNlcXVlbmNlIGxlbmd0aC4KClxwYXJhZ3JhcGh7U3VwcGxl\nbWVudGFyeSBPT0QgYW5hbHlzaXMufQpcbGFiZWx7c2VjOmRlYnVnYmVuY2h9Ck9uIERlYnVnQmVu\nY2ggXGNpdGVwe3RpYW4yMDI0ZGVidWdiZW5jaH0gKCROez19NDI2JCksIHRoZSBjb25kaXRpb24g\ncmFua2luZyBpcyBwcmVzZXJ2ZWQ6IFx0ZXh0dHR7ZXhjZXB0aW9uXF9vbmx5fSAxMDBcJSwgVk9U\nQSA5OS43N1wlLCBcdGV4dHR0e25vXF90cmFjZX0gOTYuNzFcJS4KSG93ZXZlciwgbmFycm93IG1h\ncmdpbnMgKDMuMjlwcCBoZWFkcm9vbSBmcm9tIFx0ZXh0dHR7bm9cX3RyYWNlfSkgbGltaXQgZGlz\nY3JpbWluYXRpdmUgcG93ZXI7IHRoaXMgc3VwcGxlbWVudGFyeSBhbmFseXNpcyBwcmVzZXJ2ZXMg\ndGhlIHJhbmtpbmcgYnV0IGNhbm5vdCBlc3RhYmxpc2ggZWZmZWN0IHNpemVzIGNvbXBhcmFibGUg\ndG8gdGhlIHByaW1hcnkgZGF0YXNldCAoQXBwZW5kaXh+XHJlZntzZWM6ZGVidWdiZW5jaF9mdWxs\nfSkuCg==",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7295d96b-1474-4b46-bb64-207673fb1d22",
+            "uuid": "6ffcfaf2-e1e2-438c-b8a5-9095d833e29f",
+            "tool_use_result": {
+              "stdout": "XHNlY3Rpb257RXhwZXJpbWVudHN9CgpXZSBldmFsdWF0ZSBhY3Jvc3MgdHdvIHJlc2VhcmNoIHF1\nZXN0aW9uczoKKDEpfldoeSBkbyBjb21wbGV0ZSB0cmFjZXMgZGVncmFkZSBTRlQgdmVyZGljdCBh\nY2N1cmFjeSBkZXNwaXRlIGNvbnRhaW5pbmcgYWxsIGRpYWdub3N0aWMgaW5mb3JtYXRpb24/Cigy\nKX5XaGljaCB0cmFjZSBjb21wb25lbnRzIGNhcnJ5IHRoZSB2ZXJkaWN0IHNpZ25hbCwgYW5kIGhv\ndyBkb2VzIHRoZWlyIGRlbnNpdHkgYWZmZWN0IGxlYXJuaW5nPwpBbGwgZXhwZXJpbWVudHMgdXNl\nICROez19MXssfTE5MCQgdGVzdCBzYW1wbGVzOyBhY2N1cmFjeSBpcyByZXBvcnRlZCB3aXRoIFdp\nbHNvbiA5NVwlIENJcy5cZm9vdG5vdGV7UHJvYmxlbS1sZXZlbCBwYXJ0aXRpb24gKDQ3MiB0cmFp\nbiAvIDExOSB0ZXN0LCB6ZXJvIGNyb3Nzb3ZlcjsgXFNccmVme3NlYzpkYXRhc2V0fSkuIFx0ZXh0\ndHR7ZXhjZXB0aW9uXF9vbmx5fSBkdXBsaWNhdGVzICg0OC45OVwlIHRlc3Q7IEFwcGVuZGl4flxy\nZWZ7c2VjOmRlZHVwX3N0YXRzfSkgYXJpc2UgZnJvbSB3aXRoaW4tcHJvYmxlbSB2YXJpYW50czsg\nZGVkdXBsaWNhdGlvbiB5aWVsZHMgbmVnbGlnaWJsZSAoJDwkMC4xcHApIGRlbHRhLn0KUGFpcndp\nc2UgY29tcGFyaXNvbnMgdXNlIHBhaXJlZCBib290c3RyYXAgcmVzYW1wbGluZyAoJEJ7PX0xMHss\nfTAwMCQsIHNlZWQ9NDIpOyBhbGwgZGlmZmVyZW5jZXMgYXJlIHNpZ25pZmljYW50IGF0ICRwezx9\nLjAwMDEkIHVubGVzcyBub3RlZC4KVW5kZXIgcHJvYmxlbS1sZXZlbCBjbHVzdGVyZWQgYm9vdHN0\ncmFwICgkbl9cdGV4dHtlZmZ9ez19MTE5JCksIGFsbCBjcm9zcy10aWVyIGdhcHMgcmVtYWluIHNp\nZ25pZmljYW50ICgkcHs8fS4wMDEkKTsgMyBvZiA4MCB3aXRoaW4tdGllciBwYWlyd2lzZSBjb21w\nYXJpc29ucyBsb3NlIHNpZ25pZmljYW5jZSBhZnRlciBIb2xtLS1Cb25mZXJyb25pIGNvcnJlY3Rp\nb24uCgpcc3Vic2VjdGlvbntDcm9zcy1Nb2RlbCBDb21wYXJpc29ufQpcbGFiZWx7c2VjOmNyb3Nz\nX21vZGVsfQoKVGFibGV+XHJlZnt0YWI6Y3Jvc3NfbW9kZWx9IGNvbXBhcmVzIGZvdXIgbW9kZWxz\nIHNwYW5uaW5nIGFuIDguNyRcdGltZXMkIHBhcmFtZXRlciByYW5nZSAoMS41Qi0tMTNCKSBhbmQg\ndGhyZWUgYXJjaGl0ZWN0dXJlIGZhbWlsaWVzIHVuZGVyIGtleSBjb25kaXRpb25zOyBzaW5nbGUt\nc2VlZCBlbnRyaWVzIGFyZSBtYXJrZWQgd2l0aCAkXlxkYWckLgpSZWdleCBCNSAoOTkuMzNcJSkg\nZXhwbG9pdHMgdGhlIFx0ZXh0dHR7W05vIGV4Y2VwdGlvbiBkYXRhIGluIHRyYWNlXX0gZm9ybWF0\nIG1hcmtlciwgcHJvdmlkaW5nIGEgbm9uLWxlYXJuZWQgYmFzZWxpbmU7IGl0cyBjb2xsYXBzZSB0\nbyAyOC40OVwlIHVuZGVyIG1hcmtlciByZW1vdmFsIChcU1xyZWZ7c2VjOm5vbWFya2VyfSkgc2hv\nd3MgdGhlIFNGVCBhZHZhbnRhZ2UgaXMgbm90IGZvcm1hdC1kcml2ZW4uCgpcYmVnaW57dGFibGV9\nW3RdClxjZW50ZXJpbmcKXGNhcHRpb257Q3Jvc3MtbW9kZWwgdmVyZGljdCBhY2N1cmFjeSAoXCUs\nICROez19MXssfTE5MCQpIGFjcm9zcyBmb3VyIG1vZGVscyAoMS41Qi0tMTNCKSBhbmQgdGhyZWUg\nYXJjaGl0ZWN0dXJlIGZhbWlsaWVzLiBNdWx0aS1zZWVkIGVudHJpZXMgcmVwb3J0IG1lYW4kXHBt\nJHN0ZCBvdmVyIDItLTMgc2VlZHM7ICReXGRhZyQgPSBzaW5nbGUgc2VlZCAoc2VlZCA0MikuIEJv\nbGQ6IGJlc3QgcGVyIG1vZGVsLiBGdWxsIHBlci1zZWVkIGJyZWFrZG93bnMgaW4gQXBwZW5kaXh+\nXHJlZntzZWM6ZnVsbF9yZXN1bHRzfTsgcGVyLWNsYXNzIG1ldHJpY3MgaW4gQXBwZW5kaXh+XHJl\nZntzZWM6cGVyX2NsYXNzfS59ClxsYWJlbHt0YWI6Y3Jvc3NfbW9kZWx9ClxzbWFsbApccmVzaXpl\nYm94e1xjb2x1bW53aWR0aH17IX17JQpcYmVnaW57dGFidWxhcn17bGNjY2N9Clx0b3BydWxlClx0\nZXh0YmZ7Q29uZGl0aW9ufSAmIFx0ZXh0YmZ7UXdlbi03Qn0gJiBcdGV4dGJme1F3ZW4tMS41Qn0g\nJiBcdGV4dGJme0NMLTEzQn0gJiBcdGV4dGJme0RTLTYuN0J9IFxcClxtaWRydWxlCmV4Y2VwdGlv\nblxfb25seSAmIFx0ZXh0YmZ7OTkuODN9e1xzY3JpcHRzaXplJFxwbSQwLjAwfSAmIFx0ZXh0YmZ7\nOTkuODN9e1xzY3JpcHRzaXplJFxwbSQwLjAwfSAmIFx0ZXh0YmZ7OTkuODl9e1xzY3JpcHRzaXpl\nJFxwbSQwLjEwfSAmIFx0ZXh0YmZ7OTkuMzl9e1xzY3JpcHRzaXplJFxwbSQwLjEwfSBcXAphZVxf\nb25seSAmIDk5LjY0e1xzY3JpcHRzaXplJFxwbSQwLjQ5fSAmIDk4Ljgze1xzY3JpcHRzaXplJFxw\nbSQwLjM2fSAmIDk5LjA4e1xzY3JpcHRzaXplJFxwbSQwLjAwfSAmIDk4LjUze1xzY3JpcHRzaXpl\nJFxwbSQwLjMwfSBcXApWT1RBICYgOTkuMDV7XHNjcmlwdHNpemUkXHBtJDAuMzh9ICYgOTkuNTR7\nXHNjcmlwdHNpemUkXHBtJDAuMDZ9ICYgOTguNzR7XHNjcmlwdHNpemUkXHBtJDAuMjR9ICYgOTku\nMjUkXlxkZGFnJCBcXApsb29wXF9vbmx5ICYgODYuMDV7XHNjcmlwdHNpemUkXHBtJDAuNTJ9ICYg\nNzkuNTR7XHNjcmlwdHNpemUkXHBtJDEuNDJ9ICYgNzcuNDB7XHNjcmlwdHNpemUkXHBtJDEuNTR9\nICYgODAuMzF7XHNjcmlwdHNpemUkXHBtJDEuNjV9IFxcCmZ1bGxcX3RyYWNlICYgODEuNDR7XHNj\ncmlwdHNpemUkXHBtJDEuMTF9ICYgNzcuMDYkXlxkYWckICYgNzkuOSReXFMkICYgNzkuMTYkXlxk\nYWckIFxcCm5vXF90cmFjZSAmIDc1LjEzJF5cZGFnJCAmIDcyLjM1e1xzY3JpcHRzaXplJFxwbSQ0\nLjQ4fSAmIDc2LjQ3JF5cZGFnJCAmIDczLjM2JF5cZGFnJCBcXApcbWlkcnVsZQpSZWdleCBCNSAo\nbWFya2VyKSAmIFxtdWx0aWNvbHVtbns0fXtjfXs5OS4zM30gXFwKTWFqb3JpdHkgYmFzZWxpbmUg\nJiBcbXVsdGljb2x1bW57NH17Y317NzEuNTF9IFxcClxib3R0b21ydWxlClxlbmR7dGFidWxhcn0l\nCn0KXHZzcGFjZXsycHR9ClxwYXJccmFnZ2VkcmlnaHRcZm9vdG5vdGVzaXplCiReXGRkYWckRGVl\ncFNlZWsgVk9UQSBzZWVkIDQyICg4NC40NVwlKSBpcyBhIHRva2VuaXplci1kcml2ZW4gdHJ1bmNh\ndGlvbiBmYWlsdXJlIChBcHBlbmRpeH5ccmVme3NlYzp0b2tlbml6ZXJfYW5hbHlzaXN9KSwgcmVw\nb3J0ZWQgYXMgMi1zZWVkIG1lYW4uCiReXFMkQ29kZUxsYW1hIFx0ZXh0dHR7ZnVsbFxfdHJhY2V9\nIG5vdCBhdmFpbGFibGU7IGhlYWQtMjA0OCBwcm94eSByZXBvcnRlZC4KUGVyLXNlZWQgYnJlYWtk\nb3ducyBmb3IgYWxsIGNvbmRpdGlvbnMgaW4gQXBwZW5kaXh+XHJlZntzZWM6ZnVsbF9yZXN1bHRz\nfS4KXGVuZHt0YWJsZX0KClxwYXJhZ3JhcGh7RXhjZXB0aW9uIGRvbWluYW5jZSBhY3Jvc3MgZmFt\naWxpZXMufQpVbmRlciBcdGV4dHR0e2V4Y2VwdGlvblxfb25seX0sIGFsbCBmb3VyIG1vZGVscyBh\nY2hpZXZlICR7XGdlcX0kOTkuMzNcJSBhY3Jvc3MgYWxsIGF2YWlsYWJsZSBzZWVkcyAoVGFibGV+\nXHJlZnt0YWI6Y3Jvc3NfbW9kZWx9KSwgc3Bhbm5pbmcgb25seSAwLjUwcHAgYWNyb3NzIGFyY2hp\ndGVjdHVyZXMgKHRoZSB0aWdodGVzdCBvZiBhbnkgY29uZGl0aW9uKS4KQ29kZUxsYW1hLTEzQiBz\nZWVkIDEyMyBhY2hpZXZlcyAxMDBcJSwgaW5kaWNhdGluZyB0aGUgMiBwZXJzaXN0ZW50IGVycm9y\ncyAoXHRleHR0dHtHZW5lcmF0b3JFeGl0fTsgQXBwZW5kaXh+XHJlZntzZWM6aXJyZWR1Y2libGV9\nKSBhcmUgY29udmVyZ2VuY2UgYXJ0aWZhY3RzOyA5OS44M1wlIGlzIGEgZmxvb3IsIG5vdCBhIGNl\naWxpbmcuCgpccGFyYWdyYXBoe1NjYWxlIGVmZmVjdHMgY29uY2VudHJhdGUgaW4gVGllcn4yLn0K\nVGllcn4xIHNpZ25hbHMgYXJlIHNjYWxlLWludmFyaWFudCBhY3Jvc3MgMS41Qi0tMTNCICg4Ljck\nXHRpbWVzJCk6IGJvdGggXHRleHR0dHtleGNlcHRpb25cX29ubHl9IGFuZCBcdGV4dHR0e2FlXF9v\nbmx5fSBzcGFuICR7XGxlcX0kMS4ycHAuClx0ZXh0dHR7bG9vcFxfb25seX0gc3BhbnMgOC42NXBw\nLCB3aXRoIENvZGVMbGFtYS0xM0IgYmVsb3cgUXdlbi0xLjVCLCBzdWdnZXN0aW5nIGFyY2hpdGVj\ndHVyZSBtYXR0ZXJzIG1vcmUgdGhhbiBwYXJhbWV0ZXIgY291bnQgZm9yIGxvd2VyLWRlbnNpdHkg\nc2lnbmFscy4KSW4gY29udHJhc3QsIFx0ZXh0dHR7bm9cX3RyYWNlfSBzY2FsZXMgd2l0aCBjYXBh\nY2l0eSAoRmlndXJlflxyZWZ7ZmlnOmNyb3NzX3NjYWxlfSkgYW5kIHNob3dzIHRoZSBoaWdoZXN0\nIHNlZWQgdmFyaWFuY2UgKCRcc2lnbWF7PX0kNC40OHBwKS4KClxiZWdpbntmaWd1cmV9W3RdClxj\nZW50ZXJpbmcKXGluY2x1ZGVncmFwaGljc1t3aWR0aD1cY29sdW1ud2lkdGhde2ZpZzNfY3Jvc3Nf\nbW9kZWxfZ2FwfQpcY2FwdGlvbntWZXJkaWN0IGFjY3VyYWN5IHZzLlwgbW9kZWwgc2NhbGUuIFx0\nZXh0dHR7ZXhjZXB0aW9uXF9vbmx5fSBtYWludGFpbnMgJHtcZ2VxfSQ5OS4zM1wlIHJlZ2FyZGxl\nc3Mgb2Ygc2NhbGUsIHdoaWxlIFx0ZXh0dHR7bm9cX3RyYWNlfSBzaG93cyBtb25vdG9uaWMgc2Vu\nc2l0aXZpdHkgKCs0LjEycHApLiBcdGV4dHR0e25vbWFya2VyfSAobWFya2VycyByZW1vdmVkKSBz\naG93cyBubyBzY2FsZSBkZWdyYWRhdGlvbi59ClxsYWJlbHtmaWc6Y3Jvc3Nfc2NhbGV9ClxlbmR7\nZmlndXJlfQoKXHBhcmFncmFwaHtWT1RBIGNyb3NzLWZhbWlseSB2YXJpYXRpb24ufQpFeGNsdWRp\nbmcgb3V0bGllciBzZWVkcywgVk9UQSBhY2hpZXZlcyAke1xnZXF9JDk4LjU3XCUgYWNyb3NzIGFs\nbCBmb3VyIG1vZGVscyAoMC44MHBwIHJhbmdlKS4KRGVlcFNlZWsgc2VlZCA0MiAoODQuNDVcJSkg\naXMgYSB0b2tlbml6ZXItZHJpdmVuIHRydW5jYXRpb24gZmFpbHVyZSAoOTEuN1wlIG9mIHNhbXBs\nZXMgZXhjZWVkIDJ7LH0wNDggdG9rZW5zIGFmdGVyIHRva2VuaXphdGlvbjsgQXBwZW5kaXh+XHJl\nZntzZWM6dG9rZW5pemVyX2FuYWx5c2lzfSksIGRlbW9uc3RyYXRpbmcgdGhhdCBWT1RBJ3MgbG9u\nZ2VyIHNlcXVlbmNlcyBhcmUgc2Vuc2l0aXZlIHRvIHRva2VuaXplciBlZmZpY2llbmN5OiAxLzQg\nbW9kZWxzIHN1ZmZlcnMgY2F0YXN0cm9waGljIHRydW5jYXRpb24gdW5kZXIgc3RhbmRhcmQgdHJh\naW5pbmcgbGVuZ3RoLiBcdGV4dHR0e2V4Y2VwdGlvblxfb25seX0ncyBjb21wYWN0IGlucHV0cyAo\nbWVkaWFuIDE1MCB0b2tlbnMpIHNpZGVzdGVwIHRoaXMgdnVsbmVyYWJpbGl0eSBlbnRpcmVseS4K\nClxzdWJzZWN0aW9ue0NvbXBvbmVudCBBYmxhdGlvbn0KXGxhYmVse3NlYzphYmxhdGlvbn0KCk11\nbHRpLXNlZWQgXHRleHR0dHthZVxfb25seX0gYWJsYXRpb25zIHVzZSBRd2VuLTdCOyBcdGV4dHR0\ne2xvb3BcX29ubHl9IGlzIGV2YWx1YXRlZCBhY3Jvc3MgdGhyZWUgbW9kZWxzIHRvIHRlc3QgVGll\ncn4yIGdlbmVyYWxpemF0aW9uIChUYWJsZX5ccmVme3RhYjpjcm9zc19tb2RlbH0pLgpUYWJsZX5c\ncmVme3RhYjphYmxhdGlvbn0gZGVjb21wb3NlcyBWT1RBIG9uIFF3ZW4tMi41LTdCIGFuZCByZXZl\nYWxzIGEgdHdvLXRpZXIgaGllcmFyY2h5IHZhbGlkYXRlZCBhY3Jvc3MgYWxsIGZvdXIgbW9kZWxz\nIGFuZCB0aHJlZSBhcmNoaXRlY3R1cmUgZmFtaWxpZXMgKFRhYmxlflxyZWZ7dGFiOmNyb3NzX21v\nZGVsfSk6IFRpZXJ+MSAoJHtcZ2VxfSQ5OC41M1wlKSBhbmQgVGllcn4yICg3Ny0tODZcJSkgYXJl\nIHNlcGFyYXRlZCBieSAxMitwcCB3aXRoIG5vbi1vdmVybGFwcGluZyBDSXMuCgpcYmVnaW57dGFi\nbGV9W3RdClxjZW50ZXJpbmcKXGNhcHRpb257Q29tcG9uZW50IGFibGF0aW9uIG9uIFF3ZW4tMi41\nLTdCICgkTns9fTF7LH0xOTAkKS4gVGllcn4xIHNpZ25hbHMgYWNoaWV2ZSBuZWFyLXBlcmZlY3Qg\nYWNjdXJhY3k7IGNvbWJpbmluZyB0aGVtIChWT1RBKSBzbGlnaHRseSBkaWx1dGVzIHBlcmZvcm1h\nbmNlLiBFbnRyaWVzIG1hcmtlZCAkXlxkYWckLyReXFMkLyReXGRkYWckIGFyZSAzLXNlZWQgbWVh\nbiRccG0kc3RkOyB1bm1hcmtlZCBlbnRyaWVzIGFyZSBzaW5nbGUgc2VlZCAoc2VlZCA0MikuIFBl\nci1zZWVkIGJyZWFrZG93bnMgaW4gQXBwZW5kaXh+XHJlZntzZWM6ZnVsbF9yZXN1bHRzfS4gU2Vl\nZCAkXHNpZ21hJCBuZWdhdGl2ZWx5IGNvcnJlbGF0ZXMgd2l0aCBkZW5zaXR5ICgwLjAwIGZvciBl\neGNlcHRpb24gdG8gMC41MiBmb3IgbG9vcCkufQpcbGFiZWx7dGFiOmFibGF0aW9ufQpcc21hbGwK\nXHJlc2l6ZWJveHtcY29sdW1ud2lkdGh9eyF9eyUKXGJlZ2lue3RhYnVsYXJ9e2xsY2NjfQpcdG9w\ncnVsZQpcdGV4dGJme0NvbmRpdGlvbn0gJiBcdGV4dGJme0NvbXBvbmVudHN9ICYgXHRleHRiZntB\nY2MgKFwlKX0gJiBcdGV4dGJmezk1XCUgQ0l9ICYgXHRleHRiZntUaWVyfSBcXApcbWlkcnVsZQph\nZVxfb25seSAmIGFzc2VydGlvbi1wb2ludCAmIDk5LjY0JF5cZGFnJCAmIFs5OS4yNiwgOTkuODdd\nICYgMSBcXApleGNlcHRpb25cX29ubHkgJiBleGNlcHRpb24gZXZlbnRzICYgXHRleHRiZns5OS44\nM30gJiBbOTkuNTgsIDEwMC4wMF0gJiAxIFxcClZPVEEgJiBleGMrYWUrbG9vcCAmIDk5LjA1JF5c\nUyQgJiBbOTguNDksIDk5LjUwXSAmIC0tLSBcXApWT1RBXF9ub1xfYWUgJiBleGMrbG9vcCAmIDk5\nLjQxICYgWzk4LjkwLCA5OS44MF0gJiAtLS0gXFwKbG9vcFxfb25seSAmIGxvb3AgY29tcHJlc3Np\nb24gJiA4Ni4wNSReXGRkYWckICYgWzgzLjk3LCA4Ny45Nl0gJiAyIFxcCmZ1bGxcX3RyYWNlICYg\nY29tcGxldGUgdHJhY2UgJiA4MS40NHtcc2NyaXB0c2l6ZSRccG0kMS4xMX0gJiAtLS0gJiAtLS0g\nXFwKbm9cX3RyYWNlICYgbm9uZSAmIDc1LjEzICYgWzcyLjc3LCA3Ny40OF0gJiAtLS0gXFwKXG1p\nZHJ1bGUKUmVnZXggKGJlc3QpICYgZXhjLlwgdHlwZSByZWdleCAmIDkzLjYxICYgLS0tICYgLS0t\nIFxcCjMtc2hvdCAoUXdlbi03QikgJiBpbi1jb250ZXh0IGxlYXJuaW5nICYgOTAuODQgJiAtLS0g\nJiAtLS0gXFwKWmVyby1zaG90ICg0IG1vZGVscykgJiBwcm9tcHRpbmcgJiA1MS4wLS05My41ICYg\nLS0tICYgLS0tIFxcClxib3R0b21ydWxlClxlbmR7dGFidWxhcn0lCn0KXGVuZHt0YWJsZX0KClRp\nZXJ+MSBzaWduYWxzIGFyZSBpbmRpdmlkdWFsbHkgc3VmZmljaWVudDogXHRleHR0dHtleGNlcHRp\nb25cX29ubHl9ICg5OS44M1wlJFxwbSQwLjAwKSBleGNlZWRzIFZPVEEgKDk5LjA1XCUkXHBtJDAu\nMzgpIGJ5ICswLjc4cHAgKDIvMyBzZWVkcyAkcHs8fS4wNSQsIGFsbCBkaXJlY3Rpb25hbGx5IGNv\nbnNpc3RlbnQpLCBpbXBseWluZyB0aGF0IGNvbWJpbmluZyBzaWduYWxzIGludHJvZHVjZXMgbm9p\nc2UuClJlbW92aW5nIGFzc2VydGlvbiBwb2ludHMgaGFzIG5vIGVmZmVjdCAoXHRleHR0dHtWT1RB\nXF9ub1xfYWV9ID0gOTkuNDFcJSwgc2luZ2xlIHNlZWQpLCBpbmRpY2F0aW5nIGV4Y2VwdGlvbiBk\nb21pbmFuY2UuCkluZGl2aWR1YWwgZXhjZXB0aW9uIHN1YmNvbXBvbmVudHMgKHR5cGUsIHN0YWNr\ndHJhY2UsIG1lc3NhZ2UpIGVhY2ggaW5kZXBlbmRlbnRseSBhY2hpZXZlICR7XGdlcX0kOTkuNTBc\nJSwgaW5kaWNhdGluZyB0aGF0IHRoZSBiaW5hcnkgcHJlc2VuY2Ugb2YgYW4gZXhjZXB0aW9uIGV2\nZW50LCByYXRoZXIgdGhhbiBhbnkgc3BlY2lmaWMgc3ViY29tcG9uZW50LCBkcml2ZXMgVGllcn4x\nIHBlcmZvcm1hbmNlIChBcHBlbmRpeH5ccmVme3NlYzpleGNfc3ViY29tcG9uZW50fSkuClRoZSBU\naWVyfjEvMiBib3VuZGFyeSBpcyB1bmFtYmlndW91czogdGhlIGxvd2VzdCBUaWVyfjEgY29uZGl0\naW9uIChcdGV4dHR0e2FlXF9vbmx5fSBvbiBEZWVwU2VlaywgOTguNTNcJSRccG0kMC4zMCwgMiBz\nZWVkcykgZXhjZWVkcyB0aGUgaGlnaGVzdCBUaWVyfjIgKFx0ZXh0dHR7bG9vcFxfb25seX0gb24g\nUXdlbi03QiwgODYuMDVcJSwgQ0kgWzgzLjk3LCA4Ny45Nl0pIGJ5IDEyLjQ4XCxwcCB3aXRoIG5v\nbi1vdmVybGFwcGluZyBDSXMgKGdhcCBzdGF0aXN0aWMgc3VwcG9ydHMgJGt7PX0yJCBjbHVzdGVy\ncywgc2lsaG91ZXR0ZSAke1xnZXF9JDAuNzQpLgpUaWVyfjIgXHRleHR0dHtsb29wXF9vbmx5fSBs\naWZ0cyBvdmVyIFx0ZXh0dHR7bm9cX3RyYWNlfSBhcmUgbW9kZWwtZGVwZW5kZW50OiBRd2VuICsx\nMC45MnBwICg3QikgYW5kICs3LjE5cHAgKDEuNUIpOyBEZWVwU2VlayArNi45NXBwOyBDb2RlTGxh\nbWEgKzAuOTNwcCAobi5zLikuClxwYXJhZ3JhcGh7UnVsZS1iYXNlZCBiYXNlbGluZSBjb21wYXJp\nc29uLn0KVGhlIHN0cm9uZ2VzdCBub24tdHJpdmlhbCByZWdleCBoZXVyaXN0aWMgKEI0OiBleGNl\ncHRpb24gY2xhc3MgbmFtZSBtYXRjaGluZzsgVGFibGV+XHJlZnt0YWI6cmVnZXh9KSBhY2hpZXZl\ncyA5My42MVwlIGFjY3VyYWN5IChGMT0wLjg3NiksIHRyYWlsaW5nIFNGVCBcdGV4dHR0e2V4Y2Vw\ndGlvblxfb25seX0gKDk5LjgzXCUsIEYxPTAuOTk3KSBieSA2LjIycHAgKE1jTmVtYXIgJHB7PH0u\nMDAxJCkuClRoZSBnYXAgY29uY2VudHJhdGVzIG9uIGNhdWdodC1leGNlcHRpb24gYm91bmRhcnkg\nY2FzZXM6IHJlZ2V4IGZsYWdzIGFsbCBleGNlcHRpb24gZXZlbnRzIGFzIGZhaWx1cmVzLCB3aGls\nZSBTRlQgbGVhcm5zIHRvIGRpc3Rpbmd1aXNoIGNhdWdodCBleGNlcHRpb25zIChiZW5pZ24sIGlu\nc2lkZSBcdGV4dHR0e3RyeS9leGNlcHR9KSBmcm9tIHVuY2F1Z2h0IGZhdWx0cywgY29ycmVjdGx5\nIHJlc29sdmluZyA2LzggYm91bmRhcnkgc2FtcGxlcyAoQXBwZW5kaXh+XHJlZntzZWM6cmVnZXhf\nYmFzZWxpbmVzfSkuCkFjcm9zcyBhbGwgZm9ybWF0cywgU0ZUIG91dHBlcmZvcm1zIHRoZSBiZXN0\nIGFwcGxpY2FibGUgcmVnZXggYnkgKzMuNjItLTIzLjg2cHAgKEFwcGVuZGl4flxyZWZ7c2VjOnJl\nZ2V4X2Jhc2VsaW5lc30pLgoKXHBhcmFncmFwaHtaZXJvLXNob3QgYW5kIGZldy1zaG90IExMTSBi\nYXNlbGluZXMufQpaZXJvLXNob3QgcHJvbXB0aW5nIHNwYW5zIDUxLjAtLTkzLjVcJSBhY3Jvc3Mg\nZm91ciBtb2RlbHMgKDQyLjQ0cHAgcmFuZ2UpOyB0aHJlZS1zaG90IElDTCBvbiBRd2VuLTdCICg5\nMC44NFwlKSBpbXByb3ZlcyBvbmx5IDEuNzZwcC4KU0ZUIGNvbXByZXNzZXMgdGhpcyByYW5nZSB0\nbyAwLjUwcHAgKDk5LjM5LS05OS44OVwlKSwgY2xvc2luZyBhIDYtLTQ5cHAgZ2FwIHdpdGggNCw3\nMjAgc2FtcGxlcyAoQXBwZW5kaXh+XHJlZntzZWM6emVyb3Nob3RfY3Jvc3NfbW9kZWx9KS4KXHBh\ncmFncmFwaHtGcm9udGllciBtb2RlbCBjcm9zc292ZXIufQpUd28gZnJvbnRpZXIgbW9kZWxzIGls\nbHVzdHJhdGUgdGhhdCBTRlQncyBhZHZhbnRhZ2UgZGVwZW5kcyBvbiBpbnB1dCBkZW5zaXR5OiB1\nbmRlciBcdGV4dHR0e25vXF90cmFjZX0sIEdQVC00byAoODQuNDVcJSkgYW5kIEdQVC00LjEgKDc3\nLjMxXCUpIG91dHBlcmZvcm0gU0ZUIFF3ZW4tN0IgKDc1LjEzXCUpLCBidXQgdW5kZXIgXHRleHR0\ndHtleGNlcHRpb25cX29ubHl9IHRoZSByYW5raW5nIHJldmVyc2VzIChTRlQgOTkuODNcJSB2cy5c\nIEdQVC00byA4Ny45OFwlKS4KQ29tcGFjdCBkaWFnbm9zdGljIGlucHV0IHVubG9ja3MgU0ZUJ3Mg\nZnVsbCBhZHZhbnRhZ2Ugb3ZlciBnZW5lcmFsIHJlYXNvbmluZyBjYXBhY2l0eS4KClxzdWJzZWN0\naW9ue0Zvcm1hdCBNYXJrZXIgQWJsYXRpb259ClxsYWJlbHtzZWM6bm9tYXJrZXJ9CgpUaGUgXHRl\neHR0dHtleGNlcHRpb25cX29ubHl9IGZvcm1hdCBpbmNsdWRlcyBhIFx0ZXh0dHR7W05vIGV4Y2Vw\ndGlvbiBkYXRhIGluIHRyYWNlXX0gbWFya2VyIGluIGFsbCBwYXNzLWNsYXNzIHNhbXBsZXMgKHJl\nZ2V4IGJhc2VsaW5lIEI1IGV4cGxvaXRzIHRoaXMgZm9yIDk5LjMzXCUgYWNjdXJhY3k7IEFwcGVu\nZGl4flxyZWZ7c2VjOnJlZ2V4X2Jhc2VsaW5lc30pLgpUbyBxdWFudGlmeSB0aGUgbWFya2VyJ3Mg\nY29udHJpYnV0aW9uLCB3ZSByZXRyYWluIHdpdGggYWxsIGZvcm1hdCBtYXJrZXJzIHJlbW92ZWQg\nKFx0ZXh0dHR7bm9tYXJrZXJ9IGNvbmRpdGlvbikuCgpRd2VuLTdCIDMtc2VlZCBtZWFuOiA5Ny42\nNVwlICRccG0kIDAuOTYgKHNlZWRzIDQyLzEyMy80NTY6IDk2LjU1Lzk4LjMyLzk4LjA3XCUpLCBh\nIGRyb3Agb2YgMi4xOHBwIGZyb20gXHRleHR0dHtleGNlcHRpb25cX29ubHl9ICg5OS44M1wlKS4K\nUXdlbi0xLjVCOiA5Ny44MlwlLCBkcm9wIG9mIDIuMDFwcC4KVGhlIG1hcmtlciBjb250cmlidXRp\nb24gKCR7XHNpbX0kMnBwKSBhY2NvdW50cyBmb3Igb25seSAke1xzaW19JDlcJSBvZiB0aGUgdG90\nYWwgZXhjZXB0aW9uIGxpZnQgb3ZlciBcdGV4dHR0e25vXF90cmFjZX0gKDI0LjcwcHAgb24gN0Ip\nLgpSZWdleCBiYXNlbGluZXMgaWxsdXN0cmF0ZSB0aGlzIGRlY29tcG9zaXRpb246IEI1IChcdGV4\ndHR0e1tObyBleGNlcHRpb24gZGF0YV19JFx0byRwYXNzLCA5OS4zM1wlIHdpdGggbWFya2Vycykg\nY29sbGFwc2VzIHRvIDI4LjQ5XCUgd2l0aG91dCBtYXJrZXJzLCBzaG93aW5nIGl0IGlzIGVudGly\nZWx5IGZvcm1hdC1kZXBlbmRlbnQuClRoZSBzdHJvbmdlc3Qgc2VtYW50aWMgcmVnZXggQjQgKGV4\nY2VwdGlvbiBjbGFzcyBtYXRjaGluZywgOTMuNjFcJSkgaXMgbWFya2VyLWludmFyaWFudDsgU0ZU\nIFx0ZXh0dHR7bm9tYXJrZXJ9ICg5Ny42NVwlKSBleGNlZWRzIGl0IGJ5IDQuMDRwcCwgaXNvbGF0\naW5nIHRoZSBsZWFybmVkIHNlbWFudGljIGNvbnRyaWJ1dGlvbiBiZXlvbmQgcGF0dGVybiBtYXRj\naGluZy4KClxwYXJhZ3JhcGh7Q3Jvc3MtZGF0YXNldCB0cmFuc2Zlci59CkJpZGlyZWN0aW9uYWwg\nZXZhbHVhdGlvbiBkZW1vbnN0cmF0ZXMgZ2VuZXJhbGl6YXRpb246IEh1bWFuRXZhbCR7XHRvfSRN\nQlBQIFx0ZXh0dHR7ZXhjZXB0aW9uXF9vbmx5fSBhY2hpZXZlcyA5OS40MVwlICgkTns9fTR7LH0y\nNzAkKSBhbmQgTUJQUCR7XHRvfSRIdW1hbkV2YWwgYWNoaWV2ZXMgMTAwLjBcJSAoJE57PX0xeyx9\nNjQwJCksIHdoaWxlIFx0ZXh0dHR7bm9cX3RyYWNlfSBkcm9wcyB0byBuZWFyLW1ham9yaXR5IGJh\nc2VsaW5lIGluIGJvdGggZGlyZWN0aW9ucyAoNzAuNTZcJSB2cy5cIDY5LjAyXCUgbWFqb3JpdHk7\nIDY3Ljk5XCUgdnMuXCA2MS42NVwlKS4KVGhlIG5lYXItemVybyB0cmFuc2ZlciBsb3NzIGZvciBl\neGNlcHRpb24gc2lnbmFscywgYWNyb3NzIGluZGVwZW5kZW50bHkgYXV0aG9yZWQgcHJvYmxlbSBz\nZXRzIHdpdGggbm8gcHJvYmxlbSBvdmVybGFwLCBzaG93cyBTRlQgbGVhcm5zIGxhbmd1YWdlLWxl\ndmVsIGRpYWdub3N0aWMgcGF0dGVybnMsIG5vdCBkYXRhc2V0LXNwZWNpZmljIGFydGlmYWN0cy4K\nVW5kZXIgbWFya2VyIHJlbW92YWwsIGNyb3NzLWRhdGFzZXQgYWNjdXJhY3kgZHJvcHMgdG8gOTUu\nNVwlICgkLSQzLjlwcCksIGluZGljYXRpbmcgdGhhdCB0aGUgbWFqb3JpdHkgb2YgY3Jvc3MtZGF0\nYXNldCB0cmFuc2ZlciByZWxpZXMgb24gbGVhcm5lZCBkaWFnbm9zdGljIHBhdHRlcm5zIHJhdGhl\nciB0aGFuIGZvcm1hdCBtYXJrZXJzLgoKXHN1YnNlY3Rpb257RGVjb21wb3NpbmcgdGhlIEZ1bGwt\nVHJhY2UgRGVncmFkYXRpb259ClxsYWJlbHtzZWM6ZGVuc2l0eX0KClRoZSAxOC4wN3BwIGdhcCBi\nZXR3ZWVuIFx0ZXh0dHR7ZXhjZXB0aW9uXF9vbmx5fSAoOTkuODNcJSkgYW5kIFx0ZXh0dHR7ZnVs\nbFxfdHJhY2V9ICg4MS43NlwlKSBjb3VsZCByZWZsZWN0IGdyYWRpZW50IGRpbHV0aW9uIChkaWFn\nbm9zdGljIHRva2VucyBhcmUgJHtcc2ltfSQxLzUwMCBvZiBmdWxsIHRyYWNlcywgZGlsdXRpbmcg\nZ3JhZGllbnQgc2lnbmFsIGR1cmluZyB0cmFpbmluZykgb3IgY29udGVudCBxdWFsaXR5ICh2ZXJi\nb3NlIGlucHV0IGJ1cmllcyBkaWFnbm9zdGljIHNpZ25hbHMgYXQgaW5mZXJlbmNlKS4KClxwYXJh\nZ3JhcGh7Q29udHJvbGxlZCBncmFkaWVudCBtYXNraW5nLn0KVG8gaXNvbGF0ZSBncmFkaWVudCBk\naWx1dGlvbiwgd2UgbWFzayA5OS44XCUgb2YgZ3JhZGllbnQgdXBkYXRlcyBkdXJpbmcgXHRleHR0\ndHtleGNlcHRpb25cX29ubHl9IHRyYWluaW5nLCBtYXRjaGluZyB0aGUgZGlhZ25vc3RpYyB0b2tl\nbiByYXRpbyBvZiBmdWxsIHRyYWNlcyB3aGlsZSBwcmVzZXJ2aW5nIGNvbXBhY3QgaW5wdXQuClRo\naXMgeWllbGRzIDk5LjIyXCUgKG1lYW4gJC0kMC42MXBwIGZyb20gXHRleHR0dHtleGNlcHRpb25c\nX29ubHl9LCAzIHNlZWRzKSwgbGltaXRpbmcgZ3JhZGllbnQgZGlsdXRpb24gdG8gJHtcbGVxfSQ0\nXCUgb2YgdGhlIDE4LjA3cHAgZ2FwIChUYWJsZX5ccmVme3RhYjpkZW5zaXR5fSkuClRoZSBncmFk\naWVudCBtYXNraW5nIGJvdW5kIGF0dHJpYnV0ZXMgdGhlIHJlbWFpbmluZyAke1xnZXF9JDk2XCUg\ndG8gY29udGVudCBxdWFsaXR5IChkaWFnbm9zdGljIHNpZ25hbCBkZW5zaXR5IGF0IGluZmVyZW5j\nZSksIHRob3VnaCBmb3J3YXJkLXBhc3MgYXR0ZW50aW9uIGR1cmluZyBtYXNrZWQgdHJhaW5pbmcg\naXMgYW4gdW5xdWFudGlmaWVkIHJlc2lkdWFsLgpOb3RlIHRoYXQgbWFza2luZyBhZmZlY3RzIG9u\nbHkgdGhlIGJhY2t3YXJkIHBhc3M7IHRoZSBtb2RlbCBzdGlsbCBhdHRlbmRzIHRvIGFsbCBpbnB1\ndCB0b2tlbnMgZHVyaW5nIHRoZSBmb3J3YXJkIHBhc3MsIHNvIHRoaXMgYm91bmRzIGdyYWRpZW50\nIGRpbHV0aW9uJ3MgY29udHJpYnV0aW9uIGJ1dCBkb2VzIG5vdCBydWxlIG91dCBhdHRlbnRpb24t\nYmFzZWQgaW5mb3JtYXRpb24gZmxvdyBhcyBhIHJlc2lkdWFsIGNvbmZvdW5kLgoKXGJlZ2lue3Rh\nYmxlfVt0XQpcY2VudGVyaW5nClxjYXB0aW9ue0RlY29tcG9zaXRpb24gb2YgdGhlIGZ1bGwtdHJh\nY2UgZGVncmFkYXRpb24gKFF3ZW4tN0IpLiBHcmFkaWVudCBtYXNraW5nIGF0dHJpYnV0ZXMgJHtc\nbGVxfSQ0XCUgdG8gZ3JhZGllbnQgZGlsdXRpb247IHRoZSBib3VuZCBhc3NpZ25zIHRoZSByZW1h\naW5kZXIgdG8gY29udGVudCBxdWFsaXR5LCB0aG91Z2ggZm9yd2FyZC1wYXNzIGF0dGVudGlvbiBp\ncyBhIHJlc2lkdWFsIGNvbmZvdW5kIChcU1xyZWZ7c2VjOmRlbnNpdHl9KS4gTGFiZWwtb25seSBs\nb3NzIHByb3ZpZGVzIGEgY29uZm91bmRlZCBidXQgZGlyZWN0aW9uYWxseSBjb25zaXN0ZW50IGNv\nbXBsZW1lbnRhcnkgZXN0aW1hdGUufQpcbGFiZWx7dGFiOmRlbnNpdHl9ClxzbWFsbApcYmVnaW57\ndGFidWxhcn17bGNjfQpcdG9wcnVsZQpcdGV4dGJme0NvbmRpdGlvbn0gJiBcdGV4dGJme0FjYyAo\nXCUpfSAmIFx0ZXh0YmZ7JFxEZWx0YSR9IFxcClxtaWRydWxlCmV4Y2VwdGlvblxfb25seSAmIDk5\nLjgze1xzY3JpcHRzaXplJFxwbSQwLjAwfSAmIC0tLSBcXApccXVhZCArIGdyYWQgbWFzayAoOTku\nOFwlKSAmIDk5LjIye1xzY3JpcHRzaXplJFxwbSQwLjIwfSReXFMkICYgJC0kMC42MXBwIFxcCmZ1\nbGxcX3RyYWNlICYgODEuNzYkXlxkZGFnJCAmICQtJDE4LjA3cHAgXFwKXG1pZHJ1bGUKXG11bHRp\nY29sdW1uezN9e2x9e1x0ZXh0aXR7Q29tcGxlbWVudGFyeSAoY29uZm91bmRlZCk6fX0gXFwKZnVs\nbFxfdHJhY2UgKyBsYWJlbC1vbmx5IGxvc3MgJiA4NS45NHtcc2NyaXB0c2l6ZSRccG0kMS4xMn0g\nJiArNC41MHBwJF5cZGFnJCBcXApcYm90dG9tcnVsZQpcZW5ke3RhYnVsYXJ9Clx2c3BhY2V7MnB0\nfQpccGFyXHJhZ2dlZHJpZ2h0XGZvb3Rub3Rlc2l6ZQokXlxTJE1lYW4gJFxwbSQgc3RkIG92ZXIg\nMyBzZWVkcyAoNDIsIDEyMywgNDU2KS4KJF5cZGRhZyRNYXRjaGVkLXNlZWQgYmFzZWxpbmU7IDMt\nc2VlZCBtZWFuIDgxLjQ0XCUkXHBtJDEuMTEgKFRhYmxlflxyZWZ7dGFiOmNyb3NzX21vZGVsfSku\nCiReXGRhZyR2cy5cIFx0ZXh0dHR7ZnVsbFxfdHJhY2V9ICg4MS40NFwlJFxwbSQxLjExKTsgbm90\nIHNpZ25pZmljYW50IHVuZGVyIGNsdXN0ZXJlZCBib290c3RyYXAgKDk1XCUgQ0kgWyQtJDAuNiwg\nKzkuOF1wcCwgJG5fXHRleHR7ZWZmfXs9fTExOSQpLgpcZW5ke3RhYmxlfQoKXHBhcmFncmFwaHtD\nb21wbGVtZW50YXJ5IGV2aWRlbmNlLn0KTGFiZWwtb25seSBsb3NzIG9uIGZ1bGwgdHJhY2VzICgr\nNC41MHBwLCAzIHNlZWRzKSB5aWVsZHMgYSBjb25mb3VuZGVkIHVwcGVyIGJvdW5kIG9mICR7XGxl\ncX0kMjZcJSBncmFkaWVudCBjb250cmlidXRpb24sIGNvbnNpc3RlbnQgd2l0aCB0aGUgbWFza2lu\nZyBlc3RpbWF0ZSAoJHtcbGVxfSQ0XCUpIGJ1dCBub3Qgc2lnbmlmaWNhbnQgdW5kZXIgY2x1c3Rl\ncmVkIGJvb3RzdHJhcCAoOTVcJSBDSSBbJC0kMC42LCArOS44XXBwKS4KUXdlbi0xLjVCIHNob3dz\nIGEgc2ltaWxhciBsYWJlbC1vbmx5IHBhdHRlcm4gKDE3XCUvODNcJSwgMyBzZWVkcyk7IENvZGVM\nbGFtYSBhbmQgRGVlcFNlZWsgZXhoaWJpdCBsYWJlbC1vbmx5IGNvbGxhcHNlIHRvIG1ham9yaXR5\nIGJhc2VsaW5lICgyOC41XCUpLCBsaW1pdGluZyB0aGlzIGNvbXBsZW1lbnRhcnkgYW5hbHlzaXMg\ndG8gdGhlIFF3ZW4gZmFtaWx5LgpUaGUgYXJjaGl0ZWN0dXJlIGRlcGVuZGVuY2Ugc3VnZ2VzdHMg\nbGFiZWwtb25seSB0cmFpbmluZyBpcyBzZW5zaXRpdmUgdG8gbW9kZWwgY2FwYWNpdHkgb3Igb3B0\naW1pemF0aW9uIGxhbmRzY2FwZTsgdGhlIGdyYWRpZW50IG1hc2tpbmcgYWJsYXRpb24gcHJvdmlk\nZXMgYSBtb3JlIHJvYnVzdCwgYXJjaGl0ZWN0dXJlLWluZGVwZW5kZW50IGRlY29tcG9zaXRpb24u\nCkNyb3NzLWFyY2hpdGVjdHVyZSB2YWxpZGF0aW9uIG9uIHR3byBhZGRpdGlvbmFsIGZhbWlsaWVz\nIGlzIGRpcmVjdGlvbmFsbHkgY29uc2lzdGVudCAoc2luZ2xlIHNlZWQgZWFjaCk6IERlZXBTZWVr\nLUNvZGVyLTYuN0IgYWNoaWV2ZXMgOTkuMzNcJSBhbmQgQ29kZUxsYW1hLTEzQiBhY2hpZXZlcyAx\nMDBcJSB1bmRlciA5OS44XCUgbWFza2luZywgYm90aCB3ZWxsIGFib3ZlIHRoZSBmdWxsLXRyYWNl\nIHJhbmdlICg3Ny0tODJcJSwgVGFibGV+XHJlZnt0YWI6Y3Jvc3NfbW9kZWx9KSwgc3VwcG9ydGlu\nZyBjb250ZW50IHF1YWxpdHkgYXMgdGhlIGRvbWluYW50IGZhY3RvciBhY3Jvc3MgYXJjaGl0ZWN0\ndXJlcy4KRXJyb3IgYW5hbHlzaXMgc3VwcG9ydHMgdGhlIGNvbnRlbnQgcXVhbGl0eSBpbnRlcnBy\nZXRhdGlvbjogYWxsIDIxNyBcdGV4dHR0e2Z1bGxcX3RyYWNlfSBlcnJvcnMgb2NjdXIgd2hlcmUg\ndG9rZW5pemVyIHRydW5jYXRpb24gcmVtb3ZlcyBkaWFnbm9zdGljIG1hcmtlcnMsIG1hbmlmZXN0\naW5nIHRocm91Z2ggbWVjaGFuaWNhbCB0cnVuY2F0aW9uIHJhdGhlciB0aGFuIHNlbWFudGljIGNv\nbmZ1c2lvbi4KClxzdWJzZWN0aW9ue0NvbXBsZW1lbnRhcnkgQW5hbHlzZXN9ClxsYWJlbHtzZWM6\nYWRkaXRpb25hbH0KClxwYXJhZ3JhcGh7VHJhY2UgbGVuZ3RoIGFibGF0aW9uLn0KXGxhYmVse3Nl\nYzp0cmFjZV9sZW5ndGh9ClZhcnlpbmcgdGhlIGhlYWQtdHJ1bmNhdGVkIHRyYWNlIHRva2VuIGJ1\nZGdldCAoMjU2LS1ubyBsaW1pdCkgb24gUXdlbi03QiB5aWVsZHMgYWNjdXJhY3kgaW4gYSBuYXJy\nb3cgNzcuMlwlLS04MS44XCUgYmFuZCB3aXRoIGEgbm9uLW1vbm90b25pYyBwYXR0ZXJuOiAxMDI0\nLXRva2VuIHByZWZpeGVzICg3Ny4yM1wlKSB1bmRlcnBlcmZvcm0gNTEyLXRva2VuIHByZWZpeGVz\nICg4MC40MlwlLCAkcHs9fS4wMDIkKSwgYmVjYXVzZSBtaWQtbGVuZ3RoIHByZWZpeGVzIHJldGFp\nbiBlbm91Z2ggaXJyZWxldmFudCBjb250ZW50IHRvIG1pc2xlYWQgdGhlIG1vZGVsIHdoaWxlIGRp\nc2NhcmRpbmcgZGlhZ25vc3RpYyBldmVudHMgbmVhciB0aGUgdHJhY2UgdGVybWludXMgKEFwcGVu\nZGl4flxyZWZ7c2VjOnRyYWNlX2xlbmd0aF9mdWxsfSkuCkNyaXRpY2FsbHksIHJlbW92aW5nIHRo\nZSB0b2tlbiBidWRnZXQgZW50aXJlbHkgKG5vIHRydW5jYXRpb24pIHlpZWxkcyA4MS43NlwlLCBp\nZGVudGljYWwgdG8gaGVhZC0yMDQ4LCBydWxpbmcgb3V0IHRydW5jYXRpb24gYXMgdGhlIGV4cGxh\nbmF0aW9uIGZvciB0aGUgZnVsbC10cmFjZSBkZWdyYWRhdGlvbi4KVGhpcyBub24tbW9ub3Rvbmlj\naXR5IGlzIHNwZWNpZmljIHRvIGhlYWQtdHJ1bmNhdGlvbjsgdW5kZXIgdGFpbC10cnVuY2F0aW9u\nLCBhY2N1cmFjeSBpbmNyZWFzZXMgbW9ub3RvbmljYWxseSBmb3IgdHdvIG9mIHRocmVlIG1vZGVs\ncyAoVGFibGV+XHJlZnt0YWI6dGFpbF9jcm9zc19tb2RlbH0gaW4gQXBwZW5kaXgpLCB3aXRoIG9u\nbHkgRGVlcFNlZWsgc2hvd2luZyBhIG1pbGQgYXJjaGl0ZWN0dXJlLXNwZWNpZmljIHJldmVyc2Fs\nIGF0IHRhaWwtMTAyNCRcdG8kdGFpbC0yMDQ4ICgkLSQxLjVwcCkuCgpccGFyYWdyYXBoe1RydW5j\nYXRpb24gZGlyZWN0aW9uIGFuZCBidWRnZXQgY3VydmUufQpUYWlsLXRydW5jYXRpb24gZHJhbWF0\naWNhbGx5IG91dHBlcmZvcm1zIGhlYWQtdHJ1bmNhdGlvbjogdGFpbC0yMDQ4IGV4Y2VlZHMgaGVh\nZC0yMDQ4IGJ5IDE1LjUtLTIyLjZwcCBhY3Jvc3MgdGhyZWUgbW9kZWxzIChBcHBlbmRpeH5ccmVm\ne3NlYzp0cmFjZV9sZW5ndGhfZnVsbH0pLgpGaWd1cmV+XHJlZntmaWc6YnVkZ2V0X2N1cnZlfSBy\nZXZlYWxzIGEgc2hhcnAgcGhhc2UgdHJhbnNpdGlvbiBhdCAzODQkXHRvJDUxMiB0YWlsIHRva2Vu\nczogYWxsIGZvdXIgbW9kZWxzIHNpbXVsdGFuZW91c2x5IGp1bXAgKzEzLjItLTIyLjBwcCwgY3Jv\nc3NpbmcgZnJvbSBuZWFyLWJhc2VsaW5lIHRvIDkzLS05OFwlLgpUaGlzIHRocmVzaG9sZCBjb2lu\nY2lkZXMgd2l0aCB0aGUgZ2xvYmFscyBtb2R1bGUgZHVtcCBib3VuZGFyeSAoJHtcc2ltfSQzODQg\ndG9rZW5zKSwgYmV5b25kIHdoaWNoIHN0cnVjdHVyZWQgZXhlY3V0aW9uIG1hcmtlcnMgYmVjb21l\nIHZpc2libGUgKFRhYmxlflxyZWZ7dGFiOnRhaWxfY3Jvc3NfbW9kZWx9KS4KQmV5b25kIDUxMiB0\nb2tlbnMsIGFsbCAxMiBtb2RlbCRcdGltZXMkc2VlZCBjb21iaW5hdGlvbnMgY29udmVyZ2UgaW50\nbyBbOTMuNjFcJSwgOTguMjRcJV0gKFRhYmxlflxyZWZ7dGFiOnRhaWw1MTJfc2VlZHN9KS4KXHRl\neHR0dHt0YWlsXF8yMDQ4fSBjYXB0dXJlcyA5NS0tOThcJSBvZiBcdGV4dHR0e2V4Y2VwdGlvblxf\nb25seX0ncyBhY2N1cmFjeTsgdGhlIHJlc2lkdWFsIDItLTVwcCBnYXAgc2hvd3Mgc2VtYW50aWMg\nZXh0cmFjdGlvbiBzdGlsbCBvdXRwZXJmb3JtcyBwb3NpdGlvbmFsIGV4dHJhY3Rpb24uCgpcYmVn\naW57ZmlndXJlfVt0XQpcY2VudGVyaW5nClxpbmNsdWRlZ3JhcGhpY3Nbd2lkdGg9XGNvbHVtbndp\nZHRoXXtidWRnZXRfY3VydmV9ClxjYXB0aW9ue1RhaWwtdHJ1bmNhdGlvbiBidWRnZXQgY3VydmUg\nYWNyb3NzIGZvdXIgbW9kZWxzIGFuZCB0aHJlZSBhcmNoaXRlY3R1cmUgZmFtaWxpZXMgKCROez19\nMXssfTE5MCQpLiBBIHNoYXJwIHBoYXNlIHRyYW5zaXRpb24gYXQgMzg0JFx0byQ1MTIgdG9rZW5z\nICgrMTMuMi0tMjIuMHBwKSBjb2luY2lkZXMgd2l0aCB0aGUgZ2xvYmFscyBtb2R1bGUgZHVtcCBi\nb3VuZGFyeS4gRGFzaGVkIGxpbmVzOiBcdGV4dHR0e2V4Y2VwdGlvblxfb25seX0gY2VpbGluZyBh\nbmQgXHRleHR0dHtub1xfdHJhY2V9IGZsb29yLn0KXGxhYmVse2ZpZzpidWRnZXRfY3VydmV9Clxl\nbmR7ZmlndXJlfQoKXHBhcmFncmFwaHtDYWxpYnJhdGlvbi59ClxsYWJlbHtzZWM6Y2FsaWJyYXRp\nb259CkNhbGlicmF0aW9uIG1pcnJvcnMgdGhlIHRpZXIgaGllcmFyY2h5OiBcdGV4dHR0e2V4Y2Vw\ndGlvblxfb25seX0gYWNoaWV2ZXMgRUNFID0gMC4wMDI3IHZzLlwgMC4xNzEgZm9yIFx0ZXh0dHR7\nbm9cX3RyYWNlfSwgYSA2MyRcdGltZXMkIGdhcCAoRmlndXJlflxyZWZ7ZmlnOmNhbGlicmF0aW9u\nfSkuClRoaXMgY2FsaWJyYXRpb24gYWR2YW50YWdlIGdlbmVyYWxpemVzIGFjcm9zcyBhcmNoaXRl\nY3R1cmVzIGFuZCBzY2FsZXM6IGFsbCBmb3VyIG1vZGVscyAoMS41Qi0tMTNCKSBhY2hpZXZlIEVD\nRSAkezx9JCAwLjAwNyB1bmRlciBcdGV4dHR0e2V4Y2VwdGlvblxfb25seX0gKFRhYmxlflxyZWZ7\ndGFiOmNhbGlicmF0aW9uX2Nyb3NzfSBpbiBBcHBlbmRpeCksIGluZGljYXRpbmcgd2VsbC1jYWxp\nYnJhdGVkIHByZWRpY3Rpb25zIHJhdGhlciB0aGFuIG92ZXJmaXQgY29uZmlkZW5jZS4KClxwYXJh\nZ3JhcGh7RXJyb3IgYW5hbHlzaXMufQpcdGV4dHR0e2V4Y2VwdGlvblxfb25seX0ncyAyIGVycm9y\ncyBoYXZlIHplcm8gb3ZlcmxhcCB3aXRoIGFsbCBvdGhlciBjb25kaXRpb25zJyBlcnJvciBzZXRz\nIChKYWNjYXJkID0gMC4wMDA7IEFwcGVuZGl4flxyZWZ7c2VjOmVycm9yX292ZXJsYXB9KTsgcGVy\nLXR5cGUgYnJlYWtkb3duIHNob3dzIGFsbCBzdGFuZGFyZCBleGNlcHRpb24gdHlwZXMgYWNoaWV2\nZSAxMDBcJSBhY2N1cmFjeSwgd2l0aCBvbmx5IFx0ZXh0dHR7R2VuZXJhdG9yRXhpdH0gKGEgYmVu\naWduIFx0ZXh0dHR7QmFzZUV4Y2VwdGlvbn0gc3ViY2xhc3MpIGNhdXNpbmcgZmFpbHVyZXMgKEFw\ncGVuZGl4flxyZWZ7c2VjOmV4Y2VwdGlvbl90eXBlfSkuCgpccGFyYWdyYXBoe0xlbmd0aCBjb250\ncm9sLn0KUGFkZGluZyBcdGV4dHR0e2V4Y2VwdGlvblxfb25seX0gdG8gMnssfTA0OCB0b2tlbnMs\nIGV2ZW4gaW4gYSBzZW1hbnRpY2FsbHkgbG9hZGVkIHBvc2l0aW9uIChhZnRlciB0aGUgdmVyZGlj\ndCByZWdpb24pLCB5aWVsZHMgaWRlbnRpY2FsIGFjY3VyYWN5ICg5OS44M1wlKSwgaW5kaWNhdGlu\nZyB0aGUgMTgtLTIzcHAgZ2FwIGFyaXNlcyBmcm9tIHNwdXJpb3VzIHBhdHRlcm5zIGluIHZlcmJv\nc2UgdHJhY2UgY29udGVudCwgbm90IHNlcXVlbmNlIGxlbmd0aC4KClxwYXJhZ3JhcGh7U3VwcGxl\nbWVudGFyeSBPT0QgYW5hbHlzaXMufQpcbGFiZWx7c2VjOmRlYnVnYmVuY2h9Ck9uIERlYnVnQmVu\nY2ggXGNpdGVwe3RpYW4yMDI0ZGVidWdiZW5jaH0gKCROez19NDI2JCksIHRoZSBjb25kaXRpb24g\ncmFua2luZyBpcyBwcmVzZXJ2ZWQ6IFx0ZXh0dHR7ZXhjZXB0aW9uXF9vbmx5fSAxMDBcJSwgVk9U\nQSA5OS43N1wlLCBcdGV4dHR0e25vXF90cmFjZX0gOTYuNzFcJS4KSG93ZXZlciwgbmFycm93IG1h\ncmdpbnMgKDMuMjlwcCBoZWFkcm9vbSBmcm9tIFx0ZXh0dHR7bm9cX3RyYWNlfSkgbGltaXQgZGlz\nY3JpbWluYXRpdmUgcG93ZXI7IHRoaXMgc3VwcGxlbWVudGFyeSBhbmFseXNpcyBwcmVzZXJ2ZXMg\ndGhlIHJhbmtpbmcgYnV0IGNhbm5vdCBlc3RhYmxpc2ggZWZmZWN0IHNpemVzIGNvbXBhcmFibGUg\ndG8gdGhlIHByaW1hcnkgZGF0YXNldCAoQXBwZW5kaXh+XHJlZntzZWM6ZGVidWdiZW5jaF9mdWxs\nfSkuCg==",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, I have the base64 content. Now I need to send it to the remote server. The correct path per C001 is `/root/trace-verdict-study/docs/paper/experiments.tex`.\n\nLet me write the file to the remote server using ssh_execute. The base64 content is small enough to send in one chunk.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7295d96b-1474-4b46-bb64-207673fb1d22",
+            "uuid": "89dd9cb8-1f4e-4056-814f-8d4000f84e3c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Uua9j4rwcaCm2wV5gqTs85",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 22994,
+                "cache_read_input_tokens": 32197,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 22994
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "写入远程服务器（使用 C001 正确路径 `/root/trace-verdict-study/docs/paper/`）。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7295d96b-1474-4b46-bb64-207673fb1d22",
+            "uuid": "2bbb5c63-feda-44fa-8a53-54a3b9c73594",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Uua9j4rwcaCm2wV5gqTs85",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 22994,
+                "cache_read_input_tokens": 32197,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 22994
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        }
+      ],
+      "message_count": 16
+    }
+  ],
+  "readable_path": "readable/worker-executions/sync-final-fix-857.md"
+}

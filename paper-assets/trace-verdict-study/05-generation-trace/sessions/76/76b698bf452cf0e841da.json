@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76b698bf452cf0e841da",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "eval zeroshot qwen7b",
+  "task_key": "worker_eval_zeroshot_qwen7b_20260517T130756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_zeroshot_qwen7b_20260517T130756_result.json",
+    "occurrence": 1,
+    "bytes": 1010,
+    "sha256": "44bc9e8d58d84cc563de3d5ad604aeffe84082a54bc765bf971cf0541b6434a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Zero-shot baseline 完成。结果汇总：\n\n## Zero-shot vs SFT 对比\n\n| 指标 | Zero-shot | SFT |\n|------|-----------|-----|\n| **Accuracy** | **89.08%** (95% CI: [87.31%, 90.76%]) | **99.83%** |\n| Majority baseline | 71.51% (always pass) | - |\n| Lift over baseline | +17.56pp | - |\n\n**Per-class F1:**\n\n| | Precision | Recall | F1 |\n|--|-----------|--------|------|\n| Pass | 0.8815 | 0.9788 | 0.9276 |\n| Fail | 0.9265 | 0.6696 | 0.7774 |\n\n**关键发现：**\n- 130/1190 条预测错误，0 条 unknown\n- 模型输出 \"yes\"（945）/ \"no\"（245），映射为 pass/fail\n- 主要错误模式：**fail 样本被预测为 pass**（模型倾向于回答 \"yes\"）。Fail recall 仅 66.96%，说明模型对 fail 的判断能力显著不足\n- SFT 将 accuracy 从 89.08% 提升到 99.83%，提升 **10.75pp**，充分证明 SFT 的必要性\n\n结果已存储在 `/root/autodl-tmp/trace-verdict-study-checkpoints/zeroshot_qwen7b_exception_only/eval_results_mapped.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-zeroshot-qwen7b.md"
+}

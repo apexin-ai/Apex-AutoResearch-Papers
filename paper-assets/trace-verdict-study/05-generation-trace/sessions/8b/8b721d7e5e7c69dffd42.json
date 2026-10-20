@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b721d7e5e7c69dffd42",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops gpu check and submit",
+  "task_key": "worker_ops_gpu_check_and_submit_20260520T172026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_check_and_submit_20260520T172026_result.json",
+    "occurrence": 1,
+    "bytes": 987,
+    "sha256": "1731d5cef064a618d0035f2aacdd8ca92f477825f4e630e692e347f5eeb68f07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个新实验都**立即失败**了 — `label_only` 不是 `train_sft.py` 的合法 condition。\n\ntrain_sft.py 接受的 condition 列表：\n```\nno_trace, vota, full_trace, vota_no_ae, ae_only, exception_only,\nexception_only_nomarker, loop_only, debugbench_no_trace, debugbench_vota,\ndebugbench_full_trace, debugbench_ae_only, debugbench_exception_only,\nfull_trace_tail, full_trace_tail_512, full_trace_tail_256,\nfull_trace_tail_1024, full_trace_tail_384, full_trace_head\n```\n\n`label_only` 不在其中。需要确认正确的 condition 名称后重新提交。\n\n---\n\n## 已完成实验汇总\n\n| 实验 | GPU | accuracy | baseline | lift | fail F1 |\n|------|-----|----------|----------|------|---------|\n| qwen15b_ae_only_seed123 | cuda:1 | **98.57%** | 71.5% | +27.1pp | 0.975 |\n| deepseek_loop_only_seed456 | cuda:0 | **78.4%** | 71.5% | +6.9pp | 0.63 |\n\n两个 GPU 当前空闲，等待你确认 `label_only` 对应的正确 condition 名称。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-check-and-submit.md"
+}

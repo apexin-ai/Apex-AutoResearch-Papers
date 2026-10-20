@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b260774817dbbf73e086",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis c2 cluster robust ci",
+  "task_key": "worker_analysis_c2-cluster-robust-ci_20260516T060303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_c2-cluster-robust-ci_20260516T060303_result.json",
+    "occurrence": 1,
+    "bytes": 2275,
+    "sha256": "7be28d38e63dc1a358e17d9a0d33d55ef55c6debb4704950c129c829d7153c93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n| Condition | N | Problems | Sample Acc | Problem Acc | Cluster CI | Wilson CI | Width Ratio |\n|-----------|---|----------|-----------|-------------|------------|-----------|-------------|\n| **ae_only** | 1190 | 119 | 0.9992 | — | [0.9975, 1.0000] | [0.9953, 0.9999] | **0.55** |\n| **exception_only** | 1190 | 119 | 0.9983 | — | [0.9950, 1.0000] | [0.9939, 0.9995] | 0.89 |\n| **vota** | 1190 | 119 | 0.9941 | — | [0.9832, 1.0000] | [0.9879, 0.9971] | 1.82 |\n| **vota_no_ae** | 1190 | 119 | 0.9941 | — | [0.9832, 1.0000] | [0.9879, 0.9971] | 1.82 |\n| **loop_only** | 1190 | 119 | 0.8563 | — | [0.8025, 0.9059] | [0.8352, 0.8751] | 2.59 |\n| **full_trace** | 1190 | 119 | 0.8176 | — | [0.7571, 0.8731] | [0.7947, 0.8386] | 2.64 |\n| **full_trace_label_only** | 1190 | 119 | 0.8622 | — | [0.8050, 0.9143] | [0.8414, 0.8806] | 2.79 |\n| **no_trace** | 1190 | 119 | 0.7513 | — | [0.6840, 0.8160] | [0.7259, 0.7750] | 2.69 |\n| **deepseek_vota** | 1190 | 119 | 0.8445 | — | [0.7866, 0.9000] | [0.8228, 0.8640] | 2.76 |\n| **deepseek_exception_only** | 1190 | 119 | 0.9933 | — | [0.9815, 1.0000] | [0.9868, 0.9966] | 1.89 |\n| **deepseek_no_trace** | 1190 | 119 | 0.7336 | — | [0.6630, 0.8009] | [0.7078, 0.7579] | 2.75 |\n| **deepseek_full_trace** | 1190 | 119 | 0.1059 | — | [0.0655, 0.1513] | [0.0897, 0.1247] | 2.45 |\n\n关键发现：\n\n1. **119 unique problems**，每个 problem 10 个 solutions（1190/119）\n2. **高准确率条件（>99%）**：cluster CI 反而比 Wilson CI **更窄**（ratio < 1）。这是因为几乎所有 problem 都是全对，cluster 内方差极低，有效样本量反而没有损失。\n3. **中低准确率条件（75%-86%）**：cluster CI 比 Wilson CI **宽 2.5-2.8 倍**，符合预期——同一 problem 下 solutions 高度相关，有效独立样本量从 1190 降到接近 119。\n4. **deepseek_full_trace 只有 10.6% accuracy**——明显异常，可能是失败的 run。\n\n输出文件：\n- JSON: `/root/autodl-tmp/trace-verdict-study-checkpoints/analysis/cluster_robust_ci.json`\n- Markdown: `/root/autodl-tmp/trace-verdict-study-checkpoints/analysis/cluster_robust_ci_summary.md`\n- 脚本: `/root/trace-verdict-study/analysis/cluster_robust_ci.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-c2-cluster-robust-ci.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c5c1f07d9a6da35d7a95",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper presentation polish sync",
+  "task_key": "worker_paper_presentation_polish_sync_20260520T064635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_presentation_polish_sync_20260520T064635_result.json",
+    "occurrence": 1,
+    "bytes": 885,
+    "sha256": "833041ca47a550b6bb7fdb015c30d6ae936107765b011e83374f89e12de99e20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 3 tasks complete. Summary:\n\n---\n\n**Task 1 — File Sync**: All 10 .tex/.bib files synced to `/root/trace-verdict-study/docs/paper/`, checksums verified matching.\n\n**Task 2 — LaTeX Compile**: Clean build successful.\n- 0 errors, 0 undefined references\n- 21 pages, 439KB PDF\n- Page limit satisfied (≤21)\n\n**Task 3 — Experiment Progress**:\n\n| Experiment | Status | Accuracy | Pass P/R | Fail P/R |\n|---|---|---|---|---|\n| deepseek_exception_only_seed123_v2 | **Complete** | **99.50%** | 1.000 / 0.993 | 0.983 / 1.000 |\n| codellama13b_ae_only_seed123 | **Complete** | **99.08%** | 1.000 / 0.987 | 0.969 / 1.000 |\n\nBoth experiments finished training (444/444 steps) with eval results saved. CodeLlama-13B ae_only at seed=123 achieved 99.08% accuracy with perfect fail recall (1.000), consistent with the strong ae_only results seen in other models."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-presentation-polish-sync.md"
+}

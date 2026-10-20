@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa9e78ba36ff6bd0707d",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "director / loop_6.md",
+  "task_key": "loop_6",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_6.md",
+    "occurrence": 1,
+    "bytes": 3021,
+    "sha256": "87df352e000cda5bbcf47ad97a755cc56878215ab38d6e59cc619b54c897211e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_messages\nupdated: '2026-05-15T18:38:31+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：cuda:0 和 cuda:1（westd-11235 上只分配了这两张卡）\n- vota_seed456 上次被错误提交到 cuda:0（与 deepseek 实验冲突），修复后路由到 cuda:1（`CUDA_VISIBLE_DEVICES=1`）。不要再犯同样的分配冲突\n- Registry 中 vota_seed456 的 spec.pid 是旧值 145908，实际 wrapper PID 为 146582（Reviewer 已记录），但进程可能已退出——必须先 SSH 确认再做任何判断\n- submit_training_job 的 command 中用 `export CUDA_VISIBLE_DEVICES=X` 显式指定 GPU，不要依赖默认分配\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-11235 (connect.westd.seetacloud.com)，用户 root\n- 工作目录：/root/trace-verdict-study\n- 训练日志目录：~/runs/trace-verdict-study/\n- W&B：未配置（本项目实验不依赖 W&B 追踪）\n- 镜像：aml-train（conda 环境，Python 在 /root/miniconda3/bin/）\n- 活跃进程（需重新确认）：\n  - deepseek_exception_only_seed123: PID 144507/144517, cuda:0\n  - vota_seed456: PID 146582 wrapper, cuda:1（cron 报进程已退出，需验证）\n\n### 3. 📊 当前状态\n- **vota_seed456**：cron 连续报进程退出 + 无 W&B 数据，registry 仍标 RUNNING。上一轮 Agent 派了 Worker SSH 排查但 Agent 随后空转 3h 未消化 Worker 结果。**这是最高优先级：SSH 查 `~/runs/trace-verdict-study/vota_seed456.log` 尾部，判断成功/失败，update_registry + delete_cron**\n- **deepseek_exception_only_seed123**：cuda:0 上 RUNNING，预计 1-2h 完成（但已过去 3h+，可能也已结束）\n- Agent 上一轮还派了 Worker 准备 DeepSeek full_trace v3 代码（注释掉 load_best_model_at_end，保留 chat template truncation fix），代码可能已就绪\n\n### 4. 📋 待办\n- 立即 SSH 确认 vota_seed456 状态 → 成功则 update_registry(DONE/success) + delete_cron；失败则 update_registry(DONE/failed) + 分析原因 + cuda:1 空出后提交 DeepSeek full_trace v3\n- 立即 SSH 确认 deepseek_exception_only_seed123 是否仍在跑 → 若已完成则同样更新 registry + 分析结果\n- 两张卡空出后 → 提交 DeepSeek full_trace v3（代码可能已就绪）+ seed robustness 矩阵的下一组\n- 两项 DeepSeek 实验落地后 → 更新 paper_framing → 启动 Paper Agent\n\n### 5. 🎯 战略上下文\n- 项目核心发现：trace 信息中 exception/error 信号是判定 verdict 的关键特征，VOTA（投票聚合）在 CodeLlama 上达 99.2% accuracy。现在做 seed robustness（plan_008）和 cross-model（DeepSeek）验证\n- 已有 15 个成功实验，research 阶段 + 审稿已并行启动（Review Group C 独立运作）\n- 易错点：Agent 上一轮 session 空转 3h 没消化 worker 回调，新 session 启动后先处理积压的 cron/worker 状态，不要直接派新实验\n- 决策链参考 decisions.yaml（22 条记录），paper_framing.md 和 experiment_plan.yaml 是战略锚点\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6.md"
+}

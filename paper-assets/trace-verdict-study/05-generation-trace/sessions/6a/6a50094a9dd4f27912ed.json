@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "id": "6a50094a9dd4f27912ed",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "paper ai style cleanup compile",
+  "task_key": "worker_paper_ai-style-cleanup-compile_20260525T121343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_ai-style-cleanup-compile_20260525T121343.log",
+    "occurrence": 1,
+    "bytes": 2096363,
+    "sha256": "3d583c621317ff942590d026c4793e3a50c27ee2234ff496834b62c827406f2d"
+  },
+  "statistics": {
+    "messages": 469,
+    "user_turns": 3,
+    "tool_calls": 170,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 1,
+      "assistant": 113,
+      "tool_call": 170,
+      "tool_result": 170,
+      "user": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 159,
+      "chunks": [
+        {
+          "path": "6a50094a9dd4f27912ed-part-0001.json",
+          "message_count": 75
+        },
+        {
+          "path": "6a50094a9dd4f27912ed-part-0002.json",
+          "message_count": 48
+        },
+        {
+          "path": "6a50094a9dd4f27912ed-part-0003.json",
+          "message_count": 36
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 75,
+      "chunks": [
+        {
+          "path": "6a50094a9dd4f27912ed-part-0003.json",
+          "message_count": 75
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 74,
+      "chunks": [
+        {
+          "path": "6a50094a9dd4f27912ed-part-0003.json",
+          "message_count": 69
+        },
+        {
+          "path": "6a50094a9dd4f27912ed-part-0004.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 161,
+      "chunks": [
+        {
+          "path": "6a50094a9dd4f27912ed-part-0004.json",
+          "message_count": 161
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-ai-style-cleanup-compile.md"
+}

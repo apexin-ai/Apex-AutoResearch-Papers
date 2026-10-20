@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6d007f978586c31ee57",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ssh kill duplicate eval cuda1",
+  "task_key": "worker_ssh_kill_duplicate_eval_cuda1_20260515T133118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_duplicate_eval_cuda1_20260515T133118_result.json",
+    "occurrence": 1,
+    "bytes": 530,
+    "sha256": "37621afe174516a82f41de42d1822af3742fc52821f1e74b487b744b0a68f8c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果汇报：**\n\n| 项目 | 状态 |\n|------|------|\n| PID 108843 (eval) | 已 kill |\n| PID 109289 (eval) | 已 kill |\n| PID 107198 (exception_only 训练) | 正常运行中，step 69/444 |\n| cuda:1 显存 | 22423 MiB（从 ~56730 MiB 降回，释放 ~34 GB） |\n\n训练速度在 step 58 前约 12-15s/it，step 59 起恶化到 19→27→31→35→39→45→49s/it（eval 进程抢显存）。kill 后最后一条日志是 step 69 @ 38s/it，速度正在恢复中，后续 step 应回到正常水平。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-duplicate-eval-cuda1.md"
+}

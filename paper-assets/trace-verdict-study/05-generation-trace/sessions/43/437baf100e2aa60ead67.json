@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "437baf100e2aa60ead67",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_16_1779374926.md",
+  "task_key": "loop_16_1779374926",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1779374926.md",
+    "occurrence": 1,
+    "bytes": 3863,
+    "sha256": "73e905a7e9d9873320e7e34acbbc860f07aeab2207adb0bca910b2f5759198f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-21T14:48:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-11235 的 cuda:0 和 cuda:1（gpu_ids 白名单）\n- exp_id 命名用 `qwen15b_` 不用 `qwen1.5b_`（点号导致 submit_on_allocated 不兼容，历史教训）\n- `qwen1.5b_no_trace_seed42`（ALLOCATED/killed）是废弃条目，实际结果在 `qwen15b_no_trace_seed42`（67.31%）。不要尝试重新提交这个旧 ID\n- EMNLP ARR DDL: 2026-05-25（4 天），论文已提交审稿等 review，当前是数据补全 + rebuttal 储备阶段\n- W&B entity/project 未在 config 中配置，获取指标必须 SSH 读日志，不能直接调 fetch_wandb_metrics\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-11235，account: root，工作目录 /root/trace-verdict-study\n- Python：conda base，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型路径：/root/autodl-tmp/models/Qwen2.5-Coder-1.5B-Instruct（1.5B）、同目录下其他模型\n- HF cache：/root/autodl-tmp/.hf_cache\n- 数据：/root/trace-verdict-study/data/（1640 条）\n- 活跃进程：codellama13b_label_only_seed123_v2（PID 654451, cuda:0, RUNNING）\n- 磁盘：/usr/bin/nvidia-smi 分区 400G/439G 可用（4%）\n\n### 3. 📊 当前状态\n**刚收到 CRON 回调**：qwen15b_no_trace_seed456 进程正常退出，状态 ANALYZING。已派 Worker `worker_analysis_qwen15b_no_trace_seed456_20260520T221422` 去 SSH 读日志提取指标 + 更新 registry → **Worker 尚未回调，结果未入 registry**。\n\n这是 Qwen-1.5B no_trace 第 3 seed：seed42=67.31%, seed123=75.88%, seed456=待 Worker 返回。Hypothesis 是判断 seed42 是否 outlier。\n\nRegistry 概况：151 实验，DONE 139，RUNNING 1，ANALYZING 1，QUEUED 6，PREPARING 3，ALLOCATED 1（废弃）\n- RUNNING：codellama13b_label_only_seed123_v2（cuda:0, PID 654451）— 验证 CodeLlama-13B label_only collapse 是否 systematic（seed42=28.5%）\n- QUEUED（6 个 rebuttal 储备）：qwen1.5b_full_trace/vota/exception_only_seed42, codellama_no_trace/vota/exception_only_seed42\n\n**cuda:1 空闲**——qwen15b_no_trace_seed456 跑完后释放，下一个\"你\"应立即铺 QUEUED 实验。\n\n### 4. 📋 待办\n- Worker `worker_analysis_qwen15b_no_trace_seed456_20260520T221422` 回调 → 读结果 → 更新 registry DONE → 计算 3-seed mean/std → 更新 report.md → 汇报 Director（含 [资源] 行 + seed42 outlier 判断 + C2 baseline 影响）\n- codellama13b_label_only_seed123_v2 cron 回调 → 分析是否也 collapse（如 seed42=28.5%）→ 如果 collapse 则 \"label_only collapse is systematic for non-Qwen\" 结论成立\n- cuda:1 空闲 → 向 Director 申请提交下一个 QUEUED 实验（优先 codellama_no_trace_seed42 或 qwen1.5b_full_trace_seed42，补全 rebuttal 矩阵）\n- 6 个 QUEUED 实验需要 Director 分配 GPU 才能推进 → 汇报时提醒\n\n### 5. 🎯 战略上下文\n- 项目核心：information density determines learning efficiency for trace-based verdict prediction。4 个 Core Claims 证据强度都 ≥★★★★\n- C2 Decomposition 是当前补数据重点：Qwen 家族（7B+1.5B）有完整 label_only 分解，DeepSeek+CodeLlama 都 collapse（28.5%）→ 论文叙事是 \"collapse vs. decomposition = architecture-dependent\"\n- **seed42 outlier 判断很关键**：如果 seed456 ≈ 75%（接近 seed123），则 seed42=67.31% 确实是 outlier，3-seed mean ≈ 72-73%。如果 seed456 ≈ 67%（接近 seed42），则 seed123 才是 outlier，mean 更低。这直接影响 C2 decomposition 的 gradient dilution vs info overload 比例\n- 易错：不要把 `qwen1.5b_*` 和 `qwen15b_*` 混淆——前者是早期命名（部分已废弃），后者是当前活跃实验\n- 易错：Worker 池当前只有 1 个（分析 Worker），BOOT 后应尽快补到 ≥2\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779374926.md"
+}

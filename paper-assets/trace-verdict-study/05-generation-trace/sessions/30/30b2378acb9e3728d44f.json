@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30b2378acb9e3728d44f",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis urgent harvest and submit batch",
+  "task_key": "worker_analysis_urgent_harvest_and_submit_batch_20260518T230810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_urgent_harvest_and_submit_batch_20260518T230810_result.json",
+    "occurrence": 1,
+    "bytes": 589,
+    "sha256": "246b794be34c80a7dd06c80d883b39771ca69a7e6165e8de8d01cdf58a2f7ac8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完毕。\n\n```\nGPU STATUS: 双卡空闲 (0% util, no processes, no tmux)\n  GPU0: 49GB VRAM residual but idle — GPU1: fully free\n\nSEED456 (qwen15b_exception_only):\n  accuracy = 99.83% [99.58%, 100.0%] — DONE ✓\n  vs seed42: 99.83% → 99.83% (差值 0, 完全一致)\n  pass F1=0.999, fail F1=0.997\n\nCODELLAMA_SEED123 (codellama13b_full_trace_tail512):\n  accuracy = 98.24% [97.48%, 98.99%] — DONE ✓\n  vs seed42: 97.5% → 98.24% (+0.74pp, seed123 略优)\n  pass F1=0.988, fail F1=0.968\n\nREADY FOR SUBMISSION: cuda:0 ✓, cuda:1 ✓\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-urgent-harvest-and-submit-batch.md"
+}

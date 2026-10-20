@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "486ac010db1819dd7de9",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "debug full trace eval parsing",
+  "task_key": "worker_debug_full-trace-eval-parsing_20260515T011243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_full-trace-eval-parsing_20260515T011243_result.json",
+    "occurrence": 1,
+    "bytes": 2469,
+    "sha256": "b145e854748def4655a66f2d48739485c9dd9f3808f0da6f1f1c4a2a09f119b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确诊完成。\n\n## 诊断结论\n\n### 1. Eval verdict extraction 逻辑\n- 函数：`evaluate.py:classify_prediction()` (第49行)\n- 提取方式：`max_new_tokens=1` → 检查输出是否包含 \"pass\"/\"fail\"\n- **三条件使用完全相同的 eval 路径**，eval 脚本本身无 bug\n\n### 2. 训练数据格式对比\n三条件的 output 格式完全一致，都是单 token `\"pass\"` (token 6385) 或 `\"fail\"` (token 18403)。\n\n### 3. 根因：token 计数 mismatch 导致训练标签被截断\n\n**`format_training_data.py` 用 raw token 计数（无 chat template）做截断预算：**\n```python\nMAX_SEQ_LENGTH = 2048\nfull_tokens = tokenizer.encode(full_input + label, add_special_tokens=False)  # 不含 chat template\n```\n\n**`train_sft.py` 用 chat template 包装后再按 `max_length=2048` 截断：**\n```python\n# to_chat_text() 添加了 system prompt + role markers\n# Qwen chat template 自带 system prompt \"You are Qwen...\"\n# 实测 overhead = 31 tokens\n```\n\n**结果：** 数据格式化将 trace 截断到 raw ≤ 2048 tokens。训练时 chat template 加了 31 tokens → 实际 2079 tokens → 超过 `max_length=2048` → TRL 从右侧截断 31 tokens → **output label \"pass\"/\"fail\" 被完全切掉**。\n\n### 4. 关键数据\n\n| 条件 | pass 样本超 2048 (chat-wrapped) | fail 样本超 2048 | 影响 |\n|------|------|------|------|\n| no_trace | 0% | 0% | 正常 |\n| vota | 89.4% (10.6% 保留) | 79.4% | 仍有 ~360 条 pass 标签可学 → 99.16% |\n| **full_trace** | **100%** | 79.4% | **0 条 pass 标签** → 只学到 \"fail\" → 28.4% |\n\n验证：full_trace 训练集 3107 条 pass 样本，**0 条**在 chat-wrapped 后 ≤ 2048 tokens。模型在训练中从未见过 \"pass\" 标签。\n\n### 5. 修复方案\n\n**方案 A（快速修复）：** `train_sft.py` 中 `max_length` 从 2048 改为 2080：\n```python\nmax_length=2080,  # 2048 + chat template overhead (31 tokens)\n```\n\n**方案 B（根本修复）：** `format_training_data.py` 的 `_truncate_trace` 中，token 预算需减去 chat template overhead：\n```python\nMAX_SEQ_LENGTH = 2048\nCHAT_TEMPLATE_OVERHEAD = 32  # 含 system prompt + role markers\nEFFECTIVE_BUDGET = MAX_SEQ_LENGTH - CHAT_TEMPLATE_OVERHEAD  # 2016\n```\n\n**推荐同时做 A + B**，然后重新格式化数据 + 重训 full_trace。\n\n预期修复后 full_trace accuracy 应 ≥ vota (99%)，因为 full_trace 包含更多信息。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-full-trace-eval-parsing.md"
+}

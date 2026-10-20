@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b38694dd2d0fd0ec2d92",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_10.md",
+  "task_key": "loop_10",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10.md",
+    "occurrence": 1,
+    "bytes": 4636,
+    "sha256": "428d1c4fc796374a79e46703614f3ecb782890040a5c77a05eb1b61303068eec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-16T04:27:14+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **仅 westd-11235:cuda:0 和 cuda:1**，绝对不碰其他 GPU\n- eval max_length **必须匹配训练 max_length**（DeepSeek full_trace 曾因 eval 用 16384 vs 训练 2048 导致 accuracy 从 79%→28%，详见 memory.md）\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不能假设 .venv 存在\n- ae_only 数据集 4720 条（ae_only_{train,test}.jsonl），exception_only 与之不同，不要混淆\n- 论文 EMNLP 8 页硬限（当前草稿 ~13 页，D042 决策已将 Discussion 移 appendix，但压缩工作未完成）\n- Qwen exception_only 99.83% 的 irreducible error（id=901, 905, GeneratorExit）是已确认的 representation 上限，不要当 bug 查\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-11235, account=root\n- **工作目录**: `/root/trace-verdict-study`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **数据集**: `/root/autodl-tmp/trace-verdict-study-data/`\n- **Checkpoints**: `/root/autodl-tmp/trace-verdict-study-checkpoints/`\n- **HF cache**: `/root/autodl-tmp/.hf_cache` (HF_HOME)\n- **W&B project**: `trace-verdict-study`\n- **活跃进程**:\n  - ae_only_seed123: RUNNING on cuda:0, cron 监控中, log=/tmp/ae_only_seed123.log\n  - ae_only_seed456: RUNNING on cuda:1, cron 监控中, log=/tmp/ae_only_seed456.log\n- **活跃 Worker**:\n  - `worker_analysis_trace_length_ablation_fig_20260516T040942` (running, turn 34, 正在 SSH 读取数据做 trace length ablation 图)\n\n### 3. 📊 当前状态\n上一轮完成了大量收官工作：regex baseline 分析（93.61% vs SFT 99.83%, p=0.041）、DebugBench 跨任务验证（exception_only 100%）、1024tok trace length ablation、论文页面压缩（13→8 页方案）、对抗审稿 Round 4、DeepSeek paired bootstrap 统计检验、fig1/fig4 修复。\n\n**Registry**: 44 实验总计（25 success / 7 negative / 3 failed / 多个 killed）。仅 2 个 RUNNING：ae_only_seed123 和 ae_only_seed456（ae_only 条件的 seed robustness，Reviewer P0 要求）。\n\n**等待中**:\n- ae_only_seed123/456 的 cron 完成回调（训练+eval 一体，预计数小时内完成）\n- trace_length_ablation_fig Worker 回调（turn 34，仍在活跃 SSH 读取中）\n- 无 Director 待决策项\n\n### 4. 📋 待办（条件触发式）\n- **ae_only_seed123 cron 回调到达** → spawn worker 分析结果 → 更新 registry(conclusion) → 若 success: 记录 accuracy/CI 到 paper_framing.md seed robustness 表 → 若两个 seed 都完成: 汇报 Director 完整 ae_only 3-seed 数据\n- **ae_only_seed456 cron 回调到达** → 同上逻辑\n- **两个 seed 都完成** → patch seed data 进论文草稿（Table 里加 ae_only seed 行）→ 更新 ROADMAP 近期任务清单\n- **trace_length_ablation_fig Worker 完成** → 检查产出图表质量 → register_artifact → 集成到论文\n- **所有 seed + 图表就绪** → 派 Paper Agent Worker 做最终 patch（regex baseline + DebugBench + ae_only seeds + ablation fig 全部整合进草稿）→ 然后启动 Reviewer 对抗轮次\n- **论文初稿完成** → 3 轮 Reviewer 对抗（5/18-20）→ 定稿（5/21-23）→ 5/24 提交 ARR\n\n### 5. 🎯 战略上下文\n**核心结论**: Exception events 是 verdict prediction 最有效的 trace 组件。Qwen 99.83% ± 0.00 (3 seeds 完美一致，irreducible error 已确认)。VOTA 的真正贡献是 fault indicator isolation 而非 generic trace compression。Paper framing v3.0 已 FINALIZED（3 claims 全部 confirmed）。\n\n**决策链关键节点**:\n- D029: DeepSeek 3-seed 分析 FINALIZED（seed42/456=99.33%, seed123=91.09% LoRA outlier）\n- D042: 论文 13→8 页重组方案（Discussion 移 appendix）\n- D044-D047: 对抗审稿驱动的 regex baseline + DebugBench 补充实验\n\n**易错点**:\n- ae_only ≠ exception_only：ae_only 是 actual/expected output 对比（99.92%），exception_only 是异常事件摘要（99.83%）。两者都是 Tier 1 但信号不同\n- DeepSeek seed123 是 LoRA initialization outlier（91.09%），不是方法问题——论文中要讨论但不能当作 limitation\n- 不要把 GC4-par (Falcon parallel) 和 GC4-seq 混淆——本项目无 Falcon，但 DeepSeek VOTA 84.45% 的 gap 是 trace truncation 导致而非模型能力问题（D030 已确认）\n- 论文压缩是硬需求（EMNLP 8 页），但 D042 方案已就绪，执行即可\n- 当前是 9 天冲刺最后阶段，seed 实验是最后的 blocking 数据点，完成后全力转论文\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-copy-2.md"
+}

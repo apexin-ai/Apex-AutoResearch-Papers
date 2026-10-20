@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae30bb52527b0e234197",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ssh diagnose cuda1 speed",
+  "task_key": "worker_ssh_diagnose_cuda1_speed_20260515T132751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_diagnose_cuda1_speed_20260515T132751_result.json",
+    "occurrence": 1,
+    "bytes": 1433,
+    "sha256": "3b701c32daafa714782f3d9ce3e61f4691e1a18bb542ca95d45ca12788566fde"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 主因：GPU 1 上有 3 个进程争抢资源\n\n| PID | GPU | 显存 | 进程 |\n|-----|-----|------|------|\n| 106832 | GPU 0 (38:00.0) | 22,054 MiB | `deepseek_no_trace_seed42` 训练 |\n| 107198 | GPU 1 (5A:00.0) | 22,414 MiB | `deepseek_exception_only_seed42` 训练 |\n| 108843 | GPU 1 (5A:00.0) | 17,158 MiB | `evaluate.py` — vota checkpoint-148 eval |\n| 109289 | GPU 1 (5A:00.0) | 17,158 MiB | `evaluate.py` — vota checkpoint-148 eval (重复) |\n\nGPU 1 总占用 56,730 MiB / 97,887 MiB，三个进程争抢计算资源和显存带宽。exception_only 训练速度从 15s/it 恶化到 **35s/it**（step 63），正在持续下降。\n\n### 次因：数据序列长度差异 ~2.9x\n\n| 数据集 | 行数 | 文件大小 | 平均字符/样本 |\n|--------|------|----------|--------------|\n| no_trace_train | 4,720 | 2.7 MB | ~592 |\n| exception_only_train | 4,720 | 7.7 MB | ~1,710 |\n\nexception_only 每条样本约 2.9x 长，attention 计算量随序列长度超线性增长。即使没有 GPU 争抢，exception_only 也会比 no_trace 慢（预估 6-8 s/it vs 3 s/it）。\n\n### 需要干预\n\n**两个 vota eval 进程 (PID 108843, 109289)** 是主要瓶颈。它们在 GPU 1 上占了 34 GB 显存，且看起来是同一个 checkpoint 的重复 eval。建议 kill 掉它们，exception_only 训练速度应能从当前 35s/it 恢复到 ~7s/it。\n\n是否执行 kill？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-cuda1-speed.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee3972d4802c8d68fea1",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "prep paper status audit",
+  "task_key": "worker_prep_paper-status-audit_20260516T051956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_paper-status-audit_20260516T051956_result.json",
+    "occurrence": 1,
+    "bytes": 622,
+    "sha256": "c7b330cfc7ad5152f2214a5a7faf4c2b1f0abc3b57747f1cbdca1e5a108728d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。核心结论：\n\n**论文基本完成**。6 个主体章节 + 13 个 appendix 小节 + ARR checklist 全部写完，4 项数据 patch（regex baseline、DebugBench、trace length ablation、seed robustness）均已集成。3 张图编译正常，无 LaTeX 错误。\n\n**两个 gap**：\n1. **ae_only 多 seed 未跑** — 只有 seed 42 (99.92%)，seeds 123/456 未实验，论文中也没有 placeholder\n2. **fig3_cross_model_gap 是孤立资产** — PDF 已生成但论文未引用（cross-model 数据以 Table 1 呈现）\n\n主体仅 4 页（ACL 限制 8 页），有扩展空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-paper-status-audit.md"
+}

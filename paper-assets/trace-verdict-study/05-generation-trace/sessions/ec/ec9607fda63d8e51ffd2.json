@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec9607fda63d8e51ffd2",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_9_1778904485.md",
+  "task_key": "loop_9_1778904485",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778904485.md",
+    "occurrence": 1,
+    "bytes": 4534,
+    "sha256": "e15087d1826b43821bad8454c79785375787c11f8dfd8075de135a614eda53d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-16T04:07:22+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 westd-11235:cuda:0 和 westd-11235:cuda:1**，无其他合法 GPU\n- DeepSeek 实验 eval 时 max_length **必须 = 2048**（匹配训练），用 16384 会 OOD 崩溃到 28.5%（memory.md 有详细记录）\n- full_trace_2048tok 已被 Director 取消（与 no_limit 等价），不要重新提交\n- regex_baseline_analysis 状态卡在 QUEUED 但 conclusion=success、metrics 已有——需要 update_registry 修正为 DONE\n- 论文正文 **必须压到 8 页**（EMNLP 限制），当前 ~13 页，D042 决定将 Discussion 4 个分析小节移入 appendix\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-11235**，账号 root\n- 工作目录：`/root/trace-verdict-study`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型：`/root/trace-verdict-study/models/Qwen2.5-Coder-7B-Instruct`\n- Checkpoints：`/root/autodl-tmp/trace-verdict-study-checkpoints/`\n- 数据：`/root/autodl-tmp/trace-verdict-study-data/`\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- W&B project：`trace-verdict-study`\n- 活跃进程：ae_only_seed123 (cuda:0, log=/tmp/ae_only_seed123.log)、ae_only_seed456 (cuda:1, log=/tmp/ae_only_seed456.log)\n- 活跃 Cron：2 个，监控 ae_only_seed123 和 ae_only_seed456\n\n### 3. 📊 当前状态\n刚完成的工作（本 session 前一个\"我\"做的）：\n- D044 对抗审稿后补了 regex baseline（best regex = 93.61% via format marker B5，SFT = 99.83%，McNemar p=0.041），结果写入 registry 但 **状态卡在 QUEUED 需修正为 DONE**\n- D042 论文 13→8 页压缩方案已定（Discussion 移 appendix），Worker 已执行 page-compression\n- ae_only seed robustness 两个实验（seed123 + seed456）已提交到两块 GPU，**当前正在 RUNNING**\n- Paper Agent 已完成多轮写作迭代（trace length ablation narrative、regex baseline writeup、discussion maxlen robustness、reference audit、compile check）\n- fig1_trace_overview 生成中（Worker ops:fix_fig1_text 已完成）\n- fig2_calibration ✅、fig3_cross_model_gap ✅、fig4 已 resync\n\nRegistry：42 DONE + 2 RUNNING (ae_only_seed123/456) + 2 QUEUED (regex_baseline_analysis 需修正, full_trace_2048tok killed)\n\n等待中：\n- **ae_only_seed123 和 ae_only_seed456 的 cron 回调**（这是当前唯一的阻塞项）\n- 无等待中的 Director 决策\n\n### 4. 📋 待办（条件触发式）\n- ae_only_seed123/456 cron 回调到达 → spawn Worker 做 eval 分析 → 更新 seed robustness 表（预期 ~99.9%，若 ≥99.8% 确认 ae_only 与 exception_only 同级 robustness）→ 更新 paper Table 中 ae_only 3-seed 行 → 汇报 Director\n- ae_only 如果某 seed 大幅低于 99.92% → 检查是否 LoRA outlier（参考 DeepSeek seed123 经验），不必恐慌，但需在论文中讨论\n- regex_baseline_analysis 状态修正为 DONE（下一个 session 启动时立即做）\n- 两个 seed 实验完成后 → 全部实验收官 → 论文最终定稿流程：8 页压缩验证 → 全文一致性审查 → Reviewer 对抗 → 提交 ARR\n- Paper Agent 初稿交付后 → 派 Reviewer Worker 做对抗审查（adversarial review round 2+）\n\n### 5. 🎯 战略上下文\n**核心结论链**：Exception events（结构化错误摘要）是 verdict prediction 最有效的 trace 组件。Qwen 99.83% ± 0.00（3 seeds 完全一致，理论上限），DeepSeek 2/3 seeds 99.33%。ae_only（actual/expected 值对）99.92% 是数值最高但与 exception_only 功能重叠。VOTA 的真正贡献是 fault indicator isolation 而非 generic trace compression。\n\n**Paper framing v3.0 已 FINALIZED**，3/3 claims confirmed。不要改 framing，只做 evidence 补充和文字打磨。\n\n**易判断错的点**：\n- Trace length ablation 结果是非单调的（256=78.82%, 512=80.42%, 1024=运行中, no_limit=81.76%）→ 叙事不是\"越长越好\"，而是\"all full_trace variants 远低于 exception_only\"（D037）\n- DeepSeek VOTA 84.45% 不是 bug，是 trace input truncation（91.7% 样本被截断）+ 模型差异的合理结果。D030 已确认关闭\n- DeepSeek seed123 exception_only 91.09% 是 LoRA initialization sensitivity，不是方法问题（D029）\n- 论文 13 页是**当前**状态，必须压到 8 页（D042 方案已定但可能未完全执行）\n- **DDL 是 2026-05-25 ARR**，还剩 9 天，ae_only seed 完成后进入纯论文冲刺\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778904485.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2960a926fb00ddf4e8f",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis harvest codellama seed42 final",
+  "task_key": "worker_analysis_harvest_codellama_seed42_final_20260519T022955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_harvest_codellama_seed42_final_20260519T022955_result.json",
+    "occurrence": 1,
+    "bytes": 446,
+    "sha256": "c56c4a5e45b18fcd2694ad88dd64eddefee36b8c1be7e0a6060ec0791637fcf8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "收割完成。\n\n```\nGPU STATUS: 双卡空闲（0%利用率，无进程）\ncodellama13b_seed42: accuracy=98.24% [97.5%, 99.0%] — DONE (success)\n\n三 seed 完全一致：seed42=98.24%, seed123=98.24%, seed456=98.24%\n```\n\n值得注意：原假设预期 93-96%，实际 98.24% 远超预期，且三个 seed 结果完全相同（0.9824），方差为零。CodeLlama-13B 在 full_trace_tail_512 条件下表现极其稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-harvest-codellama-seed42-final.md"
+}

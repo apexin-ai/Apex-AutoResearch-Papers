@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fd56ae3ddeea9201bd2",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops paper scp sync",
+  "task_key": "worker_ops_paper_scp_sync_20260522T082447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_paper_scp_sync_20260522T082447_result.json",
+    "occurrence": 1,
+    "bytes": 620,
+    "sha256": "3f05ffea0b5ea3c41506872bbd2b005016115b051eac714a779bb6cd7ec3f91e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 传输报告\n\n**10/10 文件全部传输成功**，时间戳均为 May 22 16:26。\n\n### MD5 验证（4 个关键文件全部匹配）\n\n| 文件 | MD5 | 匹配 |\n|------|-----|------|\n| experiments.tex | `4ddd9ca0aef52c892fd70e22e2ff1d03` | ✓ |\n| introduction.tex | `8c21b9d299bf0141ed91026b256deb1d` | ✓ |\n| appendix.tex | `13e7f929d029d470c8f0eecc20c323d8` | ✓ |\n| main.tex | `c285726174e5eb41a06b421c02120774` | ✓ |\n\n注：原始任务中的 `westd-11235` 主机名未在本地 SSH config 中配置，实际使用 `scp -P 11235 root@connect.westd.seetacloud.com:` 完成传输。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-paper-scp-sync.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8313de303a0e544b5d1",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops eval exc message only",
+  "task_key": "worker_ops_eval-exc-message-only_20260522T131430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-exc-message-only_20260522T131430_result.json",
+    "occurrence": 1,
+    "bytes": 504,
+    "sha256": "be16a52a0b3cba93f3d20902aaea1978ea86c7f2ee64d0fd462662f20ed9cf4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exc_message_only_seed42 评估结果：**\n\n| 指标 | 值 |\n|---|---|\n| accuracy | 0.9950 |\n| pass_f1 | 0.9965 |\n| fail_f1 | 0.9912 |\n| pass_precision | 1.0000 |\n| pass_recall | 0.9929 |\n| fail_precision | 0.9826 |\n| fail_recall | 1.0000 |\n| n_test | 1190 |\n\n尽管 eval_loss=0.58 远高于 exc_type_only 和 exc_stacktrace_only，准确率依然达到 99.5%，与其他 exc 子组件模型差距很小。fail_recall 满分，pass_precision 满分，分类性能非常强。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-exc-message-only.md"
+}

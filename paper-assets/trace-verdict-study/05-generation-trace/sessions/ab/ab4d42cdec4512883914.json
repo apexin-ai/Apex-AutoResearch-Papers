@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "ab4d42cdec4512883914",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "audit final maintext tables",
+  "task_key": "worker_audit_final-maintext-tables_20260523T191655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_final-maintext-tables_20260523T191655.log",
+    "occurrence": 1,
+    "bytes": 885976,
+    "sha256": "54e0e838d596127a5aeb9e8e793007ddc3dc684eb54e2a1316ccac96ce5924cc"
+  },
+  "statistics": {
+    "messages": 84,
+    "user_turns": 1,
+    "tool_calls": 27,
+    "roles": {
+      "log": 1,
+      "system": 17,
+      "assistant": 9,
+      "record": 1,
+      "tool_call": 27,
+      "tool_result": 27,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 32,
+      "chunks": [
+        {
+          "path": "ab4d42cdec4512883914-part-0001.json",
+          "message_count": 32
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 52,
+      "chunks": [
+        {
+          "path": "ab4d42cdec4512883914-part-0001.json",
+          "message_count": 21
+        },
+        {
+          "path": "ab4d42cdec4512883914-part-0002.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-final-maintext-tables.md"
+}

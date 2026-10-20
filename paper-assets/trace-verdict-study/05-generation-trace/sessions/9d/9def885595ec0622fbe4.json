@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9def885595ec0622fbe4",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_9_1778901828.md",
+  "task_key": "loop_9_1778901828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778901828.md",
+    "occurrence": 1,
+    "bytes": 4568,
+    "sha256": "d1381a1e367869c13657aa3a2c8322f52b0e3cfebd1493f03c2d4d266ba9f4db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-16T03:04:25+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 westd-11235:cuda:0 和 westd-11235:cuda:1，禁止用其他设备\n- DeepSeek 实验 VOTA label 未被截断（to_chat_text preserves labels），被截断的是 trace content——叙事中不得再出现 \"label truncation/corruption\"\n- full_trace token-length ablation 系列（256/512/1024/2048tok）共享同一份数据 full_trace_{train,test}.jsonl，仅 max_trace_tokens 不同，不要重新生成数据\n- debugbench_vota_seed42 刚用 submit_on_allocated 提交到 cuda:1（PID 211253），full_trace_256tok_seed42 完成后 cron 自动把 cuda:1 分配给了它——不要重复提交或 kill\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-11235，账户 root，工作目录 /root/trace-verdict-study\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，pip/python 在 /root/miniconda3/bin/\n- 模型缓存：HF_HOME=/root/autodl-tmp/.hf_cache\n- 训练数据：/root/autodl-tmp/trace-verdict-study-data/\n- Checkpoint：/root/autodl-tmp/trace-verdict-study-checkpoints/\n- W&B project: trace-verdict-study（entity 未在 project config 配置，需从服务器 wandb api 查）\n- 活跃进程：\n  - full_trace_512tok_seed42: PID 197608, cuda:0, RUNNING（plan_006 ablation）\n  - debugbench_vota_seed42: PID 211253, cuda:1, RUNNING（plan_005 DebugBench）\n- 活跃 Worker：worker_analysis_full_trace_256tok_seed42_20260516T000218（正在 SSH 读取 eval 结果）\n\n### 3. 📊 当前状态\n**刚做完**：收到 full_trace_256tok_seed42 的 cron 完成回调（ANALYZING），已派 Worker SSH 读取 eval_results.json + 训练日志 + 更新 registry。Worker 尚未回调。\n\n**RUNNING 实验**：\n- `full_trace_512tok_seed42`（cuda:0）— plan_006 ablation，512 tokens 截断，预计 ~1h\n- `debugbench_vota_seed42`（cuda:1）— plan_005 DebugBench VOTA condition，刚启动\n\n**QUEUED（等 GPU）**：\n- `debugbench_no_trace_seed42` — plan_005 baseline\n- `debugbench_exception_only_seed42` — plan_005 核心验证\n- `full_trace_2048tok_seed42` — plan_006 ablation 2048tok\n- `full_trace_1024tok_seed42` — plan_006 ablation 1024tok\n\n**等待中**：\n- Worker 回调：full_trace_256tok_seed42 分析结果\n- Cron 监控：full_trace_512tok_seed42 + debugbench_vota_seed42\n\n### 4. 📋 待办\n- Worker 分析回调到达 → 读取 conclusion，按 on-experiment-done 流程处理（更新 report.md + 汇报 Director）\n- full_trace_512tok_seed42 cron 回调 → 同样派 Worker 分析，与 256tok 结果对比\n- debugbench_vota_seed42 完成 → 分析后立即提交 debugbench_no_trace_seed42 或 debugbench_exception_only_seed42 到 cuda:1\n- full_trace_512tok_seed42 完成 → 提交 full_trace_1024tok_seed42 到 cuda:0\n- 两张 GPU 都空出来时 → 优先 debugbench 系列（plan_005 对 EMNLP 投稿更关键：跨 benchmark 泛化）\n- 全部 token-length ablation 完成 → 汇总 accuracy vs token_length 曲线，判断是否需要进 paper\n- Director 未回复的事项：无（上轮已关闭 D030-D035）\n\n### 5. 🎯 战略上下文\n- **核心结论**：exception events 是 verdict prediction 最有效的 trace component（Claim 1 FINALIZED D029）。3 claims 全部 confirmed。\n- **当前阶段**：实验补充 + 论文初稿。DDL = ARR May 25（10 天）。\n- **plan_005（DebugBench）**：跨 benchmark 泛化验证——HumanEval+MBPP 上 exception_only 99.83%，需在 DebugBench（logic-error-dominated）上复现。bug fix 后 exception signal 覆盖率已达 100%（D035）。\n- **plan_006（token-length ablation）**：full_trace 81.8% 差的原因之一是 trace 过长导致 gradient dilution。ablation 测 256/512/1024/2048 四个点，预期更短截断 → 更高 accuracy（接近 exception_only 的信息密度假说）。\n- **易错点**：\n  - W&B entity 未配置在 project config 里，fetch_wandb_metrics 会失败——必须让 Worker SSH 直接读 eval_results.json 或从服务器用 wandb API\n  - DeepSeek seed123 是 LoRA initialization sensitivity 导致的离群值（91.09%），不是方法问题——论文中需要 acknowledge 但不改结论\n  - debugbench 数据已生成并修复过 bug（D035），format_data.py 的 VOTA 路径缺失修复 Worker 可能还在进行中——提交 debugbench_vota 前需确认数据完整性\n  - 决策链关键节点：D029（Claim1 finalized）→ D030/D034（VOTA 84.45% confirmed, trace truncation not label）→ D035（DebugBench bug fix, keep original design）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778901828.md"
+}

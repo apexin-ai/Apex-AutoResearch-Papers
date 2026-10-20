@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac17f1819df9d2b826c2",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops verify pdf md5",
+  "task_key": "worker_ops_verify_pdf_md5_20260521T071458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_pdf_md5_20260521T071458_result.json",
+    "occurrence": 1,
+    "bytes": 227,
+    "sha256": "380a70b4db999d090c652cf9716aa9477a312a7f6a8cecb3ddca943b8c5e86db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**MD5 一致。**\n\n| | MD5 | 大小 |\n|---|---|---|\n| 本地 | `fd5e7b3d6652dbc4cfaa9a769628f2c4` | 440439 bytes |\n| 远程 | `fd5e7b3d6652dbc4cfaa9a769628f2c4` | 440439 bytes |\n\n两份 PDF 完全相同。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-pdf-md5.md"
+}

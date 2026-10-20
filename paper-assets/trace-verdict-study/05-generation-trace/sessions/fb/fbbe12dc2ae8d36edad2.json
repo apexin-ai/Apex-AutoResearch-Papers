@@ -1,0 +1,252 @@
+{
+  "schema_version": "1.0",
+  "id": "fbbe12dc2ae8d36edad2",
+  "project": "trace-verdict-study",
+  "kind": "conversation",
+  "title": "analyze codellama13b vota seed42",
+  "task_key": "worker_analyze_codellama13b_vota_seed42_20260516T182221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analyze_codellama13b_vota_seed42_20260516T182221.jsonl",
+    "occurrence": 1,
+    "bytes": 12862,
+    "sha256": "923da315422841ed0bb071f4d06609a66290064495dd87e0d83091deacc52095"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "tool_call": 5,
+      "tool_result": 5,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T18:23:01.881760+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_codellama13b_vota_seed42_20260516T182221",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T18:23:01.882081+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_codellama13b_vota_seed42_20260516T182221",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T18:23:01.882296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_codellama13b_vota_seed42_20260516T182221",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "cat /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_vota_seed42/final/eval_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T18:23:01.882440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_codellama13b_vota_seed42_20260516T182221",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "tail -80 /root/runs/trace-verdict-study/codellama13b_vota_seed42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T18:23:01.882622+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"vota\\\\\\\",\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_vota_seed42/final\\\\\\\",\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.9857142857142858,\\\\n    \\\\\\\"majority_baseline\\\\\\\": 0.7151260504201681,\\\\n    \\\\\\\"lift\\\\\\\": 0.2705882352941177,\\\\n    \\\\\\\"majority_class\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n    \\\\\\\"n\\\\\\\": 1190,\\\\n    \\\\\\\"pass_precision\\\\\\\": 0.9882903981264637,\\\\n    \\\\\\\"pass_recall\\\\\\\": 0.9917743830787309,\\\\n    \\\\\\\"pass_f1\\\\\\\": 0.9900293255131964,\\\\n    \\\\\\\"fail_precision\\\\\\\": 0.9791666666666666,\\\\n    \\\\\\\"fail_recall\\\\\\\": 0.9705014749262537,\\\\n    \\\\\\\"fail_f1\\\\\\\": 0.9748148148148148\\\\n  },\\\\n  \\\\\\\"confidence_intervals\\\\\\\": {\\\\n    \\\\\\\"accuracy_ci_lower\\\\\\\": 0.9789915966386554,\\\\n    \\\\\\\"accuracy_ci_upper\\\\\\\": 0.9915966386554622,\\\\n    \\\\\\\"majority_baseline_ci_lower\\\\\\\": 0.6915966386554622,\\\\n    \\\\\\\"majority_baseline_ci_upper\\\\\\\": 0.738655462184874,\\\\n    \\\\\\\"lift_ci_lower\\\\\\\": 0.246218487394958,\\\\n    \\\\\\\"lift_ci_upper\\\\\\\": 0.2958193277310925,\\\\n    \\\\\\\"pass_precision_ci_lower\\\\\\\": 0.9812195526097762,\\\\n    \\\\\\\"pass_precision_ci_upper\\\\\\\": 0.9943965499821503,\\\\n    \\\\\\\"pass_recall_ci_lower\\\\\\\": 0.9848656824355311,\\\\n    \\\\\\\"pass_recall_ci_upper\\\\\\\": 0.9975792011719942,\\\\n    \\\\\\\"pass_f1_ci_lower\\\\\\\": 0.985107141334265,\\\\n    \\\\\\\"pass_f1_ci_upper\\\\\\\": 0.994286525974026,\\\\n    \\\\\\\"fail_precision_ci_lower\\\\\\\": 0.9620972801417131,\\\\n    \\\\\\\"fail_precision_ci_upper\\\\\\\": 0.9935095955000414,\\\\n    \\\\\\\"fail_recall_ci_lower\\\\\\\": 0.9522388059701492,\\\\n    \\\\\\\"fail_recall_ci_upper\\\\\\\": 0.9863545949698296,\\\\n    \\\\\\\"fail_f1_ci_lower\\\\\\\": 0.9622912381735911,\\\\n    \\\\\\\"fail_f1_ci_upper\\\\\\\": 0.9856749417625182\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_codellama13b_vota_seed42_20260516T182221",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T18:23:01.882773+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_codellama13b_vota_seed42_20260516T182221",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "ls -la /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_vota_seed42/final/",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T18:23:01.882954+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Setting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:2 for open-en\n…[truncated 2494 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_codellama13b_vota_seed42_20260516T182221",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T18:23:01.883117+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 248700\\\\ndrwxr-xr-x 2 root root      4096 May 17 02:19 .\\\\ndrwxr-xr-x 7 root root       142 May 17 02:14 ..\\\\n-rw-r--r-- 1 root root      5264 May 17 02:14 README.md\\\\n-rw-r--r-- 1 root root      1128 May 17 02:14 adapter_config.json\\\\n-rw-r--r-- 1 root root 250422888 May 17 02:14 adapter_model.safetensors\\\\n-rw-r--r-- 1 root root       813 May 17 02:14 chat_template.jinja\\\\n-rw-r--r-- 1 root root      1417 May 17 02:19 eval_results.json\\\\n-rw-r--r-- 1 root root     77430 May 17 02:19 predictions.jsonl\\\\n-rw-r--r-- 1 root root       538 May 17 02:14 special_tokens_map.json\\\\n-rw-r--r-- 1 root root   3620731 May 17 02:14 tokenizer.json\\\\n-rw-r--r-- 1 root root    500058 May 17 02:14 tokenizer.model\\\\n-rw-r--r-- 1 root root      1869 May 17 02:14 tokenizer_config.json\\\\n-rw-r--r-- 1 root root      6481 May 17 02:14 training_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_codellama13b_vota_seed42_20260516T182221",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T18:23:01.883287+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_codellama13b_vota_seed42_20260516T182221",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "head -5 /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_vota_seed42/final/predictions.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T18:23:01.883440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": 0, \\\\\\\"label\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"fail\\\\\\\"}\\\\n{\\\\\\\"id\\\\\\\": 1, \\\\\\\"label\\\\\\\": \\\\\\\"pass\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"pass\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"pass\\\\\\\"}\\\\n{\\\\\\\"id\\\\\\\": 2, \\\\\\\"label\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"fail\\\\\\\"}\\\\n{\\\\\\\"id\\\\\\\": 3, \\\\\\\"label\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"fail\\\\\\\"}\\\\n{\\\\\\\"id\\\\\\\": 4, \\\\\\\"label\\\\\\\": \\\\\\\"pass\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"pass\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"pass\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_codellama13b_vota_seed42_20260516T182221",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T18:23:01.883639+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 实验 `codellama13b_vota_seed42` 结果\n\n### 1. eval_results.json（完整内容）\n\n```json\n{\n  \"condition\": \"vota\",\n  \"checkpoint_dir\": \"/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_vota_seed42/final\",\n  \"metrics\": {\n    \"accuracy\": 0.9857142857142858,\n    \"majority_baseline\": 0.7151260504201681,\n    \"lift\": 0.2705882352941177,\n    \"majority_class\": \"pass\",\n    \"n\": 1190,\n    \"pass_precision\": 0.9882903981264637,\n    \"pass_recall\": 0.9917743830787309,\n    \"pass_f1\": 0.9900293255131964,\n    \"fail_precision\": 0.9791666666666666,\n    \"fail_recall\": 0.9705014749262537,\n    \"fail_f1\": 0.9748148148148148\n  },\n  \"confidence_intervals\": {\n    \"accuracy_ci_lower\": 0.9789915966386554,\n    \"accuracy_ci_upper\": 0.9915966386554622,\n    \"majority_baseline_ci_lower\": 0.6915966386554622,\n    \"majority_baseline_ci_upper\": 0.738655462184874,\n    \"lift_ci_lower\": 0.246218487394958,\n    \"lift_ci_upper\": 0.2958193277310925,\n    \"pass_precision_ci_lower\": 0.9812195526097762,\n    \"pass_precision_ci_upper\": 0.9943965499821503,\n    \"pass_recall_ci_lower\": 0.9848656824355311,\n    \"pass_recall_ci_upper\": 0.9975792011719942,\n    \"pass_f1_ci_lower\": 0.985107141334265,\n    \"pass_f1_ci_upper\": 0.994286525974026,\n    \"fail_precision_ci_lower\": 0.9620972801417131,\n    \"fail_precision_ci_upper\": 0.9935095955000414,\n    \"fail_recall_ci_lower\": 0.9522388059701492,\n    \"fail_recall_ci_upper\": 0.9863545949698296,\n    \"fail_f1_ci_lower\": 0.9622912381735911,\n    \"fail_f1_ci_upper\": 0.9856749417625182\n  }\n}\n```\n\n### 2. 训练日志尾部（最后 80 行）\n\n训练正常结束（`EXIT_CODE=0`）。日志显示评估阶段：\n\n- 加载 LoRA adapter 从 `codellama13b_vota_seed42/final`\n- 在 1190 个测试样本上推理，running accuracy 从 1.0000 逐步稳定到 0.9852\n- 最终结果：\n\n```\n=== Evaluation Results (condition: vota) ===\nAccuracy:           98.6% (95% CI: [97.9%, 99.2%])\nMajority baseline:  71.5% (always predict 'pass')\nLift over majority: +27.1pp (95% CI: [+24.6pp, +29.6pp])\n\nPer-class metrics:\n  pass:  P=0.99  R=0.99  F1=0.99\n  fail:  P=0.98  R=0.97  F1=0.97\n\nBootstrap: 1000 resamples\n```\n\n### 3. Checkpoint 目录内容\n\n```\n-rw-r--r-- root root      5264 May 17 02:14 README.md\n-rw-r--r-- root root      1128 May 17 02:14 adapter_config.json\n-rw-r--r-- root root 250422888 May 17 02:14 adapter_model.safetensors  (238MB)\n-rw-r--r-- root root       813 May 17 02:14 chat_template.jinja\n-rw-r--r-- root root      1417 May 17 02:19 eval_results.json\n-rw-r--r-- root root     77430 May 17 02:19 predictions.jsonl\n-rw-r--r-- root root       538 May 17 02:14 special_tokens_map.json\n-rw-r--r-- root root   3620731 May 17 02:14 tokenizer.json\n-rw-r--r-- root root    500058 May 17 02:14 tokenizer.model\n-rw-r--r-- root root      1869 May 17 02:14 tokenizer_config.json\n-rw-r--r-- root root      6481 May 17 02:14 training_args.bin\n```\n\n### 4. predictions.jsonl 前 5 条\n\n```jsonl\n{\"id\": 0, \"label\": \"fail\", \"pred\": \"fail\", \"raw_pred\": \"fail\"}\n{\"id\": 1, \"label\": \"pass\", \"pred\": \"pass\", \"raw_pred\": \"pass\"}\n{\"id\": 2, \"label\": \"fail\", \"pred\": \"fail\", \"raw_pred\": \"fail\"}\n{\"id\": 3, \"label\": \"fail\", \"pred\": \"fail\", \"raw_pred\": \"fail\"}\n{\"id\": 4, \"label\": \"pass\", \"pred\": \"pass\", \"raw_pred\": \"pass\"}\n```"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_codellama13b_vota_seed42_20260516T182221"
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/conversations/analyze-codellama13b-vota-seed42.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd7373b24bb500e857a2",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "research literature vota",
+  "task_key": "worker_research_literature-vota_20260514T215130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-vota_20260514T215130_result.json",
+    "occurrence": 1,
+    "bytes": 637,
+    "sha256": "8e909f5ffabaf197157e73b4bc34ef53ed284b5c44165902e189425de5a035c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/literature_map.yaml`，12 篇论文覆盖 4 个方向。\n\n关键发现：\n\n- **最重要的负面结果**：Wang et al. (EMNLP 2025 Findings) 发现原始 execution trace 对 SFT 帮助有限——这恰好支持 VOTA 的核心动机：需要针对性的 trace 压缩/抽象，而非直接喂原始 trace\n- **最接近的 competitor**：APPT (TSE 2024) 做 patch 正确性二分类达 79.7% accuracy，但用 BERT 而非 decoder LLM，且不用 trace 信息\n- **文献空白**：没有工作将 compressed execution trace + SFT 用于 binary verdict 分类——这正是 VOTA 的差异化定位"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-vota.md"
+}

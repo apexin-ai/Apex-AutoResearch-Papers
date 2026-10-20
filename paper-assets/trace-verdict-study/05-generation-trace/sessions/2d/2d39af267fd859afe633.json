@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d39af267fd859afe633",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper fix experiments L175 hierarchy",
+  "task_key": "worker_paper_fix_experiments_L175_hierarchy_20260521T080707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_experiments_L175_hierarchy_20260521T080707_result.json",
+    "occurrence": 1,
+    "bytes": 213,
+    "sha256": "bd4ea0c747b93e0f5b16323cec68d5f9ffeb46c858f0639274fa75f6140d7a41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- **修改**: L174 `tier hierarchy` → `tier pattern`（experiments.tex 中已无残余 \"hierarchy\"）\n- **编译**: 成功，0 errors，21 页\n- **PDF MD5**: `4ee3adef7583116bedbefc955dcd979d`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-experiments-l175-hierarchy.md"
+}

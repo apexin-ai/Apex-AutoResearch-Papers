@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "460fb22e94f125ba3252",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_7_1778874716.md",
+  "task_key": "loop_7_1778874716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778874716.md",
+    "occurrence": 1,
+    "bytes": 4630,
+    "sha256": "fecbf9ea1e589449f6f5e76215fb2692a66e1af66788540a6127227c720667ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-15T19:41:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-11235 cuda:0 + cuda:1，**不可用其他卡**\n- DeepSeek 模型路径必须用 `/root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct`（注意三个下划线），用错路径会 FileNotFoundError\n- 训练代码当前版本 `load_best_model_at_end` 已注释为 TEMP_DISABLED，DeepSeek 组实验保持此状态以组内一致\n- exception_only_seed123 提交时 gpu 参数写的 `--gpu 0`（逻辑 GPU），物理卡由 CUDA_VISIBLE_DEVICES=1 映射，不要被日志里的 \"cuda:0\" 迷惑\n- plan_008 seed robustness 已由 Director 预批准，无需再走 PENDING 审批流程\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-11235，工作目录 `/root/trace-verdict-study`\n- Python：`/root/miniconda3/bin/python`，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- HF_HOME：`/root/autodl-tmp/.hf_cache`\n- Qwen 模型：HF cache 默认路径（Qwen2.5-Coder-7B-Instruct）\n- DeepSeek 模型：`/root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct`\n- 数据：`/root/autodl-tmp/trace-verdict-study-data/`（各 condition 的 train/test jsonl，train=4720 test=1190）\n- Checkpoints：`/root/autodl-tmp/trace-verdict-study-checkpoints/{condition}/final/`\n- W&B project：`trace-verdict-study`\n- 活跃进程：\n  - `exception_only_seed123` PID 124197, tmux=exception_only_seed123, cuda:1, cron 已注册\n  - `exception_only_seed456` PID 129476, tmux=exception_only_seed456, cuda:0, cron 已注册\n\n### 3. 📊 当前状态\n**刚做完**：收到 `deepseek_full_trace_seed42` 完成回调（ANALYZING），已派 Worker `worker_analysis_deepseek_full_trace_seed42_20260515T163712` 去 SSH 读 eval 结果。**该 Worker 尚未返回**——回调到时必须处理其产出（更新 registry metrics/conclusion/notes，刷新 report.md）。\n\n**同时**：cuda:0 空闲，已提交 `exception_only_seed456`（Qwen seed=456），补齐 3-seed robustness。\n\nRegistry 关键状态：\n- `deepseek_full_trace_seed42` — ANALYZING，等 Worker 分析结果\n- `exception_only_seed123` — RUNNING cuda:1（Qwen seed=123）\n- `exception_only_seed456` — RUNNING cuda:0（Qwen seed=456，刚提交）\n- PREPARING 待提交：`deepseek_exception_only_seed123`、`vota_seed456`（Director 降优先级）\n\n已完成的核心实验（13 success）：Qwen 全条件 + DeepSeek 4 条件 + calibration analysis。\n\n### 4. 📋 待办（条件触发式）\n- `[WORKER DONE] analysis:deepseek_full_trace_seed42` 回调到 → 读 Worker 产出 → update_registry(metrics/conclusion/checkpoint_path/log_path/notes) → 刷新 report.md → 向 Director 汇报 DeepSeek full_trace 结果（含跨模型对比表）→ 文献联动检查 → memory.md 写入决策\n- `exception_only_seed123` cron 完成回调 → 分析 seed=123 结果 → 与 seed42 (99.83%) 对比 → 更新 registry\n- `exception_only_seed456` cron 完成回调 → 分析 seed=456 结果 → 3-seed 汇总（mean±std）→ 这是 headline robustness 证据\n- 3-seed 全部完成 → 向 Director 汇报完整 seed robustness 表 + 建议启动 Paper Agent\n- cuda 空出 → 提交 `deepseek_exception_only_seed123`（跨模型 seed robustness，下一优先级）\n- Director 指示启动 Paper Agent → read paper_framing.md + writing_plan → spawn 写作 Worker\n\n### 5. 🎯 战略上下文\n**核心结论**：exception signal 是 near-perfect 判别信号（Qwen 99.83%, DeepSeek epoch1 99.83%），VOTA 的价值在于隔离 exception 而非压缩全量 trace。VOTA 在 DeepSeek 上退化到 84.5%（D016），但 exception_only 跨模型完全一致（D017），所以 primary claim 已从 \"VOTA is great\" 转向 \"exception signal is the universal diagnostic signal\"。\n\n**决策链**：D008(ae冗余) → D010(exception主导) → D011(组件层级) → D013(ae_only修正) → D016(跨模型exception universal) → D017(exception epoch1 跨模型 gap=0)\n\n**易错点**：\n- DeepSeek VOTA 只有 84.5%，**不要**在论文中把 VOTA 作为跨模型通用方案来 claim——exception_only 才是跨模型一致的\n- DeepSeek exception_only 最佳 checkpoint 是 epoch1 (99.83%)，不是 final epoch3 (99.33%)——continued training 导致过拟合。论文讨论时需要提这个\n- vota_seed123 因 OOM 失败（cuda:0 被 deepseek_vota 占满），不是方法问题；Director 已降 VOTA seed robustness 优先级\n- 10 天冲刺 DDL：ARR May 25。5/16 应启动 Paper Agent，5/19 前交初稿\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778874716.md"
+}

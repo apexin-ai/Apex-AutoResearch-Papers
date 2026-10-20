@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d721246af7336c85e8a3",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis diagnose tail512 crash",
+  "task_key": "worker_analysis_diagnose_tail512_crash_20260519T141336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_diagnose_tail512_crash_20260519T141336_result.json",
+    "occurrence": 1,
+    "bytes": 1484,
+    "sha256": "9a0dc5851c6e2f7562f04f29424949b5cfdf4f7fc5cef69dccf0353ecb956bbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告：`qwen7b_full_trace_tail512_seed42`\n\n### 进程状态\n**无运行进程** — 训练和评估均已结束，进程正常退出。\n\n### Checkpoint 状态\n**完整** — 3 个中间 checkpoint + final：\n\n| Checkpoint | 时间 |\n|---|---|\n| checkpoint-148 | May 19 21:15 |\n| checkpoint-296 | May 19 21:33 |\n| checkpoint-444 | May 19 21:51 |\n| **final/** | May 19 21:52 |\n\n`final/` 包含 adapter 权重 (`adapter_model.safetensors`, 154MB)、tokenizer、training_args。\n\n### Eval 状态\n**已完成** — `final/eval_results.json` 和 `final/predictions.jsonl` (1190 条) 均存在。\n\n| 指标 | 值 |\n|---|---|\n| **Accuracy** | 93.61% (CI: 92.18–94.96%) |\n| Majority baseline | 71.51% |\n| **Lift** | +22.10pp |\n| Pass F1 | 0.954 |\n| Fail F1 | 0.894 |\n\n### 问题原因\n**实验已正常完成，cron 误报。** 原因：\n1. 无 `.sentinel` 文件 — 训练脚本未写 sentinel，cron 依赖 sentinel 判断完成状态，因此报 miss\n2. 无 W&B 目录 — 此次实验未配置 W&B 上报\n3. `logs/` 下无此实验日志 — 可能未用 tee 重定向（logs 里最新的是 May 18 的其他实验）\n\n### 建议下一步\n1. **无需重跑** — 训练和 eval 均正常完成，结果质量良好（93.6% accuracy, +22pp lift）\n2. **补写 sentinel**（如果 cron 需要）— 手动创建 sentinel 文件让监控系统识别完成状态\n3. **注册结果** — 将 eval_results.json 纳入实验汇总"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-diagnose-tail512-crash.md"
+}

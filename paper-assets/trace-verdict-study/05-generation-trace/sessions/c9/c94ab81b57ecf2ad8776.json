@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c94ab81b57ecf2ad8776",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis loop only seed456 eval",
+  "task_key": "worker_analysis_loop_only_seed456_eval_20260516T134431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_loop_only_seed456_eval_20260516T134431_result.json",
+    "occurrence": 1,
+    "bytes": 542,
+    "sha256": "5e029be9604d6c8eedf1e9ab34c52b655eea4ede9c534169fa8c3632826daebb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**loop_only_seed456 评估指标：**\n- Accuracy: **86.6%**（majority baseline 71.5%，lift +15.1pp）\n- Pass F1: 0.905 | Fail F1: 0.773\n- n = 1190\n\n**GPU 状态：**\n- GPU 0: 88263/97887 MiB (97% util) — 被模型下载/加载占用\n- GPU 1: 32851/97887 MiB (100% util) — 正在跑 `codellama13b_no_trace_seed42` 训练\n\n**活跃训练：** `codellama13b_no_trace_seed42`（GPU 1，train_sft.py，刚启动约 4 分钟）\n\n结果已保存到 `artifacts/loop_only_seed456_eval.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-loop-only-seed456-eval.md"
+}

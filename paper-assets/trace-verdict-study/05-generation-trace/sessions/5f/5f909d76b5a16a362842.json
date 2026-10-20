@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f909d76b5a16a362842",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis error overlap visualization",
+  "task_key": "worker_analysis_error-overlap-visualization_20260517T003842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_error-overlap-visualization_20260517T003842_result.json",
+    "occurrence": 1,
+    "bytes": 1221,
+    "sha256": "e23bff7d2b498755f6e7cb64588dca9cd2ac048f98711e7b90411361278f7508"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。输出文件：\n\n- `/root/trace-verdict-study/docs/paper/figures/error_overlap.pdf` — 主图（error count bar + Jaccard heatmap）\n- `/root/trace-verdict-study/docs/paper/figures/error_overlap.png`\n- `/root/trace-verdict-study/docs/paper/figures/error_containment.pdf` — 与 no_trace 的包含关系图\n- `/root/trace-verdict-study/docs/paper/figures/error_overlap_data.md` — 数据表\n\n**关键发现：**\n\n| Condition | Errors | Rate |\n|-----------|--------|------|\n| ae_only | 1 | 0.1% |\n| exception_only | 2 | 0.2% |\n| vota | 7 | 0.6% |\n| loop_only | 171 | 14.4% |\n| full_trace | 217 | 18.2% |\n| no_trace | 296 | 24.9% |\n\n层级包含关系**不成立**。实际模式：\n1. exception_only 和 ae_only 的错误与其他条件**几乎无交集**（Jaccard ≈ 0）\n2. full_trace 和 no_trace 有最高重叠（J=0.437, 156 shared errors）\n3. full_trace 和 loop_only 重叠次高（J=0.416, 114 shared）\n4. vota 的错误完全包含于 no_trace（7/7 = 100% coverage）\n\n这暗示不同 trace 类型解决的是不同的失败模式，而非简单的信息量层级关系。exception_only/ae_only 虽然信息少，但可能更精准地定位了 bug 类型。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-error-overlap-visualization.md"
+}

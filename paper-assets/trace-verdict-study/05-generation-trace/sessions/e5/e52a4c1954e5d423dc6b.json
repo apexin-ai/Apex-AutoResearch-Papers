@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e52a4c1954e5d423dc6b",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper final full sync",
+  "task_key": "worker_paper_final_full_sync_20260519T224759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_final_full_sync_20260519T224759_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "bd4a7e82656bc3dcbb999bd175adb57ddad077b0a0d20844fd023cd251836b0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。汇报结果：\n\n---\n\n**编译结果：成功**\n\n| 验证项 | 结果 |\n|--------|------|\n| LaTeX Error | **0** |\n| undefined references | **0** |\n| 总页数 | **21 页** (主体 8 页 + Limitations/Ethics 从第 9 页 + Appendix) |\n| experiments.tex:172 calibration 跨模型 | 确认存在：\"all four models (1.5B--13B) achieve ECE < 0.007 under exception\\_only\" |\n| discussion.tex:32 D102 DeepSeek collapse | 确认存在：\"applying label-only loss to DeepSeek full traces...causes complete model collapse (28.5% accuracy, eval loss diverges to NaN)\" |\n\n10 个文件全量同步 + 编译验证完成，0 errors / 0 undefined refs，页数合规。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-final-full-sync.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59c6a1c61a8ab2bc62a4",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code fix qwen eval script keyerror",
+  "task_key": "worker_code_fix_qwen_eval_script_keyerror_20260515T144951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_qwen_eval_script_keyerror_20260515T144951_result.json",
+    "occurrence": 1,
+    "bytes": 158,
+    "sha256": "4a7d1fdf7f448af46ae08f4dffbfc8e9403bdc697aece8da0e0e1d91aa48aba6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已修复。只有一处 summary 打印行，三个字段都已改为 `d['metrics'][...]` 路径。`calibration_deepseek.sh` 无同类问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-qwen-eval-script-keyerror.md"
+}

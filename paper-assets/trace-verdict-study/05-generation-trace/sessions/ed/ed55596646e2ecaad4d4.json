@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed55596646e2ecaad4d4",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_8_1778893258.md",
+  "task_key": "loop_8_1778893258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778893258.md",
+    "occurrence": 1,
+    "bytes": 4577,
+    "sha256": "ee0224f03b2067e8725de960b16b6bd784ea92cb28b2a7e0c34b40727e438282"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-16T01:00:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 westd-11235:cuda:0 和 cuda:1**，其他 GPU 即使 Director 指令也必须 push back\n- DeepSeek 系列实验**必须用旧代码**（无 `load_best_model_at_end`），已注释 `# TEMP_DISABLED`，保持 DeepSeek 组内一致\n- VOTA 84.45% 是正式结果（D034 confirmed），论文中不得再称\"label truncation\"，正确叙事是 **trace content truncation**（91.7% 样本）\n- Bootstrap 方法：Qwen=paired, DeepSeek=unpaired，**论文同一张表不能混用**，DeepSeek 需重跑 `--save_predictions` 再 paired bootstrap\n- exception_only 的 2/1190 irreducible errors (id=901, id=905) 是 tracer 对 `GeneratorExit` 的误标记，不是模型问题\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-11235**，工作目录 `/root/trace-verdict-study`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型缓存/数据：均在服务器 `/root/trace-verdict-study/` 下\n- W&B project：run 名与 exp_id 对应\n- 活跃进程：\n  - `full_trace_1024tok_seed42`: PID 212643, cuda:0, cron 监控中\n  - `debugbench_no_trace_seed42`: PID 215223, cuda:1, cron 刚注册 (~62s ago)\n- Worker 仍在跑：`worker_paper_narrative_fix_group_analysis`（paper 叙事修正，已运行较久，可能即将完成或卡住）\n\n### 3. 📊 当前状态\n**刚完成**：D030 关闭 + framing v3.0 叙事修正 + DebugBench format_data.py bug 修复 + 256tok/512tok ablation 完成（均 negative）\n\n**RUNNING (2)**：\n- `full_trace_1024tok_seed42` — token-length ablation 第三点，cuda:0\n- `debugbench_no_trace_seed42` — DebugBench baseline（plan_005），cuda:1\n\n**QUEUED (2)**：\n- `debugbench_exception_only_seed42` — 等 cuda:1 空出\n- `full_trace_2048tok_seed42` — 等 cuda:0 空出\n\n**等待中**：\n- Worker `paper_narrative_fix_group_analysis` 回调（修正 paper 中 \"label truncation\" → \"trace truncation\" 叙事）\n- 两个 RUNNING 实验的 cron 完成回调\n\n**实验总览**：success 20 / negative 6 / failed 3 / killed 多个早期实验 / 共 ~40\n\n### 4. 📋 待办（条件触发式）\n- `full_trace_1024tok_seed42` cron 回调 → 分析 accuracy（预期 81-85% 区间，与 untruncated 81.8% 比较） → 登记结果 → 提交 `full_trace_2048tok_seed42` 到 cuda:0\n- `debugbench_no_trace_seed42` cron 回调 → 分析 → 登记 → 提交 `debugbench_exception_only_seed42` 到 cuda:1\n- `worker_paper_narrative_fix_group_analysis` 回调 → 验证叙事修正到位 → 推进 Paper Agent 继续写其他章节\n- 4 个 token-length ablation 全部完成 → 画 accuracy vs token-length 曲线（预期 U 型：256tok<512tok≈full<1024tok≈VOTA） → 写入论文 ablation section\n- DebugBench 两个条件完成 → 与 MBPP 结果对比 → 强化/调整 Claim 3 (generalization)\n- Paper Agent 初稿交付 → 立即启动 Reviewer 对抗迭代（按 10 天冲刺计划 5/19-21）\n- DeepSeek paired bootstrap 待补：需为 `deepseek_vota_seed42` 和 `deepseek_no_trace_seed42` 重跑 `evaluate.py --save_predictions`\n\n### 5. 🎯 战略上下文\n**核心结论链**：Exception events 是 verdict prediction 最有效的 trace 组件（Qwen 99.83%±0.00, DeepSeek 2/3 seeds 99.33%）。VOTA 的跨模型性能差距（Qwen 99.41% vs DeepSeek 84.45%）根因是 tokenizer efficiency 差异导致 91.7% 训练样本被截断。Exception_only 因天然短小而免疫于此问题。\n\n**投稿目标**：EMNLP 2026 ARR May 25（剩 ~9 天）。3/3 core claims confirmed，Paper Agent 初稿进行中。\n\n**最容易判断错的事**：\n1. **不要把 token-length ablation 的 negative 结果当坏消息** — 256tok 和 512tok accuracy < untruncated 81.8% 实际上**强化** Claim 2（signal loss > gradient dilution reduction），是好数据点\n2. **VOTA 跨模型 gap 14.96pp 是 confounded** — 不能直接归因于 model capability，必须注明 trace truncation 是主因（D034）\n3. **DeepSeek seed123 (91.09%) 是 LoRA 初始化离群值**，不是 exception signal 失效，论文中需要明确 frame 为 limitation\n4. **DebugBench VOTA 格式化路径缺失** — format_data.py 只生成 no_trace/exception_only/full_trace，VOTA 条件需要额外实现（但可能不在 10 天冲刺范围内）\n5. **paper 写作中所有 \"label truncation/corruption\" 措辞必须改为 \"trace content truncation\"** — 这是 D033/D034 的关键叙事修正\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778893258.md"
+}

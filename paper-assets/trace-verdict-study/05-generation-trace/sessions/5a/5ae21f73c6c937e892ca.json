@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ae21f73c6c937e892ca",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis loop only seed123",
+  "task_key": "worker_analysis_loop_only_seed123_20260516T112955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_loop_only_seed123_20260516T112955_result.json",
+    "occurrence": 1,
+    "bytes": 706,
+    "sha256": "bf38a57c0d2b5fc44df1d89cf3c9f67ec51593ff9ffe9454ea622e187d2b9849"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## loop_only_seed123 实验结果\n\n**训练状态**: 正常完成 (EXIT_CODE=0)\n\n**Checkpoint 路径**: `/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only_seed123/final`\n\n### 核心指标\n\n| Metric | Value | 95% CI |\n|--------|-------|--------|\n| **Accuracy** | 85.9% | [84.0%, 87.7%] |\n| Majority baseline | 71.5% | — |\n| **Lift over baseline** | +14.4pp | [+11.4pp, +17.3pp] |\n\n### Per-class 指标\n\n| Class | Precision | Recall | F1 |\n|-------|-----------|--------|----|\n| **pass** | 0.913 | 0.887 | **0.900** |\n| **fail** | 0.736 | 0.788 | **0.761** |\n\n测试集 n=1190，bootstrap 1000 次重采样。Predictions 保存在同目录 `predictions.jsonl`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-loop-only-seed123.md"
+}

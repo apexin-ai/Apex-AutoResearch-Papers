@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "id": "3493aaf44edfc24d5c20",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "ops final paper sync",
+  "task_key": "worker_ops_final-paper-sync_20260522T165802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_final-paper-sync_20260522T165802.log",
+    "occurrence": 1,
+    "bytes": 994025,
+    "sha256": "b1e22ef9dbf8a7b0496dd3a65d6bc4a67efb96bcfd033b7e74ec86ac2642d2ac"
+  },
+  "statistics": {
+    "messages": 310,
+    "user_turns": 3,
+    "tool_calls": 106,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 1,
+      "assistant": 82,
+      "tool_call": 106,
+      "tool_result": 106,
+      "user": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 71,
+      "chunks": [
+        {
+          "path": "3493aaf44edfc24d5c20-part-0001.json",
+          "message_count": 71
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 98,
+      "chunks": [
+        {
+          "path": "3493aaf44edfc24d5c20-part-0001.json",
+          "message_count": 98
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 39,
+      "chunks": [
+        {
+          "path": "3493aaf44edfc24d5c20-part-0001.json",
+          "message_count": 6
+        },
+        {
+          "path": "3493aaf44edfc24d5c20-part-0002.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 102,
+      "chunks": [
+        {
+          "path": "3493aaf44edfc24d5c20-part-0002.json",
+          "message_count": 102
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-final-paper-sync.md"
+}

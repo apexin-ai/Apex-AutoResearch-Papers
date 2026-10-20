@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61bca50df67de1cf0abd",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper fix fig1 caption 3seed",
+  "task_key": "worker_paper_fix_fig1_caption_3seed_20260521T104023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_fig1_caption_3seed_20260521T104023_result.json",
+    "occurrence": 1,
+    "bytes": 348,
+    "sha256": "e5194412fa0597d5ba46db2b2946b74805b6c44bd48f4903e9e6b6cd8b49fc9d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**修改前后对比**:\n- **Before**: `Accuracies for Qwen-2.5-7B (seed=42, $N{=}1{,}190$)`\n- **After**: `Accuracies for Qwen-2.5-7B (seed=42 except full\\_trace which reports 3-seed mean; $N{=}1{,}190$)`\n\n**编译结果**: 成功，0 errors，21 pages，443602 bytes\n**PDF MD5**: `0f44853e32f951295e3a61227971f189`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-fig1-caption-3seed.md"
+}

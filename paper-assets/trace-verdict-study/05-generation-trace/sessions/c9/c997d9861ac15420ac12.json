@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "c997d9861ac15420ac12",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "diagnose ae only seed123",
+  "task_key": "worker_diagnose_ae_only_seed123_20260516T061151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_ae_only_seed123_20260516T061151.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/diagnose-ae-only-seed123.md"
+}

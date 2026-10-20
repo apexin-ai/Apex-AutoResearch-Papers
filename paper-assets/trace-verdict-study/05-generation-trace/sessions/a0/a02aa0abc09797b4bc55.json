@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a02aa0abc09797b4bc55",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "fix acl sty sync recompile",
+  "task_key": "worker_fix_acl_sty_sync_recompile_20260519T170854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_acl_sty_sync_recompile_20260519T170854_result.json",
+    "occurrence": 1,
+    "bytes": 1173,
+    "sha256": "d361087f88df9164c5896047dfd054ebb216f511759e67a153a79a89845f9ca4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译完成，汇总结果：\n\n## 编译验证\n\n| 检查项 | 结果 |\n|--------|------|\n| `sargin undefined` | **已消失** |\n| `caption Error` | **已消失** |\n| `Undefined references` | **无** |\n| PDF 生成 | **成功**，405,523 bytes |\n\n## 页面结构\n\n| 内容 | 页码 |\n|------|------|\n| **总页数** | 22 页 |\n| **正文** (Title ~ Conclusion) | 第 1–8 页 → **8 页** |\n| Limitations + Ethics | 第 9 页 |\n| References | 第 9–12 页（第 9 页下半开始） |\n| Appendix | 第 12–22 页（第 12 页下半开始） |\n\n## 与之前对比\n\n之前报告正文 12 页，修复 acl.sty 后正文 **8 页**。之前损坏的 `sargin`（应为 `margin`）导致边距参数失效，页面排版异常膨胀。修复后边距恢复正常（A4, margin=2.5cm），正文 8 页符合 EMNLP 2026 的 8 页限制。\n\n## Overfull hbox（6 处）\n\n| 行范围 | 超出 |\n|--------|------|\n| 129–138 | 20.1pt |\n| 168–168 | 13.1pt |\n| 447–457 | 31.2pt |\n| 474–486 | 54.2pt |\n| 695–710 | **72.5pt** |\n| 752–764 | 32.4pt |\n\n其中 lines 695–710 超出最严重（72.5pt），建议后续关注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-acl-sty-sync-recompile.md"
+}

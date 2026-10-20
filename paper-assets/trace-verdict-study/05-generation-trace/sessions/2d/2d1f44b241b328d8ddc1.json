@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d1f44b241b328d8ddc1",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper narrative audit d034",
+  "task_key": "worker_paper_narrative_audit_d034_20260516T012026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_narrative_audit_d034_20260516T012026_result.json",
+    "occurrence": 1,
+    "bytes": 1468,
+    "sha256": "11c124b96ce0ea85da58ffb29576c15664b9672fa99e5cc71c07aa32b2c592a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`Appendix~\\ref{app:truncation}` 只存在于 artifacts 版本（未编译），编译版 `docs/paper/method.tex` 没有这个引用。编译论文无悬空引用问题。\n\n## 最终判定\n\n**编译论文（docs/paper/）叙事一致性全部通过。** 具体结论：\n\n1. **所有描述 VOTA 跨模型 gap（84.45% vs 99.41%）的地方**：全部使用 \"trace truncation\" / \"trace content truncation\" / \"truncates the trace content\"，verdict label 被明确说明是 preserved。✅\n\n2. **描述 DeepSeek full_trace v1 坍塌（28.5%）的地方**（discussion.tex:60）：使用 \"truncating the verdict label\"，正确描述旧 bug。✅\n\n3. **通用截断说明**（method.tex:32, 77）：使用中性措辞 \"truncated to fit\" / \"truncated from the input content while preserving the complete verdict label\"，精确无歧义。✅\n\n4. **artifacts/main_results_tables.tex:85**：\"v1 collapsed due to label truncation\"——这是 v1 旧 bug 的正确描述。✅\n\n**无需修改任何文件。D034 叙事一致性终审通过 ✅**\n\n关于任务提到的 \"appendix Table 10 标题 label truncation bug 措辞\"：当前编译论文的 appendix 中不存在 Table 10 或包含 \"label truncation bug\" 的标题。该问题可能已在之前的 audit 中修复，或指的是 artifacts 版本中的 `main_results_tables.tex:85`（\"v1 collapsed due to label truncation\"），该处描述 v1 旧 bug，措辞正确。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-narrative-audit-d034.md"
+}

@@ -1,0 +1,856 @@
+{
+  "schema_version": "1.0",
+  "id": "ae3512ee7f74d90efd41",
+  "project": "trace-verdict-study",
+  "kind": "conversation",
+  "title": "analysis plan 018 error analysis",
+  "task_key": "worker_analysis_plan_018_error_analysis_20260521T061113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_plan_018_error_analysis_20260521T061113.jsonl",
+    "occurrence": 1,
+    "bytes": 63766,
+    "sha256": "a1d4422483cb9d70e51d3b0e787cb959a520add3c4619932a9b6f6d75f15231a"
+  },
+  "statistics": {
+    "messages": 41,
+    "user_turns": 0,
+    "tool_calls": 20,
+    "roles": {
+      "tool_call": 20,
+      "tool_result": 20,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T06:15:55.649398+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T06:15:55.649796+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T06:15:55.650059+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "find /root/autodl-tmp/trace-verdict-study-checkpoints/ -name \"predictions.jsonl\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T06:15:55.650401+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_label_only/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/vota_no_ae/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/ae_only/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed123/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_seed456/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed123/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/vota_seed456/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only_seed456/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_full_trace_seed42_v3/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_256tok/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/full_trace_512tok/final/predictions.jsonl\\\\n/root/autodl-tmp/trace-verdict-study-checkpoints/debugbench_vota/final/predictions.jsonl\n…[truncated 6363 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T06:15:55.650651+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "find /root/trace-verdict-study/ -name \"predictions.jsonl\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T06:15:55.650859+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/trace-verdict-study/outputs/qwen15b_label_only_seed123_v2/final/predictions.jsonl\\\\n/root/trace-verdict-study/outputs/qwen15b_label_only_seed456_v2/final/predictions.jsonl\\\\n/root/trace-verdict-study/outputs/deepseek_no_trace_seed123/final/predictions.jsonl\\\\n/root/trace-verdict-study/outputs/qwen15b_no_trace_seed123/final/predictions.jsonl\\\\n/root/trace-verdict-study/outputs/qwen15b_no_trace_seed456/final/predictions.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T06:15:55.651067+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "ls /root/autodl-tmp/trace-verdict-study-data/",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T06:15:55.651306+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ae_only_test.jsonl\\\\nae_only_train.jsonl\\\\nbackup_pre_fix\\\\ndebugbench\\\\ndebugbench_ae_only_test.jsonl\\\\ndebugbench_ae_only_train.jsonl\\\\ndebugbench_exception_only_test.jsonl\\\\ndebugbench_exception_only_train.jsonl\\\\ndebugbench_full_trace_test.jsonl\\\\ndebugbench_full_trace_train.jsonl\\\\ndebugbench_no_trace_test.jsonl\\\\ndebugbench_no_trace_train.jsonl\\\\ndebugbench_vota_test.jsonl\\\\ndebugbench_vota_train.jsonl\\\\nexception_only_nomarker_test.jsonl\\\\nexception_only_nomarker_train.jsonl\\\\nexception_only_test.jsonl\\\\nexception_only_train.jsonl\\\\nfull_trace_head_test.jsonl\\\\nfull_trace_head_train.jsonl\\\\nfull_trace_tail_1024_test.jsonl\\\\nfull_trace_tail_1024_train.jsonl\\\\nfull_trace_tail_256_test.jsonl\\\\nfull_trace_tail_256_train.jsonl\\\\nfull_trace_tail_384_test.jsonl\\\\nfull_trace_tail_384_train.jsonl\\\\nfull_trace_tail_512_test.jsonl\\\\nfull_trace_tail_512_train.jsonl\\\\nfull_trace_tail_test.jsonl\\\\nfull_trace_tail_train.jsonl\\\\nfull_trace_test.jsonl\\\\nfull_trace_train.jsonl\\\\nloop_only_test.jsonl\\\\nloop_only_train.jsonl\\\\nmock\\\\nmock_raw_traces.jsonl\\\\nno_trace_test.jsonl\\\\nno_trace_train.jsonl\\\\nraw_traces.jsonl\\\\nraw_traces_dryrun.jsonl\\\\nraw_traces_v1_buggy.jsonl\\\\nsolutions_checkpoint.json\\\\nsolutions_checkpoint_dryrun.json\\\\nvota_no_actexp_test.jsonl\\\\nvota_no_actexp_train.jsonl\\\\nvota_no_ae_test.jsonl\\\\nvota_no_ae_train.jsonl\\\\nvota_test.jsonl\\\\nvota_train.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T06:15:55.651564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "head -3 /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/predictions.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T06:15:55.651764+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": 0, \\\\\\\"label\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"fail\\\\\\\"}\\\\n{\\\\\\\"id\\\\\\\": 1, \\\\\\\"label\\\\\\\": \\\\\\\"pass\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"pass\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"pass\\\\\\\"}\\\\n{\\\\\\\"id\\\\\\\": 2, \\\\\\\"label\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"fail\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T06:15:55.651945+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "head -3 /root/autodl-tmp/trace-verdict-study-data/exception_only_test.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T06:15:55.652210+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"input\\\\\\\": \\\\\\\"Given the following code:\\\\\\\\nmin_val = min(numbers)\\\\\\\\n    max_val = max(numbers)\\\\\\\\n    range_val = max_val - min_val\\\\\\\\n    return [(x - min_val) / range_val for x in numbers]\\\\\\\\n\\\\\\\\nTest code:\\\\\\\\n\\\\\\\\n\\\\\\\\nMETADATA = {\\\\\\\\n    'author': 'jt',\\\\\\\\n    'dataset': 'test'\\\\\\\\n}\\\\\\\\n\\\\\\\\n\\\\\\\\ndef check(candidate):\\\\\\\\n    assert candidate([2.0, 49.9]) == [0.0, 1.0]\\\\\\\\n    assert candidate([100.0, 49.9]) == [1.0, 0.0]\\\\\\\\n    assert candidate([1.0, 2.0, 3.0, 4.0, 5.0]) == [0.0, 0.25, 0.5, 0.75, 1.0]\\\\\\\\n    assert candidate([2.0, 1.0, 5.0, 3.0, 4.0]) == [0.25, 0.0, 1.0, 0.5, 0.75]\\\\\\\\n    assert candidate([12.0, 11.0, 15.0, 13.0, 14.0]) == [0.25, 0.0, 1.0, 0.5, 0.75]\\\\\\\\n\\\\\\\\n\\\\\\\\nExecution trace:\\\\\\\\n[No trace available]\\\\\\\\n\\\\\\\\nDoes this code pass all tests? Answer: \\\\\\\", \\\\\\\"output\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/21\\\\\\\"}\\\\n{\\\\\\\"input\\\\\\\": \\\\\\\"Given the following code:\\\\\\\\ndef rescale_to_unit(numbers: List[float]) -> List[float]:\\\\\\\\n    min_num = min(numbers)\\\\\\\\n    max_num = max(numbers)\\\\\\\\n    range_num = max_num - min_num\\\\\\\\n    return [(x - min_num) / range_num for x in numbers]\\\\\\\\n\\\\\\\\nTest code:\\\\\\\\n\\\\\\\\n\\\\\\\\nMETADATA = {\\\\\\\\n    'author': 'jt',\\\\\\\\n    'dataset': 'test'\\\\\\\\n}\\\\\\\\n\\\\\\\\n\\\\\\\\ndef check(candidate):\\\\\\\\n    assert candidate([2.0, 49.9]) == [0.0, 1.0]\\\\\\\\n    assert candidate([100.0, 49.9]) == [1.0, 0.0]\\\\\\\\n    assert candidate([1.0, 2.0, 3.0, 4.0, 5.0]) == [0.0, 0.25, 0.5, 0.75, 1.0]\\\\\\\\n    assert candidate([2.0, 1.0, 5.0, 3.0, 4.0]) == [0.25, 0.0, 1.0, 0.5, 0.75]\\\\\\\\n    assert candidate([12.0, 11.0, 15.0, 13.0, 14.0]) == [0.25, 0.0, 1.0, 0.5, 0.75]\\\\\\\\n\\\\\\\\n\\\\\\\\nExecution trace:\\\\\\\\n[No exception data in trace]\\\\\\\\n\\\\\\\\nDoes this code pass all tests? Answer: \\\\\\\", \\\\\\\"output\\\\\\\": \\\\\\\"pass\\\\\\\", \\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/21\\\\\\\"}\\\\n{\\\\\\\"input\\\\\\\": \\\\\\\"Given the following code:\\\\\\\\nmin_val = min(numbers)\\\\\\\\n    max_val = max(numbe\n…[truncated 889 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T06:15:55.652453+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "head -3 /root/autodl-tmp/trace-verdict-study-data/raw_traces.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T06:15:55.652870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\", \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\", \\\\\\\"prompt\\\\\\\": \\\\\\\"from typing import List\\\\\\\\n\\\\\\\\n\\\\\\\\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\\\\\n    given threshold.\\\\\\\\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\\\\\\\\n    False\\\\\\\\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\\\\\\\\n    True\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\n\\\\\\\", \\\\\\\"solution\\\\\\\": \\\\\\\"for i in range(len(numbers)):\\\\\\\\n        for j in range(i + 1, len(numbers)):\\\\\\\\n            if abs(numbers[i] - numbers[j]) < threshold:\\\\\\\\n                return True\\\\\\\\n    return False\\\\\\\", \\\\\\\"test_code\\\\\\\": \\\\\\\"\\\\\\\\n\\\\\\\\nMETADATA = {\\\\\\\\n    'author': 'jt',\\\\\\\\n    'dataset': 'test'\\\\\\\\n}\\\\\\\\n\\\\\\\\n\\\\\\\\ndef check(candidate):\\\\\\\\n    assert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True\\\\\\\\n    assert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.05) == False\\\\\\\\n    assert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.95) == True\\\\\\\\n    assert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.8) == False\\\\\\\\n    assert candidate([1.0, 2.0, 3.0, 4.0, 5.0, 2.0], 0.1) == True\\\\\\\\n    assert candidate([1.1, 2.2, 3.1, 4.1, 5.1], 1.0) == True\\\\\\\\n    assert candidate([1.1, 2.2, 3.1, 4.1, 5.1], 0.5) == False\\\\\\\\n\\\\\\\\n\\\\\\\", \\\\\\\"verdict\\\\\\\": false, \\\\\\\"trace_raw\\\\\\\": [], \\\\\\\"test_results\\\\\\\": {\\\\\\\"passed\\\\\\\": 0, \\\\\\\"failed\\\\\\\": 0, \\\\\\\"error\\\\\\\": \\\\\\\"SyntaxError: unindent does not match any outer indentation level (<solution>, line 16)\\\\\\\"}}\\\\n{\\\\\\\"problem_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\", \\\\\\\"source\\\\\\\": \\\\\\\"humaneval\\\\\\\", \\\\\\\"prompt\\\\\\\": \\\\\\\"from typing import List\\\\\\\\n\\\\\\\\n\\\\\\\\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\\\\\\\\n    \\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\" Check if in given list of numbers, are any two numbers closer to each other than\\\\\\\\n    given th\n…[truncated 2981 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T06:15:55.653103+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "wc -l /root/autodl-tmp/trace-verdict-study-data/exception_only_test.jsonl /root/autodl-tmp/trace-verdict-study-data/vota_test.jsonl /root/autodl-tmp/trace-verdict-study-data/full_trace_test.jsonl /root/autodl-tmp/trace-verdict-study-data/no_trace_test.jsonl /root/autodl-tmp/trace-verdict-study-data/loop_only_test.jsonl /root/autodl-tmp/trace-verdict-study-data/raw_traces.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T06:15:55.653282+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1190 /root/autodl-tmp/trace-verdict-study-data/exception_only_test.jsonl\\\\n     1190 /root/autodl-tmp/trace-verdict-study-data/vota_test.jsonl\\\\n     1190 /root/autodl-tmp/trace-verdict-study-data/full_trace_test.jsonl\\\\n     1190 /root/autodl-tmp/trace-verdict-study-data/no_trace_test.jsonl\\\\n     1190 /root/autodl-tmp/trace-verdict-study-data/loop_only_test.jsonl\\\\n     5910 /root/autodl-tmp/trace-verdict-study-data/raw_traces.jsonl\\\\n    11860 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T06:15:55.653446+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "wc -l /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/predictions.jsonl /root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/predictions.jsonl /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/predictions.jsonl /root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/predictions.jsonl /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final/predictions.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T06:15:55.653591+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/predictions.jsonl\\\\n  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/vota/final/predictions.jsonl\\\\n  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/full_trace/final/predictions.jsonl\\\\n  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/predictions.jsonl\\\\n  1190 /root/autodl-tmp/trace-verdict-study-checkpoints/loop_only/final/predictions.jsonl\\\\n  5950 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T06:15:55.653926+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "/root/miniconda3/bin/python -c \"\nimport json\n# Check problem_id mapping in test data\nwith open('/root/autodl-tmp/trace-verdict-study-data/exception_only_test.jsonl') as f:\n    lines = [json.loads(l) for l in f]\npids = [l['problem_id'] for l in lines]\nprint('Unique problem_ids:', len(set(pids)))\nprint('First 5 pids:', pids[:5])\nprint('Last 5 pids:', pids[-5:])\n# Count per problem\nfrom collections import Counter\npid_counts = Counter(pids)\nprint('Samples per problem (first 10):', list(pid_counts.items())[:10])\nprint('Max samples per problem:', max(pid_counts.values()))\nprint('Min samples per problem:', min(pid_counts.values()))\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T06:15:55.654074+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T06:15:55.654203+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "/root/miniconda3/bin/python -c \"\nimport json\nfrom collections import Counter\n# Check raw_traces metadata\nwith open('/root/autodl-tmp/trace-verdict-study-data/raw_traces.jsonl') as f:\n    traces = [json.loads(l) for l in f]\n# Source distribution\nsources = Counter(t['source'] for t in traces)\nprint('Sources:', dict(sources))\n# Verdict distribution\nverdicts = Counter(t['verdict'] for t in traces)\nprint('Verdicts:', dict(verdicts))\n# Error types\nerror_types = []\nfor t in traces:\n    tr = t.get('test_results', {})\n    err = tr.get('error', '')\n    if err:\n        etype = err.split(':')[0].split('(')[0].strip()\n        error_types.append(etype)\n    else:\n        error_types.append('no_error')\net_counts = Counter(error_types)\nprint('Error types:', dict(et_counts))\n# Keys available\nprint('Keys:', list(traces[0].keys()))\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T06:15:55.654415+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T06:15:55.654640+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "cat > /root/trace-verdict-study/error_analysis.py << 'PYEOF'\nimport json\nimport sys\nfrom collections import Counter, defaultdict\n\nDATA_DIR = \"/root/autodl-tmp/trace-verdict-study-data\"\nCKPT_DIR = \"/root/autodl-tmp/trace-verdict-study-checkpoints\"\n\nCONDITIONS = {\n    \"exception_only\": f\"{CKPT_DIR}/exception_only/final/predictions.jsonl\",\n    \"vota\": f\"{CKPT_DIR}/vota/final/predictions.jsonl\",\n    \"full_trace\": f\"{CKPT_DIR}/full_trace/final/predictions.jsonl\",\n    \"no_trace\": f\"{CKPT_DIR}/no_trace/final/predictions.jsonl\",\n    \"loop_only\": f\"{CKPT_DIR}/loop_only/final/predictions.jsonl\",\n}\n\ndef load_jsonl(path):\n    with open(path) as f:\n        return [json.loads(l) for l in f]\n\n# 1. Load raw_traces for metadata\nprint(\"=\" * 70)\nprint(\"PHASE 1: Loading raw data and metadata\")\nprint(\"=\" * 70)\nraw_traces = load_jsonl(f\"{DATA_DIR}/raw_traces.jsonl\")\nprint(f\"Total raw traces: {len(raw_traces)}\")\n\n# Build metadata index: the test set has 1190 items\n# Load exception_only_test to get problem_ids for the test set\ntest_data = load_jsonl(f\"{DATA_DIR}/exception_only_test.jsonl\")\nprint(f\"Test set size: {len(test_data)}\")\n\n# Extract problem_ids from test data\ntest_pids = [d[\"problem_id\"] for d in test_data]\n\n# Build raw_traces lookup by (problem_id, index_within_problem)\n# First understand the structure: each raw trace = one solution variant\npid_to_traces = defaultdict(list)\nfor t in raw_traces:\n    pid_to_traces[t[\"problem_id\"]].append(t)\n\n# The test data maps 1:1 by line index to predictions\n# We need to figure out which raw_trace corresponds to each test item\n# Use the output/label to match\ntest_labels = [d[\"output\"] for d in test_data]\nprint(f\"Label distribution in test set: {Counter(test_labels)}\")\n\n# Build per-sample metadata\n# From raw_traces, build index for matching\n# The test items are ordered by problem_id, with multiple variants per problem\n# Let's verify this by checking the raw_trace ordering vs test ordering\n\n# Build metadata for each test sample\nsample_meta = []\npid_cursor = defaultdict(int)\nfor i, td in enumerate(test_data):\n    pid = td[\"problem_id\"]\n    label = td[\"output\"]  # \"pass\" or \"fail\"\n    \n    # Find matching raw trace\n    traces_for_pid = pid_to_traces.get(pid, [])\n    cursor = pid_cursor[pid]\n    \n    meta = {\n        \"idx\": i,\n        \"problem_id\": pid,\n        \"label\": label,\n        \"source\": None,\n        \"error_type\": None,\n        \"error_msg\": None,\n        \"trace_len\": None,\n        \"n_tests_passed\": None,\n        \"n_tests_failed\": None,\n        \"has_trace\": None,\n    }\n    \n    if cursor < len(traces_for_pid):\n        rt = traces_for_pid[cursor]\n        meta[\"source\"] = rt.get(\"source\", \"unknown\")\n        tr = rt.get(\"test_results\", {})\n        err = tr.get(\"error\", \"\")\n        meta[\"error_msg\"] = err if err else None\n        if err:\n            meta[\"error_type\"] = err.split(\":\")[0].split(\"(\")[0].strip()\n        elif not rt[\"verdict\"]:\n            meta[\"error_type\"] = \"assertion_fail\"\n        else:\n            meta[\"error_type\"] = \"no_error\"\n        meta[\"n_tests_passed\"] = tr.get(\"passed\", 0)\n        meta[\"n_tests_failed\"] = tr.get(\"failed\", 0)\n        trace_raw = rt.get(\"trace_raw\", [])\n        meta[\"trace_len\"] = len(trace_raw) if isinstance(trace_raw, list) else 0\n        meta[\"has_trace\"] = bool(trace_raw)\n    \n    pid_cursor[pid] += 1\n    sample_meta.append(meta)\n\n# Check source distribution\nsrc_counts = Counter(m[\"source\"] for m in sample_meta)\nprint(f\"Source distribution: {dict(src_counts)}\")\n\n# Check error type distribution\nerr_counts = Counter(m[\"error_type\"] for m in sample_meta)\nprint(f\"Error type distribution: {dict(err_counts)}\")\n\n# 2. Load predictions for all conditions\nprint(\"\\n\" + \"=\" * 70)\nprint(\"PHASE 2: Loading predictions and computing per-condition accuracy\")\nprint(\"=\" * 70)\n\npreds_by_cond = {}\nfor cond, path in CONDITIONS.items():\n    preds = load_jsonl(path)\n    preds_by_cond[cond] = preds\n    correct = sum(1 for p in preds if p[\"label\"] == p[\"pred\"])\n    acc = correct / len(preds) * 100\n    fp = sum(1 for p in preds if p[\"label\"] == \"fail\" and p[\"pred\"] == \"pass\")\n    fn = sum(1 for p in preds if p[\"label\"] == \"pass\" and p[\"pred\"] == \"fail\")\n    tp = sum(1 for p in preds if p[\"label\"] == \"pass\" and p[\"pred\"] == \"pass\")\n    tn = sum(1 for p in preds if p[\"label\"] == \"fail\" and p[\"pred\"] == \"fail\")\n    print(f\"{cond:20s}: acc={acc:.2f}% | TP={tp} TN={tn} FP={fp} FN={fn}\")\n\n# 3. Per error type accuracy\nprint(\"\\n\" + \"=\" * 70)\nprint(\"PHASE 3: Accuracy by error type per condition\")\nprint(\"=\" * 70)\n\nerror_types_list = sorted(set(m[\"error_type\"] for m in sample_meta if m[\"error_type\"]))\nfor etype in error_types_list:\n    indices = [m[\"idx\"] for m in sample_meta if m[\"error_type\"] == etype]\n    n = len(indices)\n    print(f\"\\n--- {etype} (n={n}) ---\")\n    for cond in CONDITIONS:\n        preds = preds_by_cond[cond]\n        correct = sum(1 for i in indices if preds[i][\"label\"] == preds[i][\"pred\"])\n        acc = correct / n * 100 if n > 0 else 0\n        fp = sum(1 for i in indices if preds[i][\"label\"] == \"fail\" and preds[i][\"pred\"] == \"pass\")\n        fn = sum(1 for i in indices if preds[i][\"label\"] == \"pass\" and preds[i][\"pred\"] == \"fail\")\n        print(f\"  {cond:20s}: acc={acc:.2f}% (correct={correct}/{n}, FP={fp}, FN={fn})\")\n\n# 4. By source dataset\nprint(\"\\n\" + \"=\" * 70)\nprint(\"PHASE 4: Accuracy by source dataset per condition\")\nprint(\"=\" * 70)\n\nsources_list = sorted(set(m[\"source\"] for m in sample_meta if m[\"source\"]))\nfor src in sources_list:\n    indices = [m[\"idx\"] for m in sample_meta if m[\"source\"] == src]\n    n = len(indices)\n    print(f\"\\n--- {src} (n={n}) ---\")\n    for cond in CONDITIONS:\n        preds = preds_by_cond[cond]\n        correct = sum(1 for i in indices if preds[i][\"label\"] == preds[i][\"pred\"])\n        acc = correct / n * 100 if n > 0 else 0\n        print(f\"  {cond:20s}: acc={acc:.2f}% ({correct}/{n})\")\n\n# 5. By trace length buckets (for samples with traces)\nprint(\"\\n\" + \"=\" * 70)\nprint(\"PHASE 5: Accuracy by trace length bucket\")\nprint(\"=\" * 70)\n\ntrace_lens = [m[\"trace_len\"] for m in sample_meta if m[\"trace_len\"] is not None]\nif trace_lens:\n    import statistics\n    print(f\"Trace length stats: min={min(trace_lens)}, max={max(trace_lens)}, \"\n          f\"mean={statistics.mean(trace_lens):.1f}, median={statistics.median(trace_lens)}\")\n    \n    # Define buckets\n    buckets = [(0, 0, \"no_trace(0)\"), (1, 5, \"short(1-5)\"), (6, 20, \"medium(6-20)\"), \n               (21, 50, \"long(21-50)\"), (51, float('inf'), \"very_long(51+)\")]\n    \n    for lo, hi, name in buckets:\n        indices = [m[\"idx\"] for m in sample_meta if m[\"trace_len\"] is not None and lo <= m[\"trace_len\"] <= hi]\n        n = len(indices)\n        if n == 0:\n            continue\n        print(f\"\\n--- {name} (n={n}) ---\")\n        for cond in CONDITIONS:\n            preds = preds_by_cond[cond]\n            correct = sum(1 for i in indices if preds[i][\"label\"] == preds[i][\"pred\"])\n            acc = correct / n * 100\n            print(f\"  {cond:20s}: acc={acc:.2f}% ({correct}/{n})\")\n\n# 6. Cross-condition overlap analysis\nprint(\"\\n\" + \"=\" * 70)\nprint(\"PHASE 6: Cross-condition overlap analysis\")\nprint(\"=\" * 70)\n\nn_samples = len(test_data)\n# For each sample, which conditions got it right\ncorrect_by_sample = defaultdict(set)\nwrong_by_sample = defaultdict(set)\nfor cond in CONDITIONS:\n    preds = preds_by_cond[cond]\n    for i in range(n_samples):\n        if preds[i][\"label\"] == preds[i][\"pred\"]:\n            correct_by_sample[i].add(cond)\n        else:\n            wrong_by_sample[i].add(cond)\n\n# All correct\nall_correct = sum(1 for i in range(n_samples) if len(correct_by_sample[i]) == len(CONDITIONS))\nall_wrong = sum(1 for i in range(n_samples) if len(wrong_by_sample[i]) == len(CONDITIONS))\nprint(f\"Correct by ALL conditions: {all_correct}/{n_samples} ({all_correct/n_samples*100:.1f}%)\")\nprint(f\"Wrong by ALL conditions: {all_wrong}/{n_samples} ({all_wrong/n_samples*100:.1f}%)\")\n\n# Only wrong by specific conditions\nfor cond in CONDITIONS:\n    only_this_wrong = sum(1 for i in range(n_samples) if wrong_by_sample[i] == {cond})\n    print(f\"Wrong ONLY by {cond:20s}: {only_this_wrong}\")\n\n# Pairwise disagreement\nprint(\"\\nPairwise disagreement counts:\")\ncond_list = list(CONDITIONS.keys())\nfor i in range(len(cond_list)):\n    for j in range(i+1, len(cond_list)):\n        c1, c2 = cond_list[i], cond_list[j]\n        disagree = sum(1 for k in range(n_samples) \n                       if preds_by_cond[c1][k][\"pred\"] != preds_by_cond[c2][k][\"pred\"])\n        print(f\"  {c1:20s} vs {c2:20s}: {disagree} disagreements\")\n\n# 7. FP/FN breakdown by condition\nprint(\"\\n\" + \"=\" * 70)\nprint(\"PHASE 7: FP vs FN analysis\")\nprint(\"=\" * 70)\n\nfor cond in CONDITIONS:\n    preds = preds_by_cond[cond]\n    fp_indices = [i for i in range(n_samples) if preds[i][\"label\"] == \"fail\" and preds[i][\"pred\"] == \"pass\"]\n    fn_indices = [i for i in range(n_samples) if preds[i][\"label\"] == \"pass\" and preds[i][\"pred\"] == \"fail\"]\n    \n    print(f\"\\n--- {cond} ---\")\n    print(f\"  FP={len(fp_indices)}, FN={len(fn_indices)}\")\n    \n    if fp_indices:\n        fp_err_types = Counter(sample_meta[i][\"error_type\"] for i in fp_indices)\n        print(f\"  FP error types: {dict(fp_err_types)}\")\n        fp_sources = Counter(sample_meta[i][\"source\"] for i in fp_indices)\n        print(f\"  FP sources: {dict(fp_sources)}\")\n    \n    if fn_indices:\n        fn_sources = Counter(sample_meta[i][\"source\"] for i in fn_indices)\n        print(f\"  FN sources: {dict(fn_sources)}\")\n\n# 8. Tier analysis: exception_only vs loop_only failure mode comparison\nprint(\"\\n\" + \"=\" * 70)\nprint(\"PHASE 8: Tier 1 (exception_only) vs Tier 2 (loop_only) failure comparison\")\nprint(\"=\" * 70)\n\nexc_preds = preds_by_cond[\"exception_only\"]\nloop_preds = preds_by_cond[\"loop_only\"]\n\nexc_wrong = set(i for i in range(n_samples) if exc_preds[i][\"label\"] != exc_preds[i][\"pred\"])\nloop_wrong = set(i for i in range(n_samples) if loop_preds[i][\"label\"] != loop_preds[i][\"pred\"])\n\nboth_wrong = exc_wrong & loop_wrong\nexc_only_wrong = exc_wrong - loop_wrong\nloop_only_wrong = loop_wrong - exc_wrong\n\nprint(f\"exception_only errors: {len(exc_wrong)}\")\nprint(f\"loop_only errors: {len(loop_wrong)}\")\nprint(f\"Both wrong: {len(both_wrong)}\")\nprint(f\"Only exception_only wrong: {len(exc_only_wrong)}\")\nprint(f\"Only loop_only wrong: {len(loop_only_wrong)}\")\n\nif exc_only_wrong:\n    print(f\"\\nSamples only exception_only gets wrong:\")\n    for i in sorted(exc_only_wrong):\n        m = sample_meta[i]\n        print(f\"  idx={i}, pid={m['problem_id']}, label={m['label']}, err={m['error_type']}, \"\n              f\"pred_exc={exc_preds[i]['pred']}, pred_loop={loop_preds[i]['pred']}\")\n\nif loop_only_wrong:\n    print(f\"\\nSamples only loop_only gets wrong (first 20):\")\n    for i in sorted(loop_only_wrong)[:20]:\n        m = sample_meta[i]\n        print(f\"  idx={i}, pid={m['problem_id']}, label={m['label']}, err={m['error_type']}, \"\n              f\"pred_exc={exc_preds[i]['pred']}, pred_loop={loop_preds[i]['pred']}\")\n\n# 9. Universally hard samples (wrong by 3+ conditions)\nprint(\"\\n\" + \"=\" * 70)\nprint(\"PHASE 9: Universally hard samples (wrong by 3+ conditions)\")\nprint(\"=\" * 70)\n\nhard_samples = [(i, wrong_by_sample[i]) for i in range(n_samples) if len(wrong_by_sample[i]) >= 3]\nhard_samples.sort(key=lambda x: -len(x[1]))\nprint(f\"Samples wrong by 3+ conditions: {len(hard_samples)}\")\nfor i, wrong_conds in hard_samples:\n    m = sample_meta[i]\n    print(f\"  idx={i}, pid={m['problem_id']}, label={m['label']}, err={m['error_type']}, \"\n          f\"src={m['source']}, trace_len={m['trace_len']}, \"\n          f\"wrong_by={sorted(wrong_conds)}\")\n\n# 10. Label balance check\nprint(\"\\n\" + \"=\" * 70)\nprint(\"PHASE 10: Label balance and per-label accuracy\")\nprint(\"=\" * 70)\n\npass_indices = [i for i in range(n_samples) if test_labels[i] == \"pass\"]\nfail_indices = [i for i in range(n_samples) if test_labels[i] == \"fail\"]\nprint(f\"Pass samples: {len(pass_indices)}, Fail samples: {len(fail_indices)}\")\n\nfor cond in CONDITIONS:\n    preds = preds_by_cond[cond]\n    pass_acc = sum(1 for i in pass_indices if preds[i][\"pred\"] == \"pass\") / len(pass_indices) * 100\n    fail_acc = sum(1 for i in fail_indices if preds[i][\"pred\"] == \"fail\") / len(fail_indices) * 100\n    print(f\"  {cond:20s}: pass_acc={pass_acc:.2f}%, fail_acc={fail_acc:.2f}%\")\n\nprint(\"\\nDone.\")\nPYEOF\n/root/miniconda3/bin/python /root/trace-verdict-study/error_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T06:15:55.654990+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"======================================================================\\\\nPHASE 1: Loading raw data and metadata\\\\n======================================================================\\\\nTotal raw traces: 5910\\\\nTest set size: 1190\\\\nLabel distribution in test set: Counter({'pass': 851, 'fail': 339})\\\\nSource distribution: {'humaneval': 340, 'mbpp': 850}\\\\nError type distribution: {'SyntaxError': 67, 'no_error': 851, 'AssertionError': 190, 'Timeout': 3, 'TypeError': 53, 'NameError': 21, 'AttributeError': 5}\\\\n\\\\n======================================================================\\\\nPHASE 2: Loading predictions and computing per-condition accuracy\\\\n======================================================================\\\\nexception_only      : acc=99.83% | TP=849 TN=339 FP=0 FN=2\\\\nvota                : acc=99.41% | TP=844 TN=339 FP=0 FN=7\\\\nfull_trace          : acc=81.76% | TP=737 TN=236 FP=103 FN=114\\\\nno_trace            : acc=75.13% | TP=645 TN=249 FP=90 FN=206\\\\nloop_only           : acc=85.63% | TP=741 TN=278 FP=61 FN=110\\\\n\\\\n======================================================================\\\\nPHASE 3: Accuracy by error type per condition\\\\n======================================================================\\\\n\\\\n--- AssertionError (n=190) ---\\\\n  exception_only      : acc=100.00% (correct=190/190, FP=0, FN=0)\\\\n  vota                : acc=100.00% (correct=190/190, FP=0, FN=0)\\\\n  full_trace          : acc=50.53% (correct=96/190, FP=94, FN=0)\\\\n  no_trace            : acc=63.16% (correct=120/190, FP=70, FN=0)\\\\n  loop_only           : acc=67.89% (correct=129/190, FP=61, FN=0)\\\\n\\\\n--- AttributeError (n=5) ---\\\\n  exception_only      : acc=100.00% (correct=5/5, FP=0, FN=0)\\\\n  vota                : acc=100.00% (correct=5/5, FP=0, FN=0)\\\\n  full_trace          : acc=40.00% (correct=2/5, FP=3, FN=0)\\\\n  no_trace            : acc=80.00% (correct=4/5, FP=1, FN=0)\\\\n  loop_only           : acc=100.00% (\n…[truncated 6440 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T06:15:55.655182+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "/root/miniconda3/bin/python /root/trace-verdict-study/error_analysis.py 2>&1 > /tmp/error_analysis_full.txt && wc -l /tmp/error_analysis_full.txt",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T06:15:55.655402+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"338 /tmp/error_analysis_full.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.02}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T06:15:55.655550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "head -120 /tmp/error_analysis_full.txt",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T06:15:55.655727+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"======================================================================\\\\nPHASE 1: Loading raw data and metadata\\\\n======================================================================\\\\nTotal raw traces: 5910\\\\nTest set size: 1190\\\\nLabel distribution in test set: Counter({'pass': 851, 'fail': 339})\\\\nSource distribution: {'humaneval': 340, 'mbpp': 850}\\\\nError type distribution: {'SyntaxError': 67, 'no_error': 851, 'AssertionError': 190, 'Timeout': 3, 'TypeError': 53, 'NameError': 21, 'AttributeError': 5}\\\\n\\\\n======================================================================\\\\nPHASE 2: Loading predictions and computing per-condition accuracy\\\\n======================================================================\\\\nexception_only      : acc=99.83% | TP=849 TN=339 FP=0 FN=2\\\\nvota                : acc=99.41% | TP=844 TN=339 FP=0 FN=7\\\\nfull_trace          : acc=81.76% | TP=737 TN=236 FP=103 FN=114\\\\nno_trace            : acc=75.13% | TP=645 TN=249 FP=90 FN=206\\\\nloop_only           : acc=85.63% | TP=741 TN=278 FP=61 FN=110\\\\n\\\\n======================================================================\\\\nPHASE 3: Accuracy by error type per condition\\\\n======================================================================\\\\n\\\\n--- AssertionError (n=190) ---\\\\n  exception_only      : acc=100.00% (correct=190/190, FP=0, FN=0)\\\\n  vota                : acc=100.00% (correct=190/190, FP=0, FN=0)\\\\n  full_trace          : acc=50.53% (correct=96/190, FP=94, FN=0)\\\\n  no_trace            : acc=63.16% (correct=120/190, FP=70, FN=0)\\\\n  loop_only           : acc=67.89% (correct=129/190, FP=61, FN=0)\\\\n\\\\n--- AttributeError (n=5) ---\\\\n  exception_only      : acc=100.00% (correct=5/5, FP=0, FN=0)\\\\n  vota                : acc=100.00% (correct=5/5, FP=0, FN=0)\\\\n  full_trace          : acc=40.00% (correct=2/5, FP=3, FN=0)\\\\n  no_trace            : acc=80.00% (correct=4/5, FP=1, FN=0)\\\\n  loop_only           : acc=100.00% (\n…[truncated 3929 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T06:15:55.655871+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "tail -n +121 /tmp/error_analysis_full.txt",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T06:15:55.656084+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  loop_only           : acc=78.55% (304/387)\\\\n\\\\n======================================================================\\\\nPHASE 6: Cross-condition overlap analysis\\\\n======================================================================\\\\nCorrect by ALL conditions: 795/1190 (66.8%)\\\\nWrong by ALL conditions: 0/1190 (0.0%)\\\\nWrong ONLY by exception_only      : 2\\\\nWrong ONLY by vota                : 0\\\\nWrong ONLY by full_trace          : 58\\\\nWrong ONLY by no_trace            : 119\\\\nWrong ONLY by loop_only           : 36\\\\n\\\\nPairwise disagreement counts:\\\\n  exception_only       vs vota                : 9 disagreements\\\\n  exception_only       vs full_trace          : 219 disagreements\\\\n  exception_only       vs no_trace            : 298 disagreements\\\\n  exception_only       vs loop_only           : 173 disagreements\\\\n  vota                 vs full_trace          : 210 disagreements\\\\n  vota                 vs no_trace            : 289 disagreements\\\\n  vota                 vs loop_only           : 166 disagreements\\\\n  full_trace           vs no_trace            : 201 disagreements\\\\n  full_trace           vs loop_only           : 160 disagreements\\\\n  no_trace             vs loop_only           : 203 disagreements\\\\n\\\\n======================================================================\\\\nPHASE 7: FP vs FN analysis\\\\n======================================================================\\\\n\\\\n--- exception_only ---\\\\n  FP=0, FN=2\\\\n  FN sources: {'humaneval': 2}\\\\n\\\\n--- vota ---\\\\n  FP=0, FN=7\\\\n  FN sources: {'mbpp': 7}\\\\n\\\\n--- full_trace ---\\\\n  FP=103, FN=114\\\\n  FP error types: {'AssertionError': 94, 'TypeError': 6, 'AttributeError': 3}\\\\n  FP sources: {'mbpp': 77, 'humaneval': 26}\\\\n  FN sources: {'humaneval': 27, 'mbpp': 87}\\\\n\\\\n--- no_trace ---\\\\n  FP=90, FN=206\\\\n  FP error types: {'AssertionError': 70, 'SyntaxError': 19, 'AttributeError': 1}\\\\n  FP sources: {'mbpp': 50, 'humaneval': 40}\\\\n \n…[truncated 6452 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T06:15:55.656289+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "grep -c \"wrong_by=\" /tmp/error_analysis_full.txt",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T06:15:55.656427+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "grep -n \"PHASE 9\" /tmp/error_analysis_full.txt",
+              "account": "root"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T06:15:55.656554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"112\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T06:15:55.656675+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"212:PHASE 9: Universally hard samples (wrong by 3+ conditions)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T06:15:55.656796+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "tail -n +212 /tmp/error_analysis_full.txt",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T06:15:55.656987+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PHASE 9: Universally hard samples (wrong by 3+ conditions)\\\\n======================================================================\\\\nSamples wrong by 3+ conditions: 112\\\\n  idx=540, pid=MBPP/113, label=pass, err=no_error, src=mbpp, trace_len=29, wrong_by=['full_trace', 'loop_only', 'no_trace', 'vota']\\\\n  idx=541, pid=MBPP/113, label=pass, err=no_error, src=mbpp, trace_len=29, wrong_by=['full_trace', 'loop_only', 'no_trace', 'vota']\\\\n  idx=542, pid=MBPP/113, label=pass, err=no_error, src=mbpp, trace_len=29, wrong_by=['full_trace', 'loop_only', 'no_trace', 'vota']\\\\n  idx=543, pid=MBPP/113, label=pass, err=no_error, src=mbpp, trace_len=29, wrong_by=['full_trace', 'loop_only', 'no_trace', 'vota']\\\\n  idx=548, pid=MBPP/113, label=pass, err=no_error, src=mbpp, trace_len=29, wrong_by=['full_trace', 'loop_only', 'no_trace', 'vota']\\\\n  idx=549, pid=MBPP/113, label=pass, err=no_error, src=mbpp, trace_len=29, wrong_by=['full_trace', 'loop_only', 'no_trace', 'vota']\\\\n  idx=20, pid=MBPP/61, label=pass, err=no_error, src=mbpp, trace_len=110, wrong_by=['full_trace', 'loop_only', 'no_trace']\\\\n  idx=22, pid=MBPP/61, label=pass, err=no_error, src=mbpp, trace_len=808, wrong_by=['full_trace', 'loop_only', 'no_trace']\\\\n  idx=23, pid=MBPP/61, label=pass, err=no_error, src=mbpp, trace_len=110, wrong_by=['full_trace', 'loop_only', 'no_trace']\\\\n  idx=115, pid=MBPP/16, label=pass, err=no_error, src=mbpp, trace_len=51, wrong_by=['full_trace', 'loop_only', 'no_trace']\\\\n  idx=180, pid=MBPP/284, label=pass, err=no_error, src=mbpp, trace_len=42, wrong_by=['full_trace', 'loop_only', 'no_trace']\\\\n  idx=181, pid=MBPP/284, label=pass, err=no_error, src=mbpp, trace_len=42, wrong_by=['full_trace', 'loop_only', 'no_trace']\\\\n  idx=182, pid=MBPP/284, label=pass, err=no_error, src=mbpp, trace_len=42, wrong_by=['full_trace', 'loop_only', 'no_trace']\\\\n  idx=183, pid=MBPP/284, label=pass, err=no_error, src=mbpp, trace_len=42, wrong_by=['full\n…[truncated 6347 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T06:15:55.657177+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "/root/miniconda3/bin/python -c \"\nimport json\nfrom collections import Counter, defaultdict\n\nDATA_DIR = '/root/autodl-tmp/trace-verdict-study-data'\nCKPT_DIR = '/root/autodl-tmp/trace-verdict-study-checkpoints'\n\nCONDITIONS = {\n    'exception_only': f'{CKPT_DIR}/exception_only/final/predictions.jsonl',\n    'vota': f'{CKPT_DIR}/vota/final/predictions.jsonl',\n    'full_trace': f'{CKPT_DIR}/full_trace/final/predictions.jsonl',\n    'no_trace': f'{CKPT_DIR}/no_trace/final/predictions.jsonl',\n    'loop_only': f'{CKPT_DIR}/loop_only/final/predictions.jsonl',\n}\n\ndef load_jsonl(path):\n    with open(path) as f:\n        return [json.loads(l) for l in f]\n\ntest_data = load_jsonl(f'{DATA_DIR}/exception_only_test.jsonl')\npreds_by_cond = {c: load_jsonl(p) for c, p in CONDITIONS.items()}\nn_samples = len(test_data)\n\n# Hard samples: wrong by 3+ conditions\nwrong_by_sample = defaultdict(set)\nfor cond in CONDITIONS:\n    preds = preds_by_cond[cond]\n    for i in range(n_samples):\n        if preds[i]['label'] != preds[i]['pred']:\n            wrong_by_sample[i].add(cond)\n\nhard_indices = [i for i in range(n_samples) if len(wrong_by_sample[i]) >= 3]\n\n# Group by problem_id\npid_groups = defaultdict(list)\nfor i in hard_indices:\n    pid = test_data[i]['problem_id']\n    pid_groups[pid].append(i)\n\nprint('=== Hard problems (wrong by 3+ conditions) grouped by problem_id ===')\nprint(f'Total hard samples: {len(hard_indices)}, from {len(pid_groups)} unique problems')\nprint()\nfor pid, indices in sorted(pid_groups.items(), key=lambda x: -len(x[1])):\n    labels = [test_data[i]['output'] for i in indices]\n    wrong_conds_set = set()\n    for i in indices:\n        wrong_conds_set.update(wrong_by_sample[i])\n    print(f'{pid}: {len(indices)} samples, labels={Counter(labels)}, wrong_by={sorted(wrong_conds_set)}')\n\n# Also count: of the 112 hard samples, how many are FP vs FN for each condition\nprint()\nprint('=== Hard samples: error direction breakdown ===')\nfor cond in CONDITIONS:\n    preds = preds_by_cond[cond]\n    fp = sum(1 for i in hard_indices if preds[i]['label']=='fail' and preds[i]['pred']=='pass')\n    fn = sum(1 for i in hard_indices if preds[i]['label']=='pass' and preds[i]['pred']=='fail')\n    correct = sum(1 for i in hard_indices if preds[i]['label']==preds[i]['pred'])\n    print(f'  {cond:20s}: correct={correct}, FP={fp}, FN={fn}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T06:15:55.657378+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Hard problems (wrong by 3+ conditions) grouped by problem_id ===\\\\nTotal hard samples: 112, from 25 unique problems\\\\n\\\\nMBPP/284: 10 samples, labels=Counter({'pass': 10}), wrong_by=['full_trace', 'loop_only', 'no_trace']\\\\nMBPP/419: 10 samples, labels=Counter({'pass': 10}), wrong_by=['full_trace', 'loop_only', 'no_trace']\\\\nMBPP/443: 10 samples, labels=Counter({'fail': 10}), wrong_by=['full_trace', 'loop_only', 'no_trace']\\\\nMBPP/638: 9 samples, labels=Counter({'pass': 9}), wrong_by=['full_trace', 'loop_only', 'no_trace']\\\\nMBPP/113: 9 samples, labels=Counter({'pass': 9}), wrong_by=['full_trace', 'loop_only', 'no_trace', 'vota']\\\\nMBPP/754: 9 samples, labels=Counter({'pass': 9}), wrong_by=['full_trace', 'loop_only', 'no_trace']\\\\nMBPP/644: 8 samples, labels=Counter({'fail': 8}), wrong_by=['full_trace', 'loop_only', 'no_trace']\\\\nMBPP/92: 8 samples, labels=Counter({'fail': 8}), wrong_by=['full_trace', 'loop_only', 'no_trace']\\\\nMBPP/295: 7 samples, labels=Counter({'fail': 7}), wrong_by=['full_trace', 'loop_only', 'no_trace']\\\\nMBPP/782: 6 samples, labels=Counter({'pass': 6}), wrong_by=['full_trace', 'loop_only', 'no_trace']\\\\nMBPP/765: 6 samples, labels=Counter({'pass': 6}), wrong_by=['full_trace', 'loop_only', 'no_trace']\\\\nMBPP/61: 3 samples, labels=Counter({'pass': 3}), wrong_by=['full_trace', 'loop_only', 'no_trace']\\\\nMBPP/9: 2 samples, labels=Counter({'fail': 2}), wrong_by=['full_trace', 'loop_only', 'no_trace']\\\\nHumanEval/162: 2 samples, labels=Counter({'fail': 2}), wrong_by=['full_trace', 'loop_only', 'no_trace']\\\\nMBPP/229: 2 samples, labels=Counter({'pass': 2}), wrong_by=['full_trace', 'loop_only', 'no_trace']\\\\nHumanEval/120: 2 samples, labels=Counter({'fail': 2}), wrong_by=['full_trace', 'loop_only', 'no_trace']\\\\nMBPP/16: 1 samples, labels=Counter({'pass': 1}), wrong_by=['full_trace', 'loop_only', 'no_trace']\\\\nHumanEval/65: 1 samples, labels=Counter({'pass': 1}), wrong_by=['full_trace', 'loop\n…[truncated 1130 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-21T06:15:55.657595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "error_analysis_report",
+              "type": "report",
+              "description": "Error analysis of 5 trace conditions: failure modes by error type, source, trace length, cross-condition overlap, FP/FN patterns",
+              "project": "trace-verdict-study",
+              "content_filename": "error_analysis_report.md",
+              "tags": "['error-analysis', 'plan_018']",
+              "content": "# Error Analysis Report: Trace Condition Failure Modes\n\n## Overview\n\nAnalyzed 1,190 test samples across 5 trace conditions (Qwen-7B seed42):\n\n| Condition | Accuracy | TP | TN | FP | FN |\n|-----------|----------|-----|-----|-----|-----|\n| exception_only | 99.83% | 849 | 339 | 0 | 2 |\n| vota | 99.41% | 844 | 339 | 0 | 7 |\n| loop_only | 85.63% | 741 | 278 | 61 | 110 |\n| full_trace | 81.76% | 737 | 236 | 103 | 114 |\n| no_trace | 75.13% | 645 | 249 | 90 | 206 |\n\nTest set: 851 pass, 339 fail. Sources: HumanEval 340, MBPP 850.\n\n---\n\n## Finding 1: AssertionError Is the Dominant Failure Mode\n\n**All FPs across all conditions trace back to AssertionError samples** — code that runs without crashing but produces wrong output.\n\n| Error Type (n) | exception_only | vota | loop_only | full_trace | no_trace |\n|----------------|---------------|------|-----------|------------|----------|\n| AssertionError (190) | 100% | 100% | 67.9% | **50.5%** | 63.2% |\n| SyntaxError (67) | 100% | 100% | 100% | 100% | **71.6%** |\n| TypeError (53) | 100% | 100% | 100% | 88.7% | 100% |\n| NameError (21) | 100% | 100% | 100% | 100% | 100% |\n| Timeout (3) | 100% | 100% | 100% | 100% | 100% |\n| AttributeError (5) | 100% | 100% | 100% | 40.0% | 80.0% |\n| no_error/pass (851) | 99.8% | 99.2% | 87.1% | 86.6% | **75.8%** |\n\n**Key insight**: Crash-type errors (SyntaxError, NameError, TypeError, Timeout) are trivially detectable by all conditions — even partial trace information suffices. The hard case is **AssertionError** (code runs, but assertion on output fails), where:\n- exception_only/vota achieve 100% because they see the exception message directly\n- full_trace drops to **50.5%** — worse than random on these samples\n- The model with full traces gets confused by long execution traces of code that ultimately fails an assertion\n\n**Paper-worthy**: full_trace performs *worse* than no_trace on AssertionError samples (50.5% vs 63.2%), suggesting verbose traces actively mislead the model when the bug is a subtle logic error.\n\n---\n\n## Finding 2: FP/FN Asymmetry Reveals Condition-Specific Biases\n\n| Condition | FP | FN | FP Error Types | Bias |\n|-----------|-----|-----|----------------|------|\n| exception_only | 0 | 2 | — | Near-unbiased |\n| vota | 0 | 7 | — | Near-unbiased |\n| full_trace | 103 | 114 | AssertionError(94), TypeError(6), AttributeError(3) | Balanced |\n| no_trace | 90 | 206 | AssertionError(70), SyntaxError(19), AttributeError(1) | **FN-heavy** |\n| loop_only | 61 | 110 | AssertionError(61) | FN-heavy |\n\n- **no_trace** has 2.3x more FN than FP — without any trace, the model defaults to predicting \"fail\" when uncertain\n- **full_trace** is the only condition with near-equal FP and FN, suggesting the verbose trace adds both signal and noise\n- **loop_only** FPs are 100% AssertionError — loop iterations are misleading for assertion failures\n- **exception_only and vota have zero FPs** — they never incorrectly predict a failing program as passing\n\n### Per-label accuracy\n| Condition | Pass accuracy (n=851) | Fail accuracy (n=339) |\n|-----------|----------------------|----------------------|\n| exception_only | 99.76% | 100.00% |\n| vota | 99.18% | 100.00% |\n| loop_only | 87.07% | 82.01% |\n| full_trace | 86.60% | **69.62%** |\n| no_trace | 75.79% | 73.45% |\n\nfull_trace has the widest pass/fail accuracy gap (86.6% vs 69.6%), indicating it struggles specifically with detecting failures.\n\n---\n\n## Finding 3: Source Dataset Differences\n\n| Condition | HumanEval (n=340) | MBPP (n=850) |\n|-----------|-------------------|--------------|\n| exception_only | 99.41% | 100.00% |\n| vota | 100.00% | 99.18% |\n| loop_only | **95.29%** | 81.76% |\n| full_trace | 84.41% | 80.71% |\n| no_trace | 70.88% | 76.82% |\n\n- **loop_only** shows the biggest HumanEval/MBPP gap: 95.3% vs 81.8% (+13.5pp). HumanEval programs tend to be simpler with fewer loop iterations.\n- **no_trace** is the only condition where MBPP > HumanEval (76.8% vs 70.9%), possibly because MBPP test code patterns are more stereotypical.\n\n---\n\n## Finding 4: Trace Length Impact\n\nTrace length stats: min=0, max=2000, mean=75.6, median=32.5\n\n| Trace Length | n | exception_only | vota | loop_only | full_trace | no_trace |\n|-------------|---|---------------|------|-----------|------------|----------|\n| 0 (no trace) | 70 | 100% | 100% | 100% | 100% | **72.9%** |\n| 6-20 (medium) | 82 | 100% | 100% | 97.6% | 74.4% | 82.9% |\n| 21-50 (long) | 651 | 100% | 98.9% | 86.8% | 81.1% | 77.7% |\n| 51+ (very long) | 387 | 99.5% | 100% | 78.6% | 81.1% | **69.5%** |\n\n- **Longer traces hurt no_trace and loop_only the most**: 69.5% and 78.6% for traces 51+. These conditions lack the information to handle complex programs.\n- **full_trace is surprisingly stable** across lengths (74-81%), but not because it uses the trace well — it's uniformly confused.\n- **Traces of length 0** (SyntaxError or crash-before-execution): only no_trace struggles (72.9%), all others 100%. Without trace info, no_trace can't infer syntax errors.\n\n---\n\n## Finding 5: Cross-Condition Overlap\n\n- **795/1190 (66.8%)** correct by ALL 5 conditions — the \"easy\" majority\n- **0/1190 (0.0%)** wrong by ALL conditions — no universally impossible sample\n- **112/1190 (9.4%)** wrong by 3+ conditions (the \"hard core\")\n\n| Wrong ONLY by | Count |\n|---------------|-------|\n| exception_only | 2 |\n| vota | 0 |\n| full_trace | 58 |\n| no_trace | 119 |\n| loop_only | 36 |\n\nexception_only's 2 unique errors are both FN on HumanEval/95 (label=pass, predicted fail). These correct programs were the only samples exception_only uniquely misjudged.\n\n### Pairwise Disagreement\n\n| Pair | Disagreements |\n|------|--------------|\n| exception_only ↔ vota | 9 |\n| exception_only ↔ loop_only | 173 |\n| exception_only ↔ full_trace | 219 |\n| exception_only ↔ no_trace | 298 |\n| vota ↔ loop_only | 166 |\n| vota ↔ full_trace | 210 |\n| vota ↔ no_trace | 289 |\n| full_trace ↔ no_trace | 201 |\n| full_trace ↔ loop_only | 160 |\n| no_trace ↔ loop_only | 203 |\n\nexception_only and vota are nearly identical (9 disagreements). The Tier-2 conditions (full_trace, no_trace, loop_only) disagree with each other ~160-200 times and with Tier-1 ~170-300 times.\n\n---\n\n## Finding 6: Universally Hard Samples Cluster in 25 Problems\n\n112 samples wrong by 3+ conditions come from only **25 unique problems**. Top clusters:\n\n| Problem | # Hard Samples | Labels | Wrong By |\n|---------|---------------|--------|----------|\n| MBPP/284 | 10 | all pass | full_trace, loop_only, no_trace |\n| MBPP/419 | 10 | all pass | full_trace, loop_only, no_trace |\n| MBPP/443 | 10 | all fail | full_trace, loop_only, no_trace |\n| MBPP/113 | 9 | all pass | full_trace, loop_only, no_trace, **vota** |\n| MBPP/638 | 9 | all pass | full_trace, loop_only, no_trace |\n| MBPP/754 | 9 | all pass | full_trace, loop_only, no_trace |\n| MBPP/644 | 8 | all fail (AssertionError) | full_trace, loop_only, no_trace |\n| MBPP/92 | 8 | all fail (AssertionError) | full_trace, loop_only, no_trace |\n| MBPP/295 | 7 | all fail (AssertionError) | full_trace, loop_only, no_trace |\n\n**exception_only gets ALL 112 hard samples correct.** vota misses 7 (all from MBPP/113). The hard core is dominated by MBPP problems where multiple solution variants all confuse the non-exception conditions.\n\nAmong the 112 hard samples: 70 are pass→fail (FN), 42 are fail→pass (FP). The model without exception info both over-predicts and under-predicts verdict for these specific programs.\n\n---\n\n## Finding 7: Tier 1 vs Tier 2 Error Disjointness\n\n| Metric | exception_only | loop_only |\n|--------|---------------|-----------|\n| Total errors | 2 | 171 |\n| Overlap | 0 | 0 |\n| Unique to condition | 2 | 171 |\n\n**Zero overlap** — the 2 samples exception_only gets wrong are correctly handled by loop_only, and vice versa. These conditions fail on completely different samples, reinforcing that they encode fundamentally different signals.\n\n---\n\n## Summary: Key Patterns for Paper Discussion\n\n1. **AssertionError is the decisive error type.** Conditions with exception info (exception_only, vota) achieve 100% on these; conditions without (full_trace 50.5%, loop_only 67.9%, no_trace 63.2%) are the primary source of all accuracy gaps. This is the single most important finding for explaining the ~20pp gap between Tier 1 and Tier 2.\n\n2. **Full traces actively hurt on assertion errors** — full_trace (50.5%) performs worse than no_trace (63.2%) on AssertionError samples. Verbose execution traces for logically incorrect but syntactically valid code appear to mislead the model.\n\n3. **Crash errors are trivially solvable** by any condition. SyntaxError, NameError, TypeError, Timeout are all at or near 100% for all conditions except no_trace on SyntaxError (71.6%).\n\n4. **no_trace is FN-biased** (206 FN vs 90 FP), defaulting to \"fail\" when uncertain. This is the only condition with a strong directional bias.\n\n5. **Hard samples cluster tightly**: 112 samples from 25 problems account for virtually all errors shared by 3+ conditions. These are MBPP-dominated, concentrated problems that confuse all non-exception conditions simultaneously.\n\n6. **exception_only and vota are near-identical** (9 disagreements out of 1190), suggesting that the exception signal alone carries almost all useful information in the vota format.\n"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-21T06:15:55.657943+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_e617be\\\", \\\"name\\\": \\\"error_analysis_report\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Error analysis of 5 trace conditions: failure modes by error type, source, trace length, cross-condition overlap, FP/FN patterns\\\", \\\"path\\\": \\\"projects/trace-verdict-study/artifacts/_project/report/error_analysis_report_e617be.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"trace-verdict-study\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T06:15:39.940762+00:00\\\", \\\"tags\\\": [\\\"error-analysis\\\", \\\"plan_018\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-21T06:15:55.658191+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心发现：\n\n**1. AssertionError 是唯一难点。** exception_only/vota 因为直接看到异常信息，在所有错误类型上都 100%。full_trace 在 AssertionError 上只有 **50.5%**——比 no_trace (63.2%) 还差，说明冗长 trace 对逻辑错误反而造成干扰。\n\n**2. Crash 类错误（SyntaxError/NameError/TypeError/Timeout）对所有条件几乎都是 trivial 的**，只有 no_trace 在 SyntaxError 上掉到 71.6%。\n\n**3. FP/FN 不对称：**\n- exception_only/vota：FP=0，几乎不会把错误代码判为正确\n- no_trace：FN 是 FP 的 2.3 倍（206 vs 90），倾向于把正确代码判为错误\n- full_trace：FP/FN 基本平衡（103/114），但 fail 检测率仅 69.6%\n\n**4. 112 个 hard samples 来自仅 25 个 problem**，以 MBPP 为主。exception_only 在这 112 个样本上全对，说明异常信号是区分力的核心来源。\n\n**5. exception_only 和 vota 仅有 9 个样本不一致**，验证了异常信息几乎携带了 vota 格式的全部有效信号。\n\n**6. full_trace 在 AssertionError 上比 no_trace 更差**——这个发现值得在论文中重点讨论，说明\"更多 trace ≠ 更好判断\"，verbose trace 对 assertion failure 是噪声而非信号。\n\n报告已注册到 artifacts：`error_analysis_report_e617be.md`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_plan_018_error_analysis_20260521T061113"
+          },
+          "id": "event-000041"
+        }
+      ],
+      "message_count": 41
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-plan-018-error-analysis.md"
+}

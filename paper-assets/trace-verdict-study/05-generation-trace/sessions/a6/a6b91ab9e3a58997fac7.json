@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6b91ab9e3a58997fac7",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops paper sync final",
+  "task_key": "worker_ops_paper-sync-final_20260522T141333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_paper-sync-final_20260522T141333_result.json",
+    "occurrence": 1,
+    "bytes": 620,
+    "sha256": "84190a66f867aad94b3a8c1ddabb11a3636c8b64734820d1a4a4e39f481fda63"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Final Report\n\n| Item | Result |\n|------|--------|\n| **File sync** | 13 files synced (8 transferred, 5 unchanged), all byte sizes verified |\n| **Subcomponent grep** | 6 lines match `subcomponent\\|exc_type\\|exc_message\\|exc_stacktrace` in appendix.tex |\n| **PDF compilation** | Success (pdflatex ×2, return code 0). 1 warning, 6 \"Error\" string occurrences in log (likely content text, not compilation errors) |\n| **Page count** | **21 pages** |\n\nNote: there's 1 pdfTeX warning about `table.caption.3` being referenced but not existing — a dangling cross-reference that should be checked."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-paper-sync-final.md"
+}

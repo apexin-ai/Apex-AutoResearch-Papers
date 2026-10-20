@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "626b561c8f4ae512b342",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "monitor training progress check",
+  "task_key": "worker_monitor_training_progress_check_20260515T163421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_training_progress_check_20260515T163421_result.json",
+    "occurrence": 1,
+    "bytes": 1962,
+    "sha256": "1c260e2db221df8e0fee8b5942460dcc2cf22d9b89c152dad71a83462515a3fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n---\n\n## 训练进度汇报\n\n### 实验 1: exception_only_seed123 (GPU 1, pid 124207)\n- **状态**: 训练中\n- **进度**: step 178/444 (40%), epoch 2/3\n- **速度**: ~10-20s/step（当前 ~10s/step）\n- **预计完成**: ~60-80 min 后训练完成，之后自动跑 eval\n- **GPU**: 89% util, 32648 MiB\n\n### 实验 2: deepseek_full_trace_seed42 (GPU 0)\n- **状态**: 已完成（exit code 0, 16:35 UTC）\n- **⚠️ 异常**: eval 结果崩溃 — accuracy 28.5%，模型全部预测为 \"fail\"（pass recall=0, fail recall=1.0）。模型坍缩，需要排查。\n- **无 predictions.jsonl**\n\n### 额外发现: deepseek_no_trace_seed42 (GPU 0)\n- **状态**: 已完成（exit code 0, 13:35 UTC）\n- **Eval**: 73.4% accuracy, lift +1.8pp（基本等于 majority baseline 71.5%）\n- **无 predictions.jsonl**\n\n---\n\n## GPU 状态\n| GPU | Util | Memory | 状态 |\n|-----|------|--------|------|\n| 0 | **0%** | 49175/97887 MiB（残留缓存） | **空闲可用** |\n| 1 | 89% | 32657/97887 MiB | exception_only 训练中 |\n\n---\n\n## Predictions 文件\n| 实验 | predictions.jsonl |\n|------|------------------|\n| deepseek_vota | ❌ 不存在 |\n| deepseek_no_trace | ❌ 不存在 |\n| full_trace_label_only | ✅ 存在 (77KB, accuracy 86.2%) |\n\n---\n\n## 关键异常\n\n1. **deepseek_full_trace eval 坍缩**: accuracy 28.5%，全预测 fail。可能原因：生成格式不匹配 eval 解析、DeepSeek 模型 chat template 问题、或训练崩溃。GPU 0 当前空闲，可以用来排查/重跑 eval。\n\n2. **GPU 0 空闲**: deepseek_full_trace 和 deepseek_no_trace 均已完成，GPU 0 无活跃进程，可以立即用于下一步实验（如重跑 deepseek eval 生成 predictions.jsonl、或启动新训练）。\n\n3. **缺失 predictions.jsonl**: deepseek_vota 和 deepseek_no_trace 需要用 v2 evaluate 脚本重新 eval 以生成 predictions.jsonl 供 paired bootstrap 使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-training-progress-check.md"
+}

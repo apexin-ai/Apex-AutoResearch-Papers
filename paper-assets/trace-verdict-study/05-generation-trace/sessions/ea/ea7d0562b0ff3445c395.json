@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea7d0562b0ff3445c395",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code qwen15b tail512",
+  "task_key": "worker_code_qwen15b_tail512_20260517T205917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_qwen15b_tail512_20260517T205917_result.json",
+    "occurrence": 1,
+    "bytes": 361,
+    "sha256": "675b2a33e65da5331474410b5db9229a725b4ce8e2ff8e35f2a76b7ec3be5fa2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已在 cuda:1 上启动并正常运行：\n\n- **GPU 1**: 55315MiB 已占用，100% 利用率\n- **进度**: 444 steps 总量，约 2s/it，预计 ~15 分钟完成训练\n- **日志**: `/root/trace-verdict-study/logs/qwen15b_tail512_seed42.log`\n- **tmux session**: `qwen15b_full_trace_tail512_seed42`\n- 训练完成后会自动运行 eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-qwen15b-tail512.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "8865b01df13f3b96fae1",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "sync figure vspace fix",
+  "task_key": "worker_sync_figure-vspace-fix_20260525T080226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_figure-vspace-fix_20260525T080226.log",
+    "occurrence": 1,
+    "bytes": 641550,
+    "sha256": "97c49012c30c191c22c9061332b65b6f7609a9149a9095b5a52b1177f5ca1f14"
+  },
+  "statistics": {
+    "messages": 109,
+    "user_turns": 1,
+    "tool_calls": 37,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 27,
+      "tool_call": 37,
+      "tool_result": 37,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 1
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 88,
+      "chunks": [
+        {
+          "path": "8865b01df13f3b96fae1-part-0001.json",
+          "message_count": 88
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "8865b01df13f3b96fae1-part-0001.json",
+          "message_count": 18
+        },
+        {
+          "path": "8865b01df13f3b96fae1-part-0002.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/sync-figure-vspace-fix.md"
+}

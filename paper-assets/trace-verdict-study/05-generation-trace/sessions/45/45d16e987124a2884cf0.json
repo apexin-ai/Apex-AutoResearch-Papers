@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45d16e987124a2884cf0",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper final sync compile d105",
+  "task_key": "worker_paper_final_sync_compile_d105_20260520T065935",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_final_sync_compile_d105_20260520T065935_result.json",
+    "occurrence": 1,
+    "bytes": 680,
+    "sha256": "6072d5f5820e56fa23e92241ab56170ce0a21dc1e884ff75d13c4d1dd7784f8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass. Final summary:\n\n**Pre-submission sync + compile complete.**\n\n| Metric | Result |\n|---|---|\n| Files synced | 12/12 |\n| PDF size | 439,299 bytes (429 KB) |\n| Pages | 21 |\n| LaTeX errors (`^!`) | 0 |\n| Warnings | 0 |\n| Main body | 8 pages (within EMNLP 2026 limit) |\n| Compilation | pdflatex×3 + bibtex, all exit code 0 |\n\nFile sizes verified on remote match local for all 12 source files (main.tex, introduction.tex, related_work.tex, method.tex, experiments.tex, discussion.tex, conclusion.tex, arr_checklist.tex, references.bib, acl.sty, appendix.tex, acl_natbib.bst). PDF at `/root/trace-verdict-study/docs/paper/main.pdf` is ready."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-final-sync-compile-d105.md"
+}

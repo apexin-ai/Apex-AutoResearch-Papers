@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65bc3507363e383437f9",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code gradient masking",
+  "task_key": "worker_code_gradient_masking_20260522T074512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gradient_masking_20260522T074512_result.json",
+    "occurrence": 1,
+    "bytes": 1750,
+    "sha256": "6293e9d12e572ce5ced75680379b7b8bc2623aea920e0399d43316d240e5b56a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. 修改/新增文件\n\n| 文件 | 操作 |\n|------|------|\n| `/root/trace-verdict-study/train/gradient_mask_trainer.py` | **新增** — `GradientMaskTrainer(SFTTrainer)` 子类，override `compute_loss` 实现 per-token loss masking |\n| `/root/trace-verdict-study/train/train_sft.py` | **修改** — 添加 `--gradient_mask_ratio` 参数，ratio > 0 时自动切换到 `GradientMaskTrainer` |\n\n### 2. Dry-run 结果\n\n3 步训练成功完成，无报错。`train_loss=39.1`（符合预期：99.8% token 被 mask 后有效 loss 集中在极少 token 上，数值偏大）。\n\n### 3. Gradient Masking 验证\n\n**实际 mask 比例**（8 个 micro-batch）：\n\n| valid tokens | kept | mask_ratio |\n|-------------|------|------------|\n| 2130 | 14 | 0.9934 |\n| 1080 | 13 | 0.9880 |\n| 2162 | 16 | 0.9926 |\n| 835 | 13 | 0.9844 |\n| 2970 | 17 | 0.9943 |\n| 3579 | 20 | 0.9944 |\n| 2050 | 13 | 0.9937 |\n| 4374 | 21 | 0.9952 |\n\n平均 mask ratio ≈ 0.992，接近目标 0.998。偏差来自 verdict token 保护（每序列固定保留 3 个 token）。\n\n**Verdict 保护验证**：\n- `shift_labels[338]` = \"pass\" → **PROTECTED**\n- `shift_labels[339]` = `<|im_end|>` → PROTECTED  \n- `shift_labels[340]` = `\\n` → PROTECTED\n\n### 4. 训练命令模板\n\n```bash\ncd /root/trace-verdict-study && CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python train/train_sft.py \\\n    --condition exception_only \\\n    --gpu 0 \\\n    --gradient_mask_ratio 0.998 \\\n    --gradient_checkpointing \\\n    --max_steps 443 \\\n    --seed 42 \\\n    --wandb_run_name exception_only_gradmask0998_seed42 \\\n    --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_gradmask0998\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gradient-masking.md"
+}

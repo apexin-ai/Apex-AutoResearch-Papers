@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8730f1804dab983c592c",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code plan 004 deepseek setup v2",
+  "task_key": "worker_code_plan_004_deepseek_setup_v2_20260515T101859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_004_deepseek_setup_v2_20260515T101859_result.json",
+    "occurrence": 1,
+    "bytes": 191,
+    "sha256": "f2cea247a9d9b1dd2a679c7ea67519c1906f6668d78df1ac402bef515299ac22"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor timed out (download had already completed before it detected it). No action needed — training is already running at 100% GPU utilization on cuda:0 as confirmed above."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-004-deepseek-setup-v2.md"
+}

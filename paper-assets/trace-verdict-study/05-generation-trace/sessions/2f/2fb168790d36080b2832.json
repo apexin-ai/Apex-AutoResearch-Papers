@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2fb168790d36080b2832",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code eval codellama13b ae only seed42 v2",
+  "task_key": "worker_code_eval_codellama13b_ae_only_seed42_v2_20260519T170713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval_codellama13b_ae_only_seed42_v2_20260519T170713_result.json",
+    "occurrence": 1,
+    "bytes": 167,
+    "sha256": "349beac39c48a179beaaa7ad85dc677fc914e0d2c8fded9069f9bfd4e699c4fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练仍在运行。基于步数计算（444 total，296 at checkpoint-2，~1.79 steps/min），epoch 3 预计即将完成。3 分钟后再次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-codellama13b-ae-only-seed42-v2.md"
+}

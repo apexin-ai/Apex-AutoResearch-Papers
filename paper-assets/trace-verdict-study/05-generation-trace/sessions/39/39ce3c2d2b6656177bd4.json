@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39ce3c2d2b6656177bd4",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "verify plan001 launch",
+  "task_key": "worker_verify_plan001-launch_20260515T042216",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_plan001-launch_20260515T042216_result.json",
+    "occurrence": 1,
+    "bytes": 731,
+    "sha256": "0e53282ff169bf8a6151e40d59b1acfbb027335196d12bb4d5e4cf8c5504d732"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n| 实验 | PID | 状态 | GPU | 进度 |\n|------|-----|------|-----|------|\n| plan_001 vota_no_ae | 953133 | **运行中** ✓ | GPU 1, 81.2GB/98GB, 100% util, 64°C | 3/444 steps (~0.7%), ~14.5s/step |\n| plan_002 label-only | 951174 | **已崩溃** ✗ | — | OOM 退出 (exit code 1) |\n\n**plan_001** 正常训练中，已运行约 1 小时 7 分钟，预计还需约 1h45m 完成。\n\n**plan_002** 启动时 CUDA OOM 崩溃。原因：GPU 0 上有两个残留进程（PID 950697、951029）各占 ~15.8GB 显存，导致 plan_002 分配不到足够内存。当前 GPU 0 显示 49.2GB 已占用（这些残留进程仍在）。\n\n需要清理 GPU 0 上的残留进程后重启 plan_002。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-plan001-launch.md"
+}

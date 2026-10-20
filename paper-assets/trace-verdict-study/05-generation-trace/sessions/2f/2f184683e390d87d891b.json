@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f184683e390d87d891b",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops check both and eval",
+  "task_key": "worker_ops_check_both_and_eval_20260518T071932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_both_and_eval_20260518T071932_result.json",
+    "occurrence": 1,
+    "bytes": 1334,
+    "sha256": "aa49b4a5dd3afb51d7c8d770265a4fc26a723408e1654b32466df09e8ff1d59c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 epoch 的 eval 结果都拿到了。汇总如下：\n\n## Experiment 2: `codellama13b_full_trace_tail2048_seed42_v2` (full sequence loss)\n\n| Metric | Epoch 1 (ckpt-148) | Epoch 3 (final) | Delta |\n|---|---|---|---|\n| **accuracy** | 28.49% | 29.58% | +1.09 |\n| pass_precision | 0.000 | 0.933 | +0.933 |\n| pass_recall | 0.000 | 0.016 | +0.016 |\n| fail_precision | 0.285 | 0.288 | +0.003 |\n| fail_recall | 1.000 | 0.997 | -0.003 |\n| majority baseline | 71.5% (pass) | 71.5% (pass) | — |\n\n### Loss dilution 分析\n\n**结论：不存在显著 loss dilution（epoch 3 没有比 epoch 1 更差），但两者都彻底失败。**\n\n- 两个 epoch 的 accuracy 都远低于 majority baseline（71.5%），模型几乎把所有样本预测为 \"fail\"\n- Epoch 3 相比 epoch 1 略有微弱改善：pass_recall 从 0 → 0.016（开始预测少量 pass），accuracy 从 28.49% → 29.58%\n- 这不是 loss dilution 问题，而是模型根本没有学到有效的 pass/fail 区分能力。full sequence loss 在 tail-2048 设置下训练 3 个 epoch 也完全不够\n\n### Experiment 1: `codellama13b_full_trace_tail1024_seed42_v3` (label-only loss)\n\n训练中，当前 step 207/444（47%），预计还需 ~1h13m。checkpoint-148 已保存，但 final 尚未完成。需要等训练结束后再 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-both-and-eval.md"
+}

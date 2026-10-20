@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb3138aabd21f9e4f52b",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "eval calibration codellama deepseek",
+  "task_key": "worker_eval_calibration_codellama_deepseek_20260519T015419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_calibration_codellama_deepseek_20260519T015419_result.json",
+    "occurrence": 1,
+    "bytes": 999,
+    "sha256": "2975712a8531c58f72416a0eb1a3688cff0309cbc76268394b0d20eab4b028a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Calibration 结果已存在（2026-05-18 跑完），无需重跑。\n\n## Exception_only Calibration 汇总\n\n| Model | Accuracy | ECE | Brier | MCE |\n|---|---|---|---|---|\n| **CodeLlama-13B** | 99.83% | 0.0020 | 0.0013 | 0.0411 |\n| **DeepSeek-6.7B** | 99.33% | 0.0064 | 0.0061 | 0.7756 |\n| **Qwen-7B** (参考) | 99.83% | 0.0027 | 0.0013 | 0.8355 |\n\n**要点：**\n- CodeLlama-13B calibration 最好：ECE 最低 (0.0020)，MCE 也远低于其他两个模型 (0.041 vs 0.78+)，说明它的高置信预测几乎全正确，没有严重的过度自信 bin\n- DeepSeek ECE 和 Brier 均最高，主要问题在 0.9-0.95 confidence bin：7 个样本中只有 1 个正确（accuracy=14.3%），造成 MCE=0.776\n- Qwen-7B 和 CodeLlama-13B accuracy 相同 (99.83%)，但 Qwen 的 MCE 高很多，说明它在少数低置信样本上同样存在 miscalibration\n- 三个模型的 Brier score 都很低 (<0.007)，因为绝大多数样本 (>98%) 落在 0.95-1.0 bin 且预测正确"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-calibration-codellama-deepseek.md"
+}

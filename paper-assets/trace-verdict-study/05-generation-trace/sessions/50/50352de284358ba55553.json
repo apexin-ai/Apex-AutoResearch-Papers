@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50352de284358ba55553",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops gpu status check",
+  "task_key": "worker_ops_gpu-status-check_20260516T142435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-check_20260516T142435_result.json",
+    "occurrence": 1,
+    "bytes": 953,
+    "sha256": "812bd94e196d6e32fd3ba17a0e4e815da6b8c4d539e768bfcf8940d48a526c70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### GPU 状态\n| GPU | 利用率 | 显存占用 | 总显存 |\n|-----|--------|----------|--------|\n| 0 | 100% | 88,265 MiB | 97,887 MiB |\n| 1 | 100% | 36,535 MiB | 97,887 MiB |\n\n进程：PID 271786 (GPU0, 39GB) / PID 279483 (GPU1, 36.5GB)\n\n### 训练进度\n\n```\ncodellama13b_exception_only_seed42 | GPU0 | 400/444 steps (90%) | ~21s/it | 预计剩余 ~15min\ncodellama13b_vota_seed42           | GPU1 | 2/444 steps (0.5%)  | ~30s/it | 预计剩余 ~3.7h\n```\n\n### 完成检查\n- PID 271776 **仍在运行**（注意：实际训练进程是 PID 271786）\n- `eval_results.json` **尚未生成**\n- `codellama13b_exception_only_seed42` 已到 90%，约 15 分钟内完成训练，之后还需跑 eval\n\n### 备注\n- `codellama13b_vota_seed42` 刚启动不久（刚完成 tokenization，仅跑了 2 steps），还需约 3.7 小时\n- `codellama13b_exception_only_seed42` 已运行约 2h20min，即将完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check-copy-4.md"
+}

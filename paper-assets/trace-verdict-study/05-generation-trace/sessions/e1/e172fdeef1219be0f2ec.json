@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e172fdeef1219be0f2ec",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "eval label only reeval",
+  "task_key": "worker_eval_label_only_reeval_20260515T162632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_label_only_reeval_20260515T162632_result.json",
+    "occurrence": 1,
+    "bytes": 1158,
+    "sha256": "de9ed627d44f10a00155772a91679efdb6002991ef6ab68d64b7ad37de2de463"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. 数据格式验证\n训练日志确认：`label_only` 训练使用 **Condition: full_trace** 格式数据，`Label-only loss: True` 仅改变 loss mask。用 `--condition full_trace` 评估是正确的。\n\n### 2. Old vs New accuracy\n\n| 指标 | Old (eval_results.json) | New (eval_results_v2.json) | Δ |\n|------|------------------------|---------------------------|---|\n| **Accuracy** | 86.22% | 86.22% | **0.00pp** |\n| Majority baseline | 71.51% | 71.51% | 0.00pp |\n| Lift | +14.71pp | +14.71pp | 0.00pp |\n\n**结果完全一致，Δ = 0。**\n\n### 3. Per-class metrics\n\n| Class | Precision | Recall | F1 |\n|-------|-----------|--------|----|\n| pass | 0.88 | 0.93 | 0.91 |\n| fail | 0.80 | 0.69 | 0.74 |\n\n95% CI: accuracy [84.4%, 88.1%]\n\n### 4. predictions.jsonl\n行数 = **1190** ✓\n\n### 结论\n旧评估（用 `full_trace_label_only` condition）和新评估（用 `full_trace` condition）结果完全相同。旧版 evaluate.py 虽然不识别 `label_only` condition 名，但数据处理逻辑与 `full_trace` 一致，因此 86.22% 这个数字本身就是正确的。registry 无需修正。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-label-only-reeval.md"
+}

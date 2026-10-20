@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd104038de2d1bbdab85",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops verify cuda0 state",
+  "task_key": "worker_ops_verify_cuda0_state_20260515T104811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_cuda0_state_20260515T104811_result.json",
+    "occurrence": 1,
+    "bytes": 1040,
+    "sha256": "73fa7ab24302f56137eaea16a31649a68315f8d660d4d3c2aec58c27f0236854"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查结果\n\n### 1. cuda:0 DeepSeek 训练：**是，正在跑**\n- PID 93494，`train_sft.py --condition vota --model_path .../deepseek-coder-6___7b-instruct`\n- 进度：**8/444 steps**（~2min/step），刚启动约3分钟\n- 训练后会自动接 eval\n\n### 2. DeepSeek 模型：**已完整下载**\n- 路径：`/root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct/`\n- safetensors (2 shards, ~12.6GB) + pytorch_model.bin (2 shards, ~12.6GB) + tokenizer 均存在\n\n### 3. cuda:0 显存\n- 总量 97887 MiB，已用 **71567 MiB**，可用 **~26GB**\n- DeepSeek 训练进程报告占用 22386 MiB（其余为 CUDA context/cache）\n\n### 4. ae_only (cuda:1)：**正在训练**\n- PID 87061，`train_sft.py --condition ae_only --gpu 1`\n- 已运行 ~72 分钟（17:37 启动），GPU 利用率 100%，占用 41316 MiB / 97887 MiB\n- 训练后会自动接 eval\n\n另外注意：有一个 tmux session `vota_no_ae_seed42` 也指向 GPU 1，但目前 ae_only 占着 GPU 1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-cuda0-state.md"
+}

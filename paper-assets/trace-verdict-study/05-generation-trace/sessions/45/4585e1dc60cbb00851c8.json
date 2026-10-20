@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4585e1dc60cbb00851c8",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops vota seed456 v2 log check",
+  "task_key": "worker_ops_vota_seed456_v2_log_check_20260515T205012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_vota_seed456_v2_log_check_20260515T205012_result.json",
+    "occurrence": 1,
+    "bytes": 544,
+    "sha256": "5941337093416253b7caab656cef43e0e82e1a873a90a5f868df9249f7571d6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成，cron 已删除。\n\n## 结果\n\n**vota_seed456_v2 训练成功。**\n\n| 指标 | seed456 | seed42 |\n|------|---------|--------|\n| Accuracy | **99.08%** (CI: 98.5%-99.6%) | 99.41% |\n| fail F1 | **0.984** | — |\n| pass F1 | **0.994** | — |\n| fail Precision | 0.969 | — |\n| fail Recall | 1.000 | — |\n\nseed456 accuracy (99.08%) 比 seed42 (99.41%) 低 0.33pp，均在 CI 范围内，seed robustness 确认。进程退出码 129 (SIGHUP) 但评估已完成、结果已持久化，无影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-vota-seed456-v2-log-check.md"
+}

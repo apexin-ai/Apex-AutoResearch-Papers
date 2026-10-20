@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af776e120cc829664634",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops forced paper sync",
+  "task_key": "worker_ops_forced-paper-sync_20260522T184928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_forced-paper-sync_20260522T184928_result.json",
+    "occurrence": 1,
+    "bytes": 423,
+    "sha256": "a3464cd94cbf2bd08ccaf4c1614f44aa17bbd4543addc8912fdd31663cb18e99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n## 同步汇报\n\n| 项目 | 结果 |\n|------|------|\n| 同步文件数 | **11** (8 .tex + 1 .bib + 1 .sty + 1 .cls 共用) |\n| 2.18pp 验证 | **PASS** — introduction.tex 包含 `$-$2.18pp`，无 2.01pp |\n| \"confirm\" 计数 | **0** (PASS) |\n| undefined reference | **0** |\n| multiply defined | **0** |\n| PDF 大小 | **442,321 bytes** (432 KB) |\n| 页数 | **21 页** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-forced-paper-sync.md"
+}

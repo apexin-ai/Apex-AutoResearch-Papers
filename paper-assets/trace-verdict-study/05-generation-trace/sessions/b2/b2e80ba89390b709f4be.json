@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2e80ba89390b709f4be",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "urgent cuda0 check and recover",
+  "task_key": "worker_urgent_cuda0_check_and_recover_20260515T231135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_cuda0_check_and_recover_20260515T231135_result.json",
+    "occurrence": 1,
+    "bytes": 426,
+    "sha256": "04efd10e854e1e90bf11d46bf84c56f042e42f5a8653f908c42268cacf343acb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。当前状态总结：\n\n**deepseek_full_trace_seed42_v3** — DONE\n- accuracy=79.16%, fail_f1=0.637, pass_f1=0.854, lift=+7.6pp over majority baseline\n- Registry metrics 已更新\n\n**GPU 利用率正常**\n- cuda:0: 89% util, 92GB/98GB — full_trace_512tok_seed42 训练中\n- cuda:1: 99% util, 62GB/98GB — full_trace_256tok_seed42 训练中（v3 eval 已结束，GPU 1 内存已释放）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-cuda0-check-and-recover.md"
+}

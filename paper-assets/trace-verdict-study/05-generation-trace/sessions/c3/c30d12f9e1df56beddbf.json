@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c30d12f9e1df56beddbf",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis diagnose ae only and eval",
+  "task_key": "worker_analysis_diagnose_ae_only_and_eval_20260519T171858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_diagnose_ae_only_and_eval_20260519T171858_result.json",
+    "occurrence": 1,
+    "bytes": 806,
+    "sha256": "d2764f7fe1c571572a88c9aa4870e72225001e0dacd7b8eb548797eb81e99b1a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 列表为空，无需删除（已被之前的 session 清除或未在当前 session 创建）。\n\n---\n\n## 诊断报告\n\n| 项目 | 结果 |\n|------|------|\n| **训练状态** | 成功完成。`final/` 目录存在，含 adapter_model.safetensors (239MB)，3 个中间 checkpoint (148/296/444) |\n| **Accuracy** | **99.08%** [98.49%, 99.58%] |\n| **Pass F1** | 0.9935 |\n| **Fail F1** | 0.9840 |\n| **Majority baseline** | 0.7151 |\n| **Lift** | +27.6pp |\n| **Registry** | 已更新 metrics/checkpoint_path/log_path/conclusion=success/status=DONE |\n| **Cron** | 当前 session 无活跃 cron，无需清除 |\n\n假设验证：CodeLlama-13B ae_only 达 99.08% accuracy，与 Qwen-7B ae_only (99.92%) 一致，确认 assertion error only ablation 跨 LLaMA 架构泛化成功。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-diagnose-ae-only-and-eval.md"
+}

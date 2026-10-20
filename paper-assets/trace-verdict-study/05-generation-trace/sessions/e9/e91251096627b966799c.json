@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e91251096627b966799c",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops check nomarker seed42",
+  "task_key": "worker_ops_check_nomarker_seed42_20260516T151515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_nomarker_seed42_20260516T151515_result.json",
+    "occurrence": 1,
+    "bytes": 956,
+    "sha256": "bcb8f2503e48ed83b840e2bbf9b21fd8192cfe2eb0d3b96b7384750084b3a9c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态：崩溃（启动即失败）**\n\nPID 281395 已不存在，无 checkpoint，无 eval_results。日志显示训练脚本在加载 tokenizer 时立即报错退出：\n\n```\nhuggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/root/autodl-tmp/models/Qwen2.5-Coder-7B-Instruct'\n```\n\n**原因**：新版 `huggingface_hub` 的 `validate_repo_id` 不再接受本地绝对路径作为 `from_pretrained` 的参数。`/root/autodl-tmp/models/Qwen2.5-Coder-7B-Instruct` 被当作 repo id 校验，因含 `/` 前缀而失败。\n\n**修复方向**：在 `train/train_sft.py:148` 处，对本地路径走 `local_files_only=True` 或先用 `os.path.exists()` 判断是否为本地路径再传给 `from_pretrained`。更简单的做法是升级代码中加载逻辑，或降级 `huggingface_hub` 到兼容版本。\n\nGPU 当前被 PID 279483 占用（36.5 GB），cuda:0 不空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-nomarker-seed42.md"
+}

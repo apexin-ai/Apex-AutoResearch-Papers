@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "878f4f59310766976dec",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "monitor loop only status",
+  "task_key": "worker_monitor_loop_only_status_20260515T083232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_loop_only_status_20260515T083232_result.json",
+    "occurrence": 1,
+    "bytes": 327,
+    "sha256": "edd0a833bd597f37a08bd467f92668d642cb31cdbb3ca858634b7b36efdd4e59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nloop_only 状态: RUNNING\nPID: 82362 (训练子进程 82372), 已运行 34:46\nGPU 0 利用率: 98%\nGPU 0 显存: 82487/97887 MiB\n训练进度: 129/444 steps (~29%), ETA ~1h28m\n行动: 无需干预\n```\n\nGPU 1 同时在跑 exception_only (PID 79633), 利用率 100%。两卡都满载正常训练中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-loop-only-status.md"
+}

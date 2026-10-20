@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7c56664ecb06b5ac770",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis no trace seed42 v4",
+  "task_key": "worker_analysis_no_trace_seed42_v4_20260514T223531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_no_trace_seed42_v4_20260514T223531_result.json",
+    "occurrence": 1,
+    "bytes": 916,
+    "sha256": "1edb04fa51609f363ec454808d4b76e6314bb6c8e64a1a3e827c3e87690554e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。汇总如下：\n\n## no_trace_seed42_v4 结果\n\n| 指标 | 值 | v3 对比 |\n|---|---|---|\n| **Accuracy** | 75.1% (95% CI: 72.8%–77.5%) | 75.1% ✓ 一致 |\n| **Majority baseline** | 71.5% | 同 |\n| **Lift** | +3.6pp (95% CI: +0.4pp–+7.1pp) | +3.6pp ✓ 一致 |\n| train_loss | 0.1800 | 0.18 |\n| eval_loss | 0.6454 | 0.645 |\n| eval_mean_token_accuracy | 0.8897 | 0.89 |\n\n**Per-class:**\n\n| | Precision | Recall | F1 |\n|---|---|---|---|\n| pass | 0.88 | 0.76 | 0.81 |\n| fail | 0.55 | 0.73 | 0.63 |\n\n**Checkpoint:** `/root/autodl-tmp/trace-verdict-study-checkpoints/no_trace/final/`\n\nv4 结果与 v3 完全一致——符合预期，因为 no_trace 条件下 label 只有 \"pass\"/\"fail\" 单词，不会被截断，所以 v4 的 label 截断修复对此条件无影响。Baseline 正常建立，lift 统计显著（CI 下界 +0.4pp > 0）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-no-trace-seed42-v4.md"
+}

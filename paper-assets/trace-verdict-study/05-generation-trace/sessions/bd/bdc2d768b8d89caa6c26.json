@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bdc2d768b8d89caa6c26",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code sft train eval",
+  "task_key": "worker_code_sft-train-eval_20260514T164002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sft-train-eval_20260514T164002_result.json",
+    "occurrence": 1,
+    "bytes": 1377,
+    "sha256": "1972216d18f2d89c29964ac582d73fe9c932ff5b2e5e0a43c846d2433dbfd88e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**已部署到 westd-11235 的三个脚本：**\n\n| 脚本 | 路径 | 状态 |\n|------|------|------|\n| 数据格式化 | `/root/trace-verdict-study/data/format_training_data.py` | mock 数据测试通过 |\n| LoRA SFT 训练 | `/root/trace-verdict-study/train/train_sft.py` | `--help` 通过 |\n| 评估 | `/root/trace-verdict-study/eval/evaluate.py` | `--help` 通过 |\n\n**数据格式化** mock 测试结果：5 条样本 → 3 train / 2 test，三组条件（no_trace / vota / full_trace）各生成 train + test 文件，VOTA 压缩和 FullTrace 格式化均正常工作，null trace 正确处理为 `[No trace available]`。\n\n**等数据到位后的启动命令：**\n```bash\n# 1. 格式化\npython /root/trace-verdict-study/data/format_training_data.py\n\n# 2. 训练（三个条件分别跑，可用不同 GPU）\npython /root/trace-verdict-study/train/train_sft.py --condition no_trace --gpu 0\npython /root/trace-verdict-study/train/train_sft.py --condition vota --gpu 1\npython /root/trace-verdict-study/train/train_sft.py --condition full_trace --gpu 0\n\n# 3. 评估\npython /root/trace-verdict-study/eval/evaluate.py --condition vota --checkpoint_dir /root/autodl-tmp/trace-verdict-study-checkpoints/vota/final\n```\n\n`raw_traces.jsonl` 尚未生成，等另一个 Worker 完成数据生成即可启动流程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sft-train-eval.md"
+}

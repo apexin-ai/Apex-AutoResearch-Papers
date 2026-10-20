@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4f1488bd9f7f016b208",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "figure fig3 budget legend",
+  "task_key": "worker_figure_fig3-budget-legend_20260524T105130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig3-budget-legend_20260524T105130_result.json",
+    "occurrence": 1,
+    "bytes": 160,
+    "sha256": "b2f988fe4b2dc51f2408be0868d8972eb50d16e2edd530bcc4833f65384246e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本中 legend 参数已经是 `loc='lower right', frameon=False`（无背景框），无需修改。已重新生成图片并上传到飞书。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig3-budget-legend-copy-2.md"
+}

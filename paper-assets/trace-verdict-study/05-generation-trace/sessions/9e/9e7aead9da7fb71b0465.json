@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e7aead9da7fb71b0465",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper d111 tex modifications",
+  "task_key": "worker_paper_d111_tex_modifications_20260521T073709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d111_tex_modifications_20260521T073709_result.json",
+    "occurrence": 1,
+    "bytes": 2636,
+    "sha256": "b6379f5b1393dbf685cf946aef8ad6ef1a8b5e000996a43f0644b1e5109128f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "主文+Limitations+Ethics = 8 页（Limitations 和 Ethics 不计入8页限制），references 从第9页开始，appendix 从第11-12页开始。主文 ≤8 页，符合限制。\n\n---\n\n## 修改汇报\n\n| 项 | 文件 | 行号 | 改动 |\n|---|---|---|---|\n| **MF-1** C3 降级 | `introduction.tex` | ~31 (item 3) | \"Approximate quantitative decomposition\" → \"Preliminary analysis...on the Qwen-2.5-Coder-7B model (with 1.5B corroboration)\" |\n| **MF-1** Table caption | `experiments.tex` | 129 | 加 \"Results are from Qwen-2.5-Coder-7B only; cross-model validation is left for future work.\" |\n| **MF-1** Caveats 段 | `discussion.tex` | ~40 | 已有 \"verified only on the Qwen family (two scales)\"，与 C3 降级一致，无需改 |\n| **MF-2** C4 降格 | `introduction.tex` | ~33 (item 4) | \"Two-tier diagnostic hierarchy\" → \"Consistent two-tier pattern across four models: We observe that...\" |\n| **MF-2** Tier 段 | `discussion.tex` | 33 | 标题改为 \"Observed tier pattern and future directions.\"，措辞改为 observational，\"suggests—but does not establish—a potential fallback design\" |\n| **SF-1** Novelty | `introduction.tex` | ~10 | 加 \"The core question driving our study is counter-intuitive: *why do richer execution traces hurt model performance?*\" |\n| **SF-1** Abstract | `main.tex` | 23 | 已与 intro 一致（density framing），无额外改动需要 |\n| **SF-2** 应用降级 | `discussion.tex` | 33 | 合并进 \"Observed tier pattern and future directions\"，标注为 speculative/future work |\n| **SF-3** Info density 定义 | `experiments.tex` | 123 | 加 operational definition paragraph |\n| **SF-7** Abstract 数字 | `main.tex` | 23 | `${\\sim}$80\\%` → `76--82\\%` |\n| **SF-7** Intro 数字 | `introduction.tex` | 13 | `${\\sim}$80\\%` → `76--82\\%` |\n| **SF-9** 补引用 bib | `references.bib` | 446, 456 | 加 Paul et al. 2021 (Data Diet) + Sorscher et al. 2022 (data pruning) |\n| **SF-9** 补引用 text | `related_work.tex` | 28 | Training Efficiency 段加 `\\citep{paul2021datadiet,sorscher2022beyond}` |\n| **数值** nomarker | `discussion.tex` | 21 | `96.55\\%` → `97.65\\%$\\pm$0.93pp...3-seed mean` |\n| **数值** GPU | `main.tex` | 58 | \"two RTX PRO 6000 Blackwell GPUs\" → \"two high-end GPUs\" |\n| Press et al. ALiBi | — | — | 跳过（本文不涉及位置编码） |\n\n**PDF 状态：**\n- MD5: `3b5c9a07455149c597b108958e9123fb`\n- 总页数: 21（主文8页 + references ~3页 + appendix ~10页）\n- Warnings: **0**\n- Undefined citations: **0**\n- 8 页限制: **通过**（Limitations/Ethics 不计入）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d111-tex-modifications.md"
+}

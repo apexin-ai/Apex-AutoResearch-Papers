@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebb856102766a29f6fec",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code verify truncation fix",
+  "task_key": "worker_code_verify-truncation-fix_20260515T192729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_verify-truncation-fix_20260515T192729_result.json",
+    "occurrence": 1,
+    "bytes": 1614,
+    "sha256": "a3f36233211db4aeff30c3561f6ed41dc01a3b26917786d926c9dd0637baaae5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。汇报如下：\n\n---\n\n## 1. `to_chat_text()` 截断逻辑（定义在 `train/train_sft.py`）\n\n```\noverhead_msg = chat_template(empty_user + label)   # 构造只含模板标记+label的消息\noverhead_len = tokenize(overhead_msg)               # 计算模板+label占用的token数\nbudget = max(0, 2048 - overhead_len)                # 剩余token预算全给input\ncontent_ids = tokenize(input)[:budget]              # 截断input到预算内\ntruncated_input = decode(content_ids)               # 解码回文本\n最终文本 = chat_template(truncated_input + label)    # 组装：截断后的input + 完整label\n```\n\n核心思路：先算 label + 模板开销，剩余 budget 分配给 input（trace），只截 input 不截 label。\n\n## 2. Label-preserving 满足情况：**是**\n\n实测验证（DeepSeek tokenizer, full_trace 训练集）：\n- 原始 input 2783 tokens → 截断后总序列恰好 **2048 tokens**\n- 末尾保留了 `pass\\n<|EOT|>`，label 未丢失\n- `label in text[-30:]` = **True**\n\n## 3. `train_sft.py` DeepSeek 相关配置\n\n| 配置项 | 值 |\n|--------|-----|\n| `max_length` | **2048** |\n| `load_best_model_at_end` | **TEMP_DISABLED**（已注释） |\n| `save_total_limit` | **TEMP_DISABLED**（已注释） |\n| `metric_for_best_model` | **TEMP_DISABLED**（已注释） |\n| DeepSeek 模型路径 | 通过 `--model_path` 传入，无硬编码 |\n\n## 4. 结论\n\n**D023 阻塞令可解除。** `to_chat_text()` 的 label-preserving truncation 修复已就绪，逻辑正确，实测通过。DeepSeek v3 实验可以提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-verify-truncation-fix.md"
+}

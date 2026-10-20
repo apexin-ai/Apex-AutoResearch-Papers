@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5955922af7386e7eed9e",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops fig1 fix and sync",
+  "task_key": "worker_ops_fig1-fix-and-sync_20260523T134140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fig1-fix-and-sync_20260523T134140_result.json",
+    "occurrence": 1,
+    "bytes": 958,
+    "sha256": "13c9414b29b6a83a9ce42eb19466a38c02f84fcdbca60dddaf2375023db1441e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Conclusion starts on page 7 and page 8 is output — Conclusion fits within page 8.\n\n---\n\n**汇报：**\n\n**Figure 1 修复内容：**\n- \"Code + Test\" box: `HumanEval+\\nMBPP+\\nDebugBench` → `HumanEval\\nMBPP-sanitized`\n- \"SFT Training\" box: `LoRA fine-tuning\\nQwen-2.5-Coder-7B\\nDS-Coder-6.7B` → `4 models (1.5B–13B)\\n3 architecture families`\n- 已重新生成 `fig1_trace_overview.{pdf,png}`\n\n**4 文件 MD5 校验（全部匹配）：**\n\n| 文件 | MD5 |\n|------|-----|\n| main.tex | `3786f56c94c93c9cfd9b3e52296d75ee` |\n| experiments.tex | `04492198d2567ea42c09d6f4e1e063b8` |\n| discussion.tex | `f78095f1b70c561f3318b8fb82cdf407` |\n| appendix.tex | `cc9ea0159d90a7ca4bd1d3ebd9edda80` |\n\n**编译结果：**\n- Errors: **0**\n- Undefined references: **0**\n- Figure 1: 正确渲染（page 3，PDF 格式）\n- Conclusion: 在 page 7–8 内\n- 总页数: **20 页**（正文 8 页 + references + appendix）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fig1-fix-and-sync.md"
+}

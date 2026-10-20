@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d7820574299e89ca355",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops gpu0 cleanup and submit codellama",
+  "task_key": "worker_ops_gpu0-cleanup-and-submit-codellama_20260516T190805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu0-cleanup-and-submit-codellama_20260516T190805_result.json",
+    "occurrence": 1,
+    "bytes": 679,
+    "sha256": "2d8341da1408c58d92b565fc91ed22ca1a8c48d55e24014eb7548476d58fff3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动，模型加载完毕正在 tokenize 数据。\n\n**汇报：**\n\n1. **GPU 0 清理**：无法释放孤立显存（49GB 无进程持有，GPU reset 不支持）。但 GPU 0 仍有 48GB 可用空间，足够加载 CodeLlama-13B（已分配 25.7GB）。\n2. **codellama13b_exception_only_seed123**：提交成功，PID 299731（实际 Python PID 299741），模型已加载，正在 tokenize 训练数据。GPU 0 当前用量 75GB/96GB。\n3. **双 GPU 状态**：\n   - GPU 0: 75GB/96GB（codellama13b_exception_only_seed123 训练中 + 49GB 孤立显存）\n   - GPU 1: 47GB/96GB, 100% 利用率（exception_only_nomarker_seed456 训练中）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu0-cleanup-and-submit-codellama.md"
+}

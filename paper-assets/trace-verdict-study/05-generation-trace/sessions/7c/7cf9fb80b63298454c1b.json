@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7cf9fb80b63298454c1b",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis gradient masking seed123 eval",
+  "task_key": "worker_analysis_gradient_masking_seed123_eval_20260522T145428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gradient_masking_seed123_eval_20260522T145428_result.json",
+    "occurrence": 1,
+    "bytes": 1307,
+    "sha256": "f48f858bb7a37ea8cbe10a389e0c2d0c30dffbf7ada043eec04e42240de32c42"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新至 DONE。\n\n## 评估结果汇总\n\n### gradient_masking_qwen7b_seed123\n\n| 指标 | 值 |\n|------|-----|\n| **accuracy** | **99.33%** [CI: 98.82%–99.75%] |\n| pass_precision | 1.000 |\n| pass_recall | 0.991 |\n| pass_f1 | 0.995 |\n| fail_precision | 0.977 |\n| fail_recall | 1.000 |\n| fail_f1 | 0.988 |\n| n | 1190 |\n| majority_baseline | 71.51% |\n| lift | +27.82pp |\n\n### 与 seed42 对比\n\n| | seed123 | seed42 |\n|--|---------|--------|\n| accuracy | **99.33%** | 98.99% |\n| 差异 | +0.34pp | baseline |\n\nseed123 的 accuracy (99.33%) 略高于 seed42 (98.99%)，两者 CI 重叠，无统计显著差异。**Hypothesis 成立**：gradient masking 在不同 seed 下均达到近乎完美的准确率，确认 content quality 解释绝大部分性能，gradient dilution 的影响 ≤5%。\n\n### 文件路径\n- checkpoint: `/root/autodl-tmp/trace-verdict-study-checkpoints/gradient_masking_qwen7b_seed123/final`\n- log: `/root/runs/trace-verdict-study/gradient_masking_qwen7b_seed123.log`\n- eval results: `/root/trace-verdict-study/results/gradient_masking_qwen7b_seed123_eval.json`\n\n注：seed42 的评估结果 JSON 文件不在磁盘上（`gradient_masking_qwen7b_seed42_eval.json` 不存在），seed42 的 98.99% accuracy 来自此前记录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gradient-masking-seed123-eval.md"
+}

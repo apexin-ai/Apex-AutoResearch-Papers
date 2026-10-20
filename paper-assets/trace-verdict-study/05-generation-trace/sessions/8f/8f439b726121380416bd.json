@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f439b726121380416bd",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ssh vota checkpoint version check",
+  "task_key": "worker_ssh_vota_checkpoint_version_check_20260515T145337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_vota_checkpoint_version_check_20260515T145337_result.json",
+    "occurrence": 1,
+    "bytes": 1553,
+    "sha256": "42dfb71b1ff96c0fbd186fe7e77e60e877f9e5fd8f89dea232990ac1803ef545"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MD5 一致说明 final/ 和 checkpoint-444 是同一个文件。现在完整的情况已经清楚了。\n\n## 报告\n\n### vota/final 对应哪次训练\n\n**第四次训练运行**（started 09:46, finished ~12:07），run_name = `vota_seed42_v5`，seed=42，3 epochs。\n\n时间线：\n| 时间 | 事件 |\n|------|------|\n| 02:01 | Run 1 开始训练 |\n| 04:18 | Run 1 完成，保存 checkpoints + final/ |\n| **05:36** | **evaluate.py 对 Run 1 adapter 评估 → 99.16%** (写入 eval_results.json) |\n| 06:12, 06:21 | Run 2, Run 3（中间尝试） |\n| 09:46 | Run 4 开始训练 |\n| **12:07** | **Run 4 完成，覆盖了所有 checkpoint 和 final/ 的 adapter 文件** |\n| 20:34 | calibration.py 对 Run 4 adapter 评估 → **99.41%** |\n\n### 99.41% vs 99.16% 差异原因\n\n**不同 checkpoint，不是不同评估方法。**\n\n- `eval_results.json`（99.16% = 1180/1190）是 Run 1 的 adapter 的结果，但那个 adapter 已经在 12:07 被 Run 4 覆盖了。eval_results.json 没有被重新生成，所以是**过期数据**。\n- `calibration_metrics.json`（99.41% = 1183/1190）是 Run 4 当前 adapter 的结果。两个脚本的预测方法完全一致（greedy generation, max_new_tokens=1）。\n- ROADMAP 记录的 \"99.2%\" 就是 99.16% 四舍五入到一位小数。\n\n### 论文应该用哪个数字\n\n**99.41%**（1183/1190）——这是当前 final/ adapter 的真实 accuracy。\n\n建议重新运行 evaluate.py 更新 eval_results.json 使其与当前 adapter 一致，避免后续混淆。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-vota-checkpoint-version-check.md"
+}

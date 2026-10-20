@@ -1,0 +1,1130 @@
+{
+  "schema_version": "1.0",
+  "id": "48fa556c47e51f0606d9",
+  "project": "trace-verdict-study",
+  "kind": "conversation",
+  "title": "analysis prediction overlap 1 5b vs 7b",
+  "task_key": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644.jsonl",
+    "occurrence": 1,
+    "bytes": 48203,
+    "sha256": "dbdca7fb057965a9e3b2f511abdf240ac7e171602b462f93ad58a554f92845da"
+  },
+  "statistics": {
+    "messages": 55,
+    "user_turns": 0,
+    "tool_calls": 27,
+    "roles": {
+      "tool_call": 27,
+      "tool_result": 27,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T17:49:36.915262+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T17:49:36.915725+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T17:49:36.916009+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "ls /root/autodl-tmp/trace-verdict-study-checkpoints/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T17:49:36.916293+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ae_only\\\\nae_only_seed123\\\\nae_only_seed456\\\\nanalysis\\\\nbootstrap_compare_v5.json\\\\ncalibration\\\\ncodellama13b_exception_only_seed42\\\\ncodellama13b_no_trace_seed42\\\\ncodellama13b_vota_seed42\\\\ndebugbench_exception_only\\\\ndebugbench_no_trace\\\\ndebugbench_vota\\\\ndeepseek_exception_only\\\\ndeepseek_exception_only_seed123\\\\ndeepseek_exception_only_seed456\\\\ndeepseek_full_trace\\\\ndeepseek_full_trace_seed42_v3\\\\ndeepseek_full_trace_seed42_v3.log\\\\ndeepseek_full_trace_v2\\\\ndeepseek_no_trace\\\\ndeepseek_vota\\\\nexception_only\\\\nexception_only_nomarker\\\\nexception_only_nomarker_seed42\\\\nexception_only_nomarker_seed42_eval.log\\\\nexception_only_nomarker_seed42_train.log\\\\nexception_only_seed123\\\\nexception_only_seed456\\\\nfull_trace\\\\nfull_trace_1024tok\\\\nfull_trace_2048tok\\\\nfull_trace_256tok\\\\nfull_trace_512tok\\\\nfull_trace_label_only\\\\nfull_trace_label_only_seed123\\\\nfull_trace_label_only_seed456\\\\nloop_only\\\\nloop_only_seed123\\\\nloop_only_seed456\\\\nno_trace\\\\npaired_bootstrap_results.json\\\\npredictions_v5\\\\nqwen15b_exception_only_seed42\\\\nqwen15b_full_trace_seed42\\\\nqwen15b_no_trace_seed42\\\\nqwen15b_vota_seed42\\\\nvota\\\\nvota_no_ae\\\\nvota_seed123\\\\nvota_seed456\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T17:49:36.916616+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "ls /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T17:49:36.916875+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\nadded_tokens.json\\\\nbootstrap_compare.json\\\\nchat_template.jinja\\\\neval_results.json\\\\nexception_only_predictions.json\\\\nmerges.txt\\\\npredictions.jsonl\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T17:49:36.917150+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "ls /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_exception_only_seed42/final/",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T17:49:36.917367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nadapter_config.json\\\\nadapter_model.safetensors\\\\nadded_tokens.json\\\\nchat_template.jinja\\\\neval_results.json\\\\nmerges.txt\\\\npredictions.jsonl\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T17:49:36.917782+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "head -5 /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/predictions.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T17:49:36.918099+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": 0, \\\\\\\"label\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"fail\\\\\\\"}\\\\n{\\\\\\\"id\\\\\\\": 1, \\\\\\\"label\\\\\\\": \\\\\\\"pass\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"pass\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"pass\\\\\\\"}\\\\n{\\\\\\\"id\\\\\\\": 2, \\\\\\\"label\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"fail\\\\\\\"}\\\\n{\\\\\\\"id\\\\\\\": 3, \\\\\\\"label\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"fail\\\\\\\"}\\\\n{\\\\\\\"id\\\\\\\": 4, \\\\\\\"label\\\\\\\": \\\\\\\"pass\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"pass\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"pass\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T17:49:36.918327+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "head -5 /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_exception_only_seed42/final/predictions.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T17:49:36.918560+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"id\\\\\\\": 0, \\\\\\\"label\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"fail\\\\\\\"}\\\\n{\\\\\\\"id\\\\\\\": 1, \\\\\\\"label\\\\\\\": \\\\\\\"pass\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"pass\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"pass\\\\\\\"}\\\\n{\\\\\\\"id\\\\\\\": 2, \\\\\\\"label\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"fail\\\\\\\"}\\\\n{\\\\\\\"id\\\\\\\": 3, \\\\\\\"label\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"fail\\\\\\\"}\\\\n{\\\\\\\"id\\\\\\\": 4, \\\\\\\"label\\\\\\\": \\\\\\\"pass\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"pass\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"pass\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T17:49:36.918807+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "wc -l /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/predictions.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T17:49:36.919053+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1190 /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/predictions.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T17:49:36.919308+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "wc -l /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_exception_only_seed42/final/predictions.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T17:49:36.919548+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1190 /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_exception_only_seed42/final/predictions.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T17:49:36.919802+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "grep -n \"label.*pred\" /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/predictions.jsonl | python3 -c \"import sys,json; lines=open('/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/predictions.jsonl').readlines(); errors=[json.loads(l) for l in lines if json.loads(l)['label']!=json.loads(l)['pred']]; print(json.dumps(errors))\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T17:49:36.920043+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T17:49:36.920309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "python3 -c \"import json; lines=open('/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/predictions.jsonl').readlines(); errors=[json.loads(l) for l in lines if json.loads(l)['label']!=json.loads(l)['pred']]; print(json.dumps(errors, indent=2))\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T17:49:36.920683+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T17:49:36.920931+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "python3 -c \"import json; lines=open('/root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_exception_only_seed42/final/predictions.jsonl').readlines(); errors=[json.loads(l) for l in lines if json.loads(l)['label']!=json.loads(l)['pred']]; print(json.dumps(errors, indent=2))\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T17:49:36.921155+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T17:49:36.921410+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "python3 -c \"\nimport json\n# 7B exception_only (seed42)\nlines7b = open('/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/predictions.jsonl').readlines()\nerrors7b = [json.loads(l) for l in lines7b if json.loads(l)['label'] != json.loads(l)['pred']]\nprint('=== Qwen-7B exception_only errors ===')\nprint(f'Total samples: {len(lines7b)}, Errors: {len(errors7b)}')\nfor e in errors7b:\n    print(json.dumps(e))\n\n# 1.5B exception_only (seed42)\nlines15b = open('/root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_exception_only_seed42/final/predictions.jsonl').readlines()\nerrors15b = [json.loads(l) for l in lines15b if json.loads(l)['label'] != json.loads(l)['pred']]\nprint()\nprint('=== Qwen-1.5B exception_only errors ===')\nprint(f'Total samples: {len(lines15b)}, Errors: {len(errors15b)}')\nfor e in errors15b:\n    print(json.dumps(e))\n\n# Overlap analysis\nids7b = set(e['id'] for e in errors7b)\nids15b = set(e['id'] for e in errors15b)\nintersection = ids7b & ids15b\nunion = ids7b | ids15b\nprint()\nprint('=== Overlap Analysis ===')\nprint(f'7B error IDs: {sorted(ids7b)}')\nprint(f'1.5B error IDs: {sorted(ids15b)}')\nprint(f'Intersection: {sorted(intersection)}')\nprint(f'Union: {sorted(union)}')\nprint(f'Jaccard similarity: {len(intersection)/len(union) if union else 0:.4f}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T17:49:36.921644+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Qwen-7B exception_only errors ===\\\\nTotal samples: 1190, Errors: 2\\\\n{\\\\\\\"id\\\\\\\": 901, \\\\\\\"label\\\\\\\": \\\\\\\"pass\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"fail\\\\\\\"}\\\\n{\\\\\\\"id\\\\\\\": 905, \\\\\\\"label\\\\\\\": \\\\\\\"pass\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"fail\\\\\\\"}\\\\n\\\\n=== Qwen-1.5B exception_only errors ===\\\\nTotal samples: 1190, Errors: 2\\\\n{\\\\\\\"id\\\\\\\": 901, \\\\\\\"label\\\\\\\": \\\\\\\"pass\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"fail\\\\\\\"}\\\\n{\\\\\\\"id\\\\\\\": 905, \\\\\\\"label\\\\\\\": \\\\\\\"pass\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"fail\\\\\\\"}\\\\n\\\\n=== Overlap Analysis ===\\\\n7B error IDs: [901, 905]\\\\n1.5B error IDs: [901, 905]\\\\nIntersection: [901, 905]\\\\nUnion: [901, 905]\\\\nJaccard similarity: 1.0000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T17:49:36.921870+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "python3 -c \"\nimport json\n\n# Check seeds 123 and 456 for 7B\nfor seed in ['seed123', 'seed456']:\n    path = f'/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only_{seed}/final/predictions.jsonl'\n    lines = open(path).readlines()\n    errors = [json.loads(l) for l in lines if json.loads(l)['label'] != json.loads(l)['pred']]\n    ids = sorted(e['id'] for e in errors)\n    print(f'7B exception_only {seed}: {len(errors)} errors, IDs={ids}')\n    for e in errors:\n        print(f'  {json.dumps(e)}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T17:49:36.922068+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"7B exception_only seed123: 2 errors, IDs=[901, 905]\\\\n  {\\\\\\\"id\\\\\\\": 901, \\\\\\\"label\\\\\\\": \\\\\\\"pass\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"fail\\\\\\\"}\\\\n  {\\\\\\\"id\\\\\\\": 905, \\\\\\\"label\\\\\\\": \\\\\\\"pass\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"fail\\\\\\\"}\\\\n7B exception_only seed456: 2 errors, IDs=[901, 905]\\\\n  {\\\\\\\"id\\\\\\\": 901, \\\\\\\"label\\\\\\\": \\\\\\\"pass\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"fail\\\\\\\"}\\\\n  {\\\\\\\"id\\\\\\\": 905, \\\\\\\"label\\\\\\\": \\\\\\\"pass\\\\\\\", \\\\\\\"pred\\\\\\\": \\\\\\\"fail\\\\\\\", \\\\\\\"raw_pred\\\\\\\": \\\\\\\"fail\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T17:49:36.922292+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "python3 -c \"\nimport json\n\n# Find the test dataset to see what samples 901 and 905 are\nimport glob\ncandidates = glob.glob('/root/trace-verdict-study/data/**/*test*', recursive=True)\ncandidates += glob.glob('/root/trace-verdict-study/data/**/*eval*', recursive=True)\nprint('Test data candidates:')\nfor c in sorted(candidates):\n    print(f'  {c}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T17:49:36.922472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Test data candidates:\\\\n  /root/trace-verdict-study/data/__pycache__/debugbench_test_builder.cpython-310.pyc\\\\n  /root/trace-verdict-study/data/debugbench_test_builder.py\\\\n  /root/trace-verdict-study/data/debugbench_validate_tests.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T17:49:36.922630+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "python3 -c \"\nimport glob\n# Look for the actual dataset files\ncandidates = glob.glob('/root/trace-verdict-study/data/**/*.json*', recursive=True)\nfor c in sorted(candidates):\n    print(c)\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T17:49:36.922787+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T17:49:36.922946+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "ls /root/trace-verdict-study/data/",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T17:49:36.923105+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\ndebugbench_collect_traces.py\\\\ndebugbench_format_data.py\\\\ndebugbench_test_builder.py\\\\ndebugbench_validate_tests.py\\\\nformat_component_ablation.py\\\\nformat_training_data.py\\\\ngenerate_data.py\\\\nnomarker\\\\ntrace_worker.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T17:49:36.923279+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "find /root/trace-verdict-study -name \"*.jsonl\" -path \"*exception*\" | head -20",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T17:49:36.923474+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T17:49:36.923675+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "find /root/trace-verdict-study/train -name \"*.py\" | head -10",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T17:49:36.923900+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/trace-verdict-study/train/train_sft.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T17:49:36.924122+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "python3 -c \"\nimport subprocess\n# Find where the training data is loaded in train_sft.py\nresult = subprocess.run(['grep', '-n', 'dataset\\|data_path\\|jsonl\\|load_dataset', '/root/trace-verdict-study/train/train_sft.py'], capture_output=True, text=True)\nprint(result.stdout[:3000])\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T17:49:36.924509+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"8:from datasets import Dataset\\\\n16:    def read_jsonl(path):\\\\n25:    train_path = os.path.join(data_dir, f\\\\\\\"{condition}_train.jsonl\\\\\\\")\\\\n26:    test_path = os.path.join(data_dir, f\\\\\\\"{condition}_test.jsonl\\\\\\\")\\\\n27:    return read_jsonl(train_path), read_jsonl(test_path)\\\\n158:        train_dataset = Dataset.from_list(to_prompt_completion(train_data, tokenizer))\\\\n159:        eval_dataset = Dataset.from_list(to_prompt_completion(eval_data, tokenizer))\\\\n161:        print(f\\\\\\\"  Sample prompt (last 80 chars): ...{train_dataset[0]['prompt'][-80:]}\\\\\\\")\\\\n162:        print(f\\\\\\\"  Sample completion: {train_dataset[0]['completion']}\\\\\\\")\\\\n164:        train_dataset = Dataset.from_list(to_chat_text(train_data, tokenizer, max_length=2048))\\\\n165:        eval_dataset = Dataset.from_list(to_chat_text(eval_data, tokenizer, max_length=2048))\\\\n211:        sft_kwargs[\\\\\\\"dataset_text_field\\\\\\\"] = \\\\\\\"text\\\\\\\"\\\\n218:        train_dataset=train_dataset,\\\\n219:        eval_dataset=eval_dataset,\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T17:49:36.924774+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "python3 -c \"\nimport subprocess\n# Find data_dir\nresult = subprocess.run(['grep', '-n', 'data_dir\\|data-dir\\|DATA_DIR', '/root/trace-verdict-study/train/train_sft.py'], capture_output=True, text=True)\nprint(result.stdout[:2000])\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T17:49:36.925019+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"14:def load_data(data_dir: str, condition: str):\\\\n25:    train_path = os.path.join(data_dir, f\\\\\\\"{condition}_train.jsonl\\\\\\\")\\\\n26:    test_path = os.path.join(data_dir, f\\\\\\\"{condition}_test.jsonl\\\\\\\")\\\\n106:    parser.add_argument(\\\\\\\"--data_dir\\\\\\\", default=\\\\\\\"/root/autodl-tmp/trace-verdict-study-data/\\\\\\\",\\\\n145:    train_data, eval_data = load_data(args.data_dir, args.condition)\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T17:49:36.925281+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "python3 -c \"\nimport json\n\n# Load the test data for exception_only condition\ntest_path = '/root/autodl-tmp/trace-verdict-study-data/exception_only_test.jsonl'\nlines = open(test_path).readlines()\nprint(f'Total test samples: {len(lines)}')\n\n# Get samples 901 and 905\nfor idx in [901, 905]:\n    sample = json.loads(lines[idx])\n    keys = list(sample.keys())\n    print(f'\\n=== Sample {idx} ===')\n    print(f'Keys: {keys}')\n    # Print relevant identifying info\n    for k in ['problem_id', 'task_id', 'id', 'label', 'verdict']:\n        if k in sample:\n            print(f'{k}: {sample[k]}')\n    # Print the input (truncated)\n    if 'input' in sample:\n        print(f'input (first 300 chars): {sample[\\\"input\\\"][:300]}')\n    elif 'prompt' in sample:\n        print(f'prompt (first 300 chars): {sample[\\\"prompt\\\"][:300]}')\n    elif 'messages' in sample:\n        content = str(sample['messages'])[:300]\n        print(f'messages (first 300 chars): {content}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T17:49:36.925535+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total test samples: 1190\\\\n\\\\n=== Sample 901 ===\\\\nKeys: ['input', 'output', 'problem_id']\\\\nproblem_id: HumanEval/95\\\\ninput (first 300 chars): Given the following code:\\\\ndef check_dict_case(d):\\\\n    if not d:\\\\n        return False\\\\n    keys = list(d.keys())\\\\n    if all(isinstance(k, str) and k.islower() for k in keys):\\\\n        return True\\\\n    if all(isinstance(k, str) and k.isupper() for k in keys):\\\\n        return True\\\\n    return False\\\\n\\\\nTest co\\\\n\\\\n=== Sample 905 ===\\\\nKeys: ['input', 'output', 'problem_id']\\\\nproblem_id: HumanEval/95\\\\ninput (first 300 chars): Given the following code:\\\\ndef check_dict_case(d):\\\\n    if not d:\\\\n        return False\\\\n    keys = list(d.keys())\\\\n    if all(isinstance(k, str) and k.islower() for k in keys):\\\\n        return True\\\\n    if all(isinstance(k, str) and k.isupper() for k in keys):\\\\n        return True\\\\n    return False\\\\n\\\\nTest co\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T17:49:36.925793+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "python3 -c \"\nimport json\n\ntest_path = '/root/autodl-tmp/trace-verdict-study-data/exception_only_test.jsonl'\nlines = open(test_path).readlines()\n\nfor idx in [901, 905]:\n    sample = json.loads(lines[idx])\n    print(f'=== Sample {idx} ===')\n    print(f'problem_id: {sample[\\\"problem_id\\\"]}')\n    print(f'output (label): {sample[\\\"output\\\"]}')\n    print(f'input:')\n    print(sample['input'])\n    print()\n    print('=' * 60)\n    print()\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T17:49:36.926171+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Sample 901 ===\\\\nproblem_id: HumanEval/95\\\\noutput (label): pass\\\\ninput:\\\\nGiven the following code:\\\\ndef check_dict_case(d):\\\\n    if not d:\\\\n        return False\\\\n    keys = list(d.keys())\\\\n    if all(isinstance(k, str) and k.islower() for k in keys):\\\\n        return True\\\\n    if all(isinstance(k, str) and k.isupper() for k in keys):\\\\n        return True\\\\n    return False\\\\n\\\\nTest code:\\\\ndef check(candidate):\\\\n\\\\n    # Check some simple cases\\\\n    assert candidate({\\\\\\\"p\\\\\\\":\\\\\\\"pineapple\\\\\\\", \\\\\\\"b\\\\\\\":\\\\\\\"banana\\\\\\\"}) == True, \\\\\\\"First test error: \\\\\\\" + str(candidate({\\\\\\\"p\\\\\\\":\\\\\\\"pineapple\\\\\\\", \\\\\\\"b\\\\\\\":\\\\\\\"banana\\\\\\\"}))\\\\n    assert candidate({\\\\\\\"p\\\\\\\":\\\\\\\"pineapple\\\\\\\", \\\\\\\"A\\\\\\\":\\\\\\\"banana\\\\\\\", \\\\\\\"B\\\\\\\":\\\\\\\"banana\\\\\\\"}) == False, \\\\\\\"Second test error: \\\\\\\" + str(candidate({\\\\\\\"p\\\\\\\":\\\\\\\"pineapple\\\\\\\", \\\\\\\"A\\\\\\\":\\\\\\\"banana\\\\\\\", \\\\\\\"B\\\\\\\":\\\\\\\"banana\\\\\\\"}))\\\\n    assert candidate({\\\\\\\"p\\\\\\\":\\\\\\\"pineapple\\\\\\\", 5:\\\\\\\"banana\\\\\\\", \\\\\\\"a\\\\\\\":\\\\\\\"apple\\\\\\\"}) == False, \\\\\\\"Third test error: \\\\\\\" + str(candidate({\\\\\\\"p\\\\\\\":\\\\\\\"pineapple\\\\\\\", 5:\\\\\\\"banana\\\\\\\", \\\\\\\"a\\\\\\\":\\\\\\\"apple\\\\\\\"}))\\\\n    assert candidate({\\\\\\\"Name\\\\\\\":\\\\\\\"John\\\\\\\", \\\\\\\"Age\\\\\\\":\\\\\\\"36\\\\\\\", \\\\\\\"City\\\\\\\":\\\\\\\"Houston\\\\\\\"}) == False, \\\\\\\"Fourth test error: \\\\\\\" + str(candidate({\\\\\\\"Name\\\\\\\":\\\\\\\"John\\\\\\\", \\\\\\\"Age\\\\\\\":\\\\\\\"36\\\\\\\", \\\\\\\"City\\\\\\\":\\\\\\\"Houston\\\\\\\"}))\\\\n    assert candidate({\\\\\\\"STATE\\\\\\\":\\\\\\\"NC\\\\\\\", \\\\\\\"ZIP\\\\\\\":\\\\\\\"12345\\\\\\\" }) == True, \\\\\\\"Fifth test error: \\\\\\\" + str(candidate({\\\\\\\"STATE\\\\\\\":\\\\\\\"NC\\\\\\\", \\\\\\\"ZIP\\\\\\\":\\\\\\\"12345\\\\\\\" }))      \\\\n    assert candidate({\\\\\\\"fruit\\\\\\\":\\\\\\\"Orange\\\\\\\", \\\\\\\"taste\\\\\\\":\\\\\\\"Sweet\\\\\\\" }) == True, \\\\\\\"Fourth test error: \\\\\\\" + str(candidate({\\\\\\\"fruit\\\\\\\":\\\\\\\"Orange\\\\\\\", \\\\\\\"taste\\\\\\\":\\\\\\\"Sweet\\\\\\\" }))      \\\\n\\\\n\\\\n    # Check some edge cases that are easy to work out by hand.\\\\n    assert candidate({}) == False, \\\\\\\"1st edge test error: \\\\\\\" + str(candidate({}))\\\\n\\\\n\\\\n\\\\nExecu\n…[truncated 3706 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T17:49:36.926505+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "python3 -c \"\nimport json\n\ntest_path = '/root/autodl-tmp/trace-verdict-study-data/exception_only_test.jsonl'\nlines = open(test_path).readlines()\n\ns901 = json.loads(lines[901])\ns905 = json.loads(lines[905])\n\n# Compare inputs\ninput901 = s901['input']\ninput905 = s905['input']\n\n# Are they identical?\nif input901 == input905:\n    print('Inputs are IDENTICAL')\nelse:\n    # Find differences\n    lines901 = input901.split('\\n')\n    lines905 = input905.split('\\n')\n    print(f'Input lengths: 901={len(input901)}, 905={len(input905)}')\n    diffs = [(i, l1, l2) for i, (l1, l2) in enumerate(zip(lines901, lines905)) if l1 != l2]\n    print(f'Differing lines: {len(diffs)}')\n    for i, l1, l2 in diffs[:10]:\n        print(f'  Line {i}:')\n        print(f'    901: {l1[:100]}')\n        print(f'    905: {l2[:100]}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T17:49:36.926777+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Input lengths: 901=2157, 905=2157\\\\nDiffering lines: 7\\\\n  Line 29:\\\\n    901: [ERROR] GeneratorExit at line 5:  | locals: .0='<list_iterator object at 0x7fe16efea440>', k='A'\\\\n    905: [ERROR] GeneratorExit at line 5:  | locals: .0='<list_iterator object at 0x7fb77c8ca440>', k='A'\\\\n  Line 30:\\\\n    901: [ERROR] GeneratorExit at line 7:  | locals: .0='<list_iterator object at 0x7fe16efea440>', k='p'\\\\n    905: [ERROR] GeneratorExit at line 7:  | locals: .0='<list_iterator object at 0x7fb77c8ca440>', k='p'\\\\n  Line 31:\\\\n    901: [ERROR] GeneratorExit at line 5:  | locals: .0='<list_iterator object at 0x7fe16f06ad70>', k=5\\\\n    905: [ERROR] GeneratorExit at line 5:  | locals: .0='<list_iterator object at 0x7fb77c94ad70>', k=5\\\\n  Line 32:\\\\n    901: [ERROR] GeneratorExit at line 7:  | locals: .0='<list_iterator object at 0x7fe16f06ad70>', k='p'\\\\n    905: [ERROR] GeneratorExit at line 7:  | locals: .0='<list_iterator object at 0x7fb77c94ad70>', k='p'\\\\n  Line 33:\\\\n    901: [ERROR] GeneratorExit at line 5:  | locals: .0='<list_iterator object at 0x7fe16efea440>', k='Name'\\\\n    905: [ERROR] GeneratorExit at line 5:  | locals: .0='<list_iterator object at 0x7fb77c8ca440>', k='Name'\\\\n  Line 34:\\\\n    901: [ERROR] GeneratorExit at line 7:  | locals: .0='<list_iterator object at 0x7fe16efea440>', k='Name'\\\\n    905: [ERROR] GeneratorExit at line 7:  | locals: .0='<list_iterator object at 0x7fb77c8ca440>', k='Name'\\\\n  Line 35:\\\\n    901: [ERROR] GeneratorExit at line 5:  | locals: .0='<list_iterator object at 0x7fe16ef60a60>', k='STATE'\\\\n    905: [ERROR] GeneratorExit at line 5:  | locals: .0='<list_iterator object at 0x7fb77c8ca440>', k='STATE'\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T17:49:36.927049+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "cat /root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/eval_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T17:49:36.927337+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"exception_only\\\\\\\",\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final\\\\\\\",\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.9983193277310924,\\\\n    \\\\\\\"majority_baseline\\\\\\\": 0.7151260504201681,\\\\n    \\\\\\\"lift\\\\\\\": 0.28319327731092436,\\\\n    \\\\\\\"majority_class\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n    \\\\\\\"n\\\\\\\": 1190,\\\\n    \\\\\\\"pass_precision\\\\\\\": 1.0,\\\\n    \\\\\\\"pass_recall\\\\\\\": 0.9976498237367802,\\\\n    \\\\\\\"pass_f1\\\\\\\": 0.9988235294117648,\\\\n    \\\\\\\"fail_precision\\\\\\\": 0.9941348973607038,\\\\n    \\\\\\\"fail_recall\\\\\\\": 1.0,\\\\n    \\\\\\\"fail_f1\\\\\\\": 0.9970588235294118\\\\n  },\\\\n  \\\\\\\"confidence_intervals\\\\\\\": {\\\\n    \\\\\\\"accuracy_ci_lower\\\\\\\": 0.9957983193277311,\\\\n    \\\\\\\"accuracy_ci_upper\\\\\\\": 1.0,\\\\n    \\\\\\\"majority_baseline_ci_lower\\\\\\\": 0.6915966386554622,\\\\n    \\\\\\\"majority_baseline_ci_upper\\\\\\\": 0.738655462184874,\\\\n    \\\\\\\"lift_ci_lower\\\\\\\": 0.2588235294117647,\\\\n    \\\\\\\"lift_ci_upper\\\\\\\": 0.3075840336134454,\\\\n    \\\\\\\"pass_precision_ci_lower\\\\\\\": 1.0,\\\\n    \\\\\\\"pass_precision_ci_upper\\\\\\\": 1.0,\\\\n    \\\\\\\"pass_recall_ci_lower\\\\\\\": 0.9941383352872216,\\\\n    \\\\\\\"pass_recall_ci_upper\\\\\\\": 1.0,\\\\n    \\\\\\\"pass_f1_ci_lower\\\\\\\": 0.9970605526161083,\\\\n    \\\\\\\"pass_f1_ci_upper\\\\\\\": 1.0,\\\\n    \\\\\\\"fail_precision_ci_lower\\\\\\\": 0.9852496465413416,\\\\n    \\\\\\\"fail_precision_ci_upper\\\\\\\": 1.0,\\\\n    \\\\\\\"fail_recall_ci_lower\\\\\\\": 1.0,\\\\n    \\\\\\\"fail_recall_ci_upper\\\\\\\": 1.0,\\\\n    \\\\\\\"fail_f1_ci_lower\\\\\\\": 0.9925700258867141,\\\\n    \\\\\\\"fail_f1_ci_upper\\\\\\\": 1.0\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T17:49:36.927540+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "cat /root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_exception_only_seed42/final/eval_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T17:49:36.927744+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"exception_only\\\\\\\",\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/trace-verdict-study-checkpoints/qwen15b_exception_only_seed42/final\\\\\\\",\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.9983193277310924,\\\\n    \\\\\\\"majority_baseline\\\\\\\": 0.7151260504201681,\\\\n    \\\\\\\"lift\\\\\\\": 0.28319327731092436,\\\\n    \\\\\\\"majority_class\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n    \\\\\\\"n\\\\\\\": 1190,\\\\n    \\\\\\\"pass_precision\\\\\\\": 1.0,\\\\n    \\\\\\\"pass_recall\\\\\\\": 0.9976498237367802,\\\\n    \\\\\\\"pass_f1\\\\\\\": 0.9988235294117648,\\\\n    \\\\\\\"fail_precision\\\\\\\": 0.9941348973607038,\\\\n    \\\\\\\"fail_recall\\\\\\\": 1.0,\\\\n    \\\\\\\"fail_f1\\\\\\\": 0.9970588235294118\\\\n  },\\\\n  \\\\\\\"confidence_intervals\\\\\\\": {\\\\n    \\\\\\\"accuracy_ci_lower\\\\\\\": 0.9957983193277311,\\\\n    \\\\\\\"accuracy_ci_upper\\\\\\\": 1.0,\\\\n    \\\\\\\"majority_baseline_ci_lower\\\\\\\": 0.6915966386554622,\\\\n    \\\\\\\"majority_baseline_ci_upper\\\\\\\": 0.738655462184874,\\\\n    \\\\\\\"lift_ci_lower\\\\\\\": 0.2588235294117647,\\\\n    \\\\\\\"lift_ci_upper\\\\\\\": 0.3075840336134454,\\\\n    \\\\\\\"pass_precision_ci_lower\\\\\\\": 1.0,\\\\n    \\\\\\\"pass_precision_ci_upper\\\\\\\": 1.0,\\\\n    \\\\\\\"pass_recall_ci_lower\\\\\\\": 0.9941383352872216,\\\\n    \\\\\\\"pass_recall_ci_upper\\\\\\\": 1.0,\\\\n    \\\\\\\"pass_f1_ci_lower\\\\\\\": 0.9970605526161083,\\\\n    \\\\\\\"pass_f1_ci_upper\\\\\\\": 1.0,\\\\n    \\\\\\\"fail_precision_ci_lower\\\\\\\": 0.9852496465413416,\\\\n    \\\\\\\"fail_precision_ci_upper\\\\\\\": 1.0,\\\\n    \\\\\\\"fail_recall_ci_lower\\\\\\\": 1.0,\\\\n    \\\\\\\"fail_recall_ci_upper\\\\\\\": 1.0,\\\\n    \\\\\\\"fail_f1_ci_lower\\\\\\\": 0.9925700258867141,\\\\n    \\\\\\\"fail_f1_ci_upper\\\\\\\": 1.0\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T17:49:36.927969+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/",
+              "description": "List artifacts directory"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T17:49:36.928161+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "_project\nanalysis\narr_checklist_raw.md\ncalibration_analysis_seed42\ncluster_robust_ci.json\ncluster_robust_ci.py\ncross_model_analysis\ncross_scale_summary\ndebugbench_cross_task_analysis.md\ndebugbench_exception_bug_fix\ndebugbench_no_trace_seed42\ndeepseek_exception_only_error_analysis.md\ndeepseek_vota_fail_recall_analysis.md\ndeepseek_vota_seed42\ndream_reports\nexception_only_ci_verification.md\nexception_only_seed_cross_analysis.md\nfigure_status_report.md\nfigures\nfull_trace_1024tok_seed42\nfull_trace_256tok_seed42\ngpu_status_20260516_0540.md\nirreducible_error_analysis.md\nlabel_only_seed_prep.md\nliterature_map.yaml\nliterature_scan_20260515\nloop_only_seed456_eval.md\nmanifest.yaml\nnew_model_training_commands.md\nnomarker_command.txt\npaper_audit_20260516\npaper_audit_20260516.md\npaper_compile_report_20260516.md\npaper_completeness_check.md\npaper_data_tables.md\npaper_framing_draft_v2.md\npaper_progress_report.md\npaper_status_audit.md\npaper_tables\nper_class_breakdown.tex\nplan_001_literature_linkage.md\nplot_calibration.py\nprediction_overlap_analysis\nqwen15b_full_trace_seed42\nreference_audit_report.md\nregex_baseline_analysis\nreport_training_progress.md\nresults_table_draft.md\nreview_issues.yaml\nreview_reports\nserver_status_20260516.md\ntrace_ablation_analysis.md\ntrace_ablation_bootstrap.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T17:49:36.928401+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/prediction_overlap_1.5b_vs_7b.md",
+              "content": "# Prediction Overlap Analysis: Qwen-1.5B vs Qwen-7B (exception_only)\n\n## Summary\n\n**Jaccard Similarity = 1.0 (perfect overlap)**\n\nBoth models fail on exactly the same 2 samples across all seeds. This is strong evidence for an irreducible error ceiling imposed by data characteristics, not model capacity.\n\n## Error Details\n\n| Sample ID | problem_id | True Label | Predicted | Error Type |\n|-----------|-----------|------------|-----------|------------|\n| 901 | HumanEval/95 | pass | fail | False Negative |\n| 905 | HumanEval/95 | pass | fail | False Negative |\n\n### Consistency Across Seeds (7B)\n\n| Seed | Error IDs | Accuracy |\n|------|-----------|----------|\n| 42   | [901, 905] | 99.83% |\n| 123  | [901, 905] | 99.83% |\n| 456  | [901, 905] | 99.83% |\n\n### 1.5B (seed 42)\n\n| Seed | Error IDs | Accuracy |\n|------|-----------|----------|\n| 42   | [901, 905] | 99.83% |\n\n## Overlap Metrics\n\n- |Errors_7B| = 2\n- |Errors_1.5B| = 2\n- |Intersection| = 2\n- |Union| = 2\n- **Jaccard similarity** = 2/2 = **1.0**\n- **Overlap / 7B errors** = 2/2 = 100%\n- **Overlap / 1.5B errors** = 2/2 = 100%\n\n## Root Cause Analysis\n\nBoth samples are from **HumanEval/95** (`check_dict_case`) — the same problem with near-identical inputs. The only difference between samples 901 and 905 is the memory addresses of Python iterator objects in the trace (different execution runs).\n\n### Why the models fail\n\nThe execution trace contains multiple `[ERROR] GeneratorExit` entries:\n\n```\n[ERROR] GeneratorExit at line 5:  | locals: .0='<list_iterator ...>', k='A'\n[ERROR] GeneratorExit at line 7:  | locals: .0='<list_iterator ...>', k='p'\n...\n```\n\n`GeneratorExit` is a **normal Python mechanism** — it fires when `all()` short-circuits (stops iterating because a falsy value was found). The code is correct and all tests pass. However, the `[ERROR]` tag in the trace is misleading: both models interpret these as actual errors and predict \"fail\" when the true verdict is \"pass\".\n\nThis is a **labeling artifact** — the trace format incorrectly marks benign `GeneratorExit` as `[ERROR]`, creating a systematically misleading signal that fools any model regardless of capacity.\n\n## Implications\n\n1. **Irreducible ceiling confirmed**: The 99.83% accuracy ceiling (2/1190 errors) is not a model capacity limitation. Scaling from 1.5B → 7B parameters yields zero improvement because the errors are caused by misleading trace formatting, not insufficient reasoning.\n\n2. **Ensemble has no value here**: Since both models fail on identical samples with identical predictions, any ensemble of these models would still achieve exactly 99.83%.\n\n3. **Near-duplicate samples**: Both errors come from the same HumanEval problem with different trace memory addresses — effectively the same failure mode counted twice.\n\n4. **True irreducible error rate**: Arguably 1 unique failure pattern (HumanEval/95 with GeneratorExit), manifested as 2 near-duplicate samples → effective error rate is 1/1190 unique failures = 0.08%.\n\n## Recommendations\n\n- These 2 samples could be considered **annotation noise** rather than genuine model failures\n- If the trace format tagged `GeneratorExit` as `[INFO]` instead of `[ERROR]`, both models would likely achieve 100%\n- For paper framing: this supports the claim that exception_only traces provide near-perfect signal, with the residual error attributable to trace formatting artifacts rather than task difficulty\n"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T17:49:36.928657+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/prediction_overlap_1.5b_vs_7b.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T17:49:36.928878+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。报告已写入 `artifacts/prediction_overlap_1.5b_vs_7b.md`。\n\n关键发现：\n\n- **Jaccard = 1.0** — 两个模型在完全相同的 2 个样本上犯错（ID 901, 905），均为 false negative\n- 7B 的 3 个 seed 也都一致失败在这两个样本上\n- 两个样本都来自 **HumanEval/95**，区别仅是 trace 中迭代器的内存地址不同（近乎重复）\n- 根因：`all()` 短路时 Python 正常触发的 `GeneratorExit` 被 trace 格式标记为 `[ERROR]`，误导模型预测 \"fail\"\n\n结论：99.83% 是由 trace 格式标注伪影造成的不可约上限，与模型容量无关。Ensemble 在此无额外收益。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T174644"
+          },
+          "id": "event-000055"
+        }
+      ],
+      "message_count": 55
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-prediction-overlap-1-5b-vs-7b.md"
+}

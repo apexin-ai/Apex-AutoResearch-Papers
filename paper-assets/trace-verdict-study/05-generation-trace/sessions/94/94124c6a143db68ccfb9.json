@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94124c6a143db68ccfb9",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis qwen15b full trace tail1024 seed42",
+  "task_key": "worker_analysis_qwen15b_full_trace_tail1024_seed42_20260517T231433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen15b_full_trace_tail1024_seed42_20260517T231433_result.json",
+    "occurrence": 1,
+    "bytes": 595,
+    "sha256": "ac73f19452719290bb1093d694afd81fc5c5deb4209c5ad8c21f072160c997d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n**Hypothesis REJECTED** — tail-1024 (96.6%) 比 tail-512 (95.6%) 高 +1.0pp，1.5B 模型上不存在 non-monotonicity。\n\n关键发现：\n1. 1.5B 上下文长度呈单调递增：tail-256 (72.6%) → tail-512 (95.6%) → tail-1024 (96.6%)\n2. 1.5B tail-1024 (96.6%) ≈ 7B tail-1024 (96.47%)，说明在充足上下文下模型规模无额外收益\n3. CIs 重叠（[95.5%, 97.6%] vs [94.5%, 96.8%]），差异不显著，但方向明确为单调提升\n\n报告已写入 `artifacts/qwen15b_full_trace_tail1024_seed42/report/analysis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen15b-full-trace-tail1024-seed42.md"
+}

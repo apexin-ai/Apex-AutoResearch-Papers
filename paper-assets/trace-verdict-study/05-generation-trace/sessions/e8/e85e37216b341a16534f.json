@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e85e37216b341a16534f",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops seed456 status and eval",
+  "task_key": "worker_ops_seed456_status_and_eval_20260521T121654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_seed456_status_and_eval_20260521T121654_result.json",
+    "occurrence": 1,
+    "bytes": 867,
+    "sha256": "f40acf9dccfd5fc3ce1ca340c41580f03745ac7f013fa72aeadce515d9a3274e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## seed456 eval 完成\n\n### 训练总结\n- **状态**: ✅ 完成（444/444 steps, 3 epochs, 2h11m）\n- **train_loss**: 0.0416 | **eval_loss**: 0.0794 | **token_accuracy**: 98.39%\n\n### Eval 结果（full_trace, n=1190）\n\n| 指标 | 值 | 95% CI |\n|------|-----|--------|\n| **Accuracy** | **82.35%** | [80.17%, 84.54%] |\n| Majority baseline | 71.51% | [69.16%, 73.87%] |\n| **Lift over baseline** | **+10.84pp** | [+7.90pp, +13.95pp] |\n| Pass Precision | 88.85% | [86.75%, 91.07%] |\n| Pass Recall | 86.13% | [83.73%, 88.36%] |\n| Pass F1 | 87.47% | [85.68%, 89.11%] |\n| Fail Precision | 67.67% | [63.02%, 72.41%] |\n| Fail Recall | 72.86% | [68.21%, 77.78%] |\n| Fail F1 | 70.17% | [66.18%, 73.92%] |\n\n### GPU 状态\n- GPU 0: 49175/97887 MiB, 0% util（残留显存，无活跃进程）\n- GPU 1: 0/97887 MiB, 0% util（完全空闲）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-seed456-status-and-eval.md"
+}

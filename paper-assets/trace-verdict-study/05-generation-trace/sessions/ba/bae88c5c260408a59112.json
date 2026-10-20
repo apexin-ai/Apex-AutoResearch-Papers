@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bae88c5c260408a59112",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops paper sync narrative fix",
+  "task_key": "worker_ops_paper-sync-narrative-fix_20260523T035350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_paper-sync-narrative-fix_20260523T035350_result.json",
+    "occurrence": 1,
+    "bytes": 428,
+    "sha256": "ebd8ed50405f1e8b7ef36f34b6295482990b51f12a7ab768d35023733e331757"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果清晰：\n\n| 项目 | 结果 |\n|------|------|\n| **编译** | 无 error，3 pass 全部成功 |\n| **总页数** | 21 页（与之前一致） |\n| **Warnings** | 1 个 |\n| **Conclusion 位置** | 完整落在 page 8 内，page 8 末尾包含 Discussion + Conclusion 全文 |\n| **Limitations** | 从 page 9 开始（不计入 8 页正文限制） |\n\nConclusion 完整在 page 8 内，符合要求。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-paper-sync-narrative-fix.md"
+}

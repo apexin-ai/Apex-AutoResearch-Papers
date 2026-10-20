@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "9813fe81a8fd45627ec6",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "sync final compile pb fig1",
+  "task_key": "worker_sync_final-compile-pb-fig1_20260525T115142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_final-compile-pb-fig1_20260525T115142_result.json",
+    "occurrence": 1,
+    "bytes": 2141047,
+    "sha256": "3acfb839f553816ffb7c724b3c17e7f82b57a30459dc7284175a50c8d3efe0a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2141067,
+                "serialized_sha256": "a22f1605b3674b782009e87b3f94be0313901078707729319eb8b3646e880465",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-final-compile-pb-fig1.md"
+}

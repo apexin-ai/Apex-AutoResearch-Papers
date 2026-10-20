@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a04d1b4cebf0491dcab3",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops check all training final",
+  "task_key": "worker_ops_check-all-training-final_20260515T010732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-all-training-final_20260515T010732_result.json",
+    "occurrence": 1,
+    "bytes": 2580,
+    "sha256": "652a3195c523a84a7655760d4151bd4e9c3a7148d5bc07ae9401dfc5bf47fc37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有已有的 predictions 目录，bootstrap_compare.py 需要加载模型推理，超时。直接基于 eval_results.json 汇总。\n\n---\n\n## GPU 状态\n- cuda:0: 空闲（49GB VRAM 占用但无活跃进程，残留显存未释放）\n- cuda:1: 空闲\n\n## full_trace_seed42_v2\n- 状态: **完成**\n- exit code: 0\n- accuracy: **28.40%** ⚠️ 严重异常——低于 majority baseline (71.5%)\n- 训练时长: 2h11m (444 steps, 3 epochs)\n- train_loss: 0.0373, eval_loss: 0.0820\n- eval_mean_token_accuracy: 98.4%（token 级很高，但分类结果崩了）\n- 问题诊断: pass_recall=8.5%, fail_recall=78.5%——模型几乎全部预测 \"fail\"\n\n完整 eval_results:\n```json\n{\n  \"accuracy\": 0.2840,\n  \"majority_baseline\": 0.7151,\n  \"lift\": -0.4311,\n  \"pass_precision\": 0.923, \"pass_recall\": 0.085, \"pass_f1\": 0.155,\n  \"fail_precision\": 0.445, \"fail_recall\": 0.785, \"fail_f1\": 0.568,\n  \"n\": 1190\n}\n```\n\n## vota_seed42_v4\n- 状态: **完成**\n- exit code: 0\n- accuracy: **99.16%**\n- 训练时长: 2h16m (444 steps, 3 epochs)\n- train_loss: 0.0460, eval_loss: 0.0842\n- eval_mean_token_accuracy: 98.3%\n\n完整 eval_results:\n```json\n{\n  \"accuracy\": 0.9916,\n  \"majority_baseline\": 0.7151,\n  \"lift\": +0.2765,\n  \"pass_precision\": 1.000, \"pass_recall\": 0.988, \"pass_f1\": 0.994,\n  \"fail_precision\": 0.971, \"fail_recall\": 1.000, \"fail_f1\": 0.985,\n  \"n\": 1190\n}\n```\n\n## MVP 三条件对比\n| 条件 | Accuracy | Lift vs no_trace |\n|------|----------|-----------------|\n| no_trace | 75.13% | — |\n| vota | 99.16% | **+24.03%** |\n| full_trace | 28.40% | **-46.73%** ⚠️ |\n\n- bootstrap CI 未跑（脚本需要模型推理，超时）\n- vota 的 95% CI: [98.57%, 99.66%]\n\n## MVP 判定: **PARTIAL PASS / 需要排查 full_trace**\n\nVOTA 条件大幅超过 baseline（+24%，CI 不含 0），单独看 VOTA 是强 PASS。\n\n但 **full_trace 条件严重异常**——accuracy 仅 28.4%，远低于 majority baseline。token-level accuracy 98.4% 说明模型学会了生成正确格式的 token，但**分类决策层崩溃**（几乎全预测 fail）。可能原因：\n1. eval 脚本的 label extraction 逻辑与 full_trace 的输出格式不匹配（最可能）\n2. full_trace 格式中 verdict token 位置不同，提取时取错了位置\n3. 训练数据 label 映射问题\n\n**建议**: 检查 full_trace eval 的 prediction extraction 逻辑——token accuracy 98.4% 但分类 accuracy 28.4% 几乎必然是 label parsing 的 bug，而非模型本身的问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-all-training-final.md"
+}

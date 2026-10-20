@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eace17c5b16bd2488df8",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis vota seed42 v5",
+  "task_key": "worker_analysis_vota_seed42_v5_20260515T041020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_vota_seed42_v5_20260515T041020_result.json",
+    "occurrence": 1,
+    "bytes": 1402,
+    "sha256": "0a5ea7e6309189555d663107fc06c763b7ad4d00afcf4c4683f222c930681e6d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。下面是完整结果。\n\n---\n\n## vota_seed42_v5 实验结果\n\n**Conclusion: SUCCESS** | MVP VERDICT: PASS\n\n### 核心指标\n\n| 指标 | 值 |\n|------|------|\n| accuracy | **99.41%** [98.9%, 99.8%] |\n| majority_baseline | 71.51% |\n| lift (vs majority) | +27.9pp |\n| lift_vs_notrace | **+24.3pp** [+21.8, +26.8]pp |\n| n | 1190 |\n\n### Per-class\n\n| | Precision | Recall | F1 |\n|------|------|------|------|\n| pass | 1.000 | 0.992 | 0.996 |\n| fail | 0.980 | 1.000 | 0.990 |\n\n### 训练指标\n\n| 指标 | 值 |\n|------|------|\n| train_loss | 0.050 |\n| eval_loss | 0.087 |\n| eval_mean_token_accuracy | 0.983 |\n| wall_clock | 8443s (2h21m) |\n\n### 对比分析\n\n| 对比 | 差异 | 95% CI | 显著性 |\n|------|------|------|------|\n| **vs no_trace (v4)** | +24.3pp (75.1% → 99.4%) | [+21.8, +26.8]pp | *** |\n| **vs full_trace (v5)** | +17.7pp (81.8% → 99.4%) | [+15.5, +19.8]pp | *** |\n| **vs vota v4** | +3.8pp (95.6% → 99.4%) | — | v5 提升明显 |\n\n**关键发现：**\n- v5 VOTA 从 v4 的 95.6% 提升到 99.4%，修复 chat template overhead 后效果显著\n- VOTA 的 fail recall 从 v4 的 85.3% 跃升至 100%（所有 fail 样本都被正确识别）\n- pass precision 达到 100%（无 false positive）\n- VOTA >> full_trace (+17.7pp)，证明 trace 压缩（只保留 assertion snapshots）优于完整 trace"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-vota-seed42-v5.md"
+}

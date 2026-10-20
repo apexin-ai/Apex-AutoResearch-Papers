@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a7dea5795e18394b8c4a",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "code exception only nomarker setup",
+  "task_key": "worker_code_exception_only_nomarker_setup_20260516T153751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exception_only_nomarker_setup_20260516T153751.log",
+    "occurrence": 1,
+    "bytes": 625857,
+    "sha256": "7c888d8127adef76e60797a35727158b4ae299ba52a447cc9d97b234dfb1b69d"
+  },
+  "statistics": {
+    "messages": 275,
+    "user_turns": 0,
+    "tool_calls": 91,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 89,
+      "tool_call": 91,
+      "tool_result": 91,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 275,
+      "chunks": [
+        {
+          "path": "a7dea5795e18394b8c4a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a7dea5795e18394b8c4a-part-0002.json",
+          "message_count": 95
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exception-only-nomarker-setup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3bcda8971781956fb2c",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis deepseek seed123 results extract",
+  "task_key": "worker_analysis_deepseek_seed123_results_extract_20260518T162921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek_seed123_results_extract_20260518T162921_result.json",
+    "occurrence": 1,
+    "bytes": 512,
+    "sha256": "c2e0ea9b5563f61ea85011322ca0168269e0680f6a045da32bc138f1e1cb52b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n| 字段 | 值 |\n|------|-----|\n| **status** | DONE |\n| **conclusion** | negative |\n| **失败原因** | CUDA OOM at step 0/444 |\n| **根因** | GPU 0 被占满（PyTorch 已用 43.45 GiB，仅剩 167 MiB），分配 178 MiB 失败 |\n| **退出时间** | 2026-05-18T15:49:48Z |\n\n当前服务器上 GPU 0 在跑 `qwen7b_full_trace_tail512_seed123`，GPU 1 在跑 `deepseek_full_trace_tail512_seed456`。需要等当前任务结束后重新提交 seed123。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-seed123-results-extract.md"
+}

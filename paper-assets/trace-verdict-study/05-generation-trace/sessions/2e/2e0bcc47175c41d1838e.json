@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e0bcc47175c41d1838e",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code fix train sft line89",
+  "task_key": "worker_code_fix_train_sft_line89_20260515T132844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_train_sft_line89_20260515T132844_result.json",
+    "occurrence": 1,
+    "bytes": 721,
+    "sha256": "077789d5eaaa221ebc92062be8d18f5d727724cb3a08584ca1e5318035c76563"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修复完成，语法验证通过。\n\n### 修复汇总\n\n**问题**：CVD 修复时产生了 copy-paste 错误，导致同一 `if` 条件嵌套两次。\n\n**修复了 2 个文件**：\n\n| 文件 | 修复前 | 修复后 |\n|------|--------|--------|\n| `train/train_sft.py:89-91` | 双重 `if \"CVD\" not in os.environ:` 嵌套 | 单层 if + 赋值 |\n| `eval/evaluate.py:126-128` | 同上 | 同上 |\n\n**`eval/calibration.py`**：两处 CVD 逻辑（第 278 行、第 345 行）本身就是正确的单层 if，无需修改。\n\n**所有文件 CVD 逻辑现在一致**：\n```python\nif \"CUDA_VISIBLE_DEVICES\" not in os.environ:\n    os.environ[\"CUDA_VISIBLE_DEVICES\"] = str(args.gpu)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-train-sft-line89.md"
+}

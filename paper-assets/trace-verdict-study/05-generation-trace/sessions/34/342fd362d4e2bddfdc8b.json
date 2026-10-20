@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "342fd362d4e2bddfdc8b",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "audit deepseek eval systematic",
+  "task_key": "worker_audit_deepseek_eval_systematic_20260516T021339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_deepseek_eval_systematic_20260516T021339_result.json",
+    "occurrence": 1,
+    "bytes": 3584,
+    "sha256": "6ebc4c06369803eb628b3d8f16098a9d7a5d27a0934ec7f4fd558c7b3f14e427"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。现在汇总所有发现。\n\n---\n\n## 全面审计结果\n\n### 核心结论：Base model 混用**不可能发生**\n\nDeepSeek-Coder-6.7B (`hidden=4096, intermediate=11008`) 与 Qwen2.5-Coder-7B (`hidden=3584, intermediate=18944`) 维度完全不兼容。LoRA adapter shape 不匹配（如 `down_proj.lora_A: [16, 11008]` vs `[16, 18944]`），`PeftModel.from_pretrained` 会直接报错。**不可能**将 DeepSeek LoRA 加载到 Qwen base model 上。\n\n所有 registry submit 命令均显式传了 `--model_path` 指向正确的 DeepSeek 模型。所有 8 个 checkpoint 的 `adapter_config.json` 的 `base_model_name_or_path` 均指向 DeepSeek。\n\n### 汇总表\n\n| 实验 ID | registry acc | eval_results.json acc | predictions.jsonl acc | adapter base_model | 是否正确 |\n|---|---|---|---|---|---|\n| deepseek_vota_seed42 | **0.8445** | 0.1597 ❌ | 0.8445 ✅ | DeepSeek ✅ | registry 正确，eval_results.json 是旧值 |\n| deepseek_no_trace_seed42 | **0.7336** | 0.7336 ✅ | 0.7336 ✅ | DeepSeek ✅ | ✅ 全部一致 |\n| deepseek_exception_only_seed42 | **0.9933** | 0.9933 ✅ | 0.9933 ✅ | DeepSeek ✅ | ✅ 全部一致 |\n| deepseek_full_trace_seed42 | INVALIDATED | 0.2849 (all fail) | 0.1059 (garbage) | DeepSeek ✅ | ✅ 已标记失败，LoRA 训练因 label 截断失败 |\n| deepseek_exception_only_seed123 | **0.9109** | 0.9109 ✅ | 0.9109 ✅ | DeepSeek ✅ | ✅ 全部一致 |\n| deepseek_exception_only_seed456 | **0.9933** | 0.9933 ✅ | 0.9933 ✅ | DeepSeek ✅ | ✅ 全部一致 |\n| deepseek_full_trace_seed42_v3 | **0.7916** | 0.2849 ❌ | 0.7916 ✅ | DeepSeek ✅ | registry 正确，eval_results.json 是错误 eval 的旧值 |\n\n### 不一致条目详解\n\n**1. deepseek_vota_seed42 — eval_results.json = 0.1597（应为 0.8445）**\n- 根因：evaluate.py v2 默认 `max_length=2048`，DeepSeek tokenizer 效率低，91.7% 样本超限被截断 → 模型产生垃圾输出\n- confirmatory eval 用 `max_length=16384`（不截断）→ 0.8445，与训练日志原始 eval 一致\n- **eval_results.json 未被更新**，仍为 0.1597；正确值在 `eval_results_confirmatory.json`\n\n**2. deepseek_full_trace_seed42_v3 — eval_results.json = 0.2849（应为 0.7916）**\n- 根因：`run_missing_predictions.sh` 用 `--max_length 16384` 评估了 max_length=2048 训练的模型 → OOD 输入 → 全部预测 \"fail\"\n- 后续 `eval_results_maxlen2048.json` 用正确的 `--max_length 2048` → 0.7916\n- **eval_results.json 未被更新**，仍为 0.2849；正确值在 `eval_results_maxlen2048.json`\n- predictions.jsonl 已更新为 maxlen2048 运行的结果（0.7916），registry UNRELIABLE 标记现在过时\n\n### 需要修复的问题\n\n1. **`deepseek_vota/final/eval_results.json`** 应覆写为 `eval_results_confirmatory.json` 的内容（0.8445）\n2. **`deepseek_full_trace_seed42_v3/final/eval_results.json`** 应覆写为 `eval_results_maxlen2048.json` 的内容（0.7916）\n3. **Registry v3 notes** 中的 `UNRELIABLE_PREDICTIONS` 标记应更新——predictions.jsonl 已在 May 16 10:17 被 maxlen2048 运行覆写，现在是可靠的\n4. **evaluate.py** 不保存 `model_path` 到 eval_results.json，建议添加（防止未来审计困难）\n\n### 系统性风险\n\n- **evaluate.py `--model_path` 默认 Qwen**：当前因维度不兼容不会导致错误结果（会 crash），但如果未来添加维度兼容的模型可能产生静默错误\n- **evaluate.py 不记录 max_length 到输出 JSON**：导致无法从结果文件反推使用了什么参数"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-deepseek-eval-systematic.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46118e1bce4f201c689a",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops pull pdf",
+  "task_key": "worker_ops_pull_pdf_20260520T153625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pull_pdf_20260520T153625_result.json",
+    "occurrence": 1,
+    "bytes": 126,
+    "sha256": "d89c6d58d15e237f7bcc6d116691197e6804769109e3d00c2c67b57bc66eee29"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n| | 大小 |\n|---|---|\n| 远程 | 440380 bytes |\n| 本地 | 440380 bytes |\n| 匹配 | 一致 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-pull-pdf.md"
+}

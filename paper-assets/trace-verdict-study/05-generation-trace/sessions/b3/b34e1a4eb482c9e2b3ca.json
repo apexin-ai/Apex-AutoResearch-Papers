@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b34e1a4eb482c9e2b3ca",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops cuda0 cleanup v2",
+  "task_key": "worker_ops_cuda0_cleanup_v2_20260515T102606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda0_cleanup_v2_20260515T102606_result.json",
+    "occurrence": 1,
+    "bytes": 1446,
+    "sha256": "0338b6f4fbb9adac1a59a34f2d60901ce51bc72e144e8bb5c4abe4771620ce7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**根因找到。**\n\n## 诊断结果\n\n| | cuda:0 | cuda:1 |\n|---|---|---|\n| 已用 | 49175 MiB | 41325 MiB |\n| 可用 | 48077 MiB | 55928 MiB |\n| 进程 | PID 87061（隐性持有） | PID 87061（主训练） |\n\n**49GB 的持有者是 PID 87061（ae_only 训练）本身。**\n\n证据链：\n1. PID 87061 的 fd 列表显示同时打开了 `/dev/nvidia1`（3 个 fd，对应 GPU 0）和 `/dev/nvidia3`（~25 个 fd，对应 GPU 1）\n2. 训练启动时 **未设置 `CUDA_VISIBLE_DEVICES`**，`--gpu 1` 只控制计算设备，但 PyTorch 初始化时已在 GPU 0 上创建了 CUDA context 并分配了 ~49GB（模型权重/缓冲区的副本）\n3. `nvidia-smi pmon` 确认 GPU 0 无活跃计算，GPU 1 是实际计算设备（SM 98%）\n4. `nvidia-smi --query-compute-apps` 不列出 GPU 0 上的分配——这是因为 NVIDIA 驱动将其归类为非计算型内存持有\n\n**无法清理。** 这块内存由正在运行的 ae_only 进程持有，杀进程 = 终止训练。ae_only 完成后自动释放。\n\n## 建议（后续启动时避免复发）\n\n启动脚本加 `CUDA_VISIBLE_DEVICES=1`（ae_only 的 tmux 命令里漏了），这样 PyTorch 初始化就不会触碰 GPU 0：\n\n```bash\nexport CUDA_VISIBLE_DEVICES=1 && python train/train_sft.py --condition ae_only --gpu 0 ...\n```\n\n注意：设了 `CUDA_VISIBLE_DEVICES=1` 后，`--gpu` 参数应改为 `0`（因为进程只能看到一张卡）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda0-cleanup-v2.md"
+}

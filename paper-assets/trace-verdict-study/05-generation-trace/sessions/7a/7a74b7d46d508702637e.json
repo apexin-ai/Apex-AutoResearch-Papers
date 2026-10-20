@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a74b7d46d508702637e",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "figure fig2 calibration",
+  "task_key": "worker_figure_fig2_calibration_20260516T013030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig2_calibration_20260516T013030_result.json",
+    "occurrence": 1,
+    "bytes": 382,
+    "sha256": "07ba39797f01d9b55ee31e9e59d69e0ffe9022098953109b810a641542e46d08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- PDF: `/root/trace-verdict-study/figures/paper/fig2_calibration.pdf` (18.5 KB)\n- PNG: `/root/trace-verdict-study/figures/paper/fig2_calibration.png` (169 KB)\n- 脚本: `/root/trace-verdict-study/figures/gen_fig2.py`\n\n双面板图，左 ECE 右 Brier，Y 轴 log scale，按 ECE 升序排列，Okabe-Ito 配色按 tier 分组，bar 上标注数值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig2-calibration.md"
+}

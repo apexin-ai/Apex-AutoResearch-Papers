@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66739c097e4344c8af9f",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops pull pdf scp localhost",
+  "task_key": "worker_ops_pull_pdf_scp_localhost_20260521T071035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pull_pdf_scp_localhost_20260521T071035_result.json",
+    "occurrence": 1,
+    "bytes": 312,
+    "sha256": "d364b78659c04ceab8021fa7034ba91da259a74dce782b480892f0263409d2b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已成功拉取到本地。\n\nMD5 不匹配预期值：\n- 预期：`2fde6645216d594265e31e0d98c25dad`\n- 实际：`fd5e7b3d6652dbc4cfaa9a769628f2c4`\n\n文件可能在预期 MD5 生成后被更新过（远程文件时间戳是 May 21 15:01）。文件大小 440439 字节，传输完整。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-pull-pdf-scp-localhost.md"
+}

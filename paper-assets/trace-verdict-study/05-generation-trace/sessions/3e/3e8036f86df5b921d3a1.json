@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e8036f86df5b921d3a1",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "sync fig1 final compile",
+  "task_key": "worker_sync_fig1-final-compile_20260524T223440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_fig1-final-compile_20260524T223440_result.json",
+    "occurrence": 1,
+    "bytes": 516,
+    "sha256": "18dc561fdbfe5d12f9dde0978ebec58ea477ce7ae7ffea703feb6963c88c2479"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n| 项目 | 结果 |\n|------|------|\n| **Figure 1 MD5** | 本地/远程一致：`5bc2afb6daf8c0cd4ad0613112fff51b` ✓ |\n| **编译** | 0 errors, 0 undefined references/citations ✓ |\n| **页数** | 21 页总计，Limitations 在第 8 页开始，正文 ≤ 8 页 ✓ |\n| **编译 PDF MD5** | 远程/本地一致：`14aff31b18f7eae9ac804a4a98e8f973` ✓ |\n| **飞书上传** | PNG (`fig1_final_matplotlib_20260524.png`) ✓ / PDF (`trace-verdict-study-fig1final-20260524.pdf`) ✓ |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-fig1-final-compile.md"
+}

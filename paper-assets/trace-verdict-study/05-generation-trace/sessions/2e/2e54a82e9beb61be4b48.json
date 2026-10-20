@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e54a82e9beb61be4b48",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis codellama13b no trace seed42",
+  "task_key": "worker_analysis_codellama13b_no_trace_seed42_20260516T142138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_codellama13b_no_trace_seed42_20260516T142138_result.json",
+    "occurrence": 1,
+    "bytes": 1007,
+    "sha256": "19b2401342841c179eb3362931a56f3d08c8986881d830876c09bbf0e536ea74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验结果: `codellama13b_no_trace_seed42`\n\n### 核心指标\n\n| 指标 | 值 | 95% CI |\n|------|------|--------|\n| **Accuracy** | **76.5%** | [73.8%, 78.7%] |\n| Majority baseline | 71.5% (always predict 'pass') | |\n| **Lift over baseline** | **+5.0pp** | [+2.0pp, +8.0pp] |\n\n### Per-class 指标\n\n| Class | Precision | Recall | F1 |\n|-------|-----------|--------|-----|\n| pass | 0.84 | 0.83 | 0.84 |\n| fail | 0.59 | 0.59 | 0.59 |\n\n### 训练状态\n\n- **正常完成**，EXIT_CODE=0，评估流程全部跑完\n- 样本数 n=1190，Bootstrap 1000 resamples\n\n### Checkpoint\n\n- 路径: `/root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_no_trace_seed42/final/`\n- LoRA adapter 大小: **239MB** (`adapter_model.safetensors`)\n- 含完整 tokenizer、eval_results.json、predictions.jsonl\n\n### 小结\n\nno_trace 条件下 accuracy 76.5%，比 majority baseline 高 5pp，但 fail 类召回率偏低（0.59），模型对 fail 样本的区分力有限。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-codellama13b-no-trace-seed42.md"
+}

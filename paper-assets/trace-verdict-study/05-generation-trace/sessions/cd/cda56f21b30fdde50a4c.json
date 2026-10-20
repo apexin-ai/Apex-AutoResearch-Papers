@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cda56f21b30fdde50a4c",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis w4 single seed audit",
+  "task_key": "worker_analysis_w4_single_seed_audit_20260521T061454",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_w4_single_seed_audit_20260521T061454_result.json",
+    "occurrence": 1,
+    "bytes": 952,
+    "sha256": "db8d411733c655d32fbed8038ba1e9254640fadfe26e9860c71dcbc2a1b040b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计结果：\n\n**Table 1 (Cross-Model, 20 cells) 中 single-seed 共 3 个：**\n- Qwen-7B × no_trace (seed 42, 75.13%)\n- CodeLlama-13B × no_trace (seed 42, 76.47%)\n- DeepSeek-6.7B × no_trace (seed 42, 73.36%)\n\n另有 6 个 two-seed cells：ae_only 和 VOTA 各在 Qwen-1.5B / CL-13B / DS-6.7B 上只有 2 seeds。\n\n**Table 2 (Ablation, Qwen-7B) 中 single-seed 共 3 个：**\n- full_trace (seed 42, 81.76%)\n- no_trace (seed 42, 75.13%)\n- VOTA_no_ae (seed 42, 99.41%)\n\n**风险判断：** 没有 single-seed cell 直接支撑可被推翻的核心 claim。最高风险项是 **full_trace 的 single-seed**——C2 密度分解的 \"24% gradient dilution\" 锚点依赖它。Qwen-1.5B no_trace (3 seeds, σ=4.48pp) 表明 no_trace 可以有较大 seed 方差，但 Tier 边界间距 >12pp，seed 方差无法关闭。\n\n如果 reviewer 质疑，优先补跑 Qwen-7B full_trace seed 123/456（验证 C2 分解比例）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-w4-single-seed-audit.md"
+}

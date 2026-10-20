@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71300c1a3bdacb288869",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "exp plan 020 fewshot execute",
+  "task_key": "worker_exp_plan_020_fewshot_execute_20260521T174031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_plan_020_fewshot_execute_20260521T174031_result.json",
+    "occurrence": 1,
+    "bytes": 1294,
+    "sha256": "9bbf72497cf65fcd3039f151173acdc912afbb768276c4eae4b09445764e741e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 结果汇总\n\n| 实验 | 模型 | 条件 | Shots | Accuracy | F1(fail) |\n|---|---|---|---|---|---|\n| **SFT baseline** | **Qwen-7B** | **exception_only** | - | **99.83%** | - |\n| gpt4o_exc_0shot | GPT-4o | exception_only | 0 | 87.98% | 82.28% |\n| gpt4o_exc_3shot | GPT-4o | exception_only | 3 | 86.81% | 79.95% |\n| gpt41_exc_0shot | GPT-4.1 | exception_only | 0 | 82.18% | 74.52% |\n| gpt41_exc_3shot | GPT-4.1 | exception_only | 3 | 81.93% | 74.13% |\n| **SFT baseline** | **Qwen-7B** | **no_trace** | - | **75.13%** | - |\n| gpt4o_notrace_0shot | GPT-4o | no_trace | 0 | 84.45% | 75.43% |\n| gpt41_notrace_0shot | GPT-4.1 | no_trace | 0 | 77.31% | 66.08% |\n\n### 关键发现\n\n1. **exception_only**: SFT Qwen-7B (99.83%) 碾压最好的 few-shot GPT-4o (87.98%)，差距 11.85pp — 有 trace 时 SFT 小模型完胜\n2. **no_trace**: GPT-4o (84.45%) 反超 SFT Qwen-7B (75.13%) +9.32pp — 没有 trace 时 frontier LLM 的代码理解能力弥补了信息缺失\n3. GPT-4o 全面优于 GPT-4.1（5-7pp）\n4. 3-shot 不仅没帮助，反而略差于 0-shot\n5. 全部 7140 次 API 调用 0 errors、0 unparseables\n\n产出文件已保存到 `/root/trace-verdict-study/artifacts/`，6 个实验已注册 registry，summary 已注册 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-plan-020-fewshot-execute.md"
+}

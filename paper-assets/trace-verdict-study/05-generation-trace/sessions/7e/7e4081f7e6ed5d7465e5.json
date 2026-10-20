@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e4081f7e6ed5d7465e5",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis qwen15b ae only seed42",
+  "task_key": "worker_analysis_qwen15b_ae_only_seed42_20260520T074850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_qwen15b_ae_only_seed42_20260520T074850_result.json",
+    "occurrence": 1,
+    "bytes": 636,
+    "sha256": "ebe536b7c78d8e8b28448611a2c074d9dbc16d51f0b198f53fc055d72b103c20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：SUCCESS — Qwen-1.5B ae_only 达 99.08% accuracy**\n\n| 指标 | 值 |\n|------|-----|\n| Accuracy | 99.08% [98.49%, 99.58%] |\n| Pass | P=1.000 R=0.987 F1=0.994 |\n| Fail | P=0.969 R=1.000 F1=0.984 |\n\n关键发现：\n- 1.5B 模型与 13B CodeLlama (99.08%) 持平，仅比 7B Qwen (99.92%) 低 0.84pp\n- ae_only 信号在 1.5B–13B 范围内 scale-invariant\n- fail recall = 1.000（零漏检），符合 CI 场景偏好\n- 同模型 ae_only (99.08%) vs exception_only (99.83%) 差距 0.75pp，均在 ceiling 区域\n\nRegistry 已更新为 DONE/success，分析报告已注册 (`art_20260520_dd2394`)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-qwen15b-ae-only-seed42.md"
+}

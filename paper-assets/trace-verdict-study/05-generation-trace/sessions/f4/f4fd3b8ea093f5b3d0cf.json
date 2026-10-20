@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4fd3b8ea093f5b3d0cf",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis deepseek label only seed42",
+  "task_key": "worker_analysis_deepseek_label_only_seed42_20260519T211557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek_label_only_seed42_20260519T211557_result.json",
+    "occurrence": 1,
+    "bytes": 687,
+    "sha256": "9e7bcac72aa7bf624ec1fc3e59b476e8677a0a49e09bbe94cafc34f03aa4d93b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已写入并注册。汇总：\n\n| 指标 | 值 |\n|---|---|\n| accuracy | **28.5%** [26.1%, 30.8%] |\n| majority baseline | 71.5% (always \"pass\") |\n| lift | **-43.0pp** |\n| pass P/R/F1 | 0.00 / 0.00 / 0.00 |\n| fail P/R/F1 | 0.28 / 1.00 / 0.44 |\n| train_loss | 1.7839 |\n| eval_loss | **nan** |\n| vs DeepSeek full_trace (79.16%) | **-50.7pp** |\n| vs Qwen-7B label_only (86.22%) | **-57.7pp** |\n\n**诊断**：模型完全崩溃，将所有样本预测为 \"fail\"。eval_loss=nan 表明训练过程发生数值发散。accuracy 28.5% 恰好等于测试集中 fail 类的比例，确认模型输出退化为单一类别。远低于预期的 82-88% 范围。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-label-only-seed42.md"
+}

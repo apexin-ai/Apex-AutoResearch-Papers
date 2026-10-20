@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26afd34bdc20dca7c21b",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis urgent gpu check and datapoints",
+  "task_key": "worker_analysis_urgent_gpu_check_and_datapoints_20260518T234723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_urgent_gpu_check_and_datapoints_20260518T234723_result.json",
+    "occurrence": 1,
+    "bytes": 1414,
+    "sha256": "398ba8f403f7dbe0ebca223f1041ec554c8bb689026b40f763a9a6ad0182fb92"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "收割完成。汇总如下：\n\n---\n\n```\nQ1 nvidia-smi:\n  cuda:0 — 空闲 (49175MiB占用, 0% util, 28°C, P8) — 无计算进程\n  cuda:1 — 满载 (40126MiB, 100% util, 72°C, P0) — PID 473809 codellama13b训练中\n\nQ2 seed123_v2:\n  已完成 ✓  accuracy = 99.83% (CI: [99.58%, 100.0%])\n  pass: P=1.00 R=1.00 F1=1.00 | fail: P=0.99 R=1.00 F1=1.00\n  → 已收割到 registry (status=DONE, conclusion=success)\n\nQ3 cuda:1:\n  codellama13b_full_trace_tail512_seed456 训练中, step 157/444 (~35%)\n  tmux session 存活, 预计还需 ~1.5h\n\nQ4 收割:\n  qwen15b_exception_only_seed123_v2 — 已收割, accuracy=99.83%\n  codellama13b_full_trace_tail512_seed456 — 仍在训练, 无eval结果\n```\n\n---\n\n**数据点核实：**\n\n```\nCodeLlama-13B tail-512 seed42: ❌ Registry 中不存在\n  - 存在 codellama13b_vota_seed42 (RUNNING, 无metrics)\n  - 存在 codellama13b_exception_only_seed42 (RUNNING, 无metrics)\n  - 无任何 codellama + tail_512 + seed42 的实验\n\nDeepSeek tail-512 seed42: ⚠️ Registry 中无 metrics 字段\n  - deepseek_full_trace_seed42_v3 (PREPARING, 无metrics)\n  - notes 中提到 \"79.16% confirmed with max_length=2048\"\n  - 但 accuracy 未正式录入 registry metrics\n```\n\n两个数据点都不在 registry metrics 中。DeepSeek 那个 79.16% 只记在 notes 里。CodeLlama tail-512 seed42 完全没有对应实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-urgent-gpu-check-and-datapoints.md"
+}

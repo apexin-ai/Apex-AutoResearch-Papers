@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "779aef3fdc0b605296d1",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code deepseek tail256",
+  "task_key": "worker_code_deepseek_tail256_20260517T203539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_deepseek_tail256_20260517T203539_result.json",
+    "occurrence": 1,
+    "bytes": 426,
+    "sha256": "c6e9d247b26d1accd453120cc2fd41083057214949c5298e0ba1cf8dbade680a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动并在运行中：\n\n- **Job**: `deepseek_full_trace_tail256_seed42`\n- **GPU**: cuda:0, PID 379561\n- **进度**: 10/444 steps, ~3.4s/step\n- **预计时长**: ~25 分钟训练 + eval\n- **日志**: `/root/trace-verdict-study/logs/deepseek_tail256_seed42.log`\n- **W&B**: `trace-verdict-study / deepseek_full_trace_tail256_seed42`\n- **tmux session**: `deepseek_full_trace_tail256_seed42`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-deepseek-tail256.md"
+}

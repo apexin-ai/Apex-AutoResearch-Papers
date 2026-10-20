@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46571565809c232eeb99",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "eval plan 019 cross model calibration",
+  "task_key": "worker_eval_plan_019_cross_model_calibration_20260521T061059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan_019_cross_model_calibration_20260521T061059_result.json",
+    "occurrence": 1,
+    "bytes": 718,
+    "sha256": "9e2b3b211ec2404f87825b91fd56a255a1a3a28395cca6c1035e69683ead3449"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Registry 实验条目 `cross_model_calibration` 已创建并标记 DONE/success。\n\n## 结果汇总\n\n| Model | Accuracy | ECE | MCE | Brier Score |\n|---|---|---|---|---|\n| **Qwen2.5-7B** | 99.83% | 0.0027 | 0.8355 | 0.0013 |\n| **Qwen2.5-1.5B** | 99.83% | 0.0020 | 0.7549 | 0.0013 |\n| **CodeLlama-13B** | 99.83% | 0.0020 | 0.0411 | 0.0013 |\n| **DeepSeek-6.7B** | 99.33% | 0.0064 | 0.7756 | 0.0061 |\n\n**结论**：Calibration quality 跨模型 universal 成立。4 个模型 ECE 均 < 0.007，Brier 均 < 0.007。前 3 个模型指标几乎相同（ECE~0.002, Brier~0.0013），DeepSeek 略弱但仍优秀。CodeLlama-13B MCE 最低（0.041），说明没有高置信度错误预测。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan-019-cross-model-calibration.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "75940827734366969f60",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "infra env setup",
+  "task_key": "worker_infra_env-setup_20260514T161432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env-setup_20260514T161432.log",
+    "occurrence": 1,
+    "bytes": 654201,
+    "sha256": "f0c830d8a16f362c28e55c5373bbccef7abd0609dae00c10466188e1aa1ff273"
+  },
+  "statistics": {
+    "messages": 524,
+    "user_turns": 0,
+    "tool_calls": 207,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 106,
+      "tool_call": 207,
+      "tool_result": 207,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 524,
+      "chunks": [
+        {
+          "path": "75940827734366969f60-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "75940827734366969f60-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "75940827734366969f60-part-0003.json",
+          "message_count": 164
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-env-setup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c764c8676876acae99b0",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ssh check deepseek training progress",
+  "task_key": "worker_ssh_check_deepseek_training_progress_20260515T141138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_deepseek_training_progress_20260515T141138_result.json",
+    "occurrence": 1,
+    "bytes": 671,
+    "sha256": "aeb789a2b89ffb6e35465628a4c6d651e9832f7b6d4d251b06a4f3b950597248"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进度报告\n\n| | deepseek_exception_only_seed42 | deepseek_full_trace_seed42 |\n|---|---|---|\n| **GPU** | cuda:1 | cuda:0 |\n| **当前 step** | 224 / 444 (50%) | 68 / 444 (15%) |\n| **当前 epoch** | Epoch 2 (step 76/148) | Epoch 1 (step 68/148) |\n| **速度** | ~14 s/step | ~36.5 s/step |\n| **预估剩余** | ~51 min | ~3h49m |\n| **GPU 利用率** | 100% | 100% |\n| **显存占用** | 22.4 GB / 98 GB | 94.0 GB / 98 GB |\n\n两个实验都在正常跑。full_trace 因为输入序列更长，每步慢 2.6 倍且显存占用高很多（94GB vs 22GB）。exception_only 预计约 1 小时内完成，full_trace 还需要约 4 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-deepseek-training-progress.md"
+}

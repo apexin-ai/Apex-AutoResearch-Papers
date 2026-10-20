@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "cdc108f648ae4945fc62",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "ops diagnose tail1024 eval",
+  "task_key": "worker_ops_diagnose_tail1024_eval_20260518T061652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose_tail1024_eval_20260518T061652.log",
+    "occurrence": 1,
+    "bytes": 740724,
+    "sha256": "2c39a3ede9bf21fd2319da6d7dfdf25321b7add2fffd98594ce16ec584238589"
+  },
+  "statistics": {
+    "messages": 219,
+    "user_turns": 0,
+    "tool_calls": 78,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 59,
+      "tool_call": 78,
+      "tool_result": 78,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 219,
+      "chunks": [
+        {
+          "path": "cdc108f648ae4945fc62-part-0001.json",
+          "message_count": 145
+        },
+        {
+          "path": "cdc108f648ae4945fc62-part-0002.json",
+          "message_count": 74
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-diagnose-tail1024-eval.md"
+}

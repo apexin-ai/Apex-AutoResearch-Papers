@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4952364453da89bd3558",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "sync fig1 compile final",
+  "task_key": "worker_sync_fig1-compile-final_20260524T155932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_fig1-compile-final_20260524T155932_result.json",
+    "occurrence": 1,
+    "bytes": 470,
+    "sha256": "ca126e099909c4eeeaea6576e0f1455c052e50097e9fe5a422b14f59975b9a11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n| 项目 | 结果 |\n|------|------|\n| Figure 1 同步 MD5 | `c87ee9ea830294551fc02022e6751a19` ✓ 本地远程一致 |\n| 编译 errors | 0 |\n| 编译 warnings | 仅 underfull hbox/vbox（正常） |\n| Limitations | 第 8 页（正文最后一页） |\n| References | 第 9 页起 |\n| 正文页数 | ≤ 8 页 ✓ |\n| 总页数 | 20 页 |\n| PDF 大小 | 703 KB |\n| 飞书上传 | ✓ `trace-verdict-study-fig1v3-20260524.pdf` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-fig1-compile-final.md"
+}

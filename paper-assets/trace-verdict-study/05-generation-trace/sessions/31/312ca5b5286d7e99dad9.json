@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "312ca5b5286d7e99dad9",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis prediction overlap 1 5b vs 7b",
+  "task_key": "worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T134707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_prediction_overlap_1_5b_vs_7b_20260516T134707_result.json",
+    "occurrence": 1,
+    "bytes": 1130,
+    "sha256": "cad6bc2e32c6a8d17332f57d02934b5751b7842afd043165f547c5d5857f1852"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存到 `/root/trace-verdict-study/artifacts/prediction_overlap_analysis.md`。\n\n核心发现：\n\n**Qwen-7B vs Qwen-1.5B: Jaccard = 1.0（完全相同）。** 两个模型在所有 seed 下都只错 ID 901 和 905，完全一致。\n\n**根因是数据层面的 artifact，不是模型能力问题：**\n- **ID 901, 905 (HumanEval/95):** 代码用 `all(... for k in keys)` 生成器表达式，`all()` 短路时触发 `GeneratorExit`，tracer 把它标记为 `[ERROR]`。这是正常 Python 行为，不是 bug。7 行 `[ERROR]` 让所有模型（3 个架构、6 个稳定 seed）都判为 fail。\n- **ID 540-549 (MBPP/113, DeepSeek 独有):** `try/except ValueError` 捕获的异常被标记为 `[ERROR]`。Qwen 两个尺寸都能推理出 except 已处理，DeepSeek 不行。\n\n**结论：irreducible error floor 假说成立。** 99.83% 是 exception_only 条件的理论天花板，2/1190 的错误源于 tracer 把良性异常（GeneratorExit）标为 `[ERROR]`。Scale 无关、seed 无关、架构无关。修复路径：tracer 过滤 GeneratorExit，或区分 `[CAUGHT]` vs `[UNCAUGHT]`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-prediction-overlap-1-5b-vs-7b-copy-3.md"
+}

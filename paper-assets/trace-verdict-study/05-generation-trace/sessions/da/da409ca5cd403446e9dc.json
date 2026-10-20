@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da409ca5cd403446e9dc",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "sync clean rebuild",
+  "task_key": "worker_sync_clean-rebuild_20260524T143429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_clean-rebuild_20260524T143429_result.json",
+    "occurrence": 1,
+    "bytes": 822,
+    "sha256": "9d892ec7f31be3e3d01436cf42e3761b79244932225133d452213feca112c6d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。最终报告：\n\n---\n\n## Clean Rebuild Report\n\n| 项目 | 结果 |\n|------|------|\n| **Appendix 同步** | 远程 appendix.tex 包含两处重复 figure 环境（`\\label{fig:training_dynamics}` 和 `\\label{fig:calibration}`），已通过 `sed -i` 删除，无需全文同步 |\n| **编译结果** | 0 errors, 0 multiply defined warnings, 0 undefined refs |\n| **页数合规** | 正文 ≤ 8 页（Limitations/References 从第 9 页开始），总 20 页，符合 EMNLP 2026 限制 |\n| **PDF 大小** | 605,259 bytes, md5: `080fb46b9d54fb3c9e335a78139a701b` |\n| **本地路径** | `/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/main.pdf` |\n| **Feishu 上传** | 成功，file_key: `file_v3_00120_5a6737c1-b5c1-4db3-b589-2f3aa1a2a7fg` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-clean-rebuild.md"
+}

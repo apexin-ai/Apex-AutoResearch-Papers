@@ -1,0 +1,292 @@
+{
+  "schema_version": "1.0",
+  "id": "ec4b7633cf26f56fa3ed",
+  "project": "trace-verdict-study",
+  "kind": "conversation",
+  "title": "analysis deepseek exception only seed42",
+  "task_key": "worker_analysis_deepseek_exception_only_seed42_20260515T150745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_deepseek_exception_only_seed42_20260515T150745.jsonl",
+    "occurrence": 1,
+    "bytes": 14246,
+    "sha256": "9b3971a22cdf2c2fee134a7e737abd35938af404dab80c2a0bacda6f86c02c09"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "tool_call": 6,
+      "tool_result": 6,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T15:08:29.428683+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_deepseek_exception_only_seed42_20260515T150745",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T15:08:29.429008+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_deepseek_exception_only_seed42_20260515T150745",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T15:08:29.429170+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_deepseek_exception_only_seed42_20260515T150745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "cat /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final/eval_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T15:08:29.429332+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_deepseek_exception_only_seed42_20260515T150745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "tail -50 /root/runs/trace-verdict-study/deepseek_exception_only_seed42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T15:08:29.429534+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"exception_only\\\\\\\",\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final\\\\\\\",\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.9932773109243698,\\\\n    \\\\\\\"majority_baseline\\\\\\\": 0.7151260504201681,\\\\n    \\\\\\\"lift\\\\\\\": 0.2781512605042017,\\\\n    \\\\\\\"majority_class\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n    \\\\\\\"n\\\\\\\": 1190,\\\\n    \\\\\\\"pass_precision\\\\\\\": 1.0,\\\\n    \\\\\\\"pass_recall\\\\\\\": 0.9905992949471211,\\\\n    \\\\\\\"pass_f1\\\\\\\": 0.9952774498229044,\\\\n    \\\\\\\"fail_precision\\\\\\\": 0.9769452449567724,\\\\n    \\\\\\\"fail_recall\\\\\\\": 1.0,\\\\n    \\\\\\\"fail_f1\\\\\\\": 0.9883381924198251\\\\n  },\\\\n  \\\\\\\"confidence_intervals\\\\\\\": {\\\\n    \\\\\\\"accuracy_ci_lower\\\\\\\": 0.9882352941176471,\\\\n    \\\\\\\"accuracy_ci_upper\\\\\\\": 0.9974789915966387,\\\\n    \\\\\\\"majority_baseline_ci_lower\\\\\\\": 0.6915966386554622,\\\\n    \\\\\\\"majority_baseline_ci_upper\\\\\\\": 0.738655462184874,\\\\n    \\\\\\\"lift_ci_lower\\\\\\\": 0.25460084033613445,\\\\n    \\\\\\\"lift_ci_upper\\\\\\\": 0.30336134453781516,\\\\n    \\\\\\\"pass_precision_ci_lower\\\\\\\": 1.0,\\\\n    \\\\\\\"pass_precision_ci_upper\\\\\\\": 1.0,\\\\n    \\\\\\\"pass_recall_ci_lower\\\\\\\": 0.9833526555687673,\\\\n    \\\\\\\"pass_recall_ci_upper\\\\\\\": 0.9964749422443495,\\\\n    \\\\\\\"pass_f1_ci_lower\\\\\\\": 0.9916064627289766,\\\\n    \\\\\\\"pass_f1_ci_upper\\\\\\\": 0.9982343591287335,\\\\n    \\\\\\\"fail_precision_ci_lower\\\\\\\": 0.9601139601139601,\\\\n    \\\\\\\"fail_precision_ci_upper\\\\\\\": 0.9915254237288136,\\\\n    \\\\\\\"fail_recall_ci_lower\\\\\\\": 1.0,\\\\n    \\\\\\\"fail_recall_ci_upper\\\\\\\": 1.0,\\\\n    \\\\\\\"fail_f1_ci_lower\\\\\\\": 0.9796511627906976,\\\\n    \\\\\\\"fail_f1_ci_upper\\\\\\\": 0.9957446808510638\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_deepseek_exception_only_seed42_20260515T150745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T15:08:29.429817+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Setting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nSetting `pad_token_id` to `eos_token_id`:32021 for open-end generation.\\\\nLoading LoRA adapter from /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final\\\\nRunning inference...\\\\n  [50/1190] running accuracy: 1.0000\\\\n  [100/1190] running accuracy: 1.0000\\\\n  [150/1190] running accuracy: 1.0000\\\\n  [200/1190] running accuracy: 1.0000\\\\n  [250/1190] running accuracy: 1.0000\\\\n  [300/1190] running accuracy: 1.0000\\\\n  [350/1190] running accuracy: 1.0000\\\\n  [400/1190] running accuracy: 1.0000\\\\n  [450/1190] running accuracy: 1.0000\\\\n  [500/1190] running accuracy: 1.0000\\\\n  [550/1190] running accuracy: 0.9891\\\\n  [600/1190] running accuracy: 0.9900\\\\n  [650/1190] running accuracy: 0.9908\\\\n  [700/1190] running accuracy: 0.9914\\\\n  [750/1190] running accuracy: 0.9920\\\\n  [800/1190] running accuracy: 0.9925\\\\n  [850/1190] running accuracy: 0.9929\\\\n  [900/1190] running accuracy: 0.9933\\\\n  [950/1190] running accuracy: 0.9916\\\\n  [1000/1190] running accuracy: 0.9920\\\\n  [1050/1190] running accuracy: 0.9924\\\\n  [1100/1190] running accuracy: 0.9927\\\\n  [1150/1190] running accuracy: 0.9930\\\\n\\\\nComputing metrics...\\\\n\\\\n=== Evaluation Results (condition: exception_only) ===\\\\nAccuracy:           99.3% (95% CI: [98.8%, 99.7%])\\\\nMajority baseline:  71.5% (always predict 'pass')\\\\nLift over majority: +27.8pp (95% C\n…[truncated 387 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_deepseek_exception_only_seed42_20260515T150745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T15:08:29.430107+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_deepseek_exception_only_seed42_20260515T150745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "ls /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final/predictions*.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T15:08:29.430363+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_exception_only/final/predictions*.json': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_deepseek_exception_only_seed42_20260515T150745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T15:08:29.430554+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_deepseek_exception_only_seed42_20260515T150745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "cat /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final/eval_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T15:08:29.430733+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_deepseek_exception_only_seed42_20260515T150745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11235",
+              "command": "cat /root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final/eval_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T15:08:29.430962+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"no_trace\\\\\\\",\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_no_trace/final\\\\\\\",\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.7336134453781512,\\\\n    \\\\\\\"majority_baseline\\\\\\\": 0.7151260504201681,\\\\n    \\\\\\\"lift\\\\\\\": 0.018487394957983128,\\\\n    \\\\\\\"majority_class\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n    \\\\\\\"n\\\\\\\": 1190,\\\\n    \\\\\\\"pass_precision\\\\\\\": 0.8171021377672208,\\\\n    \\\\\\\"pass_recall\\\\\\\": 0.8084606345475911,\\\\n    \\\\\\\"pass_f1\\\\\\\": 0.8127584170112226,\\\\n    \\\\\\\"fail_precision\\\\\\\": 0.5316091954022989,\\\\n    \\\\\\\"fail_recall\\\\\\\": 0.5457227138643068,\\\\n    \\\\\\\"fail_f1\\\\\\\": 0.5385735080058225\\\\n  },\\\\n  \\\\\\\"confidence_intervals\\\\\\\": {\\\\n    \\\\\\\"accuracy_ci_lower\\\\\\\": 0.7083823529411765,\\\\n    \\\\\\\"accuracy_ci_upper\\\\\\\": 0.7571638655462184,\\\\n    \\\\\\\"majority_baseline_ci_lower\\\\\\\": 0.6915966386554622,\\\\n    \\\\\\\"majority_baseline_ci_upper\\\\\\\": 0.738655462184874,\\\\n    \\\\\\\"lift_ci_lower\\\\\\\": -0.00926470588235291,\\\\n    \\\\\\\"lift_ci_upper\\\\\\\": 0.04628151260504201,\\\\n    \\\\\\\"pass_precision_ci_lower\\\\\\\": 0.7911681259616019,\\\\n    \\\\\\\"pass_precision_ci_upper\\\\\\\": 0.8414634146341463,\\\\n    \\\\\\\"pass_recall_ci_lower\\\\\\\": 0.7817252253719553,\\\\n    \\\\\\\"pass_recall_ci_upper\\\\\\\": 0.8339224725694577,\\\\n    \\\\\\\"pass_f1_ci_lower\\\\\\\": 0.7920628820065595,\\\\n    \\\\\\\"pass_f1_ci_upper\\\\\\\": 0.831428547097829,\\\\n    \\\\\\\"fail_precision_ci_lower\\\\\\\": 0.484403376464283,\\\\n    \\\\\\\"fail_precision_ci_upper\\\\\\\": 0.5819702715928554,\\\\n    \\\\\\\"fail_recall_ci_lower\\\\\\\": 0.49531876198978136,\\\\n    \\\\\\\"fail_recall_ci_upper\\\\\\\": 0.5977476332292196,\\\\n    \\\\\\\"fail_f1_ci_lower\\\\\\\": 0.4951023096050912,\\\\n    \\\\\\\"fail_f1_ci_upper\\\\\\\": 0.5819443099273607\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_deepseek_exception_only_seed42_20260515T150745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T15:08:29.431241+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"condition\\\\\\\": \\\\\\\"vota\\\\\\\",\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/trace-verdict-study-checkpoints/deepseek_vota/final\\\\\\\",\\\\n  \\\\\\\"metrics\\\\\\\": {\\\\n    \\\\\\\"accuracy\\\\\\\": 0.8445378151260504,\\\\n    \\\\\\\"majority_baseline\\\\\\\": 0.7151260504201681,\\\\n    \\\\\\\"lift\\\\\\\": 0.12941176470588234,\\\\n    \\\\\\\"majority_class\\\\\\\": \\\\\\\"pass\\\\\\\",\\\\n    \\\\\\\"n\\\\\\\": 1190,\\\\n    \\\\\\\"pass_precision\\\\\\\": 0.8214285714285714,\\\\n    \\\\\\\"pass_recall\\\\\\\": 1.0,\\\\n    \\\\\\\"pass_f1\\\\\\\": 0.9019607843137255,\\\\n    \\\\\\\"fail_precision\\\\\\\": 1.0,\\\\n    \\\\\\\"fail_recall\\\\\\\": 0.45427728613569324,\\\\n    \\\\\\\"fail_f1\\\\\\\": 0.6247464503042597\\\\n  },\\\\n  \\\\\\\"confidence_intervals\\\\\\\": {\\\\n    \\\\\\\"accuracy_ci_lower\\\\\\\": 0.8260294117647058,\\\\n    \\\\\\\"accuracy_ci_upper\\\\\\\": 0.8638655462184874,\\\\n    \\\\\\\"majority_baseline_ci_lower\\\\\\\": 0.6915966386554622,\\\\n    \\\\\\\"majority_baseline_ci_upper\\\\\\\": 0.738655462184874,\\\\n    \\\\\\\"lift_ci_lower\\\\\\\": 0.11092436974789921,\\\\n    \\\\\\\"lift_ci_upper\\\\\\\": 0.14873949579831935,\\\\n    \\\\\\\"pass_precision_ci_lower\\\\\\\": 0.7997998897703896,\\\\n    \\\\\\\"pass_precision_ci_upper\\\\\\\": 0.8427208808081564,\\\\n    \\\\\\\"pass_recall_ci_lower\\\\\\\": 1.0,\\\\n    \\\\\\\"pass_recall_ci_upper\\\\\\\": 1.0,\\\\n    \\\\\\\"pass_f1_ci_lower\\\\\\\": 0.8887653500137327,\\\\n    \\\\\\\"pass_f1_ci_upper\\\\\\\": 0.9146484304997026,\\\\n    \\\\\\\"fail_precision_ci_lower\\\\\\\": 1.0,\\\\n    \\\\\\\"fail_precision_ci_upper\\\\\\\": 1.0,\\\\n    \\\\\\\"fail_recall_ci_lower\\\\\\\": 0.4049806590055623,\\\\n    \\\\\\\"fail_recall_ci_upper\\\\\\\": 0.5049729315036766,\\\\n    \\\\\\\"fail_f1_ci_lower\\\\\\\": 0.576492859356746,\\\\n    \\\\\\\"fail_f1_ci_upper\\\\\\\": 0.671072432294328\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_deepseek_exception_only_seed42_20260515T150745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T15:08:29.431557+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有 per-sample predictions 文件，无法做 paired bootstrap。但各条件的 CI 完全不重叠，显著性不存疑。\n\n---\n\n## DeepSeek exception_only (seed42) 实验结果\n\n### 核心指标\n\n| 指标 | 值 | 95% CI |\n|------|-----|--------|\n| **Accuracy** | **99.33%** | [98.8%, 99.7%] |\n| Majority baseline | 71.5% | — |\n| Lift | +27.8pp | [+25.5pp, +30.3pp] |\n| Pass P / R / F1 | 1.00 / 0.99 / 1.00 | — |\n| Fail P / R / F1 | 0.98 / 1.00 / 0.99 | — |\n| N | 1190 | — |\n\n### 条件对比（DeepSeek-Coder-6.7B）\n\n| 条件 | Accuracy | 95% CI | vs exception_only |\n|------|----------|--------|-------------------|\n| **exception_only** | **99.33%** | [98.8%, 99.7%] | — |\n| vota | 84.45% | [82.6%, 86.4%] | -14.88pp |\n| no_trace | 73.36% | [70.8%, 75.7%] | -25.97pp |\n\nCI 完全不重叠，差异极显著（exception_only 下界 98.8% >> VOTA 上界 86.4% >> no_trace 上界 75.7%）。\n\n### 跨模型对比（exception_only 条件）\n\n| 模型 | Accuracy |\n|------|----------|\n| Qwen-2.5-Coder-7B | 99.83% |\n| DeepSeek-Coder-6.7B | 99.33% |\n\n两模型在 exception_only 条件下均接近天花板，差距仅 0.5pp。\n\n### 结论: **Success**\n\n- exception_only 在 DeepSeek-Coder 上达到 **99.33%**，大幅超越 no_trace (+25.97pp) 和 VOTA (+14.88pp)\n- 与 Qwen 上的 99.83% 高度一致，证明 exception_only 信号的有效性跨模型泛化\n- 训练正常完成，eval 1190 样本，fail recall 达到 100%（所有 fail 样本都被正确识别）"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_deepseek_exception_only_seed42_20260515T150745"
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-deepseek-exception-only-seed42.md"
+}

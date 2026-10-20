@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c46888c7e84c386ddc9",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis error analysis plan018 fix",
+  "task_key": "worker_analysis_error_analysis_plan018_fix_20260521T052911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_error_analysis_plan018_fix_20260521T052911_result.json",
+    "occurrence": 1,
+    "bytes": 1409,
+    "sha256": "5053a325187ae672cec146867d4e267972a8930df13766095edf818b7054303a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All corrections applied. Here's the summary:\n\n---\n\n**W1 — SyntaxError claim 修正**\n\n原文 (line 281): `\"Across ALL conditions and ALL models, SyntaxError samples have 0% error rate\"`\n\n修正为: `\"Across all trace-informed conditions (exception_only, ae_only, loop_only, vota, full_trace) and all models, SyntaxError samples have 0% error rate. The no_trace condition is the exception (19.83% average SyntaxError error rate)\"`\n\n**W2 — DeepSeek 错误数根因**\n\n**根因**: 两个完全损坏的训练 run（acc < 16%）被混入分析：\n- `deepseek_vota`（无 seed 后缀）: accuracy=15.97%, 1000/1190 errors\n- `deepseek_full_trace`（无 seed 后缀）: accuracy=10.59%, 1064/1190 errors\n\n这些 run 没有 seed 后缀，脚本 `parse_experiment_name` 默认将其标记为 seed=\"42\"，Section 5 代码优先选 seed42 run 作为代表，导致选中了这两个坏 run。**不是重复计数问题，是坏 run 被当作有效实验纳入分析。**\n\n**修正**: 在脚本中加入 acc<50% 过滤器，排除 6 个坏 run。修正后数字：\n\n| 指标 | 原值 | 修正值 |\n|------|------|--------|\n| deepseek VOTA errors | 1000 | 10 (seed123, acc=99.16%) |\n| deepseek full_trace errors | 1064 | 248 (seed42_v3, acc=79.16%) |\n| vota total unique errors | 1000 | 31 |\n| full_trace total unique errors | 1108 | 434 |\n| 有效实验数 | 110 | 104 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-error-analysis-plan018-fix.md"
+}

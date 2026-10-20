@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3538524022c118751281",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code train sft best model",
+  "task_key": "worker_code_train_sft_best_model_20260515T132351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_train_sft_best_model_20260515T132351_result.json",
+    "occurrence": 1,
+    "bytes": 619,
+    "sha256": "685e54cdb1f289c9c2c6b1acc7203799d6210f6508dd35dcde70447ae9a74f8e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "代码已经包含所有要求的参数，无需修改：\n\n- `load_best_model_at_end=True` — 第 120 行\n- `metric_for_best_model=\"eval_loss\"` — 第 121 行\n- `greater_is_better=False` — 第 122 行\n- `eval_strategy=\"epoch\"` — 第 115 行\n- `save_strategy=\"epoch\"` — 第 116 行\n- `save_total_limit=3` — 第 119 行\n\n训练结束后 `trainer.save_model(final_dir)` 会保存 best model（因为 `load_best_model_at_end=True` 使 Trainer 在训练结束时自动加载最佳 checkpoint），所以 evaluate.py 从 `{output_dir}/final` 加载时拿到的就是 best checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-train-sft-best-model.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eccfddfa6c2aa855523a",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis registry search and deepseek trace",
+  "task_key": "worker_analysis_registry_search_and_deepseek_trace_20260518T235132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_registry_search_and_deepseek_trace_20260518T235132_result.json",
+    "occurrence": 1,
+    "bytes": 3541,
+    "sha256": "102c504751f3e31978f2f655d45b71adb749ee0d62497e079ef7de2c9158d193"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已全部获取。汇总如下：\n\n---\n\n## ALL tail-512 / tail related experiments (Registry)\n\n| exp_id | status | conclusion | accuracy |\n|---|---|---|---|\n| codellama13b_full_trace_tail1024_seed42 | DONE | failed | N/A |\n| codellama13b_full_trace_tail1024_seed42_v2 | DONE | negative | 0.876 |\n| codellama13b_full_trace_tail1024_seed42_v3 | DONE | success | N/A |\n| codellama13b_full_trace_tail2048_seed42 | DONE | failed | N/A |\n| codellama13b_full_trace_tail2048_seed42_v2 | DONE | negative | N/A |\n| codellama13b_full_trace_tail2048_seed42_v3 | DONE | negative | N/A |\n| codellama13b_full_trace_tail256_seed42 | DONE | success | 0.779 |\n| codellama13b_full_trace_tail384_seed42 | DONE | negative | 0.8269 |\n| codellama13b_full_trace_tail512_seed123 | DONE | success | 0.9824 |\n| **codellama13b_full_trace_tail512_seed42** | **QUEUED** | — | N/A |\n| codellama13b_full_trace_tail512_seed456 | ALLOCATED | — | N/A |\n| deepseek_full_trace_tail1024_seed42 | DONE | success | 0.9647 |\n| deepseek_full_trace_tail2048_seed42 | DONE | success | 0.9496 |\n| deepseek_full_trace_tail256_seed42 | DONE | success | 0.7639 |\n| deepseek_full_trace_tail384_seed42 | DONE | success | 0.807 |\n| deepseek_full_trace_tail512_seed123 | DONE | failed | N/A |\n| deepseek_full_trace_tail512_seed123_v2 | DONE | success | 0.9504 |\n| **deepseek_full_trace_tail512_seed42** | **DONE** | **success** | **0.939** |\n| deepseek_full_trace_tail512_seed456 | DONE | success | 0.9605 |\n| full_trace_tail256_seed42 | DONE | negative | 0.789 |\n| full_trace_tail_1024_seed42 | DONE | success | 0.9647 |\n| full_trace_tail_256_seed42 | DONE | negative | 0.7748 |\n| **full_trace_tail_512_seed42** | **DONE** | **success** | **0.936** |\n| full_trace_tail_seed42 | DONE | success | 0.973 |\n| qwen15b_full_trace_tail1024_seed42 | DONE | success | 0.966 |\n| qwen15b_full_trace_tail2048_seed42 | DONE | success | 0.979 |\n| qwen15b_full_trace_tail256_seed42 | DONE | negative | 0.726 |\n| qwen15b_full_trace_tail384_seed42 | DONE | negative | 0.7361 |\n| qwen15b_full_trace_tail512_seed123 | DONE | success | 0.9765 |\n| qwen15b_full_trace_tail512_seed42 | DONE | success | 0.956 |\n| qwen15b_full_trace_tail512_seed456 | DONE | success | 0.9672 |\n| qwen7b_full_trace_tail384_seed42 | DONE | success | 0.798 |\n| qwen7b_full_trace_tail512_seed123 | DONE | success | 0.9597 |\n| qwen7b_full_trace_tail512_seed42 | PREPARING | — | N/A |\n| qwen7b_full_trace_tail512_seed456 | DONE | success | 0.9765 |\n\n---\n\n## DEEPSEEK TAIL-512 SEED42 来源追查\n\n从服务器 eval_results.json 确认的实际 accuracy 值：\n\n| 实验 | accuracy | 文件路径 |\n|---|---|---|\n| deepseek_full_trace_tail512_seed42 | **93.95%** (0.9395) | `.../deepseek_full_trace_tail512_seed42/final/eval_results.json` |\n| deepseek_full_trace_tail512_seed456 | 96.05% (0.9605) | `.../deepseek_full_trace_tail512_seed456/final/eval_results.json` |\n| deepseek_full_trace_tail512_seed123_v2 | 95.04% (0.9504) | `.../deepseek_full_trace_tail512_seed123_v2/final/eval_results.json` |\n\n**关键发现 — 93.61% 的真正来源：**\n\n`grep -r \"0.9361\"` 命中了两个位置：\n1. `deepseek_full_trace_tail1024_seed42` — 但这是 **fail_f1=0.9362**，不是 accuracy（accuracy=0.9647）\n2. **`full_trace_tail_512_seed42`**（无模型前缀，Qwen-7B）— **accuracy = 0.9361**\n\n**结论：93.61% 来自 `full_trace_tail_512_seed42`（Qwen-7B），不是 DeepSeek。** DeepSeek tail-512 seed42 的真实 accuracy 是 **93.95%**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-registry-search-and-deepseek-trace.md"
+}

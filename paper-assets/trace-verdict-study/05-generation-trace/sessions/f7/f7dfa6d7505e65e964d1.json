@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7dfa6d7505e65e964d1",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "figure fig2 legend fix v3",
+  "task_key": "worker_figure_fig2-legend-fix-v3_20260524T141250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig2-legend-fix-v3_20260524T141250_result.json",
+    "occurrence": 1,
+    "bytes": 512,
+    "sha256": "8f30ee53b844d18f24a315dd7b957232a73f7f4d09e56996db9ee9ac50a0831d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**方案**：选择了 `upper center` + `ncol=2`，图例横排居中在标题下方。\n\n**具体参数**：\n```python\nax.legend(loc='upper center', bbox_to_anchor=(0.5, 1.0), ncol=2, frameon=False)\n```\n\n**判断依据**：位置 1 (No Trace) 和 2 (Full Trace) 的柱子仅到 ~82，上方到标题之间有大片空白。两端高柱 (Exception-Only ~99, VOTA ~84-99) 的 gap 标注不会与居中图例重叠。\n\n已上传 `fig3_cross_model_gap_legend_v3.png` 到飞书。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig2-legend-fix-v3.md"
+}

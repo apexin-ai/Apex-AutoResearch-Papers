@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e725cb5052d428cb8fa0",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code exception only nomarker data prep",
+  "task_key": "worker_code_exception_only_nomarker_data_prep_20260516T143057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exception_only_nomarker_data_prep_20260516T143057_result.json",
+    "occurrence": 1,
+    "bytes": 781,
+    "sha256": "1d40f8e6327904de499b356fa6e0855f36c825d323ec64137447e67e18b58824"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。总结：\n\n**数据已生成并验证通过：**\n\n| | Train | Test | Total |\n|---|---|---|---|\n| 样本数 | 4720 | 1190 | 5910 |\n| Pass | 3107 | 851 | 3958 |\n| Fail | 1613 | 339 | 1952 |\n| 含标记(修改前) | 3099 | 843 | 3942 |\n| 含标记(修改后) | 0 | 0 | 0 |\n\n**Before/After 对比：**\n- Before: `Execution trace:\\n[No exception data in trace]\\n`\n- After: `Execution trace:\\n\\n` （标记行被完全移除，trace 段为空）\n\n**产出文件：**\n- 脚本: `/root/trace-verdict-study/data/nomarker/prepare_nomarker_data.py`\n- 数据: `/root/autodl-tmp/trace-verdict-study-data/exception_only_nomarker_{train,test}.jsonl`\n\n训练/评估代码已支持 `--condition exception_only_nomarker`，可直接启动 SFT。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exception-only-nomarker-data-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0a19bc584b35d1334e7",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "finalize full trace 512tok seed42",
+  "task_key": "worker_finalize_full_trace_512tok_seed42_20260516T001401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_finalize_full_trace_512tok_seed42_20260516T001401_result.json",
+    "occurrence": 1,
+    "bytes": 594,
+    "sha256": "ba1f0c3d9ae12f63d065b8e8aaf69aa4c19a5c4e78cb3827bbb4ae46309bd6c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**结果汇总：**\n\n| 指标 | 值 |\n|------|-----|\n| accuracy | **80.42%** [78.1%, 82.6%] |\n| majority_baseline | 71.5% |\n| lift | +8.9pp |\n| pass_f1 | 0.862 |\n| fail_f1 | 0.665 |\n| n | 1190 |\n\n**Conclusion: negative** — 512tok (80.42%) 低于 untruncated full_trace (81.8%)，截断到 512 tokens 损失了约 1.4pp。\n\n**已执行操作：**\n1. registry metrics 已写入\n2. conclusion = \"negative\" 已设置\n3. status = \"DONE\" 已设置\n4. spec.checkpoint_path 已更新为 final 目录\n5. cron `full_trace_512tok_seed42` 已删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/finalize-full-trace-512tok-seed42.md"
+}

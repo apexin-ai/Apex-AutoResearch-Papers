@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2fc210c182eb64949d4b",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops check vota seed456",
+  "task_key": "worker_ops_check_vota_seed456_20260515T183240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_vota_seed456_20260515T183240_result.json",
+    "occurrence": 1,
+    "bytes": 1925,
+    "sha256": "2df913b86262f96452274313e4f9eea499faea03a2aa354957b2da48e2c05ac5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "排查完成。\n\n---\n\n## 结论：原始 vota_seed456 已崩溃（OOM），v2 替代版正在训练中\n\n### 原始 run — vota_seed456 (PID 145908)\n\n| 项目 | 详情 |\n|------|------|\n| **状态** | **CRASHED — OOM** |\n| 启动时间 | May 16 02:25:45 CST |\n| 存活时间 | ~3 分钟（TensorBoard 事件止于 02:28） |\n| 崩溃原因 | GPU 显存不足（与其他进程共享 GPU）。同参数 vota_seed123 确认相同 OOM 错误：`torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.64 GiB` |\n| Checkpoint | 无（未保存任何 checkpoint，无 final/ 目录） |\n| 退出文件 | 无 `/tmp/agent-ml-exit/vota_seed456.exit` |\n| 日志 | 已被 v2 覆盖，原始崩溃日志不可恢复 |\n\n### 替代 run — vota_seed456_v2 (PID 146592)\n\n| 项目 | 详情 |\n|------|------|\n| **状态** | **RUNNING** |\n| PID | 146592 |\n| 启动时间 | May 16 02:31:32 CST |\n| 运行位置 | tmux session, pane %3 |\n| GPU | cuda:1 (`CUDA_VISIBLE_DEVICES=1`)，41191 MiB / 97887 MiB，98% 利用率 |\n| 当前进度 | step 15/444 (3.4%)，~17.5s/step |\n| 预计完成 | ~04:40 CST（约 2 小时后） |\n| 修复措施 | 加了 `--gradient_checkpointing`，独占 GPU 1 |\n| W&B run name | `vota_seed456_v2` |\n| 日志 | `/root/runs/trace-verdict-study/vota_seed456.log` |\n| 命令 | `python train/train_sft.py --condition vota --gradient_checkpointing --gpu 0 --seed 456 --output_dir .../vota_seed456 --wandb_project trace-verdict-study --wandb_run_name vota_seed456_v2` |\n\n### GPU 状态\n\n| GPU | 显存占用 | 利用率 | 进程 |\n|-----|----------|--------|------|\n| 0 | 71595/97887 MiB | 87% | PID 144517 |\n| 1 | 41191/97887 MiB | 98% | PID 146592 (vota_seed456_v2) |\n\n### Registry 更新建议\n\n- `vota_seed456` (PID 145908): 标记 **CRASHED**，原因 OOM\n- 新增 `vota_seed456_v2` (PID 146592): **RUNNING**，cuda:1，output_dir 同 vota_seed456"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-vota-seed456.md"
+}

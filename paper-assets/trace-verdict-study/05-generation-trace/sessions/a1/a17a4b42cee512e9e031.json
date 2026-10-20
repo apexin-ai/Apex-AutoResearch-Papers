@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a17a4b42cee512e9e031",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops harvest tail 256 1024 and plot",
+  "task_key": "worker_ops_harvest_tail_256_1024_and_plot_20260517T102823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_harvest_tail_256_1024_and_plot_20260517T102823_result.json",
+    "occurrence": 1,
+    "bytes": 756,
+    "sha256": "8c3502bd56060a2259029f6ecb9777b6fb6ca2d09ece20bf1a0cd80e757d48d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n## 实验结果\n\n| Condition | Accuracy | Pass F1 | Fail F1 | 95% CI (Acc) |\n|-----------|----------|---------|---------|--------------|\n| **tail-256** | 77.48% | 83.33% | 65.28% | [74.96%, 79.75%] |\n| **tail-1024** | 96.47% | 97.53% | 93.81% | [95.46%, 97.48%] |\n\n## Budget Curve 关键发现\n\n- **Tail truncation 远优于 Head truncation**：tail-1024 (96.47%) vs head-1024 (77.23%)，差距近 20pp\n- Tail truncation 从 256→512 有巨大跳跃 (77.48%→93.61%)，之后边际递减\n- Head truncation 在所有 budget 下都只比 no-trace baseline (75.13%) 略高，说明 trace 头部信息量极低\n\n## 产出\n\n- 图表：`/root/trace-verdict-study/docs/paper/figures/budget_curve.pdf` + `.png`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-harvest-tail-256-1024-and-plot.md"
+}

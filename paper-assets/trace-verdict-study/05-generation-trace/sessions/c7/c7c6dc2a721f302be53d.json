@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7c6dc2a721f302be53d",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "check gpu post reboot",
+  "task_key": "worker_check_gpu_post_reboot_20260518T132017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpu_post_reboot_20260518T132017_result.json",
+    "occurrence": 1,
+    "bytes": 1908,
+    "sha256": "fa6da87318791d8950230e002e805527b6acec72b2390e8c012b0b4b999d8d66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n## GPU 状态\n\n| GPU | 型号 | 显存使用 | GPU-Util | 状态 |\n|-----|------|---------|----------|------|\n| cuda:0 | RTX PRO 6000 Black (98GB) | 49175 MiB / 97887 MiB | 0% | **幽灵占用** — 无进程但显存未释放，`gpu-reset` 不支持 |\n| cuda:1 | RTX PRO 6000 Black (98GB) | 0 MiB / 97887 MiB | 0% | **空闲** |\n\nGPU0 的 49GB 是残留显存（无对应进程），`nvidia-smi --gpu-reset` 不支持该卡。需要重启 nvidia driver 或忽略（下次启动训练时 CUDA 会自动回收）。\n\n## PID 存活\n\n| PID | 实验 | 状态 |\n|-----|------|------|\n| 434876 | qwen7b_full_trace_tail384_seed42 (cuda:0) | **已死** |\n| 434952 | deepseek_full_trace_tail384_seed42 (cuda:1) | **已死** |\n\n## 关键发现：训练已完成\n\n两个实验在重启前已**训练完毕**，checkpoint 完整保存：\n\n- `qwen7b_full_trace_tail384_seed42`: 3 个中间 checkpoint (148/296/444) + `final/`（adapter 155MB），完成时间 20:54\n- `deepseek_full_trace_tail384_seed42`: 3 个中间 checkpoint (148/296/444) + `final/`（adapter 153MB），完成时间 20:54\n\n路径：`/root/autodl-tmp/trace-verdict-study-checkpoints/{qwen7b,deepseek}_full_trace_tail384_seed42/final/`\n\n## 无需重新训练，但可能需要评估\n\n两个实验 `final/` 目录中没有 `eval_results.json`，说明评估尚未执行。如果需要评估，可以直接跑 evaluate.py。\n\n## 其他活跃进程\n\n只有 JupyterLab、TensorBoard 和几个 HTTP 文件服务器在运行，无 tmux session，无训练进程。\n\n## 最近完成的实验日志\n\n`/root/trace-verdict-study/logs/` 下有 12 个实验日志（codellama13b、deepseek、qwen15b 多个 truncation 变体），最新的是 `codellama13b_head2048_seed42.log`（11:30）。tail384 的两个实验没有日志文件在这个目录，可能日志在 nohup 输出或 wandb 中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-post-reboot.md"
+}

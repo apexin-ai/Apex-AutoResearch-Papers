@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "a72749baddce3be0658e",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "ops resync fig4",
+  "task_key": "worker_ops_resync_fig4_20260516T024640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_resync_fig4_20260516T024640.log",
+    "occurrence": 1,
+    "bytes": 639594,
+    "sha256": "303a11bcd144d91dd2ce91f898e54667074e162a9afb8132f7f8ef67c20b0f3a"
+  },
+  "statistics": {
+    "messages": 135,
+    "user_turns": 1,
+    "tool_calls": 44,
+    "roles": {
+      "log": 8,
+      "system": 4,
+      "record": 1,
+      "assistant": 33,
+      "tool_call": 44,
+      "tool_result": 43,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 8,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 103,
+      "chunks": [
+        {
+          "path": "a72749baddce3be0658e-part-0001.json",
+          "message_count": 96
+        },
+        {
+          "path": "a72749baddce3be0658e-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 32,
+      "chunks": [
+        {
+          "path": "a72749baddce3be0658e-part-0002.json",
+          "message_count": 32
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-resync-fig4.md"
+}

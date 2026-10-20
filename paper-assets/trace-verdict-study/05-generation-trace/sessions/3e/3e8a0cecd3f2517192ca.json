@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e8a0cecd3f2517192ca",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis deepseek exception only seed42",
+  "task_key": "worker_analysis_deepseek_exception_only_seed42_20260515T150745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek_exception_only_seed42_20260515T150745_result.json",
+    "occurrence": 1,
+    "bytes": 1535,
+    "sha256": "99ab1d23fc4bdfc32fa3aa2250ee8933d807848dd7b4fe8e9709e13e797c427a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有 per-sample predictions 文件，无法做 paired bootstrap。但各条件的 CI 完全不重叠，显著性不存疑。\n\n---\n\n## DeepSeek exception_only (seed42) 实验结果\n\n### 核心指标\n\n| 指标 | 值 | 95% CI |\n|------|-----|--------|\n| **Accuracy** | **99.33%** | [98.8%, 99.7%] |\n| Majority baseline | 71.5% | — |\n| Lift | +27.8pp | [+25.5pp, +30.3pp] |\n| Pass P / R / F1 | 1.00 / 0.99 / 1.00 | — |\n| Fail P / R / F1 | 0.98 / 1.00 / 0.99 | — |\n| N | 1190 | — |\n\n### 条件对比（DeepSeek-Coder-6.7B）\n\n| 条件 | Accuracy | 95% CI | vs exception_only |\n|------|----------|--------|-------------------|\n| **exception_only** | **99.33%** | [98.8%, 99.7%] | — |\n| vota | 84.45% | [82.6%, 86.4%] | -14.88pp |\n| no_trace | 73.36% | [70.8%, 75.7%] | -25.97pp |\n\nCI 完全不重叠，差异极显著（exception_only 下界 98.8% >> VOTA 上界 86.4% >> no_trace 上界 75.7%）。\n\n### 跨模型对比（exception_only 条件）\n\n| 模型 | Accuracy |\n|------|----------|\n| Qwen-2.5-Coder-7B | 99.83% |\n| DeepSeek-Coder-6.7B | 99.33% |\n\n两模型在 exception_only 条件下均接近天花板，差距仅 0.5pp。\n\n### 结论: **Success**\n\n- exception_only 在 DeepSeek-Coder 上达到 **99.33%**，大幅超越 no_trace (+25.97pp) 和 VOTA (+14.88pp)\n- 与 Qwen 上的 99.83% 高度一致，证明 exception_only 信号的有效性跨模型泛化\n- 训练正常完成，eval 1190 样本，fail recall 达到 100%（所有 fail 样本都被正确识别）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-exception-only-seed42.md"
+}

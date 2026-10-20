@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2f3ee31d4d2a7863a54",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code full trace tail 512",
+  "task_key": "worker_code_full_trace_tail_512_20260517T045624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_full_trace_tail_512_20260517T045624_result.json",
+    "occurrence": 1,
+    "bytes": 450,
+    "sha256": "2a9e6953f3dd2a4d2e4a236ff941cf1a7496faa0db1f0f22d7cf98695bc04e01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**cuda:0 状态**: 49GB dead memory（无进程），新训练进程已启动会回收。\n\n**数据生成**:\n- `full_trace_tail_512_train.jsonl`: 4720 条 (10.6MB)\n- `full_trace_tail_512_test.jsonl`: 1190 条 (2.6MB)\n- trace 上限 512 tokens，保留尾部（含 `[...trace truncated...]` 标记）\n\n**训练提交**:\n- PID: 330357\n- GPU: cuda:0\n- 444 steps，已开始训练\n- 训练完成后自动执行 eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-full-trace-tail-512.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a880b2f400ed37740063",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "research paper claim2 prep",
+  "task_key": "worker_research_paper-claim2-prep_20260515T210754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper-claim2-prep_20260515T210754_result.json",
+    "occurrence": 1,
+    "bytes": 1006,
+    "sha256": "7c009d567ddd7cb731d29f09694165328434d126e61de5fc7ca3827bbf7e3ffd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。产出文件 `claim2_evidence_brief.md` 已注册为 artifact (`art_20260515_d4f55f`)。\n\n内容概要：\n\n1. **数据表格**：5 张表覆盖核心 accuracy、gap 分解（25% gradient dilution / 75% information overload）、统计检验（所有对比 p<0.001）、跨模型数据、per-class 指标\n2. **论证逻辑**：label-only loss 作为 oracle intervention 的因果链 — 即使完全消除 gradient dilution，仍有 13pp 残差 gap，只有 trace compression 能修复\n3. **校准独立证据**：label-only ECE (0.1107) 反而比 full_trace (0.0958) 更差，说明 gradient fix 制造了新问题，VOTA 同时解决 accuracy 和 calibration\n4. **图表建议**：4 张图按优先级排列 — gap 分解柱状图 > reliability diagram > waterfall > 跨模型对比\n5. **Reviewer 防御**：6 个攻击点 + 预案（additivity 假设、ECE 反常、epoch 不足等）\n6. **Open items**：DeepSeek full_trace v3 和 exception_only seed456 仍在运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-claim2-prep.md"
+}

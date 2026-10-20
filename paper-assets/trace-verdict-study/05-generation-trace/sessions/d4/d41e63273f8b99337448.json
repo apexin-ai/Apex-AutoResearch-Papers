@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d41e63273f8b99337448",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "knowledge update paper framing",
+  "task_key": "worker_knowledge_update-paper-framing_20260515T192754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_update-paper-framing_20260515T192754_result.json",
+    "occurrence": 1,
+    "bytes": 1157,
+    "sha256": "58245acdd0e3abedc5ee15278a2d36473b20e5c17dbfee36fec108383bc3afd7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper_framing.md 已更新至 v2.5。主要增量变更：\n\n1. **Core Insight** — 加入 VOTA repositioning 段落（fault indicator isolation, not compression）\n2. **Claim 1** — cross-model gap 改为 0pp (best checkpoint) / 0.50pp (final)，加入 epoch1→epoch3 退化引用\n3. **Claims 2 & 3** — 所有数量 claim 旁标注 exp_id（`[exp_name]` 格式），精确数值对齐 registry（86.22%/85.63%/81.76%）\n4. **Cross-Model Evidence Summary** — 新增 4-condition 汇总表 + key insight\n5. **VOTA Repositioning** — 新增独立 section，含证据链、论文表述建议、对 Method section 影响\n6. **Calibration 表** — 扩展为含 Accuracy 列的 7-condition 完整表\n7. **D7: Early stopping** — 新增 discussion point（DeepSeek epoch1 > epoch3 + signal complexity 与 optimal epochs 的关系）\n8. **Reviewer concerns** — 新增\"只有 2 个模型 universality 太强\"和\"epoch1 vs epoch3\"两条\n9. **Headline result** — 升级为 \"0pp gap on both models\"，VOTA 定位改为 fault indicator isolation\n10. **对比表** — 新增 VOTA 定位、Early stopping、Narrative arc 三行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-update-paper-framing-copy-2.md"
+}

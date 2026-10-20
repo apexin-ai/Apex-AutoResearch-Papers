@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96414209ab6cba68e7bb",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops delete codellama seed123 outputs",
+  "task_key": "worker_ops_delete_codellama_seed123_outputs_20260521T010945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_delete_codellama_seed123_outputs_20260521T010945_result.json",
+    "occurrence": 1,
+    "bytes": 145,
+    "sha256": "5fe987726b32d8894a9d76e522b2d171551de1a867a68b6444ca1e2e69da1a0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已删除 `codellama13b_label_only_seed123_v2/`（28K）。\n\n磁盘状态：根分区 30G，已用 21G，剩余 9.5G（69%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-delete-codellama-seed123-outputs.md"
+}

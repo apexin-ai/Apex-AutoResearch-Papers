@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73b3eb73f6ed0c4e159b",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis forest plot v2",
+  "task_key": "worker_analysis_forest_plot_v2_20260520T163037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_forest_plot_v2_20260520T163037_result.json",
+    "occurrence": 1,
+    "bytes": 512,
+    "sha256": "eaedd58f124b957e43e8fee6866e16da27ca75fce154ac43f826079ec93799a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Forest plot 已生成，输出到:\n- `artifacts/figures/forest_plot_tier_boundary.pdf`\n- `artifacts/figures/forest_plot_tier_boundary.png`\n\n修改点：\n- 所有多 seed cell 改用 mean ± 1.96·std 作为 CI，单 seed cell 用 Wilson CI (n=1190)\n- 移除了 95% 垂直虚线\n- 87–98% 区间添加灰色 \"Tier gap\" band\n- 条件名作为 header row，模型缩进排列，颜色分 Tier 1 暖色 / Tier 2 绿色 / baseline 蓝色\n- 数值标注在右侧，避免与 error bar 重叠"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-forest-plot-v2.md"
+}

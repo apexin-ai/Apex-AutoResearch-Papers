@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24fea71a268aff23f962",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops cuda0 cleanup plan002 launch",
+  "task_key": "worker_ops_cuda0-cleanup-plan002-launch_20260515T044452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda0-cleanup-plan002-launch_20260515T044452_result.json",
+    "occurrence": 1,
+    "bytes": 1304,
+    "sha256": "62ade282c9ce421c0baa21cea9057803300a1e105ac1946db5dfdd0392b0528a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n### cuda:0 清理前后\n\n| | 清理前 | 清理后（当前） |\n|---|---|---|\n| 显存占用 | 49175 MiB（孤儿，无进程） | 90355 MiB（41174 新训练 + ~49GB 驱动残留） |\n| 利用率 | 0% | 100% |\n| 进程 | 无可见进程 | PID 955301 (train_sft.py) |\n\n### 被 kill 的孤儿进程\n- **PID 954592** — 之前卡死的 `full_trace_label_only_seed42_v2`（状态 Sl，挂了 45 分钟，0% 利用率但占 49GB 显存）\n- kill -9 后进程消亡，但 ~49GB 显存未被驱动释放（`nvidia-smi --gpu-reset -i 0` 硬件不支持）\n\n### plan_002 启动状态\n- **已由其他实例提交**（tmux session `full_trace_label_only_seed42`，12:48:06 创建）\n- 命令与你的计划一致，额外加了 `--gradient_checkpointing` 绕过显存不足\n- PID 955301，使用 41174 MiB，训练已推进（step 1/444，~18.8s/step）\n- 未 OOM，正常运行中\n\n### 最终两卡快照\n- **GPU 0**: 90355/97887 MiB, 100% util, PID 955301 (`full_trace_label_only_seed42_v2`)\n- **GPU 1**: 52779/97887 MiB, 100% util, PID 953138 (`vota_no_ae_seed42`) — 未受影响\n\n**注意**: GPU 0 有 ~49GB 驱动级残留显存无法释放，但加了 gradient_checkpointing 后训练正常进行。如果后续需要完全清理，需要重启实例。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda0-cleanup-plan002-launch.md"
+}

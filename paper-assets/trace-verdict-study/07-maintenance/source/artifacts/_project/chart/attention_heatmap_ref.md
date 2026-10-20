@@ -1,0 +1,1 @@
+Remote path: /root/trace-verdict-study/docs/paper/figures/attention_pilot/\nFiles: attention_detail_0/1/2_AssertionError.pdf, attention_summary_v2.pdf, attention_pilot_results_v2.json

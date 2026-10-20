@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ccb6e7c309b8a76a182b",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops server status check",
+  "task_key": "worker_ops_server-status-check_20260522T123617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_server-status-check_20260522T123617_result.json",
+    "occurrence": 1,
+    "bytes": 1658,
+    "sha256": "d49c1bcb9f370fd7c6c84f3f52acf79236b7dee8542598e817578eb03b3d4245"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 服务器状态汇总\n\n### GPU 状态\n| GPU | 型号 | 利用率 | 显存占用 |\n|-----|------|--------|----------|\n| 0 | RTX PRO 6000 Blackwell (98GB) | **0%** | 49GB（残留，无活跃进程） |\n| 1 | RTX PRO 6000 Blackwell (98GB) | **0%** | 0GB |\n\n**两块 GPU 均空闲，无训练进程在运行。**\n\n### exc_message_only_seed42 状态：已完成\n\n- PID 799129 已不存在\n- 训练 444 steps / 3 epochs，耗时 ~22 分钟，已正常结束\n- 最终指标：\n  - train_loss: **0.1828**\n  - eval_loss: **0.5800**\n  - eval_mean_token_accuracy: **0.8979**\n- Checkpoints: `checkpoint-148`, `checkpoint-296`, `checkpoint-444`, `final`（均在 20:05–20:26 写入）\n- 模型已保存到 `/root/autodl-tmp/trace-verdict-study-checkpoints/exc_message_only_seed42/final`\n\n### 其他训练进程\n**无。** 服务器上没有任何 `train_sft`、`evaluate` 或其他训练相关 Python 进程。只有系统服务（supervisord、jupyter、tensorboard）和几个 http.server 静态文件服务。\n\n### 今日已完成的训练（按时间倒序）\n\n| 实验 | 完成时间 | \n|------|----------|\n| exc_message_only_seed42 | 20:26 |\n| exc_stacktrace_only_seed42 | 19:46 |\n| exc_type_only_seed42 | 18:11 |\n| gradient_masking_qwen7b_seed42 | 17:20 |\n| cross_dataset_batch（含 cross_mbpp2he_no_trace, cross_mbpp2he_exception_only 等） | 14:56–15:16 |\n| cross_he2mbpp_no_trace | 13:38 |\n| cross_he2mbpp_exception_only | 13:21 |\n\n### 注意\nGPU 0 仍有 49GB 显存占用但无对应进程，可能是已结束进程的残留显存未释放。如果需要启动新训练，可能需要先清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-server-status-check.md"
+}

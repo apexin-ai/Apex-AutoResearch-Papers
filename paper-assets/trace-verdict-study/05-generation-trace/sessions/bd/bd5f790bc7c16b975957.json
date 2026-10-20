@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd5f790bc7c16b975957",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops fetch budget curve",
+  "task_key": "worker_ops_fetch_budget_curve_20260517T105310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fetch_budget_curve_20260517T105310_result.json",
+    "occurrence": 1,
+    "bytes": 260,
+    "sha256": "07445a237c6dfa6869b1197e16c450921958fff78f1d2c81bf502b605b2acd78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已下载到本地：\n\n- `budget_curve.pdf` — 17,150 bytes (16.7 KB)\n- `budget_curve.png` — 162,440 bytes (158.6 KB)\n\n路径：`/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/artifacts/figures/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fetch-budget-curve.md"
+}

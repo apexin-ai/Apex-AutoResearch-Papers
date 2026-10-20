@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "e373015499aa153e4606",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "eval plan 007 calibration",
+  "task_key": "worker_eval_plan_007_calibration_20260515T121655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan_007_calibration_20260515T121655.log",
+    "occurrence": 1,
+    "bytes": 643671,
+    "sha256": "4025258102cd637676633208055e29b4f523cdac890b5def21b1f590c5802b99"
+  },
+  "statistics": {
+    "messages": 499,
+    "user_turns": 0,
+    "tool_calls": 216,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 63,
+      "tool_call": 216,
+      "tool_result": 216,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 499,
+      "chunks": [
+        {
+          "path": "e373015499aa153e4606-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e373015499aa153e4606-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e373015499aa153e4606-part-0003.json",
+          "message_count": 139
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-plan-007-calibration.md"
+}

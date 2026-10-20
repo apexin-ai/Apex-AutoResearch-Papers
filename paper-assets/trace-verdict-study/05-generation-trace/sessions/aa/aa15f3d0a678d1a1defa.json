@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa15f3d0a678d1a1defa",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_6_1778872025.md",
+  "task_key": "loop_6_1778872025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778872025.md",
+    "occurrence": 1,
+    "bytes": 5037,
+    "sha256": "2d02531a7adcded8c1a69bb9be4c11beaba8011dfbc97ce4767e9a2ee436794a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-15T18:39:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 westd-11235 cuda:0 + cuda:1**。任何其他 GPU 必须 push back Director\n- DeepSeek 组实验**必须用旧代码**（无 `load_best_model_at_end`，已注释为 `# TEMP_DISABLED`），保持 DeepSeek 组内 checkpoint selection 一致性（epoch 3 final）\n- **同一 GPU 禁止并行 eval + training**（5/15 实测：7s/step → 35-49s/step）\n- exception_only **irreducible samples**: id=901, id=905（`check_dict_case`），这是数据集理论上限，不是 bug，不要尝试修复\n- Bootstrap 方法：**论文同表禁止混用 paired/unpaired**。DeepSeek VOTA/no_trace 缺 per-sample predictions，论文前必须重跑 `evaluate.py --save_predictions` + paired bootstrap\n- Paper Agent 写任何 `paper/**` 文件前必须先看 red-section skill 规范\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-11235，2x RTX PRO 6000 Blackwell 94GB，CUDA 12.8\n- **工作目录**: `/root/trace-verdict-study`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，无 venv）\n- **激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**:\n  - Qwen: HF cache（默认）\n  - DeepSeek: `/root/autodl-tmp/models/deepseek-coder-6.7b-instruct/deepseek-ai/deepseek-coder-6___7b-instruct`\n- **数据**: `/root/autodl-tmp/trace-verdict-study-data/`（4720 train / 1190 test per condition）\n- **Checkpoints**: `/root/autodl-tmp/trace-verdict-study-checkpoints/`\n- **HF cache**: `/root/autodl-tmp/.hf_cache`（`HF_HOME` 必须设）\n- **W&B project**: `trace-verdict-study`\n- **活跃进程**: deepseek_exception_only_seed123 PID 144507 (tmux, cuda:0)\n- **活跃 cron**: deepseek_exception_only_seed123 监控中（reconcile 确认 still running）\n- **活跃 Workers**: `worker_figure_fig2_calibration_20260515T175511` + `worker_eval_cuda1_seed_predictions_crosscheck_20260515T180329`（均 running，等回调）\n\n### 3. 📊 当前状态\n**刚做完**: exception_only seed robustness 全部完成（Qwen seeds 42/123/456 = 99.83% ± 0.00），DeepSeek 跨模型验证 3/4 条件完成，vota_seed456 被 kill（VOTA 降优先级）。\n\n**Registry 状态**:\n- **RUNNING**: `deepseek_exception_only_seed123`（cuda:0，DeepSeek exception_only seed=123 跨模型 seed robustness，预计 ~20:15 UTC 完成）\n- **其余全部 DONE/QUEUED(stale)**：15 success / 3 negative / 2 failed / 4 killed / 4 stale queued\n\n**等待中**:\n- `deepseek_exception_only_seed123` cron 回调 → 分析结果 + 更新 registry\n- `worker_figure_fig2_calibration` 回调 → 注册 calibration figure artifact\n- `worker_eval_cuda1_seed_predictions_crosscheck` 回调 → 验证 seed predictions 一致性\n- cuda:1 当前空闲（vota_seed456 完成后释放），**被浪费中**\n\n### 4. 📋 待办（条件触发式）\n- **deepseek_exception_only_seed123 完成** → 分析结果（预期 ~99.3%）→ 更新 registry + report.md → 汇报 Director（DeepSeek seed robustness 完成）\n- **cuda:0 空闲后** → 立即提交 `deepseek_full_trace_v3`（用旧代码，无 load_best_model_at_end）→ 这是跨模型表 4/4 的最后一格\n- **cuda:1 现在空闲** → 应立即安排任务：DeepSeek VOTA/no_trace 的 `--save_predictions` 重跑（paired bootstrap 修复），或 Paper Agent 写作 Worker\n- **两个 running Worker 回调到达** → 处理产出、注册 artifact\n- **deepseek_full_trace_v3 完成** → 若成功：纳入跨模型表；若 label 截断再现：报告 N/A + Limitations 披露\n- **Paper Agent 启动条件**: paper_framing.md 已就绪（v2.2），seed robustness 已完成 → **可以现在启动**\n- **plan_005 (DebugBench 第二任务)** → 仅在论文初稿完成 + GPU 空闲时考虑，非必须\n\n### 5. 🎯 战略上下文\n**核心结论链**: exception signal 是 verdict prediction 的 universal diagnostic signal（跨模型 gap ≤ 0.50pp），VOTA 的价值是 fault indicator isolation 而非 trace compression。论文 headline 围绕 exception，不是全 VOTA。\n\n**决策链关键节点**:\n- D019: 跨模型验证完成，narrative 从 \"VOTA compression\" 升级为 \"exception universality\"\n- D013: ae_only 99.92% 非 data leakage（Reviewer 核实 fallback locals 无 verdict signal）\n- D021/D022: DeepSeek full_trace 坍塌根因是训练端 label 截断，v2 被 kill 待重跑\n\n**最容易判断错的事**:\n1. **不要把 VOTA 当 headline**——VOTA 跨模型退化 14.96pp，exception_only 才是 robust claim\n2. **DeepSeek full_trace 坍塌不影响其他 3 条件**——no_trace/VOTA/exception_only 输入短，不触发截断\n3. **eval_loss 不是 checkpoint 选择标准**——DeepSeek VOTA eval_loss 涨但 accuracy 也涨，这是 feature 不是 bug\n4. **cuda:1 正在空闲** → 下一个\"你\"启动后应立即安排任务（paired bootstrap 修复 或 Paper Agent Worker）\n5. **DDL 是 May 25 ARR**——还有 10 天，Paper Agent 应今天启动，不要等所有实验完成\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778872025.md"
+}

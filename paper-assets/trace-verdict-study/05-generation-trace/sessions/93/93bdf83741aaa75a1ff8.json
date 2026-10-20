@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93bdf83741aaa75a1ff8",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_9_1778906556.md",
+  "task_key": "loop_9_1778906556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778906556.md",
+    "occurrence": 1,
+    "bytes": 4461,
+    "sha256": "8e0c204efc0c7cf69d038d06a1a96e96ccaf6eabf212a49965cad289f3db7c0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-16T04:36:37+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 **westd-11235:cuda:0** 和 **westd-11235:cuda:1**（gpu_ids 白名单，其他 GPU 一律不碰）\n- eval max_length **必须匹配训练 max_length**（2048）——DeepSeek 曾因 16384 eval 导致 28.5% 崩溃（memory.md 有详细教训）\n- DeepSeek exception_only seed123=91.09% 是 LoRA initialization outlier，**不是方法缺陷**，论文中必须标注而非隐藏\n- 投稿 DDL：**ARR May 25 = 距今 9 天**，所有工作服务于这个 deadline\n- 论文正文必须压到 **8 页**（EMNLP 限制），当前 ~13 页，Discussion 小节已决定移入 appendix（D042/D043）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-11235，账号 root\n- **工作目录**: `/root/trace-verdict-study`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **模型**: Qwen2.5-Coder-7B-Instruct（主模型），DeepSeek-Coder-6.7B-Instruct（跨模型验证）\n- **Checkpoint 目录**: `/root/autodl-tmp/trace-verdict-study-checkpoints/`\n- **HF cache**: 未特别设置（westd 本地服务器，非 AutoDL）\n- **W&B**: 项目内实验已配置 W&B tracking\n- **活跃进程**:\n  - `ae_only_seed123`: RUNNING on cuda:0，log `/tmp/ae_only_seed123.log`，checkpoint `/root/autodl-tmp/trace-verdict-study-checkpoints/ae_only_seed123`\n  - `ae_only_seed456`: RUNNING on cuda:1，log `/tmp/ae_only_seed456.log`，checkpoint `/root/autodl-tmp/trace-verdict-study-checkpoints/ae_only_seed456`\n- **Cron 监控**: 2 个活跃 cron 分别监控上述两个实验\n\n### 3. 📊 当前状态\n**刚做完**: 所有核心实验 + 补充验证实验（regex baseline、DebugBench 跨任务、1024tok ablation）全部完成。Paper Agent 多轮修改已完成初稿。正在等最后两个 seed robustness 实验完成。\n\n**Registry 概览**: 46 个实验，44 DONE + 2 RUNNING\n- 24 success / 7 killed / 6 negative / 3 failed / 2 running\n- RUNNING: ae_only_seed123 (cuda:0) + ae_only_seed456 (cuda:1)——ae_only 的 seed robustness，Reviewer P0 要求\n\n**等待中**:\n- ae_only_seed123/456 的 cron 完成回调 → 触发 on-experiment-done 流程\n- 无活跃 Worker（Worker 池=0，但当前阻塞在 GPU 实验完成，非失职）\n- 无待处理的 Director 决策\n\n### 4. 📋 待办（条件触发式）\n- **ae_only_seed123 cron 回调到达** → spawn worker 分析结果 → 更新 registry metrics → 记录 seed robustness 数据\n- **ae_only_seed456 cron 回调到达** → 同上\n- **两个 seed 实验都完成** → 汇总 ae_only 3-seed 统计（seed42=99.92%, seed123=?, seed456=?）→ 计算 mean±std → patch 进论文 Table → 向 Director 汇报完整 seed robustness 结果\n- **seed 结果正常（≥99%）** → Paper Agent patch: 将 regex baseline + DebugBench + ae_only seed data + trace_length_ablation 全部整合进初稿 → 交付审稿组\n- **seed 结果异常（<98% 或离群）** → 按 red-section 规范产出 Framing 调整提案 → 等 Director 决策（参考 DeepSeek seed123 LoRA outlier 先例）\n- **Paper Agent 初稿交付后** → 启动 Reviewer 对抗（3 轮，5/18-20）→ 迭代修改 → 定稿 → 5/24 提交 ARR\n\n### 5. 🎯 战略上下文\n**核心结论**: Exception events 是 verdict prediction 最有效的 trace component。Qwen exception_only 99.83%±0.00（3 seeds 完美 robust），远超 full_trace 81.76%、no_trace 75.13%、regex 93.61%。DebugBench 跨任务 100%。故事线已锁定（paper_framing v3.0）。\n\n**决策链关键节点**:\n- D042/D043: 论文 13→8 页重组，Discussion 移入 appendix\n- D044-D047: regex baseline + DebugBench 补充实验完成，加固 Reviewer 防线\n- plan_006 (negative): trace length ablation 非单调，支持\"信号质量>长度\"叙事\n\n**易错点**:\n1. **不要把 DeepSeek GC4-par 和 Qwen GC4-seq 直接对比**——模型架构不同，token 效率不同\n2. **DeepSeek VOTA 84.45% 有 evaluation artifact**（82.6% 垃圾 token，D032），不是方法问题\n3. **ae_only seed 结果出来后**，如果某 seed 离群，参考 DeepSeek seed123 处理方式（标注 LoRA initialization sensitivity，不隐藏）\n4. **论文压页是硬性任务**——不要在正文加新内容，只能替换或移入 appendix\n5. **Worker 池当前=0 不算失职**——唯一阻塞项是 GPU 上的 seed 实验，没有 CPU 任务可并行（除非 Director 指派新任务）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778906556.md"
+}

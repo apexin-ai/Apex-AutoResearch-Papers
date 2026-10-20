@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60c5f932c96fb8731201",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "fix figure3 legend caption",
+  "task_key": "worker_fix_figure3_legend_caption_20260519T135158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_figure3_legend_caption_20260519T135158_result.json",
+    "occurrence": 1,
+    "bytes": 1425,
+    "sha256": "1f5888cb421b2d369ad2f41f50074820c429741453fdbea60e804cdbad099689"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure is included on page 15. Everything compiles correctly.\n\n## Summary\n\n**Red line (red, #FF5722, square markers, solid) = `full_trace` condition**\n\nData source: `qwen7b_full_trace_dynamics_seed42/dynamics_log.jsonl` — this is definitively **full_trace** data, NOT label_only. Final accuracy in dynamics: ~88.2% (consistent with full_trace behavior; the 81.76% in the paper table is from the final 3-epoch model, not the dynamics checkpoints).\n\n**What was fixed:**\n- The training_dynamics figure was **not included** in the paper LaTeX. The figure existed as a PDF but had no `\\begin{figure}` block or caption in any .tex file.\n- Added a `figure*` environment in `appendix.tex` (line 243) within the \"Training Dynamics and Loss Decoupling\" section (`\\label{sec:training_dynamics}`) with a **correct caption** describing:\n  - `exception_only` = blue, circles\n  - `full_trace` = red, squares (solid in Accuracy/Loss panels, dashed only for fail-F1 in the per-class panel)\n  - No mention of \"label-only loss\" (which is a different condition at 86.22%)\n- The plot code legend (\"Full-trace\") was already correct — no changes needed to `plot_dynamics.py`\n\n**Regenerated PDF path:** `/root/trace-verdict-study/figures/paper/training_dynamics.pdf` (also copied to `docs/paper/figures/`)\n\n**Compiled paper:** `/root/trace-verdict-study/docs/paper/main.pdf` (20 pages, figure on page 15)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-figure3-legend-caption.md"
+}

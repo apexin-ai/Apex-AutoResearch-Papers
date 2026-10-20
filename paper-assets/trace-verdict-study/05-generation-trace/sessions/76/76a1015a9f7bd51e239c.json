@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76a1015a9f7bd51e239c",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops pdf transfer to local",
+  "task_key": "worker_ops_pdf_transfer_to_local_20260521T050016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_pdf_transfer_to_local_20260521T050016_result.json",
+    "occurrence": 1,
+    "bytes": 214,
+    "sha256": "fbd72f3d464805ffc4cb291f691887c2f5cfa3b2205bdd4edb2506f2149fa821"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **方案**: B — 本地直接 `scp -P 11235`（本地 `id_ed25519` 已被远程信任，无需密码）\n- **耗时**: ~3 秒\n- **MD5**: `88140f88f5902315cb1236b6f453e5cc` ✓ 匹配"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-pdf-transfer-to-local.md"
+}

@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0",
+  "id": "fe6b5d795bbf32903bd6",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "audit citation verify w3",
+  "task_key": "worker_audit_citation-verify-w3_20260526T101541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_citation-verify-w3_20260526T101541.log",
+    "occurrence": 1,
+    "bytes": 982150,
+    "sha256": "603cead9bdd448327efa094cd02d6cfc592f221bfeb976b0ee68db60acffd09d"
+  },
+  "statistics": {
+    "messages": 426,
+    "user_turns": 6,
+    "tool_calls": 138,
+    "roles": {
+      "log": 1,
+      "system": 127,
+      "record": 1,
+      "assistant": 14,
+      "tool_call": 138,
+      "tool_result": 138,
+      "user": 6,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 31,
+      "chunks": [
+        {
+          "path": "fe6b5d795bbf32903bd6-part-0001.json",
+          "message_count": 31
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 11,
+      "chunks": [
+        {
+          "path": "fe6b5d795bbf32903bd6-part-0001.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "fe6b5d795bbf32903bd6-part-0001.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "fe6b5d795bbf32903bd6-part-0001.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 26,
+      "chunks": [
+        {
+          "path": "fe6b5d795bbf32903bd6-part-0001.json",
+          "message_count": 26
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 22,
+      "chunks": [
+        {
+          "path": "fe6b5d795bbf32903bd6-part-0001.json",
+          "message_count": 22
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 304,
+      "chunks": [
+        {
+          "path": "fe6b5d795bbf32903bd6-part-0001.json",
+          "message_count": 58
+        },
+        {
+          "path": "fe6b5d795bbf32903bd6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "fe6b5d795bbf32903bd6-part-0003.json",
+          "message_count": 66
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-citation-verify-w3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "468d641e2b4c460c1218",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analyze qwen15b vota seed42",
+  "task_key": "worker_analyze_qwen15b_vota_seed42_20260516T110847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_qwen15b_vota_seed42_20260516T110847_result.json",
+    "occurrence": 1,
+    "bytes": 652,
+    "sha256": "34f2fb006ca26cde28cecc0a595e290c04a4035de9f3f131f4fc1f0927a419de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## qwen15b_vota_seed42 评估结果\n\n**训练状态：正常完成** (EXIT_CODE=0, 3 epochs, loss=0.0607, 耗时 2922s)\n\n### 评估指标 (n=1190)\n\n| 指标 | 值 | 95% CI |\n|------|-----|--------|\n| **Accuracy** | 99.58% | [99.2%, 99.9%] |\n| Majority baseline | 71.5% (always \"pass\") | — |\n| **Lift** | +28.1pp | [+25.7pp, +30.6pp] |\n\n### Per-class\n\n| Class | Precision | Recall | F1 |\n|-------|-----------|--------|-----|\n| **pass** | 0.9965 | 0.9976 | 0.9971 |\n| **fail** | 0.9941 | 0.9912 | 0.9926 |\n\nVOTA condition 下 Qwen2.5-Coder-1.5B 表现极强，accuracy 接近饱和，fail class F1 也达到 0.993。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-qwen15b-vota-seed42.md"
+}

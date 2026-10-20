@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32960dd44efe9443fd24",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops resubmit tail1024 correct",
+  "task_key": "worker_ops_resubmit_tail1024_correct_20260518T032345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_resubmit_tail1024_correct_20260518T032345_result.json",
+    "occurrence": 1,
+    "bytes": 1807,
+    "sha256": "29ae72d2f99ad961c89d0a85be0fb9f258a72fbf44ce3b9090b2bb1339468b28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found the issue — previous attempt used wrong script path. Here's the analysis from the successful runs:\n\n**From tail-512 log:**\n- `Condition: full_trace_tail_512`\n- `Model: /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf`\n- `Output: /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail512_seed42`\n\n**From tail-256 log:**\n- `Condition: full_trace_tail_256`\n- Same model/output pattern\n\n**From `--help`:**\n- `--condition` accepts `full_trace_tail_1024` directly (it's an enum value)\n- No separate `--max_trace_tokens` or `--truncation_side` needed for the named conditions\n- `--gradient_checkpointing` is available (required per C002 for 13B)\n\n**Correct tail-1024 command:**\n\n```bash\ncd /root/trace-verdict-study && /root/miniconda3/bin/python train/train_sft.py \\\n  --condition full_trace_tail_1024 \\\n  --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf \\\n  --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail1024_seed42 \\\n  --seed 42 \\\n  --wandb_project trace-verdict-study \\\n  --wandb_run_name codellama13b_full_trace_tail1024_seed42 \\\n  --gradient_checkpointing\n```\n\n**In `bash -c` format for `submit_training_job`:**\n\n```bash\nbash -c 'cd /root/trace-verdict-study && /root/miniconda3/bin/python train/train_sft.py --condition full_trace_tail_1024 --model_path /root/autodl-tmp/models/CodeLlama-13b-Instruct-hf --output_dir /root/autodl-tmp/trace-verdict-study-checkpoints/codellama13b_full_trace_tail1024_seed42 --seed 42 --wandb_project trace-verdict-study --wandb_run_name codellama13b_full_trace_tail1024_seed42 --gradient_checkpointing'\n```\n\nPrevious failure was simply wrong script path (`train.py` instead of `train/train_sft.py`). Old tmux session is cleaned."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-resubmit-tail1024-correct.md"
+}

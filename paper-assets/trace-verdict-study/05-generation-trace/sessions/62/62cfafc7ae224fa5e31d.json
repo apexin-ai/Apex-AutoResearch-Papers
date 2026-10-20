@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62cfafc7ae224fa5e31d",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops v3 eval track and 512tok fix",
+  "task_key": "worker_ops_v3_eval_track_and_512tok_fix_20260515T233603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_v3_eval_track_and_512tok_fix_20260515T233603_result.json",
+    "occurrence": 1,
+    "bytes": 1110,
+    "sha256": "162ce25bde58187911ac884866530538939b467df39a9aa38af6dbfee50cb600"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两项更新完成。\n\n---\n\n### Part A: deepseek_full_trace_seed42_v3 eval 结果\n\nEval 已完成，结果从 `final/eval_results.json` 读取并写入 registry：\n\n| 指标 | 值 | 95% CI |\n|------|-----|--------|\n| accuracy | **79.16%** | [76.8%, 81.3%] |\n| majority baseline | 71.51% | — |\n| lift | +7.65pp | — |\n| pass_f1 | 0.854 | [0.836, 0.870] |\n| fail_f1 | **0.637** | [0.592, 0.678] |\n| fail_recall | 0.643 | — |\n| fail_precision | 0.632 | — |\n\nv3 label-preserving truncation 修复后 accuracy 从 v1 的 28.49%（崩溃）恢复到 79.16%。相比 DeepSeek VOTA (84.45%) 低 5.3pp，符合 \"full_trace intermediate performance\" 的预期。\n\n### Part B: full_trace_512tok_seed42 reproduce 字段\n\n已补全：\n- **pid**: 197608\n- **gpu**: cuda:0\n- **started_at**: 2026-05-15T23:16:00Z\n- **wandb_run_id**: full_trace_512tok_seed42\n- **code_commit**: e404237ccc765768e267d4d6fd3c89549dcf41a4\n- **完整 command**: 含 train + eval 两阶段\n\n512tok 当前状态：epoch 1 训练中（step 148/444），预计还需 ~40min 完成 3 epoch + eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-v3-eval-track-and-512tok-fix.md"
+}

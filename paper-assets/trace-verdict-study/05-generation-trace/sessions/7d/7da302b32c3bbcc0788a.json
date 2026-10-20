@@ -1,0 +1,1434 @@
+{
+  "schema_version": "1.0",
+  "id": "7da302b32c3bbcc0788a",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "paper prepare c4 patch framework",
+  "task_key": "worker_paper_prepare_c4_patch_framework_20260519T203331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_prepare_c4_patch_framework_20260519T203331.log",
+    "occurrence": 1,
+    "bytes": 150138,
+    "sha256": "66bfbbc4b73465ffd62dad4f6facd8b90a11d98e4e9291f2de52d8c7672ebc7c"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 12,
+      "tool_result": 12,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study",
+                "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "adf1a50b-f6a9-4420-9e63-7666de06e9b7",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779240600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "1e9be7e9-bfa6-4781-8c2d-5fc1751bdebf",
+                "session_id": "615e7611-b1d0-490d-808a-7b7749d28899"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to search through all .tex files in the paper directory for specific keywords related to Tier hierarchy, loop_only, C4, and related terms. Let me search the local paper directory.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "b8784652-f5d0-4d24-b8d6-bc097e3f4207",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Fq9BpdqLwLxfugLdmZcVER",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12180,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12180
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013fzrntXXrAAaJXYmbPBjFY",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "3780f0fd-d1cb-4a92-aa92-b102bb9ea784",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Fq9BpdqLwLxfugLdmZcVER",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12180,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12180
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T20:33:46.745Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013fzrntXXrAAaJXYmbPBjFY",
+              "type": "tool_result",
+              "content": "docs/paper/main.tex\ndocs/paper/method.tex\ndocs/paper/arr_checklist.tex\ndocs/paper/appendix.tex\ndocs/paper/related_work.tex\ndocs/paper/introduction.tex\ndocs/paper/experiments.tex\ndocs/paper/discussion.tex\ndocs/paper/conclusion.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "5e4ea6d1-9b15-4a0b-b52d-9781c1eca304",
+            "tool_use_result": {
+              "filenames": [
+                "docs/paper/main.tex",
+                "docs/paper/method.tex",
+                "docs/paper/arr_checklist.tex",
+                "docs/paper/appendix.tex",
+                "docs/paper/related_work.tex",
+                "docs/paper/introduction.tex",
+                "docs/paper/experiments.tex",
+                "docs/paper/discussion.tex",
+                "docs/paper/conclusion.tex"
+              ],
+              "durationMs": 15,
+              "numFiles": 9,
+              "truncated": false
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01551CJkQhH7ojmTiGKCMAST",
+              "name": "Grep",
+              "input": {
+                "pattern": "[Tt]ier|loop_only|loop.only|\\bC4\\b|Contribution 4|contribution|two-tier|diagnostic hierarchy|component ablation|practical implications",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper",
+                "glob": "*.tex",
+                "output_mode": "content",
+                "-n": true,
+                "context": 2,
+                "head_limit": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "b84ea4a6-c134-4d6b-a823-4d392cc9c206",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VMDSBQrtuJvsqPgc64pEW7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 250,
+                "cache_read_input_tokens": 24021,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 250
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T20:33:50.802Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01551CJkQhH7ojmTiGKCMAST",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-2-\ndocs/paper/experiments.tex-3-We evaluate across two research questions:\ndocs/paper/experiments.tex:4:(1)~Do Tier~1 exception signals generalize across models?\ndocs/paper/experiments.tex:5:(2)~What is the relative contribution of each trace component?\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-6-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-7-Pairwise comparisons use paired bootstrap resampling ($B{=}10{,}000$, seed=42); all differences are significant at $p{<}0.0001$ unless noted.\n--\ndocs/paper/experiments.tex-65-\\label{sec:ablation}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-66-\ndocs/paper/experiments.tex:67:We restrict \\texttt{ae\\_only} ablations to Qwen-7B; \\texttt{loop\\_only} is evaluated across three models to test Tier~2 generalization (Table~\\ref{tab:cross_model}).\ndocs/paper/experiments.tex:68:Table~\\ref{tab:ablation} decomposes VOTA on Qwen-2.5-7B and reveals a two-tier hierarchy: Tier~1 (\\texttt{exception\\_only}) generalizes across all four models (${\\geq}$99.33\\%), while Tier~2 (\\texttt{loop\\_only}) is model-dependent.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-69-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-70-\\begin{table}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-71-\\centering\ndocs/paper/experiments.tex:72:[Omitted long matching line]\ndocs/paper/experiments.tex-73-\\label{tab:ablation}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-74-\\small\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-76-\\begin{tabular}{llccc}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-77-\\toprule\ndocs/paper/experiments.tex:78:\\textbf{Condition} & \\textbf{Components} & \\textbf{Acc (\\%)} & \\textbf{95\\% CI} & \\textbf{Tier} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-79-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-80-ae\\_only & assertion-point & 99.64$^\\dag$ & [99.26, 99.87] & 1 \\\\\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-94-\\end{table}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-95-\ndocs/paper/experiments.tex:96:Tier~1 signals are individually sufficient: \\texttt{exception\\_only} (99.83\\%$\\pm$0.00) exceeds VOTA (99.05\\%$\\pm$0.38) by +0.78pp (2/3 seeds $p{<}0.05$, all directionally consistent), implying that combining signals introduces noise.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-97-Removing assertion points has no effect (\\texttt{VOTA\\_no\\_ae} = 99.41\\%, single seed), confirming exception dominance.\ndocs/paper/experiments.tex:98:Tier~2 \\texttt{loop\\_only} improves over \\texttt{no\\_trace} but is model-dependent: +10.92pp on Qwen-7B (86.05\\%, 3-seed mean, $p{<}0.0001$), +7.90pp on DeepSeek (81.26\\%, CI [79.08, 83.45]), but only +0.59pp on CodeLlama (77.06\\%, not significant).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-99-\\paragraph{Rule-based baseline comparison.}\ndocs/paper/experiments.tex-100-The strongest non-trivial regex heuristic (B4: exception class name matching; Table~\\ref{tab:regex}) achieves 93.61\\% accuracy (F1=0.876), trailing SFT \\texttt{exception\\_only} (99.83\\%, F1=0.997) by 6.22pp (McNemar $p{<}0.001$).\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-111-\ndocs/paper/experiments.tex-112-The \\texttt{exception\\_only} format includes a \\texttt{[No exception data in trace]} marker in all pass-class samples (regex baseline B5 exploits this for 99.33\\% accuracy; Appendix~\\ref{sec:regex_baselines}).\ndocs/paper/experiments.tex:113:To quantify the marker's contribution, we retrain with all format markers removed (\\texttt{nomarker} condition).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-114-\ndocs/paper/experiments.tex-115-Qwen-7B 3-seed mean: 97.65\\% $\\pm$ 0.96 (seeds 42/123/456: 96.55/98.32/98.07\\%), a drop of 2.18pp from \\texttt{exception\\_only} (99.83\\%).\ndocs/paper/experiments.tex-116-Qwen-1.5B: 97.82\\%, drop of 2.01pp.\ndocs/paper/experiments.tex:117:The marker contribution (${\\sim}$2pp) accounts for only ${\\sim}$9\\% of the total exception lift over \\texttt{no\\_trace} (24.70pp on 7B).\ndocs/paper/experiments.tex-118-Exception events thus provide two signal layers that show no degradation at smaller scale: structural markers (${\\sim}$2pp, regex-learnable) and semantic exception content (${\\sim}$22pp, requiring SFT to distinguish caught from uncaught exceptions).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-119-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-169-\\paragraph{Calibration.}\ndocs/paper/experiments.tex-170-\\label{sec:calibration}\ndocs/paper/experiments.tex:171:Calibration mirrors the tier hierarchy: \\texttt{exception\\_only} achieves ECE = 0.0027 vs.\\ 0.171 for \\texttt{no\\_trace}, a 63$\\times$ gap (Figure~\\ref{fig:calibration}).\ndocs/paper/experiments.tex-172-This calibration advantage generalizes across models: all three tested architectures achieve ECE ${<}$ 0.007 under \\texttt{exception\\_only} (Appendix~\\ref{sec:calibration_full}).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-173-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/main.tex-20-\\begin{abstract}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/main.tex-21-Code language models increasingly incorporate execution traces, yet more trace information does not guarantee better performance.\ndocs/paper/main.tex:22:We present the first systematic component ablation of trace representations for verdict prediction---classifying whether a test passes or fails---across four models spanning three architecture families and a 1.5B--13B parameter range.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/main.tex-23-Exception events alone achieve ${\\geq}$99.33\\% accuracy on three of four models, while complete traces reach only ${\\sim}$80\\% despite containing strictly more information.\ndocs/paper/main.tex-24-Training dynamics reveal why: \\texttt{exception\\_only} converges within 50 training steps, whereas even \\texttt{full\\_trace} with label-only loss (gradient dilution eliminated) oscillates throughout training without reaching stable accuracy---overfitting to spurious patterns in verbose content rather than learning the verdict signal.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/conclusion.tex-1-\\section{Conclusion}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/conclusion.tex-2-\ndocs/paper/conclusion.tex:3:We presented the first systematic component ablation for verdict prediction across four models (1.5B--13B, three families), finding that information density determines learning efficiency: \\texttt{exception\\_only} converges within 50 steps while \\texttt{full\\_trace} (label-only loss) still oscillates without stable convergence.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/conclusion.tex-4-Exception events achieve ${\\geq}$99.83\\% on three of four models (${\\sim}$91\\% semantic) with consistent cross-model generalization, while lower-density loop signals are model-dependent (+0.6--10.9pp); the gap decomposes into ${\\sim}$76\\% overload and ${\\sim}$24\\% dilution (Qwen-7B, 3 seeds).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/conclusion.tex-5-This insight likely extends to other trace-based tasks, though generalization beyond LLM-generated Python code remains open.\n--\ndocs/paper/discussion.tex-23-CodeLlama's tokenizer produces ${\\sim}$20\\% more tokens than Qwen's on identical inputs; a label-only loss variant recovers accuracy at tail-1024 but collapses at tail-2048, indicating LoRA long-sequence instability (Appendix~\\ref{sec:tokenizer_analysis}).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex-24-\ndocs/paper/discussion.tex:25:\\paragraph{Tier hierarchy and methodological implications.}\ndocs/paper/discussion.tex:26:The two-tier structure (Tier~1 ${\\geq}$99\\% across models; Tier~2 = 77.1--86.1\\%) suggests a fallback design: extract exception events first (median 150 tokens), resort to Tier~2 only when no exception is raised (model-dependent, +0.6--10.9pp over no-trace).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex-27-The methodological insight---that information density determines learning efficiency---transfers to any trace-based task where compact diagnostic events exist within verbose traces, such as re-analyzing archived CI/CD logs when the original test environment is unavailable.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex-28-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex-29-\\paragraph{Density--robustness gradient.}\ndocs/paper/discussion.tex:30:Tier~1 and Tier~2 signals exhibit contrasting cross-model stability: \\texttt{exception\\_only} spans 0.56pp across models (${\\geq}$99.33\\%), while \\texttt{loop\\_only} spans 8.99pp (77.06--86.05\\%), with lifts over \\texttt{no\\_trace} following a gradient (+10.9 $>$ +7.9 $>$ +0.6pp, the last not significant).\ndocs/paper/discussion.tex:31:This pattern is consistent with information density predicting cross-model robustness, but is observed across only $N{=}3$ models and is confounded: Tier~1 signals are both high-density \\emph{and} direct fault indicators, so density cannot be disentangled from signal type in this study.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex-32-We report this as an observed correlation requiring further investigation.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex-33-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-531-\\end{table}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-532-\ndocs/paper/appendix.tex:533:Table~\\ref{tab:calibration} shows that calibration quality mirrors the Tier~1/2 hierarchy.\ndocs/paper/appendix.tex:534:Tier~1 conditions (\\texttt{ae\\_only}: ECE=0.0004; \\texttt{exception\\_only}: ECE=0.0027) produce near-perfectly calibrated predictions, while \\texttt{full\\_trace} (ECE=0.096) and \\texttt{no\\_trace} (ECE=0.171) exhibit substantial miscalibration.\ndocs/paper/appendix.tex:535:VOTA (ECE=0.0054) is well-calibrated but slightly worse than either Tier~1 component alone, reinforcing the pattern that combining trace signals dilutes rather than improves the prediction signal.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-536-\ndocs/paper/appendix.tex-537-The Brier scores tell a consistent story: \\texttt{ae\\_only} (0.0008) and \\texttt{exception\\_only} (0.0013) achieve near-zero scores, while \\texttt{no\\_trace} (0.197) indicates substantial miscalibration.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex-6-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex-7-Prior work found no single trace representation consistently outperforms others \\citep{wang2025dcsh}, but focused on generation-oriented tasks.\ndocs/paper/introduction.tex:8:\\emph{Verdict prediction}---classifying whether a test passes or fails---offers a cleaner testbed: as binary classification, it isolates the learning signal from generation noise, enabling controlled component ablation.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex-9-As fault detection, the model need not simulate execution, only determine whether something went wrong---and if that signal is concentrated in a small trace subset, information density should matter more than quantity.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex-10-\ndocs/paper/introduction.tex:11:We test this hypothesis through the first systematic component ablation of trace representations for verdict prediction.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex-12-[Omitted long context line]\ndocs/paper/introduction.tex-13-The results are striking: complete traces (${\\sim}$80\\%) underperform a single compact component (${\\geq}$99\\%) despite containing strictly more information---a direct demonstration that information density, not quantity, determines learning efficiency.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex-23-Even on silent logic errors (55.5\\% of failures), \\texttt{exception\\_only} maintains 100\\% recall because test assertions generate exception events.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex-24-\ndocs/paper/introduction.tex:25:Our contributions:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex-26-\\begin{enumerate}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex-27-[Omitted long context line]\ndocs/paper/introduction.tex-28-\\item \\textbf{Exception events are the minimal sufficient signal}: ${\\geq}$99.83\\% on three of four models, ${\\geq}$99.33\\% on 2/3 DeepSeek seeds (1.5B--13B, three families), with ${\\sim}$91\\% semantic rather than format-driven (\\S\\ref{sec:cross_model}, \\S\\ref{sec:nomarker}). Cross-dataset evaluation on DebugBench ($N{=}426$) preserves the ranking, though margins narrow from ceiling effects (\\S\\ref{sec:debugbench}).\ndocs/paper/introduction.tex-29-\\item \\textbf{Approximate density decomposition (Qwen-7B, 3 seeds)}: The performance gap decomposes into gradient dilution (${\\sim}$24\\%) and information overload (${\\sim}$76\\%), implying content selection matters more than loss engineering. A budget sweep across four models reveals a phase transition at ${\\sim}$500 tail tokens (\\S\\ref{sec:density}, \\S\\ref{sec:trace_length}).\ndocs/paper/introduction.tex:30:\\item \\textbf{Two-tier diagnostic hierarchy}: Tier~1 signals (exceptions, assertions) generalize across three models (${\\geq}$99\\%), while Tier~2 (loop compression) is model-dependent: Qwen +10.9pp, DeepSeek +7.9pp, CodeLlama +0.6pp over no trace (\\S\\ref{sec:ablation}).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex-31-\\end{enumerate}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "25e95829-2e89-4140-956c-0fdb8e3bc5d8",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-2-\ndocs/paper/experiments.tex-3-We evaluate across two research questions:\ndocs/paper/experiments.tex:4:(1)~Do Tier~1 exception signals generalize across models?\ndocs/paper/experiments.tex:5:(2)~What is the relative contribution of each trace component?\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-6-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-7-Pairwise comparisons use paired bootstrap resampling ($B{=}10{,}000$, seed=42); all differences are significant at $p{<}0.0001$ unless noted.\n--\ndocs/paper/experiments.tex-65-\\label{sec:ablation}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-66-\ndocs/paper/experiments.tex:67:We restrict \\texttt{ae\\_only} ablations to Qwen-7B; \\texttt{loop\\_only} is evaluated across three models to test Tier~2 generalization (Table~\\ref{tab:cross_model}).\ndocs/paper/experiments.tex:68:Table~\\ref{tab:ablation} decomposes VOTA on Qwen-2.5-7B and reveals a two-tier hierarchy: Tier~1 (\\texttt{exception\\_only}) generalizes across all four models (${\\geq}$99.33\\%), while Tier~2 (\\texttt{loop\\_only}) is model-dependent.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-69-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-70-\\begin{table}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-71-\\centering\ndocs/paper/experiments.tex:72:[Omitted long matching line]\ndocs/paper/experiments.tex-73-\\label{tab:ablation}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-74-\\small\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-76-\\begin{tabular}{llccc}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-77-\\toprule\ndocs/paper/experiments.tex:78:\\textbf{Condition} & \\textbf{Components} & \\textbf{Acc (\\%)} & \\textbf{95\\% CI} & \\textbf{Tier} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-79-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-80-ae\\_only & assertion-point & 99.64$^\\dag$ & [99.26, 99.87] & 1 \\\\\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-94-\\end{table}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-95-\ndocs/paper/experiments.tex:96:Tier~1 signals are individually sufficient: \\texttt{exception\\_only} (99.83\\%$\\pm$0.00) exceeds VOTA (99.05\\%$\\pm$0.38) by +0.78pp (2/3 seeds $p{<}0.05$, all directionally consistent), implying that combining signals introduces noise.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-97-Removing assertion points has no effect (\\texttt{VOTA\\_no\\_ae} = 99.41\\%, single seed), confirming exception dominance.\ndocs/paper/experiments.tex:98:Tier~2 \\texttt{loop\\_only} improves over \\texttt{no\\_trace} but is model-dependent: +10.92pp on Qwen-7B (86.05\\%, 3-seed mean, $p{<}0.0001$), +7.90pp on DeepSeek (81.26\\%, CI [79.08, 83.45]), but only +0.59pp on CodeLlama (77.06\\%, not significant).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-99-\\paragraph{Rule-based baseline comparison.}\ndocs/paper/experiments.tex-100-The strongest non-trivial regex heuristic (B4: exception class name matching; Table~\\ref{tab:regex}) achieves 93.61\\% accuracy (F1=0.876), trailing SFT \\texttt{exception\\_only} (99.83\\%, F1=0.997) by 6.22pp (McNemar $p{<}0.001$).\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-111-\ndocs/paper/experiments.tex-112-The \\texttt{exception\\_only} format includes a \\texttt{[No exception data in trace]} marker in all pass-class samples (regex baseline B5 exploits this for 99.33\\% accuracy; Appendix~\\ref{sec:regex_baselines}).\ndocs/paper/experiments.tex:113:To quantify the marker's contribution, we retrain with all format markers removed (\\texttt{nomarker} condition).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-114-\ndocs/paper/experiments.tex-115-Qwen-7B 3-seed mean: 97.65\\% $\\pm$ 0.96 (seeds 42/123/456: 96.55/98.32/98.07\\%), a drop of 2.18pp from \\texttt{exception\\_only} (99.83\\%).\ndocs/paper/experiments.tex-116-Qwen-1.5B: 97.82\\%, drop of 2.01pp.\ndocs/paper/experiments.tex:117:The marker contribution (${\\sim}$2pp) accounts for only ${\\sim}$9\\% of the total exception lift over \\texttt{no\\_trace} (24.70pp on 7B).\ndocs/paper/experiments.tex-118-Exception events thus provide two signal layers that show no degradation at smaller scale: structural markers (${\\sim}$2pp, regex-learnable) and semantic exception content (${\\sim}$22pp, requiring SFT to distinguish caught from uncaught exceptions).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-119-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-169-\\paragraph{Calibration.}\ndocs/paper/experiments.tex-170-\\label{sec:calibration}\ndocs/paper/experiments.tex:171:Calibration mirrors the tier hierarchy: \\texttt{exception\\_only} achieves ECE = 0.0027 vs.\\ 0.171 for \\texttt{no\\_trace}, a 63$\\times$ gap (Figure~\\ref{fig:calibration}).\ndocs/paper/experiments.tex-172-This calibration advantage generalizes across models: all three tested architectures achieve ECE ${<}$ 0.007 under \\texttt{exception\\_only} (Appendix~\\ref{sec:calibration_full}).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-173-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/main.tex-20-\\begin{abstract}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/main.tex-21-Code language models increasingly incorporate execution traces, yet more trace information does not guarantee better performance.\ndocs/paper/main.tex:22:We present the first systematic component ablation of trace representations for verdict prediction---classifying whether a test passes or fails---across four models spanning three architecture families and a 1.5B--13B parameter range.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/main.tex-23-Exception events alone achieve ${\\geq}$99.33\\% accuracy on three of four models, while complete traces reach only ${\\sim}$80\\% despite containing strictly more information.\ndocs/paper/main.tex-24-Training dynamics reveal why: \\texttt{exception\\_only} converges within 50 training steps, whereas even \\texttt{full\\_trace} with label-only loss (gradient dilution eliminated) oscillates throughout training without reaching stable accuracy---overfitting to spurious patterns in verbose content rather than learning the verdict signal.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/conclusion.tex-1-\\section{Conclusion}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/conclusion.tex-2-\ndocs/paper/conclusion.tex:3:We presented the first systematic component ablation for verdict prediction across four models (1.5B--13B, three families), finding that information density determines learning efficiency: \\texttt{exception\\_only} converges within 50 steps while \\texttt{full\\_trace} (label-only loss) still oscillates without stable convergence.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/conclusion.tex-4-Exception events achieve ${\\geq}$99.83\\% on three of four models (${\\sim}$91\\% semantic) with consistent cross-model generalization, while lower-density loop signals are model-dependent (+0.6--10.9pp); the gap decomposes into ${\\sim}$76\\% overload and ${\\sim}$24\\% dilution (Qwen-7B, 3 seeds).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/conclusion.tex-5-This insight likely extends to other trace-based tasks, though generalization beyond LLM-generated Python code remains open.\n--\ndocs/paper/discussion.tex-23-CodeLlama's tokenizer produces ${\\sim}$20\\% more tokens than Qwen's on identical inputs; a label-only loss variant recovers accuracy at tail-1024 but collapses at tail-2048, indicating LoRA long-sequence instability (Appendix~\\ref{sec:tokenizer_analysis}).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex-24-\ndocs/paper/discussion.tex:25:\\paragraph{Tier hierarchy and methodological implications.}\ndocs/paper/discussion.tex:26:The two-tier structure (Tier~1 ${\\geq}$99\\% across models; Tier~2 = 77.1--86.1\\%) suggests a fallback design: extract exception events first (median 150 tokens), resort to Tier~2 only when no exception is raised (model-dependent, +0.6--10.9pp over no-trace).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex-27-The methodological insight---that information density determines learning efficiency---transfers to any trace-based task where compact diagnostic events exist within verbose traces, such as re-analyzing archived CI/CD logs when the original test environment is unavailable.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex-28-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex-29-\\paragraph{Density--robustness gradient.}\ndocs/paper/discussion.tex:30:Tier~1 and Tier~2 signals exhibit contrasting cross-model stability: \\texttt{exception\\_only} spans 0.56pp across models (${\\geq}$99.33\\%), while \\texttt{loop\\_only} spans 8.99pp (77.06--86.05\\%), with lifts over \\texttt{no\\_trace} following a gradient (+10.9 $>$ +7.9 $>$ +0.6pp, the last not significant).\ndocs/paper/discussion.tex:31:This pattern is consistent with information density predicting cross-model robustness, but is observed across only $N{=}3$ models and is confounded: Tier~1 signals are both high-density \\emph{and} direct fault indicators, so density cannot be disentangled from signal type in this study.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex-32-We report this as an observed correlation requiring further investigation.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex-33-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-531-\\end{table}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-532-\ndocs/paper/appendix.tex:533:Table~\\ref{tab:calibration} shows that calibration quality mirrors the Tier~1/2 hierarchy.\ndocs/paper/appendix.tex:534:Tier~1 conditions (\\texttt{ae\\_only}: ECE=0.0004; \\texttt{exception\\_only}: ECE=0.0027) produce near-perfectly calibrated predictions, while \\texttt{full\\_trace} (ECE=0.096) and \\texttt{no\\_trace} (ECE=0.171) exhibit substantial miscalibration.\ndocs/paper/appendix.tex:535:VOTA (ECE=0.0054) is well-calibrated but slightly worse than either Tier~1 component alone, reinforcing the pattern that combining trace signals dilutes rather than improves the prediction signal.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-536-\ndocs/paper/appendix.tex-537-The Brier scores tell a consistent story: \\texttt{ae\\_only} (0.0008) and \\texttt{exception\\_only} (0.0013) achieve near-zero scores, while \\texttt{no\\_trace} (0.197) indicates substantial miscalibration.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex-6-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex-7-Prior work found no single trace representation consistently outperforms others \\citep{wang2025dcsh}, but focused on generation-oriented tasks.\ndocs/paper/introduction.tex:8:\\emph{Verdict prediction}---classifying whether a test passes or fails---offers a cleaner testbed: as binary classification, it isolates the learning signal from generation noise, enabling controlled component ablation.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex-9-As fault detection, the model need not simulate execution, only determine whether something went wrong---and if that signal is concentrated in a small trace subset, information density should matter more than quantity.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex-10-\ndocs/paper/introduction.tex:11:We test this hypothesis through the first systematic component ablation of trace representations for verdict prediction.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex-12-[Omitted long context line]\ndocs/paper/introduction.tex-13-The results are striking: complete traces (${\\sim}$80\\%) underperform a single compact component (${\\geq}$99\\%) despite containing strictly more information---a direct demonstration that information density, not quantity, determines learning efficiency.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex-23-Even on silent logic errors (55.5\\% of failures), \\texttt{exception\\_only} maintains 100\\% recall because test assertions generate exception events.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex-24-\ndocs/paper/introduction.tex:25:Our contributions:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex-26-\\begin{enumerate}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex-27-[Omitted long context line]\ndocs/paper/introduction.tex-28-\\item \\textbf{Exception events are the minimal sufficient signal}: ${\\geq}$99.83\\% on three of four models, ${\\geq}$99.33\\% on 2/3 DeepSeek seeds (1.5B--13B, three families), with ${\\sim}$91\\% semantic rather than format-driven (\\S\\ref{sec:cross_model}, \\S\\ref{sec:nomarker}). Cross-dataset evaluation on DebugBench ($N{=}426$) preserves the ranking, though margins narrow from ceiling effects (\\S\\ref{sec:debugbench}).\ndocs/paper/introduction.tex-29-\\item \\textbf{Approximate density decomposition (Qwen-7B, 3 seeds)}: The performance gap decomposes into gradient dilution (${\\sim}$24\\%) and information overload (${\\sim}$76\\%), implying content selection matters more than loss engineering. A budget sweep across four models reveals a phase transition at ${\\sim}$500 tail tokens (\\S\\ref{sec:density}, \\S\\ref{sec:trace_length}).\ndocs/paper/introduction.tex:30:\\item \\textbf{Two-tier diagnostic hierarchy}: Tier~1 signals (exceptions, assertions) generalize across three models (${\\geq}$99\\%), while Tier~2 (loop compression) is model-dependent: Qwen +10.9pp, DeepSeek +7.9pp, CodeLlama +0.6pp over no trace (\\S\\ref{sec:ablation}).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex-31-\\end{enumerate}",
+              "numLines": 98
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read the specific lines around the cross-model table and any other areas I need more context on."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "f8239b7c-f43f-4632-a7e0-786949932b56",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019eHcFjEQcRGa288bDHRdCH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5294,
+                "cache_read_input_tokens": 24271,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5294
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ALvgC2YaYvHEejGE2ngbti",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex",
+                "offset": 70,
+                "limit": 35
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "5e612204-dddc-476f-a505-465182076bb0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019eHcFjEQcRGa288bDHRdCH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5294,
+                "cache_read_input_tokens": 24271,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5294
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T20:33:55.550Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ALvgC2YaYvHEejGE2ngbti",
+              "type": "tool_result",
+              "content": "70\t\\begin{table}[t]\n71\t\\centering\n72\t\\caption{Component ablation on Qwen-2.5-7B ($N{=}1{,}190$). Tier~1 signals achieve near-perfect accuracy; combining them (VOTA) slightly dilutes performance. $^\\dag$\\texttt{ae\\_only}: 3-seed mean 99.64\\%$\\pm$0.49 (seeds 42/123/456: 99.92/99.08/99.92). \\texttt{exception\\_only}: 99.83\\%$\\pm$0.00 (3 seeds). $^\\S$VOTA: 3-seed mean 99.05\\%$\\pm$0.38 (99.41/98.66/99.08). $^\\ddag$\\texttt{loop\\_only}: 3-seed mean 86.05\\%$\\pm$0.52 (85.63/85.88/86.64). Seed variance negatively correlates with information density: $\\sigma{=}$0.00 (exception) ${<}$ 0.38 (VOTA) ${<}$ 0.49 (ae) ${<}$ 0.52 (loop).}\n73\t\\label{tab:ablation}\n74\t\\small\n75\t\\resizebox{\\columnwidth}{!}{%\n76\t\\begin{tabular}{llccc}\n77\t\\toprule\n78\t\\textbf{Condition} & \\textbf{Components} & \\textbf{Acc (\\%)} & \\textbf{95\\% CI} & \\textbf{Tier} \\\\\n79\t\\midrule\n80\tae\\_only & assertion-point & 99.64$^\\dag$ & [99.26, 99.87] & 1 \\\\\n81\texception\\_only & exception events & \\textbf{99.83} & [99.58, 100.00] & 1 \\\\\n82\tVOTA & exc+ae+loop & 99.05$^\\S$ & [98.49, 99.50] & --- \\\\\n83\tVOTA\\_no\\_ae & exc+loop & 99.41 & [98.90, 99.80] & --- \\\\\n84\tloop\\_only & loop compression & 86.05$^\\ddag$ & [83.97, 87.96] & 2 \\\\\n85\tfull\\_trace & complete trace & 81.76 & [79.70, 83.90] & --- \\\\\n86\tno\\_trace & none & 75.13 & [72.77, 77.48] & --- \\\\\n87\t\\midrule\n88\tRegex (best) & exc.\\ type regex & 93.61 & --- & --- \\\\\n89\t3-shot (Qwen-7B) & in-context learning & 90.84 & --- & --- \\\\\n90\tZero-shot (4 models) & prompting & 51.0--93.5 & --- & --- \\\\\n91\t\\bottomrule\n92\t\\end{tabular}%\n93\t}\n94\t\\end{table}\n95\t\n96\tTier~1 signals are individually sufficient: \\texttt{exception\\_only} (99.83\\%$\\pm$0.00) exceeds VOTA (99.05\\%$\\pm$0.38) by +0.78pp (2/3 seeds $p{<}0.05$, all directionally consistent), implying that combining signals introduces noise.\n97\tRemoving assertion points has no effect (\\texttt{VOTA\\_no\\_ae} = 99.41\\%, single seed), confirming exception dominance.\n98\tTier~2 \\texttt{loop\\_only} improves over \\texttt{no\\_trace} but is model-dependent: +10.92pp on Qwen-7B (86.05\\%, 3-seed mean, $p{<}0.0001$), +7.90pp on DeepSeek (81.26\\%, CI [79.08, 83.45]), but only +0.59pp on CodeLlama (77.06\\%, not significant).\n99\t\\paragraph{Rule-based baseline comparison.}\n100\tThe strongest non-trivial regex heuristic (B4: exception class name matching; Table~\\ref{tab:regex}) achieves 93.61\\% accuracy (F1=0.876), trailing SFT \\texttt{exception\\_only} (99.83\\%, F1=0.997) by 6.22pp (McNemar $p{<}0.001$).\n101\tThe gap concentrates on caught-exception boundary cases: regex flags all exception events as failures, while SFT learns to distinguish caught exceptions (benign, inside \\texttt{try/except}) from uncaught faults, correctly resolving 6/8 boundary samples (Appendix~\\ref{sec:regex_baselines}).\n102\tAcross trace formats, SFT consistently outperforms the best applicable regex, from +3.62pp (\\texttt{no\\_trace} over majority baseline) to +23.86pp (VOTA), with the largest gains on formats requiring semantic interpretation (Appendix~\\ref{sec:regex_baselines}).\n103\t\n104\t\\paragraph{Zero-shot and few-shot LLM baselines.}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "78780548-63d7-4511-95dc-9144f2236eab",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex",
+                "content": "\\begin{table}[t]\n\\centering\n\\caption{Component ablation on Qwen-2.5-7B ($N{=}1{,}190$). Tier~1 signals achieve near-perfect accuracy; combining them (VOTA) slightly dilutes performance. $^\\dag$\\texttt{ae\\_only}: 3-seed mean 99.64\\%$\\pm$0.49 (seeds 42/123/456: 99.92/99.08/99.92). \\texttt{exception\\_only}: 99.83\\%$\\pm$0.00 (3 seeds). $^\\S$VOTA: 3-seed mean 99.05\\%$\\pm$0.38 (99.41/98.66/99.08). $^\\ddag$\\texttt{loop\\_only}: 3-seed mean 86.05\\%$\\pm$0.52 (85.63/85.88/86.64). Seed variance negatively correlates with information density: $\\sigma{=}$0.00 (exception) ${<}$ 0.38 (VOTA) ${<}$ 0.49 (ae) ${<}$ 0.52 (loop).}\n\\label{tab:ablation}\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llccc}\n\\toprule\n\\textbf{Condition} & \\textbf{Components} & \\textbf{Acc (\\%)} & \\textbf{95\\% CI} & \\textbf{Tier} \\\\\n\\midrule\nae\\_only & assertion-point & 99.64$^\\dag$ & [99.26, 99.87] & 1 \\\\\nexception\\_only & exception events & \\textbf{99.83} & [99.58, 100.00] & 1 \\\\\nVOTA & exc+ae+loop & 99.05$^\\S$ & [98.49, 99.50] & --- \\\\\nVOTA\\_no\\_ae & exc+loop & 99.41 & [98.90, 99.80] & --- \\\\\nloop\\_only & loop compression & 86.05$^\\ddag$ & [83.97, 87.96] & 2 \\\\\nfull\\_trace & complete trace & 81.76 & [79.70, 83.90] & --- \\\\\nno\\_trace & none & 75.13 & [72.77, 77.48] & --- \\\\\n\\midrule\nRegex (best) & exc.\\ type regex & 93.61 & --- & --- \\\\\n3-shot (Qwen-7B) & in-context learning & 90.84 & --- & --- \\\\\nZero-shot (4 models) & prompting & 51.0--93.5 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\nTier~1 signals are individually sufficient: \\texttt{exception\\_only} (99.83\\%$\\pm$0.00) exceeds VOTA (99.05\\%$\\pm$0.38) by +0.78pp (2/3 seeds $p{<}0.05$, all directionally consistent), implying that combining signals introduces noise.\nRemoving assertion points has no effect (\\texttt{VOTA\\_no\\_ae} = 99.41\\%, single seed), confirming exception dominance.\nTier~2 \\texttt{loop\\_only} improves over \\texttt{no\\_trace} but is model-dependent: +10.92pp on Qwen-7B (86.05\\%, 3-seed mean, $p{<}0.0001$), +7.90pp on DeepSeek (81.26\\%, CI [79.08, 83.45]), but only +0.59pp on CodeLlama (77.06\\%, not significant).\n\\paragraph{Rule-based baseline comparison.}\nThe strongest non-trivial regex heuristic (B4: exception class name matching; Table~\\ref{tab:regex}) achieves 93.61\\% accuracy (F1=0.876), trailing SFT \\texttt{exception\\_only} (99.83\\%, F1=0.997) by 6.22pp (McNemar $p{<}0.001$).\nThe gap concentrates on caught-exception boundary cases: regex flags all exception events as failures, while SFT learns to distinguish caught exceptions (benign, inside \\texttt{try/except}) from uncaught faults, correctly resolving 6/8 boundary samples (Appendix~\\ref{sec:regex_baselines}).\nAcross trace formats, SFT consistently outperforms the best applicable regex, from +3.62pp (\\texttt{no\\_trace} over majority baseline) to +23.86pp (VOTA), with the largest gains on formats requiring semantic interpretation (Appendix~\\ref{sec:regex_baselines}).\n\n\\paragraph{Zero-shot and few-shot LLM baselines.}",
+                "numLines": 35,
+                "startLine": 70,
+                "totalLines": 183
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019xUyAgiEiWzdrgReFtJ1Ts",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex",
+                "offset": 120,
+                "limit": 55
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "b44e022b-e483-41c2-9725-50568362ac09",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019eHcFjEQcRGa288bDHRdCH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5294,
+                "cache_read_input_tokens": 24271,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5294
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T20:33:56.485Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019xUyAgiEiWzdrgReFtJ1Ts",
+              "type": "tool_result",
+              "content": "120\t\\subsection{Information Density Decomposition}\n121\t\\label{sec:density}\n122\t\n123\tThe 17.29pp gap between \\texttt{full\\_trace} (81.76\\%) and VOTA (99.05\\%, 3-seed mean) decomposes via \\texttt{full\\_trace\\_label\\_only} (85.94\\%$\\pm$1.12, 3 seeds; Table~\\ref{tab:density}), which retains the full trace but masks all trace tokens from the loss.\n124\t\n125\t\\begin{table}[t]\n126\t\\centering\n127\t\\caption{Approximate information density decomposition: gradient dilution (${\\sim}$24\\%) vs.\\ information overload (${\\sim}$76\\%). \\texttt{label\\_only} and VOTA are 3-seed means on Qwen-7B.}\n128\t\\label{tab:density}\n129\t\\small\n130\t\\resizebox{\\columnwidth}{!}{%\n131\t\\begin{tabular}{lccc}\n132\t\\toprule\n133\t\\textbf{Condition} & \\textbf{Acc (\\%)} & \\textbf{$\\Delta$ vs.\\ full\\_trace} & \\textbf{Gap explained} \\\\\n134\t\\midrule\n135\tfull\\_trace & 81.76 & --- & --- \\\\\n136\tlabel\\_only & 85.94{\\scriptsize$\\pm$1.12} & +4.18pp & 24\\% \\\\\n137\tVOTA & 99.05{\\scriptsize$\\pm$0.38} & +17.29pp & 100\\% \\\\\n138\t\\bottomrule\n139\t\\end{tabular}%\n140\t}\n141\t\\end{table}\n142\t\n143\tGradient dilution accounts for approximately 24\\% of the gap (+4.18pp, 3-seed mean): when the model no longer wastes gradient updates on predicting trace tokens, accuracy improves even with identical input.\n144\tThe remaining ${\\sim}$76\\% (+13.11pp) reflects information overload at inference: the model receives thousands of irrelevant trace lines that compete for attention with the diagnostic signal, regardless of loss design.\n145\tThis asymmetry implies that trace compression methods should prioritize \\emph{content selection} (removing irrelevant lines) over \\emph{loss engineering} (masking non-target tokens), as the larger bottleneck is what the model sees, not how it is trained.\n146\tThe two factors may interact, so this decomposition is approximate.\n147\tLabel-only loss simultaneously changes multiple optimization dynamics (effective gradient norm, implicit regularization from trace token prediction); the 24\\%/76\\% attribution should be interpreted as an approximate decomposition rather than a strict causal partition.\n148\tThis analysis uses 3 seeds on a single model (Qwen-7B); cross-model validation remains future work.\n149\t\n150\t\\subsection{Additional Analyses}\n151\t\\label{sec:additional}\n152\t\n153\t\\paragraph{Trace length ablation.}\n154\t\\label{sec:trace_length}\n155\tVarying the head-truncated trace token budget (256--no limit) on Qwen-7B yields accuracy in a narrow 77.2\\%--81.8\\% band with a non-monotonic pattern: 1024-token prefixes (77.23\\%) underperform 512-token prefixes (80.42\\%, $p{=}0.002$), because mid-length prefixes retain enough irrelevant content to mislead the model while discarding diagnostic events near the trace terminus (Appendix~\\ref{sec:trace_length_full}).\n156\tThis non-monotonicity is specific to head-truncation; under tail-truncation, accuracy increases monotonically for two of three models (Table~\\ref{tab:tail_cross_model} in Appendix), with only DeepSeek showing a mild architecture-specific reversal at tail-1024$\\to$tail-2048 ($-$1.5pp).\n157\t\n158\t\\paragraph{Truncation direction and budget curve.}\n159\tTail-truncation (retaining the last $k$ tokens) dramatically outperforms head-truncation: among the three models with complete data, tail-2048 exceeds head-2048 by 15.5--22.6pp, with the gap widening at smaller scale (Qwen-1.5B: +22.6pp vs.\\ Qwen-7B: +15.5pp; Appendix~\\ref{sec:trace_length_full}, Table~\\ref{tab:head_vs_tail}).\n160\tAll four models' head-2048 accuracies converge into a narrow 75.3--81.8\\% band (6.5pp), comparable to the tail-256 band (72.6--78.9\\%, 6.3pp), indicating that signal-poor conditions produce a shared performance floor regardless of scale or architecture.\n161\t\n162\tA cross-model budget sweep across four models and three architecture families reveals a phase transition localized between 384 and 512 tail tokens.\n163\tAt tail-384, all models remain near baseline (73.6--82.9\\%, only +1.0--6.5pp over tail-256); the steep jump occurs at 384$\\to$512 (+11.0--22.0pp), crossing from near-baseline to near-ceiling (${\\sim}$94--98\\%).\n164\tThis localizes the critical threshold to ${\\sim}$400--500 tokens, matching the typical exception traceback length (Table~\\ref{tab:tail_cross_model}).\n165\tBeyond 512 tokens, accuracy converges further: multi-seed validation across all 12 model$\\times$seed combinations confirms all tail-512 accuracies fall within a 4.63pp band [93.61\\%, 98.24\\%] (Table~\\ref{tab:tail512_seeds}); at tail-1024, three models reach 96.5--98.2\\%, compressing the 6.3pp cross-model spread observed at tail-256.\n166\t\\texttt{tail\\_2048} captures 95--98\\% of \\texttt{exception\\_only}'s accuracy across all completed configurations.\n167\tThe residual 2--5pp gap confirms that semantic extraction (identifying exception type and message) still outperforms positional extraction (retaining a fixed window containing non-diagnostic lines).\n168\t\n169\t\\paragraph{Calibration.}\n170\t\\label{sec:calibration}\n171\tCalibration mirrors the tier hierarchy: \\texttt{exception\\_only} achieves ECE = 0.0027 vs.\\ 0.171 for \\texttt{no\\_trace}, a 63$\\times$ gap (Figure~\\ref{fig:calibration}).\n172\tThis calibration advantage generalizes across models: all three tested architectures achieve ECE ${<}$ 0.007 under \\texttt{exception\\_only} (Appendix~\\ref{sec:calibration_full}).\n173\t\n174\t\\paragraph{Error orthogonality.}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "c5745429-3ff8-42cd-9551-ab5fbb762d92",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex",
+                "content": "\\subsection{Information Density Decomposition}\n\\label{sec:density}\n\nThe 17.29pp gap between \\texttt{full\\_trace} (81.76\\%) and VOTA (99.05\\%, 3-seed mean) decomposes via \\texttt{full\\_trace\\_label\\_only} (85.94\\%$\\pm$1.12, 3 seeds; Table~\\ref{tab:density}), which retains the full trace but masks all trace tokens from the loss.\n\n\\begin{table}[t]\n\\centering\n\\caption{Approximate information density decomposition: gradient dilution (${\\sim}$24\\%) vs.\\ information overload (${\\sim}$76\\%). \\texttt{label\\_only} and VOTA are 3-seed means on Qwen-7B.}\n\\label{tab:density}\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Condition} & \\textbf{Acc (\\%)} & \\textbf{$\\Delta$ vs.\\ full\\_trace} & \\textbf{Gap explained} \\\\\n\\midrule\nfull\\_trace & 81.76 & --- & --- \\\\\nlabel\\_only & 85.94{\\scriptsize$\\pm$1.12} & +4.18pp & 24\\% \\\\\nVOTA & 99.05{\\scriptsize$\\pm$0.38} & +17.29pp & 100\\% \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\nGradient dilution accounts for approximately 24\\% of the gap (+4.18pp, 3-seed mean): when the model no longer wastes gradient updates on predicting trace tokens, accuracy improves even with identical input.\nThe remaining ${\\sim}$76\\% (+13.11pp) reflects information overload at inference: the model receives thousands of irrelevant trace lines that compete for attention with the diagnostic signal, regardless of loss design.\nThis asymmetry implies that trace compression methods should prioritize \\emph{content selection} (removing irrelevant lines) over \\emph{loss engineering} (masking non-target tokens), as the larger bottleneck is what the model sees, not how it is trained.\nThe two factors may interact, so this decomposition is approximate.\nLabel-only loss simultaneously changes multiple optimization dynamics (effective gradient norm, implicit regularization from trace token prediction); the 24\\%/76\\% attribution should be interpreted as an approximate decomposition rather than a strict causal partition.\nThis analysis uses 3 seeds on a single model (Qwen-7B); cross-model validation remains future work.\n\n\\subsection{Additional Analyses}\n\\label{sec:additional}\n\n\\paragraph{Trace length ablation.}\n\\label{sec:trace_length}\nVarying the head-truncated trace token budget (256--no limit) on Qwen-7B yields accuracy in a narrow 77.2\\%--81.8\\% band with a non-monotonic pattern: 1024-token prefixes (77.23\\%) underperform 512-token prefixes (80.42\\%, $p{=}0.002$), because mid-length prefixes retain enough irrelevant content to mislead the model while discarding diagnostic events near the trace terminus (Appendix~\\ref{sec:trace_length_full}).\nThis non-monotonicity is specific to head-truncation; under tail-truncation, accuracy increases monotonically for two of three models (Table~\\ref{tab:tail_cross_model} in Appendix), with only DeepSeek showing a mild architecture-specific reversal at tail-1024$\\to$tail-2048 ($-$1.5pp).\n\n\\paragraph{Truncation direction and budget curve.}\nTail-truncation (retaining the last $k$ tokens) dramatically outperforms head-truncation: among the three models with complete data, tail-2048 exceeds head-2048 by 15.5--22.6pp, with the gap widening at smaller scale (Qwen-1.5B: +22.6pp vs.\\ Qwen-7B: +15.5pp; Appendix~\\ref{sec:trace_length_full}, Table~\\ref{tab:head_vs_tail}).\nAll four models' head-2048 accuracies converge into a narrow 75.3--81.8\\% band (6.5pp), comparable to the tail-256 band (72.6--78.9\\%, 6.3pp), indicating that signal-poor conditions produce a shared performance floor regardless of scale or architecture.\n\nA cross-model budget sweep across four models and three architecture families reveals a phase transition localized between 384 and 512 tail tokens.\nAt tail-384, all models remain near baseline (73.6--82.9\\%, only +1.0--6.5pp over tail-256); the steep jump occurs at 384$\\to$512 (+11.0--22.0pp), crossing from near-baseline to near-ceiling (${\\sim}$94--98\\%).\nThis localizes the critical threshold to ${\\sim}$400--500 tokens, matching the typical exception traceback length (Table~\\ref{tab:tail_cross_model}).\nBeyond 512 tokens, accuracy converges further: multi-seed validation across all 12 model$\\times$seed combinations confirms all tail-512 accuracies fall within a 4.63pp band [93.61\\%, 98.24\\%] (Table~\\ref{tab:tail512_seeds}); at tail-1024, three models reach 96.5--98.2\\%, compressing the 6.3pp cross-model spread observed at tail-256.\n\\texttt{tail\\_2048} captures 95--98\\% of \\texttt{exception\\_only}'s accuracy across all completed configurations.\nThe residual 2--5pp gap confirms that semantic extraction (identifying exception type and message) still outperforms positional extraction (retaining a fixed window containing non-diagnostic lines).\n\n\\paragraph{Calibration.}\n\\label{sec:calibration}\nCalibration mirrors the tier hierarchy: \\texttt{exception\\_only} achieves ECE = 0.0027 vs.\\ 0.171 for \\texttt{no\\_trace}, a 63$\\times$ gap (Figure~\\ref{fig:calibration}).\nThis calibration advantage generalizes across models: all three tested architectures achieve ECE ${<}$ 0.007 under \\texttt{exception\\_only} (Appendix~\\ref{sec:calibration_full}).\n\n\\paragraph{Error orthogonality.}",
+                "numLines": 55,
+                "startLine": 120,
+                "totalLines": 183
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QUzFZdx7xLn1o2j8s7hhLP",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/conclusion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "0f3862c0-bd22-4ce0-ad82-2834b9dbfcf7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019eHcFjEQcRGa288bDHRdCH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5294,
+                "cache_read_input_tokens": 24271,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5294
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T20:33:56.748Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QUzFZdx7xLn1o2j8s7hhLP",
+              "type": "tool_result",
+              "content": "1\t\\section{Conclusion}\n2\t\n3\tWe presented the first systematic component ablation for verdict prediction across four models (1.5B--13B, three families), finding that information density determines learning efficiency: \\texttt{exception\\_only} converges within 50 steps while \\texttt{full\\_trace} (label-only loss) still oscillates without stable convergence.\n4\tException events achieve ${\\geq}$99.83\\% on three of four models (${\\sim}$91\\% semantic) with consistent cross-model generalization, while lower-density loop signals are model-dependent (+0.6--10.9pp); the gap decomposes into ${\\sim}$76\\% overload and ${\\sim}$24\\% dilution (Qwen-7B, 3 seeds).\n5\tThis insight likely extends to other trace-based tasks, though generalization beyond LLM-generated Python code remains open.\n6\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "de0cdda2-161f-42e6-a1ae-50edfc52e28b",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/conclusion.tex",
+                "content": "\\section{Conclusion}\n\nWe presented the first systematic component ablation for verdict prediction across four models (1.5B--13B, three families), finding that information density determines learning efficiency: \\texttt{exception\\_only} converges within 50 steps while \\texttt{full\\_trace} (label-only loss) still oscillates without stable convergence.\nException events achieve ${\\geq}$99.83\\% on three of four models (${\\sim}$91\\% semantic) with consistent cross-model generalization, while lower-density loop signals are model-dependent (+0.6--10.9pp); the gap decomposes into ${\\sim}$76\\% overload and ${\\sim}$24\\% dilution (Qwen-7B, 3 seeds).\nThis insight likely extends to other trace-based tasks, though generalization beyond LLM-generated Python code remains open.\n",
+                "numLines": 6,
+                "startLine": 1,
+                "totalLines": 6
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check the cross-model table in experiments.tex and the appendix for more Tier/loop references."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "ef772fc1-6b9c-405d-bc6b-3bd1773ec409",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UUT6dVkzNnrkWf87n1fKp6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3614,
+                "cache_read_input_tokens": 29565,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3614
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014sMPhuNNRYgVJGJJhjuYUg",
+              "name": "Grep",
+              "input": {
+                "pattern": "cross_model|tab:cross|loop_only.*CodeLlama|loop_only.*DeepSeek|77\\.06|81\\.26|86\\.05|85\\.63",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper",
+                "glob": "*.tex",
+                "output_mode": "content",
+                "-n": true,
+                "context": 3,
+                "head_limit": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "9c1d0d4a-39a2-428b-9e42-a937b5181d3b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UUT6dVkzNnrkWf87n1fKp6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3614,
+                "cache_read_input_tokens": 29565,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3614
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T20:34:02.043Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014sMPhuNNRYgVJGJJhjuYUg",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (33.9KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-4-projects-trace-verdict-study/615e7611-b1d0-490d-808a-7b7749d28899/tool-results/toolu_014sMPhuNNRYgVJGJJhjuYUg.txt\n\nPreview (first 2KB):\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-7-Pairwise comparisons use paired bootstrap resampling ($B{=}10{,}000$, seed=42); all differences are significant at $p{<}0.0001$ unless noted.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-8-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-9-\\subsection{Cross-Model Comparison}\ndocs/paper/experiments.tex:10:\\label{sec:cross_model}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-11-\ndocs/paper/experiments.tex:12:Table~\\ref{tab:cross_model} compares four models spanning an 8.7$\\times$ parameter range (1.5B--13B) and three architecture families (Qwen, DeepSeek, CodeLlama) under key conditions.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-13-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-14-\\begin{table}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-15-\\centering\ndocs/paper/experiments.tex-16-\\caption{Cross-model verdict accuracy (\\%, $N{=}1{,}190$) across four models (1.5B--13B) and three architecture families. Multi-seed entries report mean$\\pm$std over 3 seeds. Bold: best per model. Full per-seed breakdowns in Appendix~\\ref{sec:full_results}; per-class metrics in Appendix~\\ref{sec:per_class}.}\ndocs/paper/experiments.tex:17:\\label{tab:cross_model}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-18-\\small\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-19-\\resizebox{\\columnwidth}{!}{%\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-20-\\begin{tabular}{lcccc}\n--\n...\n</persisted-output>"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "d38cf83c-b09c-44f3-b9b5-63dbb4411499",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-7-Pairwise comparisons use paired bootstrap resampling ($B{=}10{,}000$, seed=42); all differences are significant at $p{<}0.0001$ unless noted.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-8-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-9-\\subsection{Cross-Model Comparison}\ndocs/paper/experiments.tex:10:\\label{sec:cross_model}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-11-\ndocs/paper/experiments.tex:12:Table~\\ref{tab:cross_model} compares four models spanning an 8.7$\\times$ parameter range (1.5B--13B) and three architecture families (Qwen, DeepSeek, CodeLlama) under key conditions.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-13-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-14-\\begin{table}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-15-\\centering\ndocs/paper/experiments.tex-16-\\caption{Cross-model verdict accuracy (\\%, $N{=}1{,}190$) across four models (1.5B--13B) and three architecture families. Multi-seed entries report mean$\\pm$std over 3 seeds. Bold: best per model. Full per-seed breakdowns in Appendix~\\ref{sec:full_results}; per-class metrics in Appendix~\\ref{sec:per_class}.}\ndocs/paper/experiments.tex:17:\\label{tab:cross_model}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-18-\\small\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-19-\\resizebox{\\columnwidth}{!}{%\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-20-\\begin{tabular}{lcccc}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-24-exception\\_only & \\textbf{99.83}{\\scriptsize$\\pm$0.00} & \\textbf{99.83}{\\scriptsize$\\pm$0.00} & \\textbf{99.89}{\\scriptsize$\\pm$0.10} & \\textbf{99.33}$^\\dag$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-25-ae\\_only & 99.64{\\scriptsize$\\pm$0.49} & --- & --- & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-26-VOTA & 99.05{\\scriptsize$\\pm$0.38} & 99.58 & 98.57 & 84.45 \\\\\ndocs/paper/experiments.tex:27:loop\\_only & 86.05{\\scriptsize$\\pm$0.52} & --- & 77.06 & 81.26 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-28-no\\_trace & 75.13 & 67.31 & 76.47 & 73.36 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-29-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-30-Majority baseline & \\multicolumn{4}{c}{71.51} \\\\\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-35-\\par\\raggedright\\footnotesize\ndocs/paper/experiments.tex-36-$^\\dag$DeepSeek 3-seed mean 96.58\\%$\\pm$4.76pp; seed 123 (91.09\\%, fail recall\\,=\\,70.5\\%) exhibits format collapse on long inputs (Appendix~\\ref{sec:training_dynamics}), reported as 2-seed mean excluding the outlier.\ndocs/paper/experiments.tex-37-VOTA on Qwen-7B: 99.41/98.66/99.08 ($\\sigma{=}$0.38).\ndocs/paper/experiments.tex:38:\\texttt{ae\\_only} 3 seeds: 99.92/99.08/99.92 (mean 99.64\\%); Qwen-7B \\texttt{loop\\_only} 3 seeds: 85.63/85.88/86.64 (mean 86.05\\%).\ndocs/paper/experiments.tex-39-Qwen-1.5B \\texttt{exception\\_only}: 99.83\\% across 3 seeds ($\\sigma{=}$0).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-40-\\end{table}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-41-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-51-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-52-\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-53-\\centering\ndocs/paper/experiments.tex:54:\\includegraphics[width=\\columnwidth]{fig3_cross_model_gap}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-55-\\caption{Verdict accuracy vs.\\ model scale. \\texttt{exception\\_only} maintains ${\\geq}$99.33\\% regardless of scale (1.5B--13B), while \\texttt{no\\_trace} shows monotonic scale sensitivity (+9.16pp from 1.5B to 13B). The \\texttt{nomarker} condition (format markers removed) shows no degradation at smaller scale (${\\sim}$97.7--97.8\\%).}\ndocs/paper/experiments.tex-56-\\label{fig:cross_scale}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-57-\\end{figure}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-64-\\subsection{Component Ablation}\ndocs/paper/experiments.tex-65-\\label{sec:ablation}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-66-\ndocs/paper/experiments.tex:67:We restrict \\texttt{ae\\_only} ablations to Qwen-7B; \\texttt{loop\\_only} is evaluated across three models to test Tier~2 generalization (Table~\\ref{tab:cross_model}).\ndocs/paper/experiments.tex-68-Table~\\ref{tab:ablation} decomposes VOTA on Qwen-2.5-7B and reveals a two-tier hierarchy: Tier~1 (\\texttt{exception\\_only}) generalizes across all four models (${\\geq}$99.33\\%), while Tier~2 (\\texttt{loop\\_only}) is model-dependent.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-69-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-70-\\begin{table}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-71-\\centering\ndocs/paper/experiments.tex:72:[Omitted long matching line]\ndocs/paper/experiments.tex-73-\\label{tab:ablation}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-74-\\small\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-75-\\resizebox{\\columnwidth}{!}{%\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-81-exception\\_only & exception events & \\textbf{99.83} & [99.58, 100.00] & 1 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-82-VOTA & exc+ae+loop & 99.05$^\\S$ & [98.49, 99.50] & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-83-VOTA\\_no\\_ae & exc+loop & 99.41 & [98.90, 99.80] & --- \\\\\ndocs/paper/experiments.tex:84:loop\\_only & loop compression & 86.05$^\\ddag$ & [83.97, 87.96] & 2 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-85-full\\_trace & complete trace & 81.76 & [79.70, 83.90] & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-86-no\\_trace & none & 75.13 & [72.77, 77.48] & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-87-\\midrule\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-95-\ndocs/paper/experiments.tex-96-Tier~1 signals are individually sufficient: \\texttt{exception\\_only} (99.83\\%$\\pm$0.00) exceeds VOTA (99.05\\%$\\pm$0.38) by +0.78pp (2/3 seeds $p{<}0.05$, all directionally consistent), implying that combining signals introduces noise.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-97-Removing assertion points has no effect (\\texttt{VOTA\\_no\\_ae} = 99.41\\%, single seed), confirming exception dominance.\ndocs/paper/experiments.tex:98:Tier~2 \\texttt{loop\\_only} improves over \\texttt{no\\_trace} but is model-dependent: +10.92pp on Qwen-7B (86.05\\%, 3-seed mean, $p{<}0.0001$), +7.90pp on DeepSeek (81.26\\%, CI [79.08, 83.45]), but only +0.59pp on CodeLlama (77.06\\%, not significant).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-99-\\paragraph{Rule-based baseline comparison.}\ndocs/paper/experiments.tex-100-The strongest non-trivial regex heuristic (B4: exception class name matching; Table~\\ref{tab:regex}) achieves 93.61\\% accuracy (F1=0.876), trailing SFT \\texttt{exception\\_only} (99.83\\%, F1=0.997) by 6.22pp (McNemar $p{<}0.001$).\ndocs/paper/experiments.tex-101-The gap concentrates on caught-exception boundary cases: regex flags all exception events as failures, while SFT learns to distinguish caught exceptions (benign, inside \\texttt{try/except}) from uncaught faults, correctly resolving 6/8 boundary samples (Appendix~\\ref{sec:regex_baselines}).\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-104-\\paragraph{Zero-shot and few-shot LLM baselines.}\ndocs/paper/experiments.tex-105-Zero-shot prompting spans 51.0--93.5\\% across four models (42.44pp range), with performance uncorrelated with model size (Qwen-1.5B: 93.45\\% vs.\\ CodeLlama-13B: 51.01\\%).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-106-Three-shot ICL on Qwen-7B (90.84\\%) improves only 1.76pp and still trails SFT by 8.99pp.\ndocs/paper/experiments.tex:107:SFT compresses this 42.44pp range to 0.56pp (99.33--99.89\\%), closing a 6--49pp gap with 4,720 training samples (Appendix~\\ref{sec:zeroshot_cross_model}).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-108-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-109-\\subsection{Format Marker Ablation}\ndocs/paper/experiments.tex-110-\\label{sec:nomarker}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-153-\\paragraph{Trace length ablation.}\ndocs/paper/experiments.tex-154-\\label{sec:trace_length}\ndocs/paper/experiments.tex-155-Varying the head-truncated trace token budget (256--no limit) on Qwen-7B yields accuracy in a narrow 77.2\\%--81.8\\% band with a non-monotonic pattern: 1024-token prefixes (77.23\\%) underperform 512-token prefixes (80.42\\%, $p{=}0.002$), because mid-length prefixes retain enough irrelevant content to mislead the model while discarding diagnostic events near the trace terminus (Appendix~\\ref{sec:trace_length_full}).\ndocs/paper/experiments.tex:156:This non-monotonicity is specific to head-truncation; under tail-truncation, accuracy increases monotonically for two of three models (Table~\\ref{tab:tail_cross_model} in Appendix), with only DeepSeek showing a mild architecture-specific reversal at tail-1024$\\to$tail-2048 ($-$1.5pp).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-157-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-158-\\paragraph{Truncation direction and budget curve.}\ndocs/paper/experiments.tex-159-Tail-truncation (retaining the last $k$ tokens) dramatically outperforms head-truncation: among the three models with complete data, tail-2048 exceeds head-2048 by 15.5--22.6pp, with the gap widening at smaller scale (Qwen-1.5B: +22.6pp vs.\\ Qwen-7B: +15.5pp; Appendix~\\ref{sec:trace_length_full}, Table~\\ref{tab:head_vs_tail}).\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-161-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-162-A cross-model budget sweep across four models and three architecture families reveals a phase transition localized between 384 and 512 tail tokens.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-163-At tail-384, all models remain near baseline (73.6--82.9\\%, only +1.0--6.5pp over tail-256); the steep jump occurs at 384$\\to$512 (+11.0--22.0pp), crossing from near-baseline to near-ceiling (${\\sim}$94--98\\%).\ndocs/paper/experiments.tex:164:This localizes the critical threshold to ${\\sim}$400--500 tokens, matching the typical exception traceback length (Table~\\ref{tab:tail_cross_model}).\ndocs/paper/experiments.tex-165-Beyond 512 tokens, accuracy converges further: multi-seed validation across all 12 model$\\times$seed combinations confirms all tail-512 accuracies fall within a 4.63pp band [93.61\\%, 98.24\\%] (Table~\\ref{tab:tail512_seeds}); at tail-1024, three models reach 96.5--98.2\\%, compressing the 6.3pp cross-model spread observed at tail-256.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-166-\\texttt{tail\\_2048} captures 95--98\\% of \\texttt{exception\\_only}'s accuracy across all completed configurations.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex-167-The residual 2--5pp gap confirms that semantic extraction (identifying exception type and message) still outperforms positional extraction (retaining a fixed window containing non-diagnostic lines).\n--\ndocs/paper/main.tex-41-Third, DeepSeek \\texttt{exception\\_only} exhibits seed-dependent variance: 2/3 seeds achieve 99.33\\% while seed 123 yields 91.09\\% ($\\sigma{=}4.76$pp, $n{=}3$), which we hypothesize reflects LoRA initialization sensitivity in DeepSeek-Coder, though direct evidence is lacking (fail recall = 70.5\\% for the outlier vs.\\ 100\\% for others).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/main.tex-42-Qwen \\texttt{exception\\_only} shows perfect seed robustness ($\\sigma{=}0$, $n{=}3$), but Qwen \\texttt{ae\\_only} also exhibits seed variance ($\\sigma{=}$0.40pp; seed 123 = 99.08\\% vs.\\ seeds 42/456 = 99.92\\%), though far smaller than DeepSeek's ($\\sigma{=}$4.76pp).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/main.tex-43-Whether training stabilization techniques can eliminate DeepSeek's seed sensitivity is unexplored; other conditions use a single seed.\ndocs/paper/main.tex:44:Fourth, the initial DeepSeek \\texttt{full\\_trace} run was invalidated by context overflow; a re-run with extended context yields 79.16\\% (CI [76.80\\%, 81.30\\%]), 2.60pp below Qwen (Table~\\ref{tab:cross_model}).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/main.tex-45-Fifth, the candidate solutions were generated by Qwen-2.5-Coder-7B-Instruct, which also serves as one of our evaluation models; this does not affect verdict prediction but may influence the pass/fail distribution.\ndocs/paper/main.tex-46-Sixth, self-familiarity bias may inflate absolute accuracy: both Qwen-2.5-Coder and DeepSeek-Coder were likely exposed to HumanEval and MBPP solutions during pretraining, so the models may partially recognize solutions rather than purely reasoning from trace signals; our cross-dataset evaluation on DebugBench mitigates but does not eliminate this concern.\ndocs/paper/main.tex-47-Seventh, the error distribution in our test set may not reflect real-world fault distributions: exceptions (especially \\texttt{TypeError}, \\texttt{ValueError}) dominate LLM-generated failures, but production code may exhibit a broader spectrum of silent logic errors where no exception is raised, potentially reducing the effectiveness of exception-based verdict prediction.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex-27-The methodological insight---that information density determines learning efficiency---transfers to any trace-based task where compact diagnostic events exist within verbose traces, such as re-analyzing archived CI/CD logs when the original test environment is unavailable.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex-28-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex-29-\\paragraph{Density--robustness gradient.}\ndocs/paper/discussion.tex:30:Tier~1 and Tier~2 signals exhibit contrasting cross-model stability: \\texttt{exception\\_only} spans 0.56pp across models (${\\geq}$99.33\\%), while \\texttt{loop\\_only} spans 8.99pp (77.06--86.05\\%), with lifts over \\texttt{no\\_trace} following a gradient (+10.9 $>$ +7.9 $>$ +0.6pp, the last not significant).\ndocs/paper/discussion.tex-31-This pattern is consistent with information density predicting cross-model robustness, but is observed across only $N{=}3$ models and is confounded: Tier~1 signals are both high-density \\emph{and} direct fault indicators, so density cannot be disentangled from signal type in this study.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex-32-We report this as an observed correlation requiring further investigation.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex-33-\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-18-VOTA              & Qwen-2.5-7B & 99.05 & 100.00 & 99.18 & 99.59 & 97.98 & 100.00 & 98.98 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-19-Exception Only    & Qwen-2.5-7B & 99.83 & 100.00 & 99.76 & 99.88 & 99.41 & 100.00 & 99.71 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-20-AE Only           & Qwen-2.5-7B & 99.92 & 100.00 & 99.88 & 99.94 & 99.71 & 100.00 & 99.85 \\\\\ndocs/paper/appendix.tex:21:Loop Only         & Qwen-2.5-7B & 86.05 & 92.39 & 87.07 & 89.66 & 71.65 & 82.01 & 76.48 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-22-VOTA\\_no\\_ae       & Qwen-2.5-7B & 99.41 & 99.88 & 99.29 & 99.59 & 98.26 & 99.71 & 98.98 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-23-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-24-No Trace          & DeepSeek-6.7B & 73.36 & 81.71 & 80.85 & 81.28 & 53.16 & 54.57 & 53.86 \\\\\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-216-VOTA                     & 99.41 & 98.66 & 99.08 & 99.05 $\\pm$ 0.38 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-217-VOTA\\_no\\_ae    & 99.41 & ---   & ---   & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-218-label\\_only     & 86.22 & 86.89 & 84.70 & 85.94 $\\pm$ 1.12 \\\\\ndocs/paper/appendix.tex:219:loop\\_only      & 85.63 & 85.88 & 86.64 & 86.05 $\\pm$ 0.52 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-220-full\\_trace     & 81.76 & ---   & ---   & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-221-no\\_trace       & 75.13 & ---   & ---   & --- \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-222-\\bottomrule\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-250-\\section{Tokenizer and Truncation Analysis}\ndocs/paper/appendix.tex-251-\\label{sec:tokenizer_analysis}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-252-\ndocs/paper/appendix.tex:253:The VOTA cross-model gap (14.96pp, Table~\\ref{tab:cross_model}; confounded by tokenizer-driven truncation; 91.7\\% of DeepSeek training samples were affected) is driven by a training-time truncation asymmetry.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-254-The DeepSeek tokenizer averages 2{,}626 tokens per VOTA sample versus 1{,}929 for Qwen, causing 91.7\\% of DeepSeek VOTA training samples to exceed the 2{,}048-token context window.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-255-The training framework preserves the verdict label but truncates trace content, so the model trains with incomplete diagnostic information for the majority of samples.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-256-\n--\ndocs/paper/appendix.tex-393-Under head-truncation (retaining trace prefixes), the trend is non-monotonic: 512 tokens (80.42\\%) slightly outperforms 256 tokens (78.82\\%), but doubling to 1024 tokens \\emph{decreases} accuracy to 77.23\\%, a statistically significant 3.19pp drop ($p{=}0.002$, 95\\% CI [$-$5.29, $-$1.09]).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-394-The no-limit condition (81.76\\%) recovers and significantly exceeds 1024 tokens ($p{<}0.001$), but 1024 tokens is not significantly better than \\texttt{no\\_trace} (75.13\\%; $\\Delta{=}{+}2.10$pp, $p{=}0.078$, 95\\% CI [$-$0.17, $+$4.37]).\ndocs/paper/appendix.tex-395-This non-monotonicity is specific to head-truncation: the 1024-token prefix retains enough irrelevant content to mislead the model while discarding diagnostic events that appear near the trace terminus.\ndocs/paper/appendix.tex:396:Under tail-truncation, accuracy increases monotonically for Qwen-7B and Qwen-1.5B (Table~\\ref{tab:tail_cross_model}); only DeepSeek-6.7B shows a mild $-$1.5pp decrease at tail-1024$\\to$tail-2048, attributable to architecture-specific long-context sensitivity rather than a systematic mid-length pathology.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-397-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-398-\\paragraph{Comparison to baselines.}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-399-All four trace budget conditions significantly exceed \\texttt{no\\_trace} except 1024 tokens ($p{=}0.078$), confirming that raw trace content provides some signal but unreliably so.\n--\ndocs/paper/appendix.tex-404-These results rule out input truncation as the primary explanation for the full-trace performance gap: even with unlimited tokens, the model cannot extract the diagnostic signal that VOTA's targeted compression provides.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-405-The non-monotonic dip at 1024 tokens is consistent with a ``worst-of-both-worlds'' regime where the model receives enough noisy context to dilute the signal but not enough to compensate through broader coverage.\ndocs/paper/appendix.tex-406-The result reinforces the information density interpretation (\\S\\ref{sec:density}): the gap between full traces and VOTA is driven by the \\emph{content} of the trace (irrelevant lines diluting the diagnostic signal), not its \\emph{length}.\ndocs/paper/appendix.tex:407:In contrast, VOTA's compressed representation concentrates the diagnostic signal into fewer tokens, making it sensitive to truncation when those tokens are removed (\\S\\ref{sec:cross_model}).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-408-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-409-\\paragraph{Truncation direction.}\ndocs/paper/appendix.tex-410-Tail-truncation (retaining the last $k$ tokens) dramatically outperforms head-truncation: \\texttt{tail\\_2048} achieves 97.31\\% vs.\\ \\texttt{head\\_2048} (no\\_limit) at 81.76\\%, a 15.55pp improvement.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-418-The fact that \\texttt{exception\\_only} (99.83\\%) still outperforms \\texttt{tail\\_2048} (97.31\\%) confirms that semantic extraction (identifying the exception type and message) is superior to positional extraction (keeping a fixed window), because the model need not filter out non-diagnostic lines that happen to fall within the window.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-419-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-420-\\paragraph{Cross-model budget curve.}\ndocs/paper/appendix.tex:421:Table~\\ref{tab:tail_cross_model} extends the tail-truncation analysis to a full budget sweep across four models spanning three architecture families and an 8.7$\\times$ parameter range.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-422-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-423-\\begin{table}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-424-\\centering\ndocs/paper/appendix.tex-425-\\caption{Cross-model tail-truncation budget curve ($N{=}1{,}190$). All four models exhibit a transition between tail-384 and tail-512 (+13--23pp). $\\downarrow$: non-monotonic decrease. $^\\dag$CodeLlama tail-1024 trained with label-only loss to address tokenizer-driven gradient dilution (\\S\\ref{sec:tokenizer_analysis}). $^\\ddag$CodeLlama tail-2048 outlier (41.8\\%): LoRA long-sequence instability under label-only loss; excluded from cross-model analysis.}\ndocs/paper/appendix.tex:426:\\label{tab:tail_cross_model}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-427-\\small\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-428-\\resizebox{\\columnwidth}{!}{%\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-429-\\begin{tabular}{lcccccc}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-624-\\section{Cross-Model Robustness Analysis}\ndocs/paper/appendix.tex-625-\\label{sec:robustness_analysis}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-626-\ndocs/paper/appendix.tex:627:The cross-model gap pattern (Table~\\ref{tab:cross_model}) suggests a design principle: \\emph{trace representations should match the model capability floor, not the ceiling.}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-628-Exception events are consistently the most effective component on both models, and their structural simplicity (a fixed-format error message) ensures that the relative advantage over richer representations holds across all seeds.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-629-Two of three DeepSeek seeds match Qwen-level accuracy (99.33\\%); the outlier (seed 123, 91.09\\%) we hypothesize reflects LoRA initialization sensitivity landing in a suboptimal basin (fail recall = 70.5\\%, though direct evidence is lacking), not a failure of the exception signal itself; even this outlier outperforms VOTA (84.45\\%) by 6.64pp.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-630-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-631-The two factors cannot be disentangled in the current experimental design.\ndocs/paper/appendix.tex-632-Our \\texttt{exception\\_only} design sidesteps the truncation confound entirely: inputs have a median of 150 tokens (mean 398), well below the 2{,}048-token context window, so no training samples are truncated on either model.\ndocs/paper/appendix.tex:633:The resulting 0.56pp cross-model gap (Table~\\ref{tab:cross_model}) is therefore a clean measure of model capability differences, making the ``capability floor'' principle directly testable.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-634-The practical implication is that trace-based systems should default to the simplest sufficient signal; for smaller models, training stability (multi-seed selection, warmup schedules) is a secondary but addressable concern.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-635-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-636-%% ============================================================\n--\ndocs/paper/appendix.tex-650-The 100 errors of seed 123 are not semantic failures but generation format collapse: on inputs exceeding 4,000 characters (those containing verbose locals dumps), the model echoes trace content instead of emitting a verdict token, while achieving zero errors on shorter inputs.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-651-This indicates that the LoRA initialization of seed 123 specifically compromises long-context format compliance rather than exception signal comprehension, further supporting the robustness advantage of compact \\texttt{exception\\_only} inputs.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-652-\ndocs/paper/appendix.tex:653:The contrast with VOTA is instructive: DeepSeek VOTA accuracy monotonically increases from 78.15\\% to 84.45\\% across epochs, but is consistent with a performance limit associated with the high trace truncation rate (\\S\\ref{sec:cross_model}): the model progressively extracts signal from samples with intact trace content but cannot fully compensate for the information loss in the truncated majority.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-654-The 84.45\\% accuracy reflects a combination of trace information loss and model capability constraints.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-655-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-656-%% ============================================================\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-744-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-745-%% ============================================================\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-746-\\section{Cross-Model Zero-Shot Comparison}\ndocs/paper/appendix.tex:747:\\label{sec:zeroshot_cross_model}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-748-\ndocs/paper/appendix.tex:749:Table~\\ref{tab:zeroshot_cross_model} compares zero-shot and SFT \\texttt{exception\\_only} accuracy across four models.\ndocs/paper/appendix.tex-750-Zero-shot performance does not correlate with model size: the smallest model (Qwen-1.5B, 93.45\\%) outperforms all larger models, while the largest (CodeLlama-13B) falls below majority baseline.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-751-SFT compresses the 42.44pp zero-shot range to 0.56pp, eliminating architecture-dependent variance.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-752-\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-753-\\begin{table}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-754-\\centering\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-755-\\caption{Zero-shot vs.\\ SFT \\texttt{exception\\_only} across four models ($N{=}1{,}190$). Zero-shot accuracy is uncorrelated with model size; SFT normalizes cross-architecture variance from 42.44pp to 0.56pp.}\ndocs/paper/appendix.tex:756:\\label{tab:zeroshot_cross_model}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-757-\\small\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-758-\\resizebox{\\columnwidth}{!}{%\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex-759-\\begin{tabular}{llccc}\n--\ndocs/paper/introduction.tex-25-Our contributions:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex-26-\\begin{enumerate}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex-27-[Omitted long context line]\ndocs/paper/introduction.tex:28:\\item \\textbf{Exception events are the minimal sufficient signal}: ${\\geq}$99.83\\% on three of four models, ${\\geq}$99.33\\% on 2/3 DeepSeek seeds (1.5B--13B, three families), with ${\\sim}$91\\% semantic rather than format-driven (\\S\\ref{sec:cross_model}, \\S\\ref{sec:nomarker}). Cross-dataset evaluation on DebugBench ($N{=}426$) preserves the ranking, though margins narrow from ceiling effects (\\S\\ref{sec:debugbench}).\ndocs/paper/introduction.tex-29-\\item \\textbf{Approximate density decomposition (Qwen-7B, 3 seeds)}: The performance gap decomposes into gradient dilution (${\\sim}$24\\%) and information overload (${\\sim}$76\\%), implying content selection matters more than loss engineering. A budget sweep across four models reveals a phase transition at ${\\sim}$500 tail tokens (\\S\\ref{sec:density}, \\S\\ref{sec:trace_length}).\ndocs/paper/introduction.tex-30-\\item \\textbf{Two-tier diagnostic hierarchy}: Tier~1 signals (exceptions, assertions) generalize across three models (${\\geq}$99\\%), while Tier~2 (loop compression) is model-dependent: Qwen +10.9pp, DeepSeek +7.9pp, CodeLlama +0.6pp over no trace (\\S\\ref{sec:ablation}).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/introduction.tex-31-\\end{enumerate}",
+              "numLines": 207
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q68bqrRjPiaeg5zQyX7hqD",
+              "name": "Grep",
+              "input": {
+                "pattern": "loop_only|loop.only",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex",
+                "output_mode": "content",
+                "-n": true,
+                "context": 2,
+                "head_limit": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "c1277e0b-af46-417f-ac7c-b1694d07c906",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UUT6dVkzNnrkWf87n1fKp6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3614,
+                "cache_read_input_tokens": 29565,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3614
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T20:34:03.369Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Q68bqrRjPiaeg5zQyX7hqD",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "746dd68a-309e-4541-98ba-21304287b72f",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "",
+              "numLines": 0
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FnXwExLdt4icyWJ3BTVjBn",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex",
+                "offset": 14,
+                "limit": 50
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "ad23b48b-80f7-42b3-a083-b5d6df5baea0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RD7kDVXJVSZhNWUadNZ1vU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1319,
+                "cache_read_input_tokens": 33179,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1319
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T20:34:06.873Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FnXwExLdt4icyWJ3BTVjBn",
+              "type": "tool_result",
+              "content": "14\t\\begin{table}[t]\n15\t\\centering\n16\t\\caption{Cross-model verdict accuracy (\\%, $N{=}1{,}190$) across four models (1.5B--13B) and three architecture families. Multi-seed entries report mean$\\pm$std over 3 seeds. Bold: best per model. Full per-seed breakdowns in Appendix~\\ref{sec:full_results}; per-class metrics in Appendix~\\ref{sec:per_class}.}\n17\t\\label{tab:cross_model}\n18\t\\small\n19\t\\resizebox{\\columnwidth}{!}{%\n20\t\\begin{tabular}{lcccc}\n21\t\\toprule\n22\t\\textbf{Condition} & \\textbf{Qwen-7B} & \\textbf{Qwen-1.5B} & \\textbf{CL-13B} & \\textbf{DS-6.7B} \\\\\n23\t\\midrule\n24\texception\\_only & \\textbf{99.83}{\\scriptsize$\\pm$0.00} & \\textbf{99.83}{\\scriptsize$\\pm$0.00} & \\textbf{99.89}{\\scriptsize$\\pm$0.10} & \\textbf{99.33}$^\\dag$ \\\\\n25\tae\\_only & 99.64{\\scriptsize$\\pm$0.49} & --- & --- & --- \\\\\n26\tVOTA & 99.05{\\scriptsize$\\pm$0.38} & 99.58 & 98.57 & 84.45 \\\\\n27\tloop\\_only & 86.05{\\scriptsize$\\pm$0.52} & --- & 77.06 & 81.26 \\\\\n28\tno\\_trace & 75.13 & 67.31 & 76.47 & 73.36 \\\\\n29\t\\midrule\n30\tMajority baseline & \\multicolumn{4}{c}{71.51} \\\\\n31\t\\bottomrule\n32\t\\end{tabular}%\n33\t}\n34\t\\vspace{2pt}\n35\t\\par\\raggedright\\footnotesize\n36\t$^\\dag$DeepSeek 3-seed mean 96.58\\%$\\pm$4.76pp; seed 123 (91.09\\%, fail recall\\,=\\,70.5\\%) exhibits format collapse on long inputs (Appendix~\\ref{sec:training_dynamics}), reported as 2-seed mean excluding the outlier.\n37\tVOTA on Qwen-7B: 99.41/98.66/99.08 ($\\sigma{=}$0.38).\n38\t\\texttt{ae\\_only} 3 seeds: 99.92/99.08/99.92 (mean 99.64\\%); Qwen-7B \\texttt{loop\\_only} 3 seeds: 85.63/85.88/86.64 (mean 86.05\\%).\n39\tQwen-1.5B \\texttt{exception\\_only}: 99.83\\% across 3 seeds ($\\sigma{=}$0).\n40\t\\end{table}\n41\t\n42\t\\paragraph{Exception dominance across families.}\n43\tUnder \\texttt{exception\\_only}, the Qwen and CodeLlama families achieve ${\\geq}$99.83\\% (mean): Qwen-7B (99.83\\%$\\pm$0.00, 3 seeds), Qwen-1.5B (99.83\\%), and CodeLlama-13B (99.89\\%$\\pm$0.10, 3 seeds; seed 123 achieves 100\\%).\n44\tDeepSeek-6.7B reaches 99.33\\% on 2/3 seeds with one LoRA-sensitivity outlier at 91.09\\% (seed 123; fail recall = 70.5\\%); even the outlier outperforms VOTA (84.45\\%) by 6.64pp.\n45\tExcluding the DeepSeek outlier, the cross-model range is 0.56pp (99.33--99.89\\%), the tightest of any condition.\n46\t\n47\t\\paragraph{Scale invariance of exception signals.}\n48\tException-based accuracy is shared by models spanning 1.5B to 13B parameters (8.7$\\times$): both Qwen-1.5B and CodeLlama-13B achieve 99.83\\%+ on the same representation.\n49\tCodeLlama-13B seed 123 achieves 100\\% (0/1190 errors), confirming that Qwen's two persistent errors (from \\texttt{GeneratorExit}; Appendix~\\ref{sec:irreducible}) are high-probability convergence artifacts rather than hard data limitations.\n50\tIn contrast, \\texttt{no\\_trace} scales monotonically with capacity: 67.31\\% (1.5B) $\\to$ 75.13\\% (7B) $\\to$ 76.47\\% (13B), a 9.16pp range that exception events completely eliminate (Figure~\\ref{fig:cross_scale}).\n51\t\n52\t\\begin{figure}[t]\n53\t\\centering\n54\t\\includegraphics[width=\\columnwidth]{fig3_cross_model_gap}\n55\t\\caption{Verdict accuracy vs.\\ model scale. \\texttt{exception\\_only} maintains ${\\geq}$99.33\\% regardless of scale (1.5B--13B), while \\texttt{no\\_trace} shows monotonic scale sensitivity (+9.16pp from 1.5B to 13B). The \\texttt{nomarker} condition (format markers removed) shows no degradation at smaller scale (${\\sim}$97.7--97.8\\%).}\n56\t\\label{fig:cross_scale}\n57\t\\end{figure}\n58\t\n59\t\\paragraph{VOTA cross-family variation.}\n60\tVOTA accuracy varies across families: 99.58\\% (Qwen-1.5B) $>$ 99.05\\%$\\pm$0.38 (Qwen-7B, 3 seeds) $>$ 98.57\\% (CodeLlama-13B; CI [97.9, 99.2]) $\\gg$ 84.45\\% (DeepSeek-6.7B).\n61\tThe CodeLlama result (17 errors) narrows the gap: among models without tokenizer-driven truncation, the VOTA range is only 1.01pp (98.57--99.58\\%), suggesting that the 14.96pp DeepSeek deficit is primarily a truncation artifact rather than an inherent model capability limitation (91.7\\% of DeepSeek training samples were affected; Appendix~\\ref{sec:tokenizer_analysis}).\n62\tIn contrast, \\texttt{exception\\_only} inputs are compact (median 150 tokens, mean 398 due to verbose fail-class exceptions), making the cross-model comparison clean (Appendix~\\ref{sec:robustness_analysis}).\n63\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "0a99f960-6895-4c7b-a396-3af8819e9c6b",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/experiments.tex",
+                "content": "\\begin{table}[t]\n\\centering\n\\caption{Cross-model verdict accuracy (\\%, $N{=}1{,}190$) across four models (1.5B--13B) and three architecture families. Multi-seed entries report mean$\\pm$std over 3 seeds. Bold: best per model. Full per-seed breakdowns in Appendix~\\ref{sec:full_results}; per-class metrics in Appendix~\\ref{sec:per_class}.}\n\\label{tab:cross_model}\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Condition} & \\textbf{Qwen-7B} & \\textbf{Qwen-1.5B} & \\textbf{CL-13B} & \\textbf{DS-6.7B} \\\\\n\\midrule\nexception\\_only & \\textbf{99.83}{\\scriptsize$\\pm$0.00} & \\textbf{99.83}{\\scriptsize$\\pm$0.00} & \\textbf{99.89}{\\scriptsize$\\pm$0.10} & \\textbf{99.33}$^\\dag$ \\\\\nae\\_only & 99.64{\\scriptsize$\\pm$0.49} & --- & --- & --- \\\\\nVOTA & 99.05{\\scriptsize$\\pm$0.38} & 99.58 & 98.57 & 84.45 \\\\\nloop\\_only & 86.05{\\scriptsize$\\pm$0.52} & --- & 77.06 & 81.26 \\\\\nno\\_trace & 75.13 & 67.31 & 76.47 & 73.36 \\\\\n\\midrule\nMajority baseline & \\multicolumn{4}{c}{71.51} \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\vspace{2pt}\n\\par\\raggedright\\footnotesize\n$^\\dag$DeepSeek 3-seed mean 96.58\\%$\\pm$4.76pp; seed 123 (91.09\\%, fail recall\\,=\\,70.5\\%) exhibits format collapse on long inputs (Appendix~\\ref{sec:training_dynamics}), reported as 2-seed mean excluding the outlier.\nVOTA on Qwen-7B: 99.41/98.66/99.08 ($\\sigma{=}$0.38).\n\\texttt{ae\\_only} 3 seeds: 99.92/99.08/99.92 (mean 99.64\\%); Qwen-7B \\texttt{loop\\_only} 3 seeds: 85.63/85.88/86.64 (mean 86.05\\%).\nQwen-1.5B \\texttt{exception\\_only}: 99.83\\% across 3 seeds ($\\sigma{=}$0).\n\\end{table}\n\n\\paragraph{Exception dominance across families.}\nUnder \\texttt{exception\\_only}, the Qwen and CodeLlama families achieve ${\\geq}$99.83\\% (mean): Qwen-7B (99.83\\%$\\pm$0.00, 3 seeds), Qwen-1.5B (99.83\\%), and CodeLlama-13B (99.89\\%$\\pm$0.10, 3 seeds; seed 123 achieves 100\\%).\nDeepSeek-6.7B reaches 99.33\\% on 2/3 seeds with one LoRA-sensitivity outlier at 91.09\\% (seed 123; fail recall = 70.5\\%); even the outlier outperforms VOTA (84.45\\%) by 6.64pp.\nExcluding the DeepSeek outlier, the cross-model range is 0.56pp (99.33--99.89\\%), the tightest of any condition.\n\n\\paragraph{Scale invariance of exception signals.}\nException-based accuracy is shared by models spanning 1.5B to 13B parameters (8.7$\\times$): both Qwen-1.5B and CodeLlama-13B achieve 99.83\\%+ on the same representation.\nCodeLlama-13B seed 123 achieves 100\\% (0/1190 errors), confirming that Qwen's two persistent errors (from \\texttt{GeneratorExit}; Appendix~\\ref{sec:irreducible}) are high-probability convergence artifacts rather than hard data limitations.\nIn contrast, \\texttt{no\\_trace} scales monotonically with capacity: 67.31\\% (1.5B) $\\to$ 75.13\\% (7B) $\\to$ 76.47\\% (13B), a 9.16pp range that exception events completely eliminate (Figure~\\ref{fig:cross_scale}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig3_cross_model_gap}\n\\caption{Verdict accuracy vs.\\ model scale. \\texttt{exception\\_only} maintains ${\\geq}$99.33\\% regardless of scale (1.5B--13B), while \\texttt{no\\_trace} shows monotonic scale sensitivity (+9.16pp from 1.5B to 13B). The \\texttt{nomarker} condition (format markers removed) shows no degradation at smaller scale (${\\sim}$97.7--97.8\\%).}\n\\label{fig:cross_scale}\n\\end{figure}\n\n\\paragraph{VOTA cross-family variation.}\nVOTA accuracy varies across families: 99.58\\% (Qwen-1.5B) $>$ 99.05\\%$\\pm$0.38 (Qwen-7B, 3 seeds) $>$ 98.57\\% (CodeLlama-13B; CI [97.9, 99.2]) $\\gg$ 84.45\\% (DeepSeek-6.7B).\nThe CodeLlama result (17 errors) narrows the gap: among models without tokenizer-driven truncation, the VOTA range is only 1.01pp (98.57--99.58\\%), suggesting that the 14.96pp DeepSeek deficit is primarily a truncation artifact rather than an inherent model capability limitation (91.7\\% of DeepSeek training samples were affected; Appendix~\\ref{sec:tokenizer_analysis}).\nIn contrast, \\texttt{exception\\_only} inputs are compact (median 150 tokens, mean 398 due to verbose fail-class exceptions), making the cross-model comparison clean (Appendix~\\ref{sec:robustness_analysis}).\n",
+                "numLines": 50,
+                "startLine": 14,
+                "totalLines": 183
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YVqQeycUAHx6guCqexK5U7",
+              "name": "Grep",
+              "input": {
+                "pattern": "77\\.06|81\\.26|86\\.05|85\\.63|8\\.99|10\\.9|7\\.9|0\\.6pp|\\\\+0\\\\.59",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper",
+                "glob": "*.tex",
+                "output_mode": "content",
+                "-n": true,
+                "head_limit": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "e3831bdb-4ed1-4053-9959-7f7de26f7ec0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RD7kDVXJVSZhNWUadNZ1vU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1319,
+                "cache_read_input_tokens": 33179,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1319
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T20:34:08.616Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YVqQeycUAHx6guCqexK5U7",
+              "type": "tool_result",
+              "content": "docs/paper/experiments.tex:6:[Omitted long matching line]\ndocs/paper/experiments.tex:27:loop\\_only & 86.05{\\scriptsize$\\pm$0.52} & --- & 77.06 & 81.26 \\\\\ndocs/paper/experiments.tex:38:\\texttt{ae\\_only} 3 seeds: 99.92/99.08/99.92 (mean 99.64\\%); Qwen-7B \\texttt{loop\\_only} 3 seeds: 85.63/85.88/86.64 (mean 86.05\\%).\ndocs/paper/experiments.tex:60:VOTA accuracy varies across families: 99.58\\% (Qwen-1.5B) $>$ 99.05\\%$\\pm$0.38 (Qwen-7B, 3 seeds) $>$ 98.57\\% (CodeLlama-13B; CI [97.9, 99.2]) $\\gg$ 84.45\\% (DeepSeek-6.7B).\ndocs/paper/experiments.tex:72:[Omitted long matching line]\ndocs/paper/experiments.tex:84:loop\\_only & loop compression & 86.05$^\\ddag$ & [83.97, 87.96] & 2 \\\\\ndocs/paper/experiments.tex:98:Tier~2 \\texttt{loop\\_only} improves over \\texttt{no\\_trace} but is model-dependent: +10.92pp on Qwen-7B (86.05\\%, 3-seed mean, $p{<}0.0001$), +7.90pp on DeepSeek (81.26\\%, CI [79.08, 83.45]), but only +0.59pp on CodeLlama (77.06\\%, not significant).\ndocs/paper/experiments.tex:106:Three-shot ICL on Qwen-7B (90.84\\%) improves only 1.76pp and still trails SFT by 8.99pp.\ndocs/paper/conclusion.tex:4:Exception events achieve ${\\geq}$99.83\\% on three of four models (${\\sim}$91\\% semantic) with consistent cross-model generalization, while lower-density loop signals are model-dependent (+0.6--10.9pp); the gap decomposes into ${\\sim}$76\\% overload and ${\\sim}$24\\% dilution (Qwen-7B, 3 seeds).\ndocs/paper/discussion.tex:26:The two-tier structure (Tier~1 ${\\geq}$99\\% across models; Tier~2 = 77.1--86.1\\%) suggests a fallback design: extract exception events first (median 150 tokens), resort to Tier~2 only when no exception is raised (model-dependent, +0.6--10.9pp over no-trace).\ndocs/paper/discussion.tex:30:Tier~1 and Tier~2 signals exhibit contrasting cross-model stability: \\texttt{exception\\_only} spans 0.56pp across models (${\\geq}$99.33\\%), while \\texttt{loop\\_only} spans 8.99pp (77.06--86.05\\%), with lifts over \\texttt{no\\_trace} following a gradient (+10.9 $>$ +7.9 $>$ +0.6pp, the last not significant).\ndocs/paper/method.tex:15:The \\texttt{exception\\_only} format collapses passing solutions into identical rows (39.45\\% train, 48.99\\% test duplicates); these duplicates arise from multiple candidate solutions per problem, with the train--test split enforced at the problem level (472 train / 119 test problems, zero crossover; Appendix~\\ref{sec:dedup_stats}).\ndocs/paper/appendix.tex:18:VOTA              & Qwen-2.5-7B & 99.05 & 100.00 & 99.18 & 99.59 & 97.98 & 100.00 & 98.98 \\\\\ndocs/paper/appendix.tex:21:Loop Only         & Qwen-2.5-7B & 86.05 & 92.39 & 87.07 & 89.66 & 71.65 & 82.01 & 76.48 \\\\\ndocs/paper/appendix.tex:219:loop\\_only      & 85.63 & 85.88 & 86.64 & 86.05 $\\pm$ 0.52 \\\\\ndocs/paper/appendix.tex:261:Because \\texttt{exception\\_only} test inputs contain 48.99\\% duplicates (607 unique of 1,190; \\S\\ref{sec:dataset}), CIs assume $n{=}1{,}190$ independent trials; under deduplication ($n{=}607$), Qwen's accuracy is 99.67\\% (Wilson CI [98.81, 99.91]).\ndocs/paper/appendix.tex:380:& no\\_limit $-$ no\\_trace & $+$6.64  & [$+$4.37, $+$8.99]   & ${<}$0.001*** \\\\\ndocs/paper/appendix.tex:435:CodeLlama (13B) & 77.9 & 80.6 & 98.2 & 98.2$^\\dag$ & 41.8$^\\ddag$ & 99.89 \\\\\ndocs/paper/appendix.tex:436:Qwen-1.5B (1.5B) & 72.6 & 73.6 & 95.6 & 96.6 & 97.9 & 99.83 \\\\\ndocs/paper/appendix.tex:452:Qwen-1.5B & 75.3 & 97.9 & +22.6 \\\\\ndocs/paper/appendix.tex:499:In the signal-rich regime (tail-512+), this reverses: Qwen-1.5B matches or exceeds Qwen-7B (95.6\\% vs.\\ 93.6\\% at tail-512; 97.9\\% vs.\\ 97.3\\% at tail-2048), confirming that sufficient trace signal eliminates the capacity advantage.\ndocs/paper/appendix.tex:670:The \\texttt{exception\\_only} test set contains 48.99\\% duplicate inputs due to representation compactness; all confidence intervals treat samples as independent Bernoulli trials.\ndocs/paper/appendix.tex:682:exception\\_only test  & 1{,}190 &   607 & 48.99\\% \\\\\ndocs/paper/introduction.tex:30:\\item \\textbf{Two-tier diagnostic hierarchy}: Tier~1 signals (exceptions, assertions) generalize across three models (${\\geq}$99\\%), while Tier~2 (loop compression) is model-dependent: Qwen +10.9pp, DeepSeek +7.9pp, CodeLlama +0.6pp over no trace (\\S\\ref{sec:ablation})."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "9c4603fa-2710-418d-82de-cf1cd6b131e4",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "docs/paper/experiments.tex:6:[Omitted long matching line]\ndocs/paper/experiments.tex:27:loop\\_only & 86.05{\\scriptsize$\\pm$0.52} & --- & 77.06 & 81.26 \\\\\ndocs/paper/experiments.tex:38:\\texttt{ae\\_only} 3 seeds: 99.92/99.08/99.92 (mean 99.64\\%); Qwen-7B \\texttt{loop\\_only} 3 seeds: 85.63/85.88/86.64 (mean 86.05\\%).\ndocs/paper/experiments.tex:60:VOTA accuracy varies across families: 99.58\\% (Qwen-1.5B) $>$ 99.05\\%$\\pm$0.38 (Qwen-7B, 3 seeds) $>$ 98.57\\% (CodeLlama-13B; CI [97.9, 99.2]) $\\gg$ 84.45\\% (DeepSeek-6.7B).\ndocs/paper/experiments.tex:72:[Omitted long matching line]\ndocs/paper/experiments.tex:84:loop\\_only & loop compression & 86.05$^\\ddag$ & [83.97, 87.96] & 2 \\\\\ndocs/paper/experiments.tex:98:Tier~2 \\texttt{loop\\_only} improves over \\texttt{no\\_trace} but is model-dependent: +10.92pp on Qwen-7B (86.05\\%, 3-seed mean, $p{<}0.0001$), +7.90pp on DeepSeek (81.26\\%, CI [79.08, 83.45]), but only +0.59pp on CodeLlama (77.06\\%, not significant).\ndocs/paper/experiments.tex:106:Three-shot ICL on Qwen-7B (90.84\\%) improves only 1.76pp and still trails SFT by 8.99pp.\ndocs/paper/conclusion.tex:4:Exception events achieve ${\\geq}$99.83\\% on three of four models (${\\sim}$91\\% semantic) with consistent cross-model generalization, while lower-density loop signals are model-dependent (+0.6--10.9pp); the gap decomposes into ${\\sim}$76\\% overload and ${\\sim}$24\\% dilution (Qwen-7B, 3 seeds).\ndocs/paper/discussion.tex:26:The two-tier structure (Tier~1 ${\\geq}$99\\% across models; Tier~2 = 77.1--86.1\\%) suggests a fallback design: extract exception events first (median 150 tokens), resort to Tier~2 only when no exception is raised (model-dependent, +0.6--10.9pp over no-trace).\ndocs/paper/discussion.tex:30:Tier~1 and Tier~2 signals exhibit contrasting cross-model stability: \\texttt{exception\\_only} spans 0.56pp across models (${\\geq}$99.33\\%), while \\texttt{loop\\_only} spans 8.99pp (77.06--86.05\\%), with lifts over \\texttt{no\\_trace} following a gradient (+10.9 $>$ +7.9 $>$ +0.6pp, the last not significant).\ndocs/paper/method.tex:15:The \\texttt{exception\\_only} format collapses passing solutions into identical rows (39.45\\% train, 48.99\\% test duplicates); these duplicates arise from multiple candidate solutions per problem, with the train--test split enforced at the problem level (472 train / 119 test problems, zero crossover; Appendix~\\ref{sec:dedup_stats}).\ndocs/paper/appendix.tex:18:VOTA              & Qwen-2.5-7B & 99.05 & 100.00 & 99.18 & 99.59 & 97.98 & 100.00 & 98.98 \\\\\ndocs/paper/appendix.tex:21:Loop Only         & Qwen-2.5-7B & 86.05 & 92.39 & 87.07 & 89.66 & 71.65 & 82.01 & 76.48 \\\\\ndocs/paper/appendix.tex:219:loop\\_only      & 85.63 & 85.88 & 86.64 & 86.05 $\\pm$ 0.52 \\\\\ndocs/paper/appendix.tex:261:Because \\texttt{exception\\_only} test inputs contain 48.99\\% duplicates (607 unique of 1,190; \\S\\ref{sec:dataset}), CIs assume $n{=}1{,}190$ independent trials; under deduplication ($n{=}607$), Qwen's accuracy is 99.67\\% (Wilson CI [98.81, 99.91]).\ndocs/paper/appendix.tex:380:& no\\_limit $-$ no\\_trace & $+$6.64  & [$+$4.37, $+$8.99]   & ${<}$0.001*** \\\\\ndocs/paper/appendix.tex:435:CodeLlama (13B) & 77.9 & 80.6 & 98.2 & 98.2$^\\dag$ & 41.8$^\\ddag$ & 99.89 \\\\\ndocs/paper/appendix.tex:436:Qwen-1.5B (1.5B) & 72.6 & 73.6 & 95.6 & 96.6 & 97.9 & 99.83 \\\\\ndocs/paper/appendix.tex:452:Qwen-1.5B & 75.3 & 97.9 & +22.6 \\\\\ndocs/paper/appendix.tex:499:In the signal-rich regime (tail-512+), this reverses: Qwen-1.5B matches or exceeds Qwen-7B (95.6\\% vs.\\ 93.6\\% at tail-512; 97.9\\% vs.\\ 97.3\\% at tail-2048), confirming that sufficient trace signal eliminates the capacity advantage.\ndocs/paper/appendix.tex:670:The \\texttt{exception\\_only} test set contains 48.99\\% duplicate inputs due to representation compactness; all confidence intervals treat samples as independent Bernoulli trials.\ndocs/paper/appendix.tex:682:exception\\_only test  & 1{,}190 &   607 & 48.99\\% \\\\\ndocs/paper/introduction.tex:30:\\item \\textbf{Two-tier diagnostic hierarchy}: Tier~1 signals (exceptions, assertions) generalize across three models (${\\geq}$99\\%), while Tier~2 (loop compression) is model-dependent: Qwen +10.9pp, DeepSeek +7.9pp, CodeLlama +0.6pp over no trace (\\S\\ref{sec:ablation}).",
+              "numLines": 24
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check the discussion.tex and appendix.tex more carefully for the remaining references."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "b7f5f7f4-57d0-4393-95f8-a23b5c0a5f7a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XR99uxB91hxA8aUxPJjsYX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3987,
+                "cache_read_input_tokens": 34498,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3987
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017jg8vh363xesbaxTbd7yZ8",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex",
+                "offset": 20,
+                "limit": 20
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "0c0455bd-3150-4b39-974a-98a2146ab90c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XR99uxB91hxA8aUxPJjsYX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3987,
+                "cache_read_input_tokens": 34498,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3987
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T20:34:12.969Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017jg8vh363xesbaxTbd7yZ8",
+              "type": "tool_result",
+              "content": "20\tThe 2 errors (both \\texttt{GeneratorExit}; Appendix~\\ref{sec:error_overlap}) are shared across configurations; CodeLlama-13B seed 123 achieves 100\\%, confirming 99.83\\% is a convergence \\emph{floor}, signal-limited rather than capacity-limited.\n21\t\n22\t\\paragraph{Tokenizer efficiency.}\n23\tCodeLlama's tokenizer produces ${\\sim}$20\\% more tokens than Qwen's on identical inputs; a label-only loss variant recovers accuracy at tail-1024 but collapses at tail-2048, indicating LoRA long-sequence instability (Appendix~\\ref{sec:tokenizer_analysis}).\n24\t\n25\t\\paragraph{Tier hierarchy and methodological implications.}\n26\tThe two-tier structure (Tier~1 ${\\geq}$99\\% across models; Tier~2 = 77.1--86.1\\%) suggests a fallback design: extract exception events first (median 150 tokens), resort to Tier~2 only when no exception is raised (model-dependent, +0.6--10.9pp over no-trace).\n27\tThe methodological insight---that information density determines learning efficiency---transfers to any trace-based task where compact diagnostic events exist within verbose traces, such as re-analyzing archived CI/CD logs when the original test environment is unavailable.\n28\t\n29\t\\paragraph{Density--robustness gradient.}\n30\tTier~1 and Tier~2 signals exhibit contrasting cross-model stability: \\texttt{exception\\_only} spans 0.56pp across models (${\\geq}$99.33\\%), while \\texttt{loop\\_only} spans 8.99pp (77.06--86.05\\%), with lifts over \\texttt{no\\_trace} following a gradient (+10.9 $>$ +7.9 $>$ +0.6pp, the last not significant).\n31\tThis pattern is consistent with information density predicting cross-model robustness, but is observed across only $N{=}3$ models and is confounded: Tier~1 signals are both high-density \\emph{and} direct fault indicators, so density cannot be disentangled from signal type in this study.\n32\tWe report this as an observed correlation requiring further investigation.\n33\t\n34\t\\paragraph{Exception events capture test verdict signals, not just crashes.}\n35\tAlthough 188/339 fail samples (55.5\\%) are silent logic errors, \\texttt{exception\\_only} achieves 100\\% fail recall because test assertions generate \\texttt{AssertionError} events; \\texttt{no\\_trace} and \\texttt{full\\_trace} achieve only 62.8\\% and 50.0\\% fail recall on silent logic errors, confirming ``exception events'' encompasses both crashes and assertion failures.\n36\t\n37\t\\begin{figure}[t]\n38\t\\centering\n39\t\\includegraphics[width=\\columnwidth]{training_dynamics}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "d94c3ae4-ba4e-4764-97c0-06b3ec99eb1c",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/discussion.tex",
+                "content": "The 2 errors (both \\texttt{GeneratorExit}; Appendix~\\ref{sec:error_overlap}) are shared across configurations; CodeLlama-13B seed 123 achieves 100\\%, confirming 99.83\\% is a convergence \\emph{floor}, signal-limited rather than capacity-limited.\n\n\\paragraph{Tokenizer efficiency.}\nCodeLlama's tokenizer produces ${\\sim}$20\\% more tokens than Qwen's on identical inputs; a label-only loss variant recovers accuracy at tail-1024 but collapses at tail-2048, indicating LoRA long-sequence instability (Appendix~\\ref{sec:tokenizer_analysis}).\n\n\\paragraph{Tier hierarchy and methodological implications.}\nThe two-tier structure (Tier~1 ${\\geq}$99\\% across models; Tier~2 = 77.1--86.1\\%) suggests a fallback design: extract exception events first (median 150 tokens), resort to Tier~2 only when no exception is raised (model-dependent, +0.6--10.9pp over no-trace).\nThe methodological insight---that information density determines learning efficiency---transfers to any trace-based task where compact diagnostic events exist within verbose traces, such as re-analyzing archived CI/CD logs when the original test environment is unavailable.\n\n\\paragraph{Density--robustness gradient.}\nTier~1 and Tier~2 signals exhibit contrasting cross-model stability: \\texttt{exception\\_only} spans 0.56pp across models (${\\geq}$99.33\\%), while \\texttt{loop\\_only} spans 8.99pp (77.06--86.05\\%), with lifts over \\texttt{no\\_trace} following a gradient (+10.9 $>$ +7.9 $>$ +0.6pp, the last not significant).\nThis pattern is consistent with information density predicting cross-model robustness, but is observed across only $N{=}3$ models and is confounded: Tier~1 signals are both high-density \\emph{and} direct fault indicators, so density cannot be disentangled from signal type in this study.\nWe report this as an observed correlation requiring further investigation.\n\n\\paragraph{Exception events capture test verdict signals, not just crashes.}\nAlthough 188/339 fail samples (55.5\\%) are silent logic errors, \\texttt{exception\\_only} achieves 100\\% fail recall because test assertions generate \\texttt{AssertionError} events; \\texttt{no\\_trace} and \\texttt{full\\_trace} achieve only 62.8\\% and 50.0\\% fail recall on silent logic errors, confirming ``exception events'' encompasses both crashes and assertion failures.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{training_dynamics}",
+                "numLines": 20,
+                "startLine": 20,
+                "totalLines": 48
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018wW8eUpL7fi8XLiTivSqx4",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex",
+                "offset": 14,
+                "limit": 20
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "1bba1089-0427-41fa-b9a5-b55875b121a5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XR99uxB91hxA8aUxPJjsYX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3987,
+                "cache_read_input_tokens": 34498,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3987
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T20:34:13.613Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018wW8eUpL7fi8XLiTivSqx4",
+              "type": "tool_result",
+              "content": "14\t\\midrule\n15\tNo Trace          & Qwen-2.5-7B & 75.13 & 87.76 & 75.79 & 81.34 & 54.73 & 73.45 & 62.72 \\\\\n16\tFull Trace        & Qwen-2.5-7B & 81.76 & 87.74 & 86.60 & 87.17 & 67.43 & 69.62 & 68.51 \\\\\n17\tFull Trace (LO)   & Qwen-2.5-7B & 85.94 & 88.21 & 93.18 & 90.63 & 80.07 & 68.73 & 73.97 \\\\\n18\tVOTA              & Qwen-2.5-7B & 99.05 & 100.00 & 99.18 & 99.59 & 97.98 & 100.00 & 98.98 \\\\\n19\tException Only    & Qwen-2.5-7B & 99.83 & 100.00 & 99.76 & 99.88 & 99.41 & 100.00 & 99.71 \\\\\n20\tAE Only           & Qwen-2.5-7B & 99.92 & 100.00 & 99.88 & 99.94 & 99.71 & 100.00 & 99.85 \\\\\n21\tLoop Only         & Qwen-2.5-7B & 86.05 & 92.39 & 87.07 & 89.66 & 71.65 & 82.01 & 76.48 \\\\\n22\tVOTA\\_no\\_ae       & Qwen-2.5-7B & 99.41 & 99.88 & 99.29 & 99.59 & 98.26 & 99.71 & 98.98 \\\\\n23\t\\midrule\n24\tNo Trace          & DeepSeek-6.7B & 73.36 & 81.71 & 80.85 & 81.28 & 53.16 & 54.57 & 53.86 \\\\\n25\tFull Trace        & DeepSeek-6.7B & 79.16 & 85.70 & 85.10 & 85.40 & 63.20 & 64.30 & 63.70 \\\\\n26\tVOTA              & DeepSeek-6.7B & 84.45 & 82.14 & 100.00 & 90.20 & 100.00 & 45.40 & 62.50 \\\\\n27\tException Only    & DeepSeek-6.7B & 99.33 & 100.00 & 99.06 & 99.53 & 97.69 & 100.00 & 98.83 \\\\\n28\t\\bottomrule\n29\t\\end{tabular}\n30\t\\end{table*}\n31\t\n32\t%% ============================================================\n33\t\\section{Training Details}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "948b022a-677c-41b1-80ec-2dec0ae64028",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex",
+                "content": "\\midrule\nNo Trace          & Qwen-2.5-7B & 75.13 & 87.76 & 75.79 & 81.34 & 54.73 & 73.45 & 62.72 \\\\\nFull Trace        & Qwen-2.5-7B & 81.76 & 87.74 & 86.60 & 87.17 & 67.43 & 69.62 & 68.51 \\\\\nFull Trace (LO)   & Qwen-2.5-7B & 85.94 & 88.21 & 93.18 & 90.63 & 80.07 & 68.73 & 73.97 \\\\\nVOTA              & Qwen-2.5-7B & 99.05 & 100.00 & 99.18 & 99.59 & 97.98 & 100.00 & 98.98 \\\\\nException Only    & Qwen-2.5-7B & 99.83 & 100.00 & 99.76 & 99.88 & 99.41 & 100.00 & 99.71 \\\\\nAE Only           & Qwen-2.5-7B & 99.92 & 100.00 & 99.88 & 99.94 & 99.71 & 100.00 & 99.85 \\\\\nLoop Only         & Qwen-2.5-7B & 86.05 & 92.39 & 87.07 & 89.66 & 71.65 & 82.01 & 76.48 \\\\\nVOTA\\_no\\_ae       & Qwen-2.5-7B & 99.41 & 99.88 & 99.29 & 99.59 & 98.26 & 99.71 & 98.98 \\\\\n\\midrule\nNo Trace          & DeepSeek-6.7B & 73.36 & 81.71 & 80.85 & 81.28 & 53.16 & 54.57 & 53.86 \\\\\nFull Trace        & DeepSeek-6.7B & 79.16 & 85.70 & 85.10 & 85.40 & 63.20 & 64.30 & 63.70 \\\\\nVOTA              & DeepSeek-6.7B & 84.45 & 82.14 & 100.00 & 90.20 & 100.00 & 45.40 & 62.50 \\\\\nException Only    & DeepSeek-6.7B & 99.33 & 100.00 & 99.06 & 99.53 & 97.69 & 100.00 & 98.83 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n%% ============================================================\n\\section{Training Details}",
+                "numLines": 20,
+                "startLine": 14,
+                "totalLines": 773
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0134QJxwggNdd5X4ZgK2Dgqz",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex",
+                "offset": 215,
+                "limit": 10
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "786af05f-bb57-4edb-8081-c49599846198",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XR99uxB91hxA8aUxPJjsYX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3987,
+                "cache_read_input_tokens": 34498,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3987
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T20:34:14.225Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0134QJxwggNdd5X4ZgK2Dgqz",
+              "type": "tool_result",
+              "content": "215\tae\\_only        & 99.92 & 99.08 & 99.92 & 99.64 $\\pm$ 0.49 \\\\\n216\tVOTA                     & 99.41 & 98.66 & 99.08 & 99.05 $\\pm$ 0.38 \\\\\n217\tVOTA\\_no\\_ae    & 99.41 & ---   & ---   & --- \\\\\n218\tlabel\\_only     & 86.22 & 86.89 & 84.70 & 85.94 $\\pm$ 1.12 \\\\\n219\tloop\\_only      & 85.63 & 85.88 & 86.64 & 86.05 $\\pm$ 0.52 \\\\\n220\tfull\\_trace     & 81.76 & ---   & ---   & --- \\\\\n221\tno\\_trace       & 75.13 & ---   & ---   & --- \\\\\n222\t\\bottomrule\n223\t\\end{tabular}%\n224\t}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "625b8ce4-eecf-493f-9bc9-325f8cc9ede4",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex",
+                "content": "ae\\_only        & 99.92 & 99.08 & 99.92 & 99.64 $\\pm$ 0.49 \\\\\nVOTA                     & 99.41 & 98.66 & 99.08 & 99.05 $\\pm$ 0.38 \\\\\nVOTA\\_no\\_ae    & 99.41 & ---   & ---   & --- \\\\\nlabel\\_only     & 86.22 & 86.89 & 84.70 & 85.94 $\\pm$ 1.12 \\\\\nloop\\_only      & 85.63 & 85.88 & 86.64 & 86.05 $\\pm$ 0.52 \\\\\nfull\\_trace     & 81.76 & ---   & ---   & --- \\\\\nno\\_trace       & 75.13 & ---   & ---   & --- \\\\\n\\bottomrule\n\\end{tabular}%\n}",
+                "numLines": 10,
+                "startLine": 215,
+                "totalLines": 773
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data. Here's the complete inventory:\n\n---\n\n## experiments.tex\n\n### 行 4: RQ1 描述\n当前文本: `(1)~Do Tier~1 exception signals generalize across models?`\n需要更新: 无需改动\n\n### 行 27: Table 1 (cross_model) — loop_only 行\n当前文本: `loop\\_only & 86.05{\\scriptsize$\\pm$0.52} & --- & 77.06 & 81.26 \\\\`\n需要更新: **三模型数据全在此行**。DeepSeek 81.26 待更新为实际三模型结果；CodeLlama 77.06 和 Qwen 86.05 已确认。\n\n### 行 38: Table 1 脚注 — loop_only 三 seed 明细\n当前文本: `Qwen-7B \\texttt{loop\\_only} 3 seeds: 85.63/85.88/86.64 (mean 86.05\\%).`\n需要更新: 无需改动（Qwen 数据）。可能需追加 DeepSeek/CodeLlama 的 seed 明细。\n\n### 行 67: §3.2 ablation 开头段\n当前文本: `\\texttt{loop\\_only} is evaluated across three models to test Tier~2 generalization (Table~\\ref{tab:cross_model}).`\n需要更新: 无需改动（定性描述）\n\n### 行 68: Tier hierarchy 核心定义\n当前文本: `Table~\\ref{tab:ablation} decomposes VOTA on Qwen-2.5-7B and reveals a two-tier hierarchy: Tier~1 (\\texttt{exception\\_only}) generalizes across all four models (${\\geq}$99.33\\%), while Tier~2 (\\texttt{loop\\_only}) is model-dependent.`\n需要更新: 无需改动（定性描述）\n\n### 行 72: Table 2 (ablation) caption — loop_only 三 seed 明细\n当前文本: `$^\\ddag$\\texttt{loop\\_only}: 3-seed mean 86.05\\%$\\pm$0.52 (85.63/85.88/86.64).`\n需要更新: 无需改动（Qwen-7B only）\n\n### 行 78: Table 2 header — Tier 列\n当前文本: `\\textbf{Condition} & \\textbf{Components} & \\textbf{Acc (\\%)} & \\textbf{95\\% CI} & \\textbf{Tier} \\\\`\n需要更新: 无需改动\n\n### 行 84: Table 2 — loop_only 数据行\n当前文本: `loop\\_only & loop compression & 86.05$^\\ddag$ & [83.97, 87.96] & 2 \\\\`\n需要更新: 无需改动（Qwen-7B ablation table）\n\n### 行 96: Tier 1 讨论段\n当前文本: `Tier~1 signals are individually sufficient: \\texttt{exception\\_only} (99.83\\%$\\pm$0.00) exceeds VOTA...`\n需要更新: 无需改动\n\n### 行 98: **Tier 2 三模型对比 — 关键数据行**\n当前文本: `Tier~2 \\texttt{loop\\_only} improves over \\texttt{no\\_trace} but is model-dependent: +10.92pp on Qwen-7B (86.05\\%, 3-seed mean, $p{<}0.0001$), +7.90pp on DeepSeek (81.26\\%, CI [79.08, 83.45]), but only +0.59pp on CodeLlama (77.06\\%, not significant).`\n需要更新: **DeepSeek 81.26% 和 +7.90pp 待更新**（三模型 loop_only 数据 patch 核心位置）。CodeLlama 77.06/+0.59pp 已确认 negative。\n\n### 行 171: Calibration 段 — tier hierarchy 引用\n当前文本: `Calibration mirrors the tier hierarchy...`\n需要更新: 无需改动\n\n---\n\n## introduction.tex\n\n### 行 30: C3 (Contribution 3) — Two-tier hierarchy\n当前文本: `\\item \\textbf{Two-tier diagnostic hierarchy}: Tier~1 signals (exceptions, assertions) generalize across three models (${\\geq}$99\\%), while Tier~2 (loop compression) is model-dependent: Qwen +10.9pp, DeepSeek +7.9pp, CodeLlama +0.6pp over no trace (\\S\\ref{sec:ablation}).`\n需要更新: **DeepSeek +7.9pp 待更新**（三模型结果确定后）。Qwen +10.9pp 和 CodeLlama +0.6pp 已确认。\n\n---\n\n## discussion.tex\n\n### 行 25-27: Tier hierarchy and methodological implications\n当前文本 (行26): `The two-tier structure (Tier~1 ${\\geq}$99\\% across models; Tier~2 = 77.1--86.1\\%) suggests a fallback design: extract exception events first (median 150 tokens), resort to Tier~2 only when no exception is raised (model-dependent, +0.6--10.9pp over no-trace).`\n需要更新: **Tier~2 range \"77.1--86.1%\" 和 \"+0.6--10.9pp\" 待更新**（取决于 DeepSeek 最终数值）\n\n### 行 30-31: Density-robustness gradient\n当前文本 (行30): `\\texttt{loop\\_only} spans 8.99pp (77.06--86.05\\%), with lifts over \\texttt{no\\_trace} following a gradient (+10.9 $>$ +7.9 $>$ +0.6pp, the last not significant).`\n需要更新: **\"8.99pp\"、\"77.06--86.05%\"、\"+7.9\" 待更新**\n\n---\n\n## conclusion.tex\n\n### 行 4: loop 信号总结\n当前文本: `while lower-density loop signals are model-dependent (+0.6--10.9pp)`\n需要更新: **\"+0.6--10.9pp\" range 待更新**（取决于 DeepSeek 最终 lift）\n\n---\n\n## appendix.tex\n\n### 行 21: Full results table — Loop Only / Qwen-7B\n当前文本: `Loop Only & Qwen-2.5-7B & 86.05 & 92.39 & 87.07 & 89.66 & 71.65 & 82.01 & 76.48 \\\\`\n需要更新: 无需改动（Qwen-7B 数据）。**此表没有 DeepSeek/CodeLlama 的 loop_only 行 — 可能需要新增。**\n\n### 行 219: Per-seed table — loop_only\n当前文本: `loop\\_only & 85.63 & 85.88 & 86.64 & 86.05 $\\pm$ 0.52 \\\\`\n需要更新: 无需改动（Qwen-7B only）\n\n### 行 533-535: Calibration discussion — Tier hierarchy\n当前文本: `Table~\\ref{tab:calibration} shows that calibration quality mirrors the Tier~1/2 hierarchy.`\n需要更新: 无需改动\n\n---\n\n## 汇总：DeepSeek 结果到手后需要更新的位置\n\n| # | 文件 | 行 | 需改内容 |\n|---|------|-----|----------|\n| 1 | experiments.tex | 27 | Table 1 loop_only DS-6.7B: `81.26` → 实际值 |\n| 2 | experiments.tex | 98 | `+7.90pp on DeepSeek (81.26\\%, CI [79.08, 83.45])` → 实际值 |\n| 3 | introduction.tex | 30 | `DeepSeek +7.9pp` → 实际 lift |\n| 4 | discussion.tex | 26 | `Tier~2 = 77.1--86.1\\%` range 和 `+0.6--10.9pp` |\n| 5 | discussion.tex | 30 | `8.99pp (77.06--86.05\\%)` span 和 `+7.9` |\n| 6 | conclusion.tex | 4 | `+0.6--10.9pp` range |\n\n如果 DeepSeek loop_only 不再是 81.26%，还需检查 gradient 排序 (+10.9 > +7.9 > +0.6) 是否仍成立，以及 \"not significant\" 判断是否只对 CodeLlama 适用。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "uuid": "38dea594-a655-4377-982e-f0fba94ffb90",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0119hR8q9HbidjLG7ik2pELf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2217,
+                "cache_read_input_tokens": 38485,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2217
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data. Here's the complete inventory:\n\n---\n\n## experiments.tex\n\n### 行 4: RQ1 描述\n当前文本: `(1)~Do Tier~1 exception signals generalize across models?`\n需要更新: 无需改动\n\n### 行 27: Table 1 (cross_model) — loop_only 行\n当前文本: `loop\\_only & 86.05{\\scriptsize$\\pm$0.52} & --- & 77.06 & 81.26 \\\\`\n需要更新: **三模型数据全在此行**。DeepSeek 81.26 待更新为实际三模型结果；CodeLlama 77.06 和 Qwen 86.05 已确认。\n\n### 行 38: Table 1 脚注 — loop_only 三 seed 明细\n当前文本: `Qwen-7B \\texttt{loop\\_only} 3 seeds: 85.63/85.88/86.64 (mean 86.05\\%).`\n需要更新: 无需改动（Qwen 数据）。可能需追加 DeepSeek/CodeLlama 的 seed 明细。\n\n### 行 67: §3.2 ablation 开头段\n当前文本: `\\texttt{loop\\_only} is evaluated across three models to test Tier~2 generalization (Table~\\ref{tab:cross_model}).`\n需要更新: 无需改动（定性描述）\n\n### 行 68: Tier hierarchy 核心定义\n当前文本: `Table~\\ref{tab:ablation} decomposes VOTA on Qwen-2.5-7B and reveals a two-tier hierarchy: Tier~1 (\\texttt{exception\\_only}) generalizes across all four models (${\\geq}$99.33\\%), while Tier~2 (\\texttt{loop\\_only}) is model-dependent.`\n需要更新: 无需改动（定性描述）\n\n### 行 72: Table 2 (ablation) caption — loop_only 三 seed 明细\n当前文本: `$^\\ddag$\\texttt{loop\\_only}: 3-seed mean 86.05\\%$\\pm$0.52 (85.63/85.88/86.64).`\n需要更新: 无需改动（Qwen-7B only）\n\n### 行 78: Table 2 header — Tier 列\n当前文本: `\\textbf{Condition} & \\textbf{Components} & \\textbf{Acc (\\%)} & \\textbf{95\\% CI} & \\textbf{Tier} \\\\`\n需要更新: 无需改动\n\n### 行 84: Table 2 — loop_only 数据行\n当前文本: `loop\\_only & loop compression & 86.05$^\\ddag$ & [83.97, 87.96] & 2 \\\\`\n需要更新: 无需改动（Qwen-7B ablation table）\n\n### 行 96: Tier 1 讨论段\n当前文本: `Tier~1 signals are individually sufficient: \\texttt{exception\\_only} (99.83\\%$\\pm$0.00) exceeds VOTA...`\n需要更新: 无需改动\n\n### 行 98: **Tier 2 三模型对比 — 关键数据行**\n当前文本: `Tier~2 \\texttt{loop\\_only} improves over \\texttt{no\\_trace} but is model-dependent: +10.92pp on Qwen-7B (86.05\\%, 3-seed mean, $p{<}0.0001$), +7.90pp on DeepSeek (81.26\\%, CI [79.08, 83.45]), but only +0.59pp on CodeLlama (77.06\\%, not significant).`\n需要更新: **DeepSeek 81.26% 和 +7.90pp 待更新**（三模型 loop_only 数据 patch 核心位置）。CodeLlama 77.06/+0.59pp 已确认 negative。\n\n### 行 171: Calibration 段 — tier hierarchy 引用\n当前文本: `Calibration mirrors the tier hierarchy...`\n需要更新: 无需改动\n\n---\n\n## introduction.tex\n\n### 行 30: C3 (Contribution 3) — Two-tier hierarchy\n当前文本: `\\item \\textbf{Two-tier diagnostic hierarchy}: Tier~1 signals (exceptions, assertions) generalize across three models (${\\geq}$99\\%), while Tier~2 (loop compression) is model-dependent: Qwen +10.9pp, DeepSeek +7.9pp, CodeLlama +0.6pp over no trace (\\S\\ref{sec:ablation}).`\n需要更新: **DeepSeek +7.9pp 待更新**（三模型结果确定后）。Qwen +10.9pp 和 CodeLlama +0.6pp 已确认。\n\n---\n\n## discussion.tex\n\n### 行 25-27: Tier hierarchy and methodological implications\n当前文本 (行26): `The two-tier structure (Tier~1 ${\\geq}$99\\% across models; Tier~2 = 77.1--86.1\\%) suggests a fallback design: extract exception events first (median 150 tokens), resort to Tier~2 only when no exception is raised (model-dependent, +0.6--10.9pp over no-trace).`\n需要更新: **Tier~2 range \"77.1--86.1%\" 和 \"+0.6--10.9pp\" 待更新**（取决于 DeepSeek 最终数值）\n\n### 行 30-31: Density-robustness gradient\n当前文本 (行30): `\\texttt{loop\\_only} spans 8.99pp (77.06--86.05\\%), with lifts over \\texttt{no\\_trace} following a gradient (+10.9 $>$ +7.9 $>$ +0.6pp, the last not significant).`\n需要更新: **\"8.99pp\"、\"77.06--86.05%\"、\"+7.9\" 待更新**\n\n---\n\n## conclusion.tex\n\n### 行 4: loop 信号总结\n当前文本: `while lower-density loop signals are model-dependent (+0.6--10.9pp)`\n需要更新: **\"+0.6--10.9pp\" range 待更新**（取决于 DeepSeek 最终 lift）\n\n---\n\n## appendix.tex\n\n### 行 21: Full results table — Loop Only / Qwen-7B\n当前文本: `Loop Only & Qwen-2.5-7B & 86.05 & 92.39 & 87.07 & 89.66 & 71.65 & 82.01 & 76.48 \\\\`\n需要更新: 无需改动（Qwen-7B 数据）。**此表没有 DeepSeek/CodeLlama 的 loop_only 行 — 可能需要新增。**\n\n### 行 219: Per-seed table — loop_only\n当前文本: `loop\\_only & 85.63 & 85.88 & 86.64 & 86.05 $\\pm$ 0.52 \\\\`\n需要更新: 无需改动（Qwen-7B only）\n\n### 行 533-535: Calibration discussion — Tier hierarchy\n当前文本: `Table~\\ref{tab:calibration} shows that calibration quality mirrors the Tier~1/2 hierarchy.`\n需要更新: 无需改动\n\n---\n\n## 汇总：DeepSeek 结果到手后需要更新的位置\n\n| # | 文件 | 行 | 需改内容 |\n|---|------|-----|----------|\n| 1 | experiments.tex | 27 | Table 1 loop_only DS-6.7B: `81.26` → 实际值 |\n| 2 | experiments.tex | 98 | `+7.90pp on DeepSeek (81.26\\%, CI [79.08, 83.45])` → 实际值 |\n| 3 | introduction.tex | 30 | `DeepSeek +7.9pp` → 实际 lift |\n| 4 | discussion.tex | 26 | `Tier~2 = 77.1--86.1\\%` range 和 `+0.6--10.9pp` |\n| 5 | discussion.tex | 30 | `8.99pp (77.06--86.05\\%)` span 和 `+7.9` |\n| 6 | conclusion.tex | 4 | `+0.6--10.9pp` range |\n\n如果 DeepSeek loop_only 不再是 81.26%，还需检查 gradient 排序 (+10.9 > +7.9 > +0.6) 是否仍成立，以及 \"not significant\" 判断是否只对 CodeLlama 适用。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 69555,
+            "duration_api_ms": 70903,
+            "num_turns": 13,
+            "stop_reason": "end_turn",
+            "session_id": "615e7611-b1d0-490d-808a-7b7749d28899",
+            "total_cost_usd": 0.38422225,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 28861,
+              "cache_read_input_tokens": 195860,
+              "output_tokens": 4167,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 28861,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 2369,
+                  "cache_read_input_tokens": 38485,
+                  "cache_creation_input_tokens": 2217,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2217
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1586,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001691,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 4167,
+                "cacheReadInputTokens": 195860,
+                "cacheCreationInputTokens": 28861,
+                "webSearchRequests": 0,
+                "costUSD": 0.38253125,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "84eedb0d-72ff-4c09-99aa-6ea509dafc2f"
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-prepare-c4-patch-framework.md"
+}

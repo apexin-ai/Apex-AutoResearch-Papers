@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d56a0c5abc56e5e231f9",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops paper sync to server",
+  "task_key": "worker_ops_paper_sync_to_server_20260522T063859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_paper_sync_to_server_20260522T063859_result.json",
+    "occurrence": 1,
+    "bytes": 877,
+    "sha256": "6e8764c4f3451082985e5ccca9db6dd5352179d3d6e949038d1448a8c682991d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 同步报告\n\n### 文件传输：10/10 全部成功\n| 文件 | 状态 |\n|------|------|\n| experiments.tex | ✓ |\n| appendix.tex | ✓ |\n| main.tex | ✓ |\n| introduction.tex | ✓ |\n| conclusion.tex | ✓ |\n| references.bib | ✓ |\n| discussion.tex | ✓ |\n| method.tex | ✓ |\n| related_work.tex | ✓ |\n| arr_checklist.tex | ✓ |\n\n### 验证结果\n\n**traceback grep:**\n- `experiments.tex` — 0 匹配，clean\n- `appendix.tex` — 1 匹配（line 118: `\\STATE Parse traceback` — algorithm pseudocode，符合预期）\n\n**md5 对比：完全一致**\n| 文件 | 本地 | 服务器 | 匹配 |\n|------|------|--------|------|\n| experiments.tex | `44f5ea0a6dc6f3a3` | `44f5ea0a6dc6f3a3` | ✓ |\n| appendix.tex | `13e7f929d029d470` | `13e7f929d029d470` | ✓ |\n\n服务器真源已与本地完全同步，C001 约束恢复正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-paper-sync-to-server.md"
+}

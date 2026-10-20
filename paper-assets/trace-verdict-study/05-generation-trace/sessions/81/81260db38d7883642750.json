@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "81260db38d7883642750",
+  "project": "trace-verdict-study",
+  "kind": "worker",
+  "title": "audit eval max length",
+  "task_key": "worker_audit_eval_max_length_20260520T050347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_eval_max_length_20260520T050347.log",
+    "occurrence": 1,
+    "bytes": 680499,
+    "sha256": "3d18b67697165501ac400ca36c472f119e9a8ddf6377345befeecf29d5a0eeba"
+  },
+  "statistics": {
+    "messages": 165,
+    "user_turns": 1,
+    "tool_calls": 56,
+    "roles": {
+      "log": 1,
+      "system": 20,
+      "record": 1,
+      "assistant": 29,
+      "tool_call": 56,
+      "tool_result": 56,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "81260db38d7883642750-part-0001.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 148,
+      "chunks": [
+        {
+          "path": "81260db38d7883642750-part-0001.json",
+          "message_count": 129
+        },
+        {
+          "path": "81260db38d7883642750-part-0002.json",
+          "message_count": 19
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-eval-max-length.md"
+}

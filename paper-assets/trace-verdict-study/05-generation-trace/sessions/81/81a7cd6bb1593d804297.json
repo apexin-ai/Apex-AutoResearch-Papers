@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "81a7cd6bb1593d804297",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code anon repo audit push",
+  "task_key": "worker_code_anon-repo-audit-push_20260525T084802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_anon-repo-audit-push_20260525T084802_result.json",
+    "occurrence": 1,
+    "bytes": 384,
+    "sha256": "e80af2e8c6a0f02d246e5aa19e08ae214ab4ec83f520cd0c2fe89733668d81dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: {\"type\":\"error\",\"error\":{\"details\":null,\"type\":\"api_error\",\"message\":\"Internal server error\"},\"request_id\":\"req_011CbP1j1ZjCoR4HW3wPe4A5\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "details": null,
+                "type": "api_error",
+                "message": "Internal server error"
+              },
+              "request_id": "req_011CbP1j1ZjCoR4HW3wPe4A5"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-anon-repo-audit-push.md"
+}

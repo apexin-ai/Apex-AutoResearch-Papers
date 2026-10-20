@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5cbac30b9d60ee3fe51",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "paper table1 caption trim",
+  "task_key": "worker_paper_table1_caption_trim_20260519T154054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_table1_caption_trim_20260519T154054_result.json",
+    "occurrence": 1,
+    "bytes": 658,
+    "sha256": "5cae965194332f56a001543fb6f89fcaae2b3b74e95875a723c1f08f16f6421d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SSH 连接不可用（Permission denied）。修改已在本地完成，需要你手动同步到服务器或检查 SSH 配置。\n\n**修改总结：**\n\n- **Caption**：从 ~120 词精简到 ~40 词（约 3 行），保留核心信息（模型范围、样本量、multi-seed 说明、Appendix 指引）\n- **Table notes**：所有 per-seed 细节（DeepSeek outlier、VOTA/ae_only/loop_only 各 seed 值、Qwen-1.5B 确认）移到表格下方的 `\\footnotesize` 注释块\n- **label/引用**：`\\label{tab:cross_model}` 和 `$^\\dag$` 标记均保持不变\n- **无信息丢失**：原 caption 中所有数据点都保留在 tablenote 中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-table1-caption-trim.md"
+}

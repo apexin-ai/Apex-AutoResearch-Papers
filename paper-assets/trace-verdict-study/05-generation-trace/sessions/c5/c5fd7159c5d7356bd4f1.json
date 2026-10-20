@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c5fd7159c5d7356bd4f1",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "eval loop only",
+  "task_key": "worker_eval_loop_only_20260515T100533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_loop_only_20260515T100533_result.json",
+    "occurrence": 1,
+    "bytes": 957,
+    "sha256": "eef3cd2d893de2a11cfd89a1630a2f9d83e5437b8fa5ce08d0497bcc77408b99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。Registry 已更新为 DONE/success。\n\n## 结果汇总\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **85.63%** (95% CI: [83.5%, 87.6%]) |\n| Majority baseline | 71.5% |\n| Lift | +14.1pp |\n\n### Pairwise Bootstrap 对比（N=10000, 所有差异显著 p<0.05）\n\n| 对比 | 差值 | 95% CI |\n|------|------|--------|\n| loop_only vs no_trace | **+10.5pp** | [+8.2, +12.9] |\n| loop_only vs full_trace | **+3.9pp** | [+1.8, +6.0] |\n| loop_only vs VOTA | **-13.8pp** | [-15.7, -11.8] |\n\n### 消融分析定位\n\n| Condition | Accuracy |\n|-----------|----------|\n| no_trace | 75.1% |\n| full_trace | 81.8% |\n| **loop_only** | **85.6%** |\n| exception_only | 99.8% |\n| VOTA (full) | 99.4% |\n\nloop_only（仅循环行为摘要）单独贡献 85.6%，显著高于 full_trace（81.8%），说明循环压缩摘要本身是有效信号。但距 VOTA 99.4% 差距较大，exception 信息是更关键的组件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-loop-only.md"
+}

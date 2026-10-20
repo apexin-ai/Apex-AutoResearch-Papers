@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "562dd1d3fd0ad99bf069",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "exp sf1 padding status check",
+  "task_key": "worker_exp_sf1_padding_status_check_20260521T205638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_sf1_padding_status_check_20260521T205638_result.json",
+    "occurrence": 1,
+    "bytes": 596,
+    "sha256": "b6253480fab0419fd8dcbb9770af8e16c7bad25d9d171ccf9ba2b6dcca403d93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验结果：`exception_only_padded2048_seed42` ✓ 已完成\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **99.83%** (CI: 99.6%–100%) |\n| Majority baseline | 71.5% |\n| Lift | +28.3pp |\n| Pass F1 | 0.999 (P=1.00, R=1.00) |\n| **Fail F1** | **0.997** (P=0.99, R=1.00) |\n| 测试样本 | 1190 |\n| 训练耗时 | ~2.46 GPU-hours |\n\n训练正常完成，cuda:1 已释放。Registry 已更新为 DONE/success。Padding 到 2048 tokens 对 exception-only 条件下的 verdict 分类几乎无损——仅 2 个 pass 样本被误判为 fail（1190 中错 2 个）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-sf1-padding-status-check.md"
+}

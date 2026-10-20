@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f89f98fac995814d7e6e",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "ops gpu health check urgent",
+  "task_key": "worker_ops_gpu_health_check_urgent_20260520T145249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_health_check_urgent_20260520T145249_result.json",
+    "occurrence": 1,
+    "bytes": 1003,
+    "sha256": "f6421c654df0df481d7e27c807f6fba78c9e67157d77970fe577c9806597977c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 1. qwen15b_loop_only_seed456 — **已完成** ✓\n\n- **PID 630189 / 630199**: 已退出（进程不存在），EXIT_CODE=0\n- **阶段**: 训练 + eval 均已完成\n- **Checkpoints**: checkpoint-148 → checkpoint-296 → checkpoint-444 → final (全部 444 步)\n- **Eval 结果**:\n  - Accuracy: **79.2%** (95% CI: [76.8%, 81.3%])\n  - Majority baseline: 71.5%，Lift: +7.6pp\n  - pass: P=0.85 R=0.86 F1=0.86\n  - fail: P=0.64 R=0.62 F1=0.63\n- **GPU 0**: 0% util, 49GB 占用（模型残留未释放）\n\n### 2. deepseek_ae_only_seed123 — **训练中** 🔄\n\n- **PID 626709**: 存活，运行 2h06m，状态 Ss+\n- **PID 626719** (train_sft.py): 存活，运行 2h06m，状态 Sl\n- **阶段**: 训练中，step **381/444** (86%)\n- **速度**: ~18-19s/it\n- **最新 checkpoint**: checkpoint-296 (22:26)，checkpoint-148 (21:36)\n- **预估剩余**: ~63 steps × 19s ≈ **20 分钟**完成训练，之后进入 eval\n- **GPU 1**: 100% util, 22GB/98GB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-health-check-urgent.md"
+}

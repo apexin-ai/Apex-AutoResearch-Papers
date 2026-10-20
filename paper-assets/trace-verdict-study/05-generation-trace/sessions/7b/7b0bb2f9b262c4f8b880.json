@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b0bb2f9b262c4f8b880",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "code verify condition truncation",
+  "task_key": "worker_code_verify_condition_truncation_20260518T145556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_verify_condition_truncation_20260518T145556_result.json",
+    "occurrence": 1,
+    "bytes": 867,
+    "sha256": "df477ababae1ca3abf04bbe2c47e0f5ccf2c6fe594bddcd198a1a9cb31d9520c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**`full_trace_tail` ≠ `full_trace_tail_512`**，截断逻辑不同：\n\n| | `full_trace_tail` | `full_trace_tail_512` |\n|---|---|---|\n| **trace 截断上限** | 无固定上限 | **512 tokens** (`MAX_TRACE_TOKENS = 512`) |\n| **截断策略** | 先算 `trace_budget = MAX_SEQ_LENGTH - overhead`，保留 trace 尾部 budget 个 token | 先将 trace 硬截到 512 token（取尾部），再检查整体是否超 2048，若超则进一步缩小 |\n| **实际 trace 长度** | 取决于 code+test 的长度，budget 可能远大于 512（code/test 短时 trace 可用上千 token） | 最多 512 token，无论 code/test 多短 |\n\n文件大小也印证了差异：`full_trace_tail_train.jsonl` = 28MB vs `full_trace_tail_512_train.jsonl` = 10.6MB（行数相同都是 4720），说明 `full_trace_tail` 平均保留的 trace 远多于 512 tokens。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-verify-condition-truncation.md"
+}

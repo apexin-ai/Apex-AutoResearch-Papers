@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7669ef28d3c5ef4b8b0",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis gradient masking seed456",
+  "task_key": "worker_analysis_gradient_masking_seed456_20260522T161827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gradient_masking_seed456_20260522T161827_result.json",
+    "occurrence": 1,
+    "bytes": 1027,
+    "sha256": "bccf3a7a76d303c53ade798406dd0be9e90cd7e249a688914b9693909aecdcb7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## gradient_masking_qwen7b_seed456 分析结果\n\n**训练状态**: completed (EXIT_CODE=0), 444 steps, 3 epochs, 75min\n\n### Eval Metrics (n=1190)\n\n| 指标 | 值 |\n|------|-----|\n| accuracy | **99.33%** |\n| pass_precision | 1.0000 |\n| pass_recall | 0.9906 |\n| pass_f1 | 0.9953 |\n| fail_precision | 0.9769 |\n| fail_recall | 1.0000 |\n| fail_f1 | 0.9883 |\n\n### Baseline 对比\n\n| 对比项 | accuracy | diff |\n|--------|----------|------|\n| exception_only_seed456 | 99.83% | **-0.50pp** |\n| gradient_masking seed42 | 98.99% | +0.34pp |\n| gradient_masking seed123 | 99.33% | ±0.00pp |\n\n### 3-seed gradient_masking 统计\n\n**mean: 99.22% ± 0.20%** (seeds: 98.99 / 99.33 / 99.33)\n\nvs exception_only baseline 99.83%: **-0.61pp**\n\n### 关键观察\n- fail_recall = 1.0（零漏检），pass_precision = 1.0（零误判）\n- 主要误差来源是 pass_recall < 1.0，部分 pass 被误判为 fail\n- W&B 查询因 entity 未配置失败，指标从 checkpoint 的 eval_results.json 获取"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gradient-masking-seed456.md"
+}

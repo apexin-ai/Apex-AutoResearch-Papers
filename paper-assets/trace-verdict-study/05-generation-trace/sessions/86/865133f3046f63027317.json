@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "865133f3046f63027317",
+  "project": "trace-verdict-study",
+  "kind": "result",
+  "title": "analysis harvest submit cuda0 check cuda1",
+  "task_key": "worker_analysis_harvest_submit_cuda0_check_cuda1_20260518T213843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_harvest_submit_cuda0_check_cuda1_20260518T213843_result.json",
+    "occurrence": 1,
+    "bytes": 1047,
+    "sha256": "334d61be8eca04e75bec0a9ff42ff050cf052a60d62dca6f2ab1dacc839ccbae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n```\nCUDA:0: 占用 by qwen15b_exception_only_seed456 (PID 468562) — 刚启动，tokenizing 中\n        → seed456 训练+eval 完成后将自动接续 seed123_v2\nCUDA:1: 占用 by codellama13b_full_trace_tail512_seed123 (PID 466403) — 训练中 step 183/444 (41%), ~14s/it, 预计 ~60min 后完成\n```\n\n**详细状态：**\n\n| 实验 | 状态 | 说明 |\n|------|------|------|\n| qwen15b_exception_only_seed123 | **DONE/failed** | OOM step 3/444，原因：与 codellama13b 同时启动导致 GPU 0 内存被并发占满（45GB PyTorch allocated） |\n| qwen15b_exception_only_seed456 | **RUNNING** (cuda:0) | 刚提交，正在 tokenize 数据 |\n| qwen15b_exception_only_seed123_v2 | **PREPARING** | 排在 seed456 之后串行执行（同一 tmux session） |\n| codellama13b_full_trace_tail512_seed123 | **RUNNING** (cuda:1) | step 183/444, ETA ~60min，含自动 eval |\n\nseed123 OOM 的根因是两个任务同时抢 cuda:0，现在 GPU 0 专属给 qwen15b exception_only 系列，不会再冲突。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-harvest-submit-cuda0-check-cuda1.md"
+}

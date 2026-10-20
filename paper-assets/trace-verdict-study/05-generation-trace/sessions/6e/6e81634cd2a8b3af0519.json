@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e81634cd2a8b3af0519",
+  "project": "trace-verdict-study",
+  "kind": "history",
+  "title": "agent / loop_7_1778879106.md",
+  "task_key": "loop_7_1778879106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778879106.md",
+    "occurrence": 1,
+    "bytes": 4465,
+    "sha256": "08ce4234379e63e6aa9d56025a613be25e95a93e0b3eeaf0fe571a97e4b4ef56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-15T20:59:34+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：只能用 westd-11235 的 cuda:0 和 cuda:1，其他设备号禁止\n- DeepSeek full_trace (deepseek_full_trace_seed42) 已标记 INVALIDATED (D018)，train-eval truncation mismatch，需用 v5 代码重跑，不能直接引用其 28.5% accuracy 作为有效结论\n- exception_only seed42 的 predictions.jsonl 路径是 `/root/autodl-tmp/trace-verdict-study-checkpoints/exception_only/final/predictions.jsonl`（不是 exception_only_seed42 子目录，因为 seed42 是原始实验）\n- W&B entity/project 未在 config 中配置，fetch_wandb_metrics 会失败——指标必须从服务器 eval_results.json 读取\n- submit_on_allocated 的命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，服务器用 conda 不是 venv\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-11235，工作目录 `/root/trace-verdict-study`\n- Python：`/root/miniconda3/bin/python`，conda base 环境\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 模型：Qwen2.5-Coder-7B-Instruct（HF 默认缓存），DeepSeek-Coder-6.7B 在 `/root/autodl-tmp/models/deepseek-coder-6.7b-instruct/`\n- 数据：`/root/autodl-tmp/trace-verdict-study-data/`（所有条件的 train/test jsonl，各 4720/1190 条）\n- Checkpoints：`/root/autodl-tmp/trace-verdict-study-checkpoints/`\n- 训练日志：`~/runs/trace-verdict-study/`\n- 活跃进程：exception_only_seed123 (PID 124197, cuda:1, tmux 管理, cron 监控中)\n- cuda:0：exception_only_seed456 刚结束（ANALYZING），无活跃进程\n\n### 3. 📊 当前状态\n**刚做完**：收到 exception_only_seed456 cron 完成回调，已派 Worker (`worker_analysis_exception_only_seed456_20260515T175730`) SSH 读取 eval 结果 + bootstrap 对比分析。Worker 尚未回调。\n\n**Registry 活跃实验**：\n- `exception_only_seed456` — ANALYZING，等 Worker 读结果后更新到 DONE\n- `exception_only_seed123` — RUNNING on cuda:1 (PID 124197)，同为 plan_008a seed robustness\n- `vota_seed456` — PREPARING，Director 已降优先级（VOTA DeepSeek 退化到 84.5%）\n- `deepseek_exception_only_seed123` — PREPARING，跨模型 seed robustness\n\n**等待中**：\n- Worker `analysis:exception_only_seed456` 回调 → 更新 registry + 汇报 Director\n- exception_only_seed123 cron 完成回调 → 同样流程分析\n- Director 尚未指示 Paper Agent 启动时间（ROADMAP 写今天启动）\n\n### 4. 📋 待办\n- Worker analysis:exception_only_seed456 回调 → 读 Worker 产出 → update_registry(status=DONE, conclusion, metrics, checkpoint_path) → 更新 report.md → 汇报 Director（带 [资源] 行）\n- exception_only_seed123 cron 完成回调 → 派 Worker 分析 → 同上流程 → 两个 seed 结果出齐后汇总 seed robustness 结论\n- 两个 seed 都 DONE 后 → cuda:0 + cuda:1 空闲 → 按 ROADMAP：(1) DeepSeek full_trace fix 重跑 (cuda:0)，(2) deepseek_exception_only_seed123 或 vota_seed456\n- seed robustness 结论出来 → 更新 paper_framing.md → 触发 Paper Agent 启动讨论\n- 如果 seed456 或 seed123 accuracy 明显偏离 99.83%（>1pp） → 走 red-section 产 Framing 调整提案，不能默默继续\n\n### 5. 🎯 战略上下文\n**核心结论**：exception_only 是 universal diagnostic signal——Qwen 99.83% + DeepSeek epoch1 99.83%，跨模型 gap = 0pp。VOTA 的价值是 fault indicator isolation 而非 trace compression（D016/D019）。\n\n**决策链关键节点**：\n- D019：跨模型验证完成，exception signal universal\n- D018：DeepSeek full_trace 28.5% 是 bug（truncation mismatch），不是有效 negative\n- D013：ae_only 99.9% 不构成 data leakage（fallback locals 无信息量）\n- D020：ae_only 进入 Claim 3 层级表 co-Tier 1，但 headline 仍用 exception_only\n\n**易错点**：\n- 不要把 DeepSeek full_trace 28.5% 当真实负向结果——是 bug，需 v5 代码重跑\n- DeepSeek exception_only 的最佳 checkpoint 是 epoch 1（99.83%），不是 final epoch 3（99.33%）——continued training 导致过拟合\n- seed robustness 实验用的是 Qwen 模型，不要和 DeepSeek 实验混淆\n- resource-saturation.skill.md 文件在当前文件系统中未找到（glob 搜索无结果），汇报时手动构造 [资源] 行即可\n- ARR May 25 DDL 还剩 10 天，Paper Agent 启动是今天的计划但需 Director 确认 framing 更新后才能动\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778879106.md"
+}
