@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "id": "d7f63ae4940c00d9201a",
+  "project": "irt_equated_bench_regen--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are independently verifying every citation in an academic paper's .bib file. This is a cross-validation check — anot",
+  "task_key": "agent-a8edfbef477a42b15",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a8edfbef477a42b15.jsonl",
+    "occurrence": 1,
+    "bytes": 558821,
+    "sha256": "8c7c59112025cf7be71465cbfa1d4d1407d12298ef08e50e674085bcf4339bb3"
+  },
+  "statistics": {
+    "messages": 213,
+    "user_turns": 1,
+    "tool_calls": 95,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 21,
+      "tool_call": 95,
+      "tool_result": 95
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 213,
+      "chunks": [
+        {
+          "path": "d7f63ae4940c00d9201a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d7f63ae4940c00d9201a-part-0002.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-independently-verifying-every-citation-in-an-academic-paper-s-bib-file.md"
+}

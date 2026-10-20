@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "id": "3a2d275ec5959c959ed6",
+  "project": "irt_equated_bench_regen--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are verifying every citation in an academic paper's .bib file for correctness. This is for an EMNLP 2026 submission ",
+  "task_key": "agent-a3f505dbf4bd79dfd",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a3f505dbf4bd79dfd.jsonl",
+    "occurrence": 1,
+    "bytes": 564431,
+    "sha256": "2981abe29814c87bc72533dacfb97be77ae03bdf5d53d42d8298d8295fd5dbda"
+  },
+  "statistics": {
+    "messages": 260,
+    "user_turns": 1,
+    "tool_calls": 117,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 24,
+      "tool_call": 117,
+      "tool_result": 117
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 260,
+      "chunks": [
+        {
+          "path": "3a2d275ec5959c959ed6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3a2d275ec5959c959ed6-part-0002.json",
+          "message_count": 80
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-verifying-every-citation-in-an-academic-paper-s-bib-file-for-correctne.md"
+}

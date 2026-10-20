@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "cc266580ea602a87be51",
+  "project": "irt_equated_bench_regen--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目路径：/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen 当前分支：rebuttal-b1-b",
+  "task_key": "c19dfce2-3e3c-4348-8c25-93015b9fdeb5",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/c19dfce2-3e3c-4348-8c25-93015b9fdeb5.jsonl",
+    "occurrence": 1,
+    "bytes": 627089,
+    "sha256": "a1ff35a68ed6704c2d8d6387fff350b981bb00b35ee4b85664f18bcc0928d725"
+  },
+  "statistics": {
+    "messages": 292,
+    "user_turns": 3,
+    "tool_calls": 85,
+    "roles": {
+      "record": 54,
+      "user": 3,
+      "assistant": 65,
+      "tool_call": 85,
+      "tool_result": 85
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "cc266580ea602a87be51-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 215,
+      "chunks": [
+        {
+          "path": "cc266580ea602a87be51-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "cc266580ea602a87be51-part-0002.json",
+          "message_count": 37
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 19,
+      "chunks": [
+        {
+          "path": "cc266580ea602a87be51-part-0002.json",
+          "message_count": 19
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 56,
+      "chunks": [
+        {
+          "path": "cc266580ea602a87be51-part-0002.json",
+          "message_count": 56
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-home-ubuntu-agent-ml-research-idea-gen-0520-2-projects-irt-equat-copy-15.md"
+}

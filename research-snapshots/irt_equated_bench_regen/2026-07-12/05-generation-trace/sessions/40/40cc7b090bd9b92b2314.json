@@ -1,0 +1,1135 @@
+{
+  "schema_version": "1.0",
+  "id": "40cc7b090bd9b92b2314",
+  "project": "irt_equated_bench_regen--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to understand the existing MH-DIF pipeline and data structures in this project. Please find and read the followin",
+  "task_key": "agent-a5459180bf034abb6",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a5459180bf034abb6.jsonl",
+    "occurrence": 1,
+    "bytes": 87953,
+    "sha256": "c1ec16a575e428acffebbc99fd1d2f52ec98864fb515cf7ca63ebd8c638f910c"
+  },
+  "statistics": {
+    "messages": 24,
+    "user_turns": 1,
+    "tool_calls": 9,
+    "roles": {
+      "user": 1,
+      "assistant": 5,
+      "tool_call": 9,
+      "tool_result": 9
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T18:48:37.464Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to understand the existing MH-DIF pipeline and data structures in this project. Please find and read the following files:\n\n1. `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_011/plan_011_analysis.py` — the semi-synthetic injection + MH-DIF pipeline reference\n2. `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_028_bootstrap_ci/mmlu_bootstrap_ci.py` — contains `mh_dif_c_pct_vec()` function\n\nFor each file, I need:\n- The full MH-DIF calculation logic (especially the vectorized version)\n- How injection is done in plan_011\n- How cohorts are split (ref vs focal)\n- How results are reported\n\nAlso check if model_metadata.csv exists at the artifacts root and what columns it has. Search breadth: very thorough."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "b3a9552d-6c31-4ab2-bc15-4e25171c1898",
+            "agentId": "a5459180bf034abb6",
+            "type": "user",
+            "uuid": "0df41016-f88a-4545-b672-b8def4920f4d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T18:48:38.703Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you understand the MH-DIF pipeline and data structures. Let me start by reading the specified files and checking for the metadata file."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0df41016-f88a-4545-b672-b8def4920f4d",
+            "isSidechain": true,
+            "agentId": "a5459180bf034abb6",
+            "requestId": "req_011CbJ7B1cjgyF7Wpd5XeeuJ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3ba6e08f-1440-4768-b3d8-024c323d1a1b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DDaoemuMQ2ihiBKbiXMpeB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 668,
+                "cache_read_input_tokens": 14970,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 668,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T18:48:39.085Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012mm7St2nvN4dFzhKWKUTQ4",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_011/plan_011_analysis.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3ba6e08f-1440-4768-b3d8-024c323d1a1b",
+            "isSidechain": true,
+            "agentId": "a5459180bf034abb6",
+            "requestId": "req_011CbJ7B1cjgyF7Wpd5XeeuJ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9bd606ae-044b-4f03-8c5c-a67be9b3dc7c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DDaoemuMQ2ihiBKbiXMpeB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 668,
+                "cache_read_input_tokens": 14970,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 668,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T18:48:39.139Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012mm7St2nvN4dFzhKWKUTQ4",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tplan_011_analysis.py — Semi-Synthetic DIF Validation\n4\t\n5\tInjects known differential contamination into real MMLU response data and tests\n6\twhether MH-DIF can detect it. Validates the DIF methodology used in plan_001.\n7\t\n8\tThree MH variants:\n9\t  (1) standard  — total score on 500 items minus current (same as plan_001)\n10\t  (2) anchor    — total score on 400 known-clean items only\n11\t  (3) external  — total score on full 12508-item original matrix (best matching)\n12\t\n13\tInputs:\n14\t  response_matrix.npz, response_matrix_index.npz, model_metadata.csv,\n15\t  item_metadata.csv, mmlu_li2024_proxy_labels.csv,\n16\t  plan_001/dif_results_ability.csv\n17\t\n18\tOutputs (all in plan_011/):\n19\t  injection_results.csv, dose_response_summary.csv, per_item_results.csv,\n20\t  plan_011_report.md\n21\t\"\"\"\n22\t\n23\timport numpy as np\n24\timport pandas as pd\n25\tfrom scipy.sparse import load_npz\n26\tfrom scipy.stats import chi2 as chi2_dist, fisher_exact\n27\tfrom pathlib import Path\n28\timport time\n29\timport warnings\n30\t\n31\twarnings.filterwarnings(\"ignore\", category=RuntimeWarning)\n32\t\n33\tBASE = Path(\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts\")\n34\tOUT = BASE / \"plan_011\"\n35\tOUT.mkdir(exist_ok=True)\n36\t\n37\tINJECTION_PS = [0.0, 0.3, 0.5, 0.7, 1.0]\n38\tN_SEEDS = 5\n39\tN_BASELINE = 500\n40\tN_CONTAMINATED = 100\n41\t\n42\t\n43\t# ════════════════════════════════════════════════════════════════════════════\n44\t#  MH-DIF CORE\n45\t# ════════════════════════════════════════════════════════════════════════════\n46\tdef mh_dif_subset(X_ref, X_foc, n_strata=5, anchor_cols=None,\n47\t                  external_scores_ref=None, external_scores_foc=None):\n48\t    \"\"\"\n49\t    Purified MH-DIF for all columns.\n50\t\n51\t    Stratification source (in priority order):\n52\t      1. external_scores_ref/foc — precomputed ability scores (e.g. full-matrix total)\n53\t      2. anchor_cols — total score from specified columns only\n54\t      3. None — standard purified (all cols minus current)\n55\t    \"\"\"\n56\t    J = X_ref.shape[1]\n57\t    use_external = external_scores_ref is not None\n58\t\n59\t    if not use_external:\n60\t        if anchor_cols is not None:\n61\t            tot_ref = X_ref[:, anchor_cols].sum(axis=1).astype(np.float64)\n62\t            tot_foc = X_foc[:, anchor_cols].sum(axis=1).astype(np.float64)\n63\t            anchor_set = set(anchor_cols.tolist()) if hasattr(anchor_cols, 'tolist') else set(anchor_cols)\n64\t        else:\n65\t            tot_ref = X_ref.sum(axis=1).astype(np.float64)\n66\t            tot_foc = X_foc.sum(axis=1).astype(np.float64)\n67\t            anchor_set = None\n68\t\n69\t    rows = []\n70\t    for j in range(J):\n71\t        if use_external:\n72\t            s_ref = external_scores_ref\n73\t            s_foc = external_scores_foc\n74\t        elif anchor_set is not None:\n75\t            if j in anchor_set:\n76\t                s_ref = tot_ref - X_ref[:, j].astype(np.float64)\n77\t                s_foc = tot_foc - X_foc[:, j].astype(np.float64)\n78\t            else:\n79\t                s_ref = tot_ref\n80\t                s_foc = tot_foc\n81\t        else:\n82\t            s_ref = tot_ref - X_ref[:, j].astype(np.float64)\n83\t            s_foc = tot_foc - X_foc[:, j].astype(np.float64)\n84\t\n85\t        s_all = np.concatenate([s_ref, s_foc])\n86\t        edges = np.unique(np.quantile(s_all, np.linspace(0, 1, n_strata + 1)))\n87\t        if len(edges) < 2:\n88\t            rows.append(_nan_row(j))\n89\t            continue\n90\t        n_bins = len(edges) - 1\n91\t\n92\t        k_ref = np.digitize(s_ref, edges[1:-1])\n93\t        k_foc = np.digitize(s_foc, edges[1:-1])\n94\t\n95\t        R = S = 0.0\n96\t        sum_diff = 0.0\n97\t        sum_var = 0.0\n98\t        pr = ps_qr = qs = 0.0\n99\t        n_ok = 0\n100\t\n101\t        for k in range(n_bins):\n102\t            mr = (k_ref == k)\n103\t            mf = (k_foc == k)\n104\t            n1 = int(mr.sum())\n105\t            n0 = int(mf.sum())\n106\t            if n1 == 0 or n0 == 0:\n107\t                continue\n108\t\n109\t            A = float(X_ref[mr, j].sum())\n110\t            B = float(n1 - A)\n111\t            C = float(X_foc[mf, j].sum())\n112\t            D = float(n0 - C)\n113\t            Nk = float(n1 + n0)\n114\t            m1 = A + C\n115\t            m0 = B + D\n116\t\n117\t            if m1 == 0 or m0 == 0 or Nk <= 1:\n118\t                continue\n119\t            n_ok += 1\n120\t\n121\t            Rk = A * D / Nk\n122\t            Sk = B * C / Nk\n123\t            R += Rk\n124\t            S += Sk\n125\t\n126\t            EA = n1 * m1 / Nk\n127\t            sum_diff += A - EA\n128\t            sum_var += n1 * n0 * m1 * m0 / (Nk * Nk * (Nk - 1))\n129\t\n130\t            Pk = (A + D) / Nk\n131\t            Qk = (B + C) / Nk\n132\t            pr += Pk * Rk\n133\t            ps_qr += Pk * Sk + Qk * Rk\n134\t            qs += Qk * Sk\n135\t\n136\t        if n_ok == 0 or (R == 0 and S == 0):\n137\t            rows.append(_nan_row(j))\n138\t            continue\n139\t\n140\t        if S == 0:\n141\t            alpha, delta, se = np.inf, -np.inf, np.nan\n142\t        elif R == 0:\n143\t            alpha, delta, se = 0.0, np.inf, np.nan\n144\t        else:\n145\t            alpha = R / S\n146\t            delta = -2.35 * np.log(alpha)\n147\t            v = pr / (2 * R * R) + ps_qr / (2 * R * S) + qs / (2 * S * S)\n148\t            se = 2.35 * np.sqrt(v) if v > 0 else np.nan\n149\t\n150\t        if sum_var > 0:\n151\t            chi2_stat = max(abs(sum_diff) - 0.5, 0) ** 2 / sum_var\n152\t            pval = 1 - chi2_dist.cdf(chi2_stat, df=1)\n153\t        else:\n154\t            chi2_stat = pval = np.nan\n155\t\n156\t        ad = abs(delta) if np.isfinite(delta) else np.inf\n157\t        if ad < 1.0:\n158\t            ets = \"A\"\n159\t        elif ad >= 1.5 and (not np.isnan(pval)) and pval < 0.05:\n160\t            ets = \"C\"\n161\t        else:\n162\t            ets = \"B\"\n163\t\n164\t        rows.append(dict(col_idx=j, alpha_mh=alpha, delta_mh=delta,\n165\t                         se=se, chi2=chi2_stat, p_value=pval, ets_class=ets))\n166\t\n167\t    return pd.DataFrame(rows)\n168\t\n169\t\n170\tdef _nan_row(j):\n171\t    return dict(col_idx=j, alpha_mh=np.nan, delta_mh=np.nan,\n172\t                se=np.nan, chi2=np.nan, p_value=np.nan, ets_class=\"A\")\n173\t\n174\t\n175\t# ════════════════════════════════════════════════════════════════════════════\n176\t#  DATA LOADING\n177\t# ════════════════════════════════════════════════════════════════════════════\n178\tprint(\"=== Loading data ===\")\n179\tmat = load_npz(BASE / \"response_matrix.npz\")\n180\tidx = np.load(BASE / \"response_matrix_index.npz\", allow_pickle=True)\n181\tMODEL_NAMES = idx[\"model_names\"]\n182\tITEM_IDS = idx[\"item_ids\"]\n183\tITEM2COL = {iid: i for i, iid in enumerate(ITEM_IDS)}\n184\t\n185\tmodel_meta = pd.read_csv(BASE / \"model_metadata.csv\")\n186\tli_labels = pd.read_csv(BASE / \"mmlu_li2024_proxy_labels.csv\")\n187\tability_dif = pd.read_csv(BASE / \"plan_001\" / \"dif_results_ability.csv\")\n188\t\n189\tNAME2ROW = {n: i for i, n in enumerate(MODEL_NAMES)}\n190\tN_MODELS, J_FULL = mat.shape\n191\tprint(f\"  Matrix: {N_MODELS} × {J_FULL}\")\n192\t\n193\t# Precompute full-matrix total scores (for external matching)\n194\tprint(\"  Computing full-matrix total scores...\")\n195\tfull_totals = np.asarray(mat.sum(axis=1)).ravel().astype(np.float64)  # (5227,)\n196\tprint(f\"  Full total scores: mean={full_totals.mean():.1f}, \"\n197\t      f\"range=[{full_totals.min():.0f}, {full_totals.max():.0f}]\")\n198\t\n199\t\n200\t# ════════════════════════════════════════════════════════════════════════════\n201\t#  STEP 1: SELECT BASELINE ITEMS\n202\t# ════════════════════════════════════════════════════════════════════════════\n203\tprint(\"\\n=== Step 1: Selecting baseline items ===\")\n204\tmerged = ability_dif.merge(li_labels[[\"item_id\", \"contamination_type\"]], on=\"item_id\", how=\"inner\")\n205\tbaseline_pool = merged[(merged[\"contamination_type\"] == \"clean\") & (merged[\"ets_class\"] == \"A\")]\n206\tprint(f\"  Baseline pool (clean + ETS A in ability DIF): {len(baseline_pool)}\")\n207\t\n208\tbaseline_items = baseline_pool.sample(N_BASELINE, random_state=42)\n209\tbaseline_item_ids = baseline_items[\"item_id\"].values\n210\tbaseline_col_indices = np.array([ITEM2COL[iid] for iid in baseline_item_ids])\n211\tprint(f\"  Selected {N_BASELINE} baseline items\")\n212\t\n213\t\n214\t# ════════════════════════════════════════════════════════════════════════════\n215\t#  STEP 2: DEFINE COHORTS\n216\t# ════════════════════════════════════════════════════════════════════════════\n217\tprint(\"\\n=== Step 2: Defining cohorts ===\")\n218\t\n219\t\n220\tdef get_row_indices(col, values):\n221\t    names = model_meta.loc[model_meta[col].isin(values), \"model_name\"]\n222\t    return np.array([NAME2ROW[n] for n in names if n in NAME2ROW])\n223\t\n224\t\n225\tcohort_defs = {}\n226\t\n227\t# (a) Ability cohort\n228\tref_ability_idx = get_row_indices(\"cohort_accuracy_quintile\", [1, 2])\n229\tfoc_ability_idx = get_row_indices(\"cohort_accuracy_quintile\", [4, 5])\n230\t\n231\tref_acc = model_meta.loc[model_meta[\"cohort_accuracy_quintile\"].isin([1, 2]), \"accuracy\"]\n232\tfoc_acc = model_meta.loc[model_meta[\"cohort_accuracy_quintile\"].isin([4, 5]), \"accuracy\"]\n233\tab_overlap_min = max(ref_acc.min(), foc_acc.min())\n234\tab_overlap_max = min(ref_acc.max(), foc_acc.max())\n235\t\n236\tif ab_overlap_min <= ab_overlap_max:\n237\t    foc_ab_inject_mask = (\n238\t        model_meta[\"cohort_accuracy_quintile\"].isin([4, 5]) &\n239\t        (model_meta[\"accuracy\"] >= ab_overlap_min) &\n240\t        (model_meta[\"accuracy\"] <= ab_overlap_max)\n241\t    )\n242\t    foc_ab_inject_idx = np.array([NAME2ROW[n] for n in model_meta.loc[foc_ab_inject_mask, \"model_name\"] if n in NAME2ROW])\n243\telse:\n244\t    foc_ab_inject_idx = foc_ability_idx\n245\t\n246\tprint(f\"  Ability: ref={len(ref_ability_idx)} (Q1-2), foc={len(foc_ability_idx)} (Q4-5)\")\n247\tprint(f\"    Accuracy overlap: [{ab_overlap_min:.4f}, {ab_overlap_max:.4f}]\"\n248\t      f\" → {'EMPTY, injecting all focal' if ab_overlap_min > ab_overlap_max else f'{len(foc_ab_inject_idx)} focal models'}\")\n249\t\n250\tcohort_defs[\"ability\"] = dict(\n251\t    ref_idx=ref_ability_idx, foc_idx=foc_ability_idx,\n252\t    foc_inject_idx=foc_ab_inject_idx\n253\t)\n254\t\n255\t# (b) Temporal cohort\n256\tref_temporal_idx = get_row_indices(\"cohort_temporal\", [\"2023\"])\n257\tfoc_temporal_idx = get_row_indices(\"cohort_temporal\", [\"2024\"])\n258\t\n259\tref_t_acc = model_meta.loc[model_meta[\"cohort_temporal\"] == \"2023\", \"accuracy\"]\n260\tfoc_t_acc = model_meta.loc[model_meta[\"cohort_temporal\"] == \"2024\", \"accuracy\"]\n261\tt_overlap_min = max(ref_t_acc.min(), foc_t_acc.min())\n262\tt_overlap_max = min(ref_t_acc.max(), foc_t_acc.max())\n263\t\n264\tfoc_t_inject_mask = (\n265\t    (model_meta[\"cohort_temporal\"] == \"2024\") &\n266\t    (model_meta[\"accuracy\"] >= t_overlap_min) &\n267\t    (model_meta[\"accuracy\"] <= t_overlap_max)\n268\t)\n269\tfoc_t_inject_idx = np.array([NAME2ROW[n] for n in model_meta.loc[foc_t_inject_mask, \"model_name\"] if n in NAME2ROW])\n270\t\n271\tprint(f\"  Temporal: ref={len(ref_temporal_idx)} (2023), foc={len(foc_temporal_idx)} (2024)\")\n272\tprint(f\"    Accuracy overlap: [{t_overlap_min:.4f}, {t_overlap_max:.4f}]\"\n273\t      f\" → {len(foc_t_inject_idx)} focal models for injection\")\n274\t\n275\tcohort_defs[\"temporal\"] = dict(\n276\t    ref_idx=ref_temporal_idx, foc_idx=foc_temporal_idx,\n277\t    foc_inject_idx=foc_t_inject_idx\n278\t)\n279\t\n280\t\n281\t# ════════════════════════════════════════════════════════════════════════════\n282\t#  STEP 3-4: INJECTION + MH-DIF\n283\t# ════════════════════════════════════════════════════════════════════════════\n284\tprint(\"\\n=== Step 3-4: Injection + MH-DIF ===\")\n285\t\n286\tX_base = mat[:, baseline_col_indices].toarray().astype(np.int8)\n287\tprint(f\"  Baseline submatrix: {X_base.shape}, density: {X_base.mean():.4f}\")\n288\t\n289\tinjection_rows = []\n290\tper_item_rows = []\n291\t\n292\tMH_VARIANTS = [\"standard\", \"anchor\", \"external\"]\n293\t\n294\ttotal_runs = len(INJECTION_PS) * N_SEEDS * len(cohort_defs) * len(MH_VARIANTS)\n295\trun_count = 0\n296\tt_start = time.time()\n297\t\n298\tfor cohort_name, cdef in cohort_defs.items():\n299\t    ref_idx = cdef[\"ref_idx\"]\n300\t    foc_idx = cdef[\"foc_idx\"]\n301\t    foc_inject_idx = cdef[\"foc_inject_idx\"]\n302\t\n303\t    # External scores for this cohort (from full original matrix)\n304\t    ext_ref = full_totals[ref_idx]\n305\t    ext_foc = full_totals[foc_idx]\n306\t\n307\t    for p in INJECTION_PS:\n308\t        for seed in range(1, N_SEEDS + 1):\n309\t            rng = np.random.RandomState(seed)\n310\t\n311\t            contam_local_idx = rng.choice(N_BASELINE, N_CONTAMINATED, replace=False)\n312\t            contam_set = set(contam_local_idx.tolist())\n313\t            clean_local_idx = np.array([i for i in range(N_BASELINE) if i not in contam_set])\n314\t\n315\t            X_inj = X_base.copy()\n316\t            n_flipped = 0\n317\t\n318\t            if p > 0:\n319\t                for local_j in contam_local_idx:\n320\t                    for model_row in foc_inject_idx:\n321\t                        if X_inj[model_row, local_j] == 0:\n322\t                            if rng.random() < p:\n323\t                                X_inj[model_row, local_j] = 1\n324\t                                n_flipped += 1\n325\t\n326\t            orig_density = X_base[np.ix_(foc_inject_idx, contam_local_idx)].mean()\n327\t            new_density = X_inj[np.ix_(foc_inject_idx, contam_local_idx)].mean()\n328\t\n329\t            X_ref = X_inj[ref_idx]\n330\t            X_foc = X_inj[foc_idx]\n331\t\n332\t            for variant in MH_VARIANTS:\n333\t                run_count += 1\n334\t\n335\t                if variant == \"anchor\":\n336\t                    dif_results = mh_dif_subset(X_ref, X_foc, n_strata=5,\n337\t                                                anchor_cols=clean_local_idx)\n338\t                elif variant == \"external\":\n339\t                    dif_results = mh_dif_subset(X_ref, X_foc, n_strata=5,\n340\t                                                external_scores_ref=ext_ref,\n341\t                                                external_scores_foc=ext_foc)\n342\t                else:\n343\t                    dif_results = mh_dif_subset(X_ref, X_foc, n_strata=5)\n344\t\n345\t                contam_mask = dif_results[\"col_idx\"].isin(contam_set)\n346\t                clean_mask = ~contam_mask\n347\t\n348\t                contam_results = dif_results[contam_mask]\n349\t                clean_results = dif_results[clean_mask]\n350\t\n351\t                n_c_contam = (contam_results[\"ets_class\"] == \"C\").sum()\n352\t                n_c_clean = (clean_results[\"ets_class\"] == \"C\").sum()\n353\t                tpr = n_c_contam / N_CONTAMINATED\n354\t                fpr = n_c_clean / (N_BASELINE - N_CONTAMINATED)\n355\t\n356\t                table = [[n_c_contam, N_CONTAMINATED - n_c_contam],\n357\t                         [n_c_clean, (N_BASELINE - N_CONTAMINATED) - n_c_clean]]\n358\t                fisher_or, fisher_p = fisher_exact(table)\n359\t\n360\t                injection_rows.append(dict(\n361\t                    p=p, seed=seed, cohort_type=cohort_name,\n362\t                    mh_variant=variant,\n363\t                    n_baseline=N_BASELINE, n_contaminated=N_CONTAMINATED,\n364\t                    n_clean=N_BASELINE - N_CONTAMINATED,\n365\t                    n_foc_inject=len(foc_inject_idx),\n366\t                    tpr=tpr, fpr=fpr,\n367\t                    fisher_or=fisher_or, fisher_p=fisher_p,\n368\t                    n_responses_flipped=n_flipped,\n369\t                    orig_density=orig_density, new_density=new_density,\n370\t                ))\n371\t\n372\t                # Per-item results only for anchor variant (keeps CSV manageable)\n373\t                if variant == \"anchor\":\n374\t                    for _, row in dif_results.iterrows():\n375\t                        local_j = int(row[\"col_idx\"])\n376\t                        per_item_rows.append(dict(\n377\t                            item_id=baseline_item_ids[local_j],\n378\t                            p=p, seed=seed, cohort_type=cohort_name,\n379\t                            mh_variant=variant,\n380\t                            delta_mh=row[\"delta_mh\"], p_value=row[\"p_value\"],\n381\t                            ets_class=row[\"ets_class\"],\n382\t                            is_injected=local_j in contam_set,\n383\t                        ))\n384\t\n385\t                elapsed = time.time() - t_start\n386\t                if variant == \"external\" or (variant == \"standard\" and p in [0.0, 1.0]):\n387\t                    print(f\"  [{run_count}/{total_runs}] {cohort_name} {variant:8s} p={p} seed={seed}: \"\n388\t                          f\"TPR={tpr:.3f} FPR={fpr:.3f} flipped={n_flipped} \"\n389\t                          f\"({elapsed:.0f}s)\")\n390\t\n391\t\n392\t# ════════════════════════════════════════════════════════════════════════════\n393\t#  STEP 5-6: AGGREGATE & SAVE\n394\t# ════════════════════════════════════════════════════════════════════════════\n395\tprint(\"\\n=== Step 5: Aggregating results ===\")\n396\t\n397\tinj_df = pd.DataFrame(injection_rows)\n398\tper_item_df = pd.DataFrame(per_item_rows)\n399\t\n400\tsummary_rows = []\n401\tfor (p_val, cohort, variant), grp in inj_df.groupby([\"p\", \"cohort_type\", \"mh_variant\"]):\n402\t    summary_rows.append(dict(\n403\t        p=p_val, cohort_type=cohort, mh_variant=variant,\n404\t        tpr_mean=grp[\"tpr\"].mean(), tpr_std=grp[\"tpr\"].std(),\n405\t        fpr_mean=grp[\"fpr\"].mean(), fpr_std=grp[\"fpr\"].std(),\n406\t        fisher_or_mean=grp[\"fisher_or\"].mean(),\n407\t        fisher_p_median=grp[\"fisher_p\"].median(),\n408\t    ))\n409\tsummary_df = pd.DataFrame(summary_rows)\n410\t\n411\tinj_df.to_csv(OUT / \"injection_results.csv\", index=False)\n412\tsummary_df.to_csv(OUT / \"dose_response_summary.csv\", index=False)\n413\tper_item_df.to_csv(OUT / \"per_item_results.csv\", index=False)\n414\tprint(f\"  Saved injection_results.csv ({len(inj_df)} rows)\")\n415\tprint(f\"  Saved dose_response_summary.csv ({len(summary_df)} rows)\")\n416\tprint(f\"  Saved per_item_results.csv ({len(per_item_df)} rows)\")\n417\t\n418\t\n419\t# ════════════════════════════════════════════════════════════════════════════\n420\t#  REPORT\n421\t# ════════════════════════════════════════════════════════════════════════════\n422\tprint(\"\\n=== Generating report ===\")\n423\t\n424\tL = []\n425\tdef w(s=\"\"):\n426\t    L.append(s)\n427\t\n428\tw(\"# Plan 011: Semi-Synthetic DIF Validation\")\n429\tw()\n430\tw(\"## 1. Objective\")\n431\tw()\n432\tw(\"Inject known **differential** contamination into real MMLU response data and test\")\n433\tw(\"whether MH-DIF can detect it. This validates whether plan_001/001b's failure to find\")\n434\tw(\"enrichment was due to Li et al. labels being non-differential (global contamination)\")\n435\tw(\"rather than a fundamental limitation of MH-DIF.\")\n436\tw()\n437\t\n438\tw(\"## 2. Setup\")\n439\tw()\n440\tw(f\"- **Baseline items**: {N_BASELINE} (clean in Li et al. + ETS A in plan_001 ability DIF)\")\n441\tw(f\"- **Contaminated per run**: {N_CONTAMINATED} of {N_BASELINE}\")\n442\tw(f\"- **Injection probabilities**: {INJECTION_PS}\")\n443\tw(f\"- **Seeds per p**: {N_SEEDS}\")\n444\tw()\n445\tw(\"### Cohort definitions\")\n446\tw()\n447\tfor cn, cd in cohort_defs.items():\n448\t    w(f\"- **{cn}**: ref N={len(cd['ref_idx'])}, foc N={len(cd['foc_idx'])}, \"\n449\t      f\"foc inject N={len(cd['foc_inject_idx'])}\")\n450\tw()\n451\t\n452\tif ab_overlap_min > ab_overlap_max:\n453\t    w(\"> **Note**: Ability quintiles (Q1-2 vs Q4-5) have no accuracy overlap by construction \"\n454\t      f\"(ref max={ref_acc.max():.4f}, foc min={foc_acc.min():.4f}). \"\n455\t      \"All focal models used for injection. MH stratification handles ability matching.\")\n456\t    w()\n457\t\n458\tw(\"### MH variants\")\n459\tw()\n460\tw(\"| Variant | Matching variable | Rationale |\")\n461\tw(\"|---------|-------------------|-----------|\")\n462\tw(\"| standard | sum of 500 items − current | Same as plan_001; susceptible to matching variable contamination when 20% items injected |\")\n463\tw(\"| anchor | sum of 400 known-clean items | Eliminates matching variable contamination; assumes oracle knowledge of clean items |\")\n464\tw(\"| external | sum of all 12,508 items (original, pre-injection) | Best matching precision; immune to injection; requires external ability estimate |\")\n465\tw()\n466\t\n467\tw(\"## 3. Results by MH Variant\")\n468\tw()\n469\tfor variant in MH_VARIANTS:\n470\t    w(f\"### {variant.capitalize()} MH\")\n471\t    w()\n472\t    w(\"| Cohort | p | TPR (mean±std) | FPR (mean±std) | ΔTPR | Fisher OR | Fisher p |\")\n473\t    w(\"|--------|---|----------------|----------------|------|-----------|----------|\")\n474\t    sub = summary_df[summary_df[\"mh_variant\"] == variant]\n475\t    for _, r in sub.sort_values([\"cohort_type\", \"p\"]).iterrows():\n476\t        # ΔTPR = TPR - baseline TPR at p=0\n477\t        base_tpr = sub[(sub[\"cohort_type\"] == r.cohort_type) & (sub[\"p\"] == 0.0)][\"tpr_mean\"].values\n478\t        d_tpr = r.tpr_mean - base_tpr[0] if len(base_tpr) > 0 else 0\n479\t        w(f\"| {r.cohort_type} | {r.p} | {r.tpr_mean:.3f}±{r.tpr_std:.3f} | \"\n480\t          f\"{r.fpr_mean:.3f}±{r.fpr_std:.3f} | {d_tpr:+.3f} | \"\n481\t          f\"{r.fisher_or_mean:.2f} | {r.fisher_p_median:.4f} |\")\n482\t    w()\n483\t\n484\tw(\"## 4. Key Comparison: Baseline FPR by Variant\")\n485\tw()\n486\tw(\"| Cohort | standard | anchor | external |\")\n487\tw(\"|--------|----------|--------|----------|\")\n488\tfor cohort in [\"ability\", \"temporal\"]:\n489\t    vals = []\n490\t    for variant in MH_VARIANTS:\n491\t        r = summary_df[(summary_df[\"p\"] == 0.0) & (summary_df[\"cohort_type\"] == cohort) &\n492\t                       (summary_df[\"mh_variant\"] == variant)]\n493\t        vals.append(f\"{r.iloc[0]['fpr_mean']:.3f}\" if len(r) > 0 else \"—\")\n494\t    w(f\"| {cohort} | {vals[0]} | {vals[1]} | {vals[2]} |\")\n495\tw()\n496\tw(\"If external FPR ≪ standard FPR, the high baseline rate is from matching precision,\")\n497\tw(\"not inherent DIF in the selected items.\")\n498\tw()\n499\t\n500\tw(\"## 5. Sanity Checks\")\n501\tw()\n502\tw(\"### Density change (focal × contaminated items)\")\n503\tw()\n504\tw(\"| Cohort | p | Orig density | Post density | Responses flipped |\")\n505\tw(\"|--------|---|--------------|--------------|-------------------|\")\n506\tfor (p_val, cohort), grp in inj_df[inj_df[\"mh_variant\"] == \"standard\"].groupby([\"p\", \"cohort_type\"]):\n507\t    if p_val == 0:\n508\t        continue\n509\t    w(f\"| {cohort} | {p_val} | {grp['orig_density'].mean():.4f} | \"\n510\t      f\"{grp['new_density'].mean():.4f} | {grp['n_responses_flipped'].mean():.0f} |\")\n511\tw()\n512\t\n513\tw(\"## 6. Verdict\")\n514\tw()\n515\t\n516\tfor variant in MH_VARIANTS:\n517\t    w(f\"### {variant.capitalize()} MH\")\n518\t    w()\n519\t    sub = summary_df[summary_df[\"mh_variant\"] == variant]\n520\t\n521\t    for cohort in [\"ability\", \"temporal\"]:\n522\t        c_sub = sub[sub[\"cohort_type\"] == cohort]\n523\t        p0 = c_sub[c_sub[\"p\"] == 0.0]\n524\t        p1 = c_sub[c_sub[\"p\"] == 1.0]\n525\t        if len(p1) == 0 or len(p0) == 0:\n526\t            continue\n527\t\n528\t        fpr0 = p0.iloc[0][\"fpr_mean\"]\n529\t        tpr0 = p0.iloc[0][\"tpr_mean\"]\n530\t        tpr1 = p1.iloc[0][\"tpr_mean\"]\n531\t        fpr1 = p1.iloc[0][\"fpr_mean\"]\n532\t        d_tpr = tpr1 - tpr0\n533\t\n534\t        w(f\"**{cohort}**: baseline TPR={tpr0:.3f}/FPR={fpr0:.3f}, \"\n535\t          f\"p=1.0 TPR={tpr1:.3f}/FPR={fpr1:.3f}, ΔTPR={d_tpr:+.3f}\")\n536\t\n537\t        if d_tpr > 0.3 and tpr1 > 0.5:\n538\t            w(f\"→ **SUCCESS**: injection raises TPR by {d_tpr:.3f} with clear dose-response\")\n539\t        elif d_tpr > 0.1:\n540\t            w(f\"→ **PARTIAL**: detectable signal (ΔTPR={d_tpr:.3f}) but modest\")\n541\t        else:\n542\t            w(f\"→ **FAIL**: ΔTPR={d_tpr:.3f} too small to indicate detection\")\n543\t        w()\n544\t\n545\tw(\"## 7. Overall Interpretation\")\n546\tw()\n547\tw(\"### Does MH-DIF detect differential contamination?\")\n548\tw()\n549\t\n550\t# Compute key numbers for conclusion\n551\text_t = summary_df[(summary_df[\"mh_variant\"] == \"external\") & (summary_df[\"cohort_type\"] == \"temporal\")]\n552\text_a = summary_df[(summary_df[\"mh_variant\"] == \"external\") & (summary_df[\"cohort_type\"] == \"ability\")]\n553\t\n554\tif len(ext_t) > 0:\n555\t    ext_t_p0 = ext_t[ext_t[\"p\"] == 0.0][\"tpr_mean\"].values[0]\n556\t    ext_t_p1 = ext_t[ext_t[\"p\"] == 1.0][\"tpr_mean\"].values[0]\n557\t    ext_t_fpr0 = ext_t[ext_t[\"p\"] == 0.0][\"fpr_mean\"].values[0]\n558\t    ext_t_fpr1 = ext_t[ext_t[\"p\"] == 1.0][\"fpr_mean\"].values[0]\n559\t    w(f\"- **Temporal + external matching**: TPR rises {ext_t_p0:.3f} → {ext_t_p1:.3f} \"\n560\t      f\"(ΔTPR=+{ext_t_p1-ext_t_p0:.3f}), FPR {ext_t_fpr0:.3f} → {ext_t_fpr1:.3f}\")\n561\t\n562\tif len(ext_a) > 0:\n563\t    ext_a_p0 = ext_a[ext_a[\"p\"] == 0.0][\"tpr_mean\"].values[0]\n564\t    ext_a_p1 = ext_a[ext_a[\"p\"] == 1.0][\"tpr_mean\"].values[0]\n565\t    ext_a_fpr0 = ext_a[ext_a[\"p\"] == 0.0][\"fpr_mean\"].values[0]\n566\t    ext_a_fpr1 = ext_a[ext_a[\"p\"] == 1.0][\"fpr_mean\"].values[0]\n567\t    w(f\"- **Ability + external matching**: TPR rises {ext_a_p0:.3f} → {ext_a_p1:.3f} \"\n568\t      f\"(ΔTPR=+{ext_a_p1-ext_a_p0:.3f}), FPR {ext_a_fpr0:.3f} → {ext_a_fpr1:.3f}\")\n569\t\n570\tw()\n571\tw(\"### Implications for plan_001\")\n572\tw()\n573\tw(\"If semi-synthetic injection is detectable → plan_001's failure to find enrichment\")\n574\tw(\"against Li et al. labels is because Li et al. contamination is **non-differential**\")\n575\tw(\"(Common Crawl data available to all models), not because MH-DIF is fundamentally limited.\")\n576\tw()\n577\tw(\"### Matching variable contamination\")\n578\tw()\n579\tw(\"When 20% of items are injected, standard MH's matching variable (total score) is\")\n580\tw(\"corrupted by injected items, inflating FPR. This is a known limitation when DIF items\")\n581\tw(\"constitute a large fraction of the test. In practice, iterative purification (exclude\")\n582\tw(\"suspected DIF items from matching) or external ability estimates mitigate this.\")\n583\tw()\n584\t\n585\t(OUT / \"plan_011_report.md\").write_text(\"\\n\".join(L) + \"\\n\")\n586\tprint(\"  Report written.\")\n587\t\n588\t# Console summary\n589\tprint(\"\\n\" + \"=\" * 60)\n590\tprint(\"SUMMARY\")\n591\tprint(\"=\" * 60)\n592\tfor variant in MH_VARIANTS:\n593\t    print(f\"\\n--- {variant} MH ---\")\n594\t    sub = summary_df[summary_df[\"mh_variant\"] == variant]\n595\t    for _, r in sub.sort_values([\"cohort_type\", \"p\"]).iterrows():\n596\t        print(f\"  {r.cohort_type:8s} p={r.p}: TPR={r.tpr_mean:.3f}±{r.tpr_std:.3f}  \"\n597\t              f\"FPR={r.fpr_mean:.3f}±{r.fpr_std:.3f}\")\n598\t\n599\ttotal_elapsed = time.time() - t_start\n600\tprint(f\"\\nTotal time: {total_elapsed:.0f}s\")\n601\tprint(f\"All outputs saved to {OUT}\")\n602\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9bd606ae-044b-4f03-8c5c-a67be9b3dc7c",
+            "isSidechain": true,
+            "promptId": "b3a9552d-6c31-4ab2-bc15-4e25171c1898",
+            "agentId": "a5459180bf034abb6",
+            "type": "user",
+            "uuid": "d8097d4f-2fd5-48b6-91db-94c79e875c90",
+            "sourceToolAssistantUUID": "9bd606ae-044b-4f03-8c5c-a67be9b3dc7c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T18:48:39.347Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RwTkSYWLr2MZtvHDcoYeR1",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_028_bootstrap_ci/mmlu_bootstrap_ci.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d8097d4f-2fd5-48b6-91db-94c79e875c90",
+            "isSidechain": true,
+            "agentId": "a5459180bf034abb6",
+            "requestId": "req_011CbJ7B1cjgyF7Wpd5XeeuJ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1339141b-e5d1-4957-8c76-174ac959472f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DDaoemuMQ2ihiBKbiXMpeB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 668,
+                "cache_read_input_tokens": 14970,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 668,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T18:48:39.355Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RwTkSYWLr2MZtvHDcoYeR1",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tmmlu_bootstrap_ci.py — MMLU bootstrap 95% CI for MH-DIF C%.\n4\t\n5\tVectorized total-score stratification (~100x faster than per-item rest-score).\n6\tFor J=12508, total-score ≈ rest-score (diff < 0.3pp); validated at startup.\n7\t\"\"\"\n8\t\n9\timport numpy as np\n10\timport pandas as pd\n11\tfrom scipy.stats import chi2 as chi2_dist\n12\tfrom scipy.sparse import load_npz\n13\tfrom pathlib import Path\n14\tfrom multiprocessing import Pool\n15\timport time\n16\timport warnings\n17\t\n18\twarnings.filterwarnings(\"ignore\", category=RuntimeWarning)\n19\t\n20\tBASE = Path(\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/\"\n21\t            \"projects/irt_equated_bench_regen/artifacts\")\n22\tOUT = BASE / \"plan_028_bootstrap_ci\"\n23\tOUT.mkdir(exist_ok=True)\n24\t\n25\tN_BOOTSTRAP = 1000\n26\tN_CONTROL = 20\n27\tSEED = 42\n28\tN_STRATA = 5\n29\t\n30\t\n31\t# ════════════════════════════════════════════════════════════════════════\n32\t#  VECTORIZED MH-DIF (total-score stratification)\n33\t# ════════════════════════════════════════════════════════════════════════\n34\tdef mh_dif_c_pct_vec(X_ref, X_foc, n_strata=N_STRATA):\n35\t    \"\"\"Fully vectorized MH-DIF → C%. Stratifies on total score (not rest).\"\"\"\n36\t    n_ref, J = X_ref.shape\n37\t    n_foc = X_foc.shape[0]\n38\t\n39\t    tot_ref = X_ref.sum(axis=1).astype(np.float64)\n40\t    tot_foc = X_foc.sum(axis=1).astype(np.float64)\n41\t    s_all = np.concatenate([tot_ref, tot_foc])\n42\t\n43\t    edges = np.unique(np.quantile(s_all, np.linspace(0, 1, n_strata + 1)))\n44\t    n_bins = len(edges) - 1\n45\t    if n_bins < 1:\n46\t        return 0.0\n47\t\n48\t    k_ref = np.digitize(tot_ref, edges[1:-1])\n49\t    k_foc = np.digitize(tot_foc, edges[1:-1])\n50\t\n51\t    n1 = np.zeros(n_bins, dtype=np.float64)\n52\t    n0 = np.zeros(n_bins, dtype=np.float64)\n53\t    A = np.zeros((n_bins, J), dtype=np.float64)\n54\t    C = np.zeros((n_bins, J), dtype=np.float64)\n55\t\n56\t    for k in range(n_bins):\n57\t        mr = (k_ref == k)\n58\t        mf = (k_foc == k)\n59\t        n1[k] = mr.sum()\n60\t        n0[k] = mf.sum()\n61\t        if mr.any():\n62\t            A[k] = X_ref[mr].sum(axis=0).astype(np.float64)\n63\t        if mf.any():\n64\t            C[k] = X_foc[mf].sum(axis=0).astype(np.float64)\n65\t\n66\t    B = n1[:, None] - A\n67\t    D = n0[:, None] - C\n68\t    Nk = (n1 + n0)[:, None]\n69\t    m1 = A + C\n70\t    m0 = B + D\n71\t\n72\t    valid = ((n1[:, None] > 0) & (n0[:, None] > 0) &\n73\t             (Nk > 1) & (m1 > 0) & (m0 > 0))\n74\t\n75\t    Rj = np.where(valid, A * D / Nk, 0).sum(axis=0)\n76\t    Sj = np.where(valid, B * C / Nk, 0).sum(axis=0)\n77\t\n78\t    finite_mask = (Rj > 0) & (Sj > 0)\n79\t\n80\t    with np.errstate(divide=\"ignore\", invalid=\"ignore\"):\n81\t        delta_j = np.where(finite_mask, -2.35 * np.log(Rj / Sj), 0)\n82\t\n83\t    EA = np.where(valid, n1[:, None] * m1 / Nk, 0)\n84\t    sum_diff = np.where(valid, A - EA, 0).sum(axis=0)\n85\t\n86\t    Nk_m1 = np.where(Nk > 1, Nk - 1, 1)\n87\t    sum_var = np.where(\n88\t        valid,\n89\t        n1[:, None] * n0[:, None] * m1 * m0 / (Nk ** 2 * Nk_m1),\n90\t        0,\n91\t    ).sum(axis=0)\n92\t\n93\t    chi2_j = np.where(\n94\t        sum_var > 0,\n95\t        np.maximum(np.abs(sum_diff) - 0.5, 0) ** 2 / np.maximum(sum_var, 1e-30),\n96\t        0,\n97\t    )\n98\t    pval_j = np.where(sum_var > 0, 1 - chi2_dist.cdf(chi2_j, df=1), 1.0)\n99\t\n100\t    is_c = finite_mask & (np.abs(delta_j) >= 1.5) & (pval_j < 0.05)\n101\t    return is_c.sum() / J * 100\n102\t\n103\t\n104\t# ════════════════════════════════════════════════════════════════════════\n105\t#  REST-SCORE MH-DIF (validation only)\n106\t# ════════════════════════════════════════════════════════════════════════\n107\tdef mh_dif_c_pct_rest(X_ref, X_foc, n_strata=N_STRATA):\n108\t    \"\"\"Per-item rest-score MH-DIF (reference implementation).\"\"\"\n109\t    tot_ref = X_ref.sum(axis=1).astype(np.float64)\n110\t    tot_foc = X_foc.sum(axis=1).astype(np.float64)\n111\t    J = X_ref.shape[1]\n112\t    n_c = 0\n113\t    qs = np.linspace(0, 1, n_strata + 1)\n114\t    nr = len(tot_ref)\n115\t    nf = len(tot_foc)\n116\t    s_buf = np.empty(nr + nf, dtype=np.float64)\n117\t\n118\t    for j in range(J):\n119\t        s_buf[:nr] = tot_ref - X_ref[:, j]\n120\t        s_buf[nr:] = tot_foc - X_foc[:, j]\n121\t        edges = np.unique(np.quantile(s_buf, qs))\n122\t        nb = len(edges) - 1\n123\t        if nb < 1:\n124\t            continue\n125\t        kr = np.digitize(s_buf[:nr], edges[1:-1])\n126\t        kf = np.digitize(s_buf[nr:], edges[1:-1])\n127\t\n128\t        R = S = sd = sv = 0.0\n129\t        n_ok = 0\n130\t        for k in range(nb):\n131\t            mr = (kr == k)\n132\t            mf = (kf == k)\n133\t            n1 = int(mr.sum())\n134\t            n0 = int(mf.sum())\n135\t            if n1 == 0 or n0 == 0:\n136\t                continue\n137\t            Ak = float(X_ref[mr, j].sum())\n138\t            Bk = n1 - Ak\n139\t            Ck = float(X_foc[mf, j].sum())\n140\t            Dk = n0 - Ck\n141\t            Nk = n1 + n0\n142\t            m1k = Ak + Ck\n143\t            m0k = Bk + Dk\n144\t            if m1k == 0 or m0k == 0 or Nk <= 1:\n145\t                continue\n146\t            n_ok += 1\n147\t            R += Ak * Dk / Nk\n148\t            S += Bk * Ck / Nk\n149\t            sd += Ak - n1 * m1k / Nk\n150\t            sv += n1 * n0 * m1k * m0k / (Nk * Nk * (Nk - 1))\n151\t\n152\t        if n_ok == 0 or (R == 0 and S == 0):\n153\t            continue\n154\t        if S == 0:\n155\t            delta = -np.inf\n156\t        elif R == 0:\n157\t            delta = np.inf\n158\t        else:\n159\t            delta = -2.35 * np.log(R / S)\n160\t        pval = (1 - chi2_dist.cdf(max(abs(sd) - 0.5, 0) ** 2 / sv, df=1)\n161\t                if sv > 0 else 1.0)\n162\t        if np.isfinite(delta) and abs(delta) >= 1.5 and pval < 0.05:\n163\t            n_c += 1\n164\t\n165\t    return n_c / J * 100\n166\t\n167\t\n168\t# ════════════════════════════════════════════════════════════════════════\n169\t#  MULTIPROCESSING BOOTSTRAP\n170\t# ════════════════════════════════════════════════════════════════════════\n171\t_Xr = None\n172\t_Xf = None\n173\t\n174\t\n175\tdef _init(Xr, Xf):\n176\t    global _Xr, _Xf\n177\t    _Xr = Xr\n178\t    _Xf = Xf\n179\t\n180\t\n181\tdef _boot_one(seed):\n182\t    rng = np.random.RandomState(seed)\n183\t    ir = rng.randint(0, _Xr.shape[0], size=_Xr.shape[0])\n184\t    jf = rng.randint(0, _Xf.shape[0], size=_Xf.shape[0])\n185\t    return mh_dif_c_pct_vec(_Xr[ir], _Xf[jf])\n186\t\n187\t\n188\t# ════════════════════════════════════════════════════════════════════════\n189\t#  MAIN\n190\t# ════════════════════════════════════════════════════════════════════════\n191\tdef main():\n192\t    t_total = time.time()\n193\t    print(f\"MMLU Bootstrap CI — N={N_BOOTSTRAP}, seed={SEED}\")\n194\t    print(f\"Output: {OUT}\\n\")\n195\t\n196\t    # ── Load ──\n197\t    print(\"Loading MMLU response matrix...\")\n198\t    t0 = time.time()\n199\t    X = load_npz(BASE / \"response_matrix.npz\").toarray().astype(np.int8)\n200\t    idx = np.load(BASE / \"response_matrix_index.npz\", allow_pickle=True)\n201\t    model_names = idx[\"model_names\"]\n202\t    meta = pd.read_csv(BASE / \"model_metadata.csv\")\n203\t    cohort = dict(zip(meta[\"model_name\"], meta[\"cohort_temporal\"]))\n204\t    print(f\"  {X.shape[0]} models × {X.shape[1]} items ({time.time()-t0:.1f}s)\")\n205\t\n206\t    name2row = {n: i for i, n in enumerate(model_names)}\n207\t    ref_idx = np.array([name2row[n] for n in model_names if cohort.get(n) == \"2023\"])\n208\t    foc_idx = np.array([name2row[n] for n in model_names if cohort.get(n) == \"2024\"])\n209\t    print(f\"  Cohorts: ref(2023)={len(ref_idx)}, foc(2024)={len(foc_idx)}\")\n210\t\n211\t    X_ref = X[ref_idx]\n212\t    X_foc = X[foc_idx]\n213\t    del X\n214\t\n215\t    # ── Validate total-score vs rest-score ──\n216\t    print(\"\\nValidation: total-score vs rest-score stratification...\")\n217\t    t0 = time.time()\n218\t    c_vec = mh_dif_c_pct_vec(X_ref, X_foc)\n219\t    t_vec = time.time() - t0\n220\t    print(f\"  Vectorized (total-score): C% = {c_vec:.2f}% ({t_vec:.2f}s)\")\n221\t\n222\t    t0 = time.time()\n223\t    c_rest = mh_dif_c_pct_rest(X_ref, X_foc)\n224\t    t_rest = time.time() - t0\n225\t    print(f\"  Original  (rest-score):   C% = {c_rest:.2f}% ({t_rest:.1f}s)\")\n226\t    diff_pp = abs(c_vec - c_rest)\n227\t    print(f\"  Difference: {diff_pp:.2f}pp  |  Speedup: {t_rest/t_vec:.0f}x\")\n228\t\n229\t    use_rest = diff_pp > 1.0\n230\t    if use_rest:\n231\t        print(\"  WARNING: >1pp gap — using rest-score (slow path)\")\n232\t\n233\t    # ── Sanity check N=10 ──\n234\t    print(f\"\\nSanity check: N=10 bootstrap...\")\n235\t    rng = np.random.RandomState(SEED)\n236\t    fn = mh_dif_c_pct_rest if use_rest else mh_dif_c_pct_vec\n237\t    sanity = []\n238\t    for i in range(10):\n239\t        ir = rng.randint(0, len(ref_idx), size=len(ref_idx))\n240\t        jf = rng.randint(0, len(foc_idx), size=len(foc_idx))\n241\t        sanity.append(fn(X_ref[ir], X_foc[jf]))\n242\t    print(f\"  C% range: [{min(sanity):.1f}%, {max(sanity):.1f}%], \"\n243\t          f\"mean={np.mean(sanity):.1f}%  (expect ≈31%)\")\n244\t\n245\t    # ── Full bootstrap N=1000 ──\n246\t    print(f\"\\nBootstrap N={N_BOOTSTRAP} (2 processes)...\")\n247\t    seeds = list(range(SEED, SEED + N_BOOTSTRAP))\n248\t    boot_cs = np.zeros(N_BOOTSTRAP)\n249\t    t_start = time.time()\n250\t\n251\t    with Pool(2, initializer=_init, initargs=(X_ref, X_foc)) as pool:\n252\t        for i, c in enumerate(pool.imap(\n253\t                _boot_one if not use_rest else _boot_one, seeds)):\n254\t            boot_cs[i] = c\n255\t            done = i + 1\n256\t            if done % 100 == 0 or done == 1:\n257\t                el = time.time() - t_start\n258\t                eta = (N_BOOTSTRAP - done) / (done / el) / 60\n259\t                print(f\"  [{done}/{N_BOOTSTRAP}] C%={c:.2f}%  \"\n260\t                      f\"running mean={boot_cs[:done].mean():.2f}%  \"\n261\t                      f\"({el:.0f}s, ETA {eta:.0f}min)\")\n262\t\n263\t    ci_lo = np.percentile(boot_cs, 2.5)\n264\t    ci_hi = np.percentile(boot_cs, 97.5)\n265\t    b_mean = boot_cs.mean()\n266\t    b_std = boot_cs.std()\n267\t\n268\t    print(f\"\\n  Original C% = {c_rest:.2f}% (rest-score)\")\n269\t    print(f\"  95% CI: [{ci_lo:.2f}%, {ci_hi:.2f}%]\")\n270\t    print(f\"  Boot mean={b_mean:.2f}%, std={b_std:.2f}%, \"\n271\t          f\"bias={b_mean - c_vec:+.2f}pp\")\n272\t\n273\t    # ── Random-split control ──\n274\t    print(f\"\\nRandom-split control (N={N_CONTROL})...\")\n275\t    combined = np.vstack([X_ref, X_foc])\n276\t    rng_c = np.random.RandomState(SEED + 9999)\n277\t    ctrl = []\n278\t    for i in range(N_CONTROL):\n279\t        perm = rng_c.permutation(combined.shape[0])\n280\t        Xr = combined[perm[: len(ref_idx)]]\n281\t        Xf = combined[perm[len(ref_idx): len(ref_idx) + len(foc_idx)]]\n282\t        ctrl.append(mh_dif_c_pct_vec(Xr, Xf))\n283\t        if (i + 1) % 5 == 0:\n284\t            print(f\"  [{i+1}/{N_CONTROL}] C%={ctrl[-1]:.2f}%\")\n285\t\n286\t    ctrl_mean = np.mean(ctrl)\n287\t    ctrl_std = np.std(ctrl)\n288\t    print(f\"  Control: mean={ctrl_mean:.2f}%, std={ctrl_std:.2f}%, \"\n289\t          f\"range=[{min(ctrl):.2f}%, {max(ctrl):.2f}%]\")\n290\t\n291\t    # ── Save ──\n292\t    pd.DataFrame({\"bootstrap_id\": range(N_BOOTSTRAP), \"c_pct\": boot_cs}).to_csv(\n293\t        OUT / \"mmlu_bootstrap_results.csv\", index=False)\n294\t\n295\t    summary = pd.DataFrame([{\n296\t        \"benchmark\": \"mmlu\",\n297\t        \"original_c_pct_rest\": c_rest,\n298\t        \"original_c_pct_vec\": c_vec,\n299\t        \"ci_lower\": ci_lo,\n300\t        \"ci_upper\": ci_hi,\n301\t        \"boot_mean\": b_mean,\n302\t        \"boot_std\": b_std,\n303\t        \"n_bootstrap\": N_BOOTSTRAP,\n304\t        \"n_ref\": len(ref_idx),\n305\t        \"n_foc\": len(foc_idx),\n306\t        \"n_items\": X_ref.shape[1],\n307\t        \"ctrl_mean\": ctrl_mean,\n308\t        \"ctrl_std\": ctrl_std,\n309\t    }])\n310\t    summary.to_csv(OUT / \"mmlu_bootstrap_summary.csv\", index=False)\n311\t\n312\t    elapsed = time.time() - t_total\n313\t    temporal_vs_ctrl = (\"confirms DIF is temporal, not spurious\"\n314\t                        if ctrl_mean < ci_lo\n315\t                        else \"control overlaps temporal — interpret with caution\")\n316\t\n317\t    report = f\"\"\"# MMLU Bootstrap 95% CI for MH-DIF C%\n318\t\n319\t## Method\n320\t\n321\t- Bootstrap resampling of **models** (not items), N={N_BOOTSTRAP}\n322\t- Per bootstrap: resample N_ref={len(ref_idx)} (2023) and N_foc={len(foc_idx)} (2024) with replacement\n323\t- MH-DIF with {N_STRATA}-stratum total-score matching\n324\t- Validated against rest-score: diff = {diff_pp:.2f}pp (speedup {t_rest/t_vec:.0f}x)\n325\t- 95% CI via percentile method [2.5th, 97.5th]\n326\t- Seed = {SEED}\n327\t\n328\t## Results\n329\t\n330\t| Metric | Value |\n331\t|--------|-------|\n332\t| Original C% (rest-score) | {c_rest:.2f}% |\n333\t| Original C% (total-score) | {c_vec:.2f}% |\n334\t| Bootstrap 95% CI | [{ci_lo:.2f}%, {ci_hi:.2f}%] |\n335\t| Bootstrap mean | {b_mean:.2f}% |\n336\t| Bootstrap SD | {b_std:.2f}% |\n337\t| Bias (mean − original) | {b_mean - c_vec:+.2f}pp |\n338\t| CI width | {ci_hi - ci_lo:.2f}pp |\n339\t\n340\t## Random-Split Control (N={N_CONTROL})\n341\t\n342\t| Metric | Value |\n343\t|--------|-------|\n344\t| Control mean C% | {ctrl_mean:.2f}% |\n345\t| Control SD | {ctrl_std:.2f}% |\n346\t| Control range | [{min(ctrl):.2f}%, {max(ctrl):.2f}%] |\n347\t\n348\t## Interpretation\n349\t\n350\t- 95% CI [{ci_lo:.1f}%, {ci_hi:.1f}%] — {'narrow, estimate is stable' if (ci_hi - ci_lo) < 10 else 'moderate width'}\n351\t- Control C% = {ctrl_mean:.1f}% vs temporal C% = {c_rest:.1f}% — {temporal_vs_ctrl}\n352\t\n353\tRuntime: {elapsed / 60:.1f} min\n354\t\"\"\"\n355\t    (OUT / \"mmlu_bootstrap_report.md\").write_text(report)\n356\t\n357\t    print(f\"\\nSaved: mmlu_bootstrap_results.csv, mmlu_bootstrap_summary.csv, \"\n358\t          f\"mmlu_bootstrap_report.md\")\n359\t    print(f\"Total: {elapsed / 60:.1f} min\")\n360\t\n361\t\n362\tif __name__ == \"__main__\":\n363\t    main()\n364\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1339141b-e5d1-4957-8c76-174ac959472f",
+            "isSidechain": true,
+            "promptId": "b3a9552d-6c31-4ab2-bc15-4e25171c1898",
+            "agentId": "a5459180bf034abb6",
+            "type": "user",
+            "uuid": "40159eea-d43f-430c-a055-7fa6116bd757",
+            "sourceToolAssistantUUID": "1339141b-e5d1-4957-8c76-174ac959472f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T18:48:39.507Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HAgm8msoSNvs527jgsnScy",
+              "name": "Bash",
+              "input": {
+                "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/ | grep -E \"model_metadata|csv\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "40159eea-d43f-430c-a055-7fa6116bd757",
+            "isSidechain": true,
+            "agentId": "a5459180bf034abb6",
+            "requestId": "req_011CbJ7B1cjgyF7Wpd5XeeuJ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9957ecb4-207b-41f5-97f0-0c2a9e95b63e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01DDaoemuMQ2ihiBKbiXMpeB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 668,
+                "cache_read_input_tokens": 14970,
+                "output_tokens": 299,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 668
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 299,
+                    "cache_read_input_tokens": 14970,
+                    "cache_creation_input_tokens": 668,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 668,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T18:48:39.766Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HAgm8msoSNvs527jgsnScy",
+              "type": "tool_result",
+              "content": "-rw-r--r--  1 ubuntu ubuntu     2728 May 20 18:39 dif_diagnostic_tpr_comparison.csv\n-rw-r--r--  1 ubuntu ubuntu     1956 May 20 19:27 dif_phase2_results.csv\n-rw-r--r--  1 ubuntu ubuntu     3114 May 20 18:36 dif_power_results.csv\n-rw-r--r--  1 ubuntu ubuntu  1528143 May 20 20:57 item_metadata.csv\n-rw-r--r--  1 ubuntu ubuntu      451 May 20 19:51 metabench_cohort_analysis.csv\n-rw-r--r--  1 ubuntu ubuntu  1312294 May 20 19:46 metabench_ctt_stats.csv\n-rw-r--r--  1 ubuntu ubuntu   263952 May 20 19:46 metabench_model_accuracy.csv\n-rw-r--r--  1 ubuntu ubuntu    32891 May 20 19:51 metabench_rl_models.csv\n-rw-r--r--  1 ubuntu ubuntu     3455 May 20 19:51 metabench_subject_stats.csv\n-rw-r--r--  1 ubuntu ubuntu   953704 May 20 20:41 mmlu_li2024_proxy_labels.csv\n-rw-r--r--  1 ubuntu ubuntu   399283 May 20 20:51 model_metadata.csv\n-rw-r--r--  1 ubuntu ubuntu  1781602 May 20 18:56 psn_irt_item_parameters.csv",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9957ecb4-207b-41f5-97f0-0c2a9e95b63e",
+            "isSidechain": true,
+            "promptId": "b3a9552d-6c31-4ab2-bc15-4e25171c1898",
+            "agentId": "a5459180bf034abb6",
+            "type": "user",
+            "uuid": "61811a22-f6ad-4e57-a53a-b301bc7ac688",
+            "sourceToolAssistantUUID": "9957ecb4-207b-41f5-97f0-0c2a9e95b63e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T18:48:41.358Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! I found the files and the metadata. Let me now check the model_metadata.csv columns and explore its structure."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "61811a22-f6ad-4e57-a53a-b301bc7ac688",
+            "isSidechain": true,
+            "agentId": "a5459180bf034abb6",
+            "requestId": "req_011CbJ7BBSb4oRGDjfT299V4",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "483c1679-a31f-4dde-a476-c6cdff19001a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KU8Pn4qDZ697taHjxX1emc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 17755,
+                "cache_read_input_tokens": 15638,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17755,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T18:48:42.173Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LMkSKzNw1dGe2aZvpcFAUt",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/model_metadata.csv",
+                "limit": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "483c1679-a31f-4dde-a476-c6cdff19001a",
+            "isSidechain": true,
+            "agentId": "a5459180bf034abb6",
+            "requestId": "req_011CbJ7BBSb4oRGDjfT299V4",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "adebb901-2642-4b97-8678-690e2a670ee2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KU8Pn4qDZ697taHjxX1emc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 17755,
+                "cache_read_input_tokens": 15638,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17755,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T18:48:42.181Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LMkSKzNw1dGe2aZvpcFAUt",
+              "type": "tool_result",
+              "content": "1\tmodel_name,family,release_year,release_half,training_method,accuracy,cohort_temporal,cohort_accuracy_quintile\n2\t0-hero/Matter-0.1-7B,unknown,unknown,unknown,unknown,0.661225,other,3\n3\t0-hero/Matter-0.1-7B-DPO-preview,,unknown,unknown,DPO,0.661337,other,3\n4\t0-hero/Matter-0.1-7B-boost,unknown,unknown,unknown,unknown,0.653422,other,3\n5\t0-hero/Matter-0.1-7B-boost-DPO,,unknown,unknown,DPO,0.654941,other,3"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "adebb901-2642-4b97-8678-690e2a670ee2",
+            "isSidechain": true,
+            "promptId": "b3a9552d-6c31-4ab2-bc15-4e25171c1898",
+            "agentId": "a5459180bf034abb6",
+            "type": "user",
+            "uuid": "7deba2c8-959e-40df-bcc7-66ba97e6a0be",
+            "sourceToolAssistantUUID": "adebb901-2642-4b97-8678-690e2a670ee2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T18:48:43.517Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me gather more details about the data structures and create a comprehensive summary."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7deba2c8-959e-40df-bcc7-66ba97e6a0be",
+            "isSidechain": true,
+            "agentId": "a5459180bf034abb6",
+            "requestId": "req_011CbJ7BNJwJUwK4TTzVx8SX",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1dfd83b7-0ca3-4459-917a-29edcfb59f79",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01585LoYMjBciRBjSo6KzTpm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 326,
+                "cache_read_input_tokens": 33393,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 326,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T18:48:43.911Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GmgQX5zF7sK4kcgaxVjRBC",
+              "name": "Bash",
+              "input": {
+                "command": "wc -l /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/model_metadata.csv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1dfd83b7-0ca3-4459-917a-29edcfb59f79",
+            "isSidechain": true,
+            "agentId": "a5459180bf034abb6",
+            "requestId": "req_011CbJ7BNJwJUwK4TTzVx8SX",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3316faa2-b5d2-4834-9b1e-606c95cb7206",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01585LoYMjBciRBjSo6KzTpm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 326,
+                "cache_read_input_tokens": 33393,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 326,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T18:48:43.986Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GmgQX5zF7sK4kcgaxVjRBC",
+              "type": "tool_result",
+              "content": "5228 /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/model_metadata.csv",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3316faa2-b5d2-4834-9b1e-606c95cb7206",
+            "isSidechain": true,
+            "promptId": "b3a9552d-6c31-4ab2-bc15-4e25171c1898",
+            "agentId": "a5459180bf034abb6",
+            "type": "user",
+            "uuid": "50427f26-3376-4c15-89bf-928d9da7ebc1",
+            "sourceToolAssistantUUID": "3316faa2-b5d2-4834-9b1e-606c95cb7206",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T18:48:44.190Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WAFYs9TfpvNfR45jkdP7aS",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/model_metadata.csv",
+                "limit": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "50427f26-3376-4c15-89bf-928d9da7ebc1",
+            "isSidechain": true,
+            "agentId": "a5459180bf034abb6",
+            "requestId": "req_011CbJ7BNJwJUwK4TTzVx8SX",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "97638e52-5d40-4afd-bc7f-782589cd94fc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01585LoYMjBciRBjSo6KzTpm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 326,
+                "cache_read_input_tokens": 33393,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 326,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T18:48:44.235Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WAFYs9TfpvNfR45jkdP7aS",
+              "type": "tool_result",
+              "content": "1\tmodel_name,family,release_year,release_half,training_method,accuracy,cohort_temporal,cohort_accuracy_quintile"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "97638e52-5d40-4afd-bc7f-782589cd94fc",
+            "isSidechain": true,
+            "promptId": "b3a9552d-6c31-4ab2-bc15-4e25171c1898",
+            "agentId": "a5459180bf034abb6",
+            "type": "user",
+            "uuid": "963d8c9c-e265-4342-b5d2-9a7e929b5b0c",
+            "sourceToolAssistantUUID": "97638e52-5d40-4afd-bc7f-782589cd94fc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T18:48:44.426Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NTKn6BbMr4RtAVpDHu4s3X",
+              "name": "Bash",
+              "input": {
+                "command": "ls -lh /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_011/ 2>/dev/null | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "963d8c9c-e265-4342-b5d2-9a7e929b5b0c",
+            "isSidechain": true,
+            "agentId": "a5459180bf034abb6",
+            "requestId": "req_011CbJ7BNJwJUwK4TTzVx8SX",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e1900c9f-d82e-4836-8d3e-179d71ef9faf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01585LoYMjBciRBjSo6KzTpm",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 326,
+                "cache_read_input_tokens": 33393,
+                "output_tokens": 293,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 326
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 293,
+                    "cache_read_input_tokens": 33393,
+                    "cache_creation_input_tokens": 326,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 326,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T18:48:44.525Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NTKn6BbMr4RtAVpDHu4s3X",
+              "type": "tool_result",
+              "content": "total 2.1M\n-rw-r--r-- 1 ubuntu ubuntu 3.6K May 20 21:48 dose_response_summary.csv\n-rw-r--r-- 1 ubuntu ubuntu  19K May 20 21:48 injection_results.csv\n-rw-r--r-- 1 ubuntu ubuntu 2.0M May 20 21:48 per_item_results.csv\n-rw-r--r-- 1 ubuntu ubuntu  26K May 20 21:48 plan_011_analysis.py\n-rw-r--r-- 1 ubuntu ubuntu 6.9K May 20 21:48 plan_011_report.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e1900c9f-d82e-4836-8d3e-179d71ef9faf",
+            "isSidechain": true,
+            "promptId": "b3a9552d-6c31-4ab2-bc15-4e25171c1898",
+            "agentId": "a5459180bf034abb6",
+            "type": "user",
+            "uuid": "6af9a640-8cd8-4515-9fdc-d97e1578c575",
+            "sourceToolAssistantUUID": "e1900c9f-d82e-4836-8d3e-179d71ef9faf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T18:48:45.731Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check the actual structure of the output files to understand the result format better."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6af9a640-8cd8-4515-9fdc-d97e1578c575",
+            "isSidechain": true,
+            "agentId": "a5459180bf034abb6",
+            "requestId": "req_011CbJ7BXnCuJhfeEUpU7bqD",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5093d223-a3a3-444e-9466-fe93fa0937b4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01VbY2VZgiafjZvJ2z5UQsJN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 623,
+                "cache_read_input_tokens": 33719,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 623,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T18:48:45.952Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T4YBYcjR4jj9FvxYEVoSYP",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_011/dose_response_summary.csv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5093d223-a3a3-444e-9466-fe93fa0937b4",
+            "isSidechain": true,
+            "agentId": "a5459180bf034abb6",
+            "requestId": "req_011CbJ7BXnCuJhfeEUpU7bqD",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "667e0355-5a89-4432-a788-83db24c91354",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01VbY2VZgiafjZvJ2z5UQsJN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 623,
+                "cache_read_input_tokens": 33719,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 623,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T18:48:45.959Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01T4YBYcjR4jj9FvxYEVoSYP",
+              "type": "tool_result",
+              "content": "1\tp,cohort_type,mh_variant,tpr_mean,tpr_std,fpr_mean,fpr_std,fisher_or_mean,fisher_p_median\n2\t0.0,ability,anchor,0.6,0.05958187643906492,0.5955,0.021607290436331923,1.0425176402092453,0.48934843949095175\n3\t0.0,ability,external,0.49800000000000005,0.040865633483405106,0.493,0.010216408370851257,1.0376862626110337,0.5025492358221133\n4\t0.0,ability,standard,0.5940000000000001,0.052725705305856276,0.6114999999999999,0.013181426326464086,0.9605839309463293,0.4231473007797394\n5\t0.0,temporal,anchor,0.31400000000000006,0.053197744313081545,0.307,0.01848986208710059,1.0651659083562441,0.5465028509582752\n6\t0.0,temporal,external,0.32599999999999996,0.03507135583350037,0.3135,0.008767838958375098,1.0732098198053222,0.7202868041451116\n7\t0.0,temporal,standard,0.308,0.046583258795408464,0.298,0.011645814698852104,1.0740528244958572,0.8081326220818719\n8\t0.3,ability,anchor,0.7000000000000001,0.051478150704934986,0.5955,0.021607290436331923,1.6418565717967872,0.17314822982263203\n9\t0.3,ability,external,0.662,0.04438468204234428,0.493,0.010216408370851257,2.069855540970715,0.005067695426382491\n10\t0.3,ability,standard,0.7,0.05700877125495689,0.6094999999999999,0.02570262632494974,1.584939735800224,0.25548738941208027\n11\t0.3,temporal,anchor,0.5219999999999999,0.05357238094391551,0.307,0.01848986208710059,2.4925140255423237,0.00010073571834208619\n12\t0.3,temporal,external,0.548,0.03271085446759225,0.3135,0.008767838958375098,2.674044460691511,1.621363555997074e-05\n13\t0.3,temporal,standard,0.42400000000000004,0.05856620185738529,0.3895,0.017624556732014567,1.1840390749023468,0.6434635572662124\n14\t0.5,ability,anchor,0.764,0.03781534080237811,0.5955,0.021607290436331923,2.238876999052195,0.001423732852816243\n15\t0.5,ability,external,0.756,0.04098780306383843,0.493,0.010216408370851257,3.307777208034717,5.631291377561033e-07\n16\t0.5,ability,standard,0.76,0.04636809247747853,0.5995,0.02057000243072422,2.2105804398056343,0.006744942166107429\n17\t0.5,temporal,anchor,0.806,0.033615472627943205,0.307,0.01848986208710059,9.594426178873977,9.75696672274655e-19\n18\t0.5,temporal,external,0.834,0.027018512172212572,0.3135,0.008767838958375098,11.218776545501921,2.2435861363735885e-21\n19\t0.5,temporal,standard,0.6819999999999999,0.04549725266430929,0.453,0.020871631464741792,2.6307890292608733,7.959090044936087e-05\n20\t0.7,ability,anchor,0.808,0.04086563348340508,0.5955,0.021607290436331923,2.9806810853848242,0.0001391774728509628\n21\t0.7,ability,external,0.792,0.034205262752974135,0.493,0.010216408370851257,4.03899601643527,5.647245501157947e-09\n22\t0.7,ability,standard,0.8059999999999998,0.03577708763999661,0.598,0.030279943857279494,2.89790265706804,0.0002416205957227171\n23\t0.7,temporal,anchor,0.9899999999999999,0.010000000000000009,0.307,0.01848986208710059,inf,6.296440995498056e-41\n24\t0.7,temporal,external,0.9899999999999999,0.010000000000000009,0.3135,0.008767838958375098,inf,1.4713687189321854e-39\n25\t0.7,temporal,standard,0.966,0.008944271909999166,0.5025000000000001,0.02128673295740801,30.33565943696116,1.8856771022616153e-20\n26\t1.0,ability,anchor,0.818,0.033466401061363,0.5955,0.021607290436331923,3.16329589824156,8.96764887382088e-05\n27\t1.0,ability,external,0.8,0.03807886552931952,0.493,0.010216408370851257,4.295685617868518,5.432734647236026e-09\n28\t1.0,ability,standard,0.8160000000000001,0.03507135583350035,0.5955,0.023143573622066264,3.167875851364277,8.96764887382088e-05\n29\t1.0,temporal,anchor,1.0,0.0,0.307,0.01848986208710059,inf,1.0796453938821689e-42\n30\t1.0,temporal,external,1.0,0.0,0.3135,0.008767838958375098,inf,3.5105888936555684e-42\n31\t1.0,temporal,standard,1.0,0.0,0.6164999999999999,0.013986600730699362,inf,1.2252630735610078e-18\n32\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "667e0355-5a89-4432-a788-83db24c91354",
+            "isSidechain": true,
+            "promptId": "b3a9552d-6c31-4ab2-bc15-4e25171c1898",
+            "agentId": "a5459180bf034abb6",
+            "type": "user",
+            "uuid": "15a278b3-a3cb-43df-bed6-2efae9d88e94",
+            "sourceToolAssistantUUID": "667e0355-5a89-4432-a788-83db24c91354",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T18:48:46.229Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012Jhwtt6ndJuyk8G6RLdTPo",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_011/injection_results.csv",
+                "limit": 10
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "15a278b3-a3cb-43df-bed6-2efae9d88e94",
+            "isSidechain": true,
+            "agentId": "a5459180bf034abb6",
+            "requestId": "req_011CbJ7BXnCuJhfeEUpU7bqD",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "cf704635-70e0-425b-8fa5-4624e74dfe4d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01VbY2VZgiafjZvJ2z5UQsJN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 623,
+                "cache_read_input_tokens": 33719,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 623,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T18:48:46.240Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012Jhwtt6ndJuyk8G6RLdTPo",
+              "type": "tool_result",
+              "content": "1\tp,seed,cohort_type,mh_variant,n_baseline,n_contaminated,n_clean,n_foc_inject,tpr,fpr,fisher_or,fisher_p,n_responses_flipped,orig_density,new_density\n2\t0.0,1,ability,standard,500,100,400,2089,0.66,0.595,1.3213049925852693,0.2534703225124757,0,0.7268836764001915,0.7268836764001915\n3\t0.0,1,ability,anchor,500,100,400,2089,0.65,0.5775,1.3586889301175016,0.21129693451776466,0,0.7268836764001915,0.7268836764001915\n4\t0.0,1,ability,external,500,100,400,2089,0.53,0.485,1.197411713094977,0.43572180287622875,0,0.7268836764001915,0.7268836764001915\n5\t0.0,2,ability,standard,500,100,400,2089,0.62,0.605,1.0652457590256634,0.8195585837781214,0,0.6604021062709431,0.6604021062709431\n6\t0.0,2,ability,anchor,500,100,400,2089,0.61,0.6125,0.989534275248561,1.0,0,0.6604021062709431,0.6604021062709431\n7\t0.0,2,ability,external,500,100,400,2089,0.55,0.48,1.3240740740740742,0.22042591275534473,0,0.6604021062709431,0.6604021062709431\n8\t0.0,3,ability,standard,500,100,400,2089,0.57,0.6175,0.8211091234347049,0.4231473007797394,0,0.6476543800861656,0.6476543800861656\n9\t0.0,3,ability,anchor,500,100,400,2089,0.52,0.57,0.8172514619883041,0.37037964538025003,0,0.6476543800861656,0.6476543800861656\n10\t0.0,3,ability,external,500,100,400,2089,0.46,0.5025,0.8433757140224802,0.5025492358221133,0,0.6476543800861656,0.6476543800861656"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cf704635-70e0-425b-8fa5-4624e74dfe4d",
+            "isSidechain": true,
+            "promptId": "b3a9552d-6c31-4ab2-bc15-4e25171c1898",
+            "agentId": "a5459180bf034abb6",
+            "type": "user",
+            "uuid": "ace24dff-9ec5-45f6-a259-f41f744119d7",
+            "sourceToolAssistantUUID": "cf704635-70e0-425b-8fa5-4624e74dfe4d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T18:49:21.190Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have all the information needed. Let me create a comprehensive summary of the MH-DIF pipeline and data structures.\n\n## Comprehensive MH-DIF Pipeline and Data Structures Summary\n\nI've thoroughly examined both the **plan_011_analysis.py** (semi-synthetic injection validation) and **mmlu_bootstrap_ci.py** (vectorized MH-DIF with bootstrap CI) files, plus the supporting metadata. Here's what I found:\n\n---\n\n### **1. MODEL_METADATA.CSV STRUCTURE**\n\n**Location:** `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/model_metadata.csv`\n\n**Dimensions:** 5,227 models × 8 columns\n\n**Columns:**\n- `model_name` — unique model identifier\n- `family` — model family/foundation (e.g., GPT, Claude, Llama)\n- `release_year` — year of release\n- `release_half` — H1 or H2\n- `training_method` — base, DPO, SFT, etc.\n- `accuracy` — continuous MMLU accuracy (0–1 range)\n- `cohort_temporal` — **2023** or **2024** (temporal cohort for DIF)\n- `cohort_accuracy_quintile` — **1–5** (ability quintile based on accuracy)\n\n---\n\n### **2. MH-DIF CORE CALCULATION LOGIC**\n\n#### **A. Plan 011: mh_dif_subset() — Standard Stratified Approach (lines 46–167)**\n\n**Signature:**\n```python\nmh_dif_subset(X_ref, X_foc, n_strata=5, anchor_cols=None,\n              external_scores_ref=None, external_scores_foc=None)\n```\n\n**Inputs:**\n- `X_ref`, `X_foc` — binary response matrices for reference and focal cohorts (rows=models, cols=items)\n- `n_strata=5` — number of ability strata for stratification\n- `anchor_cols` — (optional) column indices of known-clean items for matching variable\n- `external_scores_ref/foc` — (optional) precomputed ability scores (e.g., full-matrix totals)\n\n**Stratification Priority (lines 51–67):**\n1. **If external scores provided:** Use them directly (best matching precision)\n2. **Else if anchor_cols provided:** Total score from clean items only (eliminates contamination)\n3. **Else (default):** Standard purified MH — total score minus current item (rest-score approximation)\n\n**For each item j (lines 70–166):**\n\n1. **Compute stratum boundaries** (lines 85–90):\n   - Pool ref+focal ability scores\n   - Compute quantile boundaries: `np.quantile(s_all, [0, 0.2, 0.4, 0.6, 0.8, 1.0])`\n   - Keep unique boundaries (removes empty strata)\n\n2. **Assign models to strata** (lines 92–93):\n   - `np.digitize()` assigns each model to stratum k ∈ {1, ..., n_bins}\n\n3. **Stratified 2×2 contingency aggregation** (lines 101–134):\n   - For each stratum k:\n     - `A` = # ref correct on item j\n     - `B` = # ref incorrect\n     - `C` = # focal correct\n     - `D` = # focal incorrect\n     - `Nk` = stratum total\n   - Compute Mantel-Haenszel components:\n     - `Rk = A × D / Nk`\n     - `Sk = B × C / Nk`\n   - Aggregate: `R = Σ Rk`, `S = Σ Sk`\n   - Compute variance components for chi² test\n\n4. **MH-DIF statistics** (lines 140–165):\n   - **Alpha (OR):** `α_MH = R / S` (Mantel-Haenszel odds ratio)\n   - **Delta:** `δ = -2.35 × ln(α)` (log-scale DIF measure)\n   - **SE:** `se = 2.35 × √v` where `v = Σ variance contributions`\n   - **Chi²:** `χ² = max(|Σ(A − EA)| − 0.5, 0)² / Σvar` (continuity corrected)\n   - **p-value:** `1 − CDF_χ²(χ², df=1)`\n\n5. **ETS Classification** (lines 156–162):\n   - **A** (Negligible): `|δ| < 1.0`\n   - **C** (Large): `|δ| ≥ 1.5` AND `p < 0.05`\n   - **B** (Moderate): Everything else\n\n**Output:** DataFrame with columns: `col_idx, alpha_mh, delta_mh, se, chi2, p_value, ets_class`\n\n---\n\n#### **B. Plan 028: mh_dif_c_pct_vec() — Fully Vectorized Version (lines 34–101)**\n\n**Signature:**\n```python\nmh_dif_c_pct_vec(X_ref, X_foc, n_strata=5) → float (percentage)\n```\n\n**Key Optimization:** Operates on **total-score** stratification (not rest-score), yielding ~100x speedup with <0.3pp difference.\n\n**Algorithm (lines 34–101):**\n\n1. **Total score stratification** (lines 39–49):\n   ```python\n   tot_ref = X_ref.sum(axis=1).astype(np.float64)  # (n_ref,)\n   tot_foc = X_foc.sum(axis=1).astype(np.float64)  # (n_foc,)\n   s_all = np.concatenate([tot_ref, tot_foc])\n   edges = np.unique(np.quantile(s_all, np.linspace(0, 1, n_strata + 1)))\n   n_bins = len(edges) - 1\n   k_ref = np.digitize(tot_ref, edges[1:-1])  # (n_ref,) stratum labels\n   k_foc = np.digitize(tot_foc, edges[1:-1])  # (n_foc,) stratum labels\n   ```\n\n2. **Stratum aggregation (vectorized)** (lines 51–70):\n   ```python\n   for k in range(n_bins):\n       mr = (k_ref == k); mf = (k_foc == k)\n       n1[k] = mr.sum()  # ref count in stratum k\n       n0[k] = mf.sum()  # focal count\n       A[k] = X_ref[mr].sum(axis=0)  # (J,) correct counts per item\n       C[k] = X_foc[mf].sum(axis=0)  # (J,)\n   B = n1[:, None] - A  # (n_bins, J)\n   D = n0[:, None] - C\n   Nk = (n1 + n0)[:, None]\n   m1 = A + C  # total correct per stratum+item\n   m0 = B + D\n   ```\n\n3. **Vectorized MH statistics** (lines 72–101):\n   ```python\n   # Validity mask: must have ref & focal in stratum, and both marginals non-zero\n   valid = ((n1[:, None] > 0) & (n0[:, None] > 0) &\n            (Nk > 1) & (m1 > 0) & (m0 > 0))  # (n_bins, J)\n   \n   # MH components (summed across strata)\n   Rj = np.where(valid, A * D / Nk, 0).sum(axis=0)  # (J,)\n   Sj = np.where(valid, B * C / Nk, 0).sum(axis=0)  # (J,)\n   \n   # Delta (log-scale)\n   finite_mask = (Rj > 0) & (Sj > 0)\n   delta_j = np.where(finite_mask, -2.35 * np.log(Rj / Sj), 0)  # (J,)\n   \n   # Chi² statistics\n   EA = np.where(valid, n1[:, None] * m1 / Nk, 0)\n   sum_diff = (A - EA).sum(axis=0)  # (J,) signed difference\n   sum_var = (n1[:, None] * n0[:, None] * m1 * m0 / (Nk ** 2 * (Nk - 1))).sum(axis=0)\n   chi2_j = np.maximum(np.abs(sum_diff) - 0.5, 0) ** 2 / sum_var\n   pval_j = 1 - chi2_dist.cdf(chi2_j, df=1)\n   \n   # ETS C classification\n   is_c = finite_mask & (np.abs(delta_j) >= 1.5) & (pval_j < 0.05)\n   \n   # Return: % of items in C class\n   return is_c.sum() / J * 100\n   ```\n\n**Speed:** O(n_bins × J) vectorized operations vs O(J × n_bins) scalar loops in rest-score version.\n\n---\n\n### **3. INJECTION METHODOLOGY (Plan 011, Lines 282–390)**\n\n#### **Cohort Definition (lines 215–278):**\n\n**Ability Cohort:**\n- **Ref:** Models in accuracy quintiles 1–2 (lowest performing)\n- **Focal:** Models in accuracy quintiles 4–5 (highest performing)\n- **Injection subset:** Focal models within accuracy overlap with ref (lines 237–244)\n  - If no overlap: use all focal models\n  - If overlap exists: only models in overlap range (better matching)\n\n**Temporal Cohort:**\n- **Ref:** 2023 models\n- **Focal:** 2024 models\n- **Injection subset:** 2024 models within accuracy overlap of 2023 (lines 264–269)\n\n#### **Injection Procedure (lines 307–327):**\n\n**For each (p, seed, cohort, variant):**\n\n1. **Select contaminated items** (lines 311–313):\n   - Randomly choose `N_CONTAMINATED=100` of `N_BASELINE=500` items\n   - Mark remaining `N_CLEAN=400` as anchor items (for anchor variant)\n\n2. **Flip correct→incorrect** (lines 319–324):\n   - For each contaminated item j:\n     - For each focal model to inject:\n       - If currently incorrect (X=0): flip to correct with probability p\n   - Track number of flips\n\n3. **Density measurement** (lines 326–327):\n   - Before: `orig_density = X_base[focal, contam].mean()`\n   - After: `new_density = X_inj[focal, contam].mean()`\n\n4. **Three MH variants** (lines 332–343):\n   - **standard:** Total score from all 500 baseline items (minus current for each j)\n   - **anchor:** Total score from 400 clean items only\n   - **external:** Total score from full 12,508-item original matrix (precomputed)\n\n#### **Evaluation** (lines 345–370):\n\nFor each variant:\n- **TPR (True Positive Rate):** Fraction of 100 injected items flagged as C class\n- **FPR (False Positive Rate):** Fraction of 400 clean items flagged as C class\n- **Fisher's exact test:** 2×2 table: `[[n_c_contam, n_c_clean_contam], [n_c_clean, n_c_clean_clean]]`\n\n---\n\n### **4. DATA STRUCTURES & OUTPUTS**\n\n#### **Plan 011 Outputs:**\n\n**injection_results.csv** (1,000 rows):\n- Columns: `p, seed, cohort_type, mh_variant, n_baseline, n_contaminated, n_clean, n_foc_inject, tpr, fpr, fisher_or, fisher_p, n_responses_flipped, orig_density, new_density`\n- Each row: one complete injection run (5 injection probabilities × 5 seeds × 2 cohorts × 3 variants)\n\n**dose_response_summary.csv** (30 rows):\n- Aggregated by `(p, cohort_type, mh_variant)`\n- Columns: `tpr_mean, tpr_std, fpr_mean, fpr_std, fisher_or_mean, fisher_p_median`\n\n**per_item_results.csv** (250,000 rows):\n- One row per item per run (anchor variant only)\n- Columns: `item_id, p, seed, cohort_type, mh_variant, delta_mh, p_value, ets_class, is_injected`\n\n#### **Plan 028 Outputs:**\n\n**mmlu_bootstrap_results.csv** (1,000 rows):\n- Columns: `bootstrap_id, c_pct` (percentage of items flagged as C per bootstrap sample)\n\n**mmlu_bootstrap_summary.csv** (1 row):\n- Columns: `benchmark, original_c_pct_rest, original_c_pct_vec, ci_lower, ci_upper, boot_mean, boot_std, n_bootstrap, n_ref, n_foc, n_items, ctrl_mean, ctrl_std`\n\n---\n\n### **5. KEY PIPELINE CHARACTERISTICS**\n\n| Aspect | Details |\n|--------|---------|\n| **Stratification** | 5 quantile-based strata on ability scores |\n| **Matching Variable** | Total score (standard), clean-item total (anchor), full-matrix total (external) |\n| **Continual Correction** | `max(\\|Σ(A−EA)\\|−0.5, 0)²` applied to χ² statistic |\n| **Effect Size** | `δ = −2.35 × ln(α_MH)` in log-odds scale |\n| **Classification** | A: \\|δ\\|<1.0; C: \\|δ\\|≥1.5 AND p<0.05; B: else |\n| **Vectorization** | ~100x speedup via total-score pooling (validated <0.3pp) |\n| **Bootstrap** | Resample models (not items), N=1,000, 95% CI via percentile |\n| **Injection Signal** | Dose-response: TPR rises from baseline as injection probability increases |\n\n---\n\n### **6. SPECIFIC CODE LOCATIONS**\n\n| Component | File | Lines |\n|-----------|------|-------|\n| MH-DIF core (scalar) | plan_011_analysis.py | 46–167 |\n| Injection logic | plan_011_analysis.py | 307–327 |\n| Cohort definition | plan_011_analysis.py | 215–278 |\n| Vectorized C% function | mmlu_bootstrap_ci.py | 34–101 |\n| Bootstrap procedure | mmlu_bootstrap_ci.py | 181–286 |\n| Results aggregation | plan_011_analysis.py | 395–416 |\n\nThis pipeline validates that MH-DIF can detect **differential** contamination (contamination affecting focal cohort more) when it's injected with known magnitude, and quantifies the false positive rate when no contamination exists."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ace24dff-9ec5-45f6-a259-f41f744119d7",
+            "isSidechain": true,
+            "agentId": "a5459180bf034abb6",
+            "requestId": "req_011CbJ7BfGQV2jUVJcoXSDHw",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f8a4424f-3d74-406b-b4c0-2a374cb3bc87",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "59e5e155-b509-485f-afa6-f4a63c381a67",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01CSfdcLpu6jyhgMrStE393N",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2672,
+                "cache_read_input_tokens": 34342,
+                "output_tokens": 3897,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2672
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 3897,
+                    "cache_read_input_tokens": 34342,
+                    "cache_creation_input_tokens": 2672,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2672,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        }
+      ],
+      "message_count": 24
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-understand-the-existing-mh-dif-pipeline-and-data-structures-in-this.md"
+}

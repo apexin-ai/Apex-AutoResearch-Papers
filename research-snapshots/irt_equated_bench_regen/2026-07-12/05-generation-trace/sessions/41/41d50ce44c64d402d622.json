@@ -1,0 +1,694 @@
+{
+  "schema_version": "1.0",
+  "id": "41d50ce44c64d402d622",
+  "project": "irt_equated_bench_regen--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read the file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/literature_map.",
+  "task_key": "agent-a3a7427bd484b01d4",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a3a7427bd484b01d4.jsonl",
+    "occurrence": 1,
+    "bytes": 63008,
+    "sha256": "d9987e178e048eacd8cbafa226dc45972ced68abaac3f37448bbefb9524db4eb"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 1,
+    "tool_calls": 4,
+    "roles": {
+      "user": 1,
+      "assistant": 4,
+      "tool_call": 4,
+      "tool_result": 4
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T03:15:01.202Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read the file /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/literature_map.yaml and return its full contents. Also check if there's a literature.py tool at /home/ubuntu/agent-ml-research/core/tools/literature.py and show me its add_to_literature_map function signature."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "2c0f4d57-045f-436c-bd98-ba48fb6b2b34",
+            "agentId": "a3a7427bd484b01d4",
+            "type": "user",
+            "uuid": "530e6d25-fd83-4543-9f39-673df0902030",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "365d7717-8f52-4a32-a668-80e621d578d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T03:15:02.984Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you read the literature_map.yaml file and check for the literature.py tool."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "530e6d25-fd83-4543-9f39-673df0902030",
+            "isSidechain": true,
+            "agentId": "a3a7427bd484b01d4",
+            "requestId": "req_011CbEzAuEgiwwciQWk8XWSc",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7e8c4900-7b71-4905-901d-168714f94818",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "365d7717-8f52-4a32-a668-80e621d578d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XKFrFN6H6wrPKZAaqENPL4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 25345,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 25345,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 7,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T03:15:03.402Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EwHbUg1jRSh2i7BycgKXTG",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/literature_map.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7e8c4900-7b71-4905-901d-168714f94818",
+            "isSidechain": true,
+            "agentId": "a3a7427bd484b01d4",
+            "requestId": "req_011CbEzAuEgiwwciQWk8XWSc",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "23cf64a4-cf1e-4a62-8138-1f6c34c13492",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "365d7717-8f52-4a32-a668-80e621d578d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XKFrFN6H6wrPKZAaqENPL4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 25345,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 167,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 25345
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 167,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 25345,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 25345,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T03:15:03.463Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen.",
+              "is_error": true,
+              "tool_use_id": "toolu_01EwHbUg1jRSh2i7BycgKXTG"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "23cf64a4-cf1e-4a62-8138-1f6c34c13492",
+            "isSidechain": true,
+            "promptId": "2c0f4d57-045f-436c-bd98-ba48fb6b2b34",
+            "agentId": "a3a7427bd484b01d4",
+            "type": "user",
+            "uuid": "70a93bd5-8113-4644-89ae-30d62b0cefad",
+            "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen.",
+            "sourceToolAssistantUUID": "23cf64a4-cf1e-4a62-8138-1f6c34c13492",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "365d7717-8f52-4a32-a668-80e621d578d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T03:15:03.474Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013M1gvJ6TgNyYbvATtsLrYo",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/core/tools/literature.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "70a93bd5-8113-4644-89ae-30d62b0cefad",
+            "isSidechain": true,
+            "agentId": "a3a7427bd484b01d4",
+            "requestId": "req_011CbEzAuEgiwwciQWk8XWSc",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "dfd08f5f-0037-4faa-a37d-1a01d8d5a7b4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "365d7717-8f52-4a32-a668-80e621d578d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01XKFrFN6H6wrPKZAaqENPL4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 25345,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 167,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 25345
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 167,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 25345,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 25345,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T03:15:03.496Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013M1gvJ6TgNyYbvATtsLrYo",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Literature map — persistent, cross-stage knowledge base of papers.\n2\t\n3\tThe literature_map.yaml is the single source of truth for papers a project\n4\taccumulates across the Idea → Research → Writing → Review pipeline. Each\n5\tentry is verified (or marked unverified) and carries enough metadata to\n6\tgenerate BibTeX entries and to drive Related Work / citation gap-fill in\n7\tthe Paper Agent's writing pipeline.\n8\t\n9\tTwo scopes:\n10\t\n11\t  - Project-level: ``projects/{project}/literature_map.yaml``\n12\t      Used during Research and Writing phases.\n13\t\n14\t  - Global (Idea phase): ``{WORKSPACE_ROOT}/literature_map.yaml``\n15\t      Used before a project exists. Each entry carries ``source_idea_id`` so\n16\t      multiple ideas can coexist. On project creation, matching entries are\n17\t      seeded into the project map.\n18\t\n19\tDesign notes:\n20\t\n21\t  - Read paths support modes (summary / category:X / competitors / unverified\n22\t    / bib / full) so day-to-day reads stay token-cheap even when the map has\n23\t    grown to 40-60 papers.\n24\t\n25\t  - Writes hold an exclusive flock + use atomic temp→rename, modeled on\n26\t    ``core/tools/registry.py`` so the file never tears under concurrent\n27\t    Worker writes.\n28\t\n29\t  - Dedup happens on add: DOI exact match wins; otherwise normalized title\n30\t    match. Existing entries are merged (new fields fill empty existing\n31\t    fields) rather than overwritten.\n32\t\"\"\"\n33\t\n34\tfrom __future__ import annotations\n35\t\n36\timport fcntl\n37\timport logging\n38\timport os\n39\timport re\n40\timport tempfile\n41\timport unicodedata\n42\tfrom pathlib import Path\n43\tfrom typing import Any, Iterable\n44\t\n45\timport yaml\n46\t\n47\tfrom core import paths as _paths\n48\tfrom core.tools.result import ToolResult\n49\t\n50\tlogger = logging.getLogger(__name__)\n51\t\n52\t\n53\t# ---------------------------------------------------------------------------\n54\t# Constants\n55\t# ---------------------------------------------------------------------------\n56\t\n57\t# Roles a paper can play relative to the project. Used by Related Work drafting\n58\t# (foundation papers anchor narratives; direct-competitor papers must be cited).\n59\tVALID_ROLES: frozenset[str] = frozenset(\n60\t    {\"foundation\", \"direct-competitor\", \"method-component\", \"evaluation\", \"background\"}\n61\t)\n62\t\n63\t# Modes for read_literature_map — keep token usage proportional to need.\n64\tVALID_READ_MODES: frozenset[str] = frozenset(\n65\t    {\"summary\", \"competitors\", \"unverified\", \"bib\", \"full\"}\n66\t)\n67\t\n68\t# Fields kept in summary mode (skips long fields like abstract, relevance).\n69\t_SUMMARY_FIELDS: tuple[str, ...] = (\n70\t    \"title\", \"year\", \"venue\", \"category\", \"role\", \"verified\", \"bibtex_key\",\n71\t)\n72\t\n73\t\n74\t# ---------------------------------------------------------------------------\n75\t# Path resolution\n76\t# ---------------------------------------------------------------------------\n77\t\n78\tdef get_literature_map_path(project: str | None = None) -> Path:\n79\t    \"\"\"Resolve the literature_map.yaml path.\n80\t\n81\t    Project name → ``projects/{project}/literature_map.yaml`` (V3 layout).\n82\t    No project   → ``{WORKSPACE_ROOT}/literature_map.yaml`` (global, idea phase).\n83\t    \"\"\"\n84\t    if project:\n85\t        p = _paths.resolve_project_file(project, \"literature_map.yaml\")\n86\t        p.parent.mkdir(parents=True, exist_ok=True)\n87\t        return p\n88\t    return _paths.global_literature_map_path()\n89\t\n90\t\n91\t# ---------------------------------------------------------------------------\n92\t# Atomic file I/O — modeled on registry._read_modify_write_registry\n93\t# ---------------------------------------------------------------------------\n94\t\n95\tdef _empty_map() -> dict:\n96\t    return {\n97\t        \"meta\": {\"last_updated\": None, \"total_papers\": 0},\n98\t        \"categories\": [],\n99\t        \"papers\": {},\n100\t    }\n101\t\n102\t\n103\tdef _read_map(path: Path) -> dict:\n104\t    \"\"\"Read literature_map.yaml without a lock (atomic single-syscall read).\n105\t\n106\t    Returns a fresh empty skeleton if the file doesn't exist or is unreadable.\n107\t    Writers use exclusive flock + atomic rename so readers always see a\n108\t    consistent snapshot.\n109\t    \"\"\"\n110\t    if not path.exists():\n111\t        return _empty_map()\n112\t    try:\n113\t        data = yaml.safe_load(path.read_text(encoding=\"utf-8\")) or {}\n114\t    except Exception:\n115\t        logger.warning(\"Failed to parse literature_map at %s\", path, exc_info=True)\n116\t        return _empty_map()\n117\t    if isinstance(data, list):\n118\t        data = {\"papers\": data, \"meta\": {}, \"categories\": []}\n119\t    elif not isinstance(data, dict):\n120\t        logger.warning(\"literature_map at %s is %s, expected dict — resetting\", path, type(data).__name__)\n121\t        return _empty_map()\n122\t    data.setdefault(\"meta\", {})\n123\t    data[\"meta\"].setdefault(\"last_updated\", None)\n124\t    data[\"meta\"].setdefault(\"total_papers\", 0)\n125\t    data.setdefault(\"categories\", [])\n126\t    data.setdefault(\"papers\", {})\n127\t    return data\n128\t\n129\t\n130\tdef _read_modify_write(path: Path, modifier) -> dict:\n131\t    \"\"\"Read, apply ``modifier(data)`` in place, atomically write back.\n132\t\n133\t    Holds LOCK_EX on a sibling .lock file (not the data file — atomic rename\n134\t    swaps the inode and would invalidate locks held on it).\n135\t    \"\"\"\n136\t    path.parent.mkdir(parents=True, exist_ok=True)\n137\t    lock_path = path.with_suffix(\".lock\")\n138\t\n139\t    with open(lock_path, \"a+\") as lock_f:\n140\t        fcntl.flock(lock_f, fcntl.LOCK_EX)\n141\t        try:\n142\t            data = _read_map(path)\n143\t            modifier(data)\n144\t            data[\"meta\"][\"total_papers\"] = len(data.get(\"papers\", {}))\n145\t            data[\"meta\"][\"last_updated\"] = _paths.now_iso()\n146\t\n147\t            fd, tmp_path = tempfile.mkstemp(\n148\t                dir=str(path.parent), prefix=\".literature_\", suffix=\".tmp\"\n149\t            )\n150\t            try:\n151\t                with os.fdopen(fd, \"w\", encoding=\"utf-8\") as tmp_f:\n152\t                    yaml.dump(\n153\t                        data, tmp_f,\n154\t                        default_flow_style=False, allow_unicode=True, sort_keys=False,\n155\t                    )\n156\t                    tmp_f.flush()\n157\t                    os.fsync(tmp_f.fileno())\n158\t                os.replace(tmp_path, str(path))\n159\t            except Exception:\n160\t                if os.path.exists(tmp_path):\n161\t                    os.unlink(tmp_path)\n162\t                raise\n163\t        finally:\n164\t            fcntl.flock(lock_f, fcntl.LOCK_UN)\n165\t\n166\t    return data\n167\t\n168\t\n169\t# ---------------------------------------------------------------------------\n170\t# Normalization & dedup\n171\t# ---------------------------------------------------------------------------\n172\t\n173\t_PUNCT_RE = re.compile(r\"[^\\w\\s]\")\n174\t_WS_RE = re.compile(r\"\\s+\")\n175\t\n176\t\n177\tdef _normalize_title(title: str) -> str:\n178\t    \"\"\"Lowercase, strip diacritics + punctuation, collapse whitespace.\n179\t\n180\t    Used for fuzzy dedup when two records describe the same paper with\n181\t    slightly different titles (smart quotes, hyphens, capitalization).\n182\t    \"\"\"\n183\t    if not title:\n184\t        return \"\"\n185\t    s = unicodedata.normalize(\"NFKD\", title)\n186\t    s = \"\".join(c for c in s if not unicodedata.combining(c))\n187\t    s = s.lower()\n188\t    s = _PUNCT_RE.sub(\" \", s)\n189\t    s = _WS_RE.sub(\" \", s).strip()\n190\t    return s\n191\t\n192\t\n193\tdef _normalize_doi(doi: str) -> str:\n194\t    \"\"\"Lowercase DOI, strip common prefixes.\"\"\"\n195\t    if not doi:\n196\t        return \"\"\n197\t    s = doi.strip().lower()\n198\t    for prefix in (\"https://doi.org/\", \"http://doi.org/\", \"doi:\"):\n199\t        if s.startswith(prefix):\n200\t            s = s[len(prefix):]\n201\t            break\n202\t    return s.strip()\n203\t\n204\t\n205\tdef _slugify(s: str, max_len: int = 24) -> str:\n206\t    \"\"\"First-word slug — lowercase, alnum only, truncated.\"\"\"\n207\t    s = unicodedata.normalize(\"NFKD\", s or \"\")\n208\t    s = \"\".join(c for c in s if not unicodedata.combining(c))\n209\t    s = re.sub(r\"[^a-zA-Z0-9]+\", \"\", s.split()[0] if s.split() else \"\")\n210\t    return s.lower()[:max_len]\n211\t\n212\t\n213\tdef _generate_bibtex_key(paper: dict) -> str:\n214\t    \"\"\"Generate a bibtex key like ``vaswani2017attention``.\n215\t\n216\t    Uses the first author's surname + year + the first significant word of\n217\t    the title. Falls back to ``paper_{hash}`` if metadata is missing.\n218\t    \"\"\"\n219\t    authors = paper.get(\"authors\") or []\n220\t    first_author = \"\"\n221\t    if authors:\n222\t        raw = authors[0]\n223\t        if isinstance(raw, str):\n224\t            # Could be \"Vaswani, A.\" or \"Ashish Vaswani\"\n225\t            if \",\" in raw:\n226\t                first_author = raw.split(\",\", 1)[0].strip()\n227\t            else:\n228\t                first_author = raw.strip().split()[-1] if raw.strip() else \"\"\n229\t    surname = _slugify(first_author)\n230\t\n231\t    year = paper.get(\"year\") or \"\"\n232\t    year_part = str(year) if year else \"\"\n233\t\n234\t    title = paper.get(\"title\") or \"\"\n235\t    # Skip stop words for the title slug\n236\t    stop = {\"a\", \"an\", \"the\", \"on\", \"in\", \"of\", \"for\", \"and\", \"or\", \"is\", \"to\"}\n237\t    words = [w for w in re.split(r\"\\W+\", title.lower()) if w and w not in stop]\n238\t    word = _slugify(words[0]) if words else \"\"\n239\t\n240\t    key = f\"{surname}{year_part}{word}\"\n241\t    if not key.strip():\n242\t        import hashlib\n243\t        h = hashlib.md5(title.encode(\"utf-8\")).hexdigest()[:8]\n244\t        key = f\"paper_{h}\"\n245\t    return key\n246\t\n247\t\n248\tdef _find_existing_key(papers: dict, candidate: dict) -> str | None:\n249\t    \"\"\"Find a matching paper key in ``papers`` for the candidate dict.\n250\t\n251\t    Match order: DOI exact (normalized) → normalized title.\n252\t    Returns the existing key or None.\n253\t\n254\t    bibtex_key collisions are NOT treated as dedup signal — two different\n255\t    papers can share a naive bibtex_key (e.g. same first author + year), and\n256\t    we handle that with a suffix at insert time. Real dedup must be content\n257\t    based.\n258\t    \"\"\"\n259\t    cand_doi = _normalize_doi(candidate.get(\"doi\", \"\"))\n260\t    cand_title = _normalize_title(candidate.get(\"title\", \"\"))\n261\t\n262\t    for key, entry in papers.items():\n263\t        if cand_doi:\n264\t            entry_doi = _normalize_doi(entry.get(\"doi\", \"\"))\n265\t            if entry_doi and entry_doi == cand_doi:\n266\t                return key\n267\t        if cand_title:\n268\t            entry_title = _normalize_title(entry.get(\"title\", \"\"))\n269\t            if entry_title and entry_title == cand_title:\n270\t                return key\n271\t    return None\n272\t\n273\t\n274\tdef _merge_paper(existing: dict, new: dict) -> dict:\n275\t    \"\"\"Merge new fields into existing — only fill empty slots, never overwrite.\n276\t\n277\t    Verified=True wins over False (a later verification cannot un-verify).\n278\t    \"\"\"\n279\t    merged = dict(existing)\n280\t    for k, v in new.items():\n281\t        if v is None or v == \"\" or v == []:\n282\t            continue\n283\t        if k == \"verified\":\n284\t            merged[\"verified\"] = bool(existing.get(\"verified\")) or bool(v)\n285\t            continue\n286\t        if not merged.get(k):\n287\t            merged[k] = v\n288\t    return merged\n289\t\n290\t\n291\t# ---------------------------------------------------------------------------\n292\t# Public API\n293\t# ---------------------------------------------------------------------------\n294\t\n295\tdef read_literature_map(\n296\t    project: str | None = None,\n297\t    mode: str = \"summary\",\n298\t) -> ToolResult:\n299\t    \"\"\"Read the literature map with mode-controlled verbosity.\n300\t\n301\t    Args:\n302\t        project: Project name — None reads the global (idea-phase) map.\n303\t        mode:\n304\t          - \"summary\"        → categories + per-paper {title, year, venue,\n305\t                                category, role, verified, bibtex_key}\n306\t          - \"category:<key>\" → full entries in the named category\n307\t          - \"competitors\"    → full entries with role=direct-competitor\n308\t          - \"unverified\"     → full entries with verified=False\n309\t          - \"bib\"            → list of bibtex_key strings (for citation lookups)\n310\t          - \"full\"           → everything (use sparingly — token-heavy)\n311\t\n312\t    Returns:\n313\t        ToolResult.data = {\n314\t            \"categories\": [...],\n315\t            \"papers\": {key: {...}, ...},\n316\t            \"meta\": {\"last_updated\", \"total_papers\"},\n317\t            \"mode\": <effective mode>,\n318\t        }\n319\t    \"\"\"\n320\t    path = get_literature_map_path(project)\n321\t    data = _read_map(path)\n322\t    papers: dict = data.get(\"papers\", {})\n323\t    categories: list = data.get(\"categories\", [])\n324\t\n325\t    # Category-scoped read: \"category:<key>\"\n326\t    if mode.startswith(\"category:\"):\n327\t        cat_key = mode.split(\":\", 1)[1].strip()\n328\t        filtered = {k: v for k, v in papers.items() if v.get(\"category\") == cat_key}\n329\t        return ToolResult(success=True, data={\n330\t            \"categories\": [c for c in categories if c.get(\"key\") == cat_key],\n331\t            \"papers\": filtered,\n332\t            \"meta\": data.get(\"meta\", {}),\n333\t            \"mode\": mode,\n334\t        })\n335\t\n336\t    if mode not in VALID_READ_MODES:\n337\t        return ToolResult(\n338\t            success=False,\n339\t            error=(\n340\t                f\"Unknown mode '{mode}'. Valid: {sorted(VALID_READ_MODES)} \"\n341\t                \"or 'category:<key>'.\"\n342\t            ),\n343\t        )\n344\t\n345\t    if mode == \"summary\":\n346\t        compact = {\n347\t            k: {f: v.get(f) for f in _SUMMARY_FIELDS if f in v}\n348\t            for k, v in papers.items()\n349\t        }\n350\t        return ToolResult(success=True, data={\n351\t            \"categories\": categories,\n352\t            \"papers\": compact,\n353\t            \"meta\": data.get(\"meta\", {}),\n354\t            \"mode\": mode,\n355\t        })\n356\t\n357\t    if mode == \"competitors\":\n358\t        filtered = {k: v for k, v in papers.items() if v.get(\"role\") == \"direct-competitor\"}\n359\t        return ToolResult(success=True, data={\n360\t            \"categories\": categories,\n361\t            \"papers\": filtered,\n362\t            \"meta\": data.get(\"meta\", {}),\n363\t            \"mode\": mode,\n364\t        })\n365\t\n366\t    if mode == \"unverified\":\n367\t        filtered = {k: v for k, v in papers.items() if not v.get(\"verified\")}\n368\t        return ToolResult(success=True, data={\n369\t            \"categories\": categories,\n370\t            \"papers\": filtered,\n371\t            \"meta\": data.get(\"meta\", {}),\n372\t            \"mode\": mode,\n373\t        })\n374\t\n375\t    if mode == \"bib\":\n376\t        keys = [v.get(\"bibtex_key\") or k for k, v in papers.items()]\n377\t        return ToolResult(success=True, data={\n378\t            \"bibtex_keys\": keys,\n379\t            \"meta\": data.get(\"meta\", {}),\n380\t            \"mode\": mode,\n381\t        })\n382\t\n383\t    # mode == \"full\"\n384\t    return ToolResult(success=True, data={\n385\t        \"categories\": categories,\n386\t        \"papers\": papers,\n387\t        \"meta\": data.get(\"meta\", {}),\n388\t        \"mode\": mode,\n389\t    })\n390\t\n391\t\n392\tdef add_to_literature_map(\n393\t    project: str | None = None,\n394\t    papers: Iterable[dict] | None = None,\n395\t    added_by: str = \"\",\n396\t) -> ToolResult:\n397\t    \"\"\"Add (or merge) one or more papers into the literature map.\n398\t\n399\t    Dedup: DOI exact (normalized) → normalized title → bibtex_key collision.\n400\t    Existing entries are merged field-by-field, never overwritten.\n401\t\n402\t    Args:\n403\t        project: Project name — None writes to the global (idea-phase) map.\n404\t        papers: Iterable of paper dicts. Recognized fields:\n405\t                title, authors (list[str]), year, venue, url, doi,\n406\t                bibtex_key, category, role, relevance, abstract,\n407\t                semantic_scholar_id, source_idea_id, verified.\n408\t                Missing bibtex_key is auto-generated.\n409\t        added_by: Free-form tag for provenance (\"paper-research\",\n410\t                  \"idea-generator\", \"user\", etc.). Recorded on new entries.\n411\t\n412\t    Returns:\n413\t        ToolResult.data = {\n414\t            \"added\": [keys],            # newly inserted\n415\t            \"merged\": [keys],           # matched existing, fields merged\n416\t            \"rejected\": [{title, reason}],\n417\t            \"total_papers\": N,\n418\t        }\n419\t    \"\"\"\n420\t    if not papers:\n421\t        return ToolResult(\n422\t            success=False, error=\"No papers provided.\",\n423\t        )\n424\t\n425\t    paper_list = list(papers)\n426\t    added: list[str] = []\n427\t    merged: list[str] = []\n428\t    rejected: list[dict] = []\n429\t    now = _paths.now_iso()\n430\t\n431\t    def _apply(data: dict) -> None:\n432\t        existing = data.setdefault(\"papers\", {})\n433\t        for cand in paper_list:\n434\t            if not isinstance(cand, dict):\n435\t                rejected.append({\"title\": str(cand), \"reason\": \"not a dict\"})\n436\t                continue\n437\t            title = (cand.get(\"title\") or \"\").strip()\n438\t            if not title:\n439\t                rejected.append({\"title\": \"\", \"reason\": \"missing title\"})\n440\t                continue\n441\t            if cand.get(\"role\") and cand[\"role\"] not in VALID_ROLES:\n442\t                rejected.append({\n443\t                    \"title\": title,\n444\t                    \"reason\": f\"invalid role '{cand['role']}', valid: {sorted(VALID_ROLES)}\",\n445\t                })\n446\t                continue\n447\t\n448\t            existing_key = _find_existing_key(existing, cand)\n449\t            if existing_key:\n450\t                # Merge — fill empty fields, keep verified=True if either is True\n451\t                existing[existing_key] = _merge_paper(existing[existing_key], cand)\n452\t                merged.append(existing_key)\n453\t                continue\n454\t\n455\t            # New entry — assign a bibtex_key if missing, dedupe within file\n456\t            key = cand.get(\"bibtex_key\") or _generate_bibtex_key(cand)\n457\t            base_key = key\n458\t            suffix = 1\n459\t            while key in existing:\n460\t                suffix += 1\n461\t                key = f\"{base_key}_{suffix}\"\n462\t\n463\t            entry = {\n464\t                \"title\": title,\n465\t                \"authors\": cand.get(\"authors\") or [],\n466\t                \"year\": cand.get(\"year\"),\n467\t                \"venue\": cand.get(\"venue\") or \"\",\n468\t                \"url\": cand.get(\"url\") or \"\",\n469\t                \"doi\": cand.get(\"doi\") or \"\",\n470\t                \"bibtex_key\": key,\n471\t                \"category\": cand.get(\"category\") or \"\",\n472\t                \"role\": cand.get(\"role\") or \"\",\n473\t                \"relevance\": cand.get(\"relevance\") or \"\",\n474\t                \"abstract\": cand.get(\"abstract\") or \"\",\n475\t                \"semantic_scholar_id\": cand.get(\"semantic_scholar_id\") or \"\",\n476\t                \"verified\": bool(cand.get(\"verified\", False)),\n477\t                \"added_by\": cand.get(\"added_by\") or added_by or \"\",\n478\t                \"added_at\": cand.get(\"added_at\") or now,\n479\t            }\n480\t            # Optional source_idea_id (global map only) — keep if present\n481\t            if cand.get(\"source_idea_id\"):\n482\t                entry[\"source_idea_id\"] = cand[\"source_idea_id\"]\n483\t\n484\t            existing[key] = entry\n485\t            added.append(key)\n486\t\n487\t    data = _read_modify_write(get_literature_map_path(project), _apply)\n488\t\n489\t    return ToolResult(success=True, data={\n490\t        \"added\": added,\n491\t        \"merged\": merged,\n492\t        \"rejected\": rejected,\n493\t        \"total_papers\": data[\"meta\"][\"total_papers\"],\n494\t    })\n495\t\n496\t\n497\tdef update_literature_category(\n498\t    paper_key: str,\n499\t    project: str | None = None,\n500\t    category: str | None = None,\n501\t    role: str | None = None,\n502\t    relevance: str | None = None,\n503\t    verified: bool | None = None,\n504\t) -> ToolResult:\n505\t    \"\"\"Update a single paper's classification fields.\n506\t\n507\t    Only the fields you pass are changed — others are left intact. This is\n508\t    the preferred path for \"re-classify this paper after reading it\" or\n509\t    \"mark verified=true after OpenAlex check\" — it's smaller than rewriting\n510\t    the whole entry via add_to_literature_map.\n511\t\n512\t    Args:\n513\t        paper_key: The YAML key of the paper (e.g. \"vaswani2017attention\").\n514\t        project: Project name — None updates the global map.\n515\t        category: New category key (must match a categories[].key, or empty).\n516\t        role: New role (must be in VALID_ROLES, or empty to clear).\n517\t        relevance: One-line relevance description.\n518\t        verified: Mark verified/unverified (e.g. after OpenAlex check).\n519\t\n520\t    Returns:\n521\t        ToolResult.data = {\"paper_key\", \"updated_fields\": {...}}\n522\t        ToolResult.error if paper_key not found or role/category invalid.\n523\t    \"\"\"\n524\t    if role is not None and role and role not in VALID_ROLES:\n525\t        return ToolResult(\n526\t            success=False,\n527\t            error=f\"invalid role '{role}', valid: {sorted(VALID_ROLES)}\",\n528\t        )\n529\t\n530\t    updated: dict[str, Any] = {}\n531\t    not_found = {\"miss\": False}\n532\t\n533\t    def _apply(data: dict) -> None:\n534\t        papers = data.setdefault(\"papers\", {})\n535\t        if paper_key not in papers:\n536\t            not_found[\"miss\"] = True\n537\t            return\n538\t        entry = papers[paper_key]\n539\t        if category is not None:\n540\t            entry[\"category\"] = category\n541\t            updated[\"category\"] = category\n542\t        if role is not None:\n543\t            entry[\"role\"] = role\n544\t            updated[\"role\"] = role\n545\t        if relevance is not None:\n546\t            entry[\"relevance\"] = relevance\n547\t            updated[\"relevance\"] = relevance\n548\t        if verified is not None:\n549\t            entry[\"verified\"] = bool(verified)\n550\t            updated[\"verified\"] = bool(verified)\n551\t\n552\t    _read_modify_write(get_literature_map_path(project), _apply)\n553\t\n554\t    if not_found[\"miss\"]:\n555\t        return ToolResult(\n556\t            success=False,\n557\t            error=f\"paper_key '{paper_key}' not found in literature_map\",\n558\t        )\n559\t    return ToolResult(success=True, data={\n560\t        \"paper_key\": paper_key,\n561\t        \"updated_fields\": updated,\n562\t    })\n563\t\n564\t\n565\tdef upsert_category(\n566\t    project: str | None = None,\n567\t    key: str = \"\",\n568\t    name: str = \"\",\n569\t    narrative: str = \"\",\n570\t) -> ToolResult:\n571\t    \"\"\"Add or update a category entry in the categories[] list.\n572\t\n573\t    Categories define the Related Work subsection structure. A paper's\n574\t    ``category`` field references one of these by ``key``.\n575\t\n576\t    Args:\n577\t        project: Project name — None edits the global map.\n578\t        key: Category slug (e.g. \"attention_mechanisms\"). Required.\n579\t        name: Human-readable name (e.g. \"Attention Mechanisms\"). Required for new.\n580\t        narrative: One-line description of the category's narrative arc.\n581\t\n582\t    Returns:\n583\t        ToolResult.data = {\"key\", \"action\": \"added\"|\"updated\"}.\n584\t    \"\"\"\n585\t    if not key:\n586\t        return ToolResult(success=False, error=\"key is required\")\n587\t\n588\t    state = {\"action\": \"added\"}\n589\t\n590\t    def _apply(data: dict) -> None:\n591\t        cats = data.setdefault(\"categories\", [])\n592\t        for c in cats:\n593\t            if c.get(\"key\") == key:\n594\t                if name:\n595\t                    c[\"name\"] = name\n596\t                if narrative:\n597\t                    c[\"narrative\"] = narrative\n598\t                state[\"action\"] = \"updated\"\n599\t                return\n600\t        cats.append({\"key\": key, \"name\": name or key, \"narrative\": narrative})\n601\t\n602\t    _read_modify_write(get_literature_map_path(project), _apply)\n603\t    return ToolResult(success=True, data={\"key\": key, \"action\": state[\"action\"]})\n604\t\n605\t\n606\tdef seed_literature_map(\n607\t    project: str,\n608\t    seed_papers: Iterable[dict],\n609\t    source_idea_id: str = \"\",\n610\t) -> ToolResult:\n611\t    \"\"\"Bulk-seed a new project's literature_map from an idea's accumulated papers.\n612\t\n613\t    Called by the idea→project bootstrap hook. Each seed paper is added with\n614\t    ``added_by=\"idea_generator\"`` so downstream consumers can distinguish\n615\t    seed papers from those discovered during research.\n616\t\n617\t    Args:\n618\t        project: Project name (required — seeding without a project is the\n619\t                 global map case, handled by add_to_literature_map directly).\n620\t        seed_papers: Iterable of paper dicts (same schema as add_to_literature_map).\n621\t        source_idea_id: Idea ID these papers came from. Stamped on entries so\n622\t                        a future \"re-seed from idea\" can find them.\n623\t\n624\t    Returns:\n625\t        Same shape as add_to_literature_map.\n626\t    \"\"\"\n627\t    if not project:\n628\t        return ToolResult(success=False, error=\"project is required for seed_literature_map\")\n629\t\n630\t    seeds = []\n631\t    for p in seed_papers:\n632\t        if not isinstance(p, dict):\n633\t            continue\n634\t        p2 = dict(p)\n635\t        if source_idea_id:\n636\t            p2.setdefault(\"source_idea_id\", source_idea_id)\n637\t        seeds.append(p2)\n638\t\n639\t    return add_to_literature_map(\n640\t        project=project, papers=seeds, added_by=\"idea_generator\",\n641\t    )\n642\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dfd08f5f-0037-4faa-a37d-1a01d8d5a7b4",
+            "isSidechain": true,
+            "promptId": "2c0f4d57-045f-436c-bd98-ba48fb6b2b34",
+            "agentId": "a3a7427bd484b01d4",
+            "type": "user",
+            "uuid": "e3ccbea9-24f4-4659-8705-6dbfbb1a667d",
+            "sourceToolAssistantUUID": "dfd08f5f-0037-4faa-a37d-1a01d8d5a7b4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "365d7717-8f52-4a32-a668-80e621d578d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T03:15:05.231Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me search for the literature_map.yaml file in the project directory:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e3ccbea9-24f4-4659-8705-6dbfbb1a667d",
+            "isSidechain": true,
+            "agentId": "a3a7427bd484b01d4",
+            "requestId": "req_011CbEzB4trpM8yKrPjukLqp",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "24a94824-6483-48af-bc19-9c42fb4377a8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "365d7717-8f52-4a32-a668-80e621d578d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SYoSbc2rwd8uP4E3dSi3MJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 8858,
+                "cache_read_input_tokens": 25345,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8858,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T03:15:05.880Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012C1ZdZohVB6zUBCMvRfLp4",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen -name \"literature_map.yaml\" 2>/dev/null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "24a94824-6483-48af-bc19-9c42fb4377a8",
+            "isSidechain": true,
+            "agentId": "a3a7427bd484b01d4",
+            "requestId": "req_011CbEzB4trpM8yKrPjukLqp",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4a4660d4-9de1-4036-b569-40af661bb14b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "365d7717-8f52-4a32-a668-80e621d578d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SYoSbc2rwd8uP4E3dSi3MJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 8858,
+                "cache_read_input_tokens": 25345,
+                "output_tokens": 116,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 8858
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 116,
+                    "cache_read_input_tokens": 25345,
+                    "cache_creation_input_tokens": 8858,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 8858,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T03:15:06.352Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012C1ZdZohVB6zUBCMvRfLp4",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/literature_map.yaml",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4a4660d4-9de1-4036-b569-40af661bb14b",
+            "isSidechain": true,
+            "promptId": "2c0f4d57-045f-436c-bd98-ba48fb6b2b34",
+            "agentId": "a3a7427bd484b01d4",
+            "type": "user",
+            "uuid": "e3be2ceb-ac5e-4266-a070-d7a8ed7a3337",
+            "sourceToolAssistantUUID": "4a4660d4-9de1-4036-b569-40af661bb14b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "365d7717-8f52-4a32-a668-80e621d578d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T03:15:07.537Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read the correct file:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e3be2ceb-ac5e-4266-a070-d7a8ed7a3337",
+            "isSidechain": true,
+            "agentId": "a3a7427bd484b01d4",
+            "requestId": "req_011CbEzBH37NN7wNcNJvkLqj",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f19698b6-3349-4231-a4a0-9dc282548397",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "365d7717-8f52-4a32-a668-80e621d578d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Tq1ozMJcz4zQ6oXApSCJeV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 166,
+                "cache_read_input_tokens": 34203,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 166,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T03:15:07.783Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015wrTCjeQq4W52ZAspxNSY7",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/literature_map.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f19698b6-3349-4231-a4a0-9dc282548397",
+            "isSidechain": true,
+            "agentId": "a3a7427bd484b01d4",
+            "requestId": "req_011CbEzBH37NN7wNcNJvkLqj",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "57760936-d599-4dad-be3c-e59180a8efac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "365d7717-8f52-4a32-a668-80e621d578d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Tq1ozMJcz4zQ6oXApSCJeV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 166,
+                "cache_read_input_tokens": 34203,
+                "output_tokens": 99,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 166
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 99,
+                    "cache_read_input_tokens": 34203,
+                    "cache_creation_input_tokens": 166,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 166,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T03:15:07.805Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015wrTCjeQq4W52ZAspxNSY7",
+              "type": "tool_result",
+              "content": "1\tcategories:\n2\t- key: contamination_detection\n3\t  name: Benchmark Contamination Detection\n4\t  narrative: Methods for detecting training data contamination in LLM benchmarks,\n5\t    including RL-robust approaches\n6\t- key: irt_equating\n7\t  name: IRT Methodology & Equating\n8\t  narrative: Item Response Theory models, calibration, equating, and their application\n9\t    to LLM evaluation\n10\t- key: benchmark_design\n11\t  name: Dynamic Benchmark Design\n12\t  narrative: Approaches for creating contamination-resistant or self-updating benchmarks\n13\t- key: dif_methodology\n14\t  name: DIF Statistical Methods\n15\t  narrative: Differential Item Functioning detection methods, power analysis, and\n16\t    small-sample strategies\n17\t- key: item_generation\n18\t  name: Automated Item Generation\n19\t  narrative: LLM-based test item generation with difficulty control and psychometric\n20\t    validation\n21\tmeta:\n22\t  last_updated: '2026-05-21T02:29:19.657Z'\n23\t  total_papers: 21\n24\tpapers:\n25\t  balloccu2024leak:\n26\t    abstract: ''\n27\t    added_at: '2026-05-21T01:40:37.987Z'\n28\t    added_by: literature-gap-fill\n29\t    authors:\n30\t    - Balloccu, S.\n31\t    - Schmidtova, P.\n32\t    - Lango, M.\n33\t    - Dusek, O.\n34\t    bibtex_key: balloccu2024leak\n35\t    category: contamination_detection\n36\t    doi: 10.18653/v1/2024.eacl-long.5\n37\t    relevance: Systematic survey of data leakage in closed-source LLMs covering 255\n38\t      papers and 263 benchmarks; establishes scope of contamination problem motivating\n39\t      our detection approach\n40\t    role: foundation\n41\t    semantic_scholar_id: 798feda076ad710df65d509a7884bd15937c8056\n42\t    title: 'Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in\n43\t      Closed-Source LLMs'\n44\t    url: https://arxiv.org/abs/2402.03927\n45\t    venue: EACL 2024\n46\t    verified: true\n47\t    year: 2024\n48\t  belzak2020smallsample:\n49\t    abstract: ''\n50\t    added_at: '2026-05-20T17:30:00.000Z'\n51\t    added_by: director\n52\t    authors:\n53\t    - Belzak, W.\n54\t    bibtex_key: belzak2020smallsample\n55\t    category: dif_methodology\n56\t    doi: ''\n57\t    relevance: Parsimonious logistic regression with sum scores outperforms complex\n58\t      IRT models for DIF detection in small samples; directly applicable to our N=50-80\n59\t      model cohorts\n60\t    role: method-component\n61\t    semantic_scholar_id: ''\n62\t    title: Testing Differential Item Functioning in Small Samples\n63\t    url: ''\n64\t    venue: Multivariate Behavioral Research\n65\t    verified: false\n66\t    year: 2020\n67\t  dekoninck2024constat:\n68\t    abstract: ''\n69\t    added_at: '2026-05-21T01:40:37.987Z'\n70\t    added_by: literature-gap-fill\n71\t    authors:\n72\t    - Dekoninck, J.\n73\t    - Mueller, M. N.\n74\t    - Vechev, M.\n75\t    bibtex_key: dekoninck2024constat\n76\t    category: contamination_detection\n77\t    doi: ''\n78\t    relevance: Performance-based contamination detection via perturbation analysis;\n79\t      closest methodological parallel to our DIF approach in using behavioral patterns\n80\t      rather than memorization signals\n81\t    role: direct-competitor\n82\t    semantic_scholar_id: ''\n83\t    title: 'ConStat: Performance-Based Contamination Detection in Large Language Models'\n84\t    url: https://arxiv.org/abs/2405.16281\n85\t    venue: NeurIPS 2024\n86\t    verified: true\n87\t    year: 2024\n88\t  golchin2024timetravel:\n89\t    abstract: ''\n90\t    added_at: '2026-05-21T01:40:37.987Z'\n91\t    added_by: literature-gap-fill\n92\t    authors:\n93\t    - Golchin, S.\n94\t    - Surdeanu, M.\n95\t    bibtex_key: golchin2024timetravel\n96\t    category: contamination_detection\n97\t    doi: ''\n98\t    relevance: Instance-level contamination detection via guided completion prompts;\n99\t      baseline approach for individual-item detection that our group-level DIF method\n100\t      extends\n101\t    role: method-component\n102\t    semantic_scholar_id: d6d0fd994f37b630f35945736b5e1bb198148404\n103\t    title: 'Time Travel in LLMs: Tracing Data Contamination in Large Language Models'\n104\t    url: https://arxiv.org/abs/2308.08493\n105\t    venue: ICLR 2024\n106\t    verified: true\n107\t    year: 2024\n108\t  hardy2026scalability:\n109\t    abstract: ''\n110\t    added_at: '2026-05-20T17:30:00.000Z'\n111\t    added_by: director\n112\t    authors:\n113\t    - Hardy, M.\n114\t    - Gilbert, J.\n115\t    - Domingue, B.\n116\t    bibtex_key: hardy2026scalability\n117\t    category: irt_equating\n118\t    doi: 10.48550/arXiv.2603.24999\n119\t    relevance: Nonparametric signed isotonic R2 scalability coefficients outperform\n120\t      IRT item diagnostics; lightweight pre-filter for item quality before our parametric\n121\t      calibration\n122\t    role: method-component\n123\t    semantic_scholar_id: ''\n124\t    title: Efficient Detection of Bad Benchmark Items with Novel Scalability Coefficients\n125\t    url: https://arxiv.org/abs/2603.24999\n126\t    venue: arXiv\n127\t    verified: true\n128\t    year: 2026\n129\t  kim2019fpc:\n130\t    abstract: ''\n131\t    added_at: '2026-05-20T17:30:00.000Z'\n132\t    added_by: director\n133\t    authors:\n134\t    - Kim, S.\n135\t    - Kolen, M.\n136\t    bibtex_key: kim2019fpc\n137\t    category: irt_equating\n138\t    doi: ''\n139\t    relevance: Fixed-parameter calibration requires only N>=200 vs N>=500 for full\n140\t      calibration; core methodology for our bifactor IRT equating with anchor items\n141\t    role: method-component\n142\t    semantic_scholar_id: ''\n143\t    title: Application of IRT Fixed Parameter Calibration to Multiple-Group Test Data\n144\t    url: ''\n145\t    venue: Applied Measurement in Education\n146\t    verified: false\n147\t    year: 2019\n148\t  li2024contamination:\n149\t    abstract: ''\n150\t    added_at: '2026-05-21T01:40:37.987Z'\n151\t    added_by: literature-gap-fill\n152\t    authors:\n153\t    - Li, Y.\n154\t    - Guo, Y.\n155\t    - Guerin, F.\n156\t    - Lin, C.\n157\t    bibtex_key: li2024contamination\n158\t    category: contamination_detection\n159\t    doi: 10.18653/v1/2024.findings-emnlp.30\n160\t    relevance: Provides web-overlap contamination labels for MMLU and other benchmarks\n161\t      via Common Crawl matching; primary ground-truth comparison for our DIF-based\n162\t      contamination detection\n163\t    role: foundation\n164\t    semantic_scholar_id: 32e11cf020021c225782a3b77b5cfed4ae8e14a0\n165\t    title: An Open-Source Data Contamination Report for Large Language Models\n166\t    url: https://aclanthology.org/2024.findings-emnlp.30/\n167\t    venue: Findings of EMNLP 2024\n168\t    verified: true\n169\t    year: 2024\n170\t  liang2026dvd:\n171\t    abstract: ''\n172\t    added_at: '2026-05-20T17:30:00.000Z'\n173\t    added_by: director\n174\t    authors:\n175\t    - Liang, R.\n176\t    bibtex_key: liang2026dvd\n177\t    category: contamination_detection\n178\t    doi: ''\n179\t    relevance: Detects variant contamination via generation variance (AUC 0.73-0.74\n180\t      vs Min-K++ 0.43-0.68); complementary signal in our ensemble but untested under\n181\t      RL training\n182\t    role: direct-competitor\n183\t    semantic_scholar_id: ''\n184\t    title: 'DVD: Detection via Variance of Generation Distribution for Variant Contamination'\n185\t    url: https://arxiv.org/abs/2601.04895\n186\t    venue: arXiv\n187\t    verified: true\n188\t    year: 2026\n189\t  polo2026growingpains:\n190\t    abstract: ''\n191\t    added_at: '2026-05-20T17:30:00.000Z'\n192\t    added_by: director\n193\t    authors:\n194\t    - Habba, E.\n195\t    - Itzhak, I.\n196\t    - Yehudai, A.\n197\t    - Perlitz, Y.\n198\t    - Bandel, E.\n199\t    - Shmueli-Scheuer, M.\n200\t    - Choshen, L.\n201\t    - Stanovsky, G.\n202\t    bibtex_key: polo2026growingpains\n203\t    category: irt_equating\n204\t    doi: 10.48550/arXiv.2604.12843\n205\t    relevance: Uses multidimensional IRT with fixed-parameter calibration and 100\n206\t      anchor items for extensible evaluation (rho>=0.9); addresses score comparability\n207\t      but NOT contamination detection or item regeneration\n208\t    role: direct-competitor\n209\t    semantic_scholar_id: ''\n210\t    title: 'Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter\n211\t      Calibration'\n212\t    url: https://arxiv.org/abs/2604.12843\n213\t    venue: arXiv\n214\t    verified: true\n215\t    year: 2026\n216\t  polo2026psnirt:\n217\t    abstract: ''\n218\t    added_at: '2026-05-20T17:30:00.000Z'\n219\t    added_by: director\n220\t    authors:\n221\t    - Zhou, H.\n222\t    - Huang, H.\n223\t    - Zhao, Z.\n224\t    - Han, L.\n225\t    - Wang, H.\n226\t    - Chen, K.\n227\t    - Yang, M.\n228\t    - Bao, W.\n229\t    - Dong, J.\n230\t    - Xu, B.\n231\t    - Zhu, C.\n232\t    - Cao, H.\n233\t    - Zhao, T.\n234\t    bibtex_key: polo2026psnirt\n235\t    category: irt_equating\n236\t    doi: ''\n237\t    relevance: PSN-IRT analyzes benchmark quality via 4PL IRT; provides published\n238\t      IRT parameters for MMLU we can use in semi-synthetic validation\n239\t    role: method-component\n240\t    semantic_scholar_id: ''\n241\t    title: Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item\n242\t      Response Theory\n243\t    url: https://arxiv.org/abs/2505.15055\n244\t    venue: AAAI 2026\n245\t    verified: true\n246\t    year: 2026\n247\t  shi2024mink:\n248\t    abstract: ''\n249\t    added_at: '2026-05-21T01:40:37.987Z'\n250\t    added_by: literature-gap-fill\n251\t    authors:\n252\t    - Shi, W.\n253\t    - Ajith, A.\n254\t    - Xia, M.\n255\t    - Huang, Y.\n256\t    - Liu, D.\n257\t    - Blevins, T.\n258\t    - Chen, D.\n259\t    - Zettlemoyer, L.\n260\t    bibtex_key: shi2024mink\n261\t    category: contamination_detection\n262\t    doi: ''\n263\t    relevance: Introduces Min-K% Prob method and WikiMIA benchmark for pretraining\n264\t      data detection; key baseline whose limitations under RL training motivate our\n265\t      DIF-based alternative\n266\t    role: foundation\n267\t    semantic_scholar_id: 3422d5e0cdfdc935d6a84a1e3d3f96659265fe3a\n268\t    title: Detecting Pretraining Data from Large Language Models\n269\t    url: https://arxiv.org/abs/2310.16789\n270\t    venue: ICLR 2024\n271\t    verified: true\n272\t    year: 2024\n273\t  tao2026selfcritique:\n274\t    abstract: ''\n275\t    added_at: '2026-05-20T17:30:00.000Z'\n276\t    added_by: director\n277\t    authors:\n278\t    - Tao, Y.\n279\t    bibtex_key: tao2026selfcritique\n280\t    category: contamination_detection\n281\t    doi: ''\n282\t    relevance: Self-Critique/RL-MIA partially addresses RL concealment via policy-collapse\n283\t      detection, but remains individual-model-level; our DIF is group-level and complementary\n284\t    role: direct-competitor\n285\t    semantic_scholar_id: ''\n286\t    title: Detecting Data Contamination from Reinforcement Learning Post-training\n287\t      for Large Language Models\n288\t    url: https://arxiv.org/abs/2510.09259\n289\t    venue: ICLR 2026\n290\t    verified: true\n291\t    year: 2026\n292\t  wang2026fragility:\n293\t    abstract: ''\n294\t    added_at: '2026-05-20T17:30:00.000Z'\n295\t    added_by: director\n296\t    authors:\n297\t    - Wang, H.\n298\t    - Li, H.\n299\t    - Ko, B.\n300\t    - Zhang, H.\n301\t    bibtex_key: wang2026fragility\n302\t    category: contamination_detection\n303\t    doi: ''\n304\t    relevance: Proves GRPO/PPO RL training conceals contamination signals (14-20pp\n305\t      AUROC degradation), motivating our DIF-based approach which operates on behavioral\n306\t      patterns immune to NLL smoothing\n307\t    role: foundation\n308\t    semantic_scholar_id: 9a5bf5d3c7116cc4a104c06599fbcef2d1b5abf3\n309\t    title: On The Fragility of Benchmark Contamination Detection in Reasoning Models\n310\t    url: https://arxiv.org/abs/2510.02386\n311\t    venue: ICLR 2026\n312\t    verified: true\n313\t    year: 2026\n314\t  white2025livebench:\n315\t    abstract: ''\n316\t    added_at: '2026-05-20T17:30:00.000Z'\n317\t    added_by: director\n318\t    authors:\n319\t    - White, C.\n320\t    bibtex_key: white2025livebench\n321\t    category: benchmark_design\n322\t    doi: ''\n323\t    relevance: Monthly-updated contamination-free benchmark with objective scoring;\n324\t      no difficulty calibration or psychometric equivalence across updates\n325\t    role: direct-competitor\n326\t    semantic_scholar_id: ''\n327\t    title: 'LiveBench: A Challenging, Contamination-Free LLM Benchmark'\n328\t    url: ''\n329\t    venue: ICLR 2025\n330\t    verified: false\n331\t    year: 2025\n332\t  zhang2024gsm1k:\n333\t    abstract: ''\n334\t    added_at: '2026-05-20T17:30:00.000Z'\n335\t    added_by: director\n336\t    authors:\n337\t    - Zhang, H.\n338\t    bibtex_key: zhang2024gsm1k\n339\t    category: contamination_detection\n340\t    doi: ''\n341\t    relevance: GSM1K documents 10-13% average accuracy drops from contamination; provides\n342\t      ground-truth contamination evidence and item-level effect sizes (delta 0.8-1.4\n343\t      logits) critical for our DIF power analysis\n344\t    role: foundation\n345\t    semantic_scholar_id: ef62f95c16f668f031d649799cbd79081c6d2b0f\n346\t    title: A Careful Examination of Large Language Model Performance on Grade School\n347\t      Arithmetic\n348\t    url: https://arxiv.org/abs/2405.00332\n349\t    venue: arXiv\n350\t    verified: true\n351\t    year: 2024\n352\t  zhang2024minkpp:\n353\t    abstract: ''\n354\t    added_at: '2026-05-21T01:40:37.987Z'\n355\t    added_by: literature-gap-fill\n356\t    authors:\n357\t    - Zhang, J.\n358\t    - Sun, J.\n359\t    - Yeats, E.\n360\t    - Ouyang, Y.\n361\t    - Kuo, M.\n362\t    - Zhang, J.\n363\t    - Yang, H.\n364\t    - Li, H.\n365\t    bibtex_key: zhang2024minkpp\n366\t    category: contamination_detection\n367\t    doi: ''\n368\t    relevance: Improves Min-K% with vocabulary-normalized token probabilities; key\n369\t      baseline whose AUC degrades to 0.43-0.68 on RL-trained models, motivating our\n370\t      DIF-based alternative\n371\t    role: direct-competitor\n372\t    semantic_scholar_id: ''\n373\t    title: 'Min-K%++: Improved Baseline for Detecting Pre-Training Data from Large\n374\t      Language Models'\n375\t    url: https://arxiv.org/abs/2404.02936\n376\t    venue: arXiv\n377\t    verified: true\n378\t    year: 2024\n379\t  lalor2019irt:\n380\t    title: 'Learning Latent Parameters without Human Response Patterns: Item Response\n381\t      Theory with Artificial Crowds'\n382\t    authors:\n383\t    - Lalor, J.\n384\t    - Wu, H.\n385\t    - Yu, H.\n386\t    year: 2019\n387\t    venue: EMNLP-IJCNLP 2019\n388\t    url: https://aclanthology.org/D19-1434/\n389\t    doi: 10.18653/v1/D19-1434\n390\t    bibtex_key: lalor2019irt\n391\t    category: irt_equating\n392\t    role: foundation\n393\t    relevance: Pioneering application of IRT to NLP evaluation using artificial crowds\n394\t      of DNN models; establishes that IRT parameters from machine response patterns\n395\t      correlate with human-calibrated parameters\n396\t    abstract: ''\n397\t    semantic_scholar_id: df6cd8a8d836e75690141deb732f6d19f0176a2e\n398\t    verified: true\n399\t    added_by: literature-gap-fill\n400\t    added_at: '2026-05-21T02:29:19.632Z'\n401\t  vania2021irt:\n402\t    title: Comparing Test Sets with Item Response Theory\n403\t    authors:\n404\t    - Vania, C.\n405\t    - Htut, P.M.\n406\t    - Huang, W.\n407\t    - Mungra, D.\n408\t    - Pang, R.Y.\n409\t    - Phang, J.\n410\t    - Liu, H.\n411\t    - Cho, K.\n412\t    - Bowman, S.R.\n413\t    year: 2021\n414\t    venue: ACL 2021\n415\t    url: https://aclanthology.org/2021.acl-long.92/\n416\t    doi: 10.18653/v1/2021.acl-long.92\n417\t    bibtex_key: vania2021irt\n418\t    category: irt_equating\n419\t    role: foundation\n420\t    relevance: IRT-based analysis of NLU benchmark discriminability; shows which test\n421\t      sets remain effective at differentiating strong models and which are saturated\n422\t    abstract: ''\n423\t    semantic_scholar_id: 4ca39cf99747b8962fe37e7e025e284872df3425\n424\t    verified: true\n425\t    added_by: literature-gap-fill\n426\t    added_at: '2026-05-21T02:29:19.632Z'\n427\t  li2025atlas:\n428\t    title: 'Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static\n429\t      Benchmarks'\n430\t    authors:\n431\t    - Li, P.\n432\t    - Tang, X.\n433\t    - Chen, S.\n434\t    - Cheng, Y.\n435\t    - Metoyer, R.\n436\t    - Hua, T.\n437\t    - Chawla, N.V.\n438\t    year: 2025\n439\t    venue: arXiv\n440\t    url: https://arxiv.org/abs/2511.04689\n441\t    doi: 10.48550/arXiv.2511.04689\n442\t    bibtex_key: li2025atlas\n443\t    category: irt_equating\n444\t    role: method-component\n445\t    relevance: IRT-based adaptive testing framework (ATLAS) reduces benchmark items\n446\t      by 90% while preserving ability estimates; demonstrates IRT enables efficient\n447\t      LLM evaluation\n448\t    abstract: ''\n449\t    semantic_scholar_id: 087ce2837a0d5562bc95a40e77a327a6d033366c\n450\t    verified: true\n451\t    added_by: literature-gap-fill\n452\t    added_at: '2026-05-21T02:29:19.632Z'\n453\t  chen2025irtnet:\n454\t    title: Learning Compact Representations of LLM Abilities via Item Response Theory\n455\t    authors:\n456\t    - Chen, J.\n457\t    - Wang, C.\n458\t    - Zhang, G.\n459\t    - Ye, P.\n460\t    - Bai, L.\n461\t    - Hu, W.\n462\t    - Qu, Y.\n463\t    - Hu, S.\n464\t    year: 2025\n465\t    venue: arXiv\n466\t    url: https://arxiv.org/abs/2510.00844\n467\t    doi: 10.48550/arXiv.2510.00844\n468\t    bibtex_key: chen2025irtnet\n469\t    category: irt_equating\n470\t    role: method-component\n471\t    relevance: Multidimensional IRT with MoE network for learning LLM ability vectors\n472\t      and query discrimination/difficulty; demonstrates IRT-based model routing and\n473\t      benchmark prediction\n474\t    abstract: ''\n475\t    semantic_scholar_id: ''\n476\t    verified: true\n477\t    added_by: literature-gap-fill\n478\t    added_at: '2026-05-21T02:29:19.632Z'\n479\t  choi2026llmjudgeirt:\n480\t    title: Diagnosing the Reliability of LLM-as-a-Judge via Item Response Theory\n481\t    authors:\n482\t    - Choi, J.\n483\t    - Park, S.\n484\t    - Cho, C.\n485\t    - Park, H.\n486\t    - Kim, B.\n487\t    year: 2026\n488\t    venue: arXiv\n489\t    url: https://arxiv.org/abs/2602.00521\n490\t    doi: 10.48550/arXiv.2602.00521\n491\t    bibtex_key: choi2026llmjudgeirt\n492\t    category: irt_equating\n493\t    role: method-component\n494\t    relevance: Applies IRT Graded Response Model to diagnose LLM judge reliability;\n495\t      extends IRT application beyond benchmark scoring to evaluation pipeline quality\n496\t      assessment\n497\t    abstract: ''\n498\t    semantic_scholar_id: 4fc931a456c8162716deadbc9db6fd770189e632\n499\t    verified: true\n500\t    added_by: literature-gap-fill\n501\t    added_at: '2026-05-21T02:29:19.632Z'\n502\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "57760936-d599-4dad-be3c-e59180a8efac",
+            "isSidechain": true,
+            "promptId": "2c0f4d57-045f-436c-bd98-ba48fb6b2b34",
+            "agentId": "a3a7427bd484b01d4",
+            "type": "user",
+            "uuid": "7616c191-3546-4676-8248-6db35007d1a5",
+            "sourceToolAssistantUUID": "57760936-d599-4dad-be3c-e59180a8efac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "365d7717-8f52-4a32-a668-80e621d578d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T03:15:15.626Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have both pieces of information. Here's my response:\n\n## Literature Map File Contents\n\nThe file `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/literature_map.yaml` contains a comprehensive literature database with:\n\n**Metadata:**\n- Total papers: 21\n- Last updated: 2026-05-21T02:29:19.657Z\n\n**5 Categories:**\n1. **contamination_detection** - Benchmark Contamination Detection\n2. **irt_equating** - IRT Methodology & Equating\n3. **benchmark_design** - Dynamic Benchmark Design\n4. **dif_methodology** - DIF Statistical Methods\n5. **item_generation** - Automated Item Generation\n\n**21 Papers** organized by these categories, including foundational works (Balloccu 2024, Li 2024, Shi 2024, Zhang 2024, Wang 2026), method-components (Hardy 2026, Kim 2019, Lalor 2019, Li 2025, Chen 2025, Choi 2026), and direct competitors (Dekoninck 2024, Liang 2026, Polo 2026, Tao 2026, White 2025, Zhang 2024 Min-K++).\n\nEach entry contains: title, authors, year, venue, URL, DOI, bibtex_key, category, role, relevance statement, verification status, and semantic scholar ID where available.\n\n---\n\n## Literature.py Function Signature\n\nFound at `/home/ubuntu/agent-ml-research/core/tools/literature.py`\n\nThe **`add_to_literature_map`** function signature is:\n\n```python\ndef add_to_literature_map(\n    project: str | None = None,\n    papers: Iterable[dict] | None = None,\n    added_by: str = \"\",\n) -> ToolResult:\n```\n\n**Parameters:**\n- `project` (str | None): Project name — None writes to the global (idea-phase) map\n- `papers` (Iterable[dict] | None): Iterable of paper dicts with recognized fields: title, authors (list[str]), year, venue, url, doi, bibtex_key, category, role, relevance, abstract, semantic_scholar_id, source_idea_id, verified. Missing bibtex_key is auto-generated\n- `added_by` (str): Free-form tag for provenance (\"paper-research\", \"idea-generator\", \"user\", etc.)\n\n**Returns:** \n- `ToolResult.data` with: added (list of keys), merged (list of keys), rejected (list of dicts with title/reason), total_papers (int)\n\nThe function handles deduplication by DOI exact match, then normalized title match, and merges existing entries field-by-field without overwriting."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7616c191-3546-4676-8248-6db35007d1a5",
+            "isSidechain": true,
+            "agentId": "a3a7427bd484b01d4",
+            "requestId": "req_011CbEzBPRazJZvXej4rcYWt",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f788e416-d4bd-4fdf-9869-81264c05a147",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "365d7717-8f52-4a32-a668-80e621d578d5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01W8PAKMuAJtqcK4zWdVnhuF",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 6746,
+                "cache_read_input_tokens": 34369,
+                "output_tokens": 683,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6746
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 683,
+                    "cache_read_input_tokens": 34369,
+                    "cache_creation_input_tokens": 6746,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6746,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-the-file-home-ubuntu-agent-ml-research-idea-gen-0520-2-projects-irt-equat-copy-2.md"
+}

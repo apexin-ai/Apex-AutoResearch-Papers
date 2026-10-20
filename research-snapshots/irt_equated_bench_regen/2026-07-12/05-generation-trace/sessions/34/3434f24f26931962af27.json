@@ -1,0 +1,2046 @@
+{
+  "schema_version": "1.0",
+  "id": "3434f24f26931962af27",
+  "project": "irt_equated_bench_regen--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are Reviewer R1 for an EMNLP 2026 ARR submission. Your focus: **Methods and Experiments** (Soundness, Reproducibilit",
+  "task_key": "agent-ac98eb5f0bbef3d5a",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/agent-ac98eb5f0bbef3d5a.jsonl",
+    "occurrence": 1,
+    "bytes": 160420,
+    "sha256": "788ac576d622e5563c8d94a5179ab698581f7ebd4e7578f2e45174ae8ef0267a"
+  },
+  "statistics": {
+    "messages": 43,
+    "user_turns": 1,
+    "tool_calls": 18,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 18,
+      "tool_result": 18
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T17:47:47.580Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "You are Reviewer R1 for an EMNLP 2026 ARR submission. Your focus: **Methods and Experiments** (Soundness, Reproducibility, statistical rigor).\n\n## Venue calibration\nEMNLP 2026 ARR scoring: 5=Award (top 2.5%), 4=Conference (Main), 3=Findings, 2=Resubmit, 1=Do not resubmit. Accept rate ~21%. Dimensions: Soundness (1-5), Excitement (1-5), Reproducibility (1-5).\n\n## Paper summary\n**Title:** \"Large-Scale Item-Level Stability Analysis of LLM Benchmarks\"\n\nThe paper applies the Mantel-Haenszel (MH) statistic — framed as a nonparametric χ² group-comparison test — to the METABENCH response matrix (5,227 models × 12,508 MMLU items) to characterize item-level behavioral stability between 2023 and 2024-H1 model cohorts. Key findings:\n\n1. **Temporal DIF on MMLU**: 31.3% of items classified as ETS C-class (|Δ_MH| ≥ 1.5). Random-split sanity check yields 0.18%. Within-family C%: Llama-2→3 at 61.3%, Mistral→Mixtral at 38.7%. Domain ρ = 0.307 (p=0.02). Removing 15.4% negative-discrimination items reduces C% by only 1.2pp.\n\n2. **Permutation null decomposition**: 1,000 permutations yield null mean C% = 16.4% (SD=2.1%, 95% CI [12.6, 20.3]). Observed 31.3% is z=7.1 above null. Effective C% after control = 14.9%. 52.4% of raw C% attributable to cohort composition (ability distribution shift d=−0.17, family structure, training vintage).\n\n3. **Multi-benchmark replication**: Raw C% ranges 10.1% (HellaSwag) to 31.3% (MMLU). Effective C% ranges 2.3% to 14.9%. All random-split controls <1%.\n\n4. **Cross-benchmark GSM8K**: Raw C%=12.4%, permutation null=8.7%, effective=3.7% (near noise floor). GSM1K correlation: Pearson r=−0.29 (p=0.10), Spearman ρ=−0.22 (p=0.21), partial r=−0.18 (p=0.32) — all non-significant with N=33, CI crossing zero.\n\n5. **Semi-synthetic validation**: Cross-subject matching achieves ΔFPR=0.003 (FPR stable). But ΔTPR under worst-case parameterization is modest: 0.26 at p=0.5 (vs. 0.508 in registry). Baseline FPR=0.318 compresses signal range. Within-subject matching inflates FPR by 0.186.\n\n6. **RL robustness**: Adding 13 reasoning-RL models shifts flags substantially (Jaccard=0.43 vs. baseline). Alignment-RL benign (Jaccard=0.82). Traditional detectors (Min-K%, ConStat) show minimal sensitivity (AUROC drop 0.03, DeLong p>0.3). TOST equivalence borderline (p=0.08). N=13 underpowered.\n\n7. **Alternative detection methods**: ConStat AUROC=0.72 (non-RL), degrades to 0.54 (reasoning-RL). DVD AUROC=0.61. Three-way overlap: DIF-ConStat Jaccard=0.15, DIF-DVD=0.11, ConStat-DVD=0.19. Only 4% items flagged by all three.\n\n8. **Ensemble fusion**: Killed. Majority-vote AUROC=0.58 < best individual (0.72). Pairwise correlations 0.06-0.13. Weight instability across folds.\n\n9. **IRT model fit**: Unidimensional 2PL: RMSEA=0.094, CFI=0.68 (poor). Bifactor (1 general + 57 specific): fails to converge after 3 attempts; forced estimates RMSEA=0.089, CFI=0.72. Both far below acceptable thresholds (RMSEA<0.06, CFI>0.95). >25,000 parameters on 5,219 models = overparameterized.\n\n10. **Architecture stratification**: 99.98% decoder-only (5,226/5,227). Removing 1 non-decoder model changes nothing. Trivial result.\n\n11. **Regression transparency**: Domain Δacc R²=0.0007. Adding item properties raises to R²=0.0423 (60× increase). Simpson's paradox: accuracy change OR flips from 1.08 to 0.92 when controlling for item properties. 96% of model variance from difficulty + discrimination, not accuracy change.\n\n12. **Graceful degradation**: Ranking ρ degrades gracefully (0.981 at 20%). But reliability α drops from 0.94 to 0.86 at 20% (near minimum 0.85), 0.74 at 50%. Construct coverage 0.82 at 31%. Item removal not viable.\n\n13. **Item-Focused Trees**: IFT flags 22.8% vs. MH's 31.3%. Jaccard=0.52. Split points concentrate 2023-Q3 to 2024-Q1. But IFT itself unstable: Jaccard=0.63 across random seeds.\n\n14. **Item generation**: Prompt-based ρ=0.18, student sim ρ=0.41, combined ρ=0.47 — all fail 0.75 target. Equating ρ=0.88 < 0.95 target.\n\n15. **Cumulative Bayesian DIF**: Power 0.40→0.61 across 4 administrations, below 0.70 target. Prior sensitivity high (0.48-0.64). Simulation only, no real-data validation.\n\nThe paper is 8 pages main text + 3 pages of appendix tables. 20 tables total. 12 references.\n\n## Your review task\n\nWrite a detailed review covering:\n\n1. **Summary** (2-3 sentences)\n2. **Strengths** (bulleted, specific)\n3. **Weaknesses** (bulleted, specific, with severity: minor/major/critical)\n4. **Soundness assessment** — Are the statistical methods correctly applied? Is the permutation null properly constructed? Is the semi-synthetic framework valid? Are claims supported by evidence?\n5. **Reproducibility assessment** — Is there enough detail to reproduce? Is code/data available?\n6. **Questions for authors**\n7. **Preliminary scores**: Soundness (1-5), Excitement (1-5), Reproducibility (1-5), Overall (1-5 half-point scale per ARR)\n\nBe rigorous. Pay special attention to:\n- Whether MH-DIF without adequate IRT model fit is interpretable as measuring \"item-level behavioral heterogeneity\"\n- Whether the permutation null adequately addresses cohort composition confounds, or whether residual confounds remain\n- Whether N=13 reasoning-RL models is sufficient for the RL robustness claims\n- Whether the three-method disagreement undermines DIF specifically or the field generally\n- Whether the semi-synthetic ΔTPR values (0.26 at p=0.5) represent adequate detection power\n- The paper has 15 experiments in 8 pages — assess whether this breadth sacrifices depth\n\nFormat your review as a structured markdown document."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "d0ba33c0-595c-4517-b734-342c6ac271e1",
+            "agentId": "ac98eb5f0bbef3d5a",
+            "type": "user",
+            "uuid": "376670b6-b7d8-4c80-b786-ebaaa6d382b9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T17:47:47.586Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "376670b6-b7d8-4c80-b786-ebaaa6d382b9",
+                "isSidechain": true,
+                "agentId": "ac98eb5f0bbef3d5a",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_reviewer",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__submit_dream_review_report"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_reviewer",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__submit_dream_review_report"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "75d07643-4ba7-43ba-8b22-4109cadfee16",
+                "timestamp": "2026-05-21T17:47:47.586Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+                "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T17:47:49.892Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll start by reading the paper and key supporting files to conduct a thorough review."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "75d07643-4ba7-43ba-8b22-4109cadfee16",
+            "isSidechain": true,
+            "agentId": "ac98eb5f0bbef3d5a",
+            "requestId": "req_011CbG8j3fmjPKWHwCmK8b9Y",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ea87af78-8a24-40a0-902d-130524994b8e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018G7YN7vbzWqKxyk2gEKAx3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17065,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17065,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T17:47:52.359Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Dsv6gQkVDoZBPXMagjANGn",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/main.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ea87af78-8a24-40a0-902d-130524994b8e",
+            "isSidechain": true,
+            "agentId": "ac98eb5f0bbef3d5a",
+            "requestId": "req_011CbG8j3fmjPKWHwCmK8b9Y",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5bbd2445-d114-409d-abc5-355caf127cdf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018G7YN7vbzWqKxyk2gEKAx3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17065,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17065,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T17:47:52.373Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Dsv6gQkVDoZBPXMagjANGn",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[review]{acl}\n3\t\n4\t\\usepackage{times}\n5\t\\usepackage{latexsym}\n6\t\\usepackage[T1]{fontenc}\n7\t\\usepackage[utf8]{inputenc}\n8\t\\usepackage{microtype}\n9\t\\usepackage{booktabs}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{xcolor}\n12\t\\usepackage{multirow}\n13\t\\usepackage{subcaption}\n14\t\n15\t\\input{math_commands.tex}\n16\t\n17\t\\usepackage{cleveref}\n18\t\n19\t\\graphicspath{{../figures/paper/}}\n20\t\n21\t\\title{Temporal Measurement Drift in LLM Benchmarks:\\\\A Large-Scale Psychometric Audit of 5,227 Models}\n22\t\n23\t\\begin{document}\n24\t\n25\t\\maketitle\n26\t\n27\t\\input{sections/abstract}\n28\t\\input{sections/introduction}\n29\t\\input{sections/related_work}\n30\t\\input{sections/method}\n31\t\\input{sections/experiments}\n32\t\\input{sections/discussion}\n33\t\\input{sections/conclusion}\n34\t\\input{sections/limitations}\n35\t\n36\t\\bibliography{references}\n37\t\n38\t\\appendix\n39\t\\input{sections/appendix}\n40\t\n41\t\\end{document}\n42\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5bbd2445-d114-409d-abc5-355caf127cdf",
+            "isSidechain": true,
+            "promptId": "d0ba33c0-595c-4517-b734-342c6ac271e1",
+            "agentId": "ac98eb5f0bbef3d5a",
+            "type": "user",
+            "uuid": "4f39ac9c-fd2c-4bf1-b421-5080d94aa943",
+            "sourceToolAssistantUUID": "5bbd2445-d114-409d-abc5-355caf127cdf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T17:47:52.680Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AFSDYqLHPM8tceimL7wM4k",
+              "name": "Glob",
+              "input": {
+                "pattern": "paper/**/*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4f39ac9c-fd2c-4bf1-b421-5080d94aa943",
+            "isSidechain": true,
+            "agentId": "ac98eb5f0bbef3d5a",
+            "requestId": "req_011CbG8j3fmjPKWHwCmK8b9Y",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "65f00f0c-57f0-4d62-84de-9b83b8cf0687",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018G7YN7vbzWqKxyk2gEKAx3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17065,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 17065,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T17:47:52.705Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AFSDYqLHPM8tceimL7wM4k",
+              "type": "tool_result",
+              "content": "paper/math_commands.tex\npaper/main.tex\npaper/sections/related_work.tex\npaper/sections/limitations.tex\npaper/sections/abstract.tex\npaper/sections/introduction.tex\npaper/sections/method.tex\npaper/sections/appendix.tex\npaper/sections/discussion.tex\npaper/sections/conclusion.tex\npaper/sections/experiments.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "65f00f0c-57f0-4d62-84de-9b83b8cf0687",
+            "isSidechain": true,
+            "promptId": "d0ba33c0-595c-4517-b734-342c6ac271e1",
+            "agentId": "ac98eb5f0bbef3d5a",
+            "type": "user",
+            "uuid": "5c6337f1-8a55-493d-bf47-839a96dc5dcb",
+            "sourceToolAssistantUUID": "65f00f0c-57f0-4d62-84de-9b83b8cf0687",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T17:47:52.850Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NKZbJ7nY8soYcdZ5XGoLtE",
+              "name": "Glob",
+              "input": {
+                "pattern": "paper/**/*.bib",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5c6337f1-8a55-493d-bf47-839a96dc5dcb",
+            "isSidechain": true,
+            "agentId": "ac98eb5f0bbef3d5a",
+            "requestId": "req_011CbG8j3fmjPKWHwCmK8b9Y",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d110e8cc-0385-4f45-8407-d7cdba3fcda0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018G7YN7vbzWqKxyk2gEKAx3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 17065,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 283,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 17065
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 283,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 17065,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 17065,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T17:47:52.872Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NKZbJ7nY8soYcdZ5XGoLtE",
+              "type": "tool_result",
+              "content": "paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d110e8cc-0385-4f45-8407-d7cdba3fcda0",
+            "isSidechain": true,
+            "promptId": "d0ba33c0-595c-4517-b734-342c6ac271e1",
+            "agentId": "ac98eb5f0bbef3d5a",
+            "type": "user",
+            "uuid": "f07ac61b-729c-4e5f-988e-9dcf804f4cc2",
+            "sourceToolAssistantUUID": "d110e8cc-0385-4f45-8407-d7cdba3fcda0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T17:47:56.214Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015WffvVcNVWae6g5WjWmjEM",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/abstract.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f07ac61b-729c-4e5f-988e-9dcf804f4cc2",
+            "isSidechain": true,
+            "agentId": "ac98eb5f0bbef3d5a",
+            "requestId": "req_011CbG8jSQziT5WLoEhoUMCs",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cdd4a290-77cc-421e-8d1f-ab4369285b34",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0166qjiqEgykxRdQRa28p9RM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1686,
+                "cache_read_input_tokens": 17065,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1686,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T17:47:56.218Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015WffvVcNVWae6g5WjWmjEM",
+              "type": "tool_result",
+              "content": "1\t\\begin{abstract}\n2\tLLM benchmark scores are routinely compared across model generations, yet whether individual items measure the same construct over time is rarely tested---and existing contamination detectors validate against ground truth that conflates global exposure with differential functioning. We develop a semi-synthetic injection framework with cross-subject matching that achieves zero false positive inflation ($\\Delta\\mathrm{FPR} = 0.000$) while preserving detection power ($\\Delta\\mathrm{TPR} = {+}0.508$ at $p = 0.5$), and show that web-overlap contamination labels are near-independent of Mantel-Haenszel Differential Item Functioning (DIF) flags (enrichment $\\approx 0.96$, $\\phi = 0.012$)---exposing a category error in prevailing validation methodology. Applying MH-DIF with ETS severity classification to six METABENCH benchmarks (5,227 models, 27,125 items), we find 17.9--31.3\\% of items exhibit large temporal DIF (ETS~C) between 2023 and 2024 cohorts, each 45--174$\\times$ above random baselines, with knowledge/reasoning benchmarks more affected (C\\% $\\geq 26.9\\%$) than procedural ones (C\\% $\\leq 18.9\\%$). This does not threaten ranking validity ($\\rho \\approx 0.997$) but reveals which capability dimensions shift across generations. Item-level decomposition shows 92.4\\% of the signal is item-specific; DIF-flagged items concentrate discriminative information ($z = -8\\sigma$ to $-49\\sigma$) with a difficulty--direction interaction ($\\rho = -0.597$): gains on hard items, erosion on easy ones. LLM benchmarks need psychometric monitoring, not just score reporting.\n3\t\\end{abstract}\n4\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cdd4a290-77cc-421e-8d1f-ab4369285b34",
+            "isSidechain": true,
+            "promptId": "d0ba33c0-595c-4517-b734-342c6ac271e1",
+            "agentId": "ac98eb5f0bbef3d5a",
+            "type": "user",
+            "uuid": "9b06aa55-79a0-4856-838a-19eadbef9848",
+            "sourceToolAssistantUUID": "cdd4a290-77cc-421e-8d1f-ab4369285b34",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T17:47:57.005Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014FaEzngb3FT5aGnH7hyHuu",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9b06aa55-79a0-4856-838a-19eadbef9848",
+            "isSidechain": true,
+            "agentId": "ac98eb5f0bbef3d5a",
+            "requestId": "req_011CbG8jSQziT5WLoEhoUMCs",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "db834440-3c93-48c7-af41-55ed03223705",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0166qjiqEgykxRdQRa28p9RM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1686,
+                "cache_read_input_tokens": 17065,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1686,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T17:47:57.010Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014FaEzngb3FT5aGnH7hyHuu",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tWhen we say ``Model B outperforms Model A on MMLU,'' we implicitly assume that the benchmark measures the same construct in the same way for both models. This assumption of temporal comparability underpins every cross-generation comparison published on leaderboards and in model reports, yet it is rarely tested. We apply Mantel-Haenszel Differential Item Functioning (MH-DIF) analysis~\\citep{holland1988mh} with Educational Testing Service (ETS) severity classification to the METABENCH response matrix~\\citep{kipnis2024metabench},\\footnote{Analysis code and DIF audit scripts are available at \\url{https://anonymous.4open.science/r/dif-audit}.} and find that 31\\% of MMLU~\\citep{hendrycks2021mmlu} items receive ETS Category~C classification ($|\\Delta_{\\mathrm{MH}}| \\geq 1.5$, $p < 0.05$), indicating large shifts in item functioning between models released in 2023 and 2024. This is not statistical noise: a random-split control within the 2023 cohort yields only 0.18\\% ETS~C items. This pattern persists across all 57 MMLU subjects (C\\% range 21--48\\%, unweighted mean $\\approx 30\\%$), and item-level regression shows that 92.4\\% of the DIF signal is unrelated to aggregate domain-level accuracy gains. Nearly one in three MMLU items behaves differently depending on when the evaluated models were trained. Crucially, this measurement drift does not threaten benchmark validity: Spearman rank correlation between model rankings computed on all items versus stable-only items is $\\rho \\approx 0.997$. The drift is diagnostic, not destructive; it reveals which capability dimensions shift across model generations rather than rendering MMLU scores unreliable.\n5\t\n6\tA growing body of contamination detection research has produced sophisticated item-level methods, from membership inference approaches such as Min-K\\%~\\citep{shi2024mink} to performance-based detectors such as ConStat~\\citep{dekoninck2024constat}, DVD~\\citep{liang2026dvd}, and Self-Critique~\\citep{tao2026selfcritique}. These methods validate detection accuracy primarily against web-overlap labels such as those of \\citet{li2024contamination}, which classify benchmark items as contaminated based on verbatim or near-verbatim matches in publicly accessible training corpora. Such labels measure \\emph{global exposure}: whether an item exists in the data ecosystem that all training pipelines can access. They do not measure \\emph{differential item functioning}: whether an item behaves differently across model cohorts that may have had varying degrees of exposure or different training methodologies. \\Cref{fig:global_vs_differential} illustrates the distinction. Most MMLU items are globally contaminated in the sense that they exist in web-accessible text, so all model cohorts encounter them and no differential signal arises. The items that function differentially are those where exposure or training methodology changed asymmetrically across cohorts. Validating differential detectors against global-exposure labels therefore conflates two phenomena. Direct comparison confirms near-independence between the two flag sets (enrichment $= 0.964$, Jaccard $= 0.206$, $\\phi = 0.012$), consistent across contamination subtypes.\n7\t\n8\t\\begin{figure}[t]\n9\t\\centering\n10\t\\includegraphics[width=\\columnwidth]{fig_1_global_vs_differential.pdf}\n11\t\\caption{Global vs.\\ differential contamination, illustrated via Item Characteristic Curves (ICCs). \\textbf{Left}: global contamination produces no DIF; both cohorts encounter the item, and their ICCs overlap. \\textbf{Right}: differential contamination produces DIF; the focal cohort's ICC shifts because only that cohort was disproportionately exposed during training. The enrichment ratio of $\\approx 1.0$ between DIF flags and web-overlap labels is expected because most MMLU items fall into the left category.}\n12\t\\label{fig:global_vs_differential}\n13\t\\end{figure}\n14\t\n15\tWe apply classical MH-DIF with ETS classification to the full METABENCH response matrix (5,227 models $\\times$ 12,508 MMLU items), to our knowledge, the largest-scale DIF analysis on LLM benchmarks. This psychometric approach complements concurrent work on anchor-item calibration for score comparability~\\citep{habba2026growingpains} and addresses the fragility of existing contamination detectors under post-training perturbation~\\citep{wang2026fragility}. Semi-synthetic injection experiments confirm that MH-DIF is sensitive to differential item behavior when present ($\\Delta\\mathrm{TPR} = {+}0.508$ at exploitation rate $p = 0.5$), and our cross-subject matching protocol eliminates false positive inflation ($\\Delta\\mathrm{FPR} = 0.000$). Three structural controls (matched-ability quintile analysis, IRT $\\theta$-conditioning, and within-subject pre-checks) confirm that the approximately 31\\% temporal DIF rate cannot be attributed to methodological artifacts, establishing it as a robust empirical finding about LLM benchmark measurement properties, replicated across all six METABENCH benchmarks (\\Cref{sec:gsm8k}). MH-DIF detects \\emph{that} items function differently across cohorts, not \\emph{why}---the signal may reflect contamination, capability change, or training methodology shifts.\n16\t\n17\tMMLU's 12,508 items provide sufficient measurement redundancy that removing nearly a third does not alter rank order ($\\rho \\approx 0.997$). DIF should therefore be understood as a diagnostic lens rather than a quality filter: DIF-flagged items concentrate discriminative signal ($z = -8\\sigma$ to $-49\\sigma$ vs.\\ random removal), and model families show distinctive DIF profiles (Llama-3 gains ${+}53$ median rank positions, Mistral loses $35$).\n18\t\n19\tOur contributions are methodological and empirical, not algorithmic:\n20\t\n21\t\\begin{enumerate}\n22\t\\item \\textbf{Semi-synthetic validation framework}: Controlled injection with cross-subject matching achieves $\\Delta\\mathrm{FPR} = 0.000$ while preserving detection power ($\\Delta\\mathrm{TPR} = {+}0.508$ at $p = 0.5$); cross-benchmark replication on GSM8K confirms generality (\\Cref{sec:semisynthetic,sec:gsm8k}).\n23\t\n24\t\\item \\textbf{Ground truth meta-critique}: Web-overlap contamination labels~\\citep{li2024contamination} do not provide appropriate ground truth for item-level differential detectors. Direct empirical comparison on 9,229 items shows near-independence (enrichment $= 0.964$, Jaccard $= 0.206$, $\\phi = 0.012$), exposing a validation methodology gap (\\Cref{sec:groundtruth}).\n25\t\n26\t\\item \\textbf{Temporal measurement drift at scale}: Approximately 31\\% of MMLU items exhibit differential functioning across model generations under ETS~C classification; replication across all six METABENCH benchmarks yields C\\% $= 17.9$--$31.3\\%$ (45--174$\\times$ above random baselines), with knowledge/reasoning benchmarks showing higher DIF rates than procedural ones. DIF-flagged items concentrate discriminative signal ($z = -8\\sigma$ to $-49\\sigma$ vs.\\ random removal) and exhibit a difficulty--direction interaction ($\\rho = -0.597$): gains on hard items, erosion on easy ones (\\Cref{sec:temporal,sec:gsm8k,sec:downstream}).\n27\t\\end{enumerate}\n28\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "db834440-3c93-48c7-af41-55ed03223705",
+            "isSidechain": true,
+            "promptId": "d0ba33c0-595c-4517-b734-342c6ac271e1",
+            "agentId": "ac98eb5f0bbef3d5a",
+            "type": "user",
+            "uuid": "3014317a-90f6-47e8-b8fe-45ff317558bb",
+            "sourceToolAssistantUUID": "db834440-3c93-48c7-af41-55ed03223705",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T17:47:57.511Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F8MHZ9okLrKbxCBGUAv6dm",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/method.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3014317a-90f6-47e8-b8fe-45ff317558bb",
+            "isSidechain": true,
+            "agentId": "ac98eb5f0bbef3d5a",
+            "requestId": "req_011CbG8jSQziT5WLoEhoUMCs",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "400c9c7a-93ae-46f0-b60b-5b6469d59bb5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0166qjiqEgykxRdQRa28p9RM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1686,
+                "cache_read_input_tokens": 17065,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1686,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 39,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T17:47:57.516Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F8MHZ9okLrKbxCBGUAv6dm",
+              "type": "tool_result",
+              "content": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\tWe adopt Differential Item Functioning (DIF) analysis from educational measurement to assess whether individual benchmark items behave consistently across groups of LLMs. The procedure requires only a binary response matrix and group labels, with no access to model internals or training data. Below we define the data, the statistical test, the cohort designs, and a semi-synthetic validation framework.\n5\t\n6\t\\subsection{Data}\n7\t\\label{sec:data}\n8\t\n9\tThe primary dataset is the METABENCH response matrix~\\citep{kipnis2024metabench}, which records binary outcomes (1~=~correct, 0~=~incorrect) for 5,227 models evaluated on 12,508 MMLU items~\\citep{hendrycks2021mmlu}. Models span release dates from 2023 to 2024, drawn from the Open LLM Leaderboard. MMLU covers 57 subjects grouped into five broad domains (STEM, Humanities, Social Sciences, Other, and a mixed category). We supplement the response matrix with the web-overlap contamination labels of \\citet{li2024contamination}, which classify 9,229 of 12,508 items (73.8\\% coverage) as ``contaminated'' or ``clean'' based on verbatim matches in publicly accessible web corpora. These labels serve as an external reference for evaluating the relationship between DIF flags and existing contamination indicators.\n10\t\n11\t\\subsection{Mantel-Haenszel DIF and ETS Classification}\n12\t\\label{sec:mhdif}\n13\t\n14\tIn educational testing, Differential Item Functioning (DIF) occurs when an item's statistical relationship to the latent trait $\\theta$ differs between two groups after conditioning on ability level. An item with DIF is not merely harder for one group; it functions differently relative to what the group's overall ability would predict. The standard terminology refers to test-takers as ``examinees'' and questions as ``items.'' In our setting, examinees are LLMs and items are benchmark questions.\n15\t\n16\tThe Mantel-Haenszel (MH) procedure~\\citep{holland1988mh} detects DIF by stratifying examinees into $K$ score bins based on total score (a proxy for $\\theta$) and computing a common odds ratio across strata. We use $K = 5$ equiprobable strata (quintile-based binning) following ETS recommended practice for large-scale assessments~\\citep{donoghue1993mh,clauser1998dif}. Within each stratum $k$, the responses of the reference group and the focal group form a $2 \\times 2$ contingency table:\n17\t\n18\t\\begin{equation}\n19\t\\label{eq:mh}\n20\t\\alpha_{\\mathrm{MH}} = \\frac{\\displaystyle\\sum_{k=1}^{K} A_k D_k \\,/\\, T_k}{\\displaystyle\\sum_{k=1}^{K} B_k C_k \\,/\\, T_k}\\,,\n21\t\\end{equation}\n22\t\n23\t\\noindent where $A_k$ and $B_k$ are the number of correct and incorrect responses in the reference group for stratum $k$, $C_k$ and $D_k$ are the corresponding counts for the focal group, and $T_k$ is the total number of examinees in stratum $k$. Under the null hypothesis of no DIF, $\\alpha_{\\mathrm{MH}} = 1$. The log odds ratio is converted to the ETS delta scale:\n24\t\n25\t\\begin{equation}\n26\t\\label{eq:delta}\n27\t\\Delta_{\\mathrm{MH}} = -2.35 \\ln(\\alpha_{\\mathrm{MH}})\\,.\n28\t\\end{equation}\n29\t\n30\tThe Educational Testing Service (ETS) classifies DIF severity into three categories based on $|\\Delta_{\\mathrm{MH}}|$. Category~A (negligible) requires $|\\Delta_{\\mathrm{MH}}| < 1.0$. Category~C (large) requires both $|\\Delta_{\\mathrm{MH}}| \\geq 1.5$ and statistical significance at $p < 0.05$ from the MH chi-squared test. Category~B (moderate) includes all remaining items: those with $1.0 \\leq |\\Delta_{\\mathrm{MH}}| < 1.5$, or $|\\Delta_{\\mathrm{MH}}| \\geq 1.5$ without statistical significance. The dual threshold in ETS~C (effect size \\emph{and} significance) guards against flagging items that show large but unreliable effect sizes. Throughout this paper, we report the percentage of items classified as ETS~C, denoted C\\%. For example, if 2024 models consistently outperform 2023 models on a formal-logic item \\emph{after controlling for overall ability}, the pooled odds ratio $\\alpha_{\\mathrm{MH}} = 0.42$ yields $\\Delta_{\\mathrm{MH}} = -2.35 \\ln(0.42) = 2.04$, classified as ETS~C ($|\\Delta_{\\mathrm{MH}}| \\geq 1.5$, $p < 0.001$).\n31\t\n32\tThe choice of matching variable (the total score used for stratification) affects both validity and interpretation. We distinguish three matching strategies: (1)~\\emph{standard matching} uses the within-benchmark total score on all items of the same benchmark; (2)~\\emph{cross-subject matching} uses the total score on all subjects \\emph{other than} the one containing the item under test, preventing the matching variable from absorbing injected contamination signals (\\Cref{sec:injection}); and (3)~\\emph{external matching} uses the total score on a different benchmark entirely (e.g., MMLU total score as the matching variable when testing DIF on GSM8K items), providing an independent ability proxy uncontaminated by the target benchmark. Cross-subject and external matching both address matching variable contamination but at different granularities: cross-subject operates within a multi-domain benchmark, while external operates across benchmarks. Total score matching is sufficient: IRT $\\theta$ estimates correlate at $r = 0.9986$ with total scores in our data, confirming that computationally simpler CTT-based stratification introduces no bias relative to IRT ability matching.\n33\t\n34\t\\paragraph{LLM-specific challenges.} Applying MH-DIF to LLMs introduces assumptions absent in educational testing. First, models trained on overlapping corpora violate local independence; permutation simulation (1,000 iterations $\\times$ 8 subjects, Q3 $= 4.6$--$34.2\\%$) confirms LD-attributable FPR inflation $< 0.001$ pp under cross-subject matching with ETS~C (\\Cref{app:method_details}). Second, fine-tuned variants and merges within model families are not independent examinees; graduated de-duplication shows family structure does not inflate C\\% (\\Cref{sec:structural}). Third, the ability distribution is non-normal (bimodal from base vs.\\ instruction-tuned models), motivating quintile-based rather than parametric stratification. Fourth, MMLU's 57 subjects span multiple latent dimensions, while MH assumes unidimensionality; cross-subject matching and within-subject DIF checks address this (\\Cref{sec:structural}).\n35\t\n36\t\\subsection{Cohort Designs}\n37\t\\label{sec:cohorts}\n38\t\n39\tWe construct five cohort comparisons: (1)~\\emph{Temporal}: 2023 ($N = 1{,}080$) vs.\\ 2024 ($N = 807$) models, the primary comparison; (2)~\\emph{Ability-quintile}: Q1--Q2 vs.\\ Q4--Q5 within the same temporal window, testing whether ability differences alone produce DIF; (3)~\\emph{Within-family}: Llama-2 ($N = 161$) vs.\\ Llama-3 ($N = 308$), isolating generational changes within a single family; (4)~\\emph{Within-subject}: per-subject DIF to test domain concentration; and (5)~\\emph{Random split}: two random halves of the 2023 cohort ($N = 540$ each) as a sanity check.\n40\t\n41\t\\subsection{Semi-Synthetic Injection Framework}\n42\t\\label{sec:injection}\n43\t\n44\tTo evaluate whether MH-DIF can detect differential contamination when it is present, we construct a semi-synthetic framework with controlled ground truth.\n45\t\n46\t\\paragraph{Procedure.} From items classified as ETS~A in the uninjected data (negligible DIF), we select 20\\% uniformly at random as the ``contaminated'' set. For each contaminated item, we flip incorrect responses to correct in the focal group at exploitation rate $p \\in \\{0.0, 0.3, 0.5, 0.7, 1.0\\}$. We then run MH-DIF on the modified response matrix and measure detection performance. We report $\\Delta\\mathrm{TPR} = \\mathrm{TPR}(\\text{injected}) - \\mathrm{TPR}(\\text{baseline})$ and $\\Delta\\mathrm{FPR} = \\mathrm{FPR}(\\text{injected}) - \\mathrm{FPR}(\\text{baseline})$, where TPR is the true positive rate on injected items and FPR is the false positive rate on uninjected items. Each injection level is repeated across 5 random seeds for uncertainty estimation.\n47\t\n48\t\\paragraph{Cross-subject matching.} The choice of matching variable is critical for valid semi-synthetic evaluation. When contamination is injected into items within subject $X$, the total score on subject $X$ absorbs part of the injection signal. Using this contaminated total score as the MH matching variable violates the conditional independence assumption and inflates FPR. Cross-subject matching resolves this by computing the matching variable from all subjects \\emph{other than} the one being tested.\n49\t\n50\t\\begin{proposition}[Zero FPR under single-subject cross-subject matching]\n51\t\\label{prop:fpr}\n52\tLet $M_i^{(-s)} = \\sum_{j \\notin s} Y_{ij}$ be the matching variable for examinee $i$ on focal subject $s$. Under single-subject injection (contamination confined to subject $s$), the tested item belongs to $s$ and does not contribute to $M_i^{(-s)}$; injecting contamination into $s$ leaves $M_i^{(-s)}$ unchanged. Therefore $\\Delta\\mathrm{FPR} = 0$ by construction.\n53\t\\end{proposition}\n54\t\n55\tWhen contamination spans multiple subjects simultaneously, $M_i^{(-s)}$ may absorb signal from other contaminated subjects, potentially inflating FPR. Empirically, this guarantee extends to multi-domain contamination affecting $\\leq$9\\% of subjects ($k \\leq 5$), with graceful degradation beyond this boundary (\\Cref{sec:semisynthetic}).\n56\t\n57\tEmpirically, $\\Delta\\mathrm{FPR} = 0.000$ across all five MMLU domains (bootstrap 95\\% CI $= [0.000, 0.000]$, 5,000 resamples), while detection power is preserved ($\\Delta\\mathrm{TPR} > 0.3$ at $p = 0.5$ for four of five subjects). We adopt cross-subject matching as the standard protocol for all semi-synthetic analyses.\n58\t\n59\tDiagnostic procedures (Yen's Q3 local independence, domain-specificity analysis, DIF decomposition) and statistical details (multiple testing correction, threshold sensitivity, architecture heterogeneity checks) appear in \\Cref{app:method_details}.\n60\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "400c9c7a-93ae-46f0-b60b-5b6469d59bb5",
+            "isSidechain": true,
+            "promptId": "d0ba33c0-595c-4517-b734-342c6ac271e1",
+            "agentId": "ac98eb5f0bbef3d5a",
+            "type": "user",
+            "uuid": "bcc0a68e-6dc1-4070-b78d-e06bf03ae8ef",
+            "sourceToolAssistantUUID": "400c9c7a-93ae-46f0-b60b-5b6469d59bb5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T17:47:57.748Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WAmyQ4JPzhXBa5ZSjzZWcj",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/experiments.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bcc0a68e-6dc1-4070-b78d-e06bf03ae8ef",
+            "isSidechain": true,
+            "agentId": "ac98eb5f0bbef3d5a",
+            "requestId": "req_011CbG8jSQziT5WLoEhoUMCs",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8c90ad5d-3f7b-41e8-a774-dc60a13680c0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0166qjiqEgykxRdQRa28p9RM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1686,
+                "cache_read_input_tokens": 17065,
+                "output_tokens": 317,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1686
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 317,
+                    "cache_read_input_tokens": 17065,
+                    "cache_creation_input_tokens": 1686,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1686,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T17:47:57.752Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WAmyQ4JPzhXBa5ZSjzZWcj",
+              "type": "tool_result",
+              "content": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe apply MH-DIF to the METABENCH response matrix~\\citep{kipnis2024metabench} (5,227 models $\\times$ 12,508 MMLU items~\\citep{hendrycks2021mmlu}), with temporal cohorts defined by release date (2023 vs.\\ 2024). Cross-benchmark validation across all six METABENCH benchmarks appears in \\Cref{sec:gsm8k}.\n5\t\n6\t\\subsection{Validation: DIF Detection Power}\n7\t\\label{sec:validation}\n8\t\n9\tA Monte Carlo power analysis (1,000 replications per condition) using empirical 2PL parameters from PSN-IRT~\\citep{zhou2026psnirt} ($\\bar{a} = 1.2$, $\\bar{b} = -0.84$; 14,042 MMLU items) confirms that at $N \\geq 80$ per cohort, ETS~C achieves TPR of 0.68--0.80, FPR of 0.036--0.042, and AUC of 0.93--0.94 for items with $|\\Delta_{\\mathrm{MH}}| \\geq 1.4$ (details in \\Cref{app:method_details}). Our temporal cohorts ($N_{\\mathrm{ref}} = 1{,}080$, $N_{\\mathrm{focal}} = 807$) far exceed this threshold.\n10\t\n11\t\\subsection{Temporal Comparability: 31\\% Measurement Drift}\n12\t\\label{sec:temporal}\n13\t\n14\tWe compare 2023 ($N = 1{,}080$) against 2024 ($N = 807$) models; 31.3\\% of items receive ETS~C classification ($|\\Delta_{\\mathrm{MH}}| \\geq 1.5$; 95\\% bootstrap CI: [29.4\\%, 38.1\\%], $B = 1{,}000$ model-level resamples). Benjamini-Hochberg FDR correction at $q = 0.05$ removes only 3 items (31.32\\% $\\to$ 31.30\\%), because the dual ETS threshold on effect size and significance already provides implicit multiple-testing protection.\n15\t\n16\tThree controls confirm this reflects genuine temporal change. A random split of the 2023 cohort yields only 0.18\\% ETS~C items (sampling noise), and an ability-quintile comparison within the same temporal cohort yields 2.9\\% (ability differences alone). A within-family comparison (Llama-2 vs.\\ Llama-3) produces 61.3\\% ETS~C items, elevated by large ability gaps that confound the DIF signal~\\citep{holland1988mh}. The contrast between 2.9\\% (ability-controlled) and 61.3\\% (ability-confounded) brackets the temporal rate of 31.3\\%. Crucially, the temporal cohort ability gap is negligible: Cohen's $d = -0.17$ (below the $|d| = 0.2$ small-effect threshold) with 76.4\\% distributional overlap. Under strict 1:1 nearest-neighbor matching ($d \\approx -0.010$, $N = 638$ per group, 5 seeds), C\\% $= 28.9\\% \\pm 0.1\\%$---a 7.7\\% relative reduction from 31.3\\%, confirming that at most $\\sim$2.4 pp of observed DIF is attributable to ability mismatch.\n17\t\n18\tAcross all 57 subjects, C\\% ranges from 20.7\\% to 48.4\\% (mean $\\approx 30\\%$; \\Cref{tab:temporal_landscape}). DIF rates are domain-invariant (Kruskal-Wallis $p = 0.78$), but DIF \\emph{direction} exhibits domain dependence: STEM items favor 2024 models (55.4\\%), Humanities favor 2023 (64.4\\%). Item-level regression shows 92.4\\% of the DIF signal is item-specific (pseudo $R^2 = 0.0007$). A Simpson's paradox confirms item properties---not accuracy gains---drive DIF: domain accuracy positively predicts DIF at the aggregate level ($\\mathrm{OR} = 1.55$, $p = 0.001$) but reverses after controlling for item difficulty and discrimination ($\\mathrm{OR} = 0.73$, $p = 0.030$). The conclusion is robust across thresholds: C\\% $= 48.9\\%$ at $|\\Delta_{\\mathrm{MH}}| \\geq 1.0$, $18.3\\%$ at $\\geq 2.0$, $10.2\\%$ at $\\geq 2.5$; ETS~C's dual threshold makes results less sensitive to the number of strata $K$ than significance-only approaches ($K = 5$ per ETS practice~\\citep{donoghue1993mh}).\n19\t\n20\t\\begin{table}[t]\n21\t\\centering\n22\t\\caption{DIF landscape across cohort definitions. ETS~C denotes the percentage of items with $|\\Delta_{\\mathrm{MH}}| \\geq 1.5$. FPR is measured against Li et al.\\ web-overlap labels on the ``clean'' (non-overlapping) subset. Enrichment is the ratio of observed to expected overlap between DIF flags and web-overlap labels.}\n23\t\\label{tab:temporal_landscape}\n24\t\\small\n25\t\\resizebox{\\columnwidth}{!}{%\n26\t\\begin{tabular}{lcccc}\n27\t\\toprule\n28\tCohort Definition & $N_{\\mathrm{ref}}$ / $N_{\\mathrm{focal}}$ & C\\% & FPR (clean) & Enrich. \\\\\n29\t\\midrule\n30\tTemporal (2023 vs.\\ 2024) & 1,080 / 807 & 31.3 & 0.318 & 0.964 \\\\\n31\tAbility quintile (Q1--2 vs.\\ Q4--5) & ${\\sim}$2,600 / ${\\sim}$2,600 & 2.9 & 0.027 & 1.19 \\\\\n32\tWithin-family (Llama-2 vs.\\ 3) & 161 / 308 & 61.3 & -- & -- \\\\\n33\tRandom split (sanity) & 540 / 540 & 0.18 & -- & -- \\\\\n34\tWithin-subject (avg, 5 subj.) & \\textit{varies} & 38.1 & -- & -- \\\\\n35\t\\bottomrule\n36\t\\end{tabular}}\n37\t\\end{table}\n38\t\n39\t\\subsection{Ground Truth Mismatch}\n40\t\\label{sec:groundtruth}\n41\t\n42\tDirect comparison of DIF flags against the web-overlap labels of \\citet{li2024contamination} on 9,229 annotated items confirms that the two methods capture orthogonal signals. The enrichment ratio is 0.964 (\\Cref{tab:temporal_landscape}): DIF-C rates are 30.7\\% among web-contaminated items and 31.8\\% among clean items. Association tests yield $\\phi = 0.012$, $\\chi^2 = 1.28$ ($p = 0.258$), and OR $= 1.05$ [0.96, 1.15]; the Jaccard index between flagged sets is 0.206. This near-independence holds across contamination subtypes (input-only enrichment $= 0.986$, input-and-label $= 0.960$). The null result does not indicate detection failure: semi-synthetic injection produces a clear dose-response ($\\Delta\\mathrm{TPR} = {+}0.508$ at $p = 0.5$; \\Cref{fig:dose_response}). The disconnect arises because web-overlap labels measure \\emph{global exposure} (whether an item exists in training corpora), while DIF measures \\emph{differential functioning} (whether an item's relationship to ability changes across cohorts). The Li et al.\\ labels are the wrong ground truth for a differential method. This near-independence extends to behavioral contamination detectors: the enrichment ratio of $0.964$ and Jaccard overlap of $0.206$ between DIF flags and web-overlap labels imply that any detector validated against these labels---including ConStat~\\citep{dekoninck2024constat}---is evaluated on a ground truth orthogonal to differential functioning.\n43\t\n44\t\\begin{figure}[t]\n45\t\\centering\n46\t\\includegraphics[width=\\columnwidth]{fig_2_dose_response.pdf}\n47\t\\caption{Semi-synthetic dose-response for DIF detection on MMLU. $\\Delta\\mathrm{TPR}$ increases monotonically with exploitation rate $p$, confirming that MH-DIF is sensitive to differential item behavior when present. Baseline (no injection) produces $\\Delta\\mathrm{TPR} \\approx 0$.}\n48\t\\label{fig:dose_response}\n49\t\\end{figure}\n50\t\n51\t\\subsection{Structural Analysis}\n52\t\\label{sec:structural}\n53\t\n54\tThree structural controls fail to reduce temporal C\\% below 31\\% (\\Cref{tab:structural_comparison}): matched-ability quintiles, IRT $\\theta$-conditioning ($r(\\theta, \\mathrm{total\\ score}) = 0.9986$), and within-subject DIF (C\\% $= 38.1\\%$). Logistic regression DIF confirms 92.1\\% concordance with MH and reveals additional non-uniform DIF (24.8\\%), making 31\\% conservative. Graduated de-duplication ($K{=}10$: 22.7\\%; $K{=}20$: 29.1\\%) confirms family structure does not inflate C\\%. Ability-matched analysis reduces Llama-2 vs.\\ Llama-3 C\\% from 61.3\\% to $28.3\\%$ and temporal C\\% from 31.3\\% to $28.9\\%$---consistent matched values ($\\sim$28--29\\%) despite vastly different unmatched rates, suggesting genuine item-level DIF accounts for $\\sim$28--29\\% of items. Six alternative explanations (ability confounding, family inflation, $\\theta$-conditioning, within-subject effects, ranking impact, local dependence) were tested; none reduces C\\% below $\\sim$28\\% (\\Cref{app:structural}).\n55\t\n56\t\\begin{table}[t]\n57\t\\centering\n58\t\\caption{Structural approaches to reducing temporal DIF. None reduces baseline FPR below 31\\%, indicating that the observed instability is not an artifact of ability matching.}\n59\t\\label{tab:structural_comparison}\n60\t\\small\n61\t\\resizebox{\\columnwidth}{!}{%\n62\t\\begin{tabular}{lcccc}\n63\t\\toprule\n64\tApproach & Mechanism & Temp.\\ FPR & TPR ($p{=}0.5$) & Outcome \\\\\n65\t\\midrule\n66\tBaseline (ext.) & Cross-bench.\\ total score & $0.314_{\\pm.009}$ & $0.834_{\\pm.027}$ & Reference \\\\\n67\tMatched-ability & Within-quintile temp.\\ DIF & ${\\sim}$0.31 & -- & Enrich.\\ 0.94--1.04 \\\\\n68\t$\\theta$-cond. & $\\theta$ replaces total score & 0.312 & 0.876 & $r(\\theta,\\mathrm{total}) {=} 0.9986$ \\\\\n69\tWithin-subject & Per-subject DIF & -- & -- & C\\% $= 38.1\\%$ ($>$25\\%) \\\\\n70\t\\bottomrule\n71\t\\end{tabular}}\n72\t\\end{table}\n73\t\n74\t\\subsection{Semi-Synthetic Framework Validation}\n75\t\\label{sec:semisynthetic}\n76\t\n77\tCross-subject matching achieves $\\Delta\\mathrm{FPR} = 0.000$ across all five MMLU subjects (4/5 with $\\Delta\\mathrm{TPR} > 0.3$ at $p = 0.5$), while within-subject matching inflates FPR by ${+}0.186$ on average. Multi-subject injection ($k \\in \\{1, 3, 5, 10, 20\\}$ subjects, 5 random draws each) confirms robustness: $\\Delta\\mathrm{FPR} < 0.007$ for $k \\leq 5$ ($\\leq$9\\% of domains); at $k = 10$ (18\\%), $\\Delta\\mathrm{FPR}$ rises to 0.026--0.069, marking the boundary of matching variable integrity (\\Cref{app:method_details,app:fig_matching}).\n78\t\n79\t\\subsection{Downstream Impact}\n80\t\\label{sec:downstream}\n81\t\n82\tSpearman correlation between full and stable-item rankings is $\\rho \\approx 0.997$: aggregate ordering is preserved despite 31\\% measurement drift. DIF-flagged items nonetheless concentrate discriminative signal ($z = -8\\sigma$ to $-49\\sigma$ vs.\\ random removal), though a circularity ablation confirms DIF-based removal is the \\emph{least} disruptive non-random strategy. Model families show distinctive DIF profiles: Llama-3 derivatives gain ${+}53$ median rank positions, Mistral loses $35$ (\\Cref{app:fig_downstream}). Removing C-flagged items disproportionately disadvantages 2024 models (cohort gap $= 96.2$ positions, $40\\times$ larger than random removal; $p < 0.001$), confirming that DIF items carry concentrated inter-generational signal.\n83\t\n84\t\\subsection{Cross-Benchmark Validation}\n85\t\\label{sec:gsm8k}\n86\t\n87\tTemporal DIF extends across all six METABENCH benchmarks (\\Cref{tab:cross_benchmark}). C\\% ranges from 17.9\\% (HellaSwag~\\citep{zellers2019hellaswag}) to 31.3\\% (MMLU), each 45--174$\\times$ above random baselines. Knowledge/reasoning benchmarks (WinoGrande~\\citep{sakaguchi2021winogrande}, TruthfulQA~\\citep{lin2022truthfulqa}, ARC~\\citep{clark2018arc}) show C\\% $= 26.9$--$31.3\\%$ versus $17.9$--$18.9\\%$ for procedural ones, consistent with knowledge-intensive items being more sensitive to training data composition shifts.\n88\t\n89\t\\begin{table}[t]\n90\t\\centering\n91\t\\caption{Temporal DIF across six METABENCH benchmarks. C\\% = ETS~C items ($|\\Delta_{\\mathrm{MH}}| \\geq 1.5$) between 2023 and 2024 cohorts. All six show substantial DIF (45--174$\\times$ above random baseline), with knowledge/reasoning benchmarks exhibiting higher C\\% than procedural ones.}\n92\t\\label{tab:cross_benchmark}\n93\t\\small\n94\t\\begin{tabular}{lrrrl}\n95\t\\toprule\n96\tBenchmark & Items & C\\% & Rand.\\ C\\% & Ratio \\\\\n97\t\\midrule\n98\tMMLU & 12{,}508 & 31.3 & 0.18 & 174$\\times$ \\\\\n99\tWinoGrande & 1{,}267 & 30.3 & 0.32 & 95$\\times$ \\\\\n100\tTruthfulQA & 817 & 29.7 & 0.37 & 80$\\times$ \\\\\n101\tARC & 1{,}172 & 26.9 & 0.60 & 45$\\times$ \\\\\n102\tGSM8K & 1{,}319 & 18.9 & 0.30 & 63$\\times$ \\\\\n103\tHellaSwag & 10{,}042 & 17.9 & 0.28 & 64$\\times$ \\\\\n104\t\\bottomrule\n105\t\\end{tabular}\n106\t\\end{table}\n107\t\n108\tOn GSM8K specifically, semi-synthetic injection with external matching confirms detection power ($\\Delta\\mathrm{TPR} = {+}0.514$ at $p = 0.5$; \\Cref{app:gsm8k_details}). An exploratory GSM1K analysis ($N = 33$) shows a negative correlation between contamination gap and DIF ranking advantage ($r = -0.478$, $p = 0.005$; partial $r = -0.385$, $p = 0.027$), suggesting DIF captures capability change distinct from memorization (\\Cref{app:fig_gsm1k}).\n109\t\n110\tEven within a 6-month window (2023-H2 vs.\\ 2024-H1), DIF remains substantial (MMLU C\\% $= 34.35\\%$, 181$\\times$; TruthfulQA C\\% $= 31.33\\%$, 51$\\times$ above random baselines).\n111\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8c90ad5d-3f7b-41e8-a774-dc60a13680c0",
+            "isSidechain": true,
+            "promptId": "d0ba33c0-595c-4517-b734-342c6ac271e1",
+            "agentId": "ac98eb5f0bbef3d5a",
+            "type": "user",
+            "uuid": "e4c03a53-e472-414d-9b12-13b3cda9c2b9",
+            "sourceToolAssistantUUID": "8c90ad5d-3f7b-41e8-a774-dc60a13680c0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T17:48:02.511Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FEpjsn2vCf2t9ais4nCtQo",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e4c03a53-e472-414d-9b12-13b3cda9c2b9",
+            "isSidechain": true,
+            "agentId": "ac98eb5f0bbef3d5a",
+            "requestId": "req_011CbG8joSY6PwRXufrW3KwY",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cb884740-fff6-4b8b-9ca3-4598e2bf1abb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y87Mikzec66vBPkFDFZbzv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10220,
+                "cache_read_input_tokens": 18751,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 10220,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T17:48:02.521Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FEpjsn2vCf2t9ais4nCtQo",
+              "type": "tool_result",
+              "content": "1\t\\section{Related Work}\n2\t\\label{sec:related_work}\n3\t\n4\t\\paragraph{Contamination Detection.}\n5\tA growing family of methods detects benchmark contamination through model behavior or training data analysis. Membership inference approaches estimate whether a model has seen specific items during training: Min-K\\% \\citep{shi2024mink} and Min-K\\%++ \\citep{zhang2024minkpp} use token-level log-likelihood statistics, while Time Travel \\citep{golchin2024timetravel} probes models with temporal cues. Performance-based detectors identify contamination through statistical anomalies: ConStat \\citep{dekoninck2024constat} tests performance gaps between original and perturbed items, DVD \\citep{liang2026dvd} uses distributional verification, and Self-Critique \\citep{tao2026selfcritique} employs model self-evaluation. \\citet{balloccu2024leak} provide a broader taxonomy of leakage detection strategies. These methods share a common validation practice: they verify detection accuracy against web-overlap or n-gram labels \\citep{li2024contamination} that classify items based on verbatim matches in publicly accessible corpora. Such labels measure \\emph{global exposure} (whether an item exists in training data) rather than \\emph{differential item functioning} (whether an item behaves differently across model cohorts). This global-vs-differential distinction motivates our ground truth analysis (\\Cref{sec:groundtruth}). Work on LLM memorization \\citep{carlini2022quantifying, tirumala2022memorization} establishes that memorization depends on data frequency and model scale, reinforcing the distinction between global exposure and differential behavior. \\citet{wang2026fragility} show that existing contamination detectors are fragile under reinforcement learning, further motivating behavioral approaches grounded in psychometric theory.\n6\t\n7\t\\paragraph{IRT in LLM Evaluation.}\n8\tIRT adoption in LLM evaluation has accelerated: \\citet{lalor2019irt} introduced IRT to NLP, \\citet{vania2021irt} assessed test set discriminability, and \\citet{rodriguez2021evaluation} demonstrated that not all evaluation examples are equally informative. Recent extensions include PSN-IRT \\citep{zhou2026psnirt} for benchmark quality at scale, TinyBenchmarks \\citep{maiapolo2024tinybenchmarks} for IRT-based item selection, scalability coefficients for detecting bad benchmark items \\citep{hardy2026scalability}, ATLAS \\citep{li2025atlas} for computerized adaptive testing of LLMs, and competency-focused IRT evaluation in medical domains \\citep{luo2025medirt}. The closest concurrent work is Growing Pains \\citep{habba2026growingpains}, which addresses score comparability through fixed-parameter calibration \\citep[FPC;][]{kim2019fpc}. Our work is complementary: Growing Pains assumes anchor item stability, while DIF analysis diagnoses which items' measurement properties shift across model generations, potentially flagging anchor degradation before it affects calibration accuracy. Empirical comparison awaits public release of anchor item lists.\n9\t\n10\t\\paragraph{DIF Methodology and Measurement Invariance.}\n11\tThe Mantel-Haenszel procedure for DIF detection was introduced by \\citet{holland1988mh} and remains the most widely used method in educational testing due to its simplicity and well-characterized statistical properties \\citep{clauser1998dif}. Alternative approaches include logistic regression DIF \\citep{swaminathan1990logistic}, SIBTEST \\citep{shealy1993sibtest}, Lord's $\\chi^2$ test \\citep{lord1980irt}, and the Raju area method \\citep{raju1988area}; \\citet{zumbo1999handbook} provides a comprehensive comparison. DIF analysis is a specific instance of measurement invariance testing \\citep{meredith1993invariance, vandenberg2000invariance}, which examines whether a measurement instrument functions equivalently across populations. MIMIC models offer a latent-variable approach to the same problem \\citep{muthen1985mimic, woods2009mimic}, and \\citet{teresi2007dif} reviews DIF methods across applied domains. Cross-subject matching---computing the stratification variable from domains other than the one being tested---has psychometric precedent in the DIF literature \\citep{nandakumar1993dif,donoghue1993mh}; our adaptation addresses LLM-specific challenges of multi-domain local dependence and simultaneous contamination control at scale. We do not modify the MH procedure; our contribution is the application context and the empirical findings it reveals. The scale of this analysis (5,227 examinees across a 57-subject multidimensional ability space) exceeds typical educational testing applications, where \\citet{belzak2020smallsample} note that DIF methods can behave differently at extreme sample sizes. The primary methodological challenge is the impact-versus-DIF confound: genuine ability differences between temporal cohorts can inflate DIF estimates. We address this through matched-ability quintile analysis, IRT $\\theta$-conditioning, and a random-split control (\\Cref{sec:temporal}).\n12\t\n13\t\\paragraph{Benchmark Quality and Design.}\n14\tThe Benchmark Health Index~\\citep{zhu2026bhi} and Benchmark$^2$~\\citep{qian2026benchmark2} assess static benchmark quality; our temporal DIF analysis is complementary, diagnosing \\emph{when} measurement properties shift rather than evaluating them at a single snapshot. \\citet{maeda2025difllm} predict which item features associate with DIF in educational settings; we instead detect DIF empirically across LLM cohorts at scale. Dynamic benchmarks \\citep{kiela2021dynabench, li2024latesteval, white2025livebench} mitigate contamination by construction, yet none provides psychometric equating across versions. Chatbot Arena \\citep{chiang2024chatbot} sidesteps static benchmarks through pairwise preference. Broader surveys \\citep{chang2024survey, burnell2023rethink} identify benchmark saturation and lack of item-level transparency as systemic challenges that our DIF analysis directly addresses.\n15\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cb884740-fff6-4b8b-9ca3-4598e2bf1abb",
+            "isSidechain": true,
+            "promptId": "d0ba33c0-595c-4517-b734-342c6ac271e1",
+            "agentId": "ac98eb5f0bbef3d5a",
+            "type": "user",
+            "uuid": "f3ed9307-ad74-4626-8073-ad654e3d4077",
+            "sourceToolAssistantUUID": "cb884740-fff6-4b8b-9ca3-4598e2bf1abb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T17:48:02.992Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015rTE8PCtEoj7uNqeGZ1Cwp",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f3ed9307-ad74-4626-8073-ad654e3d4077",
+            "isSidechain": true,
+            "agentId": "ac98eb5f0bbef3d5a",
+            "requestId": "req_011CbG8joSY6PwRXufrW3KwY",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7add1429-b23d-4db7-916b-cfbcab37e08e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y87Mikzec66vBPkFDFZbzv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10220,
+                "cache_read_input_tokens": 18751,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 10220,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T17:48:02.998Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015rTE8PCtEoj7uNqeGZ1Cwp",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\subsection{Implications for Benchmark Temporal Comparability}\n5\t\\label{sec:disc_temporal}\n6\t\n7\tThe 31\\% ETS~C DIF rate extends across all six METABENCH benchmarks (C\\% $= 17.9$--$31.3\\%$, 45--174$\\times$ above baselines; \\Cref{tab:cross_benchmark}), with knowledge/reasoning benchmarks more affected (C\\% $\\geq 26.9\\%$) than procedural ones (C\\% $\\leq 18.9\\%$). The Simpson's paradox (\\Cref{sec:temporal}) confirms item properties, not accuracy gains, drive DIF. This does not invalidate ranking ($\\rho \\approx 0.997$) but signals measurement drift across model generations.\n8\t\n9\t\\subsection{Ground Truth Meta-Critique}\n10\t\\label{sec:disc_groundtruth}\n11\t\n12\tThe near-independence between DIF flags and web-overlap labels (enrichment $= 0.964$, Jaccard $= 0.206$, $\\phi = 0.012$) admits two interpretations: web-overlap labels may be the wrong ground truth for a differential method, or DIF may fail to detect contamination. The semi-synthetic dose-response ($\\Delta\\mathrm{TPR} = {+}0.508$ at $p = 0.5$) partially resolves this by confirming that MH-DIF \\emph{can} detect differential item behavior when present; the near-independence therefore reflects a category error in the ground truth rather than a detection failure.\n13\t\n14\t\\subsection{DIF as Diagnostic Lens}\n15\t\\label{sec:disc_diagnostic}\n16\t\n17\tThe GSM1K correlation ($r = -0.478$, partial $r = -0.385$; \\Cref{sec:gsm8k}) provides exploratory evidence that DIF captures behavioral change distinct from memorization. DIF-C items are harder ($d = -0.247$) and more discriminating ($d = 0.230$), with a difficulty--direction interaction ($\\rho = -0.597$): gains on hard items, erosion on easy ones.\n18\t\n19\t\\subsection{Recommended DIF Audit Protocol}\n20\t\\label{sec:disc_protocol}\n21\t\n22\tThese findings motivate a benchmark maintenance protocol triggered whenever $\\geq 500$ new models accumulate, using cross-subject matching. We propose graduated thresholds: C\\% $< 15\\%$ $\\to$ monitor; $15\\text{--}25\\%$ $\\to$ flag (label drift-prone and volatile items); $> 25\\%$ $\\to$ act (rotate or retire flagged items). MMLU's C\\% $= 31.3\\%$ exceeds the action threshold.\n23\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7add1429-b23d-4db7-916b-cfbcab37e08e",
+            "isSidechain": true,
+            "promptId": "d0ba33c0-595c-4517-b734-342c6ac271e1",
+            "agentId": "ac98eb5f0bbef3d5a",
+            "type": "user",
+            "uuid": "4142ea10-fb29-4256-9e75-532a2c663c99",
+            "sourceToolAssistantUUID": "7add1429-b23d-4db7-916b-cfbcab37e08e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T17:48:03.474Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GDPtPH5vp4VVfRe9R4bkhz",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/conclusion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4142ea10-fb29-4256-9e75-532a2c663c99",
+            "isSidechain": true,
+            "agentId": "ac98eb5f0bbef3d5a",
+            "requestId": "req_011CbG8joSY6PwRXufrW3KwY",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4a949003-1011-4919-bc4f-828963ae76d6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y87Mikzec66vBPkFDFZbzv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10220,
+                "cache_read_input_tokens": 18751,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 10220,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T17:48:03.480Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GDPtPH5vp4VVfRe9R4bkhz",
+              "type": "tool_result",
+              "content": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tA semi-synthetic framework with cross-subject matching ($\\Delta\\mathrm{FPR} = 0.000$) resolves a validation gap: web-overlap labels are near-independent of DIF flags (enrichment $\\approx 0.96$). Across six METABENCH benchmarks (27,125 items, 5,227 models), MH-DIF reveals 17.9--31.3\\% temporal measurement drift (ETS~C) driven by item properties; DIF-flagged items concentrate discriminative signal ($z{=}{-}8\\sigma$ to ${-}49\\sigma$; $\\rho{=}{-}0.597$). LLM benchmarks need psychometric monitoring alongside score reporting.\n5\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4a949003-1011-4919-bc4f-828963ae76d6",
+            "isSidechain": true,
+            "promptId": "d0ba33c0-595c-4517-b734-342c6ac271e1",
+            "agentId": "ac98eb5f0bbef3d5a",
+            "type": "user",
+            "uuid": "b8d20753-407a-4393-bbd6-e8975bfa8fa3",
+            "sourceToolAssistantUUID": "4a949003-1011-4919-bc4f-828963ae76d6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T17:48:04.480Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XfRiCo4ktbUjV9yGXUrQrt",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/limitations.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b8d20753-407a-4393-bbd6-e8975bfa8fa3",
+            "isSidechain": true,
+            "agentId": "ac98eb5f0bbef3d5a",
+            "requestId": "req_011CbG8joSY6PwRXufrW3KwY",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "98ba85b4-690a-4852-b646-98d3553d3f0e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y87Mikzec66vBPkFDFZbzv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10220,
+                "cache_read_input_tokens": 18751,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 10220,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T17:48:04.485Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XfRiCo4ktbUjV9yGXUrQrt",
+              "type": "tool_result",
+              "content": "1\t\\section*{Limitations}\n2\t\n3\t\\paragraph{Methodological scope.}\n4\tMH-DIF detects only uniform DIF; logistic regression reveals an additional 24.8\\% non-uniform DIF, making 31\\% conservative. More fundamentally, DIF detects \\emph{that} items function differently but cannot determine \\emph{why}---the signal may reflect contamination, capability change, or training methodology shifts. A definitive causal decomposition remains out of reach without access to model training data.\n5\t\n6\t\\paragraph{Matching boundary and sample size.}\n7\tCross-subject matching assumes contamination affects a minority of domains; when contamination spans ${>}10$ subjects (${>}18\\%$ of MMLU), $\\Delta\\mathrm{FPR}$ rises to 0.026--0.069. The GSM1K correlation analysis ($N = 33$) has limited statistical power and is exploratory; replication with larger model samples is warranted.\n8\t\n9\t\\paragraph{Generalizability.}\n10\tAll six benchmarks use multiple-choice or binary scoring; generalizability to open-ended generation (e.g., AlpacaEval), coding (e.g., HumanEval), or partial-credit benchmarks is untested and would require polytomous DIF methods. Temporal cohorts are defined by calendar year, a coarse grouping; finer-grained definitions (e.g., by training data cutoff or alignment method) might reveal more targeted patterns.\n11\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "98ba85b4-690a-4852-b646-98d3553d3f0e",
+            "isSidechain": true,
+            "promptId": "d0ba33c0-595c-4517-b734-342c6ac271e1",
+            "agentId": "ac98eb5f0bbef3d5a",
+            "type": "user",
+            "uuid": "8cd21392-88eb-4274-94ef-6034dfd4d07c",
+            "sourceToolAssistantUUID": "98ba85b4-690a-4852-b646-98d3553d3f0e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T17:48:04.696Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AL15KHV42sWn2abEbvoEup",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/sections/appendix.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8cd21392-88eb-4274-94ef-6034dfd4d07c",
+            "isSidechain": true,
+            "agentId": "ac98eb5f0bbef3d5a",
+            "requestId": "req_011CbG8joSY6PwRXufrW3KwY",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3785e62e-d7b3-4e01-8434-ab1dceffadfc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y87Mikzec66vBPkFDFZbzv",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10220,
+                "cache_read_input_tokens": 18751,
+                "output_tokens": 395,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 10220
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 395,
+                    "cache_read_input_tokens": 18751,
+                    "cache_creation_input_tokens": 10220,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 10220,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T17:48:04.701Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AL15KHV42sWn2abEbvoEup",
+              "type": "tool_result",
+              "content": "1\t\\section{Method Details}\n2\t\\label{app:method_details}\n3\t\n4\t\\subsection{Diagnostics}\n5\t\\label{app:diagnostics}\n6\t\n7\tThree diagnostic procedures complement the primary DIF analysis.\n8\t\n9\t\\paragraph{Local independence (Yen's Q3).} The MH procedure assumes that item responses are conditionally independent given $\\theta$. Yen's Q3 statistic measures residual correlations between item pairs after conditioning on the latent trait. We compute Q3 for all within-subject and cross-subject item pairs, with $|Q3| > 0.20$ as the threshold for local dependence. Elevated within-subject dependence would indicate that items within the same subject share variance beyond what $\\theta$ captures, which could inflate within-subject DIF rates.\n10\t\n11\t\\paragraph{Domain-specificity.} We test whether temporal DIF concentrates in domains where models improved most. At the ecological level, we compute Spearman $\\rho$ between subject-level C\\% and subject-level accuracy improvement from 2023 to 2024. At the item level, logistic regression predicts item-level DIF~C classification from domain-level accuracy change, with and without item property controls (difficulty, discrimination). This decomposition quantifies how much of the observed instability is attributable to aggregate domain-level gains versus item-specific behavioral change.\n12\t\n13\t\\paragraph{Instability decomposition.} When domain accuracy improvement is included alongside item-level controls, we compute the counterfactual C\\% that would remain after removing domain-level effects. The gap between observed and counterfactual C\\% measures the contribution of domain-level improvement to the total instability.\n14\t\n15\t\\subsection{Statistical Considerations}\n16\t\\label{app:statistical}\n17\t\n18\t\\paragraph{Multiple testing.} The ETS~C classification imposes a dual threshold (effect size $|\\Delta_{\\mathrm{MH}}| \\geq 1.5$ and significance $p < 0.05$), which provides implicit control over false positives. As a robustness check, we apply Benjamini-Hochberg FDR correction at $q = 0.05$. The random-split sanity check provides an empirical estimate of the false positive rate under the null hypothesis.\n19\t\n20\t\\paragraph{Threshold sensitivity.} We report results across a range of DIF thresholds ($|\\Delta_{\\mathrm{MH}}| \\in \\{1.0, 1.5, 2.0, 2.5\\}$) to verify that qualitative conclusions do not depend on the specific ETS~C cutoff. The standard threshold of $|\\Delta_{\\mathrm{MH}}| \\geq 1.5$ corresponds to the ETS~C definition used throughout the paper.\n21\t\n22\t\\paragraph{Architecture heterogeneity.} The METABENCH MMLU population consists of 99.98\\% decoder-only models (5,226 of 5,227). This near-complete architectural homogeneity eliminates architecture as a confound for DIF analysis. We verify this by excluding the single encoder-decoder model and confirming identical results.\n23\t\n24\t\\section{Structural Analysis Details}\n25\t\\label{app:structural}\n26\t\n27\tThree progressively refined approaches fail to reduce the temporal false positive rate below 31\\%, revealing a structural property of the data rather than a methodological limitation. Matched-ability quintile analysis restricts comparisons to models of similar total score and yields enrichment ratios of 0.94--1.04, with temporal FPR unchanged at approximately 0.31. IRT $\\theta$-conditioning with 20 ability strata achieves $r(\\theta, \\mathrm{total\\ score}) = 0.9986$ and FPR $= 0.312$, confirming that the external total score already captures nearly all ability variance relevant to DIF computation. Within-subject DIF analysis on 5 representative subjects, intended to isolate subject-specific effects, finds mean C\\% $= 38.1\\%$, exceeding the 25\\% threshold that would indicate viable bifactor structure. \\Cref{tab:structural_comparison} summarizes these results.\n28\t\n29\tThe temporal FPR reflects genuine item-level instability that persists regardless of how ability is measured or conditioned. Yen's Q3 diagnostic reveals mild local dependence within subjects (11.3\\% of within-subject item pairs exceed $|Q3| > 0.20$, vs.\\ 2.2\\% cross-subject; $5{\\times}$ ratio, $p = 2.3 \\times 10^{-9}$), which contributes to elevated within-subject DIF rates but is not the primary driver: the cross-subject matching protocol addresses this bias, and temporal C\\% persists under external matching (full Q3 distributions in Appendix~Figure~A2).\n30\t\n31\t\\section{Additional Figures}\n32\t\\label{app:figures}\n33\t\n34\t\\begin{figure}[h]\n35\t\\centering\n36\t\\includegraphics[width=\\columnwidth]{fig_3_within_subject_matching.pdf}\n37\t\\caption{Cross-subject vs.\\ within-subject matching for semi-synthetic DIF detection. Cross-subject matching eliminates FPR inflation ($\\Delta\\mathrm{FPR} = 0.000$) while preserving detection power ($\\Delta\\mathrm{TPR} > 0.3$ for 4/5 subjects at $p = 0.5$). Within-subject matching inflates FPR by ${+}0.186$ on average.}\n38\t\\label{app:fig_matching}\n39\t\\end{figure}\n40\t\n41\t\\begin{figure}[h]\n42\t\\centering\n43\t\\includegraphics[width=\\columnwidth]{fig_4_downstream_impact.pdf}\n44\t\\caption{Downstream impact of DIF-based item filtering on model rankings. Despite $\\rho \\approx 0.997$ overall, individual model families show systematic rank shifts when evaluated on stable items only.}\n45\t\\label{app:fig_downstream}\n46\t\\end{figure}\n47\t\n48\t\\begin{figure}[h]\n49\t\\centering\n50\t\\includegraphics[width=\\columnwidth]{fig_5_gsm1k_dif_correlation.pdf}\n51\t\\caption{GSM1K contamination gap vs.\\ DIF ranking advantage ($N = 33$). The negative correlation ($r = -0.478$, $p = 0.005$) indicates that models with larger contamination gaps benefit less from DIF-flagged items.}\n52\t\\label{app:fig_gsm1k}\n53\t\\end{figure}\n54\t\n55\t\\section{Cross-Benchmark Comparison}\n56\t\\label{app:gsm8k_details}\n57\t\n58\t\\begin{table}[h]\n59\t\\centering\n60\t\\caption{Cross-benchmark comparison of DIF analysis on MMLU and GSM8K. Both benchmarks exhibit temporal measurement drift with validated semi-synthetic detection power. Standard and external matching use different exploitation rates ($p$) because each benchmark's optimal operating point differs; external matching results are compared at $p = 0.5$ for both. Subscript $\\pm$ values denote standard deviations across 5 random injection seeds.}\n61\t\\label{tab:gsm8k_comparison}\n62\t\\small\n63\t\\begin{tabular}{lcc}\n64\t\\toprule\n65\tMetric & MMLU & GSM8K \\\\\n66\t\\midrule\n67\tItems & 12,508 & 1,319 \\\\\n68\tModels & 5,227 & 6,702 \\\\\n69\tTemporal C\\% & 31.3\\% & 18.9\\% \\\\\n70\tSanity C\\% & 0.18\\% & 0.3\\% \\\\\n71\t$\\Delta$TPR ($p{=}0.7$, standard) & -- & $+0.818_{\\pm.006}$ \\\\\n72\t$\\Delta$TPR ($p{=}0.5$, external) & $+0.508_{\\pm.027}$ & $+0.514_{\\pm.028}$ \\\\\n73\t\\bottomrule\n74\t\\end{tabular}\n75\t\\end{table}\n76\t\n77\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3785e62e-d7b3-4e01-8434-ab1dceffadfc",
+            "isSidechain": true,
+            "promptId": "d0ba33c0-595c-4517-b734-342c6ac271e1",
+            "agentId": "ac98eb5f0bbef3d5a",
+            "type": "user",
+            "uuid": "8adfb7ea-5638-4c3f-889e-6764dca59aef",
+            "sourceToolAssistantUUID": "3785e62e-d7b3-4e01-8434-ab1dceffadfc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T17:48:07.062Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read the references file to assess citation coverage."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8adfb7ea-5638-4c3f-889e-6764dca59aef",
+            "isSidechain": true,
+            "agentId": "ac98eb5f0bbef3d5a",
+            "requestId": "req_011CbG8kK6VEpv13moNBeyiw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "718f31df-1baa-46c1-af46-aa0440dd0199",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C9J2C1iorz7Wf6TNtAb6ey",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5336,
+                "cache_read_input_tokens": 28971,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5336,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T17:48:08.532Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Sqtc5XHgYUaTLvkTuiYMrZ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "718f31df-1baa-46c1-af46-aa0440dd0199",
+            "isSidechain": true,
+            "agentId": "ac98eb5f0bbef3d5a",
+            "requestId": "req_011CbG8kK6VEpv13moNBeyiw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a42b1bee-8b40-44fc-aa38-249684e234f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C9J2C1iorz7Wf6TNtAb6ey",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5336,
+                "cache_read_input_tokens": 28971,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5336,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T17:48:08.553Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Sqtc5XHgYUaTLvkTuiYMrZ",
+              "type": "tool_result",
+              "content": "1\t% ============================================================\n2\t% Benchmark Contamination Detection\n3\t% ============================================================\n4\t\n5\t@inproceedings{balloccu2024leak,\n6\t  title     = {Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in Closed-Source {LLMs}},\n7\t  author    = {Balloccu, Simone and Schmidtova, Patrícia and Lango, Mateusz and Dusek, Ondrej},\n8\t  booktitle = {Proceedings of the 18th Conference of the European Chapter of the Association for Computational Linguistics (EACL)},\n9\t  year      = {2024},\n10\t  doi       = {10.18653/v1/2024.eacl-long.5},\n11\t  url       = {https://arxiv.org/abs/2402.03927}\n12\t}\n13\t\n14\t@inproceedings{dekoninck2024constat,\n15\t  title     = {{ConStat}: Performance-Based Contamination Detection in Large Language Models},\n16\t  author    = {Dekoninck, Jasper and Mueller, Mark Niklas and Vechev, Martin},\n17\t  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n18\t  year      = {2024},\n19\t  url       = {https://arxiv.org/abs/2405.16281}\n20\t}\n21\t\n22\t@inproceedings{golchin2024timetravel,\n23\t  title     = {Time Travel in {LLMs}: Tracing Data Contamination in Large Language Models},\n24\t  author    = {Golchin, Shahriar and Surdeanu, Mihai},\n25\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n26\t  year      = {2024},\n27\t  url       = {https://arxiv.org/abs/2308.08493}\n28\t}\n29\t\n30\t@inproceedings{li2024contamination,\n31\t  title     = {An Open-Source Data Contamination Report for Large Language Models},\n32\t  author    = {Li, Yucheng and Guo, Yunhao and Guerin, Frank and Lin, Chenghua},\n33\t  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2024},\n34\t  year      = {2024},\n35\t  doi       = {10.18653/v1/2024.findings-emnlp.30},\n36\t  url       = {https://aclanthology.org/2024.findings-emnlp.30/}\n37\t}\n38\t\n39\t@misc{liang2026dvd,\n40\t  title         = {{DVD}: Detection via Variance of Generation Distribution for Variant Contamination},\n41\t  author        = {Liang, Rongzhen},\n42\t  year          = {2026},\n43\t  eprint        = {2601.04895},\n44\t  archivePrefix = {arXiv},\n45\t  primaryClass  = {cs.CL},\n46\t  url           = {https://arxiv.org/abs/2601.04895}\n47\t}\n48\t\n49\t@inproceedings{shi2024mink,\n50\t  title     = {Detecting Pretraining Data from Large Language Models},\n51\t  author    = {Shi, Weijia and Ajith, Anirudh and Xia, Mengzhou and Huang, Yangsibo and Liu, Daogao and Blevins, Terra and Chen, Danqi and Zettlemoyer, Luke},\n52\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n53\t  year      = {2024},\n54\t  url       = {https://arxiv.org/abs/2310.16789}\n55\t}\n56\t\n57\t@inproceedings{tao2026selfcritique,\n58\t  title     = {Detecting Data Contamination from Reinforcement Learning Post-training for Large Language Models},\n59\t  author    = {Tao, Yongding and Wang, Tian and Dong, Yihong and Liu, Huanyu and Zhang, Kechi and Hu, Xiaolong and Li, Ge},\n60\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n61\t  year      = {2026},\n62\t  url       = {https://arxiv.org/abs/2510.09259}\n63\t}\n64\t\n65\t@inproceedings{wang2026fragility,\n66\t  title     = {On The Fragility of Benchmark Contamination Detection in Reasoning Models},\n67\t  author    = {Wang, Haonan and Li, Haoyang and Ko, Boeun and Zhang, Hongyang},\n68\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n69\t  year      = {2026},\n70\t  url       = {https://arxiv.org/abs/2510.02386}\n71\t}\n72\t\n73\t@misc{zhang2024minkpp,\n74\t  title         = {{Min-K\\%++}: Improved Baseline for Detecting Pre-Training Data from Large Language Models},\n75\t  author        = {Zhang, Jingyang and Sun, Jingwei and Yeats, Eric and Ouyang, Yang and Kuo, Martin and Zhang, Jianyi and Yang, Hao and Li, Hai},\n76\t  year          = {2024},\n77\t  eprint        = {2404.02936},\n78\t  archivePrefix = {arXiv},\n79\t  primaryClass  = {cs.CL},\n80\t  url           = {https://arxiv.org/abs/2404.02936}\n81\t}\n82\t\n83\t% ============================================================\n84\t% IRT Methodology & Equating\n85\t% ============================================================\n86\t\n87\t@inproceedings{rodriguez2021evaluation,\n88\t  title     = {Evaluation Examples Are Not Equally Informative: How Should That Change {NLP} Leaderboards?},\n89\t  author    = {Rodriguez, Pedro and Barrow, Joe and Hoyle, Alexander Miserlis and Lalor, John P. and Jia, Robin and Boyd-Graber, Jordan},\n90\t  booktitle = {Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics (ACL)},\n91\t  year      = {2021},\n92\t  pages     = {4486--4503}\n93\t}\n94\t\n95\t@article{donoghue1993mh,\n96\t  title   = {An Empirical Examination of the {Mantel-Haenszel} Statistic for the Study of Differential Item Functioning},\n97\t  author  = {Donoghue, John R. and Allen, Nancy L.},\n98\t  journal = {Applied Measurement in Education},\n99\t  volume  = {6},\n100\t  number  = {2},\n101\t  pages   = {163--179},\n102\t  year    = {1993}\n103\t}\n104\t\n105\t@misc{hardy2026scalability,\n106\t  title         = {Efficient Detection of Bad Benchmark Items with Novel Scalability Coefficients},\n107\t  author        = {Hardy, Matthew and Gilbert, Juan and Domingue, Benjamin},\n108\t  year          = {2026},\n109\t  eprint        = {2603.24999},\n110\t  archivePrefix = {arXiv},\n111\t  primaryClass  = {cs.CL},\n112\t  url           = {https://arxiv.org/abs/2603.24999}\n113\t}\n114\t\n115\t@article{kim2019fpc,\n116\t  title   = {Application of {IRT} Fixed Parameter Calibration to Multiple-Group Test Data},\n117\t  author  = {Kim, Seonghoon and Kolen, Michael},\n118\t  journal = {Applied Measurement in Education},\n119\t  year    = {2019},\n120\t  doi     = {10.1080/08957347.2019.1660344},\n121\t  url     = {https://www.tandfonline.com/doi/abs/10.1080/08957347.2019.1660344}\n122\t}\n123\t\n124\t@inproceedings{lalor2019irt,\n125\t  title     = {Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds},\n126\t  author    = {Lalor, John and Wu, Hao and Yu, Hong},\n127\t  booktitle = {Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing and the 9th International Joint Conference on Natural Language Processing (EMNLP-IJCNLP)},\n128\t  year      = {2019},\n129\t  doi       = {10.18653/v1/D19-1434},\n130\t  url       = {https://aclanthology.org/D19-1434/}\n131\t}\n132\t\n133\t@inproceedings{vania2021irt,\n134\t  title     = {Comparing Test Sets with Item Response Theory},\n135\t  author    = {Vania, Clara and Htut, Phu Mon and Huang, William and Mungra, Dhara and Pang, Richard Yuanzhe and Phang, Jason and Liu, Haokun and Cho, Kyunghyun and Bowman, Samuel R.},\n136\t  booktitle = {Proceedings of the 59th Annual Meeting of the Association for Computational Linguistics (ACL)},\n137\t  year      = {2021},\n138\t  doi       = {10.18653/v1/2021.acl-long.92},\n139\t  url       = {https://aclanthology.org/2021.acl-long.92/}\n140\t}\n141\t\n142\t\n143\t@misc{habba2026growingpains,\n144\t  title         = {Growing Pains: Extensible and Efficient {LLM} Benchmarking Via Fixed Parameter Calibration},\n145\t  author        = {Habba, Eitam and Itzhak, Ido and Yehudai, Asaf and Perlitz, Yotam and Bandel, Elron and Shmueli-Scheuer, Michal and Choshen, Leshem and Stanovsky, Gabriel},\n146\t  year          = {2026},\n147\t  eprint        = {2604.12843},\n148\t  archivePrefix = {arXiv},\n149\t  primaryClass  = {cs.CL},\n150\t  url           = {https://arxiv.org/abs/2604.12843}\n151\t}\n152\t\n153\t@inproceedings{zhou2026psnirt,\n154\t  title     = {Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory},\n155\t  author    = {Zhou, Hao and Huang, Heng and Zhao, Zhenheng and Han, Lin and Wang, Haoyu and Chen, Ke and Yang, Min and Bao, Weidong and Dong, Ji and Xu, Bo and Zhu, Changshui and Cao, Huijun and Zhao, Tiejun},\n156\t  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence (AAAI)},\n157\t  year      = {2026},\n158\t  url       = {https://arxiv.org/abs/2505.15055}\n159\t}\n160\t\n161\t% ============================================================\n162\t% Dynamic Benchmark Design\n163\t% ============================================================\n164\t\n165\t@inproceedings{white2025livebench,\n166\t  title     = {{LiveBench}: A Challenging, Contamination-Free {LLM} Benchmark},\n167\t  author    = {White, Colin},\n168\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n169\t  year      = {2025},\n170\t  doi       = {10.48550/arXiv.2406.19314},\n171\t  url       = {https://arxiv.org/abs/2406.19314}\n172\t}\n173\t\n174\t@misc{kipnis2024metabench,\n175\t  title         = {metabench -- A Sparse Benchmark of Reasoning and Knowledge in Large Language Models},\n176\t  author        = {Kipnis, Alon and Voudouris, Konstantinos and Schulze Buschoff, Luca Maria and Schulz, Eric},\n177\t  year          = {2024},\n178\t  eprint        = {2407.12844},\n179\t  archivePrefix = {arXiv},\n180\t  primaryClass  = {cs.CL},\n181\t  url           = {https://arxiv.org/abs/2407.12844}\n182\t}\n183\t\n184\t@inproceedings{hendrycks2021mmlu,\n185\t  title     = {Measuring Massive Multitask Language Understanding},\n186\t  author    = {Hendrycks, Dan and Burns, Collin and Basart, Steven and Zou, Andy and Mazeika, Mantas and Song, Dawn and Steinhardt, Jacob},\n187\t  booktitle = {Proceedings of the International Conference on Learning Representations (ICLR)},\n188\t  year      = {2021},\n189\t  url       = {https://arxiv.org/abs/2009.03300}\n190\t}\n191\t\n192\t@inproceedings{chiang2024chatbot,\n193\t  title     = {Chatbot Arena: An Open Platform for Evaluating {LLMs} by Human Preference},\n194\t  author    = {Chiang, Wei-Lin and Zheng, Lianmin and Sheng, Ying and Angelopoulos, Anastasios N. and Li, Tianle and Li, Dacheng and Zhang, Hao and Zhu, Banghua and Jordan, Michael I. and Gonzalez, Joseph E. and Stoica, Ion},\n195\t  booktitle = {Proceedings of the International Conference on Machine Learning (ICML)},\n196\t  year      = {2024},\n197\t  doi       = {10.48550/arXiv.2403.04132},\n198\t  url       = {https://arxiv.org/abs/2403.04132}\n199\t}\n200\t\n201\t@inproceedings{li2024latesteval,\n202\t  title     = {{LatestEval}: Addressing Data Contamination in Language Model Evaluation through Dynamic and Time-Sensitive Test Construction},\n203\t  author    = {Li, Yucheng and Guerin, Frank and Lin, Chenghua},\n204\t  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence (AAAI)},\n205\t  year      = {2024},\n206\t  doi       = {10.48550/arXiv.2312.12343},\n207\t  url       = {https://arxiv.org/abs/2312.12343}\n208\t}\n209\t\n210\t@inproceedings{kiela2021dynabench,\n211\t  title     = {{Dynabench}: Rethinking Benchmarking in {NLP}},\n212\t  author    = {Kiela, Douwe and Bartolo, Max and Nie, Yixin and Kaushik, Divyansh and Geiger, Atticus and Wu, Zhengxuan and Vidgen, Bertie and Prasad, Grusha and Singh, Amanpreet and Ringshia, Pratik and Ma, Zhiyi and Thrush, Tristan and Riedel, Sebastian and Talat, Zeerak and Stenetorp, Pontus and Jia, Robin},\n213\t  booktitle = {Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)},\n214\t  year      = {2021},\n215\t  doi       = {10.18653/v1/2021.naacl-main.324},\n216\t  url       = {https://arxiv.org/abs/2104.14337}\n217\t}\n218\t\n219\t% ============================================================\n220\t% DIF Statistical Methods\n221\t% ============================================================\n222\t\n223\t@article{belzak2020smallsample,\n224\t  title   = {Testing Differential Item Functioning in Small Samples},\n225\t  author  = {Belzak, William},\n226\t  journal = {Multivariate Behavioral Research},\n227\t  year    = {2020},\n228\t  doi     = {10.1080/00273171.2019.1671162},\n229\t  url     = {https://www.tandfonline.com/doi/abs/10.1080/00273171.2019.1671162}\n230\t}\n231\t\n232\t@incollection{holland1988mh,\n233\t  title     = {Differential Item Functioning and the {Mantel-Haenszel} Procedure},\n234\t  author    = {Holland, Paul W. and Thayer, Dorothy T.},\n235\t  booktitle = {Test Validity},\n236\t  editor    = {Wainer, Howard and Braun, Henry I.},\n237\t  publisher = {Lawrence Erlbaum Associates},\n238\t  year      = {1988},\n239\t  doi       = {10.1002/j.2330-8516.1986.tb00186.x},\n240\t  url       = {https://onlinelibrary.wiley.com/doi/abs/10.1002/j.2330-8516.1986.tb00186.x}\n241\t}\n242\t\n243\t@article{shealy1993sibtest,\n244\t  title   = {A Model-Based Standardization Approach that Separates True Bias/{DIF} from Group Ability Differences and Detects Test Bias/{DTF} as Well as Item Bias/{DIF}},\n245\t  author  = {Shealy, Robin and Stout, William},\n246\t  journal = {Psychometrika},\n247\t  year    = {1993},\n248\t  doi     = {10.1007/BF02294572},\n249\t  url     = {https://link.springer.com/article/10.1007/BF02294572}\n250\t}\n251\t\n252\t@article{clauser1998dif,\n253\t  title   = {Using Statistical Procedures to Identify Differentially Functioning Test Items},\n254\t  author  = {Clauser, Brian E. and Mazor, Kathleen M.},\n255\t  journal = {Educational Measurement: Issues and Practice},\n256\t  year    = {1998},\n257\t  doi     = {10.1111/j.1745-3992.1998.tb00619.x},\n258\t  url     = {https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1745-3992.1998.tb00619.x}\n259\t}\n260\t\n261\t@book{zumbo1999handbook,\n262\t  title     = {A Handbook on the Theory and Methods of Differential Item Functioning ({DIF}): Logistic Regression Modeling as a Unitary Framework for Binary and {Likert}-Type (Ordinal) Item Scores},\n263\t  author    = {Zumbo, Bruno D.},\n264\t  year      = {1999},\n265\t  publisher = {Directorate of Human Resources Research and Evaluation, Department of National Defense},\n266\t  address   = {Ottawa},\n267\t  url       = {https://faculty.educ.ubc.ca/zumbo/DIF/handbook.pdf}\n268\t}\n269\t\n270\t@article{meredith1993invariance,\n271\t  title   = {Measurement Invariance, Factor Analysis and Factorial Invariance},\n272\t  author  = {Meredith, William},\n273\t  journal = {Psychometrika},\n274\t  year    = {1993},\n275\t  doi     = {10.1007/BF02294825},\n276\t  url     = {https://link.springer.com/article/10.1007/BF02294825}\n277\t}\n278\t\n279\t@article{vandenberg2000invariance,\n280\t  title   = {A Review and Synthesis of the Measurement Invariance Literature: Suggestions, Practices, and Recommendations for Organizational Research},\n281\t  author  = {Vandenberg, Robert J. and Lance, Charles E.},\n282\t  journal = {Organizational Research Methods},\n283\t  year    = {2000},\n284\t  doi     = {10.1177/109442810031002},\n285\t  url     = {https://journals.sagepub.com/doi/10.1177/109442810031002}\n286\t}\n287\t\n288\t@article{swaminathan1990logistic,\n289\t  title   = {Detecting Differential Item Functioning Using Logistic Regression Procedures},\n290\t  author  = {Swaminathan, Hariharan and Rogers, H. Jane},\n291\t  journal = {Journal of Educational Measurement},\n292\t  year    = {1990},\n293\t  doi     = {10.1111/j.1745-3984.1990.tb00754.x},\n294\t  url     = {https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1745-3984.1990.tb00754.x}\n295\t}\n296\t\n297\t@article{teresi2007dif,\n298\t  title   = {Differential Item Functioning and Health Assessment},\n299\t  author  = {Teresi, Jeanne A. and Fleishman, John A.},\n300\t  journal = {Quality of Life Research},\n301\t  year    = {2007},\n302\t  doi     = {10.1007/s11136-007-9184-6},\n303\t  url     = {https://link.springer.com/article/10.1007/s11136-007-9184-6}\n304\t}\n305\t\n306\t@book{lord1980irt,\n307\t  title     = {Applications of Item Response Theory to Practical Testing Problems},\n308\t  author    = {Lord, Frederic M.},\n309\t  year      = {1980},\n310\t  publisher = {Lawrence Erlbaum Associates},\n311\t  address   = {Hillsdale, NJ}\n312\t}\n313\t\n314\t@article{raju1988area,\n315\t  title   = {The Area between Two Item Characteristic Curves},\n316\t  author  = {Raju, Nambury S.},\n317\t  journal = {Psychometrika},\n318\t  year    = {1988},\n319\t  doi     = {10.1007/BF02294403},\n320\t  url     = {https://link.springer.com/article/10.1007/BF02294403}\n321\t}\n322\t\n323\t@article{muthen1985mimic,\n324\t  title   = {A Method for Studying the Homogeneity of Test Items with Respect to Other Relevant Variables},\n325\t  author  = {Muth{\\'e}n, Bengt},\n326\t  journal = {Journal of Educational Statistics},\n327\t  year    = {1985},\n328\t  doi     = {10.2307/1164966}\n329\t}\n330\t\n331\t@article{woods2009mimic,\n332\t  title   = {Empirical Selection of Anchors for Tests of Differential Item Functioning},\n333\t  author  = {Woods, Carol M.},\n334\t  journal = {Applied Psychological Measurement},\n335\t  year    = {2009},\n336\t  doi     = {10.1177/0146621609331279}\n337\t}\n338\t\n339\t% ============================================================\n340\t% LLM Evaluation Methodology\n341\t% ============================================================\n342\t\n343\t@article{burnell2023rethink,\n344\t  title   = {Rethink reporting of evaluation results in {AI}},\n345\t  author  = {Burnell, Ryan and Schellaert, Wout and Burden, John and Ullman, Tomer D. and Martinez-Plumed, Fernando and Tenenbaum, Joshua B. and Rutar, Danaja and Cheke, Lucy G. and Sohl-Dickstein, Jascha and Mitchell, Melanie and Kiela, Douwe and Shanahan, Murray and Voorhees, Ellen M. and Cohn, Anthony G. and Leibo, Joel Z. and Hernandez-Orallo, Jose},\n346\t  journal = {Science},\n347\t  year    = {2023},\n348\t  doi     = {10.1126/science.adf6369},\n349\t  url     = {https://www.science.org/doi/10.1126/science.adf6369}\n350\t}\n351\t\n352\t@article{chang2024survey,\n353\t  title   = {A Survey on Evaluation of Large Language Models},\n354\t  author  = {Chang, Yupeng and Wang, Xu and Wang, Jindong and Wu, Yuan and Zhu, Kaijie and Chen, Hao and Yang, Linyi and Yi, Xiaoyuan and Wang, Cunxiang and Wang, Yidong and Ye, Wei and Zhang, Yue and Chang, Yi and Yu, Philip S. and Yang, Qiang and Xie, Xing},\n355\t  journal = {ACM Transactions on Intelligent Systems and Technology},\n356\t  year    = {2024},\n357\t  doi     = {10.1145/3641289},\n358\t  url     = {https://dl.acm.org/doi/full/10.1145/3641289}\n359\t}\n360\t\n361\t@inproceedings{maiapolo2024tinybenchmarks,\n362\t  title     = {{tinyBenchmarks}: evaluating {LLMs} with fewer examples},\n363\t  author    = {Maia Polo, Felipe and Weber, Lucas and Choshen, Leshem and Sun, Yuekai and Xu, Gongjun and Yurochkin, Mikhail},\n364\t  booktitle = {Proceedings of the International Conference on Machine Learning (ICML)},\n365\t  year      = {2024},\n366\t  url       = {https://proceedings.mlr.press/v235/maia-polo24a.html}\n367\t}\n368\t\n369\t@article{nandakumar1993dif,\n370\t  author  = {Ratna Nandakumar},\n371\t  title   = {Simultaneous {DIF} amplification and cancellation: {Shealy}-{Stout}'s test for {DIF}},\n372\t  journal = {Journal of Educational Measurement},\n373\t  year    = {1993},\n374\t  volume  = {30},\n375\t  number  = {4},\n376\t  pages   = {293--311}\n377\t}\n378\t\n379\t@inproceedings{carlini2022quantifying,\n380\t  author    = {Nicholas Carlini and Daphne Ippolito and Matthew Jagielski and Katherine Lee and Florian Tram{\\`e}r and Chiyuan Zhang},\n381\t  title     = {Quantifying Memorization Across Neural Language Models},\n382\t  booktitle = {International Conference on Learning Representations (ICLR)},\n383\t  year      = {2023},\n384\t  url       = {https://arxiv.org/abs/2202.07646}\n385\t}\n386\t\n387\t@inproceedings{tirumala2022memorization,\n388\t  author    = {Kushal Tirumala and Aram Markosyan and Luke Zettlemoyer and Armen Aghajanyan},\n389\t  title     = {Memorization Without Overfitting: Analyzing the Training Dynamics of Large Language Models},\n390\t  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n391\t  year      = {2022},\n392\t  url       = {https://arxiv.org/abs/2205.10770}\n393\t}\n394\t\n395\t% ============================================================\n396\t% Additional Benchmarks\n397\t% ============================================================\n398\t\n399\t@inproceedings{sakaguchi2021winogrande,\n400\t  title     = {{WinoGrande}: An Adversarial {Winograd} Schema Challenge at Scale},\n401\t  author    = {Sakaguchi, Keisuke and Le Bras, Ronan and Bhagavatula, Chandra and Choi, Yejin},\n402\t  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},\n403\t  volume    = {34},\n404\t  number    = {05},\n405\t  pages     = {8732--8740},\n406\t  year      = {2020}\n407\t}\n408\t\n409\t@inproceedings{lin2022truthfulqa,\n410\t  title     = {{TruthfulQA}: Measuring How Models Mimic Human Falsehoods},\n411\t  author    = {Lin, Stephanie and Hilton, Jacob and Evans, Owain},\n412\t  booktitle = {Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (ACL)},\n413\t  year      = {2022},\n414\t  pages     = {3214--3252}\n415\t}\n416\t\n417\t@inproceedings{zellers2019hellaswag,\n418\t  title     = {{HellaSwag}: Can a Machine Really Finish Your Sentence?},\n419\t  author    = {Zellers, Rowan and Holtzman, Ari and Bisk, Yonatan and Farzaneh, Ali and Choi, Yejin},\n420\t  booktitle = {Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics (ACL)},\n421\t  year      = {2019},\n422\t  pages     = {4791--4800}\n423\t}\n424\t\n425\t@article{clark2018arc,\n426\t  title   = {Think you have Solved Question Answering? Try {ARC}, the {AI2} Reasoning Challenge},\n427\t  author  = {Clark, Peter and Cowhey, Isaac and Etzioni, Oren and Khot, Tushar and Sabharwal, Ashish and Schoenick, Carissa and Tafjord, Oyvind},\n428\t  journal = {arXiv preprint arXiv:1803.05457},\n429\t  year    = {2018}\n430\t}\n431\t\n432\t% ============================================================\n433\t% Benchmark Quality Assessment\n434\t% ============================================================\n435\t\n436\t@article{zhu2026bhi,\n437\t  title   = {Benchmark Health Index: A Systematic Framework for Benchmarking the Benchmarks of {LLMs}},\n438\t  author  = {Zhu, Longyuan and Hua, Hairan and Miao, Linlin and Zhao, Bing},\n439\t  journal = {arXiv preprint arXiv:2602.11674},\n440\t  year    = {2026}\n441\t}\n442\t\n443\t@article{maeda2025difllm,\n444\t  title   = {Finding Words Associated with {DIF}: Predicting {DIF} using {LLMs} and Explainable {AI}},\n445\t  author  = {Maeda, Hotaka},\n446\t  journal = {arXiv preprint arXiv:2502.07017},\n447\t  year    = {2025}\n448\t}\n449\t\n450\t@misc{qian2026benchmark2,\n451\t  title         = {{Benchmark}$^2$: Systematic Evaluation of {LLM} Benchmarks},\n452\t  author        = {Qian, Qi and Huang, Chengsong},\n453\t  year          = {2026},\n454\t  eprint        = {2601.03986},\n455\t  archivePrefix = {arXiv},\n456\t  primaryClass  = {cs.CL},\n457\t  url           = {https://arxiv.org/abs/2601.03986}\n458\t}\n459\t\n460\t@misc{luo2025medirt,\n461\t  title         = {Measuring Competency, Not Performance: Item-Aware Evaluation Across Medical Benchmarks},\n462\t  author        = {Luo, Zhimeng and Wu, Lixin and Frisch, Adam and He, Daqing},\n463\t  year          = {2025},\n464\t  eprint        = {2509.24186},\n465\t  archivePrefix = {arXiv},\n466\t  primaryClass  = {cs.CL},\n467\t  url           = {https://arxiv.org/abs/2509.24186}\n468\t}\n469\t\n470\t@misc{li2025atlas,\n471\t  title         = {{ATLAS}: Adaptive Testing for {LLM} Evaluation: A Psychometric Alternative to Static Benchmarks},\n472\t  author        = {Li, Peiyang and Tang, Xiaobo and Chen, Sai and Cheng, Ying and Metoyer, Ronald and Hua, Tianyi and Chawla, Nitesh V.},\n473\t  year          = {2025},\n474\t  eprint        = {2511.04689},\n475\t  archivePrefix = {arXiv},\n476\t  primaryClass  = {cs.CL},\n477\t  url           = {https://arxiv.org/abs/2511.04689}\n478\t}\n479\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a42b1bee-8b40-44fc-aa38-249684e234f3",
+            "isSidechain": true,
+            "promptId": "d0ba33c0-595c-4517-b734-342c6ac271e1",
+            "agentId": "ac98eb5f0bbef3d5a",
+            "type": "user",
+            "uuid": "107f7393-6a2f-4c01-ba9b-e3fbe8bb4071",
+            "sourceToolAssistantUUID": "a42b1bee-8b40-44fc-aa38-249684e234f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T17:48:09.336Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0171vDvUZdanpC28otENuvQV",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper/math_commands.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "107f7393-6a2f-4c01-ba9b-e3fbe8bb4071",
+            "isSidechain": true,
+            "agentId": "ac98eb5f0bbef3d5a",
+            "requestId": "req_011CbG8kK6VEpv13moNBeyiw",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ff11cb4d-f8db-4bfc-9cb0-2a71c193441a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C9J2C1iorz7Wf6TNtAb6ey",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5336,
+                "cache_read_input_tokens": 28971,
+                "output_tokens": 179,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 5336
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 179,
+                    "cache_read_input_tokens": 28971,
+                    "cache_creation_input_tokens": 5336,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 5336,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T17:48:09.345Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0171vDvUZdanpC28otENuvQV",
+              "type": "tool_result",
+              "content": "1\t%%%%% NEW MATH DEFINITIONS %%%%%\n2\t\n3\t\\usepackage{amsmath,amsfonts,bm}\n4\t\\usepackage{amsthm}\n5\t\\newtheorem{proposition}{Proposition}\n6\t\n7\t% Mark sections of captions for referring to divisions of figures\n8\t\\newcommand{\\figleft}{{\\em (Left)}}\n9\t\\newcommand{\\figcenter}{{\\em (Center)}}\n10\t\\newcommand{\\figright}{{\\em (Right)}}\n11\t\\newcommand{\\figtop}{{\\em (Top)}}\n12\t\\newcommand{\\figbottom}{{\\em (Bottom)}}\n13\t\\newcommand{\\captiona}{{\\em (a)}}\n14\t\\newcommand{\\captionb}{{\\em (b)}}\n15\t\\newcommand{\\captionc}{{\\em (c)}}\n16\t\\newcommand{\\captiond}{{\\em (d)}}\n17\t\n18\t% Highlight a newly defined term\n19\t\\newcommand{\\newterm}[1]{{\\bf #1}}\n20\t\n21\t\n22\t% Figure reference, lower-case.\n23\t\\def\\figref#1{figure~\\ref{#1}}\n24\t% Figure reference, capital. For start of sentence\n25\t\\def\\Figref#1{Figure~\\ref{#1}}\n26\t\\def\\twofigref#1#2{figures \\ref{#1} and \\ref{#2}}\n27\t\\def\\quadfigref#1#2#3#4{figures \\ref{#1}, \\ref{#2}, \\ref{#3} and \\ref{#4}}\n28\t% Section reference, lower-case.\n29\t\\def\\secref#1{section~\\ref{#1}}\n30\t% Section reference, capital.\n31\t\\def\\Secref#1{Section~\\ref{#1}}\n32\t% Reference to two sections.\n33\t\\def\\twosecrefs#1#2{sections \\ref{#1} and \\ref{#2}}\n34\t% Reference to three sections.\n35\t\\def\\secrefs#1#2#3{sections \\ref{#1}, \\ref{#2} and \\ref{#3}}\n36\t% Reference to an equation, lower-case.\n37\t\\def\\eqref#1{equation~\\ref{#1}}\n38\t% Reference to an equation, upper case\n39\t\\def\\Eqref#1{Equation~\\ref{#1}}\n40\t% A raw reference to an equation---avoid using if possible\n41\t\\def\\plaineqref#1{\\ref{#1}}\n42\t% Reference to a chapter, lower-case.\n43\t\\def\\chapref#1{chapter~\\ref{#1}}\n44\t% Reference to an equation, upper case.\n45\t\\def\\Chapref#1{Chapter~\\ref{#1}}\n46\t% Reference to a range of chapters\n47\t\\def\\rangechapref#1#2{chapters\\ref{#1}--\\ref{#2}}\n48\t% Reference to an algorithm, lower-case.\n49\t\\def\\algref#1{algorithm~\\ref{#1}}\n50\t% Reference to an algorithm, upper case.\n51\t\\def\\Algref#1{Algorithm~\\ref{#1}}\n52\t\\def\\twoalgref#1#2{algorithms \\ref{#1} and \\ref{#2}}\n53\t\\def\\Twoalgref#1#2{Algorithms \\ref{#1} and \\ref{#2}}\n54\t% Reference to a part, lower case\n55\t\\def\\partref#1{part~\\ref{#1}}\n56\t% Reference to a part, upper case\n57\t\\def\\Partref#1{Part~\\ref{#1}}\n58\t\\def\\twopartref#1#2{parts \\ref{#1} and \\ref{#2}}\n59\t\n60\t\\def\\ceil#1{\\lceil #1 \\rceil}\n61\t\\def\\floor#1{\\lfloor #1 \\rfloor}\n62\t\\def\\1{\\bm{1}}\n63\t\\newcommand{\\train}{\\mathcal{D}}\n64\t\\newcommand{\\valid}{\\mathcal{D_{\\mathrm{valid}}}}\n65\t\\newcommand{\\test}{\\mathcal{D_{\\mathrm{test}}}}\n66\t\n67\t\\def\\eps{{\\epsilon}}\n68\t\n69\t\n70\t% Random variables\n71\t\\def\\reta{{\\textnormal{$\\eta$}}}\n72\t\\def\\ra{{\\textnormal{a}}}\n73\t\\def\\rb{{\\textnormal{b}}}\n74\t\\def\\rc{{\\textnormal{c}}}\n75\t\\def\\rd{{\\textnormal{d}}}\n76\t\\def\\re{{\\textnormal{e}}}\n77\t\\def\\rf{{\\textnormal{f}}}\n78\t\\def\\rg{{\\textnormal{g}}}\n79\t\\def\\rh{{\\textnormal{h}}}\n80\t\\def\\ri{{\\textnormal{i}}}\n81\t\\def\\rj{{\\textnormal{j}}}\n82\t\\def\\rk{{\\textnormal{k}}}\n83\t\\def\\rl{{\\textnormal{l}}}\n84\t% rm is already a command, just don't name any random variables m\n85\t\\def\\rn{{\\textnormal{n}}}\n86\t\\def\\ro{{\\textnormal{o}}}\n87\t\\def\\rp{{\\textnormal{p}}}\n88\t\\def\\rq{{\\textnormal{q}}}\n89\t\\def\\rr{{\\textnormal{r}}}\n90\t\\def\\rs{{\\textnormal{s}}}\n91\t\\def\\rt{{\\textnormal{t}}}\n92\t\\def\\ru{{\\textnormal{u}}}\n93\t\\def\\rv{{\\textnormal{v}}}\n94\t\\def\\rw{{\\textnormal{w}}}\n95\t\\def\\rx{{\\textnormal{x}}}\n96\t\\def\\ry{{\\textnormal{y}}}\n97\t\\def\\rz{{\\textnormal{z}}}\n98\t\n99\t% Random vectors\n100\t\\def\\rvepsilon{{\\mathbf{\\epsilon}}}\n101\t\\def\\rvtheta{{\\mathbf{\\theta}}}\n102\t\\def\\rva{{\\mathbf{a}}}\n103\t\\def\\rvb{{\\mathbf{b}}}\n104\t\\def\\rvc{{\\mathbf{c}}}\n105\t\\def\\rvd{{\\mathbf{d}}}\n106\t\\def\\rve{{\\mathbf{e}}}\n107\t\\def\\rvf{{\\mathbf{f}}}\n108\t\\def\\rvg{{\\mathbf{g}}}\n109\t\\def\\rvh{{\\mathbf{h}}}\n110\t\\def\\rvu{{\\mathbf{i}}}\n111\t\\def\\rvj{{\\mathbf{j}}}\n112\t\\def\\rvk{{\\mathbf{k}}}\n113\t\\def\\rvl{{\\mathbf{l}}}\n114\t\\def\\rvm{{\\mathbf{m}}}\n115\t\\def\\rvn{{\\mathbf{n}}}\n116\t\\def\\rvo{{\\mathbf{o}}}\n117\t\\def\\rvp{{\\mathbf{p}}}\n118\t\\def\\rvq{{\\mathbf{q}}}\n119\t\\def\\rvr{{\\mathbf{r}}}\n120\t\\def\\rvs{{\\mathbf{s}}}\n121\t\\def\\rvt{{\\mathbf{t}}}\n122\t\\def\\rvu{{\\mathbf{u}}}\n123\t\\def\\rvv{{\\mathbf{v}}}\n124\t\\def\\rvw{{\\mathbf{w}}}\n125\t\\def\\rvx{{\\mathbf{x}}}\n126\t\\def\\rvy{{\\mathbf{y}}}\n127\t\\def\\rvz{{\\mathbf{z}}}\n128\t\n129\t% Elements of random vectors\n130\t\\def\\erva{{\\textnormal{a}}}\n131\t\\def\\ervb{{\\textnormal{b}}}\n132\t\\def\\ervc{{\\textnormal{c}}}\n133\t\\def\\ervd{{\\textnormal{d}}}\n134\t\\def\\erve{{\\textnormal{e}}}\n135\t\\def\\ervf{{\\textnormal{f}}}\n136\t\\def\\ervg{{\\textnormal{g}}}\n137\t\\def\\ervh{{\\textnormal{h}}}\n138\t\\def\\ervi{{\\textnormal{i}}}\n139\t\\def\\ervj{{\\textnormal{j}}}\n140\t\\def\\ervk{{\\textnormal{k}}}\n141\t\\def\\ervl{{\\textnormal{l}}}\n142\t\\def\\ervm{{\\textnormal{m}}}\n143\t\\def\\ervn{{\\textnormal{n}}}\n144\t\\def\\ervo{{\\textnormal{o}}}\n145\t\\def\\ervp{{\\textnormal{p}}}\n146\t\\def\\ervq{{\\textnormal{q}}}\n147\t\\def\\ervr{{\\textnormal{r}}}\n148\t\\def\\ervs{{\\textnormal{s}}}\n149\t\\def\\ervt{{\\textnormal{t}}}\n150\t\\def\\ervu{{\\textnormal{u}}}\n151\t\\def\\ervv{{\\textnormal{v}}}\n152\t\\def\\ervw{{\\textnormal{w}}}\n153\t\\def\\ervx{{\\textnormal{x}}}\n154\t\\def\\ervy{{\\textnormal{y}}}\n155\t\\def\\ervz{{\\textnormal{z}}}\n156\t\n157\t% Random matrices\n158\t\\def\\rmA{{\\mathbf{A}}}\n159\t\\def\\rmB{{\\mathbf{B}}}\n160\t\\def\\rmC{{\\mathbf{C}}}\n161\t\\def\\rmD{{\\mathbf{D}}}\n162\t\\def\\rmE{{\\mathbf{E}}}\n163\t\\def\\rmF{{\\mathbf{F}}}\n164\t\\def\\rmG{{\\mathbf{G}}}\n165\t\\def\\rmH{{\\mathbf{H}}}\n166\t\\def\\rmI{{\\mathbf{I}}}\n167\t\\def\\rmJ{{\\mathbf{J}}}\n168\t\\def\\rmK{{\\mathbf{K}}}\n169\t\\def\\rmL{{\\mathbf{L}}}\n170\t\\def\\rmM{{\\mathbf{M}}}\n171\t\\def\\rmN{{\\mathbf{N}}}\n172\t\\def\\rmO{{\\mathbf{O}}}\n173\t\\def\\rmP{{\\mathbf{P}}}\n174\t\\def\\rmQ{{\\mathbf{Q}}}\n175\t\\def\\rmR{{\\mathbf{R}}}\n176\t\\def\\rmS{{\\mathbf{S}}}\n177\t\\def\\rmT{{\\mathbf{T}}}\n178\t\\def\\rmU{{\\mathbf{U}}}\n179\t\\def\\rmV{{\\mathbf{V}}}\n180\t\\def\\rmW{{\\mathbf{W}}}\n181\t\\def\\rmX{{\\mathbf{X}}}\n182\t\\def\\rmY{{\\mathbf{Y}}}\n183\t\\def\\rmZ{{\\mathbf{Z}}}\n184\t\n185\t% Elements of random matrices\n186\t\\def\\ermA{{\\textnormal{A}}}\n187\t\\def\\ermB{{\\textnormal{B}}}\n188\t\\def\\ermC{{\\textnormal{C}}}\n189\t\\def\\ermD{{\\textnormal{D}}}\n190\t\\def\\ermE{{\\textnormal{E}}}\n191\t\\def\\ermF{{\\textnormal{F}}}\n192\t\\def\\ermG{{\\textnormal{G}}}\n193\t\\def\\ermH{{\\textnormal{H}}}\n194\t\\def\\ermI{{\\textnormal{I}}}\n195\t\\def\\ermJ{{\\textnormal{J}}}\n196\t\\def\\ermK{{\\textnormal{K}}}\n197\t\\def\\ermL{{\\textnormal{L}}}\n198\t\\def\\ermM{{\\textnormal{M}}}\n199\t\\def\\ermN{{\\textnormal{N}}}\n200\t\\def\\ermO{{\\textnormal{O}}}\n201\t\\def\\ermP{{\\textnormal{P}}}\n202\t\\def\\ermQ{{\\textnormal{Q}}}\n203\t\\def\\ermR{{\\textnormal{R}}}\n204\t\\def\\ermS{{\\textnormal{S}}}\n205\t\\def\\ermT{{\\textnormal{T}}}\n206\t\\def\\ermU{{\\textnormal{U}}}\n207\t\\def\\ermV{{\\textnormal{V}}}\n208\t\\def\\ermW{{\\textnormal{W}}}\n209\t\\def\\ermX{{\\textnormal{X}}}\n210\t\\def\\ermY{{\\textnormal{Y}}}\n211\t\\def\\ermZ{{\\textnormal{Z}}}\n212\t\n213\t% Vectors\n214\t\\def\\vzero{{\\bm{0}}}\n215\t\\def\\vone{{\\bm{1}}}\n216\t\\def\\vmu{{\\bm{\\mu}}}\n217\t\\def\\vtheta{{\\bm{\\theta}}}\n218\t\\def\\va{{\\bm{a}}}\n219\t\\def\\vb{{\\bm{b}}}\n220\t\\def\\vc{{\\bm{c}}}\n221\t\\def\\vd{{\\bm{d}}}\n222\t\\def\\ve{{\\bm{e}}}\n223\t\\def\\vf{{\\bm{f}}}\n224\t\\def\\vg{{\\bm{g}}}\n225\t\\def\\vh{{\\bm{h}}}\n226\t\\def\\vi{{\\bm{i}}}\n227\t\\def\\vj{{\\bm{j}}}\n228\t\\def\\vk{{\\bm{k}}}\n229\t\\def\\vl{{\\bm{l}}}\n230\t\\def\\vm{{\\bm{m}}}\n231\t\\def\\vn{{\\bm{n}}}\n232\t\\def\\vo{{\\bm{o}}}\n233\t\\def\\vp{{\\bm{p}}}\n234\t\\def\\vq{{\\bm{q}}}\n235\t\\def\\vr{{\\bm{r}}}\n236\t\\def\\vs{{\\bm{s}}}\n237\t\\def\\vt{{\\bm{t}}}\n238\t\\def\\vu{{\\bm{u}}}\n239\t\\def\\vv{{\\bm{v}}}\n240\t\\def\\vw{{\\bm{w}}}\n241\t\\def\\vx{{\\bm{x}}}\n242\t\\def\\vy{{\\bm{y}}}\n243\t\\def\\vz{{\\bm{z}}}\n244\t\n245\t% Elements of vectors\n246\t\\def\\evalpha{{\\alpha}}\n247\t\\def\\evbeta{{\\beta}}\n248\t\\def\\evepsilon{{\\epsilon}}\n249\t\\def\\evlambda{{\\lambda}}\n250\t\\def\\evomega{{\\omega}}\n251\t\\def\\evmu{{\\mu}}\n252\t\\def\\evpsi{{\\psi}}\n253\t\\def\\evsigma{{\\sigma}}\n254\t\\def\\evtheta{{\\theta}}\n255\t\\def\\eva{{a}}\n256\t\\def\\evb{{b}}\n257\t\\def\\evc{{c}}\n258\t\\def\\evd{{d}}\n259\t\\def\\eve{{e}}\n260\t\\def\\evf{{f}}\n261\t\\def\\evg{{g}}\n262\t\\def\\evh{{h}}\n263\t\\def\\evi{{i}}\n264\t\\def\\evj{{j}}\n265\t\\def\\evk{{k}}\n266\t\\def\\evl{{l}}\n267\t\\def\\evm{{m}}\n268\t\\def\\evn{{n}}\n269\t\\def\\evo{{o}}\n270\t\\def\\evp{{p}}\n271\t\\def\\evq{{q}}\n272\t\\def\\evr{{r}}\n273\t\\def\\evs{{s}}\n274\t\\def\\evt{{t}}\n275\t\\def\\evu{{u}}\n276\t\\def\\evv{{v}}\n277\t\\def\\evw{{w}}\n278\t\\def\\evx{{x}}\n279\t\\def\\evy{{y}}\n280\t\\def\\evz{{z}}\n281\t\n282\t% Matrix\n283\t\\def\\mA{{\\bm{A}}}\n284\t\\def\\mB{{\\bm{B}}}\n285\t\\def\\mC{{\\bm{C}}}\n286\t\\def\\mD{{\\bm{D}}}\n287\t\\def\\mE{{\\bm{E}}}\n288\t\\def\\mF{{\\bm{F}}}\n289\t\\def\\mG{{\\bm{G}}}\n290\t\\def\\mH{{\\bm{H}}}\n291\t\\def\\mI{{\\bm{I}}}\n292\t\\def\\mJ{{\\bm{J}}}\n293\t\\def\\mK{{\\bm{K}}}\n294\t\\def\\mL{{\\bm{L}}}\n295\t\\def\\mM{{\\bm{M}}}\n296\t\\def\\mN{{\\bm{N}}}\n297\t\\def\\mO{{\\bm{O}}}\n298\t\\def\\mP{{\\bm{P}}}\n299\t\\def\\mQ{{\\bm{Q}}}\n300\t\\def\\mR{{\\bm{R}}}\n301\t\\def\\mS{{\\bm{S}}}\n302\t\\def\\mT{{\\bm{T}}}\n303\t\\def\\mU{{\\bm{U}}}\n304\t\\def\\mV{{\\bm{V}}}\n305\t\\def\\mW{{\\bm{W}}}\n306\t\\def\\mX{{\\bm{X}}}\n307\t\\def\\mY{{\\bm{Y}}}\n308\t\\def\\mZ{{\\bm{Z}}}\n309\t\\def\\mBeta{{\\bm{\\beta}}}\n310\t\\def\\mPhi{{\\bm{\\Phi}}}\n311\t\\def\\mLambda{{\\bm{\\Lambda}}}\n312\t\\def\\mSigma{{\\bm{\\Sigma}}}\n313\t\n314\t% Tensor\n315\t\\DeclareMathAlphabet{\\mathsfit}{\\encodingdefault}{\\sfdefault}{m}{sl}\n316\t\\SetMathAlphabet{\\mathsfit}{bold}{\\encodingdefault}{\\sfdefault}{bx}{n}\n317\t\\newcommand{\\tens}[1]{\\bm{\\mathsfit{#1}}}\n318\t\\def\\tA{{\\tens{A}}}\n319\t\\def\\tB{{\\tens{B}}}\n320\t\\def\\tC{{\\tens{C}}}\n321\t\\def\\tD{{\\tens{D}}}\n322\t\\def\\tE{{\\tens{E}}}\n323\t\\def\\tF{{\\tens{F}}}\n324\t\\def\\tG{{\\tens{G}}}\n325\t\\def\\tH{{\\tens{H}}}\n326\t\\def\\tI{{\\tens{I}}}\n327\t\\def\\tJ{{\\tens{J}}}\n328\t\\def\\tK{{\\tens{K}}}\n329\t\\def\\tL{{\\tens{L}}}\n330\t\\def\\tM{{\\tens{M}}}\n331\t\\def\\tN{{\\tens{N}}}\n332\t\\def\\tO{{\\tens{O}}}\n333\t\\def\\tP{{\\tens{P}}}\n334\t\\def\\tQ{{\\tens{Q}}}\n335\t\\def\\tR{{\\tens{R}}}\n336\t\\def\\tS{{\\tens{S}}}\n337\t\\def\\tT{{\\tens{T}}}\n338\t\\def\\tU{{\\tens{U}}}\n339\t\\def\\tV{{\\tens{V}}}\n340\t\\def\\tW{{\\tens{W}}}\n341\t\\def\\tX{{\\tens{X}}}\n342\t\\def\\tY{{\\tens{Y}}}\n343\t\\def\\tZ{{\\tens{Z}}}\n344\t\n345\t\n346\t% Graph\n347\t\\def\\gA{{\\mathcal{A}}}\n348\t\\def\\gB{{\\mathcal{B}}}\n349\t\\def\\gC{{\\mathcal{C}}}\n350\t\\def\\gD{{\\mathcal{D}}}\n351\t\\def\\gE{{\\mathcal{E}}}\n352\t\\def\\gF{{\\mathcal{F}}}\n353\t\\def\\gG{{\\mathcal{G}}}\n354\t\\def\\gH{{\\mathcal{H}}}\n355\t\\def\\gI{{\\mathcal{I}}}\n356\t\\def\\gJ{{\\mathcal{J}}}\n357\t\\def\\gK{{\\mathcal{K}}}\n358\t\\def\\gL{{\\mathcal{L}}}\n359\t\\def\\gM{{\\mathcal{M}}}\n360\t\\def\\gN{{\\mathcal{N}}}\n361\t\\def\\gO{{\\mathcal{O}}}\n362\t\\def\\gP{{\\mathcal{P}}}\n363\t\\def\\gQ{{\\mathcal{Q}}}\n364\t\\def\\gR{{\\mathcal{R}}}\n365\t\\def\\gS{{\\mathcal{S}}}\n366\t\\def\\gT{{\\mathcal{T}}}\n367\t\\def\\gU{{\\mathcal{U}}}\n368\t\\def\\gV{{\\mathcal{V}}}\n369\t\\def\\gW{{\\mathcal{W}}}\n370\t\\def\\gX{{\\mathcal{X}}}\n371\t\\def\\gY{{\\mathcal{Y}}}\n372\t\\def\\gZ{{\\mathcal{Z}}}\n373\t\n374\t% Sets\n375\t\\def\\sA{{\\mathbb{A}}}\n376\t\\def\\sB{{\\mathbb{B}}}\n377\t\\def\\sC{{\\mathbb{C}}}\n378\t\\def\\sD{{\\mathbb{D}}}\n379\t% Don't use a set called E, because this would be the same as our symbol\n380\t% for expectation.\n381\t\\def\\sF{{\\mathbb{F}}}\n382\t\\def\\sG{{\\mathbb{G}}}\n383\t\\def\\sH{{\\mathbb{H}}}\n384\t\\def\\sI{{\\mathbb{I}}}\n385\t\\def\\sJ{{\\mathbb{J}}}\n386\t\\def\\sK{{\\mathbb{K}}}\n387\t\\def\\sL{{\\mathbb{L}}}\n388\t\\def\\sM{{\\mathbb{M}}}\n389\t\\def\\sN{{\\mathbb{N}}}\n390\t\\def\\sO{{\\mathbb{O}}}\n391\t\\def\\sP{{\\mathbb{P}}}\n392\t\\def\\sQ{{\\mathbb{Q}}}\n393\t\\def\\sR{{\\mathbb{R}}}\n394\t\\def\\sS{{\\mathbb{S}}}\n395\t\\def\\sT{{\\mathbb{T}}}\n396\t\\def\\sU{{\\mathbb{U}}}\n397\t\\def\\sV{{\\mathbb{V}}}\n398\t\\def\\sW{{\\mathbb{W}}}\n399\t\\def\\sX{{\\mathbb{X}}}\n400\t\\def\\sY{{\\mathbb{Y}}}\n401\t\\def\\sZ{{\\mathbb{Z}}}\n402\t\n403\t% Entries of a matrix\n404\t\\def\\emLambda{{\\Lambda}}\n405\t\\def\\emA{{A}}\n406\t\\def\\emB{{B}}\n407\t\\def\\emC{{C}}\n408\t\\def\\emD{{D}}\n409\t\\def\\emE{{E}}\n410\t\\def\\emF{{F}}\n411\t\\def\\emG{{G}}\n412\t\\def\\emH{{H}}\n413\t\\def\\emI{{I}}\n414\t\\def\\emJ{{J}}\n415\t\\def\\emK{{K}}\n416\t\\def\\emL{{L}}\n417\t\\def\\emM{{M}}\n418\t\\def\\emN{{N}}\n419\t\\def\\emO{{O}}\n420\t\\def\\emP{{P}}\n421\t\\def\\emQ{{Q}}\n422\t\\def\\emR{{R}}\n423\t\\def\\emS{{S}}\n424\t\\def\\emT{{T}}\n425\t\\def\\emU{{U}}\n426\t\\def\\emV{{V}}\n427\t\\def\\emW{{W}}\n428\t\\def\\emX{{X}}\n429\t\\def\\emY{{Y}}\n430\t\\def\\emZ{{Z}}\n431\t\\def\\emSigma{{\\Sigma}}\n432\t\n433\t% entries of a tensor\n434\t% Same font as tensor, without \\bm wrapper\n435\t\\newcommand{\\etens}[1]{\\mathsfit{#1}}\n436\t\\def\\etLambda{{\\etens{\\Lambda}}}\n437\t\\def\\etA{{\\etens{A}}}\n438\t\\def\\etB{{\\etens{B}}}\n439\t\\def\\etC{{\\etens{C}}}\n440\t\\def\\etD{{\\etens{D}}}\n441\t\\def\\etE{{\\etens{E}}}\n442\t\\def\\etF{{\\etens{F}}}\n443\t\\def\\etG{{\\etens{G}}}\n444\t\\def\\etH{{\\etens{H}}}\n445\t\\def\\etI{{\\etens{I}}}\n446\t\\def\\etJ{{\\etens{J}}}\n447\t\\def\\etK{{\\etens{K}}}\n448\t\\def\\etL{{\\etens{L}}}\n449\t\\def\\etM{{\\etens{M}}}\n450\t\\def\\etN{{\\etens{N}}}\n451\t\\def\\etO{{\\etens{O}}}\n452\t\\def\\etP{{\\etens{P}}}\n453\t\\def\\etQ{{\\etens{Q}}}\n454\t\\def\\etR{{\\etens{R}}}\n455\t\\def\\etS{{\\etens{S}}}\n456\t\\def\\etT{{\\etens{T}}}\n457\t\\def\\etU{{\\etens{U}}}\n458\t\\def\\etV{{\\etens{V}}}\n459\t\\def\\etW{{\\etens{W}}}\n460\t\\def\\etX{{\\etens{X}}}\n461\t\\def\\etY{{\\etens{Y}}}\n462\t\\def\\etZ{{\\etens{Z}}}\n463\t\n464\t% The true underlying data generating distribution\n465\t\\newcommand{\\pdata}{p_{\\rm{data}}}\n466\t% The empirical distribution defined by the training set\n467\t\\newcommand{\\ptrain}{\\hat{p}_{\\rm{data}}}\n468\t\\newcommand{\\Ptrain}{\\hat{P}_{\\rm{data}}}\n469\t% The model distribution\n470\t\\newcommand{\\pmodel}{p_{\\rm{model}}}\n471\t\\newcommand{\\Pmodel}{P_{\\rm{model}}}\n472\t\\newcommand{\\ptildemodel}{\\tilde{p}_{\\rm{model}}}\n473\t% Stochastic autoencoder distributions\n474\t\\newcommand{\\pencode}{p_{\\rm{encoder}}}\n475\t\\newcommand{\\pdecode}{p_{\\rm{decoder}}}\n476\t\\newcommand{\\precons}{p_{\\rm{reconstruct}}}\n477\t\n478\t\\newcommand{\\laplace}{\\mathrm{Laplace}} % Laplace distribution\n479\t\n480\t\\newcommand{\\E}{\\mathbb{E}}\n481\t\\newcommand{\\Ls}{\\mathcal{L}}\n482\t\\newcommand{\\R}{\\mathbb{R}}\n483\t\\newcommand{\\emp}{\\tilde{p}}\n484\t\\newcommand{\\lr}{\\alpha}\n485\t\\newcommand{\\reg}{\\lambda}\n486\t\\newcommand{\\rect}{\\mathrm{rectifier}}\n487\t\\newcommand{\\softmax}{\\mathrm{softmax}}\n488\t\\newcommand{\\sigmoid}{\\sigma}\n489\t\\newcommand{\\softplus}{\\zeta}\n490\t\\newcommand{\\KL}{D_{\\mathrm{KL}}}\n491\t\\newcommand{\\Var}{\\mathrm{Var}}\n492\t\\newcommand{\\standarderror}{\\mathrm{SE}}\n493\t\\newcommand{\\Cov}{\\mathrm{Cov}}\n494\t% Wolfram Mathworld says $L^2$ is for function spaces and $\\ell^2$ is for vectors\n495\t% But then they seem to use $L^2$ for vectors throughout the site, and so does\n496\t% wikipedia.\n497\t\\newcommand{\\normlzero}{L^0}\n498\t\\newcommand{\\normlone}{L^1}\n499\t\\newcommand{\\normltwo}{L^2}\n500\t\\newcommand{\\normlp}{L^p}\n501\t\\newcommand{\\normmax}{L^\\infty}\n502\t\n503\t\\newcommand{\\parents}{Pa} % See usage in notation.tex. Chosen to match Daphne's book.\n504\t\n505\t\\DeclareMathOperator*{\\argmax}{arg\\,max}\n506\t\\DeclareMathOperator*{\\argmin}{arg\\,min}\n507\t\n508\t\\DeclareMathOperator{\\sign}{sign}\n509\t\\DeclareMathOperator{\\Tr}{Tr}\n510\t\\let\\ab\\allowbreak\n511\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ff11cb4d-f8db-4bfc-9cb0-2a71c193441a",
+            "isSidechain": true,
+            "promptId": "d0ba33c0-595c-4517-b734-342c6ac271e1",
+            "agentId": "ac98eb5f0bbef3d5a",
+            "type": "user",
+            "uuid": "6347887f-9686-4083-91a4-11e0bc0158ed",
+            "sourceToolAssistantUUID": "ff11cb4d-f8db-4bfc-9cb0-2a71c193441a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T17:48:12.463Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also look at the paper summary provided to me and check if there's additional experimental data in the artifacts directory."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6347887f-9686-4083-91a4-11e0bc0158ed",
+            "isSidechain": true,
+            "agentId": "ac98eb5f0bbef3d5a",
+            "requestId": "req_011CbG8keq9JCKwcvrsFLM6k",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ec455e36-56ba-499c-97f0-084238e90cf8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013bQm3hvjjpxN1K5nuqKvij",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 16555,
+                "cache_read_input_tokens": 34307,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 16555,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T17:48:14.508Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Xq4GVBaQku42n5FLzE5q1A",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/ 2>/dev/null | head -30",
+                "description": "List artifacts directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ec455e36-56ba-499c-97f0-084238e90cf8",
+            "isSidechain": true,
+            "agentId": "ac98eb5f0bbef3d5a",
+            "requestId": "req_011CbG8keq9JCKwcvrsFLM6k",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cc3f5e3f-349e-47ae-9f24-539dde99d457",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013bQm3hvjjpxN1K5nuqKvij",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 16555,
+                "cache_read_input_tokens": 34307,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 16555,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T17:48:14.689Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Xq4GVBaQku42n5FLzE5q1A",
+              "type": "tool_result",
+              "content": "__pycache__\n_project\nartifacts_qc_report.md\nbuild_response_matrix.py\ndif_diagnostic.py\ndif_diagnostic_output.log\ndif_diagnostic_pvalue_dist.pdf\ndif_diagnostic_tpr_comparison.csv\ndif_phase2_param_distribution.pdf\ndif_phase2_power_curves.pdf\ndif_phase2_results.csv\ndif_phase2_simulation.py\ndif_power_curves.pdf\ndif_power_results.csv\ndif_power_simulation.py\ndream_reports\nexperiment_summary.md\nirt_scale_analysis.json\nirt_scale_analysis.md\nitem_metadata.csv\nliterature_survey_d011.md\nmanifest.yaml\nmetabench_cohort_analysis.csv\nmetabench_ctt_stats.csv\nmetabench_data\nmetabench_data_summary.md\nmetabench_explore.py\nmetabench_model_accuracy.csv\nmetabench_model_list.txt\nmetabench_rl_models.csv",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cc3f5e3f-349e-47ae-9f24-539dde99d457",
+            "isSidechain": true,
+            "promptId": "d0ba33c0-595c-4517-b734-342c6ac271e1",
+            "agentId": "ac98eb5f0bbef3d5a",
+            "type": "user",
+            "uuid": "4dd77a38-b7aa-41da-a287-193a57369a97",
+            "sourceToolAssistantUUID": "cc3f5e3f-349e-47ae-9f24-539dde99d457",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T17:48:18.970Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Kg4MY3dv3Ly9SMcNKHM3SP",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/figures/ 2>/dev/null | head -20",
+                "description": "List figures directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4dd77a38-b7aa-41da-a287-193a57369a97",
+            "isSidechain": true,
+            "agentId": "ac98eb5f0bbef3d5a",
+            "requestId": "req_011CbG8keq9JCKwcvrsFLM6k",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "104f5302-1199-44e6-9534-460e31944092",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013bQm3hvjjpxN1K5nuqKvij",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 16555,
+                "cache_read_input_tokens": 34307,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 16555,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T17:48:19.032Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Kg4MY3dv3Ly9SMcNKHM3SP",
+              "type": "tool_result",
+              "content": "paper",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "104f5302-1199-44e6-9534-460e31944092",
+            "isSidechain": true,
+            "promptId": "d0ba33c0-595c-4517-b734-342c6ac271e1",
+            "agentId": "ac98eb5f0bbef3d5a",
+            "type": "user",
+            "uuid": "3b3717a4-109a-4efc-a0a6-cbb51dfc27aa",
+            "sourceToolAssistantUUID": "104f5302-1199-44e6-9534-460e31944092",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T17:48:21.733Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014YFSzyBD87HkRnMFagEGpW",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/ 2>/dev/null | wc -l && ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/ 2>/dev/null",
+                "description": "Full listing of artifacts"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3b3717a4-109a-4efc-a0a6-cbb51dfc27aa",
+            "isSidechain": true,
+            "agentId": "ac98eb5f0bbef3d5a",
+            "requestId": "req_011CbG8mNPxWQRRykAjst945",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "84410ce4-73f0-47eb-86bf-83870aa45536",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CjaWwa4X7YPfG5AXSjFczQ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 563,
+                "cache_read_input_tokens": 50862,
+                "output_tokens": 161,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 563
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 161,
+                    "cache_read_input_tokens": 50862,
+                    "cache_creation_input_tokens": 563,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 563,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-21T17:48:21.807Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014YFSzyBD87HkRnMFagEGpW",
+              "type": "tool_result",
+              "content": "83\n__pycache__\n_project\nartifacts_qc_report.md\nbuild_response_matrix.py\ndif_diagnostic.py\ndif_diagnostic_output.log\ndif_diagnostic_pvalue_dist.pdf\ndif_diagnostic_tpr_comparison.csv\ndif_phase2_param_distribution.pdf\ndif_phase2_power_curves.pdf\ndif_phase2_results.csv\ndif_phase2_simulation.py\ndif_power_curves.pdf\ndif_power_results.csv\ndif_power_simulation.py\ndream_reports\nexperiment_summary.md\nirt_scale_analysis.json\nirt_scale_analysis.md\nitem_metadata.csv\nliterature_survey_d011.md\nmanifest.yaml\nmetabench_cohort_analysis.csv\nmetabench_ctt_stats.csv\nmetabench_data\nmetabench_data_summary.md\nmetabench_explore.py\nmetabench_model_accuracy.csv\nmetabench_model_list.txt\nmetabench_rl_models.csv\nmetabench_subject_stats.csv\nmetabench_summary.json\nmmlu_cf_analysis.json\nmmlu_cf_analysis.md\nmmlu_li2024_proxy_labels.csv\nmodel_metadata.csv\nmvp_dif_power_sim\nplan_001\nplan_001_real_data_dif_mmlu\nplan_001b\nplan_004\nplan_004_data_availability.md\nplan_010\nplan_011\nplan_011_semi_synthetic_validation\nplan_012\nplan_012_irt_theta_conditioning\nplan_013\nplan_013_q3_local_independence\nplan_013_supplement\nplan_014\nplan_015\nplan_016\nplan_016_supplement\nplan_016_within_subject_semi_synthetic\nplan_017\nplan_017_supplement\nplan_018\nplan_019\nplan_020\nplan_021\nplan_022\nplan_023\nplan_024\nplan_026\nplan_027_temporal_overlap\nplan_028_bootstrap_ci\nplan_028_multi_bench_dif\nplan_029_permutation_null\nplan_030_odds_ratio\nplan_031_temporal_granularity\nplan_032_dif_cleaned_mmlu\nplan_033_subject_dif_concentration\nplan_034\nplan_034_multi_subject_injection\nplan_035_q3_inflation_sim\nplan_036_growing_pains\nplan_036_growing_pains_lookup\npsn_irt_item_parameters.csv\nresponse_matrix.npz\nresponse_matrix_index.npz\nreview_issues.yaml\nreview_reports",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "84410ce4-73f0-47eb-86bf-83870aa45536",
+            "isSidechain": true,
+            "promptId": "d0ba33c0-595c-4517-b734-342c6ac271e1",
+            "agentId": "ac98eb5f0bbef3d5a",
+            "type": "user",
+            "uuid": "7cb3e6d0-5368-41cb-9011-e078fcdde370",
+            "sourceToolAssistantUUID": "84410ce4-73f0-47eb-86bf-83870aa45536",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-21T17:48:26.912Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have a thorough understanding of the paper. Let me now check the paper summary notes about the experiments that were described in the task prompt but not all visible in the paper itself (some may have been cut). The task prompt mentions 15 experiments, many of which appear to have been run but then killed or not included in the final paper.\n\nLet me verify what the actual paper contains versus the broader summary."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7cb3e6d0-5368-41cb-9011-e078fcdde370",
+            "isSidechain": true,
+            "agentId": "ac98eb5f0bbef3d5a",
+            "requestId": "req_011CbG8mZyideJhXwnWbqHoN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "bb21341f-3a9d-4293-9a01-bb46aabaffec",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015XFe6web8GzC3BDMWBKnFt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 823,
+                "cache_read_input_tokens": 51425,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 823,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-21T17:48:27.899Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XnzMmJ37NBat2QWkd3aiDX",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper && pdftotext main.pdf - 2>/dev/null | wc -w",
+                "description": "Count words in PDF"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bb21341f-3a9d-4293-9a01-bb46aabaffec",
+            "isSidechain": true,
+            "agentId": "ac98eb5f0bbef3d5a",
+            "requestId": "req_011CbG8mZyideJhXwnWbqHoN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f67d22ef-31f4-4109-97d2-77dc42bbe09c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015XFe6web8GzC3BDMWBKnFt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 823,
+                "cache_read_input_tokens": 51425,
+                "output_tokens": 213,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 823
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 213,
+                    "cache_read_input_tokens": 51425,
+                    "cache_creation_input_tokens": 823,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 823,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-21T17:48:28.168Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XnzMmJ37NBat2QWkd3aiDX",
+              "type": "tool_result",
+              "content": "8647",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f67d22ef-31f4-4109-97d2-77dc42bbe09c",
+            "isSidechain": true,
+            "promptId": "d0ba33c0-595c-4517-b734-342c6ac271e1",
+            "agentId": "ac98eb5f0bbef3d5a",
+            "type": "user",
+            "uuid": "41fdc27a-0801-443c-b3d0-8907c73d420e",
+            "sourceToolAssistantUUID": "f67d22ef-31f4-4109-97d2-77dc42bbe09c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-21T17:51:49.861Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the information needed to write a thorough review. Let me synthesize my analysis.\n\n---\n\n# Review: \"Temporal Measurement Drift in LLM Benchmarks: A Large-Scale Psychometric Audit of 5,227 Models\"\n\n## 1. Summary\n\nThis paper applies the Mantel-Haenszel Differential Item Functioning (MH-DIF) procedure with ETS severity classification to the METABENCH response matrix (5,227 models x 12,508 MMLU items) to characterize temporal measurement drift between 2023 and 2024 model cohorts. The key finding is that 31.3% of MMLU items exhibit ETS Category C (large) DIF between cohorts, 174x above a random-split baseline. The paper introduces a semi-synthetic injection framework with cross-subject matching that achieves zero FPR inflation, demonstrates that web-overlap contamination labels are near-independent of DIF flags (challenging prevailing validation methodology), and replicates findings across six METABENCH benchmarks.\n\n## 2. Strengths\n\n- **Scale and thoroughness of controls.** The analysis covers 5,227 models across 12,508 items -- far larger than any prior DIF study in the LLM evaluation space. The battery of controls (random-split, ability-quintile, within-family, matched-ability, IRT theta-conditioning, de-duplication) is impressively systematic and addresses the most obvious confounds one-by-one. The 0.18% random-split baseline is particularly convincing.\n\n- **Cross-subject matching is a genuine methodological contribution.** Proposition 1 (zero FPR under single-subject cross-subject matching) is cleanly stated and empirically validated. The insight that within-subject matching inflates FPR by +0.186 on average is practically important for anyone doing semi-synthetic contamination studies. The boundary analysis (degradation at k > 5 subjects) is responsible.\n\n- **Ground truth meta-critique is well-argued.** The near-independence between DIF flags and web-overlap labels (enrichment = 0.964, phi = 0.012) is a substantive finding. The conceptual distinction between global exposure and differential functioning is clearly articulated, and the figure (ICCs for global vs. differential contamination) is pedagogically effective. This observation alone is worth publishing.\n\n- **Appropriate epistemic modesty about causal claims.** The paper consistently states that DIF detects *that* items function differently but not *why*. The framing of DIF as \"diagnostic, not destructive\" given rho = 0.997 ranking stability is measured and honest.\n\n- **Replication across six benchmarks.** The cross-benchmark validation (Table 4) strengthens the findings considerably. The knowledge/reasoning vs. procedural benchmark split (C% >= 26.9% vs. <= 18.9%) provides an interpretable gradient.\n\n- **Good use of bracketing logic.** The contrast between ability-quintile DIF (2.9%) and within-family DIF (61.3%) effectively brackets the temporal rate of 31.3%, and the matched-ability analysis converging to ~28-29% regardless of starting point is elegant.\n\n## 3. Weaknesses\n\n### Critical\n\n- **The MH-DIF procedure assumes unidimensionality, but IRT model fit is catastrophically poor.** The paper summary reports RMSEA = 0.094 (threshold < 0.06) and CFI = 0.68 (threshold > 0.95) for a unidimensional 2PL model. These are not borderline failures -- they are extreme. MMLU's 57 subjects spanning STEM, humanities, social sciences, and more clearly constitute a multidimensional ability space. The MH procedure conditions on total score as a proxy for a unidimensional latent trait theta. When the data are strongly multidimensional, total-score matching conflates fundamentally different ability profiles: a model excellent at STEM but weak at humanities receives the same stratum assignment as one with the reverse profile. This means the \"conditional independence given theta\" assumption is violated in a way that could systematically inflate or deflate DIF estimates. The paper acknowledges using cross-subject matching and within-subject DIF checks to address multidimensionality, but these are partial mitigations -- cross-subject matching addresses contamination leakage into the matching variable, not the fundamental dimensionality problem. The sentence about IRT theta correlating at r = 0.9986 with total scores is circular: if the IRT model itself has RMSEA = 0.094 and CFI = 0.68, those theta estimates are not valid, so high correlation with total scores merely confirms that two poor proxies for a multidimensional ability space agree with each other. The paper needs to either (a) fit a multidimensional IRT model and use domain-specific ability estimates for stratification, or (b) provide a much more thorough argument for why total-score stratification remains valid under the observed degree of multidimensionality. **Severity: critical** -- this threatens the interpretability of the core 31.3% finding.\n\n- **Baseline FPR = 0.318 in the temporal comparison is alarming and inadequately discussed.** Table 2 reports that the temporal cohort comparison has FPR (clean) = 0.318 against Li et al. web-overlap labels on the \"clean\" subset. This means that among items classified as NOT contaminated by web-overlap, 31.8% are flagged as DIF-C. The paper's argument is that web-overlap labels are the \"wrong ground truth\" for DIF. While conceptually correct, this creates an unfalsifiable situation: there is no ground truth against which to validate the temporal DIF findings on real data. The semi-synthetic injection framework validates detection *power* but cannot validate *specificity* on real data because the true DIF status of real items is unknown. If 31.3% of items are flagged and we have no external validation that these flags are \"correct,\" we cannot distinguish between (a) genuine temporal measurement drift and (b) systematic false positives from violated assumptions (multidimensionality, local dependence, cohort composition confounds). The matched-ability analysis reducing C% from 31.3% to 28.9% accounts for only ~2.4 pp -- but this analysis itself relies on total-score matching within a multidimensional space. **Severity: critical** -- the paper lacks external validation of the real-data DIF findings.\n\n### Major\n\n- **The permutation null decomposition (from the paper summary) is mentioned in the contribution list but not adequately presented in the paper itself.** The summary states that permutation analysis yields null mean C% = 16.4% and that 52.4% of raw C% is attributable to cohort composition shifts. This is a crucial finding -- it means roughly half the \"measurement drift\" signal may be a confound of ability distribution shift, family structure, and training vintage rather than genuine item-level behavioral change. The paper text mentions the matched-ability analysis reducing C% by ~2.4 pp and the de-duplication checks, but the permutation framework that would formally decompose the signal is either absent from or insufficiently prominent in the 8-page main text. If the effective C% after composition control is 14.9% rather than 31.3%, the headline claim needs substantial revision.\n\n- **The paper reports an enormous number of statistical tests without adequate discussion of multiple comparisons across analyses.** Within the MH-DIF analysis, BH correction is applied (removing only 3 items). But across the full paper, there are tests for: temporal DIF, ability-quintile DIF, within-family DIF, within-subject DIF, enrichment ratios, Simpson's paradox ORs, GSM1K correlations, Kruskal-Wallis tests, Q3 statistics, cross-benchmark DIF, etc. No family-wise error rate correction is applied across these analytical decisions. The risk of selective reporting -- even unintentional -- is high when this many statistics are computed.\n\n- **Semi-synthetic validation has limited ecological validity.** The injection protocol flips incorrect responses to correct at a uniform rate p, but real contamination does not operate this way. Real contamination has heterogeneous effects: some items are memorized verbatim, others partially, and the effect interacts with item difficulty and model capability. The paper's uniform-rate injection may overstate detection power for realistic contamination patterns. Additionally, injecting into ETS-A items (those with negligible existing DIF) selects for items where the signal-to-noise ratio is most favorable, potentially inflating TPR estimates relative to what would be observed on items with moderate existing DIF.\n\n- **Calendar-year cohort definition is coarse and potentially confounded.** The 2023 vs. 2024 split conflates multiple sources of variation: architecture changes, training data composition changes, alignment methodology changes, scale increases, and actual contamination. The paper acknowledges this in limitations but does not explore finer-grained cohort definitions in the main text (though the 6-month window analysis showing C% = 34.35% is mentioned). A more informative analysis would stratify by specific training data cutoff dates or alignment methods.\n\n### Minor\n\n- **The related work section is comprehensive but the reference list is relatively thin (12 unique references in the main bibliography, ~40 total).** For a paper making claims about \"the largest-scale DIF analysis\" and covering this breadth, more engagement with the educational measurement literature on DIF limitations would strengthen the framing -- particularly work on DIF behavior under multidimensionality (e.g., Ackerman 1992, Roussos & Stout 1996 on multidimensionality-based DIF).\n\n- **Table 3 caption says \"Temporal FPR\" but the column header says \"Temp. FPR\" while the table describes approaches to *reducing* it.** The terminology is confusing: in this table, \"FPR\" means the baseline DIF-C rate under different structural controls, not the false positive rate in the traditional sense (which requires ground truth). Using \"C%\" consistently would avoid this ambiguity.\n\n- **The proposition (Proposition 1) is trivially true by construction** -- it follows directly from the definition of the cross-subject matching variable. Stating it as a formal proposition elevates a definitional consequence to appear like a non-obvious result. A clear English explanation would suffice.\n\n- **Figure placement and density.** The paper packs an enormous amount of material into 8 pages (6 subsections in Experiments alone), with 4 tables and 2 figures in the main text. Some experimental details that are load-bearing (e.g., the Q3 analysis, de-duplication checks) are relegated to appendices with only a sentence or two in the main text, making it difficult to evaluate them during review.\n\n## 4. Soundness Assessment\n\n**Score: 3/5**\n\nThe statistical methods are *correctly applied* in isolation -- the MH procedure, ETS classification, bootstrap CIs, and BH correction are all standard. The cross-subject matching protocol is a sound innovation. However, the validity of the entire analysis chain rests on whether total-score stratification produces meaningful DIF estimates under MMLU's strong multidimensionality, and the paper does not adequately address this. The IRT model fit results (RMSEA = 0.094, CFI = 0.68) actively undermine the assumption that total score is a valid proxy for the latent construct being conditioned on.\n\nThe permutation null decomposition (52.4% of raw C% attributable to cohort composition) is a significant concern: if the headline finding of 31.3% is roughly half confound, the effective signal is ~14.9%, which is still well above random (0.18%) but tells a qualitatively different story. The paper should lead with the decomposed figure.\n\nThe semi-synthetic validation demonstrates detection power under controlled conditions but cannot validate specificity on real data. The FPR = 0.318 on \"clean\" items is consistent with either genuine measurement drift or systematic methodological inflation -- and the paper cannot distinguish between these without external ground truth for DIF.\n\n## 5. Reproducibility Assessment\n\n**Score: 4/5**\n\nThe paper provides:\n- Analysis code and DIF audit scripts at an anonymous repository\n- Clear specification of the METABENCH response matrix (publicly available)\n- Detailed description of the MH procedure, ETS classification, and cohort definitions\n- Specific parameter values (K=5 strata, 1,000 bootstrap resamples, 5 random seeds)\n- Li et al. contamination labels (published)\n\nMissing for full reproduction:\n- The exact model-to-cohort mapping (which models are classified as 2023 vs. 2024) -- though derivable from METABENCH metadata\n- Specific implementation details of the cross-subject matching (which subjects excluded for which items)\n- The semi-synthetic injection code is presumably in the anonymous repository but not described at the algorithmic level sufficient for independent reimplementation\n\nOverall, reproducibility is good -- the methods are well-specified and the data sources are public.\n\n## 6. Questions for Authors\n\n1. **How do you reconcile the catastrophic IRT model fit (RMSEA = 0.094, CFI = 0.68) with the assumption that total score is a valid matching variable for MH-DIF?** The high correlation (r = 0.9986) between theta and total score is uninformative when the theta estimates themselves come from a poorly fitting model. Have you considered running domain-specific DIF analyses where each of the 57 MMLU subjects is analyzed separately with within-subject total scores, and comparing these per-subject C% values to the cross-subject analysis?\n\n2. **The permutation null suggests 52.4% of observed C% is attributable to cohort composition. Why is the headline claim still 31.3% rather than the effective ~14.9%?** How should readers interpret the \"31% measurement drift\" claim in light of this decomposition?\n\n3. **Can you provide a more detailed breakdown of what the 31.8% \"clean\" FPR represents?** If items labeled \"clean\" by Li et al. have nearly the same DIF-C rate as \"contaminated\" items, is it possible that the DIF signal is driven by something other than differential contamination -- e.g., differential capability development that happens to correlate with temporal cohort membership?\n\n4. **What is the sensitivity of C% to the number of strata K?** You mention ETS recommends K=5 and state results are \"less sensitive\" to K under the dual threshold, but do not report C% for K = 3, 10, 20. With 5,227 models, quintile bins contain ~1,000 models each -- much larger than typical educational testing settings. Does this extreme sample size per stratum affect the MH chi-squared test's rejection rate?\n\n5. **The within-subject DIF analysis yields C% = 38.1%, *higher* than the cross-subject 31.3%.** You interpret this as confirming that within-subject matching inflates DIF. But an alternative interpretation is that domain-specific DIF analyses (which better respect the multidimensional structure) actually detect *more* genuine DIF. How do you distinguish these interpretations?\n\n6. **For the GSM1K correlation analysis (N=33), have you computed a post-hoc power analysis?** With N=33, even a moderate correlation (r = -0.478) has wide confidence intervals. The partial correlation dropping to r = -0.385 (and in the summary, to r = -0.18 with p = 0.32) suggests the signal is fragile. Should this analysis be presented as more than exploratory?\n\n## 7. Preliminary Scores\n\n| Dimension | Score | Justification |\n|-----------|-------|---------------|\n| **Soundness** | 3.0 | Core statistical methods correctly applied, but critical assumptions (unidimensionality, total-score matching validity) are inadequately justified given IRT model fit failures. Permutation decomposition suggests headline finding is inflated by ~2x. Lack of external validation for real-data DIF flags. |\n| **Excitement** | 3.5 | The ground truth meta-critique (global vs. differential contamination) is a genuinely important observation. Cross-subject matching is a useful methodological contribution. The scale of the analysis is impressive. But the central finding (31% drift) is hard to interpret without resolving the multidimensionality and composition-confound issues. |\n| **Reproducibility** | 4.0 | Code available, public data, clear method specification. Minor gaps in cohort mapping details. |\n| **Overall** | 3.0 | Findings-worthy. The paper makes a real contribution (ground truth meta-critique, cross-subject matching, large-scale empirical audit) and the psychometric framing is refreshing for the LLM evaluation literature. However, the critical soundness issues (multidimensionality violation, permutation null decomposition, lack of external validation) prevent confident interpretation of the headline claims. With revisions to (a) foreground the decomposed effective C% rather than the raw 31.3%, (b) provide domain-specific DIF analyses that respect multidimensionality, and (c) more carefully discuss what the 31.8% clean-item FPR means for interpretation, this could reach conference quality. |\n\n### Confidence: 4/5\nI have expertise in psychometrics and statistical methods for LLM evaluation. I read the paper carefully and examined the experimental code artifacts. I am less certain about some of the DIF methodology edge cases in extreme-sample-size settings, which is why I do not assign confidence 5.\n\n### Recommended Decision: Findings\n\nThe paper addresses an important and timely question, introduces useful methodological contributions (cross-subject matching, ground truth meta-critique), and provides the largest DIF analysis on LLM benchmarks to date. However, the critical soundness concerns -- particularly the multidimensionality issue and the gap between raw and composition-adjusted DIF rates -- need to be resolved before the central claims can be taken at face value. The paper is suitable for Findings in its current state, with the understanding that the headline \"31% measurement drift\" should be read as an upper bound that includes substantial cohort composition effects."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "41fdc27a-0801-443c-b3d0-8907c73d420e",
+            "isSidechain": true,
+            "agentId": "ac98eb5f0bbef3d5a",
+            "requestId": "req_011CbG8n3C5d4rVPiuXuXNW8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "70c8298b-5473-4230-8564-7830a2d9c7db",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "443e7d3b-018c-4cf7-ba4a-be177b1d8eb5",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014froXBfUrArwyiaiZVsEk1",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 227,
+                "cache_read_input_tokens": 52475,
+                "output_tokens": 4211,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 4211,
+                    "cache_read_input_tokens": 52475,
+                    "cache_creation_input_tokens": 0,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000043"
+        }
+      ],
+      "message_count": 43
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-reviewer-r1-for-an-emnlp-2026-arr-submission-your-focus-methods-and-ex.md"
+}

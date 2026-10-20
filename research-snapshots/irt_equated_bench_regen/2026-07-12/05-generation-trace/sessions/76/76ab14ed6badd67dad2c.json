@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "76ab14ed6badd67dad2c",
+  "project": "irt_equated_bench_regen--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are auditing a research paper for data accuracy. Read the Experiments section and extract EVERY number from both the",
+  "task_key": "agent-a0f5124070d4b084b",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a0f5124070d4b084b.jsonl",
+    "occurrence": 1,
+    "bytes": 596040,
+    "sha256": "08dfc0a45e5ba293cc894cdfbbeeec40584a29e960791a34b412273c4612c448"
+  },
+  "statistics": {
+    "messages": 251,
+    "user_turns": 2,
+    "tool_calls": 122,
+    "roles": {
+      "user": 2,
+      "record": 1,
+      "assistant": 3,
+      "tool_call": 122,
+      "tool_result": 122,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 249,
+      "chunks": [
+        {
+          "path": "76ab14ed6badd67dad2c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "76ab14ed6badd67dad2c-part-0002.json",
+          "message_count": 69
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "76ab14ed6badd67dad2c-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-auditing-a-research-paper-for-data-accuracy-read-the-experiments-secti.md"
+}

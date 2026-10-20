@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "id": "0f9b02a86489b70f0867",
+  "project": "irt_equated_bench_regen--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are auditing a research paper for data accuracy. Read the Experiments section and extract EVERY number, then trace e",
+  "task_key": "agent-ad1cb9b21950de49e",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/agent-ad1cb9b21950de49e.jsonl",
+    "occurrence": 1,
+    "bytes": 557353,
+    "sha256": "94be0e81d3fdbd38ca35a172ff49ab04c8aba3f5c90ef9a6676741fa83bc5d25"
+  },
+  "statistics": {
+    "messages": 242,
+    "user_turns": 1,
+    "tool_calls": 119,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 2,
+      "tool_call": 119,
+      "tool_result": 119
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 242,
+      "chunks": [
+        {
+          "path": "0f9b02a86489b70f0867-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0f9b02a86489b70f0867-part-0002.json",
+          "message_count": 62
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-auditing-a-research-paper-for-data-accuracy-read-the-experiments-secti-copy-2.md"
+}

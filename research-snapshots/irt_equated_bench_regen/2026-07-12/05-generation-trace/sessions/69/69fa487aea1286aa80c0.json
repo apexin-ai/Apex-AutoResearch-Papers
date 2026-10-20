@@ -1,0 +1,179 @@
+{
+  "schema_version": "1.0",
+  "id": "69fa487aea1286aa80c0",
+  "project": "irt_equated_bench_regen--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 系统通知：审稿审批已通过。请开始审稿。 [论文提交] - 项目: irt_equated_bench_regen - 论文路径: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/project",
+  "task_key": "7ebbbf59-c4b8-4b53-861b-e32b2864774f",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/7ebbbf59-c4b8-4b53-861b-e32b2864774f.jsonl",
+    "occurrence": 1,
+    "bytes": 638934,
+    "sha256": "82c64399c15081762a71bfcfe59c71b9f2bf00a973fabbc4120422baa066c8e6"
+  },
+  "statistics": {
+    "messages": 201,
+    "user_turns": 12,
+    "tool_calls": 50,
+    "roles": {
+      "record": 55,
+      "user": 12,
+      "assistant": 34,
+      "tool_call": 50,
+      "tool_result": 50
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "69fa487aea1286aa80c0-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 127,
+      "chunks": [
+        {
+          "path": "69fa487aea1286aa80c0-part-0001.json",
+          "message_count": 127
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "69fa487aea1286aa80c0-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "69fa487aea1286aa80c0-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "69fa487aea1286aa80c0-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 14,
+      "chunks": [
+        {
+          "path": "69fa487aea1286aa80c0-part-0001.json",
+          "message_count": 14
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "69fa487aea1286aa80c0-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "69fa487aea1286aa80c0-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "69fa487aea1286aa80c0-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "69fa487aea1286aa80c0-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 26,
+      "chunks": [
+        {
+          "path": "69fa487aea1286aa80c0-part-0001.json",
+          "message_count": 3
+        },
+        {
+          "path": "69fa487aea1286aa80c0-part-0002.json",
+          "message_count": 23
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "69fa487aea1286aa80c0-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "69fa487aea1286aa80c0-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-irt-equated-bench-regen-home-ubuntu-agent-ml-research-idea-gen-0520-2-project-copy-5.md"
+}

@@ -1,0 +1,572 @@
+{
+  "schema_version": "1.0",
+  "id": "f3027c046472a905e68b",
+  "project": "irt_equated_bench_regen--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Find and read the semi-synthetic injection scripts in /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equat",
+  "task_key": "agent-af14da85843b71e93",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/agent-af14da85843b71e93.jsonl",
+    "occurrence": 1,
+    "bytes": 75451,
+    "sha256": "d0703a8bdd4a1c2ce8b6c22554fe22f502a5d9a76c16448731fb654bac55e0fe"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 1,
+    "tool_calls": 3,
+    "roles": {
+      "user": 1,
+      "assistant": 4,
+      "tool_call": 3,
+      "tool_result": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T00:52:13.179Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Find and read the semi-synthetic injection scripts in /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_011/. I need to understand:\n1. The full injection mechanism (how contaminated items are selected, how ability-overlapping models are identified, how incorrect→correct flipping works)\n2. The MH-DIF implementation\n3. The dose-response evaluation (TPR, FPR, Fisher exact test)\n4. The matching variable computation (standard vs external)\n5. How results are summarized\n\nRead ALL python files in that directory thoroughly. Return the complete code of the main semi-synthetic script."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "b681718f-ed7e-4c71-ace8-cbf70777063c",
+            "agentId": "af14da85843b71e93",
+            "type": "user",
+            "uuid": "6b91c322-5743-448a-a9a6-7b496e674a58",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "c9888f1d-7b39-4f56-88ab-428b671b99c5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T00:52:14.414Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you find and analyze the semi-synthetic injection scripts. Let me start by exploring the directory structure and then reading the Python files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6b91c322-5743-448a-a9a6-7b496e674a58",
+            "isSidechain": true,
+            "agentId": "af14da85843b71e93",
+            "requestId": "req_011CbEoHJw6rotVR5DwhabMP",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "20c39455-3b5a-488e-a9a7-9091d4122306",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "c9888f1d-7b39-4f56-88ab-428b671b99c5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Vt15JBKqysGx91JY8DFwCU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 19336,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 19336,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 7,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T00:52:14.696Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WNsx1daQBd5tjSfWJjbYvp",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_011 -type f -name \"*.py\" | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "20c39455-3b5a-488e-a9a7-9091d4122306",
+            "isSidechain": true,
+            "agentId": "af14da85843b71e93",
+            "requestId": "req_011CbEoHJw6rotVR5DwhabMP",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9b11012a-06ff-408c-b9d1-c227a971c2fc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "c9888f1d-7b39-4f56-88ab-428b671b99c5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Vt15JBKqysGx91JY8DFwCU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 19336,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 134,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 19336
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 134,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 19336,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 19336,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T00:52:14.903Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WNsx1daQBd5tjSfWJjbYvp",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_011/plan_011_analysis.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9b11012a-06ff-408c-b9d1-c227a971c2fc",
+            "isSidechain": true,
+            "promptId": "b681718f-ed7e-4c71-ace8-cbf70777063c",
+            "agentId": "af14da85843b71e93",
+            "type": "user",
+            "uuid": "86740689-c85b-4110-9f44-71af56d5947f",
+            "sourceToolAssistantUUID": "9b11012a-06ff-408c-b9d1-c227a971c2fc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "c9888f1d-7b39-4f56-88ab-428b671b99c5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T00:52:16.088Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the directory structure more thoroughly:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "86740689-c85b-4110-9f44-71af56d5947f",
+            "isSidechain": true,
+            "agentId": "af14da85843b71e93",
+            "requestId": "req_011CbEoHSF8gh2Kn6cJRMZHj",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ffceea55-dce0-4478-be2f-f5ef88e04ab3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "c9888f1d-7b39-4f56-88ab-428b671b99c5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NKr5RFZD9LoFZqUb3Bd5Wn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1026,
+                "cache_read_input_tokens": 19336,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1026,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T00:52:16.272Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MvmRdfczBAucRnw71izkQB",
+              "name": "Bash",
+              "input": {
+                "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_011/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ffceea55-dce0-4478-be2f-f5ef88e04ab3",
+            "isSidechain": true,
+            "agentId": "af14da85843b71e93",
+            "requestId": "req_011CbEoHSF8gh2Kn6cJRMZHj",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "078f9d8a-b2d2-43fd-914f-660c9457a008",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "c9888f1d-7b39-4f56-88ab-428b671b99c5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NKr5RFZD9LoFZqUb3Bd5Wn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1026,
+                "cache_read_input_tokens": 19336,
+                "output_tokens": 103,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1026
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 103,
+                    "cache_read_input_tokens": 19336,
+                    "cache_creation_input_tokens": 1026,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1026,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T00:52:16.338Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MvmRdfczBAucRnw71izkQB",
+              "type": "tool_result",
+              "content": "total 2096\ndrwxr-xr-x  2 ubuntu ubuntu    4096 May 20 21:48 .\ndrwxr-xr-x 23 ubuntu ubuntu    4096 May 21 00:32 ..\n-rw-r--r--  1 ubuntu ubuntu    3587 May 20 21:48 dose_response_summary.csv\n-rw-r--r--  1 ubuntu ubuntu   19217 May 20 21:48 injection_results.csv\n-rw-r--r--  1 ubuntu ubuntu 2076592 May 20 21:48 per_item_results.csv\n-rw-r--r--  1 ubuntu ubuntu   25953 May 20 21:48 plan_011_analysis.py\n-rw-r--r--  1 ubuntu ubuntu    7000 May 20 21:48 plan_011_report.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "078f9d8a-b2d2-43fd-914f-660c9457a008",
+            "isSidechain": true,
+            "promptId": "b681718f-ed7e-4c71-ace8-cbf70777063c",
+            "agentId": "af14da85843b71e93",
+            "type": "user",
+            "uuid": "ceb104f9-84c5-4ceb-9471-87dfb6ed4ea8",
+            "sourceToolAssistantUUID": "078f9d8a-b2d2-43fd-914f-660c9457a008",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "c9888f1d-7b39-4f56-88ab-428b671b99c5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T00:52:17.584Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read the main analysis script:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ceb104f9-84c5-4ceb-9471-87dfb6ed4ea8",
+            "isSidechain": true,
+            "agentId": "af14da85843b71e93",
+            "requestId": "req_011CbEoHYNEds9gkahUkFoDM",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d1398ea9-f18b-431b-97d0-de552e4427b5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "c9888f1d-7b39-4f56-88ab-428b671b99c5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BEABEUHtgQf2MnktaqkUh3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 339,
+                "cache_read_input_tokens": 20362,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 339,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T00:52:17.905Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013NyL7f45cAds94WN7u2vKq",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_011/plan_011_analysis.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d1398ea9-f18b-431b-97d0-de552e4427b5",
+            "isSidechain": true,
+            "agentId": "af14da85843b71e93",
+            "requestId": "req_011CbEoHYNEds9gkahUkFoDM",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5b5af298-05f0-47ed-95b4-3e9b57ed4d67",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "c9888f1d-7b39-4f56-88ab-428b671b99c5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BEABEUHtgQf2MnktaqkUh3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 339,
+                "cache_read_input_tokens": 20362,
+                "output_tokens": 108,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 339
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 108,
+                    "cache_read_input_tokens": 20362,
+                    "cache_creation_input_tokens": 339,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 339,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T00:52:17.929Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013NyL7f45cAds94WN7u2vKq",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"\n3\tplan_011_analysis.py — Semi-Synthetic DIF Validation\n4\t\n5\tInjects known differential contamination into real MMLU response data and tests\n6\twhether MH-DIF can detect it. Validates the DIF methodology used in plan_001.\n7\t\n8\tThree MH variants:\n9\t  (1) standard  — total score on 500 items minus current (same as plan_001)\n10\t  (2) anchor    — total score on 400 known-clean items only\n11\t  (3) external  — total score on full 12508-item original matrix (best matching)\n12\t\n13\tInputs:\n14\t  response_matrix.npz, response_matrix_index.npz, model_metadata.csv,\n15\t  item_metadata.csv, mmlu_li2024_proxy_labels.csv,\n16\t  plan_001/dif_results_ability.csv\n17\t\n18\tOutputs (all in plan_011/):\n19\t  injection_results.csv, dose_response_summary.csv, per_item_results.csv,\n20\t  plan_011_report.md\n21\t\"\"\"\n22\t\n23\timport numpy as np\n24\timport pandas as pd\n25\tfrom scipy.sparse import load_npz\n26\tfrom scipy.stats import chi2 as chi2_dist, fisher_exact\n27\tfrom pathlib import Path\n28\timport time\n29\timport warnings\n30\t\n31\twarnings.filterwarnings(\"ignore\", category=RuntimeWarning)\n32\t\n33\tBASE = Path(\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts\")\n34\tOUT = BASE / \"plan_011\"\n35\tOUT.mkdir(exist_ok=True)\n36\t\n37\tINJECTION_PS = [0.0, 0.3, 0.5, 0.7, 1.0]\n38\tN_SEEDS = 5\n39\tN_BASELINE = 500\n40\tN_CONTAMINATED = 100\n41\t\n42\t\n43\t# ════════════════════════════════════════════════════════════════════════════\n44\t#  MH-DIF CORE\n45\t# ════════════════════════════════════════════════════════════════════════════\n46\tdef mh_dif_subset(X_ref, X_foc, n_strata=5, anchor_cols=None,\n47\t                  external_scores_ref=None, external_scores_foc=None):\n48\t    \"\"\"\n49\t    Purified MH-DIF for all columns.\n50\t\n51\t    Stratification source (in priority order):\n52\t      1. external_scores_ref/foc — precomputed ability scores (e.g. full-matrix total)\n53\t      2. anchor_cols — total score from specified columns only\n54\t      3. None — standard purified (all cols minus current)\n55\t    \"\"\"\n56\t    J = X_ref.shape[1]\n57\t    use_external = external_scores_ref is not None\n58\t\n59\t    if not use_external:\n60\t        if anchor_cols is not None:\n61\t            tot_ref = X_ref[:, anchor_cols].sum(axis=1).astype(np.float64)\n62\t            tot_foc = X_foc[:, anchor_cols].sum(axis=1).astype(np.float64)\n63\t            anchor_set = set(anchor_cols.tolist()) if hasattr(anchor_cols, 'tolist') else set(anchor_cols)\n64\t        else:\n65\t            tot_ref = X_ref.sum(axis=1).astype(np.float64)\n66\t            tot_foc = X_foc.sum(axis=1).astype(np.float64)\n67\t            anchor_set = None\n68\t\n69\t    rows = []\n70\t    for j in range(J):\n71\t        if use_external:\n72\t            s_ref = external_scores_ref\n73\t            s_foc = external_scores_foc\n74\t        elif anchor_set is not None:\n75\t            if j in anchor_set:\n76\t                s_ref = tot_ref - X_ref[:, j].astype(np.float64)\n77\t                s_foc = tot_foc - X_foc[:, j].astype(np.float64)\n78\t            else:\n79\t                s_ref = tot_ref\n80\t                s_foc = tot_foc\n81\t        else:\n82\t            s_ref = tot_ref - X_ref[:, j].astype(np.float64)\n83\t            s_foc = tot_foc - X_foc[:, j].astype(np.float64)\n84\t\n85\t        s_all = np.concatenate([s_ref, s_foc])\n86\t        edges = np.unique(np.quantile(s_all, np.linspace(0, 1, n_strata + 1)))\n87\t        if len(edges) < 2:\n88\t            rows.append(_nan_row(j))\n89\t            continue\n90\t        n_bins = len(edges) - 1\n91\t\n92\t        k_ref = np.digitize(s_ref, edges[1:-1])\n93\t        k_foc = np.digitize(s_foc, edges[1:-1])\n94\t\n95\t        R = S = 0.0\n96\t        sum_diff = 0.0\n97\t        sum_var = 0.0\n98\t        pr = ps_qr = qs = 0.0\n99\t        n_ok = 0\n100\t\n101\t        for k in range(n_bins):\n102\t            mr = (k_ref == k)\n103\t            mf = (k_foc == k)\n104\t            n1 = int(mr.sum())\n105\t            n0 = int(mf.sum())\n106\t            if n1 == 0 or n0 == 0:\n107\t                continue\n108\t\n109\t            A = float(X_ref[mr, j].sum())\n110\t            B = float(n1 - A)\n111\t            C = float(X_foc[mf, j].sum())\n112\t            D = float(n0 - C)\n113\t            Nk = float(n1 + n0)\n114\t            m1 = A + C\n115\t            m0 = B + D\n116\t\n117\t            if m1 == 0 or m0 == 0 or Nk <= 1:\n118\t                continue\n119\t            n_ok += 1\n120\t\n121\t            Rk = A * D / Nk\n122\t            Sk = B * C / Nk\n123\t            R += Rk\n124\t            S += Sk\n125\t\n126\t            EA = n1 * m1 / Nk\n127\t            sum_diff += A - EA\n128\t            sum_var += n1 * n0 * m1 * m0 / (Nk * Nk * (Nk - 1))\n129\t\n130\t            Pk = (A + D) / Nk\n131\t            Qk = (B + C) / Nk\n132\t            pr += Pk * Rk\n133\t            ps_qr += Pk * Sk + Qk * Rk\n134\t            qs += Qk * Sk\n135\t\n136\t        if n_ok == 0 or (R == 0 and S == 0):\n137\t            rows.append(_nan_row(j))\n138\t            continue\n139\t\n140\t        if S == 0:\n141\t            alpha, delta, se = np.inf, -np.inf, np.nan\n142\t        elif R == 0:\n143\t            alpha, delta, se = 0.0, np.inf, np.nan\n144\t        else:\n145\t            alpha = R / S\n146\t            delta = -2.35 * np.log(alpha)\n147\t            v = pr / (2 * R * R) + ps_qr / (2 * R * S) + qs / (2 * S * S)\n148\t            se = 2.35 * np.sqrt(v) if v > 0 else np.nan\n149\t\n150\t        if sum_var > 0:\n151\t            chi2_stat = max(abs(sum_diff) - 0.5, 0) ** 2 / sum_var\n152\t            pval = 1 - chi2_dist.cdf(chi2_stat, df=1)\n153\t        else:\n154\t            chi2_stat = pval = np.nan\n155\t\n156\t        ad = abs(delta) if np.isfinite(delta) else np.inf\n157\t        if ad < 1.0:\n158\t            ets = \"A\"\n159\t        elif ad >= 1.5 and (not np.isnan(pval)) and pval < 0.05:\n160\t            ets = \"C\"\n161\t        else:\n162\t            ets = \"B\"\n163\t\n164\t        rows.append(dict(col_idx=j, alpha_mh=alpha, delta_mh=delta,\n165\t                         se=se, chi2=chi2_stat, p_value=pval, ets_class=ets))\n166\t\n167\t    return pd.DataFrame(rows)\n168\t\n169\t\n170\tdef _nan_row(j):\n171\t    return dict(col_idx=j, alpha_mh=np.nan, delta_mh=np.nan,\n172\t                se=np.nan, chi2=np.nan, p_value=np.nan, ets_class=\"A\")\n173\t\n174\t\n175\t# ════════════════════════════════════════════════════════════════════════════\n176\t#  DATA LOADING\n177\t# ════════════════════════════════════════════════════════════════════════════\n178\tprint(\"=== Loading data ===\")\n179\tmat = load_npz(BASE / \"response_matrix.npz\")\n180\tidx = np.load(BASE / \"response_matrix_index.npz\", allow_pickle=True)\n181\tMODEL_NAMES = idx[\"model_names\"]\n182\tITEM_IDS = idx[\"item_ids\"]\n183\tITEM2COL = {iid: i for i, iid in enumerate(ITEM_IDS)}\n184\t\n185\tmodel_meta = pd.read_csv(BASE / \"model_metadata.csv\")\n186\tli_labels = pd.read_csv(BASE / \"mmlu_li2024_proxy_labels.csv\")\n187\tability_dif = pd.read_csv(BASE / \"plan_001\" / \"dif_results_ability.csv\")\n188\t\n189\tNAME2ROW = {n: i for i, n in enumerate(MODEL_NAMES)}\n190\tN_MODELS, J_FULL = mat.shape\n191\tprint(f\"  Matrix: {N_MODELS} × {J_FULL}\")\n192\t\n193\t# Precompute full-matrix total scores (for external matching)\n194\tprint(\"  Computing full-matrix total scores...\")\n195\tfull_totals = np.asarray(mat.sum(axis=1)).ravel().astype(np.float64)  # (5227,)\n196\tprint(f\"  Full total scores: mean={full_totals.mean():.1f}, \"\n197\t      f\"range=[{full_totals.min():.0f}, {full_totals.max():.0f}]\")\n198\t\n199\t\n200\t# ════════════════════════════════════════════════════════════════════════════\n201\t#  STEP 1: SELECT BASELINE ITEMS\n202\t# ════════════════════════════════════════════════════════════════════════════\n203\tprint(\"\\n=== Step 1: Selecting baseline items ===\")\n204\tmerged = ability_dif.merge(li_labels[[\"item_id\", \"contamination_type\"]], on=\"item_id\", how=\"inner\")\n205\tbaseline_pool = merged[(merged[\"contamination_type\"] == \"clean\") & (merged[\"ets_class\"] == \"A\")]\n206\tprint(f\"  Baseline pool (clean + ETS A in ability DIF): {len(baseline_pool)}\")\n207\t\n208\tbaseline_items = baseline_pool.sample(N_BASELINE, random_state=42)\n209\tbaseline_item_ids = baseline_items[\"item_id\"].values\n210\tbaseline_col_indices = np.array([ITEM2COL[iid] for iid in baseline_item_ids])\n211\tprint(f\"  Selected {N_BASELINE} baseline items\")\n212\t\n213\t\n214\t# ════════════════════════════════════════════════════════════════════════════\n215\t#  STEP 2: DEFINE COHORTS\n216\t# ════════════════════════════════════════════════════════════════════════════\n217\tprint(\"\\n=== Step 2: Defining cohorts ===\")\n218\t\n219\t\n220\tdef get_row_indices(col, values):\n221\t    names = model_meta.loc[model_meta[col].isin(values), \"model_name\"]\n222\t    return np.array([NAME2ROW[n] for n in names if n in NAME2ROW])\n223\t\n224\t\n225\tcohort_defs = {}\n226\t\n227\t# (a) Ability cohort\n228\tref_ability_idx = get_row_indices(\"cohort_accuracy_quintile\", [1, 2])\n229\tfoc_ability_idx = get_row_indices(\"cohort_accuracy_quintile\", [4, 5])\n230\t\n231\tref_acc = model_meta.loc[model_meta[\"cohort_accuracy_quintile\"].isin([1, 2]), \"accuracy\"]\n232\tfoc_acc = model_meta.loc[model_meta[\"cohort_accuracy_quintile\"].isin([4, 5]), \"accuracy\"]\n233\tab_overlap_min = max(ref_acc.min(), foc_acc.min())\n234\tab_overlap_max = min(ref_acc.max(), foc_acc.max())\n235\t\n236\tif ab_overlap_min <= ab_overlap_max:\n237\t    foc_ab_inject_mask = (\n238\t        model_meta[\"cohort_accuracy_quintile\"].isin([4, 5]) &\n239\t        (model_meta[\"accuracy\"] >= ab_overlap_min) &\n240\t        (model_meta[\"accuracy\"] <= ab_overlap_max)\n241\t    )\n242\t    foc_ab_inject_idx = np.array([NAME2ROW[n] for n in model_meta.loc[foc_ab_inject_mask, \"model_name\"] if n in NAME2ROW])\n243\telse:\n244\t    foc_ab_inject_idx = foc_ability_idx\n245\t\n246\tprint(f\"  Ability: ref={len(ref_ability_idx)} (Q1-2), foc={len(foc_ability_idx)} (Q4-5)\")\n247\tprint(f\"    Accuracy overlap: [{ab_overlap_min:.4f}, {ab_overlap_max:.4f}]\"\n248\t      f\" → {'EMPTY, injecting all focal' if ab_overlap_min > ab_overlap_max else f'{len(foc_ab_inject_idx)} focal models'}\")\n249\t\n250\tcohort_defs[\"ability\"] = dict(\n251\t    ref_idx=ref_ability_idx, foc_idx=foc_ability_idx,\n252\t    foc_inject_idx=foc_ab_inject_idx\n253\t)\n254\t\n255\t# (b) Temporal cohort\n256\tref_temporal_idx = get_row_indices(\"cohort_temporal\", [\"2023\"])\n257\tfoc_temporal_idx = get_row_indices(\"cohort_temporal\", [\"2024\"])\n258\t\n259\tref_t_acc = model_meta.loc[model_meta[\"cohort_temporal\"] == \"2023\", \"accuracy\"]\n260\tfoc_t_acc = model_meta.loc[model_meta[\"cohort_temporal\"] == \"2024\", \"accuracy\"]\n261\tt_overlap_min = max(ref_t_acc.min(), foc_t_acc.min())\n262\tt_overlap_max = min(ref_t_acc.max(), foc_t_acc.max())\n263\t\n264\tfoc_t_inject_mask = (\n265\t    (model_meta[\"cohort_temporal\"] == \"2024\") &\n266\t    (model_meta[\"accuracy\"] >= t_overlap_min) &\n267\t    (model_meta[\"accuracy\"] <= t_overlap_max)\n268\t)\n269\tfoc_t_inject_idx = np.array([NAME2ROW[n] for n in model_meta.loc[foc_t_inject_mask, \"model_name\"] if n in NAME2ROW])\n270\t\n271\tprint(f\"  Temporal: ref={len(ref_temporal_idx)} (2023), foc={len(foc_temporal_idx)} (2024)\")\n272\tprint(f\"    Accuracy overlap: [{t_overlap_min:.4f}, {t_overlap_max:.4f}]\"\n273\t      f\" → {len(foc_t_inject_idx)} focal models for injection\")\n274\t\n275\tcohort_defs[\"temporal\"] = dict(\n276\t    ref_idx=ref_temporal_idx, foc_idx=foc_temporal_idx,\n277\t    foc_inject_idx=foc_t_inject_idx\n278\t)\n279\t\n280\t\n281\t# ════════════════════════════════════════════════════════════════════════════\n282\t#  STEP 3-4: INJECTION + MH-DIF\n283\t# ════════════════════════════════════════════════════════════════════════════\n284\tprint(\"\\n=== Step 3-4: Injection + MH-DIF ===\")\n285\t\n286\tX_base = mat[:, baseline_col_indices].toarray().astype(np.int8)\n287\tprint(f\"  Baseline submatrix: {X_base.shape}, density: {X_base.mean():.4f}\")\n288\t\n289\tinjection_rows = []\n290\tper_item_rows = []\n291\t\n292\tMH_VARIANTS = [\"standard\", \"anchor\", \"external\"]\n293\t\n294\ttotal_runs = len(INJECTION_PS) * N_SEEDS * len(cohort_defs) * len(MH_VARIANTS)\n295\trun_count = 0\n296\tt_start = time.time()\n297\t\n298\tfor cohort_name, cdef in cohort_defs.items():\n299\t    ref_idx = cdef[\"ref_idx\"]\n300\t    foc_idx = cdef[\"foc_idx\"]\n301\t    foc_inject_idx = cdef[\"foc_inject_idx\"]\n302\t\n303\t    # External scores for this cohort (from full original matrix)\n304\t    ext_ref = full_totals[ref_idx]\n305\t    ext_foc = full_totals[foc_idx]\n306\t\n307\t    for p in INJECTION_PS:\n308\t        for seed in range(1, N_SEEDS + 1):\n309\t            rng = np.random.RandomState(seed)\n310\t\n311\t            contam_local_idx = rng.choice(N_BASELINE, N_CONTAMINATED, replace=False)\n312\t            contam_set = set(contam_local_idx.tolist())\n313\t            clean_local_idx = np.array([i for i in range(N_BASELINE) if i not in contam_set])\n314\t\n315\t            X_inj = X_base.copy()\n316\t            n_flipped = 0\n317\t\n318\t            if p > 0:\n319\t                for local_j in contam_local_idx:\n320\t                    for model_row in foc_inject_idx:\n321\t                        if X_inj[model_row, local_j] == 0:\n322\t                            if rng.random() < p:\n323\t                                X_inj[model_row, local_j] = 1\n324\t                                n_flipped += 1\n325\t\n326\t            orig_density = X_base[np.ix_(foc_inject_idx, contam_local_idx)].mean()\n327\t            new_density = X_inj[np.ix_(foc_inject_idx, contam_local_idx)].mean()\n328\t\n329\t            X_ref = X_inj[ref_idx]\n330\t            X_foc = X_inj[foc_idx]\n331\t\n332\t            for variant in MH_VARIANTS:\n333\t                run_count += 1\n334\t\n335\t                if variant == \"anchor\":\n336\t                    dif_results = mh_dif_subset(X_ref, X_foc, n_strata=5,\n337\t                                                anchor_cols=clean_local_idx)\n338\t                elif variant == \"external\":\n339\t                    dif_results = mh_dif_subset(X_ref, X_foc, n_strata=5,\n340\t                                                external_scores_ref=ext_ref,\n341\t                                                external_scores_foc=ext_foc)\n342\t                else:\n343\t                    dif_results = mh_dif_subset(X_ref, X_foc, n_strata=5)\n344\t\n345\t                contam_mask = dif_results[\"col_idx\"].isin(contam_set)\n346\t                clean_mask = ~contam_mask\n347\t\n348\t                contam_results = dif_results[contam_mask]\n349\t                clean_results = dif_results[clean_mask]\n350\t\n351\t                n_c_contam = (contam_results[\"ets_class\"] == \"C\").sum()\n352\t                n_c_clean = (clean_results[\"ets_class\"] == \"C\").sum()\n353\t                tpr = n_c_contam / N_CONTAMINATED\n354\t                fpr = n_c_clean / (N_BASELINE - N_CONTAMINATED)\n355\t\n356\t                table = [[n_c_contam, N_CONTAMINATED - n_c_contam],\n357\t                         [n_c_clean, (N_BASELINE - N_CONTAMINATED) - n_c_clean]]\n358\t                fisher_or, fisher_p = fisher_exact(table)\n359\t\n360\t                injection_rows.append(dict(\n361\t                    p=p, seed=seed, cohort_type=cohort_name,\n362\t                    mh_variant=variant,\n363\t                    n_baseline=N_BASELINE, n_contaminated=N_CONTAMINATED,\n364\t                    n_clean=N_BASELINE - N_CONTAMINATED,\n365\t                    n_foc_inject=len(foc_inject_idx),\n366\t                    tpr=tpr, fpr=fpr,\n367\t                    fisher_or=fisher_or, fisher_p=fisher_p,\n368\t                    n_responses_flipped=n_flipped,\n369\t                    orig_density=orig_density, new_density=new_density,\n370\t                ))\n371\t\n372\t                # Per-item results only for anchor variant (keeps CSV manageable)\n373\t                if variant == \"anchor\":\n374\t                    for _, row in dif_results.iterrows():\n375\t                        local_j = int(row[\"col_idx\"])\n376\t                        per_item_rows.append(dict(\n377\t                            item_id=baseline_item_ids[local_j],\n378\t                            p=p, seed=seed, cohort_type=cohort_name,\n379\t                            mh_variant=variant,\n380\t                            delta_mh=row[\"delta_mh\"], p_value=row[\"p_value\"],\n381\t                            ets_class=row[\"ets_class\"],\n382\t                            is_injected=local_j in contam_set,\n383\t                        ))\n384\t\n385\t                elapsed = time.time() - t_start\n386\t                if variant == \"external\" or (variant == \"standard\" and p in [0.0, 1.0]):\n387\t                    print(f\"  [{run_count}/{total_runs}] {cohort_name} {variant:8s} p={p} seed={seed}: \"\n388\t                          f\"TPR={tpr:.3f} FPR={fpr:.3f} flipped={n_flipped} \"\n389\t                          f\"({elapsed:.0f}s)\")\n390\t\n391\t\n392\t# ════════════════════════════════════════════════════════════════════════════\n393\t#  STEP 5-6: AGGREGATE & SAVE\n394\t# ════════════════════════════════════════════════════════════════════════════\n395\tprint(\"\\n=== Step 5: Aggregating results ===\")\n396\t\n397\tinj_df = pd.DataFrame(injection_rows)\n398\tper_item_df = pd.DataFrame(per_item_rows)\n399\t\n400\tsummary_rows = []\n401\tfor (p_val, cohort, variant), grp in inj_df.groupby([\"p\", \"cohort_type\", \"mh_variant\"]):\n402\t    summary_rows.append(dict(\n403\t        p=p_val, cohort_type=cohort, mh_variant=variant,\n404\t        tpr_mean=grp[\"tpr\"].mean(), tpr_std=grp[\"tpr\"].std(),\n405\t        fpr_mean=grp[\"fpr\"].mean(), fpr_std=grp[\"fpr\"].std(),\n406\t        fisher_or_mean=grp[\"fisher_or\"].mean(),\n407\t        fisher_p_median=grp[\"fisher_p\"].median(),\n408\t    ))\n409\tsummary_df = pd.DataFrame(summary_rows)\n410\t\n411\tinj_df.to_csv(OUT / \"injection_results.csv\", index=False)\n412\tsummary_df.to_csv(OUT / \"dose_response_summary.csv\", index=False)\n413\tper_item_df.to_csv(OUT / \"per_item_results.csv\", index=False)\n414\tprint(f\"  Saved injection_results.csv ({len(inj_df)} rows)\")\n415\tprint(f\"  Saved dose_response_summary.csv ({len(summary_df)} rows)\")\n416\tprint(f\"  Saved per_item_results.csv ({len(per_item_df)} rows)\")\n417\t\n418\t\n419\t# ════════════════════════════════════════════════════════════════════════════\n420\t#  REPORT\n421\t# ════════════════════════════════════════════════════════════════════════════\n422\tprint(\"\\n=== Generating report ===\")\n423\t\n424\tL = []\n425\tdef w(s=\"\"):\n426\t    L.append(s)\n427\t\n428\tw(\"# Plan 011: Semi-Synthetic DIF Validation\")\n429\tw()\n430\tw(\"## 1. Objective\")\n431\tw()\n432\tw(\"Inject known **differential** contamination into real MMLU response data and test\")\n433\tw(\"whether MH-DIF can detect it. This validates whether plan_001/001b's failure to find\")\n434\tw(\"enrichment was due to Li et al. labels being non-differential (global contamination)\")\n435\tw(\"rather than a fundamental limitation of MH-DIF.\")\n436\tw()\n437\t\n438\tw(\"## 2. Setup\")\n439\tw()\n440\tw(f\"- **Baseline items**: {N_BASELINE} (clean in Li et al. + ETS A in plan_001 ability DIF)\")\n441\tw(f\"- **Contaminated per run**: {N_CONTAMINATED} of {N_BASELINE}\")\n442\tw(f\"- **Injection probabilities**: {INJECTION_PS}\")\n443\tw(f\"- **Seeds per p**: {N_SEEDS}\")\n444\tw()\n445\tw(\"### Cohort definitions\")\n446\tw()\n447\tfor cn, cd in cohort_defs.items():\n448\t    w(f\"- **{cn}**: ref N={len(cd['ref_idx'])}, foc N={len(cd['foc_idx'])}, \"\n449\t      f\"foc inject N={len(cd['foc_inject_idx'])}\")\n450\tw()\n451\t\n452\tif ab_overlap_min > ab_overlap_max:\n453\t    w(\"> **Note**: Ability quintiles (Q1-2 vs Q4-5) have no accuracy overlap by construction \"\n454\t      f\"(ref max={ref_acc.max():.4f}, foc min={foc_acc.min():.4f}). \"\n455\t      \"All focal models used for injection. MH stratification handles ability matching.\")\n456\t    w()\n457\t\n458\tw(\"### MH variants\")\n459\tw()\n460\tw(\"| Variant | Matching variable | Rationale |\")\n461\tw(\"|---------|-------------------|-----------|\")\n462\tw(\"| standard | sum of 500 items − current | Same as plan_001; susceptible to matching variable contamination when 20% items injected |\")\n463\tw(\"| anchor | sum of 400 known-clean items | Eliminates matching variable contamination; assumes oracle knowledge of clean items |\")\n464\tw(\"| external | sum of all 12,508 items (original, pre-injection) | Best matching precision; immune to injection; requires external ability estimate |\")\n465\tw()\n466\t\n467\tw(\"## 3. Results by MH Variant\")\n468\tw()\n469\tfor variant in MH_VARIANTS:\n470\t    w(f\"### {variant.capitalize()} MH\")\n471\t    w()\n472\t    w(\"| Cohort | p | TPR (mean±std) | FPR (mean±std) | ΔTPR | Fisher OR | Fisher p |\")\n473\t    w(\"|--------|---|----------------|----------------|------|-----------|----------|\")\n474\t    sub = summary_df[summary_df[\"mh_variant\"] == variant]\n475\t    for _, r in sub.sort_values([\"cohort_type\", \"p\"]).iterrows():\n476\t        # ΔTPR = TPR - baseline TPR at p=0\n477\t        base_tpr = sub[(sub[\"cohort_type\"] == r.cohort_type) & (sub[\"p\"] == 0.0)][\"tpr_mean\"].values\n478\t        d_tpr = r.tpr_mean - base_tpr[0] if len(base_tpr) > 0 else 0\n479\t        w(f\"| {r.cohort_type} | {r.p} | {r.tpr_mean:.3f}±{r.tpr_std:.3f} | \"\n480\t          f\"{r.fpr_mean:.3f}±{r.fpr_std:.3f} | {d_tpr:+.3f} | \"\n481\t          f\"{r.fisher_or_mean:.2f} | {r.fisher_p_median:.4f} |\")\n482\t    w()\n483\t\n484\tw(\"## 4. Key Comparison: Baseline FPR by Variant\")\n485\tw()\n486\tw(\"| Cohort | standard | anchor | external |\")\n487\tw(\"|--------|----------|--------|----------|\")\n488\tfor cohort in [\"ability\", \"temporal\"]:\n489\t    vals = []\n490\t    for variant in MH_VARIANTS:\n491\t        r = summary_df[(summary_df[\"p\"] == 0.0) & (summary_df[\"cohort_type\"] == cohort) &\n492\t                       (summary_df[\"mh_variant\"] == variant)]\n493\t        vals.append(f\"{r.iloc[0]['fpr_mean']:.3f}\" if len(r) > 0 else \"—\")\n494\t    w(f\"| {cohort} | {vals[0]} | {vals[1]} | {vals[2]} |\")\n495\tw()\n496\tw(\"If external FPR ≪ standard FPR, the high baseline rate is from matching precision,\")\n497\tw(\"not inherent DIF in the selected items.\")\n498\tw()\n499\t\n500\tw(\"## 5. Sanity Checks\")\n501\tw()\n502\tw(\"### Density change (focal × contaminated items)\")\n503\tw()\n504\tw(\"| Cohort | p | Orig density | Post density | Responses flipped |\")\n505\tw(\"|--------|---|--------------|--------------|-------------------|\")\n506\tfor (p_val, cohort), grp in inj_df[inj_df[\"mh_variant\"] == \"standard\"].groupby([\"p\", \"cohort_type\"]):\n507\t    if p_val == 0:\n508\t        continue\n509\t    w(f\"| {cohort} | {p_val} | {grp['orig_density'].mean():.4f} | \"\n510\t      f\"{grp['new_density'].mean():.4f} | {grp['n_responses_flipped'].mean():.0f} |\")\n511\tw()\n512\t\n513\tw(\"## 6. Verdict\")\n514\tw()\n515\t\n516\tfor variant in MH_VARIANTS:\n517\t    w(f\"### {variant.capitalize()} MH\")\n518\t    w()\n519\t    sub = summary_df[summary_df[\"mh_variant\"] == variant]\n520\t\n521\t    for cohort in [\"ability\", \"temporal\"]:\n522\t        c_sub = sub[sub[\"cohort_type\"] == cohort]\n523\t        p0 = c_sub[c_sub[\"p\"] == 0.0]\n524\t        p1 = c_sub[c_sub[\"p\"] == 1.0]\n525\t        if len(p1) == 0 or len(p0) == 0:\n526\t            continue\n527\t\n528\t        fpr0 = p0.iloc[0][\"fpr_mean\"]\n529\t        tpr0 = p0.iloc[0][\"tpr_mean\"]\n530\t        tpr1 = p1.iloc[0][\"tpr_mean\"]\n531\t        fpr1 = p1.iloc[0][\"fpr_mean\"]\n532\t        d_tpr = tpr1 - tpr0\n533\t\n534\t        w(f\"**{cohort}**: baseline TPR={tpr0:.3f}/FPR={fpr0:.3f}, \"\n535\t          f\"p=1.0 TPR={tpr1:.3f}/FPR={fpr1:.3f}, ΔTPR={d_tpr:+.3f}\")\n536\t\n537\t        if d_tpr > 0.3 and tpr1 > 0.5:\n538\t            w(f\"→ **SUCCESS**: injection raises TPR by {d_tpr:.3f} with clear dose-response\")\n539\t        elif d_tpr > 0.1:\n540\t            w(f\"→ **PARTIAL**: detectable signal (ΔTPR={d_tpr:.3f}) but modest\")\n541\t        else:\n542\t            w(f\"→ **FAIL**: ΔTPR={d_tpr:.3f} too small to indicate detection\")\n543\t        w()\n544\t\n545\tw(\"## 7. Overall Interpretation\")\n546\tw()\n547\tw(\"### Does MH-DIF detect differential contamination?\")\n548\tw()\n549\t\n550\t# Compute key numbers for conclusion\n551\text_t = summary_df[(summary_df[\"mh_variant\"] == \"external\") & (summary_df[\"cohort_type\"] == \"temporal\")]\n552\text_a = summary_df[(summary_df[\"mh_variant\"] == \"external\") & (summary_df[\"cohort_type\"] == \"ability\")]\n553\t\n554\tif len(ext_t) > 0:\n555\t    ext_t_p0 = ext_t[ext_t[\"p\"] == 0.0][\"tpr_mean\"].values[0]\n556\t    ext_t_p1 = ext_t[ext_t[\"p\"] == 1.0][\"tpr_mean\"].values[0]\n557\t    ext_t_fpr0 = ext_t[ext_t[\"p\"] == 0.0][\"fpr_mean\"].values[0]\n558\t    ext_t_fpr1 = ext_t[ext_t[\"p\"] == 1.0][\"fpr_mean\"].values[0]\n559\t    w(f\"- **Temporal + external matching**: TPR rises {ext_t_p0:.3f} → {ext_t_p1:.3f} \"\n560\t      f\"(ΔTPR=+{ext_t_p1-ext_t_p0:.3f}), FPR {ext_t_fpr0:.3f} → {ext_t_fpr1:.3f}\")\n561\t\n562\tif len(ext_a) > 0:\n563\t    ext_a_p0 = ext_a[ext_a[\"p\"] == 0.0][\"tpr_mean\"].values[0]\n564\t    ext_a_p1 = ext_a[ext_a[\"p\"] == 1.0][\"tpr_mean\"].values[0]\n565\t    ext_a_fpr0 = ext_a[ext_a[\"p\"] == 0.0][\"fpr_mean\"].values[0]\n566\t    ext_a_fpr1 = ext_a[ext_a[\"p\"] == 1.0][\"fpr_mean\"].values[0]\n567\t    w(f\"- **Ability + external matching**: TPR rises {ext_a_p0:.3f} → {ext_a_p1:.3f} \"\n568\t      f\"(ΔTPR=+{ext_a_p1-ext_a_p0:.3f}), FPR {ext_a_fpr0:.3f} → {ext_a_fpr1:.3f}\")\n569\t\n570\tw()\n571\tw(\"### Implications for plan_001\")\n572\tw()\n573\tw(\"If semi-synthetic injection is detectable → plan_001's failure to find enrichment\")\n574\tw(\"against Li et al. labels is because Li et al. contamination is **non-differential**\")\n575\tw(\"(Common Crawl data available to all models), not because MH-DIF is fundamentally limited.\")\n576\tw()\n577\tw(\"### Matching variable contamination\")\n578\tw()\n579\tw(\"When 20% of items are injected, standard MH's matching variable (total score) is\")\n580\tw(\"corrupted by injected items, inflating FPR. This is a known limitation when DIF items\")\n581\tw(\"constitute a large fraction of the test. In practice, iterative purification (exclude\")\n582\tw(\"suspected DIF items from matching) or external ability estimates mitigate this.\")\n583\tw()\n584\t\n585\t(OUT / \"plan_011_report.md\").write_text(\"\\n\".join(L) + \"\\n\")\n586\tprint(\"  Report written.\")\n587\t\n588\t# Console summary\n589\tprint(\"\\n\" + \"=\" * 60)\n590\tprint(\"SUMMARY\")\n591\tprint(\"=\" * 60)\n592\tfor variant in MH_VARIANTS:\n593\t    print(f\"\\n--- {variant} MH ---\")\n594\t    sub = summary_df[summary_df[\"mh_variant\"] == variant]\n595\t    for _, r in sub.sort_values([\"cohort_type\", \"p\"]).iterrows():\n596\t        print(f\"  {r.cohort_type:8s} p={r.p}: TPR={r.tpr_mean:.3f}±{r.tpr_std:.3f}  \"\n597\t              f\"FPR={r.fpr_mean:.3f}±{r.fpr_std:.3f}\")\n598\t\n599\ttotal_elapsed = time.time() - t_start\n600\tprint(f\"\\nTotal time: {total_elapsed:.0f}s\")\n601\tprint(f\"All outputs saved to {OUT}\")\n602\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5b5af298-05f0-47ed-95b4-3e9b57ed4d67",
+            "isSidechain": true,
+            "promptId": "b681718f-ed7e-4c71-ace8-cbf70777063c",
+            "agentId": "af14da85843b71e93",
+            "type": "user",
+            "uuid": "28a329d4-e2b4-4c80-8b2f-488c5b966179",
+            "sourceToolAssistantUUID": "5b5af298-05f0-47ed-95b4-3e9b57ed4d67",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "c9888f1d-7b39-4f56-88ab-428b671b99c5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T00:53:34.941Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I have the complete semi-synthetic injection script. Let me now provide you with a comprehensive analysis of the code:\n\n## Complete Analysis of plan_011_analysis.py\n\n### 1. **Full Injection Mechanism** (Lines 307-330)\n\nThe injection process works as follows:\n\n- **Contaminated item selection**: For each seed, `N_CONTAMINATED=100` items are randomly selected from the `N_BASELINE=500` baseline items using `np.random.choice()` without replacement (line 311).\n- **Ability-overlapping model identification**: The script identifies focal models that fall within the ability (or temporal) overlap range:\n  - For ability cohort: models in Q4-5 (highest accuracy) whose accuracy falls within [min(Q1-2 accuracy), min(Q4-5 accuracy)] (lines 237-242)\n  - This ensures contamination is injected into models with similar base abilities as reference models, creating a \"differential\" contamination scenario\n- **Incorrect→Correct flipping** (lines 318-324):\n  - For each contaminated item and each focal model to inject into\n  - Only flip if current response is 0 (incorrect), with probability `p` (the injection strength)\n  - Only incorrect responses can be flipped to correct (never the reverse)\n  - Count total flips via `n_flipped`\n\n### 2. **MH-DIF Implementation** (Lines 46-167)\n\nThe `mh_dif_subset()` function implements Mantel-Haenszel DIF testing with three matching variable modes:\n\n**Stratification priority**:\n1. **External**: Pre-computed ability scores from full 12,508-item matrix (lines 71-73)\n2. **Anchor**: Sum of known-clean items only (lines 74-80)\n3. **Standard**: Total score minus current item (lines 81-83) - purified approach\n\n**Core MH computation** (lines 101-149):\n- Stratifies both reference and focal groups into `n_strata=5` bins based on matching variable (lines 85-93)\n- For each stratum k, computes 2×2 contingency table (A, B, C, D) for item j (lines 109-115)\n- Accumulates Mantel-Haenszel statistics across strata:\n  - R and S: numerator/denominator of alpha (lines 121-124)\n  - Variance components for SE calculation (lines 126-134)\n- Calculates MH alpha (odds ratio) and delta (log-odds effect size) (lines 145-148)\n- Computes chi-square statistic with continuity correction (line 151)\n\n**ETS classification** (lines 156-162):\n- Class A: |delta| < 1.0 (negligible)\n- Class C: |delta| >= 1.5 AND p-value < 0.05 (significant DIF)\n- Class B: everything else (moderate)\n\n### 3. **Dose-Response Evaluation** (Lines 345-370)\n\nFor each injection run, the script computes:\n\n**TPR (True Positive Rate)**:\n- Number of contaminated items flagged as class C (DIF detected)\n- Divided by N_CONTAMINATED (100)\n- Formula: `tpr = (contaminated items flagged as C) / 100`\n\n**FPR (False Positive Rate)**:\n- Number of clean items flagged as class C\n- Divided by N_CLEAN (400)\n- Formula: `fpr = (clean items flagged as C) / 400`\n\n**Fisher Exact Test** (lines 356-358):\n- Builds contingency table:\n  ```\n  [[n_c_contam, N_CONTAMINATED - n_c_contam],\n   [n_c_clean, (N_BASELINE - N_CONTAMINATED) - n_c_clean]]\n  ```\n- Tests association between DIF detection (C-class) and contamination status\n- Reports OR (odds ratio) and p-value\n\n### 4. **Matching Variable Computation** (Lines 59-83)\n\n**Standard** (purified):\n```python\ntot_ref = X_ref.sum(axis=1)  # total across all 500 items\ntot_foc = X_foc.sum(axis=1)\n# For item j: score = total - response[j]\ns_ref = tot_ref - X_ref[:, j]\n```\n\n**Anchor**:\n```python\nanchor_cols = clean_local_idx  # the 400 known-clean items\ntot_ref = X_ref[:, anchor_cols].sum(axis=1)\ntot_foc = X_foc[:, anchor_cols].sum(axis=1)\n# score = total of clean items only (never adjusted per-item)\n```\n\n**External**:\n```python\n# Pre-computed from full 12,508-item matrix\next_ref = full_totals[ref_idx]  # shape: (N_ref,)\next_foc = full_totals[foc_idx]  # shape: (N_foc,)\n# score = pre-injection full-matrix total (immune to any injection)\n```\n\n### 5. **Results Summarization** (Lines 400-416)\n\n**Injection results** (one row per condition):\n- Groupby: (p, cohort_type, mh_variant)\n- Saved to `injection_results.csv` with:\n  - Raw counts and rates (TPR, FPR, Fisher stats)\n  - Density metrics (orig_density, new_density, n_responses_flipped)\n\n**Dose-response summary** (lines 401-408):\n- Aggregated across 5 seeds\n- Computed mean/std for TPR and FPR\n- Median Fisher p-value (more robust to outliers than mean)\n\n**Per-item results** (lines 372-383):\n- Only for anchor variant (to keep CSV manageable)\n- Saved to `per_item_results.csv` with:\n  - Individual item delta_mh, p_value, ets_class\n  - Whether item was in contamination set\n\n---\n\n## Complete Main Script Code\n\nHere is the full, uninterrupted code of the main semi-synthetic analysis script:\n\n```python\n#!/usr/bin/env python3\n\"\"\"\nplan_011_analysis.py — Semi-Synthetic DIF Validation\n\nInjects known differential contamination into real MMLU response data and tests\nwhether MH-DIF can detect it. Validates the DIF methodology used in plan_001.\n\nThree MH variants:\n  (1) standard  — total score on 500 items minus current (same as plan_001)\n  (2) anchor    — total score on 400 known-clean items only\n  (3) external  — total score on full 12508-item original matrix (best matching)\n\nInputs:\n  response_matrix.npz, response_matrix_index.npz, model_metadata.csv,\n  item_metadata.csv, mmlu_li2024_proxy_labels.csv,\n  plan_001/dif_results_ability.csv\n\nOutputs (all in plan_011/):\n  injection_results.csv, dose_response_summary.csv, per_item_results.csv,\n  plan_011_report.md\n\"\"\"\n\nimport numpy as np\nimport pandas as pd\nfrom scipy.sparse import load_npz\nfrom scipy.stats import chi2 as chi2_dist, fisher_exact\nfrom pathlib import Path\nimport time\nimport warnings\n\nwarnings.filterwarnings(\"ignore\", category=RuntimeWarning)\n\nBASE = Path(\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts\")\nOUT = BASE / \"plan_011\"\nOUT.mkdir(exist_ok=True)\n\nINJECTION_PS = [0.0, 0.3, 0.5, 0.7, 1.0]\nN_SEEDS = 5\nN_BASELINE = 500\nN_CONTAMINATED = 100\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  MH-DIF CORE\n# ════════════════════════════════════════════════════════════════════════════\ndef mh_dif_subset(X_ref, X_foc, n_strata=5, anchor_cols=None,\n                  external_scores_ref=None, external_scores_foc=None):\n    \"\"\"\n    Purified MH-DIF for all columns.\n\n    Stratification source (in priority order):\n      1. external_scores_ref/foc — precomputed ability scores (e.g. full-matrix total)\n      2. anchor_cols — total score from specified columns only\n      3. None — standard purified (all cols minus current)\n    \"\"\"\n    J = X_ref.shape[1]\n    use_external = external_scores_ref is not None\n\n    if not use_external:\n        if anchor_cols is not None:\n            tot_ref = X_ref[:, anchor_cols].sum(axis=1).astype(np.float64)\n            tot_foc = X_foc[:, anchor_cols].sum(axis=1).astype(np.float64)\n            anchor_set = set(anchor_cols.tolist()) if hasattr(anchor_cols, 'tolist') else set(anchor_cols)\n        else:\n            tot_ref = X_ref.sum(axis=1).astype(np.float64)\n            tot_foc = X_foc.sum(axis=1).astype(np.float64)\n            anchor_set = None\n\n    rows = []\n    for j in range(J):\n        if use_external:\n            s_ref = external_scores_ref\n            s_foc = external_scores_foc\n        elif anchor_set is not None:\n            if j in anchor_set:\n                s_ref = tot_ref - X_ref[:, j].astype(np.float64)\n                s_foc = tot_foc - X_foc[:, j].astype(np.float64)\n            else:\n                s_ref = tot_ref\n                s_foc = tot_foc\n        else:\n            s_ref = tot_ref - X_ref[:, j].astype(np.float64)\n            s_foc = tot_foc - X_foc[:, j].astype(np.float64)\n\n        s_all = np.concatenate([s_ref, s_foc])\n        edges = np.unique(np.quantile(s_all, np.linspace(0, 1, n_strata + 1)))\n        if len(edges) < 2:\n            rows.append(_nan_row(j))\n            continue\n        n_bins = len(edges) - 1\n\n        k_ref = np.digitize(s_ref, edges[1:-1])\n        k_foc = np.digitize(s_foc, edges[1:-1])\n\n        R = S = 0.0\n        sum_diff = 0.0\n        sum_var = 0.0\n        pr = ps_qr = qs = 0.0\n        n_ok = 0\n\n        for k in range(n_bins):\n            mr = (k_ref == k)\n            mf = (k_foc == k)\n            n1 = int(mr.sum())\n            n0 = int(mf.sum())\n            if n1 == 0 or n0 == 0:\n                continue\n\n            A = float(X_ref[mr, j].sum())\n            B = float(n1 - A)\n            C = float(X_foc[mf, j].sum())\n            D = float(n0 - C)\n            Nk = float(n1 + n0)\n            m1 = A + C\n            m0 = B + D\n\n            if m1 == 0 or m0 == 0 or Nk <= 1:\n                continue\n            n_ok += 1\n\n            Rk = A * D / Nk\n            Sk = B * C / Nk\n            R += Rk\n            S += Sk\n\n            EA = n1 * m1 / Nk\n            sum_diff += A - EA\n            sum_var += n1 * n0 * m1 * m0 / (Nk * Nk * (Nk - 1))\n\n            Pk = (A + D) / Nk\n            Qk = (B + C) / Nk\n            pr += Pk * Rk\n            ps_qr += Pk * Sk + Qk * Rk\n            qs += Qk * Sk\n\n        if n_ok == 0 or (R == 0 and S == 0):\n            rows.append(_nan_row(j))\n            continue\n\n        if S == 0:\n            alpha, delta, se = np.inf, -np.inf, np.nan\n        elif R == 0:\n            alpha, delta, se = 0.0, np.inf, np.nan\n        else:\n            alpha = R / S\n            delta = -2.35 * np.log(alpha)\n            v = pr / (2 * R * R) + ps_qr / (2 * R * S) + qs / (2 * S * S)\n            se = 2.35 * np.sqrt(v) if v > 0 else np.nan\n\n        if sum_var > 0:\n            chi2_stat = max(abs(sum_diff) - 0.5, 0) ** 2 / sum_var\n            pval = 1 - chi2_dist.cdf(chi2_stat, df=1)\n        else:\n            chi2_stat = pval = np.nan\n\n        ad = abs(delta) if np.isfinite(delta) else np.inf\n        if ad < 1.0:\n            ets = \"A\"\n        elif ad >= 1.5 and (not np.isnan(pval)) and pval < 0.05:\n            ets = \"C\"\n        else:\n            ets = \"B\"\n\n        rows.append(dict(col_idx=j, alpha_mh=alpha, delta_mh=delta,\n                         se=se, chi2=chi2_stat, p_value=pval, ets_class=ets))\n\n    return pd.DataFrame(rows)\n\n\ndef _nan_row(j):\n    return dict(col_idx=j, alpha_mh=np.nan, delta_mh=np.nan,\n                se=np.nan, chi2=np.nan, p_value=np.nan, ets_class=\"A\")\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  DATA LOADING\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"=== Loading data ===\")\nmat = load_npz(BASE / \"response_matrix.npz\")\nidx = np.load(BASE / \"response_matrix_index.npz\", allow_pickle=True)\nMODEL_NAMES = idx[\"model_names\"]\nITEM_IDS = idx[\"item_ids\"]\nITEM2COL = {iid: i for i, iid in enumerate(ITEM_IDS)}\n\nmodel_meta = pd.read_csv(BASE / \"model_metadata.csv\")\nli_labels = pd.read_csv(BASE / \"mmlu_li2024_proxy_labels.csv\")\nability_dif = pd.read_csv(BASE / \"plan_001\" / \"dif_results_ability.csv\")\n\nNAME2ROW = {n: i for i, n in enumerate(MODEL_NAMES)}\nN_MODELS, J_FULL = mat.shape\nprint(f\"  Matrix: {N_MODELS} × {J_FULL}\")\n\n# Precompute full-matrix total scores (for external matching)\nprint(\"  Computing full-matrix total scores...\")\nfull_totals = np.asarray(mat.sum(axis=1)).ravel().astype(np.float64)  # (5227,)\nprint(f\"  Full total scores: mean={full_totals.mean():.1f}, \"\n      f\"range=[{full_totals.min():.0f}, {full_totals.max():.0f}]\")\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  STEP 1: SELECT BASELINE ITEMS\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"\\n=== Step 1: Selecting baseline items ===\")\nmerged = ability_dif.merge(li_labels[[\"item_id\", \"contamination_type\"]], on=\"item_id\", how=\"inner\")\nbaseline_pool = merged[(merged[\"contamination_type\"] == \"clean\") & (merged[\"ets_class\"] == \"A\")]\nprint(f\"  Baseline pool (clean + ETS A in ability DIF): {len(baseline_pool)}\")\n\nbaseline_items = baseline_pool.sample(N_BASELINE, random_state=42)\nbaseline_item_ids = baseline_items[\"item_id\"].values\nbaseline_col_indices = np.array([ITEM2COL[iid] for iid in baseline_item_ids])\nprint(f\"  Selected {N_BASELINE} baseline items\")\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  STEP 2: DEFINE COHORTS\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"\\n=== Step 2: Defining cohorts ===\")\n\n\ndef get_row_indices(col, values):\n    names = model_meta.loc[model_meta[col].isin(values), \"model_name\"]\n    return np.array([NAME2ROW[n] for n in names if n in NAME2ROW])\n\n\ncohort_defs = {}\n\n# (a) Ability cohort\nref_ability_idx = get_row_indices(\"cohort_accuracy_quintile\", [1, 2])\nfoc_ability_idx = get_row_indices(\"cohort_accuracy_quintile\", [4, 5])\n\nref_acc = model_meta.loc[model_meta[\"cohort_accuracy_quintile\"].isin([1, 2]), \"accuracy\"]\nfoc_acc = model_meta.loc[model_meta[\"cohort_accuracy_quintile\"].isin([4, 5]), \"accuracy\"]\nab_overlap_min = max(ref_acc.min(), foc_acc.min())\nab_overlap_max = min(ref_acc.max(), foc_acc.max())\n\nif ab_overlap_min <= ab_overlap_max:\n    foc_ab_inject_mask = (\n        model_meta[\"cohort_accuracy_quintile\"].isin([4, 5]) &\n        (model_meta[\"accuracy\"] >= ab_overlap_min) &\n        (model_meta[\"accuracy\"] <= ab_overlap_max)\n    )\n    foc_ab_inject_idx = np.array([NAME2ROW[n] for n in model_meta.loc[foc_ab_inject_mask, \"model_name\"] if n in NAME2ROW])\nelse:\n    foc_ab_inject_idx = foc_ability_idx\n\nprint(f\"  Ability: ref={len(ref_ability_idx)} (Q1-2), foc={len(foc_ability_idx)} (Q4-5)\")\nprint(f\"    Accuracy overlap: [{ab_overlap_min:.4f}, {ab_overlap_max:.4f}]\"\n      f\" → {'EMPTY, injecting all focal' if ab_overlap_min > ab_overlap_max else f'{len(foc_ab_inject_idx)} focal models'}\")\n\ncohort_defs[\"ability\"] = dict(\n    ref_idx=ref_ability_idx, foc_idx=foc_ability_idx,\n    foc_inject_idx=foc_ab_inject_idx\n)\n\n# (b) Temporal cohort\nref_temporal_idx = get_row_indices(\"cohort_temporal\", [\"2023\"])\nfoc_temporal_idx = get_row_indices(\"cohort_temporal\", [\"2024\"])\n\nref_t_acc = model_meta.loc[model_meta[\"cohort_temporal\"] == \"2023\", \"accuracy\"]\nfoc_t_acc = model_meta.loc[model_meta[\"cohort_temporal\"] == \"2024\", \"accuracy\"]\nt_overlap_min = max(ref_t_acc.min(), foc_t_acc.min())\nt_overlap_max = min(ref_t_acc.max(), foc_t_acc.max())\n\nfoc_t_inject_mask = (\n    (model_meta[\"cohort_temporal\"] == \"2024\") &\n    (model_meta[\"accuracy\"] >= t_overlap_min) &\n    (model_meta[\"accuracy\"] <= t_overlap_max)\n)\nfoc_t_inject_idx = np.array([NAME2ROW[n] for n in model_meta.loc[foc_t_inject_mask, \"model_name\"] if n in NAME2ROW])\n\nprint(f\"  Temporal: ref={len(ref_temporal_idx)} (2023), foc={len(foc_temporal_idx)} (2024)\")\nprint(f\"    Accuracy overlap: [{t_overlap_min:.4f}, {t_overlap_max:.4f}]\"\n      f\" → {len(foc_t_inject_idx)} focal models for injection\")\n\ncohort_defs[\"temporal\"] = dict(\n    ref_idx=ref_temporal_idx, foc_idx=foc_temporal_idx,\n    foc_inject_idx=foc_t_inject_idx\n)\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  STEP 3-4: INJECTION + MH-DIF\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"\\n=== Step 3-4: Injection + MH-DIF ===\")\n\nX_base = mat[:, baseline_col_indices].toarray().astype(np.int8)\nprint(f\"  Baseline submatrix: {X_base.shape}, density: {X_base.mean():.4f}\")\n\ninjection_rows = []\nper_item_rows = []\n\nMH_VARIANTS = [\"standard\", \"anchor\", \"external\"]\n\ntotal_runs = len(INJECTION_PS) * N_SEEDS * len(cohort_defs) * len(MH_VARIANTS)\nrun_count = 0\nt_start = time.time()\n\nfor cohort_name, cdef in cohort_defs.items():\n    ref_idx = cdef[\"ref_idx\"]\n    foc_idx = cdef[\"foc_idx\"]\n    foc_inject_idx = cdef[\"foc_inject_idx\"]\n\n    # External scores for this cohort (from full original matrix)\n    ext_ref = full_totals[ref_idx]\n    ext_foc = full_totals[foc_idx]\n\n    for p in INJECTION_PS:\n        for seed in range(1, N_SEEDS + 1):\n            rng = np.random.RandomState(seed)\n\n            contam_local_idx = rng.choice(N_BASELINE, N_CONTAMINATED, replace=False)\n            contam_set = set(contam_local_idx.tolist())\n            clean_local_idx = np.array([i for i in range(N_BASELINE) if i not in contam_set])\n\n            X_inj = X_base.copy()\n            n_flipped = 0\n\n            if p > 0:\n                for local_j in contam_local_idx:\n                    for model_row in foc_inject_idx:\n                        if X_inj[model_row, local_j] == 0:\n                            if rng.random() < p:\n                                X_inj[model_row, local_j] = 1\n                                n_flipped += 1\n\n            orig_density = X_base[np.ix_(foc_inject_idx, contam_local_idx)].mean()\n            new_density = X_inj[np.ix_(foc_inject_idx, contam_local_idx)].mean()\n\n            X_ref = X_inj[ref_idx]\n            X_foc = X_inj[foc_idx]\n\n            for variant in MH_VARIANTS:\n                run_count += 1\n\n                if variant == \"anchor\":\n                    dif_results = mh_dif_subset(X_ref, X_foc, n_strata=5,\n                                                anchor_cols=clean_local_idx)\n                elif variant == \"external\":\n                    dif_results = mh_dif_subset(X_ref, X_foc, n_strata=5,\n                                                external_scores_ref=ext_ref,\n                                                external_scores_foc=ext_foc)\n                else:\n                    dif_results = mh_dif_subset(X_ref, X_foc, n_strata=5)\n\n                contam_mask = dif_results[\"col_idx\"].isin(contam_set)\n                clean_mask = ~contam_mask\n\n                contam_results = dif_results[contam_mask]\n                clean_results = dif_results[clean_mask]\n\n                n_c_contam = (contam_results[\"ets_class\"] == \"C\").sum()\n                n_c_clean = (clean_results[\"ets_class\"] == \"C\").sum()\n                tpr = n_c_contam / N_CONTAMINATED\n                fpr = n_c_clean / (N_BASELINE - N_CONTAMINATED)\n\n                table = [[n_c_contam, N_CONTAMINATED - n_c_contam],\n                         [n_c_clean, (N_BASELINE - N_CONTAMINATED) - n_c_clean]]\n                fisher_or, fisher_p = fisher_exact(table)\n\n                injection_rows.append(dict(\n                    p=p, seed=seed, cohort_type=cohort_name,\n                    mh_variant=variant,\n                    n_baseline=N_BASELINE, n_contaminated=N_CONTAMINATED,\n                    n_clean=N_BASELINE - N_CONTAMINATED,\n                    n_foc_inject=len(foc_inject_idx),\n                    tpr=tpr, fpr=fpr,\n                    fisher_or=fisher_or, fisher_p=fisher_p,\n                    n_responses_flipped=n_flipped,\n                    orig_density=orig_density, new_density=new_density,\n                ))\n\n                # Per-item results only for anchor variant (keeps CSV manageable)\n                if variant == \"anchor\":\n                    for _, row in dif_results.iterrows():\n                        local_j = int(row[\"col_idx\"])\n                        per_item_rows.append(dict(\n                            item_id=baseline_item_ids[local_j],\n                            p=p, seed=seed, cohort_type=cohort_name,\n                            mh_variant=variant,\n                            delta_mh=row[\"delta_mh\"], p_value=row[\"p_value\"],\n                            ets_class=row[\"ets_class\"],\n                            is_injected=local_j in contam_set,\n                        ))\n\n                elapsed = time.time() - t_start\n                if variant == \"external\" or (variant == \"standard\" and p in [0.0, 1.0]):\n                    print(f\"  [{run_count}/{total_runs}] {cohort_name} {variant:8s} p={p} seed={seed}: \"\n                          f\"TPR={tpr:.3f} FPR={fpr:.3f} flipped={n_flipped} \"\n                          f\"({elapsed:.0f}s)\")\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  STEP 5-6: AGGREGATE & SAVE\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"\\n=== Step 5: Aggregating results ===\")\n\ninj_df = pd.DataFrame(injection_rows)\nper_item_df = pd.DataFrame(per_item_rows)\n\nsummary_rows = []\nfor (p_val, cohort, variant), grp in inj_df.groupby([\"p\", \"cohort_type\", \"mh_variant\"]):\n    summary_rows.append(dict(\n        p=p_val, cohort_type=cohort, mh_variant=variant,\n        tpr_mean=grp[\"tpr\"].mean(), tpr_std=grp[\"tpr\"].std(),\n        fpr_mean=grp[\"fpr\"].mean(), fpr_std=grp[\"fpr\"].std(),\n        fisher_or_mean=grp[\"fisher_or\"].mean(),\n        fisher_p_median=grp[\"fisher_p\"].median(),\n    ))\nsummary_df = pd.DataFrame(summary_rows)\n\ninj_df.to_csv(OUT / \"injection_results.csv\", index=False)\nsummary_df.to_csv(OUT / \"dose_response_summary.csv\", index=False)\nper_item_df.to_csv(OUT / \"per_item_results.csv\", index=False)\nprint(f\"  Saved injection_results.csv ({len(inj_df)} rows)\")\nprint(f\"  Saved dose_response_summary.csv ({len(summary_df)} rows)\")\nprint(f\"  Saved per_item_results.csv ({len(per_item_df)} rows)\")\n\n\n# ════════════════════════════════════════════════════════════════════════════\n#  REPORT\n# ════════════════════════════════════════════════════════════════════════════\nprint(\"\\n=== Generating report ===\")\n\nL = []\ndef w(s=\"\"):\n    L.append(s)\n\nw(\"# Plan 011: Semi-Synthetic DIF Validation\")\nw()\nw(\"## 1. Objective\")\nw()\nw(\"Inject known **differential** contamination into real MMLU response data and test\")\nw(\"whether MH-DIF can detect it. This validates whether plan_001/001b's failure to find\")\nw(\"enrichment was due to Li et al. labels being non-differential (global contamination)\")\nw(\"rather than a fundamental limitation of MH-DIF.\")\nw()\n\nw(\"## 2. Setup\")\nw()\nw(f\"- **Baseline items**: {N_BASELINE} (clean in Li et al. + ETS A in plan_001 ability DIF)\")\nw(f\"- **Contaminated per run**: {N_CONTAMINATED} of {N_BASELINE}\")\nw(f\"- **Injection probabilities**: {INJECTION_PS}\")\nw(f\"- **Seeds per p**: {N_SEEDS}\")\nw()\nw(\"### Cohort definitions\")\nw()\nfor cn, cd in cohort_defs.items():\n    w(f\"- **{cn}**: ref N={len(cd['ref_idx'])}, foc N={len(cd['foc_idx'])}, \"\n      f\"foc inject N={len(cd['foc_inject_idx'])}\")\nw()\n\nif ab_overlap_min > ab_overlap_max:\n    w(\"> **Note**: Ability quintiles (Q1-2 vs Q4-5) have no accuracy overlap by construction \"\n      f\"(ref max={ref_acc.max():.4f}, foc min={foc_acc.min():.4f}). \"\n      \"All focal models used for injection. MH stratification handles ability matching.\")\n    w()\n\nw(\"### MH variants\")\nw()\nw(\"| Variant | Matching variable | Rationale |\")\nw(\"|---------|-------------------|-----------|\")\nw(\"| standard | sum of 500 items − current | Same as plan_001; susceptible to matching variable contamination when 20% items injected |\")\nw(\"| anchor | sum of 400 known-clean items | Eliminates matching variable contamination; assumes oracle knowledge of clean items |\")\nw(\"| external | sum of all 12,508 items (original, pre-injection) | Best matching precision; immune to injection; requires external ability estimate |\")\nw()\n\nw(\"## 3. Results by MH Variant\")\nw()\nfor variant in MH_VARIANTS:\n    w(f\"### {variant.capitalize()} MH\")\n    w()\n    w(\"| Cohort | p | TPR (mean±std) | FPR (mean±std) | ΔTPR | Fisher OR | Fisher p |\")\n    w(\"|--------|---|----------------|----------------|------|-----------|----------|\")\n    sub = summary_df[summary_df[\"mh_variant\"] == variant]\n    for _, r in sub.sort_values([\"cohort_type\", \"p\"]).iterrows():\n        # ΔTPR = TPR - baseline TPR at p=0\n        base_tpr = sub[(sub[\"cohort_type\"] == r.cohort_type) & (sub[\"p\"] == 0.0)][\"tpr_mean\"].values\n        d_tpr = r.tpr_mean - base_tpr[0] if len(base_tpr) > 0 else 0\n        w(f\"| {r.cohort_type} | {r.p} | {r.tpr_mean:.3f}±{r.tpr_std:.3f} | \"\n          f\"{r.fpr_mean:.3f}±{r.fpr_std:.3f} | {d_tpr:+.3f} | \"\n          f\"{r.fisher_or_mean:.2f} | {r.fisher_p_median:.4f} |\")\n    w()\n\nw(\"## 4. Key Comparison: Baseline FPR by Variant\")\nw()\nw(\"| Cohort | standard | anchor | external |\")\nw(\"|--------|----------|--------|----------|\")\nfor cohort in [\"ability\", \"temporal\"]:\n    vals = []\n    for variant in MH_VARIANTS:\n        r = summary_df[(summary_df[\"p\"] == 0.0) & (summary_df[\"cohort_type\"] == cohort) &\n                       (summary_df[\"mh_variant\"] == variant)]\n        vals.append(f\"{r.iloc[0]['fpr_mean']:.3f}\" if len(r) > 0 else \"—\")\n    w(f\"| {cohort} | {vals[0]} | {vals[1]} | {vals[2]} |\")\nw()\nw(\"If external FPR ≪ standard FPR, the high baseline rate is from matching precision,\")\nw(\"not inherent DIF in the selected items.\")\nw()\n\nw(\"## 5. Sanity Checks\")\nw()\nw(\"### Density change (focal × contaminated items)\")\nw()\nw(\"| Cohort | p | Orig density | Post density | Responses flipped |\")\nw(\"|--------|---|--------------|--------------|-------------------|\")\nfor (p_val, cohort), grp in inj_df[inj_df[\"mh_variant\"] == \"standard\"].groupby([\"p\", \"cohort_type\"]):\n    if p_val == 0:\n        continue\n    w(f\"| {cohort} | {p_val} | {grp['orig_density'].mean():.4f} | \"\n      f\"{grp['new_density'].mean():.4f} | {grp['n_responses_flipped'].mean():.0f} |\")\nw()\n\nw(\"## 6. Verdict\")\nw()\n\nfor variant in MH_VARIANTS:\n    w(f\"### {variant.capitalize()} MH\")\n    w()\n    sub = summary_df[summary_df[\"mh_variant\"] == variant]\n\n    for cohort in [\"ability\", \"temporal\"]:\n        c_sub = sub[sub[\"cohort_type\"] == cohort]\n        p0 = c_sub[c_sub[\"p\"] == 0.0]\n        p1 = c_sub[c_sub[\"p\"] == 1.0]\n        if len(p1) == 0 or len(p0) == 0:\n            continue\n\n        fpr0 = p0.iloc[0][\"fpr_mean\"]\n        tpr0 = p0.iloc[0][\"tpr_mean\"]\n        tpr1 = p1.iloc[0][\"tpr_mean\"]\n        fpr1 = p1.iloc[0][\"fpr_mean\"]\n        d_tpr = tpr1 - tpr0\n\n        w(f\"**{cohort}**: baseline TPR={tpr0:.3f}/FPR={fpr0:.3f}, \"\n          f\"p=1.0 TPR={tpr1:.3f}/FPR={fpr1:.3f}, ΔTPR={d_tpr:+.3f}\")\n\n        if d_tpr > 0.3 and tpr1 > 0.5:\n            w(f\"→ **SUCCESS**: injection raises TPR by {d_tpr:.3f} with clear dose-response\")\n        elif d_tpr > 0.1:\n            w(f\"→ **PARTIAL**: detectable signal (ΔTPR={d_tpr:.3f}) but modest\")\n        else:\n            w(f\"→ **FAIL**: ΔTPR={d_tpr:.3f} too small to indicate detection\")\n        w()\n\nw(\"## 7. Overall Interpretation\")\nw()\nw(\"### Does MH-DIF detect differential contamination?\")\nw()\n\n# Compute key numbers for conclusion\next_t = summary_df[(summary_df[\"mh_variant\"] == \"external\") & (summary_df[\"cohort_type\"] == \"temporal\")]\next_a = summary_df[(summary_df[\"mh_variant\"] == \"external\") & (summary_df[\"cohort_type\"] == \"ability\")]\n\nif len(ext_t) > 0:\n    ext_t_p0 = ext_t[ext_t[\"p\"] == 0.0][\"tpr_mean\"].values[0]\n    ext_t_p1 = ext_t[ext_t[\"p\"] == 1.0][\"tpr_mean\"].values[0]\n    ext_t_fpr0 = ext_t[ext_t[\"p\"] == 0.0][\"fpr_mean\"].values[0]\n    ext_t_fpr1 = ext_t[ext_t[\"p\"] == 1.0][\"fpr_mean\"].values[0]\n    w(f\"- **Temporal + external matching**: TPR rises {ext_t_p0:.3f} → {ext_t_p1:.3f} \"\n      f\"(ΔTPR=+{ext_t_p1-ext_t_p0:.3f}), FPR {ext_t_fpr0:.3f} → {ext_t_fpr1:.3f}\")\n\nif len(ext_a) > 0:\n    ext_a_p0 = ext_a[ext_a[\"p\"] == 0.0][\"tpr_mean\"].values[0]\n    ext_a_p1 = ext_a[ext_a[\"p\"] == 1.0][\"tpr_mean\"].values[0]\n    ext_a_fpr0 = ext_a[ext_a[\"p\"] == 0.0][\"fpr_mean\"].values[0]\n    ext_a_fpr1 = ext_a[ext_a[\"p\"] == 1.0][\"fpr_mean\"].values[0]\n    w(f\"- **Ability + external matching**: TPR rises {ext_a_p0:.3f} → {ext_a_p1:.3f} \"\n      f\"(ΔTPR=+{ext_a_p1-ext_a_p0:.3f}), FPR {ext_a_fpr0:.3f} → {ext_a_fpr1:.3f}\")\n\nw()\nw(\"### Implications for plan_001\")\nw()\nw(\"If semi-synthetic injection is detectable → plan_001's failure to find enrichment\")\nw(\"against Li et al. labels is because Li et al. contamination is **non-differential**\")\nw(\"(Common Crawl data available to all models), not because MH-DIF is fundamentally limited.\")\nw()\nw(\"### Matching variable contamination\")\nw()\nw(\"When 20% of items are injected, standard MH's matching variable (total score) is\")\nw(\"corrupted by injected items, inflating FPR. This is a known limitation when DIF items\")\nw(\"constitute a large fraction of the test. In practice, iterative purification (exclude\")\nw(\"suspected DIF items from matching) or external ability estimates mitigate this.\")\nw()\n\n(OUT / \"plan_011_report.md\").write_text(\"\\n\".join(L) + \"\\n\")\nprint(\"  Report written.\")\n\n# Console summary\nprint(\"\\n\" + \"=\" * 60)\nprint(\"SUMMARY\")\nprint(\"=\" * 60)\nfor variant in MH_VARIANTS:\n    print(f\"\\n--- {variant} MH ---\")\n    sub = summary_df[summary_df[\"mh_variant\"] == variant]\n    for _, r in sub.sort_values([\"cohort_type\", \"p\"]).iterrows():\n        print(f\"  {r.cohort_type:8s} p={r.p}: TPR={r.tpr_mean:.3f}±{r.tpr_std:.3f}  \"\n              f\"FPR={r.fpr_mean:.3f}±{r.fpr_std:.3f}\")\n\ntotal_elapsed = time.time() - t_start\nprint(f\"\\nTotal time: {total_elapsed:.0f}s\")\nprint(f\"All outputs saved to {OUT}\")\n```\n\n---\n\n## Key Insights\n\n1. **Contaminated Item Selection**: Randomly samples 100 items per run (seeded), ensuring stochastic replication.\n\n2. **Ability-Overlapping Models**: Uses accuracy ranges to find models in the focal cohort that fall within the reference accuracy range. This ensures that injected contamination affects ability-matched focal models only.\n\n3. **Flipping Mechanism**: Only flips incorrect responses (0 → 1) with probability p per focal model per item. Never flips correct responses back to incorrect.\n\n4. **Three-Variant MH Approach**:\n   - **Standard**: Most realistic but vulnerable to matching variable contamination\n   - **Anchor**: Oracle-clean validation (20% of items not contaminated)\n   - **External**: Immune to all injection effects, measures best-case DIF detection\n\n5. **Dose-Response Design**: By varying p ∈ [0.0, 0.3, 0.5, 0.7, 1.0], the script validates whether MH-DIF shows monotonic increase in TPR with injection strength.\n\n6. **Fisher Exact Test**: Validates that the association between DIF detection (class C) and contamination status is significant, accounting for small-cell counts."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "28a329d4-e2b4-4c80-8b2f-488c5b966179",
+            "isSidechain": true,
+            "agentId": "af14da85843b71e93",
+            "requestId": "req_011CbEoHfC1JARfCViarHc3N",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9240dd0b-f697-4d43-bcb4-0091c544fa23",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "c9888f1d-7b39-4f56-88ab-428b671b99c5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01LkyGZQ1xJG72EPEDoPbVxy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 10278,
+                "cache_read_input_tokens": 20701,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 10278,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-find-and-read-the-semi-synthetic-injection-scripts-in-home-ubuntu-agent-ml-res.md"
+}

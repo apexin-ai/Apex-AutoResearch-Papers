@@ -1,0 +1,2756 @@
+# Research conversation: 你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260521T110541 tier=best 生成一篇完整的模拟论文。 ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码
+
+**Temporal Score Incomparability in LLM Benchmarks: A Large-Scale Psychometric Audit of 5,227 Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 36
+- **Recorded user turns:** 1
+- **Tool calls:** 6
+- **Original source:** `logs/chats/exported-trajectories/account-3/648a2789-75b4-4e54-9d3e-23d488f8eda0.jsonl`
+- **Structured JSON:** [`74de6b3283f9ab55c44e.json`](../../sessions/74/74de6b3283f9ab55c44e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-21T11:29:20.787Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-21T11:29:20.787Z",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0",
+  "content": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260521T110541 tier=best 生成一篇完整的模拟论文。\n\n## 关键规则\n1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T110541/best/paper.tex`\n2. 用 **Bash 工具** 编译：`cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T110541/best && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex`\n3. 所有文件只写入 `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T110541/best/`，禁止写入其他目录\n4. 直接写完整 LaTeX 全文（\\documentclass ... \\end{document}），不要输出 YAML/JSON/Markdown\n5. 不走 5 步流水线，不 spawn Worker，不调 Director API——一次性写完\n6. 你必须在论文中为 experiment_data.json 中的**每个**实验设计对应的 section/table\n7. narrative_guidance 是你的写作方向指引，不要在论文正文中引用或复述此指引\n\n## 输入\n- 实验数据（JSON）：`/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T110541/best/experiment_data.json`（先 Read 此文件）\n- Venue：emnlp-2026\n- Narrative guidance：Best 档叙事完全成立：6-benchmark cross-validation (17.9-31.3%, 45-174× random) 封堵 \"only MMLU\" 攻击面； Simpson's paradox (OR 1.55→0.73) 封堵 ability confound 攻击面；IRT misfit 被 framing 为 MMLU 固有多维性 (98% |Lz|>2)，reviewer 接受 MH 作为非参数方法不依赖 IRT fit；temporal binary split 被 permutation null (>200σ) + 6-benchmark 一致性双重支撑；audit protocol 满足 actionability。四条 claims 强度无需调整。 Dropped experiments (003a/b/c, 005, 006) 正确归入 future work，不伤主线。Reviewer avg score 3.8-4.3， 1-2 位 champion reviewer 给 4.5+，paper 以 strong empirical contribution 被接收。\n\n- paper_framing.md（完整版）：`/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T110541/best/paper_framing.md`（先 Read 此文件）\n\n## 质量目标\n\"够审\"级——让审稿人能评判 idea 和实验设计，不是投稿质量。包含 Abstract、Introduction、Method、Experiments、Conclusion。每个定量 claim 基于 experiment_data.json 中的数据，不得编造数字。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-21T11:29:20.791Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-21T11:29:20.791Z",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0"
+}
+```
+
+---
+
+## Round 1
+
+34 recorded events
+
+### User
+
+_source line 3 · 2026-05-21T11:29:20.816Z_
+
+你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260521T110541 tier=best 生成一篇完整的模拟论文。
+
+## 关键规则
+1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T110541/best/paper.tex`
+2. 用 **Bash 工具** 编译：`cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T110541/best && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex`
+3. 所有文件只写入 `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T110541/best/`，禁止写入其他目录
+4. 直接写完整 LaTeX 全文（\documentclass ... \end{document}），不要输出 YAML/JSON/Markdown
+5. 不走 5 步流水线，不 spawn Worker，不调 Director API——一次性写完
+6. 你必须在论文中为 experiment_data.json 中的**每个**实验设计对应的 section/table
+7. narrative_guidance 是你的写作方向指引，不要在论文正文中引用或复述此指引
+
+## 输入
+- 实验数据（JSON）：`/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T110541/best/experiment_data.json`（先 Read 此文件）
+- Venue：emnlp-2026
+- Narrative guidance：Best 档叙事完全成立：6-benchmark cross-validation (17.9-31.3%, 45-174× random) 封堵 "only MMLU" 攻击面； Simpson's paradox (OR 1.55→0.73) 封堵 ability confound 攻击面；IRT misfit 被 framing 为 MMLU 固有多维性 (98% |Lz|>2)，reviewer 接受 MH 作为非参数方法不依赖 IRT fit；temporal binary split 被 permutation null (>200σ) + 6-benchmark 一致性双重支撑；audit protocol 满足 actionability。四条 claims 强度无需调整。 Dropped experiments (003a/b/c, 005, 006) 正确归入 future work，不伤主线。Reviewer avg score 3.8-4.3， 1-2 位 champion reviewer 给 4.5+，paper 以 strong empirical contribution 被接收。
+
+- paper_framing.md（完整版）：`/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T110541/best/paper_framing.md`（先 Read 此文件）
+
+## 质量目标
+"够审"级——让审稿人能评判 idea 和实验设计，不是投稿质量。包含 Abstract、Introduction、Method、Experiments、Conclusion。每个定量 claim 基于 experiment_data.json 中的数据，不得编造数字。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "b0a8748b-21cc-4295-b093-9b740dba37c7",
+  "type": "user",
+  "uuid": "9cf686c0-7137-4e15-8d55-9ed47f7c24ba",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-21T11:29:20.815Z_
+
+```json
+{
+  "parentUuid": "9cf686c0-7137-4e15-8d55-9ed47f7c24ba",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "fc8428f3-1b84-4562-b58c-6bb2bcaf7ae9",
+  "timestamp": "2026-05-21T11:29:20.815Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-21T11:29:20.815Z_
+
+```json
+{
+  "parentUuid": "fc8428f3-1b84-4562-b58c-6bb2bcaf7ae9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "9f002881-e636-4a4d-b407-91474fb97730",
+  "timestamp": "2026-05-21T11:29:20.815Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate IRT equated benchmark validation paper",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 7 · 2026-05-21T11:29:23.577Z_
+
+I'll start by reading the experiment data and paper framing files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9f002881-e636-4a4d-b407-91474fb97730",
+  "isSidechain": false,
+  "requestId": "req_011CbFdsEbBxwHkHajcqoX6n",
+  "type": "assistant",
+  "uuid": "494cb306-2089-4a82-8b1a-e03be77b8f00",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DvgULJWF9AcKxdauFhCrvC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12340,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12340,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 214,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12340,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12340
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-21T11:29:24.534Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01NJudb1DrSoGeHdqfDpF4Ls`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T110541/best/experiment_data.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "494cb306-2089-4a82-8b1a-e03be77b8f00",
+  "isSidechain": false,
+  "requestId": "req_011CbFdsEbBxwHkHajcqoX6n",
+  "type": "assistant",
+  "uuid": "30a0dde7-6a21-46e9-84de-692db8927ef1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DvgULJWF9AcKxdauFhCrvC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12340,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12340,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 214,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12340,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12340
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-21T11:29:24.772Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01DiqDwDrqmcmMr68scEvckv`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T110541/best/paper_framing.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "30a0dde7-6a21-46e9-84de-692db8927ef1",
+  "isSidechain": false,
+  "requestId": "req_011CbFdsEbBxwHkHajcqoX6n",
+  "type": "assistant",
+  "uuid": "5f192996-f2ff-4bd5-bba3-a587ae6d5b16",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DvgULJWF9AcKxdauFhCrvC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12340,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12340,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 214,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12340,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12340
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T11:29:24.788Z_
+
+<details><summary>↩ Tool result · `toolu_01DiqDwDrqmcmMr68scEvckv`</summary>
+
+```text
+1	# Paper Framing — irt_equated_bench_regen
+2	
+3	## Target Venue
+4	- Primary: EMNLP 2026 (via ARR; long paper 8-page limit + unlimited refs)
+5	- Page limit: 8 pages main text (当前 10 页，需压缩 2 页)
+6	
+7	## Paper Type
+8	Empirical analysis / psychometric characterization. Discovery paper, not methods paper. "DIF reveals benchmark structural problems," not "DIF detects contamination."
+9	
+10	## Core Claims (4 条, 可证伪)
+11	
+12	**Claim 1 (Temporal Comparability Concern)**: ~31% of MMLU items are functionally unstable across model generations — they exhibit large DIF (ETS C, |Δ_MH|≥1.5) between 2023 and 2024-H1 model cohorts. Primary estimate: **31.3%** (temporal cohort, plan_001). All 57 subjects show instability (C% range 20.7–48.4%, unweighted mean ≈30%, plan_001 domain_specificity.csv). Within-subject matching on 5 high-C% subjects yields higher rates (31-45%, avg 38.1%, plan_014) — report as robustness check, not primary. This instability is not a statistical artifact (random split sanity check: 0.18%), and correlates weakly with domain-specific accuracy improvement (ρ=0.307, p=0.02), but item-level decomposition shows domain improvement explains only 2.4pp (7.6%). Architecture heterogeneity is a non-issue: METABENCH MMLU is 99.98% decoder-only (5226/5227), excluding the 1 non-decoder model changes nothing (Jaccard=1.0). Threshold sensitivity robustness confirmed: C% ranges from 48.9% (|Δ_MH|≥1.0) to 18.3% (|Δ_MH|≥2.0) to 10.2% (|Δ_MH|≥2.5). BH FDR correction at q=0.05 has negligible impact (removes 3/3,918 items).
+13	- Evidence: plan_001 (C%=31.3%), plan_014 (within-subject C%=38.1%), plan_010 (arch-stratified: 99.98% decoder-only, C% unchanged, Jaccard=1.0), plan_018 (threshold: 49/31/18/10% at 1.0/1.5/2.0/2.5; BH negligible), plan_019 (decomposition: ≤2.4pp/7.6% explained by domain improvement), plan_022 (model independence: graduated de-duplication to 1 model per family → C% ≤ random subsample control at every cap K; K=20: 29.1% vs random 30.9%, K=5: 11.7% vs random 16.9%; family structure does NOT inflate C%), plan_027 (temporal ability overlap: d=-0.17, OVL=76.4%; 1:1 NN matching C%=28.9%±0.1% vs full 31.3% — ability confound explains only 2.4pp; contrast with Llama-2v3 d=-0.99→matched C%=28.3%, where ability confound explains 33pp)
+14	- Honesty requirement: ρ=0.307 (p=0.02) at subject level reflects a modest ecological correlation. Item-level decomposition (plan_019) shows domain improvement accounts for at most 2.4pp of 31.3% C% (7.6%; pseudo R²=0.0007). The instability is predominantly item-specific. Caveat: item difficulty may be a mediator rather than confounder — use Model 1 as primary; Model 2 (Simpson's paradox) as supplementary.
+15	- IRT fit: 98% of models show |Lz|>2, reflecting MMLU's inherent multidimensionality (57 subjects), not architecture heterogeneity. 1D IRT is fundamentally misspecified for MMLU — discuss in limitations as motivation for future multidimensional IRT work.
+16	
+17	**Claim 2 (Ground Truth Meta-critique)**: Existing contamination detection literature validates against web-overlap/n-gram labels that measure global exposure (whether an item is publicly accessible), not differential contamination (whether an item functions differently across model cohorts). DIF enrichment≈1.0 against Li et al. labels is expected, not failure — these labels cannot evaluate item-level differential detectors. This is a fundamental validation methodology gap: all work using web-overlap labels as ground truth for item-level detectors (including Min-K%, n-gram methods) has the same blind spot. **Empirically validated** (plan_026): direct comparison of DIF-C flags vs Li et al. web-overlap labels on 9,229 MMLU items shows enrichment=0.964, Jaccard=0.206, Phi=0.012, χ²=1.28 (p=0.258), OR=1.05 [0.96, 1.15]. Consistent across subtypes (input_only: 0.986, input_and_label: 0.960). Semi-synthetic injection confirms DIF can detect differential contamination (ΔTPR=+0.508 at p=0.5, dose-response from p=0.3 to p=1.0).
+18	- Evidence: plan_001 (enrichment=0.96), plan_026 (direct comparison: enrichment=0.964, Jaccard=0.206, p=0.258), plan_011 (ΔTPR=+0.508, dose-response)
+19	- Framing: aggressive — "the field's standard validation approach is fundamentally mismatched for item-level detection" — now with direct empirical evidence, not just conceptual argument
+20	
+21	**Claim 3 (Semi-synthetic Validation Framework)**: The ΔTPR methodology — injecting known differential contamination into real response matrices and measuring detection power increase — provides a controlled validation infrastructure for any item-level contamination detector. Cross-subject matching (using total score on OTHER subjects as MH matching variable) eliminates FPR inflation (ΔFPR=0.000 across all 5 tested subjects), while within-subject matching suffers from matching variable contamination (FPR inflation +0.186).
+22	- Evidence: plan_011, plan_016 (ΔFPR=0.000 cross-subject, 4/5 subjects ΔTPR>0.3), plan_004 Step 2 (GSM8K ΔTPR=+0.818 standard, +0.517 external)
+23	- Cross-benchmark: GSM8K replication confirms framework portability to single-domain math benchmarks
+24	- Positioning: cross-subject matching is a practical methodological recommendation; cross-benchmark replication strengthens generalizability
+25	
+26	**Claim 4 (Downstream Impact — Four-Layer Finding)**: DIF as diagnostic lens, not quality filter. Four sub-findings:
+27	1. **Benchmark redundancy**: ρ≈0.997 between full and stable-only rankings — MMLU rankings are extremely robust to 31% item removal, revealing massive measurement redundancy in the benchmark.
+28	2. **DIF items carry cross-cohort signal but are NOT the most ranking-defining items**: DIF removal causes MORE disruption than random removal (z=-8 to -49σ, 21/21 conditions), confirming DIF items are non-trivial. But circularity ablation (plan_020) shows DIF is the LEAST disruptive non-random strategy: accuracy-gap removal disrupts 10-16× more (z=-157 vs -9.5), high-variance 11× more (z=-108), high-discrimination 1.7× more (z=-16). MH's ability conditioning filters out raw accuracy differences, isolating genuine differential functioning rather than generally informative items. DIF-discrimination overlap is only 22.1% (Jaccard=0.12) — DIF identifies "items that changed across generations," not "good items."
+29	3. **DIF as diagnostic lens**: DIF identifies which items' functioning changes most across model generations → reveals which capability dimensions drive ranking shifts. Not "find bad items and remove" but "understand what changed and why." Model-specific patterns: phi-3/llama-3 gain +700-850 ranks from DIF items, mistral merges lose -400 to -587. **Item characterization** (plan_023): DIF-C items are moderately harder (Cohen's d=-0.247) and higher-discrimination (d=0.230) than non-DIF items, but uniformly distributed across MMLU domains (χ² p=0.32). Key finding: difficulty × DIF direction interaction (ρ=-0.597) — hardest-decile DIF-C items are 88.7% focal-favoring (2024 models do better), easiest-decile are 96.2% reference-favoring (2023 models do better). This reveals a systematic pattern: capability improvement concentrates on hard items, while easy items' difficulty structure erodes across generations.
+30	4. **Cross-benchmark validation (exploratory)**: On GSM8K (1,319 items × 6,702 models), DIF flags anti-correlate with GSM1K contamination gap (r=−0.478, p=0.005, N=33). **DEMOTED to exploratory** per Dream #6 three-tier consensus: N=33, CI wide [−0.71, −0.16], not strong enough for numbered contribution. This evidence is suggestive but should NOT appear in abstract/conclusion as core support.
+31	- Evidence: plan_017 (z=-8 to -49σ, ρ=0.996-0.999), plan_020 (circularity ablation: DIF z=-9.5 vs acc-gap z=-157, disc z=-16, var z=-108), plan_023 (item characterization: difficulty ρ=-0.597, domain uniformity χ² p=0.32)
+32	- Architecture: plan_017 is load-bearing (strong, full N=5,227). plan_020 circularity ablation is the second pillar. GSM1K correlation (plan_004 Step 3) is supplementary/exploratory only.
+33	- Growing Pains互补: "Growing Pains uses anchor items for efficient evaluation; our DIF diagnostic tells them which anchor items are degrading"
+34	- Caveats (→ limitations): N=33, Pearson CI upper bound |r|=0.155 (small effect possible), Spearman CI upper bound |ρ|=0.031 (near zero possible); item difficulty confound not fully excluded (DIF-C items harder for all models); contamination gap is proxy, not ground truth; replication with larger matched sample needed
+35	
+36	## Story Spine (v2 — no-pivot narrative)
+37	
+38	**Opening frame**: LLM benchmarks implicitly assume temporal score comparability — when we say "Model B outperforms Model A on MMLU," we presume both scores reflect the same latent construct. But do they? Psychometrics has a mature tool for testing exactly this: Differential Item Functioning (DIF) analysis detects items whose difficulty changes across examinee groups after controlling for overall ability. We apply MH-DIF to the METABENCH response matrix (5,227 models × 12,508 MMLU items) — the largest-scale DIF analysis on LLM benchmarks to date.
+39	
+40	**Key narrative principle**: "Instability ≠ invalidity." DIF flags items whose functioning changed across generations — this is a diagnostic signal, not a quality verdict. MMLU rankings are massively redundant (ρ≈0.997 after removing 31% of items), so instability doesn't threaten validity. But it reveals WHICH capability dimensions are shifting. **This framing must appear in the Introduction, not be deferred to Discussion.**
+41	
+42	**What we find** (4 contributions, focused):
+43	
+44	1. **31% of MMLU items are functionally unstable** across model generations (ETS C, |Δ_MH|≥1.5). Robust to threshold choice (49%/31%/18%/10% at 1.0/1.5/2.0/2.5), multiple testing (BH removes 3/3918 items), and architecture composition (99.98% decoder-only). Domain accuracy improvement explains ≤2.4pp of 31.3% C% (7.6%; pseudo R²=0.0007). The instability is predominantly item-specific, not a proxy for "models got better."
+45	
+46	2. **Ground truth meta-critique**: Web-overlap contamination labels measure global exposure, not differential contamination. Enrichment≈1.0 is expected. Semi-synthetic injection confirms DIF detects differential contamination (ΔTPR=+0.508). Any item-level detector validated against web-overlap labels has this blind spot.
+47	
+48	3. **Semi-synthetic validation framework**: ΔTPR methodology with cross-subject matching (ΔFPR=0.000). Portable across benchmarks (GSM8K ΔTPR=+0.818). Reusable for validating any item-level contamination detector.
+49	
+50	4. **DIF as diagnostic lens + actionable protocol**: DIF items carry cross-cohort signal (z=-8 to -49σ vs random) but are the LEAST disruptive non-random strategy (z=-9.5 vs accuracy-gap z=-157). DIF isolates genuine differential functioning, not just informative items. **Actionable contribution**: DIF audit protocol for benchmark maintainers (monitoring frequency, decision rules, response options).
+51	
+52	**Headline result**: "Psychometric DIF analysis of 5,227 models × 12,508 MMLU items reveals 31% temporal instability — robust across thresholds, not driven by capability improvement (≤7.6%), and not a validity threat (ρ≈0.997 ranking stability). The field's web-overlap ground truth cannot capture this differential signal; we provide a semi-synthetic validation framework with cross-subject matching (ΔFPR=0.000). DIF serves as a diagnostic lens for understanding what changed across model generations, with a concrete audit protocol for benchmark maintenance."
+53	
+54	## Scope Control (main body vs appendix)
+55	
+56	**MAIN BODY (4 claims + robustness)**:
+57	- §1 Introduction (problem + "instability ≠ invalidity" framing upfront)
+58	- §2 Related Work (45 papers, 5 clusters)
+59	- §3 Method (MH-DIF primer, semi-synthetic framework, cross-subject matching)
+60	- §4 Experiments: Claim 1 (temporal DIF + threshold + BH + decomposition + architecture), Claim 2 (enrichment + meta-critique), Claim 3 (semi-synthetic + cross-benchmark), Claim 4 (redundancy + circularity ablation + diagnostic lens + GSM1K validation)
+61	- §5 Discussion + Limitations
+62	- §6 Conclusion
+63	
+64	**APPENDIX (pruned from main body)**:
+65	- Bayesian cumulative DIF (plan_007) — simulation-only, underdeveloped
+66	- RL robustness (plan_002) — N=13, underpowered
+67	- Ensemble fusion (plan_003a/b/c) — negative, not executed
+68	- Bifactor equating pilot — below target fit
+69	- Item generation pilot — below benchmarks
+70	- Graceful degradation — clean but supplementary
+71	- Item-Focused Trees — robustness check, supplementary
+72	- ConStat/DVD comparisons — complementary baselines
+73	
+74	## Empirical Observation: Structural Constraints on DIF in LLM Benchmarks
+75	
+76	Systematic experimentation reveals that three structural improvements — matched-ability cohort design (plan_001b), IRT θ-conditioning (plan_012, r=0.9986), and bifactor pre-check (plan_014, within-subject C%=38.1%) — all fail to reduce temporal DIF baseline FPR below 31% while maintaining detection power. This is an empirical observation, not a formal impossibility result. The constraints arise from: (a) unidimensional IRT limitations in modeling 57-subject multidimensional ability, (b) statistical power requirements (N≥80, δ≥1.4), and (c) inability to separate ability confounding from genuine item-level changes. Higher-level methods (MIMIC, propensity-score matching, multidimensional IRT) may address individual constraints — future work.
+77	
+78	## Venue Fit
+79	
+80	- **EMNLP 2026**: Strong fit — NLP evaluation methodology is a dedicated area, reviewers expect empirical studies of benchmarks. "Empirical, not algorithmic" contribution type well-received. Risk: 8-page limit requires significant compression (current 10 pages). Mitigation: move structural analysis details to appendix.
+81	
+82	## Novelty Articulation (三层，显式化)
+83	
+84	MH-DIF (1959/1988) is applied without modification. **Explicitly acknowledge this.** Novelty is NOT algorithmic. Three layers of genuine contribution:
+85	
+86	1. **Empirical discovery at unprecedented scale**: First DIF analysis on 5,227×12,508 LLM response matrix. Finding: 31% temporal instability is robust across thresholds (10-49%), not explained by capability improvement (≤7.6%), and architecturally homogeneous (99.98% decoder-only). No prior work has characterized item-level stability of LLM benchmarks at this scale. The instability finding itself is new data about MMLU's measurement properties.
+87	
+88	2. **Ground truth meta-critique with field-wide implications**: The observation that web-overlap labels cannot validate item-level differential detectors is NOT obvious — the field routinely uses them. This affects the validity claims of Min-K%, ConStat, n-gram methods, and all papers using web-overlap as ground truth. First empirical demonstration (enrichment≈1.0 + semi-synthetic proof).
+89	
+90	3. **Semi-synthetic validation framework + cross-subject matching**: The ΔTPR methodology is a reusable infrastructure contribution. Cross-subject matching (ΔFPR=0.000) is a novel practical innovation — the insight that within-subject matching contaminates the conditioning variable is subtle and general. Portable to any multi-domain benchmark (demonstrated on GSM8K).
+91	
+92	**Framing**: "We bring mature psychometric tools to characterize an urgent ML evaluation problem. The contribution is the empirical findings, the validation methodology critique, and the reusable framework — not a new algorithm."
+93	
+94	## Anticipated Reviewer Concerns (updated for pivot)
+95	
+96	1. **"31% could just mean models got better / ability confound inflates C%"** — ✅ RESOLVED (plan_019 + plan_027). Item-level decomposition shows domain improvement explains ≤2.4pp of 31.3% C% (7.6%; pseudo R²=0.0007). Temporal cohort ability gap is negligible (d=-0.17, OVL=76.4%); 1:1 NN matching (d≈-0.01) yields C%=28.9%±0.1% vs full 31.3% — ability confound explains only 2.4pp. Contrast: Llama-2v3 (d=-0.99) drops from 61.3% to 28.3% under matching. Both converge to ~28-29% genuine item-level DIF.
+97	
+98	2. **"Ground truth critique is obvious — of course web labels don't capture differential effects"** — Not obvious: the field routinely uses these labels for item-level validation. We provide the first empirical demonstration with both the enrichment≈1.0 result and the semi-synthetic proof of concept.
+99	
+100	3. **"Semi-synthetic injection is artificial"** — We inject into real response matrices (not simulated), preserving real ability distributions and item characteristics. The mechanism (incorrect→correct flipping) is a simplification acknowledged in limitations.
+101	
+102	4. **"DIF power is only sufficient for large effects"** — Large effects are precisely what threaten benchmark validity most. Operational region: N≥80, δ≥1.4, TPR=0.68-0.80.
+103	
+104	5. **"Only validated on MMLU"** — Partially addressed: GSM8K replication (METABENCH 1,319 items × 6,702 models) confirms semi-synthetic framework portability (ΔTPR=+0.818) and temporal DIF pattern (C%=18.9%). **plan_028 in progress**: checking METABENCH for ARC/HellaSwag/WinoGrande/TruthfulQA response matrices to run multi-benchmark temporal DIF. Full generalization to diverse benchmarks remains future work if METABENCH lacks other benchmarks.
+105	
+106	6. **"Higher methods (MIMIC, propensity-score) could solve the confounding"** — Acknowledged as future work. We frame our three-attempt negative results as "empirical observation" that motivates these directions, not as impossibility.
+107	
+108	7. **"ETS threshold is uncalibrated for LLM populations"** — ✅ RESOLVED (plan_018). C% at {1.0, 1.5, 2.0, 2.5} = {48.9%, 31.3%, 18.3%, 10.2%}. Finding >15% holds at standard thresholds [1.0, 2.0]. At conservative 2.5, still 10.2% (1,278 items). Present as: "finding is robust across standard thresholds; even at the most conservative cutoff, >10% of items show large DIF." Do NOT claim ">15% at all thresholds" — be honest that 2.5 drops below.
+109	
+110	8. **"Multiple testing: 12,508 simultaneous tests without correction"** — ✅ RESOLVED (plan_018). BH FDR correction at q=0.05 removes only 3/3,918 ETS C items (31.32%→31.30%). At higher thresholds, BH impact is zero. ETS dual requirement (effect size + significance) provides near-complete implicit protection. Random-split sanity check (C%=0.18%) confirms empirically.
+111	
+112	9. **"Only uniform DIF — non-uniform DIF plausible for LLMs"** — ✅ RESOLVED (plan_021). LR-DIF on 9 subjects (1787 items): MH C-class 92.1% concordance with LR uniform DIF → MH detection robust. Non-uniform DIF: 38.7% at significance threshold, **24.8% at |β_interaction|≥0.5** (conservative, effect-size controlled). MH structurally underestimates instability. Caveat: LR used within-subject matching (vs MH's cross-benchmark), so 38.7% may be inflated; use 24.8% in paper. Framing: "our 31% uniform-only estimate is conservative."
+113	
+114	10. **"5,227 models are not independent — fine-tunes/merges inflate N and DIF significance"** — ✅ RESOLVED (plan_022). Graduated de-duplication (capping models per family at K=1,2,5,10,20) shows C% ≤ random subsample control at every cap: K=20 (447 models) C%=29.1% vs random 30.9%; K=5 (146 models) C%=11.7% vs random 16.9%; K=1 (33 families) C%=0.17% (underpowered, N<80). Family structure does NOT inflate C% — if anything, de-duplication reduces it slightly less than random subsampling. The 31.3% figure is robust to model non-independence.
+115	
+116	11. **"Ranking disruption result is tautological"** — ✅ RESOLVED (plan_020). Circularity ablation shows DIF removal is the LEAST disruptive non-random strategy: z=-9.5 vs accuracy-gap z=-157, discrimination z=-16, variance z=-108. Despite 62.6% item overlap with accuracy-gap selection, MH ability conditioning makes DIF 10-16× less disruptive. DIF isolates genuine differential functioning, not just items with large raw group differences. Tautology refuted.
+117	
+118	## Dropped from Original Framing
+119	
+120	- **Ensemble (Claim 2 old)**: plan_003a/b/c never executed. Future work.
+121	- **Regeneration (Claim 3 old)**: Bifactor killed by plan_014 pre-check. Dropped entirely.
+122	- **RL robustness**: Theoretically motivated but N=13 insufficient. Limitations disclosure, not claim.
+123	- **Detection as primary contribution**: Pivoted from "we detect contamination" to "we characterize benchmark properties."
+124	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5f192996-f2ff-4bd5-bba3-a587ae6d5b16",
+  "isSidechain": false,
+  "promptId": "b0a8748b-21cc-4295-b093-9b740dba37c7",
+  "type": "user",
+  "uuid": "0d72685e-cf0c-4209-8e3f-1da6b51ab972",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T110541/best/paper_framing.md",
+      "content": "# Paper Framing — irt_equated_bench_regen\n\n## Target Venue\n- Primary: EMNLP 2026 (via ARR; long paper 8-page limit + unlimited refs)\n- Page limit: 8 pages main text (当前 10 页，需压缩 2 页)\n\n## Paper Type\nEmpirical analysis / psychometric characterization. Discovery paper, not methods paper. \"DIF reveals benchmark structural problems,\" not \"DIF detects contamination.\"\n\n## Core Claims (4 条, 可证伪)\n\n**Claim 1 (Temporal Comparability Concern)**: ~31% of MMLU items are functionally unstable across model generations — they exhibit large DIF (ETS C, |Δ_MH|≥1.5) between 2023 and 2024-H1 model cohorts. Primary estimate: **31.3%** (temporal cohort, plan_001). All 57 subjects show instability (C% range 20.7–48.4%, unweighted mean ≈30%, plan_001 domain_specificity.csv). Within-subject matching on 5 high-C% subjects yields higher rates (31-45%, avg 38.1%, plan_014) — report as robustness check, not primary. This instability is not a statistical artifact (random split sanity check: 0.18%), and correlates weakly with domain-specific accuracy improvement (ρ=0.307, p=0.02), but item-level decomposition shows domain improvement explains only 2.4pp (7.6%). Architecture heterogeneity is a non-issue: METABENCH MMLU is 99.98% decoder-only (5226/5227), excluding the 1 non-decoder model changes nothing (Jaccard=1.0). Threshold sensitivity robustness confirmed: C% ranges from 48.9% (|Δ_MH|≥1.0) to 18.3% (|Δ_MH|≥2.0) to 10.2% (|Δ_MH|≥2.5). BH FDR correction at q=0.05 has negligible impact (removes 3/3,918 items).\n- Evidence: plan_001 (C%=31.3%), plan_014 (within-subject C%=38.1%), plan_010 (arch-stratified: 99.98% decoder-only, C% unchanged, Jaccard=1.0), plan_018 (threshold: 49/31/18/10% at 1.0/1.5/2.0/2.5; BH negligible), plan_019 (decomposition: ≤2.4pp/7.6% explained by domain improvement), plan_022 (model independence: graduated de-duplication to 1 model per family → C% ≤ random subsample control at every cap K; K=20: 29.1% vs random 30.9%, K=5: 11.7% vs random 16.9%; family structure does NOT inflate C%), plan_027 (temporal ability overlap: d=-0.17, OVL=76.4%; 1:1 NN matching C%=28.9%±0.1% vs full 31.3% — ability confound explains only 2.4pp; contrast with Llama-2v3 d=-0.99→matched C%=28.3%, where ability confound explains 33pp)\n- Honesty requirement: ρ=0.307 (p=0.02) at subject level reflects a modest ecological correlation. Item-level decomposition (plan_019) shows domain improvement accounts for at most 2.4pp of 31.3% C% (7.6%; pseudo R²=0.0007). The instability is predominantly item-specific. Caveat: item difficulty may be a mediator rather than confounder — use Model 1 as primary; Model 2 (Simpson's paradox) as supplementary.\n- IRT fit: 98% of models show |Lz|>2, reflecting MMLU's inherent multidimensionality (57 subjects), not architecture heterogeneity. 1D IRT is fundamentally misspecified for MMLU — discuss in limitations as motivation for future multidimensional IRT work.\n\n**Claim 2 (Ground Truth Meta-critique)**: Existing contamination detection literature validates against web-overlap/n-gram labels that measure global exposure (whether an item is publicly accessible), not differential contamination (whether an item functions differently across model cohorts). DIF enrichment≈1.0 against Li et al. labels is expected, not failure — these labels cannot evaluate item-level differential detectors. This is a fundamental validation methodology gap: all work using web-overlap labels as ground truth for item-level detectors (including Min-K%, n-gram methods) has the same blind spot. **Empirically validated** (plan_026): direct comparison of DIF-C flags vs Li et al. web-overlap labels on 9,229 MMLU items shows enrichment=0.964, Jaccard=0.206, Phi=0.012, χ²=1.28 (p=0.258), OR=1.05 [0.96, 1.15]. Consistent across subtypes (input_only: 0.986, input_and_label: 0.960). Semi-synthetic injection confirms DIF can detect differential contamination (ΔTPR=+0.508 at p=0.5, dose-response from p=0.3 to p=1.0).\n- Evidence: plan_001 (enrichment=0.96), plan_026 (direct comparison: enrichment=0.964, Jaccard=0.206, p=0.258), plan_011 (ΔTPR=+0.508, dose-response)\n- Framing: aggressive — \"the field's standard validation approach is fundamentally mismatched for item-level detection\" — now with direct empirical evidence, not just conceptual argument\n\n**Claim 3 (Semi-synthetic Validation Framework)**: The ΔTPR methodology — injecting known differential contamination into real response matrices and measuring detection power increase — provides a controlled validation infrastructure for any item-level contamination detector. Cross-subject matching (using total score on OTHER subjects as MH matching variable) eliminates FPR inflation (ΔFPR=0.000 across all 5 tested subjects), while within-subject matching suffers from matching variable contamination (FPR inflation +0.186).\n- Evidence: plan_011, plan_016 (ΔFPR=0.000 cross-subject, 4/5 subjects ΔTPR>0.3), plan_004 Step 2 (GSM8K ΔTPR=+0.818 standard, +0.517 external)\n- Cross-benchmark: GSM8K replication confirms framework portability to single-domain math benchmarks\n- Positioning: cross-subject matching is a practical methodological recommendation; cross-benchmark replication strengthens generalizability\n\n**Claim 4 (Downstream Impact — Four-Layer Finding)**: DIF as diagnostic lens, not quality filter. Four sub-findings:\n1. **Benchmark redundancy**: ρ≈0.997 between full and stable-only rankings — MMLU rankings are extremely robust to 31% item removal, revealing massive measurement redundancy in the benchmark.\n2. **DIF items carry cross-cohort signal but are NOT the most ranking-defining items**: DIF removal causes MORE disruption than random removal (z=-8 to -49σ, 21/21 conditions), confirming DIF items are non-trivial. But circularity ablation (plan_020) shows DIF is the LEAST disruptive non-random strategy: accuracy-gap removal disrupts 10-16× more (z=-157 vs -9.5), high-variance 11× more (z=-108), high-discrimination 1.7× more (z=-16). MH's ability conditioning filters out raw accuracy differences, isolating genuine differential functioning rather than generally informative items. DIF-discrimination overlap is only 22.1% (Jaccard=0.12) — DIF identifies \"items that changed across generations,\" not \"good items.\"\n3. **DIF as diagnostic lens**: DIF identifies which items' functioning changes most across model generations → reveals which capability dimensions drive ranking shifts. Not \"find bad items and remove\" but \"understand what changed and why.\" Model-specific patterns: phi-3/llama-3 gain +700-850 ranks from DIF items, mistral merges lose -400 to -587. **Item characterization** (plan_023): DIF-C items are moderately harder (Cohen's d=-0.247) and higher-discrimination (d=0.230) than non-DIF items, but uniformly distributed across MMLU domains (χ² p=0.32). Key finding: difficulty × DIF direction interaction (ρ=-0.597) — hardest-decile DIF-C items are 88.7% focal-favoring (2024 models do better), easiest-decile are 96.2% reference-favoring (2023 models do better). This reveals a systematic pattern: capability improvement concentrates on hard items, while easy items' difficulty structure erodes across generations.\n4. **Cross-benchmark validation (exploratory)**: On GSM8K (1,319 items × 6,702 models), DIF flags anti-correlate with GSM1K contamination gap (r=−0.478, p=0.005, N=33). **DEMOTED to exploratory** per Dream #6 three-tier consensus: N=33, CI wide [−0.71, −0.16], not strong enough for numbered contribution. This evidence is suggestive but should NOT appear in abstract/conclusion as core support.\n- Evidence: plan_017 (z=-8 to -49σ, ρ=0.996-0.999), plan_020 (circularity ablation: DIF z=-9.5 vs acc-gap z=-157, disc z=-16, var z=-108), plan_023 (item characterization: difficulty ρ=-0.597, domain uniformity χ² p=0.32)\n- Architecture: plan_017 is load-bearing (strong, full N=5,227). plan_020 circularity ablation is the second pillar. GSM1K correlation (plan_004 Step 3) is supplementary/exploratory only.\n- Growing Pains互补: \"Growing Pains uses anchor items for efficient evaluation; our DIF diagnostic tells them which anchor items are degrading\"\n- Caveats (→ limitations): N=33, Pearson CI upper bound |r|=0.155 (small effect possible), Spearman CI upper bound |ρ|=0.031 (near zero possible); item difficulty confound not fully excluded (DIF-C items harder for all models); contamination gap is proxy, not ground truth; replication with larger matched sample needed\n\n## Story Spine (v2 — no-pivot narrative)\n\n**Opening frame**: LLM benchmarks implicitly assume temporal score comparability — when we say \"Model B outperforms Model A on MMLU,\" we presume both scores reflect the same latent construct. But do they? Psychometrics has a mature tool for testing exactly this: Differential Item Functioning (DIF) analysis detects items whose difficulty changes across examinee groups after controlling for overall ability. We apply MH-DIF to the METABENCH response matrix (5,227 models × 12,508 MMLU items) — the largest-scale DIF analysis on LLM benchmarks to date.\n\n**Key narrative principle**: \"Instability ≠ invalidity.\" DIF flags items whose functioning changed across generations — this is a diagnostic signal, not a quality verdict. MMLU rankings are massively redundant (ρ≈0.997 after removing 31% of items), so instability doesn't threaten validity. But it reveals WHICH capability dimensions are shifting. **This framing must appear in the Introduction, not be deferred to Discussion.**\n\n**What we find** (4 contributions, focused):\n\n1. **31% of MMLU items are functionally unstable** across model generations (ETS C, |Δ_MH|≥1.5). Robust to threshold choice (49%/31%/18%/10% at 1.0/1.5/2.0/2.5), multiple testing (BH removes 3/3918 items), and architecture composition (99.98% decoder-only). Domain accuracy improvement explains ≤2.4pp of 31.3% C% (7.6%; pseudo R²=0.0007). The instability is predominantly item-specific, not a proxy for \"models got better.\"\n\n2. **Ground truth meta-critique**: Web-overlap contamination labels measure global exposure, not differential contamination. Enrichment≈1.0 is expected. Semi-synthetic injection confirms DIF detects differential contamination (ΔTPR=+0.508). Any item-level detector validated against web-overlap labels has this blind spot.\n\n3. **Semi-synthetic validation framework**: ΔTPR methodology with cross-subject matching (ΔFPR=0.000). Portable across benchmarks (GSM8K ΔTPR=+0.818). Reusable for validating any item-level contamination detector.\n\n4. **DIF as diagnostic lens + actionable protocol**: DIF items carry cross-cohort signal (z=-8 to -49σ vs random) but are the LEAST disruptive non-random strategy (z=-9.5 vs accuracy-gap z=-157). DIF isolates genuine differential functioning, not just informative items. **Actionable contribution**: DIF audit protocol for benchmark maintainers (monitoring frequency, decision rules, response options).\n\n**Headline result**: \"Psychometric DIF analysis of 5,227 models × 12,508 MMLU items reveals 31% temporal instability — robust across thresholds, not driven by capability improvement (≤7.6%), and not a validity threat (ρ≈0.997 ranking stability). The field's web-overlap ground truth cannot capture this differential signal; we provide a semi-synthetic validation framework with cross-subject matching (ΔFPR=0.000). DIF serves as a diagnostic lens for understanding what changed across model generations, with a concrete audit protocol for benchmark maintenance.\"\n\n## Scope Control (main body vs appendix)\n\n**MAIN BODY (4 claims + robustness)**:\n- §1 Introduction (problem + \"instability ≠ invalidity\" framing upfront)\n- §2 Related Work (45 papers, 5 clusters)\n- §3 Method (MH-DIF primer, semi-synthetic framework, cross-subject matching)\n- §4 Experiments: Claim 1 (temporal DIF + threshold + BH + decomposition + architecture), Claim 2 (enrichment + meta-critique), Claim 3 (semi-synthetic + cross-benchmark), Claim 4 (redundancy + circularity ablation + diagnostic lens + GSM1K validation)\n- §5 Discussion + Limitations\n- §6 Conclusion\n\n**APPENDIX (pruned from main body)**:\n- Bayesian cumulative DIF (plan_007) — simulation-only, underdeveloped\n- RL robustness (plan_002) — N=13, underpowered\n- Ensemble fusion (plan_003a/b/c) — negative, not executed\n- Bifactor equating pilot — below target fit\n- Item generation pilot — below benchmarks\n- Graceful degradation — clean but supplementary\n- Item-Focused Trees — robustness check, supplementary\n- ConStat/DVD comparisons — complementary baselines\n\n## Empirical Observation: Structural Constraints on DIF in LLM Benchmarks\n\nSystematic experimentation reveals that three structural improvements — matched-ability cohort design (plan_001b), IRT θ-conditioning (plan_012, r=0.9986), and bifactor pre-check (plan_014, within-subject C%=38.1%) — all fail to reduce temporal DIF baseline FPR below 31% while maintaining detection power. This is an empirical observation, not a formal impossibility result. The constraints arise from: (a) unidimensional IRT limitations in modeling 57-subject multidimensional ability, (b) statistical power requirements (N≥80, δ≥1.4), and (c) inability to separate ability confounding from genuine item-level changes. Higher-level methods (MIMIC, propensity-score matching, multidimensional IRT) may address individual constraints — future work.\n\n## Venue Fit\n\n- **EMNLP 2026**: Strong fit — NLP evaluation methodology is a dedicated area, reviewers expect empirical studies of benchmarks. \"Empirical, not algorithmic\" contribution type well-received. Risk: 8-page limit requires significant compression (current 10 pages). Mitigation: move structural analysis details to appendix.\n\n## Novelty Articulation (三层，显式化)\n\nMH-DIF (1959/1988) is applied without modification. **Explicitly acknowledge this.** Novelty is NOT algorithmic. Three layers of genuine contribution:\n\n1. **Empirical discovery at unprecedented scale**: First DIF analysis on 5,227×12,508 LLM response matrix. Finding: 31% temporal instability is robust across thresholds (10-49%), not explained by capability improvement (≤7.6%), and architecturally homogeneous (99.98% decoder-only). No prior work has characterized item-level stability of LLM benchmarks at this scale. The instability finding itself is new data about MMLU's measurement properties.\n\n2. **Ground truth meta-critique with field-wide implications**: The observation that web-overlap labels cannot validate item-level differential detectors is NOT obvious — the field routinely uses them. This affects the validity claims of Min-K%, ConStat, n-gram methods, and all papers using web-overlap as ground truth. First empirical demonstration (enrichment≈1.0 + semi-synthetic proof).\n\n3. **Semi-synthetic validation framework + cross-subject matching**: The ΔTPR methodology is a reusable infrastructure contribution. Cross-subject matching (ΔFPR=0.000) is a novel practical innovation — the insight that within-subject matching contaminates the conditioning variable is subtle and general. Portable to any multi-domain benchmark (demonstrated on GSM8K).\n\n**Framing**: \"We bring mature psychometric tools to characterize an urgent ML evaluation problem. The contribution is the empirical findings, the validation methodology critique, and the reusable framework — not a new algorithm.\"\n\n## Anticipated Reviewer Concerns (updated for pivot)\n\n1. **\"31% could just mean models got better / ability confound inflates C%\"** — ✅ RESOLVED (plan_019 + plan_027). Item-level decomposition shows domain improvement explains ≤2.4pp of 31.3% C% (7.6%; pseudo R²=0.0007). Temporal cohort ability gap is negligible (d=-0.17, OVL=76.4%); 1:1 NN matching (d≈-0.01) yields C%=28.9%±0.1% vs full 31.3% — ability confound explains only 2.4pp. Contrast: Llama-2v3 (d=-0.99) drops from 61.3% to 28.3% under matching. Both converge to ~28-29% genuine item-level DIF.\n\n2. **\"Ground truth critique is obvious — of course web labels don't capture differential effects\"** — Not obvious: the field routinely uses these labels for item-level validation. We provide the first empirical demonstration with both the enrichment≈1.0 result and the semi-synthetic proof of concept.\n\n3. **\"Semi-synthetic injection is artificial\"** — We inject into real response matrices (not simulated), preserving real ability distributions and item characteristics. The mechanism (incorrect→correct flipping) is a simplification acknowledged in limitations.\n\n4. **\"DIF power is only sufficient for large effects\"** — Large effects are precisely what threaten benchmark validity most. Operational region: N≥80, δ≥1.4, TPR=0.68-0.80.\n\n5. **\"Only validated on MMLU\"** — Partially addressed: GSM8K replication (METABENCH 1,319 items × 6,702 models) confirms semi-synthetic framework portability (ΔTPR=+0.818) and temporal DIF pattern (C%=18.9%). **plan_028 in progress**: checking METABENCH for ARC/HellaSwag/WinoGrande/TruthfulQA response matrices to run multi-benchmark temporal DIF. Full generalization to diverse benchmarks remains future work if METABENCH lacks other benchmarks.\n\n6. **\"Higher methods (MIMIC, propensity-score) could solve the confounding\"** — Acknowledged as future work. We frame our three-attempt negative results as \"empirical observation\" that motivates these directions, not as impossibility.\n\n7. **\"ETS threshold is uncalibrated for LLM populations\"** — ✅ RESOLVED (plan_018). C% at {1.0, 1.5, 2.0, 2.5} = {48.9%, 31.3%, 18.3%, 10.2%}. Finding >15% holds at standard thresholds [1.0, 2.0]. At conservative 2.5, still 10.2% (1,278 items). Present as: \"finding is robust across standard thresholds; even at the most conservative cutoff, >10% of items show large DIF.\" Do NOT claim \">15% at all thresholds\" — be honest that 2.5 drops below.\n\n8. **\"Multiple testing: 12,508 simultaneous tests without correction\"** — ✅ RESOLVED (plan_018). BH FDR correction at q=0.05 removes only 3/3,918 ETS C items (31.32%→31.30%). At higher thresholds, BH impact is zero. ETS dual requirement (effect size + significance) provides near-complete implicit protection. Random-split sanity check (C%=0.18%) confirms empirically.\n\n9. **\"Only uniform DIF — non-uniform DIF plausible for LLMs\"** — ✅ RESOLVED (plan_021). LR-DIF on 9 subjects (1787 items): MH C-class 92.1% concordance with LR uniform DIF → MH detection robust. Non-uniform DIF: 38.7% at significance threshold, **24.8% at |β_interaction|≥0.5** (conservative, effect-size controlled). MH structurally underestimates instability. Caveat: LR used within-subject matching (vs MH's cross-benchmark), so 38.7% may be inflated; use 24.8% in paper. Framing: \"our 31% uniform-only estimate is conservative.\"\n\n10. **\"5,227 models are not independent — fine-tunes/merges inflate N and DIF significance\"** — ✅ RESOLVED (plan_022). Graduated de-duplication (capping models per family at K=1,2,5,10,20) shows C% ≤ random subsample control at every cap: K=20 (447 models) C%=29.1% vs random 30.9%; K=5 (146 models) C%=11.7% vs random 16.9%; K=1 (33 families) C%=0.17% (underpowered, N<80). Family structure does NOT inflate C% — if anything, de-duplication reduces it slightly less than random subsampling. The 31.3% figure is robust to model non-independence.\n\n11. **\"Ranking disruption result is tautological\"** — ✅ RESOLVED (plan_020). Circularity ablation shows DIF removal is the LEAST disruptive non-random strategy: z=-9.5 vs accuracy-gap z=-157, discrimination z=-16, variance z=-108. Despite 62.6% item overlap with accuracy-gap selection, MH ability conditioning makes DIF 10-16× less disruptive. DIF isolates genuine differential functioning, not just items with large raw group differences. Tautology refuted.\n\n## Dropped from Original Framing\n\n- **Ensemble (Claim 2 old)**: plan_003a/b/c never executed. Future work.\n- **Regeneration (Claim 3 old)**: Bifactor killed by plan_014 pre-check. Dropped entirely.\n- **RL robustness**: Theoretically motivated but N=13 insufficient. Limitations disclosure, not claim.\n- **Detection as primary contribution**: Pivoted from \"we detect contamination\" to \"we characterize benchmark properties.\"\n",
+      "numLines": 124,
+      "startLine": 1,
+      "totalLines": 124
+    }
+  },
+  "sourceToolAssistantUUID": "5f192996-f2ff-4bd5-bba3-a587ae6d5b16",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 11_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260521T110541 tier=best 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_…",
+  "leafUuid": "0d72685e-cf0c-4209-8e3f-1da6b51ab972",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 12_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate IRT equated benchmark validation paper",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T11:29:25.130Z_
+
+<details><summary>↩ Tool result · `toolu_01NJudb1DrSoGeHdqfDpF4Ls`</summary>
+
+```text
+1	[
+2	  {
+3	    "name": "real_data_dif_mmlu",
+4	    "description": "METABENCH MMLU 5219×12508 response matrix 上的 MH-DIF 全量分析：temporal cohort (2023 vs 2024-H1)、ability-quintile、within-family、domain-specificity",
+5	    "results": {
+6	      "temporal_ets_c_pct": 31.3,
+7	      "temporal_fpr_li_clean": 0.318,
+8	      "temporal_enrichment": 0.96,
+9	      "ability_ets_c_pct": 2.9,
+10	      "ability_enrichment": 1.19,
+11	      "within_family_llama2v3_c_pct": 61.3,
+12	      "within_family_mistral_mixtral_c_pct": 38.7,
+13	      "domain_spearman_rho": 0.307,
+14	      "domain_spearman_p": 0.02,
+15	      "sanity_random_split_c_pct": 0.18,
+16	      "temporal_ability_jaccard": 0.014,
+17	      "n_subjects_with_dif": "57/57",
+18	      "subject_c_pct_range": "20.7-48.4%",
+19	      "unweighted_subject_mean_c_pct": 30.0
+20	    },
+21	    "tables": [
+22	      "Table 1: Temporal DIF summary — C%=31.3%, random=0.18%, enrichment=0.96, 57/57 subjects affected",
+23	      "Table S1 (appendix): Per-subject C% breakdown (57 rows)"
+24	    ],
+25	    "figures": [],
+26	    "analysis": "Load-bearing result for Claim 1。31.3% 在 best 档下被 6-benchmark replication 交叉验证 (17.9-31.3% range)，reviewer 无法 dismiss 为 MMLU-specific artifact。Random split 0.18% 是最简洁的 \"not chance\" 论证，优于复杂的 permutation test。\n\n\nBest 档下 31.3% C% 是核心锚点数字。Random split 0.18% 提供 174× enrichment baseline， 直接证明非统计噪声。Enrichment≈1.0 against Li et al. 是 expected 而非 failure——web-overlap labels 测量 global exposure，DIF 测量 differential functioning，两者正交。 Within-family Llama-2v3 C%=61.3% 看似高但包含真实 capability jump (d=-0.99)， plan_027 matched analysis 后降至 28.3%，证明 ability confound 解释 33pp。 Domain ρ=0.307 (p=0.02) 是 modest ecological correlation，plan_019 item-level decomposition 将其降至 ≤2.4pp/7.6%——足以说服 reviewer instability 是 item-specific。 57/57 subjects 全部有 DIF 排除了 domain-specific artifact。\n"
+27	  },
+28	  {
+29	    "name": "rl_robustness_validation",
+30	    "description": "验证 DIF 对 alignment-RL 和 reasoning-RL 模型的鲁棒性：SFT baseline vs DPO/ORPO cohort vs 10-15 GRPO/PPO models",
+31	    "results": {
+32	      "sft_baseline_c_pct": 31.8,
+33	      "alignment_rl_cohort_c_pct": 30.5,
+34	      "alignment_rl_jaccard_vs_sft": 0.87,
+35	      "reasoning_rl_n_models": 13,
+36	      "focal_with_rl_c_pct": 31.1,
+37	      "focal_with_rl_jaccard_vs_baseline": 0.92,
+38	      "constat_auroc_sft": 0.72,
+39	      "constat_auroc_alignment_rl": 0.68,
+40	      "constat_auroc_reasoning_rl": 0.49,
+41	      "mink_auroc_sft": 0.75,
+42	      "mink_auroc_alignment_rl": 0.71,
+43	      "mink_auroc_reasoning_rl": 0.44,
+44	      "dif_retention_ratio_vs_sft": 0.96,
+45	      "tost_equivalence_p": 0.03,
+46	      "bootstrap_ci_auroc_dif": [
+47	        0.88,
+48	        0.95
+49	      ],
+50	      "delong_dif_vs_constat_p": 0.002,
+51	      "power_curve_delta_threshold": 1.4,
+52	      "power_at_p04": 0.35,
+53	      "power_at_p07": 0.72,
+54	      "power_at_p10": 0.8
+55	    },
+56	    "tables": [
+57	      "Table S-RL (appendix): DIF stability across cohort compositions (SFT/alignment-RL/+reasoning-RL)"
+58	    ],
+59	    "figures": [],
+60	    "analysis": "Appendix material。N=13 reasoning-RL 是 honest limitation。Best 档 reviewer 接受 \"DIF is group-level, RL robustness requires future dedicated study with larger reasoning-RL sample\" 的 framing。不占主文页面。\n\n\nBest 档下 RL robustness 呈现 positive signal 但因 N=13 reasoning-RL models 统计功效不足。DIF 是 group-level method，13 个 RL 模型混入 N=807 focal cohort 仅占 1.6%，C% 几乎不变 (31.3→31.1%) 是预期结果——不是因为 DIF 对 RL robust， 而是因为 RL models 数量太少无法影响 group statistics。Alignment-RL (DPO/ORPO) 不涉及 PPO clipping/NLL gap contraction，Jaccard=0.87 高一致性是理论预期。 传统 detectors 在 reasoning-RL 上 AUROC 跌至 ~0.45-0.49 提供了 contrast evidence。 但 N=13 使得 bootstrap CI 宽、DeLong test underpowered。Best 档将此定位为 limitations 中的 honest disclosure + future work motivation，不作为 numbered contribution。Reviewer 视之为 \"authors are aware of the limitation\" 而非弱点。\n"
+61	  },
+62	  {
+63	    "name": "constat_perturbation_eval",
+64	    "description": "ConStat-style perturbation测试：200+ MMLU items 的语义等价改写 + FDR-controlled detection",
+65	    "results": {
+66	      "status": "not_executed",
+67	      "reason": "Dropped from scope — ensemble approach (plan_003c) killed after paper pivot to characterization framing",
+68	      "hypothetical_detection_rate": 0.18,
+69	      "hypothetical_overlap_with_dif_jaccard": 0.19,
+70	      "hypothetical_fdr_controlled_items": 145
+71	    },
+72	    "tables": [],
+73	    "figures": [],
+74	    "analysis": "正确 drop。Best 档 reviewer 不会因缺少 ConStat baseline 扣分——paper 不是 methods comparison，是 empirical characterization。\n\n\nBest 档下 ConStat eval 未执行且无需执行。Paper 从 \"detect contamination\" pivot 到 \"characterize benchmark properties\"，ensemble detection 不再是 contribution。 ConStat 测量 perturbation sensitivity（item 换种问法模型还能否答对），这与 DIF 测量的 temporal differential functioning 是正交信号。即使执行，Jaccard ~0.19 的低重叠 既不 support 也不 undermine 核心 claims。Reviewer 不会要求执行一个与 paper narrative 不相关的 baseline。Best 档将 ConStat/DVD 列入 Related Work 讨论 (§2 中已有 45 papers/5 clusters)，定位为 \"complementary but orthogonal approach\"。\n"
+75	  },
+76	  {
+77	    "name": "dvd_generation_variance_eval",
+78	    "description": "DVD generation variance 检测：10-15 open-weight models × 50 responses/item，温度采样 T=0.7-1.0",
+79	    "results": {
+80	      "status": "not_executed",
+81	      "reason": "Dropped with ensemble — GPU budget 70h not justified for supplementary signal",
+82	      "hypothetical_bimodal_items_pct": 12.5,
+83	      "hypothetical_overlap_with_dif_jaccard": 0.13
+84	    },
+85	    "tables": [],
+86	    "figures": [],
+87	    "analysis": "正确 drop。Best 档 framing 是 \"DIF as diagnostic lens\"，不是 \"comprehensive detection toolkit comparison\"。\n\n\n同 plan_003a 逻辑。DVD 检测 variant contamination（模型在 paraphrase 上表现方差异常）， 与 DIF 的 temporal cohort contrast 方法论完全不同。Best 档下 GPU budget (70h) 分配给更高优先级的 plan_002 (100h)。Hypothetical Jaccard ~0.13 说明即使执行， DVD 捕获的 items 与 DIF 重叠极低——这本身可以是 interesting finding，但不足以 justify 70h GPU + 额外 0.5 页篇幅在已经需要压缩 2 页的论文中。\n"
+88	  },
+89	  {
+90	    "name": "ensemble_fusion",
+91	    "description": "DIF + ConStat + DVD 三信号融合：majority voting + weighted fusion + 5-fold cross-validation",
+92	    "results": {
+93	      "status": "not_executed",
+94	      "reason": "Killed — depends on 003a/003b, both dropped; ensemble is old 'detection' framing, incompatible with current 'characterization' narrative"
+95	    },
+96	    "tables": [],
+97	    "figures": [],
+98	    "analysis": "Killed early 是正确决策。Best 档下 reviewer 看重 narrative coherence。\n\n\nEnsemble 是 original Claim 2 (\"multi-signal detection\") 的核心。Paper pivot 后 Claim 2 变成 \"ground truth meta-critique\"，ensemble 变成 conceptual orphan。 Best 档 reviewer 看到 ensemble 反而会问 \"为什么 characterization paper 里有 detection ensemble？narrative 不一致\"。正确 kill。\n"
+99	  },
+100	  {
+101	    "name": "cross_benchmark_gsm8k",
+102	    "description": "GSM8K (1319 items × 6702 models) 上的 DIF 复制 + GSM1K ground truth correlation + semi-synthetic framework portability",
+103	    "results": {
+104	      "step1_gsm8k_temporal_c_pct": 18.9,
+105	      "step1_sanity_c_pct": 0.3,
+106	      "step1_standard_external_spearman": 0.926,
+107	      "step2_standard_delta_tpr_p10": 0.818,
+108	      "step2_external_delta_tpr_p10": 0.517,
+109	      "step3_n_models": 33,
+110	      "step3_pearson_r": -0.478,
+111	      "step3_spearman_rho": -0.403,
+112	      "step3_partial_r_controlling_accuracy": -0.385,
+113	      "step3_permutation_p": 0.014,
+114	      "step3_direction": "NEGATIVE — DIF-C items anti-correlate with contamination gap",
+115	      "step3_leave_one_out_r_range": "-0.537 to -0.374",
+116	      "step3_robust": true
+117	    },
+118	    "tables": [
+119	      "Table S-GSM8K: Step 1-3 summary metrics"
+120	    ],
+121	    "figures": [],
+122	    "analysis": "GSM8K 结果在 best 档下 serve two roles：(1) 6-benchmark consistency 的一个数据点 (2) semi-synthetic framework portability 的独立验证。GSM1K negative correlation 被 correctly demoted to exploratory per Dream #6 three-tier consensus。\n\n\nBest 档下 GSM8K C%=18.9% 落在 cross-benchmark range 下端 (17.9-31.3%)，与 6-benchmark pattern 一致，强化 generalizability。Semi-synthetic ΔTPR=+0.818 (standard matching) 显著高于 MMLU 的 +0.674——单一 domain benchmark 的 matching variable 更干净（GSM8K 只有数学一个 domain，cross-subject matching 实际上是 external score matching）。 GSM1K correlation r=-0.478 方向为负（DIF 高的 models 反而 contamination gap 小）， counter-intuitive 但在 best 档下被 framing 为：DIF 检测的是 differential functioning 而非 contamination，web-overlap contamination gap 和 DIF 正交——这恰恰 empirically 证实了 Claim 2 的 ground truth meta-critique。N=33 和 CI width 导致此结果被 demote 到 exploratory，reviewer 接受这个 honest positioning。\n"
+123	  },
+124	  {
+125	    "name": "bifactor_irt_equating_pilot",
+126	    "description": "Bifactor IRT equating on MMLU: general factor + 57 subject-specific factors, anchor item selection, fixed-parameter calibration",
+127	    "results": {
+128	      "status": "killed",
+129	      "bifactor_fit_rmsea": 0.038,
+130	      "bifactor_fit_cfi": 0.72,
+131	      "bifactor_general_factor_variance_explained": 0.31,
+132	      "anchor_item_selection_n": 0,
+133	      "kill_reason": "plan_014 pre-check showed within-subject C%=38.1% — no stable anchor items exist; bifactor fit inadequate (CFI<0.90) for 57-subject MMLU"
+134	    },
+135	    "tables": [],
+136	    "figures": [],
+137	    "analysis": "Killed 后其残余价值是 Discussion 中一句话：\"bifactor equating was infeasible due to MMLU's extreme multidimensionality (57 subjects, within-subject C%=38.1%), motivating future work on multidimensional IRT approaches.\"\n\n\nBest 档下 bifactor 被 plan_014 pre-check 正确 kill。Within-subject C%=38.1% 意味着即使控制 subject-level ability，仍有 ~38% items 是 unstable——没有足够的 stable anchor items 来做 equating。MMLU 的 57-subject 结构使得 bifactor model 需要估计 58 个 latent factors (1 general + 57 specific)，N=5219 models 对此 参数量严重不足 (items-per-factor ratio ≈ 216，但 models-per-factor ≈ 90， 低于 bifactor recommended minimum ~200)。CFI=0.72 远低于 0.90 threshold。 Best 档 reviewer 看到 \"we tried IRT equating, structural pre-checks killed it, this motivates future multidimensional IRT work\" 视为 methodological honesty。\n"
+138	  },
+139	  {
+140	    "name": "item_generation_calibration",
+141	    "description": "LLM-based replacement item generation for DIF-flagged MMLU items + student simulation calibration",
+142	    "results": {
+143	      "status": "not_executed",
+144	      "reason": "Dependency plan_005 killed — no equating framework to calibrate into",
+145	      "hypothetical_difficulty_rho_prompt_based": 0.28,
+146	      "hypothetical_difficulty_rho_sim_calibrated": 0.78
+147	    },
+148	    "tables": [],
+149	    "figures": [],
+150	    "analysis": "正确 drop。Regeneration 是 separate paper 的工作量。\n\n\nplan_005 killed 后 plan_006 失去了 calibration target。即使独立执行，prompt-based difficulty targeting (ρ≈0.28 per 文献 arXiv 2602.06631) 不足以替代 empirical calibration。Student simulation (arXiv 2601.09953) 可提升到 ρ≈0.78，但没有 equating framework，generated items 无法嵌入 benchmarks 进行 equated scoring。 Best 档不需要此实验——paper contribution 是 \"characterize instability + provide audit protocol\"，不是 \"regenerate benchmark\"。Reviewer 不期望 discovery paper 同时 solve the problem it discovers。\n"
+151	  },
+152	  {
+153	    "name": "cumulative_bayesian_dif",
+154	    "description": "Sinharay et al. (2006) cumulative Bayesian DIF priors：4 successive administrations simulation, power accumulation curve",
+155	    "results": {
+156	      "single_admin_power_delta10": 0.42,
+157	      "cumulative_2admin_power_delta10": 0.58,
+158	      "cumulative_3admin_power_delta10": 0.69,
+159	      "cumulative_4admin_power_delta10": 0.74,
+160	      "single_admin_power_delta14": 0.68,
+161	      "cumulative_3admin_power_delta14": 0.85,
+162	      "false_positive_rate_cumulative": 0.048,
+163	      "prior_shrinkage_effect": "medium-effect items (δ=1.0) benefit most from accumulation; large-effect (δ≥1.4) already detected in single admin"
+164	    },
+165	    "tables": [
+166	      "Table S-Bayes: Power × #administrations × effect size matrix"
+167	    ],
+168	    "figures": [],
+169	    "analysis": "Appendix only。Best 档下提供 forward-looking value——如果 benchmark maintainers adopt DIF audit protocol (Claim 4)，cumulative priors 使得 monitoring across quarterly releases 更有统计 power。与 audit protocol 形成 conceptual bridge。\n\n\nBest 档下 cumulative Bayesian DIF 是 simulation-only appendix material。 Power 从 single-admin 0.42 上升到 3-admin 0.69 (δ=1.0) 是理论预期——Bayesian prior 将前一轮的 posterior 作为下一轮的 prior，evidence accumulates across independent administrations。FPR 保持在 0.048 因为 null items 的 posterior 在每轮 administration 中 shrink toward zero。对 medium effects (δ=1.0) 提升最大 是因为这些 items 在 single admin 中 power 不足 (0.42)，有最大的 improvement margin； large effects (δ≥1.4) 在 single admin 已有 power=0.68+，accumulation 边际收益递减。 Best 档 reviewer 视此为 \"nice forward-looking contribution\" 但不是 core claim。\n"
+170	  },
+171	  {
+172	    "name": "graceful_degradation_analysis",
+173	    "description": "Progressive item replacement 下 benchmark validity 退化分析：5%-50% replacement rate × ranking stability/reliability/construct coverage",
+174	    "results": {
+175	      "replacement_5pct_rho": 0.9991,
+176	      "replacement_10pct_rho": 0.9978,
+177	      "replacement_20pct_rho": 0.9943,
+178	      "replacement_50pct_rho": 0.9712,
+179	      "replacement_5pct_reliability_alpha": 0.982,
+180	      "replacement_10pct_reliability_alpha": 0.979,
+181	      "replacement_20pct_reliability_alpha": 0.971,
+182	      "replacement_50pct_reliability_alpha": 0.938,
+183	      "construct_coverage_maintained_up_to": "30% replacement",
+184	      "critical_degradation_threshold": "~40% replacement → ρ < 0.98"
+185	    },
+186	    "tables": [
+187	      "Table S-Degrade: Replacement rate × validity metric matrix"
+188	    ],
+189	    "figures": [],
+190	    "analysis": "Appendix/supplementary。Best 档下 reinforces Claim 4 的 \"massive redundancy\" sub-finding (ρ≈0.997)。不是 core contribution 但 provides quantitative backing for the \"instability ≠ invalidity\" narrative。\n\n\nBest 档下 graceful degradation 用 simplified version（random replacement from same-subject item pool，而非 plan_005/006 的 calibrated replacement）。Plan_017 已经证明 removing 31% DIF items 后 ρ=0.996-0.999——这意味着 MMLU 有 massive measurement redundancy。Random replacement 应产生类似结果：在 20% replacement rate 下 ρ>0.99 是因为 12,508 items 中 subjects 内部 items 高度 redundant (plan_013 mean Q3=0.0086 within-subject，说明 local independence 基本成立， 但 subject-level redundancy 很高)。50% replacement 时 ρ 仍 >0.97 因为 ranking 主要由 general factor 决定（bifactor pre-check 显示 general factor 解释 ~31% variance），individual items 的边际贡献极小。这些数字 reinforce \"instability ≠ invalidity\" framing。\n"
+191	  },
+192	  {
+193	    "name": "item_focused_trees",
+194	    "description": "Tutz & Berger (2016) Item-Focused Trees：model release date 作为 continuous covariate，避免 arbitrary cohort split",
+195	    "results": {
+196	      "n_items_with_significant_split": 4287,
+197	      "pct_items_with_temporal_split": 34.3,
+198	      "primary_split_date_median": "2023-09-15",
+199	      "primary_split_date_iqr": "2023-06-01 to 2024-01-15",
+200	      "concordance_with_mh_c_class": 0.81,
+201	      "jaccard_ift_vs_mh_c": 0.74,
+202	      "items_detected_only_by_ift": 812,
+203	      "items_detected_only_by_mh": 443,
+204	      "acceleration_post_mid2023": true,
+205	      "effect_size_gradient_slope": 0.18
+206	    },
+207	    "tables": [
+208	      "Table S-IFT: IFT vs MH concordance matrix + split date distribution"
+209	    ],
+210	    "figures": [],
+211	    "analysis": "Appendix robustness check。Best 档下 serves dual purpose：(1) validates binary split choice, (2) shows continuous treatment produces consistent findings。 一句话在 main text 引用：\"Item-Focused Trees with continuous temporal covariate confirm 81% concordance with binary MH-DIF (Appendix X).\"\n\n\nBest 档下 IFT 作为 robustness check 确认 MH-DIF 的 binary split 不是 arbitrary cutoff artifact。34.3% items 显示 significant temporal split——略高于 MH 的 31.3% 因为 IFT 可以在任意时间点发现 split，不受 2023/2024 binary 限制。Concordance=0.81 说明大部分 MH-C items 也被 IFT 检测到，但有 812 items only IFT detects——这些 可能在 2023 年中某个时间点 function shift，MH 的 binary 粒度无法捕获。 Median split date 2023-09-15 说明 primary transition 发生在 2023 H2， 与 GPT-4/Llama-2 release timing 一致。IFT 结果 strengthen the case that temporal binary split 是 reasonable first-pass：虽然 continuous treatment 更精细，但 81% concordance 说明 binary split 已经 capture 了主要 signal。 Best 档 reviewer 原本可能 concern \"why not quarterly split?\"——IFT 结果 预先回答了这个问题。\n"
+212	  },
+213	  {
+214	    "name": "architecture_stratified_dif",
+215	    "description": "Decoder-only subpopulation DIF：移除 architecture heterogeneity 后检查 IRT fit 和 DIF stability",
+216	    "results": {
+217	      "total_models": 5227,
+218	      "decoder_only_models": 5226,
+219	      "non_decoder_models": 1,
+220	      "decoder_only_pct": 99.98,
+221	      "c_pct_full": 31.3,
+222	      "c_pct_decoder_only": 31.3,
+223	      "jaccard_full_vs_decoder_only": 1.0,
+224	      "irt_fit_rmsea_full": 0.052,
+225	      "irt_fit_rmsea_decoder_only": 0.052,
+226	      "irt_fit_change": "negligible — 1 model removal cannot affect fit",
+227	      "architecture_confound": "non-issue"
+228	    },
+229	    "tables": [],
+230	    "figures": [],
+231	    "analysis": "一句话 in main text 足矣：\"METABENCH MMLU is 99.98% decoder-only (5,226/5,227); excluding the single non-decoder model leaves DIF flags unchanged (Jaccard=1.0).\" Proactively closes architecture heterogeneity concern。\n\n\nBest 档下 architecture stratification 是 trivially resolved concern。METABENCH MMLU 中 5226/5227 models 是 decoder-only (99.98%)，仅 1 个 non-decoder model。 移除 1 个 model 后 Jaccard=1.0 (DIF flags 完全不变)，IRT fit 变化 negligible (RMSEA 变化在 numerical precision 内)。这不是因为 DIF 对 architecture robust， 而是因为 MMLU evaluation landscape 已经 homogeneously decoder-only。Reviewer concern \"IRT misfit comes from architecture heterogeneity\" 被数据直接 refute： heterogeneity 不存在。IRT misfit (98% |Lz|>2) 的真实原因是 MMLU 的 57-subject multidimensionality，不是 architecture mix。Best 档下此实验用一句话报告。\n"
+232	  },
+233	  {
+234	    "name": "semi_synthetic_contamination_validation",
+235	    "description": "已知 ground truth 的 semi-synthetic contamination injection：500 clean items 中注入 100-200 items 的 differential contamination，测量 DIF detection power",
+236	    "results": {
+237	      "temporal_external_tpr_p0_baseline": 0.326,
+238	      "temporal_external_tpr_p03": 0.548,
+239	      "temporal_external_tpr_p05": 0.834,
+240	      "temporal_external_tpr_p07": 0.99,
+241	      "temporal_external_tpr_p10": 1.0,
+242	      "temporal_external_fpr": 0.314,
+243	      "temporal_external_delta_tpr_p05": 0.508,
+244	      "temporal_external_delta_tpr_p10": 0.674,
+245	      "ability_external_delta_tpr_p10": 0.302,
+246	      "standard_mh_fpr_inflation_at_p10": "0.298→0.616",
+247	      "matching_variable_contamination_confirmed": true,
+248	      "cross_subject_matching_delta_fpr": 0.0,
+249	      "dose_response_monotonic": true
+250	    },
+251	    "tables": [
+252	      "Table 2 (main): Semi-synthetic ΔTPR across exploitation rates p ∈ {0.3, 0.5, 0.7, 1.0} — cross-subject vs standard matching"
+253	    ],
+254	    "figures": [],
+255	    "analysis": "Main text Claim 3 核心 evidence。Best 档下 reviewer 视 cross-subject matching (ΔFPR=0.000) 为 \"practical methodological innovation worth reporting\"——subtle insight that within-subject matching contaminates the conditioning variable, with clean empirical demonstration。\n\n\nBest 档下 semi-synthetic 是 Claim 3 的核心 evidence。ΔTPR=+0.508 at p=0.5 意味着在 50% exploitation rate 下，DIF detection power 增加 50.8 个百分点—— 从 baseline 32.6% (already-existing DIF) 到 83.4% (baseline + injected)。 Dose-response 单调递增 (p=0.3→0.5→0.7→1.0 对应 ΔTPR 逐步增加) 证明 detection power 与 contamination intensity 正相关，排除 artifact。 Cross-subject matching ΔFPR=0.000 是 key methodological innovation——在所有 injection levels 下 FPR 完全不变，证明 cross-subject total score 作为 matching variable 不受 target-subject contamination 污染。对比 standard MH matching (within-subject score) FPR 从 0.298 膨胀到 0.616，直接 demonstrate matching variable contamination problem。这个 ΔFPR=0.000 vs 0.186 inflation 的 contrast 是 reviewer 接受 Claim 3 的关键——它既是 methodological contribution 又是 practical recommendation。\n"
+256	  },
+257	  {
+258	    "name": "multi_benchmark_temporal_dif",
+259	    "description": "6-benchmark cross-validation：MMLU, WinoGrande, TruthfulQA, ARC-Challenge, GSM8K, HellaSwag 上的 temporal DIF (2023 vs 2024)",
+260	    "results": {
+261	      "mmlu_c_pct": 31.3,
+262	      "mmlu_random_c_pct": 0.18,
+263	      "mmlu_enrichment": 174,
+264	      "winogrande_c_pct": 30.3,
+265	      "winogrande_random_c_pct": 0.32,
+266	      "winogrande_enrichment": 95,
+267	      "truthfulqa_c_pct": 29.7,
+268	      "truthfulqa_random_c_pct": 0.37,
+269	      "truthfulqa_enrichment": 80,
+270	      "arc_c_pct": 26.9,
+271	      "arc_random_c_pct": 0.6,
+272	      "arc_enrichment": 45,
+273	      "gsm8k_c_pct": 18.9,
+274	      "gsm8k_random_c_pct": 0.3,
+275	      "gsm8k_enrichment": 63,
+276	      "hellaswag_c_pct": 17.9,
+277	      "hellaswag_random_c_pct": 0.28,
+278	      "hellaswag_enrichment": 64,
+279	      "cross_benchmark_range": "17.9-31.3%",
+280	      "all_random_below_1pct": true,
+281	      "min_enrichment_ratio": 45,
+282	      "n_benchmarks": 6
+283	    },
+284	    "tables": [
+285	      "Table 3 (main): 6-benchmark cross-validation summary — N_items, N_ref, N_foc, C%, random C%, enrichment ratio"
+286	    ],
+287	    "figures": [],
+288	    "analysis": "Best 档 cornerstone result。一张 summary table + 一个 figure panel (per paper_framing plan_028 压缩要求)。This single result upgrades the paper from \"interesting MMLU analysis\" to \"generalizable finding about LLM benchmarks as a class\"。Reviewer avg score 从 ~3.5 推到 4.0+ 主要来自此 result。\n\n\nBest 档的 single most important new result。6 benchmarks 全部 C% ≥ 17.9%， all ≥45× above random control，彻底封堵 \"only MMLU\" 攻击面。 C% 变异 (17.9-31.3%) 反映 benchmark structural differences： - MMLU (31.3%) 最高因为 57 subjects 覆盖最广，items 最多 (12,508)，temporal\n  capability shift 有更多 dimensions 可以 manifest as DIF。\n- WinoGrande (30.3%) 和 TruthfulQA (29.7%) 接近 MMLU 因为它们测试 commonsense\n  reasoning 和 factual knowledge——这些 domains 在 2023→2024 变化大 (GPT-4,\n  Llama-2→3 的主要 capability jumps 集中在 reasoning/knowledge)。\n- ARC-Challenge (26.9%) 中等——science reasoning 有 capability jump 但\n  item pool 较小 (1,172) 限制了 DIF detection power。\n- GSM8K (18.9%) 和 HellaSwag (17.9%) 最低因为：GSM8K 是 math word problems，\n  solution structure 更 formulaic，item functioning 更 stable across generations；\n  HellaSwag 是 commonsense NLI，10,042 items 但 item difficulty variance 较低\n  (多数 items 在 easy-to-medium range)，DIF effect size 被 compressed。\nAll random controls <1% 证明 MH-DIF 的 type I error 在所有 benchmarks 上 well-calibrated。45× minimum enrichment (ARC) 使得 \"DIF flags are noise\" 攻击面不可行。\n"
+289	  },
+290	  {
+291	    "name": "permutation_null_c_rate",
+292	    "description": "1000× permutation test：随机重分配 2023/2024 temporal labels，建立 C% null distribution",
+293	    "results": {
+294	      "n_permutations": 1000,
+295	      "null_c_pct_mean": 0.21,
+296	      "null_c_pct_sd": 0.09,
+297	      "null_c_pct_max": 0.58,
+298	      "null_c_pct_p999": 0.52,
+299	      "observed_c_pct": 31.3,
+300	      "z_score": 345.4,
+301	      "empirical_p_value": "<0.001 (0/1000 permutations exceed observed)",
+302	      "effect_size_vs_null": "148× above null mean"
+303	    },
+304	    "tables": [
+305	      "Table S-Perm: Permutation null distribution summary statistics"
+306	    ],
+307	    "figures": [],
+308	    "analysis": "Main text 一句话引用，full results in appendix。\"Permutation test (1,000 iterations) yields null C%=0.21±0.09%, observed 31.3% is >200σ above null (p<0.001).\" 与 random split 0.18% 互补——两种 null construction 给出 一致结论。Best 档下 reviewer 接受 binary split 因为 permutation test demonstrates temporal labels carry genuine signal。\n\n\nBest 档下 permutation null 提供比 random-split control (0.18%) 更严格的 statistical test。Random split 是 within-cohort 随机分组——它控制的是 \"same temporal window 内 MH 是否产生 spurious DIF\"。Permutation test 是 across-cohort label shuffling——它控制的是 \"temporal label assignment 本身是否与 DIF 有关\"。 Null C% mean=0.21% (vs random split 0.18%) 几乎相同因为两者本质上都在测试 \"ability distribution overlap 能否产生 spurious DIF\"——当 labels 被 permute， 两组 ability distributions 变得 exchangeable，MH 的 ability conditioning 使得 spurious DIF 接近 zero。SD=0.09% 说明 null distribution 非常 concentrated， max=0.58% 说明即使最极端的 permutation 也远低于 1%。Z=345 (>200σ) 使得 p<10^{-100} level significance。Best 档 reviewer 看到 permutation test 后不再质疑 \"is 31% above chance?\"——问题 definitively closed。\n"
+309	  },
+310	  {
+311	    "name": "odds_ratio_regression_transparency",
+312	    "description": "Odds ratio + Simpson's paradox 分析：domain-level vs item-level accuracy delta 对 DIF flag 的 logistic regression，McFadden/Nagelkerke R², OR + 95% CI",
+313	    "results": {
+314	      "model1_domain_delta": {
+315	        "mcfadden_r2": 0.0007,
+316	        "nagelkerke_r2": 0.0012,
+317	        "subject_acc_delta_or_per_010": 1.55,
+318	        "subject_acc_delta_or_ci": [
+319	          1.19,
+320	          2.03
+321	        ],
+322	        "interpretation": "domains with larger 2024-2023 accuracy improvement have slightly MORE DIF — naïve positive association"
+323	      },
+324	      "model2_domain_delta_plus_items": {
+325	        "mcfadden_r2": 0.0423,
+326	        "nagelkerke_r2": 0.072,
+327	        "subject_acc_delta_or_per_010": 0.73,
+328	        "ctt_difficulty_or_per_010": 0.78,
+329	        "ctt_discrimination_or_per_010": 1.51,
+330	        "interpretation": "SIMPSON'S PARADOX — after controlling for item difficulty and discrimination, domain improvement NEGATIVELY predicts DIF"
+331	      },
+332	      "model3_item_delta": {
+333	        "mcfadden_r2": 0.0012,
+334	        "nagelkerke_r2": 0.0021,
+335	        "item_acc_change_or_per_010": 1.08,
+336	        "item_acc_change_ci": [
+337	          1.51,
+338	          2.96
+339	        ]
+340	      },
+341	      "model4_item_delta_plus_items": {
+342	        "mcfadden_r2": 0.0434,
+343	        "nagelkerke_r2": 0.0737,
+344	        "item_acc_change_or_per_010": 0.92,
+345	        "ctt_difficulty_or_per_010": 0.77,
+346	        "ctt_discrimination_or_per_010": 1.54
+347	      },
+348	      "simpsons_paradox": true,
+349	      "simpsons_or_flip": "1.55 → 0.73",
+350	      "lr_test_m1_vs_m2_chi2": 646.98,
+351	      "lr_test_m3_vs_m4_chi2": 655.53
+352	    },
+353	    "tables": [
+354	      "Table 4 (main): 4-model logistic regression comparison — predictors, OR [95% CI], McFadden R², LR test"
+355	    ],
+356	    "figures": [],
+357	    "analysis": "Main text Claim 1 的 second pillar (alongside plan_019 decomposition)。 Simpson's paradox 比 R²=0.0007 更直观——reviewer 可能不理解 \"pseudo R² 解释 0.07% variance\"，但一定理解 \"association REVERSES after controlling for confounders\"。Best 档下此 figure 是 paper 中 most memorable visualization—— 两条相反方向的 regression slopes in the same plot。\n\nBest 档的 second most important new result。Simpson's paradox (OR 1.55→0.73) 是 \"ability confound doesn't drive DIF\" 的最强 evidence。 机制：Model 1 只看 domain-level accuracy delta → OR=1.55，因为 capability improvement 大的 domains 确实有更多 DIF items (ρ=0.307 ecological correlation)。 但 Model 2 加入 item-level difficulty 和 discrimination 后 → OR=0.73 REVERSES。 这是因为 DIF-C items 本身有 specific item properties (harder: d=-0.247, higher discrimination: d=0.230, per plan_023)，这些 item properties confound domain-level correlation。Controlling for item properties reveals that domain improvement actually REDUCES DIF probability (OR=0.73 < 1.0)——domains with larger improvement have FEWER DIF items after accounting for item characteristics。\nR² 极低 (McFadden 0.0007→0.0423) 说明即使 best model 也只解释 ~4% variance ——96% of DIF is item-specific, not explained by domain improvement OR item properties。这 reinforces plan_019 的 \"≤2.4pp/7.6%\" 结论 via 完全不同的 statistical framework (logistic regression vs decomposition)，形成 converging evidence。\nBest 档 reviewer 看到 Simpson's paradox reversal 后接受 \"DIF is not driven by capability improvement\"——这是一个 well-known statistical phenomenon， reviewers 理解其 implications。LR test χ²=647 (p≈0) 证明 item properties 是 genuine confounders，不是 noise。\n"
+358	  }
+359	]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "30a0dde7-6a21-46e9-84de-692db8927ef1",
+  "isSidechain": false,
+  "promptId": "b0a8748b-21cc-4295-b093-9b740dba37c7",
+  "type": "user",
+  "uuid": "3ea74c96-7ee8-4b40-a407-f2638ca78a13",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T110541/best/experiment_data.json",
+      "content": "[\n  {\n    \"name\": \"real_data_dif_mmlu\",\n    \"description\": \"METABENCH MMLU 5219×12508 response matrix 上的 MH-DIF 全量分析：temporal cohort (2023 vs 2024-H1)、ability-quintile、within-family、domain-specificity\",\n    \"results\": {\n      \"temporal_ets_c_pct\": 31.3,\n      \"temporal_fpr_li_clean\": 0.318,\n      \"temporal_enrichment\": 0.96,\n      \"ability_ets_c_pct\": 2.9,\n      \"ability_enrichment\": 1.19,\n      \"within_family_llama2v3_c_pct\": 61.3,\n      \"within_family_mistral_mixtral_c_pct\": 38.7,\n      \"domain_spearman_rho\": 0.307,\n      \"domain_spearman_p\": 0.02,\n      \"sanity_random_split_c_pct\": 0.18,\n      \"temporal_ability_jaccard\": 0.014,\n      \"n_subjects_with_dif\": \"57/57\",\n      \"subject_c_pct_range\": \"20.7-48.4%\",\n      \"unweighted_subject_mean_c_pct\": 30.0\n    },\n    \"tables\": [\n      \"Table 1: Temporal DIF summary — C%=31.3%, random=0.18%, enrichment=0.96, 57/57 subjects affected\",\n      \"Table S1 (appendix): Per-subject C% breakdown (57 rows)\"\n    ],\n    \"figures\": [],\n    \"analysis\": \"Load-bearing result for Claim 1。31.3% 在 best 档下被 6-benchmark replication 交叉验证 (17.9-31.3% range)，reviewer 无法 dismiss 为 MMLU-specific artifact。Random split 0.18% 是最简洁的 \\\"not chance\\\" 论证，优于复杂的 permutation test。\\n\\n\\nBest 档下 31.3% C% 是核心锚点数字。Random split 0.18% 提供 174× enrichment baseline， 直接证明非统计噪声。Enrichment≈1.0 against Li et al. 是 expected 而非 failure——web-overlap labels 测量 global exposure，DIF 测量 differential functioning，两者正交。 Within-family Llama-2v3 C%=61.3% 看似高但包含真实 capability jump (d=-0.99)， plan_027 matched analysis 后降至 28.3%，证明 ability confound 解释 33pp。 Domain ρ=0.307 (p=0.02) 是 modest ecological correlation，plan_019 item-level decomposition 将其降至 ≤2.4pp/7.6%——足以说服 reviewer instability 是 item-specific。 57/57 subjects 全部有 DIF 排除了 domain-specific artifact。\\n\"\n  },\n  {\n    \"name\": \"rl_robustness_validation\",\n    \"description\": \"验证 DIF 对 alignment-RL 和 reasoning-RL 模型的鲁棒性：SFT baseline vs DPO/ORPO cohort vs 10-15 GRPO/PPO models\",\n    \"results\": {\n      \"sft_baseline_c_pct\": 31.8,\n      \"alignment_rl_cohort_c_pct\": 30.5,\n      \"alignment_rl_jaccard_vs_sft\": 0.87,\n      \"reasoning_rl_n_models\": 13,\n      \"focal_with_rl_c_pct\": 31.1,\n      \"focal_with_rl_jaccard_vs_baseline\": 0.92,\n      \"constat_auroc_sft\": 0.72,\n      \"constat_auroc_alignment_rl\": 0.68,\n      \"constat_auroc_reasoning_rl\": 0.49,\n      \"mink_auroc_sft\": 0.75,\n      \"mink_auroc_alignment_rl\": 0.71,\n      \"mink_auroc_reasoning_rl\": 0.44,\n      \"dif_retention_ratio_vs_sft\": 0.96,\n      \"tost_equivalence_p\": 0.03,\n      \"bootstrap_ci_auroc_dif\": [\n        0.88,\n        0.95\n      ],\n      \"delong_dif_vs_constat_p\": 0.002,\n      \"power_curve_delta_threshold\": 1.4,\n      \"power_at_p04\": 0.35,\n      \"power_at_p07\": 0.72,\n      \"power_at_p10\": 0.8\n    },\n    \"tables\": [\n      \"Table S-RL (appendix): DIF stability across cohort compositions (SFT/alignment-RL/+reasoning-RL)\"\n    ],\n    \"figures\": [],\n    \"analysis\": \"Appendix material。N=13 reasoning-RL 是 honest limitation。Best 档 reviewer 接受 \\\"DIF is group-level, RL robustness requires future dedicated study with larger reasoning-RL sample\\\" 的 framing。不占主文页面。\\n\\n\\nBest 档下 RL robustness 呈现 positive signal 但因 N=13 reasoning-RL models 统计功效不足。DIF 是 group-level method，13 个 RL 模型混入 N=807 focal cohort 仅占 1.6%，C% 几乎不变 (31.3→31.1%) 是预期结果——不是因为 DIF 对 RL robust， 而是因为 RL models 数量太少无法影响 group statistics。Alignment-RL (DPO/ORPO) 不涉及 PPO clipping/NLL gap contraction，Jaccard=0.87 高一致性是理论预期。 传统 detectors 在 reasoning-RL 上 AUROC 跌至 ~0.45-0.49 提供了 contrast evidence。 但 N=13 使得 bootstrap CI 宽、DeLong test underpowered。Best 档将此定位为 limitations 中的 honest disclosure + future work motivation，不作为 numbered contribution。Reviewer 视之为 \\\"authors are aware of the limitation\\\" 而非弱点。\\n\"\n  },\n  {\n    \"name\": \"constat_perturbation_eval\",\n    \"description\": \"ConStat-style perturbation测试：200+ MMLU items 的语义等价改写 + FDR-controlled detection\",\n    \"results\": {\n      \"status\": \"not_executed\",\n      \"reason\": \"Dropped from scope — ensemble approach (plan_003c) killed after paper pivot to characterization framing\",\n      \"hypothetical_detection_rate\": 0.18,\n      \"hypothetical_overlap_with_dif_jaccard\": 0.19,\n      \"hypothetical_fdr_controlled_items\": 145\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"正确 drop。Best 档 reviewer 不会因缺少 ConStat baseline 扣分——paper 不是 methods comparison，是 empirical characterization。\\n\\n\\nBest 档下 ConStat eval 未执行且无需执行。Paper 从 \\\"detect contamination\\\" pivot 到 \\\"characterize benchmark properties\\\"，ensemble detection 不再是 contribution。 ConStat 测量 perturbation sensitivity（item 换种问法模型还能否答对），这与 DIF 测量的 temporal differential functioning 是正交信号。即使执行，Jaccard ~0.19 的低重叠 既不 support 也不 undermine 核心 claims。Reviewer 不会要求执行一个与 paper narrative 不相关的 baseline。Best 档将 ConStat/DVD 列入 Related Work 讨论 (§2 中已有 45 papers/5 clusters)，定位为 \\\"complementary but orthogonal approach\\\"。\\n\"\n  },\n  {\n    \"name\": \"dvd_generation_variance_eval\",\n    \"description\": \"DVD generation variance 检测：10-15 open-weight models × 50 responses/item，温度采样 T=0.7-1.0\",\n    \"results\": {\n      \"status\": \"not_executed\",\n      \"reason\": \"Dropped with ensemble — GPU budget 70h not justified for supplementary signal\",\n      \"hypothetical_bimodal_items_pct\": 12.5,\n      \"hypothetical_overlap_with_dif_jaccard\": 0.13\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"正确 drop。Best 档 framing 是 \\\"DIF as diagnostic lens\\\"，不是 \\\"comprehensive detection toolkit comparison\\\"。\\n\\n\\n同 plan_003a 逻辑。DVD 检测 variant contamination（模型在 paraphrase 上表现方差异常）， 与 DIF 的 temporal cohort contrast 方法论完全不同。Best 档下 GPU budget (70h) 分配给更高优先级的 plan_002 (100h)。Hypothetical Jaccard ~0.13 说明即使执行， DVD 捕获的 items 与 DIF 重叠极低——这本身可以是 interesting finding，但不足以 justify 70h GPU + 额外 0.5 页篇幅在已经需要压缩 2 页的论文中。\\n\"\n  },\n  {\n    \"name\": \"ensemble_fusion\",\n    \"description\": \"DIF + ConStat + DVD 三信号融合：majority voting + weighted fusion + 5-fold cross-validation\",\n    \"results\": {\n      \"status\": \"not_executed\",\n      \"reason\": \"Killed — depends on 003a/003b, both dropped; ensemble is old 'detection' framing, incompatible with current 'characterization' narrative\"\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"Killed early 是正确决策。Best 档下 reviewer 看重 narrative coherence。\\n\\n\\nEnsemble 是 original Claim 2 (\\\"multi-signal detection\\\") 的核心。Paper pivot 后 Claim 2 变成 \\\"ground truth meta-critique\\\"，ensemble 变成 conceptual orphan。 Best 档 reviewer 看到 ensemble 反而会问 \\\"为什么 characterization paper 里有 detection ensemble？narrative 不一致\\\"。正确 kill。\\n\"\n  },\n  {\n    \"name\": \"cross_benchmark_gsm8k\",\n    \"description\": \"GSM8K (1319 items × 6702 models) 上的 DIF 复制 + GSM1K ground truth correlation + semi-synthetic framework portability\",\n    \"results\": {\n      \"step1_gsm8k_temporal_c_pct\": 18.9,\n      \"step1_sanity_c_pct\": 0.3,\n      \"step1_standard_external_spearman\": 0.926,\n      \"step2_standard_delta_tpr_p10\": 0.818,\n      \"step2_external_delta_tpr_p10\": 0.517,\n      \"step3_n_models\": 33,\n      \"step3_pearson_r\": -0.478,\n      \"step3_spearman_rho\": -0.403,\n      \"step3_partial_r_controlling_accuracy\": -0.385,\n      \"step3_permutation_p\": 0.014,\n      \"step3_direction\": \"NEGATIVE — DIF-C items anti-correlate with contamination gap\",\n      \"step3_leave_one_out_r_range\": \"-0.537 to -0.374\",\n      \"step3_robust\": true\n    },\n    \"tables\": [\n      \"Table S-GSM8K: Step 1-3 summary metrics\"\n    ],\n    \"figures\": [],\n    \"analysis\": \"GSM8K 结果在 best 档下 serve two roles：(1) 6-benchmark consistency 的一个数据点 (2) semi-synthetic framework portability 的独立验证。GSM1K negative correlation 被 correctly demoted to exploratory per Dream #6 three-tier consensus。\\n\\n\\nBest 档下 GSM8K C%=18.9% 落在 cross-benchmark range 下端 (17.9-31.3%)，与 6-benchmark pattern 一致，强化 generalizability。Semi-synthetic ΔTPR=+0.818 (standard matching) 显著高于 MMLU 的 +0.674——单一 domain benchmark 的 matching variable 更干净（GSM8K 只有数学一个 domain，cross-subject matching 实际上是 external score matching）。 GSM1K correlation r=-0.478 方向为负（DIF 高的 models 反而 contamination gap 小）， counter-intuitive 但在 best 档下被 framing 为：DIF 检测的是 differential functioning 而非 contamination，web-overlap contamination gap 和 DIF 正交——这恰恰 empirically 证实了 Claim 2 的 ground truth meta-critique。N=33 和 CI width 导致此结果被 demote 到 exploratory，reviewer 接受这个 honest positioning。\\n\"\n  },\n  {\n    \"name\": \"bifactor_irt_equating_pilot\",\n    \"description\": \"Bifactor IRT equating on MMLU: general factor + 57 subject-specific factors, anchor item selection, fixed-parameter calibration\",\n    \"results\": {\n      \"status\": \"killed\",\n      \"bifactor_fit_rmsea\": 0.038,\n      \"bifactor_fit_cfi\": 0.72,\n      \"bifactor_general_factor_variance_explained\": 0.31,\n      \"anchor_item_selection_n\": 0,\n      \"kill_reason\": \"plan_014 pre-check showed within-subject C%=38.1% — no stable anchor items exist; bifactor fit inadequate (CFI<0.90) for 57-subject MMLU\"\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"Killed 后其残余价值是 Discussion 中一句话：\\\"bifactor equating was infeasible due to MMLU's extreme multidimensionality (57 subjects, within-subject C%=38.1%), motivating future work on multidimensional IRT approaches.\\\"\\n\\n\\nBest 档下 bifactor 被 plan_014 pre-check 正确 kill。Within-subject C%=38.1% 意味着即使控制 subject-level ability，仍有 ~38% items 是 unstable——没有足够的 stable anchor items 来做 equating。MMLU 的 57-subject 结构使得 bifactor model 需要估计 58 个 latent factors (1 general + 57 specific)，N=5219 models 对此 参数量严重不足 (items-per-factor ratio ≈ 216，但 models-per-factor ≈ 90， 低于 bifactor recommended minimum ~200)。CFI=0.72 远低于 0.90 threshold。 Best 档 reviewer 看到 \\\"we tried IRT equating, structural pre-checks killed it, this motivates future multidimensional IRT work\\\" 视为 methodological honesty。\\n\"\n  },\n  {\n    \"name\": \"item_generation_calibration\",\n    \"description\": \"LLM-based replacement item generation for DIF-flagged MMLU items + student simulation calibration\",\n    \"results\": {\n      \"status\": \"not_executed\",\n      \"reason\": \"Dependency plan_005 killed — no equating framework to calibrate into\",\n      \"hypothetical_difficulty_rho_prompt_based\": 0.28,\n      \"hypothetical_difficulty_rho_sim_calibrated\": 0.78\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"正确 drop。Regeneration 是 separate paper 的工作量。\\n\\n\\nplan_005 killed 后 plan_006 失去了 calibration target。即使独立执行，prompt-based difficulty targeting (ρ≈0.28 per 文献 arXiv 2602.06631) 不足以替代 empirical calibration。Student simulation (arXiv 2601.09953) 可提升到 ρ≈0.78，但没有 equating framework，generated items 无法嵌入 benchmarks 进行 equated scoring。 Best 档不需要此实验——paper contribution 是 \\\"characterize instability + provide audit protocol\\\"，不是 \\\"regenerate benchmark\\\"。Reviewer 不期望 discovery paper 同时 solve the problem it discovers。\\n\"\n  },\n  {\n    \"name\": \"cumulative_bayesian_dif\",\n    \"description\": \"Sinharay et al. (2006) cumulative Bayesian DIF priors：4 successive administrations simulation, power accumulation curve\",\n    \"results\": {\n      \"single_admin_power_delta10\": 0.42,\n      \"cumulative_2admin_power_delta10\": 0.58,\n      \"cumulative_3admin_power_delta10\": 0.69,\n      \"cumulative_4admin_power_delta10\": 0.74,\n      \"single_admin_power_delta14\": 0.68,\n      \"cumulative_3admin_power_delta14\": 0.85,\n      \"false_positive_rate_cumulative\": 0.048,\n      \"prior_shrinkage_effect\": \"medium-effect items (δ=1.0) benefit most from accumulation; large-effect (δ≥1.4) already detected in single admin\"\n    },\n    \"tables\": [\n      \"Table S-Bayes: Power × #administrations × effect size matrix\"\n    ],\n    \"figures\": [],\n    \"analysis\": \"Appendix only。Best 档下提供 forward-looking value——如果 benchmark maintainers adopt DIF audit protocol (Claim 4)，cumulative priors 使得 monitoring across quarterly releases 更有统计 power。与 audit protocol 形成 conceptual bridge。\\n\\n\\nBest 档下 cumulative Bayesian DIF 是 simulation-only appendix material。 Power 从 single-admin 0.42 上升到 3-admin 0.69 (δ=1.0) 是理论预期——Bayesian prior 将前一轮的 posterior 作为下一轮的 prior，evidence accumulates across independent administrations。FPR 保持在 0.048 因为 null items 的 posterior 在每轮 administration 中 shrink toward zero。对 medium effects (δ=1.0) 提升最大 是因为这些 items 在 single admin 中 power 不足 (0.42)，有最大的 improvement margin； large effects (δ≥1.4) 在 single admin 已有 power=0.68+，accumulation 边际收益递减。 Best 档 reviewer 视此为 \\\"nice forward-looking contribution\\\" 但不是 core claim。\\n\"\n  },\n  {\n    \"name\": \"graceful_degradation_analysis\",\n    \"description\": \"Progressive item replacement 下 benchmark validity 退化分析：5%-50% replacement rate × ranking stability/reliability/construct coverage\",\n    \"results\": {\n      \"replacement_5pct_rho\": 0.9991,\n      \"replacement_10pct_rho\": 0.9978,\n      \"replacement_20pct_rho\": 0.9943,\n      \"replacement_50pct_rho\": 0.9712,\n      \"replacement_5pct_reliability_alpha\": 0.982,\n      \"replacement_10pct_reliability_alpha\": 0.979,\n      \"replacement_20pct_reliability_alpha\": 0.971,\n      \"replacement_50pct_reliability_alpha\": 0.938,\n      \"construct_coverage_maintained_up_to\": \"30% replacement\",\n      \"critical_degradation_threshold\": \"~40% replacement → ρ < 0.98\"\n    },\n    \"tables\": [\n      \"Table S-Degrade: Replacement rate × validity metric matrix\"\n    ],\n    \"figures\": [],\n    \"analysis\": \"Appendix/supplementary。Best 档下 reinforces Claim 4 的 \\\"massive redundancy\\\" sub-finding (ρ≈0.997)。不是 core contribution 但 provides quantitative backing for the \\\"instability ≠ invalidity\\\" narrative。\\n\\n\\nBest 档下 graceful degradation 用 simplified version（random replacement from same-subject item pool，而非 plan_005/006 的 calibrated replacement）。Plan_017 已经证明 removing 31% DIF items 后 ρ=0.996-0.999——这意味着 MMLU 有 massive measurement redundancy。Random replacement 应产生类似结果：在 20% replacement rate 下 ρ>0.99 是因为 12,508 items 中 subjects 内部 items 高度 redundant (plan_013 mean Q3=0.0086 within-subject，说明 local independence 基本成立， 但 subject-level redundancy 很高)。50% replacement 时 ρ 仍 >0.97 因为 ranking 主要由 general factor 决定（bifactor pre-check 显示 general factor 解释 ~31% variance），individual items 的边际贡献极小。这些数字 reinforce \\\"instability ≠ invalidity\\\" framing。\\n\"\n  },\n  {\n    \"name\": \"item_focused_trees\",\n    \"description\": \"Tutz & Berger (2016) Item-Focused Trees：model release date 作为 continuous covariate，避免 arbitrary cohort split\",\n    \"results\": {\n      \"n_items_with_significant_split\": 4287,\n      \"pct_items_with_temporal_split\": 34.3,\n      \"primary_split_date_median\": \"2023-09-15\",\n      \"primary_split_date_iqr\": \"2023-06-01 to 2024-01-15\",\n      \"concordance_with_mh_c_class\": 0.81,\n      \"jaccard_ift_vs_mh_c\": 0.74,\n      \"items_detected_only_by_ift\": 812,\n      \"items_detected_only_by_mh\": 443,\n      \"acceleration_post_mid2023\": true,\n      \"effect_size_gradient_slope\": 0.18\n    },\n    \"tables\": [\n      \"Table S-IFT: IFT vs MH concordance matrix + split date distribution\"\n    ],\n    \"figures\": [],\n    \"analysis\": \"Appendix robustness check。Best 档下 serves dual purpose：(1) validates binary split choice, (2) shows continuous treatment produces consistent findings。 一句话在 main text 引用：\\\"Item-Focused Trees with continuous temporal covariate confirm 81% concordance with binary MH-DIF (Appendix X).\\\"\\n\\n\\nBest 档下 IFT 作为 robustness check 确认 MH-DIF 的 binary split 不是 arbitrary cutoff artifact。34.3% items 显示 significant temporal split——略高于 MH 的 31.3% 因为 IFT 可以在任意时间点发现 split，不受 2023/2024 binary 限制。Concordance=0.81 说明大部分 MH-C items 也被 IFT 检测到，但有 812 items only IFT detects——这些 可能在 2023 年中某个时间点 function shift，MH 的 binary 粒度无法捕获。 Median split date 2023-09-15 说明 primary transition 发生在 2023 H2， 与 GPT-4/Llama-2 release timing 一致。IFT 结果 strengthen the case that temporal binary split 是 reasonable first-pass：虽然 continuous treatment 更精细，但 81% concordance 说明 binary split 已经 capture 了主要 signal。 Best 档 reviewer 原本可能 concern \\\"why not quarterly split?\\\"——IFT 结果 预先回答了这个问题。\\n\"\n  },\n  {\n    \"name\": \"architecture_stratified_dif\",\n    \"description\": \"Decoder-only subpopulation DIF：移除 architecture heterogeneity 后检查 IRT fit 和 DIF stability\",\n    \"results\": {\n      \"total_models\": 5227,\n      \"decoder_only_models\": 5226,\n      \"non_decoder_models\": 1,\n      \"decoder_only_pct\": 99.98,\n      \"c_pct_full\": 31.3,\n      \"c_pct_decoder_only\": 31.3,\n      \"jaccard_full_vs_decoder_only\": 1.0,\n      \"irt_fit_rmsea_full\": 0.052,\n      \"irt_fit_rmsea_decoder_only\": 0.052,\n      \"irt_fit_change\": \"negligible — 1 model removal cannot affect fit\",\n      \"architecture_confound\": \"non-issue\"\n    },\n    \"tables\": [],\n    \"figures\": [],\n    \"analysis\": \"一句话 in main text 足矣：\\\"METABENCH MMLU is 99.98% decoder-only (5,226/5,227); excluding the single non-decoder model leaves DIF flags unchanged (Jaccard=1.0).\\\" Proactively closes architecture heterogeneity concern。\\n\\n\\nBest 档下 architecture stratification 是 trivially resolved concern。METABENCH MMLU 中 5226/5227 models 是 decoder-only (99.98%)，仅 1 个 non-decoder model。 移除 1 个 model 后 Jaccard=1.0 (DIF flags 完全不变)，IRT fit 变化 negligible (RMSEA 变化在 numerical precision 内)。这不是因为 DIF 对 architecture robust， 而是因为 MMLU evaluation landscape 已经 homogeneously decoder-only。Reviewer concern \\\"IRT misfit comes from architecture heterogeneity\\\" 被数据直接 refute： heterogeneity 不存在。IRT misfit (98% |Lz|>2) 的真实原因是 MMLU 的 57-subject multidimensionality，不是 architecture mix。Best 档下此实验用一句话报告。\\n\"\n  },\n  {\n    \"name\": \"semi_synthetic_contamination_validation\",\n    \"description\": \"已知 ground truth 的 semi-synthetic contamination injection：500 clean items 中注入 100-200 items 的 differential contamination，测量 DIF detection power\",\n    \"results\": {\n      \"temporal_external_tpr_p0_baseline\": 0.326,\n      \"temporal_external_tpr_p03\": 0.548,\n      \"temporal_external_tpr_p05\": 0.834,\n      \"temporal_external_tpr_p07\": 0.99,\n      \"temporal_external_tpr_p10\": 1.0,\n      \"temporal_external_fpr\": 0.314,\n      \"temporal_external_delta_tpr_p05\": 0.508,\n      \"temporal_external_delta_tpr_p10\": 0.674,\n      \"ability_external_delta_tpr_p10\": 0.302,\n      \"standard_mh_fpr_inflation_at_p10\": \"0.298→0.616\",\n      \"matching_variable_contamination_confirmed\": true,\n      \"cross_subject_matching_delta_fpr\": 0.0,\n      \"dose_response_monotonic\": true\n    },\n    \"tables\": [\n      \"Table 2 (main): Semi-synthetic ΔTPR across exploitation rates p ∈ {0.3, 0.5, 0.7, 1.0} — cross-subject vs standard matching\"\n    ],\n    \"figures\": [],\n    \"analysis\": \"Main text Claim 3 核心 evidence。Best 档下 reviewer 视 cross-subject matching (ΔFPR=0.000) 为 \\\"practical methodological innovation worth reporting\\\"——subtle insight that within-subject matching contaminates the conditioning variable, with clean empirical demonstration。\\n\\n\\nBest 档下 semi-synthetic 是 Claim 3 的核心 evidence。ΔTPR=+0.508 at p=0.5 意味着在 50% exploitation rate 下，DIF detection power 增加 50.8 个百分点—— 从 baseline 32.6% (already-existing DIF) 到 83.4% (baseline + injected)。 Dose-response 单调递增 (p=0.3→0.5→0.7→1.0 对应 ΔTPR 逐步增加) 证明 detection power 与 contamination intensity 正相关，排除 artifact。 Cross-subject matching ΔFPR=0.000 是 key methodological innovation——在所有 injection levels 下 FPR 完全不变，证明 cross-subject total score 作为 matching variable 不受 target-subject contamination 污染。对比 standard MH matching (within-subject score) FPR 从 0.298 膨胀到 0.616，直接 demonstrate matching variable contamination problem。这个 ΔFPR=0.000 vs 0.186 inflation 的 contrast 是 reviewer 接受 Claim 3 的关键——它既是 methodological contribution 又是 practical recommendation。\\n\"\n  },\n  {\n    \"name\": \"multi_benchmark_temporal_dif\",\n    \"description\": \"6-benchmark cross-validation：MMLU, WinoGrande, TruthfulQA, ARC-Challenge, GSM8K, HellaSwag 上的 temporal DIF (2023 vs 2024)\",\n    \"results\": {\n      \"mmlu_c_pct\": 31.3,\n      \"mmlu_random_c_pct\": 0.18,\n      \"mmlu_enrichment\": 174,\n      \"winogrande_c_pct\": 30.3,\n      \"winogrande_random_c_pct\": 0.32,\n      \"winogrande_enrichment\": 95,\n      \"truthfulqa_c_pct\": 29.7,\n      \"truthfulqa_random_c_pct\": 0.37,\n      \"truthfulqa_enrichment\": 80,\n      \"arc_c_pct\": 26.9,\n      \"arc_random_c_pct\": 0.6,\n      \"arc_enrichment\": 45,\n      \"gsm8k_c_pct\": 18.9,\n      \"gsm8k_random_c_pct\": 0.3,\n      \"gsm8k_enrichment\": 63,\n      \"hellaswag_c_pct\": 17.9,\n      \"hellaswag_random_c_pct\": 0.28,\n      \"hellaswag_enrichment\": 64,\n      \"cross_benchmark_range\": \"17.9-31.3%\",\n      \"all_random_below_1pct\": true,\n      \"min_enrichment_ratio\": 45,\n      \"n_benchmarks\": 6\n    },\n    \"tables\": [\n      \"Table 3 (main): 6-benchmark cross-validation summary — N_items, N_ref, N_foc, C%, random C%, enrichment ratio\"\n    ],\n    \"figures\": [],\n    \"analysis\": \"Best 档 cornerstone result。一张 summary table + 一个 figure panel (per paper_framing plan_028 压缩要求)。This single result upgrades the paper from \\\"interesting MMLU analysis\\\" to \\\"generalizable finding about LLM benchmarks as a class\\\"。Reviewer avg score 从 ~3.5 推到 4.0+ 主要来自此 result。\\n\\n\\nBest 档的 single most important new result。6 benchmarks 全部 C% ≥ 17.9%， all ≥45× above random control，彻底封堵 \\\"only MMLU\\\" 攻击面。 C% 变异 (17.9-31.3%) 反映 benchmark structural differences： - MMLU (31.3%) 最高因为 57 subjects 覆盖最广，items 最多 (12,508)，temporal\\n  capability shift 有更多 dimensions 可以 manifest as DIF。\\n- WinoGrande (30.3%) 和 TruthfulQA (29.7%) 接近 MMLU 因为它们测试 commonsense\\n  reasoning 和 factual knowledge——这些 domains 在 2023→2024 变化大 (GPT-4,\\n  Llama-2→3 的主要 capability jumps 集中在 reasoning/knowledge)。\\n- ARC-Challenge (26.9%) 中等——science reasoning 有 capability jump 但\\n  item pool 较小 (1,172) 限制了 DIF detection power。\\n- GSM8K (18.9%) 和 HellaSwag (17.9%) 最低因为：GSM8K 是 math word problems，\\n  solution structure 更 formulaic，item functioning 更 stable across generations；\\n  HellaSwag 是 commonsense NLI，10,042 items 但 item difficulty variance 较低\\n  (多数 items 在 easy-to-medium range)，DIF effect size 被 compressed。\\nAll random controls <1% 证明 MH-DIF 的 type I error 在所有 benchmarks 上 well-calibrated。45× minimum enrichment (ARC) 使得 \\\"DIF flags are noise\\\" 攻击面不可行。\\n\"\n  },\n  {\n    \"name\": \"permutation_null_c_rate\",\n    \"description\": \"1000× permutation test：随机重分配 2023/2024 temporal labels，建立 C% null distribution\",\n    \"results\": {\n      \"n_permutations\": 1000,\n      \"null_c_pct_mean\": 0.21,\n      \"null_c_pct_sd\": 0.09,\n      \"null_c_pct_max\": 0.58,\n      \"null_c_pct_p999\": 0.52,\n      \"observed_c_pct\": 31.3,\n      \"z_score\": 345.4,\n      \"empirical_p_value\": \"<0.001 (0/1000 permutations exceed observed)\",\n      \"effect_size_vs_null\": \"148× above null mean\"\n    },\n    \"tables\": [\n      \"Table S-Perm: Permutation null distribution summary statistics\"\n    ],\n    \"figures\": [],\n    \"analysis\": \"Main text 一句话引用，full results in appendix。\\\"Permutation test (1,000 iterations) yields null C%=0.21±0.09%, observed 31.3% is >200σ above null (p<0.001).\\\" 与 random split 0.18% 互补——两种 null construction 给出 一致结论。Best 档下 reviewer 接受 binary split 因为 permutation test demonstrates temporal labels carry genuine signal。\\n\\n\\nBest 档下 permutation null 提供比 random-split control (0.18%) 更严格的 statistical test。Random split 是 within-cohort 随机分组——它控制的是 \\\"same temporal window 内 MH 是否产生 spurious DIF\\\"。Permutation test 是 across-cohort label shuffling——它控制的是 \\\"temporal label assignment 本身是否与 DIF 有关\\\"。 Null C% mean=0.21% (vs random split 0.18%) 几乎相同因为两者本质上都在测试 \\\"ability distribution overlap 能否产生 spurious DIF\\\"——当 labels 被 permute， 两组 ability distributions 变得 exchangeable，MH 的 ability conditioning 使得 spurious DIF 接近 zero。SD=0.09% 说明 null distribution 非常 concentrated， max=0.58% 说明即使最极端的 permutation 也远低于 1%。Z=345 (>200σ) 使得 p<10^{-100} level significance。Best 档 reviewer 看到 permutation test 后不再质疑 \\\"is 31% above chance?\\\"——问题 definitively closed。\\n\"\n  },\n  {\n    \"name\": \"odds_ratio_regression_transparency\",\n    \"description\": \"Odds ratio + Simpson's paradox 分析：domain-level vs item-level accuracy delta 对 DIF flag 的 logistic regression，McFadden/Nagelkerke R², OR + 95% CI\",\n    \"results\": {\n      \"model1_domain_delta\": {\n        \"mcfadden_r2\": 0.0007,\n        \"nagelkerke_r2\": 0.0012,\n        \"subject_acc_delta_or_per_010\": 1.55,\n        \"subject_acc_delta_or_ci\": [\n          1.19,\n          2.03\n        ],\n        \"interpretation\": \"domains with larger 2024-2023 accuracy improvement have slightly MORE DIF — naïve positive association\"\n      },\n      \"model2_domain_delta_plus_items\": {\n        \"mcfadden_r2\": 0.0423,\n        \"nagelkerke_r2\": 0.072,\n        \"subject_acc_delta_or_per_010\": 0.73,\n        \"ctt_difficulty_or_per_010\": 0.78,\n        \"ctt_discrimination_or_per_010\": 1.51,\n        \"interpretation\": \"SIMPSON'S PARADOX — after controlling for item difficulty and discrimination, domain improvement NEGATIVELY predicts DIF\"\n      },\n      \"model3_item_delta\": {\n        \"mcfadden_r2\": 0.0012,\n        \"nagelkerke_r2\": 0.0021,\n        \"item_acc_change_or_per_010\": 1.08,\n        \"item_acc_change_ci\": [\n          1.51,\n          2.96\n        ]\n      },\n      \"model4_item_delta_plus_items\": {\n        \"mcfadden_r2\": 0.0434,\n        \"nagelkerke_r2\": 0.0737,\n        \"item_acc_change_or_per_010\": 0.92,\n        \"ctt_difficulty_or_per_010\": 0.77,\n        \"ctt_discrimination_or_per_010\": 1.54\n      },\n      \"simpsons_paradox\": true,\n      \"simpsons_or_flip\": \"1.55 → 0.73\",\n      \"lr_test_m1_vs_m2_chi2\": 646.98,\n      \"lr_test_m3_vs_m4_chi2\": 655.53\n    },\n    \"tables\": [\n      \"Table 4 (main): 4-model logistic regression comparison — predictors, OR [95% CI], McFadden R², LR test\"\n    ],\n    \"figures\": [],\n    \"analysis\": \"Main text Claim 1 的 second pillar (alongside plan_019 decomposition)。 Simpson's paradox 比 R²=0.0007 更直观——reviewer 可能不理解 \\\"pseudo R² 解释 0.07% variance\\\"，但一定理解 \\\"association REVERSES after controlling for confounders\\\"。Best 档下此 figure 是 paper 中 most memorable visualization—— 两条相反方向的 regression slopes in the same plot。\\n\\nBest 档的 second most important new result。Simpson's paradox (OR 1.55→0.73) 是 \\\"ability confound doesn't drive DIF\\\" 的最强 evidence。 机制：Model 1 只看 domain-level accuracy delta → OR=1.55，因为 capability improvement 大的 domains 确实有更多 DIF items (ρ=0.307 ecological correlation)。 但 Model 2 加入 item-level difficulty 和 discrimination 后 → OR=0.73 REVERSES。 这是因为 DIF-C items 本身有 specific item properties (harder: d=-0.247, higher discrimination: d=0.230, per plan_023)，这些 item properties confound domain-level correlation。Controlling for item properties reveals that domain improvement actually REDUCES DIF probability (OR=0.73 < 1.0)——domains with larger improvement have FEWER DIF items after accounting for item characteristics。\\nR² 极低 (McFadden 0.0007→0.0423) 说明即使 best model 也只解释 ~4% variance ——96% of DIF is item-specific, not explained by domain improvement OR item properties。这 reinforces plan_019 的 \\\"≤2.4pp/7.6%\\\" 结论 via 完全不同的 statistical framework (logistic regression vs decomposition)，形成 converging evidence。\\nBest 档 reviewer 看到 Simpson's paradox reversal 后接受 \\\"DIF is not driven by capability improvement\\\"——这是一个 well-known statistical phenomenon， reviewers 理解其 implications。LR test χ²=647 (p≈0) 证明 item properties 是 genuine confounders，不是 noise。\\n\"\n  }\n]",
+      "numLines": 359,
+      "startLine": 1,
+      "totalLines": 359
+    }
+  },
+  "sourceToolAssistantUUID": "30a0dde7-6a21-46e9-84de-692db8927ef1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260521T110541 tier=best 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_…",
+  "leafUuid": "3ea74c96-7ee8-4b40-a407-f2638ca78a13",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate IRT equated benchmark validation paper",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-21T11:29:40.650Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a thorough understanding of the experiment data and paper framing. Let me write a complete LaTeX paper that covers all the experiments. Let me organize the paper:
+
+1. Abstract
+2. Introduction
+3. Related Work
+4. Method (MH-DIF, Semi-synthetic framework, Cross-subject matching)
+5. Experiments
+   - 5.1 Temporal DIF on MMLU (real_data_dif_mmlu)
+   - 5.2 Cross-Benchmark Validation (multi_benchmark_temporal_dif + cross_benchmark_gsm8k)
+   - 5.3 Simpson's Paradox / Odds Ratio Regression (odds_ratio_regression_transparency)
+   - 5.4 Semi-Synthetic Contamination Validation (semi_synthetic_contamination_validation)
+   - 5.5 Permutation Null (permutation_null_c_rate)
+   - 5.6 Architecture Stratification (architecture_stratified_dif)
+   - 5.7 Downstream Impact / Diagnostic Lens (graceful_degradation_analysis)
+   - 5.8 Item-Focused Trees (item_focused_trees)
+6. Discussion
+7. Limitations
+8. Conclusion
+9. Appendix
+
+Now I'm sorting out which experiments belong in the main text versus the appendix. The core findings go in the main text: the MMLU DIF analysis, the temporal extension across benchmarks, the odds ratio regression showing Simpson's paradox, and the semi-synthetic contamination validation. The permutation null and architecture stratification get brief mentions in the main text with full details deferred. The appendix will hold the reinforcement learning robustness checks, cross-benchmark validation on GSM8K, and cumulative DIF analysis.
+
+I need to write this as a self-contained LaTeX document for EMNLP within the 8-page limit, so I'll keep things tight. Let me set up the directory structure and start writing the paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3ea74c96-7ee8-4b40-a407-f2638ca78a13",
+  "isSidechain": false,
+  "requestId": "req_011CbFdsYvWTSXPnDygSdD7v",
+  "type": "assistant",
+  "uuid": "cde2df44-87ef-4157-96eb-0cec8536262c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EbokxKUwy2Q2ZBgEL1WFRC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6232,
+      "cache_creation_input_tokens": 11774,
+      "cache_read_input_tokens": 24181,
+      "output_tokens": 881,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11774,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 6232,
+          "output_tokens": 881,
+          "cache_read_input_tokens": 24181,
+          "cache_creation_input_tokens": 11774,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11774
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17 · 2026-05-21T11:29:40.654Z_
+
+Now let me check if the target directory exists, and load the paper writing norms skill.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cde2df44-87ef-4157-96eb-0cec8536262c",
+  "isSidechain": false,
+  "requestId": "req_011CbFdsYvWTSXPnDygSdD7v",
+  "type": "assistant",
+  "uuid": "cdeae3e2-1ab1-48a0-a12f-e51ab8b4e925",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EbokxKUwy2Q2ZBgEL1WFRC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6232,
+      "cache_creation_input_tokens": 11774,
+      "cache_read_input_tokens": 24181,
+      "output_tokens": 881,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11774,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 6232,
+          "output_tokens": 881,
+          "cache_read_input_tokens": 24181,
+          "cache_creation_input_tokens": 11774,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11774
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-21T11:29:42.690Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0145srxqSsuz8auvDNyVSbGF`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T110541/best/",
+  "description": "Check target directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cdeae3e2-1ab1-48a0-a12f-e51ab8b4e925",
+  "isSidechain": false,
+  "requestId": "req_011CbFdsYvWTSXPnDygSdD7v",
+  "type": "assistant",
+  "uuid": "2b440a79-a3cf-4606-8e33-93985c9ea4e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EbokxKUwy2Q2ZBgEL1WFRC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6232,
+      "cache_creation_input_tokens": 11774,
+      "cache_read_input_tokens": 24181,
+      "output_tokens": 881,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11774,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 6232,
+          "output_tokens": 881,
+          "cache_read_input_tokens": 24181,
+          "cache_creation_input_tokens": 11774,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11774
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-21T11:29:43.396Z_
+
+<details><summary>↩ Tool result · `toolu_01MEFwnEe2ELGe5i8NqQscVY`</summary>
+
+````text
+1	---
+2	name: paper-writing-norms
+3	description: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。
+4	allowed-tools: [Read, Write, Edit, Glob, Grep]
+5	scope: global
+6	version: 2
+7	priority: 9
+8	tags:
+9	  - writing
+10	  - paper
+11	  - style
+12	  - norms
+13	roles:
+14	  - agent
+15	  - worker
+16	  - paper_agent
+17	---
+18	
+19	# 论文写作风格规范
+20	
+21	> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。
+22	
+23	---
+24	
+25	## 一、总体写作哲学
+26	
+27	### 1.1 故事驱动，不是数据堆砌
+28	
+29	- 论文必须以"故事线"为核心展开：问题 → 洞察 → 方法 → 验证
+30	- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进
+31	- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌
+32	- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing
+33	
+34	### 1.2 主线统一性
+35	
+36	- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**
+37	- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C
+38	- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机
+39	- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线
+40	
+41	### 1.3 专有名词必须有定义
+42	
+43	- 首次出现的专有名词/缩写必须给出完整定义和解释
+44	- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）
+45	- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用
+46	- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug
+47	
+48	### 1.4 写作前必读同类优秀论文
+49	
+50	- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可
+51	- 重点学：
+52	  - Abstract 怎么用最少篇幅讲完故事
+53	  - Introduction 怎么从大问题切入到具体贡献
+54	  - Related Work 怎么 positioning 自己（不是 survey）
+55	  - Table/Figure 怎么压缩信息密度
+56	- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大
+57	- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文
+58	
+59	---
+60	
+61	## 二、Abstract 写作规范
+62	
+63	### 2.1 四个必答问题（150-250 words）
+64	
+65	Abstract 必须在很短的篇幅内清楚回答：
+66	1. **研究什么问题** — 1-2 句话交代背景和痛点
+67	2. **为什么重要** — 现有方法的不足（不用写太多）
+68	3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）
+69	4. **结果说明什么** — 用具体实验结论支撑贡献
+70	
+71	### 2.2 禁忌
+72	
+73	- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim
+74	- **禁止过度宣传**：不说 "revolutionary"、"groundbreaking"
+75	- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元
+76	- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了
+77	- **缩写必须定义**：Abstract 中首次出现的缩写必须展开
+78	
+79	### 2.3 审稿人视角检验
+80	
+81	写完后用这个标准自检：审稿人能否在 30 秒内判断——
+82	- 问题是否重要？
+83	- 方法是否清楚？
+84	- 贡献是否可信？
+85	- 结果是否有说服力？
+86	
+87	---
+88	
+89	## 三、Introduction 写作规范
+90	
+91	### 3.1 完整叙事线（5 段结构）
+92	
+93	Introduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：
+94	
+95	1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈
+96	2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题
+97	3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）
+98	4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题
+99	5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献
+100	
+101	### 3.2 整体叙事结构
+102	
+103	```
+104	现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结
+105	```
+106	
+107	### 3.3 禁忌
+108	
+109	- **禁止泛泛介绍**：不要开头就写 "LLMs have shown remarkable capabilities..."，要从具体问题切入
+110	- **禁止缺少过渡**：每段之间必须有逻辑连接
+111	- **禁止实验报告风格**：Introduction 不是 "我们做了 X 实验得到了 Y 结果" 的罗列
+112	- 每条 Contribution 必须有对应的 section/table 支撑
+113	- Contribution 列表中不能出现未在前文铺垫过的概念
+114	
+115	---
+116	
+117	## 四、Related Work 写作规范
+118	
+119	### 4.1 目标
+120	
+121	让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。
+122	
+123	### 4.2 结构要求
+124	
+125	- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）
+126	- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系
+127	- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口
+128	
+129	### 4.3 禁忌
+130	
+131	- **禁止论文堆砌**：不要写成 "A proposed X. B proposed Y. C proposed Z." 的列表
+132	- **目标不是展示读了多少论文**，而是做归纳和比较
+133	- Contribution claim（"To our knowledge, no prior work..."）应放在 Introduction，不在 Related Work
+134	
+135	### 4.4 引用充足度
+136	
+137	- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**
+138	- 任何一类缺失，审稿人会立刻看出来调研不充分
+139	- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足
+140	
+141	---
+142	
+143	## 五、去 AI 写作风格（硬规则）
+144	
+145	以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**
+146	
+147	### 5.1 严禁破折号（最显著的 AI 痕迹）
+148	
+149	**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**
+150	
+151	- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**
+152	- 替代方式：用逗号、括号或拆分为两个句子
+153	- 强制检查命令：
+154	  ```bash
+155	  grep -n "—" paper/*.tex     # em-dash，每处人工判断是否必要
+156	  grep -n " – " paper/*.tex   # 解释性 en-dash，几乎都应删除
+157	  ```
+158	- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）
+159	
+160	### 5.2 段落与句式
+161	
+162	- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的
+163	- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句
+164	- **禁止 -ing 短语结尾**：如 "..., highlighting the applicability of..." / "..., demonstrating the effectiveness of..."。这是 AI 写作最典型的标志之一
+165	- **禁止连续使用 "Furthermore" / "Moreover" / "Additionally"**：一段内最多用一个过渡词
+166	- **避免 "It is worth noting that..." / "Notably, ..."**：直接写要说的内容
+167	
+168	### 5.3 用词黑名单
+169	
+170	- 避免 "delve into" / "leverage" / "utilize" / "facilitate" — 用 "explore" / "use" / "enable"
+171	- 避免 "a myriad of" / "a plethora of" — 用 "many" / "various"
+172	- 避免 "in the realm of" / "in the context of" — 直接说
+173	- 避免 "paradigm shift" / "novel" 过度使用
+174	
+175	### 5.4 校对清单（4 步）
+176	
+177	1. 全文 proofread 语法和拼写
+178	2. 检查所有代词/指示词（this, that, it）是否指代明确
+179	3. **`grep "—"` + `grep " – "` 全文清零**（删除所有解释性 dash，§5.1）
+180	4. `grep "ing,"` 模式——大部分 -ing 分词短语需要改写
+181	
+182	---
+183	
+184	## 六、图表与视觉规范
+185	
+186	### 6.1 知识密度原则
+187	
+188	- **图表的信息必须紧凑**——不能为了美观而留大量白空间
+189	- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中
+190	- 能用 inline text 说清的不要占一整个 Figure
+191	
+192	### 6.2 表格规范
+193	
+194	- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）
+195	- 小数精度全表统一
+196	- 最优加粗、次优下划线
+197	- Caption 必须自包含
+198	
+199	### 6.3 图片规范
+200	
+201	- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签
+202	- 图中字体 >= 7pt（打印后仍可读）
+203	- 栏宽约束需匹配目标 venue 模板要求
+204	- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页
+205	
+206	### 6.4 空间效率
+207	
+208	- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源
+209	- 优先使用 `\subfigure` 合并相关图
+210	- Table 能 inline 就不要单独浮动
+211	- 图表占比与其对叙事的贡献成正比
+212	
+213	### 6.5 页面节奏
+214	
+215	好论文的页面有节奏感——text、equation、figure 交替出现，读者视觉不疲劳：
+216	
+217	- **text-equation-figure 三重奏**：重要概念用"文字解释 → 公式定义 → 图表直觉"三步展开
+218	- 连续 2 页纯文本（无 figure/equation/table）→ 穿插一个 display item 打破节奏
+219	- 连续 2 个 figure 页（整页被 float 占满）→ 至少隔 1 段文字再放下一个 float
+220	- Section heading 不孤悬页底（heading 后至少跟 2 行正文，否则强制分页）
+221	- 最后一页内容 ≥ 2/3 页面高度（太空显得凑数，太满放不下 references）
+222	
+223	### 6.6 表格 LaTeX 规范
+224	
+225	**Booktabs 标准（硬规则）**：
+226	- 用 `\toprule` / `\midrule` / `\bottomrule`，禁止 `\hline`，禁止竖线 `|`
+227	- 用 `\centering` 不用 `\begin{center}`（后者多加垂直空白）
+228	- 最优结果加粗（`\textbf{}`），次优下划线（`\underline{}`）+ 方向箭头 `↑`/`↓` 标明指标方向
+229	- 小数精度全表统一（如全部保留 1 位或 2 位）
+230	- Caption 在表格上方（`\caption` 在 `\begin{tabular}` 之前）
+231	
+232	**宽度决策树**：
+233	- ≤5 列 → 单栏宽度（`\columnwidth`）
+234	- 6–8 列 → 全文宽度（`\textwidth`，双栏模板用 `table*`）
+235	- >8 列 → 拆成两张表或移入 appendix
+236	
+237	---
+238	
+239	## 七、投稿前通用准备
+240	
+241	### 7.1 模板必须官方（硬规则）
+242	
+243	- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）
+244	- **不要用**：
+245	  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）
+246	  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）
+247	  - 组里学长留的旧版本（来源不明、无法追溯）
+248	- 风险：
+249	  - 样式不符合 → desk reject
+250	  - margin 不对 → 被审稿人质疑诚信
+251	  - reference 格式错 → 被认为不规范
+252	- 流程：先查会议官网 templates → 找不到再 `WebSearch "{venue} {year} latex template official"` → 仍找不到汇报 Director（不要用就近年版本顶替）
+253	- `\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致
+254	
+255	### 7.2 投稿要求逐项核对
+256	
+257	- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A
+258	- 页数限制：查目标会议官网
+259	- 匿名化要求：review 版 vs camera-ready 版本设置不同
+260	- 行号开启（review 版常需）
+261	- 字体大小、margin 不得修改 sty 文件
+262	
+263	### 7.3 最终修改 10 项检查流程
+264	
+265	提交前必须逐一检查：
+266	1. 所有最新实验结果已全部录入
+267	2. 根据实验结果将叙事调至最优状态
+268	3. 附录所有内容在正文中被引用且融入叙事
+269	4. 无数据堆砌（每个数字服务于叙事推进）
+270	5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）
+271	6. 全文主线统一（idea 变化后各章节逻辑一致）
+272	7. 所有专有名词有定义
+273	8. 无 AI 风格标志（dash、-ing phrases、过度分段）
+274	9. 图表知识密度高、无视觉遮挡
+275	10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础
+276	
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "3ecc876c-6f3c-48f0-9d3d-c41f91426da7",
+  "isSidechain": false,
+  "promptId": "b0a8748b-21cc-4295-b093-9b740dba37c7",
+  "type": "user",
+  "uuid": "9a291f7f-4700-4d21-89dc-4931fa6378ea",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md",
+      "content": "---\nname: paper-writing-norms\ndescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\nallowed-tools: [Read, Write, Edit, Glob, Grep]\nscope: global\nversion: 2\npriority: 9\ntags:\n  - writing\n  - paper\n  - style\n  - norms\nroles:\n  - agent\n  - worker\n  - paper_agent\n---\n\n# 论文写作风格规范\n\n> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n\n---\n\n## 一、总体写作哲学\n\n### 1.1 故事驱动，不是数据堆砌\n\n- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n\n### 1.2 主线统一性\n\n- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n\n### 1.3 专有名词必须有定义\n\n- 首次出现的专有名词/缩写必须给出完整定义和解释\n- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n\n### 1.4 写作前必读同类优秀论文\n\n- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n- 重点学：\n  - Abstract 怎么用最少篇幅讲完故事\n  - Introduction 怎么从大问题切入到具体贡献\n  - Related Work 怎么 positioning 自己（不是 survey）\n  - Table/Figure 怎么压缩信息密度\n- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n\n---\n\n## 二、Abstract 写作规范\n\n### 2.1 四个必答问题（150-250 words）\n\nAbstract 必须在很短的篇幅内清楚回答：\n1. **研究什么问题** — 1-2 句话交代背景和痛点\n2. **为什么重要** — 现有方法的不足（不用写太多）\n3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n4. **结果说明什么** — 用具体实验结论支撑贡献\n\n### 2.2 禁忌\n\n- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n\n### 2.3 审稿人视角检验\n\n写完后用这个标准自检：审稿人能否在 30 秒内判断——\n- 问题是否重要？\n- 方法是否清楚？\n- 贡献是否可信？\n- 结果是否有说服力？\n\n---\n\n## 三、Introduction 写作规范\n\n### 3.1 完整叙事线（5 段结构）\n\nIntroduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：\n\n1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈\n2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题\n3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）\n4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题\n5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献\n\n### 3.2 整体叙事结构\n\n```\n现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结\n```\n\n### 3.3 禁忌\n\n- **禁止泛泛介绍**：不要开头就写 \"LLMs have shown remarkable capabilities...\"，要从具体问题切入\n- **禁止缺少过渡**：每段之间必须有逻辑连接\n- **禁止实验报告风格**：Introduction 不是 \"我们做了 X 实验得到了 Y 结果\" 的罗列\n- 每条 Contribution 必须有对应的 section/table 支撑\n- Contribution 列表中不能出现未在前文铺垫过的概念\n\n---\n\n## 四、Related Work 写作规范\n\n### 4.1 目标\n\n让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。\n\n### 4.2 结构要求\n\n- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）\n- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系\n- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口\n\n### 4.3 禁忌\n\n- **禁止论文堆砌**：不要写成 \"A proposed X. B proposed Y. C proposed Z.\" 的列表\n- **目标不是展示读了多少论文**，而是做归纳和比较\n- Contribution claim（\"To our knowledge, no prior work...\"）应放在 Introduction，不在 Related Work\n\n### 4.4 引用充足度\n\n- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**\n- 任何一类缺失，审稿人会立刻看出来调研不充分\n- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足\n\n---\n\n## 五、去 AI 写作风格（硬规则）\n\n以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**\n\n### 5.1 严禁破折号（最显著的 AI 痕迹）\n\n**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**\n\n- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**\n- 替代方式：用逗号、括号或拆分为两个句子\n- 强制检查命令：\n  ```bash\n  grep -n \"—\" paper/*.tex     # em-dash，每处人工判断是否必要\n  grep -n \" – \" paper/*.tex   # 解释性 en-dash，几乎都应删除\n  ```\n- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）\n\n### 5.2 段落与句式\n\n- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的\n- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句\n- **禁止 -ing 短语结尾**：如 \"..., highlighting the applicability of...\" / \"..., demonstrating the effectiveness of...\"。这是 AI 写作最典型的标志之一\n- **禁止连续使用 \"Furthermore\" / \"Moreover\" / \"Additionally\"**：一段内最多用一个过渡词\n- **避免 \"It is worth noting that...\" / \"Notably, ...\"**：直接写要说的内容\n\n### 5.3 用词黑名单\n\n- 避免 \"delve into\" / \"leverage\" / \"utilize\" / \"facilitate\" — 用 \"explore\" / \"use\" / \"enable\"\n- 避免 \"a myriad of\" / \"a plethora of\" — 用 \"many\" / \"various\"\n- 避免 \"in the realm of\" / \"in the context of\" — 直接说\n- 避免 \"paradigm shift\" / \"novel\" 过度使用\n\n### 5.4 校对清单（4 步）\n\n1. 全文 proofread 语法和拼写\n2. 检查所有代词/指示词（this, that, it）是否指代明确\n3. **`grep \"—\"` + `grep \" – \"` 全文清零**（删除所有解释性 dash，§5.1）\n4. `grep \"ing,\"` 模式——大部分 -ing 分词短语需要改写\n\n---\n\n## 六、图表与视觉规范\n\n### 6.1 知识密度原则\n\n- **图表的信息必须紧凑**——不能为了美观而留大量白空间\n- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中\n- 能用 inline text 说清的不要占一整个 Figure\n\n### 6.2 表格规范\n\n- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）\n- 小数精度全表统一\n- 最优加粗、次优下划线\n- Caption 必须自包含\n\n### 6.3 图片规范\n\n- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签\n- 图中字体 >= 7pt（打印后仍可读）\n- 栏宽约束需匹配目标 venue 模板要求\n- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页\n\n### 6.4 空间效率\n\n- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源\n- 优先使用 `\\subfigure` 合并相关图\n- Table 能 inline 就不要单独浮动\n- 图表占比与其对叙事的贡献成正比\n\n### 6.5 页面节奏\n\n好论文的页面有节奏感——text、equation、figure 交替出现，读者视觉不疲劳：\n\n- **text-equation-figure 三重奏**：重要概念用\"文字解释 → 公式定义 → 图表直觉\"三步展开\n- 连续 2 页纯文本（无 figure/equation/table）→ 穿插一个 display item 打破节奏\n- 连续 2 个 figure 页（整页被 float 占满）→ 至少隔 1 段文字再放下一个 float\n- Section heading 不孤悬页底（heading 后至少跟 2 行正文，否则强制分页）\n- 最后一页内容 ≥ 2/3 页面高度（太空显得凑数，太满放不下 references）\n\n### 6.6 表格 LaTeX 规范\n\n**Booktabs 标准（硬规则）**：\n- 用 `\\toprule` / `\\midrule` / `\\bottomrule`，禁止 `\\hline`，禁止竖线 `|`\n- 用 `\\centering` 不用 `\\begin{center}`（后者多加垂直空白）\n- 最优结果加粗（`\\textbf{}`），次优下划线（`\\underline{}`）+ 方向箭头 `↑`/`↓` 标明指标方向\n- 小数精度全表统一（如全部保留 1 位或 2 位）\n- Caption 在表格上方（`\\caption` 在 `\\begin{tabular}` 之前）\n\n**宽度决策树**：\n- ≤5 列 → 单栏宽度（`\\columnwidth`）\n- 6–8 列 → 全文宽度（`\\textwidth`，双栏模板用 `table*`）\n- >8 列 → 拆成两张表或移入 appendix\n\n---\n\n## 七、投稿前通用准备\n\n### 7.1 模板必须官方（硬规则）\n\n- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）\n- **不要用**：\n  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）\n  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）\n  - 组里学长留的旧版本（来源不明、无法追溯）\n- 风险：\n  - 样式不符合 → desk reject\n  - margin 不对 → 被审稿人质疑诚信\n  - reference 格式错 → 被认为不规范\n- 流程：先查会议官网 templates → 找不到再 `WebSearch \"{venue} {year} latex template official\"` → 仍找不到汇报 Director（不要用就近年版本顶替）\n- `\\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致\n\n### 7.2 投稿要求逐项核对\n\n- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A\n- 页数限制：查目标会议官网\n- 匿名化要求：review 版 vs camera-ready 版本设置不同\n- 行号开启（review 版常需）\n- 字体大小、margin 不得修改 sty 文件\n\n### 7.3 最终修改 10 项检查流程\n\n提交前必须逐一检查：\n1. 所有最新实验结果已全部录入\n2. 根据实验结果将叙事调至最优状态\n3. 附录所有内容在正文中被引用且融入叙事\n4. 无数据堆砌（每个数字服务于叙事推进）\n5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）\n6. 全文主线统一（idea 变化后各章节逻辑一致）\n7. 所有专有名词有定义\n8. 无 AI 风格标志（dash、-ing phrases、过度分段）\n9. 图表知识密度高、无视觉遮挡\n10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础\n",
+      "numLines": 276,
+      "startLine": 1,
+      "totalLines": 276
+    }
+  },
+  "sourceToolAssistantUUID": "3ecc876c-6f3c-48f0-9d3d-c41f91426da7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T11:29:42.859Z_
+
+<details><summary>↩ Tool result · `toolu_0145srxqSsuz8auvDNyVSbGF`</summary>
+
+```text
+experiment_data.json
+imagined_experiments.yaml
+paper_framing.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2b440a79-a3cf-4606-8e33-93985c9ea4e5",
+  "isSidechain": false,
+  "promptId": "b0a8748b-21cc-4295-b093-9b740dba37c7",
+  "type": "user",
+  "uuid": "b6f21b30-2a80-4976-93ea-14fb518ddbe7",
+  "toolUseResult": {
+    "stdout": "experiment_data.json\nimagined_experiments.yaml\npaper_framing.md",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "2b440a79-a3cf-4606-8e33-93985c9ea4e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T11:29:43.390Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01MEFwnEe2ELGe5i8NqQscVY`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b6f21b30-2a80-4976-93ea-14fb518ddbe7",
+  "isSidechain": false,
+  "requestId": "req_011CbFdsYvWTSXPnDygSdD7v",
+  "type": "assistant",
+  "uuid": "3ecc876c-6f3c-48f0-9d3d-c41f91426da7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EbokxKUwy2Q2ZBgEL1WFRC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 6232,
+      "cache_creation_input_tokens": 11774,
+      "cache_read_input_tokens": 24181,
+      "output_tokens": 881,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11774,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 6232,
+          "output_tokens": 881,
+          "cache_read_input_tokens": 24181,
+          "cache_creation_input_tokens": 11774,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11774
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260521T110541 tier=best 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_…",
+  "leafUuid": "9a291f7f-4700-4d21-89dc-4931fa6378ea",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate IRT equated benchmark validation paper",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-21T11:30:09.717Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the context I need. Let me write the paper. I need to:
+
+1. Cover all experiments that were executed (not killed/not_executed)
+2. Follow the paper framing closely
+3. Use exact numbers from experiment_data.json
+4. Fit within 8 pages for EMNLP 2026
+5. Follow paper writing norms (no AI style, no dashes, etc.)
+
+Executed experiments (main text):
+- real_data_dif_mmlu → Table 1 (Claim 1)
+- multi_benchmark_temporal_dif → Table 3 (Claim 1 extension)
+
+
+- odds_ratio_regression_transparency → Table 4 (Claim 1 support)
+- semi_synthetic_contamination_validation → Table 2 (Claim 3)
+- permutation_null_c_rate → inline (statistical validation)
+- architecture_stratified_dif → inline one sentence
+
+Executed experiments (appendix):
+- rl_robustness_validation → Table S-RL
+- cross_benchmark_gsm8k → Table S-GSM8K
+- cumulative_bayesian_dif → Table S-Bayes
+- graceful_degradation_analysis → Table S-Degrade
+- item_focused
+
+_trees → Table S-IFT
+
+Not executed/killed (future work mention):
+- constat_perturbation_eval
+- dvd_generation_variance_eval
+- ensemble_fusion
+- bifactor_irt_equating_pilot
+- item_generation_calibration
+
+Now I'm planning the paper structure. I'll use a standard article format that captures the essence of a conference submission, with a title around the core finding about temporal instability in LLM benchmarks, and organize the content to fit within the 8-page scope while maintaining rigor.
+
+For the abstract, I need to cover the problem of assuming temporal comparability across benchmarks, the gap in systematic item-level analysis, the method using Mantel-Haenszel DIF on the full dataset, the key empirical findings including the 31% instability rate and validation across six benchmarks, and the practical implications for how we interpret benchmark results.
+
+The introduction will establish why benchmarks assume comparability, explain how items might function differently across model generations, introduce the psychometric DIF framework, lay out the main contributions, and clarify that instability doesn't necessarily mean invalidity.
+
+Now I'm structuring the rest of the paper: covering related work on benchmark contamination and psychometric approaches in NLP, then detailing the MH-DIF methodology with the ETS classification scheme and semi-synthetic validation framework, followed by experiments on temporal DIF patterns, cross-benchmark validation, Simpson's paradox effects, and downstream impact analysis.
+
+Writing the LaTeX document now with careful attention to formatting conventions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9a291f7f-4700-4d21-89dc-4931fa6378ea",
+  "isSidechain": false,
+  "requestId": "req_011CbFdtuDBRsz3tJYyiSTWE",
+  "type": "assistant",
+  "uuid": "c88d5f92-e60c-4c3e-9c16-6ae79b2980dc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016fcqQ6ACN7XqSZpsvrj8LY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12674,
+      "cache_read_input_tokens": 35955,
+      "output_tokens": 12912,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12674,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 12912,
+          "cache_read_input_tokens": 35955,
+          "cache_creation_input_tokens": 12674,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12674
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-21T11:30:09.719Z_
+
+Writing the full paper now. This is a substantial document covering all 14 experiments from the data file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c88d5f92-e60c-4c3e-9c16-6ae79b2980dc",
+  "isSidechain": false,
+  "requestId": "req_011CbFdtuDBRsz3tJYyiSTWE",
+  "type": "assistant",
+  "uuid": "6aa44db9-3549-4c4e-89b9-1000c982e553",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016fcqQ6ACN7XqSZpsvrj8LY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12674,
+      "cache_read_input_tokens": 35955,
+      "output_tokens": 12912,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12674,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 12912,
+          "cache_read_input_tokens": 35955,
+          "cache_creation_input_tokens": 12674,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12674
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-21T11:33:55.606Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_016reDSRBLbjt9MpxKxPZ1Eq`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T110541/best/paper.tex",
+  "content": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[utf8]{inputenc}\n\\usepackage[T1]{fontenc}\n\\usepackage{times}\n\\usepackage{amsmath,amssymb}\n\\usepackage{booktabs}\n\\usepackage{graphicx}\n\\usepackage{multirow}\n\\usepackage{hyperref}\n\\usepackage[margin=2.5cm]{geometry}\n\\usepackage{natbib}\n\\usepackage{xcolor}\n\\usepackage{enumitem}\n\n\\title{How Stable Are LLM Benchmarks?\\\\Psychometric DIF Analysis of 5,227 Models Reveals\\\\31\\% Temporal Item Instability}\n\n\\author{Anonymous}\n\\date{}\n\n\\begin{document}\n\\maketitle\n\n%% ========================================================================\n%% ABSTRACT\n%% ========================================================================\n\\begin{abstract}\nWhen we compare Large Language Model (LLM) scores across time, we implicitly assume that benchmark items measure the same construct for all model cohorts.\nWe test this assumption using Mantel-Haenszel Differential Item Functioning (MH-DIF) analysis on the METABENCH response matrix (5,227 models $\\times$ 12,508 MMLU items), the largest such analysis on LLM benchmarks to date.\nWe find that 31.3\\% of items exhibit large temporal DIF (ETS C class) between 2023 and 2024-H1 model cohorts, a rate 174$\\times$ above random-split controls (0.18\\%) and consistent across six benchmarks (17.9\\%--31.3\\%).\nA Simpson's paradox analysis reveals that the na\\\"ive positive association between domain-level accuracy improvement and DIF (OR\\,=\\,1.55) reverses after controlling for item properties (OR\\,=\\,0.73), confirming that instability is predominantly item-specific rather than driven by capability gains.\nWe further demonstrate that the field's standard web-overlap ground truth labels are orthogonal to differential item functioning (enrichment\\,$\\approx$\\,1.0), and provide a semi-synthetic validation framework with cross-subject matching that eliminates false positive rate inflation ($\\Delta$FPR\\,=\\,0.000).\nDespite 31\\% instability, MMLU model rankings remain highly stable ($\\rho$\\,$\\approx$\\,0.997), indicating massive measurement redundancy.\nWe propose a DIF-based audit protocol for benchmark maintainers to monitor and respond to temporal item drift.\n\\end{abstract}\n\n%% ========================================================================\n%% 1  INTRODUCTION\n%% ========================================================================\n\\section{Introduction}\n\nLLM evaluation relies on static benchmarks such as MMLU, GSM8K, and ARC-Challenge to track progress across model generations.\nAn implicit assumption underlies every cross-temporal comparison: the items that compose these benchmarks measure the same latent construct with the same difficulty for all models, regardless of when those models were trained.\nIf this assumption fails, score comparisons across model cohorts become ambiguous.\nPsychometrics provides a mature tool for testing this assumption: Differential Item Functioning (DIF) analysis detects items whose difficulty changes across examinee groups after controlling for overall ability \\citep{holland1988differential}.\n\nWe apply MH-DIF to the METABENCH response matrix \\citep{perlitz2024metabench}, covering 5,227 models evaluated on 12,508 MMLU items.\nThis constitutes the largest DIF analysis on LLM benchmarks to date.\nOur central finding is that approximately 31\\% of MMLU items are functionally unstable across model generations.\nThis instability is not a statistical artifact (random-split control: 0.18\\%, permutation null: 0.21\\%), not driven by domain-level capability improvement ($\\leq$7.6\\% of variance explained), and not specific to MMLU (replicated across six benchmarks with C\\% ranging from 17.9\\% to 31.3\\%).\n\nA key framing principle guides our interpretation: \\textbf{instability does not imply invalidity}.\nRemoving all 31\\% of flagged items changes model rankings negligibly ($\\rho \\approx 0.997$), revealing massive measurement redundancy in MMLU.\nDIF flags identify which items' functioning changed most across generations, serving as a diagnostic lens for understanding capability shifts rather than a quality filter for item exclusion.\n\nWe further identify a fundamental gap in the contamination detection literature: web-overlap labels (the field's standard ground truth) measure global exposure, not differential contamination.\nDIF enrichment against these labels is $\\approx$1.0, and we show via semi-synthetic injection that DIF can detect differential contamination ($\\Delta$TPR\\,=\\,+0.508 at 50\\% exploitation rate) while web-overlap labels cannot distinguish it.\nWe provide a reusable semi-synthetic validation framework with cross-subject matching ($\\Delta$FPR\\,=\\,0.000) that eliminates matching variable contamination.\n\nOur contributions are:\n\\begin{enumerate}[nosep,leftmargin=*]\n\\item \\textbf{Empirical discovery at scale}: 31.3\\% of MMLU items show large temporal DIF, robust across thresholds, six benchmarks, and multiple testing corrections. The instability is item-specific ($\\leq$7.6\\% explained by domain improvement) and does not threaten ranking validity ($\\rho \\approx 0.997$).\n\\item \\textbf{Ground truth meta-critique}: Web-overlap contamination labels are orthogonal to differential item functioning (enrichment\\,$\\approx$\\,1.0). This affects the validity claims of all item-level detectors validated against such labels.\n\\item \\textbf{Semi-synthetic validation framework}: The $\\Delta$TPR methodology with cross-subject matching ($\\Delta$FPR\\,=\\,0.000) provides reusable infrastructure for validating any item-level contamination detector, with demonstrated portability to GSM8K.\n\\item \\textbf{DIF audit protocol}: A concrete protocol for benchmark maintainers specifying monitoring frequency, decision rules, and response options.\n\\end{enumerate}\n\n%% ========================================================================\n%% 2  RELATED WORK\n%% ========================================================================\n\\section{Related Work}\n\n\\paragraph{Benchmark Contamination Detection.}\nThe detection of benchmark contamination in LLMs has attracted substantial attention.\nMethods range from n-gram overlap analysis \\citep{dodge2021documenting,brown2020language} to membership inference approaches such as Min-K\\% \\citep{shi2024detecting} and generation-based methods \\citep{golchin2024time,yang2023rethinking}.\nConStat \\citep{dekoninck2024constat} tests whether semantically equivalent item reformulations produce inconsistent responses.\nDVD \\citep{dong2024generalization} examines generation variance under temperature sampling.\nA common thread across these methods is validation against web-overlap or n-gram ground truth labels \\citep{li2024task,deng2024investigating}, which we argue measures global exposure rather than differential contamination.\nOur work does not propose a new detection method but instead characterizes the stability properties of benchmark items and critiques the prevailing validation methodology.\n\n\\paragraph{Psychometric Methods in NLP Evaluation.}\nItem Response Theory (IRT) has been applied to NLP evaluation for difficulty estimation \\citep{lalor2019learning,rodriguez2021evaluation,vania2021comparing}, adaptive testing \\citep{zhuang2023efficiently}, and benchmark analysis \\citep{blebea2024benchmark}.\n\\citet{polo2024tinybenchmarks} use IRT to construct efficient benchmark subsets.\nDIF analysis, while foundational in educational testing \\citep{holland1988differential,zumbo1999handbook}, has seen limited application in NLP.\nOur work bridges this gap by applying MH-DIF at scale to characterize temporal item stability in LLM benchmarks.\n\n\\paragraph{Benchmark Design and Maintenance.}\nConcerns about benchmark saturation \\citep{kiela2021dynabench}, data contamination \\citep{magar2022data,jacovi2023stop}, and the need for dynamic evaluation \\citep{zhu2024dyval} have motivated new benchmark design paradigms.\n\\citet{perlitz2024metabench} provide the large-scale response matrices that enable our analysis.\nGrowing Pains \\citep{chiang2024chatbot} identifies anchor items for efficient model comparison; our DIF analysis reveals which anchor items may be degrading over time.\n\n%% ========================================================================\n%% 3  METHOD\n%% ========================================================================\n\\section{Method}\n\n\\subsection{Mantel-Haenszel DIF Analysis}\n\nThe Mantel-Haenszel (MH) procedure \\citep{holland1988differential} tests whether an item functions differently across two groups (reference $R$ and focal $F$) after conditioning on a matching variable that measures overall ability.\nFor each item, models are stratified into $K$ ability strata based on their total score.\nWithin each stratum $k$, a $2 \\times 2$ contingency table records correct/incorrect responses for each group.\nThe MH odds ratio is:\n\\begin{equation}\n\\alpha_{\\text{MH}} = \\frac{\\sum_k A_k D_k / N_k}{\\sum_k B_k C_k / N_k}\n\\end{equation}\nwhere $A_k, B_k, C_k, D_k$ are the cell counts and $N_k$ is the stratum total.\nThe log-odds ratio $\\Delta_{\\text{MH}} = -2.35 \\ln(\\alpha_{\\text{MH}})$ converts to the ETS delta scale.\nItems are classified by the ETS system: A (negligible, $|\\Delta_{\\text{MH}}| < 1.0$), B (moderate, $1.0 \\leq |\\Delta_{\\text{MH}}| < 1.5$), and C (large, $|\\Delta_{\\text{MH}}| \\geq 1.5$).\nWe focus on C-class items as our primary instability indicator and report C\\% (the percentage of items classified as C).\n\nIn our setting, the reference group ($R$) consists of models released before 2024 (the 2023 cohort) and the focal group ($F$) consists of models released in 2024-H1.\nWe use cross-subject total score as the matching variable: for each MMLU subject, a model's matching score is its total correct on all \\emph{other} subjects.\nThis eliminates matching variable contamination (Section~\\ref{sec:cross-subject}).\n\n\\subsection{Semi-Synthetic Validation Framework}\n\\label{sec:semisynthetic}\n\nTo evaluate DIF detection power under known ground truth, we inject controlled differential contamination into real METABENCH response matrices.\nFor a target subject with $n$ items, we select $\\lfloor p \\cdot n \\rfloor$ ``clean'' items (those with low baseline DIF) and flip incorrect$\\to$correct responses for all focal-group models on these items, simulating exploitation at rate $p$.\nWe measure detection power via $\\Delta$TPR: the increase in true positive rate at the injected items relative to baseline.\nDose-response curves across $p \\in \\{0.3, 0.5, 0.7, 1.0\\}$ verify that detection power increases monotonically with contamination intensity.\n\n\\subsection{Cross-Subject Matching}\n\\label{sec:cross-subject}\n\nStandard MH-DIF uses within-subject total score as the matching variable.\nWhen contamination affects a subset of items within the target subject, the matching variable itself becomes inflated for contaminated models, biasing DIF estimates.\nWe replace within-subject matching with cross-subject matching: a model's ability estimate for subject $s$ is its total score on all subjects \\emph{except} $s$.\nThis ensures the matching variable is independent of any contamination in the target subject.\nWe demonstrate empirically that cross-subject matching yields $\\Delta$FPR\\,=\\,0.000 across all tested conditions, while within-subject matching inflates FPR by up to +0.186.\n\n%% ========================================================================\n%% 4  EXPERIMENTS\n%% ========================================================================\n\\section{Experiments}\n\n\\subsection{Data}\n\nWe use the METABENCH repository \\citep{perlitz2024metabench}, which provides binary response matrices (correct/incorrect) for models evaluated on standardized benchmarks.\nFor MMLU, the matrix contains 5,227 models $\\times$ 12,508 items spanning 57 subjects.\nModels are split into a reference cohort (released before 2024-01-01; $N_R = 2{,}891$) and a focal cohort (released 2024-01-01 to 2024-06-30; $N_F = 2{,}336$).\nThe population is 99.98\\% decoder-only architectures (5,226/5,227); excluding the single non-decoder model leaves all DIF results unchanged (Jaccard\\,=\\,1.0).\n\nFor cross-benchmark validation, we additionally analyze WinoGrande, TruthfulQA, ARC-Challenge, GSM8K (1,319 items $\\times$ 6,702 models), and HellaSwag from the same repository.\n\n\\subsection{Temporal DIF on MMLU}\n\n\\begin{table}[t]\n\\centering\n\\caption{Temporal DIF on MMLU: 2023 vs.\\ 2024-H1 cohorts.}\n\\label{tab:temporal}\n\\small\n\\begin{tabular}{lcc}\n\\toprule\n\\textbf{Metric} & \\textbf{Temporal} & \\textbf{Random Split} \\\\\n\\midrule\nC\\% (ETS C, $|\\Delta_{\\text{MH}}| \\geq 1.5$) & 31.3\\% & 0.18\\% \\\\\nEnrichment vs.\\ random & 174$\\times$ & -- \\\\\nSubjects with DIF & 57/57 & -- \\\\\nSubject C\\% range & 20.7--48.4\\% & -- \\\\\nUnweighted subject mean C\\% & 30.0\\% & -- \\\\\nAbility quintile C\\% & 2.9\\% & -- \\\\\nAbility enrichment & 1.19 & -- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:temporal} summarizes our primary result.\nTemporal DIF analysis identifies 31.3\\% of MMLU items as ETS C class ($|\\Delta_{\\text{MH}}| \\geq 1.5$), compared to 0.18\\% under random group assignment (174$\\times$ enrichment).\nAll 57 MMLU subjects contain DIF items, with per-subject C\\% ranging from 20.7\\% to 48.4\\% (unweighted mean 30.0\\%).\nA permutation test (1,000 iterations, randomly reassigning temporal labels) yields a null C\\% of 0.21\\%\\,$\\pm$\\,0.09\\%, placing the observed 31.3\\% more than 345 standard deviations above the null ($p < 0.001$; 0 of 1,000 permutations exceed the observed value).\n\n\\paragraph{Threshold robustness.}\nC\\% varies systematically with the ETS threshold: 48.9\\% at $|\\Delta_{\\text{MH}}| \\geq 1.0$, 31.3\\% at $\\geq$1.5, 18.3\\% at $\\geq$2.0, and 10.2\\% at $\\geq$2.5.\nThe finding that $>$15\\% of items show instability holds across standard thresholds [1.0, 2.0].\nBenjamini-Hochberg FDR correction at $q = 0.05$ removes only 3 of 3,918 C-class items (31.32\\%\\,$\\to$\\,31.30\\%), confirming that the ETS dual requirement (effect size $+$ significance) provides near-complete implicit multiple-testing protection.\n\n\\paragraph{Architecture homogeneity.}\nMETABENCH MMLU contains 5,226 decoder-only models and 1 non-decoder model (99.98\\% decoder-only).\nExcluding the non-decoder model yields identical DIF flags (Jaccard\\,=\\,1.0, C\\%\\,=\\,31.3\\%).\nArchitecture heterogeneity is a non-issue for this analysis.\n\n\\subsection{Cross-Benchmark Validation}\n\n\\begin{table}[t]\n\\centering\n\\caption{Six-benchmark temporal DIF validation (2023 vs.\\ 2024-H1).}\n\\label{tab:crossbench}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Benchmark} & \\textbf{C\\%} & \\textbf{Random C\\%} & \\textbf{Enrichment} \\\\\n\\midrule\nMMLU & 31.3\\% & 0.18\\% & 174$\\times$ \\\\\nWinoGrande & 30.3\\% & 0.32\\% & 95$\\times$ \\\\\nTruthfulQA & 29.7\\% & 0.37\\% & 80$\\times$ \\\\\nARC-Challenge & 26.9\\% & 0.60\\% & 45$\\times$ \\\\\nGSM8K & 18.9\\% & 0.30\\% & 63$\\times$ \\\\\nHellaSwag & 17.9\\% & 0.28\\% & 64$\\times$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:crossbench} extends the temporal DIF analysis to six benchmarks.\nAll six show substantial DIF (C\\% from 17.9\\% to 31.3\\%), with every random control below 1\\% and a minimum enrichment of 45$\\times$ (ARC-Challenge).\nThe variation across benchmarks reflects structural differences: MMLU (57 subjects, 12,508 items) provides the most dimensions for capability shifts to manifest, while GSM8K (single-domain math) and HellaSwag (commonsense NLI with compressed difficulty variance) show lower but still substantial rates.\nThis cross-benchmark consistency rules out MMLU-specific artifacts and establishes temporal item instability as a general property of LLM benchmarks.\n\n\\subsection{Simpson's Paradox in Ability Confounding}\n\\label{sec:simpsons}\n\n\\begin{table}[t]\n\\centering\n\\caption{Logistic regression of DIF flag on accuracy improvement. OR: odds ratio per 0.10 increase in predictor; Simpson's paradox reverses the association after controlling for item properties.}\n\\label{tab:simpsons}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Predictor(s)} & \\textbf{OR} & \\textbf{95\\% CI} & \\textbf{McF.\\ $R^2$} \\\\\n\\midrule\nM1 & Domain $\\Delta$acc & 1.55 & [1.19, 2.03] & 0.0007 \\\\\nM2 & Domain $\\Delta$acc & \\textbf{0.73} & -- & 0.0423 \\\\\n   & $+$ CTT difficulty & 0.78 & -- & \\\\\n   & $+$ CTT discrimination & 1.51 & -- & \\\\\n\\midrule\nM3 & Item $\\Delta$acc & 1.08 & [1.51, 2.96] & 0.0012 \\\\\nM4 & Item $\\Delta$acc & 0.92 & -- & 0.0434 \\\\\n   & $+$ CTT difficulty & 0.77 & -- & \\\\\n   & $+$ CTT discrimination & 1.54 & -- & \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nA natural concern is that 31\\% instability simply reflects models ``getting better.''\nTable~\\ref{tab:simpsons} tests this via logistic regression predicting DIF C-class membership.\nModel~1, using only domain-level accuracy improvement as predictor, shows a positive association (OR\\,=\\,1.55): subjects with larger 2024-vs-2023 improvement do have more DIF items.\nHowever, Model~2 adds item-level difficulty and discrimination as controls, and the association \\emph{reverses} (OR\\,=\\,0.73).\nThis is a textbook Simpson's paradox: DIF-C items happen to be harder and more discriminating than non-DIF items, and these item properties confound the domain-level correlation.\nAfter controlling for item characteristics, domains with larger improvement actually have \\emph{fewer} DIF items.\n\nThe likelihood ratio test between M1 and M2 is $\\chi^2 = 647.0$ ($p \\approx 0$), confirming that item properties are genuine confounders.\nEven the best model (M2) explains only 4.2\\% of variance (McFadden $R^2 = 0.0423$), meaning 96\\% of DIF is item-specific and not predicted by domain improvement or item properties.\nThis converges with item-level decomposition showing that domain accuracy improvement accounts for at most 2.4 percentage points of the 31.3\\% C\\% (7.6\\% of the total).\n\n\\subsection{Semi-Synthetic Contamination Validation}\n\n\\begin{table}[t]\n\\centering\n\\caption{Semi-synthetic validation: $\\Delta$TPR across exploitation rates with cross-subject vs.\\ standard matching. Cross-subject matching eliminates FPR inflation.}\n\\label{tab:semisynthetic}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Exploitation rate $p$} & \\textbf{$\\Delta$TPR (cross-subj.)} & \\textbf{TPR (cross-subj.)} & \\textbf{$\\Delta$FPR (cross-subj.)} \\\\\n\\midrule\nBaseline ($p = 0$) & -- & 0.326 & -- \\\\\n0.3 & +0.222 & 0.548 & 0.000 \\\\\n0.5 & +0.508 & 0.834 & 0.000 \\\\\n0.7 & +0.664 & 0.990 & 0.000 \\\\\n1.0 & +0.674 & 1.000 & 0.000 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Standard (within-subject) matching for comparison:}} \\\\\n$p = 1.0$ FPR inflation & \\multicolumn{3}{c}{0.298 $\\to$ 0.616 (+0.318)} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:semisynthetic} demonstrates the semi-synthetic validation framework.\nInjecting known differential contamination into real METABENCH response matrices produces a clean dose-response relationship: $\\Delta$TPR increases monotonically from +0.222 at $p = 0.3$ to +0.674 at $p = 1.0$.\nCross-subject matching maintains $\\Delta$FPR\\,=\\,0.000 across all exploitation levels, while standard within-subject matching inflates FPR from 0.298 to 0.616 at $p = 1.0$.\nThis confirms that within-subject matching contaminates the conditioning variable, while cross-subject matching isolates the DIF signal from the matching criterion.\n\nThe framework is portable: on GSM8K (1,319 items, 6,702 models), standard matching yields $\\Delta$TPR\\,=\\,+0.818 at $p = 1.0$ and cross-subject (external score) matching yields $\\Delta$TPR\\,=\\,+0.517, both confirming detection power on a single-domain mathematics benchmark.\n\n\\paragraph{Ground truth meta-critique.}\nDIF enrichment against Li et al.\\ web-overlap labels is 0.96 (Jaccard\\,=\\,0.206, $\\phi$\\,=\\,0.012, $\\chi^2$\\,=\\,1.28, $p$\\,=\\,0.258).\nThis near-unity enrichment is \\emph{expected}, not a failure: web-overlap labels capture whether an item is publicly accessible, while DIF measures whether an item functions differently across model cohorts.\nThese are orthogonal signals.\nAny item-level detector validated solely against web-overlap ground truth faces this fundamental blind spot.\n\n\\subsection{Downstream Impact and Diagnostic Value}\n\nDIF items carry genuine cross-cohort signal: removing them causes more ranking disruption than random removal ($z = -8$ to $-49\\sigma$ across 21 conditions).\nHowever, a circularity ablation reveals that DIF removal is the \\emph{least} disruptive non-random strategy: accuracy-gap removal disrupts 10--16$\\times$ more ($z = -157$ vs.\\ $-9.5$), high-variance removal 11$\\times$ more ($z = -108$), and high-discrimination removal 1.7$\\times$ more ($z = -16$).\nMH ability conditioning filters out raw group differences, isolating items whose functioning genuinely changed rather than items that are merely informative.\n\nDespite 31\\% instability, model rankings are extremely robust.\nProgressive item replacement analysis shows ranking correlation remains above 0.99 even at 20\\% replacement ($\\rho = 0.9943$, $\\alpha = 0.971$), degrading to $\\rho = 0.9712$ only at 50\\% replacement.\nThe critical threshold is approximately 40\\% replacement before $\\rho$ drops below 0.98.\nThis massive redundancy means that instability does not threaten benchmark validity but instead provides diagnostic information about which capability dimensions are shifting across model generations.\n\n\\paragraph{DIF audit protocol.}\nBased on our findings, we propose the following protocol for benchmark maintainers:\n(1) Run MH-DIF with cross-subject matching on each new model cohort;\n(2) Flag items exceeding the ETS C threshold;\n(3) Monitor C\\% trends across quarterly releases;\n(4) If C\\% exceeds a predetermined threshold (e.g., 30\\%), investigate affected domains for systematic patterns;\n(5) Consider item replacement for persistently flagged items, noting that $\\leq$20\\% replacement preserves ranking validity ($\\rho > 0.99$).\nItem-Focused Trees with continuous temporal covariates confirm 81\\% concordance with binary MH-DIF (Appendix~\\ref{app:ift}), validating the binary split as a reasonable first-pass approach.\n\n%% ========================================================================\n%% 5  DISCUSSION AND LIMITATIONS\n%% ========================================================================\n\\section{Discussion and Limitations}\n\nOur findings establish that temporal item instability is pervasive across LLM benchmarks (17.9\\%--31.3\\% across six benchmarks, all $\\geq$45$\\times$ above random controls).\nThe Simpson's paradox result (OR reversal from 1.55 to 0.73) provides strong evidence that this instability is not a proxy for capability improvement.\nThe semi-synthetic framework with cross-subject matching ($\\Delta$FPR\\,=\\,0.000) offers a principled validation methodology that avoids the limitations of web-overlap ground truth.\n\n\\paragraph{IRT model fit.}\nUnidimensional IRT person-fit analysis shows 98\\% of models with $|L_z| > 2$, indicating systematic misfit.\nThis reflects MMLU's inherent multidimensionality (57 subjects) rather than architecture heterogeneity (99.98\\% decoder-only).\nMH-DIF is a non-parametric method that does not assume unidimensional IRT, so our results are not invalidated by IRT misfit.\nFuture work should explore multidimensional IRT and bifactor models; our pilot showed that bifactor equating was infeasible for MMLU (CFI\\,=\\,0.72, within-subject C\\%\\,=\\,38.1\\%), motivating development of scalable multidimensional approaches.\n\n\\paragraph{RL robustness.}\nOur focal cohort includes only 13 reasoning-RL models (GRPO/PPO), comprising 1.6\\% of the focal group.\nDIF is a group-level method, so this small count cannot meaningfully influence group statistics (C\\% changes from 31.3\\% to 31.1\\%).\nDedicated study with larger reasoning-RL samples is needed to assess whether post-training RL optimization produces qualitatively different DIF patterns.\n\n\\paragraph{Additional limitations.}\nThe semi-synthetic injection mechanism (incorrect$\\to$correct flipping) is a simplification of real contamination, which may involve partial memorization or reasoning shortcuts.\nOur binary temporal split (2023 vs.\\ 2024-H1) is a first-pass approach; continuous treatment via Item-Focused Trees (34.3\\% detection rate, 81\\% concordance with MH) suggests finer temporal resolution could reveal additional structure.\nWe analyze only multiple-choice benchmarks; generalization to open-ended generation benchmarks remains future work.\n\n%% ========================================================================\n%% 6  CONCLUSION\n%% ========================================================================\n\\section{Conclusion}\n\nWe applied MH-DIF analysis to 5,227 models across 12,508 MMLU items and five additional benchmarks.\nApproximately 31\\% of MMLU items show large temporal DIF, a finding robust across thresholds, benchmarks (17.9\\%--31.3\\% on six benchmarks, all $\\geq$45$\\times$ enrichment), and multiple-testing corrections.\nThis instability is item-specific ($\\leq$7.6\\% explained by capability improvement) and does not threaten ranking validity ($\\rho \\approx 0.997$).\nThe field's web-overlap ground truth is orthogonal to differential item functioning (enrichment\\,$\\approx$\\,1.0); our semi-synthetic framework with cross-subject matching ($\\Delta$FPR\\,=\\,0.000) provides an alternative validation infrastructure.\nWe release the DIF audit protocol to support benchmark maintenance at scale.\n\n%% ========================================================================\n%% REFERENCES\n%% ========================================================================\n\\bibliographystyle{plainnat}\n\n\\begin{thebibliography}{30}\n\n\\bibitem[Brown et~al.(2020)]{brown2020language}\nBrown, T.~B., et~al. (2020).\n\\newblock Language models are few-shot learners.\n\\newblock In \\emph{NeurIPS 2020}.\n\n\\bibitem[Blebea et~al.(2024)]{blebea2024benchmark}\nBlebea, S., et~al. (2024).\n\\newblock A psychometric analysis of benchmark datasets.\n\\newblock \\emph{arXiv preprint arXiv:2402.01748}.\n\n\\bibitem[Chiang et~al.(2024)]{chiang2024chatbot}\nChiang, W.-L., et~al. (2024).\n\\newblock Chatbot Arena: An open platform for evaluating LLMs by human preference.\n\\newblock In \\emph{ICML 2024}.\n\n\\bibitem[DeKoninck et~al.(2024)]{dekoninck2024constat}\nDeKoninck, J., et~al. (2024).\n\\newblock ConStat: Performance-based contamination detection in large language models.\n\\newblock In \\emph{ICML 2024}.\n\n\\bibitem[Deng et~al.(2024)]{deng2024investigating}\nDeng, C., et~al. (2024).\n\\newblock Investigating data contamination in modern benchmarks for large language models.\n\\newblock In \\emph{NAACL 2024}.\n\n\\bibitem[Dodge et~al.(2021)]{dodge2021documenting}\nDodge, J., et~al. (2021).\n\\newblock Documenting large webtext corpora: A case study on the Colossal Clean Crawled Corpus.\n\\newblock In \\emph{EMNLP 2021}.\n\n\\bibitem[Dong et~al.(2024)]{dong2024generalization}\nDong, G., et~al. (2024).\n\\newblock Generalization or memorization: Data contamination and trustworthy evaluation for large language models.\n\\newblock In \\emph{ACL 2024}.\n\n\\bibitem[Golchin \\& Bansal(2024)]{golchin2024time}\nGolchin, S. and Bansal, M. (2024).\n\\newblock Time travel in LLMs: Tracing data contamination in large language models.\n\\newblock In \\emph{ICLR 2024}.\n\n\\bibitem[Holland \\& Thayer(1988)]{holland1988differential}\nHolland, P.~W. and Thayer, D.~T. (1988).\n\\newblock Differential item functioning and the Mantel-Haenszel procedure.\n\\newblock In \\emph{Test Validity}, pp. 129--145. Erlbaum.\n\n\\bibitem[Jacovi et~al.(2023)]{jacovi2023stop}\nJacovi, A., et~al. (2023).\n\\newblock Stop uploading test data in plain text: Practical strategies for mitigating data contamination by evaluation benchmarks.\n\\newblock In \\emph{EMNLP 2023}.\n\n\\bibitem[Kiela et~al.(2021)]{kiela2021dynabench}\nKiela, D., et~al. (2021).\n\\newblock Dynabench: Rethinking benchmarking in NLP.\n\\newblock In \\emph{NAACL 2021}.\n\n\\bibitem[Lalor et~al.(2019)]{lalor2019learning}\nLalor, J.~P., et~al. (2019).\n\\newblock Learning latent parameters without human response patterns: Item response theory with artificial crowds.\n\\newblock In \\emph{EMNLP 2019}.\n\n\\bibitem[Li et~al.(2024)]{li2024task}\nLi, Y., et~al. (2024).\n\\newblock Task contamination: Language models may not be few-shot anymore.\n\\newblock In \\emph{AAAI 2024}.\n\n\\bibitem[Magar \\& Schwartz(2022)]{magar2022data}\nMagar, I. and Schwartz, R. (2022).\n\\newblock Data contamination: From memorization to exploitation.\n\\newblock In \\emph{ACL 2022}.\n\n\\bibitem[Perlitz et~al.(2024)]{perlitz2024metabench}\nPerlitz, Y., et~al. (2024).\n\\newblock METABENCH: A large-scale meta-evaluation of LLM benchmarks.\n\\newblock \\emph{arXiv preprint arXiv:2407.12844}.\n\n\\bibitem[Polo et~al.(2024)]{polo2024tinybenchmarks}\nPolo, F.~M., et~al. (2024).\n\\newblock tinyBenchmarks: Evaluating LLMs with fewer examples.\n\\newblock In \\emph{ICML 2024}.\n\n\\bibitem[Rodriguez et~al.(2021)]{rodriguez2021evaluation}\nRodriguez, P., et~al. (2021).\n\\newblock Evaluation examples are not equally informative: How should that change NLP leaderboards?\n\\newblock In \\emph{ACL 2021}.\n\n\\bibitem[Shi et~al.(2024)]{shi2024detecting}\nShi, W., et~al. (2024).\n\\newblock Detecting pretraining data from large language models.\n\\newblock In \\emph{ICLR 2024}.\n\n\\bibitem[Vania et~al.(2021)]{vania2021comparing}\nVania, C., et~al. (2021).\n\\newblock Comparing test sets with item response theory.\n\\newblock In \\emph{ACL 2021}.\n\n\\bibitem[Yang et~al.(2023)]{yang2023rethinking}\nYang, S., et~al. (2023).\n\\newblock Rethinking benchmark and contamination for language models with rephrased samples.\n\\newblock \\emph{arXiv preprint arXiv:2311.04850}.\n\n\\bibitem[Zhu et~al.(2024)]{zhu2024dyval}\nZhu, K., et~al. (2024).\n\\newblock DyVal: Dynamic evaluation of large language models for reasoning tasks.\n\\newblock In \\emph{ICLR 2024}.\n\n\\bibitem[Zhuang et~al.(2023)]{zhuang2023efficiently}\nZhuang, Y., et~al. (2023).\n\\newblock Efficiently measuring the cognitive ability of LLMs: An adaptive testing perspective.\n\\newblock \\emph{arXiv preprint arXiv:2306.10014}.\n\n\\bibitem[Zumbo(1999)]{zumbo1999handbook}\nZumbo, B.~D. (1999).\n\\newblock \\emph{A Handbook on the Theory and Methods of Differential Item Functioning}.\n\\newblock National Defense Headquarters, Ottawa.\n\n\\end{thebibliography}\n\n%% ========================================================================\n%% APPENDIX\n%% ========================================================================\n\\clearpage\n\\appendix\n\\section{Supplementary Experiments}\n\n\\subsection{RL Robustness Analysis}\n\\label{app:rl}\n\n\\begin{table}[h]\n\\centering\n\\caption{DIF stability across cohort compositions.}\n\\label{tab:rl}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Cohort} & \\textbf{C\\%} & \\textbf{Jaccard vs.\\ SFT} & \\textbf{ConStat AUROC} \\\\\n\\midrule\nSFT baseline & 31.8\\% & -- & 0.72 \\\\\n$+$ Alignment-RL (DPO/ORPO) & 30.5\\% & 0.87 & 0.68 \\\\\n$+$ Reasoning-RL ($N = 13$) & 31.1\\% & 0.92 & 0.49 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Traditional detectors on reasoning-RL:}} \\\\\nMin-K\\% AUROC & \\multicolumn{3}{c}{0.44} \\\\\nDIF bootstrap AUROC [95\\% CI] & \\multicolumn{3}{c}{[0.88, 0.95]} \\\\\nDeLong DIF vs.\\ ConStat & \\multicolumn{3}{c}{$p = 0.002$} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:rl} shows DIF stability when varying focal cohort composition.\nAdding alignment-RL models (DPO/ORPO) changes C\\% minimally (31.8\\%$\\to$30.5\\%, Jaccard\\,=\\,0.87).\nIncluding 13 reasoning-RL models (GRPO/PPO) has negligible impact (C\\%\\,=\\,31.1\\%, Jaccard\\,=\\,0.92), as expected given they comprise only 1.6\\% of the focal group.\nTraditional detectors show degraded performance on reasoning-RL models (ConStat AUROC: 0.49; Min-K\\%: 0.44), while DIF maintains high AUROC [0.88, 0.95].\nThe $N = 13$ sample is insufficient for definitive claims about RL robustness; this remains a priority for future work with larger reasoning-RL model collections.\n\n\\subsection{GSM8K Cross-Benchmark Replication}\n\\label{app:gsm8k}\n\n\\begin{table}[h]\n\\centering\n\\caption{GSM8K DIF analysis: temporal DIF, semi-synthetic validation, and GSM1K correlation.}\n\\label{tab:gsm8k}\n\\small\n\\begin{tabular}{lcc}\n\\toprule\n\\textbf{Metric} & \\textbf{Standard matching} & \\textbf{External matching} \\\\\n\\midrule\nTemporal C\\% & \\multicolumn{2}{c}{18.9\\% (random: 0.3\\%)} \\\\\nSpearman (standard vs.\\ external) & \\multicolumn{2}{c}{0.926} \\\\\n$\\Delta$TPR at $p = 1.0$ & 0.818 & 0.517 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textit{GSM1K correlation (exploratory, $N = 33$):}} \\\\\nPearson $r$ & \\multicolumn{2}{c}{$-0.478$ ($p = 0.014$)} \\\\\nSpearman $\\rho$ & \\multicolumn{2}{c}{$-0.403$} \\\\\nPartial $r$ (controlling accuracy) & \\multicolumn{2}{c}{$-0.385$} \\\\\nLeave-one-out $r$ range & \\multicolumn{2}{c}{$[-0.537, -0.374]$} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nGSM8K temporal DIF (C\\%\\,=\\,18.9\\%) falls within the cross-benchmark range and confirms framework portability (Table~\\ref{tab:gsm8k}).\nThe semi-synthetic $\\Delta$TPR is higher under standard matching (+0.818) than external matching (+0.517), reflecting GSM8K's single-domain structure where external matching is effectively total-score matching on a different benchmark.\nThe GSM1K contamination gap shows a negative correlation with DIF ($r = -0.478$, $p = 0.014$, $N = 33$): models with more DIF items show \\emph{smaller} contamination gaps.\nThis counter-intuitive result supports the meta-critique that DIF captures differential functioning orthogonal to web-overlap contamination.\nHowever, $N = 33$ with wide confidence intervals means this finding is exploratory and requires replication.\n\n\\subsection{Cumulative Bayesian DIF}\n\\label{app:bayes}\n\n\\begin{table}[h]\n\\centering\n\\caption{Detection power by number of cumulative administrations and effect size.}\n\\label{tab:bayes}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Effect size $\\delta$} & \\textbf{1 admin} & \\textbf{2 admin} & \\textbf{3 admin} & \\textbf{4 admin} \\\\\n\\midrule\n$\\delta = 1.0$ & 0.42 & 0.58 & 0.69 & 0.74 \\\\\n$\\delta = 1.4$ & 0.68 & -- & 0.85 & -- \\\\\n\\midrule\n\\multicolumn{5}{l}{Cumulative FPR: 0.048} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:bayes} shows that cumulative Bayesian DIF priors improve detection power for medium-effect items ($\\delta = 1.0$) from 0.42 (single administration) to 0.74 (four administrations) while maintaining FPR at 0.048.\nLarge-effect items ($\\delta \\geq 1.4$) already achieve adequate power in a single administration (0.68), so the marginal benefit of accumulation is smaller.\nIf benchmark maintainers adopt quarterly DIF audits, cumulative priors would enable detection of subtler temporal shifts over multiple release cycles.\n\n\\subsection{Graceful Degradation Analysis}\n\\label{app:degrade}\n\n\\begin{table}[h]\n\\centering\n\\caption{Benchmark validity under progressive item replacement.}\n\\label{tab:degrade}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Replacement \\%} & \\textbf{Rank $\\rho$} & \\textbf{Reliability $\\alpha$} & \\textbf{Construct coverage} \\\\\n\\midrule\n5\\% & 0.9991 & 0.982 & Maintained \\\\\n10\\% & 0.9978 & 0.979 & Maintained \\\\\n20\\% & 0.9943 & 0.971 & Maintained \\\\\n30\\% & -- & -- & Maintained \\\\\n40\\% & -- & -- & Degraded ($\\rho < 0.98$) \\\\\n50\\% & 0.9712 & 0.938 & Partially maintained \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:degrade} shows that MMLU rankings degrade gracefully under item replacement.\nEven at 20\\% replacement, rank correlation remains $\\rho = 0.9943$ and reliability $\\alpha = 0.971$.\nConstruct coverage is maintained up to 30\\% replacement; the critical degradation threshold is approximately 40\\%.\nThese results quantify the massive measurement redundancy in MMLU's 12,508 items and support the ``instability $\\neq$ invalidity'' framing: the benchmark can tolerate substantial item turnover without compromising its measurement function.\n\n\\subsection{Item-Focused Trees}\n\\label{app:ift}\n\n\\begin{table}[h]\n\\centering\n\\caption{Item-Focused Trees vs.\\ MH-DIF concordance.}\n\\label{tab:ift}\n\\small\n\\begin{tabular}{lc}\n\\toprule\n\\textbf{Metric} & \\textbf{Value} \\\\\n\\midrule\nItems with significant temporal split & 4,287 (34.3\\%) \\\\\nConcordance with MH C-class & 0.81 \\\\\nJaccard (IFT vs.\\ MH C) & 0.74 \\\\\nItems detected only by IFT & 812 \\\\\nItems detected only by MH & 443 \\\\\nMedian primary split date & 2023-09-15 \\\\\nIQR of split dates & 2023-06 to 2024-01 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nItem-Focused Trees \\citep{zumbo1999handbook}, which treat release date as a continuous covariate, detect 34.3\\% of items with significant temporal splits (Table~\\ref{tab:ift}).\nThe 81\\% concordance with binary MH-DIF validates the 2023/2024 binary split as a reasonable first approximation.\nThe 812 items detected only by IFT likely exhibit function shifts at non-boundary time points (median split: September 2023, coinciding with GPT-4 and Llama-2 release timelines).\nIFT provides a finer-grained temporal view, but the high concordance confirms that binary MH captures the dominant signal.\n\n\\end{document}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6aa44db9-3549-4c4e-89b9-1000c982e553",
+  "isSidechain": false,
+  "requestId": "req_011CbFdtuDBRsz3tJYyiSTWE",
+  "type": "assistant",
+  "uuid": "991396f6-fd85-426b-914a-860328cff721",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016fcqQ6ACN7XqSZpsvrj8LY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12674,
+      "cache_read_input_tokens": 35955,
+      "output_tokens": 12912,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12674,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 12912,
+          "cache_read_input_tokens": 35955,
+          "cache_creation_input_tokens": 12674,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12674
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-21T11:33:55.646Z_
+
+<details><summary>↩ Tool result · `toolu_016reDSRBLbjt9MpxKxPZ1Eq`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T110541/best/paper.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "991396f6-fd85-426b-914a-860328cff721",
+  "isSidechain": false,
+  "promptId": "b0a8748b-21cc-4295-b093-9b740dba37c7",
+  "type": "user",
+  "uuid": "135e6162-f2db-4520-8795-b48614f027e5",
+  "toolUseResult": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T110541/best/paper.tex",
+    "content": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[utf8]{inputenc}\n\\usepackage[T1]{fontenc}\n\\usepackage{times}\n\\usepackage{amsmath,amssymb}\n\\usepackage{booktabs}\n\\usepackage{graphicx}\n\\usepackage{multirow}\n\\usepackage{hyperref}\n\\usepackage[margin=2.5cm]{geometry}\n\\usepackage{natbib}\n\\usepackage{xcolor}\n\\usepackage{enumitem}\n\n\\title{How Stable Are LLM Benchmarks?\\\\Psychometric DIF Analysis of 5,227 Models Reveals\\\\31\\% Temporal Item Instability}\n\n\\author{Anonymous}\n\\date{}\n\n\\begin{document}\n\\maketitle\n\n%% ========================================================================\n%% ABSTRACT\n%% ========================================================================\n\\begin{abstract}\nWhen we compare Large Language Model (LLM) scores across time, we implicitly assume that benchmark items measure the same construct for all model cohorts.\nWe test this assumption using Mantel-Haenszel Differential Item Functioning (MH-DIF) analysis on the METABENCH response matrix (5,227 models $\\times$ 12,508 MMLU items), the largest such analysis on LLM benchmarks to date.\nWe find that 31.3\\% of items exhibit large temporal DIF (ETS C class) between 2023 and 2024-H1 model cohorts, a rate 174$\\times$ above random-split controls (0.18\\%) and consistent across six benchmarks (17.9\\%--31.3\\%).\nA Simpson's paradox analysis reveals that the na\\\"ive positive association between domain-level accuracy improvement and DIF (OR\\,=\\,1.55) reverses after controlling for item properties (OR\\,=\\,0.73), confirming that instability is predominantly item-specific rather than driven by capability gains.\nWe further demonstrate that the field's standard web-overlap ground truth labels are orthogonal to differential item functioning (enrichment\\,$\\approx$\\,1.0), and provide a semi-synthetic validation framework with cross-subject matching that eliminates false positive rate inflation ($\\Delta$FPR\\,=\\,0.000).\nDespite 31\\% instability, MMLU model rankings remain highly stable ($\\rho$\\,$\\approx$\\,0.997), indicating massive measurement redundancy.\nWe propose a DIF-based audit protocol for benchmark maintainers to monitor and respond to temporal item drift.\n\\end{abstract}\n\n%% ========================================================================\n%% 1  INTRODUCTION\n%% ========================================================================\n\\section{Introduction}\n\nLLM evaluation relies on static benchmarks such as MMLU, GSM8K, and ARC-Challenge to track progress across model generations.\nAn implicit assumption underlies every cross-temporal comparison: the items that compose these benchmarks measure the same latent construct with the same difficulty for all models, regardless of when those models were trained.\nIf this assumption fails, score comparisons across model cohorts become ambiguous.\nPsychometrics provides a mature tool for testing this assumption: Differential Item Functioning (DIF) analysis detects items whose difficulty changes across examinee groups after controlling for overall ability \\citep{holland1988differential}.\n\nWe apply MH-DIF to the METABENCH response matrix \\citep{perlitz2024metabench}, covering 5,227 models evaluated on 12,508 MMLU items.\nThis constitutes the largest DIF analysis on LLM benchmarks to date.\nOur central finding is that approximately 31\\% of MMLU items are functionally unstable across model generations.\nThis instability is not a statistical artifact (random-split control: 0.18\\%, permutation null: 0.21\\%), not driven by domain-level capability improvement ($\\leq$7.6\\% of variance explained), and not specific to MMLU (replicated across six benchmarks with C\\% ranging from 17.9\\% to 31.3\\%).\n\nA key framing principle guides our interpretation: \\textbf{instability does not imply invalidity}.\nRemoving all 31\\% of flagged items changes model rankings negligibly ($\\rho \\approx 0.997$), revealing massive measurement redundancy in MMLU.\nDIF flags identify which items' functioning changed most across generations, serving as a diagnostic lens for understanding capability shifts rather than a quality filter for item exclusion.\n\nWe further identify a fundamental gap in the contamination detection literature: web-overlap labels (the field's standard ground truth) measure global exposure, not differential contamination.\nDIF enrichment against these labels is $\\approx$1.0, and we show via semi-synthetic injection that DIF can detect differential contamination ($\\Delta$TPR\\,=\\,+0.508 at 50\\% exploitation rate) while web-overlap labels cannot distinguish it.\nWe provide a reusable semi-synthetic validation framework with cross-subject matching ($\\Delta$FPR\\,=\\,0.000) that eliminates matching variable contamination.\n\nOur contributions are:\n\\begin{enumerate}[nosep,leftmargin=*]\n\\item \\textbf{Empirical discovery at scale}: 31.3\\% of MMLU items show large temporal DIF, robust across thresholds, six benchmarks, and multiple testing corrections. The instability is item-specific ($\\leq$7.6\\% explained by domain improvement) and does not threaten ranking validity ($\\rho \\approx 0.997$).\n\\item \\textbf{Ground truth meta-critique}: Web-overlap contamination labels are orthogonal to differential item functioning (enrichment\\,$\\approx$\\,1.0). This affects the validity claims of all item-level detectors validated against such labels.\n\\item \\textbf{Semi-synthetic validation framework}: The $\\Delta$TPR methodology with cross-subject matching ($\\Delta$FPR\\,=\\,0.000) provides reusable infrastructure for validating any item-level contamination detector, with demonstrated portability to GSM8K.\n\\item \\textbf{DIF audit protocol}: A concrete protocol for benchmark maintainers specifying monitoring frequency, decision rules, and response options.\n\\end{enumerate}\n\n%% ========================================================================\n%% 2  RELATED WORK\n%% ========================================================================\n\\section{Related Work}\n\n\\paragraph{Benchmark Contamination Detection.}\nThe detection of benchmark contamination in LLMs has attracted substantial attention.\nMethods range from n-gram overlap analysis \\citep{dodge2021documenting,brown2020language} to membership inference approaches such as Min-K\\% \\citep{shi2024detecting} and generation-based methods \\citep{golchin2024time,yang2023rethinking}.\nConStat \\citep{dekoninck2024constat} tests whether semantically equivalent item reformulations produce inconsistent responses.\nDVD \\citep{dong2024generalization} examines generation variance under temperature sampling.\nA common thread across these methods is validation against web-overlap or n-gram ground truth labels \\citep{li2024task,deng2024investigating}, which we argue measures global exposure rather than differential contamination.\nOur work does not propose a new detection method but instead characterizes the stability properties of benchmark items and critiques the prevailing validation methodology.\n\n\\paragraph{Psychometric Methods in NLP Evaluation.}\nItem Response Theory (IRT) has been applied to NLP evaluation for difficulty estimation \\citep{lalor2019learning,rodriguez2021evaluation,vania2021comparing}, adaptive testing \\citep{zhuang2023efficiently}, and benchmark analysis \\citep{blebea2024benchmark}.\n\\citet{polo2024tinybenchmarks} use IRT to construct efficient benchmark subsets.\nDIF analysis, while foundational in educational testing \\citep{holland1988differential,zumbo1999handbook}, has seen limited application in NLP.\nOur work bridges this gap by applying MH-DIF at scale to characterize temporal item stability in LLM benchmarks.\n\n\\paragraph{Benchmark Design and Maintenance.}\nConcerns about benchmark saturation \\citep{kiela2021dynabench}, data contamination \\citep{magar2022data,jacovi2023stop}, and the need for dynamic evaluation \\citep{zhu2024dyval} have motivated new benchmark design paradigms.\n\\citet{perlitz2024metabench} provide the large-scale response matrices that enable our analysis.\nGrowing Pains \\citep{chiang2024chatbot} identifies anchor items for efficient model comparison; our DIF analysis reveals which anchor items may be degrading over time.\n\n%% ========================================================================\n%% 3  METHOD\n%% ========================================================================\n\\section{Method}\n\n\\subsection{Mantel-Haenszel DIF Analysis}\n\nThe Mantel-Haenszel (MH) procedure \\citep{holland1988differential} tests whether an item functions differently across two groups (reference $R$ and focal $F$) after conditioning on a matching variable that measures overall ability.\nFor each item, models are stratified into $K$ ability strata based on their total score.\nWithin each stratum $k$, a $2 \\times 2$ contingency table records correct/incorrect responses for each group.\nThe MH odds ratio is:\n\\begin{equation}\n\\alpha_{\\text{MH}} = \\frac{\\sum_k A_k D_k / N_k}{\\sum_k B_k C_k / N_k}\n\\end{equation}\nwhere $A_k, B_k, C_k, D_k$ are the cell counts and $N_k$ is the stratum total.\nThe log-odds ratio $\\Delta_{\\text{MH}} = -2.35 \\ln(\\alpha_{\\text{MH}})$ converts to the ETS delta scale.\nItems are classified by the ETS system: A (negligible, $|\\Delta_{\\text{MH}}| < 1.0$), B (moderate, $1.0 \\leq |\\Delta_{\\text{MH}}| < 1.5$), and C (large, $|\\Delta_{\\text{MH}}| \\geq 1.5$).\nWe focus on C-class items as our primary instability indicator and report C\\% (the percentage of items classified as C).\n\nIn our setting, the reference group ($R$) consists of models released before 2024 (the 2023 cohort) and the focal group ($F$) consists of models released in 2024-H1.\nWe use cross-subject total score as the matching variable: for each MMLU subject, a model's matching score is its total correct on all \\emph{other} subjects.\nThis eliminates matching variable contamination (Section~\\ref{sec:cross-subject}).\n\n\\subsection{Semi-Synthetic Validation Framework}\n\\label{sec:semisynthetic}\n\nTo evaluate DIF detection power under known ground truth, we inject controlled differential contamination into real METABENCH response matrices.\nFor a target subject with $n$ items, we select $\\lfloor p \\cdot n \\rfloor$ ``clean'' items (those with low baseline DIF) and flip incorrect$\\to$correct responses for all focal-group models on these items, simulating exploitation at rate $p$.\nWe measure detection power via $\\Delta$TPR: the increase in true positive rate at the injected items relative to baseline.\nDose-response curves across $p \\in \\{0.3, 0.5, 0.7, 1.0\\}$ verify that detection power increases monotonically with contamination intensity.\n\n\\subsection{Cross-Subject Matching}\n\\label{sec:cross-subject}\n\nStandard MH-DIF uses within-subject total score as the matching variable.\nWhen contamination affects a subset of items within the target subject, the matching variable itself becomes inflated for contaminated models, biasing DIF estimates.\nWe replace within-subject matching with cross-subject matching: a model's ability estimate for subject $s$ is its total score on all subjects \\emph{except} $s$.\nThis ensures the matching variable is independent of any contamination in the target subject.\nWe demonstrate empirically that cross-subject matching yields $\\Delta$FPR\\,=\\,0.000 across all tested conditions, while within-subject matching inflates FPR by up to +0.186.\n\n%% ========================================================================\n%% 4  EXPERIMENTS\n%% ========================================================================\n\\section{Experiments}\n\n\\subsection{Data}\n\nWe use the METABENCH repository \\citep{perlitz2024metabench}, which provides binary response matrices (correct/incorrect) for models evaluated on standardized benchmarks.\nFor MMLU, the matrix contains 5,227 models $\\times$ 12,508 items spanning 57 subjects.\nModels are split into a reference cohort (released before 2024-01-01; $N_R = 2{,}891$) and a focal cohort (released 2024-01-01 to 2024-06-30; $N_F = 2{,}336$).\nThe population is 99.98\\% decoder-only architectures (5,226/5,227); excluding the single non-decoder model leaves all DIF results unchanged (Jaccard\\,=\\,1.0).\n\nFor cross-benchmark validation, we additionally analyze WinoGrande, TruthfulQA, ARC-Challenge, GSM8K (1,319 items $\\times$ 6,702 models), and HellaSwag from the same repository.\n\n\\subsection{Temporal DIF on MMLU}\n\n\\begin{table}[t]\n\\centering\n\\caption{Temporal DIF on MMLU: 2023 vs.\\ 2024-H1 cohorts.}\n\\label{tab:temporal}\n\\small\n\\begin{tabular}{lcc}\n\\toprule\n\\textbf{Metric} & \\textbf{Temporal} & \\textbf{Random Split} \\\\\n\\midrule\nC\\% (ETS C, $|\\Delta_{\\text{MH}}| \\geq 1.5$) & 31.3\\% & 0.18\\% \\\\\nEnrichment vs.\\ random & 174$\\times$ & -- \\\\\nSubjects with DIF & 57/57 & -- \\\\\nSubject C\\% range & 20.7--48.4\\% & -- \\\\\nUnweighted subject mean C\\% & 30.0\\% & -- \\\\\nAbility quintile C\\% & 2.9\\% & -- \\\\\nAbility enrichment & 1.19 & -- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:temporal} summarizes our primary result.\nTemporal DIF analysis identifies 31.3\\% of MMLU items as ETS C class ($|\\Delta_{\\text{MH}}| \\geq 1.5$), compared to 0.18\\% under random group assignment (174$\\times$ enrichment).\nAll 57 MMLU subjects contain DIF items, with per-subject C\\% ranging from 20.7\\% to 48.4\\% (unweighted mean 30.0\\%).\nA permutation test (1,000 iterations, randomly reassigning temporal labels) yields a null C\\% of 0.21\\%\\,$\\pm$\\,0.09\\%, placing the observed 31.3\\% more than 345 standard deviations above the null ($p < 0.001$; 0 of 1,000 permutations exceed the observed value).\n\n\\paragraph{Threshold robustness.}\nC\\% varies systematically with the ETS threshold: 48.9\\% at $|\\Delta_{\\text{MH}}| \\geq 1.0$, 31.3\\% at $\\geq$1.5, 18.3\\% at $\\geq$2.0, and 10.2\\% at $\\geq$2.5.\nThe finding that $>$15\\% of items show instability holds across standard thresholds [1.0, 2.0].\nBenjamini-Hochberg FDR correction at $q = 0.05$ removes only 3 of 3,918 C-class items (31.32\\%\\,$\\to$\\,31.30\\%), confirming that the ETS dual requirement (effect size $+$ significance) provides near-complete implicit multiple-testing protection.\n\n\\paragraph{Architecture homogeneity.}\nMETABENCH MMLU contains 5,226 decoder-only models and 1 non-decoder model (99.98\\% decoder-only).\nExcluding the non-decoder model yields identical DIF flags (Jaccard\\,=\\,1.0, C\\%\\,=\\,31.3\\%).\nArchitecture heterogeneity is a non-issue for this analysis.\n\n\\subsection{Cross-Benchmark Validation}\n\n\\begin{table}[t]\n\\centering\n\\caption{Six-benchmark temporal DIF validation (2023 vs.\\ 2024-H1).}\n\\label{tab:crossbench}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Benchmark} & \\textbf{C\\%} & \\textbf{Random C\\%} & \\textbf{Enrichment} \\\\\n\\midrule\nMMLU & 31.3\\% & 0.18\\% & 174$\\times$ \\\\\nWinoGrande & 30.3\\% & 0.32\\% & 95$\\times$ \\\\\nTruthfulQA & 29.7\\% & 0.37\\% & 80$\\times$ \\\\\nARC-Challenge & 26.9\\% & 0.60\\% & 45$\\times$ \\\\\nGSM8K & 18.9\\% & 0.30\\% & 63$\\times$ \\\\\nHellaSwag & 17.9\\% & 0.28\\% & 64$\\times$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:crossbench} extends the temporal DIF analysis to six benchmarks.\nAll six show substantial DIF (C\\% from 17.9\\% to 31.3\\%), with every random control below 1\\% and a minimum enrichment of 45$\\times$ (ARC-Challenge).\nThe variation across benchmarks reflects structural differences: MMLU (57 subjects, 12,508 items) provides the most dimensions for capability shifts to manifest, while GSM8K (single-domain math) and HellaSwag (commonsense NLI with compressed difficulty variance) show lower but still substantial rates.\nThis cross-benchmark consistency rules out MMLU-specific artifacts and establishes temporal item instability as a general property of LLM benchmarks.\n\n\\subsection{Simpson's Paradox in Ability Confounding}\n\\label{sec:simpsons}\n\n\\begin{table}[t]\n\\centering\n\\caption{Logistic regression of DIF flag on accuracy improvement. OR: odds ratio per 0.10 increase in predictor; Simpson's paradox reverses the association after controlling for item properties.}\n\\label{tab:simpsons}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Model} & \\textbf{Predictor(s)} & \\textbf{OR} & \\textbf{95\\% CI} & \\textbf{McF.\\ $R^2$} \\\\\n\\midrule\nM1 & Domain $\\Delta$acc & 1.55 & [1.19, 2.03] & 0.0007 \\\\\nM2 & Domain $\\Delta$acc & \\textbf{0.73} & -- & 0.0423 \\\\\n   & $+$ CTT difficulty & 0.78 & -- & \\\\\n   & $+$ CTT discrimination & 1.51 & -- & \\\\\n\\midrule\nM3 & Item $\\Delta$acc & 1.08 & [1.51, 2.96] & 0.0012 \\\\\nM4 & Item $\\Delta$acc & 0.92 & -- & 0.0434 \\\\\n   & $+$ CTT difficulty & 0.77 & -- & \\\\\n   & $+$ CTT discrimination & 1.54 & -- & \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nA natural concern is that 31\\% instability simply reflects models ``getting better.''\nTable~\\ref{tab:simpsons} tests this via logistic regression predicting DIF C-class membership.\nModel~1, using only domain-level accuracy improvement as predictor, shows a positive association (OR\\,=\\,1.55): subjects with larger 2024-vs-2023 improvement do have more DIF items.\nHowever, Model~2 adds item-level difficulty and discrimination as controls, and the association \\emph{reverses} (OR\\,=\\,0.73).\nThis is a textbook Simpson's paradox: DIF-C items happen to be harder and more discriminating than non-DIF items, and these item properties confound the domain-level correlation.\nAfter controlling for item characteristics, domains with larger improvement actually have \\emph{fewer} DIF items.\n\nThe likelihood ratio test between M1 and M2 is $\\chi^2 = 647.0$ ($p \\approx 0$), confirming that item properties are genuine confounders.\nEven the best model (M2) explains only 4.2\\% of variance (McFadden $R^2 = 0.0423$), meaning 96\\% of DIF is item-specific and not predicted by domain improvement or item properties.\nThis converges with item-level decomposition showing that domain accuracy improvement accounts for at most 2.4 percentage points of the 31.3\\% C\\% (7.6\\% of the total).\n\n\\subsection{Semi-Synthetic Contamination Validation}\n\n\\begin{table}[t]\n\\centering\n\\caption{Semi-synthetic validation: $\\Delta$TPR across exploitation rates with cross-subject vs.\\ standard matching. Cross-subject matching eliminates FPR inflation.}\n\\label{tab:semisynthetic}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Exploitation rate $p$} & \\textbf{$\\Delta$TPR (cross-subj.)} & \\textbf{TPR (cross-subj.)} & \\textbf{$\\Delta$FPR (cross-subj.)} \\\\\n\\midrule\nBaseline ($p = 0$) & -- & 0.326 & -- \\\\\n0.3 & +0.222 & 0.548 & 0.000 \\\\\n0.5 & +0.508 & 0.834 & 0.000 \\\\\n0.7 & +0.664 & 0.990 & 0.000 \\\\\n1.0 & +0.674 & 1.000 & 0.000 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Standard (within-subject) matching for comparison:}} \\\\\n$p = 1.0$ FPR inflation & \\multicolumn{3}{c}{0.298 $\\to$ 0.616 (+0.318)} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:semisynthetic} demonstrates the semi-synthetic validation framework.\nInjecting known differential contamination into real METABENCH response matrices produces a clean dose-response relationship: $\\Delta$TPR increases monotonically from +0.222 at $p = 0.3$ to +0.674 at $p = 1.0$.\nCross-subject matching maintains $\\Delta$FPR\\,=\\,0.000 across all exploitation levels, while standard within-subject matching inflates FPR from 0.298 to 0.616 at $p = 1.0$.\nThis confirms that within-subject matching contaminates the conditioning variable, while cross-subject matching isolates the DIF signal from the matching criterion.\n\nThe framework is portable: on GSM8K (1,319 items, 6,702 models), standard matching yields $\\Delta$TPR\\,=\\,+0.818 at $p = 1.0$ and cross-subject (external score) matching yields $\\Delta$TPR\\,=\\,+0.517, both confirming detection power on a single-domain mathematics benchmark.\n\n\\paragraph{Ground truth meta-critique.}\nDIF enrichment against Li et al.\\ web-overlap labels is 0.96 (Jaccard\\,=\\,0.206, $\\phi$\\,=\\,0.012, $\\chi^2$\\,=\\,1.28, $p$\\,=\\,0.258).\nThis near-unity enrichment is \\emph{expected}, not a failure: web-overlap labels capture whether an item is publicly accessible, while DIF measures whether an item functions differently across model cohorts.\nThese are orthogonal signals.\nAny item-level detector validated solely against web-overlap ground truth faces this fundamental blind spot.\n\n\\subsection{Downstream Impact and Diagnostic Value}\n\nDIF items carry genuine cross-cohort signal: removing them causes more ranking disruption than random removal ($z = -8$ to $-49\\sigma$ across 21 conditions).\nHowever, a circularity ablation reveals that DIF removal is the \\emph{least} disruptive non-random strategy: accuracy-gap removal disrupts 10--16$\\times$ more ($z = -157$ vs.\\ $-9.5$), high-variance removal 11$\\times$ more ($z = -108$), and high-discrimination removal 1.7$\\times$ more ($z = -16$).\nMH ability conditioning filters out raw group differences, isolating items whose functioning genuinely changed rather than items that are merely informative.\n\nDespite 31\\% instability, model rankings are extremely robust.\nProgressive item replacement analysis shows ranking correlation remains above 0.99 even at 20\\% replacement ($\\rho = 0.9943$, $\\alpha = 0.971$), degrading to $\\rho = 0.9712$ only at 50\\% replacement.\nThe critical threshold is approximately 40\\% replacement before $\\rho$ drops below 0.98.\nThis massive redundancy means that instability does not threaten benchmark validity but instead provides diagnostic information about which capability dimensions are shifting across model generations.\n\n\\paragraph{DIF audit protocol.}\nBased on our findings, we propose the following protocol for benchmark maintainers:\n(1) Run MH-DIF with cross-subject matching on each new model cohort;\n(2) Flag items exceeding the ETS C threshold;\n(3) Monitor C\\% trends across quarterly releases;\n(4) If C\\% exceeds a predetermined threshold (e.g., 30\\%), investigate affected domains for systematic patterns;\n(5) Consider item replacement for persistently flagged items, noting that $\\leq$20\\% replacement preserves ranking validity ($\\rho > 0.99$).\nItem-Focused Trees with continuous temporal covariates confirm 81\\% concordance with binary MH-DIF (Appendix~\\ref{app:ift}), validating the binary split as a reasonable first-pass approach.\n\n%% ========================================================================\n%% 5  DISCUSSION AND LIMITATIONS\n%% ========================================================================\n\\section{Discussion and Limitations}\n\nOur findings establish that temporal item instability is pervasive across LLM benchmarks (17.9\\%--31.3\\% across six benchmarks, all $\\geq$45$\\times$ above random controls).\nThe Simpson's paradox result (OR reversal from 1.55 to 0.73) provides strong evidence that this instability is not a proxy for capability improvement.\nThe semi-synthetic framework with cross-subject matching ($\\Delta$FPR\\,=\\,0.000) offers a principled validation methodology that avoids the limitations of web-overlap ground truth.\n\n\\paragraph{IRT model fit.}\nUnidimensional IRT person-fit analysis shows 98\\% of models with $|L_z| > 2$, indicating systematic misfit.\nThis reflects MMLU's inherent multidimensionality (57 subjects) rather than architecture heterogeneity (99.98\\% decoder-only).\nMH-DIF is a non-parametric method that does not assume unidimensional IRT, so our results are not invalidated by IRT misfit.\nFuture work should explore multidimensional IRT and bifactor models; our pilot showed that bifactor equating was infeasible for MMLU (CFI\\,=\\,0.72, within-subject C\\%\\,=\\,38.1\\%), motivating development of scalable multidimensional approaches.\n\n\\paragraph{RL robustness.}\nOur focal cohort includes only 13 reasoning-RL models (GRPO/PPO), comprising 1.6\\% of the focal group.\nDIF is a group-level method, so this small count cannot meaningfully influence group statistics (C\\% changes from 31.3\\% to 31.1\\%).\nDedicated study with larger reasoning-RL samples is needed to assess whether post-training RL optimization produces qualitatively different DIF patterns.\n\n\\paragraph{Additional limitations.}\nThe semi-synthetic injection mechanism (incorrect$\\to$correct flipping) is a simplification of real contamination, which may involve partial memorization or reasoning shortcuts.\nOur binary temporal split (2023 vs.\\ 2024-H1) is a first-pass approach; continuous treatment via Item-Focused Trees (34.3\\% detection rate, 81\\% concordance with MH) suggests finer temporal resolution could reveal additional structure.\nWe analyze only multiple-choice benchmarks; generalization to open-ended generation benchmarks remains future work.\n\n%% ========================================================================\n%% 6  CONCLUSION\n%% ========================================================================\n\\section{Conclusion}\n\nWe applied MH-DIF analysis to 5,227 models across 12,508 MMLU items and five additional benchmarks.\nApproximately 31\\% of MMLU items show large temporal DIF, a finding robust across thresholds, benchmarks (17.9\\%--31.3\\% on six benchmarks, all $\\geq$45$\\times$ enrichment), and multiple-testing corrections.\nThis instability is item-specific ($\\leq$7.6\\% explained by capability improvement) and does not threaten ranking validity ($\\rho \\approx 0.997$).\nThe field's web-overlap ground truth is orthogonal to differential item functioning (enrichment\\,$\\approx$\\,1.0); our semi-synthetic framework with cross-subject matching ($\\Delta$FPR\\,=\\,0.000) provides an alternative validation infrastructure.\nWe release the DIF audit protocol to support benchmark maintenance at scale.\n\n%% ========================================================================\n%% REFERENCES\n%% ========================================================================\n\\bibliographystyle{plainnat}\n\n\\begin{thebibliography}{30}\n\n\\bibitem[Brown et~al.(2020)]{brown2020language}\nBrown, T.~B., et~al. (2020).\n\\newblock Language models are few-shot learners.\n\\newblock In \\emph{NeurIPS 2020}.\n\n\\bibitem[Blebea et~al.(2024)]{blebea2024benchmark}\nBlebea, S., et~al. (2024).\n\\newblock A psychometric analysis of benchmark datasets.\n\\newblock \\emph{arXiv preprint arXiv:2402.01748}.\n\n\\bibitem[Chiang et~al.(2024)]{chiang2024chatbot}\nChiang, W.-L., et~al. (2024).\n\\newblock Chatbot Arena: An open platform for evaluating LLMs by human preference.\n\\newblock In \\emph{ICML 2024}.\n\n\\bibitem[DeKoninck et~al.(2024)]{dekoninck2024constat}\nDeKoninck, J., et~al. (2024).\n\\newblock ConStat: Performance-based contamination detection in large language models.\n\\newblock In \\emph{ICML 2024}.\n\n\\bibitem[Deng et~al.(2024)]{deng2024investigating}\nDeng, C., et~al. (2024).\n\\newblock Investigating data contamination in modern benchmarks for large language models.\n\\newblock In \\emph{NAACL 2024}.\n\n\\bibitem[Dodge et~al.(2021)]{dodge2021documenting}\nDodge, J., et~al. (2021).\n\\newblock Documenting large webtext corpora: A case study on the Colossal Clean Crawled Corpus.\n\\newblock In \\emph{EMNLP 2021}.\n\n\\bibitem[Dong et~al.(2024)]{dong2024generalization}\nDong, G., et~al. (2024).\n\\newblock Generalization or memorization: Data contamination and trustworthy evaluation for large language models.\n\\newblock In \\emph{ACL 2024}.\n\n\\bibitem[Golchin \\& Bansal(2024)]{golchin2024time}\nGolchin, S. and Bansal, M. (2024).\n\\newblock Time travel in LLMs: Tracing data contamination in large language models.\n\\newblock In \\emph{ICLR 2024}.\n\n\\bibitem[Holland \\& Thayer(1988)]{holland1988differential}\nHolland, P.~W. and Thayer, D.~T. (1988).\n\\newblock Differential item functioning and the Mantel-Haenszel procedure.\n\\newblock In \\emph{Test Validity}, pp. 129--145. Erlbaum.\n\n\\bibitem[Jacovi et~al.(2023)]{jacovi2023stop}\nJacovi, A., et~al. (2023).\n\\newblock Stop uploading test data in plain text: Practical strategies for mitigating data contamination by evaluation benchmarks.\n\\newblock In \\emph{EMNLP 2023}.\n\n\\bibitem[Kiela et~al.(2021)]{kiela2021dynabench}\nKiela, D., et~al. (2021).\n\\newblock Dynabench: Rethinking benchmarking in NLP.\n\\newblock In \\emph{NAACL 2021}.\n\n\\bibitem[Lalor et~al.(2019)]{lalor2019learning}\nLalor, J.~P., et~al. (2019).\n\\newblock Learning latent parameters without human response patterns: Item response theory with artificial crowds.\n\\newblock In \\emph{EMNLP 2019}.\n\n\\bibitem[Li et~al.(2024)]{li2024task}\nLi, Y., et~al. (2024).\n\\newblock Task contamination: Language models may not be few-shot anymore.\n\\newblock In \\emph{AAAI 2024}.\n\n\\bibitem[Magar \\& Schwartz(2022)]{magar2022data}\nMagar, I. and Schwartz, R. (2022).\n\\newblock Data contamination: From memorization to exploitation.\n\\newblock In \\emph{ACL 2022}.\n\n\\bibitem[Perlitz et~al.(2024)]{perlitz2024metabench}\nPerlitz, Y., et~al. (2024).\n\\newblock METABENCH: A large-scale meta-evaluation of LLM benchmarks.\n\\newblock \\emph{arXiv preprint arXiv:2407.12844}.\n\n\\bibitem[Polo et~al.(2024)]{polo2024tinybenchmarks}\nPolo, F.~M., et~al. (2024).\n\\newblock tinyBenchmarks: Evaluating LLMs with fewer examples.\n\\newblock In \\emph{ICML 2024}.\n\n\\bibitem[Rodriguez et~al.(2021)]{rodriguez2021evaluation}\nRodriguez, P., et~al. (2021).\n\\newblock Evaluation examples are not equally informative: How should that change NLP leaderboards?\n\\newblock In \\emph{ACL 2021}.\n\n\\bibitem[Shi et~al.(2024)]{shi2024detecting}\nShi, W., et~al. (2024).\n\\newblock Detecting pretraining data from large language models.\n\\newblock In \\emph{ICLR 2024}.\n\n\\bibitem[Vania et~al.(2021)]{vania2021comparing}\nVania, C., et~al. (2021).\n\\newblock Comparing test sets with item response theory.\n\\newblock In \\emph{ACL 2021}.\n\n\\bibitem[Yang et~al.(2023)]{yang2023rethinking}\nYang, S., et~al. (2023).\n\\newblock Rethinking benchmark and contamination for language models with rephrased samples.\n\\newblock \\emph{arXiv preprint arXiv:2311.04850}.\n\n\\bibitem[Zhu et~al.(2024)]{zhu2024dyval}\nZhu, K., et~al. (2024).\n\\newblock DyVal: Dynamic evaluation of large language models for reasoning tasks.\n\\newblock In \\emph{ICLR 2024}.\n\n\\bibitem[Zhuang et~al.(2023)]{zhuang2023efficiently}\nZhuang, Y., et~al. (2023).\n\\newblock Efficiently measuring the cognitive ability of LLMs: An adaptive testing perspective.\n\\newblock \\emph{arXiv preprint arXiv:2306.10014}.\n\n\\bibitem[Zumbo(1999)]{zumbo1999handbook}\nZumbo, B.~D. (1999).\n\\newblock \\emph{A Handbook on the Theory and Methods of Differential Item Functioning}.\n\\newblock National Defense Headquarters, Ottawa.\n\n\\end{thebibliography}\n\n%% ========================================================================\n%% APPENDIX\n%% ========================================================================\n\\clearpage\n\\appendix\n\\section{Supplementary Experiments}\n\n\\subsection{RL Robustness Analysis}\n\\label{app:rl}\n\n\\begin{table}[h]\n\\centering\n\\caption{DIF stability across cohort compositions.}\n\\label{tab:rl}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Cohort} & \\textbf{C\\%} & \\textbf{Jaccard vs.\\ SFT} & \\textbf{ConStat AUROC} \\\\\n\\midrule\nSFT baseline & 31.8\\% & -- & 0.72 \\\\\n$+$ Alignment-RL (DPO/ORPO) & 30.5\\% & 0.87 & 0.68 \\\\\n$+$ Reasoning-RL ($N = 13$) & 31.1\\% & 0.92 & 0.49 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Traditional detectors on reasoning-RL:}} \\\\\nMin-K\\% AUROC & \\multicolumn{3}{c}{0.44} \\\\\nDIF bootstrap AUROC [95\\% CI] & \\multicolumn{3}{c}{[0.88, 0.95]} \\\\\nDeLong DIF vs.\\ ConStat & \\multicolumn{3}{c}{$p = 0.002$} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:rl} shows DIF stability when varying focal cohort composition.\nAdding alignment-RL models (DPO/ORPO) changes C\\% minimally (31.8\\%$\\to$30.5\\%, Jaccard\\,=\\,0.87).\nIncluding 13 reasoning-RL models (GRPO/PPO) has negligible impact (C\\%\\,=\\,31.1\\%, Jaccard\\,=\\,0.92), as expected given they comprise only 1.6\\% of the focal group.\nTraditional detectors show degraded performance on reasoning-RL models (ConStat AUROC: 0.49; Min-K\\%: 0.44), while DIF maintains high AUROC [0.88, 0.95].\nThe $N = 13$ sample is insufficient for definitive claims about RL robustness; this remains a priority for future work with larger reasoning-RL model collections.\n\n\\subsection{GSM8K Cross-Benchmark Replication}\n\\label{app:gsm8k}\n\n\\begin{table}[h]\n\\centering\n\\caption{GSM8K DIF analysis: temporal DIF, semi-synthetic validation, and GSM1K correlation.}\n\\label{tab:gsm8k}\n\\small\n\\begin{tabular}{lcc}\n\\toprule\n\\textbf{Metric} & \\textbf{Standard matching} & \\textbf{External matching} \\\\\n\\midrule\nTemporal C\\% & \\multicolumn{2}{c}{18.9\\% (random: 0.3\\%)} \\\\\nSpearman (standard vs.\\ external) & \\multicolumn{2}{c}{0.926} \\\\\n$\\Delta$TPR at $p = 1.0$ & 0.818 & 0.517 \\\\\n\\midrule\n\\multicolumn{3}{l}{\\textit{GSM1K correlation (exploratory, $N = 33$):}} \\\\\nPearson $r$ & \\multicolumn{2}{c}{$-0.478$ ($p = 0.014$)} \\\\\nSpearman $\\rho$ & \\multicolumn{2}{c}{$-0.403$} \\\\\nPartial $r$ (controlling accuracy) & \\multicolumn{2}{c}{$-0.385$} \\\\\nLeave-one-out $r$ range & \\multicolumn{2}{c}{$[-0.537, -0.374]$} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nGSM8K temporal DIF (C\\%\\,=\\,18.9\\%) falls within the cross-benchmark range and confirms framework portability (Table~\\ref{tab:gsm8k}).\nThe semi-synthetic $\\Delta$TPR is higher under standard matching (+0.818) than external matching (+0.517), reflecting GSM8K's single-domain structure where external matching is effectively total-score matching on a different benchmark.\nThe GSM1K contamination gap shows a negative correlation with DIF ($r = -0.478$, $p = 0.014$, $N = 33$): models with more DIF items show \\emph{smaller} contamination gaps.\nThis counter-intuitive result supports the meta-critique that DIF captures differential functioning orthogonal to web-overlap contamination.\nHowever, $N = 33$ with wide confidence intervals means this finding is exploratory and requires replication.\n\n\\subsection{Cumulative Bayesian DIF}\n\\label{app:bayes}\n\n\\begin{table}[h]\n\\centering\n\\caption{Detection power by number of cumulative administrations and effect size.}\n\\label{tab:bayes}\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Effect size $\\delta$} & \\textbf{1 admin} & \\textbf{2 admin} & \\textbf{3 admin} & \\textbf{4 admin} \\\\\n\\midrule\n$\\delta = 1.0$ & 0.42 & 0.58 & 0.69 & 0.74 \\\\\n$\\delta = 1.4$ & 0.68 & -- & 0.85 & -- \\\\\n\\midrule\n\\multicolumn{5}{l}{Cumulative FPR: 0.048} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:bayes} shows that cumulative Bayesian DIF priors improve detection power for medium-effect items ($\\delta = 1.0$) from 0.42 (single administration) to 0.74 (four administrations) while maintaining FPR at 0.048.\nLarge-effect items ($\\delta \\geq 1.4$) already achieve adequate power in a single administration (0.68), so the marginal benefit of accumulation is smaller.\nIf benchmark maintainers adopt quarterly DIF audits, cumulative priors would enable detection of subtler temporal shifts over multiple release cycles.\n\n\\subsection{Graceful Degradation Analysis}\n\\label{app:degrade}\n\n\\begin{table}[h]\n\\centering\n\\caption{Benchmark validity under progressive item replacement.}\n\\label{tab:degrade}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Replacement \\%} & \\textbf{Rank $\\rho$} & \\textbf{Reliability $\\alpha$} & \\textbf{Construct coverage} \\\\\n\\midrule\n5\\% & 0.9991 & 0.982 & Maintained \\\\\n10\\% & 0.9978 & 0.979 & Maintained \\\\\n20\\% & 0.9943 & 0.971 & Maintained \\\\\n30\\% & -- & -- & Maintained \\\\\n40\\% & -- & -- & Degraded ($\\rho < 0.98$) \\\\\n50\\% & 0.9712 & 0.938 & Partially maintained \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:degrade} shows that MMLU rankings degrade gracefully under item replacement.\nEven at 20\\% replacement, rank correlation remains $\\rho = 0.9943$ and reliability $\\alpha = 0.971$.\nConstruct coverage is maintained up to 30\\% replacement; the critical degradation threshold is approximately 40\\%.\nThese results quantify the massive measurement redundancy in MMLU's 12,508 items and support the ``instability $\\neq$ invalidity'' framing: the benchmark can tolerate substantial item turnover without compromising its measurement function.\n\n\\subsection{Item-Focused Trees}\n\\label{app:ift}\n\n\\begin{table}[h]\n\\centering\n\\caption{Item-Focused Trees vs.\\ MH-DIF concordance.}\n\\label{tab:ift}\n\\small\n\\begin{tabular}{lc}\n\\toprule\n\\textbf{Metric} & \\textbf{Value} \\\\\n\\midrule\nItems with significant temporal split & 4,287 (34.3\\%) \\\\\nConcordance with MH C-class & 0.81 \\\\\nJaccard (IFT vs.\\ MH C) & 0.74 \\\\\nItems detected only by IFT & 812 \\\\\nItems detected only by MH & 443 \\\\\nMedian primary split date & 2023-09-15 \\\\\nIQR of split dates & 2023-06 to 2024-01 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nItem-Focused Trees \\citep{zumbo1999handbook}, which treat release date as a continuous covariate, detect 34.3\\% of items with significant temporal splits (Table~\\ref{tab:ift}).\nThe 81\\% concordance with binary MH-DIF validates the 2023/2024 binary split as a reasonable first approximation.\nThe 812 items detected only by IFT likely exhibit function shifts at non-boundary time points (median split: September 2023, coinciding with GPT-4 and Llama-2 release timelines).\nIFT provides a finer-grained temporal view, but the high concordance confirms that binary MH captures the dominant signal.\n\n\\end{document}\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  },
+  "sourceToolAssistantUUID": "991396f6-fd85-426b-914a-860328cff721",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260521T110541 tier=best 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_…",
+  "leafUuid": "135e6162-f2db-4520-8795-b48614f027e5",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate IRT equated benchmark validation paper",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0"
+}
+```
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-21T11:33:59.103Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01RHX9SHfoPhQbj2X9J3yBrJ`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T110541/best && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex",
+  "description": "Compile LaTeX paper twice for cross-references",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "135e6162-f2db-4520-8795-b48614f027e5",
+  "isSidechain": false,
+  "requestId": "req_011CbFeDVZQqFYznk6dNr3JT",
+  "type": "assistant",
+  "uuid": "18b8933a-e348-4990-8ff2-ed6e056df2db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FF1MkZ2HqtKXR5HWRcHxy1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12979,
+      "cache_read_input_tokens": 48629,
+      "output_tokens": 175,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12979,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 175,
+          "cache_read_input_tokens": 48629,
+          "cache_creation_input_tokens": 12979,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12979
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-21T11:34:00.049Z_
+
+<details><summary>↩ Tool result · `toolu_01RHX9SHfoPhQbj2X9J3yBrJ`</summary>
+
+```text
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+No file paper.aux.
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+
+Package natbib Warning: Citation `holland1988differential' on page 1 undefined 
+on input line 44.
+
+
+Package natbib Warning: Citation `perlitz2024metabench' on page 1 undefined on 
+input line 46.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
+dist/fonts/enc/dvips/base/8r.enc}]
+Overfull \hbox (40.64355pt too wide) in paragraph at lines 63--64
+[]\T1/ptm/b/n/10.95 Semi-synthetic val-i-da-tion frame-work\T1/ptm/m/n/10.95 : 
+The $\OT1/cmr/m/n/10.95 ^^A$\T1/ptm/m/n/10.95 TPR method-ol-ogy with cross-subj
+ect match-ing ($\OT1/cmr/m/n/10.95 ^^A$\T1/ptm/m/n/10.95 FPR=0.000)
+
+Package natbib Warning: Citation `dodge2021documenting' on page 2 undefined on 
+input line 74.
+
+
+Package natbib Warning: Citation `brown2020language' on page 2 undefined on inp
+ut line 74.
+
+
+Package natbib Warning: Citation `shi2024detecting' on page 2 undefined on inpu
+t line 74.
+
+
+Package natbib Warning: Citation `golchin2024time' on page 2 undefined on input
+ line 74.
+
+
+Package natbib Warning: Citation `yang2023rethinking' on page 2 undefined on in
+put line 74.
+
+
+Package natbib Warning: Citation `dekoninck2024constat' on page 2 undefined on 
+input line 75.
+
+
+Package natbib Warning: Citation `dong2024generalization' on page 2 undefined o
+n input line 76.
+
+
+Package natbib Warning: Citation `li2024task' on page 2 undefined on input line
+ 77.
+
+
+Package natbib Warning: Citation `deng2024investigating' on page 2 undefined on
+ input line 77.
+
+
+Package natbib Warning: Citation `lalor2019learning' on page 2 undefined on inp
+ut line 81.
+
+
+Package natbib Warning: Citation `rodriguez2021evaluation' on page 2 undefined 
+on input line 81.
+
+
+Package natbib Warning: Citation `vania2021comparing' on page 2 undefined on in
+put line 81.
+
+
+Package natbib Warning: Citation `zhuang2023efficiently' on page 2 undefined on
+ input line 81.
+
+
+Package natbib Warning: Citation `blebea2024benchmark' on page 2 undefined on i
+nput line 81.
+
+
+Package natbib Warning: Citation `polo2024tinybenchmarks' on page 2 undefined o
+n input line 82.
+
+
+Package natbib Warning: Citation `holland1988differential' on page 2 undefined 
+on input line 83.
+
+
+Package natbib Warning: Citation `zumbo1999handbook' on page 2 undefined on inp
+ut line 83.
+
+
+Package natbib Warning: Citation `kiela2021dynabench' on page 2 undefined on in
+put line 87.
+
+
+Package natbib Warning: Citation `magar2022data' on page 2 undefined on input l
+ine 87.
+
+
+Package natbib Warning: Citation `jacovi2023stop' on page 2 undefined on input 
+line 87.
+
+
+Package natbib Warning: Citation `zhu2024dyval' on page 2 undefined on input li
+ne 87.
+
+
+Package natbib Warning: Citation `perlitz2024metabench' on page 2 undefined on 
+input line 88.
+
+
+Package natbib Warning: Citation `chiang2024chatbot' on page 2 undefined on inp
+ut line 89.
+
+
+Package natbib Warning: Citation `holland1988differential' on page 2 undefined 
+on input line 98.
+
+[2]
+
+LaTeX Warning: Reference `sec:cross-subject' on page 3 undefined on input line 
+112.
+
+
+Package natbib Warning: Citation `perlitz2024metabench' on page 3 undefined on 
+input line 138.
+
+
+Overfull \hbox (0.1128pt too wide) in paragraph at lines 143--144
+[]\T1/ptm/m/n/10.95 For cross-benchmark val-i-da-tion, we ad-di-tion-ally an-a-
+lyze Wino-Grande, Truth-fulQA, ARC-Challenge,
+
+LaTeX Warning: Reference `tab:temporal' on page 3 undefined on input line 167.
+
+[3]
+
+LaTeX Warning: Reference `tab:crossbench' on page 4 undefined on input line 203
+.
+
+
+LaTeX Warning: Reference `tab:simpsons' on page 4 undefined on input line 234.
+
+[4]
+
+LaTeX Warning: Reference `tab:semisynthetic' on page 5 undefined on input line 
+267.
+
+
+Overfull \hbox (14.14818pt too wide) in paragraph at lines 275--279
+ []\T1/ptm/b/n/10.95 Ground truth meta-critique.[] \T1/ptm/m/n/10.95 DIF en-ric
+h-ment against Li et al. web-overlap la-bels is 0.96 (Jac-card=0.206,
+[5]
+
+LaTeX Warning: Reference `app:ift' on page 6 undefined on input line 298.
+
+[6]
+Underfull \hbox (badness 1442) in paragraph at lines 349--352
+[]\T1/ptm/m/n/10.95 Blebea, S., et al. (2024).  A psy-cho-me-t-ric anal-y-sis o
+f bench-mark datasets.  \T1/ptm/m/it/10.95 arXiv preprint
+[7] [8]
+
+LaTeX Warning: Reference `tab:rl' on page 9 undefined on input line 491.
+
+
+LaTeX Warning: Reference `tab:gsm8k' on page 9 undefined on input line 522.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: Reference `tab:bayes' on page 9 undefined on input line 548.
+
+[9]
+
+LaTeX Warning: Reference `tab:degrade' on page 10 undefined on input line 574.
+
+
+Package natbib Warning: Citation `zumbo1999handbook' on page 10 undefined on in
+put line 602.
+
+
+LaTeX Warning: Reference `tab:ift' on page 10 undefined on input line 602.
+
+
+Package natbib Warning: There were undefined citations.
+
+[10] (./paper.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `paper.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmex10.pfb>&lt;/usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
+pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share
+/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-
+dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (10 pages, 157201 bytes).
+Transcript written on paper.log.
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./paper.aux)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(./paper.out) (./paper.out)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd) [1{/var/lib/texmf/fo
+nts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips
+/base/8r.enc}]
+Overfull \hbox (40.64355pt too wide) in paragraph at lines 63--64
+[]\T1/ptm/b/n/10.95 Semi-synthetic val-i-da-tion frame-work\T1/ptm/m/n/10.95 : 
+The $\OT1/cmr/m/n/10.95 ^^A$\T1/ptm/m/n/10.95 TPR method-ol-ogy with cross-subj
+ect match-ing ($\OT1/cmr/m/n/10.95 ^^A$\T1/ptm/m/n/10.95 FPR=0.000)
+[2]
+Overfull \hbox (0.1128pt too wide) in paragraph at lines 143--144
+[]\T1/ptm/m/n/10.95 For cross-benchmark val-i-da-tion, we ad-di-tion-ally an-a-
+lyze Wino-Grande, Truth-fulQA, ARC-Challenge,
+[3] [4]
+Overfull \hbox (14.14818pt too wide) in paragraph at lines 275--279
+ []\T1/ptm/b/n/10.95 Ground truth meta-critique.[] \T1/ptm/m/n/10.95 DIF en-ric
+h-ment against Li et al. web-overlap la-bels is 0.96 (Jac-card=0.206,
+[5] [6]
+Underfull \hbox (badness 1442) in paragraph at lines 349--352
+[]\T1/ptm/m/n/10.95 Blebea, S., et al. (2024).  A psy-cho-me-t-ric anal-y-sis o
+f bench-mark datasets.  \T1/ptm/m/it/10.95 arXiv preprint
+[7] [8]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[9] [10] (./paper.aux) )
+(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmex10.pfb>&lt;/usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
+pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share
+/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-
+dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (10 pages, 161956 bytes).
+Transcript written on paper.log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "18b8933a-e348-4990-8ff2-ed6e056df2db",
+  "isSidechain": false,
+  "promptId": "b0a8748b-21cc-4295-b093-9b740dba37c7",
+  "type": "user",
+  "uuid": "65e8f853-555d-4c7e-887f-15d851c7ea47",
+  "toolUseResult": {
+    "stdout": "This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)\n restricted \\write18 enabled.\nentering extended mode\n(./paper.tex\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls\nDocument Class: article 2025/01/22 v1.4n Standard LaTeX document class\n(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))\n(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty\nFor additional information on amsmath, use the `?' option.\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))\n(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty\n(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty\n(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty\n(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty\n(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)\n(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)\n(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty\n(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def\n(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty\n(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))\n(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)\nNo file paper.aux.\n(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii\n[Loading MPS to PDF converter (version 2006.09.02).]\n) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty\n(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))\n*geometry* driver: auto-detecting\n*geometry* detected driver: pdftex\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)\n\nPackage natbib Warning: Citation `holland1988differential' on page 1 undefined \non input line 44.\n\n\nPackage natbib Warning: Citation `perlitz2024metabench' on page 1 undefined on \ninput line 46.\n\n[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-\ndist/fonts/enc/dvips/base/8r.enc}]\nOverfull \\hbox (40.64355pt too wide) in paragraph at lines 63--64\n[]\\T1/ptm/b/n/10.95 Semi-synthetic val-i-da-tion frame-work\\T1/ptm/m/n/10.95 : \nThe $\\OT1/cmr/m/n/10.95 ^^A$\\T1/ptm/m/n/10.95 TPR method-ol-ogy with cross-subj\nect match-ing ($\\OT1/cmr/m/n/10.95 ^^A$\\T1/ptm/m/n/10.95 FPR=0.000)\n\nPackage natbib Warning: Citation `dodge2021documenting' on page 2 undefined on \ninput line 74.\n\n\nPackage natbib Warning: Citation `brown2020language' on page 2 undefined on inp\nut line 74.\n\n\nPackage natbib Warning: Citation `shi2024detecting' on page 2 undefined on inpu\nt line 74.\n\n\nPackage natbib Warning: Citation `golchin2024time' on page 2 undefined on input\n line 74.\n\n\nPackage natbib Warning: Citation `yang2023rethinking' on page 2 undefined on in\nput line 74.\n\n\nPackage natbib Warning: Citation `dekoninck2024constat' on page 2 undefined on \ninput line 75.\n\n\nPackage natbib Warning: Citation `dong2024generalization' on page 2 undefined o\nn input line 76.\n\n\nPackage natbib Warning: Citation `li2024task' on page 2 undefined on input line\n 77.\n\n\nPackage natbib Warning: Citation `deng2024investigating' on page 2 undefined on\n input line 77.\n\n\nPackage natbib Warning: Citation `lalor2019learning' on page 2 undefined on inp\nut line 81.\n\n\nPackage natbib Warning: Citation `rodriguez2021evaluation' on page 2 undefined \non input line 81.\n\n\nPackage natbib Warning: Citation `vania2021comparing' on page 2 undefined on in\nput line 81.\n\n\nPackage natbib Warning: Citation `zhuang2023efficiently' on page 2 undefined on\n input line 81.\n\n\nPackage natbib Warning: Citation `blebea2024benchmark' on page 2 undefined on i\nnput line 81.\n\n\nPackage natbib Warning: Citation `polo2024tinybenchmarks' on page 2 undefined o\nn input line 82.\n\n\nPackage natbib Warning: Citation `holland1988differential' on page 2 undefined \non input line 83.\n\n\nPackage natbib Warning: Citation `zumbo1999handbook' on page 2 undefined on inp\nut line 83.\n\n\nPackage natbib Warning: Citation `kiela2021dynabench' on page 2 undefined on in\nput line 87.\n\n\nPackage natbib Warning: Citation `magar2022data' on page 2 undefined on input l\nine 87.\n\n\nPackage natbib Warning: Citation `jacovi2023stop' on page 2 undefined on input \nline 87.\n\n\nPackage natbib Warning: Citation `zhu2024dyval' on page 2 undefined on input li\nne 87.\n\n\nPackage natbib Warning: Citation `perlitz2024metabench' on page 2 undefined on \ninput line 88.\n\n\nPackage natbib Warning: Citation `chiang2024chatbot' on page 2 undefined on inp\nut line 89.\n\n\nPackage natbib Warning: Citation `holland1988differential' on page 2 undefined \non input line 98.\n\n[2]\n\nLaTeX Warning: Reference `sec:cross-subject' on page 3 undefined on input line \n112.\n\n\nPackage natbib Warning: Citation `perlitz2024metabench' on page 3 undefined on \ninput line 138.\n\n\nOverfull \\hbox (0.1128pt too wide) in paragraph at lines 143--144\n[]\\T1/ptm/m/n/10.95 For cross-benchmark val-i-da-tion, we ad-di-tion-ally an-a-\nlyze Wino-Grande, Truth-fulQA, ARC-Challenge,\n\nLaTeX Warning: Reference `tab:temporal' on page 3 undefined on input line 167.\n\n[3]\n\nLaTeX Warning: Reference `tab:crossbench' on page 4 undefined on input line 203\n.\n\n\nLaTeX Warning: Reference `tab:simpsons' on page 4 undefined on input line 234.\n\n[4]\n\nLaTeX Warning: Reference `tab:semisynthetic' on page 5 undefined on input line \n267.\n\n\nOverfull \\hbox (14.14818pt too wide) in paragraph at lines 275--279\n []\\T1/ptm/b/n/10.95 Ground truth meta-critique.[] \\T1/ptm/m/n/10.95 DIF en-ric\nh-ment against Li et al. web-overlap la-bels is 0.96 (Jac-card=0.206,\n[5]\n\nLaTeX Warning: Reference `app:ift' on page 6 undefined on input line 298.\n\n[6]\nUnderfull \\hbox (badness 1442) in paragraph at lines 349--352\n[]\\T1/ptm/m/n/10.95 Blebea, S., et al. (2024).  A psy-cho-me-t-ric anal-y-sis o\nf bench-mark datasets.  \\T1/ptm/m/it/10.95 arXiv preprint\n[7] [8]\n\nLaTeX Warning: Reference `tab:rl' on page 9 undefined on input line 491.\n\n\nLaTeX Warning: Reference `tab:gsm8k' on page 9 undefined on input line 522.\n\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n\nLaTeX Warning: Reference `tab:bayes' on page 9 undefined on input line 548.\n\n[9]\n\nLaTeX Warning: Reference `tab:degrade' on page 10 undefined on input line 574.\n\n\nPackage natbib Warning: Citation `zumbo1999handbook' on page 10 undefined on in\nput line 602.\n\n\nLaTeX Warning: Reference `tab:ift' on page 10 undefined on input line 602.\n\n\nPackage natbib Warning: There were undefined citations.\n\n[10] (./paper.aux\n\nPackage natbib Warning: Citation(s) may have changed.\n(natbib)                Rerun to get citations correct.\n\n)\n\nLaTeX Warning: There were undefined references.\n\n\nLaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.\n\n\nPackage rerunfilecheck Warning: File `paper.out' has changed.\n(rerunfilecheck)                Rerun to get outlines right\n(rerunfilecheck)                or use package `bookmark'.\n\n )\n(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmex10.pfb>&lt;/usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/ty\npe1/public/amsfonts/cm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pub\nlic/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/ams\nfonts/cm/cmr7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm\n/cmr8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.\npfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share\n/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-\ndist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on paper.pdf (10 pages, 157201 bytes).\nTranscript written on paper.log.\nThis is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)\n restricted \\write18 enabled.\nentering extended mode\n(./paper.tex\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls\nDocument Class: article 2025/01/22 v1.4n Standard LaTeX document class\n(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))\n(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty\nFor additional information on amsmath, use the `?' option.\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))\n(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty\n(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty\n(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty\n(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty\n(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)\n(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)\n(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty\n(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def\n(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty\n(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))\n(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)\n(./paper.aux)\n(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii\n[Loading MPS to PDF converter (version 2006.09.02).]\n) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty\n(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))\n(./paper.out) (./paper.out)\n*geometry* driver: auto-detecting\n*geometry* detected driver: pdftex\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd) [1{/var/lib/texmf/fo\nnts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips\n/base/8r.enc}]\nOverfull \\hbox (40.64355pt too wide) in paragraph at lines 63--64\n[]\\T1/ptm/b/n/10.95 Semi-synthetic val-i-da-tion frame-work\\T1/ptm/m/n/10.95 : \nThe $\\OT1/cmr/m/n/10.95 ^^A$\\T1/ptm/m/n/10.95 TPR method-ol-ogy with cross-subj\nect match-ing ($\\OT1/cmr/m/n/10.95 ^^A$\\T1/ptm/m/n/10.95 FPR=0.000)\n[2]\nOverfull \\hbox (0.1128pt too wide) in paragraph at lines 143--144\n[]\\T1/ptm/m/n/10.95 For cross-benchmark val-i-da-tion, we ad-di-tion-ally an-a-\nlyze Wino-Grande, Truth-fulQA, ARC-Challenge,\n[3] [4]\nOverfull \\hbox (14.14818pt too wide) in paragraph at lines 275--279\n []\\T1/ptm/b/n/10.95 Ground truth meta-critique.[] \\T1/ptm/m/n/10.95 DIF en-ric\nh-ment against Li et al. web-overlap la-bels is 0.96 (Jac-card=0.206,\n[5] [6]\nUnderfull \\hbox (badness 1442) in paragraph at lines 349--352\n[]\\T1/ptm/m/n/10.95 Blebea, S., et al. (2024).  A psy-cho-me-t-ric anal-y-sis o\nf bench-mark datasets.  \\T1/ptm/m/it/10.95 arXiv preprint\n[7] [8]\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n[9] [10] (./paper.aux) )\n(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmex10.pfb>&lt;/usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/ty\npe1/public/amsfonts/cm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/pub\nlic/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/ams\nfonts/cm/cmr7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm\n/cmr8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.\npfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share\n/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-\ndist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on paper.pdf (10 pages, 161956 bytes).\nTranscript written on paper.log.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "18b8933a-e348-4990-8ff2-ed6e056df2db",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T110541/best",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260521T110541 tier=best 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_…",
+  "leafUuid": "65e8f853-555d-4c7e-887f-15d851c7ea47",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate IRT equated benchmark validation paper",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-21T11:34:10.633Z_
+
+PDF compiled successfully (10 pages, 162KB). The paper covers all 14 experiments from `experiment_data.json`:
+
+**Main text** (pp. 1-8): 4 tables + inline results for the 7 executed core experiments
+- Table 1: Temporal DIF on MMLU (real_data_dif_mmlu)
+- Table 2: Six-benchmark cross-validation (multi_benchmark_temporal_dif)
+- Table 3: Simpson's paradox logistic regression (odds_ratio_regression_transparency)
+- Table 4: Semi-synthetic validation (semi_synthetic_contamination_validation)
+- Inline: permutation null (permutation_null_c_rate), architecture stratification (architecture_stratified_dif), graceful degradation (graceful_degradation_analysis)
+
+**Appendix** (pp. 9-10): 5 tables for supplementary experiments
+- RL robustness (rl_robustness_validation)
+- GSM8K replication (cross_benchmark_gsm8k)
+- Cumulative Bayesian DIF (cumulative_bayesian_dif)
+- Graceful degradation detail (graceful_degradation_analysis)
+- Item-Focused Trees (item_focused_trees)
+
+**Future work mentions**: 5 killed/not-executed experiments (constat, dvd, ensemble, bifactor, item_generation)
+
+All quantitative claims use exact numbers from `experiment_data.json`. Output: `paper.pdf` in the target directory.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65e8f853-555d-4c7e-887f-15d851c7ea47",
+  "isSidechain": false,
+  "requestId": "req_011CbFeDpKmgDeoTZRoSTMQA",
+  "type": "assistant",
+  "uuid": "7eb3758d-6a84-4ed3-987a-68817f0c408b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T110541/best",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MLLXGzeWkj6de1UxC9JvWg",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7256,
+      "cache_read_input_tokens": 61608,
+      "output_tokens": 358,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7256,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 358,
+          "cache_read_input_tokens": 61608,
+          "cache_creation_input_tokens": 7256,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7256
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260521T110541 tier=best 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_…",
+  "leafUuid": "7eb3758d-6a84-4ed3-987a-68817f0c408b",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate IRT equated benchmark validation paper",
+  "sessionId": "648a2789-75b4-4e54-9d3e-23d488f8eda0"
+}
+```
+
+---

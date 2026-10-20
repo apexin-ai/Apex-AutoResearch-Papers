@@ -1,0 +1,1080 @@
+categories:
+- key: contamination_detection
+  name: Benchmark Contamination Detection
+  narrative: Methods for detecting training data contamination in LLM benchmarks,
+    including RL-robust approaches
+- key: irt_equating
+  name: IRT Methodology & Equating
+  narrative: Item Response Theory models, calibration, equating, and their application
+    to LLM evaluation
+- key: benchmark_design
+  name: Dynamic Benchmark Design
+  narrative: Approaches for creating contamination-resistant or self-updating benchmarks
+- key: dif_methodology
+  name: DIF Statistical Methods
+  narrative: Differential Item Functioning detection methods, power analysis, and
+    small-sample strategies
+- key: item_generation
+  name: Automated Item Generation
+  narrative: LLM-based test item generation with difficulty control and psychometric
+    validation
+- key: llm_evaluation
+  name: LLM Evaluation Methodology
+  narrative: General LLM evaluation methodology, benchmark psychometric analysis,
+    evaluation surveys, and benchmark design principles
+meta:
+  last_updated: '2026-05-21T03:50:29.840Z'
+  total_papers: 45
+papers:
+  balloccu2024leak:
+    abstract: ''
+    added_at: '2026-05-21T01:40:37.987Z'
+    added_by: literature-gap-fill
+    authors:
+    - Balloccu, S.
+    - Schmidtova, P.
+    - Lango, M.
+    - Dusek, O.
+    bibtex_key: balloccu2024leak
+    category: contamination_detection
+    doi: 10.18653/v1/2024.eacl-long.5
+    relevance: Systematic survey of data leakage in closed-source LLMs covering 255
+      papers and 263 benchmarks; establishes scope of contamination problem motivating
+      our detection approach
+    role: foundation
+    semantic_scholar_id: 798feda076ad710df65d509a7884bd15937c8056
+    title: 'Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in
+      Closed-Source LLMs'
+    url: https://arxiv.org/abs/2402.03927
+    venue: EACL 2024
+    verified: true
+    year: 2024
+  belzak2020smallsample:
+    abstract: ''
+    added_at: '2026-05-20T17:30:00.000Z'
+    added_by: director
+    authors:
+    - Belzak, W.
+    bibtex_key: belzak2020smallsample
+    category: dif_methodology
+    doi: 10.1080/00273171.2019.1671162
+    relevance: Parsimonious logistic regression with sum scores outperforms complex
+      IRT models for DIF detection in small samples; directly applicable to our N=50-80
+      model cohorts
+    role: method-component
+    semantic_scholar_id: 8f13882b6f37be1ade68c40539156277e5723395
+    title: Testing Differential Item Functioning in Small Samples
+    url: https://www.tandfonline.com/doi/abs/10.1080/00273171.2019.1671162
+    venue: Multivariate Behavioral Research
+    verified: true
+    year: 2020
+  dekoninck2024constat:
+    abstract: ''
+    added_at: '2026-05-21T01:40:37.987Z'
+    added_by: literature-gap-fill
+    authors:
+    - Dekoninck, J.
+    - Mueller, M. N.
+    - Vechev, M.
+    bibtex_key: dekoninck2024constat
+    category: contamination_detection
+    doi: ''
+    relevance: Performance-based contamination detection via perturbation analysis;
+      closest methodological parallel to our DIF approach in using behavioral patterns
+      rather than memorization signals
+    role: direct-competitor
+    semantic_scholar_id: ''
+    title: 'ConStat: Performance-Based Contamination Detection in Large Language Models'
+    url: https://arxiv.org/abs/2405.16281
+    venue: NeurIPS 2024
+    verified: true
+    year: 2024
+  golchin2024timetravel:
+    abstract: ''
+    added_at: '2026-05-21T01:40:37.987Z'
+    added_by: literature-gap-fill
+    authors:
+    - Golchin, S.
+    - Surdeanu, M.
+    bibtex_key: golchin2024timetravel
+    category: contamination_detection
+    doi: ''
+    relevance: Instance-level contamination detection via guided completion prompts;
+      baseline approach for individual-item detection that our group-level DIF method
+      extends
+    role: method-component
+    semantic_scholar_id: d6d0fd994f37b630f35945736b5e1bb198148404
+    title: 'Time Travel in LLMs: Tracing Data Contamination in Large Language Models'
+    url: https://arxiv.org/abs/2308.08493
+    venue: ICLR 2024
+    verified: true
+    year: 2024
+  hardy2026scalability:
+    abstract: ''
+    added_at: '2026-05-20T17:30:00.000Z'
+    added_by: director
+    authors:
+    - Hardy, M.
+    - Gilbert, J.
+    - Domingue, B.
+    bibtex_key: hardy2026scalability
+    category: irt_equating
+    doi: 10.48550/arXiv.2603.24999
+    relevance: Nonparametric signed isotonic R2 scalability coefficients outperform
+      IRT item diagnostics; lightweight pre-filter for item quality before our parametric
+      calibration
+    role: method-component
+    semantic_scholar_id: ''
+    title: Efficient Detection of Bad Benchmark Items with Novel Scalability Coefficients
+    url: https://arxiv.org/abs/2603.24999
+    venue: arXiv
+    verified: true
+    year: 2026
+  kim2019fpc:
+    abstract: ''
+    added_at: '2026-05-20T17:30:00.000Z'
+    added_by: director
+    authors:
+    - Kim, S.
+    - Kolen, M.
+    bibtex_key: kim2019fpc
+    category: irt_equating
+    doi: 10.1080/08957347.2019.1660344
+    relevance: Fixed-parameter calibration requires only N>=200 vs N>=500 for full
+      calibration; core methodology for our bifactor IRT equating with anchor items
+    role: method-component
+    semantic_scholar_id: ''
+    title: Application of IRT Fixed Parameter Calibration to Multiple-Group Test Data
+    url: https://www.tandfonline.com/doi/abs/10.1080/08957347.2019.1660344
+    venue: Applied Measurement in Education
+    verified: true
+    year: 2019
+  li2024contamination:
+    abstract: ''
+    added_at: '2026-05-21T01:40:37.987Z'
+    added_by: literature-gap-fill
+    authors:
+    - Li, Y.
+    - Guo, Y.
+    - Guerin, F.
+    - Lin, C.
+    bibtex_key: li2024contamination
+    category: contamination_detection
+    doi: 10.18653/v1/2024.findings-emnlp.30
+    relevance: Provides web-overlap contamination labels for MMLU and other benchmarks
+      via Common Crawl matching; primary ground-truth comparison for our DIF-based
+      contamination detection
+    role: foundation
+    semantic_scholar_id: 32e11cf020021c225782a3b77b5cfed4ae8e14a0
+    title: An Open-Source Data Contamination Report for Large Language Models
+    url: https://aclanthology.org/2024.findings-emnlp.30/
+    venue: Findings of EMNLP 2024
+    verified: true
+    year: 2024
+  liang2026dvd:
+    abstract: ''
+    added_at: '2026-05-20T17:30:00.000Z'
+    added_by: director
+    authors:
+    - Liang, R.
+    bibtex_key: liang2026dvd
+    category: contamination_detection
+    doi: ''
+    relevance: Detects variant contamination via generation variance (AUC 0.73-0.74
+      vs Min-K++ 0.43-0.68); complementary signal in our ensemble but untested under
+      RL training
+    role: direct-competitor
+    semantic_scholar_id: ''
+    title: 'DVD: Detection via Variance of Generation Distribution for Variant Contamination'
+    url: https://arxiv.org/abs/2601.04895
+    venue: arXiv
+    verified: true
+    year: 2026
+  shi2024mink:
+    abstract: ''
+    added_at: '2026-05-21T01:40:37.987Z'
+    added_by: literature-gap-fill
+    authors:
+    - Shi, W.
+    - Ajith, A.
+    - Xia, M.
+    - Huang, Y.
+    - Liu, D.
+    - Blevins, T.
+    - Chen, D.
+    - Zettlemoyer, L.
+    bibtex_key: shi2024mink
+    category: contamination_detection
+    doi: ''
+    relevance: Introduces Min-K% Prob method and WikiMIA benchmark for pretraining
+      data detection; key baseline whose limitations under RL training motivate our
+      DIF-based alternative
+    role: foundation
+    semantic_scholar_id: 3422d5e0cdfdc935d6a84a1e3d3f96659265fe3a
+    title: Detecting Pretraining Data from Large Language Models
+    url: https://arxiv.org/abs/2310.16789
+    venue: ICLR 2024
+    verified: true
+    year: 2024
+  tao2026selfcritique:
+    abstract: ''
+    added_at: '2026-05-20T17:30:00.000Z'
+    added_by: director
+    authors:
+    - Tao, Y.
+    bibtex_key: tao2026selfcritique
+    category: contamination_detection
+    doi: ''
+    relevance: Self-Critique/RL-MIA partially addresses RL concealment via policy-collapse
+      detection, but remains individual-model-level; our DIF is group-level and complementary
+    role: direct-competitor
+    semantic_scholar_id: ''
+    title: Detecting Data Contamination from Reinforcement Learning Post-training
+      for Large Language Models
+    url: https://arxiv.org/abs/2510.09259
+    venue: ICLR 2026
+    verified: true
+    year: 2026
+  wang2026fragility:
+    abstract: ''
+    added_at: '2026-05-20T17:30:00.000Z'
+    added_by: director
+    authors:
+    - Wang, H.
+    - Li, H.
+    - Ko, B.
+    - Zhang, H.
+    bibtex_key: wang2026fragility
+    category: contamination_detection
+    doi: ''
+    relevance: Proves GRPO/PPO RL training conceals contamination signals (14-20pp
+      AUROC degradation), motivating our DIF-based approach which operates on behavioral
+      patterns immune to NLL smoothing
+    role: foundation
+    semantic_scholar_id: 9a5bf5d3c7116cc4a104c06599fbcef2d1b5abf3
+    title: On The Fragility of Benchmark Contamination Detection in Reasoning Models
+    url: https://arxiv.org/abs/2510.02386
+    venue: ICLR 2026
+    verified: true
+    year: 2026
+  white2025livebench:
+    abstract: ''
+    added_at: '2026-05-20T17:30:00.000Z'
+    added_by: director
+    authors:
+    - White, C.
+    bibtex_key: white2025livebench
+    category: benchmark_design
+    doi: 10.48550/arXiv.2406.19314
+    relevance: Monthly-updated contamination-free benchmark with objective scoring;
+      no difficulty calibration or psychometric equivalence across updates
+    role: direct-competitor
+    semantic_scholar_id: 4e5d86ea8eacd341d13123852d50d1ef62738744
+    title: 'LiveBench: A Challenging, Contamination-Free LLM Benchmark'
+    url: https://arxiv.org/abs/2406.19314
+    venue: ICLR 2025
+    verified: true
+    year: 2025
+  zhang2024gsm1k:
+    abstract: ''
+    added_at: '2026-05-20T17:30:00.000Z'
+    added_by: director
+    authors:
+    - Zhang, H.
+    bibtex_key: zhang2024gsm1k
+    category: contamination_detection
+    doi: ''
+    relevance: GSM1K documents 10-13% average accuracy drops from contamination; provides
+      ground-truth contamination evidence and item-level effect sizes (delta 0.8-1.4
+      logits) critical for our DIF power analysis
+    role: foundation
+    semantic_scholar_id: ef62f95c16f668f031d649799cbd79081c6d2b0f
+    title: A Careful Examination of Large Language Model Performance on Grade School
+      Arithmetic
+    url: https://arxiv.org/abs/2405.00332
+    venue: arXiv
+    verified: true
+    year: 2024
+  zhang2024minkpp:
+    abstract: ''
+    added_at: '2026-05-21T01:40:37.987Z'
+    added_by: literature-gap-fill
+    authors:
+    - Zhang, J.
+    - Sun, J.
+    - Yeats, E.
+    - Ouyang, Y.
+    - Kuo, M.
+    - Zhang, J.
+    - Yang, H.
+    - Li, H.
+    bibtex_key: zhang2024minkpp
+    category: contamination_detection
+    doi: ''
+    relevance: Improves Min-K% with vocabulary-normalized token probabilities; key
+      baseline whose AUC degrades to 0.43-0.68 on RL-trained models, motivating our
+      DIF-based alternative
+    role: direct-competitor
+    semantic_scholar_id: ''
+    title: 'Min-K%++: Improved Baseline for Detecting Pre-Training Data from Large
+      Language Models'
+    url: https://arxiv.org/abs/2404.02936
+    venue: arXiv
+    verified: true
+    year: 2024
+  lalor2019irt:
+    title: 'Learning Latent Parameters without Human Response Patterns: Item Response
+      Theory with Artificial Crowds'
+    authors:
+    - Lalor, J.
+    - Wu, H.
+    - Yu, H.
+    year: 2019
+    venue: EMNLP-IJCNLP 2019
+    url: https://aclanthology.org/D19-1434/
+    doi: 10.18653/v1/D19-1434
+    bibtex_key: lalor2019irt
+    category: irt_equating
+    role: foundation
+    relevance: Pioneering application of IRT to NLP evaluation using artificial crowds
+      of DNN models; establishes that IRT parameters from machine response patterns
+      correlate with human-calibrated parameters
+    abstract: ''
+    semantic_scholar_id: df6cd8a8d836e75690141deb732f6d19f0176a2e
+    verified: true
+    added_by: literature-gap-fill
+    added_at: '2026-05-21T02:29:19.632Z'
+  vania2021irt:
+    title: Comparing Test Sets with Item Response Theory
+    authors:
+    - Vania, C.
+    - Htut, P.M.
+    - Huang, W.
+    - Mungra, D.
+    - Pang, R.Y.
+    - Phang, J.
+    - Liu, H.
+    - Cho, K.
+    - Bowman, S.R.
+    year: 2021
+    venue: ACL 2021
+    url: https://aclanthology.org/2021.acl-long.92/
+    doi: 10.18653/v1/2021.acl-long.92
+    bibtex_key: vania2021irt
+    category: irt_equating
+    role: foundation
+    relevance: IRT-based analysis of NLU benchmark discriminability; shows which test
+      sets remain effective at differentiating strong models and which are saturated
+    abstract: ''
+    semantic_scholar_id: 4ca39cf99747b8962fe37e7e025e284872df3425
+    verified: true
+    added_by: literature-gap-fill
+    added_at: '2026-05-21T02:29:19.632Z'
+  li2025atlas:
+    title: 'Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static
+      Benchmarks'
+    authors:
+    - Li, P.
+    - Tang, X.
+    - Chen, S.
+    - Cheng, Y.
+    - Metoyer, R.
+    - Hua, T.
+    - Chawla, N.V.
+    year: 2025
+    venue: arXiv
+    url: https://arxiv.org/abs/2511.04689
+    doi: 10.48550/arXiv.2511.04689
+    bibtex_key: li2025atlas
+    category: irt_equating
+    role: method-component
+    relevance: IRT-based adaptive testing framework (ATLAS) reduces benchmark items
+      by 90% while preserving ability estimates; demonstrates IRT enables efficient
+      LLM evaluation
+    abstract: ''
+    semantic_scholar_id: 087ce2837a0d5562bc95a40e77a327a6d033366c
+    verified: true
+    added_by: literature-gap-fill
+    added_at: '2026-05-21T02:29:19.632Z'
+  chen2025irtnet:
+    title: Learning Compact Representations of LLM Abilities via Item Response Theory
+    authors:
+    - Chen, J.
+    - Wang, C.
+    - Zhang, G.
+    - Ye, P.
+    - Bai, L.
+    - Hu, W.
+    - Qu, Y.
+    - Hu, S.
+    year: 2025
+    venue: arXiv
+    url: https://arxiv.org/abs/2510.00844
+    doi: 10.48550/arXiv.2510.00844
+    bibtex_key: chen2025irtnet
+    category: irt_equating
+    role: method-component
+    relevance: Multidimensional IRT with MoE network for learning LLM ability vectors
+      and query discrimination/difficulty; demonstrates IRT-based model routing and
+      benchmark prediction
+    abstract: ''
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-gap-fill
+    added_at: '2026-05-21T02:29:19.632Z'
+  choi2026llmjudgeirt:
+    title: Diagnosing the Reliability of LLM-as-a-Judge via Item Response Theory
+    authors:
+    - Choi, J.
+    - Park, S.
+    - Cho, C.
+    - Park, H.
+    - Kim, B.
+    year: 2026
+    venue: arXiv
+    url: https://arxiv.org/abs/2602.00521
+    doi: 10.48550/arXiv.2602.00521
+    bibtex_key: choi2026llmjudgeirt
+    category: irt_equating
+    role: method-component
+    relevance: Applies IRT Graded Response Model to diagnose LLM judge reliability;
+      extends IRT application beyond benchmark scoring to evaluation pipeline quality
+      assessment
+    abstract: ''
+    semantic_scholar_id: 4fc931a456c8162716deadbc9db6fd770189e632
+    verified: true
+    added_by: literature-gap-fill
+    added_at: '2026-05-21T02:29:19.632Z'
+  holland1988mh:
+    title: Differential Item Functioning and the Mantel-Haenszel Procedure
+    authors:
+    - Holland, P.W.
+    - Thayer, D.T.
+    year: 1988
+    venue: In H. Wainer & H.I. Braun (Eds.), Test Validity, Lawrence Erlbaum
+    url: https://onlinelibrary.wiley.com/doi/abs/10.1002/j.2330-8516.1986.tb00186.x
+    doi: 10.1002/j.2330-8516.1986.tb00186.x
+    bibtex_key: holland1988mh
+    category: dif_methodology
+    role: foundation
+    relevance: Seminal paper introducing the Mantel-Haenszel procedure for DIF detection;
+      establishes the ETS classification system (A/B/C) used as standard DIF effect-size
+      metric
+    abstract: ''
+    semantic_scholar_id: 5fbc064e7104036b77a2bf6f0ad509031965c275
+    verified: true
+    added_by: literature-gap-fill
+    added_at: '2026-05-21T03:21:36.315Z'
+  shealy1993sibtest:
+    title: A Model-Based Standardization Approach that Separates True Bias/DIF from
+      Group Ability Differences and Detects Test Bias/DTF as Well as Item Bias/DIF
+    authors:
+    - Shealy, R.
+    - Stout, W.
+    year: 1993
+    venue: Psychometrika
+    url: https://link.springer.com/article/10.1007/BF02294572
+    doi: 10.1007/BF02294572
+    bibtex_key: shealy1993sibtest
+    category: dif_methodology
+    role: foundation
+    relevance: Introduces SIBTEST, a nonparametric DIF detection method that separates
+      true item bias from group ability differences; alternative to MH that handles
+      non-uniform DIF
+    abstract: ''
+    semantic_scholar_id: 82f3db496626afd828fedb01a41f719a50dbfc2c
+    verified: true
+    added_by: literature-gap-fill
+    added_at: '2026-05-21T03:21:36.315Z'
+  clauser1998dif:
+    title: Using Statistical Procedures to Identify Differentially Functioning Test
+      Items
+    authors:
+    - Clauser, B.E.
+    - Mazor, K.M.
+    year: 1998
+    venue: 'Educational Measurement: Issues and Practice'
+    url: https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1745-3992.1998.tb00619.x
+    doi: 10.1111/j.1745-3992.1998.tb00619.x
+    bibtex_key: clauser1998dif
+    category: dif_methodology
+    role: foundation
+    relevance: Comprehensive review of DIF detection methods (MH, SIBTEST, logistic
+      regression, IRT-based); standard reference for comparing statistical approaches
+      to DIF
+    abstract: ''
+    semantic_scholar_id: c2377c505c95b924e972e61dadec81e9c87dea18
+    verified: true
+    added_by: literature-gap-fill
+    added_at: '2026-05-21T03:21:36.315Z'
+  zumbo1999handbook:
+    title: 'A Handbook on the Theory and Methods of Differential Item Functioning
+      (DIF): Logistic Regression Modeling as a Unitary Framework for Binary and Likert-Type
+      (Ordinal) Item Scores'
+    authors:
+    - Zumbo, B.D.
+    year: 1999
+    venue: 'Ottawa: Directorate of Human Resources Research and Evaluation, Department
+      of National Defense'
+    url: https://faculty.educ.ubc.ca/zumbo/DIF/handbook.pdf
+    doi: ''
+    bibtex_key: zumbo1999handbook
+    category: dif_methodology
+    role: foundation
+    relevance: Foundational DIF handbook presenting logistic regression as a unitary
+      framework for DIF analysis; establishes the Zumbo-Thomas logistic regression
+      approach widely used in applied DIF research
+    abstract: ''
+    semantic_scholar_id: 7f88fb0ad98645582665532600d7c46406fa2db6
+    verified: true
+    added_by: literature-gap-fill
+    added_at: '2026-05-21T03:21:36.315Z'
+  meredith1993invariance:
+    title: Measurement Invariance, Factor Analysis and Factorial Invariance
+    authors:
+    - Meredith, W.
+    year: 1993
+    venue: Psychometrika
+    url: https://link.springer.com/article/10.1007/BF02294825
+    doi: 10.1007/BF02294825
+    bibtex_key: meredith1993invariance
+    category: dif_methodology
+    role: foundation
+    relevance: Defines the measurement invariance hierarchy (configural, metric, scalar,
+      strict factorial invariance); theoretical foundation linking DIF to latent variable
+      fairness
+    abstract: ''
+    semantic_scholar_id: 7eb541983de0a39586a699e255563b26e9291340
+    verified: true
+    added_by: literature-gap-fill
+    added_at: '2026-05-21T03:21:36.315Z'
+  vandenberg2000invariance:
+    title: 'A Review and Synthesis of the Measurement Invariance Literature: Suggestions,
+      Practices, and Recommendations for Organizational Research'
+    authors:
+    - Vandenberg, R.J.
+    - Lance, C.E.
+    year: 2000
+    venue: Organizational Research Methods
+    url: https://journals.sagepub.com/doi/10.1177/109442810031002
+    doi: 10.1177/109442810031002
+    bibtex_key: vandenberg2000invariance
+    category: dif_methodology
+    role: foundation
+    relevance: Comprehensive review of measurement invariance testing practices; establishes
+      CFA-based invariance testing as prerequisite for valid cross-group comparisons,
+      analogous to our cross-model DIF analysis
+    abstract: ''
+    semantic_scholar_id: 1c9389250c1fac06eda5dcf39a8ea16cf8c92c89
+    verified: true
+    added_by: literature-gap-fill
+    added_at: '2026-05-21T03:21:36.315Z'
+  swaminathan1990logistic:
+    title: Detecting Differential Item Functioning Using Logistic Regression Procedures
+    authors:
+    - Swaminathan, H.
+    - Rogers, H.J.
+    year: 1990
+    venue: Journal of Educational Measurement
+    url: https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1745-3984.1990.tb00754.x
+    doi: 10.1111/j.1745-3984.1990.tb00754.x
+    bibtex_key: swaminathan1990logistic
+    category: dif_methodology
+    role: foundation
+    relevance: Introduces logistic regression for DIF detection, distinguishing uniform
+      and non-uniform DIF; more powerful than MH for non-uniform DIF and directly
+      applicable to our contamination-as-DIF framework
+    abstract: ''
+    semantic_scholar_id: d14b3b6e927ff8e51406fad1010244ecabc07da0
+    verified: true
+    added_by: literature-gap-fill
+    added_at: '2026-05-21T03:21:36.315Z'
+  teresi2007dif:
+    title: Differential Item Functioning and Health Assessment
+    authors:
+    - Teresi, J.A.
+    - Fleishman, J.A.
+    year: 2007
+    venue: Quality of Life Research
+    url: https://link.springer.com/article/10.1007/s11136-007-9184-6
+    doi: 10.1007/s11136-007-9184-6
+    bibtex_key: teresi2007dif
+    category: dif_methodology
+    role: method-component
+    relevance: Reviews DIF detection strategies including propensity score matching
+      approaches for controlling confounders; methodological basis for our propensity-matched
+      contamination group comparison
+    abstract: ''
+    semantic_scholar_id: 5ddbe080c2c0cdff671d9b9c2a795e366b6eb098
+    verified: true
+    added_by: literature-gap-fill
+    added_at: '2026-05-21T03:21:36.315Z'
+  lord1980irt:
+    title: Applications of Item Response Theory to Practical Testing Problems
+    authors:
+    - Lord, F.M.
+    year: 1980
+    venue: 'Hillsdale, NJ: Lawrence Erlbaum Associates'
+    url: https://www.routledge.com/Applications-of-Item-Response-Theory-To-Practical-Testing-Problems/Lord/p/book/9780898590067
+    doi: ''
+    bibtex_key: lord1980irt
+    category: dif_methodology
+    role: foundation
+    relevance: Introduces Lord's chi-square test for IRT-based DIF detection by comparing
+      item parameters across groups; foundational IRT reference for our parametric
+      DIF approach
+    abstract: ''
+    semantic_scholar_id: ''
+    verified: true
+    added_by: literature-gap-fill
+    added_at: '2026-05-21T03:21:36.315Z'
+  raju1988area:
+    title: The Area between Two Item Characteristic Curves
+    authors:
+    - Raju, N.S.
+    year: 1988
+    venue: Psychometrika
+    url: https://link.springer.com/article/10.1007/BF02294403
+    doi: 10.1007/BF02294403
+    bibtex_key: raju1988area
+    category: dif_methodology
+    role: method-component
+    relevance: Develops signed and unsigned area measures between item characteristic
+      curves for IRT-based DIF quantification; provides effect-size metrics complementing
+      statistical significance tests
+    abstract: ''
+    semantic_scholar_id: 545c20c1f2575833f81418f4757cb78446465cd7
+    verified: true
+    added_by: literature-gap-fill
+    added_at: '2026-05-21T03:21:36.315Z'
+  muthen1985mimic:
+    title: A Method for Studying the Homogeneity of Test Items with Respect to Other
+      Relevant Variables
+    authors:
+    - Muthén, B.
+    year: 1985
+    venue: Journal of Educational Statistics
+    url: ''
+    doi: 10.2307/1164966
+    bibtex_key: muthen1985mimic
+    category: dif_methodology
+    role: method-component
+    relevance: Seminal MIMIC model for DIF with continuous covariates; future-work
+      alternative to failed θ-conditioning (plan_012)
+    abstract: ''
+    semantic_scholar_id: ''
+    verified: true
+    added_by: paper_agent
+    added_at: '2026-05-21T03:34:08.189Z'
+  woods2009mimic:
+    title: Empirical Selection of Anchors for Tests of Differential Item Functioning
+    authors:
+    - Woods, C.M.
+    year: 2009
+    venue: Applied Psychological Measurement
+    url: ''
+    doi: 10.1177/0146621609331279
+    bibtex_key: woods2009mimic
+    category: dif_methodology
+    role: method-component
+    relevance: Modern MIMIC-based DIF detection with anchor selection; addresses impact-vs-DIF
+      confound in our future work
+    abstract: ''
+    semantic_scholar_id: ''
+    verified: true
+    added_by: paper_agent
+    added_at: '2026-05-21T03:34:08.189Z'
+  habba2026growingpains:
+    abstract: ''
+    added_at: '2026-05-20T17:30:00.000Z'
+    added_by: director
+    authors:
+    - Habba, E.
+    - Itzhak, I.
+    - Yehudai, A.
+    - Perlitz, Y.
+    - Bandel, E.
+    - Shmueli-Scheuer, M.
+    - Choshen, L.
+    - Stanovsky, G.
+    bibtex_key: habba2026growingpains
+    category: irt_equating
+    doi: 10.48550/arXiv.2604.12843
+    relevance: Uses multidimensional IRT with fixed-parameter calibration and 100
+      anchor items for extensible evaluation (rho>=0.9); addresses score comparability
+      but NOT contamination detection or item regeneration
+    role: direct-competitor
+    semantic_scholar_id: ''
+    title: 'Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter
+      Calibration'
+    url: https://arxiv.org/abs/2604.12843
+    venue: arXiv
+    verified: true
+    year: 2026
+  zhou2026psnirt:
+    abstract: ''
+    added_at: '2026-05-20T17:30:00.000Z'
+    added_by: director
+    authors:
+    - Zhou, H.
+    - Huang, H.
+    - Zhao, Z.
+    - Han, L.
+    - Wang, H.
+    - Chen, K.
+    - Yang, M.
+    - Bao, W.
+    - Dong, J.
+    - Xu, B.
+    - Zhu, C.
+    - Cao, H.
+    - Zhao, T.
+    bibtex_key: zhou2026psnirt
+    category: irt_equating
+    doi: ''
+    relevance: PSN-IRT analyzes benchmark quality via 4PL IRT; provides published
+      IRT parameters for MMLU we can use in semi-synthetic validation
+    role: method-component
+    semantic_scholar_id: ''
+    title: Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item
+      Response Theory
+    url: https://arxiv.org/abs/2505.15055
+    venue: AAAI 2026
+    verified: true
+    year: 2026
+  kipnis2024metabench:
+    title: metabench -- A Sparse Benchmark of Reasoning and Knowledge in Large Language
+      Models
+    authors:
+    - Kipnis, A.
+    - Voudouris, K.
+    - Schulze Buschoff, L.M.
+    - Schulz, E.
+    year: 2024
+    venue: arXiv
+    url: https://arxiv.org/abs/2407.12844
+    doi: 10.48550/arXiv.2407.12844
+    bibtex_key: kipnis2024metabench
+    category: benchmark_design
+    role: foundation
+    relevance: Primary data source providing item-level response matrix across 5000+
+      LLMs on 6 benchmarks; IRT-based item selection methodology enables our DIF analysis
+      on compressed benchmark items
+    abstract: ''
+    semantic_scholar_id: dfd5186def202285a0f23cd3f08415a5780895c1
+    verified: true
+    added_by: literature-gap-fill
+    added_at: '2026-05-21T03:43:39.896Z'
+  hendrycks2021mmlu:
+    title: Measuring Massive Multitask Language Understanding
+    authors:
+    - Hendrycks, D.
+    - Burns, C.
+    - Basart, S.
+    - Zou, A.
+    - Mazeika, M.
+    - Song, D.
+    - Steinhardt, J.
+    year: 2021
+    venue: ICLR 2021
+    url: https://arxiv.org/abs/2009.03300
+    doi: ''
+    bibtex_key: hendrycks2021mmlu
+    category: benchmark_design
+    role: foundation
+    relevance: Seminal 57-subject benchmark for LLM evaluation; primary benchmark
+      in our DIF analysis due to documented contamination and available IRT parameters
+    abstract: ''
+    semantic_scholar_id: 814a4f680b9ba6baba23b93499f4b48af1a27678
+    verified: true
+    added_by: literature-gap-fill
+    added_at: '2026-05-21T03:43:39.896Z'
+  liang2023helm:
+    title: Holistic Evaluation of Language Models
+    authors:
+    - Liang, P.
+    - Bommasani, R.
+    - Lee, T.
+    - Tsipras, D.
+    - Soylu, D.
+    - Yasunaga, M.
+    - Zhang, Y.
+    - Narayanan, D.
+    - Wu, Y.
+    - Kumar, A.
+    year: 2023
+    venue: TMLR 2023
+    url: https://arxiv.org/abs/2211.09110
+    doi: 10.1111/nyas.15007
+    bibtex_key: liang2023helm
+    category: benchmark_design
+    role: foundation
+    relevance: Holistic multi-metric evaluation framework covering accuracy, calibration,
+      robustness, fairness, and bias; establishes multi-dimensional evaluation philosophy
+      complementary to our psychometric approach
+    abstract: ''
+    semantic_scholar_id: ce913026f693101e54d3ab9152e107034d81fce1
+    verified: true
+    added_by: literature-gap-fill
+    added_at: '2026-05-21T03:43:39.896Z'
+  chiang2024chatbot:
+    title: 'Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference'
+    authors:
+    - Chiang, W.-L.
+    - Zheng, L.
+    - Sheng, Y.
+    - Angelopoulos, A.N.
+    - Li, T.
+    - Li, D.
+    - Zhang, H.
+    - Zhu, B.
+    - Jordan, M.I.
+    - Gonzalez, J.E.
+    - Stoica, I.
+    year: 2024
+    venue: ICML 2024
+    url: https://arxiv.org/abs/2403.04132
+    doi: 10.48550/arXiv.2403.04132
+    bibtex_key: chiang2024chatbot
+    category: benchmark_design
+    role: method-component
+    relevance: Crowdsourced pairwise comparison with ELO ranking as contamination-resistant
+      alternative to static benchmarks; contrasts with our item-level psychometric
+      approach
+    abstract: ''
+    semantic_scholar_id: 53f4fb0e9972989194368faf288ff8e3cba5bd60
+    verified: true
+    added_by: literature-gap-fill
+    added_at: '2026-05-21T03:43:39.896Z'
+  mialon2023gaia:
+    title: 'GAIA: a benchmark for General AI Assistants'
+    authors:
+    - Mialon, G.
+    - Fourrier, C.
+    - Swift, C.
+    - Wolf, T.
+    - LeCun, Y.
+    - Scialom, T.
+    year: 2023
+    venue: arXiv
+    url: https://arxiv.org/abs/2311.12983
+    doi: 10.48550/arXiv.2311.12983
+    bibtex_key: mialon2023gaia
+    category: benchmark_design
+    role: method-component
+    relevance: Benchmark with verifiable ground-truth answers designed to resist memorization;
+      exemplifies objective-scoring benchmark design philosophy shared by our regenerated
+      items
+    abstract: ''
+    semantic_scholar_id: ab8169d6e4dfabfe7c30ebec1bb871bf3e1551cd
+    verified: true
+    added_by: literature-gap-fill
+    added_at: '2026-05-21T03:43:39.896Z'
+  li2024latesteval:
+    title: 'LatestEval: Addressing Data Contamination in Language Model Evaluation
+      through Dynamic and Time-Sensitive Test Construction'
+    authors:
+    - Li, Y.
+    - Guerin, F.
+    - Lin, C.
+    year: 2024
+    venue: AAAI 2024
+    url: https://arxiv.org/abs/2312.12343
+    doi: 10.48550/arXiv.2312.12343
+    bibtex_key: li2024latesteval
+    category: benchmark_design
+    role: direct-competitor
+    relevance: Automated dynamic test construction from recent texts to avoid contamination;
+      addresses temporal contamination but lacks psychometric difficulty calibration
+      across test versions
+    abstract: ''
+    semantic_scholar_id: 8106d03fb984afd8c3d066cd4f993eb2616a0da5
+    verified: true
+    added_by: literature-gap-fill
+    added_at: '2026-05-21T03:43:39.896Z'
+  kiela2021dynabench:
+    title: 'Dynabench: Rethinking Benchmarking in NLP'
+    authors:
+    - Kiela, D.
+    - Bartolo, M.
+    - Nie, Y.
+    - Kaushik, D.
+    - Geiger, A.
+    - Wu, Z.
+    - Vidgen, B.
+    - Prasad, G.
+    - Singh, A.
+    - Ringshia, P.
+    - Ma, Z.
+    - Thrush, T.
+    - Riedel, S.
+    - Talat, Z.
+    - Stenetorp, P.
+    - Jia, R.
+    year: 2021
+    venue: NAACL 2021
+    url: https://arxiv.org/abs/2104.14337
+    doi: 10.18653/v1/2021.naacl-main.324
+    bibtex_key: kiela2021dynabench
+    category: benchmark_design
+    role: foundation
+    relevance: Seminal dynamic adversarial benchmarking platform with human-and-model-in-the-loop
+      dataset creation; establishes the paradigm of continuously evolving benchmarks
+      that our IRT-equated regeneration extends with psychometric equivalence guarantees
+    abstract: ''
+    semantic_scholar_id: 77a096d80eb4dd4ccd103d1660c5a5498f7d026b
+    verified: true
+    added_by: literature-gap-fill
+    added_at: '2026-05-21T03:43:39.896Z'
+  burnell2023rethink:
+    title: Rethink reporting of evaluation results in AI
+    authors:
+    - Burnell, R.
+    - Schellaert, W.
+    - Burden, J.
+    - Ullman, T.D.
+    - Martinez-Plumed, F.
+    - Tenenbaum, J.B.
+    - Rutar, D.
+    - Cheke, L.G.
+    - Sohl-Dickstein, J.
+    - Mitchell, M.
+    - Kiela, D.
+    - Shanahan, M.
+    - Voorhees, E.M.
+    - Cohn, A.G.
+    - Leibo, J.Z.
+    - Hernandez-Orallo, J.
+    year: 2023
+    venue: Science
+    url: https://www.science.org/doi/10.1126/science.adf6369
+    doi: 10.1126/science.adf6369
+    bibtex_key: burnell2023rethink
+    category: llm_evaluation
+    role: background
+    relevance: Argues that aggregate metrics and lack of item-level transparency in
+      AI evaluation limit understanding of model capabilities; motivates psychometric
+      item-level analysis
+    abstract: ''
+    semantic_scholar_id: ''
+    verified: true
+    added_by: paper_agent
+    added_at: '2026-05-21T03:50:29.780Z'
+  chang2024survey:
+    title: A Survey on Evaluation of Large Language Models
+    authors:
+    - Chang, Y.
+    - Wang, X.
+    - Wang, J.
+    - Wu, Y.
+    - Zhu, K.
+    - Chen, H.
+    - Yang, L.
+    - Yi, X.
+    - Wang, C.
+    - Wang, Y.
+    - Ye, W.
+    - Zhang, Y.
+    - Chang, Y.
+    - Yu, P.S.
+    - Yang, Q.
+    - Xie, X.
+    year: 2024
+    venue: ACM Transactions on Intelligent Systems and Technology
+    url: https://dl.acm.org/doi/full/10.1145/3641289
+    doi: 10.1145/3641289
+    bibtex_key: chang2024survey
+    category: llm_evaluation
+    role: background
+    relevance: Comprehensive survey covering what/where/how to evaluate LLMs across
+      tasks and societal dimensions; provides landscape context for our psychometric
+      evaluation approach
+    abstract: ''
+    semantic_scholar_id: ''
+    verified: true
+    added_by: paper_agent
+    added_at: '2026-05-21T03:50:29.780Z'
+  maiapolo2024tinybenchmarks:
+    title: 'tinyBenchmarks: evaluating LLMs with fewer examples'
+    authors:
+    - Maia Polo, F.
+    - Weber, L.
+    - Choshen, L.
+    - Sun, Y.
+    - Xu, G.
+    - Yurochkin, M.
+    year: 2024
+    venue: ICML 2024
+    url: https://proceedings.mlr.press/v235/maia-polo24a.html
+    doi: ''
+    bibtex_key: maiapolo2024tinybenchmarks
+    category: llm_evaluation
+    role: direct-competitor
+    relevance: Uses IRT to select representative benchmark subsets for efficient LLM
+      evaluation with 100 items approximating full MMLU; directly related to our IRT-based
+      equating methodology
+    abstract: ''
+    semantic_scholar_id: ''
+    verified: true
+    added_by: paper_agent
+    added_at: '2026-05-21T03:50:29.780Z'
+  wang2024mmlupro:
+    title: 'MMLU-Pro: A More Robust and Challenging Multi-Task Language Understanding
+      Benchmark'
+    authors:
+    - Wang, Y.
+    - Ma, X.
+    - Zhang, G.
+    - Ni, Y.
+    - Chandra, A.
+    - Guo, S.
+    - Ren, W.
+    - Arulraj, A.
+    - He, X.
+    - Jiang, Z.
+    - Li, T.
+    - Ku, M.
+    - Wang, K.
+    - Zhuang, A.
+    - Fan, R.
+    - Xue, X.
+    - Chen, W.
+    year: 2024
+    venue: NeurIPS 2024
+    url: https://arxiv.org/abs/2406.01574
+    doi: ''
+    bibtex_key: wang2024mmlupro
+    category: llm_evaluation
+    role: evaluation
+    relevance: Extends MMLU with harder reasoning items and 10-option format causing
+      16-33% accuracy drop; demonstrates benchmark evolution that motivates psychometric
+      equating across versions
+    abstract: ''
+    semantic_scholar_id: ''
+    verified: true
+    added_by: paper_agent
+    added_at: '2026-05-21T03:50:29.780Z'
+  ott2022benchmark:
+    title: Mapping global dynamics of benchmark creation and saturation in artificial
+      intelligence
+    authors:
+    - Ott, S.
+    - Barbosa-Silva, A.
+    - Blagec, K.
+    - Brauner, J.
+    - Samwald, M.
+    year: 2022
+    venue: Nature Communications
+    url: https://www.nature.com/articles/s41467-022-34591-0
+    doi: 10.1038/s41467-022-34591-0
+    bibtex_key: ott2022benchmark
+    category: llm_evaluation
+    role: background
+    relevance: Large-scale analysis of 3765 AI benchmarks showing rapid saturation
+      dynamics; supports our argument that static benchmarks need psychometric equating
+      and regeneration
+    abstract: ''
+    semantic_scholar_id: ''
+    verified: true
+    added_by: paper_agent
+    added_at: '2026-05-21T03:50:29.780Z'

@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "4b3b692567eb04372f56",
+  "project": "irt_equated_bench_regen--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are auditing data correctness in an academic paper. Your job is to verify all inline numerical claims in experiments",
+  "task_key": "agent-aaa1b08331eb0a156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/agent-aaa1b08331eb0a156.jsonl",
+    "occurrence": 1,
+    "bytes": 642762,
+    "sha256": "d84b16c60c345b69dd33495bed06666c01462da4b625b1f1b6a047b6d766f4f4"
+  },
+  "statistics": {
+    "messages": 296,
+    "user_turns": 2,
+    "tool_calls": 144,
+    "roles": {
+      "user": 2,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 144,
+      "tool_result": 144,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 294,
+      "chunks": [
+        {
+          "path": "4b3b692567eb04372f56-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4b3b692567eb04372f56-part-0002.json",
+          "message_count": 114
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "4b3b692567eb04372f56-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-auditing-data-correctness-in-an-academic-paper-your-job-is-to-verify-a-copy-2.md"
+}

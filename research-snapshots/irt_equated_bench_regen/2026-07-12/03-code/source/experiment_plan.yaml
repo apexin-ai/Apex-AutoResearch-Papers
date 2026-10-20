@@ -1,0 +1,303 @@
+experiments:
+  # === P0: Headline Results (must run) ===
+
+  - id: plan_001
+    name: real_data_dif_mmlu
+    claim: 1
+    description: >
+      Apply DIF analysis to METABENCH MMLU response matrix (5,219 models × 12,508 items).
+      Data characteristics: only 37% models classifiable by family (1,929); effective temporal
+      span ~1.5 years (2023: N=1,253, 2024-H1: N=656); 15.4% items have negative discrimination.
+      Design:
+      (a) Primary cohort: temporal split (2023 vs 2024-H1, both N≥80 ✓)
+      (b) Alternative cohort: accuracy-quintile split (ability-based grouping, uses all models)
+      (c) Item filtering: run with and without negative-discrimination items (sensitivity analysis)
+      Run ETS C DIF detection on all items under both cohort definitions.
+      Proxy validation against Li et al. (EMNLP 2024) web-overlap contamination labels (9,229 items,
+      73.8% coverage). IMPORTANT conceptual distinction: Li et al. labels are model-agnostic
+      (item exists on web), while DIF detects cohort-differential contamination (item behaves
+      differently across temporal cohorts). Low concordance is EXPECTED — DIF only catches items
+      where contamination is differential across cohorts, not uniform. Primary validation metric:
+      FPR analysis (DIF flags on Li-et-al-clean items) rather than TPR (which conflates uniform
+      vs differential contamination). Unlabeled items (26.2%) reported separately as "unknown".
+      plan_011 (semi-synthetic injection) provides controlled ground truth to complement this proxy.
+      (d) Within-family confound control: run DIF within model families where both versions
+          have N≥80. Confirmed feasible: Llama-2 (N=161) vs Llama-3 (N=308) ✓. Qwen-1.5 (N=67)
+          below threshold — use as supplementary only. Identify additional qualifying pairs from
+          METABENCH metadata. If DIF flags
+          items that are NOT differentially contaminated within-family, the flag reflects capability
+          gain, not contamination. Report: DIF flag overlap between cross-cohort and within-family
+          analyses to disentangle contamination from capability improvement.
+      (e) Domain-specificity analysis: correlate DIF flags with MMLU subject categories to check
+          whether flags cluster in domains with known capability jumps vs known contamination.
+      Report: DIF flags × cohort definition × item filtering — 4-way sensitivity matrix +
+      within-family confound control + domain-specificity analysis.
+    priority: P0
+    gpu_budget_hours: 0
+    deps: []
+    registry_id: ""
+
+  - id: plan_002
+    name: rl_robustness_validation
+    claim: 1
+    description: >
+      Empirically validate DIF's RL-robustness claim. CRITICAL DISTINCTION:
+      - "Alignment RL" (DPO/ORPO/KTO) = offline preference optimization, does NOT produce
+        the NLL gap contraction that Wang et al. demonstrate. METABENCH has 477 such models.
+      - "Reasoning RL" (GRPO/PPO online training) = the mechanism that conceals contamination
+        signals. This is what Claim 1 targets. METABENCH has almost none of these.
+      Design (Reviewer-validated):
+      (a) SFT-only cohort from METABENCH as baseline
+      (b) Alignment-RL cohort (DPO/ORPO, N=477) from METABENCH as mechanism control —
+          DPO doesn't use PPO clipping, so no NLL gap contraction; if DIF works on both
+          (a) and (b), robustness covers the full RL spectrum
+      (c) Reasoning-RL models (DeepSeek-R1-7B/32B, Qwen2.5-RL, etc.) — run MMLU inference
+          on 10-15 open-weight GRPO/PPO models. These are ADDED to the focal cohort
+          (not a standalone group): DIF is group-level, so we verify that adding RL models
+          to a cohort doesn't degrade detection. Separately, run traditional detectors
+          (Min-K%, ConStat) on these 10-15 models individually to show per-model degradation.
+      Two-level validation:
+      - Group level: DIF flags same items regardless of cohort composition (a/b/c) → robust
+      - Model level: traditional detectors degrade on (c) individuals → fragile
+      This design works even with only 10-15 reasoning-RL models because DIF doesn't need
+      N≥80 RL models — it needs N≥80 in the cohort total, and RL models are mixed in.
+      Statistical rigor requirements:
+      - Bootstrap 95% CIs on all AUROC comparisons (DIF vs ConStat vs Min-K%)
+      - DeLong test or permutation test for pairwise AUROC differences
+      - TOST equivalence testing for DIF retention ratio vs ConStat (not just null-result reasoning)
+      (d) Partial exploitation power analysis: formally characterize DIF detection power as
+          function of exploitation rate p ∈ [0.4, 1.0]. At p<1, contaminated model answers
+          memorized items correctly with probability p, shrinking DIF effect size by ~p.
+          Show detection boundary and ensemble coverage handoff point.
+    priority: P0
+    gpu_budget_hours: 100
+    deps: [plan_001]
+    registry_id: ""
+
+  - id: plan_003a
+    name: constat_perturbation_eval
+    claim: 2
+    description: >
+      Independent evaluation of ConStat-style perturbation testing on MMLU:
+      (a) Generate semantically equivalent reformulations for 200+ MMLU items using LLM paraphrasing
+      (b) Compare model performance on original vs reformulated items
+      (c) Apply FDR-controlled detection (ConStat protocol)
+      (d) Characterize detection power by effect size — expected strength on non-RL models, weakness on RL
+      Even if DIF or DVD fails, ConStat standalone results have paper value as baseline comparison.
+    priority: P0
+    gpu_budget_hours: 80
+    deps: [plan_001]
+    registry_id: ""
+
+  - id: plan_003b
+    name: dvd_generation_variance_eval
+    claim: 2
+    description: >
+      Independent evaluation of DVD generation variance on MMLU:
+      (a) Select 10-15 open-weight models with inference access
+      (b) Generate 50 responses per item via temperature sampling (T=0.7-1.0)
+      (c) Compute generation variance scores; detect bimodal distributions (contamination signal)
+      (d) Characterize detection power for variant contamination vs verbatim contamination
+      Standalone results provide variant-contamination detection baseline independent of DIF.
+    priority: P0
+    gpu_budget_hours: 70
+    deps: [plan_001]
+    registry_id: ""
+
+  - id: plan_003c
+    name: ensemble_fusion
+    claim: 2
+    description: >
+      Fuse DIF + ConStat + DVD into multi-signal ensemble:
+      (a) Calibrate per-signal thresholds on subset of items with known contamination status
+      (b) Evaluate 2-of-3 majority voting and weighted fusion strategies
+      (c) Show ensemble coverage: DIF covers δ≥1.4, ConStat covers non-RL δ≥0.6, DVD covers variant
+      (d) Precision analysis: ensemble FPR<0.10 across all configurations
+      (e) Cross-validate fusion weights (5-fold); report uniform-weight baseline alongside optimized
+      Depends on 003a and 003b completing; if one signal fails, degrade to 2-signal ensemble.
+    priority: P0
+    gpu_budget_hours: 0
+    deps: [plan_001, plan_003a, plan_003b]
+    registry_id: ""
+
+  # === P1: Strengthening Evidence ===
+
+  - id: plan_004
+    name: cross_benchmark_gsm8k
+    claim: 1
+    description: >
+      Replicate DIF analysis on GSM8K using GSM1K as ground truth for contamination.
+      Collect per-item binary responses from 50+ models on GSM8K (via existing leaderboard data
+      or inference). Run DIF across temporal cohorts. Correlate DIF flags with
+      per-model GSM8K-GSM1K accuracy gap. Validates cross-benchmark generalizability
+      and provides an independent ground truth beyond Li et al. proxy labels.
+    priority: P1
+    gpu_budget_hours: 100
+    deps: [plan_001]
+    registry_id: ""
+
+  - id: plan_005
+    name: bifactor_irt_equating_pilot
+    claim: 3
+    description: >
+      Pilot bifactor IRT equating on MMLU:
+      NOTE: METABENCH preproc.rds contains CTT statistics (p-value, rpbis), NOT IRT parameters.
+      True IRT params are in mirt model objects (crossvalidate.R). Must either extract from
+      METABENCH mirt RDS files or refit from the 5219×12508 response matrix.
+      (a) Fit bifactor model to METABENCH MMLU data (general factor + subject-specific factors)
+      (b) Select anchor items (high-stability, no DIF across cohorts)
+      (c) Calibrate replacement items via fixed-parameter calibration (Kim & Kolen 2019)
+      (d) Demonstrate equated score equivalence: model rankings on original vs replaced benchmark
+      should correlate at Spearman rho ≥ 0.95 after equating.
+    priority: P1
+    gpu_budget_hours: 50
+    deps: [plan_001]
+    registry_id: ""
+
+  - id: plan_006
+    name: item_generation_calibration
+    claim: 3
+    description: >
+      Generate replacement items for DIF-flagged MMLU questions:
+      (a) Use LLM generation with construct constraints (same subject, same cognitive level)
+      (b) Calibrate via student simulation (arXiv 2601.09953, r=0.75-0.82 for difficulty estimation)
+      (c) Compare difficulty correlation: prompt-based targeting (rho=0.10-0.45 per arXiv 2602.06631)
+      vs empirical calibration via student simulation
+      (d) Validate on holdout model panel
+    priority: P1
+    gpu_budget_hours: 200
+    deps: [plan_005]
+    registry_id: ""
+
+  # === P2: Bonus / Extension ===
+
+  - id: plan_007
+    name: cumulative_bayesian_dif
+    claim: 1
+    description: >
+      Implement cumulative Bayesian DIF priors (Sinharay et al., 2006).
+      Simulate 4 successive benchmark administrations. Show power improvement
+      from accumulating evidence: individual administration power ~0.40
+      → cumulative power ~0.70 after 3 administrations for medium effects (δ=1.0).
+    priority: P2
+    gpu_budget_hours: 0
+    deps: [plan_001]
+    registry_id: ""
+
+  - id: plan_008
+    name: graceful_degradation_analysis
+    claim: 3
+    description: >
+      Formal analysis of benchmark validity under item replacement:
+      (a) Define validity metrics (ranking stability, score reliability, construct coverage)
+      (b) Simulate progressive replacement (5%, 10%, 20%, 50% items replaced)
+      (c) Establish theoretical bounds on validity degradation as function of replacement rate
+      (d) Empirical validation using METABENCH data
+    priority: P2
+    gpu_budget_hours: 0
+    deps: [plan_005, plan_006]
+    registry_id: ""
+
+  - id: plan_009
+    name: item_focused_trees
+    claim: 1
+    description: >
+      Implement Item-Focused Trees (Tutz & Berger, 2016) as alternative to
+      categorical cohort DIF. Treat model release date as continuous covariate.
+      Compare detection power and flexibility vs categorical DIF.
+      Advantages: avoids arbitrary cohort splits, uses full model sample.
+    priority: P2
+    gpu_budget_hours: 0
+    deps: [plan_001]
+    registry_id: ""
+
+  - id: plan_010
+    name: architecture_stratified_dif
+    claim: 1
+    description: >
+      Run DIF within architecture-homogeneous subpopulations to test whether
+      IRT model fit improves and spurious DIF reduces when architecture heterogeneity
+      is removed. Dream worst-case identified this as the critical missing experiment.
+      Design:
+      (a) Subset METABENCH to decoder-only models only (N≈3,000-4,000)
+      (b) Report IRT fit diagnostics (RMSEA, CFI, TLI, SRMR) for this homogeneous subgroup
+      (c) Run DIF detection on decoder-only temporal cohorts; compare FPR and TPR
+          vs full-population DIF from plan_001
+      (d) If fit improves substantially, conclusion is "DIF requires architecture-homogeneous
+          populations" — a fixable constraint, not a fundamental limitation
+      Zero GPU cost (uses existing METABENCH data). Proactive defense against worst-case
+      reviewer concern about unidimensional IRT misfit.
+    priority: P1
+    gpu_budget_hours: 0
+    deps: [plan_001]
+    registry_id: ""
+
+  - id: plan_011
+    name: semi_synthetic_contamination_validation
+    claim: 1
+    description: >
+      Inject known contamination into the real METABENCH response matrix and measure
+      DIF detection power under controlled ground truth. Addresses ground truth
+      circularity concern (Li et al. proxy labels measure existence, not differential contamination).
+      Design:
+      (a) Select 500 items with known-clean status (no DIF flags, stable across cohorts)
+      (b) For a random subset of 100-200 items, inject synthetic contamination:
+          flip responses of focal-group models from incorrect→correct with probability p
+          (simulating contamination at varying exploitation rates)
+      (c) Run DIF detection; measure TPR/FPR against known-injected ground truth
+      (d) Vary injection parameters: contamination prevalence (5%-30%), exploitation rate
+          (0.4-1.0), focal group size (N=40-200)
+      Provides controlled ground truth that proxy labels (Li et al.) and GSM1K cannot.
+    priority: P1
+    gpu_budget_hours: 0
+    deps: [plan_001]
+    registry_id: ""
+
+  # === Dream #6 后续补充实验 (D024) ===
+
+  - id: plan_028
+    name: multi_benchmark_temporal_dif
+    claim: 1,5
+    description: >
+      Check METABENCH for additional benchmark response matrices (ARC-Challenge, HellaSwag,
+      WinoGrande, TruthfulQA, MMLU-Pro) and run temporal DIF analysis (2023 vs 2024) on each.
+      Addresses Dream #6 three-tier consensus: "only MMLU + GSM8K, generalizability insufficient."
+      Report C% + sample sizes + random-split control for each benchmark.
+    priority: P0
+    gpu_budget_hours: 0
+    deps: [plan_001]
+    registry_id: ""
+
+  - id: plan_029
+    name: permutation_null_c_rate
+    claim: 1
+    description: >
+      1000× permutation test: randomly reassign 2023/2024 temporal labels (preserving group sizes
+      N_ref=1080, N_foc=807) and run MH-DIF each time. Establishes null distribution for C%.
+      Dream #6 three-tier consensus: reviewers ask "is 31% above chance?" Current random-split
+      control (0.18%) is within-cohort, not temporal permutation null.
+    priority: P1
+    gpu_budget_hours: 0
+    deps: [plan_001]
+    registry_id: ""
+
+  - id: plan_030
+    name: odds_ratio_regression_transparency
+    claim: 1
+    description: >
+      Supplement pseudo R²=0.0007 with odds ratio + 95% CI + McFadden/Nagelkerke R² + deviance
+      ratio. Add finer-grained model: item-level DIF flag ~ item-level accuracy change (per-item
+      2024-2023 accuracy delta) vs current domain-level predictor. Dream #6 two-tier concern.
+    priority: P1
+    gpu_budget_hours: 0
+    deps: [plan_001]
+    registry_id: ""
+
+# GPU Budget Summary:
+# P0: 250 hours (plan_001: 0h + plan_002: 100h + plan_003a: 80h + plan_003b: 70h + plan_003c: 0h)
+# P1: 350 hours (plan_004: 100h + plan_005: 50h + plan_006: 200h + plan_010: 0h + plan_011: 0h)
+# P2: 0 hours (all simulation/analysis)
+# Total: 600 hours (within 900-1200h project budget, leaving margin for reruns)
+# Note: plan_010 (arch-stratified DIF) and plan_011 (semi-synthetic validation) added post-Dream,
+# both 0 GPU-h (CPU-only analysis on existing METABENCH data)
+# Claim 2 resilience: if one signal fails, 2-signal ensemble still publishable

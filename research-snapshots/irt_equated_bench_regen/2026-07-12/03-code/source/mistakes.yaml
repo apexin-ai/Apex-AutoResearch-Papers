@@ -1,0 +1,77 @@
+_next_id: 7
+mistakes:
+- id: M001
+  date: '2026-05-21'
+  category: experiment_design
+  severity: high
+  summary: paper_framing.md 引用了 Dream 想象数据（plan_010 arch-stratified 28.2%, RMSEA=0.067）作为真实
+    evidence，但 plan_010 从未执行
+  root_cause: '处理 Dream #3 报告时，Dream review reports 中反复出现 "architecture-stratified
+    28.2%" 和 "RMSEA 0.089→0.067" 等数字。在更新 paper_framing.md 时，直接将这些 Dream 想象的数据写入 Claim
+    1 的 evidence 列，没有核对 plan_010 的 registry 状态。Dream 数据和真实实验数据在认知上未做严格区分。'
+  prevention: 更新 paper_framing.md 的 evidence 字段时，必须验证引用的 plan_id 在 registry 中有对应条目且
+    status=success。Dream 报告中的任何数字都标记为 "Dream imagined" 而非真实数据。规则：paper_framing.md
+    的 evidence 行只能写 registry 中已完成的实验 ID + 真实结果数字。
+  status: active
+  fix: 从 paper_framing.md Claim 1 移除 plan_010 引用和 28.2%/RMSEA=0.067 数字。改回 31.3% (plan_001)
+    为 primary estimate。将 plan_010 升级为 P0 派 Agent 立即执行。
+  related_decisions:
+  - D015
+- id: M002
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: medium
+  summary: plan_028 Worker 未检查本地 METABENCH 数据目录，直接 WebSearch 外部数据源，浪费 16 分钟后被 SIGTERM
+  root_cause: 指令中未明确指定数据路径。Worker 缺乏"先查本地再找外部"的习惯。
+  prevention: 派 Worker 时必须明确指定输入数据的绝对路径。尤其是本项目所有 METABENCH benchmark 数据都在 artifacts/metabench_data/benchmark-data/{benchmark}.csv，格式统一
+    (source/item/correct)。
+  status: active
+  fix: 重派 plan_028+029，明确告知数据路径和格式
+- id: M003
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: medium
+  summary: plan_029 Worker 连续 4 次失败——读完大文件后崩溃，从未修改代码
+  root_cause: Worker prompt 不够具体，Worker 需要自行判断修改方案。读完 309 行脚本后 session 崩溃或被调度器回收，导致没有任何修改被执行。Agent
+    未在 Worker prompt 中包含精确的代码修改指令。
+  prevention: Worker prompt 中必须包含精确的代码修改指令（具体改哪行、改成什么），不能只描述目标让 Worker 自行判断。对于长耗时脚本，Worker
+    必须用 nohup 后台执行 + 轮询方式，不要通过 Bash tool 直接跑。
+  status: active
+  context: plan_029 permutation null 实验：Worker v1-v4 全部失败。脚本有 12508 items × 1000 permutations
+    的 Python for 循环，预计 8-16 小时。Worker 每次读完脚本就崩溃。Reviewer 建议减到 200 perms + early stopping
+    + nohup。
+- id: M004
+  date: '2026-05-21'
+  category: experiment_design
+  severity: medium
+  summary: plan_029 permutation null 连续 4 次失败：Worker session 终止杀 nohup 子进程 + 纯 Python
+    循环太慢
+  root_cause: 1) nohup 在 Worker session 终止时被进程组信号一并 kill；2) compute_c_pct() 内 for
+    j in range(12508) 纯 Python 循环，单 permutation 30-60s，200 次需 2-3 小时远超 Worker 存活时间；3)
+    python stdout 缓冲未 flush 导致 crash 无日志
+  prevention: 1) 长时间运行任务（>30min）必须用 submit_training_job 或 tmux/screen 而非 nohup；2)
+    计算密集循环必须向量化（numpy 批量操作），Worker prompt 中附带完整伪代码；3) 始终用 python3 -u 无缓冲输出；4) 实验设计阶段评估运行时间，超过
+    Worker session 上限的任务换执行方式
+  status: active
+  context: plan_029 v1-v4 全部失败。v1 直接跑被 kill，v2 Worker 读完文件就崩，v3-v4 nohup 后进程消失。最终判断：已有
+    random-split control (C%=0.18%) 提供等效论证，放弃 plan_029。
+- id: M005
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: plan_028 Worker 连续 5 次 OOM 未改变策略
+  root_cause: Agent 收到分块加载修复指令后仍重跑原脚本，未实际修改数据加载代码。5 个版本全部在 HellaSwag 阶段 exit 137，但每次只是重启相同流程。
+  prevention: 1. Worker 遇到 OOM/exit 137 时必须修改代码再重试，禁止重跑相同脚本。2. 大文件处理必须先检查文件大小和可用内存，不匹配时必须用分块加载。3.
+    多 benchmark 任务应按文件大小从小到大处理，确保 partial progress。
+  status: active
+  context: HellaSwag CSV 2.0GB，机器可用 RAM 3.2GB，pd.read_csv 全量加载必崩。Director 在 v4 失败后已发分块加载指令，但
+    v5 仍未应用。同时 plan_011 已修复的 inf-delta bug 未回传到 plan_028 代码。
+- id: M006
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: medium
+  summary: Worker 完成实验后反复不注册 registry（plan_031/032/033 连续四次被 Reviewer 报告）
+  root_cause: Worker 脚本完成后直接退出，未将结果注册到 registry。Agent 处理 Worker 结果时有时声称"已注册"但实际未注册。
+  prevention: 1. Agent 处理 WORKER DONE 回调后必须立即验证 registry 中有该实验条目。2. Director 在 Reviewer
+    审查前主动确认 registry 状态。3. 考虑在 Worker 完成流程中强制注册步骤。
+  status: active

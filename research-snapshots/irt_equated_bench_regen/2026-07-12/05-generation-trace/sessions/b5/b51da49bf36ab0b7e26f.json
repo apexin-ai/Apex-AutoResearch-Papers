@@ -1,0 +1,1795 @@
+{
+  "schema_version": "1.0",
+  "id": "b51da49bf36ab0b7e26f",
+  "project": "irt_equated_bench_regen--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [DREAM Review Director] dream_id=20260521T122440 | review_mode=simple | review_visible=True PDF: /home/ubuntu/.agent-ml-",
+  "task_key": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/48af77a8-24b1-406c-8f2b-6ae7c5af4a8e.jsonl",
+    "occurrence": 1,
+    "bytes": 155752,
+    "sha256": "ea8cf1dbd142816e3fdd339e2e385c0b79dc1f77b1c389d80f1f053cc92fb914"
+  },
+  "statistics": {
+    "messages": 39,
+    "user_turns": 3,
+    "tool_calls": 7,
+    "roles": {
+      "record": 15,
+      "user": 3,
+      "assistant": 7,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T13:13:22.332Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-21T13:13:22.332Z",
+                "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+                "content": "[DREAM Review Director]\ndream_id=20260521T122440 | review_mode=simple | review_visible=True\nPDF: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T122440/median/review_input_e90a5c14.pdf\n\n（内部编排信息：tier=median，仅用于 submit_dream_review_report 调用。\n你在向 Reviewer 发送审稿任务时，**严禁**提及档位名称 best/median/worst，\n也不要暗示论文结果的好坏。Reviewer 必须盲审。）\n\n任务：对上述 PDF 进行 simple 模式审稿。 使用 `dream-review-simple` skill 的 dispatch 模板（1 Reviewer 全面覆盖，跳过 Step 2 交叉分享 + Step 3 收敛）。\n\n## 目标 Venue 审稿标准（emnlp-2026）\n\n评分刻度（ARR Overall Assessment，1-5 半分制）：\n- 5 = 可考虑最佳论文奖（top 2.5%）\n- 4 = 可被 ACL 会议接收\n- 3 = 可被 Findings 接收\n- 2 = 需大幅修改重投\n- 1 = 不要重投\n\n接受率：ACL/EMNLP Main ~21%（约 5 篇投稿接收 1 篇）\n评审维度：Soundness (1-5) + Excitement (1-5) + Reproducibility (1-5)\n强制 Responsible NLP Research Checklist（Section A-E），不完整/误导性填写被 desk reject。\n自动 reject 信号：匿名性违规、超页数限制、缺 Limitations section、幻觉引用。\n\n请严格按照上述评分刻度和接受率校准你的评分。\n\n## 实验设计参考\n\n完整实验设计（含想象实验列表）：`/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T122440/median/review_context.yaml`\n论文可能未完整反映所有实验——参考此文件判断覆盖度。\n完成后必须调用 `submit_dream_review_report(report, project=\"irt_equated_bench_regen\", tier=\"median\", dream_id=\"20260521T122440\", review_visible=True)` —— 报告会写入 dream_reports/dream_20260521T122440/median/review_report.md，编排进程通过 subprocess 退出读取它。\n不要调用 submit_review_report_to_research_director / update_review_issues / request_external_review —— 这些工具不在 Dream Review Director 白名单内。\n"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T13:13:22.346Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-21T13:13:22.346Z",
+                "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T13:13:22.462Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[DREAM Review Director]\ndream_id=20260521T122440 | review_mode=simple | review_visible=True\nPDF: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T122440/median/review_input_e90a5c14.pdf\n\n（内部编排信息：tier=median，仅用于 submit_dream_review_report 调用。\n你在向 Reviewer 发送审稿任务时，**严禁**提及档位名称 best/median/worst，\n也不要暗示论文结果的好坏。Reviewer 必须盲审。）\n\n任务：对上述 PDF 进行 simple 模式审稿。 使用 `dream-review-simple` skill 的 dispatch 模板（1 Reviewer 全面覆盖，跳过 Step 2 交叉分享 + Step 3 收敛）。\n\n## 目标 Venue 审稿标准（emnlp-2026）\n\n评分刻度（ARR Overall Assessment，1-5 半分制）：\n- 5 = 可考虑最佳论文奖（top 2.5%）\n- 4 = 可被 ACL 会议接收\n- 3 = 可被 Findings 接收\n- 2 = 需大幅修改重投\n- 1 = 不要重投\n\n接受率：ACL/EMNLP Main ~21%（约 5 篇投稿接收 1 篇）\n评审维度：Soundness (1-5) + Excitement (1-5) + Reproducibility (1-5)\n强制 Responsible NLP Research Checklist（Section A-E），不完整/误导性填写被 desk reject。\n自动 reject 信号：匿名性违规、超页数限制、缺 Limitations section、幻觉引用。\n\n请严格按照上述评分刻度和接受率校准你的评分。\n\n## 实验设计参考\n\n完整实验设计（含想象实验列表）：`/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T122440/median/review_context.yaml`\n论文可能未完整反映所有实验——参考此文件判断覆盖度。\n完成后必须调用 `submit_dream_review_report(report, project=\"irt_equated_bench_regen\", tier=\"median\", dream_id=\"20260521T122440\", review_visible=True)` —— 报告会写入 dream_reports/dream_20260521T122440/median/review_report.md，编排进程通过 subprocess 退出读取它。\n不要调用 submit_review_report_to_research_director / update_review_issues / request_external_review —— 这些工具不在 Dream Review Director 白名单内。\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "574ea9fb-2433-4f53-83c6-6ff0f801abc3",
+            "type": "user",
+            "uuid": "894ce6df-10b7-42e3-b485-81ae1c460d40",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T13:13:22.461Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "894ce6df-10b7-42e3-b485-81ae1c460d40",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_reviewer",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__submit_dream_review_report"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__director_get_project_overview",
+                    "mcp__agent-ml-research__director_post_to_reviewer",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__submit_dream_review_report"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "7560d2ba-0a88-4df2-92f3-20b4ad918310",
+                "timestamp": "2026-05-21T13:13:22.461Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+                "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T13:13:22.461Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "7560d2ba-0a88-4df2-92f3-20b4ad918310",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [
+                    "agent-ml-research"
+                  ],
+                  "addedBlocks": [
+                    "## agent-ml-research\nML research experiment management tools"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "7cdbfb61-2c76-4d16-a28b-7dd5de6645b8",
+                "timestamp": "2026-05-21T13:13:22.461Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+                "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T13:13:22.461Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "7cdbfb61-2c76-4d16-a28b-7dd5de6645b8",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "c6f89367-2acc-41c1-bd77-b0dd72602b7c",
+                "timestamp": "2026-05-21T13:13:22.461Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+                "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review IRT equated benchmark paper",
+                "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T13:13:27.310Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to perform a dream review of a paper PDF. Let me break down the task:\n\n1. I need to review a PDF at a specific path\n2. Use the `dream-review-simple` skill dispatch template (1 Reviewer, skip Step 2 and Step 3)\n3. Review against EMNLP 2026 standards\n4. Submit the review via `submit_dream_review_report`\n\nLet me start by:\n1. Reading the PDF\n2. Reading the review context YAML\n3. Then performing the review and submitting\n\nLet me read the PDF and the review context in parallel.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c6f89367-2acc-41c1-bd77-b0dd72602b7c",
+            "isSidechain": false,
+            "requestId": "req_011CbFmoMB9Ld78eGvCdhbKx",
+            "type": "assistant",
+            "uuid": "e6592fd0-ab7f-44ed-91ee-33c22d700050",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Anrc3k9wovUp6HaYdyWoZ1",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12333,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 360,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 12333,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 360,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 12333,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 12333
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T13:13:28.369Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01488ia8VJfVU3jsAh9k8EK5",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T122440/median/review_input_e90a5c14.pdf"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e6592fd0-ab7f-44ed-91ee-33c22d700050",
+            "isSidechain": false,
+            "requestId": "req_011CbFmoMB9Ld78eGvCdhbKx",
+            "type": "assistant",
+            "uuid": "131b3cd5-5d1b-498f-a31b-bd2f44595494",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Anrc3k9wovUp6HaYdyWoZ1",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12333,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 360,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 12333,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 360,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 12333,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 12333
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T13:13:28.530Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "This PDF has 11 pages, which is too many to read at once. Use the pages parameter to read specific page ranges (e.g., pages: \"1-5\"). Maximum 20 pages per request.",
+              "is_error": true,
+              "tool_use_id": "toolu_01488ia8VJfVU3jsAh9k8EK5"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "131b3cd5-5d1b-498f-a31b-bd2f44595494",
+            "isSidechain": false,
+            "promptId": "574ea9fb-2433-4f53-83c6-6ff0f801abc3",
+            "type": "user",
+            "uuid": "b6dd1c39-8d75-4df6-8e3e-df7098ad732f",
+            "toolUseResult": "Error: This PDF has 11 pages, which is too many to read at once. Use the pages parameter to read specific page ranges (e.g., pages: \"1-5\"). Maximum 20 pages per request.",
+            "sourceToolAssistantUUID": "131b3cd5-5d1b-498f-a31b-bd2f44595494",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T13:13:28.707Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PtdG7xKAj9AcS3Eoo69hNn",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T122440/median/review_context.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b6dd1c39-8d75-4df6-8e3e-df7098ad732f",
+            "isSidechain": false,
+            "requestId": "req_011CbFmoMB9Ld78eGvCdhbKx",
+            "type": "assistant",
+            "uuid": "1aaeaba9-4e3e-43f2-a359-9efff8d2f7fb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Anrc3k9wovUp6HaYdyWoZ1",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12333,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 360,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 12333,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 360,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 12333,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 12333
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T13:13:29.297Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PtdG7xKAj9AcS3Eoo69hNn",
+              "type": "tool_result",
+              "content": "1\tnarrative_guidance: 'Median 档下 permutation null C% 落在 2–8%，表明 temporal label 本身携带弱结构性信号\n2\t  （model release date 与 ability 不完全正交），但 31% 仍为 null 的 4–15×，统计意义明确。 Claim 1 headline\n3\t  须从 ''31%'' 调整为 ''~25–29% after confound controls''，permutation null 显式报告为 calibration\n4\t  baseline。Claim 2 meta-critique 软化为 ''complementary approaches needed''， 不再用 ''fundamentally\n5\t  mismatched''。Claim 3 cross-benchmark 证据降级 appendix，主体仅保留 MMLU。 Claim 4 diagnostic\n6\t  lens 升格为 abstract 第二句，强调 audit protocol 实用价值以对冲 ''applying textbook psychometrics''\n7\t  的 novelty 质疑。Rebuttal 准备 ''psychometric tools are mature but their application to\n8\t  LLM benchmarks at this scale is novel'' 防线。 Simpson''s paradox（plan_030 Model 2\n9\t  vs Model 1）需谨慎处理因果表述，仅作为 supplementary evidence。 预期 reviewer score 2.5–3.5，borderline\n10\t  accept/weak reject，需要 rebuttal 翻盘。\n11\t\n12\t  '\n13\timagined_experiments:\n14\t- name: real_data_dif_mmlu\n15\t  plan_id: plan_001\n16\t  description: '对 METABENCH MMLU 响应矩阵 (5219×12508) 执行全面 MH-DIF 分析， 包含 temporal/ability\n17\t    cohort、within-family confound control、domain specificity。\n18\t\n19\t    '\n20\t  expected_results:\n21\t    temporal_ets_c_pct: 31.3\n22\t    temporal_fpr_li_clean: 0.322\n23\t    temporal_enrichment: 0.964\n24\t    ability_ets_c_pct: 3.1\n25\t    ability_fpr_li_clean: 0.029\n26\t    ability_enrichment: 1.15\n27\t    within_family_llama2v3_c_pct: 58.7\n28\t    within_family_mistral_mixtral_c_pct: 36.2\n29\t    domain_spearman_rho: 0.32\n30\t    domain_spearman_p: 0.016\n31\t    sanity_random_split_c_pct: 0.21\n32\t    temporal_ability_jaccard: 0.016\n33\t    n_subjects_with_c_gt20pct: 57\n34\t    unweighted_subject_mean_c_pct: 30.4\n35\t    subject_c_range: 20.1–47.8%\n36\t    decoder_only_pct: 99.98\n37\t  result_rationale: 'Median 档下 temporal C%=31.3% 与已有 registry 一致（这是实测值，不受 tier 影响）。\n38\t    关键区别在于后续 controls 将把 residual 压至 25–29%。Within-family Llama-2v3 C% 略低于 registry\n39\t    的 61.3%（~58.7%），因为 median 档假设 ability confound 解释更多 variance （d=-0.99 对中 ability\n40\t    gap 较大）。Domain ρ=0.32 表明 subject-level accuracy improvement 与 DIF 存在弱正相关，但 item-level\n41\t    decomposition 将显示域改善仅解释 ≤3.5pp。Random-split sanity check 0.21% 确认 temporal signal\n42\t    非统计噪声。 Enrichment≈0.96 确认 DIF 与 web-overlap labels 正交——这是预期行为，非方法失败。\n43\t\n44\t    '\n45\t  tables:\n46\t  - name: 'Table 1: Temporal DIF Summary by Cohort Definition'\n47\t    columns:\n48\t    - cohort\n49\t    - n_ref\n50\t    - n_foc\n51\t    - n_items\n52\t    - c_pct\n53\t    - fpr_li_clean\n54\t    - enrichment\n55\t    rows:\n56\t    - - temporal_2023v2024\n57\t      - 1080\n58\t      - 807\n59\t      - 12508\n60\t      - 31.3\n61\t      - 0.322\n62\t      - 0.964\n63\t    - - ability_quintile\n64\t      - 2610\n65\t      - 2609\n66\t      - 12508\n67\t      - 3.1\n68\t      - 0.029\n69\t      - 1.15\n70\t    - - random_split_sanity\n71\t      - 950\n72\t      - 950\n73\t      - 12508\n74\t      - 0.21\n75\t      - 0.002\n76\t      - 1.01\n77\t  - name: 'Table 2: Within-Family Confound Control'\n78\t    columns:\n79\t    - family_pair\n80\t    - n_ref\n81\t    - n_foc\n82\t    - c_pct\n83\t    - overlap_with_temporal\n84\t    rows:\n85\t    - - Llama-2 vs Llama-3\n86\t      - 161\n87\t      - 308\n88\t      - 58.7\n89\t      - Jaccard=0.38\n90\t    - - Mistral vs Mixtral\n91\t      - 89\n92\t      - 112\n93\t      - 36.2\n94\t      - Jaccard=0.29\n95\t  figures_description:\n96\t  - 'Fig 1: 57-subject heatmap showing per-subject C% (rows) × cohort (cols), 色阶 20–48%'\n97\t  - 'Fig 2: Scatter plot of subject-level accuracy Δ vs C%, ρ=0.32, p=0.016'\n98\t  analysis: '31.3% temporal instability 是 robust finding。Ability cohort 的 3.1% 确认\n99\t    DIF signal 与 temporal split 强关联而非 ability artifact。Within-family 的高 C% （Llama-2v3:\n100\t    58.7%）混淆了 capability gain 和 contamination——这不是理想的 confound control 因为 family 内\n101\t    ability gap 过大（d≈-0.99）。Domain ρ=0.32 是 ecological correlation，item-level decomposition\n102\t    将在 plan_019/030 中展开。\n103\t\n104\t    '\n105\t- name: rl_robustness_validation\n106\t  plan_id: plan_002\n107\t  description: '验证 DIF 对 RL-trained models 的鲁棒性：alignment-RL (DPO/ORPO) cohort 从 METABENCH\n108\t    提取，reasoning-RL (GRPO/PPO) 10–15 个模型需额外推理。\n109\t\n110\t    '\n111\t  expected_results:\n112\t    n_alignment_rl_models: 477\n113\t    n_reasoning_rl_models: 13\n114\t    dif_c_pct_baseline_sft_only: 30.8\n115\t    dif_c_pct_with_alignment_rl: 31.1\n116\t    dif_c_pct_with_reasoning_rl: 30.5\n117\t    jaccard_sft_vs_alignment: 0.91\n118\t    jaccard_sft_vs_reasoning: 0.84\n119\t    constat_auroc_non_rl: 0.72\n120\t    constat_auroc_reasoning_rl: 0.58\n121\t    mink_auroc_non_rl: 0.68\n122\t    mink_auroc_reasoning_rl: 0.51\n123\t    delong_dif_vs_constat_p: 0.34\n124\t    tost_equivalence_dif_retention: 90% CI [0.88, 0.97], equivalence bound ±0.10\n125\t    tost_conclusion: equivalent\n126\t    power_analysis_detection_boundary_p: 0.45\n127\t    bootstrap_ci_auroc_dif:\n128\t    - 0.76\n129\t    - 0.89\n130\t  result_rationale: 'Median 档下 DIF 作为 group-level method 对 cohort composition 变化不敏感——添加\n131\t    13 个 reasoning-RL 模型到 N=807 focal cohort 几乎不改变 group statistics。 Jaccard=0.84（vs\n132\t    reasoning-RL）略低于 alignment-RL 的 0.91，因为 reasoning-RL 模型在部分 hard items 上的 response\n133\t    pattern 与 SFT 模型有系统性差异（GRPO 训练 改变了 reasoning chain 而非单纯记忆）。传统 per-model detectors\n134\t    在 reasoning-RL 上退化显著（ConStat 从 0.72→0.58, Min-K% 从 0.68→0.51），因为 RL 训练平滑了 NLL\n135\t    distribution。但 N=13 使得所有 pairwise comparison 的 CI 极宽，DeLong test 无显著差异（p=0.34），TOST\n136\t    equivalence 勉强成立。这是 median 档的典型情况： 方向正确但统计力不足以支撑强 claim。\n137\t\n138\t    '\n139\t  tables:\n140\t  - name: 'Table: DIF Stability Across Cohort Compositions'\n141\t    columns:\n142\t    - cohort_composition\n143\t    - n_focal\n144\t    - c_pct\n145\t    - jaccard_vs_baseline\n146\t    rows:\n147\t    - - SFT-only baseline\n148\t      - 620\n149\t      - 30.8\n150\t      - 1.0\n151\t    - - + alignment-RL (DPO/ORPO)\n152\t      - 807\n153\t      - 31.1\n154\t      - 0.91\n155\t    - - + reasoning-RL (GRPO/PPO)\n156\t      - 820\n157\t      - 30.5\n158\t      - 0.84\n159\t  - name: 'Table: Per-Model Detector AUROC Comparison'\n160\t    columns:\n161\t    - detector\n162\t    - non_rl\n163\t    - alignment_rl\n164\t    - reasoning_rl\n165\t    rows:\n166\t    - - DIF (group)\n167\t      - N/A\n168\t      - N/A\n169\t      - N/A\n170\t    - - ConStat\n171\t      - 0.72\n172\t      - 0.67\n173\t      - 0.58\n174\t    - - Min-K%\n175\t      - 0.68\n176\t      - 0.64\n177\t      - 0.51\n178\t  figures_description:\n179\t  - 'Fig: Detection power curve — DIF ΔTPR vs exploitation rate p ∈ [0.4, 1.0], 标注\n180\t    detection boundary p≈0.45'\n181\t  analysis: 'DIF 的 group-level 设计使其对 cohort composition 天然鲁棒——13 个 RL 模型在 N=807 中占比\n182\t    <2%，统计影响可忽略。真正的 claim 应限定为 \"DIF 在 cohort 中 RL 占比 <5% 时 robust\"，而非 \"DIF 对 RL 鲁棒\"。Per-model\n183\t    detector 退化方向正确但 N=13 使结论 仅为 suggestive。降级为 limitations 中 disclosure，不作为 numbered\n184\t    contribution。\n185\t\n186\t    '\n187\t- name: constat_perturbation_eval\n188\t  plan_id: plan_003a\n189\t  description: '独立评估 ConStat-style perturbation testing：LLM 生成 200+ MMLU items 的语义等价\n190\t    reformulation，比较原始与改写版本的 model performance。\n191\t\n192\t    '\n193\t  expected_results:\n194\t    n_items_reformulated: 220\n195\t    reformulation_semantic_sim: 0.92\n196\t    constat_fdr_controlled_flags: 47\n197\t    constat_flag_rate: 0.214\n198\t    constat_overlap_with_dif_c: Jaccard=0.18\n199\t    constat_tpr_non_rl_known_contam: 0.61\n200\t    constat_tpr_rl_known_contam: 0.29\n201\t    constat_fpr: 0.08\n202\t    effect_size_non_rl: 0.74\n203\t    effect_size_rl: 0.31\n204\t    gpu_hours_used: 65\n205\t  result_rationale: 'Median 档下 ConStat 在 non-RL 模型上表现尚可（TPR=0.61, effect size=0.74），因为\n206\t    verbatim memorization 使模型对 surface-form 变化敏感。但 RL-trained 模型（尤其 GRPO/PPO）通过 reasoning\n207\t    generalization 降低了对 exact wording 的依赖，TPR 降至 0.29。与 DIF 的低重叠（Jaccard=0.18）符合预期：ConStat\n208\t    检测 per-model surface-level memorization，DIF 检测 group-level differential functioning，二者捕捉不同信号。\n209\t    FDR-controlled flag rate 21.4% 低于 DIF 的 31.3%，因为 ConStat 需要更强的 per-item evidence。GPU\n210\t    成本 65h 主要用于 reformulation generation 和 inference。\n211\t\n212\t    '\n213\t  tables:\n214\t  - name: 'Table: ConStat Detection Power by Model Type'\n215\t    columns:\n216\t    - model_type\n217\t    - n_models\n218\t    - tpr\n219\t    - fpr\n220\t    - effect_size\n221\t    rows:\n222\t    - - SFT-only\n223\t      - 15\n224\t      - 0.61\n225\t      - 0.08\n226\t      - 0.74\n227\t    - - Alignment-RL\n228\t      - 10\n229\t      - 0.48\n230\t      - 0.07\n231\t      - 0.55\n232\t    - - Reasoning-RL\n233\t      - 8\n234\t      - 0.29\n235\t      - 0.09\n236\t      - 0.31\n237\t  figures_description:\n238\t  - 'Fig: ConStat flag rate vs DIF C% per subject — weak positive correlation'\n239\t  analysis: 'ConStat 作为 standalone baseline 有价值但不足以支撑 paper claim。与 DIF 的互补性 是 ensemble\n240\t    fusion（plan_003c）的理论基础，但 median 档下 RL 模型上的退化使得 ensemble 增益有限。结果降级为 appendix baseline\n241\t    comparison。\n242\t\n243\t    '\n244\t- name: dvd_generation_variance_eval\n245\t  plan_id: plan_003b\n246\t  description: '独立评估 DVD generation variance：10–15 个 open-weight 模型在每个 item 上生成 50\n247\t    次 response，计算 generation variance 并检测 bimodal distribution。\n248\t\n249\t    '\n250\t  expected_results:\n251\t    n_models_tested: 12\n252\t    n_items_scored: 12508\n253\t    responses_per_item: 50\n254\t    dvd_bimodal_flag_rate: 0.089\n255\t    dvd_tpr_verbatim_contam: 0.43\n256\t    dvd_tpr_variant_contam: 0.52\n257\t    dvd_fpr: 0.062\n258\t    dvd_overlap_with_dif_c: Jaccard=0.11\n259\t    gpu_hours_used: 58\n260\t    temperature_sensitivity: 'T=0.7: flag_rate=0.089; T=1.0: flag_rate=0.142'\n261\t  result_rationale: 'Median 档下 DVD 的 bimodal detection 在 variant contamination 上略优于\n262\t    verbatim （TPR 0.52 vs 0.43），因为 variant contamination 产生更明显的 generation variance\n263\t    bimodality（模型在 \"近似记忆\" 和 \"真正推理\" 之间切换）。但整体 flag rate 仅 8.9%， 远低于 DIF 的 31.3%，因为\n264\t    DVD 需要 per-model inference 且仅在 generation distribution 层面操作。与 DIF 的极低重叠（Jaccard=0.11）表明二者检测完全不同维度。\n265\t    Temperature 敏感性（T=1.0 时 flag rate 翻倍至 14.2%）暴露了 hyperparameter tuning 问题。GPU 成本\n266\t    58h 用于 12 模型 × 12508 items × 50 responses 的推理。\n267\t\n268\t    '\n269\t  tables:\n270\t  - name: 'Table: DVD Detection by Contamination Type'\n271\t    columns:\n272\t    - contam_type\n273\t    - tpr\n274\t    - fpr\n275\t    - bimodal_strength\n276\t    rows:\n277\t    - - verbatim\n278\t      - 0.43\n279\t      - 0.062\n280\t      - Cohen's h=0.38\n281\t    - - variant\n282\t      - 0.52\n283\t      - 0.058\n284\t      - Cohen's h=0.47\n285\t    - - clean\n286\t      - N/A\n287\t      - 0.062\n288\t      - Cohen's h=0.04\n289\t  figures_description:\n290\t  - 'Fig: Generation variance distribution — bimodal (contaminated) vs unimodal (clean)\n291\t    items'\n292\t  analysis: 'DVD 捕捉的是 per-model generation-level signal，与 DIF 的 group-level item functioning\n293\t    signal 几乎不重叠。作为独立检测器价值有限（TPR<0.55），但为 ensemble 提供了独特的 variant contamination 覆盖。Temperature\n294\t    敏感性需要在 paper 中 disclose。\n295\t\n296\t    '\n297\t- name: ensemble_fusion\n298\t  plan_id: plan_003c\n299\t  description: '将 DIF + ConStat + DVD 融合为 multi-signal ensemble，评估 majority voting\n300\t    和 weighted fusion 策略。\n301\t\n302\t    '\n303\t  expected_results:\n304\t    ensemble_2of3_tpr: 0.54\n305\t    ensemble_2of3_fpr: 0.045\n306\t    ensemble_weighted_tpr: 0.59\n307\t    ensemble_weighted_fpr: 0.052\n308\t    ensemble_coverage_dif_only: δ≥1.4\n309\t    ensemble_coverage_constat_only: non-RL δ≥0.6\n310\t    ensemble_coverage_dvd_only: variant contamination\n311\t    cross_val_weight_stability: 'DIF: 0.52±0.08, ConStat: 0.31±0.06, DVD: 0.17±0.05'\n312\t    uniform_vs_optimized_tpr_delta: 0.03\n313\t    fpr_all_configs_below_010: true\n314\t  result_rationale: 'Median 档下 ensemble 增益有限，因为三个信号的重叠极低（pairwise Jaccard 0.11–0.18），\n315\t    majority voting 在 low-overlap 情况下倾向于保守（TPR=0.54）。Weighted fusion 略优（TPR=0.59）但\n316\t    cross-validation weight stability 显示 DIF 权重主导（0.52）， ConStat 和 DVD 的贡献边际化。关键问题：DIF\n317\t    是 group-level，ConStat/DVD 是 per-model-level，fusion 的语义不一致使 ensemble 设计缺乏理论基础。Median\n318\t    档下 reviewers 会质疑 \"为什么要 fuse fundamentally different signal types\"。 结论：ensemble\n319\t    负面结果，not executed in final paper，降级为 future work。\n320\t\n321\t    '\n322\t  tables:\n323\t  - name: 'Table: Ensemble Fusion Comparison'\n324\t    columns:\n325\t    - strategy\n326\t    - tpr\n327\t    - fpr\n328\t    - coverage_description\n329\t    rows:\n330\t    - - DIF only\n331\t      - 0.508\n332\t      - 0.314\n333\t      - group-level, δ≥1.4\n334\t    - - 2-of-3 majority\n335\t      - 0.54\n336\t      - 0.045\n337\t      - intersection of signals\n338\t    - - weighted fusion\n339\t      - 0.59\n340\t      - 0.052\n341\t      - combined coverage\n342\t    - - uniform weight\n343\t      - 0.56\n344\t      - 0.048\n345\t      - unweighted average\n346\t  figures_description:\n347\t  - 'Fig: Venn diagram of flag overlap — DIF ∩ ConStat ∩ DVD showing minimal 3-way\n348\t    overlap'\n349\t  analysis: 'Ensemble 的 FPR 显著改善（0.045 vs DIF 单独的 0.314），但代价是 TPR 仅从 DIF ΔTPR 基线略有提升。信号类型不同质（group\n350\t    vs per-model）使 fusion 缺乏 principled justification。Median 档下这是 negative result——not\n351\t    executed, dropped to future work。\n352\t\n353\t    '\n354\t- name: cross_benchmark_gsm8k\n355\t  plan_id: plan_004\n356\t  description: '在 GSM8K 上复制 DIF 分析，使用 GSM1K 作为 contamination ground truth， 验证 cross-benchmark\n357\t    泛化性。\n358\t\n359\t    '\n360\t  expected_results:\n361\t    gsm8k_n_items: 1319\n362\t    gsm8k_n_ref: 1017\n363\t    gsm8k_n_foc: 804\n364\t    gsm8k_standard_c_pct: 18.9\n365\t    gsm8k_external_c_pct: 45.1\n366\t    gsm8k_sanity_c_pct: 0.35\n367\t    semi_synthetic_delta_tpr_p10: 0.78\n368\t    semi_synthetic_delta_tpr_p05: 0.44\n369\t    semi_synthetic_external_delta_tpr_p10: 0.49\n370\t    gsm1k_n_models: 33\n371\t    gsm1k_pearson_r: -0.478\n372\t    gsm1k_pearson_p: 0.005\n373\t    gsm1k_spearman_rho: -0.39\n374\t    gsm1k_spearman_p: 0.025\n375\t    gsm1k_partial_r: -0.37\n376\t    gsm1k_partial_p: 0.035\n377\t    gsm1k_ci_upper_abs_r: 0.155\n378\t    direction: NEGATIVE — opposite to contamination hypothesis\n379\t    cook_d_max_model: Deepseek-math-7b-rl\n380\t    leave_one_out_r_range:\n381\t    - -0.52\n382\t    - -0.36\n383\t  result_rationale: 'Median 档下 GSM8K temporal C%=18.9% 低于 MMLU 的 31.3%，因为 GSM8K 是\n384\t    single-domain math benchmark（1319 items），domain homogeneity 降低了 DIF 的 item-level\n385\t    variance。 Semi-synthetic ΔTPR 在 p=0.5 时为 0.44，落在 median 档范围 [0.35, 0.5] 内。 GSM1K\n386\t    negative correlation（r=-0.478）是 median 档核心尴尬点：DIF-C items anti-correlate with\n387\t    contamination gap，需要额外解释 \"DIF ≠ contamination detector, DIF detects differential\n388\t    item functioning which may reflect capability gain on hard items rather than memorization\"。N=33\n389\t    使 CI 宽且 upper bound |r|=0.155 允许 near-zero true effect。Spearman ρ=-0.39 弱于 Pearson，暗示\n390\t    outlier 影响。 整体降级为 exploratory，不进 abstract/conclusion。\n391\t\n392\t    '\n393\t  tables:\n394\t  - name: 'Table: GSM8K Temporal DIF Summary'\n395\t    columns:\n396\t    - metric\n397\t    - standard_mh\n398\t    - external_matching\n399\t    - sanity\n400\t    rows:\n401\t    - - C%\n402\t      - 18.9\n403\t      - 45.1\n404\t      - 0.35\n405\t    - - n_items_flagged\n406\t      - 249\n407\t      - 595\n408\t      - 5\n409\t    - - DIF favor 2024\n410\t      - 78\n411\t      - 210\n412\t      - 2\n413\t    - - DIF favor 2023\n414\t      - 171\n415\t      - 385\n416\t      - 3\n417\t  - name: 'Table: GSM1K Correlation Analysis'\n418\t    columns:\n419\t    - statistic\n420\t    - value\n421\t    - p_value\n422\t    - 95% CI\n423\t    rows:\n424\t    - - Pearson r\n425\t      - -0.478\n426\t      - 0.005\n427\t      - '[-0.71, -0.16]'\n428\t    - - Spearman ρ\n429\t      - -0.39\n430\t      - 0.025\n431\t      - '[-0.66, -0.03]'\n432\t    - - Partial r (ctrl accuracy)\n433\t      - -0.37\n434\t      - 0.035\n435\t      - '[-0.64, -0.01]'\n436\t  figures_description:\n437\t  - 'Fig: Scatter of per-model DIF-C proportion vs GSM8K-GSM1K gap, r=-0.478, 标注 Cook''s\n438\t    D outliers'\n439\t  analysis: 'GSM8K 复制确认了 framework portability（ΔTPR 有效），但 GSM1K correlation 的负方向 是\n440\t    median 档的关键弱点。必须在 paper 中用一段专门解释：DIF flags items whose functioning changed across\n441\t    generations, not items that are contaminated. Hard items where 2024 models improve\n442\t    may simultaneously show DIF (functioning changed) AND small contamination gap\n443\t    (capability improvement, not memorization)。 降级为 exploratory per Dream #6 consensus。\n444\t\n445\t    '\n446\t- name: bifactor_irt_equating_pilot\n447\t  plan_id: plan_005\n448\t  description: '在 METABENCH MMLU 数据上拟合 bifactor IRT 模型（general factor + 57 subject-specific\n449\t    factors），选择 anchor items 并执行 fixed-parameter calibration。\n450\t\n451\t    '\n452\t  expected_results:\n453\t    bifactor_rmsea: 0.038\n454\t    bifactor_cfi: 0.87\n455\t    bifactor_tli: 0.85\n456\t    bifactor_srmr: 0.052\n457\t    general_factor_variance_explained: 0.41\n458\t    n_anchor_items_selected: 2800\n459\t    anchor_stability_criterion: '|Δ_MH|<0.43 (ETS A)'\n460\t    equated_rho_vs_original: 0.94\n461\t    target_rho_met: false\n462\t    convergence_issues: 3 subjects failed to converge; fixed to unidimensional\n463\t    computation_time_hours: 38\n464\t  result_rationale: 'Median 档下 bifactor model 的 fit 低于 acceptable thresholds（CFI<0.90,\n465\t    TLI<0.90）， 因为 MMLU 的 57 subjects 引入了 57 个 specific factors 加 general factor =\n466\t    58 latent dimensions，5219 models 的 sample size 对此维度不足。General factor 仅解释 41% variance（理想\n467\t    >60%），说明 MMLU 本质上高度多维。3 个小样本 subjects 收敛失败 需要降级为 unidimensional。Equated ρ=0.94\n468\t    未达 target ρ≥0.95，主要因为 anchor item selection 受 bifactor misfit 影响。Median 档结论：bifactor\n469\t    equating 在 MMLU 上不 可行，confirmed paper_framing.md 中 \"killed by plan_014 pre-check\"\n470\t    的判断。 作为 negative result 报告在 limitations 中，motivate future multidimensional IRT。\n471\t\n472\t    '\n473\t  tables:\n474\t  - name: 'Table: Bifactor IRT Fit Indices'\n475\t    columns:\n476\t    - index\n477\t    - value\n478\t    - acceptable_threshold\n479\t    - verdict\n480\t    rows:\n481\t    - - RMSEA\n482\t      - 0.038\n483\t      - <0.06\n484\t      - PASS\n485\t    - - CFI\n486\t      - 0.87\n487\t      - '>0.90'\n488\t      - FAIL\n489\t    - - TLI\n490\t      - 0.85\n491\t      - '>0.90'\n492\t      - FAIL\n493\t    - - SRMR\n494\t      - 0.052\n495\t      - <0.08\n496\t      - PASS\n497\t    - - General factor ω_h\n498\t      - 0.41\n499\t      - '>0.60'\n500\t      - FAIL\n501\t  figures_description:\n502\t  - 'Fig: Scree plot — eigenvalue decay showing 57 factors above noise floor, no dominant\n503\t    general factor'\n504\t  analysis: 'Bifactor IRT equating killed。MMLU 的多维性使得单一 general factor 无法充分 表征 model\n505\t    ability，anchor item 选择受 model misfit 污染。这是 structural limitation 而非 implementation\n506\t    failure。Paper 中作为 \"empirical observation that motivates future multidimensional\n507\t    IRT\" 报告，不作为 contribution。\n508\t\n509\t    '\n510\t- name: item_generation_calibration\n511\t  plan_id: plan_006\n512\t  description: '为 DIF-flagged MMLU items 生成替换项，使用 LLM generation + student simulation\n513\t    进行 difficulty calibration。\n514\t\n515\t    '\n516\t  expected_results:\n517\t    n_items_generated: 500\n518\t    n_dif_items_targeted: 200\n519\t    difficulty_correlation_prompt_based: 0.28\n520\t    difficulty_correlation_student_sim: 0.71\n521\t    difficulty_correlation_empirical: 0.65\n522\t    construct_coverage_semantic_sim: 0.88\n523\t    holdout_panel_rho: 0.91\n524\t    gpu_hours_used: 160\n525\t    items_passing_quality_filter: 340\n526\t    quality_filter_rate: 0.68\n527\t  result_rationale: 'Median 档下 prompt-based difficulty targeting 的 ρ=0.28 远低于 student\n528\t    simulation 的 ρ=0.71，符合文献报告（arXiv 2602.06631: ρ=0.10–0.45）。Student simulation （arXiv\n529\t    2601.09953）的 ρ=0.71 低于该文献报告的 r=0.75–0.82，因为 MMLU 的 domain diversity 使 universal\n530\t    student simulator 难以 calibrate across 57 subjects。 Empirical calibration（实际跑 holdout\n531\t    model panel）的 ρ=0.65 进一步降低，因为 simulation-to-reality gap。Holdout panel ρ=0.91 低于\n532\t    equating target 0.95。 整体结论：item generation pipeline 可行但 precision 不足以支撑 equated\n533\t    replacement claim。降级为 supplementary methodology contribution。\n534\t\n535\t    '\n536\t  tables:\n537\t  - name: 'Table: Difficulty Estimation Method Comparison'\n538\t    columns:\n539\t    - method\n540\t    - difficulty_rho\n541\t    - n_items\n542\t    - compute_cost\n543\t    rows:\n544\t    - - Prompt-based targeting\n545\t      - 0.28\n546\t      - 500\n547\t      - 8 GPU-h\n548\t    - - Student simulation\n549\t      - 0.71\n550\t      - 500\n551\t      - 45 GPU-h\n552\t    - - Empirical (holdout panel)\n553\t      - 0.65\n554\t      - 340\n555\t      - 107 GPU-h\n556\t  figures_description:\n557\t  - 'Fig: Predicted vs actual difficulty scatter — student sim (ρ=0.71) vs prompt\n558\t    (ρ=0.28)'\n559\t  analysis: 'Item generation pipeline 的核心瓶颈是 difficulty calibration precision。 ρ=0.65–0.71\n560\t    不足以保证 equated score equivalence（需要 item-level precision 而非 correlation）。作为 methodology\n561\t    贡献有价值但不足以支撑 Claim 3 的 regeneration narrative。与 plan_005 bifactor failure 共同导致\n562\t    regeneration storyline 被完全 dropped。\n563\t\n564\t    '\n565\t- name: cumulative_bayesian_dif\n566\t  plan_id: plan_007\n567\t  description: '实现 cumulative Bayesian DIF priors (Sinharay et al., 2006)，模拟 4 轮连续\n568\t    benchmark administration，展示 evidence accumulation 带来的 power improvement。\n569\t\n570\t    '\n571\t  expected_results:\n572\t    single_admin_power_d10: 0.38\n573\t    cumulative_2_admin_power_d10: 0.52\n574\t    cumulative_3_admin_power_d10: 0.64\n575\t    cumulative_4_admin_power_d10: 0.71\n576\t    single_admin_power_d14: 0.68\n577\t    cumulative_3_admin_power_d14: 0.85\n578\t    fpr_single: 0.042\n579\t    fpr_cumulative_3: 0.048\n580\t    simulation_n_per_admin: 200\n581\t    simulation_n_items: 500\n582\t    simulation_n_reps: 1000\n583\t  result_rationale: 'Median 档下 cumulative Bayesian DIF 的 power improvement 从 0.38→0.71（d=1.0,\n584\t    4 administrations），符合 Sinharay et al. 的理论预测但略低于原文（原文 0.40→0.70 at 3 administrations，我们在\n585\t    4 administrations 才达到 0.71）。差距因为 LLM benchmark 的 non-stationarity——successive\n586\t    administrations 间 DIF pattern 不完全 stable（model ecosystem evolves），violating Bayesian\n587\t    prior 的 stationarity assumption。 FPR 从 0.042 到 0.048 的轻微 inflation 是 informative\n588\t    prior 带来的 false alarm cost。整体结论：simulation-only result，对 real-world benchmark\n589\t    monitoring 有 suggestive value 但未在真实数据上验证。降级为 appendix。\n590\t\n591\t    '\n592\t  tables:\n593\t  - name: 'Table: Cumulative Bayesian DIF Power by Administration'\n594\t    columns:\n595\t    - n_admins\n596\t    - power_d10\n597\t    - power_d14\n598\t    - fpr\n599\t    rows:\n600\t    - - 1\n601\t      - 0.38\n602\t      - 0.68\n603\t      - 0.042\n604\t    - - 2\n605\t      - 0.52\n606\t      - 0.78\n607\t      - 0.044\n608\t    - - 3\n609\t      - 0.64\n610\t      - 0.85\n611\t      - 0.046\n612\t    - - 4\n613\t      - 0.71\n614\t      - 0.89\n615\t      - 0.048\n616\t  figures_description:\n617\t  - 'Fig: Power accumulation curve — d=1.0 and d=1.4, showing diminishing returns\n618\t    after 3 administrations'\n619\t  analysis: 'Simulation-only, underdeveloped for main body。核心 insight（evidence accumulation\n620\t    improves detection of medium effects）是 textbook result，novelty 仅在 LLM benchmark\n621\t    场景化。Median 档 reviewers 会 flag \"this is just running Sinharay''s method on simulated\n622\t    data\"。降级为 appendix discussion。\n623\t\n624\t    '\n625\t- name: graceful_degradation_analysis\n626\t  plan_id: plan_008\n627\t  description: '分析 benchmark validity 在 progressive item replacement 下的 degradation：\n628\t    5%, 10%, 20%, 50% items replaced，评估 ranking stability, reliability, construct\n629\t    coverage。\n630\t\n631\t    '\n632\t  expected_results:\n633\t    rho_at_5pct_replacement: 0.999\n634\t    rho_at_10pct_replacement: 0.998\n635\t    rho_at_20pct_replacement: 0.995\n636\t    rho_at_50pct_replacement: 0.983\n637\t    reliability_alpha_original: 0.946\n638\t    reliability_alpha_at_20pct: 0.938\n639\t    reliability_alpha_at_50pct: 0.912\n640\t    construct_coverage_original: 57\n641\t    construct_coverage_at_50pct: 57\n642\t    n_subjects_losing_items_at_50pct: 12\n643\t    min_items_per_subject_at_50pct: 31\n644\t    theoretical_lower_bound_rho: ρ ≥ 1 - 2r/(1+r) where r = replacement rate\n645\t  result_rationale: 'Median 档下 MMLU 的极高 measurement redundancy（12,508 items across\n646\t    57 subjects） 使得即使 50% replacement 也仅将 ρ 降至 0.983。这是因为 MMLU 的 per-subject item\n647\t    pools 足够大（median 200+ items），random replacement 均匀分布在 subjects 间， 每个 subject 保留足够\n648\t    items 维持 reliable estimation。Reliability α 从 0.946 降至 0.912（50%）仍在 acceptable\n649\t    range。Construct coverage 不受影响因为 replacement 是 within-subject。关键 caveat：这假设 replacement\n650\t    items 的 psychometric properties 与 original 相近——plan_006 显示这不成立（ρ=0.65），实际 degradation\n651\t    会更严重。\n652\t\n653\t    '\n654\t  tables:\n655\t  - name: 'Table: Validity Metrics Under Progressive Replacement'\n656\t    columns:\n657\t    - replacement_rate\n658\t    - ranking_rho\n659\t    - cronbach_alpha\n660\t    - min_items_per_subject\n661\t    rows:\n662\t    - - 0%\n663\t      - 1.0\n664\t      - 0.946\n665\t      - 63\n666\t    - - 5%\n667\t      - 0.999\n668\t      - 0.944\n669\t      - 60\n670\t    - - 10%\n671\t      - 0.998\n672\t      - 0.941\n673\t      - 57\n674\t    - - 20%\n675\t      - 0.995\n676\t      - 0.938\n677\t      - 50\n678\t    - - 50%\n679\t      - 0.983\n680\t      - 0.912\n681\t      - 31\n682\t  figures_description:\n683\t  - 'Fig: Degradation curves — ρ and α as function of replacement rate, with theoretical\n684\t    lower bound'\n685\t  analysis: '结果实际上强化了 Claim 4 的 redundancy narrative：MMLU 的 ranking stability 对 item\n686\t    removal/replacement 极其鲁棒。但 median 档下这个结果是 double-edged—— 如果 removing 31% DIF items\n687\t    doesn''t matter（ρ=0.997），reviewer 会问 \"so what''s the practical impact of your\n688\t    finding?\" 需要 reframe 为 diagnostic value 而非 quality concern。降级为 supplementary evidence\n689\t    for Claim 4.1 redundancy。\n690\t\n691\t    '\n692\t- name: item_focused_trees\n693\t  plan_id: plan_009\n694\t  description: '实现 Item-Focused Trees (Tutz & Berger, 2016) 作为 categorical cohort\n695\t    DIF 的 替代方案，将 model release date 作为 continuous covariate。\n696\t\n697\t    '\n698\t  expected_results:\n699\t    n_items_analyzed: 12508\n700\t    ift_flagged_items: 4150\n701\t    ift_flag_rate: 0.332\n702\t    ift_dif_mh_jaccard: 0.72\n703\t    ift_dif_mh_concordance: 0.85\n704\t    ift_unique_flags: 890\n705\t    mh_unique_flags: 658\n706\t    ift_split_point_median_date: 2023-09\n707\t    ift_nonlinear_items: 1230\n708\t    ift_nonlinear_pct: 0.098\n709\t    computation_time_hours: 12\n710\t  result_rationale: 'Median 档下 IFT 的 flag rate（33.2%）略高于 MH（31.3%），因为 continuous covariate\n711\t    模型捕捉了 MH 的 binary split 遗漏的 nonlinear trends（9.8% items 显示 non-monotonic DIF pattern）。Jaccard=0.72\n712\t    的 moderate overlap 表明两种方法 largely agree 但 IFT 的 continuous modeling 额外捕捉了 gradual\n713\t    drift items。IFT split point median 在 2023-09 附近，接近 MH 使用的 temporal cutoff，增加了\n714\t    MH cohort definition 的 合理性。Median 档下 IFT 的价值是 robustness check 而非 primary method——\n715\t    \"MH results are robust to categorical vs continuous covariate modeling\"。\n716\t\n717\t    '\n718\t  tables:\n719\t  - name: 'Table: IFT vs MH-DIF Comparison'\n720\t    columns:\n721\t    - metric\n722\t    - MH_DIF\n723\t    - IFT\n724\t    - overlap\n725\t    rows:\n726\t    - - flag_rate\n727\t      - 31.3%\n728\t      - 33.2%\n729\t      - Jaccard=0.72\n730\t    - - n_flagged\n731\t      - 3918\n732\t      - 4150\n733\t      - concordance=0.85\n734\t    - - nonlinear_items\n735\t      - N/A\n736\t      - 1230\n737\t      - 9.8% of total\n738\t    - - computation_time\n739\t      - 2h\n740\t      - 12h\n741\t      - —\n742\t  figures_description:\n743\t  - 'Fig: IFT tree visualization for 3 example items — showing split points and DIF\n744\t    magnitude per branch'\n745\t  analysis: 'IFT 确认 MH 结果的 robustness 并提供了 continuous DIF trend 的 additional insight。\n746\t    9.8% nonlinear items 是 interesting finding 但不影响 main claims。降级为 appendix robustness\n747\t    check——\"results hold whether we use categorical (MH) or continuous (IFT) covariate\n748\t    modeling\"。\n749\t\n750\t    '\n751\t- name: architecture_stratified_dif\n752\t  plan_id: plan_010\n753\t  description: '在 architecture-homogeneous subpopulation (decoder-only only) 上运行 DIF，\n754\t    测试 IRT model fit 是否改善、spurious DIF 是否减少。\n755\t\n756\t    '\n757\t  expected_results:\n758\t    n_decoder_only: 5226\n759\t    n_non_decoder: 1\n760\t    decoder_only_pct: 99.98\n761\t    dif_c_pct_decoder_only: 31.3\n762\t    dif_c_pct_full: 31.3\n763\t    jaccard_decoder_vs_full: 1.0\n764\t    irt_rmsea_decoder: 0.042\n765\t    irt_rmsea_full: 0.042\n766\t    irt_cfi_decoder: 0.78\n767\t    irt_cfi_full: 0.78\n768\t    pct_models_lz_gt2_decoder: 97.8\n769\t    pct_models_lz_gt2_full: 98.0\n770\t    conclusion: architecture heterogeneity is a non-issue\n771\t  result_rationale: 'Median 档下这是最 clear-cut 的实验：METABENCH MMLU 中 99.98% (5226/5227)\n772\t    模型是 decoder-only，排除 1 个 non-decoder 模型完全不改变任何结果（Jaccard=1.0）。 IRT fit 同样不变，因为\n773\t    misfit (|Lz|>2 for 98%) 源于 MMLU 的 inherent multidimensionality（57 subjects → 多维\n774\t    ability），而非 architecture heterogeneity。 这是 proactive defense 实验：reviewer 无法质疑\n775\t    \"architecture confound inflates DIF\" 因为 population 几乎完全 homogeneous。Zero GPU cost,\n776\t    纯 data subsetting。\n777\t\n778\t    '\n779\t  tables:\n780\t  - name: 'Table: Architecture Stratification Results'\n781\t    columns:\n782\t    - population\n783\t    - n_models\n784\t    - c_pct\n785\t    - irt_rmsea\n786\t    - pct_lz_gt2\n787\t    rows:\n788\t    - - Full\n789\t      - 5227\n790\t      - 31.3\n791\t      - 0.042\n792\t      - 98.0\n793\t    - - Decoder-only\n794\t      - 5226\n795\t      - 31.3\n796\t      - 0.042\n797\t      - 97.8\n798\t    - - Delta\n799\t      - -1\n800\t      - 0.0\n801\t      - 0.0\n802\t      - -0.2\n803\t  figures_description:\n804\t  - 'Fig: Architecture composition pie chart — 99.98% decoder-only (appendix only)'\n805\t  analysis: 'Architecture stratification 是 one-line result: \"METABENCH MMLU is 99.98%\n806\t    decoder-only; excluding the single non-decoder model changes nothing (Jaccard=1.0).\"\n807\t    Main body 一句话 + footnote，不需要 dedicated section。\n808\t\n809\t    '\n810\t- name: semi_synthetic_contamination_validation\n811\t  plan_id: plan_011\n812\t  description: '向 METABENCH response matrix 注入已知 contamination，测量 DIF 在 controlled\n813\t    ground truth 下的 detection power，解决 ground truth circularity concern。\n814\t\n815\t    '\n816\t  expected_results:\n817\t    n_clean_items_selected: 500\n818\t    n_injection_items: 150\n819\t    temporal_external_tpr_p0: 0.33\n820\t    temporal_external_tpr_p03: 0.52\n821\t    temporal_external_tpr_p05: 0.74\n822\t    temporal_external_tpr_p07: 0.93\n823\t    temporal_external_tpr_p10: 1.0\n824\t    temporal_external_fpr: 0.318\n825\t    temporal_external_delta_tpr_p05: 0.41\n826\t    temporal_external_delta_tpr_p10: 0.67\n827\t    ability_external_tpr_p10: 0.77\n828\t    ability_external_fpr: 0.49\n829\t    standard_mh_fpr_inflation_at_p10: 0.30→0.59\n830\t    matching_variable_contamination: true\n831\t    dose_response_monotonic: true\n832\t  result_rationale: 'Median 档下 ΔTPR(p=0.5)=0.41 落在 key indicator range [0.35, 0.50]\n833\t    内。 这比 registry 实际值 (ΔTPR(p=0.5)=0.508) 低约 0.1，因为 median 档假设 temporal label 携带的弱结构性（permutation\n834\t    null 2–8%）吃掉了一部分 detection headroom。FPR=0.318 反映 temporal cohort 的 baseline instability（即使\n835\t    clean items 中有 ~31.8% 被 flag，因为 \"clean\" is defined by Li et al. labels which don''t\n836\t    capture differential effects）。Dose-response 从 p=0.3 到 p=1.0 单调增长确认了 injection\n837\t    validity。Standard MH 的 FPR inflation（0.30→0.59 at p=1.0）确认了 matching variable\n838\t    contamination——within-group matching variable 被 injection 污染导致 FPR 膨胀，这是 cross-subject\n839\t    matching 的动机。\n840\t\n841\t    '\n842\t  tables:\n843\t  - name: 'Table: Semi-Synthetic Detection Power (Temporal, External Matching)'\n844\t    columns:\n845\t    - exploitation_rate_p\n846\t    - tpr\n847\t    - fpr\n848\t    - delta_tpr\n849\t    rows:\n850\t    - - 0.0 (baseline)\n851\t      - 0.33\n852\t      - 0.318\n853\t      - 0.0\n854\t    - - 0.3\n855\t      - 0.52\n856\t      - 0.32\n857\t      - 0.19\n858\t    - - 0.5\n859\t      - 0.74\n860\t      - 0.318\n861\t      - 0.41\n862\t    - - 0.7\n863\t      - 0.93\n864\t      - 0.317\n865\t      - 0.61\n866\t    - - 1.0\n867\t      - 1.0\n868\t      - 0.316\n869\t      - 0.67\n870\t  - name: 'Table: Matching Variable Contamination Effect'\n871\t    columns:\n872\t    - matching_method\n873\t    - fpr_p0\n874\t    - fpr_p10\n875\t    - delta_fpr\n876\t    rows:\n877\t    - - Standard (within-group)\n878\t      - 0.298\n879\t      - 0.59\n880\t      - 0.292\n881\t    - - External (cross-benchmark)\n882\t      - 0.318\n883\t      - 0.316\n884\t      - -0.002\n885\t  figures_description:\n886\t  - 'Fig: Dose-response curve — TPR vs exploitation rate p, with 95% CI bands'\n887\t  - 'Fig: FPR comparison — standard vs external matching as injection increases'\n888\t  analysis: 'ΔTPR(p=0.5)=0.41 是 median 档的核心指标，表明 DIF 在 moderate exploitation rate\n889\t    下有 meaningful detection power but not overwhelming。Reviewer 会追问 \"p=0.5 是否 realistic?\"——需要在\n890\t    paper 中 argue contamination exploitation rates 在文献 中缺乏 empirical estimates，p=0.5\n891\t    是 conservative middle ground。External matching 的 ΔFPR≈0 是 methodological highlight，直接支撑\n892\t    cross-subject matching recommendation。\n893\t\n894\t    '\n895\t- name: multi_benchmark_temporal_dif\n896\t  plan_id: plan_028\n897\t  description: '在 METABENCH 中的 ARC, HellaSwag, WinoGrande, TruthfulQA 上运行 temporal\n898\t    DIF， 验证 cross-benchmark 泛化性。\n899\t\n900\t    '\n901\t  expected_results:\n902\t    mmlu_c_pct: 31.3\n903\t    mmlu_random_c_pct: 0.18\n904\t    winogrande_c_pct: 28.8\n905\t    winogrande_random_c_pct: 0.35\n906\t    truthfulqa_c_pct: 27.4\n907\t    truthfulqa_random_c_pct: 0.4\n908\t    arc_c_pct: 24.5\n909\t    arc_random_c_pct: 0.55\n910\t    gsm8k_c_pct: 18.9\n911\t    gsm8k_random_c_pct: 0.3\n912\t    hellaswag_c_pct: 17.2\n913\t    hellaswag_random_c_pct: 0.3\n914\t    cross_benchmark_range: 17.2–31.3%\n915\t    all_random_below_1pct: true\n916\t    min_enrichment_ratio: 31\n917\t    n_benchmarks: 6\n918\t  result_rationale: 'Median 档下 cross-benchmark C% range 为 17.2–31.3%，落在 key indicator\n919\t    range [15.0, 32.0] 内。排序 MMLU > WinoGrande > TruthfulQA > ARC > GSM8K > HellaSwag\n920\t    反映了各 benchmark 的 structural properties：MMLU（57 subjects, 12K items）和 WinoGrande（commonsense\n921\t    reasoning, 高 memorization vulnerability）C% 最高； HellaSwag（sentence completion,\n922\t    10K items 但 item homogeneity 高）和 GSM8K （math, single domain）C% 最低。所有 random-split\n923\t    controls <1% 确认 temporal signal 在每个 benchmark 上都是 genuine。Median 档下 HellaSwag\n924\t    和 GSM8K 的较低 C% 会被 reviewer 追问——需要解释 domain homogeneity 降低 DIF variance。\n925\t\n926\t    '\n927\t  tables:\n928\t  - name: 'Table: Cross-Benchmark Temporal DIF Summary'\n929\t    columns:\n930\t    - benchmark\n931\t    - n_items\n932\t    - n_ref\n933\t    - n_foc\n934\t    - c_pct\n935\t    - random_c_pct\n936\t    - enrichment_ratio\n937\t    rows:\n938\t    - - MMLU\n939\t      - 12508\n940\t      - 1080\n941\t      - 807\n942\t      - 31.3\n943\t      - 0.18\n944\t      - 174\n945\t    - - WinoGrande\n946\t      - 1267\n947\t      - 1017\n948\t      - 803\n949\t      - 28.8\n950\t      - 0.35\n951\t      - 82\n952\t    - - TruthfulQA\n953\t      - 817\n954\t      - 1080\n955\t      - 807\n956\t      - 27.4\n957\t      - 0.4\n958\t      - 69\n959\t    - - ARC-Challenge\n960\t      - 1172\n961\t      - 1080\n962\t      - 807\n963\t      - 24.5\n964\t      - 0.55\n965\t      - 45\n966\t    - - GSM8K\n967\t      - 1319\n968\t      - 1017\n969\t      - 804\n970\t      - 18.9\n971\t      - 0.3\n972\t      - 63\n973\t    - - HellaSwag\n974\t      - 10042\n975\t      - 1080\n976\t      - 807\n977\t      - 17.2\n978\t      - 0.3\n979\t      - 57\n980\t  figures_description:\n981\t  - 'Fig: Bar chart — C% across 6 benchmarks with random-split control overlay'\n982\t  analysis: '6 个 benchmark 的一致 temporal DIF pattern (17–31%, all >>random) 是 median\n983\t    档下 最强的 generalizability evidence。但 Claim 3 的 cross-benchmark 证据被降级至 appendix（8\n984\t    页限制），main body 仅保留 MMLU 结果 + 一句 \"consistent across 5 additional benchmarks (see\n985\t    Appendix X)\"。\n986\t\n987\t    '\n988\t- name: permutation_null_c_rate\n989\t  plan_id: plan_029\n990\t  description: '1000× permutation test：随机重新分配 2023/2024 temporal labels（保持 N_ref=1080,\n991\t    N_foc=807），每次运行 MH-DIF，建立 C% 的 null distribution。\n992\t\n993\t    '\n994\t  expected_results:\n995\t    n_permutations: 1000\n996\t    null_c_pct_mean: 4.8\n997\t    null_c_pct_median: 4.6\n998\t    null_c_pct_sd: 1.2\n999\t    null_c_pct_95ci:\n1000\t    - 2.7\n1001\t    - 7.3\n1002\t    null_c_pct_99ci:\n1003\t    - 1.9\n1004\t    - 8.4\n1005\t    null_c_pct_max: 9.1\n1006\t    observed_c_pct: 31.3\n1007\t    z_score_vs_null: 22.1\n1008\t    p_value: <1e-50\n1009\t    ratio_observed_to_null_mean: 6.5\n1010\t    random_split_c_pct: 0.18\n1011\t    null_vs_random_split_ratio: 26.7\n1012\t  result_rationale: 'Median 档下 permutation null C% mean=4.8% 落在 key indicator range\n1013\t    [2.0, 8.0]。 Permutation null 显著高于 random-split control（4.8% vs 0.18%），因为 temporal\n1014\t    labels 与 ability 不完全正交：2024 模型平均 stronger（d=-0.17），permutation 打断了 true temporal\n1015\t    signal 但保留了 ability distribution 的 marginal structure。 Random-split 在 within-cohort\n1016\t    内操作所以 ability 完全 balanced，产生 near-zero C%。Permutation null 的 4.8% 表明 ~5% 的 \"DIF\"\n1017\t    可归因于 temporal label 本身 携带的 ability confound structure，但 31.3% 仍为 null 的 6.5× (z=22.1)。\n1018\t    Median 档下 reviewer 会追问 \"4.8% null 是否意味着 temporal cohort design 有 systematic bias?\"——需要在\n1019\t    paper 中解释这是 expected property of any non-randomized group comparison in observational\n1020\t    studies，并引用 plan_027 的 matched-ability analysis (C%=28.9%) 作为 complementary evidence。\n1021\t\n1022\t    '\n1023\t  tables:\n1024\t  - name: 'Table: Permutation Null Distribution'\n1025\t    columns:\n1026\t    - statistic\n1027\t    - value\n1028\t    rows:\n1029\t    - - Null mean C%\n1030\t      - 4.8\n1031\t    - - Null median C%\n1032\t      - 4.6\n1033\t    - - Null SD\n1034\t      - 1.2\n1035\t    - - Null 95% CI\n1036\t      - '[2.7, 7.3]'\n1037\t    - - Null max\n1038\t      - 9.1\n1039\t    - - Observed C%\n1040\t      - 31.3\n1041\t    - - z-score\n1042\t      - 22.1\n1043\t    - - Observed / Null mean\n1044\t      - 6.5×\n1045\t  - name: 'Table: Three Baselines Comparison'\n1046\t    columns:\n1047\t    - baseline\n1048\t    - c_pct\n1049\t    - interpretation\n1050\t    rows:\n1051\t    - - Random split (within-cohort)\n1052\t      - 0.18\n1053\t      - statistical noise floor\n1054\t    - - Permutation null (label shuffle)\n1055\t      - 4.8\n1056\t      - temporal label structure\n1057\t    - - Observed temporal DIF\n1058\t      - 31.3\n1059\t      - genuine + structural\n1060\t    - - Matched-ability (plan_027)\n1061\t      - 28.9\n1062\t      - genuine after ability control\n1063\t  figures_description:\n1064\t  - 'Fig: Histogram of 1000 permutation null C% values with observed 31.3% marked\n1065\t    as vertical line'\n1066\t  - 'Fig: Three-baseline comparison bar chart — random (0.18%), permutation (4.8%),\n1067\t    observed (31.3%)'\n1068\t  analysis: 'Permutation null 是 median 档下 Claim 1 的关键 calibration baseline。31.3% vs\n1069\t    4.8% null 给出 \"genuine DIF ≈ 26.5%\" 的 conservative estimate，与 plan_027 的 matched-ability\n1070\t    C%=28.9% convergent。Paper 应报告为 \"~25–29% depending on confound controls\"（取 plan_027\n1071\t    matched 28.9% 与 observed-null=26.5% 的 range）。 Permutation null 显式报告为 calibration\n1072\t    baseline 是对 reviewer \"is 31% above chance?\" 的 definitive answer。\n1073\t\n1074\t    '\n1075\t- name: odds_ratio_regression_transparency\n1076\t  plan_id: plan_030\n1077\t  description: '补充 pseudo R²=0.0007 的 odds ratio + 95% CI + McFadden/Nagelkerke R²\n1078\t    + deviance ratio，并构建更精细的 item-level model。\n1079\t\n1080\t    '\n1081\t  expected_results:\n1082\t    model1_domain_delta:\n1083\t      mcfadden_r2: 0.0007\n1084\t      nagelkerke_r2: 0.0013\n1085\t      subject_acc_delta_or_per_010: 1.58\n1086\t      subject_acc_delta_ci_per_010:\n1087\t      - 1.21\n1088\t      - 2.06\n1089\t      deviance_ratio: 0.0007\n1090\t    model2_domain_delta_plus_items:\n1091\t      mcfadden_r2: 0.044\n1092\t      nagelkerke_r2: 0.074\n1093\t      subject_acc_delta_or_per_010: 0.71\n1094\t      ctt_difficulty_or_per_010: 0.76\n1095\t      ctt_discrimination_or_per_010: 1.54\n1096\t    model3_item_delta:\n1097\t      mcfadden_r2: 0.0013\n1098\t      nagelkerke_r2: 0.0022\n1099\t      item_acc_change_or_per_010: 1.09\n1100\t      item_acc_change_ci:\n1101\t      - 1.53\n1102\t      - 2.99\n1103\t    model4_item_delta_plus_items:\n1104\t      mcfadden_r2: 0.045\n1105\t      nagelkerke_r2: 0.076\n1106\t      item_acc_change_or_per_010: 0.91\n1107\t      ctt_difficulty_or_per_010: 0.75\n1108\t      ctt_discrimination_or_per_010: 1.56\n1109\t    simpsons_paradox: true\n1110\t    lr_test_m1_vs_m2_chi2: 640.5\n1111\t    lr_test_m3_vs_m4_chi2: 648.2\n1112\t    best_model_mcfadden: 0.045\n1113\t    ability_confound_explained_pp: 4.2\n1114\t  result_rationale: 'Median 档下 Simpson''s paradox (Model 2 vs Model 1) 是核心 methodological\n1115\t    finding： domain accuracy Δ 的 OR 从 1.58 (Model 1, positive) 翻转为 0.71 (Model 2,\n1116\t    negative) after controlling for item properties。这是因为 high-discrimination items\n1117\t    (OR=1.54) 同时是 DIF-prone items AND high-accuracy-change items，产生 confound。McFadden\n1118\t    R² 即使在 best model (0.045) 下也极低，说明 DIF 的 item-level variance 绝大部分无法由 observed item\n1119\t    properties 解释。Median 档下 ability confound explained pp=4.2，落在 [3.0, 6.0] 范围内——高于\n1120\t    plan_027 的 2.4pp 因为 regression 捕捉了额外的 item-level confounding pathway。 Reviewer\n1121\t    会追问 Simpson''s paradox 的因果解释——需谨慎表述为 \"item difficulty may be a mediator rather\n1122\t    than confounder; Model 1 (marginal) and Model 2 (conditional) answer different\n1123\t    causal questions\"。\n1124\t\n1125\t    '\n1126\t  tables:\n1127\t  - name: 'Table: Logistic Regression Model Comparison'\n1128\t    columns:\n1129\t    - model\n1130\t    - predictors\n1131\t    - mcfadden_r2\n1132\t    - nagelkerke_r2\n1133\t    - aic\n1134\t    rows:\n1135\t    - - Model 1\n1136\t      - subject acc Δ\n1137\t      - 0.0007\n1138\t      - 0.0013\n1139\t      - 15548\n1140\t    - - Model 2\n1141\t      - subject acc Δ + CTT props\n1142\t      - 0.044\n1143\t      - 0.074\n1144\t      - 14910\n1145\t    - - Model 3\n1146\t      - item acc Δ\n1147\t      - 0.0013\n1148\t      - 0.0022\n1149\t      - 15539\n1150\t    - - Model 4\n1151\t      - item acc Δ + CTT props\n1152\t      - 0.045\n1153\t      - 0.076\n1154\t      - 14892\n1155\t  - name: 'Table: Simpson''s Paradox in Accuracy Δ Effect'\n1156\t    columns:\n1157\t    - model\n1158\t    - acc_delta_or\n1159\t    - direction\n1160\t    - interpretation\n1161\t    rows:\n1162\t    - - Model 1 (marginal)\n1163\t      - 1.58\n1164\t      - positive\n1165\t      - higher acc Δ → more DIF\n1166\t    - - Model 2 (conditional)\n1167\t      - 0.71\n1168\t      - negative\n1169\t      - higher acc Δ → LESS DIF after controlling item props\n1170\t  figures_description:\n1171\t  - 'Fig: Simpson''s paradox visualization — marginal vs conditional effect of accuracy\n1172\t    Δ on DIF probability'\n1173\t  analysis: Simpson's paradox 需要在 paper 中小心处理。Model 1 的 marginal positive effect 支持\n1174\t    \"capability gain causes DIF\" 的 naive interpretation，但 Model 2 的 conditional negative\n1175\t    effect 表明 item properties (especially discrimination) 是 confound。 Median 档下建议\n1176\t    Model 1 as primary (conservative, 不做因果 claim)，Model 2 as supplementary (illustrating\n1177\t    confound structure)。总 explained variance <5% (McFadden R²=0.045) 意味着 95%+ 的 DIF\n1178\t    variance 是 item-specific 且无法归因于 observed covariates——这实际上强化了 \"DIF captures genuine\n1179\t    item-level differential functioning, not a proxy for aggregate trends\" 的 narrative。\n1180\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1aaeaba9-4e3e-43f2-a359-9efff8d2f7fb",
+            "isSidechain": false,
+            "promptId": "574ea9fb-2433-4f53-83c6-6ff0f801abc3",
+            "type": "user",
+            "uuid": "3162777d-9bba-43f7-a8b5-43922fb7c86d",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T122440/median/review_context.yaml",
+                "content": "narrative_guidance: 'Median 档下 permutation null C% 落在 2–8%，表明 temporal label 本身携带弱结构性信号\n  （model release date 与 ability 不完全正交），但 31% 仍为 null 的 4–15×，统计意义明确。 Claim 1 headline\n  须从 ''31%'' 调整为 ''~25–29% after confound controls''，permutation null 显式报告为 calibration\n  baseline。Claim 2 meta-critique 软化为 ''complementary approaches needed''， 不再用 ''fundamentally\n  mismatched''。Claim 3 cross-benchmark 证据降级 appendix，主体仅保留 MMLU。 Claim 4 diagnostic\n  lens 升格为 abstract 第二句，强调 audit protocol 实用价值以对冲 ''applying textbook psychometrics''\n  的 novelty 质疑。Rebuttal 准备 ''psychometric tools are mature but their application to\n  LLM benchmarks at this scale is novel'' 防线。 Simpson''s paradox（plan_030 Model 2\n  vs Model 1）需谨慎处理因果表述，仅作为 supplementary evidence。 预期 reviewer score 2.5–3.5，borderline\n  accept/weak reject，需要 rebuttal 翻盘。\n\n  '\nimagined_experiments:\n- name: real_data_dif_mmlu\n  plan_id: plan_001\n  description: '对 METABENCH MMLU 响应矩阵 (5219×12508) 执行全面 MH-DIF 分析， 包含 temporal/ability\n    cohort、within-family confound control、domain specificity。\n\n    '\n  expected_results:\n    temporal_ets_c_pct: 31.3\n    temporal_fpr_li_clean: 0.322\n    temporal_enrichment: 0.964\n    ability_ets_c_pct: 3.1\n    ability_fpr_li_clean: 0.029\n    ability_enrichment: 1.15\n    within_family_llama2v3_c_pct: 58.7\n    within_family_mistral_mixtral_c_pct: 36.2\n    domain_spearman_rho: 0.32\n    domain_spearman_p: 0.016\n    sanity_random_split_c_pct: 0.21\n    temporal_ability_jaccard: 0.016\n    n_subjects_with_c_gt20pct: 57\n    unweighted_subject_mean_c_pct: 30.4\n    subject_c_range: 20.1–47.8%\n    decoder_only_pct: 99.98\n  result_rationale: 'Median 档下 temporal C%=31.3% 与已有 registry 一致（这是实测值，不受 tier 影响）。\n    关键区别在于后续 controls 将把 residual 压至 25–29%。Within-family Llama-2v3 C% 略低于 registry\n    的 61.3%（~58.7%），因为 median 档假设 ability confound 解释更多 variance （d=-0.99 对中 ability\n    gap 较大）。Domain ρ=0.32 表明 subject-level accuracy improvement 与 DIF 存在弱正相关，但 item-level\n    decomposition 将显示域改善仅解释 ≤3.5pp。Random-split sanity check 0.21% 确认 temporal signal\n    非统计噪声。 Enrichment≈0.96 确认 DIF 与 web-overlap labels 正交——这是预期行为，非方法失败。\n\n    '\n  tables:\n  - name: 'Table 1: Temporal DIF Summary by Cohort Definition'\n    columns:\n    - cohort\n    - n_ref\n    - n_foc\n    - n_items\n    - c_pct\n    - fpr_li_clean\n    - enrichment\n    rows:\n    - - temporal_2023v2024\n      - 1080\n      - 807\n      - 12508\n      - 31.3\n      - 0.322\n      - 0.964\n    - - ability_quintile\n      - 2610\n      - 2609\n      - 12508\n      - 3.1\n      - 0.029\n      - 1.15\n    - - random_split_sanity\n      - 950\n      - 950\n      - 12508\n      - 0.21\n      - 0.002\n      - 1.01\n  - name: 'Table 2: Within-Family Confound Control'\n    columns:\n    - family_pair\n    - n_ref\n    - n_foc\n    - c_pct\n    - overlap_with_temporal\n    rows:\n    - - Llama-2 vs Llama-3\n      - 161\n      - 308\n      - 58.7\n      - Jaccard=0.38\n    - - Mistral vs Mixtral\n      - 89\n      - 112\n      - 36.2\n      - Jaccard=0.29\n  figures_description:\n  - 'Fig 1: 57-subject heatmap showing per-subject C% (rows) × cohort (cols), 色阶 20–48%'\n  - 'Fig 2: Scatter plot of subject-level accuracy Δ vs C%, ρ=0.32, p=0.016'\n  analysis: '31.3% temporal instability 是 robust finding。Ability cohort 的 3.1% 确认\n    DIF signal 与 temporal split 强关联而非 ability artifact。Within-family 的高 C% （Llama-2v3:\n    58.7%）混淆了 capability gain 和 contamination——这不是理想的 confound control 因为 family 内\n    ability gap 过大（d≈-0.99）。Domain ρ=0.32 是 ecological correlation，item-level decomposition\n    将在 plan_019/030 中展开。\n\n    '\n- name: rl_robustness_validation\n  plan_id: plan_002\n  description: '验证 DIF 对 RL-trained models 的鲁棒性：alignment-RL (DPO/ORPO) cohort 从 METABENCH\n    提取，reasoning-RL (GRPO/PPO) 10–15 个模型需额外推理。\n\n    '\n  expected_results:\n    n_alignment_rl_models: 477\n    n_reasoning_rl_models: 13\n    dif_c_pct_baseline_sft_only: 30.8\n    dif_c_pct_with_alignment_rl: 31.1\n    dif_c_pct_with_reasoning_rl: 30.5\n    jaccard_sft_vs_alignment: 0.91\n    jaccard_sft_vs_reasoning: 0.84\n    constat_auroc_non_rl: 0.72\n    constat_auroc_reasoning_rl: 0.58\n    mink_auroc_non_rl: 0.68\n    mink_auroc_reasoning_rl: 0.51\n    delong_dif_vs_constat_p: 0.34\n    tost_equivalence_dif_retention: 90% CI [0.88, 0.97], equivalence bound ±0.10\n    tost_conclusion: equivalent\n    power_analysis_detection_boundary_p: 0.45\n    bootstrap_ci_auroc_dif:\n    - 0.76\n    - 0.89\n  result_rationale: 'Median 档下 DIF 作为 group-level method 对 cohort composition 变化不敏感——添加\n    13 个 reasoning-RL 模型到 N=807 focal cohort 几乎不改变 group statistics。 Jaccard=0.84（vs\n    reasoning-RL）略低于 alignment-RL 的 0.91，因为 reasoning-RL 模型在部分 hard items 上的 response\n    pattern 与 SFT 模型有系统性差异（GRPO 训练 改变了 reasoning chain 而非单纯记忆）。传统 per-model detectors\n    在 reasoning-RL 上退化显著（ConStat 从 0.72→0.58, Min-K% 从 0.68→0.51），因为 RL 训练平滑了 NLL\n    distribution。但 N=13 使得所有 pairwise comparison 的 CI 极宽，DeLong test 无显著差异（p=0.34），TOST\n    equivalence 勉强成立。这是 median 档的典型情况： 方向正确但统计力不足以支撑强 claim。\n\n    '\n  tables:\n  - name: 'Table: DIF Stability Across Cohort Compositions'\n    columns:\n    - cohort_composition\n    - n_focal\n    - c_pct\n    - jaccard_vs_baseline\n    rows:\n    - - SFT-only baseline\n      - 620\n      - 30.8\n      - 1.0\n    - - + alignment-RL (DPO/ORPO)\n      - 807\n      - 31.1\n      - 0.91\n    - - + reasoning-RL (GRPO/PPO)\n      - 820\n      - 30.5\n      - 0.84\n  - name: 'Table: Per-Model Detector AUROC Comparison'\n    columns:\n    - detector\n    - non_rl\n    - alignment_rl\n    - reasoning_rl\n    rows:\n    - - DIF (group)\n      - N/A\n      - N/A\n      - N/A\n    - - ConStat\n      - 0.72\n      - 0.67\n      - 0.58\n    - - Min-K%\n      - 0.68\n      - 0.64\n      - 0.51\n  figures_description:\n  - 'Fig: Detection power curve — DIF ΔTPR vs exploitation rate p ∈ [0.4, 1.0], 标注\n    detection boundary p≈0.45'\n  analysis: 'DIF 的 group-level 设计使其对 cohort composition 天然鲁棒——13 个 RL 模型在 N=807 中占比\n    <2%，统计影响可忽略。真正的 claim 应限定为 \"DIF 在 cohort 中 RL 占比 <5% 时 robust\"，而非 \"DIF 对 RL 鲁棒\"。Per-model\n    detector 退化方向正确但 N=13 使结论 仅为 suggestive。降级为 limitations 中 disclosure，不作为 numbered\n    contribution。\n\n    '\n- name: constat_perturbation_eval\n  plan_id: plan_003a\n  description: '独立评估 ConStat-style perturbation testing：LLM 生成 200+ MMLU items 的语义等价\n    reformulation，比较原始与改写版本的 model performance。\n\n    '\n  expected_results:\n    n_items_reformulated: 220\n    reformulation_semantic_sim: 0.92\n    constat_fdr_controlled_flags: 47\n    constat_flag_rate: 0.214\n    constat_overlap_with_dif_c: Jaccard=0.18\n    constat_tpr_non_rl_known_contam: 0.61\n    constat_tpr_rl_known_contam: 0.29\n    constat_fpr: 0.08\n    effect_size_non_rl: 0.74\n    effect_size_rl: 0.31\n    gpu_hours_used: 65\n  result_rationale: 'Median 档下 ConStat 在 non-RL 模型上表现尚可（TPR=0.61, effect size=0.74），因为\n    verbatim memorization 使模型对 surface-form 变化敏感。但 RL-trained 模型（尤其 GRPO/PPO）通过 reasoning\n    generalization 降低了对 exact wording 的依赖，TPR 降至 0.29。与 DIF 的低重叠（Jaccard=0.18）符合预期：ConStat\n    检测 per-model surface-level memorization，DIF 检测 group-level differential functioning，二者捕捉不同信号。\n    FDR-controlled flag rate 21.4% 低于 DIF 的 31.3%，因为 ConStat 需要更强的 per-item evidence。GPU\n    成本 65h 主要用于 reformulation generation 和 inference。\n\n    '\n  tables:\n  - name: 'Table: ConStat Detection Power by Model Type'\n    columns:\n    - model_type\n    - n_models\n    - tpr\n    - fpr\n    - effect_size\n    rows:\n    - - SFT-only\n      - 15\n      - 0.61\n      - 0.08\n      - 0.74\n    - - Alignment-RL\n      - 10\n      - 0.48\n      - 0.07\n      - 0.55\n    - - Reasoning-RL\n      - 8\n      - 0.29\n      - 0.09\n      - 0.31\n  figures_description:\n  - 'Fig: ConStat flag rate vs DIF C% per subject — weak positive correlation'\n  analysis: 'ConStat 作为 standalone baseline 有价值但不足以支撑 paper claim。与 DIF 的互补性 是 ensemble\n    fusion（plan_003c）的理论基础，但 median 档下 RL 模型上的退化使得 ensemble 增益有限。结果降级为 appendix baseline\n    comparison。\n\n    '\n- name: dvd_generation_variance_eval\n  plan_id: plan_003b\n  description: '独立评估 DVD generation variance：10–15 个 open-weight 模型在每个 item 上生成 50\n    次 response，计算 generation variance 并检测 bimodal distribution。\n\n    '\n  expected_results:\n    n_models_tested: 12\n    n_items_scored: 12508\n    responses_per_item: 50\n    dvd_bimodal_flag_rate: 0.089\n    dvd_tpr_verbatim_contam: 0.43\n    dvd_tpr_variant_contam: 0.52\n    dvd_fpr: 0.062\n    dvd_overlap_with_dif_c: Jaccard=0.11\n    gpu_hours_used: 58\n    temperature_sensitivity: 'T=0.7: flag_rate=0.089; T=1.0: flag_rate=0.142'\n  result_rationale: 'Median 档下 DVD 的 bimodal detection 在 variant contamination 上略优于\n    verbatim （TPR 0.52 vs 0.43），因为 variant contamination 产生更明显的 generation variance\n    bimodality（模型在 \"近似记忆\" 和 \"真正推理\" 之间切换）。但整体 flag rate 仅 8.9%， 远低于 DIF 的 31.3%，因为\n    DVD 需要 per-model inference 且仅在 generation distribution 层面操作。与 DIF 的极低重叠（Jaccard=0.11）表明二者检测完全不同维度。\n    Temperature 敏感性（T=1.0 时 flag rate 翻倍至 14.2%）暴露了 hyperparameter tuning 问题。GPU 成本\n    58h 用于 12 模型 × 12508 items × 50 responses 的推理。\n\n    '\n  tables:\n  - name: 'Table: DVD Detection by Contamination Type'\n    columns:\n    - contam_type\n    - tpr\n    - fpr\n    - bimodal_strength\n    rows:\n    - - verbatim\n      - 0.43\n      - 0.062\n      - Cohen's h=0.38\n    - - variant\n      - 0.52\n      - 0.058\n      - Cohen's h=0.47\n    - - clean\n      - N/A\n      - 0.062\n      - Cohen's h=0.04\n  figures_description:\n  - 'Fig: Generation variance distribution — bimodal (contaminated) vs unimodal (clean)\n    items'\n  analysis: 'DVD 捕捉的是 per-model generation-level signal，与 DIF 的 group-level item functioning\n    signal 几乎不重叠。作为独立检测器价值有限（TPR<0.55），但为 ensemble 提供了独特的 variant contamination 覆盖。Temperature\n    敏感性需要在 paper 中 disclose。\n\n    '\n- name: ensemble_fusion\n  plan_id: plan_003c\n  description: '将 DIF + ConStat + DVD 融合为 multi-signal ensemble，评估 majority voting\n    和 weighted fusion 策略。\n\n    '\n  expected_results:\n    ensemble_2of3_tpr: 0.54\n    ensemble_2of3_fpr: 0.045\n    ensemble_weighted_tpr: 0.59\n    ensemble_weighted_fpr: 0.052\n    ensemble_coverage_dif_only: δ≥1.4\n    ensemble_coverage_constat_only: non-RL δ≥0.6\n    ensemble_coverage_dvd_only: variant contamination\n    cross_val_weight_stability: 'DIF: 0.52±0.08, ConStat: 0.31±0.06, DVD: 0.17±0.05'\n    uniform_vs_optimized_tpr_delta: 0.03\n    fpr_all_configs_below_010: true\n  result_rationale: 'Median 档下 ensemble 增益有限，因为三个信号的重叠极低（pairwise Jaccard 0.11–0.18），\n    majority voting 在 low-overlap 情况下倾向于保守（TPR=0.54）。Weighted fusion 略优（TPR=0.59）但\n    cross-validation weight stability 显示 DIF 权重主导（0.52）， ConStat 和 DVD 的贡献边际化。关键问题：DIF\n    是 group-level，ConStat/DVD 是 per-model-level，fusion 的语义不一致使 ensemble 设计缺乏理论基础。Median\n    档下 reviewers 会质疑 \"为什么要 fuse fundamentally different signal types\"。 结论：ensemble\n    负面结果，not executed in final paper，降级为 future work。\n\n    '\n  tables:\n  - name: 'Table: Ensemble Fusion Comparison'\n    columns:\n    - strategy\n    - tpr\n    - fpr\n    - coverage_description\n    rows:\n    - - DIF only\n      - 0.508\n      - 0.314\n      - group-level, δ≥1.4\n    - - 2-of-3 majority\n      - 0.54\n      - 0.045\n      - intersection of signals\n    - - weighted fusion\n      - 0.59\n      - 0.052\n      - combined coverage\n    - - uniform weight\n      - 0.56\n      - 0.048\n      - unweighted average\n  figures_description:\n  - 'Fig: Venn diagram of flag overlap — DIF ∩ ConStat ∩ DVD showing minimal 3-way\n    overlap'\n  analysis: 'Ensemble 的 FPR 显著改善（0.045 vs DIF 单独的 0.314），但代价是 TPR 仅从 DIF ΔTPR 基线略有提升。信号类型不同质（group\n    vs per-model）使 fusion 缺乏 principled justification。Median 档下这是 negative result——not\n    executed, dropped to future work。\n\n    '\n- name: cross_benchmark_gsm8k\n  plan_id: plan_004\n  description: '在 GSM8K 上复制 DIF 分析，使用 GSM1K 作为 contamination ground truth， 验证 cross-benchmark\n    泛化性。\n\n    '\n  expected_results:\n    gsm8k_n_items: 1319\n    gsm8k_n_ref: 1017\n    gsm8k_n_foc: 804\n    gsm8k_standard_c_pct: 18.9\n    gsm8k_external_c_pct: 45.1\n    gsm8k_sanity_c_pct: 0.35\n    semi_synthetic_delta_tpr_p10: 0.78\n    semi_synthetic_delta_tpr_p05: 0.44\n    semi_synthetic_external_delta_tpr_p10: 0.49\n    gsm1k_n_models: 33\n    gsm1k_pearson_r: -0.478\n    gsm1k_pearson_p: 0.005\n    gsm1k_spearman_rho: -0.39\n    gsm1k_spearman_p: 0.025\n    gsm1k_partial_r: -0.37\n    gsm1k_partial_p: 0.035\n    gsm1k_ci_upper_abs_r: 0.155\n    direction: NEGATIVE — opposite to contamination hypothesis\n    cook_d_max_model: Deepseek-math-7b-rl\n    leave_one_out_r_range:\n    - -0.52\n    - -0.36\n  result_rationale: 'Median 档下 GSM8K temporal C%=18.9% 低于 MMLU 的 31.3%，因为 GSM8K 是\n    single-domain math benchmark（1319 items），domain homogeneity 降低了 DIF 的 item-level\n    variance。 Semi-synthetic ΔTPR 在 p=0.5 时为 0.44，落在 median 档范围 [0.35, 0.5] 内。 GSM1K\n    negative correlation（r=-0.478）是 median 档核心尴尬点：DIF-C items anti-correlate with\n    contamination gap，需要额外解释 \"DIF ≠ contamination detector, DIF detects differential\n    item functioning which may reflect capability gain on hard items rather than memorization\"。N=33\n    使 CI 宽且 upper bound |r|=0.155 允许 near-zero true effect。Spearman ρ=-0.39 弱于 Pearson，暗示\n    outlier 影响。 整体降级为 exploratory，不进 abstract/conclusion。\n\n    '\n  tables:\n  - name: 'Table: GSM8K Temporal DIF Summary'\n    columns:\n    - metric\n    - standard_mh\n    - external_matching\n    - sanity\n    rows:\n    - - C%\n      - 18.9\n      - 45.1\n      - 0.35\n    - - n_items_flagged\n      - 249\n      - 595\n      - 5\n    - - DIF favor 2024\n      - 78\n      - 210\n      - 2\n    - - DIF favor 2023\n      - 171\n      - 385\n      - 3\n  - name: 'Table: GSM1K Correlation Analysis'\n    columns:\n    - statistic\n    - value\n    - p_value\n    - 95% CI\n    rows:\n    - - Pearson r\n      - -0.478\n      - 0.005\n      - '[-0.71, -0.16]'\n    - - Spearman ρ\n      - -0.39\n      - 0.025\n      - '[-0.66, -0.03]'\n    - - Partial r (ctrl accuracy)\n      - -0.37\n      - 0.035\n      - '[-0.64, -0.01]'\n  figures_description:\n  - 'Fig: Scatter of per-model DIF-C proportion vs GSM8K-GSM1K gap, r=-0.478, 标注 Cook''s\n    D outliers'\n  analysis: 'GSM8K 复制确认了 framework portability（ΔTPR 有效），但 GSM1K correlation 的负方向 是\n    median 档的关键弱点。必须在 paper 中用一段专门解释：DIF flags items whose functioning changed across\n    generations, not items that are contaminated. Hard items where 2024 models improve\n    may simultaneously show DIF (functioning changed) AND small contamination gap\n    (capability improvement, not memorization)。 降级为 exploratory per Dream #6 consensus。\n\n    '\n- name: bifactor_irt_equating_pilot\n  plan_id: plan_005\n  description: '在 METABENCH MMLU 数据上拟合 bifactor IRT 模型（general factor + 57 subject-specific\n    factors），选择 anchor items 并执行 fixed-parameter calibration。\n\n    '\n  expected_results:\n    bifactor_rmsea: 0.038\n    bifactor_cfi: 0.87\n    bifactor_tli: 0.85\n    bifactor_srmr: 0.052\n    general_factor_variance_explained: 0.41\n    n_anchor_items_selected: 2800\n    anchor_stability_criterion: '|Δ_MH|<0.43 (ETS A)'\n    equated_rho_vs_original: 0.94\n    target_rho_met: false\n    convergence_issues: 3 subjects failed to converge; fixed to unidimensional\n    computation_time_hours: 38\n  result_rationale: 'Median 档下 bifactor model 的 fit 低于 acceptable thresholds（CFI<0.90,\n    TLI<0.90）， 因为 MMLU 的 57 subjects 引入了 57 个 specific factors 加 general factor =\n    58 latent dimensions，5219 models 的 sample size 对此维度不足。General factor 仅解释 41% variance（理想\n    >60%），说明 MMLU 本质上高度多维。3 个小样本 subjects 收敛失败 需要降级为 unidimensional。Equated ρ=0.94\n    未达 target ρ≥0.95，主要因为 anchor item selection 受 bifactor misfit 影响。Median 档结论：bifactor\n    equating 在 MMLU 上不 可行，confirmed paper_framing.md 中 \"killed by plan_014 pre-check\"\n    的判断。 作为 negative result 报告在 limitations 中，motivate future multidimensional IRT。\n\n    '\n  tables:\n  - name: 'Table: Bifactor IRT Fit Indices'\n    columns:\n    - index\n    - value\n    - acceptable_threshold\n    - verdict\n    rows:\n    - - RMSEA\n      - 0.038\n      - <0.06\n      - PASS\n    - - CFI\n      - 0.87\n      - '>0.90'\n      - FAIL\n    - - TLI\n      - 0.85\n      - '>0.90'\n      - FAIL\n    - - SRMR\n      - 0.052\n      - <0.08\n      - PASS\n    - - General factor ω_h\n      - 0.41\n      - '>0.60'\n      - FAIL\n  figures_description:\n  - 'Fig: Scree plot — eigenvalue decay showing 57 factors above noise floor, no dominant\n    general factor'\n  analysis: 'Bifactor IRT equating killed。MMLU 的多维性使得单一 general factor 无法充分 表征 model\n    ability，anchor item 选择受 model misfit 污染。这是 structural limitation 而非 implementation\n    failure。Paper 中作为 \"empirical observation that motivates future multidimensional\n    IRT\" 报告，不作为 contribution。\n\n    '\n- name: item_generation_calibration\n  plan_id: plan_006\n  description: '为 DIF-flagged MMLU items 生成替换项，使用 LLM generation + student simulation\n    进行 difficulty calibration。\n\n    '\n  expected_results:\n    n_items_generated: 500\n    n_dif_items_targeted: 200\n    difficulty_correlation_prompt_based: 0.28\n    difficulty_correlation_student_sim: 0.71\n    difficulty_correlation_empirical: 0.65\n    construct_coverage_semantic_sim: 0.88\n    holdout_panel_rho: 0.91\n    gpu_hours_used: 160\n    items_passing_quality_filter: 340\n    quality_filter_rate: 0.68\n  result_rationale: 'Median 档下 prompt-based difficulty targeting 的 ρ=0.28 远低于 student\n    simulation 的 ρ=0.71，符合文献报告（arXiv 2602.06631: ρ=0.10–0.45）。Student simulation （arXiv\n    2601.09953）的 ρ=0.71 低于该文献报告的 r=0.75–0.82，因为 MMLU 的 domain diversity 使 universal\n    student simulator 难以 calibrate across 57 subjects。 Empirical calibration（实际跑 holdout\n    model panel）的 ρ=0.65 进一步降低，因为 simulation-to-reality gap。Holdout panel ρ=0.91 低于\n    equating target 0.95。 整体结论：item generation pipeline 可行但 precision 不足以支撑 equated\n    replacement claim。降级为 supplementary methodology contribution。\n\n    '\n  tables:\n  - name: 'Table: Difficulty Estimation Method Comparison'\n    columns:\n    - method\n    - difficulty_rho\n    - n_items\n    - compute_cost\n    rows:\n    - - Prompt-based targeting\n      - 0.28\n      - 500\n      - 8 GPU-h\n    - - Student simulation\n      - 0.71\n      - 500\n      - 45 GPU-h\n    - - Empirical (holdout panel)\n      - 0.65\n      - 340\n      - 107 GPU-h\n  figures_description:\n  - 'Fig: Predicted vs actual difficulty scatter — student sim (ρ=0.71) vs prompt\n    (ρ=0.28)'\n  analysis: 'Item generation pipeline 的核心瓶颈是 difficulty calibration precision。 ρ=0.65–0.71\n    不足以保证 equated score equivalence（需要 item-level precision 而非 correlation）。作为 methodology\n    贡献有价值但不足以支撑 Claim 3 的 regeneration narrative。与 plan_005 bifactor failure 共同导致\n    regeneration storyline 被完全 dropped。\n\n    '\n- name: cumulative_bayesian_dif\n  plan_id: plan_007\n  description: '实现 cumulative Bayesian DIF priors (Sinharay et al., 2006)，模拟 4 轮连续\n    benchmark administration，展示 evidence accumulation 带来的 power improvement。\n\n    '\n  expected_results:\n    single_admin_power_d10: 0.38\n    cumulative_2_admin_power_d10: 0.52\n    cumulative_3_admin_power_d10: 0.64\n    cumulative_4_admin_power_d10: 0.71\n    single_admin_power_d14: 0.68\n    cumulative_3_admin_power_d14: 0.85\n    fpr_single: 0.042\n    fpr_cumulative_3: 0.048\n    simulation_n_per_admin: 200\n    simulation_n_items: 500\n    simulation_n_reps: 1000\n  result_rationale: 'Median 档下 cumulative Bayesian DIF 的 power improvement 从 0.38→0.71（d=1.0,\n    4 administrations），符合 Sinharay et al. 的理论预测但略低于原文（原文 0.40→0.70 at 3 administrations，我们在\n    4 administrations 才达到 0.71）。差距因为 LLM benchmark 的 non-stationarity——successive\n    administrations 间 DIF pattern 不完全 stable（model ecosystem evolves），violating Bayesian\n    prior 的 stationarity assumption。 FPR 从 0.042 到 0.048 的轻微 inflation 是 informative\n    prior 带来的 false alarm cost。整体结论：simulation-only result，对 real-world benchmark\n    monitoring 有 suggestive value 但未在真实数据上验证。降级为 appendix。\n\n    '\n  tables:\n  - name: 'Table: Cumulative Bayesian DIF Power by Administration'\n    columns:\n    - n_admins\n    - power_d10\n    - power_d14\n    - fpr\n    rows:\n    - - 1\n      - 0.38\n      - 0.68\n      - 0.042\n    - - 2\n      - 0.52\n      - 0.78\n      - 0.044\n    - - 3\n      - 0.64\n      - 0.85\n      - 0.046\n    - - 4\n      - 0.71\n      - 0.89\n      - 0.048\n  figures_description:\n  - 'Fig: Power accumulation curve — d=1.0 and d=1.4, showing diminishing returns\n    after 3 administrations'\n  analysis: 'Simulation-only, underdeveloped for main body。核心 insight（evidence accumulation\n    improves detection of medium effects）是 textbook result，novelty 仅在 LLM benchmark\n    场景化。Median 档 reviewers 会 flag \"this is just running Sinharay''s method on simulated\n    data\"。降级为 appendix discussion。\n\n    '\n- name: graceful_degradation_analysis\n  plan_id: plan_008\n  description: '分析 benchmark validity 在 progressive item replacement 下的 degradation：\n    5%, 10%, 20%, 50% items replaced，评估 ranking stability, reliability, construct\n    coverage。\n\n    '\n  expected_results:\n    rho_at_5pct_replacement: 0.999\n    rho_at_10pct_replacement: 0.998\n    rho_at_20pct_replacement: 0.995\n    rho_at_50pct_replacement: 0.983\n    reliability_alpha_original: 0.946\n    reliability_alpha_at_20pct: 0.938\n    reliability_alpha_at_50pct: 0.912\n    construct_coverage_original: 57\n    construct_coverage_at_50pct: 57\n    n_subjects_losing_items_at_50pct: 12\n    min_items_per_subject_at_50pct: 31\n    theoretical_lower_bound_rho: ρ ≥ 1 - 2r/(1+r) where r = replacement rate\n  result_rationale: 'Median 档下 MMLU 的极高 measurement redundancy（12,508 items across\n    57 subjects） 使得即使 50% replacement 也仅将 ρ 降至 0.983。这是因为 MMLU 的 per-subject item\n    pools 足够大（median 200+ items），random replacement 均匀分布在 subjects 间， 每个 subject 保留足够\n    items 维持 reliable estimation。Reliability α 从 0.946 降至 0.912（50%）仍在 acceptable\n    range。Construct coverage 不受影响因为 replacement 是 within-subject。关键 caveat：这假设 replacement\n    items 的 psychometric properties 与 original 相近——plan_006 显示这不成立（ρ=0.65），实际 degradation\n    会更严重。\n\n    '\n  tables:\n  - name: 'Table: Validity Metrics Under Progressive Replacement'\n    columns:\n    - replacement_rate\n    - ranking_rho\n    - cronbach_alpha\n    - min_items_per_subject\n    rows:\n    - - 0%\n      - 1.0\n      - 0.946\n      - 63\n    - - 5%\n      - 0.999\n      - 0.944\n      - 60\n    - - 10%\n      - 0.998\n      - 0.941\n      - 57\n    - - 20%\n      - 0.995\n      - 0.938\n      - 50\n    - - 50%\n      - 0.983\n      - 0.912\n      - 31\n  figures_description:\n  - 'Fig: Degradation curves — ρ and α as function of replacement rate, with theoretical\n    lower bound'\n  analysis: '结果实际上强化了 Claim 4 的 redundancy narrative：MMLU 的 ranking stability 对 item\n    removal/replacement 极其鲁棒。但 median 档下这个结果是 double-edged—— 如果 removing 31% DIF items\n    doesn''t matter（ρ=0.997），reviewer 会问 \"so what''s the practical impact of your\n    finding?\" 需要 reframe 为 diagnostic value 而非 quality concern。降级为 supplementary evidence\n    for Claim 4.1 redundancy。\n\n    '\n- name: item_focused_trees\n  plan_id: plan_009\n  description: '实现 Item-Focused Trees (Tutz & Berger, 2016) 作为 categorical cohort\n    DIF 的 替代方案，将 model release date 作为 continuous covariate。\n\n    '\n  expected_results:\n    n_items_analyzed: 12508\n    ift_flagged_items: 4150\n    ift_flag_rate: 0.332\n    ift_dif_mh_jaccard: 0.72\n    ift_dif_mh_concordance: 0.85\n    ift_unique_flags: 890\n    mh_unique_flags: 658\n    ift_split_point_median_date: 2023-09\n    ift_nonlinear_items: 1230\n    ift_nonlinear_pct: 0.098\n    computation_time_hours: 12\n  result_rationale: 'Median 档下 IFT 的 flag rate（33.2%）略高于 MH（31.3%），因为 continuous covariate\n    模型捕捉了 MH 的 binary split 遗漏的 nonlinear trends（9.8% items 显示 non-monotonic DIF pattern）。Jaccard=0.72\n    的 moderate overlap 表明两种方法 largely agree 但 IFT 的 continuous modeling 额外捕捉了 gradual\n    drift items。IFT split point median 在 2023-09 附近，接近 MH 使用的 temporal cutoff，增加了\n    MH cohort definition 的 合理性。Median 档下 IFT 的价值是 robustness check 而非 primary method——\n    \"MH results are robust to categorical vs continuous covariate modeling\"。\n\n    '\n  tables:\n  - name: 'Table: IFT vs MH-DIF Comparison'\n    columns:\n    - metric\n    - MH_DIF\n    - IFT\n    - overlap\n    rows:\n    - - flag_rate\n      - 31.3%\n      - 33.2%\n      - Jaccard=0.72\n    - - n_flagged\n      - 3918\n      - 4150\n      - concordance=0.85\n    - - nonlinear_items\n      - N/A\n      - 1230\n      - 9.8% of total\n    - - computation_time\n      - 2h\n      - 12h\n      - —\n  figures_description:\n  - 'Fig: IFT tree visualization for 3 example items — showing split points and DIF\n    magnitude per branch'\n  analysis: 'IFT 确认 MH 结果的 robustness 并提供了 continuous DIF trend 的 additional insight。\n    9.8% nonlinear items 是 interesting finding 但不影响 main claims。降级为 appendix robustness\n    check——\"results hold whether we use categorical (MH) or continuous (IFT) covariate\n    modeling\"。\n\n    '\n- name: architecture_stratified_dif\n  plan_id: plan_010\n  description: '在 architecture-homogeneous subpopulation (decoder-only only) 上运行 DIF，\n    测试 IRT model fit 是否改善、spurious DIF 是否减少。\n\n    '\n  expected_results:\n    n_decoder_only: 5226\n    n_non_decoder: 1\n    decoder_only_pct: 99.98\n    dif_c_pct_decoder_only: 31.3\n    dif_c_pct_full: 31.3\n    jaccard_decoder_vs_full: 1.0\n    irt_rmsea_decoder: 0.042\n    irt_rmsea_full: 0.042\n    irt_cfi_decoder: 0.78\n    irt_cfi_full: 0.78\n    pct_models_lz_gt2_decoder: 97.8\n    pct_models_lz_gt2_full: 98.0\n    conclusion: architecture heterogeneity is a non-issue\n  result_rationale: 'Median 档下这是最 clear-cut 的实验：METABENCH MMLU 中 99.98% (5226/5227)\n    模型是 decoder-only，排除 1 个 non-decoder 模型完全不改变任何结果（Jaccard=1.0）。 IRT fit 同样不变，因为\n    misfit (|Lz|>2 for 98%) 源于 MMLU 的 inherent multidimensionality（57 subjects → 多维\n    ability），而非 architecture heterogeneity。 这是 proactive defense 实验：reviewer 无法质疑\n    \"architecture confound inflates DIF\" 因为 population 几乎完全 homogeneous。Zero GPU cost,\n    纯 data subsetting。\n\n    '\n  tables:\n  - name: 'Table: Architecture Stratification Results'\n    columns:\n    - population\n    - n_models\n    - c_pct\n    - irt_rmsea\n    - pct_lz_gt2\n    rows:\n    - - Full\n      - 5227\n      - 31.3\n      - 0.042\n      - 98.0\n    - - Decoder-only\n      - 5226\n      - 31.3\n      - 0.042\n      - 97.8\n    - - Delta\n      - -1\n      - 0.0\n      - 0.0\n      - -0.2\n  figures_description:\n  - 'Fig: Architecture composition pie chart — 99.98% decoder-only (appendix only)'\n  analysis: 'Architecture stratification 是 one-line result: \"METABENCH MMLU is 99.98%\n    decoder-only; excluding the single non-decoder model changes nothing (Jaccard=1.0).\"\n    Main body 一句话 + footnote，不需要 dedicated section。\n\n    '\n- name: semi_synthetic_contamination_validation\n  plan_id: plan_011\n  description: '向 METABENCH response matrix 注入已知 contamination，测量 DIF 在 controlled\n    ground truth 下的 detection power，解决 ground truth circularity concern。\n\n    '\n  expected_results:\n    n_clean_items_selected: 500\n    n_injection_items: 150\n    temporal_external_tpr_p0: 0.33\n    temporal_external_tpr_p03: 0.52\n    temporal_external_tpr_p05: 0.74\n    temporal_external_tpr_p07: 0.93\n    temporal_external_tpr_p10: 1.0\n    temporal_external_fpr: 0.318\n    temporal_external_delta_tpr_p05: 0.41\n    temporal_external_delta_tpr_p10: 0.67\n    ability_external_tpr_p10: 0.77\n    ability_external_fpr: 0.49\n    standard_mh_fpr_inflation_at_p10: 0.30→0.59\n    matching_variable_contamination: true\n    dose_response_monotonic: true\n  result_rationale: 'Median 档下 ΔTPR(p=0.5)=0.41 落在 key indicator range [0.35, 0.50]\n    内。 这比 registry 实际值 (ΔTPR(p=0.5)=0.508) 低约 0.1，因为 median 档假设 temporal label 携带的弱结构性（permutation\n    null 2–8%）吃掉了一部分 detection headroom。FPR=0.318 反映 temporal cohort 的 baseline instability（即使\n    clean items 中有 ~31.8% 被 flag，因为 \"clean\" is defined by Li et al. labels which don''t\n    capture differential effects）。Dose-response 从 p=0.3 到 p=1.0 单调增长确认了 injection\n    validity。Standard MH 的 FPR inflation（0.30→0.59 at p=1.0）确认了 matching variable\n    contamination——within-group matching variable 被 injection 污染导致 FPR 膨胀，这是 cross-subject\n    matching 的动机。\n\n    '\n  tables:\n  - name: 'Table: Semi-Synthetic Detection Power (Temporal, External Matching)'\n    columns:\n    - exploitation_rate_p\n    - tpr\n    - fpr\n    - delta_tpr\n    rows:\n    - - 0.0 (baseline)\n      - 0.33\n      - 0.318\n      - 0.0\n    - - 0.3\n      - 0.52\n      - 0.32\n      - 0.19\n    - - 0.5\n      - 0.74\n      - 0.318\n      - 0.41\n    - - 0.7\n      - 0.93\n      - 0.317\n      - 0.61\n    - - 1.0\n      - 1.0\n      - 0.316\n      - 0.67\n  - name: 'Table: Matching Variable Contamination Effect'\n    columns:\n    - matching_method\n    - fpr_p0\n    - fpr_p10\n    - delta_fpr\n    rows:\n    - - Standard (within-group)\n      - 0.298\n      - 0.59\n      - 0.292\n    - - External (cross-benchmark)\n      - 0.318\n      - 0.316\n      - -0.002\n  figures_description:\n  - 'Fig: Dose-response curve — TPR vs exploitation rate p, with 95% CI bands'\n  - 'Fig: FPR comparison — standard vs external matching as injection increases'\n  analysis: 'ΔTPR(p=0.5)=0.41 是 median 档的核心指标，表明 DIF 在 moderate exploitation rate\n    下有 meaningful detection power but not overwhelming。Reviewer 会追问 \"p=0.5 是否 realistic?\"——需要在\n    paper 中 argue contamination exploitation rates 在文献 中缺乏 empirical estimates，p=0.5\n    是 conservative middle ground。External matching 的 ΔFPR≈0 是 methodological highlight，直接支撑\n    cross-subject matching recommendation。\n\n    '\n- name: multi_benchmark_temporal_dif\n  plan_id: plan_028\n  description: '在 METABENCH 中的 ARC, HellaSwag, WinoGrande, TruthfulQA 上运行 temporal\n    DIF， 验证 cross-benchmark 泛化性。\n\n    '\n  expected_results:\n    mmlu_c_pct: 31.3\n    mmlu_random_c_pct: 0.18\n    winogrande_c_pct: 28.8\n    winogrande_random_c_pct: 0.35\n    truthfulqa_c_pct: 27.4\n    truthfulqa_random_c_pct: 0.4\n    arc_c_pct: 24.5\n    arc_random_c_pct: 0.55\n    gsm8k_c_pct: 18.9\n    gsm8k_random_c_pct: 0.3\n    hellaswag_c_pct: 17.2\n    hellaswag_random_c_pct: 0.3\n    cross_benchmark_range: 17.2–31.3%\n    all_random_below_1pct: true\n    min_enrichment_ratio: 31\n    n_benchmarks: 6\n  result_rationale: 'Median 档下 cross-benchmark C% range 为 17.2–31.3%，落在 key indicator\n    range [15.0, 32.0] 内。排序 MMLU > WinoGrande > TruthfulQA > ARC > GSM8K > HellaSwag\n    反映了各 benchmark 的 structural properties：MMLU（57 subjects, 12K items）和 WinoGrande（commonsense\n    reasoning, 高 memorization vulnerability）C% 最高； HellaSwag（sentence completion,\n    10K items 但 item homogeneity 高）和 GSM8K （math, single domain）C% 最低。所有 random-split\n    controls <1% 确认 temporal signal 在每个 benchmark 上都是 genuine。Median 档下 HellaSwag\n    和 GSM8K 的较低 C% 会被 reviewer 追问——需要解释 domain homogeneity 降低 DIF variance。\n\n    '\n  tables:\n  - name: 'Table: Cross-Benchmark Temporal DIF Summary'\n    columns:\n    - benchmark\n    - n_items\n    - n_ref\n    - n_foc\n    - c_pct\n    - random_c_pct\n    - enrichment_ratio\n    rows:\n    - - MMLU\n      - 12508\n      - 1080\n      - 807\n      - 31.3\n      - 0.18\n      - 174\n    - - WinoGrande\n      - 1267\n      - 1017\n      - 803\n      - 28.8\n      - 0.35\n      - 82\n    - - TruthfulQA\n      - 817\n      - 1080\n      - 807\n      - 27.4\n      - 0.4\n      - 69\n    - - ARC-Challenge\n      - 1172\n      - 1080\n      - 807\n      - 24.5\n      - 0.55\n      - 45\n    - - GSM8K\n      - 1319\n      - 1017\n      - 804\n      - 18.9\n      - 0.3\n      - 63\n    - - HellaSwag\n      - 10042\n      - 1080\n      - 807\n      - 17.2\n      - 0.3\n      - 57\n  figures_description:\n  - 'Fig: Bar chart — C% across 6 benchmarks with random-split control overlay'\n  analysis: '6 个 benchmark 的一致 temporal DIF pattern (17–31%, all >>random) 是 median\n    档下 最强的 generalizability evidence。但 Claim 3 的 cross-benchmark 证据被降级至 appendix（8\n    页限制），main body 仅保留 MMLU 结果 + 一句 \"consistent across 5 additional benchmarks (see\n    Appendix X)\"。\n\n    '\n- name: permutation_null_c_rate\n  plan_id: plan_029\n  description: '1000× permutation test：随机重新分配 2023/2024 temporal labels（保持 N_ref=1080,\n    N_foc=807），每次运行 MH-DIF，建立 C% 的 null distribution。\n\n    '\n  expected_results:\n    n_permutations: 1000\n    null_c_pct_mean: 4.8\n    null_c_pct_median: 4.6\n    null_c_pct_sd: 1.2\n    null_c_pct_95ci:\n    - 2.7\n    - 7.3\n    null_c_pct_99ci:\n    - 1.9\n    - 8.4\n    null_c_pct_max: 9.1\n    observed_c_pct: 31.3\n    z_score_vs_null: 22.1\n    p_value: <1e-50\n    ratio_observed_to_null_mean: 6.5\n    random_split_c_pct: 0.18\n    null_vs_random_split_ratio: 26.7\n  result_rationale: 'Median 档下 permutation null C% mean=4.8% 落在 key indicator range\n    [2.0, 8.0]。 Permutation null 显著高于 random-split control（4.8% vs 0.18%），因为 temporal\n    labels 与 ability 不完全正交：2024 模型平均 stronger（d=-0.17），permutation 打断了 true temporal\n    signal 但保留了 ability distribution 的 marginal structure。 Random-split 在 within-cohort\n    内操作所以 ability 完全 balanced，产生 near-zero C%。Permutation null 的 4.8% 表明 ~5% 的 \"DIF\"\n    可归因于 temporal label 本身 携带的 ability confound structure，但 31.3% 仍为 null 的 6.5× (z=22.1)。\n    Median 档下 reviewer 会追问 \"4.8% null 是否意味着 temporal cohort design 有 systematic bias?\"——需要在\n    paper 中解释这是 expected property of any non-randomized group comparison in observational\n    studies，并引用 plan_027 的 matched-ability analysis (C%=28.9%) 作为 complementary evidence。\n\n    '\n  tables:\n  - name: 'Table: Permutation Null Distribution'\n    columns:\n    - statistic\n    - value\n    rows:\n    - - Null mean C%\n      - 4.8\n    - - Null median C%\n      - 4.6\n    - - Null SD\n      - 1.2\n    - - Null 95% CI\n      - '[2.7, 7.3]'\n    - - Null max\n      - 9.1\n    - - Observed C%\n      - 31.3\n    - - z-score\n      - 22.1\n    - - Observed / Null mean\n      - 6.5×\n  - name: 'Table: Three Baselines Comparison'\n    columns:\n    - baseline\n    - c_pct\n    - interpretation\n    rows:\n    - - Random split (within-cohort)\n      - 0.18\n      - statistical noise floor\n    - - Permutation null (label shuffle)\n      - 4.8\n      - temporal label structure\n    - - Observed temporal DIF\n      - 31.3\n      - genuine + structural\n    - - Matched-ability (plan_027)\n      - 28.9\n      - genuine after ability control\n  figures_description:\n  - 'Fig: Histogram of 1000 permutation null C% values with observed 31.3% marked\n    as vertical line'\n  - 'Fig: Three-baseline comparison bar chart — random (0.18%), permutation (4.8%),\n    observed (31.3%)'\n  analysis: 'Permutation null 是 median 档下 Claim 1 的关键 calibration baseline。31.3% vs\n    4.8% null 给出 \"genuine DIF ≈ 26.5%\" 的 conservative estimate，与 plan_027 的 matched-ability\n    C%=28.9% convergent。Paper 应报告为 \"~25–29% depending on confound controls\"（取 plan_027\n    matched 28.9% 与 observed-null=26.5% 的 range）。 Permutation null 显式报告为 calibration\n    baseline 是对 reviewer \"is 31% above chance?\" 的 definitive answer。\n\n    '\n- name: odds_ratio_regression_transparency\n  plan_id: plan_030\n  description: '补充 pseudo R²=0.0007 的 odds ratio + 95% CI + McFadden/Nagelkerke R²\n    + deviance ratio，并构建更精细的 item-level model。\n\n    '\n  expected_results:\n    model1_domain_delta:\n      mcfadden_r2: 0.0007\n      nagelkerke_r2: 0.0013\n      subject_acc_delta_or_per_010: 1.58\n      subject_acc_delta_ci_per_010:\n      - 1.21\n      - 2.06\n      deviance_ratio: 0.0007\n    model2_domain_delta_plus_items:\n      mcfadden_r2: 0.044\n      nagelkerke_r2: 0.074\n      subject_acc_delta_or_per_010: 0.71\n      ctt_difficulty_or_per_010: 0.76\n      ctt_discrimination_or_per_010: 1.54\n    model3_item_delta:\n      mcfadden_r2: 0.0013\n      nagelkerke_r2: 0.0022\n      item_acc_change_or_per_010: 1.09\n      item_acc_change_ci:\n      - 1.53\n      - 2.99\n    model4_item_delta_plus_items:\n      mcfadden_r2: 0.045\n      nagelkerke_r2: 0.076\n      item_acc_change_or_per_010: 0.91\n      ctt_difficulty_or_per_010: 0.75\n      ctt_discrimination_or_per_010: 1.56\n    simpsons_paradox: true\n    lr_test_m1_vs_m2_chi2: 640.5\n    lr_test_m3_vs_m4_chi2: 648.2\n    best_model_mcfadden: 0.045\n    ability_confound_explained_pp: 4.2\n  result_rationale: 'Median 档下 Simpson''s paradox (Model 2 vs Model 1) 是核心 methodological\n    finding： domain accuracy Δ 的 OR 从 1.58 (Model 1, positive) 翻转为 0.71 (Model 2,\n    negative) after controlling for item properties。这是因为 high-discrimination items\n    (OR=1.54) 同时是 DIF-prone items AND high-accuracy-change items，产生 confound。McFadden\n    R² 即使在 best model (0.045) 下也极低，说明 DIF 的 item-level variance 绝大部分无法由 observed item\n    properties 解释。Median 档下 ability confound explained pp=4.2，落在 [3.0, 6.0] 范围内——高于\n    plan_027 的 2.4pp 因为 regression 捕捉了额外的 item-level confounding pathway。 Reviewer\n    会追问 Simpson''s paradox 的因果解释——需谨慎表述为 \"item difficulty may be a mediator rather\n    than confounder; Model 1 (marginal) and Model 2 (conditional) answer different\n    causal questions\"。\n\n    '\n  tables:\n  - name: 'Table: Logistic Regression Model Comparison'\n    columns:\n    - model\n    - predictors\n    - mcfadden_r2\n    - nagelkerke_r2\n    - aic\n    rows:\n    - - Model 1\n      - subject acc Δ\n      - 0.0007\n      - 0.0013\n      - 15548\n    - - Model 2\n      - subject acc Δ + CTT props\n      - 0.044\n      - 0.074\n      - 14910\n    - - Model 3\n      - item acc Δ\n      - 0.0013\n      - 0.0022\n      - 15539\n    - - Model 4\n      - item acc Δ + CTT props\n      - 0.045\n      - 0.076\n      - 14892\n  - name: 'Table: Simpson''s Paradox in Accuracy Δ Effect'\n    columns:\n    - model\n    - acc_delta_or\n    - direction\n    - interpretation\n    rows:\n    - - Model 1 (marginal)\n      - 1.58\n      - positive\n      - higher acc Δ → more DIF\n    - - Model 2 (conditional)\n      - 0.71\n      - negative\n      - higher acc Δ → LESS DIF after controlling item props\n  figures_description:\n  - 'Fig: Simpson''s paradox visualization — marginal vs conditional effect of accuracy\n    Δ on DIF probability'\n  analysis: Simpson's paradox 需要在 paper 中小心处理。Model 1 的 marginal positive effect 支持\n    \"capability gain causes DIF\" 的 naive interpretation，但 Model 2 的 conditional negative\n    effect 表明 item properties (especially discrimination) 是 confound。 Median 档下建议\n    Model 1 as primary (conservative, 不做因果 claim)，Model 2 as supplementary (illustrating\n    confound structure)。总 explained variance <5% (McFadden R²=0.045) 意味着 95%+ 的 DIF\n    variance 是 item-specific 且无法归因于 observed covariates——这实际上强化了 \"DIF captures genuine\n    item-level differential functioning, not a proxy for aggregate trends\" 的 narrative。\n",
+                "numLines": 1180,
+                "startLine": 1,
+                "totalLines": 1180
+              }
+            },
+            "sourceToolAssistantUUID": "1aaeaba9-4e3e-43f2-a359-9efff8d2f7fb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[DREAM Review Director] dream_id=20260521T122440 | review_mode=simple | review_visible=True PDF: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_report…",
+                "leafUuid": "3162777d-9bba-43f7-a8b5-43922fb7c86d",
+                "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e"
+              }
+            }
+          ],
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review IRT equated benchmark paper",
+                "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e"
+              }
+            }
+          ],
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T13:13:32.119Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the PDF in chunks to review the paper.",
+              "signature": "EvcBCmMIDRgCKkCayeY+7NTl3jTL8oEzM7Y5F/R6sh1jRPT1jZPmSIicXtKTnpQp6ucqwA4geRKojzliwDB5iHdc7a+hyvcGDNfHMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDBHEZ1E1zvSszaVTixoMnzZZInqYnwH32lVPIjD4GpyhxMdZp++ncyOXVvOR1rx6tKreRYJSZcAXQA2rcFckoVZhRNa5qpIO9kNHNE4qQoqQXr4cjDPqdwiHVFPA956Chv620NdJUcGH55N+yarYX/+wTbs+scyLBcVvd1xm5vVsXl58nIljdtDzRLI6jwz3LRgB"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3162777d-9bba-43f7-a8b5-43922fb7c86d",
+            "isSidechain": false,
+            "requestId": "req_011CbFmoqyzejJ8P8sTMRGvM",
+            "type": "assistant",
+            "uuid": "35d9e289-b971-4004-abeb-950a6ad80376",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013E4riemruXMaHdPsoh5AxS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 19461,
+                "cache_read_input_tokens": 24174,
+                "output_tokens": 286,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 19461,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 286,
+                    "cache_read_input_tokens": 24174,
+                    "cache_creation_input_tokens": 19461,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 19461
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T13:13:32.690Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the full PDF in chunks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "35d9e289-b971-4004-abeb-950a6ad80376",
+            "isSidechain": false,
+            "requestId": "req_011CbFmoqyzejJ8P8sTMRGvM",
+            "type": "assistant",
+            "uuid": "b41f2b6e-f323-49f4-ae9a-966087c995b5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013E4riemruXMaHdPsoh5AxS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 19461,
+                "cache_read_input_tokens": 24174,
+                "output_tokens": 286,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 19461,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 286,
+                    "cache_read_input_tokens": 24174,
+                    "cache_creation_input_tokens": 19461,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 19461
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T13:13:35.921Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0111jedmGuSe1mL42Wjxq1nV",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T122440/median/review_input_e90a5c14.pdf",
+                "pages": "1-5"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b41f2b6e-f323-49f4-ae9a-966087c995b5",
+            "isSidechain": false,
+            "requestId": "req_011CbFmoqyzejJ8P8sTMRGvM",
+            "type": "assistant",
+            "uuid": "96877efd-6b01-4548-95b2-e7982b0653d0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013E4riemruXMaHdPsoh5AxS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 19461,
+                "cache_read_input_tokens": 24174,
+                "output_tokens": 286,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 19461,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 286,
+                    "cache_read_input_tokens": 24174,
+                    "cache_creation_input_tokens": 19461,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 19461
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T13:13:36.523Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KgxBuvRPvCsB8et42eJyJR",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T122440/median/review_input_e90a5c14.pdf",
+                "pages": "6-11"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "96877efd-6b01-4548-95b2-e7982b0653d0",
+            "isSidechain": false,
+            "requestId": "req_011CbFmoqyzejJ8P8sTMRGvM",
+            "type": "assistant",
+            "uuid": "6c4c0af6-bb7c-4348-91b7-ca89710db91c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013E4riemruXMaHdPsoh5AxS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 19461,
+                "cache_read_input_tokens": 24174,
+                "output_tokens": 286,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 19461,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 286,
+                    "cache_read_input_tokens": 24174,
+                    "cache_creation_input_tokens": 19461,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 19461
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T13:13:36.938Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0111jedmGuSe1mL42Wjxq1nV",
+              "type": "tool_result",
+              "content": "PDF pages extracted: 5 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T122440/median/review_input_e90a5c14.pdf (166KB)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "96877efd-6b01-4548-95b2-e7982b0653d0",
+            "isSidechain": false,
+            "promptId": "574ea9fb-2433-4f53-83c6-6ff0f801abc3",
+            "type": "user",
+            "uuid": "8adb27d4-03c9-4572-bf84-d7ca2a0647af",
+            "toolUseResult": {
+              "type": "parts",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T122440/median/review_input_e90a5c14.pdf",
+                "originalSize": 170001,
+                "outputDir": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen/48af77a8-24b1-406c-8f2b-6ae7c5af4a8e/tool-results/pdf-4202d9e6-8ad0-4577-a179-4d768fb7bec4",
+                "count": 5
+              }
+            },
+            "sourceToolAssistantUUID": "96877efd-6b01-4548-95b2-e7982b0653d0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 17
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T13:13:36.918Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/jpeg",
+                "data": "[ATTACHMENT_DATA_REDACTED]"
+              }
+            },
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/jpeg",
+                "data": "[ATTACHMENT_DATA_REDACTED]"
+              }
+            },
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/jpeg",
+                "data": "[ATTACHMENT_DATA_REDACTED]"
+              }
+            },
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/jpeg",
+                "data": "[ATTACHMENT_DATA_REDACTED]"
+              }
+            },
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/jpeg",
+                "data": "[ATTACHMENT_DATA_REDACTED]"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8adb27d4-03c9-4572-bf84-d7ca2a0647af",
+            "isSidechain": false,
+            "promptId": "574ea9fb-2433-4f53-83c6-6ff0f801abc3",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "470acca2-0dc3-4032-9565-d86c88e6b99f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[DREAM Review Director] dream_id=20260521T122440 | review_mode=simple | review_visible=True PDF: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_report…",
+                "leafUuid": "8adb27d4-03c9-4572-bf84-d7ca2a0647af",
+                "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e"
+              }
+            }
+          ],
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review IRT equated benchmark paper",
+                "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e"
+              }
+            }
+          ],
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T13:13:37.473Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KgxBuvRPvCsB8et42eJyJR",
+              "type": "tool_result",
+              "content": "PDF pages extracted: 6 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T122440/median/review_input_e90a5c14.pdf (166KB)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6c4c0af6-bb7c-4348-91b7-ca89710db91c",
+            "isSidechain": false,
+            "promptId": "574ea9fb-2433-4f53-83c6-6ff0f801abc3",
+            "type": "user",
+            "uuid": "b71d2fe9-96d1-48d0-9376-313383c81f0f",
+            "toolUseResult": {
+              "type": "parts",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T122440/median/review_input_e90a5c14.pdf",
+                "originalSize": 170001,
+                "outputDir": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0520-2-projects-irt-equated-bench-regen/48af77a8-24b1-406c-8f2b-6ae7c5af4a8e/tool-results/pdf-79d5631f-2e65-4bb2-95b5-452902d4babc",
+                "count": 6
+              }
+            },
+            "sourceToolAssistantUUID": "6c4c0af6-bb7c-4348-91b7-ca89710db91c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 4
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T13:13:37.466Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/jpeg",
+                "data": "[ATTACHMENT_DATA_REDACTED]"
+              }
+            },
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/jpeg",
+                "data": "[ATTACHMENT_DATA_REDACTED]"
+              }
+            },
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/jpeg",
+                "data": "[ATTACHMENT_DATA_REDACTED]"
+              }
+            },
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/jpeg",
+                "data": "[ATTACHMENT_DATA_REDACTED]"
+              }
+            },
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/jpeg",
+                "data": "[ATTACHMENT_DATA_REDACTED]"
+              }
+            },
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/jpeg",
+                "data": "[ATTACHMENT_DATA_REDACTED]"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b71d2fe9-96d1-48d0-9376-313383c81f0f",
+            "isSidechain": false,
+            "promptId": "574ea9fb-2433-4f53-83c6-6ff0f801abc3",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "bbef6dda-64f8-48a3-8570-f689afcdc447",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[DREAM Review Director] dream_id=20260521T122440 | review_mode=simple | review_visible=True PDF: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_report…",
+                "leafUuid": "b71d2fe9-96d1-48d0-9376-313383c81f0f",
+                "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e"
+              }
+            }
+          ],
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review IRT equated benchmark paper",
+                "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e"
+              }
+            }
+          ],
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T13:13:42.661Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have read the full paper and the review context. Let me now compose a thorough review and submit it. Let me first load the submit tool schema.",
+              "signature": "EtoCCmMIDRgCKkATWdzbOeLvN0fZAG5Rq+pcFM8Ic0MsIX8VV7yLb8werWKBHW8yZ7q0DQuBEwA8JWLlMQgAJghGYIy9xLaBBwV8Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDN0eJv72cGYIrH7/aRoMB8lkIbdDRrcEMAlCIjDqiOvQIjTOjQzrNlZ4lSCBtIYPO2efoleQLCdbs55zf0BeSkULgDotx2SiPgpkN9QqpAFQcERdt6BuXvfqnEXpOJqoY7AVatObOcQEhqVn6PKbHl8/hkuD2mcGi7Nd6KKgIxPtRMAwgvsUQoxhe05nuCFMAozFMetCrxEBrxI1YZZ+nNYZDYv4E1ZacvafD2hYLimx9hRM+8T0o6sTE6othYun0WoYBtlaCAk2ZqiB9DY1nuH8HQozYgTd3bkdT7UXc87tZJUncKJ+QPEplUohqcPulHsOchgB"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bbef6dda-64f8-48a3-8570-f689afcdc447",
+            "isSidechain": false,
+            "requestId": "req_011CbFmpStTkwZiE8wspyW4S",
+            "type": "assistant",
+            "uuid": "c78443c9-48ec-414e-b225-d390fedd0bcb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FnUywPUPkE43SVtXERnVJG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14395,
+                "cache_read_input_tokens": 43635,
+                "output_tokens": 158,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 14395,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 158,
+                    "cache_read_input_tokens": 43635,
+                    "cache_creation_input_tokens": 14395,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 14395
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T13:13:43.757Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I've read the full paper (11 pages) and the experiment design context. Let me load the submission tool and compose the review."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c78443c9-48ec-414e-b225-d390fedd0bcb",
+            "isSidechain": false,
+            "requestId": "req_011CbFmpStTkwZiE8wspyW4S",
+            "type": "assistant",
+            "uuid": "1214eb2f-c769-4262-bd5e-7a8e63050086",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FnUywPUPkE43SVtXERnVJG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14395,
+                "cache_read_input_tokens": 43635,
+                "output_tokens": 158,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 14395,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 158,
+                    "cache_read_input_tokens": 43635,
+                    "cache_creation_input_tokens": 14395,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 14395
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T13:13:44.304Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012gnBMiZPBEooDBPEBwXWUf",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:submit_dream_review_report",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1214eb2f-c769-4262-bd5e-7a8e63050086",
+            "isSidechain": false,
+            "requestId": "req_011CbFmpStTkwZiE8wspyW4S",
+            "type": "assistant",
+            "uuid": "bd42c0a9-e152-47e4-bd3f-4a5ca3267ced",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FnUywPUPkE43SVtXERnVJG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14395,
+                "cache_read_input_tokens": 43635,
+                "output_tokens": 158,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 14395,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 158,
+                    "cache_read_input_tokens": 43635,
+                    "cache_creation_input_tokens": 14395,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 14395
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T13:13:44.320Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_012gnBMiZPBEooDBPEBwXWUf",
+              "content": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bd42c0a9-e152-47e4-bd3f-4a5ca3267ced",
+            "isSidechain": false,
+            "promptId": "574ea9fb-2433-4f53-83c6-6ff0f801abc3",
+            "type": "user",
+            "uuid": "04fa6528-683b-4c58-9c5e-d0e8a6bf4faf",
+            "toolUseResult": {
+              "matches": [],
+              "query": "select:submit_dream_review_report",
+              "total_deferred_tools": 23
+            },
+            "sourceToolAssistantUUID": "bd42c0a9-e152-47e4-bd3f-4a5ca3267ced",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T13:13:52.602Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GgYkBGecJ6ssXv6zDofCsB",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__submit_dream_review_report",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "04fa6528-683b-4c58-9c5e-d0e8a6bf4faf",
+            "isSidechain": false,
+            "requestId": "req_011CbFmpx8cNUPUKFKA9d3kJ",
+            "type": "assistant",
+            "uuid": "3761c8d8-91c8-4c30-8401-cda97dd6dbd2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GNcyYGpJixD6pv4SKee4fj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 177,
+                "cache_read_input_tokens": 58030,
+                "output_tokens": 89,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 177,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 89,
+                    "cache_read_input_tokens": 58030,
+                    "cache_creation_input_tokens": 177,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 177
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T13:13:52.615Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01GgYkBGecJ6ssXv6zDofCsB",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__submit_dream_review_report"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3761c8d8-91c8-4c30-8401-cda97dd6dbd2",
+            "isSidechain": false,
+            "promptId": "574ea9fb-2433-4f53-83c6-6ff0f801abc3",
+            "type": "user",
+            "uuid": "33c20f99-6bc9-45fb-ac07-f30c94a1b63e",
+            "toolUseResult": {
+              "matches": [
+                "mcp__agent-ml-research__submit_dream_review_report"
+              ],
+              "query": "select:mcp__agent-ml-research__submit_dream_review_report",
+              "total_deferred_tools": 23
+            },
+            "sourceToolAssistantUUID": "3761c8d8-91c8-4c30-8401-cda97dd6dbd2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T13:13:55.969Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll compose and submit the review."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "33c20f99-6bc9-45fb-ac07-f30c94a1b63e",
+            "isSidechain": false,
+            "requestId": "req_011CbFmqZoDsZ4WBqh8i9tpi",
+            "type": "assistant",
+            "uuid": "7bb0e5cb-f47d-4a6f-a5a6-b5867447a584",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LTpVy2UFr9rzsXXYhxJjxr",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 713,
+                "cache_read_input_tokens": 58207,
+                "output_tokens": 4557,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 713,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 4557,
+                    "cache_read_input_tokens": 58207,
+                    "cache_creation_input_tokens": 713,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 713
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T13:15:50.868Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018m7b9Z8yc1KtPCgC8sfHEH",
+              "name": "mcp__agent-ml-research__submit_dream_review_report",
+              "input": {
+                "report": "# Dream Review Report — Psychometric DIF Analysis Reveals 25–29% Temporal Item Instability in MMLU\n\n**Venue calibration:** EMNLP 2026 (ARR), Long paper, 8-page limit\n\n---\n\n## Overall Assessment: 3.0 (Findings-level)\n\n**Soundness:** 3.5 / 5\n**Excitement:** 2.5 / 5\n**Reproducibility:** 4.0 / 5\n\n---\n\n## Summary\n\nThe paper applies Mantel–Haenszel Differential Item Functioning (MH-DIF) analysis to the METABENCH MMLU response matrix (5,227 models × 12,508 items), finding that 25–29% of items exhibit large DIF (ETS Category C) between 2023 and 2024 model cohorts. The authors argue this instability is item-specific (domain improvement explains ≤7.6% of variance), does not threaten ranking validity (ρ≈0.997), and is invisible to web-overlap-based contamination detectors (enrichment≈1.0). They propose a semi-synthetic validation framework with cross-subject matching (ΔFPR=0.000) and release a DIF audit protocol for benchmark maintainers. Appendices cover cross-benchmark generalization (6 benchmarks), GSM1K ground truth correlation, RL robustness, alternative detectors (ConStat, DVD), ensemble fusion (negative result), bifactor IRT equating (negative result), item generation calibration, and cumulative Bayesian DIF.\n\n---\n\n## Strengths\n\n### S1: Well-chosen methodology with rigorous calibration\nThe MH-DIF procedure is the gold standard in educational measurement for detecting differential item functioning, and applying it at this scale (5,227 × 12,508) to LLM benchmarks is genuinely novel in the NLP community. The three-baseline calibration design (random split 0.21%, permutation null 4.8%, observed 31.3%) is methodologically clean and provides convincing evidence that the temporal DIF signal is not statistical noise. The permutation null quantifying the structural signal from temporal labels (d=−0.17 ability gap) is a particularly thoughtful control.\n\n### S2: Honest and well-framed negative results\nThe paper is commendably transparent about what DIF does *not* do: it does not detect contamination (enrichment≈1.0 with web-overlap labels), the bifactor IRT equating fails (CFI=0.87, TLI=0.85), the ensemble fusion is a negative result, and within-family controls are confounded by capability gaps (d≈−0.99). Framing DIF as \"diagnostic lens, not quality filter\" is the right move and avoids overclaiming.\n\n### S3: Practical audit protocol\nSection 4.6's DIF audit protocol — specifying monitoring frequency, decision rules (ETS C + permutation null), response options (retain/supplement/investigate), and matching variable recommendations — is concrete and immediately actionable for benchmark maintainers. This practical contribution differentiates the paper from purely analytical work.\n\n### S4: Cross-subject matching innovation\nThe identification of matching variable contamination in within-subject MH-DIF (FPR inflation from 0.298 to 0.59 at p=1.0) and the cross-subject matching solution (ΔFPR=−0.002≈0) is a genuine methodological contribution applicable to any future DIF analysis on multi-domain benchmarks.\n\n### S5: Comprehensive appendices\nThe paper covers an impressive breadth of experiments — 6 benchmarks, IFT robustness, architecture stratification, ConStat/DVD comparison, ensemble fusion, bifactor IRT, item generation, cumulative Bayesian DIF — providing thorough coverage of the experimental space.\n\n---\n\n## Weaknesses\n\n### W1 (Major): The \"so what\" problem — instability without consequence\nThe paper's central finding is that 25–29% of MMLU items are functionally unstable, but simultaneously demonstrates that removing *all* DIF-flagged items preserves ρ≈0.997 ranking correlation. This creates a fundamental tension: if the instability doesn't affect rankings, what is the practical problem being diagnosed? The \"diagnostic lens\" framing partially addresses this, but the paper never convincingly demonstrates a concrete downstream consequence of the instability it detects. The difficulty×direction interaction (§4.5, hardest-decile 88.7% focal-favoring, easiest-decile 96.2% reference-favoring) is interesting but underdeveloped — it reads as an observation, not a demonstrated harm.\n\n**Suggestion:** Strengthen with a concrete case study showing how DIF patterns reveal a *specific, actionable* insight about capability shifts (e.g., which subjects' items shift most and what this means for benchmark interpretation), rather than stopping at aggregate statistics.\n\n### W2 (Major): Novelty concerns — applying textbook psychometrics\nThe core method (MH-DIF with ETS delta classification) dates to Holland & Thayer (1988). The paper's novelty claim is \"largest DIF analysis on an LLM benchmark,\" which is a scale argument, not a methodological one. The cross-subject matching contribution (§3.2) is the most novel methodological element, but it occupies only one paragraph in the main text. Reviewers familiar with psychometrics may view this as a competent application of existing tools rather than a methodological advance.\n\n**Suggestion:** Elevate the cross-subject matching finding — it addresses a problem (conditioning variable contamination) that is specific to the LLM benchmark setting and not present in standard educational testing where the matching variable is examinee ability.\n\n### W3 (Major): GSM1K negative correlation undermines the narrative\nThe GSM1K correlation analysis (r=−0.478, opposite to the contamination hypothesis) is buried in Appendix A.2 but represents a significant challenge to interpreting DIF in the contamination context. The paper's explanation — \"DIF flags items whose functioning changed, which may include items where 2024 models genuinely improved\" — is reasonable but essentially concedes that DIF cannot distinguish contamination from genuine capability improvement. This is a fundamental limitation that should be more prominently addressed rather than relegated to an appendix paragraph.\n\n### W4 (Moderate): Low explained variance raises interpretability concerns\nThe logistic regression analysis (Table 3) shows McFadden R² = 0.045 even for the best model, meaning >95% of DIF variance is unexplained by observed item properties. While the paper frames this positively (\"item-specific, not aggregate\"), it also means the paper cannot offer a substantive explanation of *why* specific items exhibit DIF. The Simpson's paradox finding (§4.2) is interesting but the causal interpretation is deliberately left ambiguous (\"we report both models without privileging a causal interpretation\"), which weakens the analytical contribution.\n\n### W5 (Moderate): Semi-synthetic validation has ecological validity concerns\nThe injection mechanism (flipping incorrect→correct responses) is acknowledged as a simplification in Limitations, but the concern goes deeper: real contamination manifests through partial memorization, reasoning shortcuts, and training data curation — all of which produce different DIF signatures than uniform response flipping. The ΔTPR=0.41 at p=0.5 is thus a measure of sensitivity to a specific, simplified contamination model, and its relevance to real-world contamination detection is unclear. Additionally, the paper never empirically grounds what a realistic exploitation rate p might be.\n\n### W6 (Minor): IRT model misfit is severe but underplayed\n98% of models showing |Lz|>2 under unidimensional IRT means the foundational psychometric model is essentially misspecified for this population. MH-DIF is robust to moderate misfit, but at this level (98% misfit), the theoretical guarantees are strained. The Limitations section mentions this briefly but does not discuss what impact this level of misfit could have on MH-DIF's Type I error rate or effect size estimates.\n\n### W7 (Minor): Within-family controls are acknowledged as confounded but still reported prominently\nLlama-2 vs. Llama-3 (C%=58.7%) and Mistral vs. Mixtral (C%=36.2%) comparisons confound temporal DIF with capability gaps (d≈−0.99), as the paper acknowledges. But they still appear in §4.2 of the main text, potentially misleading readers who don't carefully parse the caveat. These should either be explicitly labeled as \"inconclusive due to confounding\" or moved to an appendix.\n\n---\n\n## Experiment Coverage Assessment\n\nComparing against the experiment design context:\n\n| Experiment | Covered in paper? | Placement | Adequate? |\n|---|---|---|---|\n| real_data_dif_mmlu (plan_001) | Yes | §4.1 main body | Yes — core result |\n| rl_robustness (plan_002) | Yes | §5 Limitations + App B.1 | Adequate — correctly scoped |\n| constat_perturbation (plan_003a) | Yes | App C.1 | Adequate |\n| dvd_generation_variance (plan_003b) | Yes | App C.2 | Adequate |\n| ensemble_fusion (plan_003c) | Yes | App C.3 | Adequate — honest negative result |\n| cross_benchmark_gsm8k (plan_004) | Yes | App A.2 | Adequate but GSM1K negative direction underplayed |\n| bifactor_irt_equating (plan_005) | Yes | App D.1 | Adequate — honest negative result |\n| item_generation (plan_006) | Yes | App D.2 | Adequate |\n| cumulative_bayesian_dif (plan_007) | Yes | App D.3 | Adequate — simulation-only caveat clear |\n| graceful_degradation (plan_008) | Yes | §4.5 + Table 5 | Yes |\n| item_focused_trees (plan_009) | Yes | App B.2 | Adequate |\n| architecture_stratification (plan_010) | Yes | §4.2 + App B.3 | Yes |\n| semi_synthetic (plan_011) | Yes | §4.4 + Table 4 | Yes |\n| multi_benchmark (plan_028) | Yes | App A.1 + Table 6 | Adequate |\n| permutation_null (plan_029) | Yes | §4.1 + Table 2 | Yes — well integrated |\n| odds_ratio_regression (plan_030) | Yes | §4.2 + Table 3 | Yes — Simpson's paradox reported |\n\n**Coverage verdict:** All 16 imagined experiments are represented. Main body prioritization is reasonable (plans 001, 011, 008, 010, 029, 030 in main text; rest in appendices). The paper makes appropriate choices about what to relegate to appendices given the 8-page limit.\n\n---\n\n## Detailed Comments\n\n1. **Abstract:** \"psychometric audit protocol\" is the right lead — this is the most practically valuable contribution. However, \"pseudo R²=0.0007\" in the abstract is oddly specific and may confuse readers unfamiliar with McFadden R².\n\n2. **§1 Intro, \"Instability ≠ invalidity\" subsection:** This is well-written and sets expectations correctly. The ≤7.6% explained variance claim appears in Contribution 1 but references Table 3's Nagelkerke R² (0.076) — clarify which R² metric maps to the 7.6% in the text.\n\n3. **§3.1:** The ETS delta classification system (A/B/C) is clearly explained. Good.\n\n4. **§3.3:** Permutation null is well-motivated but the section is very brief. Consider noting that this is a conditional permutation test (fixing Nref/Nfoc) to distinguish it from unconditional permutation.\n\n5. **Table 1:** FPRLi column header needs definition in the table caption or at first use — \"fraction of Li et al. web-overlap 'clean' items flagged\" is not immediately obvious.\n\n6. **§4.1, \"Domain specificity\":** The ecological correlation caveat (ρ=0.32 is subject-level, not item-level) is important and well-flagged.\n\n7. **§4.2, Simpson's paradox:** This is the most intellectually interesting finding in the paper but is underexploited. The reversal from OR=1.58 to OR=0.71 after conditioning on CTT properties deserves more analysis — what specifically about high-discrimination items makes them both DIF-prone and high-accuracy-change?\n\n8. **§4.4:** ΔTPR is a clean metric. The cross-subject matching result (ΔFPR=0.000 across 5 subjects) is compelling but would benefit from reporting across more than 5 subjects (of the 57 available).\n\n9. **§4.5, \"DIF as diagnostic, not filter\":** The z-score comparisons (DIF removal z=−8 to −49σ vs. accuracy-gap removal z=−157) effectively demonstrate that DIF items carry genuine signal while being the least disruptive removal strategy. This is the strongest argument for the \"diagnostic lens\" framing.\n\n10. **§5 Limitations:** Appropriately concise (3 points). The RL robustness limitation (N=13, DeLong p=0.34) is honestly reported.\n\n11. **§6 Conclusion:** Clean and appropriately scoped. Does not overclaim.\n\n12. **References:** 16 references is lean for a paper of this scope. Missing some relevant work: Zopf (2018) on DIF in NLP; recent work on temporal stability of LLM benchmarks beyond Recht et al. and Schaeffer et al.\n\n13. **Page count:** Main text appears to be 6 pages + references on page 7 + 4 pages of appendices. Within the 8-page limit for main text (Limitations does not count toward limit). Compliant.\n\n---\n\n## Questions for Authors\n\n1. Given that 98% of models show |Lz|>2, have you investigated whether MH-DIF's Type I error rate is inflated under this level of model misfit? A simulation study comparing MH-DIF performance under well-fitting vs. misspecified IRT models would substantially strengthen the methodological contribution.\n\n2. The permutation null of 4.8% suggests temporal labels carry weak structural signal. Have you considered a propensity-score-matched design (matching on model ability, size, family) as an alternative to the 1:1 nearest-neighbor matching? This could provide tighter confound control.\n\n3. For the cross-subject matching (§3.2), you report ΔFPR=0.000 across 5 subjects. Which 5 subjects were tested? Was this a random sample or selected? Results across all 57 subjects (or at least a stratified sample) would be more convincing.\n\n4. The GSM1K negative correlation (r=−0.478) suggests DIF may flag items where models genuinely improve rather than items that are contaminated. Does this undermine the utility of DIF for benchmark maintenance, or does it actually support the \"diagnostic lens\" framing (detecting capability shifts regardless of cause)?\n\n---\n\n## Minor Issues\n\n- Table 2 caption: \"matched-ability controls for cohort ability differences\" — specify that this is 1:1 nearest-neighbor matching on total score\n- §4.2: \"Architecture homogeneity\" paragraph could be a footnote — the 99.98% decoder-only finding is a one-liner\n- App A.2: Table 7 is labeled \"GSM1K correlation analysis\" but includes Pearson, Spearman, and partial correlations — the partial r controls for accuracy but this isn't stated in the table\n- App D.2: \"GPU cost: 160 hours\" is mentioned but the item generation methodology is unclear — which LLM was used for generation? What quality filter was applied?\n\n---\n\n## Scoring Rationale\n\n**Soundness (3.5):** The methodology is correctly applied and the calibration design is rigorous. The three-baseline comparison is convincing. Deductions for: (a) 98% IRT model misfit with insufficient analysis of its impact on MH-DIF validity; (b) semi-synthetic injection mechanism is a significant simplification; (c) GSM1K negative correlation is underaddressed.\n\n**Excitement (2.5):** The paper is a competent and thorough application of established psychometric methods to a timely problem. However, the core finding (items are unstable but rankings aren't affected) creates a \"so what\" tension. The novelty is primarily in scale and application domain, not in methodology. The cross-subject matching contribution is genuinely novel but underemphasized. The diagnostic lens framing is reasonable but the paper doesn't fully deliver on showing what the diagnostic reveals beyond aggregate statistics.\n\n**Reproducibility (4.0):** METABENCH is publicly available. MH-DIF is a standard procedure. The paper clearly specifies cohort definitions, thresholds, and analysis parameters. The audit protocol is concrete. Minor deductions for: (a) not all analysis code is described in sufficient detail for exact replication; (b) semi-synthetic injection details could be more precise.\n\n**Overall (3.0 — Findings-level):** The paper makes a solid empirical contribution — the first large-scale DIF analysis on an LLM benchmark — with careful methodology and honest reporting of negative results. The cross-subject matching innovation and audit protocol add practical value. However, the limited novelty (applying textbook methods), the \"instability without consequence\" tension, the unexplained 95%+ DIF variance, and the GSM1K negative correlation collectively keep it below the Main conference threshold. The work is well-suited for Findings, where the empirical thoroughness and practical contributions would be valued. To reach Main (4.0), the paper would need: (1) a stronger demonstration of what the diagnostic lens *reveals* beyond aggregate instability rates, (2) more analysis of the IRT misfit impact, and (3) elevation of the cross-subject matching contribution as a primary methodological advance.\n\n---\n\n## Responsible NLP Checklist Notes\n\nThe paper does not include the mandatory Responsible NLP Research Checklist (Sections A–E). For ARR submission, this must be added. The anonymity requirement appears satisfied (no author names, no identifying URLs). No ethical concerns with the analysis (uses publicly available benchmark data).\n",
+                "project": "irt_equated_bench_regen",
+                "tier": "median",
+                "dream_id": "20260521T122440",
+                "overall_score": "3.0 — Findings-level (borderline Findings accept)",
+                "review_visible": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7bb0e5cb-f47d-4a6f-a5a6-b5867447a584",
+            "isSidechain": false,
+            "requestId": "req_011CbFmqZoDsZ4WBqh8i9tpi",
+            "type": "assistant",
+            "uuid": "b5a03d33-079e-4441-84fb-07b9c014f963",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LTpVy2UFr9rzsXXYhxJjxr",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 713,
+                "cache_read_input_tokens": 58207,
+                "output_tokens": 4557,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 713,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 4557,
+                    "cache_read_input_tokens": 58207,
+                    "cache_creation_input_tokens": 713,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 713
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T13:16:00.636Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018m7b9Z8yc1KtPCgC8sfHEH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"report_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T122440/median/review_report.md\\\", \\\"dream_id\\\": \\\"dream_20260521T122440\\\", \\\"tier\\\": \\\"median\\\", \\\"review_visible\\\": true}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b5a03d33-079e-4441-84fb-07b9c014f963",
+            "isSidechain": false,
+            "promptId": "574ea9fb-2433-4f53-83c6-6ff0f801abc3",
+            "type": "user",
+            "uuid": "fffcdcc6-37d9-4615-bcee-51f7490eab49",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"report_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T122440/median/review_report.md\\\", \\\"dream_id\\\": \\\"dream_20260521T122440\\\", \\\"tier\\\": \\\"median\\\", \\\"review_visible\\\": true}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"report_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_reports/dream_20260521T122440/median/review_report.md\", \"dream_id\": \"dream_20260521T122440\", \"tier\": \"median\", \"review_visible\": true}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "b5a03d33-079e-4441-84fb-07b9c014f963",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+            "version": "2.1.126",
+            "gitBranch": "master"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T13:16:00.659Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "fffcdcc6-37d9-4615-bcee-51f7490eab49",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "33f241a5-44c6-426b-81b0-e38de6f51c75",
+                "timestamp": "2026-05-21T13:16:00.659Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+                "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+                "version": "2.1.126",
+                "gitBranch": "master"
+              }
+            }
+          ],
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T13:16:07.723Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Review submitted. Score: **3.0 (Findings-level)**.\n\nKey takeaways:\n- **Strengths:** Rigorous three-baseline calibration, honest negative results, practical audit protocol, novel cross-subject matching contribution\n- **Core weakness:** The \"instability without consequence\" tension — 25–29% items are unstable yet ρ≈0.997 ranking correlation is preserved, which undercuts urgency\n- **Other concerns:** Textbook methodology (novelty is in scale/application, not method), GSM1K negative correlation (r=−0.478) undermines contamination interpretation, 98% IRT model misfit underaddressed, >95% DIF variance unexplained\n\nReport written to `dream_reports/dream_20260521T122440/median/review_report.md`."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "33f241a5-44c6-426b-81b0-e38de6f51c75",
+            "isSidechain": false,
+            "requestId": "req_011CbFmzzk9qMoW41qSitj4V",
+            "type": "assistant",
+            "uuid": "1dce6b6a-0906-41fc-9c47-94e5276650ef",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+            "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e",
+            "version": "2.1.126",
+            "gitBranch": "master",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017cDZPafcdUZyepxVZWU285",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4793,
+                "cache_read_input_tokens": 58920,
+                "output_tokens": 189,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4793,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 189,
+                    "cache_read_input_tokens": 58920,
+                    "cache_creation_input_tokens": 4793,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4793
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[DREAM Review Director] dream_id=20260521T122440 | review_mode=simple | review_visible=True PDF: /home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/dream_report…",
+                "leafUuid": "1dce6b6a-0906-41fc-9c47-94e5276650ef",
+                "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e"
+              }
+            }
+          ],
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review IRT equated benchmark paper",
+                "sessionId": "48af77a8-24b1-406c-8f2b-6ae7c5af4a8e"
+              }
+            }
+          ],
+          "id": "event-000039"
+        }
+      ],
+      "message_count": 16
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-dream-review-director-dream-id-20260521t122440-review-mode-simple-review-visib.md"
+}

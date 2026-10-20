@@ -1,0 +1,3930 @@
+# Research conversation: You are Reviewer 1 (R1) for a top ML venue review. Your focus is **methods and experiments**. Review the paper below usi
+
+**Temporal Score Incomparability in LLM Benchmarks: A Large-Scale Psychometric Audit of 5,227 Models (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 45
+- **Recorded user turns:** 1
+- **Tool calls:** 18
+- **Original source:** `logs/chats/exported-trajectories/account-2/agent-a05abee50241190a6.jsonl`
+- **Structured JSON:** [`57558f3790993e1ad600.json`](../../sessions/57/57558f3790993e1ad600.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+45 recorded events
+
+### User
+
+_source line 1 · 2026-05-21T02:00:06.123Z_
+
+You are Reviewer 1 (R1) for a top ML venue review. Your focus is **methods and experiments**. Review the paper below using a 6-point scale (1=Strong Reject, 2=Reject, 3=Weak Reject, 4=Weak Accept, 5=Accept, 6=Strong Accept). Acceptance rate ~25%.
+
+## Paper Summary
+
+**Title**: Psychometric Characterization of Item Instability in LLM Benchmarks: A Large-Scale Differential Item Functioning Analysis of MMLU
+
+**Abstract**: Applies Differential Item Functioning (DIF) analysis to the METABENCH response matrix (5,227 models × 12,508 MMLU items). Four findings: (1) 38% of MMLU items are functionally unstable across model generations; (2) web-overlap contamination labels cannot capture differential contamination—semi-synthetic injection confirms DIF detection capability; (3) a reusable semi-synthetic validation framework with cross-subject matching; (4) DIF items concentrate discriminative signal and anti-correlate with contamination.
+
+## Key Experimental Results
+
+**§4.1 Large-Scale Temporal DIF** (Table 1):
+- Full population C% = 31.3%, random sanity check = 0.18%
+- Within-subject C% mean = 38.1% (range 31-45% across 57 subjects)
+- Accuracy-improvement correlation ρ = 0.307 (p=0.02)
+- Li et al. enrichment ≈ 1.0
+
+**§4.2 Ground Truth Meta-Critique**:
+- Web-overlap labels measure global exposure, not differential functioning—orthogonal signals
+- Any contamination detector validated against web-overlap faces this blind spot
+
+**§4.3 Architecture-Stratified DIF** (Tables 2-3):
+- Decoder-only: N=3,847, C% drops from 31.3% to 22.1% (29.4% reduction)
+- IRT fit improves: RMSEA 0.082→0.037, CFI=0.93, TLI=0.91, SRMR=0.028
+- Semi-synthetic: ΔTPR improves 0.674→0.720, FPR drops 0.314→0.221
+- Sanity check: random split C% = 0.12%
+- Flag overlap with full population: Jaccard = 0.68
+
+**§4.4 Semi-Synthetic Validation** (Table 4):
+- MMLU cross-subject matching: ΔTPR = +0.508, ΔFPR = 0.000
+- MMLU within-subject matching: ΔFPR inflated by +0.186
+- GSM8K standard matching: ΔTPR = +0.818
+- GSM8K external matching: ΔTPR = +0.517
+
+**§4.5 Structural Constraints on DIF** (Table 5):
+- Bifactor IRT: RMSEA=0.038, CFI=0.91/TLI=0.89
+- General factor 42% variance, subject factors 18%
+- C% after equating: 33.5% (only ~2.4pp reduction from 38.1%)
+- Equated score ρ = 0.965
+
+**§5.1 Benchmark Redundancy**: 
+- Removing 31% C-items → ρ ≈ 0.997 (massive redundancy)
+- DIF items carry 1.09× cross-cohort accuracy swing vs 0.96× for stable items
+- Removal disrupts rankings significantly more than random (z = -8 to -49σ)
+
+**§5.2 Cross-Benchmark Validation** (GSM8K):
+- DIF flags anti-correlate with GSM1K contamination gaps: r = -0.478, p = 0.005
+- Partial r = -0.385 controlling for accuracy
+- N = 33 matched models, leave-one-out robust (min |r| = 0.374)
+
+**§5.3 Cumulative Bayesian DIF** (Table 6):
+- TPR at δ=1.0: Admin1=0.42, Admin2=0.58, Admin3=0.71, Admin4=0.78
+- FPR stable ~0.04; Bayes factor threshold 3.2
+- At δ=1.4 (operational threshold), power reaches 0.89 by Admin 4
+
+**§6 Discussion**:
+- RL robustness: N=13 reasoning-RL models, Jaccard=0.88, TOST p=0.008
+- Per-model detectors degrade on RL: Min-K% 0.81→0.52, ConStat 0.77→0.48
+- DIF maintains bootstrap CI [0.87, 0.94]
+- Paper explicitly frames 38% as characterization, not contamination claim
+
+**Future Work (§7)** — Tables 7-11 present pilot/preliminary results:
+- Ensemble fusion (DIF+ConStat+DVD): AUROC 0.89, FPR 0.07
+- ConStat: AUROC 0.73 non-RL, 0.44 RL; correlation with DIF r=0.21
+- DVD: AUROC 0.66 verbatim, 0.58 variant; 65 GPU-hours
+- Graceful degradation: ρ=0.994 at 20% replacement, construct coverage 0.96
+- Item generation: student sim difficulty ρ=0.71 vs prompt-based ρ=0.28
+
+**Appendix A**: RL robustness (Table 12-13)
+**Appendix B**: Item-Focused Trees (Table 14) — IFT C%=28.4% vs categorical 31.3%, Jaccard=0.76, semi-synthetic AUC 0.91 vs 0.88
+
+## Experiment Design Reference
+
+The full experiment plan included these experiments. The paper executed:
+- Core temporal DIF analysis (plan_001/014/017)
+- Architecture-stratified DIF (plan_010) — main text
+- RL robustness (plan_002) — appendix, N=13
+- Cumulative Bayesian DIF (plan_007) — §5.3
+- Item-Focused Trees (plan_009) — appendix
+
+Dropped/deferred to future work:
+- ConStat perturbation eval (plan_003a)
+- DVD generation variance (plan_003b)  
+- Ensemble fusion (plan_003c)
+- Bifactor IRT equating pilot (plan_005) — some results in §4.5
+- Item generation calibration (plan_006)
+- Graceful degradation (plan_008)
+
+## Your Review Task
+
+Evaluate:
+1. **Methodological soundness**: Is the MH-DIF application to LLM benchmarks technically correct? Are the statistical tests appropriate? Are there methodological flaws?
+2. **Experimental rigor**: Are experiments well-designed with proper controls? Is the semi-synthetic framework valid? Are the claims supported by evidence?
+3. **Completeness**: Are there critical missing experiments or controls? Do the executed experiments sufficiently support the claims?
+4. **Quantitative assessment**: Are the effect sizes meaningful? Are confidence intervals / significance tests appropriate? Is multiple testing addressed?
+5. **Reproducibility**: Is there enough detail to reproduce? Is the framework reusable as claimed?
+
+Format your output as:
+### R1 Independent Review: Methods & Experiments
+
+**Summary** (2-3 sentences)
+
+**Strengths** (bulleted)
+
+**Weaknesses** (bulleted)
+
+**Questions for Authors** (bulleted)
+
+**Missing Experiments / Controls** (bulleted)
+
+**Soundness Score**: X/4
+**Empirical Rigor Score**: X/4
+**Overall Score**: X/6
+**Confidence**: X/5
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": true,
+  "promptId": "27741ca6-31a4-40a5-9308-cb23e7795590",
+  "agentId": "a05abee50241190a6",
+  "type": "user",
+  "uuid": "f87b2670-1bf8-4086-a4dd-1c91f5ef0acd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-21T02:00:06.130Z_
+
+```json
+{
+  "parentUuid": "f87b2670-1bf8-4086-a4dd-1c91f5ef0acd",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__submit_dream_review_report"
+    ],
+    "addedLines": [
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterWorktree",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskStop",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__director_get_project_overview",
+      "mcp__agent-ml-research__director_post_to_reviewer",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__submit_dream_review_report"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "fa1bc8f0-6296-4637-9c10-7de39f39d529",
+  "timestamp": "2026-05-21T02:00:06.130Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 3 · 2026-05-21T02:00:21.061Z_
+
+
+
+I'll start by reading the paper and related project files to give a thorough review.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fa1bc8f0-6296-4637-9c10-7de39f39d529",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "requestId": "req_011CbEtTYUntDMq1WsGsZGEN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c61c5219-41b7-4ef7-b112-cbc13d38bdcc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UFqQugs4DCYZsuydKfnDzp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 16104,
+      "cache_read_input_tokens": 0,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 16104,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-21T02:00:22.175Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_0115VQpW8v1r7eWA8uzhuqt5`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c61c5219-41b7-4ef7-b112-cbc13d38bdcc",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "requestId": "req_011CbEtTYUntDMq1WsGsZGEN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "878dc65e-b190-4389-96cb-b136753d8055",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UFqQugs4DCYZsuydKfnDzp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 16104,
+      "cache_read_input_tokens": 0,
+      "output_tokens": 107,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 16104
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 107,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 16104,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 16104,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-21T02:00:22.182Z_
+
+<details><summary>↩ Tool result · `toolu_0115VQpW8v1r7eWA8uzhuqt5`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "878dc65e-b190-4389-96cb-b136753d8055",
+  "isSidechain": true,
+  "promptId": "27741ca6-31a4-40a5-9308-cb23e7795590",
+  "agentId": "a05abee50241190a6",
+  "type": "user",
+  "uuid": "b3b8c1ac-4908-4569-91b3-98cb5de4449a",
+  "sourceToolAssistantUUID": "878dc65e-b190-4389-96cb-b136753d8055",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 6 · 2026-05-21T02:00:24.497Z_
+
+
+
+Let me read the paper report and key project files to conduct a thorough review.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b3b8c1ac-4908-4569-91b3-98cb5de4449a",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "requestId": "req_011CbEtUjKBprdMCnxDEXMZD",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "515367c7-6ee0-481f-8af8-ccde72f76b80",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WDoAw7zdF9do6gGw68rJrq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1289,
+      "cache_read_input_tokens": 16104,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1289,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-21T02:00:25.989Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01Nj8ErJTL4UDg6zm6WsJ96y`</summary>
+
+```json
+{
+  "project": "irt_equated_bench_regen",
+  "file": "report.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "515367c7-6ee0-481f-8af8-ccde72f76b80",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "requestId": "req_011CbEtUjKBprdMCnxDEXMZD",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8fda5ff4-2610-43da-be32-46c2f2c52940",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WDoAw7zdF9do6gGw68rJrq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1289,
+      "cache_read_input_tokens": 16104,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1289,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T02:00:26.020Z_
+
+<details><summary>↩ Tool result · `toolu_01Nj8ErJTL4UDg6zm6WsJ96y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/report.md\", \"content\": \"# Handover — 2026-05-21\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- plan_015_bifactor_irt: Bifactor IRT（1 general + 57 subject-specific factors）的 general θ 分层能将 temporal cohort baseline FPR 从 31% 降至 <15%，同时在 semi-synthetic 框架下保持 TPR>0.60 at p=0.5。Bifactor 通过分离学科特异性能力和通用能力，消除 subject-level 能力差异对 MH-DIF 的混淆。（准备中）\\n\\n## 近期结论\\n- **plan_004_gsm8k_cross_benchmark** (negative): GSM8K 的 temporal DIF (2023 vs 2024) 将展示与 MMLU 类似的 30-40% ETS C%，证明 temporal DIF 现象跨 benchmark 泛化。使用 METABENCH 其他 benchmarks 总分做 external matching（GSM8K 无 subject 分层），预期 baseline FPR 更可控。如果 C% 在同一量级 → DIF 作为 benchmark health diagnostic 的泛化性得到验证。 ← 基于 plan_001_real_data_dif_mmlu\\n- **plan_017_downstream_impact** (negative): 移除 temporal DIF-flagged items (ETS C, ~31% of MMLU items) 后，模型跨代排名更稳定（Spearman ρ 提升），且稳定性提升显著优于随机移除相同数量 items 的 baseline。这证明 DIF 不只标记 noise，而是精确识别了 problematic items，为 DIF 作为 benchmark quality tool 提供 downstream evidence。 ← 基于 plan_001_real_data_dif_mmlu\\n- **plan_016_within_subject_semi_synthetic** (success): 在 subject 内部使用 within-subject total score 做 MH 分层的 semi-synthetic injection 中，DIF 仍能检测差异性污染（ΔTPR > 0.3 at p=0.5）。这证明 DIF 方法在 subject 级别也有效，plan_014 的 38% within-subject C% 反映的是真实代际能力差异而非方法失败。 ← 基于 plan_014_within_subject_dif\\n  [plan_016_report](/api/workspace-files/projects/irt_equated_bench_regen/artifacts/plan_016_within_subject_semi_synthetic/report/plan_016_report.md) | [plan_016_dose_response](/api/workspace-files/projects/irt_equated_bench_regen/artifacts/plan_016_within_subject_semi_synthetic/data/within_subject_dose_response.csv) | [plan_016_revised_dose_response](/api/workspace-files/projects/irt_equated_bench_regen/artifacts/plan_016_within_subject_semi_synthetic/data/within_subject_dose_response_e6d86f.csv) | [plan_016_revised_report](/api/workspace-files/projects/irt_equated_bench_regen/artifacts/plan_016_within_subject_semi_synthetic/report/plan_016_report_fb64fc.md)\\n\\n## 趋势\\n成功 5 / 负向 6 / 失败 0 / 共 11\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\n（无服务器配置）\\n\\n## 告警\\n（无）\\n\", \"total_chars\": 2009, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8fda5ff4-2610-43da-be32-46c2f2c52940",
+  "isSidechain": true,
+  "promptId": "27741ca6-31a4-40a5-9308-cb23e7795590",
+  "agentId": "a05abee50241190a6",
+  "type": "user",
+  "uuid": "287eb959-1125-49b7-9d20-fc5e2505c84c",
+  "sourceToolAssistantUUID": "8fda5ff4-2610-43da-be32-46c2f2c52940",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-21T02:00:27.028Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01PzvEvUdHKnLAfVC7tRnaGU`</summary>
+
+```json
+{
+  "project": "irt_equated_bench_regen",
+  "file": "ROADMAP.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "287eb959-1125-49b7-9d20-fc5e2505c84c",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "requestId": "req_011CbEtUjKBprdMCnxDEXMZD",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7b48d7e8-79ba-4c33-a81e-a5a52883be25",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WDoAw7zdF9do6gGw68rJrq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1289,
+      "cache_read_input_tokens": 16104,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 1289,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T02:00:27.043Z_
+
+<details><summary>↩ Tool result · `toolu_01PzvEvUdHKnLAfVC7tRnaGU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/ROADMAP.md\", \"content\": \"# irt_equated_bench_regen — Research Dashboard\\n\\n> 最后更新: 2026-05-21 01:28 UTC | 更新原因: D014 plan_004 Step 3 GSM1K 完成 + paper_framing.md 更新\\n\\n## 核心方向\\n**Pivot 完成 (D011)**：从\\\"DIF 检测方法\\\"转向\\\"LLM benchmark psychometric characterization + DIF methodology\\\"。ICLR 2027 目标不变。详见 paper_framing.md。\\n\\n**GSM1K 结果 (D014)**：DIF flags 与 contamination gap 显著负相关（r=−0.478, p=0.005）。DIF 不标记 contamination，而是标记 contamination 无法到达的 capability-discriminative items。强化 \\\"diagnostic lens\\\" 叙事。\\n\\n## 当前进展\\n- **阶段**: **Writing**（全部实验完成）\\n- **实验**: 12 完成（5 success / 5 negative / 0 failed），plan_004 全 3 步完成\\n- **Key results**:\\n  - MMLU: semi-synthetic ΔTPR=+0.508 | cross-subject ΔFPR=0.000 | within-subject C%=38.1% | downstream z=-8 to -49σ\\n  - GSM8K: temporal C%=18.9% | semi-synthetic ΔTPR=+0.818 | GSM1K gap r=−0.478 (p=0.005)\\n- **Paper Agent**: writing_plan.yaml 审批通过，figures 4/6 完成 + fig_1/fig_4 进行中\\n- **审稿**: Round 1 borderline 3.5/6，14 issues tracked\\n\\n## 近期任务\\n- [ ] Agent: 修正 Step 3 report 方向标签（Reviewer CRITICAL）\\n- [ ] Paper Agent: 更新 writing_plan.yaml 整合 GSM8K/GSM1K 章节 + 新 figure\\n- [ ] Paper Agent: 完成 fig_1（统一 \\\"2024-H1\\\" → \\\"2024\\\"）+ fig_4\\n- [ ] Paper Agent: Step 3 正文写作\\n- [ ] Post-pivot Dream（Step 3 完成后，写作定稿前评估 ICLR viability）\\n\\n## Completed\\n- ✅ plan_001-017: 10 个 MMLU 实验全部完成\\n- ✅ plan_004 Step 1-3: GSM8K cross-benchmark 验证全部完成\\n- ✅ 文献调查 22 篇 + experiment_summary.md + artifacts QC\\n- ✅ paper_framing.md 更新至 D014（Claim 4 four-layer, Claim 3 cross-benchmark）\\n- ✅ writing_plan.yaml 审批通过，figures fig_2/3/A1/A2 完成\\n\\n## GPU 预算\\nP0: 250h | P1: 350h | 已用: 0h（全部 CPU analysis）\\n无 GPU 需求。\\n\\n## 投稿目标\\nICLR 2027（~2026年10月 DDL）— 不降级\\n评估: main borderline 5.5-6/6, findings solid 6.5-7/6。GSM1K negative r 不升级为 validated method，但 cross-benchmark evidence chain 显著加强 characterization paper 深度。\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D014 | 2026-05-21 | plan_004 Step 3 GSM1K: |r|=0.478 显著但方向为负——DIF 不标记  | plan_004_gsm8k_cross_benchmark, plan_017_downstream_impact |\\n| D013 | 2026-05-21 | plan_017 downstream impact negative 但 informative： | plan_017_downstream_impact |\\n| D012 | 2026-05-20 | Story 定稿：Candidate 1 (benchmark quality tool) + gr | plan_014_within_subject_dif, plan_016_within_subject_semi_synthetic, plan_001_real_data_dif_mmlu |\\n| D011 | 2026-05-20 | Pivot 拍板：从\\\"DIF 检测方法\\\"转向\\\"LLM benchmark psychometric  | plan_016_within_subject_semi_synthetic, plan_014_within_subject_dif, plan_011_semi_synthetic |\\n| D010 | 2026-05-20 | 方向 3 (Bifactor) pre-check 否定：within-subject tempor | plan_014_within_subject_dif, plan_011_semi_synthetic |\\n| D009 | 2026-05-20 | Dream #2 分析：best=3/6, median=3-4/6, worst=3/6。跨档一致 | dream_20260520T205007 |\\n| D008 | 2026-05-20 | 方向 2 (IRT θ-conditioning) 失败，1D 路线穷尽。plan_011 abil | plan_012_irt_theta_conditioning |\\n| D007 | 2026-05-20 | Story pivot: semi-synthetic validation 作为核心效度证据，Li | plan_011_semi_synthetic, plan_001_real_data_dif_mmlu, plan_001b_matched_ability_dif |\\n| D006 | 2026-05-20 | plan_011 positive: MH-DIF 检测差异性污染有效 (p=0.5 TPR=0.8 | plan_011_semi_synthetic |\\n| D005 | 2026-05-20 | 方向 1 (matched-ability DIF) 失败确认，所有 quintile enrich | plan_001b_matched_ability_dif |\\n\\n\\n\", \"total_chars\": 3101, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7b48d7e8-79ba-4c33-a81e-a5a52883be25",
+  "isSidechain": true,
+  "promptId": "27741ca6-31a4-40a5-9308-cb23e7795590",
+  "agentId": "a05abee50241190a6",
+  "type": "user",
+  "uuid": "d07cf4fb-e2b6-4620-8513-7f20cc658076",
+  "sourceToolAssistantUUID": "7b48d7e8-79ba-4c33-a81e-a5a52883be25",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-21T02:00:27.190Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01LgN6zcTgJiPaRTASccC144`</summary>
+
+```json
+{
+  "project": "irt_equated_bench_regen",
+  "file": "decisions.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d07cf4fb-e2b6-4620-8513-7f20cc658076",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "requestId": "req_011CbEtUjKBprdMCnxDEXMZD",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "2162df2e-5209-4afd-b970-9964c8057abd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WDoAw7zdF9do6gGw68rJrq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1289,
+      "cache_read_input_tokens": 16104,
+      "output_tokens": 320,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 1289
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 320,
+          "cache_read_input_tokens": 16104,
+          "cache_creation_input_tokens": 1289,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 1289,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T02:00:27.200Z_
+
+<details><summary>↩ Tool result · `toolu_01LgN6zcTgJiPaRTASccC144`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/decisions.yaml\", \"content\": \"_next_id: 15\\ndecisions:\\n- id: D001\\n  date: 2026-05-20 18:50 UTC\\n  summary: MVP DIF 检测采用 ETS C 分类（效应量+显著性双阈值）替代 BH 校正 p 值作为主判定标准\\n  rationale: Monte Carlo 模拟显示 BH 校正在 200 items 场景下将 TPR 压缩 40-60%，所有核心条件均 FAIL/GRAY。但\\n    ETS C 分类（|Δ_MH|≥1.5 + 显著性，教育测量 gold standard）在 N≥80, δ≥1.4 时 TPR=0.72-0.85, FPR<0.05，满足\\n    pass criteria。ETS C 是 DIF 领域标准实践（Holland & Thayer 1988），使用效应量阈值比纯 p 值更稳健。操作点 N≥80,\\n    δ≥1.4 与 GSM1K 文档的重度污染效应量吻合。小效应由 ensemble 其他信号覆盖。\\n  related_experiments:\\n  - exp_id: mvp_dif_power_sim\\n    role: evidence\\n    result: 'BH-corrected: all FAIL/GRAY; ETS C: PASS at N≥80,δ≥1.4 (TPR=0.72-0.85,\\n      FPR<0.05)'\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-20 19:31 UTC\\n  summary: MVP 通过：DIF+ETS C 在 N≥80,δ≥1.4 下功效达标，推荐 N≥100 为主操作点\\n  rationale: Phase 1 合成参数 + Phase 2 真实参数（PSN-IRT）均验证 ETS C TPR≥0.65 at N≥80,δ≥1.4。Phase\\n    2 比 Phase 1 降低 3-6pp 符合预期。N=80,δ=1.4 裕度仅 0.032，推荐 N≥100 为主 claim。数据源为 PSN-IRT\\n    而非 ROADMAP 指定的 METABENCH，research 阶段需用 METABENCH 补充验证。限制：δ<1.0 需 ensemble 其他信号。\\n  related_experiments:\\n  - exp_id: mvp_dif_power_sim\\n    role: evidence\\n    result: 'Phase 1 conditional pass: ETS C TPR=0.72-0.85 at N≥80,δ≥1.4'\\n  - exp_id: mvp_dif_power_sim_phase2\\n    role: evidence\\n    result: 'Phase 2 pass: ETS C TPR=0.68-0.80 at N≥80,δ≥1.4 with real MMLU params'\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-20 20:49 UTC\\n  summary: 'Dream analysis (dream_20260520T194223): 6 confirmed actions from cross-tier\\n    synthesis, 2 new experiments added (plan_010/011), framing qualified'\\n  rationale: 'Dream scores met thresholds (best=4/6, median=3.5/6, worst=3/6). Cross-tier\\n    analysis identified 6 confirmed issues (≥2 tiers): (1) contamination-capability\\n    confound → within-family analysis added to plan_001; (2) RL evidence underpowered\\n    → bootstrap CIs + equivalence testing added to plan_002; (3) partial exploitation\\n    gap → power analysis added to plan_002; (4) ground truth circularity → plan_011\\n    semi-synthetic validation added; (5) related work thin → Paper Agent writing-phase\\n    task; (6) Growing Pains differentiation → Paper Agent task. Additionally: plan_010\\n    architecture-stratified DIF added as P1 proactive defense from worst-case; novelty\\n    claim qualified from \\\"first self-healing benchmark\\\" to \\\"psychometric monitoring\\n    framework\\\". Re-dream required before P0 approval.'\\n  related_experiments: []\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-05-20 21:14 UTC\\n  summary: plan_001 temporal cohort DIF 证伪（enrichment=0.96），根因是 impact vs DIF 混淆。批准\\n    matched-ability DIF 作为方法改进方向 1\\n  rationale: Temporal cohort MH-DIF 标记 31.3% items 为 ETS C，但 enrichment=0.96（clean\\n    和 contaminated 标记概率相同）—— DIF 检测的是系统性能力提升而非污染。Within-family (Llama-2 vs Llama-3)\\n    61.3% C 进一步证实。这是经典 impact vs DIF 混淆（Dream D2 预测过）。但 ability-quintile enrichment=1.19\\n    + FPR=2.7% 表明信号存在但弱。方向1 matched-ability temporal DIF 在 quintile 内做时间对比，是最快验证能力匹配能否放大信号的路径。方向2\\n    IRT equating 并行准备作为 fallback。\\n  related_experiments:\\n  - exp_id: plan_001_real_data_dif_mmlu\\n    role: evidence\\n    result: negative - temporal cohort enrichment 0.96, ability quintile enrichment\\n      1.19\\n  depends_on:\\n  - D003\\n- id: D005\\n  date: 2026-05-20 21:24 UTC\\n  summary: 方向 1 (matched-ability DIF) 失败确认，所有 quintile enrichment 0.94-1.04。plan_011\\n    是唯一决定性实验\\n  rationale: Quintile 内 temporal DIF 仍 enrichment≈1.0，ability matching 未能分离污染信号。但\\n    Reviewer 指出关键洞察：Li et al. web-overlap 是全局性污染（Common Crawl 对所有模型可用），不应产生 group-specific\\n    DIF。enrichment≈1.0 可能是 ground truth 不匹配而非方法失败。plan_011 注入的是已知差异性污染（仅 focal group），是唯一能区分\\\"DIF\\n    不 work\\\"和\\\"ground truth 不对\\\"的实验。方向 2 (IRT θ-matching) 如果问题出在 ground truth 也无法解决。\\n  related_experiments:\\n  - exp_id: plan_001b_matched_ability_dif\\n    role: evidence\\n    result: negative - all quintiles enrichment 0.94-1.04\\n  depends_on:\\n  - D004\\n- id: D006\\n  date: 2026-05-20 21:56 UTC\\n  summary: 'plan_011 positive: MH-DIF 检测差异性污染有效 (p=0.5 TPR=0.834, p=1.0 TPR=1.0)，但\\n    baseline FPR=31% 需 IRT θ-conditioning 降低。启动方向 2'\\n  rationale: Semi-synthetic validation 确认 DIF 能检测差异性污染（剂量-响应单调，Fisher p<1e-21）。plan_001/001b\\n    失败归因于 Li et al. web-overlap 是全局性标注，不产生 group-specific DIF。但 baseline FPR=31% (temporal)\\n    / 49% (ability) 意味着 DIF 是筛查工具（高召回、中等精度），不是确诊工具。Precision ~44% at p=1.0。两个推进方向：(1)\\n    IRT θ-conditioning 降低 baseline FPR (方向 2)，(2) Ensemble 信号 (Claim 2) 过滤假阳性——DIF\\n    高召回 + ConStat 高精度自然衔接。同时需 Yen's Q3 诊断局部独立性（审稿 WC4），局部依赖可能是 FPR 膨胀的部分原因。\\n  related_experiments:\\n  - exp_id: plan_011_semi_synthetic\\n    role: evidence\\n    result: positive - TPR 0.834 at p=0.5, 1.0 at p=1.0; but baseline FPR 0.314\\n  depends_on:\\n  - D005\\n- id: D007\\n  date: 2026-05-20 21:58 UTC\\n  summary: 'Story pivot: semi-synthetic validation 作为核心效度证据，Li et al. enrichment≈1.0\\n    重新定位为\\\"全局 vs 差异性污染\\\"的发现。IRT θ-conditioning 继续（降 FPR），但不期望改善 Li enrichment'\\n  rationale: 'Agent 和 Reviewer 均指出：即使 IRT θ 完美控制能力，Li et al. web-overlap 仍是全局标注，enrichment\\n    仍≈1.0。plan_011 semi-synthetic (ΔTPR=+0.674, Fisher p<1e-42) 是 DIF 方法有效性的决定性证据。Li\\n    et al. enrichment≈1.0 不是方法失败，而是揭示了现有\\\"污染标注\\\"实际测量的是全局 web 曝光（所有模型共享），不是差异性训练数据包含。这是一个有价值的发现：DIF\\n    检测差异性污染，现有标签标注存在性污染，两者度量不同。Story: DIF 是差异性污染的高灵敏度筛查工具 + ensemble 提升精度 + 全局/差异性污染区分是方法论贡献。'\\n  related_experiments:\\n  - exp_id: plan_011_semi_synthetic\\n    role: evidence\\n    result: positive\\n  - exp_id: plan_001_real_data_dif_mmlu\\n    role: evidence\\n    result: negative - reinterpreted as ground truth mismatch\\n  - exp_id: plan_001b_matched_ability_dif\\n    role: evidence\\n    result: negative - reinterpreted as ground truth mismatch\\n  depends_on:\\n  - D006\\n- id: D008\\n  date: 2026-05-20 22:12 UTC\\n  summary: 方向 2 (IRT θ-conditioning) 失败，1D 路线穷尽。plan_011 ability cohort TPR 修正（76%→21%，73%\\n    是能力混淆）。启动 plan_005 bifactor IRT 作为最后结构性改进\\n  rationale: logit(p) 与 total score 相关 0.9986，所有 θ 变体 FPR 31-35%。plan_011 ability\\n    cohort 在 θ 10/20-bin conditioning 下 TPR 从 76% 降到 21%（p=0.5）——原 5-bin 分层不足以消除 Q1-2\\n    vs Q4-5 极端能力差异。DIF 面临 TPR-FPR tradeoff：temporal 高 TPR 但 FPR=31%，ability (proper)\\n    低 FPR=8% 但 TPR=21%。根因：temporal cohort 间差异是多维的（不同学科能力提升不均匀），1D θ 无法捕获。Bifactor\\n    model (general + 57 subject factors) 是唯一能吸收学科级差异的结构性方法。已尝试 2 种不同类型改进方向，bifactor\\n    是第 3 种。计算量大（5227×12508×58 factors），可能需要服务器。\\n  related_experiments:\\n  - exp_id: plan_012_irt_theta_conditioning\\n    role: evidence\\n    result: negative - temporal FPR stuck at 31%, ability TPR corrected to 21%\\n  depends_on:\\n  - D007\\n- id: D009\\n  date: 2026-05-20 22:17 UTC\\n  summary: 'Dream #2 分析：best=3/6, median=3-4/6, worst=3/6。跨档一致：impact-vs-DIF confound\\n    为首要问题，bifactor 是正确方向。新发现：ensemble 不优于 DIF alone、SIBTEST/MIMIC 未尝试、detection trilemma\\n    概念'\\n  rationale: 三档审稿一致认为 within-family confound (42-62% overlap) 是最致命问题——没有 bifactor\\n    分离学科级能力差异，DIF flags 的可解释性无法建立。worst case 新增 SIBTEST/MIMIC 作为 established impact-vs-DIF\\n    solutions 的替代方案需要考虑。median 指出 ensemble AUROC (0.72) 低于 DIF alone (0.76)，Claim\\n    2 需要重新评估。worst case 提出 detection trilemma (IRT fit ↔ power ↔ confound control)\\n    作为潜在概念贡献。行动：(1) 优先完成 bifactor，(2) 考虑 SIBTEST/MIMIC 作为备选，(3) 推迟 ensemble 设计到 bifactor\\n    结果出来后，(4) 补充 impact-vs-DIF 文献\\n  related_experiments:\\n  - exp_id: dream_20260520T205007\\n    role: dream_simulation\\n    result: best=3/6, median=3-4/6, worst=3/6\\n  depends_on:\\n  - D008\\n  - D007\\n  - D006\\n- id: D010\\n  date: 2026-05-20 22:29 UTC\\n  summary: 方向 3 (Bifactor) pre-check 否定：within-subject temporal C%=38.1% (range 31-45%)，高于\\n    overall 31%。Bifactor 移除的 between-subject variance 反而在压低 C%。三种结构性改进方向全部失败，Method→Analysis\\n    pivot 前提 (a)(b) 已满足\\n  rationale: 'plan_014 within-subject DIF 前置检查：5 个 subject 的 within-subject temporal\\n    C% 平均 38.1%，没有一个低于 30%。Cross-subject matching 仅 Δ=-2.4pp。这证明 temporal DIF 是 item-specific\\n    的真实差异（能力提升+污染+其他），不是 matching artifact。Bifactor 即使完美运行也无法降 FPR 到 15% 以下。决策链：D005(方向1失败)\\n    → D008(方向2失败) → D010(方向3 pre-mortem 证伪)。Oracle: plan_011 semi-synthetic ΔTPR=+0.508\\n    确认方法本身有效。Pivot 前提 (c) 待用户确认投稿目标调整。'\\n  related_experiments:\\n  - exp_id: plan_014_within_subject_dif\\n    role: pre-check\\n    result: within-subject C%=38.1%, bifactor not viable\\n  - exp_id: plan_011_semi_synthetic\\n    role: oracle\\n    result: ΔTPR=+0.508, method works for differential contamination\\n  depends_on:\\n  - D008\\n  - D009\\n  - D005\\n- id: D011\\n  date: 2026-05-20 23:23 UTC\\n  summary: Pivot 拍板：从\\\"DIF 检测方法\\\"转向\\\"LLM benchmark psychometric characterization + DIF\\n    methodology\\\"。Cross-subject matching ΔFPR=0.000 是方法论突破，31-38% temporal DIF 是实证发现。保持\\n    ICLR 2027 目标不降级\\n  rationale: 三种结构性改进全部穷尽（D005/D008/D010），oracle 确认方法有效（plan_011 ΔTPR=+0.508）。但 pivot\\n    不等于降级：(1) cross-subject matching ΔFPR=0.000 是干净的方法论贡献——解决了 matching variable contamination\\n    这个 MH-DIF 领域的实际问题；(2) 31-38% temporal DIF 是首次大规模量化 LLM benchmark item instability；(3)\\n    global vs differential contamination 区分是概念贡献；(4) semi-synthetic validation framework\\n    可独立复用；(5) detection trilemma 是 characterization 贡献。这些组合起来是 ICLR 级别的 empirical\\n    findings paper，不需要降到 findings track。用户批评\\\"等我点头\\\"正确——这是 PI 的决策责任。\\n  related_experiments:\\n  - exp_id: plan_016_within_subject_semi_synthetic\\n    role: final_validation\\n    result: cross-subject ΔFPR=0.000, 4/5 ΔTPR>0.3\\n  - exp_id: plan_014_within_subject_dif\\n    role: pre-check\\n    result: within-subject C%=38.1%\\n  - exp_id: plan_011_semi_synthetic\\n    role: oracle\\n    result: ΔTPR=+0.508\\n  depends_on:\\n  - D010\\n  - D009\\n  - D006\\n- id: D012\\n  date: 2026-05-20 23:28 UTC\\n  summary: Story 定稿：Candidate 1 (benchmark quality tool) + ground truth meta-critique\\n    + semi-synthetic infrastructure。降级 cross-subject matching 为 recommendation（非 breakthrough）。新增\\n    downstream impact 实验（移除 DIF items → ranking stability）作为 ICLR 关键补充\\n  rationale: Reviewer 评估：(1) 三候选中 Candidate 1 最自洽，(2) cross-subject matching 是 external\\n    matching 的自然推广非新方法（降级），(3) enrichment≈1.0 + semi-synthetic positive 证明现有污染 ground\\n    truth 自身有缺陷（meta-contribution），(4) \\\"so what?\\\" 缺口是 ICLR vs findings track 的分水岭——需\\n    downstream impact 实验回答。38% 与 domain specificity ρ=0.307 的关系必须在 limitations 诚实讨论。\\n  related_experiments:\\n  - exp_id: plan_014_within_subject_dif\\n    role: finding\\n    result: 38% temporal DIF\\n  - exp_id: plan_016_within_subject_semi_synthetic\\n    role: method\\n    result: cross-subject ΔFPR=0.000\\n  - exp_id: plan_001_real_data_dif_mmlu\\n    role: finding\\n    result: enrichment≈1.0 → ground truth meta-critique\\n  depends_on:\\n  - D011\\n- id: D013\\n  date: 2026-05-21 00:06 UTC\\n  summary: plan_017 downstream impact negative 但 informative：DIF items 是浓缩差异化信号载体而非噪声。Claim\\n    4 从 placeholder \\\"remove for stability\\\" 转为 finding \\\"DIF as diagnostic lens\\\"。DIF\\n    items 移除造成更大排名扰动（21/21 条件显著），phi-3/llama-3 获益最多，mistral merge 被压制\\n  rationale: plan_017 全面证伪了\\\"移除 DIF items 改善排名稳定性\\\"的 hypothesis：(1) full vs stable-only\\n    ρ=0.996-0.999 说明排名本身极鲁棒，(2) DIF removal 扰动显著大于 random removal（z=-8 to -49σ），(3)\\n    DIF items 的跨代准确率变化是 full benchmark 的 1.09×。这意味着 DIF items 不是\\\"坏题\\\"而是\\\"模型代际差异的诊断标记\\\"。对\\n    paper narrative 的影响：从\\\"remove unstable items\\\"转向\\\"DIF as diagnostic lens for understanding\\n    model evolution\\\"。这个 negative result 比 positive 更有深度——\\\"keep these items, they tell\\n    you something\\\" 是更有价值的 benchmark design recommendation。\\n  related_experiments:\\n  - exp_id: plan_017_downstream_impact\\n    role: hypothesis_test\\n    result: negative - DIF items carry MORE discriminative signal, not less\\n  depends_on:\\n  - D012\\n  - D011\\n- id: D014\\n  date: 2026-05-21 01:25 UTC\\n  summary: 'plan_004 Step 3 GSM1K: |r|=0.478 显著但方向为负——DIF 不标记 contamination，而是标记 contamination\\n    无法到达的 capability-discriminative items'\\n  rationale: r=−0.478 (p=0.005), Spearman ρ=−0.403 (p=0.020), partial r=−0.385 (p=0.027\\n    控制 overall accuracy), permutation p=0.014, leave-one-out robust (min |r|=0.374)。N=33\\n    matched models。171 个 focal-favoring DIF-C items 驱动负相关 (r=−0.347, p=0.048)：contaminated\\n    models 在这些 genuine capability improvement items 上表现更差。这不支持 \\\"DIF = contamination\\n    detector\\\" 假设，但强力支撑 pivot 后 \\\"DIF as diagnostic lens\\\" 叙事：DIF 捕获的是真实能力差异，contamination\\n    产生的浅层提升无法到达这些 items。与 plan_017 (DIF items = discriminative signal carriers) 形成双重验证。不升级\\n    ICLR 为 \\\"validated method\\\"，但显著加强 characterization paper 的深度和跨 benchmark 证据。\\n  related_experiments:\\n  - exp_id: plan_004_gsm8k_cross_benchmark\\n    role: primary\\n    result: negative_but_informative\\n  - exp_id: plan_017_downstream_impact\\n    role: corroborating\\n    result: negative_but_informative\\n  depends_on:\\n  - D013\\n  - D011\\n\", \"total_chars\": 12255, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2162df2e-5209-4afd-b970-9964c8057abd",
+  "isSidechain": true,
+  "promptId": "27741ca6-31a4-40a5-9308-cb23e7795590",
+  "agentId": "a05abee50241190a6",
+  "type": "user",
+  "uuid": "cbc8796b-016b-4a37-a5ad-26d7029d8c49",
+  "sourceToolAssistantUUID": "2162df2e-5209-4afd-b970-9964c8057abd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T02:00:31.932Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01H3WAvQC72sXkbXvf4AFziG`</summary>
+
+```json
+{
+  "project": "irt_equated_bench_regen",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cbc8796b-016b-4a37-a5ad-26d7029d8c49",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "requestId": "req_011CbEtV6mmosEe4jfTZBYMM",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "62d73e9a-0b53-4d6f-a8d3-e645d20a563e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pf8KGDVnVuJB7Aa2dvunL8",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9727,
+      "cache_read_input_tokens": 17393,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 9727,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-21T02:00:31.943Z_
+
+<details><summary>↩ Tool result · `toolu_01H3WAvQC72sXkbXvf4AFziG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/paper_framing.md\", \"content\": \"# Paper Framing — irt_equated_bench_regen\\n\\n## Target Venue\\n- Primary: ICLR 2027 (expected deadline ~October 2026)\\n\\n## Paper Type\\nEmpirical analysis / psychometric characterization. Discovery paper, not methods paper. \\\"DIF reveals benchmark structural problems,\\\" not \\\"DIF detects contamination.\\\"\\n\\n## Core Claims (4 条, 可证伪)\\n\\n**Claim 1 (Temporal Comparability Concern)**: 38% of MMLU items are functionally unstable across model generations — they exhibit large DIF (ETS C, |Δ_MH|≥1.5) between 2023 and 2024-H1 model cohorts. This instability persists within every subject domain (within-subject C%=31-45%, avg 38.1%), is not a statistical artifact (random split sanity check: 0.18%), and correlates with domain-specific accuracy improvement (ρ=0.307, p=0.02). This means cross-temporal MMLU score comparisons carry uncontrolled item-level variance.\\n- Evidence: plan_001 (C%=31.3%, enrichment=0.96, sanity=0.18%), plan_014 (within-subject C%=38.1%)\\n- Honesty requirement: ρ=0.307 means \\\"item instability\\\" may mainly reflect \\\"models got better at those domains\\\" — we cannot decompose 38% into contamination vs capability improvement\\n\\n**Claim 2 (Ground Truth Meta-critique)**: Existing contamination detection literature validates against web-overlap/n-gram labels that measure global exposure (whether an item is publicly accessible), not differential contamination (whether an item functions differently across model cohorts). DIF enrichment≈1.0 against Li et al. labels is expected, not failure — these labels cannot evaluate item-level differential detectors. This is a fundamental validation methodology gap: all work using web-overlap labels as ground truth for item-level detectors (including Min-K%, n-gram methods) has the same blind spot. Semi-synthetic injection confirms DIF can detect differential contamination (ΔTPR=+0.508 at p=0.5, dose-response from p=0.3 to p=1.0).\\n- Evidence: plan_001 (enrichment=0.96), plan_011 (ΔTPR=+0.508, dose-response)\\n- Framing: aggressive — \\\"the field's standard validation approach is fundamentally mismatched for item-level detection\\\"\\n\\n**Claim 3 (Semi-synthetic Validation Framework)**: The ΔTPR methodology — injecting known differential contamination into real response matrices and measuring detection power increase — provides a controlled validation infrastructure for any item-level contamination detector. Cross-subject matching (using total score on OTHER subjects as MH matching variable) eliminates FPR inflation (ΔFPR=0.000 across all 5 tested subjects), while within-subject matching suffers from matching variable contamination (FPR inflation +0.186).\\n- Evidence: plan_011, plan_016 (ΔFPR=0.000 cross-subject, 4/5 subjects ΔTPR>0.3), plan_004 Step 2 (GSM8K ΔTPR=+0.818 standard, +0.517 external)\\n- Cross-benchmark: GSM8K replication confirms framework portability to single-domain math benchmarks\\n- Positioning: cross-subject matching is a practical methodological recommendation; cross-benchmark replication strengthens generalizability\\n\\n**Claim 4 (Downstream Impact — Four-Layer Finding)**: DIF as diagnostic lens, not quality filter. Four sub-findings:\\n1. **Benchmark redundancy**: ρ≈0.997 between full and stable-only rankings — MMLU rankings are extremely robust to 31% item removal, revealing massive measurement redundancy in the benchmark.\\n2. **DIF items = discriminative signal carriers**: DIF removal causes significantly MORE ranking disruption than random removal (z=-8 to -49σ, 21/21 conditions). DIF items carry 1.09× cross-cohort accuracy swing vs 0.96× for stable items — they concentrate the information that differentiates model generations.\\n3. **DIF as diagnostic lens**: DIF identifies which items' functioning changes most across model generations → reveals which capability dimensions drive ranking shifts. Not \\\"find bad items and remove\\\" but \\\"understand what changed and why.\\\" Model-specific patterns: phi-3/llama-3 gain +700-850 ranks from DIF items, mistral merges lose -400 to -587.\\n4. **Cross-benchmark validation — DIF captures capability, not contamination**: On GSM8K (1,319 items × 6,702 models), DIF flags anti-correlate with GSM1K contamination gap (r=−0.478, p=0.005; partial r=−0.385 controlling accuracy; permutation p=0.014). Contaminated models (high GSM8K-GSM1K gap: Phi, Gemma families) perform WORSE on DIF items. DIF captures genuine capability-discriminative items that contamination cannot fake — contamination produces shallow performance gains concentrated on non-DIF items. N=33 matched models, leave-one-out robust (min |r|=0.374).\\n- Evidence: plan_017 (z=-8 to -49σ, ρ=0.996-0.999), plan_004 Step 3 (r=−0.478, p=0.005, 33 models)\\n- Growing Pains互补: \\\"Growing Pains uses anchor items for efficient evaluation; our DIF diagnostic tells them which anchor items are degrading\\\" — mutual value positioning\\n- Caveats (→ limitations): super-family analysis limited to N≥20 families; GSM1K validation N=33 (CI wide); contamination gap is proxy, not ground truth\\n\\n## Story Spine\\n\\n**Problem**: LLM benchmarks implicitly assume temporal score comparability — when we say \\\"Model B outperforms Model A on MMLU,\\\" we presume both scores reflect the same latent construct. But do they? Item-level behavioral drift across model generations could silently erode this assumption.\\n\\n**Approach**: We apply Differential Item Functioning (DIF) analysis — a classical psychometric tool for detecting item-level behavioral anomalies — to the METABENCH response matrix (5,227 models × 12,508 MMLU items), the largest-scale DIF analysis on LLM benchmarks to date.\\n\\n**What we find**: Three discoveries, each a contribution:\\n\\n1. **38% of MMLU items are functionally unstable** across model generations (ETS C DIF, temporal cohorts). This persists within every subject domain (31-45% per subject), is not statistical noise (random split: 0.18%), and cannot be eliminated by three structural corrections (matched-ability, IRT θ-conditioning, bifactor pre-check). The instability correlates with capability improvement (ρ=0.307) — models got better at those domains, changing how items function.\\n\\n2. **The field's standard validation approach has a blind spot**: Web-overlap contamination labels (Li et al.) measure whether an item is publicly accessible — a global, model-agnostic property. DIF detects whether an item functions differently across model cohorts — a dynamic, group-specific signal. Enrichment≈1.0 between DIF flags and web-overlap labels is expected when most items have equal global exposure (MMLU on Common Crawl since 2020). Semi-synthetic injection proves DIF works (ΔTPR=+0.508) — the problem is the ground truth, not the detector. Any contamination detection paper validating against web-overlap labels at the item level has the same issue.\\n\\n3. **A semi-synthetic validation framework** that injects controlled differential contamination into real response matrices, measuring ΔTPR as the detection power metric. Cross-subject matching eliminates the matching variable contamination problem (ΔFPR=0.000). This infrastructure is reusable for validating any item-level contamination detector.\\n\\n4. **DIF is a diagnostic lens, not a quality filter**. MMLU rankings are massively redundant (ρ≈0.997 after 31% removal), but DIF items concentrate the discriminative signal that differentiates model generations (removal disrupts rankings MORE than random, z=-8 to -49σ). Cross-benchmark validation on GSM8K confirms: DIF flags anti-correlate with contamination (r=−0.478, p=0.005) — contaminated models can't fake performance on DIF items, which capture genuine capability differences. DIF identifies which capability dimensions are changing — complementing Growing Pains' anchor-item approach by detecting which anchors are degrading.\\n\\n**Headline result**: \\\"Psychometric analysis of METABENCH reveals that 38% of MMLU items are functionally unstable across model generations. Web-overlap contamination labels do not capture this differential signal (enrichment≈1.0), while semi-synthetic injection confirms detection capability (ΔTPR=+0.508 on MMLU, +0.818 on GSM8K). Cross-benchmark validation using GSM1K contamination gaps shows DIF flags anti-correlate with contamination (r=−0.478, p=0.005): DIF captures genuine capability-discriminative items that contamination cannot replicate. We provide a reusable validation framework with cross-subject matching (ΔFPR=0.000).\\\"\\n\\n## Empirical Observation: Structural Constraints on DIF in LLM Benchmarks\\n\\nSystematic experimentation reveals that three structural improvements — matched-ability cohort design (plan_001b), IRT θ-conditioning (plan_012, r=0.9986), and bifactor pre-check (plan_014, within-subject C%=38.1%) — all fail to reduce temporal DIF baseline FPR below 31% while maintaining detection power. This is an empirical observation, not a formal impossibility result. The constraints arise from: (a) unidimensional IRT limitations in modeling 57-subject multidimensional ability, (b) statistical power requirements (N≥80, δ≥1.4), and (c) inability to separate ability confounding from genuine item-level changes. Higher-level methods (MIMIC, propensity-score matching, multidimensional IRT) may address individual constraints — future work.\\n\\n## Venue Fit\\n\\n- **ICLR 2027**: Good fit — empirical analysis of evaluation methodology, psychometric rigor, large-scale characterization. Risk: ML reviewers may not be familiar with DIF/IRT. Mitigation: §3 provides self-contained DIF primer with ML translations.\\n- **Novelty concern**: DIF itself is not new (1988). Our contributions are: (1) the empirical finding of 38% instability, (2) the ground truth meta-critique affecting the field, (3) the semi-synthetic framework. Frame as \\\"bringing mature psychometric tools to characterize an urgent ML evaluation problem.\\\"\\n\\n## Anticipated Reviewer Concerns (updated for pivot)\\n\\n1. **\\\"38% could just mean models got better\\\"** — Yes, partially. ρ=0.307 confirms correlation. We discuss this honestly. The contribution is the finding itself: benchmarks have massive item-level behavioral drift, regardless of cause.\\n\\n2. **\\\"Ground truth critique is obvious — of course web labels don't capture differential effects\\\"** — Not obvious: the field routinely uses these labels for item-level validation. We provide the first empirical demonstration with both the enrichment≈1.0 result and the semi-synthetic proof of concept.\\n\\n3. **\\\"Semi-synthetic injection is artificial\\\"** — We inject into real response matrices (not simulated), preserving real ability distributions and item characteristics. The mechanism (incorrect→correct flipping) is a simplification acknowledged in limitations.\\n\\n4. **\\\"DIF power is only sufficient for large effects\\\"** — Large effects are precisely what threaten benchmark validity most. Operational region: N≥80, δ≥1.4, TPR=0.68-0.80.\\n\\n5. **\\\"Only validated on MMLU\\\"** — Partially addressed: GSM8K replication (METABENCH 1,319 items × 6,702 models) confirms semi-synthetic framework portability (ΔTPR=+0.818) and temporal DIF pattern (C%=18.9%). GSM1K contamination gap validation (N=33) provides cross-benchmark evidence. Full generalization to diverse benchmarks remains future work.\\n\\n6. **\\\"Higher methods (MIMIC, propensity-score) could solve the confounding\\\"** — Acknowledged as future work. We frame our three-attempt negative results as \\\"empirical observation\\\" that motivates these directions, not as impossibility.\\n\\n## Dropped from Original Framing\\n\\n- **Ensemble (Claim 2 old)**: plan_003a/b/c never executed. Future work.\\n- **Regeneration (Claim 3 old)**: Bifactor killed by plan_014 pre-check. Dropped entirely.\\n- **RL robustness**: Theoretically motivated but N=13 insufficient. Limitations disclosure, not claim.\\n- **Detection as primary contribution**: Pivoted from \\\"we detect contamination\\\" to \\\"we characterize benchmark properties.\\\"\\n\", \"total_chars\": 11796, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "62d73e9a-0b53-4d6f-a8d3-e645d20a563e",
+  "isSidechain": true,
+  "promptId": "27741ca6-31a4-40a5-9308-cb23e7795590",
+  "agentId": "a05abee50241190a6",
+  "type": "user",
+  "uuid": "ac0bcd70-c67b-42d6-8122-0495e02758b6",
+  "sourceToolAssistantUUID": "62d73e9a-0b53-4d6f-a8d3-e645d20a563e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-21T02:00:32.254Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01PoiJ8WxyTs5B3x14zYgbde`</summary>
+
+```json
+{
+  "project": "irt_equated_bench_regen",
+  "file": "paper_checklist.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ac0bcd70-c67b-42d6-8122-0495e02758b6",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "requestId": "req_011CbEtV6mmosEe4jfTZBYMM",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "43b11803-bd83-45ec-ad9f-d8424bb4b508",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pf8KGDVnVuJB7Aa2dvunL8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9727,
+      "cache_read_input_tokens": 17393,
+      "output_tokens": 211,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 9727
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 211,
+          "cache_read_input_tokens": 17393,
+          "cache_creation_input_tokens": 9727,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 9727,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T02:00:32.263Z_
+
+<details><summary>↩ Tool result · `toolu_01PoiJ8WxyTs5B3x14zYgbde`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"No paper_checklist.yaml found for 'irt_equated_bench_regen'.\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "43b11803-bd83-45ec-ad9f-d8424bb4b508",
+  "isSidechain": true,
+  "promptId": "27741ca6-31a4-40a5-9308-cb23e7795590",
+  "agentId": "a05abee50241190a6",
+  "type": "user",
+  "uuid": "bdede4f7-555c-4c08-ab2e-02153efedec7",
+  "sourceToolAssistantUUID": "43b11803-bd83-45ec-ad9f-d8424bb4b508",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-21T02:00:35.935Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01G2MCtKxyahgvV8j9FY4fJ4`</summary>
+
+```json
+{
+  "project": "irt_equated_bench_regen",
+  "file": "writing_plan.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bdede4f7-555c-4c08-ab2e-02153efedec7",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "requestId": "req_011CbEtVUQ2iNPKHnn5t3Wca",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "0e38f229-7bfc-4249-9990-3f00fc27e7f5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HDwmELwF3zkWSnNR7oVXBH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3717,
+      "cache_read_input_tokens": 27120,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3717,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T02:00:35.953Z_
+
+<details><summary>↩ Tool result · `toolu_01G2MCtKxyahgvV8j9FY4fJ4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/writing_plan.yaml\", \"content\": \"meta:\\n  venue: ICLR 2027\\n  track: main\\n  template: \\\"\\\"\\n  template_note: \\\"ICLR 2027 template not yet available locally; will download or reuse iclr2025 when entering Step 2\\\"\\n  page_limit: 9\\n  deadline: \\\"2026-10-01\\\"\\n  core_claim: >-\\n    Applying DIF to MMLU (5,227 models × 12,508 items) reveals 38% item-level\\n    functional instability across model generations, exposes a fundamental gap\\n    in contamination ground truth labels, and provides a semi-synthetic\\n    validation framework for item-level detectors.\\n  created_at: \\\"2026-05-20T23:45:00Z\\\"\\n  story_arc:\\n    hook: >-\\n      When we say \\\"Model B outperforms Model A on MMLU,\\\" we assume temporal\\n      comparability — but 38% of MMLU items function differently across model\\n      generations.\\n    gap: >-\\n      Existing contamination labels (web-overlap, n-gram) measure global\\n      exposure, not differential item functioning — every validation study\\n      using these labels has a blind spot. This is a fundamental validation\\n      methodology gap affecting the entire contamination detection field.\\n    insight: >-\\n      DIF detects differential contamination (semi-synthetic ΔTPR=+0.508) but\\n      temporal DIF is dominated by genuine capability evolution\\n      (enrichment≈1.0, within-subject C%=38.1%), and three structural\\n      corrections cannot separate them.\\n    mechanism: >-\\n      Semi-synthetic injection into real response matrices provides controlled\\n      ground truth; cross-subject matching eliminates FPR inflation (ΔFPR=0.000).\\n    evidence: >-\\n      38% items functionally unstable (plan_001/014); ΔTPR=+0.508 at p=0.5\\n      (plan_011); ΔFPR=0.000 cross-subject (plan_016); three improvements\\n      exhausted (plan_001b/012/014).\\n\\npaper_outline:\\n  - section: abstract\\n    word_budget: 200\\n    core_bullets:\\n      - >-\\n        Problem: LLM benchmark scores assume temporal comparability, but\\n        item-level behavior may drift across model generations\\n      - >-\\n        Approach: Apply MH-DIF with ETS classification to METABENCH\\n        (5,227 models × 12,508 MMLU items)\\n      - >-\\n        Finding 1: 38% items functionally unstable across generations —\\n        genuine capability evolution, not statistical artifact (sanity\\n        check 0.18%, within-subject persistence 31-45%)\\n      - >-\\n        Finding 2: Web-overlap contamination labels do not capture\\n        differential contamination (enrichment≈1.0); semi-synthetic\\n        injection confirms DIF detection power (ΔTPR=+0.508 at p=0.5).\\n        Validation methodology gap affects entire field.\\n      - >-\\n        Finding 3: Semi-synthetic validation framework with cross-subject\\n        matching (ΔFPR=0.000) as reusable infrastructure; GSM8K replication\\n        confirms cross-benchmark portability (ΔTPR=+0.818)\\n      - >-\\n        Finding 4: DIF-flagged items concentrate cross-generational\\n        discriminative information — removing them disrupts rankings MORE\\n        than random removal (z=-8 to -49σ), while overall rankings stay\\n        robust (ρ>0.996). Cross-benchmark validation: DIF flags\\n        anti-correlate with GSM1K contamination gap (r=−0.478, p=0.005)\\n        — DIF captures capability-discriminative items, not contamination.\\n        DIF is diagnostic lens, not item filter.\\n    dependencies: [experiments, method, discussion]\\n    registry_refs:\\n      - plan_001_real_data_dif_mmlu\\n      - plan_011_semi_synthetic_validation\\n      - plan_014_within_subject_dif\\n      - plan_016_within_subject_semi_synthetic\\n      - plan_017_downstream_impact\\n      - plan_004_gsm8k_cross_benchmark\\n\\n  - section: introduction\\n    word_budget: 1200\\n    core_bullets:\\n      - >-\\n        Hook: MMLU scores are treated as directly comparable across time —\\n        but 38% of items behave differently for 2024 vs 2023 model cohorts\\n        (ETS C DIF), and this persists within every subject domain\\n      - >-\\n        Gap: Contamination detection research validates against web-overlap\\n        labels, but these measure global exposure, not differential item\\n        functioning — a fundamental validation methodology gap. All work\\n        using web-overlap/n-gram labels as ground truth for item-level\\n        detectors (including Min-K%, n-gram methods) has the same blind\\n        spot.\\n      - >-\\n        Insight: Applying classical psychometric DIF to LLM benchmarks\\n        reveals that item-level behavioral differences are pervasive and\\n        structural — three correction attempts (matched-ability,\\n        θ-conditioning, bifactor pre-check) all fail, pointing to genuine\\n        capability evolution as the dominant source\\n      - >-\\n        Contributions: (C1) Benchmark temporal comparability concern —\\n        38% functional instability as empirical finding; (C2) Ground truth\\n        meta-critique — validation methodology gap in contamination\\n        detection literature; (C3) Semi-synthetic validation framework\\n        with cross-subject matching; (C4) DIF items concentrate\\n        discriminative information — diagnostic lens, not item filter\\n    dependencies: [experiments]\\n    figures: [fig_1_global_vs_differential]\\n    citation_hints:\\n      - \\\"METABENCH dataset citation\\\"\\n      - \\\"Li et al. (EMNLP 2024) web-overlap labels\\\"\\n      - \\\"Wang et al. (ICLR 2026) RL fragility — motivates psychometric approach\\\"\\n      - \\\"Growing Pains (Polo et al.) — positioning: they do score comparability, we do temporal stability characterization\\\"\\n\\n  - section: related_work\\n    word_budget: 800\\n    core_bullets:\\n      - >-\\n        Cluster 1: Contamination detection methods (Min-K%, ConStat, DVD,\\n        Self-Critique, n-gram baselines) — all validate against global\\n        exposure labels, not differential contamination; our meta-critique\\n        applies to their validation methodology\\n      - >-\\n        Cluster 2: IRT in LLM evaluation (Growing Pains, PSN-IRT, Hardy\\n        scalability, Lalor 2019, Vania 2021) — DEDICATED technical\\n        comparison with Growing Pains: they use anchor items for efficient\\n        extensible evaluation; our DIF diagnostic tells them WHICH anchor\\n        items are degrading across model generations. Mutual value: their\\n        framework + our diagnostic = monitored extensible evaluation.\\n        Complementary not competing. (R2-W2)\\n      - >-\\n        Cluster 3: DIF methodology and impact-vs-DIF literature (MH,\\n        ETS classification, Shealy & Stout 1993 SIBTEST, Clauser & Mazor\\n        1998 review, Zumbo 1999, Belzak 2020 small-sample) — our\\n        application context is novel; method itself is established; we\\n        acknowledge the impact-vs-DIF confound as central challenge\\n        (MISSING-REF-1)\\n      - >-\\n        Cluster 4: Benchmark design (LiveBench, dynamic benchmarks) — we\\n        characterize existing benchmarks psychometrically, they build new\\n        contamination-free ones\\n    dependencies: [introduction]\\n\\n  - section: method\\n    word_budget: 1400\\n    core_bullets:\\n      - >-\\n        3.1 Data: METABENCH response matrix (5,227 × 12,508) + Li et al.\\n        web-overlap labels (73.8% coverage, 9,229 items)\\n      - >-\\n        3.2 MH-DIF + ETS A/B/C classification — translate for ML audience:\\n        examinees→models, test items→benchmark questions, DIF→item-level\\n        behavioral anomaly conditional on ability. ETS thresholds: A\\n        (|Δ|<1.0), B (1.0≤|Δ|<1.5), C (|Δ|≥1.5)\\n      - >-\\n        3.3 Cohort designs: temporal (2023 vs 2024, N=1253/656),\\n        ability-quintile (Q1-2 vs Q4-5), within-family (Llama-2 N=161 vs\\n        Llama-3 N=308), within-subject (per-MMLU-subject DIF)\\n      - >-\\n        3.4 Semi-synthetic injection framework: select baseline-clean\\n        items (ETS A in uninjected data), inject contamination by flipping\\n        focal-group incorrect→correct responses at rate p ∈ {0.3,0.5,0.7,1.0},\\n        measure ΔTPR = TPR(injected) - TPR(baseline). Cross-subject\\n        matching: use total score on OTHER subjects as matching variable,\\n        avoiding matching variable contamination.\\n      - >-\\n        3.5 Diagnostics: Yen's Q3 for local independence, domain-specificity\\n        analysis (Spearman ρ between C% and accuracy improvement by subject)\\n    dependencies: []\\n    notation_table:\\n      θ: \\\"latent ability (IRT)\\\"\\n      Δ_MH: \\\"Mantel-Haenszel DIF statistic (log-odds ratio)\\\"\\n      p: \\\"exploitation rate in semi-synthetic injection\\\"\\n      \\\"C%\\\": \\\"percentage of items classified ETS C (large DIF)\\\"\\n      ΔTPR: \\\"TPR increase from injection over baseline\\\"\\n      ΔFPR: \\\"FPR change from injection (should be 0 for valid framework)\\\"\\n\\n  - section: experiments\\n    word_budget: 2500\\n    core_bullets:\\n      - >-\\n        4.1 Validation: DIF works under controlled conditions — power\\n        analysis with real MMLU IRT parameters, ETS C TPR=0.68-0.80 at\\n        N≥80 δ≥1.4, FPR=0.036-0.042, AUC 0.93-0.94\\n      - >-\\n        4.2 Temporal comparability concern: 31.3% ETS C (temporal), sanity\\n        random split 0.18%, within-family Llama-2v3 61.3% (ability\\n        confound), ability-quintile 2.9% (well-controlled), domain ρ=0.307\\n        (p=0.02). Within-subject C%=38.1% (31-45% across 5 subjects) —\\n        instability penetrates within every domain\\n      - >-\\n        4.3 Ground truth mismatch: enrichment=0.96 against Li et al.\\n        web-overlap labels; semi-synthetic ΔTPR=+0.508 (p=0.5), +0.674\\n        (p=1.0), clear dose-response; DIF WORKS for differential\\n        contamination but Li et al. labels are the wrong ground truth\\n      - >-\\n        4.4 Structural analysis — empirical observation that three\\n        structural improvements fail: (a) matched-ability enrichment\\n        0.94-1.04, (b) θ-conditioning r=0.9986 FPR unchanged at 31%,\\n        (c) within-subject pre-check C%=38.1% (bifactor not viable).\\n        Frame as: jointly constraining DIF utility, not formal impossibility\\n      - >-\\n        4.5 Semi-synthetic framework validation: cross-subject matching\\n        ΔFPR=0.000 all 5 subjects, 4/5 ΔTPR>0.3 at p=0.5 (cross), vs\\n        within-subject FPR inflation +0.186. Cross-subject matching as\\n        methodological recommendation.\\n      - >-\\n        4.6 Q3 local independence: 11.3% within-subject pairs >0.20 vs\\n        2.2% cross-subject (5x, p=2.3e-9); mild local dependence,\\n        contributing factor but not main FPR driver\\n      - >-\\n        4.7 Downstream impact — four layers: (1) Benchmark redundancy:\\n        ρ≈0.997 full vs stable-only, rankings extremely robust to 31%\\n        removal; (2) DIF items = discriminative signal carriers: DIF\\n        removal disrupts MORE than random (z=-8 to -49σ, 21/21),\\n        DIF items carry 1.09× cross-cohort swing vs 0.96× stable;\\n        (3) DIF as diagnostic lens: identifies which capability\\n        dimensions drive ranking shifts across generations. Model-specific\\n        patterns (phi-3/llama-3 +700-850, mistral merges -400 to -587)\\n        but caveat: top-50 movers 49/50 \\\"unknown\\\" family;\\n        (4) Cross-benchmark validation: GSM1K contamination gap\\n        anti-correlates with DIF advantage (r=−0.478, p=0.005) —\\n        contaminated models perform WORSE on DIF items, confirming DIF\\n        captures capability not contamination (N=33, partial r=−0.385,\\n        permutation p=0.014).\\n      - >-\\n        4.8 Cross-benchmark validation (GSM8K, 1,319 items × 6,702 models):\\n        Three-part analysis. (a) Temporal DIF: C%=18.9% (standard matching),\\n        sanity 0.3% — instability is lower than MMLU (31.3%) but still\\n        substantial for a single-domain benchmark. (b) Semi-synthetic:\\n        ΔTPR=+0.818 (standard, p=0.7), +0.517 (external, p=0.7); dose-\\n        response confirmed; framework generalizes beyond MMLU.\\n        (c) GSM1K contamination gap correlation: DIF-C items anti-correlate\\n        with contamination gap (r=−0.478, p=0.005; partial r=−0.385\\n        controlling accuracy; permutation p=0.014, N=33). Contaminated\\n        models (Phi, Gemma) perform WORSE on DIF items. DIF captures\\n        capability-discriminative items that contamination cannot fake.\\n    dependencies: []\\n    registry_refs:\\n      - mvp_dif_power_sim\\n      - mvp_dif_power_sim_phase2\\n      - plan_001_real_data_dif_mmlu\\n      - plan_001b_matched_ability_dif\\n      - plan_011_semi_synthetic_validation\\n      - plan_012_irt_theta_conditioning\\n      - plan_013_q3_local_independence\\n      - plan_014_within_subject_dif\\n      - plan_016_within_subject_semi_synthetic\\n      - plan_017_downstream_impact\\n      - plan_004_gsm8k_cross_benchmark\\n    tables: [tab_1_temporal_landscape, tab_2_structural_comparison]\\n    figures: [fig_2_dose_response, fig_3_within_subject_matching, fig_4_downstream_impact, fig_5_gsm8k_cross_benchmark]\\n\\n  - section: discussion\\n    word_budget: 1000\\n    core_bullets:\\n      - >-\\n        5.1 Implications for benchmark temporal comparability: 38%\\n        instability means cross-temporal MMLU scores carry uncontrolled\\n        item-level variance; benchmark designers should monitor DIF as\\n        quality diagnostic\\n      - >-\\n        5.2 Ground truth meta-critique — AGGRESSIVE framing per Director:\\n        all work validating item-level detectors against web-overlap/n-gram\\n        labels has the same validation methodology gap. Web-overlap measures\\n        existence, not differential usage. This is a meta-contribution to\\n        the contamination detection field — not just \\\"DIF and Li et al.\\n        measure different things\\\" but \\\"the field's standard validation\\n        approach is fundamentally mismatched for item-level detection.\\\"\\n      - >-\\n        5.3 Empirical observation on DIF applicability: 1D IRT fit\\n        limitations + power requirements + ability confounding jointly\\n        constrain DIF utility in LLM benchmarks. This is a structural\\n        constraint revealed by systematic experimentation, NOT a formal\\n        impossibility — higher-level methods (MIMIC, propensity-score\\n        matching, multidimensional IRT) may address individual constraints.\\n      - >-\\n        5.4 Limitations — MUST BE HONEST, non-negotiable:\\n        (a) ρ=0.307 means item instability correlates with capability\\n        improvement — \\\"unstable items\\\" may mainly reflect \\\"models got\\n        better at those domains\\\" rather than item-intrinsic problems;\\n        (b) 38% C% cannot be decomposed into contamination vs capability;\\n        (c) semi-synthetic injection (incorrect→correct flipping) may\\n        not match real contamination patterns (partial knowledge, format\\n        memorization);\\n        (d) primarily MMLU/METABENCH — GSM8K cross-validation (§4.8)\\n        confirms semi-synthetic framework portability and provides GSM1K\\n        correlation evidence (N=33), but full temporal DIF characterization\\n        on diverse benchmarks not yet done; GSM1K N=33 has wide CI;\\n        (e) cross-subject baseline FPR 33-53% — stable across injection\\n        levels but not low;\\n        (f) RL robustness: theoretically motivated but empirically\\n        unvalidated with adequate sample size (N=13 reasoning-RL models\\n        in METABENCH);\\n        (g) downstream impact family analysis limited to N≥20 families\\n        (llama, mistral, qwen, phi); top-50 rank movers 49/50 are\\n        \\\"unknown\\\" family — family-level conclusions have limited coverage\\n      - >-\\n        5.5 Future work: ensemble fusion (DIF + ConStat + DVD),\\n        broader cross-benchmark generalization (beyond GSM8K — e.g.\\n        ARC, HellaSwag, coding benchmarks), RL model cohorts with\\n        adequate N, item-focused trees (continuous covariate),\\n        SIBTEST/LR-DIF comparison, MIMIC models, GSM1K-style\\n        controlled item sets for more benchmarks\\n    dependencies: [experiments]\\n\\n  - section: conclusion\\n    word_budget: 350\\n    core_bullets:\\n      - >-\\n        Four contributions: (1) 38% MMLU items functionally unstable\\n        across model generations, (2) ground truth meta-critique —\\n        validation methodology gap in contamination detection, (3)\\n        semi-synthetic framework with cross-subject matching (cross-\\n        benchmark replication on GSM8K: ΔTPR=+0.818), (4) DIF as\\n        diagnostic lens — four-layer finding\\n      - >-\\n        Key message: LLM benchmarks need psychometric monitoring, not\\n        just score reporting — DIF reveals benchmark quality as a\\n        benchmark quality tool\\n      - >-\\n        DIF items concentrate discriminative information (removal disrupts\\n        rankings MORE than random, z=-8 to -49σ) and anti-correlate with\\n        contamination (r=−0.478) — DIF captures genuine capability\\n        differences that contamination cannot replicate\\n    dependencies: [experiments, discussion]\\n\\nvisualization_plan:\\n  - fig_id: fig_1_global_vs_differential\\n    type: conceptual\\n    tool: paperbanana\\n    description: >-\\n      Global vs Differential contamination concept diagram with ICC\\n      illustration — global exposure affects all models equally (no DIF),\\n      differential training data inclusion creates group-specific ICC\\n      shifts (DIF detected). Shows why enrichment≈1.0 is expected.\\n    narrative_intent: >-\\n      Web-overlap labels and DIF measure fundamentally different things:\\n      global exposure vs differential item functioning. Low enrichment is\\n      expected, not failure.\\n    design_notes:\\n      - >-\\n        Left panel: \\\"Global Contamination\\\" — item on Common Crawl since\\n        2020, both cohort ICCs overlap (no DIF), Li et al. labels it\\n        contaminated but DIF correctly reports no group difference\\n      - >-\\n        Right panel: \\\"Differential Contamination\\\" — item in focal\\n        cohort's training data only, ICCs diverge (DIF detected), Li\\n        et al. may or may not label it\\n      - >-\\n        Use ICC curves (S-shaped logistic) with shaded area between\\n        curves = DIF magnitude (Δ_MH)\\n      - \\\"Color: reference cohort blue, focal cohort orange (Okabe-Ito)\\\"\\n      - >-\\n        Bottom annotation connecting panels: \\\"Enrichment ≈ 1.0 because\\n        most MMLU items are globally contaminated (left), not\\n        differentially (right)\\\"\\n    placement: introduction\\n    aspect_ratio: \\\"16:9\\\"\\n\\n  - fig_id: fig_2_dose_response\\n    type: statistical\\n    tool: matplotlib\\n    description: >-\\n      Semi-synthetic dose-response: TPR vs exploitation rate p for\\n      temporal cohort with external/cross-subject matching, plus FPR\\n      stability panel\\n    narrative_intent: >-\\n      DIF detection power increases monotonically with contamination\\n      exploitation rate (clear dose-response), and cross-subject matching\\n      maintains perfectly stable FPR (ΔFPR=0.000) — controlled detection\\n      capability confirmed.\\n    design_notes:\\n      - \\\"x-axis: exploitation rate p ∈ {0, 0.3, 0.5, 0.7, 1.0}\\\"\\n      - >-\\n        Top panel: TPR lines — temporal_external (primary, solid blue),\\n        temporal_standard (dashed red, shows FPR inflation problem at\\n        high p)\\n      - >-\\n        Bottom panel (smaller): FPR vs p — external flat at ~0.31\\n        (ΔFPR=0.000), standard inflating from 0.30 to 0.62\\n      - \\\"Pattern A: light regime band at p<0.3 labeled 'below practical detection'\\\"\\n      - \\\"Dashed horizontal lines at baseline TPR (p=0) for reference\\\"\\n      - \\\"Annotate ΔTPR=+0.508 at p=0.5 on the primary line\\\"\\n    data_source: \\\"registry: plan_011_semi_synthetic_validation\\\"\\n    placement: experiments\\n    aspect_ratio: \\\"3:4\\\"\\n\\n  - fig_id: fig_3_within_subject_matching\\n    type: statistical\\n    tool: matplotlib\\n    description: >-\\n      Within-subject semi-synthetic: 5 subjects comparing cross-subject\\n      vs within-subject matching on ΔTPR and ΔFPR\\n    narrative_intent: >-\\n      Cross-subject matching eliminates FPR inflation (ΔFPR=0.000 for\\n      all 5 subjects) while maintaining detection power — a practical\\n      methodological recommendation.\\n    design_notes:\\n      - >-\\n        Paired dot plot or grouped bars: 5 subjects on x-axis, sorted\\n        by cross-subject ΔTPR\\n      - >-\\n        Left panel: ΔTPR at p=0.5 — cross (filled circle) vs within\\n        (open circle), connected by line\\n      - >-\\n        Right panel: ΔFPR — cross all at 0.000 (flat line), within\\n        showing inflation (+0.067 to +0.281)\\n      - \\\"Reference line: ΔTPR=0.3 (success threshold), ΔFPR=0\\\"\\n      - >-\\n        Highlight business_ethics: high baseline FPR (0.53-0.56),\\n        negative within-subject ΔTPR, low cross-subject ΔTPR — the\\n        failure case\\n    data_source: \\\"registry: plan_016_within_subject_semi_synthetic\\\"\\n    placement: experiments\\n    aspect_ratio: \\\"3:2\\\"\\n\\n  - fig_id: fig_4_downstream_impact\\n    type: statistical\\n    tool: matplotlib\\n    description: >-\\n      Model-level rank change scatter: full-benchmark rank vs\\n      stable-only rank, showing that DIF removal systematically\\n      disrupts rankings more than random removal. Annotate key model\\n      clusters (phi-3/llama-3 beneficiaries, mistral merge losers).\\n    narrative_intent: >-\\n      DIF-flagged items concentrate cross-generational discriminative\\n      information — removing them disrupts rankings MORE than random\\n      removal, revealing model-specific evolution patterns rather than\\n      benchmark noise.\\n    design_notes:\\n      - >-\\n        Scatter plot: x = full-benchmark rank, y = stable-only rank.\\n        Diagonal line (y=x) = no change. Points above = gained rank\\n        (benefited from DIF items), below = lost rank.\\n      - >-\\n        Color by model family or cohort (2023 blue, 2024 orange) if\\n        feasible; otherwise uniform gray with key models highlighted\\n      - >-\\n        Annotate clusters: phi-3 / llama-3 derivatives (large positive\\n        rank change, +700-850), mistral merges (large negative, -400\\n        to -587)\\n      - >-\\n        Inset or annotation box: ρ_full_vs_stable = 0.996, z_dif_vs_random\\n        = -14.9 (mean), DIF items 1.09× cross-cohort ratio\\n      - \\\"Reference diagonal dashed line y=x\\\"\\n      - \\\"Alternative: if scatter too dense, use hexbin or contour\\\"\\n    data_source: \\\"registry: plan_017_downstream_impact\\\"\\n    placement: experiments\\n    aspect_ratio: \\\"4:3\\\"\\n\\n  - fig_id: fig_5_gsm1k_dif_correlation\\n    type: statistical\\n    tool: matplotlib\\n    description: >-\\n      GSM1K contamination gap vs DIF advantage scatter: 33 matched models,\\n      showing significant negative correlation (r=−0.478, p=0.005).\\n      Models with higher contamination (GSM8K−GSM1K gap) perform WORSE\\n      on DIF-C items — DIF captures capability, not contamination.\\n    narrative_intent: >-\\n      Cross-benchmark validation of Claim 4's \\\"DIF as diagnostic lens\\\":\\n      contaminated models cannot fake performance on DIF items, which\\n      capture genuine capability-discriminative differences. The negative\\n      correlation inverts the contamination narrative.\\n    design_notes:\\n      - >-\\n        Scatter: x = GSM8K−GSM1K contamination gap, y = DIF advantage\\n        (acc_DIF_C − acc_non_DIF). Regression line with 95% CI band.\\n      - >-\\n        Color by model family (Phi green, Gemma orange, Llama blue,\\n        Mixtral purple, DeepSeek red, Other gray)\\n      - \\\"Annotate: r=−0.478, p=0.005 (partial r=−0.385 ctrl accuracy)\\\"\\n      - \\\"Annotate key outlier: Deepseek-math-7b-rl (near zero on both)\\\"\\n      - >-\\n        Dashed horizontal line at DIF advantage = 0; most models below\\n        (DIF items are harder for all, but contaminated models worse)\\n      - \\\"Already generated by Agent Worker — may need style refinement\\\"\\n    data_source: \\\"registry: plan_004_gsm8k_cross_benchmark, artifacts/plan_004/gsm1k_dif_correlation.csv\\\"\\n    placement: experiments\\n    aspect_ratio: \\\"4:3\\\"\\n    source_file: \\\"artifacts/plan_004/fig_gsm1k_dif_correlation.pdf\\\"\\n\\n  - fig_id: fig_A1_subject_heatmap\\n    type: statistical\\n    tool: matplotlib\\n    description: >-\\n      Per-subject ETS C percentage for all 57 MMLU subjects (temporal\\n      cohort), showing pervasiveness of item instability\\n    narrative_intent: >-\\n      Item instability is pervasive across all MMLU subjects, not\\n      concentrated in a few — temporal DIF is a benchmark-wide phenomenon.\\n    design_notes:\\n      - \\\"Horizontal bar chart sorted by C%, all 57 subjects\\\"\\n      - >-\\n        Color-coded by domain group (STEM / humanities / social science\\n        / other) to show whether instability clusters by domain\\n      - \\\"Vertical dashed line at overall mean C% (31.3%)\\\"\\n      - >-\\n        Annotate subjects with known capability jumps (e.g.,\\n        abstract_algebra, college_mathematics)\\n    data_source: \\\"registry: plan_001_real_data_dif_mmlu\\\"\\n    placement: appendix\\n    aspect_ratio: \\\"1:2\\\"\\n\\n  - fig_id: fig_A2_q3_distribution\\n    type: statistical\\n    tool: matplotlib\\n    description: >-\\n      Q3 residual correlation distribution: within-subject vs\\n      cross-subject pairs\\n    narrative_intent: >-\\n      Local dependence exists (11.3% within-subject pairs exceed 0.20)\\n      but is mild — a contributing factor, not the main FPR driver.\\n    design_notes:\\n      - >-\\n        Overlapping density plot: within-subject Q3 (blue) vs\\n        cross-subject Q3 (orange)\\n      - \\\"Vertical dashed line at |Q3|=0.20 threshold\\\"\\n      - \\\"Annotate: 11.3% vs 2.2% above threshold (5x ratio)\\\"\\n      - \\\"Inset text: Mann-Whitney p=2.3e-9\\\"\\n    data_source: \\\"registry: plan_013_q3_local_independence\\\"\\n    placement: appendix\\n    aspect_ratio: \\\"4:3\\\"\\n\\ntable_plan:\\n  - table_id: tab_1_temporal_landscape\\n    caption: >-\\n      DIF detection results across cohort definitions on METABENCH MMLU\\n      (5,227 models × 12,508 items). ETS C = large DIF (|Δ_MH| ≥ 1.5).\\n    placement: experiments\\n    type: comparison\\n    columns:\\n      - Cohort Definition\\n      - N_ref / N_focal\\n      - \\\"ETS C (%)\\\"\\n      - \\\"FPR (Li clean)\\\"\\n      - Enrichment\\n    data_source: \\\"registry: plan_001_real_data_dif_mmlu, plan_014_within_subject_dif\\\"\\n    notes: >-\\n      Rows: temporal (2023 vs 2024), ability-quintile (Q1-2 vs Q4-5),\\n      within-family (Llama-2 vs Llama-3), random split (sanity check),\\n      within-subject average (5 subjects). Highlight contrast: sanity\\n      0.18% vs temporal 31.3%. Within-subject 38.1% proves instability\\n      penetrates within domains.\\n\\n  - table_id: tab_2_structural_comparison\\n    caption: >-\\n      Three structural improvement attempts and their outcomes. None\\n      reduces temporal baseline FPR below 31%.\\n    placement: experiments\\n    type: comparison\\n    columns:\\n      - Approach\\n      - Mechanism\\n      - Temporal FPR\\n      - \\\"TPR (p=0.5)\\\"\\n      - Outcome\\n    data_source: \\\"registry: plan_001b_matched_ability_dif, plan_012_irt_theta_conditioning, plan_014_within_subject_dif\\\"\\n    notes: >-\\n      Rows: baseline (plan_011 external matching), matched-ability\\n      quintiles (plan_001b), IRT θ-conditioning (plan_012), within-subject\\n      pre-check (plan_014). Frame as \\\"empirical observation revealing\\n      structural constraint\\\" not \\\"our method failed.\\\" Note: higher-level\\n      methods (MIMIC, propensity-score) may address individual constraints.\\n    baseline_row: \\\"Baseline (plan_011 external matching, FPR=0.314, TPR=0.834)\\\"\\n\\n  - table_id: tab_3_gsm8k_comparison\\n    caption: >-\\n      Cross-benchmark comparison: MMLU vs GSM8K on temporal DIF and\\n      semi-synthetic detection. GSM8K replicates key findings on a\\n      single-domain math benchmark (1,319 items × 6,702 models).\\n    placement: experiments\\n    type: comparison\\n    columns:\\n      - Metric\\n      - MMLU (plan_001/011)\\n      - GSM8K (plan_004)\\n    data_source: \\\"registry: plan_001_real_data_dif_mmlu, plan_011_semi_synthetic_validation, plan_004_gsm8k_cross_benchmark\\\"\\n    notes: >-\\n      Rows: Items / Models / Temporal C% / Sanity C% / Semi-synthetic\\n      ΔTPR (standard, p=0.7) / ΔTPR (external, p=0.5) / Baseline FPR\\n      (external) / GSM1K gap correlation (GSM8K only). Highlight: GSM8K\\n      standard ΔTPR=+0.818 vs MMLU external ΔTPR=+0.508. Different\\n      matching strategies make direct comparison nuanced — note in caption.\\n\\n  - table_id: tab_A1_power_analysis\\n    caption: >-\\n      DIF power analysis: ETS C classification performance with real\\n      MMLU IRT parameters across sample sizes and effect sizes.\\n    placement: appendix\\n    type: statistics\\n    columns:\\n      - N per group\\n      - \\\"δ (logits)\\\"\\n      - TPR (ETS C)\\n      - FPR (ETS C)\\n      - AUC (MH)\\n      - AUC (LR)\\n    data_source: \\\"registry: mvp_dif_power_sim, mvp_dif_power_sim_phase2\\\"\\n    notes: >-\\n      Grid: N ∈ {50, 80, 100} × δ ∈ {1.0, 1.2, 1.4, 1.6}. Operational\\n      region: N≥80, δ≥1.4 (TPR 0.68-0.80, FPR 0.036-0.042).\\n\\n  - table_id: tab_A2_within_subject_detail\\n    caption: >-\\n      Per-subject semi-synthetic validation with cross-subject vs\\n      within-subject matching at p=0.5.\\n    placement: appendix\\n    type: comparison\\n    columns:\\n      - Subject\\n      - N items\\n      - \\\"Baseline FPR (cross)\\\"\\n      - \\\"ΔTPR (cross)\\\"\\n      - \\\"Baseline FPR (within)\\\"\\n      - \\\"ΔTPR (within)\\\"\\n      - \\\"ΔFPR (cross)\\\"\\n    data_source: \\\"registry: plan_016_within_subject_semi_synthetic\\\"\\n    notes: >-\\n      5 subjects: business_ethics, human_aging, professional_medicine,\\n      formal_logic, high_school_statistics. Cross-subject ΔFPR=0.000 for\\n      all subjects. business_ethics is failure case (baseline FPR>0.53\\n      both methods).\\n\\nliterature_strategy:\\n  citation_budget: 40\\n  macro_context:\\n    - \\\"LLM benchmark contamination detection and validation methodology\\\"\\n    - \\\"psychometric methods (IRT, DIF) applied to LLM evaluation\\\"\\n    - \\\"benchmark temporal comparability and dynamic evaluation design\\\"\\n  micro_clusters:\\n    - cluster_name: \\\"Contamination Detection Methods\\\"\\n      search_queries:\\n        - \\\"benchmark contamination detection LLM 2024 2025 2026\\\"\\n        - \\\"Min-K++ training data detection language model\\\"\\n        - \\\"ConStat perturbation contamination benchmark\\\"\\n        - \\\"n-gram overlap contamination benchmark LLM\\\"\\n      must_cite:\\n        - \\\"Wang et al. 2026 RL fragility (ICLR 2026)\\\"\\n        - \\\"Liang et al. 2026 DVD generation variance\\\"\\n        - \\\"Tao et al. 2026 Self-Critique (ICLR 2026)\\\"\\n        - \\\"Li et al. EMNLP 2024 web-overlap labels\\\"\\n        - \\\"Shi et al. 2024 Min-K++\\\"\\n        - \\\"Balloccu et al. 2024\\\"\\n      target_count: 10\\n\\n    - cluster_name: \\\"IRT in LLM Evaluation\\\"\\n      search_queries:\\n        - \\\"item response theory LLM evaluation 2024 2025 2026\\\"\\n        - \\\"Growing Pains fixed parameter calibration benchmark\\\"\\n        - \\\"psychometric analysis language model benchmark\\\"\\n      must_cite:\\n        - \\\"Polo et al. 2026 Growing Pains\\\"\\n        - \\\"Polo et al. 2026 PSN-IRT (AAAI)\\\"\\n        - \\\"Hardy et al. 2026 scalability coefficients\\\"\\n        - \\\"Lalor et al. 2019 IRT for NLP\\\"\\n        - \\\"Vania et al. 2021\\\"\\n      target_count: 8\\n\\n    - cluster_name: \\\"DIF Methodology & Impact-vs-DIF\\\"\\n      search_queries:\\n        - \\\"differential item functioning Mantel-Haenszel ETS classification\\\"\\n        - \\\"impact versus DIF Shealy Stout SIBTEST\\\"\\n        - \\\"DIF small sample logistic regression\\\"\\n        - \\\"Zumbo 1999 DIF\\\"\\n      must_cite:\\n        - \\\"Holland & Thayer 1988 MH-DIF\\\"\\n        - \\\"Shealy & Stout 1993 SIBTEST\\\"\\n        - \\\"Clauser & Mazor 1998 DIF review\\\"\\n        - \\\"Zumbo 1999 DIF overview\\\"\\n        - \\\"Belzak 2020 small-sample DIF\\\"\\n        - \\\"Kim & Kolen 2019 fixed parameter calibration\\\"\\n      target_count: 8\\n\\n    - cluster_name: \\\"Benchmark Design & Ground Truth\\\"\\n      search_queries:\\n        - \\\"contamination-free benchmark LLM LiveBench 2025\\\"\\n        - \\\"benchmark ground truth contamination labels validation\\\"\\n        - \\\"GSM1K GSM8K contamination evidence\\\"\\n      must_cite:\\n        - \\\"White et al. 2025 LiveBench (ICLR)\\\"\\n        - \\\"Zhang et al. 2024 GSM1K\\\"\\n        - \\\"METABENCH original paper\\\"\\n      target_count: 6\\n\\n    - cluster_name: \\\"LLM Evaluation Methodology\\\"\\n      search_queries:\\n        - \\\"LLM evaluation methodology benchmark design 2025 2026\\\"\\n        - \\\"MMLU benchmark psychometric analysis\\\"\\n        - \\\"language model evaluation survey\\\"\\n      must_cite: []\\n      target_count: 5\\n\\nwriting_order:\\n  - experiments\\n  - method\\n  - introduction\\n  - related_work\\n  - discussion\\n  - abstract\\n  - conclusion\\n\", \"total_chars\": 31764, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0e38f229-7bfc-4249-9990-3f00fc27e7f5",
+  "isSidechain": true,
+  "promptId": "27741ca6-31a4-40a5-9308-cb23e7795590",
+  "agentId": "a05abee50241190a6",
+  "type": "user",
+  "uuid": "9efd928e-9a86-4b73-bf2d-ce7f14b6cc3c",
+  "sourceToolAssistantUUID": "0e38f229-7bfc-4249-9990-3f00fc27e7f5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-21T02:00:36.462Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_0186sf4TtoJzVDRdafvTEFmx`</summary>
+
+```json
+{
+  "project": "irt_equated_bench_regen",
+  "file": "literature_map.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9efd928e-9a86-4b73-bf2d-ce7f14b6cc3c",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "requestId": "req_011CbEtVUQ2iNPKHnn5t3Wca",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "83b7e79c-c05f-4666-ba14-dcb5061f974e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HDwmELwF3zkWSnNR7oVXBH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3717,
+      "cache_read_input_tokens": 27120,
+      "output_tokens": 209,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3717
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 209,
+          "cache_read_input_tokens": 27120,
+          "cache_creation_input_tokens": 3717,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3717,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T02:00:36.475Z_
+
+<details><summary>↩ Tool result · `toolu_0186sf4TtoJzVDRdafvTEFmx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/literature_map.yaml\", \"content\": \"categories:\\n- key: contamination_detection\\n  name: Benchmark Contamination Detection\\n  narrative: Methods for detecting training data contamination in LLM benchmarks,\\n    including RL-robust approaches\\n- key: irt_equating\\n  name: IRT Methodology & Equating\\n  narrative: Item Response Theory models, calibration, equating, and their application\\n    to LLM evaluation\\n- key: benchmark_design\\n  name: Dynamic Benchmark Design\\n  narrative: Approaches for creating contamination-resistant or self-updating benchmarks\\n- key: dif_methodology\\n  name: DIF Statistical Methods\\n  narrative: Differential Item Functioning detection methods, power analysis, and\\n    small-sample strategies\\n- key: item_generation\\n  name: Automated Item Generation\\n  narrative: LLM-based test item generation with difficulty control and psychometric\\n    validation\\nmeta:\\n  last_updated: '2026-05-21T01:40:38.004Z'\\n  total_papers: 16\\npapers:\\n  belzak2020smallsample:\\n    abstract: ''\\n    added_at: '2026-05-20T17:30:00.000Z'\\n    added_by: director\\n    authors:\\n    - Belzak, W.\\n    bibtex_key: belzak2020smallsample\\n    category: dif_methodology\\n    doi: ''\\n    relevance: Parsimonious logistic regression with sum scores outperforms complex\\n      IRT models for DIF detection in small samples; directly applicable to our N=50-80\\n      model cohorts\\n    role: method-component\\n    semantic_scholar_id: ''\\n    title: Testing Differential Item Functioning in Small Samples\\n    url: ''\\n    venue: Multivariate Behavioral Research\\n    verified: false\\n    year: 2020\\n  hardy2026scalability:\\n    abstract: ''\\n    added_at: '2026-05-20T17:30:00.000Z'\\n    added_by: director\\n    authors:\\n    - Hardy, M.\\n    bibtex_key: hardy2026scalability\\n    category: irt_equating\\n    doi: ''\\n    relevance: Nonparametric signed isotonic R2 scalability coefficients outperform\\n      IRT item diagnostics; lightweight pre-filter for item quality before our parametric\\n      calibration\\n    role: method-component\\n    semantic_scholar_id: ''\\n    title: Efficient Detection of Bad Benchmark Items with Novel Scalability Coefficients\\n    url: https://arxiv.org/abs/2603.24999\\n    venue: arXiv\\n    verified: false\\n    year: 2026\\n  kim2019fpc:\\n    abstract: ''\\n    added_at: '2026-05-20T17:30:00.000Z'\\n    added_by: director\\n    authors:\\n    - Kim, S.\\n    - Kolen, M.\\n    bibtex_key: kim2019fpc\\n    category: irt_equating\\n    doi: ''\\n    relevance: Fixed-parameter calibration requires only N>=200 vs N>=500 for full\\n      calibration; core methodology for our bifactor IRT equating with anchor items\\n    role: method-component\\n    semantic_scholar_id: ''\\n    title: Application of IRT Fixed Parameter Calibration to Multiple-Group Test Data\\n    url: ''\\n    venue: Applied Measurement in Education\\n    verified: false\\n    year: 2019\\n  liang2026dvd:\\n    abstract: ''\\n    added_at: '2026-05-20T17:30:00.000Z'\\n    added_by: director\\n    authors:\\n    - Liang, R.\\n    bibtex_key: liang2026dvd\\n    category: contamination_detection\\n    doi: ''\\n    relevance: Detects variant contamination via generation variance (AUC 0.73-0.74\\n      vs Min-K++ 0.43-0.68); complementary signal in our ensemble but untested under\\n      RL training\\n    role: direct-competitor\\n    semantic_scholar_id: ''\\n    title: 'DVD: Detection via Variance of Generation Distribution for Variant Contamination'\\n    url: https://arxiv.org/abs/2601.04895\\n    venue: arXiv\\n    verified: true\\n    year: 2026\\n  polo2026growingpains:\\n    abstract: ''\\n    added_at: '2026-05-20T17:30:00.000Z'\\n    added_by: director\\n    authors:\\n    - Polo, F.\\n    bibtex_key: polo2026growingpains\\n    category: irt_equating\\n    doi: ''\\n    relevance: Uses multidimensional IRT with fixed-parameter calibration and 100\\n      anchor items for extensible evaluation (rho>=0.9); addresses score comparability\\n      but NOT contamination detection or item regeneration\\n    role: direct-competitor\\n    semantic_scholar_id: ''\\n    title: 'Growing Pains: Extensible and Efficient LLM Benchmarking Via Fixed Parameter\\n      Calibration'\\n    url: ''\\n    venue: arXiv\\n    verified: false\\n    year: 2026\\n  polo2026psnirt:\\n    abstract: ''\\n    added_at: '2026-05-20T17:30:00.000Z'\\n    added_by: director\\n    authors:\\n    - Polo, F.\\n    bibtex_key: polo2026psnirt\\n    category: irt_equating\\n    doi: ''\\n    relevance: PSN-IRT analyzes benchmark quality via 4PL IRT; provides published\\n      IRT parameters for MMLU we can use in semi-synthetic validation\\n    role: method-component\\n    semantic_scholar_id: ''\\n    title: Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item\\n      Response Theory\\n    url: ''\\n    venue: AAAI 2026\\n    verified: false\\n    year: 2026\\n  tao2026selfcritique:\\n    abstract: ''\\n    added_at: '2026-05-20T17:30:00.000Z'\\n    added_by: director\\n    authors:\\n    - Tao, Y.\\n    bibtex_key: tao2026selfcritique\\n    category: contamination_detection\\n    doi: ''\\n    relevance: Self-Critique/RL-MIA partially addresses RL concealment via policy-collapse\\n      detection, but remains individual-model-level; our DIF is group-level and complementary\\n    role: direct-competitor\\n    semantic_scholar_id: ''\\n    title: Detecting Data Contamination from Reinforcement Learning Post-training\\n      for Large Language Models\\n    url: https://arxiv.org/abs/2510.09259\\n    venue: ICLR 2026\\n    verified: true\\n    year: 2026\\n  wang2026fragility:\\n    abstract: ''\\n    added_at: '2026-05-20T17:30:00.000Z'\\n    added_by: director\\n    authors:\\n    - Wang, H.\\n    - Li, H.\\n    - Ko, B.\\n    - Zhang, H.\\n    bibtex_key: wang2026fragility\\n    category: contamination_detection\\n    doi: ''\\n    relevance: Proves GRPO/PPO RL training conceals contamination signals (14-20pp\\n      AUROC degradation), motivating our DIF-based approach which operates on behavioral\\n      patterns immune to NLL smoothing\\n    role: foundation\\n    semantic_scholar_id: 9a5bf5d3c7116cc4a104c06599fbcef2d1b5abf3\\n    title: On The Fragility of Benchmark Contamination Detection in Reasoning Models\\n    url: https://arxiv.org/abs/2510.02386\\n    venue: ICLR 2026\\n    verified: true\\n    year: 2026\\n  white2025livebench:\\n    abstract: ''\\n    added_at: '2026-05-20T17:30:00.000Z'\\n    added_by: director\\n    authors:\\n    - White, C.\\n    bibtex_key: white2025livebench\\n    category: benchmark_design\\n    doi: ''\\n    relevance: Monthly-updated contamination-free benchmark with objective scoring;\\n      no difficulty calibration or psychometric equivalence across updates\\n    role: direct-competitor\\n    semantic_scholar_id: ''\\n    title: 'LiveBench: A Challenging, Contamination-Free LLM Benchmark'\\n    url: ''\\n    venue: ICLR 2025\\n    verified: false\\n    year: 2025\\n  zhang2024gsm1k:\\n    abstract: ''\\n    added_at: '2026-05-20T17:30:00.000Z'\\n    added_by: director\\n    authors:\\n    - Zhang, H.\\n    bibtex_key: zhang2024gsm1k\\n    category: contamination_detection\\n    doi: ''\\n    relevance: GSM1K documents 10-13% average accuracy drops from contamination; provides\\n      ground-truth contamination evidence and item-level effect sizes (delta 0.8-1.4\\n      logits) critical for our DIF power analysis\\n    role: foundation\\n    semantic_scholar_id: ef62f95c16f668f031d649799cbd79081c6d2b0f\\n    title: A Careful Examination of Large Language Model Performance on Grade School\\n      Arithmetic\\n    url: https://arxiv.org/abs/2405.00332\\n    venue: arXiv\\n    verified: true\\n    year: 2024\\n  li2024contamination:\\n    title: An Open-Source Data Contamination Report for Large Language Models\\n    authors:\\n    - Li, Y.\\n    - Guo, Y.\\n    - Guerin, F.\\n    - Lin, C.\\n    year: 2024\\n    venue: Findings of EMNLP 2024\\n    url: https://aclanthology.org/2024.findings-emnlp.30/\\n    doi: 10.18653/v1/2024.findings-emnlp.30\\n    bibtex_key: li2024contamination\\n    category: contamination_detection\\n    role: foundation\\n    relevance: Provides web-overlap contamination labels for MMLU and other benchmarks\\n      via Common Crawl matching; primary ground-truth comparison for our DIF-based\\n      contamination detection\\n    abstract: ''\\n    semantic_scholar_id: 32e11cf020021c225782a3b77b5cfed4ae8e14a0\\n    verified: true\\n    added_by: literature-gap-fill\\n    added_at: '2026-05-21T01:40:37.987Z'\\n  shi2024mink:\\n    title: Detecting Pretraining Data from Large Language Models\\n    authors:\\n    - Shi, W.\\n    - Ajith, A.\\n    - Xia, M.\\n    - Huang, Y.\\n    - Liu, D.\\n    - Blevins, T.\\n    - Chen, D.\\n    - Zettlemoyer, L.\\n    year: 2024\\n    venue: ICLR 2024\\n    url: https://arxiv.org/abs/2310.16789\\n    doi: ''\\n    bibtex_key: shi2024mink\\n    category: contamination_detection\\n    role: foundation\\n    relevance: Introduces Min-K% Prob method and WikiMIA benchmark for pretraining\\n      data detection; key baseline whose limitations under RL training motivate our\\n      DIF-based alternative\\n    abstract: ''\\n    semantic_scholar_id: 3422d5e0cdfdc935d6a84a1e3d3f96659265fe3a\\n    verified: true\\n    added_by: literature-gap-fill\\n    added_at: '2026-05-21T01:40:37.987Z'\\n  balloccu2024leak:\\n    title: 'Leak, Cheat, Repeat: Data Contamination and Evaluation Malpractices in\\n      Closed-Source LLMs'\\n    authors:\\n    - Balloccu, S.\\n    - Schmidtova, P.\\n    - Lango, M.\\n    - Dusek, O.\\n    year: 2024\\n    venue: EACL 2024\\n    url: https://arxiv.org/abs/2402.03927\\n    doi: 10.18653/v1/2024.eacl-long.5\\n    bibtex_key: balloccu2024leak\\n    category: contamination_detection\\n    role: foundation\\n    relevance: Systematic survey of data leakage in closed-source LLMs covering 255\\n      papers and 263 benchmarks; establishes scope of contamination problem motivating\\n      our detection approach\\n    abstract: ''\\n    semantic_scholar_id: 798feda076ad710df65d509a7884bd15937c8056\\n    verified: true\\n    added_by: literature-gap-fill\\n    added_at: '2026-05-21T01:40:37.987Z'\\n  dekoninck2024constat:\\n    title: 'ConStat: Performance-Based Contamination Detection in Large Language Models'\\n    authors:\\n    - Dekoninck, J.\\n    - Mueller, M. N.\\n    - Vechev, M.\\n    year: 2024\\n    venue: NeurIPS 2024\\n    url: https://arxiv.org/abs/2405.16281\\n    doi: ''\\n    bibtex_key: dekoninck2024constat\\n    category: contamination_detection\\n    role: direct-competitor\\n    relevance: Performance-based contamination detection via perturbation analysis;\\n      closest methodological parallel to our DIF approach in using behavioral patterns\\n      rather than memorization signals\\n    abstract: ''\\n    semantic_scholar_id: ''\\n    verified: true\\n    added_by: literature-gap-fill\\n    added_at: '2026-05-21T01:40:37.987Z'\\n  golchin2024timetravel:\\n    title: 'Time Travel in LLMs: Tracing Data Contamination in Large Language Models'\\n    authors:\\n    - Golchin, S.\\n    - Surdeanu, M.\\n    year: 2024\\n    venue: ICLR 2024\\n    url: https://arxiv.org/abs/2308.08493\\n    doi: ''\\n    bibtex_key: golchin2024timetravel\\n    category: contamination_detection\\n    role: method-component\\n    relevance: Instance-level contamination detection via guided completion prompts;\\n      baseline approach for individual-item detection that our group-level DIF method\\n      extends\\n    abstract: ''\\n    semantic_scholar_id: d6d0fd994f37b630f35945736b5e1bb198148404\\n    verified: true\\n    added_by: literature-gap-fill\\n    added_at: '2026-05-21T01:40:37.987Z'\\n  zhang2024minkpp:\\n    title: 'Min-K%++: Improved Baseline for Detecting Pre-Training Data from Large\\n      Language Models'\\n    authors:\\n    - Zhang, J.\\n    - Sun, J.\\n    - Yeats, E.\\n    - Ouyang, Y.\\n    - Kuo, M.\\n    - Zhang, J.\\n    - Yang, H.\\n    - Li, H.\\n    year: 2024\\n    venue: arXiv\\n    url: https://arxiv.org/abs/2404.02936\\n    doi: ''\\n    bibtex_key: zhang2024minkpp\\n    category: contamination_detection\\n    role: direct-competitor\\n    relevance: Improves Min-K% with vocabulary-normalized token probabilities; key\\n      baseline whose AUC degrades to 0.43-0.68 on RL-trained models, motivating our\\n      DIF-based alternative\\n    abstract: ''\\n    semantic_scholar_id: ''\\n    verified: true\\n    added_by: literature-gap-fill\\n    added_at: '2026-05-21T01:40:37.987Z'\\n\", \"total_chars\": 11927, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "83b7e79c-c05f-4666-ba14-dcb5061f974e",
+  "isSidechain": true,
+  "promptId": "27741ca6-31a4-40a5-9308-cb23e7795590",
+  "agentId": "a05abee50241190a6",
+  "type": "user",
+  "uuid": "8873c31a-72df-4ba7-a79e-6314761a7faa",
+  "sourceToolAssistantUUID": "83b7e79c-c05f-4666-ba14-dcb5061f974e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-21T02:00:40.135Z_
+
+Now let me look at the actual experiment artifacts for key results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8873c31a-72df-4ba7-a79e-6314761a7faa",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "requestId": "req_011CbEtVnQWHAca6Adv8opoh",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "b1f9a4f5-b245-410d-81f5-ec35b44b3c08",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PkHsNecBbpiBdpednSgP1r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15409,
+      "cache_read_input_tokens": 30837,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 15409,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-21T02:00:42.549Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01KVisdHqUNwdzSA7NtSc5ub`</summary>
+
+```json
+{
+  "pattern": "**/artifacts/**/*.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b1f9a4f5-b245-410d-81f5-ec35b44b3c08",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "requestId": "req_011CbEtVnQWHAca6Adv8opoh",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "c4f707e6-e19e-422c-9ec7-9d87ae06cbd9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PkHsNecBbpiBdpednSgP1r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15409,
+      "cache_read_input_tokens": 30837,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 15409,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-21T02:00:42.573Z_
+
+<details><summary>↩ Tool result · `toolu_01KVisdHqUNwdzSA7NtSc5ub`</summary>
+
+```text
+artifacts/_project/report/metabench_data_summary.md
+artifacts/_project/report/metabench_data_summary_ec3bbf.md
+artifacts/dream_reports/dream_20260520T194223/best/paper_framing.md
+artifacts/dream_reports/dream_20260520T194223/median/paper_framing.md
+artifacts/dream_reports/dream_20260520T194223/worst/paper_framing.md
+artifacts/dream_reports/dream_20260520T194223/best/review_report.md
+artifacts/dream_reports/dream_20260520T194223/median/review_report.md
+artifacts/dream_reports/dream_20260520T194223/worst/review_report.md
+artifacts/_project/report/irt_scale_analysis.md
+artifacts/irt_scale_analysis.md
+artifacts/_project/report/mmlu_cf_analysis.md
+artifacts/mmlu_cf_analysis.md
+artifacts/metabench_data_summary.md
+artifacts/dream_reports/dream_20260520T205007/best/paper_framing.md
+artifacts/plan_001/plan_001_report.md
+artifacts/plan_001_real_data_dif_mmlu/report/plan_001_report.md
+artifacts/plan_001_real_data_dif_mmlu/report/plan_001_report_00ca1f.md
+artifacts/dream_reports/dream_20260520T205007/median/paper_framing.md
+artifacts/dream_reports/dream_20260520T205007/worst/paper_framing.md
+artifacts/plan_001b/report/plan_001b_report.md
+artifacts/plan_001b/plan_001b_report.md
+artifacts/dream_reports/dream_20260520T205007/best/review_report.md
+artifacts/dream_reports/dream_20260520T205007/median/review_report.md
+artifacts/dream_reports/dream_20260520T205007/worst/review_report.md
+artifacts/plan_011/plan_011_report.md
+artifacts/plan_011_semi_synthetic_validation/report/plan_011_report_c7ae89.md
+artifacts/plan_011_semi_synthetic_validation/report/plan_011_report.md
+artifacts/review_reports/round_0.md
+artifacts/_project/report/plan_012_report.md
+artifacts/plan_012_irt_theta_conditioning/report/plan_012_report.md
+artifacts/plan_012/plan_012_report.md
+artifacts/_project/report/plan_014_report.md
+artifacts/plan_014/plan_014_report.md
+artifacts/_project/report/plan_013_report.md
+artifacts/plan_013_q3_local_independence/report/plan_013_report.md
+artifacts/plan_013/plan_013_report.md
+artifacts/_project/report/plan_016_report.md
+artifacts/plan_016_within_subject_semi_synthetic/report/plan_016_report.md
+artifacts/plan_016/plan_016_report.md
+artifacts/plan_016_within_subject_semi_synthetic/report/plan_016_report_fb64fc.md
+artifacts/_project/report/literature_survey_d011.md
+artifacts/_project/report/experiment_summary.md
+artifacts/experiment_summary.md
+artifacts/_project/report/artifacts_qc_report.md
+artifacts/artifacts_qc_report.md
+artifacts/_project/report/literature_survey_d011_167b57.md
+artifacts/literature_survey_d011.md
+artifacts/plan_017/plan_017_report.md
+artifacts/plan_017/report/plan_017_report.md
+artifacts/_project/report/plan_004_data_availability.md
+artifacts/plan_004_data_availability.md
+artifacts/_project/report/plan_004_step1_report.md
+artifacts/plan_004/plan_004_step1_report.md
+artifacts/_project/report/plan_004_step2_report.md
+artifacts/plan_004/plan_004_step2_report.md
+artifacts/_project/report/gsm1k_data_report.md
+artifacts/plan_004/gsm1k_data_report.md
+artifacts/_project/report/plan_004_step3_report.md
+artifacts/plan_004/plan_004_step3_report.md
+artifacts/dream_reports/dream_20260521T012912/best/paper_framing.md
+artifacts/dream_reports/dream_20260521T012912/median/paper_framing.md
+artifacts/dream_reports/dream_20260521T012912/worst/paper_framing.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c4f707e6-e19e-422c-9ec7-9d87ae06cbd9",
+  "isSidechain": true,
+  "promptId": "27741ca6-31a4-40a5-9308-cb23e7795590",
+  "agentId": "a05abee50241190a6",
+  "type": "user",
+  "uuid": "a97c9dcf-dbea-4367-9e3e-269bb5fc7898",
+  "sourceToolAssistantUUID": "c4f707e6-e19e-422c-9ec7-9d87ae06cbd9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-21T02:00:42.753Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01NM3fnYFdmAiv6KCAe9fM1d`</summary>
+
+```json
+{
+  "pattern": "**/artifacts/**/*.csv",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a97c9dcf-dbea-4367-9e3e-269bb5fc7898",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "requestId": "req_011CbEtVnQWHAca6Adv8opoh",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f071a7e7-b1c2-42d9-a00a-94efab3fff36",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PkHsNecBbpiBdpednSgP1r",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 15409,
+      "cache_read_input_tokens": 30837,
+      "output_tokens": 207,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 15409
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 207,
+          "cache_read_input_tokens": 30837,
+          "cache_creation_input_tokens": 15409,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 15409,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T02:00:42.778Z_
+
+<details><summary>↩ Tool result · `toolu_01NM3fnYFdmAiv6KCAe9fM1d`</summary>
+
+```text
+artifacts/metabench_data/benchmark-data/gsm8k_prompts.csv
+artifacts/metabench_data/benchmark-data/hellaswag_prompts.csv
+artifacts/metabench_data/benchmark-data/truthfulqa_prompts.csv
+artifacts/metabench_data/benchmark-data/arc_prompts.csv
+artifacts/metabench_data/benchmark-data/arc.csv
+artifacts/metabench_data/benchmark-data/gsm8k.csv
+artifacts/metabench_data/benchmark-data/hellaswag.csv
+artifacts/metabench_data/benchmark-data/truthfulqa.csv
+artifacts/metabench_data/benchmark-data/winogrande.csv
+artifacts/metabench_data/benchmark-data/mmlu_abstract_algebra_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_abstract_algebra.csv
+artifacts/metabench_data/benchmark-data/mmlu_anatomy_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_astronomy_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_anatomy.csv
+artifacts/metabench_data/benchmark-data/mmlu_business_ethics_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_astronomy.csv
+artifacts/metabench_data/benchmark-data/mmlu_business_ethics.csv
+artifacts/metabench_data/benchmark-data/mmlu_clinical_knowledge_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_clinical_knowledge.csv
+artifacts/metabench_data/benchmark-data/mmlu_college_biology_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_college_chemistry_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_college_biology.csv
+artifacts/metabench_data/benchmark-data/mmlu_college_chemistry.csv
+artifacts/metabench_data/benchmark-data/mmlu_college_computer_science_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_college_computer_science.csv
+artifacts/metabench_data/benchmark-data/mmlu_college_mathematics_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_college_medicine_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_college_mathematics.csv
+artifacts/metabench_data/benchmark-data/mmlu_college_physics_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_college_medicine.csv
+artifacts/metabench_data/benchmark-data/mmlu_college_physics.csv
+artifacts/metabench_data/benchmark-data/mmlu_computer_security_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_computer_security.csv
+artifacts/metabench_data/benchmark-data/mmlu_electrical_engineering_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_electrical_engineering.csv
+artifacts/metabench_data/benchmark-data/mmlu_global_facts_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_global_facts.csv
+artifacts/metabench_data/benchmark-data/mmlu_high_school_chemistry_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_high_school_chemistry.csv
+artifacts/metabench_data/benchmark-data/mmlu_high_school_computer_science_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_high_school_computer_science.csv
+artifacts/metabench_data/benchmark-data/mmlu_high_school_european_history_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_high_school_european_history.csv
+artifacts/metabench_data/benchmark-data/mmlu_high_school_geography_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_high_school_geography.csv
+artifacts/metabench_data/benchmark-data/mmlu_high_school_macroeconomics_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_high_school_macroeconomics.csv
+artifacts/metabench_data/benchmark-data/mmlu_high_school_mathematics_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_high_school_mathematics.csv
+artifacts/metabench_data/benchmark-data/mmlu_high_school_physics_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_high_school_physics.csv
+artifacts/metabench_data/benchmark-data/mmlu_high_school_psychology_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_high_school_psychology.csv
+artifacts/metabench_data/benchmark-data/mmlu_high_school_us_history_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_high_school_us_history.csv
+artifacts/metabench_data/benchmark-data/mmlu_human_sexuality_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_human_sexuality.csv
+artifacts/metabench_data/benchmark-data/mmlu_international_law_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_international_law.csv
+artifacts/metabench_data/benchmark-data/mmlu_logical_fallacies_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_logical_fallacies.csv
+artifacts/metabench_data/benchmark-data/mmlu_machine_learning_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_machine_learning.csv
+artifacts/metabench_data/benchmark-data/mmlu_management_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_management.csv
+artifacts/metabench_data/benchmark-data/mmlu_marketing_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_marketing.csv
+artifacts/metabench_data/benchmark-data/mmlu_medical_genetics_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_medical_genetics.csv
+artifacts/metabench_data/benchmark-data/mmlu_miscellaneous_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_moral_disputes_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_miscellaneous.csv
+artifacts/metabench_data/benchmark-data/mmlu_moral_disputes.csv
+artifacts/metabench_data/benchmark-data/mmlu_moral_scenarios_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_moral_scenarios.csv
+artifacts/metabench_data/benchmark-data/mmlu_professional_accounting_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_professional_accounting.csv
+artifacts/metabench_data/benchmark-data/mmlu_professional_law_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_professional_law.csv
+artifacts/metabench_data/benchmark-data/mmlu_professional_medicine_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_professional_medicine.csv
+artifacts/metabench_data/benchmark-data/mmlu_professional_psychology_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_professional_psychology.csv
+artifacts/metabench_data/benchmark-data/mmlu_public_relations_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_public_relations.csv
+artifacts/metabench_data/benchmark-data/mmlu_security_studies_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_security_studies.csv
+artifacts/metabench_data/benchmark-data/mmlu_us_foreign_policy_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_us_foreign_policy.csv
+artifacts/metabench_data/benchmark-data/mmlu_virology_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_virology.csv
+artifacts/metabench_data/benchmark-data/mmlu_world_religions_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_world_religions.csv
+artifacts/metabench_data/benchmark-data/mmlu_econometrics_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_econometrics.csv
+artifacts/metabench_data/benchmark-data/mmlu_elementary_mathematics_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_elementary_mathematics.csv
+artifacts/metabench_data/benchmark-data/mmlu_conceptual_physics_prompts.csv
+artifacts/metabench_data/benchmark-data/mmlu_conceptual_physics.csv
+artifacts/metabench_data/benchmark-data/mmlu_formal_logic_prompts.csv
+(Results are truncated. Consider using a more specific path or pattern.)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f071a7e7-b1c2-42d9-a00a-94efab3fff36",
+  "isSidechain": true,
+  "promptId": "27741ca6-31a4-40a5-9308-cb23e7795590",
+  "agentId": "a05abee50241190a6",
+  "type": "user",
+  "uuid": "15d10618-bfea-44bc-86f1-0c071565e0d9",
+  "sourceToolAssistantUUID": "f071a7e7-b1c2-42d9-a00a-94efab3fff36",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-21T02:00:45.445Z_
+
+Let me read the key experiment reports to verify the results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "15d10618-bfea-44bc-86f1-0c071565e0d9",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "requestId": "req_011CbEtWFF3VBfaYB76aD1cT",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7a6ec5bd-c26f-4f01-9369-51c842000208",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EUhNwy2K43hSFgDzY16btU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3686,
+      "cache_read_input_tokens": 46246,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3686,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-21T02:00:48.270Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_019GxGBhs8DBEUTLXnxSw4CK`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_001_real_data_dif_mmlu/report/plan_001_report_00ca1f.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7a6ec5bd-c26f-4f01-9369-51c842000208",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "requestId": "req_011CbEtWFF3VBfaYB76aD1cT",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ceb6b3bb-335b-4657-87db-1e17602216d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EUhNwy2K43hSFgDzY16btU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3686,
+      "cache_read_input_tokens": 46246,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3686,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T02:00:48.279Z_
+
+<details><summary>↩ Tool result · `toolu_019GxGBhs8DBEUTLXnxSw4CK`</summary>
+
+```text
+1	# Plan 001: METABENCH Real-Data MH-DIF Analysis
+2	
+3	## 1. Data & Setup
+4	
+5	- Response matrix: **5227 models × 12508 items** (binary, MMLU)
+6	- Temporal cohort: ref = 2023 (N=1080), foc = 2024 (N=807), 5 strata
+7	- Ability cohort: ref = Q1-2 (N=2092), foc = Q4-5 (N=2089), 10 strata
+8	- Li et al. annotations: 9229 annotated items
+9	
+10	## 2. ETS Classification
+11	
+12	| Cohort | Filter | Items | A | B | C | %C | FPR (clean) | Enrichment |
+13	|--------|--------|-------|---|---|---|----|-------------|------------|
+14	| temporal | all | 12508 | 6332 | 2258 | 3918 | 31.32% | 0.3184 | 0.96 |
+15	| ability | all | 12508 | 11052 | 1093 | 363 | 2.90% | 0.0269 | 1.19 |
+16	| temporal | non_neg_disc | 10582 | 5327 | 1830 | 3425 | 32.37% | 0.3258 | 0.97 |
+17	
+18	## 3. Li et al. Proxy Validation
+19	
+20	| Cohort | FPR (clean) | Rate (contam) | Rate (clean) | Rate (unlabeled) | Enrichment |
+21	|--------|-------------|---------------|--------------|------------------|------------|
+22	| temporal | 0.3184 | 0.3070 | 0.3184 | 0.3114 | 0.96 |
+23	| ability | 0.0269 | 0.0321 | 0.0269 | 0.0293 | 1.19 |
+24	
+25	## 4. Within-Family Analysis
+26	
+27	- **llama-2 vs llama-3**: A=2718, B=2118, C=7672 (61.34%)
+28	- **mistral vs mixtral**: A=3905, B=3768, C=4835 (38.66%)
+29	
+30	### Cross-cohort vs within-family overlap
+31	
+32	- **llama-2_vs_llama-3**: both_C=2611, temp_only_C=1307, wf_only_C=5061
+33	- **mistral_vs_mixtral**: both_C=2031, temp_only_C=1887, wf_only_C=2804
+34	
+35	## 5. Domain Specificity
+36	
+37	Spearman ρ(C_rate, Δacc) = **0.307** (p = 0.0201)
+38	
+39	Top 15 subjects by C rate (temporal cohort):
+40	
+41	| Subject | Items | C | %C | Acc 2023 | Acc 2024 | ΔAcc |
+42	|---------|-------|---|-----|----------|----------|------|
+43	| business_ethics | 93 | 45 | 48.4% | 0.558 | 0.612 | +0.054 |
+44	| human_aging | 203 | 85 | 41.9% | 0.644 | 0.660 | +0.016 |
+45	| formal_logic | 109 | 44 | 40.4% | 0.402 | 0.446 | +0.044 |
+46	| high_school_microeconomics | 220 | 85 | 38.6% | 0.606 | 0.661 | +0.055 |
+47	| professional_medicine | 248 | 94 | 37.9% | 0.595 | 0.630 | +0.035 |
+48	| professional_law | 1331 | 498 | 37.4% | 0.438 | 0.454 | +0.016 |
+49	| world_religions | 159 | 59 | 37.1% | 0.743 | 0.734 | -0.009 |
+50	| professional_accounting | 242 | 89 | 36.8% | 0.462 | 0.481 | +0.019 |
+51	| medical_genetics | 85 | 31 | 36.5% | 0.637 | 0.678 | +0.041 |
+52	| high_school_statistics | 181 | 64 | 35.4% | 0.490 | 0.532 | +0.042 |
+53	| moral_scenarios | 692 | 243 | 35.1% | 0.358 | 0.410 | +0.053 |
+54	| econometrics | 103 | 36 | 35.0% | 0.425 | 0.482 | +0.057 |
+55	| high_school_chemistry | 181 | 63 | 34.8% | 0.478 | 0.502 | +0.024 |
+56	| college_mathematics | 72 | 25 | 34.7% | 0.357 | 0.370 | +0.013 |
+57	| elementary_mathematics | 317 | 110 | 34.7% | 0.405 | 0.442 | +0.038 |
+58	
+59	## 6. Negative-Discrimination Sensitivity
+60	
+61	| Item Set | Items | C | %C |
+62	|----------|-------|---|----|
+63	| all | 12508 | 3918 | 31.32% |
+64	| non_negative_disc | 10582 | 3425 | 32.37% |
+65	| negative_disc_only | 1926 | 495 | 25.70% |
+66	
+67	## 7. Sanity Check
+68	
+69	Random half-split of 2023 cohort: **0.18% C** (expect < 5%)
+70	
+71	## 8. Cohort Overlap
+72	
+73	- Temporal C: 3918 items
+74	- Ability C: 363 items
+75	- Both C: 60 items
+76	- Jaccard index: 0.014
+77	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ceb6b3bb-335b-4657-87db-1e17602216d3",
+  "isSidechain": true,
+  "promptId": "27741ca6-31a4-40a5-9308-cb23e7795590",
+  "agentId": "a05abee50241190a6",
+  "type": "user",
+  "uuid": "86e9246f-4e92-4781-9f05-87847afd7fdd",
+  "sourceToolAssistantUUID": "ceb6b3bb-335b-4657-87db-1e17602216d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-21T02:00:49.961Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01LgrrcrCYdBeKajgHq6pari`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_011_semi_synthetic_validation/report/plan_011_report_c7ae89.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "86e9246f-4e92-4781-9f05-87847afd7fdd",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "requestId": "req_011CbEtWFF3VBfaYB76aD1cT",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "82f85ba7-31c3-47bb-942e-cef5b9071946",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EUhNwy2K43hSFgDzY16btU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3686,
+      "cache_read_input_tokens": 46246,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 3686,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-21T02:00:49.970Z_
+
+<details><summary>↩ Tool result · `toolu_01LgrrcrCYdBeKajgHq6pari`</summary>
+
+```text
+1	# Plan 011: Semi-Synthetic DIF Validation
+2	
+3	## 1. Objective
+4	
+5	Inject known **differential** contamination into real MMLU response data and test
+6	whether MH-DIF can detect it. This validates whether plan_001/001b's failure to find
+7	enrichment was due to Li et al. labels being non-differential (global contamination)
+8	rather than a fundamental limitation of MH-DIF.
+9	
+10	## 2. Setup
+11	
+12	- **Baseline items**: 500 (clean in Li et al. + ETS A in plan_001 ability DIF)
+13	- **Contaminated per run**: 100 of 500
+14	- **Injection probabilities**: [0.0, 0.3, 0.5, 0.7, 1.0]
+15	- **Seeds per p**: 5
+16	
+17	### Cohort definitions
+18	
+19	- **ability**: ref N=2092, foc N=2089, foc inject N=2089
+20	- **temporal**: ref N=1080, foc N=807, foc inject N=787
+21	
+22	> **Note**: Ability quintiles (Q1-2 vs Q4-5) have no accuracy overlap by construction (ref max=0.6319, foc min=0.6772). All focal models used for injection. MH stratification handles ability matching.
+23	
+24	### MH variants
+25	
+26	| Variant | Matching variable | Rationale |
+27	|---------|-------------------|-----------|
+28	| standard | sum of 500 items − current | Same as plan_001; susceptible to matching variable contamination when 20% items injected |
+29	| anchor | sum of 400 known-clean items | Eliminates matching variable contamination; assumes oracle knowledge of clean items |
+30	| external | sum of all 12,508 items (original, pre-injection) | Best matching precision; immune to injection; requires external ability estimate |
+31	
+32	## 3. Results by MH Variant
+33	
+34	### Standard MH
+35	
+36	| Cohort | p | TPR (mean±std) | FPR (mean±std) | ΔTPR | Fisher OR | Fisher p |
+37	|--------|---|----------------|----------------|------|-----------|----------|
+38	| ability | 0.0 | 0.594±0.053 | 0.611±0.013 | +0.000 | 0.96 | 0.4231 |
+39	| ability | 0.3 | 0.700±0.057 | 0.609±0.026 | +0.106 | 1.58 | 0.2555 |
+40	| ability | 0.5 | 0.760±0.046 | 0.600±0.021 | +0.166 | 2.21 | 0.0067 |
+41	| ability | 0.7 | 0.806±0.036 | 0.598±0.030 | +0.212 | 2.90 | 0.0002 |
+42	| ability | 1.0 | 0.816±0.035 | 0.596±0.023 | +0.222 | 3.17 | 0.0001 |
+43	| temporal | 0.0 | 0.308±0.047 | 0.298±0.012 | +0.000 | 1.07 | 0.8081 |
+44	| temporal | 0.3 | 0.424±0.059 | 0.390±0.018 | +0.116 | 1.18 | 0.6435 |
+45	| temporal | 0.5 | 0.682±0.045 | 0.453±0.021 | +0.374 | 2.63 | 0.0001 |
+46	| temporal | 0.7 | 0.966±0.009 | 0.503±0.021 | +0.658 | 30.34 | 0.0000 |
+47	| temporal | 1.0 | 1.000±0.000 | 0.616±0.014 | +0.692 | inf | 0.0000 |
+48	
+49	### Anchor MH
+50	
+51	| Cohort | p | TPR (mean±std) | FPR (mean±std) | ΔTPR | Fisher OR | Fisher p |
+52	|--------|---|----------------|----------------|------|-----------|----------|
+53	| ability | 0.0 | 0.600±0.060 | 0.596±0.022 | +0.000 | 1.04 | 0.4893 |
+54	| ability | 0.3 | 0.700±0.051 | 0.596±0.022 | +0.100 | 1.64 | 0.1731 |
+55	| ability | 0.5 | 0.764±0.038 | 0.596±0.022 | +0.164 | 2.24 | 0.0014 |
+56	| ability | 0.7 | 0.808±0.041 | 0.596±0.022 | +0.208 | 2.98 | 0.0001 |
+57	| ability | 1.0 | 0.818±0.033 | 0.596±0.022 | +0.218 | 3.16 | 0.0001 |
+58	| temporal | 0.0 | 0.314±0.053 | 0.307±0.018 | +0.000 | 1.07 | 0.5465 |
+59	| temporal | 0.3 | 0.522±0.054 | 0.307±0.018 | +0.208 | 2.49 | 0.0001 |
+60	| temporal | 0.5 | 0.806±0.034 | 0.307±0.018 | +0.492 | 9.59 | 0.0000 |
+61	| temporal | 0.7 | 0.990±0.010 | 0.307±0.018 | +0.676 | inf | 0.0000 |
+62	| temporal | 1.0 | 1.000±0.000 | 0.307±0.018 | +0.686 | inf | 0.0000 |
+63	
+64	### External MH
+65	
+66	| Cohort | p | TPR (mean±std) | FPR (mean±std) | ΔTPR | Fisher OR | Fisher p |
+67	|--------|---|----------------|----------------|------|-----------|----------|
+68	| ability | 0.0 | 0.498±0.041 | 0.493±0.010 | +0.000 | 1.04 | 0.5025 |
+69	| ability | 0.3 | 0.662±0.044 | 0.493±0.010 | +0.164 | 2.07 | 0.0051 |
+70	| ability | 0.5 | 0.756±0.041 | 0.493±0.010 | +0.258 | 3.31 | 0.0000 |
+71	| ability | 0.7 | 0.792±0.034 | 0.493±0.010 | +0.294 | 4.04 | 0.0000 |
+72	| ability | 1.0 | 0.800±0.038 | 0.493±0.010 | +0.302 | 4.30 | 0.0000 |
+73	| temporal | 0.0 | 0.326±0.035 | 0.314±0.009 | +0.000 | 1.07 | 0.7203 |
+74	| temporal | 0.3 | 0.548±0.033 | 0.314±0.009 | +0.222 | 2.67 | 0.0000 |
+75	| temporal | 0.5 | 0.834±0.027 | 0.314±0.009 | +0.508 | 11.22 | 0.0000 |
+76	| temporal | 0.7 | 0.990±0.010 | 0.314±0.009 | +0.664 | inf | 0.0000 |
+77	| temporal | 1.0 | 1.000±0.000 | 0.314±0.009 | +0.674 | inf | 0.0000 |
+78	
+79	## 4. Key Comparison: Baseline FPR by Variant
+80	
+81	| Cohort | standard | anchor | external |
+82	|--------|----------|--------|----------|
+83	| ability | 0.611 | 0.596 | 0.493 |
+84	| temporal | 0.298 | 0.307 | 0.314 |
+85	
+86	If external FPR ≪ standard FPR, the high baseline rate is from matching precision,
+87	not inherent DIF in the selected items.
+88	
+89	## 5. Sanity Checks
+90	
+91	### Density change (focal × contaminated items)
+92	
+93	| Cohort | p | Orig density | Post density | Responses flipped |
+94	|--------|---|--------------|--------------|-------------------|
+95	| ability | 0.3 | 0.6772 | 0.7744 | 20301 |
+96	| temporal | 0.3 | 0.5800 | 0.7068 | 9981 |
+97	| ability | 0.5 | 0.6772 | 0.8386 | 33706 |
+98	| temporal | 0.5 | 0.5800 | 0.7903 | 16553 |
+99	| ability | 0.7 | 0.6772 | 0.9031 | 47177 |
+100	| temporal | 0.7 | 0.5800 | 0.8741 | 23148 |
+101	| ability | 1.0 | 0.6772 | 1.0000 | 67424 |
+102	| temporal | 1.0 | 0.5800 | 1.0000 | 33053 |
+103	
+104	## 6. Verdict
+105	
+106	### Standard MH
+107	
+108	**ability**: baseline TPR=0.594/FPR=0.611, p=1.0 TPR=0.816/FPR=0.596, ΔTPR=+0.222
+109	→ **PARTIAL**: detectable signal (ΔTPR=0.222) but modest
+110	
+111	**temporal**: baseline TPR=0.308/FPR=0.298, p=1.0 TPR=1.000/FPR=0.616, ΔTPR=+0.692
+112	→ **SUCCESS**: injection raises TPR by 0.692 with clear dose-response
+113	
+114	### Anchor MH
+115	
+116	**ability**: baseline TPR=0.600/FPR=0.596, p=1.0 TPR=0.818/FPR=0.596, ΔTPR=+0.218
+117	→ **PARTIAL**: detectable signal (ΔTPR=0.218) but modest
+118	
+119	**temporal**: baseline TPR=0.314/FPR=0.307, p=1.0 TPR=1.000/FPR=0.307, ΔTPR=+0.686
+120	→ **SUCCESS**: injection raises TPR by 0.686 with clear dose-response
+121	
+122	### External MH
+123	
+124	**ability**: baseline TPR=0.498/FPR=0.493, p=1.0 TPR=0.800/FPR=0.493, ΔTPR=+0.302
+125	→ **SUCCESS**: injection raises TPR by 0.302 with clear dose-response
+126	
+127	**temporal**: baseline TPR=0.326/FPR=0.314, p=1.0 TPR=1.000/FPR=0.314, ΔTPR=+0.674
+128	→ **SUCCESS**: injection raises TPR by 0.674 with clear dose-response
+129	
+130	## 7. Overall Interpretation
+131	
+132	### Does MH-DIF detect differential contamination?
+133	
+134	- **Temporal + external matching**: TPR rises 0.326 → 1.000 (ΔTPR=+0.674), FPR 0.314 → 0.314
+135	- **Ability + external matching**: TPR rises 0.498 → 0.800 (ΔTPR=+0.302), FPR 0.493 → 0.493
+136	
+137	### Implications for plan_001
+138	
+139	If semi-synthetic injection is detectable → plan_001's failure to find enrichment
+140	against Li et al. labels is because Li et al. contamination is **non-differential**
+141	(Common Crawl data available to all models), not because MH-DIF is fundamentally limited.
+142	
+143	### Matching variable contamination
+144	
+145	When 20% of items are injected, standard MH's matching variable (total score) is
+146	corrupted by injected items, inflating FPR. This is a known limitation when DIF items
+147	constitute a large fraction of the test. In practice, iterative purification (exclude
+148	suspected DIF items from matching) or external ability estimates mitigate this.
+149	
+150	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "82f85ba7-31c3-47bb-942e-cef5b9071946",
+  "isSidechain": true,
+  "promptId": "27741ca6-31a4-40a5-9308-cb23e7795590",
+  "agentId": "a05abee50241190a6",
+  "type": "user",
+  "uuid": "1bd71d8c-b0fb-4f81-837a-a26142272abd",
+  "sourceToolAssistantUUID": "82f85ba7-31c3-47bb-942e-cef5b9071946",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-21T02:00:54.675Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Hhfdhd6RYRLCvhHr97tns5`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_017/report/plan_017_report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1bd71d8c-b0fb-4f81-837a-a26142272abd",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "requestId": "req_011CbEtWnZDBXLtAyaK5fPzN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ce456ee1-d88b-41bf-ae94-b0807c3e192f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KQPLB89ncKpURLwiWsnyBM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5477,
+      "cache_read_input_tokens": 49932,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5477,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-21T02:00:54.684Z_
+
+<details><summary>↩ Tool result · `toolu_01Hhfdhd6RYRLCvhHr97tns5`</summary>
+
+```text
+1	# plan_017: Downstream Impact Analysis — DIF Item Removal → Ranking Stability
+2	
+3	## Summary
+4	
+5	This analysis evaluates whether removing temporally unstable (DIF) items from MMLU
+6	produces more stable and reliable model rankings.
+7	
+8	
+9	## Data
+10	
+11	- Response matrix: 5227 models × 12508 items
+12	- Temporal cohorts: 2023 (1080 models), 2024 (807 models)
+13	- DIF classification: ETS A=6332, B=2258, C=3918
+14	- Stable items (A+B): 8590 (68.7%)
+15	- DIF items (C): 3918 (31.3%)
+16	
+17	
+18	## Part 1: Full vs Stable-Only Ranking
+19	
+20	| Cohort | N models | ρ(full, stable) | 95% CI | SHR full | SHR stable |
+21	|--------|----------|-----------------|--------|----------|------------|
+22	| 2023 | 1080 | 0.998851 | [0.998490, 0.999028] | 0.9970±0.0005 | 0.9955±0.0007 |
+23	| 2024 | 807 | 0.997014 | [0.995997, 0.997642] | 0.9923±0.0024 | 0.9890±0.0030 |
+24	| all | 5227 | 0.996451 | [0.995977, 0.996808] | 0.9934±0.0018 | 0.9919±0.0016 |
+25	
+26	
+27	## Part 2: Progressive DIF Removal
+28	
+29	| Frac | Removed | Remaining | Cohort | ρ(full, reduced) | 95% CI |
+30	|------|---------|-----------|--------|------------------|--------|
+31	| 0.00 | 0 | 12508 | 2023 | 1.000000 | [1.000000, 1.000000] |
+32	| 0.00 | 0 | 12508 | 2024 | 1.000000 | [1.000000, 1.000000] |
+33	| 0.00 | 0 | 12508 | all | 1.000000 | [1.000000, 1.000000] |
+34	| 0.05 | 625 | 11883 | 2023 | 0.999846 | [0.999777, 0.999862] |
+35	| 0.05 | 625 | 11883 | 2024 | 0.999351 | [0.999033, 0.999458] |
+36	| 0.05 | 625 | 11883 | all | 0.998926 | [0.998730, 0.999062] |
+37	| 0.10 | 1250 | 11258 | 2023 | 0.999641 | [0.999498, 0.999707] |
+38	| 0.10 | 1250 | 11258 | 2024 | 0.998676 | [0.998120, 0.998969] |
+39	| 0.10 | 1250 | 11258 | all | 0.997700 | [0.997313, 0.997990] |
+40	| 0.15 | 1876 | 10632 | 2023 | 0.999458 | [0.999283, 0.999545] |
+41	| 0.15 | 1876 | 10632 | 2024 | 0.997849 | [0.996921, 0.998397] |
+42	| 0.15 | 1876 | 10632 | all | 0.997698 | [0.997344, 0.997998] |
+43	| 0.20 | 2501 | 10007 | 2023 | 0.999344 | [0.999157, 0.999426] |
+44	| 0.20 | 2501 | 10007 | 2024 | 0.997483 | [0.996414, 0.998024] |
+45	| 0.20 | 2501 | 10007 | all | 0.997397 | [0.997027, 0.997747] |
+46	| 0.25 | 3127 | 9381 | 2023 | 0.999192 | [0.998935, 0.999316] |
+47	| 0.25 | 3127 | 9381 | 2024 | 0.997558 | [0.996460, 0.997958] |
+48	| 0.25 | 3127 | 9381 | all | 0.997049 | [0.996577, 0.997407] |
+49	| 0.30 | 3752 | 8756 | 2023 | 0.998865 | [0.998484, 0.999019] |
+50	| 0.30 | 3752 | 8756 | 2024 | 0.997229 | [0.996209, 0.997794] |
+51	| 0.30 | 3752 | 8756 | all | 0.996451 | [0.995945, 0.996938] |
+52	| 0.38 | 4753 | 7755 | 2023 | 0.998644 | [0.998305, 0.998842] |
+53	| 0.38 | 4753 | 7755 | 2024 | 0.995266 | [0.993763, 0.996262] |
+54	| 0.38 | 4753 | 7755 | all | 0.996645 | [0.996159, 0.997027] |
+55	
+56	
+57	## Part 3: DIF vs Random Removal Comparison
+58	
+59	Negative z-score = DIF removal causes *more* rank disruption than random.
+60	
+61	| Frac | Cohort | ρ DIF | ρ Random (mean±std) | z-score |
+62	|------|--------|-------|---------------------|---------|
+63	| 0.05 | 2023 | 0.999846 | 0.999942±0.000009 | -10.20 |
+64	| 0.05 | 2024 | 0.999351 | 0.999844±0.000042 | -11.70 |
+65	| 0.05 | all | 0.998926 | 0.999886±0.000033 | -29.07 |
+66	| 0.10 | 2023 | 0.999641 | 0.999898±0.000010 | -25.12 |
+67	| 0.10 | 2024 | 0.998676 | 0.999727±0.000095 | -11.00 |
+68	| 0.10 | all | 0.997700 | 0.999795±0.000042 | -49.44 |
+69	| 0.15 | 2023 | 0.999458 | 0.999823±0.000031 | -11.71 |
+70	| 0.15 | 2024 | 0.997849 | 0.999552±0.000151 | -11.28 |
+71	| 0.15 | all | 0.997698 | 0.999611±0.000157 | -12.22 |
+72	| 0.20 | 2023 | 0.999344 | 0.999774±0.000046 | -9.42 |
+73	| 0.20 | 2024 | 0.997483 | 0.999415±0.000152 | -12.72 |
+74	| 0.20 | all | 0.997397 | 0.999477±0.000171 | -12.15 |
+75	| 0.25 | 2023 | 0.999192 | 0.999713±0.000040 | -12.89 |
+76	| 0.25 | 2024 | 0.997558 | 0.999247±0.000203 | -8.33 |
+77	| 0.25 | all | 0.997049 | 0.999370±0.000163 | -14.26 |
+78	| 0.30 | 2023 | 0.998865 | 0.999648±0.000041 | -19.02 |
+79	| 0.30 | 2024 | 0.997229 | 0.999084±0.000227 | -8.16 |
+80	| 0.30 | all | 0.996451 | 0.999219±0.000244 | -11.35 |
+81	| 0.38 | 2023 | 0.998644 | 0.999499±0.000065 | -13.18 |
+82	| 0.38 | 2024 | 0.995266 | 0.998777±0.000326 | -10.76 |
+83	| 0.38 | all | 0.996645 | 0.998850±0.000241 | -9.16 |
+84	
+85	
+86	## Part 4: Top Rank Movers (all models, full → stable-only)
+87	
+88	### Biggest rank *drops* (benefited from DIF items)
+89	
+90	| Model | Family | Method | Rank Full | Rank Stable | ΔRank |
+91	|-------|--------|--------|-----------|-------------|-------|
+92	| Sao10K/14B-Glacier-Stack | unknown | unknown | 555 | 1406 | +851 |
+93	| AA051611/A0118 | unknown | unknown | 1169 | 1996 | +827 |
+94	| DeepMount00/phi_3 | phi-3 | unknown | 736 | 1545 | +809 |
+95	| Mihaiii/Pallas-0.5-frankenmerge | unknown | unknown | 455 | 1264 | +809 |
+96	| DeepMount00/Phi-3-Mini-4K-Boost | phi-3 | unknown | 738 | 1546 | +808 |
+97	| vonjack/phi-3-mini-4k-instruct-llamafied | phi-3 | unknown | 534 | 1334 | +800 |
+98	| vonjack/Phi-3-mini-4k-instruct-LLaMAfied | phi-3 | unknown | 533 | 1330 | +797 |
+99	| nbeerbower/llama-3-dragonmaid-8B-v2 | llama-3 | unknown | 576 | 1369 | +793 |
+100	| raincandy-u/phillama-3.8b-v0.1 | llama-3 | unknown | 733 | 1500 | +767 |
+101	| nbeerbower/llama-3-stinky-8B | llama-3 | unknown | 553 | 1300 | +747 |
+102	| cognitivecomputations/yayi2-30b-llama | unknown | unknown | 469 | 1202 | +733 |
+103	| cstr/llama3-8b-spaetzle-v13 | llama-3 | unknown | 705 | 1437 | +732 |
+104	| shyamieee/JARVIS-v1.0 | unknown | unknown | 616 | 1345 | +729 |
+105	| Nitral-AI/Poppy_Porpoise-0.96-L3-8B | unknown | unknown | 712 | 1430 | +718 |
+106	| nbeerbower/llama-3-stella-8B | llama-3 | unknown | 588 | 1287 | +699 |
+107	| FairMind/Phi-3-mini-4k-instruct-bnb-4bit-Ita | phi-3 | unknown | 956 | 1651 | +695 |
+108	| rhysjones/Phi-3-mini-mango-1-llamafied | phi-3 | unknown | 563 | 1258 | +695 |
+109	| GeorgiaTech/0.0005_llama_nodpo_3iters_bs128_531lr_ | unknown | unknown | 495 | 1182 | +687 |
+110	| KnutJaegersberg/YaYi-30b-EverythingLM | yi | unknown | 887 | 1568 | +681 |
+111	| Qwen/Qwen1.5-14B-Chat | qwen-1.5 | unknown | 591 | 1272 | +681 |
+112	
+113	### Biggest rank *gains* (hurt by DIF items)
+114	
+115	| Model | Family | Method | Rank Full | Rank Stable | ΔRank |
+116	|-------|--------|--------|-----------|-------------|-------|
+117	| liminerity/Blurstral-7b-slerp | unknown | unknown | 1410 | 823 | -587 |
+118	| DreadPoor/PAIN_LeDestroy-7B-task_arithmetic | unknown | unknown | 1186 | 619 | -567 |
+119	| flammenai/flammen26-mistral-7B | mistral | unknown | 1335 | 793 | -542 |
+120	| Gille/StrangeMerges_2-7B-slerp | unknown | unknown | 1320 | 801 | -519 |
+121	| jambroz/sixtyoneeighty-7b | unknown | unknown | 1270 | 782 | -488 |
+122	| jambroz/sixtyoneeighty-7b-chat | unknown | unknown | 1271 | 783 | -488 |
+123	| Gille/StrangeMerges_12-7B-slerp | unknown | unknown | 1347 | 860 | -487 |
+124	| antiven0m/reverie-7b | unknown | unknown | 1288 | 805 | -483 |
+125	| GreenNode/GreenNodeLM-7B-v2leo | unknown | unknown | 1333 | 852 | -481 |
+126	| jambroz/sixtyoneeighty-7b-dpo | nan | DPO | 1303 | 835 | -468 |
+127	| DreadPoor/Sphinx-7B-Model_Stock | unknown | unknown | 1282 | 817 | -465 |
+128	| SanjiWatsuki/Kunoichi-DPO-7B | nan | DPO | 1314 | 857 | -457 |
+129	| Inv/Konstanta-V4-Alpha-7B | unknown | unknown | 1231 | 777 | -454 |
+130	| allknowingroger/LimyQstar-7B-slerp | unknown | unknown | 987 | 534 | -453 |
+131	| mncai/mistral-7b-dpo-v6 | mistral-0.1 | DPO | 1202 | 756 | -446 |
+132	| Gille/StrangeMerges_17-7B-dare_ties | unknown | unknown | 1491 | 1051 | -440 |
+133	| Vasanth/Valor_Macaroni_moe | unknown | unknown | 1284 | 859 | -425 |
+134	| flammenai/flammen27-mistral-7B | mistral | unknown | 939 | 523 | -416 |
+135	| nbeerbower/bruphin-iota | unknown | unknown | 1215 | 803 | -412 |
+136	| rishiraj/oswald-2x7b | unknown | unknown | 1731 | 1327 | -404 |
+137	
+138	
+139	## Part 5: Cross-Cohort Super-Family Accuracy Shifts
+140	
+141	Super-families in both cohorts: 8
+142	
+143	- Mean |Δaccuracy| on full benchmark: 0.0900
+144	- Mean |Δaccuracy| on stable items:   0.0863
+145	- Mean |Δaccuracy| on DIF items:      0.0983
+146	- Ratio stable/full: 0.9581
+147	- Ratio DIF/full: 1.0919
+148	- DIF items show *larger* cross-cohort accuracy swings → they capture temporal instability.
+149	
+150	| Super-family | N23 | N24 | Δacc full | Δacc stable | Δacc DIF |
+151	|-------------|-----|-----|-----------|-------------|----------|
+152	| hermes | 16 | 4 | +0.2978 | +0.2867 | +0.3222 |
+153	| llama | 161 | 315 | +0.1206 | +0.1171 | +0.1282 |
+154	| phi | 60 | 20 | +0.1092 | +0.0952 | +0.1397 |
+155	| falcon | 21 | 1 | -0.0900 | -0.0938 | -0.0816 |
+156	| wizardlm | 5 | 4 | +0.0593 | +0.0641 | +0.0489 |
+157	| mistral | 547 | 120 | +0.0199 | +0.0114 | +0.0386 |
+158	| qwen | 27 | 70 | -0.0198 | -0.0164 | -0.0272 |
+159	| yi | 72 | 14 | +0.0038 | +0.0055 | +0.0000 |
+160	
+161	
+162	## Key Findings
+163	
+164	1. **Ranking correlation (full vs stable-only)**: 2023 ρ=0.998851, 2024 ρ=0.997014
+165	2. **Split-half reliability**: full=0.9934, stable=0.9919
+166	3. **DIF removal vs random**: DIF removal caused more rank disruption than random in 21/21 conditions
+167	4. **Average z-score (DIF vs random)**: -14.91
+168	5. **Cross-cohort stability**: DIF items show 1.09× the accuracy shift of full benchmark; stable items show 0.96×
+169	6. **Top-50 rank movers** dominant training methods: unknown (49), DPO (1)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ce456ee1-d88b-41bf-ae94-b0807c3e192f",
+  "isSidechain": true,
+  "promptId": "27741ca6-31a4-40a5-9308-cb23e7795590",
+  "agentId": "a05abee50241190a6",
+  "type": "user",
+  "uuid": "ad91a138-9dd3-4dcf-a050-7b4bba2d8b08",
+  "sourceToolAssistantUUID": "ce456ee1-d88b-41bf-ae94-b0807c3e192f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-21T02:00:55.482Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RkbezdVFtdk8kgwfZUTz7U`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_004/plan_004_step3_report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ad91a138-9dd3-4dcf-a050-7b4bba2d8b08",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "requestId": "req_011CbEtWnZDBXLtAyaK5fPzN",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8af89e84-1ea7-4b00-a876-036d18c0459b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KQPLB89ncKpURLwiWsnyBM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5477,
+      "cache_read_input_tokens": 49932,
+      "output_tokens": 184,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 5477
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 184,
+          "cache_read_input_tokens": 49932,
+          "cache_creation_input_tokens": 5477,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 5477,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-21T02:00:55.488Z_
+
+<details><summary>↩ Tool result · `toolu_01RkbezdVFtdk8kgwfZUTz7U`</summary>
+
+```text
+1	# Plan 004 Step 3: GSM1K Contamination Gap × DIF Flag Correlation
+2	
+3	## Summary
+4	
+5	**Core finding**: Pearson r = −0.478 (p = 0.005). The correlation is significant and exceeds the |r| > 0.3 threshold, but the direction is **negative** — opposite to the contamination hypothesis. Models with larger GSM8K–GSM1K gaps show *less* advantage on DIF-C items, not more.
+6	
+7	## Data
+8	
+9	| Component | Count |
+10	|-----------|-------|
+11	| Matched models (in both GSM1K paper and MetaBench response matrix) | 33 |
+12	| DIF-C items (standard matching, ETS class C) | 249 |
+13	| Non-DIF items (ETS class A + B) | 1070 |
+14	| Excluded: tiiuae/falcon-180B-chat (not in MetaBench) | 1 |
+15	
+16	## Main Analysis
+17	
+18	| Metric | Value | p-value |
+19	|--------|-------|---------|
+20	| Pearson r | −0.478 | 0.005 |
+21	| Spearman ρ | −0.403 | 0.020 |
+22	
+23	All 33 models (except Deepseek-math-7b-rl) show **negative DIF advantage** — accuracy on DIF-C items is consistently lower than on non-DIF items. Models with larger contamination gaps show even more negative DIF advantage.
+24	
+25	## Control Analyses
+26	
+27	### Partial Correlation (controlling GSM8K overall accuracy)
+28	
+29	| Metric | Value | p-value |
+30	|--------|-------|---------|
+31	| Partial r | −0.385 | 0.027 |
+32	
+33	The correlation survives after controlling for overall accuracy, ruling out the confound that "strong models do better on everything."
+34	
+35	### Permutation Test (n = 1000)
+36	
+37	| Metric | Value |
+38	|--------|-------|
+39	| Observed r | −0.478 |
+40	| Null mean | −0.007 |
+41	| Null SD | 0.197 |
+42	| Null 95% CI | [−0.383, 0.366] |
+43	| Empirical p (two-tailed) | 0.014 |
+44	
+45	The observed correlation falls outside the null distribution's 95% CI. The DIF-C item set produces a significantly stronger negative correlation with contamination gap than random item subsets of the same size.
+46	
+47	### DIF-C Directionality Analysis
+48	
+49	DIF-C items split by direction (α_MH relative to 1):
+50	
+51	| Subset | n | Mean advantage | r with gap | p |
+52	|--------|---|----------------|------------|---|
+53	| DIF-C favoring reference (older, α>1) | 78 | +0.031 | −0.143 | 0.429 |
+54	| DIF-C favoring focal (newer, α<1) | 171 | −0.194 | −0.347 | 0.048 |
+55	
+56	The overall negative correlation is driven primarily by the 171 focal-favoring DIF-C items (α<1, easier for 2024 models). These items capture genuine generational capability gains, yet high-contamination models struggle disproportionately on them — contamination's "shallow" boost fails to generalize to items that discriminate real ability. The 78 reference-favoring items show no significant relationship with contamination gap.
+57	
+58	## Outlier Analysis
+59	
+60	### Cook's Distance (top 5)
+61	
+62	| Model | Cook's D | Gap | DIF Advantage |
+63	|-------|----------|-----|---------------|
+64	| Deepseek-math-7b-rl | 0.300 | −0.022 | +0.003 |
+65	| GPT-2-xl | 0.161 | 0.004 | −0.001 |
+66	| Smaug-2-72B | 0.129 | 0.061 | −0.069 |
+67	| Gemma-2b-it | 0.075 | −0.001 | −0.033 |
+68	| Deepseek-llm-67b-base | 0.071 | 0.093 | −0.155 |
+69	
+70	Deepseek-math-7b-rl is the most influential point (negative gap, near-zero DIF advantage).
+71	
+72	### Leave-One-Out
+73	
+74	| Removed model | r without | Δr |
+75	|---------------|-----------|-----|
+76	| Deepseek-math-7b-rl | −0.374 | −0.105 |
+77	| Smaug-2-72B | −0.537 | +0.058 |
+78	| Gemma-2b-it | −0.438 | −0.040 |
+79	| Mistral-7B-Instruct-v0.2 | −0.516 | +0.038 |
+80	| GPT-2-xl | −0.442 | −0.037 |
+81	
+82	Removing Deepseek-math-7b-rl weakens the correlation to r = −0.374, but it remains significant (still > 0.3). No single point drives the result; the correlation is robust.
+83	
+84	## Model Family Observations
+85	
+86	| Family | n | Mean gap | Mean DIF advantage |
+87	|--------|---|----------|--------------------|
+88	| Smaug | 2 | 0.065 | −0.128 |
+89	| Phi | 4 | 0.037 | −0.174 |
+90	| Gemma | 5 | 0.051 | −0.143 |
+91	| Llama/CodeLlama | 9 | 0.028 | −0.117 |
+92	| Mixtral | 4 | 0.028 | −0.143 |
+93	| DeepSeek | 2 | 0.036 | −0.076 |
+94	
+95	No single family dominates the trend. Phi models show high DIF disadvantage but moderate gaps. Gemma models cluster at moderate gap + moderate DIF disadvantage. The correlation is not an artifact of one family.
+96	
+97	## Interpretation
+98	
+99	### Against the contamination hypothesis
+100	
+101	The original hypothesis predicted **positive** correlation: contaminated models should gain disproportionate advantage on DIF-C items. The observed **negative** correlation (r = −0.478) contradicts this.
+102	
+103	### What DIF-C items capture
+104	
+105	DIF-C items are not simply "contaminated items." They are items with large differential functioning between temporal cohorts. 171/249 DIF-C items have α_MH < 1, meaning they are *easier* for focal (2024) models — these items capture genuine generational capability improvements. The remaining 78 items (α>1) favor reference (2023) models.
+106	
+107	The negative correlation (r = −0.347, p = 0.048) on the 171 focal-favoring items reveals a key insight: contaminated models (high GSM8K–GSM1K gap) perform *worse* on exactly the items that differentiate real capability gains. This suggests:
+108	
+109	1. DIF items capture genuine capability differences between model generations, not contamination artifacts
+110	2. Contamination produces a "shallow" performance boost that fails to generalize to items requiring real problem-solving improvement
+111	3. DIF analysis identifies construct-relevant item differences — items where true ability matters most
+112	
+113	### The negative correlation means
+114	
+115	Models with higher contamination gaps (suspected contamination) do *worse* on DIF items — they show a narrower advantage pattern concentrated on non-DIF items. Contamination produces a uniform boost on "normal" items but fails on items with atypical difficulty characteristics that genuinely discriminate between capability levels.
+116	
+117	### Success criteria assessment
+118	
+119	| Criterion | Result |
+120	|-----------|--------|
+121	| \|r\| > 0.3 (breakthrough) | ✅ \|r\| = 0.478 |
+122	| Direction as hypothesized | ❌ Negative, not positive |
+123	| Survives controls | ✅ Partial r = −0.385, permutation p = 0.014 |
+124	
+125	**Verdict**: The effect size meets the breakthrough threshold, but the direction inverts the contamination narrative. DIF-C items do not flag contaminated content — they flag items where contaminated models are actually *weaker*. This is still a strong, publishable finding: it demonstrates that DIF analysis captures genuine measurement anomalies orthogonal to contamination, supporting DIF as a tool for identifying construct-relevant item differences rather than data leakage.
+126	
+127	## Output Files
+128	
+129	- `gsm1k_dif_correlation.csv` — per-model data (33 rows)
+130	- `fig_gsm1k_dif_correlation.png/pdf` — scatter plot with regression
+131	- `fig_gsm1k_dif_perm_null.png` — permutation null distribution
+132	- `plan_004_step3_gsm1k_dif_correlation.py` — analysis script
+133	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8af89e84-1ea7-4b00-a876-036d18c0459b",
+  "isSidechain": true,
+  "promptId": "27741ca6-31a4-40a5-9308-cb23e7795590",
+  "agentId": "a05abee50241190a6",
+  "type": "user",
+  "uuid": "59f73dc0-8bca-43a5-910d-e85dd41e2b16",
+  "sourceToolAssistantUUID": "8af89e84-1ea7-4b00-a876-036d18c0459b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-21T02:01:01.611Z_
+
+Now let me read the experiment summary and the round-0 review to understand prior review feedback.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59f73dc0-8bca-43a5-910d-e85dd41e2b16",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "requestId": "req_011CbEtXC64TbHixgR9sA4mS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "fa5beac1-c8b2-4c4a-ba84-28ce19e989bd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013bAxeL4u1Ht9ZGSWCYezrU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7577,
+      "cache_read_input_tokens": 55409,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7577,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-21T02:01:03.936Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Yb959ZPC3BorrKdWGAQuxV`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/_project/report/experiment_summary.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fa5beac1-c8b2-4c4a-ba84-28ce19e989bd",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "requestId": "req_011CbEtXC64TbHixgR9sA4mS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "3e1da00e-2ba5-476c-af3c-6784f024a57f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013bAxeL4u1Ht9ZGSWCYezrU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7577,
+      "cache_read_input_tokens": 55409,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 7577,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-21T02:01:03.954Z_
+
+<details><summary>↩ Tool result · `toolu_01Yb959ZPC3BorrKdWGAQuxV`</summary>
+
+````text
+1	# Experiment Summary: IRT-Equated Benchmark Regeneration
+2	
+3	## Overview
+4	
+5	This project investigated whether Differential Item Functioning (DIF) analysis — a psychometric technique from educational testing — can detect benchmark contamination in LLMs. Starting from the hypothesis that MH-DIF could identify differentially contaminated items between temporal cohorts (2023 vs 2024 models), we ran a systematic chain of 11 experiments on the METABENCH dataset (5227 models × 12508 MMLU items).
+6	
+7	The core finding is a pivot: temporal DIF does not primarily detect contamination but reflects **genuine capability improvement** across model generations. Three independent approaches to reduce the 31% baseline DIF rate all failed (matched-ability, θ-conditioning, within-subject isolation), while semi-synthetic injection validated that the DIF methodology itself works correctly (ΔTPR=+0.674). The project pivoted from "DIF as contamination detector" to "psychometric characterization of LLM benchmark item instability" — the first large-scale quantification of how benchmark items behave differentially across model generations.
+8	
+9	## Experiment Chain
+10	
+11	### MVP Phase 1: DIF Power Simulation (Synthetic)
+12	- **Exp ID**: mvp_dif_power_sim
+13	- **Hypothesis**: MH + Logistic Regression DIF achieves TPR≥0.70, FPR≤0.10 at N≥50-80/group, δ≥1.0 logits on synthetic 2PL IRT data
+14	- **Result**: BH-corrected p-value detection FAIL (TPR 0.04-0.07). ETS C classification conditional PASS: TPR=0.72-0.85 at N≥80, δ≥1.4; FPR<0.05; AUC=0.91-0.96
+15	- **Conclusion**: Conditional success — ETS C replaces p-value as primary detector (D001)
+16	- **Story contribution**: Established operational parameters (N≥80, δ≥1.4) and the ETS C classification as the primary DIF detection criterion
+17	
+18	### MVP Phase 2: DIF Power Simulation (Real IRT Parameters)
+19	- **Exp ID**: mvp_dif_power_sim_phase2
+20	- **Hypothesis**: ETS C maintains TPR≥0.65, FPR≤0.10 at N≥80, δ≥1.4 with real MMLU 2PL parameters from PSN-IRT
+21	- **Result**: TPR=0.68 (N=80,δ=1.4) to 0.80 (N=100,δ=1.6); FPR=0.036-0.042; AUC=0.93
+22	- **Conclusion**: Success — real parameter distributions degrade TPR by 3-6pp, within tolerance (D002)
+23	- **Story contribution**: Validates DIF power under realistic item parameter distributions; recommends N≥100 as primary operating point
+24	
+25	### Plan 001: Real-Data MH-DIF on METABENCH MMLU
+26	- **Exp ID**: plan_001_real_data_dif_mmlu
+27	- **Hypothesis**: Temporal cohort MH-DIF flags items enriched in Li et al. contaminated set (enrichment >1.0, FPR≤0.05)
+28	- **Result**: Temporal C%=31.3%, enrichment=0.96 (no enrichment); ability C%=2.9%, enrichment=1.19; within-family Llama-2 vs 3 C%=61.3%; domain ρ=0.307 (p=0.02); sanity random-split C%=0.18%
+29	- **Conclusion**: Negative — temporal DIF detects systematic capability improvement, not contamination (D004)
+30	- **Story contribution**: Key negative finding that motivated the entire pivot. The 31.3% temporal C% becomes the headline number for "item instability." Domain ρ=0.307 shows DIF is capability-driven. Sanity check (0.18%) proves the method isn't broken.
+31	
+32	### Plan 001b: Matched-Ability Temporal DIF
+33	- **Exp ID**: plan_001b_matched_ability_dif
+34	- **Hypothesis**: Within each accuracy quintile, temporal DIF enrichment rises to >1.5 after controlling for ability
+35	- **Result**: All quintile enrichments 0.94-1.04
+36	- **Conclusion**: Negative — ability matching cannot isolate contamination signal (D005)
+37	- **Story contribution**: Eliminates "ability confound" as the sole explanation. Reviewer insight: Li et al. web-overlap is global contamination (available to all models), fundamentally incompatible with DIF which measures differential effects.
+38	
+39	### Plan 011: Semi-Synthetic DIF Validation
+40	- **Exp ID**: plan_011_semi_synthetic_validation
+41	- **Hypothesis**: MH-DIF detects injected differential contamination (focal-only incorrect→correct flips) with TPR>0.5, FPR<0.05 on ability cohort
+42	- **Result**: Temporal+external: ΔTPR=+0.674 (0.326→1.000), FPR constant at 0.314; clear dose-response across p={0.3,0.5,0.7,1.0}; matching variable contamination discovered (standard MH FPR 0.298→0.616 at 20% injection, anchor/external immune)
+43	- **Conclusion**: Success — DIF methodology validated; plan_001 failure attributed to ground truth mismatch (D006)
+44	- **Story contribution**: The decisive validation experiment. Proves DIF works for differential contamination. Reinterprets Li et al. enrichment≈1.0 as "global vs differential contamination" insight (conceptual contribution). Matching variable contamination finding motivates external/anchor matching.
+45	
+46	### Plan 012: IRT θ-Conditioning
+47	- **Exp ID**: plan_012_irt_theta_conditioning
+48	- **Hypothesis**: Logit θ stratification (10-20 bins) reduces temporal baseline FPR from 31% to <10% while maintaining TPR>0.70
+49	- **Result**: θ corr with total score = 0.9986; temporal FPR = 31-35% across all variants (no improvement); ability cohort θ-bins reduce FPR 49%→8% but TPR collapses 76%→21% (proving plan_011 ability TPR was mostly ability confounding)
+50	- **Conclusion**: Negative — 1D θ ≡ total score, cannot reduce temporal FPR (D008)
+51	- **Story contribution**: Proves temporal DIF is genuinely multidimensional — 1D ability cannot explain it. Corrects plan_011 ability cohort interpretation: 73% of apparent TPR was ability confounding.
+52	
+53	### Plan 013: Yen's Q3 Local Independence Diagnostic
+54	- **Exp ID**: plan_013_q3_local_independence
+55	- **Hypothesis**: Within-subject Q3 mean > 0.20, significantly higher than cross-subject, explaining part of 31% FPR
+56	- **Result**: Within-subject mean Q3=0.0086 (below threshold), but 11.3% of pairs |Q3|>0.20 (vs 2.2% cross-subject, 5x ratio, Mann-Whitney p=2.3e-9); worst subjects: moral_scenarios 34.2%, world_religions 18%, marketing 17.5%
+57	- **Conclusion**: Partial — local dependence exists but is moderate; not the primary driver of 31% FPR
+58	- **Story contribution**: Addresses reviewer concern about IRT assumptions. Local dependence is a contributing factor but insufficient to explain 31% FPR, strengthening the "genuine temporal DIF" interpretation. Identifies specific problematic subjects for Discussion section.
+59	
+60	### Plan 014: Within-Subject Temporal DIF (Bifactor Pre-Check)
+61	- **Exp ID**: plan_014_within_subject_dif
+62	- **Hypothesis**: Within-subject C% < 15% in high-C% subjects, indicating between-subject ability differences drive overall C%
+63	- **Result**: Average within-subject C%=38.1% (range 31.1-45.2%); cross-subject C%=40.5% (Δ=-2.4pp); all 5 subjects exceed 25% threshold
+64	- **Conclusion**: Negative — temporal DIF penetrates into every subject; bifactor model cannot solve FPR (D010)
+65	- **Story contribution**: Proves temporal DIF is pervasive and item-specific, not an artifact of between-subject ability differences. The 38.1% within-subject figure is a robustness check for the 31.3% global finding. Kills bifactor direction before wasting compute.
+66	
+67	### Plan 015: Bifactor IRT (Killed)
+68	- **Exp ID**: plan_015_bifactor_irt
+69	- **Hypothesis**: Bifactor (1 general + 57 subject factors) reduces temporal FPR to <15%
+70	- **Conclusion**: Killed based on plan_014 pre-check (D010) — within-subject C%=38.1% proves bifactor cannot solve the problem
+71	- **Story contribution**: Demonstrates methodological rigor — pre-mortem analysis saved compute and confirmed the exhaustive nature of the investigation
+72	
+73	### Plan 016: Within-Subject Semi-Synthetic Injection
+74	- **Exp ID**: plan_016_within_subject_semi_synthetic
+75	- **Hypothesis**: Within-subject DIF still detects injected contamination (ΔTPR>0.3 at p=0.5), validating plan_014's 38% as genuine
+76	- **Result**: Cross-subject matching 4/5 subjects ΔTPR>0.3 at p=0.5; ΔFPR=0.000 across all 5 subjects (completely stable); within-subject matching 3/5 pass but FPR inflates +0.067 to +0.281
+77	- **Conclusion**: Success — DIF works at subject level; cross-subject matching eliminates FPR inflation (D011)
+78	- **Story contribution**: Final validation. Cross-subject ΔFPR=0.000 is a clean methodological contribution (solves matching variable contamination at subject level). Confirms plan_014's 38% is real temporal DIF, not method failure.
+79	
+80	### Plan 017: Downstream Impact (Preparing)
+81	- **Exp ID**: plan_017_downstream_impact
+82	- **Hypothesis**: Removing DIF-flagged items (~31% of MMLU) improves cross-generation model ranking stability (Spearman ρ), significantly better than random removal baseline
+83	- **Status**: PREPARING
+84	- **Story contribution**: Answers the "so what?" question — if DIF-flagged items cause ranking instability, removing them improves benchmark quality, providing downstream evidence for DIF as a benchmark quality tool
+85	
+86	## Decision Chain (D001-D012)
+87	
+88	```
+89	D001 (ETS C > p-value) → D002 (MVP pass) → D003 (Dream #1)
+90	    → D004 (temporal DIF = capability, not contamination)
+91	        → D005 (matched-ability fails)
+92	            → D006 (semi-synthetic validates DIF method)
+93	                → D007 (story pivot: global vs differential contamination)
+94	                    → D008 (θ-conditioning fails, 1D exhausted)
+95	                        → D009 (Dream #2: bifactor is last hope)
+96	                            → D010 (within-subject C%=38%, bifactor killed)
+97	                                → D011 (pivot confirmed, cross-matching ΔFPR=0.000)
+98	                                    → D012 (story finalized: benchmark quality tool)
+99	```
+100	
+101	Three failed remediation directions:
+102	1. **D005**: Matched-ability DIF → enrichment still ~1.0
+103	2. **D008**: IRT θ-conditioning → θ ≡ total score (r=0.9986), FPR unchanged
+104	3. **D010**: Bifactor pre-check → within-subject C%=38.1% > overall 31.3%
+105	
+106	## Key Numbers for Paper
+107	
+108	| Metric | Value | Source | Paper use |
+109	|--------|-------|--------|-----------|
+110	| METABENCH dataset size | 5227 models × 12508 items | data | Section 3 (Data) |
+111	| Temporal C% (ETS C flagged) | 31.3% | plan_001 | Key finding: item instability rate |
+112	| Ability C% | 2.9% | plan_001 | Contrast: ability-based DIF well-controlled |
+113	| Li et al. enrichment (temporal) | 0.96 | plan_001 | Global vs differential contamination |
+114	| Li et al. enrichment (ability) | 1.19 | plan_001 | Weak positive in ability cohort |
+115	| Within-family C% (Llama-2 vs 3) | 61.3% | plan_001 | Impact-vs-DIF confound demonstration |
+116	| Domain specificity ρ(C%, ΔAcc) | 0.307 (p=0.02) | plan_001 | Capability-driven DIF evidence |
+117	| Sanity check C% (random split) | 0.18% | plan_001 | Method validity |
+118	| Semi-synthetic ΔTPR (temporal, p=1.0) | +0.674 | plan_011 | Core validation: DIF detects differential contamination |
+119	| Semi-synthetic FPR stability | 0.314 → 0.314 | plan_011 | FPR constant under injection |
+120	| Semi-synthetic dose-response p=0.5 | TPR=0.834 | plan_011 | Detection at moderate effect |
+121	| Matching variable contamination ΔFPR | 0.298 → 0.616 | plan_011 | Motivates external matching |
+122	| θ–total score correlation | 0.9986 | plan_012 | 1D θ ≡ total score |
+123	| Ability cohort corrected TPR (θ-bins) | 21% (was 76%) | plan_012 | 73% of ability TPR was confounding |
+124	| Q3 within-subject |Q3|>0.20 | 11.3% (vs 2.2% cross) | plan_013 | Local dependence: moderate, not primary |
+125	| Worst Q3 subject (moral_scenarios) | 34.2% pairs |Q3|>0.20 | plan_013 | Discussion: problematic subjects |
+126	| Within-subject temporal C% (average) | 38.1% (range 31-45%) | plan_014 | Robustness: DIF pervasive within domains |
+127	| Within vs cross-subject Δ | -2.4pp | plan_014 | Signal robust to matching choice |
+128	| Cross-matching ΔFPR (all subjects) | 0.000 | plan_016 | Method: FPR completely stable |
+129	| Cross-matching subjects with ΔTPR>0.3 | 4/5 at p=0.5 | plan_016 | Subject-level detection works |
+130	| Within-matching FPR inflation at p=1.0 | +0.067 to +0.281 | plan_016 | Motivates cross-matching |
+131	| MVP ETS C TPR at N=100, δ=1.6 | 0.80 | mvp_phase2 | Power analysis: method is powered |
+132	| MVP ETS C FPR range | 0.036-0.042 | mvp_phase2 | Controlled false positive rate |
+133	
+134	## Evidence Chain Summary
+135	
+136	**Conclusion: Temporal DIF = genuine capability improvement, not contamination artifact.**
+137	
+138	The evidence chain:
+139	
+140	1. **DIF works** (plan_011): Semi-synthetic injection with known differential contamination yields ΔTPR=+0.674, perfect dose-response, and constant FPR — the methodology is sound.
+141	
+142	2. **But temporal DIF doesn't align with contamination labels** (plan_001): Enrichment=0.96 against Li et al. web-overlap labels. This is because web-overlap is *global* contamination (available to all models via Common Crawl), which by definition cannot produce group-specific DIF.
+143	
+144	3. **31% is not an ability-matching artifact**:
+145	   - Matched-ability DIF still shows enrichment≈1.0 (plan_001b)
+146	   - IRT θ is indistinguishable from total score (r=0.9986), finer binning doesn't help (plan_012)
+147	   - Within-subject C%=38.1% — higher than global 31.3%, ruling out between-subject confounds (plan_014)
+148	   - Local dependence (Q3) is moderate (11.3% >0.20) but insufficient to explain 31% (plan_013)
+149	
+150	4. **The method is validated at subject level** (plan_016): Cross-subject matching achieves ΔFPR=0.000 across all 5 tested subjects, with 4/5 showing ΔTPR>0.3 at p=0.5 injection level.
+151	
+152	5. **Therefore**: 31-38% of MMLU items exhibit genuine differential functioning between 2023 and 2024 model generations. This reflects real, item-specific capability changes — not contamination, not statistical artifacts, not matching failures. DIF is a valid tool for characterizing benchmark item instability, complementing but distinct from contamination detection.
+153	
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3e1da00e-2ba5-476c-af3c-6784f024a57f",
+  "isSidechain": true,
+  "promptId": "27741ca6-31a4-40a5-9308-cb23e7795590",
+  "agentId": "a05abee50241190a6",
+  "type": "user",
+  "uuid": "a43de2a0-f68d-4501-abec-785e77969128",
+  "sourceToolAssistantUUID": "3e1da00e-2ba5-476c-af3c-6784f024a57f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-21T02:01:04.971Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01P1yVL57rKsR3JBqnb5EmFy`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/review_reports/round_0.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a43de2a0-f68d-4501-abec-785e77969128",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "requestId": "req_011CbEtXC64TbHixgR9sA4mS",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "7e91ab73-50f7-41d8-9459-86fed576f52b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013bAxeL4u1Ht9ZGSWCYezrU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7577,
+      "cache_read_input_tokens": 55409,
+      "output_tokens": 196,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 7577
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 196,
+          "cache_read_input_tokens": 55409,
+          "cache_creation_input_tokens": 7577,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 7577,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-21T02:01:04.979Z_
+
+<details><summary>↩ Tool result · `toolu_01P1yVL57rKsR3JBqnb5EmFy`</summary>
+
+```text
+1	---
+2	round: 0
+3	review_mode: 
+4	overall_score: borderline
+5	timestamp: 2026-05-20T21:51:43.210272+00:00
+6	reviewer_ids: [1, 2]
+7	cross_response_reviewer_ids: [1, 2]
+8	force_resubmit: False
+9	---
+10	
+11	
+12	# 圆桌审稿报告 — Round 1
+13	
+14	**论文**: "Psychometric Detection and Regeneration of Contaminated LLM Benchmark Items: DIF-Based Detection, Multi-Signal Ensemble, and IRT-Equated Benchmark Regeneration"
+15	
+16	**审稿组**: R1（Methods & Experiments）+ R2（Novelty & Related Work）
+17	**日期**: 2026-05-20
+18	**轮次**: Round 1（初审 + 交叉回应，1 轮收敛）
+19	
+20	---
+21	
+22	## Summary
+23	
+24	本文将 LLM 基准测试污染检测重新定义为心理测量学问题，利用差异项目功能（DIF）在 5,219 模型 × 12,508 MMLU 题目的大规模矩阵上检测污染项目。论文构建了 DIF+ConStat 集成检测器（AUROC 0.72），提出半合成验证框架，并通过 bifactor IRT 等值进行基准再生（holdout ρ=0.91）。实验覆盖 11 个组件，从 IRT 拟合诊断到退化分析，构成完整技术栈。
+25	
+26	---
+27	
+28	## Strengths
+29	
+30	**S1. 跨学科概念贡献** [共识]
+31	将心理测量学中成熟的 DIF 方法论引入 LLM 污染检测，是一个有实际价值的概念桥梁。DIF 在群体层面运作，对单模型输出平滑具有理论上的天然鲁棒性（§3.2, Table 3: DIF AUROC 0.82-0.91 vs ConStat 0.51-0.75 on RL models）。两位 Reviewer 均认可此论点。
+32	
+33	**S2. 分析规模与覆盖面** [共识]
+34	5,219 模型 × 12,508 题目是目前已知最大的 IRT-for-LLM 分析之一。11 个实验组件系统覆盖从检测到再生的完整技术栈。
+35	
+36	**S3. 架构异质性诊断** [共识]
+37	Table 5 展示 full-population RMSEA=0.105 vs decoder-only 0.068，分层后 spurious DIF 减少 24%（Table 6）。R2 在交叉回应中承认初审低估了这一诊断工作的价值。
+38	
+39	**S4. 诚实报告负面结果** [共识]
+40	DVD AUROC 0.56、κ=0.14 外部验证、within-family 46% overlap 均如实呈现。在同类工作中属于高标准的透明度。
+41	
+42	**S5. 退化分析** [共识]
+43	Table 18 给出明确操作阈值（~35% 替换为临界点），ρ 以 ~0.003/百分点线性退化，为实际部署提供可规划的安全边界。
+44	
+45	---
+46	
+47	## Weaknesses
+48	
+49	### Critical（影响接收决定）
+50	
+51	**WC1. DIF 标记效度验证严重不足** [共识: R1+R2]
+52	- MMLU-CF 验证 κ=0.14 本质上是随机一致水平，几乎没有验证价值
+53	- GSM8K 交叉验证 r=0.36（Table 11）解释变异不到 13%，仅为暗示性佐证
+54	- Within-family 46% overlap 意味着过半 DIF 标记可能由架构差异或能力增长驱动，而非真正的污染
+55	- 论文未提供正式的 precision 估计；PPV ≈ 0.55 意味着约半数标记为假阳性
+56	- **底线**：如果无法区分"真污染"和"能力进步"，整个检测管线的可信度是未知的
+57	
+58	**WC2. 推理-RL 鲁棒性声明严重欠缺统计效力** [共识: R1+R2]
+59	- 推理-RL 分析仅基于 13 个模型，AUROC 估计 95% CI 约为 ±0.15-0.20
+60	- DeLong p=0.002 是在 alignment-RL（N=477）上报告的，**不是**推理-RL（N=13），存在统计推断误导
+61	- 推理-RL 恰恰是论文声称最重要的前沿场景，但证据最薄弱
+62	- 13 个模型的 family 分布未披露，可能存在选择偏差
+63	
+64	**WC3. 半合成验证存在循环性风险** [共识: R1+R2]
+65	- "200 clean items" 的选取标准不明——如果用 DIF 相关指标筛选 clean items 再评估 DIF，则 TPR 估计向上偏倚
+66	- Semi-synthetic TPR "consistently exceeds pure simulation by 3-8bps" 可能恰好反映了 existing contamination 的叠加效应
+67	- 无法证明选取独立性时，整个 semi-synthetic validation 的说服力大打折扣
+68	
+69	**WC4. 2PL 局部独立性假设可能严重违反** [共识: R1+R2]
+70	- MMLU 57 个学科内部题目高度相关，严重违反 2PL 局部独立性假设
+71	- 核心 DIF 分析（§3-4）使用普通 2PL，未检测或处理局部依赖
+72	- 违反局部独立性会膨胀 MH 统计量，导致 DIF 假阳性率升高——与 WC1 叠加
+73	- 论文在 §7.1 的 bifactor 模型中处理了这个问题，但未在核心检测阶段应用
+74	- RMSEA 0.068（decoder-only 分层后）仍处于"可接受"边缘（标准 ≤0.06 为"良好"）
+75	
+76	### Warning（影响评分但不一票否决）
+77	
+78	**WW1. 引用准确性存疑** [分歧: R2=critical, R1=minor]
+79	- R2 指出 "Iron-Fenced Trees (Tets & Berger, 2016)" 应为 "Item-Focussed Trees (Tutz & Berger, 2016)"，以及 DVD 引用的作者/年份不符
+80	- R1 反驳称论文写的是 "Item-Focused Trees"（美式拼写变体），"Iron-Fenced Trees" 在论文中不存在；可能存在的是 author name typo（Totz/Tets → Tutz）
+81	- **Director 判断**：存在事实争议，需作者逐一核查所有引用。如仅为拼写 typo 则属 camera-ready 级修正；如存在虚构引用则严重性显著提升。Wang et al. (2026) 引用同样无法独立核实（R1、R2 均同意此关切）。
+82	
+83	**WW2. 新颖性定位偏差** [分歧缩窄: R1=4/6, R2=3/6]
+84	- DIF 是 1988 年的经典技术，论文未对其做任何适配 LLM 场景的技术修改
+85	- 对有心理测量学背景者，"contamination = DIF" 的映射近乎显然
+86	- Growing Pains (Zhang et al., 2026) 已建立 "IRT for LLM evaluation" 范式，进一步降低概念桥梁的非显然性
+87	- **但**：对 ML 社区多数研究者而言 DIF 是陌生工具，完整管线（检测→集成→验证→等值→再生→退化分析）超越了单一方法应用
+88	- **Director 判断**：论文当前 framing 偏向方法论贡献声明，在 DIF 本身无创新的情况下略显 overclaiming。建议重新定位为"实证发现驱动的系统论文"
+89	
+90	**WW3. 与 Growing Pains 区分不足** [共识: R1+R2]
+91	- 两者在 IRT 建模层面高度相似，论文仅一句话带过
+92	
+93	**WW4. 多处不可核实引用** [共识: R1+R2]
+94	- Wang et al. (2026) 无法通过搜索找到完全匹配的论文
+95	- DVD "Dunn et al. (2024)" 的作者/年份可能不符
+96	
+97	**WW5. MH 程序选择未论证** [共识: R1+R2]
+98	- 仅检测 uniform DIF，对 non-uniform DIF 不敏感
+99	- 未与 logistic regression DIF、SIBTEST 等替代方案对比
+100	
+101	**WW6. 多重比较校正缺失** [共识: R1+R2]
+102	- 12,508 个 MH 检验未提及 FDR 控制
+103	- α=0.05 下预期约 625 个假阳性，可能部分解释 46% within-family overlap
+104	
+105	**WW7. ETS A/B/C 阈值未校准** [R2 提出]
+106	- 直接沿用人类测试标准，未讨论对 LLM 群体的适用性
+107	
+108	---
+109	
+110	## Reviewer Consensus [AGREE]
+111	
+112	以下问题两位 Reviewer 达成完全共识：
+113	
+114	1. **DIF 效度验证是核心瓶颈**（κ=0.14 + 46% overlap）——论文最需要回应的问题
+115	2. **N=13 推理-RL 无法支撑核心贡献声明**——需 bootstrap CI 或扩大样本
+116	3. **半合成验证的 clean items 选取需证明独立性**
+117	4. **2PL 局部独立性需诊断**（Yen's Q3 或在 bifactor 上重做 DIF）
+118	5. **缺失关键相关工作**：Lalor et al. (2019)、Vania et al. (2021)、Min-K%++ (Shi et al., 2024)、Balloccu et al. (2024)
+119	6. **Wang et al. (2026) 引用需提供可核实信息**
+120	7. **退化分析的实用价值**——Table 18 的 ~35% 临界点是有操作价值的发现
+121	8. **诚实报告负面结果**值得肯定
+122	
+123	---
+124	
+125	## Reviewer Divergence [REBUT]
+126	
+127	以下问题存在分歧，双方已充分论证：
+128	
+129	### 1. 引用错误严重性
+130	- **R2**：至少 2 处引用严重错误（Iron-Fenced Trees、Tets），呈典型 LLM 幻觉特征，[critical] 级别
+131	- **R1**：论文写的是 "Item-Focused Trees" 而非 "Iron-Fenced Trees"，R2 的核心指控本身有误；可能存在的 author name typo 属 camera-ready 级修正
+132	- **Director 裁定**：降级为 warning。R2 的 "Iron-Fenced Trees" 指控存在事实争议，但引用准确性仍需全面核查。如核查后确认存在虚构引用则重新升级。
+133	
+134	### 2. 新颖性评分
+135	- **R1**：4/6——跨学科概念桥接 + 大规模实证 + 完整管线
+136	- **R2**：3/6——方法层面零创新，概念映射对有背景者近乎显然
+137	- **Director 裁定**：3.5/6。论文有概念贡献和系统工程价值，但缺乏 DIF 方法本身的技术适配（如利用 logprob 的连续 DIF、处理 LLM 极端 response 的 robust MH）限制了新颖性上限。
+138	
+139	### 3. Ensemble 是正面贡献还是负面结果
+140	- **R2**：Table 10 显示 DIF 单独 TPR 在 δ≥1.4 时已达 0.78，ensemble 未带来一致性提升
+141	- **R1**：反驳——Table 10 完整数据显示 ensemble 在所有维度更优（δ≥1.4: 0.82>0.78; δ≥0.8: 0.72 vs 0.51; coverage: 73% vs 36%）；R2 选择性引用了单一维度
+142	- **Director 裁定**：R1 的数据引用更完整，ensemble 在中等效应区间（δ≥0.8）确有实质性改善。但 DVD 信号贡献微弱，有效 ensemble 实际上是 DIF+ConStat 双信号系统。建议论文更精确地表述 ensemble 的组成和边际贡献。
+143	
+144	### 4. 再生题目质量退化
+145	- **R1**：因子载荷 -18%、区分度 -19% 被低估，需 TIF 对比
+146	- **R2**：反驳——论文在 Table 18 和 §7.3 中已系统量化退化，处理充分；缺 TIF 是有价值的补充但非 Major
+147	- **Director 裁定**：同意 R2，退化处理基本充分，TIF 对比为可选补充。
+148	
+149	---
+150	
+151	## Questions for Authors
+152	
+153	1. **[高优先]** Within-family 46% overlap 的方向性：是 full-population DIF flags 包含 within-family flags，还是两者有不同的 flag 集合？方向性对结论有根本影响。
+154	2. **[高优先]** κ=0.14（与 MMLU-CF 一致性）为何不构成对 DIF 方法的否定证据？如果认为 MMLU-CF 本身不可靠，需提供独立论证。
+155	3. **[高优先]** 半合成验证中 clean items 的选取标准是什么？选取是否完全独立于 DIF 指标？
+156	4. **[高优先]** 推理-RL 13 个模型的完整列表、family 分布、以及 N=13 下独立的 DeLong p 值或 bootstrap CI。
+157	5. Bifactor 模型中学科特定因子的方差解释比例？general factor 占 62%，35 个学科因子各占多少？
+158	6. IFT 的时间分割点（2023年9月）如何区分污染效应 vs GPT-4 发布后的自然能力跳跃？
+159	7. ETS A/B/C 阈值（为人类校准）对 LLM 群体是否适用？是否进行过阈值敏感性分析？
+160	8. 请确认所有引用的准确性，特别是：Tutz/Tets 拼写、DVD 引用来源、Wang et al. (2026) 的完整引用信息。
+161	
+162	---
+163	
+164	## Missing References
+165	
+166	两位 Reviewer 共同识别的缺失引用：
+167	1. **Lalor et al. (2019)** "Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds" — IRT 应用于 NLP 的先驱工作
+168	2. **Vania et al. (2021)** — 用 IRT 分析 NLU benchmark
+169	3. **Shi et al. (2024) Min-K%++** — MIA 用于污染检测，与 DIF 的群体级方法形成 individual-level vs population-level 对比
+170	4. **Balloccu et al. (2024)** "Leak, Cheat, Repeat" — 污染检测领域最近的综述
+171	5. **N-gram/perplexity 基线方法** — 最简单的污染检测基线，论文未将 DIF 与之对比
+172	
+173	---
+174	
+175	## External Review (Stanford Agentic Reviewer)
+176	
+177	**状态：未请求。** 本轮未配置外部审稿。
+178	
+179	---
+180	
+181	## Visual Layout Check
+182	
+183	**状态：未启动。** 本轮未派发视觉审查 Agent。
+184	
+185	---
+186	
+187	## Overall Assessment
+188	
+189	### 评分汇总
+190	
+191	| 维度 | R1 (修正后) | R2 (修正后) | Director 综合 |
+192	|------|-------------|-------------|---------------|
+193	| Novelty | 4/6 | 3/6 | 3.5/6 |
+194	| Soundness | 3/6 | 3/6 | 3/6 |
+195	| Significance | 4/6 | 3.5/6 | 3.5/6 |
+196	| Clarity | 4/6 | 3.5/6 | 3.5/6 |
+197	| Reproducibility | 3/6 | 2.5/6 | 2.5/6 |
+198	| **Overall** | **4/6** | **3/6** | **3.5/6** |
+199	
+200	### 总体判断：**Borderline** (3.5/6)
+201	
+202	**核心判断**：这是一篇有野心、有创意的论文，将心理测量学的经典工具引入了 ML 社区关心的重要问题。跨学科概念贡献有实际价值，实验规模令人印象深刻，负面结果的诚实报告值得肯定。
+203	
+204	**但核心方法论存在四个相互关联的严重缺陷**：
+205	1. DIF 效度验证极其薄弱（κ=0.14 ≈ 随机水平），无法确信 DIF 标记对应真正的污染
+206	2. 推理-RL 鲁棒性——论文最强调的实用卖点——仅有 N=13 的支持，统计效力严重不足
+207	3. 半合成验证的 clean items 选取可能存在循环论证
+208	4. 2PL 局部独立性假设在 MMLU 学科结构下可能严重违反，与 DIF 假阳性问题叠加
+209	
+210	这四个问题不是独立的：局部依赖（#4）→ MH 假阳性膨胀 → DIF 效度问题（#1）→ 半合成验证偏倚（#3）。如果作者能打破这个链条中的任一环节（特别是提供 Yen's Q3 诊断和 controlled validation），论文可信度将显著提升。
+211	
+212	**Rebuttal 的关键门槛**：
+213	- **必须回应**：WC1（效度验证）+ WC2（RL 样本量）+ WC4（局部独立性）
+214	- **应该回应**：WC3（半合成循环性）+ 引用核查 + 缺失相关工作
+215	- 如果 rebuttal 能提供 (a) Yen's Q3 诊断结果、(b) N=13 的 bootstrap CI、(c) clean items 选取的独立性证明，有潜力上调至 Weak Accept (4/6)
+216	
+217	**Confidence: 4/5** — 两位 Reviewer 在核心问题上达成共识，分歧点已充分论证并裁定。
+218	
+219	---
+220	
+221	## Detailed Comments
+222	
+223	### §3.1-3.2 DIF 方法
+224	- MH 是经典 DIF 方法但仅检测 uniform DIF。建议至少用 logistic regression DIF 做对比实验。
+225	- ETS A/B/C 阈值直接沿用人类测试标准，未校准 LLM 群体特性。
+226	
+227	### §4.1 IRT 拟合与 Within-Family 分析
+228	- 架构异质性诊断（RMSEA 从 0.105 降至 0.068）是有价值的实证发现。
+229	- 但 46% within-family overlap 的方向性未澄清，是理解 DIF 效度的关键。
+230	- 分层后 RMSEA 0.068 仍处于边缘，局部依赖可能被掩盖。
+231	
+232	### §4.2 RL 鲁棒性
+233	- N=13 不足以支撑核心贡献声明。DeLong p=0.002 应明确标注为 alignment-RL 结果。
+234	- 需报告推理-RL 的独立 bootstrap CI 和模型列表。
+235	
+236	### §5 多信号集成
+237	- Ensemble 在中等效应区间（δ≥0.8）有实质性改善（0.72 vs 0.51 TPR）。
+238	- 但 DVD 贡献微弱，有效 ensemble 实际为 DIF+ConStat 双信号系统。
+239	- 需加入 PPV 曲线或 base-rate 敏感的 precision-recall 分析。
+240	
+241	### §6 验证
+242	- 半合成验证的 clean items 选取标准需明确说明。
+243	- GSM8K r=0.36 解释变异不到 13%，应更谨慎呈现。
+244	- κ=0.14 的解释是 rebuttal 的关键——不能简单地将 MMLU-CF 作为 ground truth 的失败归咎于 MMLU-CF 本身。
+245	
+246	### §7 基准再生
+247	- Bifactor equating + 退化分析构成完整的 remediation 框架。
+248	- 替换题目因子载荷 -18%、区分度 -19% 意味着再生基准是较弱版本，但论文对此的量化处理基本充分。
+249	- TIF 对比可作为有价值的补充。
+250	
+251	### Related Work
+252	- 缺失 IRT-for-NLP 先行工作（Lalor et al. 2019, Vania et al. 2021）是最重要的遗漏。
+253	- 与 Growing Pains 的区分需展开讨论。
+254	- 标题中 "at Scale" 有过度概括之嫌（GSM8K 仅 60 模型，RL 仅 13 模型）。
+255	
+256	### 引用
+257	- 全面核查所有引用的作者名、标题、年份和出版信息。
+258	- 特别关注 Tutz/Tets 拼写、DVD 引用来源、Wang et al. (2026) 可核实性。
+259	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7e91ab73-50f7-41d8-9459-86fed576f52b",
+  "isSidechain": true,
+  "promptId": "27741ca6-31a4-40a5-9308-cb23e7795590",
+  "agentId": "a05abee50241190a6",
+  "type": "user",
+  "uuid": "e7db5a65-1df6-4917-9c9b-fcfc678df04d",
+  "sourceToolAssistantUUID": "7e91ab73-50f7-41d8-9459-86fed576f52b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-21T02:01:10.510Z_
+
+Now let me read the architecture-stratified DIF and Bayesian DIF results that appear in the paper summary but I haven't seen in the reports yet.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e7db5a65-1df6-4917-9c9b-fcfc678df04d",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "requestId": "req_011CbEtXtiZyDvTH4PipHDJJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "f80506ac-0ad0-48c3-9839-18b080277156",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X4KUdK4q4QJtmzd8EhTsdM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11649,
+      "cache_read_input_tokens": 62986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 11649,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-21T02:01:13.099Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_016nigcU9XfGpNfUKgMCBPb1`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_014/plan_014_report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f80506ac-0ad0-48c3-9839-18b080277156",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "requestId": "req_011CbEtXtiZyDvTH4PipHDJJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8560d008-91c3-4928-88ea-72ad26d9e979",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X4KUdK4q4QJtmzd8EhTsdM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11649,
+      "cache_read_input_tokens": 62986,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 11649,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-21T02:01:13.112Z_
+
+<details><summary>↩ Tool result · `toolu_016nigcU9XfGpNfUKgMCBPb1`</summary>
+
+```text
+1	# Plan 014: Within-Subject Temporal DIF + SIBTEST Availability
+2	
+3	## Background
+4	
+5	Plan_012 showed single-dimensional θ-conditioning cannot reduce the temporal cohort's
+6	31% baseline FPR. Before launching a full bifactor model, we check whether the high
+7	C% is driven by between-subject ability differences or within-subject DIF.
+8	
+9	## Part 1: Within-Subject Temporal DIF
+10	
+11	For each subject, MH-DIF uses **within-subject purified total score** as the matching
+12	variable. This isolates DIF to items within the same content domain, removing
+13	between-subject ability confounds.
+14	
+15	### Results
+16	
+17	| Subject | N items | ETS A | ETS B | ETS C | C% | A% |
+18	|---------|---------|-------|-------|-------|-----|-----|
+19	| business_ethics | 93 | 32 | 19 | 42 | 45.2% | 34.4% |
+20	| human_aging | 203 | 96 | 40 | 67 | 33.0% | 47.3% |
+21	| formal_logic | 109 | 46 | 20 | 43 | 39.5% | 42.2% |
+22	| professional_medicine | 248 | 124 | 47 | 77 | 31.1% | 50.0% |
+23	| high_school_statistics | 181 | 66 | 39 | 76 | 42.0% | 36.5% |
+24	
+25	**Average within-subject C%: 38.1%**
+26	
+27	## Part 2: Cross-Subject Matching Comparison
+28	
+29	Cross-subject matching uses total score on **all other subjects** (excluding the
+30	current one) as the matching variable. This eliminates within-subject ability
+31	contamination of the matching variable.
+32	
+33	### Results
+34	
+35	| Subject | N items | Matching | ETS A | ETS B | ETS C | C% | A% |
+36	|---------|---------|----------|-------|-------|-------|-----|-----|
+37	| business_ethics | 93 | within | 32 | 19 | 42 | 45.2% | 34.4% |
+38	| | | cross | 32 | 16 | 45 | 48.4% | 34.4% |
+39	| human_aging | 203 | within | 96 | 40 | 67 | 33.0% | 47.3% |
+40	| | | cross | 88 | 30 | 85 | 41.9% | 43.4% |
+41	| formal_logic | 109 | within | 46 | 20 | 43 | 39.5% | 42.2% |
+42	| | | cross | 52 | 14 | 43 | 39.5% | 47.7% |
+43	| professional_medicine | 248 | within | 124 | 47 | 77 | 31.1% | 50.0% |
+44	| | | cross | 109 | 45 | 94 | 37.9% | 44.0% |
+45	| high_school_statistics | 181 | within | 66 | 39 | 76 | 42.0% | 36.5% |
+46	| | | cross | 79 | 39 | 63 | 34.8% | 43.6% |
+47	
+48	**Average cross-subject C%: 40.5%**
+49	
+50	### Within vs Cross Comparison
+51	
+52	| Subject | Within C% | Cross C% | Δ C% |
+53	|---------|-----------|----------|------|
+54	| business_ethics | 45.2% | 48.4% | -3.2% |
+55	| human_aging | 33.0% | 41.9% | -8.9% |
+56	| formal_logic | 39.5% | 39.5% | +0.0% |
+57	| professional_medicine | 31.1% | 37.9% | -6.8% |
+58	| high_school_statistics | 42.0% | 34.8% | +7.2% |
+59	
+60	## Part 3: SIBTEST Availability
+61	
+62	- R: not available
+63	- Python pysibtest: not installed
+64	- Python sibtest: not installed
+65	- Python pyirt: not installed
+66	- pysibtest on PyPI: not found
+67	
+68	## Conclusions
+69	
+70	### Within-subject C% = 38.1% → **HIGH** (>25%)
+71	
+72	Within-subject DIF remains high even after isolating by subject. The temporal
+73	effect is pervasive across content domains, not just an artifact of between-subject
+74	ability differences. Bifactor alone will not solve this — need additional
+75	conditioning or a different DIF method (e.g., SIBTEST with suspect/anchor split).
+76	
+77	### Cross-subject matching insight
+78	
+79	Within and cross-subject C% are similar (Δ=-2.4%), suggesting the DIF
+80	signal is robust to the choice of matching variable.
+81	
+82	### Recommendation
+83	
+84	Bifactor model alone is insufficient. Investigate:
+85	1. Whether specific item types (difficulty levels) drive within-subject C%
+86	2. SIBTEST with empirically determined suspect items
+87	3. Lord's χ² with IRT parameters per subject
+88	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8560d008-91c3-4928-88ea-72ad26d9e979",
+  "isSidechain": true,
+  "promptId": "27741ca6-31a4-40a5-9308-cb23e7795590",
+  "agentId": "a05abee50241190a6",
+  "type": "user",
+  "uuid": "98a2dafc-f2f2-4a8a-bec1-9487b1e255bb",
+  "sourceToolAssistantUUID": "8560d008-91c3-4928-88ea-72ad26d9e979",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-21T02:01:14.134Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014W3HEb566tYf5yeQVnzbbW`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen/artifacts/plan_016_within_subject_semi_synthetic/report/plan_016_report_fb64fc.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "98a2dafc-f2f2-4a8a-bec1-9487b1e255bb",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "requestId": "req_011CbEtXtiZyDvTH4PipHDJJ",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "ad494c1c-b5dc-479e-a4f2-b9778773b9a7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X4KUdK4q4QJtmzd8EhTsdM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11649,
+      "cache_read_input_tokens": 62986,
+      "output_tokens": 228,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 11649
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 228,
+          "cache_read_input_tokens": 62986,
+          "cache_creation_input_tokens": 11649,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 11649,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-21T02:01:14.153Z_
+
+<details><summary>↩ Tool result · `toolu_014W3HEb566tYf5yeQVnzbbW`</summary>
+
+```text
+1	# Plan 016: Within-Subject Semi-Synthetic Injection
+2	
+3	## Objective
+4	
+5	Verify that MH-DIF detects differential contamination **within individual subjects**,
+6	not just globally. This validates plan_014's finding that within-subject temporal
+7	C% = 38.1% reflects real signal, not method failure.
+8	
+9	## Setup
+10	
+11	- **Temporal cohort**: ref=2023 (1080 models), foc=2024 (807 models)
+12	- **Focal injection subset**: 787 models (ability overlap with ref)
+13	- **Contamination fraction**: 20% of items per subject
+14	- **Injection probabilities**: [0.0, 0.5, 1.0]
+15	- **Seeds per p**: 5
+16	- **Matching**: within-subject purified total score + cross-subject total score
+17	
+18	### Subjects
+19	
+20	| Subject | N items | N contaminated | N baseline | Strata |
+21	|---------|---------|----------------|------------|--------|
+22	| business_ethics | 93 | 18 | 75 | 3 |
+23	| human_aging | 203 | 40 | 163 | 5 |
+24	| professional_medicine | 248 | 49 | 199 | 5 |
+25	| formal_logic | 109 | 21 | 88 | 5 |
+26	| high_school_statistics | 181 | 36 | 145 | 5 |
+27	
+28	## Results: Within-Subject Matching
+29	
+30	Matching variable = purified total score on current subject's items (minus studied item).
+31	
+32	### Per-Subject Dose-Response (Within)
+33	
+34	| Subject | p | TPR (mean±std) | FPR (mean±std) | ΔTPR | Fisher OR | Fisher p |
+35	|---------|---|----------------|----------------|------|-----------|----------|
+36	| business_ethics | 0.0 | 0.600±0.072 | 0.563±0.017 | +0.000 | 1.24 | 0.5990 |
+37	| business_ethics | 0.5 | 0.522±0.084 | 0.603±0.017 | -0.078 | 0.78 | 0.5957 |
+38	| business_ethics | 1.0 | 1.000±0.000 | 0.629±0.017 | +0.400 | inf | 0.0012 |
+39	| formal_logic | 0.0 | 0.333±0.158 | 0.409±0.038 | +0.000 | 0.92 | 0.2169 |
+40	| formal_logic | 0.5 | 0.790±0.080 | 0.500±0.033 | +0.457 | 4.21 | 0.0254 |
+41	| formal_logic | 1.0 | 1.000±0.000 | 0.584±0.019 | +0.667 | inf | 0.0001 |
+42	| high_school_statistics | 0.0 | 0.472±0.059 | 0.407±0.015 | +0.000 | 1.35 | 0.5720 |
+43	| high_school_statistics | 0.5 | 0.667±0.065 | 0.494±0.010 | +0.194 | 2.14 | 0.1395 |
+44	| high_school_statistics | 1.0 | 1.000±0.000 | 0.643±0.009 | +0.528 | inf | 0.0000 |
+45	| human_aging | 0.0 | 0.315±0.045 | 0.334±0.011 | +0.000 | 0.94 | 0.5741 |
+46	| human_aging | 0.5 | 0.700±0.085 | 0.405±0.019 | +0.385 | 3.68 | 0.0013 |
+47	| human_aging | 1.0 | 1.000±0.000 | 0.507±0.033 | +0.685 | inf | 0.0000 |
+48	| professional_medicine | 0.0 | 0.306±0.050 | 0.312±0.012 | +0.000 | 1.00 | 0.6056 |
+49	| professional_medicine | 0.5 | 0.633±0.063 | 0.435±0.042 | +0.327 | 2.37 | 0.0063 |
+50	| professional_medicine | 1.0 | 1.000±0.000 | 0.593±0.028 | +0.694 | inf | 0.0000 |
+51	
+52	## Results: Cross-Subject Matching
+53	
+54	Matching variable = total score on all other subjects' items (not affected by injection).
+55	
+56	### Per-Subject Dose-Response (Cross)
+57	
+58	| Subject | p | TPR (mean±std) | FPR (mean±std) | ΔTPR | Fisher OR | Fisher p |
+59	|---------|---|----------------|----------------|------|-----------|----------|
+60	| business_ethics | 0.0 | 0.556±0.136 | 0.533±0.033 | +0.000 | 1.29 | 0.2948 |
+61	| business_ethics | 0.5 | 0.611±0.056 | 0.533±0.033 | +0.056 | 1.43 | 0.4464 |
+62	| business_ethics | 1.0 | 1.000±0.000 | 0.533±0.033 | +0.444 | inf | 0.0001 |
+63	| formal_logic | 0.0 | 0.362±0.137 | 0.402±0.033 | +0.000 | 1.00 | 0.3243 |
+64	| formal_logic | 0.5 | 0.905±0.089 | 0.402±0.033 | +0.543 | inf | 0.0000 |
+65	| formal_logic | 1.0 | 1.000±0.000 | 0.402±0.033 | +0.638 | inf | 0.0000 |
+66	| high_school_statistics | 0.0 | 0.400±0.046 | 0.335±0.012 | +0.000 | 1.35 | 0.5639 |
+67	| high_school_statistics | 0.5 | 0.833±0.020 | 0.335±0.012 | +0.433 | 10.12 | 0.0000 |
+68	| high_school_statistics | 1.0 | 1.000±0.000 | 0.335±0.012 | +0.600 | inf | 0.0000 |
+69	| human_aging | 0.0 | 0.370±0.054 | 0.431±0.013 | +0.000 | 0.80 | 0.5940 |
+70	| human_aging | 0.5 | 0.745±0.078 | 0.431±0.013 | +0.375 | 4.23 | 0.0003 |
+71	| human_aging | 1.0 | 1.000±0.000 | 0.431±0.013 | +0.630 | inf | 0.0000 |
+72	| professional_medicine | 0.0 | 0.376±0.069 | 0.380±0.017 | +0.000 | 1.03 | 0.6268 |
+73	| professional_medicine | 0.5 | 0.755±0.050 | 0.380±0.017 | +0.380 | 5.32 | 0.0000 |
+74	| professional_medicine | 1.0 | 1.000±0.000 | 0.380±0.017 | +0.624 | inf | 0.0000 |
+75	
+76	## Within vs Cross Matching Comparison
+77	
+78	| Subject | p | Within FPR | Cross FPR | Within TPR | Cross TPR |
+79	|---------|---|------------|-----------|------------|-----------|
+80	| business_ethics | 0.0 | 0.563 | 0.533 | 0.600 | 0.556 |
+81	| business_ethics | 0.5 | 0.603 | 0.533 | 0.522 | 0.611 |
+82	| business_ethics | 1.0 | 0.629 | 0.533 | 1.000 | 1.000 |
+83	| human_aging | 0.0 | 0.334 | 0.431 | 0.315 | 0.370 |
+84	| human_aging | 0.5 | 0.405 | 0.431 | 0.700 | 0.745 |
+85	| human_aging | 1.0 | 0.507 | 0.431 | 1.000 | 1.000 |
+86	| professional_medicine | 0.0 | 0.312 | 0.380 | 0.306 | 0.376 |
+87	| professional_medicine | 0.5 | 0.435 | 0.380 | 0.633 | 0.755 |
+88	| professional_medicine | 1.0 | 0.593 | 0.380 | 1.000 | 1.000 |
+89	| formal_logic | 0.0 | 0.409 | 0.402 | 0.333 | 0.362 |
+90	| formal_logic | 0.5 | 0.500 | 0.402 | 0.790 | 0.905 |
+91	| formal_logic | 1.0 | 0.584 | 0.402 | 1.000 | 1.000 |
+92	| high_school_statistics | 0.0 | 0.407 | 0.335 | 0.472 | 0.400 |
+93	| high_school_statistics | 0.5 | 0.494 | 0.335 | 0.667 | 0.833 |
+94	| high_school_statistics | 1.0 | 0.643 | 0.335 | 1.000 | 1.000 |
+95	
+96	### FPR Stability: Within vs Cross
+97	
+98	| Subject | Within FPR(p=0) | Within FPR(p=1) | ΔFPR(within) | Cross FPR(p=0) | Cross FPR(p=1) | ΔFPR(cross) |
+99	|---------|-----------------|-----------------|--------------|----------------|----------------|-------------|
+100	| business_ethics | 0.563 | 0.629 | +0.067 | 0.533 | 0.533 | +0.000 |
+101	| human_aging | 0.334 | 0.507 | +0.173 | 0.431 | 0.431 | +0.000 |
+102	| professional_medicine | 0.312 | 0.593 | +0.281 | 0.380 | 0.380 | +0.000 |
+103	| formal_logic | 0.409 | 0.584 | +0.175 | 0.402 | 0.402 | +0.000 |
+104	| high_school_statistics | 0.407 | 0.643 | +0.236 | 0.335 | 0.335 | +0.000 |
+105	
+106	### Subject-Level Summary
+107	
+108	| Subject | Matching | Baseline FPR (p=0) | TPR at p=0.5 | TPR at p=1.0 | ΔTPR(0.5) | ΔTPR(1.0) | Significant? |
+109	|---------|----------|--------------------|--------------|--------------|-----------|-----------|-------------|
+110	| business_ethics | within | 0.563 | 0.522 | 1.000 | -0.078 | +0.400 | No / Yes |
+111	| business_ethics | cross | 0.533 | 0.611 | 1.000 | +0.056 | +0.444 | No / Yes |
+112	| human_aging | within | 0.334 | 0.700 | 1.000 | +0.385 | +0.685 | Yes / Yes |
+113	| human_aging | cross | 0.431 | 0.745 | 1.000 | +0.375 | +0.630 | Yes / Yes |
+114	| professional_medicine | within | 0.312 | 0.633 | 1.000 | +0.327 | +0.694 | Yes / Yes |
+115	| professional_medicine | cross | 0.380 | 0.755 | 1.000 | +0.380 | +0.624 | Yes / Yes |
+116	| formal_logic | within | 0.409 | 0.790 | 1.000 | +0.457 | +0.667 | Yes / Yes |
+117	| formal_logic | cross | 0.402 | 0.905 | 1.000 | +0.543 | +0.638 | Yes / Yes |
+118	| high_school_statistics | within | 0.407 | 0.667 | 1.000 | +0.194 | +0.528 | No / Yes |
+119	| high_school_statistics | cross | 0.335 | 0.833 | 1.000 | +0.433 | +0.600 | Yes / Yes |
+120	
+121	## Comparison with Plan 011 (Global)
+122	
+123	| Metric | Plan 011 temporal external | Plan 016 within (avg) | Plan 016 cross (avg) |
+124	|--------|---------------------------|----------------------|---------------------|
+125	| Baseline FPR | 0.314 | 0.405 | 0.416 |
+126	| ΔTPR at p=0.5 | +0.508 | +0.257 | +0.357 |
+127	| ΔTPR at p=1.0 | +0.674 | +0.595 | +0.587 |
+128	
+129	## Verdict
+130	
+131	**Within-subject matching**: 3/5 subjects with ΔTPR > 0.3 at p=0.5
+132	**Cross-subject matching**: 4/5 subjects with ΔTPR > 0.3 at p=0.5
+133	
+134	Within-subject MH-DIF successfully detects injected differential contamination
+135	in subjects with sufficient items. Cross-subject matching provides a cleaner
+136	baseline FPR (not inflated by injection in the matching variable) while
+137	maintaining detection sensitivity.
+138	
+139	Key findings:
+140	
+141	1. The DIF methodology works at the within-subject level
+142	2. Plan 014's finding of ~38% within-subject temporal C% is methodologically valid
+143	3. Cross-subject matching FPR is more stable across injection levels (not contaminated)
+144	4. Within-subject matching FPR inflates with injection (matching variable includes injected items)
+145	5. Very small subjects (N<100) have inflated baseline FPR due to limited matching variable precision
+146	
+147	## Implications
+148	
+149	The within-subject injection results, combined with plan_014's finding of ~38%
+150	within-subject C%, support the final narrative: temporal DIF is a real, pervasive
+151	phenomenon that persists even when ability matching is done within content domains.
+152	Cross-subject matching confirms the FPR inflation in within-subject matching is due
+153	to contamination of the matching variable, validating the use of external scores
+154	for cleaner DIF estimation.
+155	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ad494c1c-b5dc-479e-a4f2-b9778773b9a7",
+  "isSidechain": true,
+  "promptId": "27741ca6-31a4-40a5-9308-cb23e7795590",
+  "agentId": "a05abee50241190a6",
+  "type": "user",
+  "uuid": "ca886fd3-07c6-4e41-b799-ce7af9b12e8b",
+  "sourceToolAssistantUUID": "ad494c1c-b5dc-479e-a4f2-b9778773b9a7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-21T02:02:45.936Z_
+
+I now have sufficient information to write a thorough R1 review. Let me compile it.
+
+### R1 Independent Review: Methods & Experiments
+
+**Summary**
+
+This paper applies Mantel-Haenszel Differential Item Functioning (MH-DIF) analysis to the METABENCH response matrix (5,227 models x 12,508 MMLU items) to characterize item-level behavioral instability across LLM generations. After a methodologically honest pivot from "DIF as contamination detector" to "psychometric characterization," the paper delivers four claims: 38% of MMLU items exhibit large DIF across temporal cohorts, web-overlap contamination labels are orthogonal to differential functioning, a semi-synthetic validation framework with cross-subject matching controls FPR inflation, and DIF-flagged items concentrate discriminative signal rather than noise. The experimental chain is systematic and the negative results are reported with unusual transparency, but several methodological gaps remain concerning.
+
+**Strengths**
+
+- The experimental chain of 11+ experiments (plan_001 through plan_017, plus MVP power simulations) is exceptionally systematic. Three independent structural remediation attempts (matched-ability, theta-conditioning, bifactor pre-check) were exhausted before pivoting, demonstrating genuine scientific rigor rather than hypothesis-chasing.
+
+- The semi-synthetic validation framework is well-designed. Injecting known differential contamination into real response matrices (not simulated data) preserves realistic ability distributions and item characteristics. The dose-response curve across p = {0.0, 0.3, 0.5, 0.7, 1.0} with 5 seeds each is convincing: temporal+external DELTA-TPR = +0.674 at p=1.0 with FPR constant at 0.314 (Table in plan_011 report).
+
+- The cross-subject matching contribution (DELTA-FPR = 0.000 across all 5 tested subjects) is a clean and practically useful methodological finding. The contrast with within-subject matching (FPR inflation +0.067 to +0.281) clearly demonstrates the matching variable contamination problem and its solution.
+
+- Sanity checks are thorough: random half-split of 2023 cohort yields C% = 0.18% (vs. 31.3% temporal), ruling out statistical artifacts. Architecture-stratified analysis (decoder-only C% drops to 22.1% with improved IRT fit) demonstrates awareness of confounders. The random-split sanity check for architecture-stratified DIF (0.12%) adds further credibility.
+
+- The GSM1K cross-benchmark validation (r = -0.478, p = 0.005, N = 33) with partial correlation surviving accuracy control (r = -0.385, p = 0.027), permutation testing (p = 0.014), and leave-one-out robustness (min |r| = 0.374) is well-executed. The directionality analysis splitting focal-favoring vs. reference-favoring DIF-C items adds interpretive depth.
+
+- The downstream impact analysis (plan_017) is a strong "so what?" experiment. The finding that DIF removal causes significantly MORE ranking disruption than random removal (z = -8 to -49 sigma, 21/21 conditions) with 1.09x cross-cohort accuracy swing on DIF items vs. 0.96x on stable items is informative and counterintuitive.
+
+- The paper explicitly acknowledges that 38% instability cannot be decomposed into contamination vs. capability improvement (rho = 0.307 with domain-specific accuracy gains). This honest framing strengthens rather than weakens the characterization contribution.
+
+**Weaknesses**
+
+- The baseline FPR of 31-38% across temporal cohort comparisons is uncomfortably high and remains unexplained. While the paper correctly notes that three structural corrections failed to reduce it, the persistent high baseline means that MH-DIF as applied here cannot distinguish "genuine capability improvement on specific items" from "item instability due to contamination or other causes." The DELTA-TPR metric partially addresses this by measuring incremental detection above baseline, but the absolute classification quality for any single item is poor. A reviewer unfamiliar with DIF methodology may struggle to accept a method whose baseline false positive rate exceeds 30%.
+
+- The ETS A/B/C classification thresholds (|delta_MH| >= 1.5 for C) are borrowed directly from human educational testing without calibration for the LLM setting. LLM response distributions, ability ranges, and item parameter distributions differ substantially from human test-taker populations. No sensitivity analysis across alternative thresholds is reported. This is a significant gap: if the threshold were set to 2.0 instead of 1.5, the 38% headline number would likely change substantially. The paper should report C% at multiple thresholds to demonstrate robustness of the qualitative finding.
+
+- Multiple testing correction is not addressed for the 12,508 simultaneous MH tests. The ETS classification uses an effect size threshold (|delta_MH| >= 1.5) combined with significance, which partially mitigates this concern (effect size thresholds are more conservative than p-value-only approaches), but this should be explicitly discussed. At alpha = 0.05 with 12,508 tests, approximately 625 false positives are expected from significance testing alone. The ETS C classification's dual requirement (effect size + significance) likely controls this adequately, but the argument is never made explicit.
+
+- The MH procedure detects only uniform DIF (constant difficulty shift across ability levels). Non-uniform DIF (where the item functions differently at different ability levels) is ignored entirely. Given that LLM "ability" is multi-faceted and models may exhibit highly non-uniform performance patterns, this is a potentially important blind spot. No comparison with logistic regression DIF or SIBTEST is provided, despite the paper acknowledging SIBTEST's availability in the literature.
+
+- The semi-synthetic injection mechanism (flipping incorrect to correct responses at rate p for focal group only) is a simplification that may not match real contamination patterns. Real contamination could involve partial knowledge (increased probability but not certainty), format memorization (correct answer position rather than content), or selective contamination of specific item types. The paper acknowledges this limitation in passing but does not probe its implications. An injection mechanism that increases correct probability by a fixed amount rather than flipping to certainty would be more realistic, especially at lower exploitation rates.
+
+- The Cumulative Bayesian DIF results in Section 5.3 (Table 6) are presented without sufficient methodological detail. The Bayes factor threshold of 3.2 and the administrative batch structure need justification. How were the batch boundaries determined? What prior was used? Is the cumulative approach sensitive to batch ordering?
+
+- The Bifactor IRT results in Section 4.5 report RMSEA = 0.038, CFI = 0.91, TLI = 0.89 and claim general factor variance of 42% and subject factors 18%. But TLI < 0.90 is typically considered below the conventional acceptability threshold. The C% after equating drops only 2.4pp (from 38.1% to 33.5%), suggesting the bifactor structure provides minimal additional correction. The equated score correlation of rho = 0.965 is high but the small C% reduction weakens the case for bifactor equating as a remediation strategy.
+
+- The RL robustness analysis (N = 13 reasoning-RL models, Jaccard = 0.88, TOST p = 0.008) is severely underpowered. The paper correctly places this in the appendix rather than claiming it as a core contribution, but it still features prominently in Section 6. Bootstrap CI [0.87, 0.94] with N = 13 is likely influenced by the specific model selection. The contrast with per-model detectors (Min-K% 0.81 to 0.52, ConStat 0.77 to 0.48) is suggestive but the comparison is between a group-level method and individual-model methods, which is not apples-to-apples.
+
+- The GSM1K validation, while statistically significant, relies on only N = 33 matched models. The Cook's distance analysis showing Deepseek-math-7b-rl with D = 0.300 (highest) suggests moderate sensitivity to individual data points. The confidence interval around r = -0.478 at N = 33 is wide (approximately [-0.70, -0.17] at 95%), limiting the precision of the effect size estimate.
+
+**Questions for Authors**
+
+- What is the C% at alternative ETS thresholds (|delta_MH| >= 1.0, 1.5, 2.0, 2.5)? How sensitive is the 38% headline to threshold choice?
+
+- The clean item selection for semi-synthetic validation uses "ETS A in uninjected data + clean in Li et al." What fraction of the original 12,508 items meet both criteria simultaneously? If the intersection is small or biased toward easy/hard items, the baseline might not be representative.
+
+- For the cross-subject matching (DELTA-FPR = 0.000), is this exactly 0.000 or rounded? If truly zero across all injection levels and subjects, this seems suspiciously clean. What is the precision of this estimate?
+
+- The architecture-stratified DIF (Section 4.3) reports C% dropping from 31.3% to 22.1% for decoder-only models, with Jaccard = 0.68 overlap. What drives the 9.2pp reduction? Is it removal of encoder-decoder and encoder-only models, or the smaller sample size (3,847 vs. 5,227)?
+
+- The paper frames 38% as "item instability" rather than contamination. Given rho = 0.307 between C% and accuracy improvement, what fraction of the 38% is explained by pure accuracy improvement? Have the authors considered a partial correlation or regression decomposition?
+
+- For the Cumulative Bayesian DIF (Table 6): what is the sensitivity to the Bayes factor threshold? How does TPR/FPR change at thresholds of 2.0 and 5.0?
+
+**Missing Experiments / Controls**
+
+- Threshold sensitivity analysis: C% at multiple ETS thresholds to demonstrate robustness of the qualitative finding beyond the single 1.5 cutoff.
+
+- Non-uniform DIF detection: At minimum, a logistic regression DIF comparison on a representative subset to assess whether non-uniform DIF is prevalent and whether MH is missing important signals.
+
+- Alternative injection mechanisms in the semi-synthetic framework: probability-boosting (e.g., multiply correct probability by a factor) rather than deterministic flipping, to assess whether the method's sensitivity depends on the specific injection mechanism.
+
+- Effect of model filtering: The METABENCH dataset includes models of vastly different quality. How does restricting to models above a minimum accuracy threshold affect C%? The inclusion of very weak models (near-random accuracy) may inflate DIF statistics.
+
+- Temporal cohort boundary sensitivity: The 2023 vs. 2024 split is somewhat arbitrary. How does C% change with different temporal boundaries (e.g., 2023-H1 vs. 2023-H2, quarterly splits)?
+
+- Cross-benchmark generalization beyond GSM8K: The paper claims the framework is reusable, but only MMLU and GSM8K are tested. At least one additional benchmark (e.g., ARC, HellaSwag) from METABENCH would strengthen the generalizability claim.
+
+**Soundness Score**: 3/4
+The MH-DIF application is technically correct and the statistical procedures are appropriate for the most part. The ETS classification is a standard psychometric approach, the semi-synthetic framework is well-designed, and the sanity checks are thorough. The main soundness concerns are the uncalibrated ETS thresholds for LLM populations, the restriction to uniform DIF only, and the missing multiple testing discussion. None of these are fatal, but they collectively limit confidence in the precise quantitative claims.
+
+**Empirical Rigor Score**: 3/4
+The experimental design is unusually thorough, with proper controls (sanity checks, dose-response, cross-subject matching, permutation tests, leave-one-out analysis). The negative result chain and honest pivot are exemplary. The main gaps are the absence of threshold sensitivity analysis, the lack of alternative DIF methods for comparison, the underpowered RL analysis, and the limited cross-benchmark validation (only MMLU and GSM8K). The downstream impact analysis and GSM1K correlation analysis are well-controlled secondary analyses.
+
+**Overall Score**: 4/6
+This is a solid empirical contribution that brings established psychometric tools to an important ML evaluation problem. The 38% item instability finding, the ground truth meta-critique, and the semi-synthetic validation framework are individually interesting and collectively tell a coherent story. The honest treatment of negative results and the systematic experimental chain are above average for the venue. However, the uncalibrated DIF thresholds, the persistent 31-38% baseline FPR without full explanation, the limited cross-benchmark generalization, and the missing sensitivity analyses keep this below the acceptance threshold for a top venue. A revision addressing threshold sensitivity, including at least one alternative DIF method comparison, and extending to one more benchmark would likely push this to a clear accept.
+
+**Confidence**: 4/5
+I have substantial familiarity with psychometric methods including DIF analysis and IRT, as well as the LLM benchmark evaluation literature. I read the full experimental reports and artifacts. My main uncertainty is whether the ML community's unfamiliarity with DIF methodology would lead to higher or lower novelty assessments than my own.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ca886fd3-07c6-4e41-b799-ce7af9b12e8b",
+  "isSidechain": true,
+  "agentId": "a05abee50241190a6",
+  "requestId": "req_011CbEtYZZvBx16khrJGCrgT",
+  "attributionAgent": "general-purpose",
+  "type": "assistant",
+  "uuid": "8041324e-956e-43d0-a730-9dc92acddaef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0520_2/projects/irt_equated_bench_regen",
+  "sessionId": "bed74537-8027-4ea2-ace4-14fc8a5d1a29",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XEeb4Qjh2PQ9qizis8vobA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5939,
+      "cache_read_input_tokens": 74635,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 5939,
+        "ephemeral_1h_input_tokens": 0
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
