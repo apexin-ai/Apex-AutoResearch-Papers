@@ -581,6 +581,22 @@
       }
     },
     {
+      "project": "persuasion_turn_jailbreak_detect",
+      "title": "DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection",
+      "catalog": "../paper-assets/persuasion_turn_jailbreak_detect/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 984,
+        "messages": 125176,
+        "user_turns": 3586,
+        "tool_calls": 51038,
+        "unparsed_lines": 422,
+        "result": 391,
+        "worker": 420,
+        "conversation": 159,
+        "history": 14
+      }
+    },
+    {
       "project": "prod42",
       "title": "prod42",
       "catalog": "../paper-assets/prod42/05-generation-trace/catalog.json",
@@ -676,6 +692,22 @@
         "result": 81,
         "conversation": 32,
         "history": 1
+      }
+    },
+    {
+      "project": "tax_error_inject_agent",
+      "title": "When Does Unpaired Error Injection Help LLM Agents? Hypotheses from a Failed Transfer to Embodied Planning",
+      "catalog": "../paper-assets/tax_error_inject_agent/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1168,
+        "messages": 68008,
+        "user_turns": 2216,
+        "tool_calls": 26732,
+        "unparsed_lines": 443,
+        "result": 427,
+        "worker": 440,
+        "conversation": 260,
+        "history": 41
       }
     },
     {

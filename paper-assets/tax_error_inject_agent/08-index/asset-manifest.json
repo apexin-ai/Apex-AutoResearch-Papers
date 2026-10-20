@@ -1,0 +1,110 @@
+{
+  "project": "tax_error_inject_agent",
+  "code_count": 271,
+  "data_count": 1146,
+  "env_count": 0,
+  "tex_count": 30,
+  "bib_count": 2,
+  "review_count": 2,
+  "validation_count": 2,
+  "contribution_count": 3,
+  "chat_count": 260,
+  "worker_count": 867,
+  "trace_count": 1168,
+  "trace_bytes": 116909813,
+  "maintenance_count": 68,
+  "provenance_count": 0,
+  "submission_count": 0,
+  "license_count": 0,
+  "paper_pdf": "paper.pdf",
+  "paper_sha256": "80f663072615335b2355b04db322f4cd270d98ec5b9daef4654c8e6cb88de9b5",
+  "title": "When Does Unpaired Error Injection Help LLM Agents? Hypotheses from a Failed Transfer to Embodied Planning",
+  "pages": 7,
+  "status_marker": "Anonymous ACL submission",
+  "version_count": 10,
+  "version_paths": [
+    "figures/paper/fig2_operator_gradient.pdf",
+    "figures/paper/fig_app_training_curves.pdf",
+    "figures/paper/fig1_dose_response.pdf",
+    "docs/paper/main.pdf",
+    "artifacts/dream_reports/dream_20260516T153939/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260516T153939/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260516T153939/best/paper.pdf",
+    "artifacts/dream_reports/dream_20260515T020837/median/paper.pdf",
+    "artifacts/dream_reports/dream_20260515T020837/worst/paper.pdf",
+    "artifacts/dream_reports/dream_20260515T020837/best/paper.pdf"
+  ],
+  "archive_rel": "persuasion_turn_jailbreak_detect/workspace.tar.gz",
+  "archive_note": "Archive scan completed",
+  "archive_error": null,
+  "source_s3": {
+    "bucket": "agent-ml-research-project-backups-20260531",
+    "key": "persuasion_turn_jailbreak_detect/workspace.tar.gz",
+    "sha256": "18da633149e68cfee558e3a85a8d8c263a056832e722751721d901dae9d70836",
+    "bytes": 238522539,
+    "etag": "\"3a8a6308ce9367f052ce765cb069a405-29\"",
+    "modified": "2026-05-31T17:32:47+00:00"
+  },
+  "academic_record": {
+    "date": "2026-05-31",
+    "record": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified."
+  },
+  "criteria": [
+    {
+      "name": "Manuscript and versions",
+      "status": "Available",
+      "evidence": "30 source files; 10 PDF candidates",
+      "gap": "Candidate filenames do not establish official submission or publication.",
+      "path": "01-manuscript/"
+    },
+    {
+      "name": "Academic status",
+      "status": "Unverified",
+      "evidence": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified.",
+      "gap": "Official submission, acceptance, and publication were not independently checked.",
+      "path": "07-maintenance/"
+    },
+    {
+      "name": "AI / human contribution",
+      "status": "Partial",
+      "evidence": "3 task/role records",
+      "gap": "User and assistant roles do not identify people or establish author contributions.",
+      "path": "02-contributions/"
+    },
+    {
+      "name": "Generation trace",
+      "status": "Organized",
+      "evidence": "260 conversations; 867 worker logs/results; 1168 source files",
+      "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
+      "path": "05-generation-trace/"
+    },
+    {
+      "name": "Reproduction code",
+      "status": "Available",
+      "evidence": "271 code/configuration files; 0 environment manifests",
+      "gap": "The code is archived; experiments were not rerun for this release.",
+      "path": "03-code/"
+    },
+    {
+      "name": "Experiments and environment",
+      "status": "Partial",
+      "evidence": "1146 data/result files",
+      "gap": "Original data permissions and completeness require project-specific review.",
+      "path": "04-experiments/"
+    },
+    {
+      "name": "Validation evidence",
+      "status": "Partial",
+      "evidence": "2 internal review records; 2 other audit records",
+      "gap": "Internal reviews are project evidence, not independently verified external reviews.",
+      "path": "06-validation/"
+    },
+    {
+      "name": "Maintenance",
+      "status": "Partial",
+      "evidence": "68 project documentation files; 0 license files",
+      "gap": "A project license file applies only within its stated scope.",
+      "path": "07-maintenance/"
+    }
+  ]
+}

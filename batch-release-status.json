@@ -785,6 +785,38 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39380619280"
+    },
+    "persuasion_turn_jailbreak_detect/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 238522539,
+        "etag": "\"3a8a6308ce9367f052ce765cb069a405-29\"",
+        "modified": "2026-05-31T17:32:47+00:00"
+      },
+      "archive_sha256": "18da633149e68cfee558e3a85a8d8c263a056832e722751721d901dae9d70836",
+      "projects": [
+        "persuasion_turn_jailbreak_detect",
+        "tax_error_inject_agent"
+      ],
+      "counts": [
+        {
+          "project": "persuasion_turn_jailbreak_detect",
+          "title": "DisPeD: A Controlled Study of Encoder Adaptation for Multi-Turn Jailbreak Detection",
+          "paper_pdf": "paper.pdf",
+          "code_count": 242,
+          "data_count": 788,
+          "trace_count": 984
+        },
+        {
+          "project": "tax_error_inject_agent",
+          "title": "When Does Unpaired Error Injection Help LLM Agents? Hypotheses from a Failed Transfer to Embodied Planning",
+          "paper_pdf": "paper.pdf",
+          "code_count": 271,
+          "data_count": 1146,
+          "trace_count": 1168
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39384749486"
     }
   }
 }

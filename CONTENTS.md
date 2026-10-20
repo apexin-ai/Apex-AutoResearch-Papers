@@ -1,6 +1,6 @@
 # Contents
 
-This catalogue covers **33 projects with manuscript PDFs** and **19 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
+This catalogue covers **35 projects with manuscript PDFs** and **19 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
 
 | Project | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---:|---:|---:|---:|
@@ -32,10 +32,12 @@ This catalogue covers **33 projects with manuscript PDFs** and **19 additional p
 | [meta_brain_lora_routing](paper-assets/meta_brain_lora_routing/README.md) | [PDF](paper-assets/meta_brain_lora_routing/01-manuscript/paper.pdf) | 137 | 203 | 556 | 55,779 |
 | [nlp_variance_gtheory](paper-assets/nlp_variance_gtheory/README.md) | [PDF](paper-assets/nlp_variance_gtheory/01-manuscript/paper.pdf) | 396 | 519 | 815 | 81,448 |
 | [occsafe_vla](paper-assets/occsafe_vla/README.md) | [PDF](paper-assets/occsafe_vla/01-manuscript/paper.pdf) | 510 | 1,517 | 2,573 | 167,803 |
+| [persuasion_turn_jailbreak_detect](paper-assets/persuasion_turn_jailbreak_detect/README.md) | [PDF](paper-assets/persuasion_turn_jailbreak_detect/01-manuscript/paper.pdf) | 242 | 788 | 984 | 125,176 |
 | [ratekv](paper-assets/ratekv/README.md) | [PDF](paper-assets/ratekv/01-manuscript/paper.pdf) | 308 | 874 | 1,250 | 87,631 |
 | [recursive_gen_depth_est](paper-assets/recursive_gen_depth_est/README.md) | [PDF](paper-assets/recursive_gen_depth_est/01-manuscript/paper.pdf) | 86 | 80 | 1,779 | 166,550 |
 | [schema-dag-extraction](paper-assets/schema-dag-extraction/README.md) | [PDF](paper-assets/schema-dag-extraction/01-manuscript/paper.pdf) | 135 | 68 | 1,242 | 131,771 |
 | [structfuse-context](paper-assets/structfuse-context/README.md) | [PDF](paper-assets/structfuse-context/01-manuscript/paper.pdf) | 212 | 354 | 1,232 | 90,756 |
+| [tax_error_inject_agent](paper-assets/tax_error_inject_agent/README.md) | [PDF](paper-assets/tax_error_inject_agent/01-manuscript/paper.pdf) | 271 | 1,146 | 1,168 | 68,008 |
 | [xling_calib_direction](paper-assets/xling_calib_direction/README.md) | [PDF](paper-assets/xling_calib_direction/01-manuscript/paper.pdf) | 121 | 201 | 290 | 27,260 |
 | [action_cond_info_bottleneck](paper-assets/action_cond_info_bottleneck/README.md) | No PDF in snapshot | 172 | 255 | 800 | 45,967 |
 | [afford_invar](paper-assets/afford_invar/README.md) | No PDF in snapshot | 34 | 50 | 172 | 15,216 |
